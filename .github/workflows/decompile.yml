@@ -8,7 +8,7 @@ jobs:
     steps:
       - name: Decompile
         run: |
-          unzip "$(curl -LOJ -w "%{filename_effective}" https://nightly.link/skylot/jadx/workflows/build-artifacts/master/jadx-r2751.55982e0.zip.zip)"
+          unzip "$(curl -fsSLOJ -w "%{filename_effective}" https://nightly.link/skylot/jadx/workflows/build-artifacts/master/jadx-r2751.55982e0.zip.zip)"
           ./bin/jadx \
             -j "$(nproc)" \
             -d . \
@@ -19,7 +19,7 @@ jobs:
             --no-inline-methods \
             --no-inline-kotlin-lambda \
             --use-source-name-as-class-name-alias always \
-            "$(curl -LOJ -w "%{filename_effective}" https://maven.aliucord.com/releases/com/discord/discord/126021/discord-126021.apk)" || true
+            "$(curl -fsSLOJ -w "%{filename_effective}" https://maven.aliucord.com/releases/com/discord/discord/126021/discord-126021.apk)" || true
 
           find . -type f -name "*.java" -exec sed -i "/@Metadata(\|@kotlin.Metadata(\|import kotlin.Metadata/d" {} +
 
