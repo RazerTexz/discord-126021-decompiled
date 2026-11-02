@@ -16,17 +16,7 @@ jobs:
 
       - name: Decompile
         run: |
-          ./*/bin/jadx \
-            -d . \
-            -j "$(nproc)" \
-            --fs-case-sensitive \
-            --respect-bytecode-access-modifiers \
-            --show-bad-code \
-            --no-inline-anonymous \
-            --no-inline-methods \
-            --no-inline-kotlin-lambda \
-            --use-source-name-as-class-name-alias always \
-            "$(curl -fsSLOJ -w "%{filename_effective}" https://maven.aliucord.com/releases/com/discord/discord/126021/discord-126021.apk)" || true
+          ./*/bin/jadx -d . -j "$(nproc)" --fs-case-sensitive --respect-bytecode-access-modifiers --show-bad-code --no-inline-anonymous --no-inline-methods --no-inline-kotlin-lambda --use-source-name-as-class-name-alias always "$(curl -fsSLOJ -w "%{filename_effective}" https://maven.aliucord.com/releases/com/discord/discord/126021/discord-126021.apk)" || true
 
       - name: Remove Kotlin metadata
         run: find . -type f -name "*.java" -exec sed -i "/@Metadata(\|@kotlin.Metadata(\|import kotlin.Metadata/d" {} +
