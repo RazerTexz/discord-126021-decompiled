@@ -9,7 +9,7 @@ jobs:
       - name: Decompile
         run: |
           unzip "$(curl -LOJ -w "%{filename_effective}" https://nightly.link/skylot/jadx/workflows/build-artifacts/master/jadx-r2751.55982e0.zip.zip)"
-          sh */bin/jadx \
+          ./bin/jadx \
             -j "$(nproc)" \
             -d . \
             --fs-case-sensitive \
