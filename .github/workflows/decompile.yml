@@ -16,7 +16,7 @@ jobs:
 
       - name: Decompile
         run: |
-          ./bin/jadx \
+          ./*/bin/jadx \
             -d . \
             -j "$(nproc)" \
             --fs-case-sensitive \
