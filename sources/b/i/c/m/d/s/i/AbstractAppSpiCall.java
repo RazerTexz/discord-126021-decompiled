@@ -12,7 +12,6 @@ import b.i.c.m.d.n.HttpRequestFactory;
 import b.i.c.m.d.n.HttpResponse;
 import b.i.c.m.d.s.h.AppRequestData;
 import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
 
 /* JADX INFO: renamed from: b.i.c.m.d.s.i.a, reason: use source file name */
 /* JADX INFO: compiled from: AbstractAppSpiCall.java */
@@ -25,7 +24,7 @@ public abstract class AbstractAppSpiCall extends AbstractSpiCall {
         this.f = str3;
     }
 
-    public boolean d(AppRequestData appRequestData, boolean z2) throws IllegalAccessException, InvocationTargetException {
+    public boolean d(AppRequestData appRequestData, boolean z2) {
         if (!z2) {
             throw new RuntimeException("An invalid data collection token was used.");
         }

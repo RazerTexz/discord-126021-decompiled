@@ -8,12 +8,12 @@ import d0.e0.p.d.m0.c.DeclarationDescriptorNonRoot;
 import d0.e0.p.d.m0.c.DeclarationDescriptorWithSource;
 import d0.e0.p.d.m0.c.DescriptorVisibility2;
 import d0.e0.p.d.m0.c.FunctionDescriptor;
-import d0.e0.p.d.m0.c.MemberDescriptor;
 import d0.e0.p.d.m0.c.Modality;
 import d0.e0.p.d.m0.c.PropertyAccessorDescriptor;
 import d0.e0.p.d.m0.c.PropertyDescriptor;
 import d0.e0.p.d.m0.c.ReceiverParameterDescriptor;
 import d0.e0.p.d.m0.c.SourceElement;
+import d0.e0.p.d.m0.c.Substitutable;
 import d0.e0.p.d.m0.c.TypeParameterDescriptor;
 import d0.e0.p.d.m0.c.g1.Annotations4;
 import d0.e0.p.d.m0.g.Name;
@@ -209,7 +209,7 @@ public abstract class PropertyAccessorDescriptorImpl extends DeclarationDescript
     public Collection<PropertyAccessorDescriptor> b(boolean z2) {
         ArrayList arrayList = new ArrayList(0);
         for (PropertyDescriptor propertyDescriptor : getCorrespondingProperty().getOverriddenDescriptors()) {
-            MemberDescriptor getter = z2 ? propertyDescriptor.getGetter() : propertyDescriptor.getSetter();
+            Substitutable getter = z2 ? propertyDescriptor.getGetter() : propertyDescriptor.getSetter();
             if (getter != null) {
                 arrayList.add(getter);
             }

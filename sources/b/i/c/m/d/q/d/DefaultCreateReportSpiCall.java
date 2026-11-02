@@ -12,7 +12,6 @@ import b.i.c.m.d.q.c.CreateReportRequest;
 import b.i.c.m.d.q.c.Report2;
 import java.io.File;
 import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
 import java.util.Map;
 
 /* JADX INFO: renamed from: b.i.c.m.d.q.d.c, reason: use source file name */
@@ -27,7 +26,7 @@ public class DefaultCreateReportSpiCall extends AbstractSpiCall implements Creat
     }
 
     @Override // b.i.c.m.d.q.d.CreateReportSpiCall
-    public boolean a(CreateReportRequest createReportRequest, boolean z2) throws IllegalAccessException, InvocationTargetException {
+    public boolean a(CreateReportRequest createReportRequest, boolean z2) {
         if (!z2) {
             throw new RuntimeException("An invalid data collection token was used.");
         }

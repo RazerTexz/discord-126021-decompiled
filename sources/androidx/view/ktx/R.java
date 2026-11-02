@@ -4,7 +4,7 @@ package androidx.view.ktx;
 public final class R {
 
     public final class id {
-        public static final int view_tree_lifecycle_owner = 0x7f0a10f0;
+        public static final int view_tree_saved_state_registry_owner = 0x7f0a10f1;
 
         private id() {
         }

@@ -24,8 +24,8 @@ public class LottieValueAnimator extends BaseLottieAnimator implements Choreogra
     public long n = 0;
     public float o = 0.0f;
     public int p = 0;
-    public float q = -2.14748365E9f;
-    public float r = 2.14748365E9f;
+    public float q = -2.1474836E9f;
+    public float r = 2.1474836E9f;
 
     @VisibleForTesting
     public boolean t = false;
@@ -149,7 +149,7 @@ public class LottieValueAnimator extends BaseLottieAnimator implements Choreogra
             return 0.0f;
         }
         float f = this.r;
-        return f == 2.14748365E9f ? lottieComposition.l : f;
+        return f == 2.1474836E9f ? lottieComposition.l : f;
     }
 
     @Override // android.animation.ValueAnimator, android.animation.Animator
@@ -163,7 +163,7 @@ public class LottieValueAnimator extends BaseLottieAnimator implements Choreogra
             return 0.0f;
         }
         float f = this.q;
-        return f == -2.14748365E9f ? lottieComposition.k : f;
+        return f == -2.1474836E9f ? lottieComposition.k : f;
     }
 
     public final boolean k() {

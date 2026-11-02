@@ -373,8 +373,8 @@ public class LottieDrawable extends Drawable implements Drawable.Callback, Anima
         this.f352s = null;
         LottieValueAnimator lottieValueAnimator2 = this.l;
         lottieValueAnimator2.f344s = null;
-        lottieValueAnimator2.q = -2.14748365E9f;
-        lottieValueAnimator2.r = 2.14748365E9f;
+        lottieValueAnimator2.q = -2.1474836E9f;
+        lottieValueAnimator2.r = 2.1474836E9f;
         invalidateSelf();
     }
 

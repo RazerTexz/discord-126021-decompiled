@@ -175,7 +175,9 @@ public class BufferedDiskCache2 {
             FrescoSystrace.b();
             EncodedImage2 encodedImage2A = this.f.a(cacheKey);
             if (encodedImage2A != null) {
-                return d(cacheKey, encodedImage2A);
+                Task6<EncodedImage2> task6D = d(cacheKey, encodedImage2A);
+                FrescoSystrace.b();
+                return task6D;
             }
             try {
                 task6C = Task6.a(new BufferedDiskCache(this, null, atomicBoolean, cacheKey), this.d);
@@ -183,9 +185,11 @@ public class BufferedDiskCache2 {
                 FLog.n(BufferedDiskCache2.class, e, "Failed to schedule disk-cache read for %s", ((SimpleCacheKey) cacheKey).a);
                 task6C = Task6.c(e);
             }
-            return task6C;
-        } finally {
             FrescoSystrace.b();
+            return task6C;
+        } catch (Throwable th) {
+            FrescoSystrace.b();
+            throw th;
         }
     }
 
@@ -205,10 +209,8 @@ public class BufferedDiskCache2 {
                     encodedImage2A.close();
                 }
             }
+        } finally {
             FrescoSystrace.b();
-        } catch (Throwable th) {
-            FrescoSystrace.b();
-            throw th;
         }
     }
 }

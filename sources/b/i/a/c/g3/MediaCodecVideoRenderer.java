@@ -311,7 +311,7 @@ public class MediaCodecVideoRenderer extends MediaCodecRenderer {
     /* JADX WARN: Code duplicated, block: B:6:0x001a  */
     /*  JADX ERROR: UnsupportedOperationException in pass: RegionMakerVisitor
         java.lang.UnsupportedOperationException
-        	at java.base/java.util.Collections$UnmodifiableCollection.add(Collections.java:1068)
+        	at java.base/java.util.Collections$UnmodifiableCollection.add(Collections.java:1093)
         	at jadx.core.dex.visitors.regions.maker.SwitchRegionMaker$1.leaveRegion(SwitchRegionMaker.java:419)
         	at jadx.core.dex.visitors.regions.DepthRegionTraversal.traverseInternal(DepthRegionTraversal.java:91)
         	at jadx.core.dex.visitors.regions.DepthRegionTraversal.traverse(DepthRegionTraversal.java:31)

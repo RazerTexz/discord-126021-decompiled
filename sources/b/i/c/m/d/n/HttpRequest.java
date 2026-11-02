@@ -9,7 +9,6 @@ import f0.e0.Util7;
 import f0.e0.g.RealCall;
 import java.io.File;
 import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -49,7 +48,7 @@ public class HttpRequest {
         this.d = map;
     }
 
-    public HttpResponse a() throws IllegalAccessException, IOException, InvocationTargetException {
+    public HttpResponse a() throws IOException {
         HttpUrl httpUrlB;
         Request.a aVar = new Request.a();
         CacheControl cacheControl = new CacheControl(true, false, -1, -1, false, false, false, -1, -1, false, false, false, null, null);

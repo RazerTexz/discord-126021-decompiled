@@ -1,7 +1,6 @@
 package b.i.c.m.d.q.d;
 
 import b.i.c.m.d.q.c.CreateReportRequest;
-import java.lang.reflect.InvocationTargetException;
 
 /* JADX INFO: renamed from: b.i.c.m.d.q.d.a, reason: use source file name */
 /* JADX INFO: compiled from: CompositeCreateReportSpiCall.java */
@@ -18,7 +17,7 @@ public class CompositeCreateReportSpiCall implements CreateReportSpiCall {
     }
 
     @Override // b.i.c.m.d.q.d.CreateReportSpiCall
-    public boolean a(CreateReportRequest createReportRequest, boolean z2) throws IllegalAccessException, InvocationTargetException {
+    public boolean a(CreateReportRequest createReportRequest, boolean z2) {
         int iH = b.c.a.y.b.h(createReportRequest.c.d());
         if (iH == 0) {
             this.a.a(createReportRequest, z2);

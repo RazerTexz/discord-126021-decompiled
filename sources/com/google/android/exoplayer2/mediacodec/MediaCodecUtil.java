@@ -576,7 +576,7 @@ public final class MediaCodecUtil {
     	at jadx.core.utils.InsnRemover.removeSsaVar(InsnRemover.java:164)
     	at jadx.core.utils.InsnRemover.unbindResult(InsnRemover.java:129)
     	at jadx.core.utils.InsnRemover.lambda$unbindInsns$1(InsnRemover.java:101)
-    	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+    	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
     	at jadx.core.utils.InsnRemover.unbindInsns(InsnRemover.java:100)
     	at jadx.core.utils.InsnRemover.perform(InsnRemover.java:75)
     	at jadx.core.utils.InsnRemover.removeAllMarked(InsnRemover.java:276)
