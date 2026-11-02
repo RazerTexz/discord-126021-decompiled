@@ -12,8 +12,8 @@ jobs:
       - name: Decompile
         run: |
           ./bin/jadx \
-            -j "$(nproc)" \
             -d . \
+            -j "$(nproc)" \
             --fs-case-sensitive \
             --respect-bytecode-access-modifiers \
             --show-bad-code \
