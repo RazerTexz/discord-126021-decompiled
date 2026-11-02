@@ -1,14 +1,14 @@
 package com.discord.widgets.guilds.join;
 
 import com.discord.utilities.captcha.CaptchaErrorBody;
-import d0.z.d.o;
+import d0.z.d.Lambda;
 import java.io.Serializable;
 import java.util.Objects;
 import kotlin.jvm.functions.Function0;
 
 /* JADX INFO: compiled from: WidgetGuildJoinCaptchaBottomSheet.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class WidgetGuildJoinCaptchaBottomSheet$captchaErrorBody$2 extends o implements Function0<CaptchaErrorBody> {
+public final class WidgetGuildJoinCaptchaBottomSheet$captchaErrorBody$2 extends Lambda implements Function0<CaptchaErrorBody> {
     public final /* synthetic */ WidgetGuildJoinCaptchaBottomSheet this$0;
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */

@@ -1,11 +1,11 @@
 package com.discord.api.premium;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.adjust.sdk.Constants;
 import com.discord.api.utcdatetime.UtcDateTime;
 import com.discord.models.domain.ModelAuditLogEntry;
-import d0.g0.t;
-import d0.z.d.m;
+import d0.g0.StringsJVM;
+import d0.z.d.Intrinsics3;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.concurrent.TimeUnit;
@@ -28,8 +28,8 @@ public final /* data */ class ClaimedOutboundPromotion {
         String outboundRedemptionUrlFormat = this.promotion.getOutboundRedemptionUrlFormat();
         if (outboundRedemptionUrlFormat != null) {
             String strEncode = URLEncoder.encode(this.code, Constants.ENCODING);
-            m.checkNotNullExpressionValue(strEncode, "URLEncoder.encode(code, \"UTF-8\")");
-            outboundRedemptionPageLink = t.replace$default(outboundRedemptionUrlFormat, "{code}", strEncode, false, 4, (Object) null);
+            Intrinsics3.checkNotNullExpressionValue(strEncode, "URLEncoder.encode(code, \"UTF-8\")");
+            outboundRedemptionPageLink = StringsJVM.replace$default(outboundRedemptionUrlFormat, "{code}", strEncode, false, 4, (Object) null);
             if (outboundRedemptionPageLink == null) {
                 outboundRedemptionPageLink = this.promotion.getOutboundRedemptionPageLink();
             }
@@ -47,7 +47,7 @@ public final /* data */ class ClaimedOutboundPromotion {
             return false;
         }
         ClaimedOutboundPromotion claimedOutboundPromotion = (ClaimedOutboundPromotion) other;
-        return m.areEqual(this.code, claimedOutboundPromotion.code) && this.userId == claimedOutboundPromotion.userId && m.areEqual(this.claimedAt, claimedOutboundPromotion.claimedAt) && m.areEqual(this.promotion, claimedOutboundPromotion.promotion);
+        return Intrinsics3.areEqual(this.code, claimedOutboundPromotion.code) && this.userId == claimedOutboundPromotion.userId && Intrinsics3.areEqual(this.claimedAt, claimedOutboundPromotion.claimedAt) && Intrinsics3.areEqual(this.promotion, claimedOutboundPromotion.promotion);
     }
 
     /* JADX INFO: renamed from: a, reason: from getter */
@@ -72,7 +72,7 @@ public final /* data */ class ClaimedOutboundPromotion {
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("ClaimedOutboundPromotion(code=");
+        StringBuilder sbU = outline.U("ClaimedOutboundPromotion(code=");
         sbU.append(this.code);
         sbU.append(", userId=");
         sbU.append(this.userId);

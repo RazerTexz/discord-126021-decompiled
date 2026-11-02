@@ -10,7 +10,7 @@ import android.util.SparseArray;
 import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -172,7 +172,7 @@ public final class SavedStateHandle {
                 return;
             }
         }
-        StringBuilder sbU = a.U("Can't put value with type ");
+        StringBuilder sbU = outline.U("Can't put value with type ");
         sbU.append(obj.getClass());
         sbU.append(" into saved state");
         throw new IllegalArgumentException(sbU.toString());

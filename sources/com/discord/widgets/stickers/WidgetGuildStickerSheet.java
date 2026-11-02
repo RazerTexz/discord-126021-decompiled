@@ -10,10 +10,10 @@ import android.widget.TextView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentViewModelLazyKt;
-import b.a.d.g0;
-import b.a.d.i0;
-import b.a.k.b;
-import b.d.b.a.a;
+import b.a.d.AppViewModelDelegates3;
+import b.a.d.AppViewModelDelegates5;
+import b.a.k.FormatUtils;
+import b.d.b.a.outline;
 import com.discord.R;
 import com.discord.api.guild.GuildFeature;
 import com.discord.api.sticker.Sticker;
@@ -29,12 +29,12 @@ import com.discord.utilities.images.MGImages;
 import com.discord.utilities.locale.LocaleManager;
 import com.discord.utilities.rx.ObservableExtensionsKt;
 import com.discord.utilities.viewbinding.FragmentViewBindingDelegate;
-import com.discord.utilities.viewbinding.FragmentViewBindingDelegateKt;
+import com.discord.utilities.viewbinding.FragmentViewBindingDelegate3;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.google.android.material.button.MaterialButton;
-import d0.z.d.a0;
-import d0.z.d.m;
-import d0.z.d.o;
+import d0.z.d.Intrinsics3;
+import d0.z.d.Lambda;
+import d0.z.d.Reflection2;
 import java.text.NumberFormat;
 import kotlin.Lazy;
 import kotlin.Unit;
@@ -48,7 +48,7 @@ import rx.subscriptions.CompositeSubscription;
 /* JADX INFO: compiled from: WidgetGuildStickerSheet.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetGuildStickerSheet extends AppBottomSheet {
-    public static final /* synthetic */ KProperty[] $$delegatedProperties = {a.d0(WidgetGuildStickerSheet.class, "binding", "getBinding()Lcom/discord/databinding/WidgetGuildStickerSheetBinding;", 0)};
+    public static final /* synthetic */ KProperty[] $$delegatedProperties = {outline.d0(WidgetGuildStickerSheet.class, "binding", "getBinding()Lcom/discord/databinding/WidgetGuildStickerSheetBinding;", 0)};
 
     /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
     public static final Companion INSTANCE = new Companion(null);
@@ -63,7 +63,7 @@ public final class WidgetGuildStickerSheet extends AppBottomSheet {
 
     /* JADX INFO: renamed from: com.discord.widgets.stickers.WidgetGuildStickerSheet$bindSubscriptions$1, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetGuildStickerSheet.kt */
-    public final class AnonymousClass1 extends o implements Function1<GuildStickerSheetViewModel.ViewState, Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function1<GuildStickerSheetViewModel.ViewState, Unit> {
         public AnonymousClass1() {
             super(1);
         }
@@ -76,9 +76,9 @@ public final class WidgetGuildStickerSheet extends AppBottomSheet {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(GuildStickerSheetViewModel.ViewState viewState) {
-            if (m.areEqual(viewState, GuildStickerSheetViewModel.ViewState.Loading.INSTANCE)) {
+            if (Intrinsics3.areEqual(viewState, GuildStickerSheetViewModel.ViewState.Loading.INSTANCE)) {
                 WidgetGuildStickerSheet.access$showLoading(WidgetGuildStickerSheet.this);
-            } else if (m.areEqual(viewState, GuildStickerSheetViewModel.ViewState.Dismiss.INSTANCE)) {
+            } else if (Intrinsics3.areEqual(viewState, GuildStickerSheetViewModel.ViewState.Dismiss.INSTANCE)) {
                 WidgetGuildStickerSheet.this.dismiss();
             } else if (viewState instanceof GuildStickerSheetViewModel.ViewState.Loaded) {
                 WidgetGuildStickerSheet.access$configureUI(WidgetGuildStickerSheet.this, (GuildStickerSheetViewModel.ViewState.Loaded) viewState);
@@ -92,8 +92,8 @@ public final class WidgetGuildStickerSheet extends AppBottomSheet {
         }
 
         public final void show(FragmentManager fragmentManager, Sticker sticker) {
-            m.checkNotNullParameter(fragmentManager, "fragmentManager");
-            m.checkNotNullParameter(sticker, "sticker");
+            Intrinsics3.checkNotNullParameter(fragmentManager, "fragmentManager");
+            Intrinsics3.checkNotNullParameter(sticker, "sticker");
             if (sticker.getType() != StickerType.GUILD) {
                 return;
             }
@@ -111,10 +111,10 @@ public final class WidgetGuildStickerSheet extends AppBottomSheet {
 
     public WidgetGuildStickerSheet() {
         super(false, 1, null);
-        this.binding = FragmentViewBindingDelegateKt.viewBinding$default(this, WidgetGuildStickerSheet$binding$2.INSTANCE, null, 2, null);
-        WidgetGuildStickerSheet$viewModel$2 widgetGuildStickerSheet$viewModel$2 = new WidgetGuildStickerSheet$viewModel$2(this);
-        g0 g0Var = new g0(this);
-        this.viewModel = FragmentViewModelLazyKt.createViewModelLazy(this, a0.getOrCreateKotlinClass(GuildStickerSheetViewModel.class), new WidgetGuildStickerSheet$appViewModels$$inlined$viewModels$1(g0Var), new i0(widgetGuildStickerSheet$viewModel$2));
+        this.binding = FragmentViewBindingDelegate3.viewBinding$default(this, WidgetGuildStickerSheet2.INSTANCE, null, 2, null);
+        WidgetGuildStickerSheet5 widgetGuildStickerSheet5 = new WidgetGuildStickerSheet5(this);
+        AppViewModelDelegates3 appViewModelDelegates3 = new AppViewModelDelegates3(this);
+        this.viewModel = FragmentViewModelLazyKt.createViewModelLazy(this, Reflection2.getOrCreateKotlinClass(GuildStickerSheetViewModel.class), new WidgetGuildStickerSheet$appViewModels$$inlined$viewModels$1(appViewModelDelegates3), new AppViewModelDelegates5(widgetGuildStickerSheet5));
     }
 
     public static final /* synthetic */ void access$configureUI(WidgetGuildStickerSheet widgetGuildStickerSheet, GuildStickerSheetViewModel.ViewState.Loaded loaded) {
@@ -135,9 +135,9 @@ public final class WidgetGuildStickerSheet extends AppBottomSheet {
 
     @Override // com.discord.app.AppBottomSheet
     public void bindSubscriptions(CompositeSubscription compositeSubscription) {
-        m.checkNotNullParameter(compositeSubscription, "compositeSubscription");
+        Intrinsics3.checkNotNullParameter(compositeSubscription, "compositeSubscription");
         Observable observableR = ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeViewState(), this, null, 2, null).r();
-        m.checkNotNullExpressionValue(observableR, "viewModel\n        .obser…  .distinctUntilChanged()");
+        Intrinsics3.checkNotNullExpressionValue(observableR, "viewModel\n        .obser…  .distinctUntilChanged()");
         ObservableExtensionsKt.appSubscribe$default(observableR, WidgetGuildStickerSheet.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass1(), 62, (Object) null);
     }
 
@@ -145,39 +145,39 @@ public final class WidgetGuildStickerSheet extends AppBottomSheet {
         WidgetGuildStickerSheetBinding binding = getBinding();
         if (guild == null) {
             FrameLayout frameLayout = binding.f2453b;
-            m.checkNotNullExpressionValue(frameLayout, "guildStickerSheetButtonContainer");
+            Intrinsics3.checkNotNullExpressionValue(frameLayout, "guildStickerSheetButtonContainer");
             frameLayout.setVisibility(8);
             return;
         }
         if (!isUserPremium) {
             FrameLayout frameLayout2 = binding.f2453b;
-            m.checkNotNullExpressionValue(frameLayout2, "guildStickerSheetButtonContainer");
+            Intrinsics3.checkNotNullExpressionValue(frameLayout2, "guildStickerSheetButtonContainer");
             frameLayout2.setVisibility(0);
             MaterialButton materialButton = binding.l;
-            m.checkNotNullExpressionValue(materialButton, "guildStickerSheetPremiumBtn");
+            Intrinsics3.checkNotNullExpressionValue(materialButton, "guildStickerSheetPremiumBtn");
             materialButton.setVisibility(0);
             MaterialButton materialButton2 = binding.k;
-            m.checkNotNullExpressionValue(materialButton2, "guildStickerSheetJoinBtn");
+            Intrinsics3.checkNotNullExpressionValue(materialButton2, "guildStickerSheetJoinBtn");
             materialButton2.setVisibility(8);
-            binding.l.setOnClickListener(new WidgetGuildStickerSheet$configureButtons$$inlined$with$lambda$1(this, guild, isUserPremium, isUserInGuild));
+            binding.l.setOnClickListener(new WidgetGuildStickerSheet3(this, guild, isUserPremium, isUserInGuild));
             return;
         }
         if (isUserInGuild) {
             FrameLayout frameLayout3 = binding.f2453b;
-            m.checkNotNullExpressionValue(frameLayout3, "guildStickerSheetButtonContainer");
+            Intrinsics3.checkNotNullExpressionValue(frameLayout3, "guildStickerSheetButtonContainer");
             frameLayout3.setVisibility(8);
             return;
         }
         FrameLayout frameLayout4 = binding.f2453b;
-        m.checkNotNullExpressionValue(frameLayout4, "guildStickerSheetButtonContainer");
+        Intrinsics3.checkNotNullExpressionValue(frameLayout4, "guildStickerSheetButtonContainer");
         frameLayout4.setVisibility(0);
         MaterialButton materialButton3 = binding.l;
-        m.checkNotNullExpressionValue(materialButton3, "guildStickerSheetPremiumBtn");
+        Intrinsics3.checkNotNullExpressionValue(materialButton3, "guildStickerSheetPremiumBtn");
         materialButton3.setVisibility(8);
         MaterialButton materialButton4 = binding.k;
-        m.checkNotNullExpressionValue(materialButton4, "guildStickerSheetJoinBtn");
+        Intrinsics3.checkNotNullExpressionValue(materialButton4, "guildStickerSheetJoinBtn");
         materialButton4.setVisibility(0);
-        binding.k.setOnClickListener(new WidgetGuildStickerSheet$configureButtons$$inlined$with$lambda$2(this, guild, isUserPremium, isUserInGuild));
+        binding.k.setOnClickListener(new WidgetGuildStickerSheet4(this, guild, isUserPremium, isUserInGuild));
     }
 
     private final void configureGuildSection(Guild guild, boolean isCurrentGuild, boolean isGuildPublic, Integer approximateOnline) {
@@ -185,25 +185,25 @@ public final class WidgetGuildStickerSheet extends AppBottomSheet {
         WidgetGuildStickerSheetBinding binding = getBinding();
         if (guild == null || isCurrentGuild) {
             LinearLayout linearLayout = binding.e;
-            m.checkNotNullExpressionValue(linearLayout, "guildStickerSheetGuildContainer");
+            Intrinsics3.checkNotNullExpressionValue(linearLayout, "guildStickerSheetGuildContainer");
             linearLayout.setVisibility(8);
             return;
         }
         LinearLayout linearLayout2 = binding.e;
-        m.checkNotNullExpressionValue(linearLayout2, "guildStickerSheetGuildContainer");
+        Intrinsics3.checkNotNullExpressionValue(linearLayout2, "guildStickerSheetGuildContainer");
         linearLayout2.setVisibility(0);
         if (guild.hasIcon()) {
             SimpleDraweeView simpleDraweeView = binding.f;
-            m.checkNotNullExpressionValue(simpleDraweeView, "guildStickerSheetGuildIcon");
+            Intrinsics3.checkNotNullExpressionValue(simpleDraweeView, "guildStickerSheetGuildIcon");
             IconUtils.setIcon$default((ImageView) simpleDraweeView, guild, 0, (MGImages.ChangeDetector) null, true, 12, (Object) null);
         } else {
             binding.h.setBackgroundResource(R.drawable.drawable_circle_black);
             int themedColor = ColorCompat.getThemedColor(requireContext(), R.attr.colorBackgroundSecondary);
             FrameLayout frameLayout = binding.h;
-            m.checkNotNullExpressionValue(frameLayout, "guildStickerSheetGuildIconWrapper");
+            Intrinsics3.checkNotNullExpressionValue(frameLayout, "guildStickerSheetGuildIconWrapper");
             frameLayout.setBackgroundTintList(ColorStateList.valueOf(themedColor));
             TextView textView = binding.g;
-            m.checkNotNullExpressionValue(textView, "guildStickerSheetGuildIconText");
+            Intrinsics3.checkNotNullExpressionValue(textView, "guildStickerSheetGuildIconText");
             textView.setText(guild.getShortName());
         }
         if (guild.getFeatures().contains(GuildFeature.PARTNERED)) {
@@ -212,22 +212,22 @@ public final class WidgetGuildStickerSheet extends AppBottomSheet {
             i = guild.getFeatures().contains(GuildFeature.VERIFIED) ? R.drawable.ic_verified_badge_banner : 0;
         }
         TextView textView2 = binding.j;
-        m.checkNotNullExpressionValue(textView2, "guildStickerSheetGuildName");
+        Intrinsics3.checkNotNullExpressionValue(textView2, "guildStickerSheetGuildName");
         DrawableCompat.setCompoundDrawablesCompat(textView2, i, 0, 0, 0);
         TextView textView3 = binding.j;
-        m.checkNotNullExpressionValue(textView3, "guildStickerSheetGuildName");
+        Intrinsics3.checkNotNullExpressionValue(textView3, "guildStickerSheetGuildName");
         textView3.setText(guild.getName());
         int i2 = isGuildPublic ? R.string.sticker_popout_public_server : R.string.sticker_popout_private_server;
         String str = null;
-        CharSequence charSequenceK = b.k(this, i2, new Object[0], null, 4);
+        CharSequence charSequenceK = FormatUtils.k(this, i2, new Object[0], null, 4);
         if (approximateOnline != null) {
-            str = b.k(this, R.string.instant_invite_guild_members_online, new Object[]{NumberFormat.getNumberInstance(new LocaleManager().getPrimaryLocale(requireContext())).format(Integer.valueOf(approximateOnline.intValue()))}, null, 4).toString() + " • ";
+            str = FormatUtils.k(this, R.string.instant_invite_guild_members_online, new Object[]{NumberFormat.getNumberInstance(new LocaleManager().getPrimaryLocale(requireContext())).format(Integer.valueOf(approximateOnline.intValue()))}, null, 4).toString() + " • ";
         }
         if (str == null) {
             str = "";
         }
         TextView textView4 = binding.i;
-        m.checkNotNullExpressionValue(textView4, "guildStickerSheetGuildInfo");
+        Intrinsics3.checkNotNullExpressionValue(textView4, "guildStickerSheetGuildInfo");
         textView4.setText(str + charSequenceK);
     }
 
@@ -244,15 +244,15 @@ public final class WidgetGuildStickerSheet extends AppBottomSheet {
         GuildStickerSheetViewModel.Companion.GuildStickerGuildInfo.Known known = (GuildStickerSheetViewModel.Companion.GuildStickerGuildInfo.Known) guildStickerGuildInfo;
         getBinding().m.d(sticker, 0);
         TextView textView = getBinding().n;
-        m.checkNotNullExpressionValue(textView, "binding.guildStickerSheetStickerName");
+        Intrinsics3.checkNotNullExpressionValue(textView, "binding.guildStickerSheetStickerName");
         textView.setText(sticker.getName());
         TextView textView2 = getBinding().c;
-        m.checkNotNullExpressionValue(textView2, "binding.guildStickerSheetDescription");
+        Intrinsics3.checkNotNullExpressionValue(textView2, "binding.guildStickerSheetDescription");
         textView2.setText(getString(getCustomStickerInfoText(isCurrentGuild, isUserInGuild, isPublic, isUserPremium)));
         configureButtons(isUserPremium, isUserInGuild, known != null ? known.getGuild() : null);
         configureGuildSection(known != null ? known.getGuild() : null, isCurrentGuild, isPublic, known != null ? known.getApproximateOnline() : null);
         AppViewFlipper appViewFlipper = getBinding().d;
-        m.checkNotNullExpressionValue(appViewFlipper, "binding.guildStickerSheetFlipper");
+        Intrinsics3.checkNotNullExpressionValue(appViewFlipper, "binding.guildStickerSheetFlipper");
         appViewFlipper.setDisplayedChild(0);
     }
 
@@ -294,7 +294,7 @@ public final class WidgetGuildStickerSheet extends AppBottomSheet {
 
     private final void showLoading() {
         AppViewFlipper appViewFlipper = getBinding().d;
-        m.checkNotNullExpressionValue(appViewFlipper, "binding.guildStickerSheetFlipper");
+        Intrinsics3.checkNotNullExpressionValue(appViewFlipper, "binding.guildStickerSheetFlipper");
         appViewFlipper.setDisplayedChild(1);
     }
 }

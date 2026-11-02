@@ -1,7 +1,7 @@
 package com.discord.models.domain;
 
 import androidx.annotation.Nullable;
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.api.user.User;
 import com.discord.models.deserialization.gson.InboundGatewayGsonParser;
 import java.io.IOException;
@@ -81,7 +81,7 @@ public class ModelBan implements Model {
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("ModelBan(user=");
+        StringBuilder sbU = outline.U("ModelBan(user=");
         sbU.append(getUser());
         sbU.append(", guildId=");
         sbU.append(getGuildId());

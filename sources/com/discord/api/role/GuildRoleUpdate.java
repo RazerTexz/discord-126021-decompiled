@@ -1,8 +1,8 @@
 package com.discord.api.role;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.api.guildhash.GuildHashes;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: GuildRoleUpdate.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -20,7 +20,7 @@ public final /* data */ class GuildRoleUpdate {
             return false;
         }
         GuildRoleUpdate guildRoleUpdate = (GuildRoleUpdate) other;
-        return this.guildId == guildRoleUpdate.guildId && this.roleId == guildRoleUpdate.roleId && m.areEqual(this.role, guildRoleUpdate.role) && m.areEqual(this.guildHashes, guildRoleUpdate.guildHashes);
+        return this.guildId == guildRoleUpdate.guildId && this.roleId == guildRoleUpdate.roleId && Intrinsics3.areEqual(this.role, guildRoleUpdate.role) && Intrinsics3.areEqual(this.guildHashes, guildRoleUpdate.guildHashes);
     }
 
     /* JADX INFO: renamed from: a, reason: from getter */
@@ -49,7 +49,7 @@ public final /* data */ class GuildRoleUpdate {
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("GuildRoleUpdate(guildId=");
+        StringBuilder sbU = outline.U("GuildRoleUpdate(guildId=");
         sbU.append(this.guildId);
         sbU.append(", roleId=");
         sbU.append(this.roleId);

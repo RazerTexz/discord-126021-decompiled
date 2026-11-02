@@ -19,20 +19,21 @@ import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.core.app.NotificationCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.view.DisplayCutoutCompat;
-import androidx.core.view.ViewGroupKt;
-import b.a.i.h4;
-import b.a.k.b;
-import b.a.y.j0.j;
-import b.a.y.j0.k;
-import b.a.y.j0.l;
-import b.a.y.j0.n;
-import b.a.y.j0.o;
+import b.a.i.ViewVideoCallParticipantBinding;
+import b.a.k.FormatUtils;
+import b.a.y.j0.VideoCallParticipantView2;
+import b.a.y.j0.VideoCallParticipantView3;
+import b.a.y.j0.VideoCallParticipantView4;
+import b.a.y.j0.VideoCallParticipantView5;
+import b.a.y.j0.VideoCallParticipantView6;
+import b.a.y.j0.VideoCallParticipantView7;
+import b.d.b.a.outline;
 import com.discord.R;
 import com.discord.api.voice.state.VoiceState;
 import com.discord.models.domain.ModelAuditLogEntry;
 import com.discord.stores.StoreApplicationStreamPreviews;
 import com.discord.stores.StoreVoiceParticipants;
-import com.discord.utilities.colors.RepresentativeColorsKt;
+import com.discord.utilities.colors.RepresentativeColors2;
 import com.discord.utilities.dimen.DimenUtils;
 import com.discord.utilities.icon.IconUtils;
 import com.discord.utilities.rx.ObservableExtensionsKt;
@@ -42,8 +43,8 @@ import com.discord.utilities.view.grid.FrameGridLayout;
 import com.discord.views.VoiceUserView;
 import com.discord.widgets.voice.fullscreen.grid.VideoCallGridAdapter;
 import com.facebook.drawee.view.SimpleDraweeView;
-import d0.g0.w;
-import d0.z.d.m;
+import d0.g0.Strings4;
+import d0.z.d.Intrinsics3;
 import defpackage.r;
 import defpackage.t;
 import java.util.Iterator;
@@ -64,7 +65,7 @@ import rx.subjects.BehaviorSubject;
 public final class VideoCallParticipantView extends ConstraintLayout implements FrameGridLayout.DataView {
 
     /* JADX INFO: renamed from: j, reason: from kotlin metadata */
-    public final h4 binding;
+    public final ViewVideoCallParticipantBinding binding;
 
     /* JADX INFO: renamed from: k, reason: from kotlin metadata */
     public final boolean matchVideoOrientation;
@@ -138,7 +139,7 @@ public final class VideoCallParticipantView extends ConstraintLayout implements 
         }
 
         public String toString() {
-            return b.d.b.a.a.B(b.d.b.a.a.U("StreamFps(fps="), this.fps, ")");
+            return outline.B(outline.U("StreamFps(fps="), this.fps, ")");
         }
     }
 
@@ -156,8 +157,8 @@ public final class VideoCallParticipantView extends ConstraintLayout implements 
 
             @Override // com.discord.views.calls.VideoCallParticipantView.StreamResolution
             public CharSequence a(Context context) {
-                m.checkNotNullParameter(context, "context");
-                return b.a.k.b.h(context, R.string.screenshare_resolution_abbreviated, new Object[]{Integer.valueOf(this.a)}, null, 4);
+                Intrinsics3.checkNotNullParameter(context, "context");
+                return FormatUtils.h(context, R.string.screenshare_resolution_abbreviated, new Object[]{Integer.valueOf(this.a)}, null, 4);
             }
 
             public boolean equals(Object obj) {
@@ -172,7 +173,7 @@ public final class VideoCallParticipantView extends ConstraintLayout implements 
             }
 
             public String toString() {
-                return b.d.b.a.a.B(b.d.b.a.a.U("Fixed(heightPx="), this.a, ")");
+                return outline.B(outline.U("Fixed(heightPx="), this.a, ")");
             }
         }
 
@@ -186,8 +187,8 @@ public final class VideoCallParticipantView extends ConstraintLayout implements 
 
             @Override // com.discord.views.calls.VideoCallParticipantView.StreamResolution
             public CharSequence a(Context context) {
-                m.checkNotNullParameter(context, "context");
-                return b.a.k.b.h(context, R.string.screenshare_source, new Object[0], null, 4);
+                Intrinsics3.checkNotNullParameter(context, "context");
+                return FormatUtils.h(context, R.string.screenshare_source, new Object[0], null, 4);
             }
         }
 
@@ -229,7 +230,7 @@ public final class VideoCallParticipantView extends ConstraintLayout implements 
         boolean z2;
         AttributeSet attributeSet2 = (i2 & 2) != 0 ? null : attributeSet;
         int i3 = (i2 & 4) != 0 ? 0 : i;
-        m.checkNotNullParameter(context, "context");
+        Intrinsics3.checkNotNullParameter(context, "context");
         super(context, attributeSet2, i3);
         LayoutInflater.from(context).inflate(R.layout.view_video_call_participant, this);
         int i4 = R.id.participant_bg_avatar;
@@ -299,10 +300,10 @@ public final class VideoCallParticipantView extends ConstraintLayout implements 
                                                                                             VoiceUserView voiceUserView = (VoiceUserView) findViewById(R.id.participant_voice_user_view);
                                                                                             if (voiceUserView != null) {
                                                                                                 AttributeSet attributeSet3 = attributeSet2;
-                                                                                                h4 h4Var = new h4(this, viewFindViewById, viewFindViewById2, imageView, constraintLayout, space, imageView2, textView, linearLayout, textView2, textView3, imageView3, constraintLayout2, imageView4, textView4, textView5, simpleDraweeView, textView6, textView7, progressBar, appVideoStreamRenderer, linearLayout2, voiceUserView);
-                                                                                                m.checkNotNullExpressionValue(h4Var, "ViewVideoCallParticipant…ater.from(context), this)");
-                                                                                                this.binding = h4Var;
-                                                                                                this.onWatchStreamClicked = j.j;
+                                                                                                ViewVideoCallParticipantBinding viewVideoCallParticipantBinding = new ViewVideoCallParticipantBinding(this, viewFindViewById, viewFindViewById2, imageView, constraintLayout, space, imageView2, textView, linearLayout, textView2, textView3, imageView3, constraintLayout2, imageView4, textView4, textView5, simpleDraweeView, textView6, textView7, progressBar, appVideoStreamRenderer, linearLayout2, voiceUserView);
+                                                                                                Intrinsics3.checkNotNullExpressionValue(viewVideoCallParticipantBinding, "ViewVideoCallParticipant…ater.from(context), this)");
+                                                                                                this.binding = viewVideoCallParticipantBinding;
+                                                                                                this.onWatchStreamClicked = VideoCallParticipantView2.j;
                                                                                                 this.callUiInsets = new VideoCallGridAdapter.CallUiInsets(0, 0, 0, 0);
                                                                                                 this.livePillBg = ContextCompat.getDrawable(context, R.drawable.bg_stream_live_indicator);
                                                                                                 this.liveSplitPillBg = ContextCompat.getDrawable(context, R.drawable.bg_stream_live_indicator_split_pill);
@@ -310,7 +311,7 @@ public final class VideoCallParticipantView extends ConstraintLayout implements 
                                                                                                 this.onStreamQualityIndicatorShown = t.k;
                                                                                                 if (attributeSet3 != null) {
                                                                                                     TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes(attributeSet3, R.a.VideoCallParticipantView, 0, 0);
-                                                                                                    m.checkNotNullExpressionValue(typedArrayObtainStyledAttributes, "context.obtainStyledAttr…            0\n          )");
+                                                                                                    Intrinsics3.checkNotNullExpressionValue(typedArrayObtainStyledAttributes, "context.obtainStyledAttr…            0\n          )");
                                                                                                     z2 = typedArrayObtainStyledAttributes.getBoolean(0, false);
                                                                                                     this.matchVideoOrientation = typedArrayObtainStyledAttributes.getBoolean(1, false);
                                                                                                     typedArrayObtainStyledAttributes.recycle();
@@ -358,33 +359,33 @@ public final class VideoCallParticipantView extends ConstraintLayout implements 
         constraintLayout.setTranslationY(this.callUiInsets.getTop());
         constraintLayout.setOnClickListener(new a(aVar));
         ImageView imageView = this.binding.f;
-        m.checkNotNullExpressionValue(imageView, "binding.participantFullscreenStreamqualIcon");
+        Intrinsics3.checkNotNullExpressionValue(imageView, "binding.participantFullscreenStreamqualIcon");
         imageView.setVisibility(aVar.a ? 0 : 8);
         StreamResolution streamResolution = aVar.f2841b;
         Context context = getContext();
-        m.checkNotNullExpressionValue(context, "context");
+        Intrinsics3.checkNotNullExpressionValue(context, "context");
         CharSequence charSequenceA = streamResolution.a(context);
         StreamFps streamFps = aVar.c;
         if (streamFps != null) {
             Context context2 = getContext();
-            m.checkNotNullExpressionValue(context2, "context");
-            m.checkNotNullParameter(context2, "context");
-            charSequenceH = b.h(context2, R.string.screenshare_fps_abbreviated, new Object[]{Integer.valueOf(streamFps.fps)}, null, 4);
+            Intrinsics3.checkNotNullExpressionValue(context2, "context");
+            Intrinsics3.checkNotNullParameter(context2, "context");
+            charSequenceH = FormatUtils.h(context2, R.string.screenshare_fps_abbreviated, new Object[]{Integer.valueOf(streamFps.fps)}, null, 4);
         } else {
             charSequenceH = "";
         }
         String str = "" + charSequenceA + ' ' + charSequenceH;
         Objects.requireNonNull(str, "null cannot be cast to non-null type kotlin.CharSequence");
-        String string = w.trim(str).toString();
+        String string = Strings4.trim(str).toString();
         Drawable drawable = (!(string.length() == 0) || aVar.a) ? this.liveSplitPillBg : this.livePillBg;
         TextView textView = this.binding.h;
-        m.checkNotNullExpressionValue(textView, "binding.participantFulls…enStreamqualLiveIndicator");
+        Intrinsics3.checkNotNullExpressionValue(textView, "binding.participantFulls…enStreamqualLiveIndicator");
         textView.setBackground(drawable);
         int i = aVar.d ? R.color.primary_300 : R.color.white;
         TextView textView2 = this.binding.g;
         textView2.setText(string);
         CharSequence text = textView2.getText();
-        m.checkNotNullExpressionValue(text, NotificationCompat.MessagingStyle.Message.KEY_TEXT);
+        Intrinsics3.checkNotNullExpressionValue(text, NotificationCompat.MessagingStyle.Message.KEY_TEXT);
         textView2.setVisibility(text.length() > 0 ? 0 : 8);
         textView2.setTextColor(ContextCompat.getColor(textView2.getContext(), i));
         textView2.requestLayout();
@@ -402,26 +403,26 @@ public final class VideoCallParticipantView extends ConstraintLayout implements 
         ParticipantData.Type type;
         boolean z2;
         int i;
-        m.checkNotNullParameter(callUiInsets, "callUiInsets");
+        Intrinsics3.checkNotNullParameter(callUiInsets, "callUiInsets");
         this.displayCutout = displayCutout;
         this.canOverlapTopCutout = canOverlapTopCutout;
         this.callUiInsets = callUiInsets;
         this.controlsVisible = controlsVisible;
         StoreVoiceParticipants.VoiceUser voiceUser = data != null ? data.voiceParticipant : null;
         if (voiceUser != null) {
-            String colorId = RepresentativeColorsKt.getColorId(voiceUser.getUser());
-            this.binding.f128s.setOnBitmapLoadedListener(new k(colorId));
+            String colorId = RepresentativeColors2.getColorId(voiceUser.getUser());
+            this.binding.f128s.setOnBitmapLoadedListener(new VideoCallParticipantView3(colorId));
             this.binding.f128s.a(voiceUser, R.dimen.avatar_size_hero);
             Subscription subscription = this.representativeColorSubscription;
             if (subscription != null) {
                 subscription.unsubscribe();
             }
-            Observable<Integer> observableB0 = RepresentativeColorsKt.getUserRepresentativeColors().observeRepresentativeColor(colorId).b0(l.j);
-            m.checkNotNullExpressionValue(observableB0, "UserRepresentativeColors….takeUntil { it != null }");
-            ObservableExtensionsKt.appSubscribe$default(observableB0, VideoCallParticipantView.class, (Context) null, new r(1, this), (Function1) null, (Function0) null, (Function0) null, new b.a.y.j0.m(this), 58, (Object) null);
+            Observable<Integer> observableB0 = RepresentativeColors2.getUserRepresentativeColors().observeRepresentativeColor(colorId).b0(VideoCallParticipantView4.j);
+            Intrinsics3.checkNotNullExpressionValue(observableB0, "UserRepresentativeColors….takeUntil { it != null }");
+            ObservableExtensionsKt.appSubscribe$default(observableB0, VideoCallParticipantView.class, (Context) null, new r(1, this), (Function1) null, (Function0) null, (Function0) null, new VideoCallParticipantView5(this), 58, (Object) null);
         }
         String forUser$default = IconUtils.getForUser$default(voiceUser != null ? voiceUser.getUser() : null, false, null, 6, null);
-        if (!m.areEqual(forUser$default, this.userAvatarUrl)) {
+        if (!Intrinsics3.areEqual(forUser$default, this.userAvatarUrl)) {
             this.userAvatarUrl = forUser$default;
         }
         ParticipantData participantData = this.data;
@@ -433,28 +434,28 @@ public final class VideoCallParticipantView extends ConstraintLayout implements 
         this.data = data;
         Integer numB2 = data != null ? data.b() : null;
         Integer numB3 = data != null ? data.b() : null;
-        if (!m.areEqual(numB3, numB)) {
+        if (!Intrinsics3.areEqual(numB3, numB)) {
             if (numB3 != null) {
                 AppVideoStreamRenderer appVideoStreamRenderer = this.binding.q;
-                m.checkNotNullExpressionValue(appVideoStreamRenderer, "binding.participantVideoStreamRenderer");
+                Intrinsics3.checkNotNullExpressionValue(appVideoStreamRenderer, "binding.participantVideoStreamRenderer");
                 appVideoStreamRenderer.setVisibility(8);
                 View view = this.binding.c;
-                m.checkNotNullExpressionValue(view, "binding.participantBgLetterbox");
+                Intrinsics3.checkNotNullExpressionValue(view, "binding.participantBgLetterbox");
                 SimpleDraweeView simpleDraweeView = this.binding.m;
-                m.checkNotNullExpressionValue(simpleDraweeView, "binding.participantStreamPreviewImage");
+                Intrinsics3.checkNotNullExpressionValue(simpleDraweeView, "binding.participantStreamPreviewImage");
                 view.setVisibility((simpleDraweeView.getVisibility() == 0) ^ true ? 0 : 8);
                 ProgressBar progressBar = this.binding.p;
-                m.checkNotNullExpressionValue(progressBar, "binding.participantVideoLoadingIndicator");
+                Intrinsics3.checkNotNullExpressionValue(progressBar, "binding.participantVideoLoadingIndicator");
                 progressBar.setVisibility(0);
             } else {
                 AppVideoStreamRenderer appVideoStreamRenderer2 = this.binding.q;
-                m.checkNotNullExpressionValue(appVideoStreamRenderer2, "binding.participantVideoStreamRenderer");
+                Intrinsics3.checkNotNullExpressionValue(appVideoStreamRenderer2, "binding.participantVideoStreamRenderer");
                 appVideoStreamRenderer2.setVisibility(8);
                 View view2 = this.binding.c;
-                m.checkNotNullExpressionValue(view2, "binding.participantBgLetterbox");
+                Intrinsics3.checkNotNullExpressionValue(view2, "binding.participantBgLetterbox");
                 view2.setVisibility(8);
                 ProgressBar progressBar2 = this.binding.p;
-                m.checkNotNullExpressionValue(progressBar2, "binding.participantVideoLoadingIndicator");
+                Intrinsics3.checkNotNullExpressionValue(progressBar2, "binding.participantVideoLoadingIndicator");
                 progressBar2.setVisibility(8);
             }
         }
@@ -463,80 +464,80 @@ public final class VideoCallParticipantView extends ConstraintLayout implements 
         Integer num = numB2;
         if ((data != null ? data.type : null) == ParticipantData.Type.APPLICATION_STREAMING) {
             View view3 = this.binding.f127b;
-            m.checkNotNullExpressionValue(view3, "binding.participantBgAvatar");
+            Intrinsics3.checkNotNullExpressionValue(view3, "binding.participantBgAvatar");
             view3.setVisibility(8);
             VoiceUserView voiceUserView = this.binding.f128s;
-            m.checkNotNullExpressionValue(voiceUserView, "binding.participantVoiceUserView");
+            Intrinsics3.checkNotNullExpressionValue(voiceUserView, "binding.participantVoiceUserView");
             voiceUserView.setVisibility(8);
             ImageView imageView = this.binding.j;
-            m.checkNotNullExpressionValue(imageView, "binding.participantMuteStatusIndicator");
+            Intrinsics3.checkNotNullExpressionValue(imageView, "binding.participantMuteStatusIndicator");
             imageView.setVisibility(8);
             ImageView imageView2 = this.binding.d;
-            m.checkNotNullExpressionValue(imageView2, "binding.participantDeafenStatusIndicator");
+            Intrinsics3.checkNotNullExpressionValue(imageView2, "binding.participantDeafenStatusIndicator");
             imageView2.setVisibility(8);
             ParticipantData.ApplicationStreamState applicationStreamState = data.applicationStreamState;
             if (applicationStreamState != null) {
                 int iOrdinal = applicationStreamState.ordinal();
                 if (iOrdinal == 0) {
                     ProgressBar progressBar3 = this.binding.p;
-                    m.checkNotNullExpressionValue(progressBar3, "binding.participantVideoLoadingIndicator");
+                    Intrinsics3.checkNotNullExpressionValue(progressBar3, "binding.participantVideoLoadingIndicator");
                     progressBar3.setVisibility(0);
                     TextView textView = this.binding.l;
-                    m.checkNotNullExpressionValue(textView, "binding.participantStreamPaused");
+                    Intrinsics3.checkNotNullExpressionValue(textView, "binding.participantStreamPaused");
                     textView.setVisibility(8);
                     ConstraintLayout constraintLayout = this.binding.k;
-                    m.checkNotNullExpressionValue(constraintLayout, "binding.participantStreamEnded");
+                    Intrinsics3.checkNotNullExpressionValue(constraintLayout, "binding.participantStreamEnded");
                     constraintLayout.setVisibility(8);
                     SimpleDraweeView simpleDraweeView2 = this.binding.m;
-                    m.checkNotNullExpressionValue(simpleDraweeView2, "binding.participantStreamPreviewImage");
+                    Intrinsics3.checkNotNullExpressionValue(simpleDraweeView2, "binding.participantStreamPreviewImage");
                     simpleDraweeView2.setVisibility(0);
                     TextView textView2 = this.binding.n;
-                    m.checkNotNullExpressionValue(textView2, "binding.participantStreamPreviewText");
+                    Intrinsics3.checkNotNullExpressionValue(textView2, "binding.participantStreamPreviewText");
                     textView2.setVisibility(8);
                     TextView textView3 = this.binding.i;
-                    m.checkNotNullExpressionValue(textView3, "binding.participantLiveIndicator");
+                    Intrinsics3.checkNotNullExpressionValue(textView3, "binding.participantLiveIndicator");
                     textView3.setVisibility(data.isFocused ^ true ? 0 : 8);
                     b(false);
                 } else if (iOrdinal == 1) {
                     TextView textView4 = this.binding.n;
-                    m.checkNotNullExpressionValue(textView4, "binding.participantStreamPreviewText");
+                    Intrinsics3.checkNotNullExpressionValue(textView4, "binding.participantStreamPreviewText");
                     textView4.setVisibility(8);
                     TextView textView5 = this.binding.l;
-                    m.checkNotNullExpressionValue(textView5, "binding.participantStreamPaused");
+                    Intrinsics3.checkNotNullExpressionValue(textView5, "binding.participantStreamPaused");
                     textView5.setVisibility(8);
                     ConstraintLayout constraintLayout2 = this.binding.k;
-                    m.checkNotNullExpressionValue(constraintLayout2, "binding.participantStreamEnded");
+                    Intrinsics3.checkNotNullExpressionValue(constraintLayout2, "binding.participantStreamEnded");
                     constraintLayout2.setVisibility(8);
                     TextView textView6 = this.binding.i;
-                    m.checkNotNullExpressionValue(textView6, "binding.participantLiveIndicator");
+                    Intrinsics3.checkNotNullExpressionValue(textView6, "binding.participantLiveIndicator");
                     textView6.setVisibility(data.isFocused ^ true ? 0 : 8);
                     a(data);
                 } else if (iOrdinal == 2) {
                     ProgressBar progressBar4 = this.binding.p;
-                    m.checkNotNullExpressionValue(progressBar4, "binding.participantVideoLoadingIndicator");
+                    Intrinsics3.checkNotNullExpressionValue(progressBar4, "binding.participantVideoLoadingIndicator");
                     progressBar4.setVisibility(8);
                     SimpleDraweeView simpleDraweeView3 = this.binding.m;
-                    m.checkNotNullExpressionValue(simpleDraweeView3, "binding.participantStreamPreviewImage");
+                    Intrinsics3.checkNotNullExpressionValue(simpleDraweeView3, "binding.participantStreamPreviewImage");
                     simpleDraweeView3.setVisibility(0);
                     TextView textView7 = this.binding.n;
-                    m.checkNotNullExpressionValue(textView7, "binding.participantStreamPreviewText");
+                    Intrinsics3.checkNotNullExpressionValue(textView7, "binding.participantStreamPreviewText");
                     textView7.setVisibility(0);
                     TextView textView8 = this.binding.l;
-                    m.checkNotNullExpressionValue(textView8, "binding.participantStreamPaused");
+                    Intrinsics3.checkNotNullExpressionValue(textView8, "binding.participantStreamPaused");
                     textView8.setVisibility(8);
                     ConstraintLayout constraintLayout3 = this.binding.k;
-                    m.checkNotNullExpressionValue(constraintLayout3, "binding.participantStreamEnded");
+                    Intrinsics3.checkNotNullExpressionValue(constraintLayout3, "binding.participantStreamEnded");
                     constraintLayout3.setVisibility(8);
                     TextView textView9 = this.binding.i;
-                    m.checkNotNullExpressionValue(textView9, "binding.participantLiveIndicator");
+                    Intrinsics3.checkNotNullExpressionValue(textView9, "binding.participantLiveIndicator");
                     textView9.setVisibility(8);
-                    this.binding.n.setOnClickListener(new n(this, data));
+                    this.binding.n.setOnClickListener(new VideoCallParticipantView6(this, data));
                     StreamContext streamContext = data.voiceParticipant.getStreamContext();
                     StoreApplicationStreamPreviews.StreamPreview preview = streamContext != null ? streamContext.getPreview() : null;
                     if (preview instanceof StoreApplicationStreamPreviews.StreamPreview.Resolved) {
                         this.binding.m.setImageURI(((StoreApplicationStreamPreviews.StreamPreview.Resolved) preview).getUrl());
                         SimpleDraweeView simpleDraweeView4 = this.binding.m;
-                        m.checkNotNullExpressionValue(simpleDraweeView4, "binding.participantStreamPreviewImage");
+                        Intrinsics3.checkNotNullExpressionValue(simpleDraweeView4, "binding.participantStreamPreviewImage");
                         ViewGroup.LayoutParams layoutParams = simpleDraweeView4.getLayoutParams();
                         Objects.requireNonNull(layoutParams, "null cannot be cast to non-null type androidx.constraintlayout.widget.ConstraintLayout.LayoutParams");
                         ConstraintLayout.LayoutParams layoutParams2 = (ConstraintLayout.LayoutParams) layoutParams;
@@ -545,7 +546,7 @@ public final class VideoCallParticipantView extends ConstraintLayout implements 
                     } else {
                         this.binding.m.setImageURI((String) null);
                         SimpleDraweeView simpleDraweeView5 = this.binding.m;
-                        m.checkNotNullExpressionValue(simpleDraweeView5, "binding.participantStreamPreviewImage");
+                        Intrinsics3.checkNotNullExpressionValue(simpleDraweeView5, "binding.participantStreamPreviewImage");
                         ViewGroup.LayoutParams layoutParams3 = simpleDraweeView5.getLayoutParams();
                         Objects.requireNonNull(layoutParams3, "null cannot be cast to non-null type androidx.constraintlayout.widget.ConstraintLayout.LayoutParams");
                         ConstraintLayout.LayoutParams layoutParams4 = (ConstraintLayout.LayoutParams) layoutParams3;
@@ -555,87 +556,87 @@ public final class VideoCallParticipantView extends ConstraintLayout implements 
                     b(false);
                 } else if (iOrdinal == 3) {
                     ProgressBar progressBar5 = this.binding.p;
-                    m.checkNotNullExpressionValue(progressBar5, "binding.participantVideoLoadingIndicator");
+                    Intrinsics3.checkNotNullExpressionValue(progressBar5, "binding.participantVideoLoadingIndicator");
                     progressBar5.setVisibility(8);
                     SimpleDraweeView simpleDraweeView6 = this.binding.m;
-                    m.checkNotNullExpressionValue(simpleDraweeView6, "binding.participantStreamPreviewImage");
+                    Intrinsics3.checkNotNullExpressionValue(simpleDraweeView6, "binding.participantStreamPreviewImage");
                     simpleDraweeView6.setVisibility(0);
                     TextView textView10 = this.binding.n;
-                    m.checkNotNullExpressionValue(textView10, "binding.participantStreamPreviewText");
+                    Intrinsics3.checkNotNullExpressionValue(textView10, "binding.participantStreamPreviewText");
                     textView10.setVisibility(8);
                     TextView textView11 = this.binding.l;
-                    m.checkNotNullExpressionValue(textView11, "binding.participantStreamPaused");
+                    Intrinsics3.checkNotNullExpressionValue(textView11, "binding.participantStreamPaused");
                     textView11.setVisibility(0);
                     ConstraintLayout constraintLayout4 = this.binding.k;
-                    m.checkNotNullExpressionValue(constraintLayout4, "binding.participantStreamEnded");
+                    Intrinsics3.checkNotNullExpressionValue(constraintLayout4, "binding.participantStreamEnded");
                     constraintLayout4.setVisibility(8);
                     TextView textView12 = this.binding.i;
-                    m.checkNotNullExpressionValue(textView12, "binding.participantLiveIndicator");
+                    Intrinsics3.checkNotNullExpressionValue(textView12, "binding.participantLiveIndicator");
                     textView12.setVisibility(data.isFocused ^ true ? 0 : 8);
                     a(data);
                 } else if (iOrdinal == 4) {
                     ProgressBar progressBar6 = this.binding.p;
-                    m.checkNotNullExpressionValue(progressBar6, "binding.participantVideoLoadingIndicator");
+                    Intrinsics3.checkNotNullExpressionValue(progressBar6, "binding.participantVideoLoadingIndicator");
                     progressBar6.setVisibility(8);
                     TextView textView13 = this.binding.n;
-                    m.checkNotNullExpressionValue(textView13, "binding.participantStreamPreviewText");
+                    Intrinsics3.checkNotNullExpressionValue(textView13, "binding.participantStreamPreviewText");
                     textView13.setVisibility(8);
                     TextView textView14 = this.binding.l;
-                    m.checkNotNullExpressionValue(textView14, "binding.participantStreamPaused");
+                    Intrinsics3.checkNotNullExpressionValue(textView14, "binding.participantStreamPaused");
                     textView14.setVisibility(8);
                     ConstraintLayout constraintLayout5 = this.binding.k;
-                    m.checkNotNullExpressionValue(constraintLayout5, "binding.participantStreamEnded");
+                    Intrinsics3.checkNotNullExpressionValue(constraintLayout5, "binding.participantStreamEnded");
                     constraintLayout5.setVisibility(0);
                     TextView textView15 = this.binding.i;
-                    m.checkNotNullExpressionValue(textView15, "binding.participantLiveIndicator");
+                    Intrinsics3.checkNotNullExpressionValue(textView15, "binding.participantLiveIndicator");
                     textView15.setVisibility(8);
                     b(false);
                 }
             }
         } else {
             SimpleDraweeView simpleDraweeView7 = this.binding.m;
-            m.checkNotNullExpressionValue(simpleDraweeView7, "binding.participantStreamPreviewImage");
+            Intrinsics3.checkNotNullExpressionValue(simpleDraweeView7, "binding.participantStreamPreviewImage");
             simpleDraweeView7.setVisibility(8);
             TextView textView16 = this.binding.n;
-            m.checkNotNullExpressionValue(textView16, "binding.participantStreamPreviewText");
+            Intrinsics3.checkNotNullExpressionValue(textView16, "binding.participantStreamPreviewText");
             textView16.setVisibility(8);
             TextView textView17 = this.binding.l;
-            m.checkNotNullExpressionValue(textView17, "binding.participantStreamPaused");
+            Intrinsics3.checkNotNullExpressionValue(textView17, "binding.participantStreamPaused");
             textView17.setVisibility(8);
             ConstraintLayout constraintLayout6 = this.binding.k;
-            m.checkNotNullExpressionValue(constraintLayout6, "binding.participantStreamEnded");
+            Intrinsics3.checkNotNullExpressionValue(constraintLayout6, "binding.participantStreamEnded");
             constraintLayout6.setVisibility(8);
             b(false);
             ImageView imageView3 = this.binding.j;
-            m.checkNotNullExpressionValue(imageView3, "binding.participantMuteStatusIndicator");
+            Intrinsics3.checkNotNullExpressionValue(imageView3, "binding.participantMuteStatusIndicator");
             imageView3.setVisibility(voiceUser != null ? voiceUser.getIsMuted() : false ? 0 : 8);
             ImageView imageView4 = this.binding.d;
-            m.checkNotNullExpressionValue(imageView4, "binding.participantDeafenStatusIndicator");
+            Intrinsics3.checkNotNullExpressionValue(imageView4, "binding.participantDeafenStatusIndicator");
             imageView4.setVisibility(voiceUser != null ? voiceUser.getIsDeafened() : false ? 0 : 8);
             if (num != null) {
                 View view4 = this.binding.f127b;
-                m.checkNotNullExpressionValue(view4, "binding.participantBgAvatar");
+                Intrinsics3.checkNotNullExpressionValue(view4, "binding.participantBgAvatar");
                 view4.setVisibility(8);
                 VoiceUserView voiceUserView2 = this.binding.f128s;
-                m.checkNotNullExpressionValue(voiceUserView2, "binding.participantVoiceUserView");
+                Intrinsics3.checkNotNullExpressionValue(voiceUserView2, "binding.participantVoiceUserView");
                 voiceUserView2.setVisibility(8);
             } else {
                 View view5 = this.binding.f127b;
-                m.checkNotNullExpressionValue(view5, "binding.participantBgAvatar");
+                Intrinsics3.checkNotNullExpressionValue(view5, "binding.participantBgAvatar");
                 view5.setVisibility(0);
                 VoiceUserView voiceUserView3 = this.binding.f128s;
-                m.checkNotNullExpressionValue(voiceUserView3, "binding.participantVoiceUserView");
+                Intrinsics3.checkNotNullExpressionValue(voiceUserView3, "binding.participantVoiceUserView");
                 voiceUserView3.setVisibility(0);
             }
             TextView textView18 = this.binding.i;
-            m.checkNotNullExpressionValue(textView18, "binding.participantLiveIndicator");
+            Intrinsics3.checkNotNullExpressionValue(textView18, "binding.participantLiveIndicator");
             textView18.setVisibility(8);
         }
         LinearLayout linearLayout = this.binding.r;
-        m.checkNotNullExpressionValue(linearLayout, "binding.participantVoiceIndicators");
+        Intrinsics3.checkNotNullExpressionValue(linearLayout, "binding.participantVoiceIndicators");
         LinearLayout linearLayout2 = this.binding.r;
-        m.checkNotNullExpressionValue(linearLayout2, "binding.participantVoiceIndicators");
-        Iterator<View> it = ViewGroupKt.getChildren(linearLayout2).iterator();
+        Intrinsics3.checkNotNullExpressionValue(linearLayout2, "binding.participantVoiceIndicators");
+        Iterator<View> it = androidx.core.view.ViewGroup.getChildren(linearLayout2).iterator();
         while (true) {
             if (!it.hasNext()) {
                 z2 = false;
@@ -653,36 +654,36 @@ public final class VideoCallParticipantView extends ConstraintLayout implements 
         DisplayCutoutCompat displayCutoutCompat = this.displayCutout;
         if ((displayCutoutCompat != null ? displayCutoutCompat.getSafeInsetTop() : 0) <= 0 || !this.canOverlapTopCutout) {
             TextView textView19 = this.binding.i;
-            m.checkNotNullExpressionValue(textView19, "binding.participantLiveIndicator");
+            Intrinsics3.checkNotNullExpressionValue(textView19, "binding.participantLiveIndicator");
             constraintSet.connect(textView19.getId(), 2, 0, 2, DimenUtils.dpToPixels(8));
             TextView textView20 = this.binding.i;
-            m.checkNotNullExpressionValue(textView20, "binding.participantLiveIndicator");
+            Intrinsics3.checkNotNullExpressionValue(textView20, "binding.participantLiveIndicator");
             constraintSet.connect(textView20.getId(), 3, 0, 3, DimenUtils.dpToPixels(8));
             TextView textView21 = this.binding.i;
-            m.checkNotNullExpressionValue(textView21, "binding.participantLiveIndicator");
+            Intrinsics3.checkNotNullExpressionValue(textView21, "binding.participantLiveIndicator");
             constraintSet.clear(textView21.getId(), 4);
         } else {
             LinearLayout linearLayout3 = this.binding.r;
-            m.checkNotNullExpressionValue(linearLayout3, "binding.participantVoiceIndicators");
+            Intrinsics3.checkNotNullExpressionValue(linearLayout3, "binding.participantVoiceIndicators");
             if (linearLayout3.getVisibility() == 0) {
                 TextView textView110 = this.binding.i;
-                m.checkNotNullExpressionValue(textView110, "binding.participantLiveIndicator");
+                Intrinsics3.checkNotNullExpressionValue(textView110, "binding.participantLiveIndicator");
                 constraintSet.connect(textView110.getId(), 2, 0, 2, DimenUtils.dpToPixels(8));
                 TextView textView22 = this.binding.i;
-                m.checkNotNullExpressionValue(textView22, "binding.participantLiveIndicator");
+                Intrinsics3.checkNotNullExpressionValue(textView22, "binding.participantLiveIndicator");
                 constraintSet.connect(textView22.getId(), 3, 0, 3, DimenUtils.dpToPixels(8));
                 TextView textView23 = this.binding.i;
-                m.checkNotNullExpressionValue(textView23, "binding.participantLiveIndicator");
+                Intrinsics3.checkNotNullExpressionValue(textView23, "binding.participantLiveIndicator");
                 constraintSet.clear(textView23.getId(), 4);
             } else {
                 TextView textView24 = this.binding.i;
-                m.checkNotNullExpressionValue(textView24, "binding.participantLiveIndicator");
+                Intrinsics3.checkNotNullExpressionValue(textView24, "binding.participantLiveIndicator");
                 constraintSet.connect(textView24.getId(), 2, 0, 2, DimenUtils.dpToPixels(8));
                 TextView textView25 = this.binding.i;
-                m.checkNotNullExpressionValue(textView25, "binding.participantLiveIndicator");
+                Intrinsics3.checkNotNullExpressionValue(textView25, "binding.participantLiveIndicator");
                 constraintSet.connect(textView25.getId(), 4, 0, 4, DimenUtils.dpToPixels(8));
                 TextView textView26 = this.binding.i;
-                m.checkNotNullExpressionValue(textView26, "binding.participantLiveIndicator");
+                Intrinsics3.checkNotNullExpressionValue(textView26, "binding.participantLiveIndicator");
                 constraintSet.clear(textView26.getId(), 3);
             }
         }
@@ -693,10 +694,10 @@ public final class VideoCallParticipantView extends ConstraintLayout implements 
         }
         if (num != null) {
             BehaviorSubject<Point> behaviorSubject = this.binding.q.currentFrameResolutionSubject;
-            m.checkNotNullExpressionValue(behaviorSubject, "currentFrameResolutionSubject");
+            Intrinsics3.checkNotNullExpressionValue(behaviorSubject, "currentFrameResolutionSubject");
             Observable<R> observableG = behaviorSubject.y(ObservableExtensionsKt.AnonymousClass1.INSTANCE).G(ObservableExtensionsKt.AnonymousClass2.INSTANCE);
-            m.checkNotNullExpressionValue(observableG, "filter { it != null }.map { it!! }");
-            ObservableExtensionsKt.appSubscribe$default(observableG, VideoCallParticipantView.class, (Context) null, new r(0, this), (Function1) null, (Function0) null, (Function0) null, new o(this), 58, (Object) null);
+            Intrinsics3.checkNotNullExpressionValue(observableG, "filter { it != null }.map { it!! }");
+            ObservableExtensionsKt.appSubscribe$default(observableG, VideoCallParticipantView.class, (Context) null, new r(0, this), (Function1) null, (Function0) null, (Function0) null, new VideoCallParticipantView7(this), 58, (Object) null);
         }
         ParticipantData participantData2 = this.data;
         ParticipantData.Type type3 = participantData2 != null ? participantData2.type : null;
@@ -705,43 +706,43 @@ public final class VideoCallParticipantView extends ConstraintLayout implements 
             if (type3 != ParticipantData.Type.DEFAULT || z5) {
                 ConstraintLayout.LayoutParams layoutParams5 = new ConstraintLayout.LayoutParams(-2, -2);
                 AppVideoStreamRenderer appVideoStreamRenderer3 = this.binding.q;
-                m.checkNotNullExpressionValue(appVideoStreamRenderer3, "binding.participantVideoStreamRenderer");
+                Intrinsics3.checkNotNullExpressionValue(appVideoStreamRenderer3, "binding.participantVideoStreamRenderer");
                 appVideoStreamRenderer3.setLayoutParams(layoutParams5);
                 AppVideoStreamRenderer appVideoStreamRenderer4 = this.binding.q;
-                m.checkNotNullExpressionValue(appVideoStreamRenderer4, "binding.participantVideoStreamRenderer");
+                Intrinsics3.checkNotNullExpressionValue(appVideoStreamRenderer4, "binding.participantVideoStreamRenderer");
                 constraintSet.constrainDefaultHeight(appVideoStreamRenderer4.getId(), 1);
                 AppVideoStreamRenderer appVideoStreamRenderer5 = this.binding.q;
-                m.checkNotNullExpressionValue(appVideoStreamRenderer5, "binding.participantVideoStreamRenderer");
+                Intrinsics3.checkNotNullExpressionValue(appVideoStreamRenderer5, "binding.participantVideoStreamRenderer");
                 constraintSet.constrainDefaultWidth(appVideoStreamRenderer5.getId(), 1);
             } else {
                 ConstraintLayout.LayoutParams layoutParams6 = new ConstraintLayout.LayoutParams(0, 0);
                 AppVideoStreamRenderer appVideoStreamRenderer6 = this.binding.q;
-                m.checkNotNullExpressionValue(appVideoStreamRenderer6, "binding.participantVideoStreamRenderer");
+                Intrinsics3.checkNotNullExpressionValue(appVideoStreamRenderer6, "binding.participantVideoStreamRenderer");
                 appVideoStreamRenderer6.setLayoutParams(layoutParams6);
                 AppVideoStreamRenderer appVideoStreamRenderer7 = this.binding.q;
-                m.checkNotNullExpressionValue(appVideoStreamRenderer7, "binding.participantVideoStreamRenderer");
+                Intrinsics3.checkNotNullExpressionValue(appVideoStreamRenderer7, "binding.participantVideoStreamRenderer");
                 constraintSet.constrainHeight(appVideoStreamRenderer7.getId(), 0);
                 AppVideoStreamRenderer appVideoStreamRenderer8 = this.binding.q;
-                m.checkNotNullExpressionValue(appVideoStreamRenderer8, "binding.participantVideoStreamRenderer");
+                Intrinsics3.checkNotNullExpressionValue(appVideoStreamRenderer8, "binding.participantVideoStreamRenderer");
                 constraintSet.constrainWidth(appVideoStreamRenderer8.getId(), 0);
                 AppVideoStreamRenderer appVideoStreamRenderer9 = this.binding.q;
-                m.checkNotNullExpressionValue(appVideoStreamRenderer9, "binding.participantVideoStreamRenderer");
+                Intrinsics3.checkNotNullExpressionValue(appVideoStreamRenderer9, "binding.participantVideoStreamRenderer");
                 constraintSet.constrainDefaultHeight(appVideoStreamRenderer9.getId(), 0);
                 AppVideoStreamRenderer appVideoStreamRenderer10 = this.binding.q;
-                m.checkNotNullExpressionValue(appVideoStreamRenderer10, "binding.participantVideoStreamRenderer");
+                Intrinsics3.checkNotNullExpressionValue(appVideoStreamRenderer10, "binding.participantVideoStreamRenderer");
                 constraintSet.constrainDefaultWidth(appVideoStreamRenderer10.getId(), 0);
             }
         }
         constraintSet.applyTo(this);
         if (voiceUser != null) {
             TextView textView27 = this.binding.o;
-            m.checkNotNullExpressionValue(textView27, "binding.participantVideoLabel");
+            Intrinsics3.checkNotNullExpressionValue(textView27, "binding.participantVideoLabel");
             textView27.setText(voiceUser.getDisplayName());
             if (data.type == ParticipantData.Type.APPLICATION_STREAMING) {
                 Context context = getContext();
-                m.checkNotNullExpressionValue(context, "context");
+                Intrinsics3.checkNotNullExpressionValue(context, "context");
                 i = 0;
-                setContentDescription(b.h(context, R.string.go_live_tile_screen, new Object[]{voiceUser.getDisplayName()}, null, 4));
+                setContentDescription(FormatUtils.h(context, R.string.go_live_tile_screen, new Object[]{voiceUser.getDisplayName()}, null, 4));
                 this.binding.o.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_screen_14dp, 0, 0, 0);
             } else {
                 i = 0;
@@ -753,7 +754,7 @@ public final class VideoCallParticipantView extends ConstraintLayout implements 
                 return;
             }
             TextView textView28 = this.binding.o;
-            m.checkNotNullExpressionValue(textView28, "binding.participantVideoLabel");
+            Intrinsics3.checkNotNullExpressionValue(textView28, "binding.participantVideoLabel");
             if (!data.showLabel) {
                 i = 8;
             }
@@ -790,7 +791,7 @@ public final class VideoCallParticipantView extends ConstraintLayout implements 
 
     @Override // com.discord.utilities.view.grid.FrameGridLayout.DataView
     public void onBind(FrameGridLayout.Data data) {
-        m.checkNotNullParameter(data, "data");
+        Intrinsics3.checkNotNullParameter(data, "data");
         d(this, (ParticipantData) data, null, false, null, false, 30);
     }
 
@@ -815,7 +816,7 @@ public final class VideoCallParticipantView extends ConstraintLayout implements 
     }
 
     public final void setOnWatchStreamClicked(Function1<? super String, Unit> onWatchStreamClicked) {
-        m.checkNotNullParameter(onWatchStreamClicked, "onWatchStreamClicked");
+        Intrinsics3.checkNotNullParameter(onWatchStreamClicked, "onWatchStreamClicked");
         this.onWatchStreamClicked = onWatchStreamClicked;
     }
 
@@ -877,7 +878,7 @@ public final class VideoCallParticipantView extends ConstraintLayout implements 
             public final boolean d;
 
             public a(boolean z2, StreamResolution streamResolution, StreamFps streamFps, boolean z3) {
-                m.checkNotNullParameter(streamResolution, "resolution");
+                Intrinsics3.checkNotNullParameter(streamResolution, "resolution");
                 this.a = z2;
                 this.f2841b = streamResolution;
                 this.c = streamFps;
@@ -892,7 +893,7 @@ public final class VideoCallParticipantView extends ConstraintLayout implements 
                     return false;
                 }
                 a aVar = (a) obj;
-                return this.a == aVar.a && m.areEqual(this.f2841b, aVar.f2841b) && m.areEqual(this.c, aVar.c) && this.d == aVar.d;
+                return this.a == aVar.a && Intrinsics3.areEqual(this.f2841b, aVar.f2841b) && Intrinsics3.areEqual(this.c, aVar.c) && this.d == aVar.d;
             }
 
             /* JADX WARN: Multi-variable type inference failed */
@@ -919,20 +920,20 @@ public final class VideoCallParticipantView extends ConstraintLayout implements 
             }
 
             public String toString() {
-                StringBuilder sbU = b.d.b.a.a.U("StreamQualityIndicatorData(showPremiumIcon=");
+                StringBuilder sbU = outline.U("StreamQualityIndicatorData(showPremiumIcon=");
                 sbU.append(this.a);
                 sbU.append(", resolution=");
                 sbU.append(this.f2841b);
                 sbU.append(", fps=");
                 sbU.append(this.c);
                 sbU.append(", isBadQuality=");
-                return b.d.b.a.a.O(sbU, this.d, ")");
+                return outline.O(sbU, this.d, ")");
             }
         }
 
         public ParticipantData(StoreVoiceParticipants.VoiceUser voiceUser, boolean z2, RendererCommon.ScalingType scalingType, RendererCommon.ScalingType scalingType2, ApplicationStreamState applicationStreamState, Type type, boolean z3, boolean z4, a aVar) {
-            m.checkNotNullParameter(voiceUser, "voiceParticipant");
-            m.checkNotNullParameter(type, "type");
+            Intrinsics3.checkNotNullParameter(voiceUser, "voiceParticipant");
+            Intrinsics3.checkNotNullParameter(type, "type");
             this.voiceParticipant = voiceUser;
             this.mirrorVideo = z2;
             this.scalingType = scalingType;
@@ -956,8 +957,8 @@ public final class VideoCallParticipantView extends ConstraintLayout implements 
             boolean z7 = (i & 128) != 0 ? participantData.isFocused : z4;
             a aVar2 = (i & 256) != 0 ? participantData.streamQualityIndicatorData : aVar;
             Objects.requireNonNull(participantData);
-            m.checkNotNullParameter(voiceUser2, "voiceParticipant");
-            m.checkNotNullParameter(type2, "type");
+            Intrinsics3.checkNotNullParameter(voiceUser2, "voiceParticipant");
+            Intrinsics3.checkNotNullParameter(type2, "type");
             return new ParticipantData(voiceUser2, z5, scalingType3, scalingType4, applicationStreamState2, type2, z6, z7, aVar2);
         }
 
@@ -983,7 +984,7 @@ public final class VideoCallParticipantView extends ConstraintLayout implements 
 
         @Override // com.discord.utilities.view.grid.FrameGridLayout.Data
         public View createView(Context context) {
-            m.checkNotNullParameter(context, "context");
+            Intrinsics3.checkNotNullParameter(context, "context");
             return new VideoCallParticipantView(context, null, 0, 6);
         }
 
@@ -995,7 +996,7 @@ public final class VideoCallParticipantView extends ConstraintLayout implements 
                 return false;
             }
             ParticipantData participantData = (ParticipantData) other;
-            return m.areEqual(this.voiceParticipant, participantData.voiceParticipant) && this.mirrorVideo == participantData.mirrorVideo && m.areEqual(this.scalingType, participantData.scalingType) && m.areEqual(this.scalingTypeMismatchOrientation, participantData.scalingTypeMismatchOrientation) && m.areEqual(this.applicationStreamState, participantData.applicationStreamState) && m.areEqual(this.type, participantData.type) && this.showLabel == participantData.showLabel && this.isFocused == participantData.isFocused && m.areEqual(this.streamQualityIndicatorData, participantData.streamQualityIndicatorData);
+            return Intrinsics3.areEqual(this.voiceParticipant, participantData.voiceParticipant) && this.mirrorVideo == participantData.mirrorVideo && Intrinsics3.areEqual(this.scalingType, participantData.scalingType) && Intrinsics3.areEqual(this.scalingTypeMismatchOrientation, participantData.scalingTypeMismatchOrientation) && Intrinsics3.areEqual(this.applicationStreamState, participantData.applicationStreamState) && Intrinsics3.areEqual(this.type, participantData.type) && this.showLabel == participantData.showLabel && this.isFocused == participantData.isFocused && Intrinsics3.areEqual(this.streamQualityIndicatorData, participantData.streamQualityIndicatorData);
         }
 
         @Override // com.discord.utilities.view.grid.FrameGridLayout.Data
@@ -1044,7 +1045,7 @@ public final class VideoCallParticipantView extends ConstraintLayout implements 
         }
 
         public String toString() {
-            StringBuilder sbU = b.d.b.a.a.U("ParticipantData(voiceParticipant=");
+            StringBuilder sbU = outline.U("ParticipantData(voiceParticipant=");
             sbU.append(this.voiceParticipant);
             sbU.append(", mirrorVideo=");
             sbU.append(this.mirrorVideo);

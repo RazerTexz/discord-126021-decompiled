@@ -2,7 +2,7 @@ package com.discord.widgets.servers;
 
 import android.view.View;
 import com.discord.models.domain.emoji.ModelEmojiGuild;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function2;
 
@@ -20,7 +20,7 @@ public final class WidgetServerSettingsEmojis$Adapter$EmojiItemViewHolder$onConf
     @Override // android.view.View.OnClickListener
     public final void onClick(View view) {
         Function2<View, ModelEmojiGuild, Unit> onEmojiItemClicked = WidgetServerSettingsEmojis.Adapter.EmojiItemViewHolder.access$getAdapter$p(this.this$0).getOnEmojiItemClicked();
-        m.checkNotNullExpressionValue(view, "it");
+        Intrinsics3.checkNotNullExpressionValue(view, "it");
         onEmojiItemClicked.invoke(view, ((WidgetServerSettingsEmojis.Item.EmojiItem) this.$data).getEmoji());
     }
 }

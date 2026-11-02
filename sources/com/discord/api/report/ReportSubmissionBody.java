@@ -1,15 +1,16 @@
 package com.discord.api.report;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.models.domain.ModelAuditLogEntry;
-import d0.t.h0;
-import d0.t.o;
-import d0.z.d.m;
+import d0.Tuples;
+import d0.t.Iterables2;
+import d0.t.Maps6;
+import d0.z.d.Intrinsics3;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import kotlin.Pair;
+import kotlin.Tuples2;
 import kotlin.jvm.internal.DefaultConstructorMarker;
 
 /* JADX INFO: compiled from: InAppReportsMenu.kt */
@@ -36,9 +37,9 @@ public final /* data */ class ReportSubmissionBody {
         public Companion() {
         }
 
-        public final Pair<List<Integer>, Map<String, List<String>>> a(List<NodeResult> results) {
-            Pair pair;
-            m.checkNotNullParameter(results, "results");
+        public final Tuples2<List<Integer>, Map<String, List<String>>> a(List<NodeResult> results) {
+            Tuples2 tuples2;
+            Intrinsics3.checkNotNullParameter(results, "results");
             ArrayList arrayList = new ArrayList();
             Iterator<T> it = results.iterator();
             while (true) {
@@ -58,20 +59,20 @@ public final /* data */ class ReportSubmissionBody {
                 if (elementResult != null) {
                     String key = elementResult.getKey();
                     List<ReportNodeElementData> listA = elementResult.a();
-                    ArrayList arrayList3 = new ArrayList(o.collectionSizeOrDefault(listA, 10));
+                    ArrayList arrayList3 = new ArrayList(Iterables2.collectionSizeOrDefault(listA, 10));
                     Iterator<T> it3 = listA.iterator();
                     while (it3.hasNext()) {
                         arrayList3.add(((ReportNodeElementData) it3.next()).getElementKey());
                     }
-                    pair = d0.o.to(key, arrayList3);
+                    tuples2 = Tuples.to(key, arrayList3);
                 } else {
-                    pair = null;
+                    tuples2 = null;
                 }
-                if (pair != null) {
-                    arrayList2.add(pair);
+                if (tuples2 != null) {
+                    arrayList2.add(tuples2);
                 }
             }
-            return d0.o.to(arrayList, h0.toMap(arrayList2));
+            return Tuples.to(arrayList, Maps6.toMap(arrayList2));
         }
 
         public Companion(DefaultConstructorMarker defaultConstructorMarker) {
@@ -84,12 +85,12 @@ public final /* data */ class ReportSubmissionBody {
         Long l8 = (i & 8) != 0 ? null : l3;
         Long l9 = (i & 16) != 0 ? null : l4;
         Long l10 = (i & 32) == 0 ? l5 : null;
-        m.checkNotNullParameter(str, "language");
-        m.checkNotNullParameter(str2, "variant");
-        m.checkNotNullParameter(str3, ModelAuditLogEntry.CHANGE_KEY_NAME);
-        m.checkNotNullParameter(str4, "version");
-        m.checkNotNullParameter(list, "breadcrumbs");
-        m.checkNotNullParameter(map, "elements");
+        Intrinsics3.checkNotNullParameter(str, "language");
+        Intrinsics3.checkNotNullParameter(str2, "variant");
+        Intrinsics3.checkNotNullParameter(str3, ModelAuditLogEntry.CHANGE_KEY_NAME);
+        Intrinsics3.checkNotNullParameter(str4, "version");
+        Intrinsics3.checkNotNullParameter(list, "breadcrumbs");
+        Intrinsics3.checkNotNullParameter(map, "elements");
         this.id = j;
         this.messageId = l6;
         this.channelId = l7;
@@ -112,7 +113,7 @@ public final /* data */ class ReportSubmissionBody {
             return false;
         }
         ReportSubmissionBody reportSubmissionBody = (ReportSubmissionBody) other;
-        return this.id == reportSubmissionBody.id && m.areEqual(this.messageId, reportSubmissionBody.messageId) && m.areEqual(this.channelId, reportSubmissionBody.channelId) && m.areEqual(this.guildId, reportSubmissionBody.guildId) && m.areEqual(this.hubId, reportSubmissionBody.hubId) && m.areEqual(this.guildScheduledEventId, reportSubmissionBody.guildScheduledEventId) && m.areEqual(this.language, reportSubmissionBody.language) && m.areEqual(this.variant, reportSubmissionBody.variant) && m.areEqual(this.name, reportSubmissionBody.name) && m.areEqual(this.version, reportSubmissionBody.version) && m.areEqual(this.breadcrumbs, reportSubmissionBody.breadcrumbs) && m.areEqual(this.elements, reportSubmissionBody.elements);
+        return this.id == reportSubmissionBody.id && Intrinsics3.areEqual(this.messageId, reportSubmissionBody.messageId) && Intrinsics3.areEqual(this.channelId, reportSubmissionBody.channelId) && Intrinsics3.areEqual(this.guildId, reportSubmissionBody.guildId) && Intrinsics3.areEqual(this.hubId, reportSubmissionBody.hubId) && Intrinsics3.areEqual(this.guildScheduledEventId, reportSubmissionBody.guildScheduledEventId) && Intrinsics3.areEqual(this.language, reportSubmissionBody.language) && Intrinsics3.areEqual(this.variant, reportSubmissionBody.variant) && Intrinsics3.areEqual(this.name, reportSubmissionBody.name) && Intrinsics3.areEqual(this.version, reportSubmissionBody.version) && Intrinsics3.areEqual(this.breadcrumbs, reportSubmissionBody.breadcrumbs) && Intrinsics3.areEqual(this.elements, reportSubmissionBody.elements);
     }
 
     public int hashCode() {
@@ -143,7 +144,7 @@ public final /* data */ class ReportSubmissionBody {
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("ReportSubmissionBody(id=");
+        StringBuilder sbU = outline.U("ReportSubmissionBody(id=");
         sbU.append(this.id);
         sbU.append(", messageId=");
         sbU.append(this.messageId);
@@ -166,6 +167,6 @@ public final /* data */ class ReportSubmissionBody {
         sbU.append(", breadcrumbs=");
         sbU.append(this.breadcrumbs);
         sbU.append(", elements=");
-        return a.M(sbU, this.elements, ")");
+        return outline.M(sbU, this.elements, ")");
     }
 }

@@ -1,6 +1,6 @@
 package co.discord.media_engine.internal;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 
 /* JADX INFO: compiled from: NativeStatistics.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -61,9 +61,9 @@ public final /* data */ class FrameCounts {
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("FrameCounts(deltaFrames=");
+        StringBuilder sbU = outline.U("FrameCounts(deltaFrames=");
         sbU.append(this.deltaFrames);
         sbU.append(", keyFrames=");
-        return a.B(sbU, this.keyFrames, ")");
+        return outline.B(sbU, this.keyFrames, ")");
     }
 }

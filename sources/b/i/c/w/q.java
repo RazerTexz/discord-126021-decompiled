@@ -6,20 +6,25 @@ import android.text.TextUtils;
 import android.util.Log;
 import androidx.annotation.Nullable;
 import androidx.annotation.VisibleForTesting;
+import b.d.b.a.outline;
+import b.i.c.FirebaseApp2;
+import b.i.c.p.DataEncoder;
+import b.i.c.p.h.JsonDataEncoderBuilder4;
+import b.i.c.p.h.JsonDataEncoderBuilder5;
 import com.google.firebase.messaging.FirebaseMessagingService;
 
 /* JADX INFO: compiled from: com.google.firebase:firebase-messaging@@21.0.0 */
 /* JADX INFO: loaded from: classes3.dex */
 public class q {
-    public static final b.i.c.p.a a;
+    public static final DataEncoder a;
 
     static {
-        b.i.c.p.h.e eVar = new b.i.c.p.h.e();
-        eVar.f1761b.put(m.b.class, new m.c());
-        eVar.c.remove(m.b.class);
-        eVar.f1761b.put(m.class, new m.a());
-        eVar.c.remove(m.class);
-        a = new b.i.c.p.h.d(eVar);
+        JsonDataEncoderBuilder5 jsonDataEncoderBuilder5 = new JsonDataEncoderBuilder5();
+        jsonDataEncoderBuilder5.f1761b.put(m.b.class, new m.c());
+        jsonDataEncoderBuilder5.c.remove(m.b.class);
+        jsonDataEncoderBuilder5.f1761b.put(m.class, new m.a());
+        jsonDataEncoderBuilder5.c.remove(m.class);
+        a = new JsonDataEncoderBuilder4(jsonDataEncoderBuilder5);
     }
 
     @Nullable
@@ -76,11 +81,11 @@ public class q {
         }
         if (Log.isLoggable("FirebaseMessaging", 3)) {
             String strValueOf = String.valueOf(bundle);
-            Log.d("FirebaseMessaging", b.d.b.a.a.l(strValueOf.length() + str.length() + 37, "Logging to scion event=", str, " scionPayload=", strValueOf));
+            Log.d("FirebaseMessaging", outline.l(strValueOf.length() + str.length() + 37, "Logging to scion event=", str, " scionPayload=", strValueOf));
         }
-        b.i.c.c cVarB = b.i.c.c.b();
-        cVarB.a();
-        b.i.c.j.a.a aVar = (b.i.c.j.a.a) cVarB.g.a(b.i.c.j.a.a.class);
+        FirebaseApp2 firebaseApp2B = FirebaseApp2.b();
+        firebaseApp2B.a();
+        b.i.c.j.a.a aVar = (b.i.c.j.a.a) firebaseApp2B.g.a(b.i.c.j.a.a.class);
         if (aVar != null) {
             aVar.a("fcm", str, bundle);
         } else {

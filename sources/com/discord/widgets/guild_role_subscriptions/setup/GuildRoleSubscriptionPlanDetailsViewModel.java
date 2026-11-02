@@ -1,16 +1,16 @@
 package com.discord.widgets.guild_role_subscriptions.setup;
 
-import b.a.d.d0;
-import b.d.b.a.a;
+import b.a.d.AppViewModel;
+import b.d.b.a.outline;
 import com.discord.api.guildrolesubscription.GuildRoleSubscriptionGroupListing;
 import com.discord.api.guildrolesubscription.ImageAsset;
 import com.discord.models.domain.ModelAuditLogEntry;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 import kotlin.jvm.internal.DefaultConstructorMarker;
 
 /* JADX INFO: compiled from: GuildRoleSubscriptionPlanDetailsViewModel.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class GuildRoleSubscriptionPlanDetailsViewModel extends d0<ViewState> {
+public final class GuildRoleSubscriptionPlanDetailsViewModel extends AppViewModel<ViewState> {
 
     /* JADX INFO: compiled from: GuildRoleSubscriptionPlanDetailsViewModel.kt */
     public final /* data */ class ViewState {
@@ -66,7 +66,7 @@ public final class GuildRoleSubscriptionPlanDetailsViewModel extends d0<ViewStat
                 return false;
             }
             ViewState viewState = (ViewState) other;
-            return m.areEqual(this.coverImage, viewState.coverImage) && m.areEqual(this.applicationId, viewState.applicationId) && m.areEqual(this.coverImageAssetId, viewState.coverImageAssetId) && m.areEqual(this.description, viewState.description) && this.isFullServerGate == viewState.isFullServerGate;
+            return Intrinsics3.areEqual(this.coverImage, viewState.coverImage) && Intrinsics3.areEqual(this.applicationId, viewState.applicationId) && Intrinsics3.areEqual(this.coverImageAssetId, viewState.coverImageAssetId) && Intrinsics3.areEqual(this.description, viewState.description) && this.isFullServerGate == viewState.isFullServerGate;
         }
 
         /* JADX INFO: renamed from: component2, reason: from getter */
@@ -137,7 +137,7 @@ public final class GuildRoleSubscriptionPlanDetailsViewModel extends d0<ViewStat
         }
 
         public String toString() {
-            StringBuilder sbU = a.U("ViewState(coverImage=");
+            StringBuilder sbU = outline.U("ViewState(coverImage=");
             sbU.append(this.coverImage);
             sbU.append(", applicationId=");
             sbU.append(this.applicationId);
@@ -146,7 +146,7 @@ public final class GuildRoleSubscriptionPlanDetailsViewModel extends d0<ViewStat
             sbU.append(", description=");
             sbU.append(this.description);
             sbU.append(", isFullServerGate=");
-            return a.O(sbU, this.isFullServerGate, ")");
+            return outline.O(sbU, this.isFullServerGate, ")");
         }
 
         public /* synthetic */ ViewState(String str, Long l, Long l2, String str2, boolean z2, int i, DefaultConstructorMarker defaultConstructorMarker) {
@@ -159,7 +159,7 @@ public final class GuildRoleSubscriptionPlanDetailsViewModel extends d0<ViewStat
     }
 
     public final void setGroupPlanDetails(GuildRoleSubscriptionGroupListing subscriptionGroupListing, Boolean fullServerGatingOverwrite) {
-        m.checkNotNullParameter(subscriptionGroupListing, "subscriptionGroupListing");
+        Intrinsics3.checkNotNullParameter(subscriptionGroupListing, "subscriptionGroupListing");
         Long lValueOf = Long.valueOf(subscriptionGroupListing.getApplicationId());
         ImageAsset imageAsset = subscriptionGroupListing.getImageAsset();
         updateViewState(new ViewState(null, lValueOf, imageAsset != null ? Long.valueOf(imageAsset.getId()) : null, subscriptionGroupListing.getDescription(), fullServerGatingOverwrite != null ? fullServerGatingOverwrite.booleanValue() : subscriptionGroupListing.getFullServerGate(), 1, null));

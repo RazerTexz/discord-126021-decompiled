@@ -1,6 +1,6 @@
 package org.objectweb.asm;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 
 /* JADX WARN: Classes with same name are omitted, all sources:
   classes3.dex
@@ -13,7 +13,7 @@ public final class ClassTooLargeException extends IndexOutOfBoundsException {
     private final int constantPoolCount;
 
     public ClassTooLargeException(String str, int i) {
-        super(a.w("Class too large: ", str));
+        super(outline.w("Class too large: ", str));
         this.className = str;
         this.constantPoolCount = i;
     }

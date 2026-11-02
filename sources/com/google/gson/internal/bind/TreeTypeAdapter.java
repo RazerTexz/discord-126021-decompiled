@@ -1,12 +1,12 @@
 package com.google.gson.internal.bind;
 
 import b.i.a.f.e.o.f;
-import b.i.d.h;
-import b.i.d.i;
-import b.i.d.j;
-import b.i.d.l;
-import b.i.d.m;
-import b.i.d.o;
+import b.i.d.JsonDeserializationContext;
+import b.i.d.JsonDeserializer2;
+import b.i.d.JsonNull;
+import b.i.d.JsonSerializationContext;
+import b.i.d.JsonSerializer2;
+import b.i.d.TypeAdapterFactory2;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.TypeAdapter;
@@ -18,35 +18,35 @@ import java.util.Objects;
 
 /* JADX INFO: loaded from: classes3.dex */
 public final class TreeTypeAdapter<T> extends TypeAdapter<T> {
-    public final m<T> a;
+    public final JsonSerializer2<T> a;
     public final Gson c;
     public final TypeToken<T> d;
-    public final o e;
+    public final TypeAdapterFactory2 e;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    public final i<T> f3126b;
+    public final JsonDeserializer2<T> f3126b;
     public TypeAdapter<T> g;
     public final TreeTypeAdapter<T>.b f = new b(this, null);
 
-    public final class SingleTypeFactory implements o {
+    public final class SingleTypeFactory implements TypeAdapterFactory2 {
         public final TypeToken<?> j;
         public final boolean k;
         public final Class<?> l;
-        public final m<?> m;
-        public final i<?> n;
+        public final JsonSerializer2<?> m;
+        public final JsonDeserializer2<?> n;
 
         public SingleTypeFactory(Object obj, TypeToken<?> typeToken, boolean z2, Class<?> cls) {
-            m<?> mVar = obj instanceof m ? (m) obj : null;
-            this.m = mVar;
-            i<?> iVar = obj instanceof i ? (i) obj : null;
-            this.n = iVar;
-            f.w((mVar == null && iVar == null) ? false : true);
+            JsonSerializer2<?> jsonSerializer2 = obj instanceof JsonSerializer2 ? (JsonSerializer2) obj : null;
+            this.m = jsonSerializer2;
+            JsonDeserializer2<?> jsonDeserializer2 = obj instanceof JsonDeserializer2 ? (JsonDeserializer2) obj : null;
+            this.n = jsonDeserializer2;
+            f.w((jsonSerializer2 == null && jsonDeserializer2 == null) ? false : true);
             this.j = typeToken;
             this.k = z2;
             this.l = null;
         }
 
-        @Override // b.i.d.o
+        @Override // b.i.d.TypeAdapterFactory2
         public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> typeToken) {
             boolean zIsAssignableFrom;
             TypeToken<?> typeToken2 = this.j;
@@ -62,17 +62,17 @@ public final class TreeTypeAdapter<T> extends TypeAdapter<T> {
         }
     }
 
-    public final class b implements l, h {
+    public final class b implements JsonSerializationContext, JsonDeserializationContext {
         public b(TreeTypeAdapter treeTypeAdapter, a aVar) {
         }
     }
 
-    public TreeTypeAdapter(m<T> mVar, i<T> iVar, Gson gson, TypeToken<T> typeToken, o oVar) {
-        this.a = mVar;
-        this.f3126b = iVar;
+    public TreeTypeAdapter(JsonSerializer2<T> jsonSerializer2, JsonDeserializer2<T> jsonDeserializer2, Gson gson, TypeToken<T> typeToken, TypeAdapterFactory2 typeAdapterFactory2) {
+        this.a = jsonSerializer2;
+        this.f3126b = jsonDeserializer2;
         this.c = gson;
         this.d = typeToken;
-        this.e = oVar;
+        this.e = typeAdapterFactory2;
     }
 
     @Override // com.google.gson.TypeAdapter
@@ -87,7 +87,7 @@ public final class TreeTypeAdapter<T> extends TypeAdapter<T> {
         }
         JsonElement jsonElementS0 = f.S0(jsonReader);
         Objects.requireNonNull(jsonElementS0);
-        if (jsonElementS0 instanceof j) {
+        if (jsonElementS0 instanceof JsonNull) {
             return null;
         }
         return this.f3126b.a(jsonElementS0, this.d.getType(), this.f);
@@ -95,8 +95,8 @@ public final class TreeTypeAdapter<T> extends TypeAdapter<T> {
 
     @Override // com.google.gson.TypeAdapter
     public void write(JsonWriter jsonWriter, T t) throws IOException {
-        m<T> mVar = this.a;
-        if (mVar == null) {
+        JsonSerializer2<T> jsonSerializer2 = this.a;
+        if (jsonSerializer2 == null) {
             TypeAdapter<T> typeAdapterJ = this.g;
             if (typeAdapterJ == null) {
                 typeAdapterJ = this.c.j(this.e, this.d);
@@ -108,7 +108,7 @@ public final class TreeTypeAdapter<T> extends TypeAdapter<T> {
         if (t == null) {
             jsonWriter.s();
         } else {
-            TypeAdapters.X.write(jsonWriter, mVar.serialize(t, this.d.getType(), this.f));
+            TypeAdapters.X.write(jsonWriter, jsonSerializer2.serialize(t, this.d.getType(), this.f));
         }
     }
 }

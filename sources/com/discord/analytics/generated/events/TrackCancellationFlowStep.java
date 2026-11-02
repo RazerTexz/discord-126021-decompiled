@@ -1,18 +1,18 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.analytics.generated.traits.TrackLocationMetadata;
-import com.discord.analytics.generated.traits.TrackLocationMetadataReceiver;
+import com.discord.analytics.generated.traits.TrackLocationMetadata2;
 import com.discord.analytics.generated.traits.TrackSubscriptionMetadata;
-import com.discord.analytics.generated.traits.TrackSubscriptionMetadataReceiver;
+import com.discord.analytics.generated.traits.TrackSubscriptionMetadata2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackCancellationFlowStep.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackCancellationFlowStep implements AnalyticsSchema, TrackBaseReceiver, TrackLocationMetadataReceiver, TrackSubscriptionMetadataReceiver {
+public final /* data */ class TrackCancellationFlowStep implements AnalyticsSchema, TrackBase2, TrackLocationMetadata2, TrackSubscriptionMetadata2 {
     private final Long flowDurationMs = null;
     private final CharSequence fromStep = null;
     private final Long stepDurationMs = null;
@@ -31,7 +31,7 @@ public final /* data */ class TrackCancellationFlowStep implements AnalyticsSche
             return false;
         }
         TrackCancellationFlowStep trackCancellationFlowStep = (TrackCancellationFlowStep) other;
-        return m.areEqual(this.toStep, trackCancellationFlowStep.toStep) && m.areEqual(this.fromStep, trackCancellationFlowStep.fromStep) && m.areEqual(this.stepDurationMs, trackCancellationFlowStep.stepDurationMs) && m.areEqual(this.flowDurationMs, trackCancellationFlowStep.flowDurationMs) && m.areEqual(this.subscriptionId, trackCancellationFlowStep.subscriptionId);
+        return Intrinsics3.areEqual(this.toStep, trackCancellationFlowStep.toStep) && Intrinsics3.areEqual(this.fromStep, trackCancellationFlowStep.fromStep) && Intrinsics3.areEqual(this.stepDurationMs, trackCancellationFlowStep.stepDurationMs) && Intrinsics3.areEqual(this.flowDurationMs, trackCancellationFlowStep.flowDurationMs) && Intrinsics3.areEqual(this.subscriptionId, trackCancellationFlowStep.subscriptionId);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -54,7 +54,7 @@ public final /* data */ class TrackCancellationFlowStep implements AnalyticsSche
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackCancellationFlowStep(toStep=");
+        StringBuilder sbU = outline.U("TrackCancellationFlowStep(toStep=");
         sbU.append(this.toStep);
         sbU.append(", fromStep=");
         sbU.append(this.fromStep);
@@ -63,6 +63,6 @@ public final /* data */ class TrackCancellationFlowStep implements AnalyticsSche
         sbU.append(", flowDurationMs=");
         sbU.append(this.flowDurationMs);
         sbU.append(", subscriptionId=");
-        return a.G(sbU, this.subscriptionId, ")");
+        return outline.G(sbU, this.subscriptionId, ")");
     }
 }

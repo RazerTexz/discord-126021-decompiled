@@ -1,14 +1,14 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackSubscriptionResubscribed.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackSubscriptionResubscribed implements AnalyticsSchema, TrackBaseReceiver {
+public final /* data */ class TrackSubscriptionResubscribed implements AnalyticsSchema, TrackBase2 {
     private final Long createdAt = null;
     private final Long currentPeriodEnd = null;
     private final Long currentPeriodStart = null;
@@ -30,7 +30,7 @@ public final /* data */ class TrackSubscriptionResubscribed implements Analytics
             return false;
         }
         TrackSubscriptionResubscribed trackSubscriptionResubscribed = (TrackSubscriptionResubscribed) other;
-        return m.areEqual(this.subscriptionId, trackSubscriptionResubscribed.subscriptionId) && m.areEqual(this.subscriptionType, trackSubscriptionResubscribed.subscriptionType) && m.areEqual(this.paymentGatewayPlanId, trackSubscriptionResubscribed.paymentGatewayPlanId) && m.areEqual(this.planId, trackSubscriptionResubscribed.planId) && m.areEqual(this.paymentGateway, trackSubscriptionResubscribed.paymentGateway) && m.areEqual(this.createdAt, trackSubscriptionResubscribed.createdAt) && m.areEqual(this.currentPeriodStart, trackSubscriptionResubscribed.currentPeriodStart) && m.areEqual(this.currentPeriodEnd, trackSubscriptionResubscribed.currentPeriodEnd) && m.areEqual(this.trialId, trackSubscriptionResubscribed.trialId) && m.areEqual(this.trialEndsAt, trackSubscriptionResubscribed.trialEndsAt);
+        return Intrinsics3.areEqual(this.subscriptionId, trackSubscriptionResubscribed.subscriptionId) && Intrinsics3.areEqual(this.subscriptionType, trackSubscriptionResubscribed.subscriptionType) && Intrinsics3.areEqual(this.paymentGatewayPlanId, trackSubscriptionResubscribed.paymentGatewayPlanId) && Intrinsics3.areEqual(this.planId, trackSubscriptionResubscribed.planId) && Intrinsics3.areEqual(this.paymentGateway, trackSubscriptionResubscribed.paymentGateway) && Intrinsics3.areEqual(this.createdAt, trackSubscriptionResubscribed.createdAt) && Intrinsics3.areEqual(this.currentPeriodStart, trackSubscriptionResubscribed.currentPeriodStart) && Intrinsics3.areEqual(this.currentPeriodEnd, trackSubscriptionResubscribed.currentPeriodEnd) && Intrinsics3.areEqual(this.trialId, trackSubscriptionResubscribed.trialId) && Intrinsics3.areEqual(this.trialEndsAt, trackSubscriptionResubscribed.trialEndsAt);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -63,7 +63,7 @@ public final /* data */ class TrackSubscriptionResubscribed implements Analytics
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackSubscriptionResubscribed(subscriptionId=");
+        StringBuilder sbU = outline.U("TrackSubscriptionResubscribed(subscriptionId=");
         sbU.append(this.subscriptionId);
         sbU.append(", subscriptionType=");
         sbU.append(this.subscriptionType);
@@ -82,6 +82,6 @@ public final /* data */ class TrackSubscriptionResubscribed implements Analytics
         sbU.append(", trialId=");
         sbU.append(this.trialId);
         sbU.append(", trialEndsAt=");
-        return a.G(sbU, this.trialEndsAt, ")");
+        return outline.G(sbU, this.trialEndsAt, ")");
     }
 }

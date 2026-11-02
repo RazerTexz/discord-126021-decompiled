@@ -1,7 +1,7 @@
 package com.discord.api.message.embed;
 
-import b.d.b.a.a;
-import d0.z.d.m;
+import b.d.b.a.outline;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: EmbedVideo.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -19,7 +19,7 @@ public final /* data */ class EmbedVideo {
             return false;
         }
         EmbedVideo embedVideo = (EmbedVideo) other;
-        return m.areEqual(this.url, embedVideo.url) && m.areEqual(this.proxyUrl, embedVideo.proxyUrl) && m.areEqual(this.height, embedVideo.height) && m.areEqual(this.width, embedVideo.width);
+        return Intrinsics3.areEqual(this.url, embedVideo.url) && Intrinsics3.areEqual(this.proxyUrl, embedVideo.proxyUrl) && Intrinsics3.areEqual(this.height, embedVideo.height) && Intrinsics3.areEqual(this.width, embedVideo.width);
     }
 
     /* JADX INFO: renamed from: a, reason: from getter */
@@ -54,13 +54,13 @@ public final /* data */ class EmbedVideo {
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("EmbedVideo(url=");
+        StringBuilder sbU = outline.U("EmbedVideo(url=");
         sbU.append(this.url);
         sbU.append(", proxyUrl=");
         sbU.append(this.proxyUrl);
         sbU.append(", height=");
         sbU.append(this.height);
         sbU.append(", width=");
-        return a.F(sbU, this.width, ")");
+        return outline.F(sbU, this.width, ")");
     }
 }

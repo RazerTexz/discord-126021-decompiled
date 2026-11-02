@@ -1,10 +1,10 @@
 package com.discord.api.directory;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.api.guild.preview.GuildPreview;
 import com.discord.api.utcdatetime.UtcDateTime;
 import com.discord.models.domain.ModelAuditLogEntry;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: DirectoryEntryGuild.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -25,7 +25,7 @@ public final /* data */ class DirectoryEntryGuild {
             return false;
         }
         DirectoryEntryGuild directoryEntryGuild = (DirectoryEntryGuild) other;
-        return this.directoryChannelId == directoryEntryGuild.directoryChannelId && this.entityId == directoryEntryGuild.entityId && this.authorId == directoryEntryGuild.authorId && m.areEqual(this.description, directoryEntryGuild.description) && this.primaryCategoryId == directoryEntryGuild.primaryCategoryId && m.areEqual(this.guild, directoryEntryGuild.guild) && m.areEqual(this.createdAt, directoryEntryGuild.createdAt);
+        return this.directoryChannelId == directoryEntryGuild.directoryChannelId && this.entityId == directoryEntryGuild.entityId && this.authorId == directoryEntryGuild.authorId && Intrinsics3.areEqual(this.description, directoryEntryGuild.description) && this.primaryCategoryId == directoryEntryGuild.primaryCategoryId && Intrinsics3.areEqual(this.guild, directoryEntryGuild.guild) && Intrinsics3.areEqual(this.createdAt, directoryEntryGuild.createdAt);
     }
 
     /* JADX INFO: renamed from: a, reason: from getter */
@@ -73,7 +73,7 @@ public final /* data */ class DirectoryEntryGuild {
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("DirectoryEntryGuild(directoryChannelId=");
+        StringBuilder sbU = outline.U("DirectoryEntryGuild(directoryChannelId=");
         sbU.append(this.directoryChannelId);
         sbU.append(", entityId=");
         sbU.append(this.entityId);

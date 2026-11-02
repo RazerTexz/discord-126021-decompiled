@@ -7,7 +7,7 @@ import androidx.annotation.RequiresApi;
 import androidx.core.app.NotificationCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.R;
 import com.discord.app.AppBottomSheet;
 import com.discord.databinding.WidgetSettingsNotificationOsBinding;
@@ -17,10 +17,10 @@ import com.discord.utilities.fcm.NotificationClient;
 import com.discord.utilities.navigation.SystemSettingNavigators;
 import com.discord.utilities.rx.ObservableExtensionsKt;
 import com.discord.utilities.viewbinding.FragmentViewBindingDelegate;
-import com.discord.utilities.viewbinding.FragmentViewBindingDelegateKt;
+import com.discord.utilities.viewbinding.FragmentViewBindingDelegate3;
 import com.discord.views.CheckedSetting;
-import d0.z.d.m;
-import d0.z.d.o;
+import d0.z.d.Intrinsics3;
+import d0.z.d.Lambda;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
@@ -32,7 +32,7 @@ import rx.functions.Action1;
 /* JADX INFO: loaded from: classes2.dex */
 @RequiresApi(26)
 public final class WidgetSettingsNotificationsOs extends AppBottomSheet {
-    public static final /* synthetic */ KProperty[] $$delegatedProperties = {a.d0(WidgetSettingsNotificationsOs.class, "binding", "getBinding()Lcom/discord/databinding/WidgetSettingsNotificationOsBinding;", 0)};
+    public static final /* synthetic */ KProperty[] $$delegatedProperties = {outline.d0(WidgetSettingsNotificationsOs.class, "binding", "getBinding()Lcom/discord/databinding/WidgetSettingsNotificationOsBinding;", 0)};
 
     /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
     public static final Companion INSTANCE = new Companion(null);
@@ -42,7 +42,7 @@ public final class WidgetSettingsNotificationsOs extends AppBottomSheet {
 
     /* JADX INFO: renamed from: com.discord.widgets.settings.WidgetSettingsNotificationsOs$onResume$1, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetSettingsNotificationsOs.kt */
-    public final class AnonymousClass1 extends o implements Function1<NotificationClient.SettingsV2, Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function1<NotificationClient.SettingsV2, Unit> {
         public AnonymousClass1() {
             super(1);
         }
@@ -55,12 +55,12 @@ public final class WidgetSettingsNotificationsOs extends AppBottomSheet {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(NotificationClient.SettingsV2 settingsV2) {
-            m.checkNotNullParameter(settingsV2, "settings");
+            Intrinsics3.checkNotNullParameter(settingsV2, "settings");
             CheckedSetting checkedSetting = WidgetSettingsNotificationsOs.access$getBinding$p(WidgetSettingsNotificationsOs.this).d;
-            m.checkNotNullExpressionValue(checkedSetting, "binding.settingsNotificationSwitch");
+            Intrinsics3.checkNotNullExpressionValue(checkedSetting, "binding.settingsNotificationSwitch");
             checkedSetting.setChecked(settingsV2.isEnabled());
             CheckedSetting checkedSetting2 = WidgetSettingsNotificationsOs.access$getBinding$p(WidgetSettingsNotificationsOs.this).f2631b;
-            m.checkNotNullExpressionValue(checkedSetting2, "binding.settingsInappNotifsSwitch");
+            Intrinsics3.checkNotNullExpressionValue(checkedSetting2, "binding.settingsInappNotifsSwitch");
             checkedSetting2.setChecked(settingsV2.isEnabledInApp());
         }
     }
@@ -78,7 +78,7 @@ public final class WidgetSettingsNotificationsOs extends AppBottomSheet {
         /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
         public final void call2(Boolean bool) {
             StoreNotifications notifications = StoreStream.INSTANCE.getNotifications();
-            m.checkNotNullExpressionValue(bool, "it");
+            Intrinsics3.checkNotNullExpressionValue(bool, "it");
             notifications.setEnabled(bool.booleanValue());
         }
     }
@@ -96,7 +96,7 @@ public final class WidgetSettingsNotificationsOs extends AppBottomSheet {
         /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
         public final void call2(Boolean bool) {
             StoreNotifications notifications = StoreStream.INSTANCE.getNotifications();
-            m.checkNotNullExpressionValue(bool, "it");
+            Intrinsics3.checkNotNullExpressionValue(bool, "it");
             StoreNotifications.setEnabledInApp$default(notifications, bool.booleanValue(), false, 2, null);
         }
     }
@@ -110,9 +110,9 @@ public final class WidgetSettingsNotificationsOs extends AppBottomSheet {
         @Override // android.view.View.OnClickListener
         public final void onClick(View view) {
             SystemSettingNavigators systemSettingNavigators = SystemSettingNavigators.INSTANCE;
-            m.checkNotNullExpressionValue(view, "it");
+            Intrinsics3.checkNotNullExpressionValue(view, "it");
             Context context = view.getContext();
-            m.checkNotNullExpressionValue(context, "it.context");
+            Intrinsics3.checkNotNullExpressionValue(context, "it.context");
             systemSettingNavigators.openSystemNotification(context);
             WidgetSettingsNotificationsOs.this.dismiss();
         }
@@ -124,7 +124,7 @@ public final class WidgetSettingsNotificationsOs extends AppBottomSheet {
         }
 
         public final void show(FragmentManager fragmentManager) {
-            m.checkNotNullParameter(fragmentManager, "fragmentManager");
+            Intrinsics3.checkNotNullParameter(fragmentManager, "fragmentManager");
             new WidgetSettingsNotificationsOs().show(fragmentManager, "javaClass");
         }
 
@@ -135,7 +135,7 @@ public final class WidgetSettingsNotificationsOs extends AppBottomSheet {
 
     public WidgetSettingsNotificationsOs() {
         super(false, 1, null);
-        this.binding = FragmentViewBindingDelegateKt.viewBinding$default(this, WidgetSettingsNotificationsOs$binding$2.INSTANCE, null, 2, null);
+        this.binding = FragmentViewBindingDelegate3.viewBinding$default(this, WidgetSettingsNotificationsOs2.INSTANCE, null, 2, null);
     }
 
     public static final /* synthetic */ WidgetSettingsNotificationOsBinding access$getBinding$p(WidgetSettingsNotificationsOs widgetSettingsNotificationsOs) {
@@ -159,7 +159,7 @@ public final class WidgetSettingsNotificationsOs extends AppBottomSheet {
 
     @Override // com.discord.app.AppBottomSheet, androidx.fragment.app.Fragment
     public void onViewCreated(View view, Bundle savedInstanceState) {
-        m.checkNotNullParameter(view, "view");
+        Intrinsics3.checkNotNullParameter(view, "view");
         super.onViewCreated(view, savedInstanceState);
         getBinding().d.setOnCheckedListener(AnonymousClass1.INSTANCE);
         getBinding().f2631b.setOnCheckedListener(AnonymousClass2.INSTANCE);

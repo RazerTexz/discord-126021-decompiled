@@ -1,8 +1,8 @@
 package com.discord.api.botuikit;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.models.domain.ModelAuditLogEntry;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 import java.io.Serializable;
 
 /* JADX INFO: compiled from: ComponentEmoji.kt */
@@ -20,7 +20,7 @@ public final /* data */ class ComponentEmoji implements Serializable {
             return false;
         }
         ComponentEmoji componentEmoji = (ComponentEmoji) other;
-        return m.areEqual(this.id, componentEmoji.id) && m.areEqual(this.name, componentEmoji.name) && m.areEqual(this.animated, componentEmoji.animated);
+        return Intrinsics3.areEqual(this.id, componentEmoji.id) && Intrinsics3.areEqual(this.name, componentEmoji.name) && Intrinsics3.areEqual(this.animated, componentEmoji.animated);
     }
 
     /* JADX INFO: renamed from: a, reason: from getter */
@@ -48,11 +48,11 @@ public final /* data */ class ComponentEmoji implements Serializable {
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("ComponentEmoji(id=");
+        StringBuilder sbU = outline.U("ComponentEmoji(id=");
         sbU.append(this.id);
         sbU.append(", name=");
         sbU.append(this.name);
         sbU.append(", animated=");
-        return a.D(sbU, this.animated, ")");
+        return outline.D(sbU, this.animated, ")");
     }
 }

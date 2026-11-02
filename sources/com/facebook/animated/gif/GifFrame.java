@@ -1,31 +1,31 @@
 package com.facebook.animated.gif;
 
 import android.graphics.Bitmap;
-import b.f.d.d.c;
-import b.f.j.a.a.d;
+import b.f.d.d.DoNotStrip;
+import b.f.j.a.a.AnimatedImageFrame;
 
 /* JADX INFO: loaded from: classes.dex */
-public class GifFrame implements d {
+public class GifFrame implements AnimatedImageFrame {
 
-    @c
+    @DoNotStrip
     private long mNativeContext;
 
-    @c
+    @DoNotStrip
     public GifFrame(long j) {
         this.mNativeContext = j;
     }
 
-    @Override // b.f.j.a.a.d
+    @Override // b.f.j.a.a.AnimatedImageFrame
     public void a(int i, int i2, Bitmap bitmap) {
         nativeRenderFrame(i, i2, bitmap);
     }
 
-    @Override // b.f.j.a.a.d
+    @Override // b.f.j.a.a.AnimatedImageFrame
     public int b() {
         return nativeGetXOffset();
     }
 
-    @Override // b.f.j.a.a.d
+    @Override // b.f.j.a.a.AnimatedImageFrame
     public int c() {
         return nativeGetYOffset();
     }
@@ -34,7 +34,7 @@ public class GifFrame implements d {
         return nativeGetDisposalMode();
     }
 
-    @Override // b.f.j.a.a.d
+    @Override // b.f.j.a.a.AnimatedImageFrame
     public void dispose() {
         nativeDispose();
     }
@@ -43,46 +43,46 @@ public class GifFrame implements d {
         nativeFinalize();
     }
 
-    @Override // b.f.j.a.a.d
+    @Override // b.f.j.a.a.AnimatedImageFrame
     public int getHeight() {
         return nativeGetHeight();
     }
 
-    @Override // b.f.j.a.a.d
+    @Override // b.f.j.a.a.AnimatedImageFrame
     public int getWidth() {
         return nativeGetWidth();
     }
 
-    @c
+    @DoNotStrip
     private native void nativeDispose();
 
-    @c
+    @DoNotStrip
     private native void nativeFinalize();
 
-    @c
+    @DoNotStrip
     private native int nativeGetDisposalMode();
 
-    @c
+    @DoNotStrip
     private native int nativeGetDurationMs();
 
-    @c
+    @DoNotStrip
     private native int nativeGetHeight();
 
-    @c
+    @DoNotStrip
     private native int nativeGetTransparentPixelColor();
 
-    @c
+    @DoNotStrip
     private native int nativeGetWidth();
 
-    @c
+    @DoNotStrip
     private native int nativeGetXOffset();
 
-    @c
+    @DoNotStrip
     private native int nativeGetYOffset();
 
-    @c
+    @DoNotStrip
     private native boolean nativeHasTransparency();
 
-    @c
+    @DoNotStrip
     private native void nativeRenderFrame(int i, int i2, Bitmap bitmap);
 }

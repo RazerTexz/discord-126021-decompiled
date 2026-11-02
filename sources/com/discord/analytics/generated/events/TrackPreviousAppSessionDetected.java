@@ -1,14 +1,14 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackPreviousAppSessionDetected.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackPreviousAppSessionDetected implements AnalyticsSchema, TrackBaseReceiver {
+public final /* data */ class TrackPreviousAppSessionDetected implements AnalyticsSchema, TrackBase2 {
     private final CharSequence deviceMemoryState = null;
     private TrackBase trackBase;
     private final Boolean wasAppBackgrounded = null;
@@ -23,7 +23,7 @@ public final /* data */ class TrackPreviousAppSessionDetected implements Analyti
             return false;
         }
         TrackPreviousAppSessionDetected trackPreviousAppSessionDetected = (TrackPreviousAppSessionDetected) other;
-        return m.areEqual(this.deviceMemoryState, trackPreviousAppSessionDetected.deviceMemoryState) && m.areEqual(this.wasConnectedToVoice, trackPreviousAppSessionDetected.wasConnectedToVoice) && m.areEqual(this.wasAppBackgrounded, trackPreviousAppSessionDetected.wasAppBackgrounded);
+        return Intrinsics3.areEqual(this.deviceMemoryState, trackPreviousAppSessionDetected.deviceMemoryState) && Intrinsics3.areEqual(this.wasConnectedToVoice, trackPreviousAppSessionDetected.wasConnectedToVoice) && Intrinsics3.areEqual(this.wasAppBackgrounded, trackPreviousAppSessionDetected.wasAppBackgrounded);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -42,11 +42,11 @@ public final /* data */ class TrackPreviousAppSessionDetected implements Analyti
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackPreviousAppSessionDetected(deviceMemoryState=");
+        StringBuilder sbU = outline.U("TrackPreviousAppSessionDetected(deviceMemoryState=");
         sbU.append(this.deviceMemoryState);
         sbU.append(", wasConnectedToVoice=");
         sbU.append(this.wasConnectedToVoice);
         sbU.append(", wasAppBackgrounded=");
-        return a.D(sbU, this.wasAppBackgrounded, ")");
+        return outline.D(sbU, this.wasAppBackgrounded, ")");
     }
 }

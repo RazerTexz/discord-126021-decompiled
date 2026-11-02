@@ -1,8 +1,8 @@
 package com.discord.models.domain;
 
 import b.a.m.a.e0;
-import b.d.b.a.a;
-import b.i.d.o;
+import b.d.b.a.outline;
+import b.i.d.TypeAdapterFactory2;
 import com.google.gson.Gson;
 import com.google.gson.TypeAdapter;
 import com.google.gson.reflect.TypeToken;
@@ -251,7 +251,7 @@ public interface Model {
         T parse(JsonReader jsonReader);
     }
 
-    public class TypeAdapterFactory implements o {
+    public class TypeAdapterFactory implements TypeAdapterFactory2 {
 
         /* JADX INFO: Add missing generic type declarations: [T] */
         /* JADX INFO: renamed from: com.discord.models.domain.Model$TypeAdapterFactory$1, reason: invalid class name */
@@ -280,11 +280,11 @@ public interface Model {
 
             @Override // com.google.gson.TypeAdapter
             public void write(JsonWriter jsonWriter, T t) throws IOException {
-                throw new IOException(a.v("Writer incorrectly invoked for object.", t));
+                throw new IOException(outline.v("Writer incorrectly invoked for object.", t));
             }
         }
 
-        @Override // b.i.d.o
+        @Override // b.i.d.TypeAdapterFactory2
         public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> typeToken) {
             if (Model.class.isAssignableFrom(typeToken.getRawType())) {
                 return new AnonymousClass1(typeToken);

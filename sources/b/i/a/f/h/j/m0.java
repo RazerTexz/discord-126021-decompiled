@@ -1,5 +1,7 @@
 package b.i.a.f.h.j;
 
+import b.d.b.a.outline;
+
 /* JADX INFO: loaded from: classes3.dex */
 public class m0 extends e {
     public static m0 l;
@@ -38,7 +40,7 @@ public class m0 extends e {
         }
         String str = String.valueOf(obj).charAt(0) != '-' ? "" : "-";
         String strValueOf = String.valueOf(Math.abs(l2.longValue()));
-        StringBuilder sbU = b.d.b.a.a.U(str);
+        StringBuilder sbU = outline.U(str);
         sbU.append(Math.round(Math.pow(10.0d, strValueOf.length() - 1)));
         sbU.append("...");
         sbU.append(str);

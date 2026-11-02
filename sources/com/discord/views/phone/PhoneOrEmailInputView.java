@@ -12,7 +12,7 @@ import android.widget.LinearLayout;
 import androidx.core.app.NotificationCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-import b.a.i.u2;
+import b.a.i.ViewPhoneOrEmailInputBinding;
 import com.discord.R;
 import com.discord.models.domain.ModelAuditLogEntry;
 import com.discord.models.phone.PhoneCountryCode;
@@ -21,8 +21,8 @@ import com.discord.utilities.view.extensions.ViewExtensions;
 import com.discord.widgets.phone.WidgetPhoneCountryCodeBottomSheet;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
-import d0.z.d.m;
-import d0.z.d.o;
+import d0.z.d.Intrinsics3;
+import d0.z.d.Lambda;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
@@ -33,7 +33,7 @@ public final class PhoneOrEmailInputView extends LinearLayout {
     public static final /* synthetic */ int j = 0;
 
     /* JADX INFO: renamed from: k, reason: from kotlin metadata */
-    public final u2 binding;
+    public final ViewPhoneOrEmailInputBinding binding;
 
     /* JADX INFO: renamed from: l, reason: from kotlin metadata */
     public Mode mode;
@@ -52,7 +52,7 @@ public final class PhoneOrEmailInputView extends LinearLayout {
     }
 
     /* JADX INFO: compiled from: PhoneOrEmailInputView.kt */
-    public final class a extends o implements Function1<Editable, Unit> {
+    public final class a extends Lambda implements Function1<Editable, Unit> {
         public final /* synthetic */ Function0 $onAfterTextChanged;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -63,14 +63,14 @@ public final class PhoneOrEmailInputView extends LinearLayout {
 
         @Override // kotlin.jvm.functions.Function1
         public Unit invoke(Editable editable) {
-            m.checkNotNullParameter(editable, "it");
+            Intrinsics3.checkNotNullParameter(editable, "it");
             this.$onAfterTextChanged.invoke();
             return Unit.a;
         }
     }
 
     /* JADX INFO: compiled from: PhoneOrEmailInputView.kt */
-    public final class b extends o implements Function1<Editable, Unit> {
+    public final class b extends Lambda implements Function1<Editable, Unit> {
         public final /* synthetic */ Function0 $onAfterTextChanged;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -81,7 +81,7 @@ public final class PhoneOrEmailInputView extends LinearLayout {
 
         @Override // kotlin.jvm.functions.Function1
         public Unit invoke(Editable editable) {
-            m.checkNotNullParameter(editable, "it");
+            Intrinsics3.checkNotNullParameter(editable, "it");
             PhoneOrEmailInputView phoneOrEmailInputView = PhoneOrEmailInputView.this;
             int i = PhoneOrEmailInputView.j;
             phoneOrEmailInputView.c();
@@ -91,7 +91,7 @@ public final class PhoneOrEmailInputView extends LinearLayout {
     }
 
     /* JADX INFO: compiled from: PhoneOrEmailInputView.kt */
-    public final class c extends o implements Function1<View, Unit> {
+    public final class c extends Lambda implements Function1<View, Unit> {
         public final /* synthetic */ Fragment $fragment;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -102,24 +102,24 @@ public final class PhoneOrEmailInputView extends LinearLayout {
 
         @Override // kotlin.jvm.functions.Function1
         public Unit invoke(View view) {
-            m.checkNotNullParameter(view, "it");
+            Intrinsics3.checkNotNullParameter(view, "it");
             WidgetPhoneCountryCodeBottomSheet.Companion companion = WidgetPhoneCountryCodeBottomSheet.INSTANCE;
             FragmentManager parentFragmentManager = this.$fragment.getParentFragmentManager();
-            m.checkNotNullExpressionValue(parentFragmentManager, "fragment.parentFragmentManager");
+            Intrinsics3.checkNotNullExpressionValue(parentFragmentManager, "fragment.parentFragmentManager");
             companion.show(parentFragmentManager);
             return Unit.a;
         }
     }
 
     /* JADX INFO: compiled from: PhoneOrEmailInputView.kt */
-    public final class d extends o implements Function1<Editable, Unit> {
+    public final class d extends Lambda implements Function1<Editable, Unit> {
         public d() {
             super(1);
         }
 
         @Override // kotlin.jvm.functions.Function1
         public Unit invoke(Editable editable) {
-            m.checkNotNullParameter(editable, "it");
+            Intrinsics3.checkNotNullParameter(editable, "it");
             PhoneOrEmailInputView phoneOrEmailInputView = PhoneOrEmailInputView.this;
             int i = PhoneOrEmailInputView.j;
             phoneOrEmailInputView.f();
@@ -131,7 +131,7 @@ public final class PhoneOrEmailInputView extends LinearLayout {
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public PhoneOrEmailInputView(Context context, AttributeSet attributeSet) {
         super(context, attributeSet, 0);
-        m.checkNotNullParameter(context, "context");
+        Intrinsics3.checkNotNullParameter(context, "context");
         LayoutInflater.from(context).inflate(R.layout.view_phone_or_email_input, this);
         int i = R.id.phone_or_email_country_code_wrap;
         TextInputLayout textInputLayout = (TextInputLayout) findViewById(R.id.phone_or_email_country_code_wrap);
@@ -142,9 +142,9 @@ public final class PhoneOrEmailInputView extends LinearLayout {
                 i = R.id.phone_or_email_main_input_wrap;
                 TextInputLayout textInputLayout2 = (TextInputLayout) findViewById(R.id.phone_or_email_main_input_wrap);
                 if (textInputLayout2 != null) {
-                    u2 u2Var = new u2(this, textInputLayout, textInputEditText, textInputLayout2);
-                    m.checkNotNullExpressionValue(u2Var, "ViewPhoneOrEmailInputBin…ater.from(context), this)");
-                    this.binding = u2Var;
+                    ViewPhoneOrEmailInputBinding viewPhoneOrEmailInputBinding = new ViewPhoneOrEmailInputBinding(this, textInputLayout, textInputEditText, textInputLayout2);
+                    Intrinsics3.checkNotNullExpressionValue(viewPhoneOrEmailInputBinding, "ViewPhoneOrEmailInputBin…ater.from(context), this)");
+                    this.binding = viewPhoneOrEmailInputBinding;
                     Mode mode = Mode.ADAPTIVE;
                     this.mode = mode;
                     this.email = "";
@@ -152,7 +152,7 @@ public final class PhoneOrEmailInputView extends LinearLayout {
                     setLayoutTransition(new LayoutTransition());
                     if (attributeSet != null) {
                         TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes(attributeSet, R.a.PhoneOrEmailInputView, 0, 0);
-                        m.checkNotNullExpressionValue(typedArrayObtainStyledAttributes, "context.obtainStyledAttr…neOrEmailInputView, 0, 0)");
+                        Intrinsics3.checkNotNullExpressionValue(typedArrayObtainStyledAttributes, "context.obtainStyledAttr…neOrEmailInputView, 0, 0)");
                         try {
                             setHint(typedArrayObtainStyledAttributes.getString(1));
                             setMode(Mode.values()[typedArrayObtainStyledAttributes.getInt(0, mode.ordinal())]);
@@ -173,23 +173,23 @@ public final class PhoneOrEmailInputView extends LinearLayout {
     }
 
     public final void a(Fragment fragment, Function0<Unit> onAfterTextChanged) {
-        m.checkNotNullParameter(fragment, "fragment");
-        m.checkNotNullParameter(onAfterTextChanged, "onAfterTextChanged");
+        Intrinsics3.checkNotNullParameter(fragment, "fragment");
+        Intrinsics3.checkNotNullParameter(onAfterTextChanged, "onAfterTextChanged");
         TextInputLayout textInputLayout = this.binding.f210b;
-        m.checkNotNullExpressionValue(textInputLayout, "binding.phoneOrEmailCountryCodeWrap");
+        Intrinsics3.checkNotNullExpressionValue(textInputLayout, "binding.phoneOrEmailCountryCodeWrap");
         ViewExtensions.addBindedTextWatcher(textInputLayout, fragment, new a(onAfterTextChanged));
         TextInputLayout textInputLayout2 = this.binding.d;
-        m.checkNotNullExpressionValue(textInputLayout2, "binding.phoneOrEmailMainInputWrap");
+        Intrinsics3.checkNotNullExpressionValue(textInputLayout2, "binding.phoneOrEmailMainInputWrap");
         ViewExtensions.addBindedTextWatcher(textInputLayout2, fragment, new b(onAfterTextChanged));
     }
 
     public final void b(Fragment fragment) {
-        m.checkNotNullParameter(fragment, "fragment");
+        Intrinsics3.checkNotNullParameter(fragment, "fragment");
         TextInputLayout textInputLayout = this.binding.f210b;
-        m.checkNotNullExpressionValue(textInputLayout, "binding.phoneOrEmailCountryCodeWrap");
+        Intrinsics3.checkNotNullExpressionValue(textInputLayout, "binding.phoneOrEmailCountryCodeWrap");
         ViewExtensions.setOnEditTextClickListener(textInputLayout, new c(fragment));
         TextInputLayout textInputLayout2 = this.binding.d;
-        m.checkNotNullExpressionValue(textInputLayout2, "binding.phoneOrEmailMainInputWrap");
+        Intrinsics3.checkNotNullExpressionValue(textInputLayout2, "binding.phoneOrEmailMainInputWrap");
         ViewExtensions.addBindedTextWatcher(textInputLayout2, fragment, new d());
         c();
         d();
@@ -197,32 +197,32 @@ public final class PhoneOrEmailInputView extends LinearLayout {
 
     public final void c() {
         TextInputLayout textInputLayout = this.binding.f210b;
-        m.checkNotNullExpressionValue(textInputLayout, "binding.phoneOrEmailCountryCodeWrap");
+        Intrinsics3.checkNotNullExpressionValue(textInputLayout, "binding.phoneOrEmailCountryCodeWrap");
         textInputLayout.setVisibility(e() ? 0 : 8);
     }
 
     public final void d() {
         if (this.mode.ordinal() != 2) {
             TextInputEditText textInputEditText = this.binding.c;
-            m.checkNotNullExpressionValue(textInputEditText, "binding.phoneOrEmailMainInput");
+            Intrinsics3.checkNotNullExpressionValue(textInputEditText, "binding.phoneOrEmailMainInput");
             textInputEditText.setInputType(32);
             if (Build.VERSION.SDK_INT >= 26) {
                 this.binding.c.setAutofillHints(new String[]{"emailAddress"});
             }
             TextInputLayout textInputLayout = this.binding.d;
-            m.checkNotNullExpressionValue(textInputLayout, "binding.phoneOrEmailMainInputWrap");
+            Intrinsics3.checkNotNullExpressionValue(textInputLayout, "binding.phoneOrEmailMainInputWrap");
             ViewExtensions.setText(textInputLayout, this.email);
             this.binding.c.setSelection(this.email.length());
             return;
         }
         TextInputEditText textInputEditText2 = this.binding.c;
-        m.checkNotNullExpressionValue(textInputEditText2, "binding.phoneOrEmailMainInput");
+        Intrinsics3.checkNotNullExpressionValue(textInputEditText2, "binding.phoneOrEmailMainInput");
         textInputEditText2.setInputType(3);
         if (Build.VERSION.SDK_INT >= 26) {
             this.binding.c.setAutofillHints(new String[]{"phone"});
         }
         TextInputLayout textInputLayout2 = this.binding.d;
-        m.checkNotNullExpressionValue(textInputLayout2, "binding.phoneOrEmailMainInputWrap");
+        Intrinsics3.checkNotNullExpressionValue(textInputLayout2, "binding.phoneOrEmailMainInputWrap");
         ViewExtensions.setText(textInputLayout2, this.phone);
         this.binding.c.setSelection(this.phone.length());
     }
@@ -237,13 +237,13 @@ public final class PhoneOrEmailInputView extends LinearLayout {
         }
         PhoneUtils phoneUtils = PhoneUtils.INSTANCE;
         TextInputLayout textInputLayout = this.binding.d;
-        m.checkNotNullExpressionValue(textInputLayout, "binding.phoneOrEmailMainInputWrap");
+        Intrinsics3.checkNotNullExpressionValue(textInputLayout, "binding.phoneOrEmailMainInputWrap");
         return phoneUtils.isLikelyToContainPhoneNumber(ViewExtensions.getTextOrEmpty(textInputLayout));
     }
 
     public final void f() {
         TextInputLayout textInputLayout = this.binding.d;
-        m.checkNotNullExpressionValue(textInputLayout, "binding.phoneOrEmailMainInputWrap");
+        Intrinsics3.checkNotNullExpressionValue(textInputLayout, "binding.phoneOrEmailMainInputWrap");
         String textOrEmpty = ViewExtensions.getTextOrEmpty(textInputLayout);
         if (this.mode == Mode.PHONE || PhoneUtils.INSTANCE.isLikelyToContainPhoneNumber(textOrEmpty)) {
             this.phone = textOrEmpty;
@@ -254,53 +254,53 @@ public final class PhoneOrEmailInputView extends LinearLayout {
 
     public final TextInputEditText getMainEditText() {
         TextInputEditText textInputEditText = this.binding.c;
-        m.checkNotNullExpressionValue(textInputEditText, "binding.phoneOrEmailMainInput");
+        Intrinsics3.checkNotNullExpressionValue(textInputEditText, "binding.phoneOrEmailMainInput");
         return textInputEditText;
     }
 
     public final TextInputLayout getMainTextInputLayout() {
         TextInputLayout textInputLayout = this.binding.d;
-        m.checkNotNullExpressionValue(textInputLayout, "binding.phoneOrEmailMainInputWrap");
+        Intrinsics3.checkNotNullExpressionValue(textInputLayout, "binding.phoneOrEmailMainInputWrap");
         return textInputLayout;
     }
 
     public final String getTextOrEmpty() {
         if (!e()) {
             TextInputLayout textInputLayout = this.binding.d;
-            m.checkNotNullExpressionValue(textInputLayout, "binding.phoneOrEmailMainInputWrap");
+            Intrinsics3.checkNotNullExpressionValue(textInputLayout, "binding.phoneOrEmailMainInputWrap");
             return ViewExtensions.getTextOrEmpty(textInputLayout);
         }
         StringBuilder sb = new StringBuilder();
         TextInputLayout textInputLayout2 = this.binding.f210b;
-        m.checkNotNullExpressionValue(textInputLayout2, "binding.phoneOrEmailCountryCodeWrap");
+        Intrinsics3.checkNotNullExpressionValue(textInputLayout2, "binding.phoneOrEmailCountryCodeWrap");
         sb.append(ViewExtensions.getTextOrEmpty(textInputLayout2));
         TextInputLayout textInputLayout3 = this.binding.d;
-        m.checkNotNullExpressionValue(textInputLayout3, "binding.phoneOrEmailMainInputWrap");
+        Intrinsics3.checkNotNullExpressionValue(textInputLayout3, "binding.phoneOrEmailMainInputWrap");
         sb.append(ViewExtensions.getTextOrEmpty(textInputLayout3));
         return sb.toString();
     }
 
     public final void setCountryCode(PhoneCountryCode countryCode) {
-        m.checkNotNullParameter(countryCode, "countryCode");
+        Intrinsics3.checkNotNullParameter(countryCode, "countryCode");
         TextInputLayout textInputLayout = this.binding.f210b;
-        m.checkNotNullExpressionValue(textInputLayout, "binding.phoneOrEmailCountryCodeWrap");
+        Intrinsics3.checkNotNullExpressionValue(textInputLayout, "binding.phoneOrEmailCountryCodeWrap");
         ViewExtensions.setText(textInputLayout, countryCode.getPhoneCountryCode());
     }
 
     public final void setHint(CharSequence hint) {
         TextInputLayout textInputLayout = this.binding.d;
-        m.checkNotNullExpressionValue(textInputLayout, "binding.phoneOrEmailMainInputWrap");
+        Intrinsics3.checkNotNullExpressionValue(textInputLayout, "binding.phoneOrEmailMainInputWrap");
         textInputLayout.setHint(hint);
     }
 
     private final void setMainInputNextFocusForwardId(int id2) {
         TextInputLayout textInputLayout = this.binding.d;
-        m.checkNotNullExpressionValue(textInputLayout, "binding.phoneOrEmailMainInputWrap");
+        Intrinsics3.checkNotNullExpressionValue(textInputLayout, "binding.phoneOrEmailMainInputWrap");
         textInputLayout.setNextFocusForwardId(id2);
     }
 
     public final void setMode(Mode mode) {
-        m.checkNotNullParameter(mode, "mode");
+        Intrinsics3.checkNotNullParameter(mode, "mode");
         this.mode = mode;
         c();
         d();
@@ -308,7 +308,7 @@ public final class PhoneOrEmailInputView extends LinearLayout {
 
     public final void setText(CharSequence text) {
         TextInputLayout textInputLayout = this.binding.d;
-        m.checkNotNullExpressionValue(textInputLayout, "binding.phoneOrEmailMainInputWrap");
+        Intrinsics3.checkNotNullExpressionValue(textInputLayout, "binding.phoneOrEmailMainInputWrap");
         ViewExtensions.setText(textInputLayout, text);
         f();
     }

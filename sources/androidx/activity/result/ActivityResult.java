@@ -6,7 +6,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import b.d.b.a.a;
+import b.d.b.a.outline;
 
 /* JADX INFO: loaded from: classes.dex */
 @SuppressLint({"BanParcelableUsage"})
@@ -72,7 +72,7 @@ public final class ActivityResult implements Parcelable {
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("ActivityResult{resultCode=");
+        StringBuilder sbU = outline.U("ActivityResult{resultCode=");
         sbU.append(resultCodeToString(this.mResultCode));
         sbU.append(", data=");
         sbU.append(this.mData);

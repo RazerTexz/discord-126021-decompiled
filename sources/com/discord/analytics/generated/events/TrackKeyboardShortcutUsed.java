@@ -1,17 +1,17 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.analytics.generated.traits.TrackLocationMetadata;
-import com.discord.analytics.generated.traits.TrackLocationMetadataReceiver;
+import com.discord.analytics.generated.traits.TrackLocationMetadata2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 import java.util.List;
 
 /* JADX INFO: compiled from: TrackKeyboardShortcutUsed.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackKeyboardShortcutUsed implements AnalyticsSchema, TrackBaseReceiver, TrackLocationMetadataReceiver {
+public final /* data */ class TrackKeyboardShortcutUsed implements AnalyticsSchema, TrackBase2, TrackLocationMetadata2 {
     private final CharSequence shortcutName = null;
     private final List<CharSequence> sourceClassList = null;
     private TrackBase trackBase;
@@ -26,7 +26,7 @@ public final /* data */ class TrackKeyboardShortcutUsed implements AnalyticsSche
             return false;
         }
         TrackKeyboardShortcutUsed trackKeyboardShortcutUsed = (TrackKeyboardShortcutUsed) other;
-        return m.areEqual(this.shortcutName, trackKeyboardShortcutUsed.shortcutName) && m.areEqual(this.sourceClassList, trackKeyboardShortcutUsed.sourceClassList);
+        return Intrinsics3.areEqual(this.shortcutName, trackKeyboardShortcutUsed.shortcutName) && Intrinsics3.areEqual(this.sourceClassList, trackKeyboardShortcutUsed.sourceClassList);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -43,9 +43,9 @@ public final /* data */ class TrackKeyboardShortcutUsed implements AnalyticsSche
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackKeyboardShortcutUsed(shortcutName=");
+        StringBuilder sbU = outline.U("TrackKeyboardShortcutUsed(shortcutName=");
         sbU.append(this.shortcutName);
         sbU.append(", sourceClassList=");
-        return a.L(sbU, this.sourceClassList, ")");
+        return outline.L(sbU, this.sourceClassList, ")");
     }
 }

@@ -1,7 +1,7 @@
 package co.discord.media_engine;
 
-import b.d.b.a.a;
-import d0.z.d.m;
+import b.d.b.a.outline;
+import d0.z.d.Intrinsics3;
 import java.util.Arrays;
 
 /* JADX INFO: compiled from: EncryptionSettings.kt */
@@ -11,8 +11,8 @@ public final /* data */ class EncryptionSettings {
     private final int[] secretKey;
 
     public EncryptionSettings(String str, int[] iArr) {
-        m.checkNotNullParameter(str, "mode");
-        m.checkNotNullParameter(iArr, "secretKey");
+        Intrinsics3.checkNotNullParameter(str, "mode");
+        Intrinsics3.checkNotNullParameter(iArr, "secretKey");
         this.mode = str;
         this.secretKey = iArr;
     }
@@ -28,8 +28,8 @@ public final /* data */ class EncryptionSettings {
     }
 
     public final EncryptionSettings copy(String mode, int[] secretKey) {
-        m.checkNotNullParameter(mode, "mode");
-        m.checkNotNullParameter(secretKey, "secretKey");
+        Intrinsics3.checkNotNullParameter(mode, "mode");
+        Intrinsics3.checkNotNullParameter(secretKey, "secretKey");
         return new EncryptionSettings(mode, secretKey);
     }
 
@@ -41,7 +41,7 @@ public final /* data */ class EncryptionSettings {
             return false;
         }
         EncryptionSettings encryptionSettings = (EncryptionSettings) other;
-        return m.areEqual(this.mode, encryptionSettings.mode) && m.areEqual(this.secretKey, encryptionSettings.secretKey);
+        return Intrinsics3.areEqual(this.mode, encryptionSettings.mode) && Intrinsics3.areEqual(this.secretKey, encryptionSettings.secretKey);
     }
 
     /* JADX INFO: renamed from: component1, reason: from getter */
@@ -70,7 +70,7 @@ public final /* data */ class EncryptionSettings {
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("EncryptionSettings(mode=");
+        StringBuilder sbU = outline.U("EncryptionSettings(mode=");
         sbU.append(this.mode);
         sbU.append(", secretKey=");
         sbU.append(Arrays.toString(this.secretKey));

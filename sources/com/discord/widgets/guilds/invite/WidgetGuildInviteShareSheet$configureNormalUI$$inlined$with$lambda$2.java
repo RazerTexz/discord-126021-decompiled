@@ -1,7 +1,7 @@
 package com.discord.widgets.guilds.invite;
 
 import android.view.View;
-import b.d.b.a.a;
+import b.d.b.a.outline;
 
 /* JADX INFO: compiled from: WidgetGuildInviteShareSheet.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -20,6 +20,6 @@ public final class WidgetGuildInviteShareSheet$configureNormalUI$$inlined$with$l
 
     @Override // android.view.View.OnClickListener
     public final void onClick(View view) {
-        GuildInviteUiHelperKt.copyLinkClick(a.x(view, "it", "it.context"), this.$invite, this.$viewState$inlined.getChannel(), WidgetGuildInviteShareSheet.access$getAnalyticsSource$p(this.this$0));
+        GuildInviteUiHelper.copyLinkClick(outline.x(view, "it", "it.context"), this.$invite, this.$viewState$inlined.getChannel(), WidgetGuildInviteShareSheet.access$getAnalyticsSource$p(this.this$0));
     }
 }

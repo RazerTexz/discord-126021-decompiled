@@ -8,9 +8,9 @@ import com.discord.stores.StoreNotices;
 import com.discord.stores.StoreStream;
 import com.discord.utilities.captcha.CaptchaErrorBody;
 import com.discord.widgets.tabs.WidgetTabsHost;
-import d0.z.d.a0;
-import d0.z.d.m;
-import d0.z.d.o;
+import d0.z.d.Intrinsics3;
+import d0.z.d.Lambda;
+import d0.z.d.Reflection2;
 import java.util.Iterator;
 import java.util.List;
 import kotlin.jvm.functions.Function1;
@@ -18,7 +18,7 @@ import kotlin.jvm.functions.Function2;
 
 /* JADX INFO: compiled from: WidgetGuildJoinCaptchaBottomSheet.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class WidgetGuildJoinCaptchaBottomSheet$Companion$enqueue$guildCaptchaNotice$1 extends o implements Function1<FragmentActivity, Boolean> {
+public final class WidgetGuildJoinCaptchaBottomSheet$Companion$enqueue$guildCaptchaNotice$1 extends Lambda implements Function1<FragmentActivity, Boolean> {
     public final /* synthetic */ CaptchaErrorBody $error;
     public final /* synthetic */ Function2 $onCaptchaPayloadReceived;
     public final /* synthetic */ String $requestKey;
@@ -39,16 +39,16 @@ public final class WidgetGuildJoinCaptchaBottomSheet$Companion$enqueue$guildCapt
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final boolean invoke2(FragmentActivity fragmentActivity) {
         Object next;
-        m.checkNotNullParameter(fragmentActivity, "appActivity");
+        Intrinsics3.checkNotNullParameter(fragmentActivity, "appActivity");
         WidgetGuildJoinCaptchaBottomSheet.Companion companion = WidgetGuildJoinCaptchaBottomSheet.INSTANCE;
         FragmentManager supportFragmentManager = fragmentActivity.getSupportFragmentManager();
-        m.checkNotNullExpressionValue(supportFragmentManager, "appActivity.supportFragmentManager");
+        Intrinsics3.checkNotNullExpressionValue(supportFragmentManager, "appActivity.supportFragmentManager");
         companion.show(supportFragmentManager, this.$requestKey, this.$error);
         StoreNotices.markSeen$default(StoreStream.INSTANCE.getNotices(), "guild captcha notice", 0L, 2, null);
         FragmentManager supportFragmentManager2 = fragmentActivity.getSupportFragmentManager();
-        m.checkNotNullExpressionValue(supportFragmentManager2, "appActivity.supportFragmentManager");
+        Intrinsics3.checkNotNullExpressionValue(supportFragmentManager2, "appActivity.supportFragmentManager");
         List<Fragment> fragments = supportFragmentManager2.getFragments();
-        m.checkNotNullExpressionValue(fragments, "appActivity.supportFragmentManager.fragments");
+        Intrinsics3.checkNotNullExpressionValue(fragments, "appActivity.supportFragmentManager.fragments");
         Iterator<T> it = fragments.iterator();
         do {
             if (!it.hasNext()) {
@@ -56,7 +56,7 @@ public final class WidgetGuildJoinCaptchaBottomSheet$Companion$enqueue$guildCapt
                 break;
             }
             next = it.next();
-        } while (!m.areEqual(a0.getOrCreateKotlinClass(((Fragment) next).getClass()), a0.getOrCreateKotlinClass(WidgetTabsHost.class)));
+        } while (!Intrinsics3.areEqual(Reflection2.getOrCreateKotlinClass(((Fragment) next).getClass()), Reflection2.getOrCreateKotlinClass(WidgetTabsHost.class)));
         Fragment fragment = (Fragment) next;
         if (fragment == null) {
             return true;

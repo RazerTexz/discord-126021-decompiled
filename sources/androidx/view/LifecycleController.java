@@ -2,7 +2,7 @@ package androidx.view;
 
 import androidx.annotation.MainThread;
 import b.i.a.f.e.o.f;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 import kotlinx.coroutines.Job;
 
 /* JADX INFO: compiled from: LifecycleController.kt */
@@ -15,17 +15,17 @@ public final class LifecycleController {
     private final LifecycleEventObserver observer;
 
     public LifecycleController(Lifecycle lifecycle, Lifecycle.State state, DispatchQueue dispatchQueue, Job job) {
-        m.checkNotNullParameter(lifecycle, "lifecycle");
-        m.checkNotNullParameter(state, "minState");
-        m.checkNotNullParameter(dispatchQueue, "dispatchQueue");
-        m.checkNotNullParameter(job, "parentJob");
+        Intrinsics3.checkNotNullParameter(lifecycle, "lifecycle");
+        Intrinsics3.checkNotNullParameter(state, "minState");
+        Intrinsics3.checkNotNullParameter(dispatchQueue, "dispatchQueue");
+        Intrinsics3.checkNotNullParameter(job, "parentJob");
         this.lifecycle = lifecycle;
         this.minState = state;
         this.dispatchQueue = dispatchQueue;
-        LifecycleController$observer$1 lifecycleController$observer$1 = new LifecycleController$observer$1(this, job);
-        this.observer = lifecycleController$observer$1;
+        LifecycleController2 lifecycleController2 = new LifecycleController2(this, job);
+        this.observer = lifecycleController2;
         if (lifecycle.getCurrentState() != Lifecycle.State.DESTROYED) {
-            lifecycle.addObserver(lifecycleController$observer$1);
+            lifecycle.addObserver(lifecycleController2);
         } else {
             f.t(job, null, 1, null);
             finish();

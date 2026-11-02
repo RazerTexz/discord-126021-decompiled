@@ -2,22 +2,22 @@ package com.discord.widgets.channels.list;
 
 import android.content.Context;
 import android.view.View;
-import b.a.d.f;
+import b.a.d.AppHelpDesk;
 import com.discord.i18n.RenderContext;
 import com.discord.utilities.uri.UriHandler;
-import d0.z.d.m;
-import d0.z.d.o;
+import d0.z.d.Intrinsics3;
+import d0.z.d.Lambda;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function1;
 
 /* JADX INFO: compiled from: WidgetChannelsListAdapter.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class WidgetChannelsListAdapter$ItemMFA$onConfigure$1 extends o implements Function1<RenderContext, Unit> {
+public final class WidgetChannelsListAdapter$ItemMFA$onConfigure$1 extends Lambda implements Function1<RenderContext, Unit> {
     public static final WidgetChannelsListAdapter$ItemMFA$onConfigure$1 INSTANCE = new WidgetChannelsListAdapter$ItemMFA$onConfigure$1();
 
     /* JADX INFO: renamed from: com.discord.widgets.channels.list.WidgetChannelsListAdapter$ItemMFA$onConfigure$1$1, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetChannelsListAdapter.kt */
-    public final class AnonymousClass1 extends o implements Function1<View, Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function1<View, Unit> {
         public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
 
         public AnonymousClass1() {
@@ -32,11 +32,11 @@ public final class WidgetChannelsListAdapter$ItemMFA$onConfigure$1 extends o imp
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(View view) {
-            m.checkNotNullParameter(view, "it");
+            Intrinsics3.checkNotNullParameter(view, "it");
             UriHandler uriHandler = UriHandler.INSTANCE;
             Context context = view.getContext();
-            m.checkNotNullExpressionValue(context, "it.context");
-            UriHandler.handle$default(uriHandler, context, f.a.a(219576828L, null), false, false, null, 28, null);
+            Intrinsics3.checkNotNullExpressionValue(context, "it.context");
+            UriHandler.handle$default(uriHandler, context, AppHelpDesk.a.a(219576828L, null), false, false, null, 28, null);
         }
     }
 
@@ -52,7 +52,7 @@ public final class WidgetChannelsListAdapter$ItemMFA$onConfigure$1 extends o imp
 
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final void invoke2(RenderContext renderContext) {
-        m.checkNotNullParameter(renderContext, "$receiver");
+        Intrinsics3.checkNotNullParameter(renderContext, "$receiver");
         renderContext.b("onClick", AnonymousClass1.INSTANCE);
     }
 }

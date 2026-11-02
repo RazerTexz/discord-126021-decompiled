@@ -1,18 +1,18 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.analytics.generated.traits.TrackChannel;
-import com.discord.analytics.generated.traits.TrackChannelReceiver;
+import com.discord.analytics.generated.traits.TrackChannel2;
 import com.discord.analytics.generated.traits.TrackGuild;
-import com.discord.analytics.generated.traits.TrackGuildReceiver;
+import com.discord.analytics.generated.traits.TrackGuild2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackStarterChannelRowSelected.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackStarterChannelRowSelected implements AnalyticsSchema, TrackBaseReceiver, TrackGuildReceiver, TrackChannelReceiver {
+public final /* data */ class TrackStarterChannelRowSelected implements AnalyticsSchema, TrackBase2, TrackGuild2, TrackChannel2 {
     private final Long index = null;
     private final CharSequence starterChannelType = null;
     private TrackBase trackBase;
@@ -20,7 +20,7 @@ public final /* data */ class TrackStarterChannelRowSelected implements Analytic
     private TrackGuild trackGuild;
     private final transient String analyticsSchemaTypeName = "starter_channel_row_selected";
 
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    @Override // com.discord.analytics.generated.traits.TrackGuild2
     public void c(TrackGuild trackGuild) {
         this.trackGuild = trackGuild;
     }
@@ -33,7 +33,7 @@ public final /* data */ class TrackStarterChannelRowSelected implements Analytic
             return false;
         }
         TrackStarterChannelRowSelected trackStarterChannelRowSelected = (TrackStarterChannelRowSelected) other;
-        return m.areEqual(this.index, trackStarterChannelRowSelected.index) && m.areEqual(this.starterChannelType, trackStarterChannelRowSelected.starterChannelType);
+        return Intrinsics3.areEqual(this.index, trackStarterChannelRowSelected.index) && Intrinsics3.areEqual(this.starterChannelType, trackStarterChannelRowSelected.starterChannelType);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -42,7 +42,7 @@ public final /* data */ class TrackStarterChannelRowSelected implements Analytic
         return this.analyticsSchemaTypeName;
     }
 
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    @Override // com.discord.analytics.generated.traits.TrackGuild2
     /* JADX INFO: renamed from: a, reason: from getter */
     public TrackGuild getTrackGuild() {
         return this.trackGuild;
@@ -56,9 +56,9 @@ public final /* data */ class TrackStarterChannelRowSelected implements Analytic
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackStarterChannelRowSelected(index=");
+        StringBuilder sbU = outline.U("TrackStarterChannelRowSelected(index=");
         sbU.append(this.index);
         sbU.append(", starterChannelType=");
-        return a.E(sbU, this.starterChannelType, ")");
+        return outline.E(sbU, this.starterChannelType, ")");
     }
 }

@@ -1,8 +1,8 @@
 package com.discord.api.auth.mfa;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.models.domain.ModelAuditLogEntry;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: DisableMfaRequestBody.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -10,13 +10,13 @@ public final /* data */ class DisableMfaRequestBody {
     private final String code;
 
     public DisableMfaRequestBody(String str) {
-        m.checkNotNullParameter(str, ModelAuditLogEntry.CHANGE_KEY_CODE);
+        Intrinsics3.checkNotNullParameter(str, ModelAuditLogEntry.CHANGE_KEY_CODE);
         this.code = str;
     }
 
     public boolean equals(Object other) {
         if (this != other) {
-            return (other instanceof DisableMfaRequestBody) && m.areEqual(this.code, ((DisableMfaRequestBody) other).code);
+            return (other instanceof DisableMfaRequestBody) && Intrinsics3.areEqual(this.code, ((DisableMfaRequestBody) other).code);
         }
         return true;
     }
@@ -30,6 +30,6 @@ public final /* data */ class DisableMfaRequestBody {
     }
 
     public String toString() {
-        return a.J(a.U("DisableMfaRequestBody(code="), this.code, ")");
+        return outline.J(outline.U("DisableMfaRequestBody(code="), this.code, ")");
     }
 }

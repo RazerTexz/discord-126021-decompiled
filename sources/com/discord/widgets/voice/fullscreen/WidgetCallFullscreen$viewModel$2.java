@@ -1,11 +1,11 @@
 package com.discord.widgets.voice.fullscreen;
 
-import d0.z.d.o;
+import d0.z.d.Lambda;
 import kotlin.jvm.functions.Function0;
 
 /* JADX INFO: compiled from: WidgetCallFullscreen.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final class WidgetCallFullscreen$viewModel$2 extends o implements Function0<WidgetCallFullscreenViewModel> {
+public final class WidgetCallFullscreen$viewModel$2 extends Lambda implements Function0<WidgetCallFullscreenViewModel> {
     public final /* synthetic */ WidgetCallFullscreen this$0;
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */

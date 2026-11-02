@@ -1,14 +1,14 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackInviteLoginSuccessful.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackInviteLoginSuccessful implements AnalyticsSchema, TrackBaseReceiver {
+public final /* data */ class TrackInviteLoginSuccessful implements AnalyticsSchema, TrackBase2 {
     private final Long channelId = null;
     private final Long guildId = null;
     private final CharSequence inviteCode = null;
@@ -25,7 +25,7 @@ public final /* data */ class TrackInviteLoginSuccessful implements AnalyticsSch
             return false;
         }
         TrackInviteLoginSuccessful trackInviteLoginSuccessful = (TrackInviteLoginSuccessful) other;
-        return m.areEqual(this.inviteCode, trackInviteLoginSuccessful.inviteCode) && m.areEqual(this.guildId, trackInviteLoginSuccessful.guildId) && m.areEqual(this.channelId, trackInviteLoginSuccessful.channelId) && m.areEqual(this.inviterId, trackInviteLoginSuccessful.inviterId) && m.areEqual(this.prevUserId, trackInviteLoginSuccessful.prevUserId);
+        return Intrinsics3.areEqual(this.inviteCode, trackInviteLoginSuccessful.inviteCode) && Intrinsics3.areEqual(this.guildId, trackInviteLoginSuccessful.guildId) && Intrinsics3.areEqual(this.channelId, trackInviteLoginSuccessful.channelId) && Intrinsics3.areEqual(this.inviterId, trackInviteLoginSuccessful.inviterId) && Intrinsics3.areEqual(this.prevUserId, trackInviteLoginSuccessful.prevUserId);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -48,7 +48,7 @@ public final /* data */ class TrackInviteLoginSuccessful implements AnalyticsSch
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackInviteLoginSuccessful(inviteCode=");
+        StringBuilder sbU = outline.U("TrackInviteLoginSuccessful(inviteCode=");
         sbU.append(this.inviteCode);
         sbU.append(", guildId=");
         sbU.append(this.guildId);
@@ -57,6 +57,6 @@ public final /* data */ class TrackInviteLoginSuccessful implements AnalyticsSch
         sbU.append(", inviterId=");
         sbU.append(this.inviterId);
         sbU.append(", prevUserId=");
-        return a.G(sbU, this.prevUserId, ")");
+        return outline.G(sbU, this.prevUserId, ")");
     }
 }

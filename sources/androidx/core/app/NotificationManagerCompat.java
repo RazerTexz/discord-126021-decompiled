@@ -25,6 +25,7 @@ import android.util.Log;
 import androidx.annotation.GuardedBy;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import b.d.b.a.outline;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
@@ -36,7 +37,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import x.a.b.a.a;
+import x.a.b.a.INotificationSideChannel;
 
 /* JADX INFO: loaded from: classes.dex */
 public final class NotificationManagerCompat {
@@ -86,8 +87,8 @@ public final class NotificationManagerCompat {
         }
 
         @Override // androidx.core.app.NotificationManagerCompat.Task
-        public void send(a aVar) throws RemoteException {
-            aVar.notify(this.packageName, this.f35id, this.tag, this.notif);
+        public void send(INotificationSideChannel iNotificationSideChannel) throws RemoteException {
+            iNotificationSideChannel.notify(this.packageName, this.f35id, this.tag, this.notif);
         }
 
         @NonNull
@@ -98,7 +99,7 @@ public final class NotificationManagerCompat {
             sb.append(", id:");
             sb.append(this.f35id);
             sb.append(", tag:");
-            return b.d.b.a.a.J(sb, this.tag, "]");
+            return outline.J(sb, this.tag, "]");
         }
     }
 
@@ -140,7 +141,7 @@ public final class NotificationManagerCompat {
             if (zBindService) {
                 listenerRecord.retryCount = 0;
             } else {
-                StringBuilder sbU = b.d.b.a.a.U("Unable to bind to listener ");
+                StringBuilder sbU = outline.U("Unable to bind to listener ");
                 sbU.append(listenerRecord.componentName);
                 Log.w(NotificationManagerCompat.TAG, sbU.toString());
                 this.mContext.unbindService(this);
@@ -197,7 +198,7 @@ public final class NotificationManagerCompat {
         private void handleServiceConnected(ComponentName componentName, IBinder iBinder) {
             ListenerRecord listenerRecord = this.mRecordMap.get(componentName);
             if (listenerRecord != null) {
-                listenerRecord.service = a.AbstractBinderC0657a.asInterface(iBinder);
+                listenerRecord.service = INotificationSideChannel.a.asInterface(iBinder);
                 listenerRecord.retryCount = 0;
                 processListenerQueue(listenerRecord);
             }
@@ -228,7 +229,7 @@ public final class NotificationManagerCompat {
 
         private void processListenerQueue(ListenerRecord listenerRecord) {
             if (Log.isLoggable(NotificationManagerCompat.TAG, 3)) {
-                StringBuilder sbU = b.d.b.a.a.U("Processing component ");
+                StringBuilder sbU = outline.U("Processing component ");
                 sbU.append(listenerRecord.componentName);
                 sbU.append(", ");
                 sbU.append(listenerRecord.taskQueue.size());
@@ -255,12 +256,12 @@ public final class NotificationManagerCompat {
                     listenerRecord.taskQueue.remove();
                 } catch (DeadObjectException unused) {
                     if (Log.isLoggable(NotificationManagerCompat.TAG, 3)) {
-                        StringBuilder sbU2 = b.d.b.a.a.U("Remote service has died: ");
+                        StringBuilder sbU2 = outline.U("Remote service has died: ");
                         sbU2.append(listenerRecord.componentName);
                         Log.d(NotificationManagerCompat.TAG, sbU2.toString());
                     }
                 } catch (RemoteException e) {
-                    StringBuilder sbU3 = b.d.b.a.a.U("RemoteException communicating with ");
+                    StringBuilder sbU3 = outline.U("RemoteException communicating with ");
                     sbU3.append(listenerRecord.componentName);
                     Log.w(NotificationManagerCompat.TAG, sbU3.toString(), e);
                 }
@@ -282,7 +283,7 @@ public final class NotificationManagerCompat {
             int i = listenerRecord.retryCount + 1;
             listenerRecord.retryCount = i;
             if (i > 6) {
-                StringBuilder sbU = b.d.b.a.a.U("Giving up on delivering ");
+                StringBuilder sbU = outline.U("Giving up on delivering ");
                 sbU.append(listenerRecord.taskQueue.size());
                 sbU.append(" tasks to ");
                 sbU.append(listenerRecord.componentName);
@@ -332,7 +333,7 @@ public final class NotificationManagerCompat {
                 Map.Entry<ComponentName, ListenerRecord> next = it.next();
                 if (!hashSet.contains(next.getKey())) {
                     if (Log.isLoggable(NotificationManagerCompat.TAG, 3)) {
-                        StringBuilder sbU = b.d.b.a.a.U("Removing listener record for ");
+                        StringBuilder sbU = outline.U("Removing listener record for ");
                         sbU.append(next.getKey());
                         Log.d(NotificationManagerCompat.TAG, sbU.toString());
                     }
@@ -344,7 +345,7 @@ public final class NotificationManagerCompat {
 
         public class ListenerRecord {
             public final ComponentName componentName;
-            public a service;
+            public INotificationSideChannel service;
             public boolean bound = false;
             public ArrayDeque<Task> taskQueue = new ArrayDeque<>();
             public int retryCount = 0;
@@ -356,7 +357,7 @@ public final class NotificationManagerCompat {
     }
 
     public interface Task {
-        void send(a aVar) throws RemoteException;
+        void send(INotificationSideChannel iNotificationSideChannel) throws RemoteException;
     }
 
     private NotificationManagerCompat(Context context) {
@@ -663,11 +664,11 @@ public final class NotificationManagerCompat {
         }
 
         @Override // androidx.core.app.NotificationManagerCompat.Task
-        public void send(a aVar) throws RemoteException {
+        public void send(INotificationSideChannel iNotificationSideChannel) throws RemoteException {
             if (this.all) {
-                aVar.cancelAll(this.packageName);
+                iNotificationSideChannel.cancelAll(this.packageName);
             } else {
-                aVar.cancel(this.packageName, this.f34id, this.tag);
+                iNotificationSideChannel.cancel(this.packageName, this.f34id, this.tag);
             }
         }
 
@@ -681,7 +682,7 @@ public final class NotificationManagerCompat {
             sb.append(", tag:");
             sb.append(this.tag);
             sb.append(", all:");
-            return b.d.b.a.a.O(sb, this.all, "]");
+            return outline.O(sb, this.all, "]");
         }
 
         public CancelTask(String str, int i, String str2) {

@@ -18,7 +18,7 @@ import androidx.annotation.RequiresApi;
 import androidx.annotation.RestrictTo;
 import androidx.core.R;
 import androidx.core.graphics.Insets;
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.util.ArrayList;
@@ -590,7 +590,7 @@ public final class WindowInsetsAnimationCompat {
         }
 
         public String toString() {
-            StringBuilder sbU = a.U("Bounds{lower=");
+            StringBuilder sbU = outline.U("Bounds{lower=");
             sbU.append(this.mLowerBound);
             sbU.append(" upper=");
             sbU.append(this.mUpperBound);

@@ -7,7 +7,7 @@ import android.text.TextUtils;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
-import b.c.a.a0.d;
+import b.c.a.a0.AnimatableValueParser;
 import b.i.a.f.c.a.f.e;
 import b.i.a.f.c.a.f.f;
 import com.google.android.gms.auth.api.signin.internal.GoogleSignInOptionsExtensionParcelable;
@@ -177,12 +177,12 @@ public class GoogleSignInOptions extends AbstractSafeParcelable implements b.i.a
 
     @Override // android.os.Parcelable
     public void writeToParcel(Parcel parcel, int i) {
-        int iY2 = d.y2(parcel, 20293);
+        int iY2 = AnimatableValueParser.y2(parcel, 20293);
         int i2 = this.p;
         parcel.writeInt(262145);
         parcel.writeInt(i2);
-        d.w2(parcel, 2, w0(), false);
-        d.s2(parcel, 3, this.r, i, false);
+        AnimatableValueParser.w2(parcel, 2, w0(), false);
+        AnimatableValueParser.s2(parcel, 3, this.r, i, false);
         boolean z2 = this.f2997s;
         parcel.writeInt(262148);
         parcel.writeInt(z2 ? 1 : 0);
@@ -192,11 +192,11 @@ public class GoogleSignInOptions extends AbstractSafeParcelable implements b.i.a
         boolean z4 = this.u;
         parcel.writeInt(262150);
         parcel.writeInt(z4 ? 1 : 0);
-        d.t2(parcel, 7, this.v, false);
-        d.t2(parcel, 8, this.w, false);
-        d.w2(parcel, 9, this.f2998x, false);
-        d.t2(parcel, 10, this.f2999y, false);
-        d.A2(parcel, iY2);
+        AnimatableValueParser.t2(parcel, 7, this.v, false);
+        AnimatableValueParser.t2(parcel, 8, this.w, false);
+        AnimatableValueParser.w2(parcel, 9, this.f2998x, false);
+        AnimatableValueParser.t2(parcel, 10, this.f2999y, false);
+        AnimatableValueParser.A2(parcel, iY2);
     }
 
     @Nullable

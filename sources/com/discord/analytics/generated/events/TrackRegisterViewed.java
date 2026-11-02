@@ -1,16 +1,16 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.analytics.generated.traits.TrackStoreSkuMetadata;
-import com.discord.analytics.generated.traits.TrackStoreSkuMetadataReceiver;
+import com.discord.analytics.generated.traits.TrackStoreSkuMetadata2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackRegisterViewed.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackRegisterViewed implements AnalyticsSchema, TrackBaseReceiver, TrackStoreSkuMetadataReceiver {
+public final /* data */ class TrackRegisterViewed implements AnalyticsSchema, TrackBase2, TrackStoreSkuMetadata2 {
     private final Long inviteChannelId = null;
     private final Long inviteChannelType = null;
     private final CharSequence inviteCode = null;
@@ -30,7 +30,7 @@ public final /* data */ class TrackRegisterViewed implements AnalyticsSchema, Tr
             return false;
         }
         TrackRegisterViewed trackRegisterViewed = (TrackRegisterViewed) other;
-        return m.areEqual(this.registrationSource, trackRegisterViewed.registrationSource) && m.areEqual(this.isUnclaimed, trackRegisterViewed.isUnclaimed) && m.areEqual(this.inviteCode, trackRegisterViewed.inviteCode) && m.areEqual(this.inviteGuildId, trackRegisterViewed.inviteGuildId) && m.areEqual(this.inviteChannelId, trackRegisterViewed.inviteChannelId) && m.areEqual(this.inviteChannelType, trackRegisterViewed.inviteChannelType) && m.areEqual(this.inviteInviterId, trackRegisterViewed.inviteInviterId);
+        return Intrinsics3.areEqual(this.registrationSource, trackRegisterViewed.registrationSource) && Intrinsics3.areEqual(this.isUnclaimed, trackRegisterViewed.isUnclaimed) && Intrinsics3.areEqual(this.inviteCode, trackRegisterViewed.inviteCode) && Intrinsics3.areEqual(this.inviteGuildId, trackRegisterViewed.inviteGuildId) && Intrinsics3.areEqual(this.inviteChannelId, trackRegisterViewed.inviteChannelId) && Intrinsics3.areEqual(this.inviteChannelType, trackRegisterViewed.inviteChannelType) && Intrinsics3.areEqual(this.inviteInviterId, trackRegisterViewed.inviteInviterId);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -57,7 +57,7 @@ public final /* data */ class TrackRegisterViewed implements AnalyticsSchema, Tr
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackRegisterViewed(registrationSource=");
+        StringBuilder sbU = outline.U("TrackRegisterViewed(registrationSource=");
         sbU.append(this.registrationSource);
         sbU.append(", isUnclaimed=");
         sbU.append(this.isUnclaimed);
@@ -70,6 +70,6 @@ public final /* data */ class TrackRegisterViewed implements AnalyticsSchema, Tr
         sbU.append(", inviteChannelType=");
         sbU.append(this.inviteChannelType);
         sbU.append(", inviteInviterId=");
-        return a.G(sbU, this.inviteInviterId, ")");
+        return outline.G(sbU, this.inviteInviterId, ")");
     }
 }

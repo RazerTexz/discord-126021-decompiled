@@ -1,9 +1,9 @@
 package com.fasterxml.jackson.databind.exc;
 
-import b.g.a.c.j;
+import b.g.a.c.JavaType;
 import com.fasterxml.jackson.databind.JsonMappingException;
 
 /* JADX INFO: loaded from: classes3.dex */
 public class ValueInstantiationException extends JsonMappingException {
-    public final j _type;
+    public final JavaType _type;
 }

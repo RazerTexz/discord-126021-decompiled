@@ -1,7 +1,7 @@
 package com.discord.widgets.channels.list.items;
 
 import a0.a.a.b;
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.models.domain.ModelAuditLogEntry;
 
 /* JADX INFO: compiled from: ChannelListItemHeader.kt */
@@ -118,13 +118,13 @@ public final /* data */ class ChannelListItemHeader implements ChannelListItem {
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("ChannelListItemHeader(id=");
+        StringBuilder sbU = outline.U("ChannelListItemHeader(id=");
         sbU.append(this.id);
         sbU.append(", textResId=");
         sbU.append(this.textResId);
         sbU.append(", ableToManageChannel=");
         sbU.append(this.ableToManageChannel);
         sbU.append(", selectedGuildId=");
-        return a.C(sbU, this.selectedGuildId, ")");
+        return outline.C(sbU, this.selectedGuildId, ")");
     }
 }

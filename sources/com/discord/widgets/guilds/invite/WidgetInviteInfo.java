@@ -9,8 +9,8 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import b.a.k.b;
-import b.d.b.a.a;
+import b.a.k.FormatUtils;
+import b.d.b.a.outline;
 import com.discord.R;
 import com.discord.api.channel.Channel;
 import com.discord.api.channel.ChannelUtils;
@@ -26,7 +26,7 @@ import com.discord.stores.StoreStream;
 import com.discord.utilities.dimen.DimenUtils;
 import com.discord.utilities.drawable.DrawableCompat;
 import com.discord.utilities.error.Error;
-import com.discord.utilities.guilds.GuildUtilsKt;
+import com.discord.utilities.guilds.GuildUtils;
 import com.discord.utilities.icon.IconUtils;
 import com.discord.utilities.images.MGImages;
 import com.discord.utilities.user.UserUtils;
@@ -35,8 +35,8 @@ import com.discord.views.GuildView;
 import com.discord.views.guilds.ServerMemberCount;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.google.android.material.button.MaterialButton;
-import d0.z.d.m;
-import d0.z.d.o;
+import d0.z.d.Intrinsics3;
+import d0.z.d.Lambda;
 import java.util.List;
 import java.util.Objects;
 import kotlin.Unit;
@@ -79,7 +79,7 @@ public final class WidgetInviteInfo extends ConstraintLayout {
         public final void run() {
             if (this.$size != 0) {
                 GuildView guildView = WidgetInviteInfo.access$getBinding$p(WidgetInviteInfo.this).c;
-                m.checkNotNullExpressionValue(guildView, "binding.inviteAvatar");
+                Intrinsics3.checkNotNullExpressionValue(guildView, "binding.inviteAvatar");
                 ViewGroup.LayoutParams layoutParams = guildView.getLayoutParams();
                 Objects.requireNonNull(layoutParams, "null cannot be cast to non-null type android.view.ViewGroup.LayoutParams");
                 int i = this.$size;
@@ -89,7 +89,7 @@ public final class WidgetInviteInfo extends ConstraintLayout {
             }
             if (this.$userSize != 0) {
                 SimpleDraweeView simpleDraweeView = WidgetInviteInfo.access$getBinding$p(WidgetInviteInfo.this).d;
-                m.checkNotNullExpressionValue(simpleDraweeView, "binding.inviteAvatarSmall");
+                Intrinsics3.checkNotNullExpressionValue(simpleDraweeView, "binding.inviteAvatarSmall");
                 ViewGroup.LayoutParams layoutParams2 = simpleDraweeView.getLayoutParams();
                 Objects.requireNonNull(layoutParams2, "null cannot be cast to non-null type android.view.ViewGroup.LayoutParams");
                 int i2 = this.$userSize;
@@ -140,17 +140,17 @@ public final class WidgetInviteInfo extends ConstraintLayout {
         sb.append(discriminator != null ? discriminator : "");
         String string = sb.toString();
         SimpleDraweeView simpleDraweeView = this.binding.d;
-        m.checkNotNullExpressionValue(simpleDraweeView, "binding.inviteAvatarSmall");
+        Intrinsics3.checkNotNullExpressionValue(simpleDraweeView, "binding.inviteAvatarSmall");
         simpleDraweeView.setVisibility(8);
         ServerMemberCount serverMemberCount = this.binding.e;
-        m.checkNotNullExpressionValue(serverMemberCount, "binding.inviteMemberContainerLayout");
+        Intrinsics3.checkNotNullExpressionValue(serverMemberCount, "binding.inviteMemberContainerLayout");
         serverMemberCount.setVisibility(8);
         TextView textView = this.binding.g;
-        m.checkNotNullExpressionValue(textView, "binding.inviteTitle");
+        Intrinsics3.checkNotNullExpressionValue(textView, "binding.inviteTitle");
         textView.setText(getInviteTitleForDirectFriend(username));
         this.binding.g.setTextSize(2, 26.0f);
         TextView textView2 = this.binding.f;
-        m.checkNotNullExpressionValue(textView2, "binding.inviteMessage");
+        Intrinsics3.checkNotNullExpressionValue(textView2, "binding.inviteMessage");
         textView2.setText(getInviteSubtitleForDirectFriend(string));
         this.binding.f.setTextSize(2, 18.0f);
     }
@@ -161,9 +161,9 @@ public final class WidgetInviteInfo extends ConstraintLayout {
         String icon;
         Channel channel = model.getChannel();
         if (channel != null) {
-            m.checkNotNullExpressionValue(channel, "model.channel ?: return");
+            Intrinsics3.checkNotNullExpressionValue(channel, "model.channel ?: return");
             SimpleDraweeView simpleDraweeView = this.binding.d;
-            m.checkNotNullExpressionValue(simpleDraweeView, "binding.inviteAvatarSmall");
+            Intrinsics3.checkNotNullExpressionValue(simpleDraweeView, "binding.inviteAvatarSmall");
             User inviter = model.getInviter();
             IconUtils.setIcon$default(simpleDraweeView, inviter != null ? new CoreUser(inviter) : null, R.dimen.avatar_size_hero, null, null, null, 56, null);
             User inviter2 = model.getInviter();
@@ -177,13 +177,13 @@ public final class WidgetInviteInfo extends ConstraintLayout {
             }
             this.binding.c.a(z2 ? IconUtils.getForChannel$default(channel, null, 2, null) : IconUtils.INSTANCE.getDefaultForGroupDM(channel.getId()), null);
             SimpleDraweeView simpleDraweeView2 = this.binding.d;
-            m.checkNotNullExpressionValue(simpleDraweeView2, "binding.inviteAvatarSmall");
+            Intrinsics3.checkNotNullExpressionValue(simpleDraweeView2, "binding.inviteAvatarSmall");
             simpleDraweeView2.setVisibility(z2 ? 0 : 8);
             TextView textView = this.binding.f;
-            m.checkNotNullExpressionValue(textView, "binding.inviteMessage");
+            Intrinsics3.checkNotNullExpressionValue(textView, "binding.inviteMessage");
             textView.setText(getFormattedGuildName(strC));
             TextView textView2 = this.binding.g;
-            m.checkNotNullExpressionValue(textView2, "binding.inviteTitle");
+            Intrinsics3.checkNotNullExpressionValue(textView2, "binding.inviteTitle");
             textView2.setText(getIntroTextForGroup(username, ChannelUtils.c(channel)));
             this.binding.e.setOnline(null);
             this.binding.e.setMembers(Integer.valueOf(model.getApproximateMemberCount()));
@@ -197,22 +197,22 @@ public final class WidgetInviteInfo extends ConstraintLayout {
         Guild guild = model.guild;
         if (guild != null) {
             GuildView guildView = this.binding.c;
-            m.checkNotNullExpressionValue(guild, "it");
-            guildView.a(IconUtils.getForGuild$default(new com.discord.models.guild.Guild(guild), null, true, null, 10, null), GuildUtilsKt.computeShortName(guild.getName()));
+            Intrinsics3.checkNotNullExpressionValue(guild, "it");
+            guildView.a(IconUtils.getForGuild$default(new com.discord.models.guild.Guild(guild), null, true, null, 10, null), GuildUtils.computeShortName(guild.getName()));
         }
         if (z2) {
             SimpleDraweeView simpleDraweeView = this.binding.d;
-            m.checkNotNullExpressionValue(simpleDraweeView, "binding.inviteAvatarSmall");
+            Intrinsics3.checkNotNullExpressionValue(simpleDraweeView, "binding.inviteAvatarSmall");
             User inviter = model.getInviter();
             IconUtils.setIcon$default(simpleDraweeView, IconUtils.getForUser$default(inviter != null ? new CoreUser(inviter) : null, true, null, 4, null), R.dimen.avatar_size_medium, (Function1) null, (MGImages.ChangeDetector) null, 24, (Object) null);
         }
         this.binding.e.setMembers(!z2 ? Integer.valueOf(model.getApproximateMemberCount()) : null);
         this.binding.e.setOnline(!z2 ? Integer.valueOf(model.getApproximatePresenceCount()) : null);
         SimpleDraweeView simpleDraweeView2 = this.binding.d;
-        m.checkNotNullExpressionValue(simpleDraweeView2, "binding.inviteAvatarSmall");
+        Intrinsics3.checkNotNullExpressionValue(simpleDraweeView2, "binding.inviteAvatarSmall");
         simpleDraweeView2.setVisibility(z2 ? 0 : 8);
         TextView textView = this.binding.f;
-        m.checkNotNullExpressionValue(textView, "binding.inviteMessage");
+        Intrinsics3.checkNotNullExpressionValue(textView, "binding.inviteMessage");
         Guild guild2 = model.guild;
         String name = guild2 != null ? guild2.getName() : null;
         if (name == null) {
@@ -224,26 +224,26 @@ public final class WidgetInviteInfo extends ConstraintLayout {
             Guild guild4 = model.guild;
             if (guild4 != null && (listM = guild4.m()) != null && listM.contains(GuildFeature.PARTNERED)) {
                 TextView textView2 = this.binding.f;
-                m.checkNotNullExpressionValue(textView2, "binding.inviteMessage");
+                Intrinsics3.checkNotNullExpressionValue(textView2, "binding.inviteMessage");
                 ViewExtensions.setCompoundDrawableWithIntrinsicBounds$default(textView2, R.drawable.ic_partnered_badge, 0, 0, 0, 14, null);
             }
         } else {
             TextView textView3 = this.binding.f;
-            m.checkNotNullExpressionValue(textView3, "binding.inviteMessage");
+            Intrinsics3.checkNotNullExpressionValue(textView3, "binding.inviteMessage");
             ViewExtensions.setCompoundDrawableWithIntrinsicBounds$default(textView3, R.drawable.ic_verified_badge, 0, 0, 0, 14, null);
         }
         TextView textView4 = this.binding.g;
-        m.checkNotNullExpressionValue(textView4, "binding.inviteTitle");
+        Intrinsics3.checkNotNullExpressionValue(textView4, "binding.inviteTitle");
         User inviter2 = model.getInviter();
         textView4.setText(getIntroText(inviter2 != null ? inviter2.getUsername() : null));
     }
 
     public final void configureUI(ModelInvite model, Function0<Unit> onAcceptClick) {
-        m.checkNotNullParameter(model, "model");
-        m.checkNotNullParameter(onAcceptClick, "onAcceptClick");
+        Intrinsics3.checkNotNullParameter(model, "model");
+        Intrinsics3.checkNotNullParameter(onAcceptClick, "onAcceptClick");
         this.binding.c.b();
         MaterialButton materialButton = this.binding.f2415b;
-        m.checkNotNullExpressionValue(materialButton, "binding.guildInviteAccept");
+        Intrinsics3.checkNotNullExpressionValue(materialButton, "binding.guildInviteAccept");
         materialButton.setVisibility(0);
         this.binding.f2415b.setOnClickListener(new AnonymousClass1(onAcceptClick));
         if (model.guild == null && model.getChannel() == null && model.getInviter() != null) {
@@ -259,61 +259,61 @@ public final class WidgetInviteInfo extends ConstraintLayout {
         this.binding.g.setText(R.string.instant_invite_expired);
         this.binding.f.setText(R.string.invite_button_expired);
         MaterialButton materialButton = this.binding.f2415b;
-        m.checkNotNullExpressionValue(materialButton, "binding.guildInviteAccept");
+        Intrinsics3.checkNotNullExpressionValue(materialButton, "binding.guildInviteAccept");
         materialButton.setVisibility(8);
         if (e != null) {
             Error.Response response = e.getResponse();
-            m.checkNotNullExpressionValue(response, "e.response");
+            Intrinsics3.checkNotNullExpressionValue(response, "e.response");
             if (response.getCode() == 30001) {
                 MeUser meSnapshot = StoreStream.INSTANCE.getUsers().getMeSnapshot();
                 TextView textView = this.binding.g;
-                m.checkNotNullExpressionValue(textView, "binding.inviteTitle");
-                b.m(textView, R.string.too_many_user_guilds_alert_description, new Object[0], new AnonymousClass1(meSnapshot));
+                Intrinsics3.checkNotNullExpressionValue(textView, "binding.inviteTitle");
+                FormatUtils.m(textView, R.string.too_many_user_guilds_alert_description, new Object[0], new AnonymousClass1(meSnapshot));
                 this.binding.f.setText(R.string.too_many_user_guilds_description);
                 this.binding.f.setTextSize(0, getResources().getDimension(R.dimen.uikit_textsize_medium));
             }
         }
         TextView textView2 = this.binding.f;
-        m.checkNotNullExpressionValue(textView2, "binding.inviteMessage");
+        Intrinsics3.checkNotNullExpressionValue(textView2, "binding.inviteMessage");
         ViewExtensions.setCompoundDrawableWithIntrinsicBounds$default(textView2, 0, 0, 0, 0, 15, null);
         ServerMemberCount serverMemberCount = this.binding.e;
-        m.checkNotNullExpressionValue(serverMemberCount, "binding.inviteMemberContainerLayout");
+        Intrinsics3.checkNotNullExpressionValue(serverMemberCount, "binding.inviteMemberContainerLayout");
         serverMemberCount.setVisibility(8);
         GuildView guildView = this.binding.c;
         Context context = getContext();
-        m.checkNotNullExpressionValue(context, "context");
+        Intrinsics3.checkNotNullExpressionValue(context, "context");
         int themedDrawableRes = DrawableCompat.getThemedDrawableRes(context, R.attr.img_poop, R.drawable.img_poop_dark);
         Objects.requireNonNull(guildView);
         MGImages mGImages = MGImages.INSTANCE;
         SimpleDraweeView simpleDraweeView = guildView.binding.f146b;
-        m.checkNotNullExpressionValue(simpleDraweeView, "binding.guildAvatar");
+        Intrinsics3.checkNotNullExpressionValue(simpleDraweeView, "binding.guildAvatar");
         MGImages.setImage$default(mGImages, simpleDraweeView, themedDrawableRes, (MGImages.ChangeDetector) null, 4, (Object) null);
         TextView textView3 = guildView.binding.c;
-        m.checkNotNullExpressionValue(textView3, "binding.guildText");
+        Intrinsics3.checkNotNullExpressionValue(textView3, "binding.guildText");
         textView3.setVisibility(8);
         SimpleDraweeView simpleDraweeView2 = this.binding.d;
-        m.checkNotNullExpressionValue(simpleDraweeView2, "binding.inviteAvatarSmall");
+        Intrinsics3.checkNotNullExpressionValue(simpleDraweeView2, "binding.inviteAvatarSmall");
         simpleDraweeView2.setVisibility(8);
     }
 
     private final CharSequence getFormattedGuildName(String guildName) {
-        return b.l(a.y("**", guildName, "**"), new Object[0], null, 2);
+        return FormatUtils.l(outline.y("**", guildName, "**"), new Object[0], null, 2);
     }
 
     private final CharSequence getIntroText(String userName) {
-        return userName == null ? b.j(this, R.string.instant_invite_you_have_been_invited_to_join, new Object[0], null, 4) : b.j(this, R.string.auth_message_invited_by, new Object[]{userName}, null, 4);
+        return userName == null ? FormatUtils.j(this, R.string.instant_invite_you_have_been_invited_to_join, new Object[0], null, 4) : FormatUtils.j(this, R.string.auth_message_invited_by, new Object[]{userName}, null, 4);
     }
 
     private final CharSequence getIntroTextForGroup(String userName, String channelName) {
-        return channelName.length() > 0 ? b.j(this, R.string.auth_message_invited_by, new Object[]{userName}, null, 4) : b.j(this, R.string.instant_invite_you_have_been_invited_to_join_group_dm, new Object[0], null, 4);
+        return channelName.length() > 0 ? FormatUtils.j(this, R.string.auth_message_invited_by, new Object[]{userName}, null, 4) : FormatUtils.j(this, R.string.instant_invite_you_have_been_invited_to_join_group_dm, new Object[0], null, 4);
     }
 
     private final CharSequence getInviteSubtitleForDirectFriend(String userName) {
-        return b.j(this, R.string.instant_invite_direct_friend_description, new Object[]{userName}, null, 4);
+        return FormatUtils.j(this, R.string.instant_invite_direct_friend_description, new Object[]{userName}, null, 4);
     }
 
     private final CharSequence getInviteTitleForDirectFriend(String userName) {
-        return b.j(this, R.string.instant_invite_you_have_been_invited_to_chat, new Object[]{userName}, null, 4);
+        return FormatUtils.j(this, R.string.instant_invite_you_have_been_invited_to_chat, new Object[]{userName}, null, 4);
     }
 
     private final void parseAttributeSet(Context context, AttributeSet attributeSet, int defStyleAttr) {
@@ -321,7 +321,7 @@ public final class WidgetInviteInfo extends ConstraintLayout {
             return;
         }
         TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes(attributeSet, R.a.WidgetInviteInfo, defStyleAttr, 0);
-        m.checkNotNullExpressionValue(typedArrayObtainStyledAttributes, "context.obtainStyledAttr…iteInfo, defStyleAttr, 0)");
+        Intrinsics3.checkNotNullExpressionValue(typedArrayObtainStyledAttributes, "context.obtainStyledAttr…iteInfo, defStyleAttr, 0)");
         int dimension = (int) typedArrayObtainStyledAttributes.getDimension(0, 0.0f);
         int dimension2 = (int) typedArrayObtainStyledAttributes.getDimension(1, 0.0f);
         typedArrayObtainStyledAttributes.recycle();
@@ -331,7 +331,7 @@ public final class WidgetInviteInfo extends ConstraintLayout {
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public WidgetInviteInfo(Context context, AttributeSet attributeSet, int i) {
         super(context, attributeSet, i);
-        m.checkNotNullParameter(context, "ctx");
+        Intrinsics3.checkNotNullParameter(context, "ctx");
         LayoutInflater.from(getContext()).inflate(R.layout.widget_guild_invite_info_view, this);
         int i2 = R.id.guild_invite_accept;
         MaterialButton materialButton = (MaterialButton) findViewById(R.id.guild_invite_accept);
@@ -355,10 +355,10 @@ public final class WidgetInviteInfo extends ConstraintLayout {
                                 LinearLayout linearLayout = (LinearLayout) findViewById(R.id.title_layout);
                                 if (linearLayout != null) {
                                     WidgetGuildInviteInfoViewBinding widgetGuildInviteInfoViewBinding = new WidgetGuildInviteInfoViewBinding(this, materialButton, guildView, simpleDraweeView, serverMemberCount, textView, textView2, linearLayout);
-                                    m.checkNotNullExpressionValue(widgetGuildInviteInfoViewBinding, "WidgetGuildInviteInfoVie…ater.from(context), this)");
+                                    Intrinsics3.checkNotNullExpressionValue(widgetGuildInviteInfoViewBinding, "WidgetGuildInviteInfoVie…ater.from(context), this)");
                                     this.binding = widgetGuildInviteInfoViewBinding;
                                     Context context2 = getContext();
-                                    m.checkNotNullExpressionValue(context2, "context");
+                                    Intrinsics3.checkNotNullExpressionValue(context2, "context");
                                     parseAttributeSet(context2, attributeSet, i);
                                     setBackgroundResource(R.drawable.bg_guild_scheduled_event_list_item_primary);
                                     int iDpToPixels = DimenUtils.dpToPixels(24);
@@ -376,7 +376,7 @@ public final class WidgetInviteInfo extends ConstraintLayout {
 
     /* JADX INFO: renamed from: com.discord.widgets.guilds.invite.WidgetInviteInfo$configureUIFailure$1, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetInviteInfo.kt */
-    public final class AnonymousClass1 extends o implements Function1<RenderContext, Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function1<RenderContext, Unit> {
         public final /* synthetic */ MeUser $meUser;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -387,7 +387,7 @@ public final class WidgetInviteInfo extends ConstraintLayout {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(RenderContext renderContext) {
-            m.checkNotNullParameter(renderContext, "$receiver");
+            Intrinsics3.checkNotNullParameter(renderContext, "$receiver");
             renderContext.args.put("quantity", String.valueOf(UserUtils.INSTANCE.isPremiumTier2(this.$meUser) ? 200 : 100));
         }
 

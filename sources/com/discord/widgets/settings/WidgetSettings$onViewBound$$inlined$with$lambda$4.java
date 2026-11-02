@@ -2,7 +2,7 @@ package com.discord.widgets.settings;
 
 import android.content.Context;
 import android.view.View;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: WidgetSettings.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -16,9 +16,9 @@ public final class WidgetSettings$onViewBound$$inlined$with$lambda$4 implements 
     @Override // android.view.View.OnClickListener
     public final void onClick(View view) {
         SettingsViewModel settingsViewModelAccess$getViewModel$p = WidgetSettings.access$getViewModel$p(this.this$0);
-        m.checkNotNullExpressionValue(view, "it");
+        Intrinsics3.checkNotNullExpressionValue(view, "it");
         Context context = view.getContext();
-        m.checkNotNullExpressionValue(context, "it.context");
+        Intrinsics3.checkNotNullExpressionValue(context, "it.context");
         settingsViewModelAccess$getViewModel$p.openRoleSubscriptionsManagement(context);
     }
 }

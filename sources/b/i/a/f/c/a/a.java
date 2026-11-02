@@ -1,9 +1,10 @@
 package b.i.a.f.c.a;
 
 import androidx.annotation.Nullable;
-import b.c.a.a0.d;
+import b.c.a.a0.AnimatableValueParser;
 import b.i.a.f.c.a.f.b.f;
 import b.i.a.f.h.c.o;
+import b.i.a.f.h.d.d;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import java.util.Arrays;
 
@@ -14,38 +15,38 @@ public final class a {
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
     public static final b.i.a.f.e.h.a.g<f> f1332b;
-    public static final b.i.a.f.e.h.a.C0112a<o, C0110a> c;
-    public static final b.i.a.f.e.h.a.C0112a<f, GoogleSignInOptions> d;
-    public static final b.i.a.f.e.h.a<C0110a> e;
+    public static final b.i.a.f.e.h.a.C0035a<o, C0033a> c;
+    public static final b.i.a.f.e.h.a.C0035a<f, GoogleSignInOptions> d;
+    public static final b.i.a.f.e.h.a<C0033a> e;
     public static final b.i.a.f.e.h.a<GoogleSignInOptions> f;
     public static final b.i.a.f.c.a.d.c g;
 
     /* JADX INFO: renamed from: b.i.a.f.c.a.a$a, reason: collision with other inner class name */
     /* JADX INFO: compiled from: com.google.android.gms:play-services-auth@@19.0.0 */
     @Deprecated
-    public class C0110a implements b.i.a.f.e.h.a.d {
+    public class C0033a implements b.i.a.f.e.h.a.d {
         public final String k;
         public final boolean l;
 
         @Nullable
         public final String m;
-        public static final C0110a j = new C0110a(new C0111a());
+        public static final C0033a j = new C0033a(new C0034a());
 
-        public C0110a(C0111a c0111a) {
-            this.k = c0111a.a;
-            this.l = c0111a.f1333b.booleanValue();
-            this.m = c0111a.c;
+        public C0033a(C0034a c0034a) {
+            this.k = c0034a.a;
+            this.l = c0034a.f1333b.booleanValue();
+            this.m = c0034a.c;
         }
 
         public boolean equals(@Nullable Object obj) {
             if (obj == this) {
                 return true;
             }
-            if (!(obj instanceof C0110a)) {
+            if (!(obj instanceof C0033a)) {
                 return false;
             }
-            C0110a c0110a = (C0110a) obj;
-            return d.h0(this.k, c0110a.k) && this.l == c0110a.l && d.h0(this.m, c0110a.m);
+            C0033a c0033a = (C0033a) obj;
+            return AnimatableValueParser.h0(this.k, c0033a.k) && this.l == c0033a.l && AnimatableValueParser.h0(this.m, c0033a.m);
         }
 
         public int hashCode() {
@@ -55,7 +56,7 @@ public final class a {
         /* JADX INFO: renamed from: b.i.a.f.c.a.a$a$a, reason: collision with other inner class name */
         /* JADX INFO: compiled from: com.google.android.gms:play-services-auth@@19.0.0 */
         @Deprecated
-        public class C0111a {
+        public class C0034a {
             public String a;
 
             /* JADX INFO: renamed from: b, reason: collision with root package name */
@@ -64,15 +65,15 @@ public final class a {
             @Nullable
             public String c;
 
-            public C0111a() {
+            public C0034a() {
                 this.f1333b = Boolean.FALSE;
             }
 
-            public C0111a(C0110a c0110a) {
+            public C0034a(C0033a c0033a) {
                 this.f1333b = Boolean.FALSE;
-                this.a = c0110a.k;
-                this.f1333b = Boolean.valueOf(c0110a.l);
-                this.c = c0110a.m;
+                this.a = c0033a.k;
+                this.f1333b = Boolean.valueOf(c0033a.l);
+                this.c = c0033a.m;
             }
         }
     }
@@ -89,7 +90,7 @@ public final class a {
         b.i.a.f.e.h.a<c> aVar = b.c;
         e = new b.i.a.f.e.h.a<>("Auth.CREDENTIALS_API", hVar, gVar);
         f = new b.i.a.f.e.h.a<>("Auth.GOOGLE_SIGN_IN_API", iVar, gVar2);
-        b.i.a.f.h.d.d dVar = b.d;
+        d dVar = b.d;
         g = new b.i.a.f.h.c.h();
     }
 }

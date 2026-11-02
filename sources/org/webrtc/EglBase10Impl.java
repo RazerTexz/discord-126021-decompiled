@@ -6,8 +6,8 @@ import android.graphics.SurfaceTexture;
 import android.view.Surface;
 import android.view.SurfaceHolder;
 import androidx.annotation.Nullable;
-import b.d.b.a.a;
-import h0.c.n0;
+import b.d.b.a.outline;
+import h0.c.EglBase2;
 import javax.microedition.khronos.egl.EGL10;
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.egl.EGLContext;
@@ -118,7 +118,7 @@ public class EglBase10Impl implements EglBase10 {
         EGLDisplay eglDisplay = getEglDisplay();
         this.eglDisplay = eglDisplay;
         this.eglConfig = getEglConfig(eglDisplay, iArr);
-        int iC = n0.c(iArr);
+        int iC = EglBase2.c(iArr);
         Logging.d(TAG, "Using OpenGL ES version " + iC);
         this.eglContext = createEglContext(eGLContext, this.eglDisplay, this.eglConfig, iC);
     }
@@ -149,7 +149,7 @@ public class EglBase10Impl implements EglBase10 {
         if (eGLContextEglCreateContext != EGL10.EGL_NO_CONTEXT) {
             return eGLContextEglCreateContext;
         }
-        StringBuilder sbU = a.U("Failed to create EGL context: 0x");
+        StringBuilder sbU = outline.U("Failed to create EGL context: 0x");
         sbU.append(Integer.toHexString(this.egl.eglGetError()));
         throw new RuntimeException(sbU.toString());
     }
@@ -165,7 +165,7 @@ public class EglBase10Impl implements EglBase10 {
         if (eGLSurfaceEglCreatePbufferSurface != EGL10.EGL_NO_SURFACE) {
             return;
         }
-        StringBuilder sbW = a.W("Failed to create pixel buffer surface with size ", i, "x", i2, ": 0x");
+        StringBuilder sbW = outline.W("Failed to create pixel buffer surface with size ", i, "x", i2, ": 0x");
         sbW.append(Integer.toHexString(this.egl.eglGetError()));
         throw new RuntimeException(sbW.toString());
     }
@@ -188,7 +188,7 @@ public class EglBase10Impl implements EglBase10 {
         if (eGLSurfaceEglCreateWindowSurface != EGL10.EGL_NO_SURFACE) {
             return;
         }
-        StringBuilder sbU = a.U("Failed to create window surface: 0x");
+        StringBuilder sbU = outline.U("Failed to create window surface: 0x");
         sbU.append(Integer.toHexString(this.egl.eglGetError()));
         throw new RuntimeException(sbU.toString());
     }
@@ -214,7 +214,7 @@ public class EglBase10Impl implements EglBase10 {
         EGLConfig[] eGLConfigArr = new EGLConfig[1];
         int[] iArr2 = new int[1];
         if (!this.egl.eglChooseConfig(eGLDisplay, iArr, eGLConfigArr, 1, iArr2)) {
-            StringBuilder sbU = a.U("eglChooseConfig failed: 0x");
+            StringBuilder sbU = outline.U("eglChooseConfig failed: 0x");
             sbU.append(Integer.toHexString(this.egl.eglGetError()));
             throw new RuntimeException(sbU.toString());
         }
@@ -231,14 +231,14 @@ public class EglBase10Impl implements EglBase10 {
     private EGLDisplay getEglDisplay() {
         EGLDisplay eGLDisplayEglGetDisplay = this.egl.eglGetDisplay(EGL10.EGL_DEFAULT_DISPLAY);
         if (eGLDisplayEglGetDisplay == EGL10.EGL_NO_DISPLAY) {
-            StringBuilder sbU = a.U("Unable to get EGL10 display: 0x");
+            StringBuilder sbU = outline.U("Unable to get EGL10 display: 0x");
             sbU.append(Integer.toHexString(this.egl.eglGetError()));
             throw new RuntimeException(sbU.toString());
         }
         if (this.egl.eglInitialize(eGLDisplayEglGetDisplay, new int[2])) {
             return eGLDisplayEglGetDisplay;
         }
-        StringBuilder sbU2 = a.U("Unable to initialize EGL10: 0x");
+        StringBuilder sbU2 = outline.U("Unable to initialize EGL10: 0x");
         sbU2.append(Integer.toHexString(this.egl.eglGetError()));
         throw new RuntimeException(sbU2.toString());
     }

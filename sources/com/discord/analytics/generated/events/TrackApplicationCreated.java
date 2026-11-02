@@ -1,15 +1,15 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.api.science.AnalyticsSchema;
 import com.discord.models.domain.ModelAuditLogEntry;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackApplicationCreated.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackApplicationCreated implements AnalyticsSchema, TrackBaseReceiver {
+public final /* data */ class TrackApplicationCreated implements AnalyticsSchema, TrackBase2 {
     private final Long applicationId = null;
     private final Long botId = null;
     private final CharSequence coverImageHash = null;
@@ -29,7 +29,7 @@ public final /* data */ class TrackApplicationCreated implements AnalyticsSchema
             return false;
         }
         TrackApplicationCreated trackApplicationCreated = (TrackApplicationCreated) other;
-        return m.areEqual(this.applicationId, trackApplicationCreated.applicationId) && m.areEqual(this.botId, trackApplicationCreated.botId) && m.areEqual(this.name, trackApplicationCreated.name) && m.areEqual(this.hasBot, trackApplicationCreated.hasBot) && m.areEqual(this.hasRedirectUri, trackApplicationCreated.hasRedirectUri) && m.areEqual(this.description, trackApplicationCreated.description) && m.areEqual(this.iconHash, trackApplicationCreated.iconHash) && m.areEqual(this.coverImageHash, trackApplicationCreated.coverImageHash);
+        return Intrinsics3.areEqual(this.applicationId, trackApplicationCreated.applicationId) && Intrinsics3.areEqual(this.botId, trackApplicationCreated.botId) && Intrinsics3.areEqual(this.name, trackApplicationCreated.name) && Intrinsics3.areEqual(this.hasBot, trackApplicationCreated.hasBot) && Intrinsics3.areEqual(this.hasRedirectUri, trackApplicationCreated.hasRedirectUri) && Intrinsics3.areEqual(this.description, trackApplicationCreated.description) && Intrinsics3.areEqual(this.iconHash, trackApplicationCreated.iconHash) && Intrinsics3.areEqual(this.coverImageHash, trackApplicationCreated.coverImageHash);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -58,7 +58,7 @@ public final /* data */ class TrackApplicationCreated implements AnalyticsSchema
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackApplicationCreated(applicationId=");
+        StringBuilder sbU = outline.U("TrackApplicationCreated(applicationId=");
         sbU.append(this.applicationId);
         sbU.append(", botId=");
         sbU.append(this.botId);
@@ -73,6 +73,6 @@ public final /* data */ class TrackApplicationCreated implements AnalyticsSchema
         sbU.append(", iconHash=");
         sbU.append(this.iconHash);
         sbU.append(", coverImageHash=");
-        return a.E(sbU, this.coverImageHash, ")");
+        return outline.E(sbU, this.coverImageHash, ")");
     }
 }

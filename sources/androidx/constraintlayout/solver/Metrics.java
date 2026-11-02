@@ -1,6 +1,6 @@
 package androidx.constraintlayout.solver;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import java.util.ArrayList;
 
 /* JADX INFO: loaded from: classes.dex */
@@ -85,7 +85,7 @@ public class Metrics {
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("\n*** Metrics ***\nmeasures: ");
+        StringBuilder sbU = outline.U("\n*** Metrics ***\nmeasures: ");
         sbU.append(this.measures);
         sbU.append("\nmeasuresWrap: ");
         sbU.append(this.measuresWrap);
@@ -102,6 +102,6 @@ public class Metrics {
         sbU.append("\ngraphSolved: ");
         sbU.append(this.graphSolved);
         sbU.append("\nlinearSolved: ");
-        return a.C(sbU, this.linearSolved, "\n");
+        return outline.C(sbU, this.linearSolved, "\n");
     }
 }

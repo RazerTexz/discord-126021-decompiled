@@ -6,16 +6,16 @@ import android.view.View;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.fragment.app.Fragment;
-import b.a.d.j;
-import b.d.b.a.a;
+import b.a.d.AppScreen2;
+import b.d.b.a.outline;
 import com.discord.R;
 import com.discord.app.AppActivity;
 import com.discord.app.AppFragment;
 import com.discord.databinding.WidgetAuthUndeleteAccountBinding;
 import com.discord.utilities.viewbinding.FragmentViewBindingDelegate;
-import com.discord.utilities.viewbinding.FragmentViewBindingDelegateKt;
+import com.discord.utilities.viewbinding.FragmentViewBindingDelegate3;
 import com.discord.views.ScreenTitleView;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.internal.DefaultConstructorMarker;
@@ -24,7 +24,7 @@ import kotlin.reflect.KProperty;
 /* JADX INFO: compiled from: WidgetAuthUndeleteAccount.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetAuthUndeleteAccount extends AppFragment {
-    public static final /* synthetic */ KProperty[] $$delegatedProperties = {a.d0(WidgetAuthUndeleteAccount.class, "binding", "getBinding()Lcom/discord/databinding/WidgetAuthUndeleteAccountBinding;", 0)};
+    public static final /* synthetic */ KProperty[] $$delegatedProperties = {outline.d0(WidgetAuthUndeleteAccount.class, "binding", "getBinding()Lcom/discord/databinding/WidgetAuthUndeleteAccountBinding;", 0)};
     private static final String ARG_DISABLED_KEY = "ARG_DISABLED_KEY";
 
     /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
@@ -41,10 +41,10 @@ public final class WidgetAuthUndeleteAccount extends AppFragment {
 
         @Override // android.view.View.OnClickListener
         public final void onClick(View view) {
-            m.checkNotNullExpressionValue(view, "it");
+            Intrinsics3.checkNotNullExpressionValue(view, "it");
             Context context = view.getContext();
-            m.checkNotNullExpressionValue(context, "it.context");
-            j.c(context, false, null, 4);
+            Intrinsics3.checkNotNullExpressionValue(context, "it.context");
+            AppScreen2.c(context, false, null, 4);
         }
     }
 
@@ -75,18 +75,18 @@ public final class WidgetAuthUndeleteAccount extends AppFragment {
         }
 
         public final void launch(Context context, ActivityResultLauncher<Intent> launcher, boolean disabled) {
-            m.checkNotNullParameter(context, "context");
-            m.checkNotNullParameter(launcher, "launcher");
+            Intrinsics3.checkNotNullParameter(context, "context");
+            Intrinsics3.checkNotNullParameter(launcher, "launcher");
             Intent intentPutExtra = new Intent().putExtra(WidgetAuthUndeleteAccount.ARG_DISABLED_KEY, disabled);
-            m.checkNotNullExpressionValue(intentPutExtra, "Intent().putExtra(ARG_DISABLED_KEY, disabled)");
-            j.g.f(context, launcher, WidgetAuthUndeleteAccount.class, intentPutExtra);
+            Intrinsics3.checkNotNullExpressionValue(intentPutExtra, "Intent().putExtra(ARG_DISABLED_KEY, disabled)");
+            AppScreen2.g.f(context, launcher, WidgetAuthUndeleteAccount.class, intentPutExtra);
         }
 
         public final ActivityResultLauncher<Intent> registerForResult(AppFragment fragment, Function0<Unit> callback) {
-            m.checkNotNullParameter(fragment, "fragment");
-            m.checkNotNullParameter(callback, "callback");
-            ActivityResultLauncher<Intent> activityResultLauncherRegisterForActivityResult = fragment.registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new WidgetAuthUndeleteAccount$Companion$registerForResult$1(callback));
-            m.checkNotNullExpressionValue(activityResultLauncherRegisterForActivityResult, "fragment.registerForActi…k()\n          }\n        }");
+            Intrinsics3.checkNotNullParameter(fragment, "fragment");
+            Intrinsics3.checkNotNullParameter(callback, "callback");
+            ActivityResultLauncher<Intent> activityResultLauncherRegisterForActivityResult = fragment.registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new WidgetAuthUndeleteAccount2(callback));
+            Intrinsics3.checkNotNullExpressionValue(activityResultLauncherRegisterForActivityResult, "fragment.registerForActi…k()\n          }\n        }");
             return activityResultLauncherRegisterForActivityResult;
         }
 
@@ -97,7 +97,7 @@ public final class WidgetAuthUndeleteAccount extends AppFragment {
 
     public WidgetAuthUndeleteAccount() {
         super(R.layout.widget_auth_undelete_account);
-        this.binding = FragmentViewBindingDelegateKt.viewBinding$default(this, WidgetAuthUndeleteAccount$binding$2.INSTANCE, null, 2, null);
+        this.binding = FragmentViewBindingDelegate3.viewBinding$default(this, WidgetAuthUndeleteAccount3.INSTANCE, null, 2, null);
     }
 
     private final WidgetAuthUndeleteAccountBinding getBinding() {
@@ -106,7 +106,7 @@ public final class WidgetAuthUndeleteAccount extends AppFragment {
 
     @Override // com.discord.app.AppFragment
     public void onViewBound(View view) {
-        m.checkNotNullParameter(view, "view");
+        Intrinsics3.checkNotNullParameter(view, "view");
         super.onViewBound(view);
     }
 
@@ -116,13 +116,13 @@ public final class WidgetAuthUndeleteAccount extends AppFragment {
         if (getMostRecentIntent().getBooleanExtra(ARG_DISABLED_KEY, false)) {
             ScreenTitleView screenTitleView = getBinding().d;
             String string = getString(R.string.account_disabled_title);
-            m.checkNotNullExpressionValue(string, "getString(R.string.account_disabled_title)");
+            Intrinsics3.checkNotNullExpressionValue(string, "getString(R.string.account_disabled_title)");
             screenTitleView.setTitle(string);
             getBinding().d.setSubtitle(getString(R.string.account_disabled_description));
         } else {
             ScreenTitleView screenTitleView2 = getBinding().d;
             String string2 = getString(R.string.account_scheduled_for_deletion_title);
-            m.checkNotNullExpressionValue(string2, "getString(R.string.accou…duled_for_deletion_title)");
+            Intrinsics3.checkNotNullExpressionValue(string2, "getString(R.string.accou…duled_for_deletion_title)");
             screenTitleView2.setTitle(string2);
             getBinding().d.setSubtitle(getString(R.string.account_scheduled_for_deletion_description));
         }

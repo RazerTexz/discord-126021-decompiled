@@ -3,8 +3,8 @@ package androidx.core.widget;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.widget.TextView;
-import d0.z.d.m;
-import d0.z.d.o;
+import d0.z.d.Intrinsics3;
+import d0.z.d.Lambda;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function1;
 import kotlin.jvm.functions.Function4;
@@ -15,7 +15,7 @@ public final class TextViewKt {
 
     /* JADX INFO: renamed from: androidx.core.widget.TextViewKt$addTextChangedListener$1, reason: invalid class name */
     /* JADX INFO: compiled from: TextView.kt */
-    public final class AnonymousClass1 extends o implements Function4<CharSequence, Integer, Integer, Integer, Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function4<CharSequence, Integer, Integer, Integer, Unit> {
         public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
 
         public AnonymousClass1() {
@@ -34,7 +34,7 @@ public final class TextViewKt {
 
     /* JADX INFO: renamed from: androidx.core.widget.TextViewKt$addTextChangedListener$2, reason: invalid class name */
     /* JADX INFO: compiled from: TextView.kt */
-    public final class AnonymousClass2 extends o implements Function4<CharSequence, Integer, Integer, Integer, Unit> {
+    public final class AnonymousClass2 extends Lambda implements Function4<CharSequence, Integer, Integer, Integer, Unit> {
         public static final AnonymousClass2 INSTANCE = new AnonymousClass2();
 
         public AnonymousClass2() {
@@ -53,7 +53,7 @@ public final class TextViewKt {
 
     /* JADX INFO: renamed from: androidx.core.widget.TextViewKt$addTextChangedListener$3, reason: invalid class name */
     /* JADX INFO: compiled from: TextView.kt */
-    public final class AnonymousClass3 extends o implements Function1<Editable, Unit> {
+    public final class AnonymousClass3 extends Lambda implements Function1<Editable, Unit> {
         public static final AnonymousClass3 INSTANCE = new AnonymousClass3();
 
         public AnonymousClass3() {
@@ -81,44 +81,44 @@ public final class TextViewKt {
         if ((i & 4) != 0) {
             function1 = AnonymousClass3.INSTANCE;
         }
-        m.checkNotNullParameter(textView, "<this>");
-        m.checkNotNullParameter(function4, "beforeTextChanged");
-        m.checkNotNullParameter(function5, "onTextChanged");
-        m.checkNotNullParameter(function1, "afterTextChanged");
+        Intrinsics3.checkNotNullParameter(textView, "<this>");
+        Intrinsics3.checkNotNullParameter(function4, "beforeTextChanged");
+        Intrinsics3.checkNotNullParameter(function5, "onTextChanged");
+        Intrinsics3.checkNotNullParameter(function1, "afterTextChanged");
         TextViewKt$addTextChangedListener$textWatcher$1 textViewKt$addTextChangedListener$textWatcher$1 = new TextViewKt$addTextChangedListener$textWatcher$1(function1, function4, function5);
         textView.addTextChangedListener(textViewKt$addTextChangedListener$textWatcher$1);
         return textViewKt$addTextChangedListener$textWatcher$1;
     }
 
     public static final TextWatcher addTextChangedListener(TextView textView, Function4<? super CharSequence, ? super Integer, ? super Integer, ? super Integer, Unit> function4, Function4<? super CharSequence, ? super Integer, ? super Integer, ? super Integer, Unit> function5, Function1<? super Editable, Unit> function1) {
-        m.checkNotNullParameter(textView, "<this>");
-        m.checkNotNullParameter(function4, "beforeTextChanged");
-        m.checkNotNullParameter(function5, "onTextChanged");
-        m.checkNotNullParameter(function1, "afterTextChanged");
+        Intrinsics3.checkNotNullParameter(textView, "<this>");
+        Intrinsics3.checkNotNullParameter(function4, "beforeTextChanged");
+        Intrinsics3.checkNotNullParameter(function5, "onTextChanged");
+        Intrinsics3.checkNotNullParameter(function1, "afterTextChanged");
         TextViewKt$addTextChangedListener$textWatcher$1 textViewKt$addTextChangedListener$textWatcher$1 = new TextViewKt$addTextChangedListener$textWatcher$1(function1, function4, function5);
         textView.addTextChangedListener(textViewKt$addTextChangedListener$textWatcher$1);
         return textViewKt$addTextChangedListener$textWatcher$1;
     }
 
     public static final TextWatcher doAfterTextChanged(TextView textView, Function1<? super Editable, Unit> function1) {
-        m.checkNotNullParameter(textView, "<this>");
-        m.checkNotNullParameter(function1, "action");
+        Intrinsics3.checkNotNullParameter(textView, "<this>");
+        Intrinsics3.checkNotNullParameter(function1, "action");
         TextViewKt$doAfterTextChanged$$inlined$addTextChangedListener$default$1 textViewKt$doAfterTextChanged$$inlined$addTextChangedListener$default$1 = new TextViewKt$doAfterTextChanged$$inlined$addTextChangedListener$default$1(function1);
         textView.addTextChangedListener(textViewKt$doAfterTextChanged$$inlined$addTextChangedListener$default$1);
         return textViewKt$doAfterTextChanged$$inlined$addTextChangedListener$default$1;
     }
 
     public static final TextWatcher doBeforeTextChanged(TextView textView, Function4<? super CharSequence, ? super Integer, ? super Integer, ? super Integer, Unit> function4) {
-        m.checkNotNullParameter(textView, "<this>");
-        m.checkNotNullParameter(function4, "action");
+        Intrinsics3.checkNotNullParameter(textView, "<this>");
+        Intrinsics3.checkNotNullParameter(function4, "action");
         TextViewKt$doBeforeTextChanged$$inlined$addTextChangedListener$default$1 textViewKt$doBeforeTextChanged$$inlined$addTextChangedListener$default$1 = new TextViewKt$doBeforeTextChanged$$inlined$addTextChangedListener$default$1(function4);
         textView.addTextChangedListener(textViewKt$doBeforeTextChanged$$inlined$addTextChangedListener$default$1);
         return textViewKt$doBeforeTextChanged$$inlined$addTextChangedListener$default$1;
     }
 
     public static final TextWatcher doOnTextChanged(TextView textView, Function4<? super CharSequence, ? super Integer, ? super Integer, ? super Integer, Unit> function4) {
-        m.checkNotNullParameter(textView, "<this>");
-        m.checkNotNullParameter(function4, "action");
+        Intrinsics3.checkNotNullParameter(textView, "<this>");
+        Intrinsics3.checkNotNullParameter(function4, "action");
         TextViewKt$doOnTextChanged$$inlined$addTextChangedListener$default$1 textViewKt$doOnTextChanged$$inlined$addTextChangedListener$default$1 = new TextViewKt$doOnTextChanged$$inlined$addTextChangedListener$default$1(function4);
         textView.addTextChangedListener(textViewKt$doOnTextChanged$$inlined$addTextChangedListener$default$1);
         return textViewKt$doOnTextChanged$$inlined$addTextChangedListener$default$1;

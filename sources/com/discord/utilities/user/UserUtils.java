@@ -4,7 +4,7 @@ import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
 import android.text.style.RelativeSizeSpan;
 import androidx.annotation.ColorInt;
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.adjust.sdk.Constants;
 import com.discord.api.premium.PremiumTier;
 import com.discord.api.presence.ClientStatus;
@@ -16,12 +16,12 @@ import com.discord.models.user.MeUser;
 import com.discord.models.user.User;
 import com.discord.nullserializable.NullSerializable;
 import com.discord.utilities.SnowflakeUtils;
-import com.discord.utilities.premium.PremiumUtilsKt;
+import com.discord.utilities.premium.PremiumUtils3;
 import com.discord.utilities.time.Clock;
 import com.discord.utilities.time.ClockFactory;
-import d0.g0.c;
-import d0.g0.t;
-import d0.z.d.m;
+import d0.g0.Charsets2;
+import d0.g0.StringsJVM;
+import d0.z.d.Intrinsics3;
 import java.nio.charset.Charset;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -53,18 +53,18 @@ public final class UserUtils {
     }
 
     public final long getAgeMs(User user, Clock clock) {
-        m.checkNotNullParameter(user, "$this$getAgeMs");
-        m.checkNotNullParameter(clock, "clock");
+        Intrinsics3.checkNotNullParameter(user, "$this$getAgeMs");
+        Intrinsics3.checkNotNullParameter(clock, "clock");
         return clock.currentTimeMillis() - ((user.getId() >>> 22) + SnowflakeUtils.DISCORD_EPOCH);
     }
 
     public final boolean getCanUsePremiumStickers(User user) {
-        m.checkNotNullParameter(user, "$this$canUsePremiumStickers");
-        return PremiumUtilsKt.grantsAccessToPremiumStickers(user.getPremiumTier());
+        Intrinsics3.checkNotNullParameter(user, "$this$canUsePremiumStickers");
+        return PremiumUtils3.grantsAccessToPremiumStickers(user.getPremiumTier());
     }
 
     public final String getDiscriminatorWithPadding(User user) {
-        m.checkNotNullParameter(user, "$this$discriminatorWithPadding");
+        Intrinsics3.checkNotNullParameter(user, "$this$discriminatorWithPadding");
         return padDiscriminator(user.getDiscriminator());
     }
 
@@ -73,17 +73,17 @@ public final class UserUtils {
     }
 
     public final boolean getHasPhone(MeUser meUser) {
-        m.checkNotNullParameter(meUser, "$this$hasPhone");
+        Intrinsics3.checkNotNullParameter(meUser, "$this$hasPhone");
         return meUser.getPhoneNumber() != null;
     }
 
     public final boolean getHasSubscription(User user) {
-        m.checkNotNullParameter(user, "$this$hasSubscription");
+        Intrinsics3.checkNotNullParameter(user, "$this$hasSubscription");
         return user.getPremiumTier() != PremiumTier.NONE;
     }
 
     public final boolean getHasUnreadUrgentMessages(User user) {
-        m.checkNotNullParameter(user, "$this$hasUnreadUrgentMessages");
+        Intrinsics3.checkNotNullParameter(user, "$this$hasUnreadUrgentMessages");
         return hasFlag(user, 8192);
     }
 
@@ -93,17 +93,17 @@ public final class UserUtils {
         }
         MessageDigest messageDigest = MessageDigest.getInstance(Constants.SHA256);
         String strValueOf = String.valueOf(id2.longValue());
-        Charset charset = c.a;
+        Charset charset = Charsets2.a;
         Objects.requireNonNull(strValueOf, "null cannot be cast to non-null type java.lang.String");
         byte[] bytes = strValueOf.getBytes(charset);
-        m.checkNotNullExpressionValue(bytes, "(this as java.lang.String).getBytes(charset)");
+        Intrinsics3.checkNotNullExpressionValue(bytes, "(this as java.lang.String).getBytes(charset)");
         byte[] bArrDigest = messageDigest.digest(bytes);
-        m.checkNotNullExpressionValue(bArrDigest, "MessageDigest\n        .g…toString().toByteArray())");
+        Intrinsics3.checkNotNullExpressionValue(bArrDigest, "MessageDigest\n        .g…toString().toByteArray())");
         String string = "";
         for (byte b2 : bArrDigest) {
-            StringBuilder sbU = a.U(string);
+            StringBuilder sbU = outline.U(string);
             String str = String.format("%02x", Arrays.copyOf(new Object[]{Byte.valueOf(b2)}, 1));
-            m.checkNotNullExpressionValue(str, "java.lang.String.format(this, *args)");
+            Intrinsics3.checkNotNullExpressionValue(str, "java.lang.String.format(this, *args)");
             sbU.append(str);
             string = sbU.toString();
         }
@@ -121,7 +121,7 @@ public final class UserUtils {
     }
 
     public final CharSequence getUserNameWithDiscriminator(User user, @ColorInt Integer num, Float f) {
-        m.checkNotNullParameter(user, "$this$getUserNameWithDiscriminator");
+        Intrinsics3.checkNotNullParameter(user, "$this$getUserNameWithDiscriminator");
         String str = user.getUsername() + getDiscriminatorWithPadding(user);
         if (num == null && f == null) {
             return str;
@@ -152,58 +152,58 @@ public final class UserUtils {
     }
 
     public final boolean isAccountOldEnough(User user, Clock clock) {
-        m.checkNotNullParameter(user, "$this$isAccountOldEnough");
-        m.checkNotNullParameter(clock, "clock");
+        Intrinsics3.checkNotNullParameter(user, "$this$isAccountOldEnough");
+        Intrinsics3.checkNotNullParameter(clock, "clock");
         return getAgeMs(user, clock) > ((long) GUILD_VERIFICATION_ACCOUNT_AGE_THRESHOLD);
     }
 
     public final boolean isBugHunterLevel1(User user) {
-        m.checkNotNullParameter(user, "$this$isBugHunterLevel1");
+        Intrinsics3.checkNotNullParameter(user, "$this$isBugHunterLevel1");
         return hasFlag(user, 8);
     }
 
     public final boolean isBugHunterLevel2(User user) {
-        m.checkNotNullParameter(user, "$this$isBugHunterLevel2");
+        Intrinsics3.checkNotNullParameter(user, "$this$isBugHunterLevel2");
         return hasFlag(user, 16384);
     }
 
     public final boolean isCertifiedModerator(User user) {
-        m.checkNotNullParameter(user, "$this$isCertifiedModerator");
+        Intrinsics3.checkNotNullParameter(user, "$this$isCertifiedModerator");
         return hasFlag(user, 262144);
     }
 
     public final boolean isHttpInteractionsBot(User user) {
-        m.checkNotNullParameter(user, "$this$isHttpInteractionsBot");
+        Intrinsics3.checkNotNullParameter(user, "$this$isHttpInteractionsBot");
         return hasFlag(user, 524288);
     }
 
     public final boolean isHypeSquad(User user) {
-        m.checkNotNullParameter(user, "$this$isHypeSquad");
+        Intrinsics3.checkNotNullParameter(user, "$this$isHypeSquad");
         return hasFlag(user, 4);
     }
 
     public final boolean isHypesquadHouse1(User user) {
-        m.checkNotNullParameter(user, "$this$isHypesquadHouse1");
+        Intrinsics3.checkNotNullParameter(user, "$this$isHypesquadHouse1");
         return hasFlag(user, 64);
     }
 
     public final boolean isHypesquadHouse2(User user) {
-        m.checkNotNullParameter(user, "$this$isHypesquadHouse2");
+        Intrinsics3.checkNotNullParameter(user, "$this$isHypesquadHouse2");
         return hasFlag(user, 128);
     }
 
     public final boolean isHypesquadHouse3(User user) {
-        m.checkNotNullParameter(user, "$this$isHypesquadHouse3");
+        Intrinsics3.checkNotNullParameter(user, "$this$isHypesquadHouse3");
         return hasFlag(user, 256);
     }
 
     public final boolean isInHypesquadHouse(User user) {
-        m.checkNotNullParameter(user, "$this$isInHypesquadHouse");
+        Intrinsics3.checkNotNullParameter(user, "$this$isInHypesquadHouse");
         return isHypesquadHouse1(user) || isHypesquadHouse2(user) || isHypesquadHouse3(user);
     }
 
     public final boolean isMfaSMSEnabled(User user) {
-        m.checkNotNullParameter(user, "$this$isMfaSMSEnabled");
+        Intrinsics3.checkNotNullParameter(user, "$this$isMfaSMSEnabled");
         return hasFlag(user, 16);
     }
 
@@ -215,33 +215,33 @@ public final class UserUtils {
     }
 
     public final boolean isNewUser(User user, Clock clock) {
-        m.checkNotNullParameter(user, "$this$isNewUser");
-        m.checkNotNullParameter(clock, "clock");
+        Intrinsics3.checkNotNullParameter(user, "$this$isNewUser");
+        Intrinsics3.checkNotNullParameter(clock, "clock");
         return (user.getId() >>> 22) + SnowflakeUtils.DISCORD_EPOCH >= clock.currentTimeMillis() - ((long) NEW_USER_THRESHOLD);
     }
 
     public final boolean isPartner(User user) {
-        m.checkNotNullParameter(user, "$this$isPartner");
+        Intrinsics3.checkNotNullParameter(user, "$this$isPartner");
         return hasFlag(user, 2);
     }
 
     public final boolean isPremium(User user) {
-        m.checkNotNullParameter(user, "$this$isPremium");
+        Intrinsics3.checkNotNullParameter(user, "$this$isPremium");
         return (user.getPremiumTier() == PremiumTier.PREMIUM_GUILD_SUBSCRIPTION_ONLY || user.getPremiumTier() == PremiumTier.NONE) ? false : true;
     }
 
     public final boolean isPremiumEarlySupporter(User user) {
-        m.checkNotNullParameter(user, "$this$isPremiumEarlySupporter");
+        Intrinsics3.checkNotNullParameter(user, "$this$isPremiumEarlySupporter");
         return hasFlag(user, 512);
     }
 
     public final boolean isPremiumTier2(User user) {
-        m.checkNotNullParameter(user, "$this$isPremiumTier2");
+        Intrinsics3.checkNotNullParameter(user, "$this$isPremiumTier2");
         return user.getPremiumTier() == PremiumTier.TIER_2;
     }
 
     public final boolean isStaff(User user) {
-        m.checkNotNullParameter(user, "$this$isStaff");
+        Intrinsics3.checkNotNullParameter(user, "$this$isStaff");
         return hasFlag(user, 1);
     }
 
@@ -253,17 +253,17 @@ public final class UserUtils {
     }
 
     public final boolean isVerifiedBot(User user) {
-        m.checkNotNullParameter(user, "$this$isVerifiedBot");
+        Intrinsics3.checkNotNullParameter(user, "$this$isVerifiedBot");
         return hasFlag(user, 65536) || user.getIsSystemUser() || user.getId() == -1;
     }
 
     public final boolean isVerifiedDeveloper(User user) {
-        m.checkNotNullParameter(user, "$this$isVerifiedDeveloper");
+        Intrinsics3.checkNotNullParameter(user, "$this$isVerifiedDeveloper");
         return hasFlag(user, 131072);
     }
 
     public final String padDiscriminator(int discriminator) {
-        return a.P(new Object[]{Integer.valueOf(discriminator)}, 1, "#%04d", "java.lang.String.format(format, *args)");
+        return outline.P(new Object[]{Integer.valueOf(discriminator)}, 1, "#%04d", "java.lang.String.format(format, *args)");
     }
 
     public static /* synthetic */ boolean since$default(UserUtils userUtils, User user, Clock clock, UtcDateTime utcDateTime, int i, Object obj) {
@@ -274,14 +274,14 @@ public final class UserUtils {
     }
 
     public final boolean since(User user, Clock clock, UtcDateTime utcDateTime) {
-        m.checkNotNullParameter(user, "$this$since");
-        m.checkNotNullParameter(clock, "clock");
-        m.checkNotNullParameter(utcDateTime, "date");
+        Intrinsics3.checkNotNullParameter(user, "$this$since");
+        Intrinsics3.checkNotNullParameter(clock, "clock");
+        Intrinsics3.checkNotNullParameter(utcDateTime, "date");
         return new UtcDateTime((user.getId() >>> 22) + SnowflakeUtils.DISCORD_EPOCH).f(utcDateTime) <= 0;
     }
 
     public final com.discord.api.user.User synthesizeApiUser(User user) {
-        m.checkNotNullParameter(user, "$this$synthesizeApiUser");
+        Intrinsics3.checkNotNullParameter(user, "$this$synthesizeApiUser");
         long id2 = user.getId();
         String username = user.getUsername();
         String avatar = user.getAvatar();
@@ -293,7 +293,7 @@ public final class UserUtils {
     }
 
     public final boolean isStatusVisible(User user, Presence presence, boolean z2) {
-        m.checkNotNullParameter(user, "$this$isStatusVisible");
+        Intrinsics3.checkNotNullParameter(user, "$this$isStatusVisible");
         return isStatusVisible(user.getPublicFlags() | user.getFlags(), presence, z2);
     }
 
@@ -304,13 +304,13 @@ public final class UserUtils {
         if (user2Username == null) {
             return 1;
         }
-        if (!(user1Nickname == null || t.isBlank(user1Nickname))) {
+        if (!(user1Nickname == null || StringsJVM.isBlank(user1Nickname))) {
             user1Username = user1Nickname;
         }
-        if (!(user2Nickname == null || t.isBlank(user2Nickname))) {
+        if (!(user2Nickname == null || StringsJVM.isBlank(user2Nickname))) {
             user2Username = user2Nickname;
         }
-        int iCompareTo = t.compareTo(user1Username, user2Username, true);
+        int iCompareTo = StringsJVM.compareTo(user1Username, user2Username, true);
         return iCompareTo != 0 ? iCompareTo : (user1Id > user2Id ? 1 : (user1Id == user2Id ? 0 : -1));
     }
 }

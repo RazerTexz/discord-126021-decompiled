@@ -1,7 +1,7 @@
 package com.discord.api.fingerprint;
 
-import b.d.b.a.a;
-import d0.z.d.m;
+import b.d.b.a.outline;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: FingerprintResponse.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -10,7 +10,7 @@ public final /* data */ class FingerprintResponse {
 
     public boolean equals(Object other) {
         if (this != other) {
-            return (other instanceof FingerprintResponse) && m.areEqual(this.fingerprint, ((FingerprintResponse) other).fingerprint);
+            return (other instanceof FingerprintResponse) && Intrinsics3.areEqual(this.fingerprint, ((FingerprintResponse) other).fingerprint);
         }
         return true;
     }
@@ -29,6 +29,6 @@ public final /* data */ class FingerprintResponse {
     }
 
     public String toString() {
-        return a.J(a.U("FingerprintResponse(fingerprint="), this.fingerprint, ")");
+        return outline.J(outline.U("FingerprintResponse(fingerprint="), this.fingerprint, ")");
     }
 }

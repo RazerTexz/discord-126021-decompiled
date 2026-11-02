@@ -1,22 +1,22 @@
 package com.discord.analytics.generated.events.impression;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.analytics.generated.traits.TrackChannel;
-import com.discord.analytics.generated.traits.TrackChannelReceiver;
+import com.discord.analytics.generated.traits.TrackChannel2;
 import com.discord.analytics.generated.traits.TrackGuild;
-import com.discord.analytics.generated.traits.TrackGuildReceiver;
+import com.discord.analytics.generated.traits.TrackGuild2;
 import com.discord.analytics.generated.traits.TrackImpressionMetadata;
-import com.discord.analytics.generated.traits.TrackImpressionMetadataReceiver;
+import com.discord.analytics.generated.traits.TrackImpressionMetadata2;
 import com.discord.analytics.generated.traits.TrackLocationMetadata;
-import com.discord.analytics.generated.traits.TrackLocationMetadataReceiver;
+import com.discord.analytics.generated.traits.TrackLocationMetadata2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackImpressionChannelCallVideoGridView.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackImpressionChannelCallVideoGridView implements AnalyticsSchema, TrackBaseReceiver, TrackGuildReceiver, TrackChannelReceiver, TrackLocationMetadataReceiver, TrackImpressionMetadataReceiver {
+public final /* data */ class TrackImpressionChannelCallVideoGridView implements AnalyticsSchema, TrackBase2, TrackGuild2, TrackChannel2, TrackLocationMetadata2, TrackImpressionMetadata2 {
     private final Boolean canInvite = null;
     private final Long channelUserLimit = null;
     private final Boolean isAfkChannel = null;
@@ -28,7 +28,7 @@ public final /* data */ class TrackImpressionChannelCallVideoGridView implements
     private TrackLocationMetadata trackLocationMetadata;
     private final transient String analyticsSchemaTypeName = "impression_channel_call_video_grid_view";
 
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    @Override // com.discord.analytics.generated.traits.TrackGuild2
     public void c(TrackGuild trackGuild) {
         this.trackGuild = trackGuild;
     }
@@ -41,7 +41,7 @@ public final /* data */ class TrackImpressionChannelCallVideoGridView implements
             return false;
         }
         TrackImpressionChannelCallVideoGridView trackImpressionChannelCallVideoGridView = (TrackImpressionChannelCallVideoGridView) other;
-        return m.areEqual(this.totalParticipants, trackImpressionChannelCallVideoGridView.totalParticipants) && m.areEqual(this.canInvite, trackImpressionChannelCallVideoGridView.canInvite) && m.areEqual(this.isAfkChannel, trackImpressionChannelCallVideoGridView.isAfkChannel) && m.areEqual(this.channelUserLimit, trackImpressionChannelCallVideoGridView.channelUserLimit);
+        return Intrinsics3.areEqual(this.totalParticipants, trackImpressionChannelCallVideoGridView.totalParticipants) && Intrinsics3.areEqual(this.canInvite, trackImpressionChannelCallVideoGridView.canInvite) && Intrinsics3.areEqual(this.isAfkChannel, trackImpressionChannelCallVideoGridView.isAfkChannel) && Intrinsics3.areEqual(this.channelUserLimit, trackImpressionChannelCallVideoGridView.channelUserLimit);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -50,7 +50,7 @@ public final /* data */ class TrackImpressionChannelCallVideoGridView implements
         return this.analyticsSchemaTypeName;
     }
 
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    @Override // com.discord.analytics.generated.traits.TrackGuild2
     /* JADX INFO: renamed from: a, reason: from getter */
     public TrackGuild getTrackGuild() {
         return this.trackGuild;
@@ -68,13 +68,13 @@ public final /* data */ class TrackImpressionChannelCallVideoGridView implements
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackImpressionChannelCallVideoGridView(totalParticipants=");
+        StringBuilder sbU = outline.U("TrackImpressionChannelCallVideoGridView(totalParticipants=");
         sbU.append(this.totalParticipants);
         sbU.append(", canInvite=");
         sbU.append(this.canInvite);
         sbU.append(", isAfkChannel=");
         sbU.append(this.isAfkChannel);
         sbU.append(", channelUserLimit=");
-        return a.G(sbU, this.channelUserLimit, ")");
+        return outline.G(sbU, this.channelUserLimit, ")");
     }
 }

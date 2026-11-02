@@ -4,7 +4,7 @@ import android.os.AsyncTask;
 import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import java.util.concurrent.Executor;
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -165,7 +165,7 @@ public class MessageThreadUtil<T> implements ThreadUtil<T> {
                     } else if (i == 2) {
                         AnonymousClass1.this.val$callback.addTile(next.arg1, (TileList.Tile) next.data);
                     } else if (i != 3) {
-                        StringBuilder sbU = a.U("Unsupported message, what=");
+                        StringBuilder sbU = outline.U("Unsupported message, what=");
                         sbU.append(next.what);
                         Log.e("ThreadUtil", sbU.toString());
                     } else {
@@ -237,7 +237,7 @@ public class MessageThreadUtil<T> implements ThreadUtil<T> {
                     } else if (i == 3) {
                         AnonymousClass2.this.val$callback.loadTile(next.arg1, next.arg2);
                     } else if (i != 4) {
-                        StringBuilder sbU = a.U("Unsupported message, what=");
+                        StringBuilder sbU = outline.U("Unsupported message, what=");
                         sbU.append(next.what);
                         Log.e("ThreadUtil", sbU.toString());
                     } else {

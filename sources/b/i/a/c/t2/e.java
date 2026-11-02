@@ -1,28 +1,30 @@
 package b.i.a.c.t2;
 
-import b.i.a.c.j1;
+import b.i.a.c.Format2;
+import b.i.a.c.f3.Util2;
+import b.i.a.c.v2.DecoderReuseEvaluation;
 
 /* JADX INFO: compiled from: lambda */
 /* JADX INFO: loaded from: classes3.dex */
 public final /* synthetic */ class e implements Runnable {
-    public final /* synthetic */ r.a j;
-    public final /* synthetic */ j1 k;
-    public final /* synthetic */ b.i.a.c.v2.g l;
+    public final /* synthetic */ AudioRendererEventListener2.a j;
+    public final /* synthetic */ Format2 k;
+    public final /* synthetic */ DecoderReuseEvaluation l;
 
-    public /* synthetic */ e(r.a aVar, j1 j1Var, b.i.a.c.v2.g gVar) {
+    public /* synthetic */ e(AudioRendererEventListener2.a aVar, Format2 format2, DecoderReuseEvaluation decoderReuseEvaluation) {
         this.j = aVar;
-        this.k = j1Var;
-        this.l = gVar;
+        this.k = format2;
+        this.l = decoderReuseEvaluation;
     }
 
     @Override // java.lang.Runnable
     public final void run() {
-        r.a aVar = this.j;
-        j1 j1Var = this.k;
-        b.i.a.c.v2.g gVar = this.l;
-        r rVar = aVar.f1126b;
-        int i = b.i.a.c.f3.e0.a;
-        rVar.U(j1Var);
-        aVar.f1126b.I(j1Var, gVar);
+        AudioRendererEventListener2.a aVar = this.j;
+        Format2 format2 = this.k;
+        DecoderReuseEvaluation decoderReuseEvaluation = this.l;
+        AudioRendererEventListener2 audioRendererEventListener2 = aVar.f1126b;
+        int i = Util2.a;
+        audioRendererEventListener2.U(format2);
+        aVar.f1126b.I(format2, decoderReuseEvaluation);
     }
 }

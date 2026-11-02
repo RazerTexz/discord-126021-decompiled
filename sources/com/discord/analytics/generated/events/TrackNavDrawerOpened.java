@@ -1,14 +1,14 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackNavDrawerOpened.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackNavDrawerOpened implements AnalyticsSchema, TrackBaseReceiver {
+public final /* data */ class TrackNavDrawerOpened implements AnalyticsSchema, TrackBase2 {
     private final CharSequence drawer = null;
     private final CharSequence source = null;
     private TrackBase trackBase;
@@ -22,7 +22,7 @@ public final /* data */ class TrackNavDrawerOpened implements AnalyticsSchema, T
             return false;
         }
         TrackNavDrawerOpened trackNavDrawerOpened = (TrackNavDrawerOpened) other;
-        return m.areEqual(this.drawer, trackNavDrawerOpened.drawer) && m.areEqual(this.source, trackNavDrawerOpened.source);
+        return Intrinsics3.areEqual(this.drawer, trackNavDrawerOpened.drawer) && Intrinsics3.areEqual(this.source, trackNavDrawerOpened.source);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -39,9 +39,9 @@ public final /* data */ class TrackNavDrawerOpened implements AnalyticsSchema, T
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackNavDrawerOpened(drawer=");
+        StringBuilder sbU = outline.U("TrackNavDrawerOpened(drawer=");
         sbU.append(this.drawer);
         sbU.append(", source=");
-        return a.E(sbU, this.source, ")");
+        return outline.E(sbU, this.source, ")");
     }
 }

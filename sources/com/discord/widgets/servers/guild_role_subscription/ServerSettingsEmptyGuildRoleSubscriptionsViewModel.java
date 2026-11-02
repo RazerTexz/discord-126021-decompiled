@@ -1,15 +1,15 @@
 package com.discord.widgets.servers.guild_role_subscription;
 
 import android.content.Context;
-import b.a.d.d0;
-import b.d.b.a.a;
+import b.a.d.AppViewModel;
+import b.d.b.a.outline;
 import com.discord.api.application.Application;
 import com.discord.api.application.ApplicationType;
 import com.discord.utilities.error.Error;
 import com.discord.utilities.rest.RestAPI;
 import com.discord.utilities.rx.ObservableExtensionsKt;
-import d0.z.d.m;
-import d0.z.d.o;
+import d0.z.d.Intrinsics3;
+import d0.z.d.Lambda;
 import java.util.Iterator;
 import java.util.List;
 import kotlin.Unit;
@@ -19,12 +19,12 @@ import kotlin.jvm.internal.DefaultConstructorMarker;
 
 /* JADX INFO: compiled from: ServerSettingsEmptyGuildRoleSubscriptionsViewModel.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class ServerSettingsEmptyGuildRoleSubscriptionsViewModel extends d0<ViewState> {
+public final class ServerSettingsEmptyGuildRoleSubscriptionsViewModel extends AppViewModel<ViewState> {
     private final long guildId;
 
     /* JADX INFO: renamed from: com.discord.widgets.servers.guild_role_subscription.ServerSettingsEmptyGuildRoleSubscriptionsViewModel$1, reason: invalid class name */
     /* JADX INFO: compiled from: ServerSettingsEmptyGuildRoleSubscriptionsViewModel.kt */
-    public final class AnonymousClass1 extends o implements Function1<List<? extends Application>, Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function1<List<? extends Application>, Unit> {
         public AnonymousClass1() {
             super(1);
         }
@@ -37,14 +37,14 @@ public final class ServerSettingsEmptyGuildRoleSubscriptionsViewModel extends d0
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(List<Application> list) {
-            m.checkNotNullParameter(list, "it");
+            Intrinsics3.checkNotNullParameter(list, "it");
             ServerSettingsEmptyGuildRoleSubscriptionsViewModel.access$handleMonetizationStatus(ServerSettingsEmptyGuildRoleSubscriptionsViewModel.this, list);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.widgets.servers.guild_role_subscription.ServerSettingsEmptyGuildRoleSubscriptionsViewModel$2, reason: invalid class name */
     /* JADX INFO: compiled from: ServerSettingsEmptyGuildRoleSubscriptionsViewModel.kt */
-    public final class AnonymousClass2 extends o implements Function1<Error, Unit> {
+    public final class AnonymousClass2 extends Lambda implements Function1<Error, Unit> {
         public AnonymousClass2() {
             super(1);
         }
@@ -57,7 +57,7 @@ public final class ServerSettingsEmptyGuildRoleSubscriptionsViewModel extends d0
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(Error error) {
-            m.checkNotNullParameter(error, "it");
+            Intrinsics3.checkNotNullParameter(error, "it");
             ServerSettingsEmptyGuildRoleSubscriptionsViewModel serverSettingsEmptyGuildRoleSubscriptionsViewModel = ServerSettingsEmptyGuildRoleSubscriptionsViewModel.this;
             ServerSettingsEmptyGuildRoleSubscriptionsViewModel.access$updateViewState(serverSettingsEmptyGuildRoleSubscriptionsViewModel, ViewState.copy$default(ServerSettingsEmptyGuildRoleSubscriptionsViewModel.access$requireViewState(serverSettingsEmptyGuildRoleSubscriptionsViewModel), false, null, 2, null));
         }
@@ -99,7 +99,7 @@ public final class ServerSettingsEmptyGuildRoleSubscriptionsViewModel extends d0
                 return false;
             }
             ViewState viewState = (ViewState) other;
-            return this.isLoading == viewState.isLoading && m.areEqual(this.isMonetizationEnabled, viewState.isMonetizationEnabled);
+            return this.isLoading == viewState.isLoading && Intrinsics3.areEqual(this.isMonetizationEnabled, viewState.isMonetizationEnabled);
         }
 
         /* JADX INFO: renamed from: component1, reason: from getter */
@@ -136,10 +136,10 @@ public final class ServerSettingsEmptyGuildRoleSubscriptionsViewModel extends d0
         }
 
         public String toString() {
-            StringBuilder sbU = a.U("ViewState(isLoading=");
+            StringBuilder sbU = outline.U("ViewState(isLoading=");
             sbU.append(this.isLoading);
             sbU.append(", isMonetizationEnabled=");
-            return a.D(sbU, this.isMonetizationEnabled, ")");
+            return outline.D(sbU, this.isMonetizationEnabled, ")");
         }
 
         public /* synthetic */ ViewState(boolean z2, Boolean bool, int i, DefaultConstructorMarker defaultConstructorMarker) {
@@ -184,7 +184,7 @@ public final class ServerSettingsEmptyGuildRoleSubscriptionsViewModel extends d0
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public ServerSettingsEmptyGuildRoleSubscriptionsViewModel(long j, RestAPI restAPI) {
         super(new ViewState(false, null, 3, null));
-        m.checkNotNullParameter(restAPI, "restApi");
+        Intrinsics3.checkNotNullParameter(restAPI, "restApi");
         this.guildId = j;
         ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.restSubscribeOn$default(restAPI.getGuildApplications(j, false), false, 1, null), this, null, 2, null), ServerSettingsEmptyGuildRoleSubscriptionsViewModel.class, (Context) null, (Function1) null, new AnonymousClass2(), (Function0) null, (Function0) null, new AnonymousClass1(), 54, (Object) null);
     }

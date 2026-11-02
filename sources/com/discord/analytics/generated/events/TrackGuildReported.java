@@ -1,19 +1,19 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.analytics.generated.traits.TrackGuild;
-import com.discord.analytics.generated.traits.TrackGuildReceiver;
+import com.discord.analytics.generated.traits.TrackGuild2;
 import com.discord.analytics.generated.traits.TrackLocationMetadata;
-import com.discord.analytics.generated.traits.TrackLocationMetadataReceiver;
+import com.discord.analytics.generated.traits.TrackLocationMetadata2;
 import com.discord.api.science.AnalyticsSchema;
 import com.discord.models.domain.ModelAuditLogEntry;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackGuildReported.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackGuildReported implements AnalyticsSchema, TrackBaseReceiver, TrackLocationMetadataReceiver, TrackGuildReceiver {
+public final /* data */ class TrackGuildReported implements AnalyticsSchema, TrackBase2, TrackLocationMetadata2, TrackGuild2 {
     private final CharSequence description = null;
     private final Long reasonEnum = null;
     private final Long reportId = null;
@@ -25,7 +25,7 @@ public final /* data */ class TrackGuildReported implements AnalyticsSchema, Tra
     private TrackLocationMetadata trackLocationMetadata;
     private final transient String analyticsSchemaTypeName = "guild_reported";
 
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    @Override // com.discord.analytics.generated.traits.TrackGuild2
     public void c(TrackGuild trackGuild) {
         this.trackGuild = trackGuild;
     }
@@ -38,7 +38,7 @@ public final /* data */ class TrackGuildReported implements AnalyticsSchema, Tra
             return false;
         }
         TrackGuildReported trackGuildReported = (TrackGuildReported) other;
-        return m.areEqual(this.reportType, trackGuildReported.reportType) && m.areEqual(this.reportSubType, trackGuildReported.reportSubType) && m.areEqual(this.subject, trackGuildReported.subject) && m.areEqual(this.description, trackGuildReported.description) && m.areEqual(this.reasonEnum, trackGuildReported.reasonEnum) && m.areEqual(this.reportId, trackGuildReported.reportId);
+        return Intrinsics3.areEqual(this.reportType, trackGuildReported.reportType) && Intrinsics3.areEqual(this.reportSubType, trackGuildReported.reportSubType) && Intrinsics3.areEqual(this.subject, trackGuildReported.subject) && Intrinsics3.areEqual(this.description, trackGuildReported.description) && Intrinsics3.areEqual(this.reasonEnum, trackGuildReported.reasonEnum) && Intrinsics3.areEqual(this.reportId, trackGuildReported.reportId);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -47,7 +47,7 @@ public final /* data */ class TrackGuildReported implements AnalyticsSchema, Tra
         return this.analyticsSchemaTypeName;
     }
 
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    @Override // com.discord.analytics.generated.traits.TrackGuild2
     /* JADX INFO: renamed from: a, reason: from getter */
     public TrackGuild getTrackGuild() {
         return this.trackGuild;
@@ -69,7 +69,7 @@ public final /* data */ class TrackGuildReported implements AnalyticsSchema, Tra
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackGuildReported(reportType=");
+        StringBuilder sbU = outline.U("TrackGuildReported(reportType=");
         sbU.append(this.reportType);
         sbU.append(", reportSubType=");
         sbU.append(this.reportSubType);
@@ -80,6 +80,6 @@ public final /* data */ class TrackGuildReported implements AnalyticsSchema, Tra
         sbU.append(", reasonEnum=");
         sbU.append(this.reasonEnum);
         sbU.append(", reportId=");
-        return a.G(sbU, this.reportId, ")");
+        return outline.G(sbU, this.reportId, ")");
     }
 }

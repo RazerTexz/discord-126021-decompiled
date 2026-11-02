@@ -1,20 +1,20 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.analytics.generated.traits.TrackLocationMetadata;
-import com.discord.analytics.generated.traits.TrackLocationMetadataReceiver;
+import com.discord.analytics.generated.traits.TrackLocationMetadata2;
 import com.discord.analytics.generated.traits.TrackPaymentMetadata;
-import com.discord.analytics.generated.traits.TrackPaymentMetadataReceiver;
+import com.discord.analytics.generated.traits.TrackPaymentMetadata2;
 import com.discord.analytics.generated.traits.TrackStoreSkuMetadata;
-import com.discord.analytics.generated.traits.TrackStoreSkuMetadataReceiver;
+import com.discord.analytics.generated.traits.TrackStoreSkuMetadata2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackStoreDirectoryHeroViewed.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackStoreDirectoryHeroViewed implements AnalyticsSchema, TrackBaseReceiver, TrackLocationMetadataReceiver, TrackStoreSkuMetadataReceiver, TrackPaymentMetadataReceiver {
+public final /* data */ class TrackStoreDirectoryHeroViewed implements AnalyticsSchema, TrackBase2, TrackLocationMetadata2, TrackStoreSkuMetadata2, TrackPaymentMetadata2 {
     private final Long cardIndex = null;
     private final CharSequence cardType = null;
     private final CharSequence loadId = null;
@@ -32,7 +32,7 @@ public final /* data */ class TrackStoreDirectoryHeroViewed implements Analytics
             return false;
         }
         TrackStoreDirectoryHeroViewed trackStoreDirectoryHeroViewed = (TrackStoreDirectoryHeroViewed) other;
-        return m.areEqual(this.loadId, trackStoreDirectoryHeroViewed.loadId) && m.areEqual(this.cardIndex, trackStoreDirectoryHeroViewed.cardIndex) && m.areEqual(this.cardType, trackStoreDirectoryHeroViewed.cardType);
+        return Intrinsics3.areEqual(this.loadId, trackStoreDirectoryHeroViewed.loadId) && Intrinsics3.areEqual(this.cardIndex, trackStoreDirectoryHeroViewed.cardIndex) && Intrinsics3.areEqual(this.cardType, trackStoreDirectoryHeroViewed.cardType);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -51,11 +51,11 @@ public final /* data */ class TrackStoreDirectoryHeroViewed implements Analytics
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackStoreDirectoryHeroViewed(loadId=");
+        StringBuilder sbU = outline.U("TrackStoreDirectoryHeroViewed(loadId=");
         sbU.append(this.loadId);
         sbU.append(", cardIndex=");
         sbU.append(this.cardIndex);
         sbU.append(", cardType=");
-        return a.E(sbU, this.cardType, ")");
+        return outline.E(sbU, this.cardType, ")");
     }
 }

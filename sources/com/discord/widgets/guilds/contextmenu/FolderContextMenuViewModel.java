@@ -2,21 +2,22 @@ package com.discord.widgets.guilds.contextmenu;
 
 import android.content.Context;
 import androidx.annotation.MainThread;
-import b.a.d.d0;
-import b.d.b.a.a;
+import b.a.d.AppViewModel;
+import b.d.b.a.outline;
 import com.discord.models.domain.ModelGuildFolder;
 import com.discord.stores.StoreReadStates;
 import com.discord.stores.StoreStream;
 import com.discord.stores.StoreUserSettings;
 import com.discord.utilities.rest.RestAPI;
 import com.discord.utilities.rx.ObservableExtensionsKt;
-import d0.t.n;
-import d0.t.n0;
-import d0.t.u;
-import d0.z.d.k;
-import d0.z.d.m;
-import d0.z.d.o;
-import j0.l.a.q;
+import d0.t.Collections2;
+import d0.t.Iterables2;
+import d0.t.Sets5;
+import d0.t._Collections;
+import d0.z.d.FunctionReferenceImpl;
+import d0.z.d.Intrinsics3;
+import d0.z.d.Lambda;
+import j0.l.a.OnSubscribeFromIterable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
@@ -31,7 +32,7 @@ import rx.subjects.PublishSubject;
 
 /* JADX INFO: compiled from: FolderContextMenuViewModel.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class FolderContextMenuViewModel extends d0<ViewState> {
+public final class FolderContextMenuViewModel extends AppViewModel<ViewState> {
 
     /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
     public static final Companion INSTANCE = new Companion(null);
@@ -44,7 +45,7 @@ public final class FolderContextMenuViewModel extends d0<ViewState> {
 
     /* JADX INFO: renamed from: com.discord.widgets.guilds.contextmenu.FolderContextMenuViewModel$1, reason: invalid class name */
     /* JADX INFO: compiled from: FolderContextMenuViewModel.kt */
-    public final /* synthetic */ class AnonymousClass1 extends k implements Function1<StoreState, Unit> {
+    public final /* synthetic */ class AnonymousClass1 extends FunctionReferenceImpl implements Function1<StoreState, Unit> {
         public AnonymousClass1(FolderContextMenuViewModel folderContextMenuViewModel) {
             super(1, folderContextMenuViewModel, FolderContextMenuViewModel.class, "handleStoreState", "handleStoreState(Lcom/discord/widgets/guilds/contextmenu/FolderContextMenuViewModel$StoreState;)V", 0);
         }
@@ -57,14 +58,14 @@ public final class FolderContextMenuViewModel extends d0<ViewState> {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(StoreState storeState) {
-            m.checkNotNullParameter(storeState, "p1");
+            Intrinsics3.checkNotNullParameter(storeState, "p1");
             FolderContextMenuViewModel.access$handleStoreState((FolderContextMenuViewModel) this.receiver, storeState);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.widgets.guilds.contextmenu.FolderContextMenuViewModel$onMarkAsReadClicked$1, reason: invalid class name */
     /* JADX INFO: compiled from: FolderContextMenuViewModel.kt */
-    public final class AnonymousClass1 extends o implements Function1<List<Void>, Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function1<List<Void>, Unit> {
         public AnonymousClass1() {
             super(1);
         }
@@ -92,8 +93,8 @@ public final class FolderContextMenuViewModel extends d0<ViewState> {
         }
 
         private final Observable<StoreState> observeStoreState(long folderId, StoreUserSettings userSettingsStore, StoreReadStates readStateStore) {
-            Observable<StoreState> observableJ = Observable.j(userSettingsStore.observeGuildFolders(), readStateStore.getUnreadGuildIds(), new FolderContextMenuViewModel$Companion$observeStoreState$1(folderId));
-            m.checkNotNullExpressionValue(observableJ, "Observable.combineLatest…      )\n        }\n      }");
+            Observable<StoreState> observableJ = Observable.j(userSettingsStore.observeGuildFolders(), readStateStore.getUnreadGuildIds(), new FolderContextMenuViewModel2(folderId));
+            Intrinsics3.checkNotNullExpressionValue(observableJ, "Observable.combineLatest…      )\n        }\n      }");
             return observableJ;
         }
 
@@ -142,8 +143,8 @@ public final class FolderContextMenuViewModel extends d0<ViewState> {
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
             public Valid(ModelGuildFolder modelGuildFolder, Set<Long> set) {
                 super(null);
-                m.checkNotNullParameter(modelGuildFolder, "folder");
-                m.checkNotNullParameter(set, "unreadGuildIds");
+                Intrinsics3.checkNotNullParameter(modelGuildFolder, "folder");
+                Intrinsics3.checkNotNullParameter(set, "unreadGuildIds");
                 this.folder = modelGuildFolder;
                 this.unreadGuildIds = set;
             }
@@ -164,8 +165,8 @@ public final class FolderContextMenuViewModel extends d0<ViewState> {
             }
 
             public final Valid copy(ModelGuildFolder folder, Set<Long> unreadGuildIds) {
-                m.checkNotNullParameter(folder, "folder");
-                m.checkNotNullParameter(unreadGuildIds, "unreadGuildIds");
+                Intrinsics3.checkNotNullParameter(folder, "folder");
+                Intrinsics3.checkNotNullParameter(unreadGuildIds, "unreadGuildIds");
                 return new Valid(folder, unreadGuildIds);
             }
 
@@ -177,7 +178,7 @@ public final class FolderContextMenuViewModel extends d0<ViewState> {
                     return false;
                 }
                 Valid valid = (Valid) other;
-                return m.areEqual(this.folder, valid.folder) && m.areEqual(this.unreadGuildIds, valid.unreadGuildIds);
+                return Intrinsics3.areEqual(this.folder, valid.folder) && Intrinsics3.areEqual(this.unreadGuildIds, valid.unreadGuildIds);
             }
 
             /* JADX INFO: renamed from: component1, reason: from getter */
@@ -201,10 +202,10 @@ public final class FolderContextMenuViewModel extends d0<ViewState> {
             }
 
             public String toString() {
-                StringBuilder sbU = a.U("Valid(folder=");
+                StringBuilder sbU = outline.U("Valid(folder=");
                 sbU.append(this.folder);
                 sbU.append(", unreadGuildIds=");
-                return a.N(sbU, this.unreadGuildIds, ")");
+                return outline.N(sbU, this.unreadGuildIds, ")");
             }
         }
 
@@ -236,7 +237,7 @@ public final class FolderContextMenuViewModel extends d0<ViewState> {
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
             public Valid(ModelGuildFolder modelGuildFolder, boolean z2) {
                 super(null);
-                m.checkNotNullParameter(modelGuildFolder, "folder");
+                Intrinsics3.checkNotNullParameter(modelGuildFolder, "folder");
                 this.folder = modelGuildFolder;
                 this.showMarkAsRead = z2;
             }
@@ -252,7 +253,7 @@ public final class FolderContextMenuViewModel extends d0<ViewState> {
             }
 
             public final Valid copy(ModelGuildFolder folder, boolean showMarkAsRead) {
-                m.checkNotNullParameter(folder, "folder");
+                Intrinsics3.checkNotNullParameter(folder, "folder");
                 return new Valid(folder, showMarkAsRead);
             }
 
@@ -264,7 +265,7 @@ public final class FolderContextMenuViewModel extends d0<ViewState> {
                     return false;
                 }
                 Valid valid = (Valid) other;
-                return m.areEqual(this.folder, valid.folder) && this.showMarkAsRead == valid.showMarkAsRead;
+                return Intrinsics3.areEqual(this.folder, valid.folder) && this.showMarkAsRead == valid.showMarkAsRead;
             }
 
             /* JADX INFO: renamed from: component1, reason: from getter */
@@ -302,10 +303,10 @@ public final class FolderContextMenuViewModel extends d0<ViewState> {
             }
 
             public String toString() {
-                StringBuilder sbU = a.U("Valid(folder=");
+                StringBuilder sbU = outline.U("Valid(folder=");
                 sbU.append(this.folder);
                 sbU.append(", showMarkAsRead=");
-                return a.O(sbU, this.showMarkAsRead, ")");
+                return outline.O(sbU, this.showMarkAsRead, ")");
             }
         }
 
@@ -343,7 +344,7 @@ public final class FolderContextMenuViewModel extends d0<ViewState> {
     @MainThread
     private final void handleStoreState(StoreState storeState) {
         if (!(storeState instanceof StoreState.Valid)) {
-            if (m.areEqual(storeState, StoreState.Invalid.INSTANCE)) {
+            if (Intrinsics3.areEqual(storeState, StoreState.Invalid.INSTANCE)) {
                 updateViewState(ViewState.Invalid.INSTANCE);
                 return;
             }
@@ -369,19 +370,19 @@ public final class FolderContextMenuViewModel extends d0<ViewState> {
 
     public final Observable<Event> observeEvents() {
         PublishSubject<Event> publishSubject = this.eventSubject;
-        m.checkNotNullExpressionValue(publishSubject, "eventSubject");
+        Intrinsics3.checkNotNullExpressionValue(publishSubject, "eventSubject");
         return publishSubject;
     }
 
     public final void onMarkAsReadClicked() {
-        Set setIntersect = u.intersect(this.guildIds, this.unreadGuildIds);
-        ArrayList arrayList = new ArrayList(d0.t.o.collectionSizeOrDefault(setIntersect, 10));
+        Set setIntersect = _Collections.intersect(this.guildIds, this.unreadGuildIds);
+        ArrayList arrayList = new ArrayList(Iterables2.collectionSizeOrDefault(setIntersect, 10));
         Iterator it = setIntersect.iterator();
         while (it.hasNext()) {
             arrayList.add(ObservableExtensionsKt.restSubscribeOn$default(this.restAPI.ackGuild(((Number) it.next()).longValue()), false, 1, null));
         }
-        Observable observableF0 = Observable.H(Observable.h0(new q(arrayList))).f0();
-        m.checkNotNullExpressionValue(observableF0, "Observable\n        .merg…tCalls)\n        .toList()");
+        Observable observableF0 = Observable.H(Observable.h0(new OnSubscribeFromIterable(arrayList))).f0();
+        Intrinsics3.checkNotNullExpressionValue(observableF0, "Observable\n        .merg…tCalls)\n        .toList()");
         ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(observableF0, this, null, 2, null), FolderContextMenuViewModel.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass1(), 62, (Object) null);
     }
 
@@ -393,14 +394,14 @@ public final class FolderContextMenuViewModel extends d0<ViewState> {
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public FolderContextMenuViewModel(long j, RestAPI restAPI, Observable<StoreState> observable) {
         super(null);
-        m.checkNotNullParameter(restAPI, "restAPI");
-        m.checkNotNullParameter(observable, "storeStateObservable");
+        Intrinsics3.checkNotNullParameter(restAPI, "restAPI");
+        Intrinsics3.checkNotNullParameter(observable, "storeStateObservable");
         this.folderId = j;
         this.restAPI = restAPI;
         this.storeStateObservable = observable;
         this.eventSubject = PublishSubject.k0();
-        this.guildIds = n.emptyList();
-        this.unreadGuildIds = n0.emptySet();
+        this.guildIds = Collections2.emptyList();
+        this.unreadGuildIds = Sets5.emptySet();
         ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(observable, this, null, 2, null), FolderContextMenuViewModel.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass1(this), 62, (Object) null);
     }
 }

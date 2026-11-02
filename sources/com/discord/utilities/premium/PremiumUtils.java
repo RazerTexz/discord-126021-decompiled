@@ -5,9 +5,9 @@ import android.view.View;
 import androidx.annotation.DrawableRes;
 import androidx.core.app.NotificationCompat;
 import androidx.fragment.app.FragmentManager;
-import b.a.a.b.e;
-import b.a.k.b;
-import b.d.b.a.a;
+import b.a.a.b.GuildBoostUpsellDialog;
+import b.a.k.FormatUtils;
+import b.d.b.a.outline;
 import com.android.billingclient.api.Purchase;
 import com.android.billingclient.api.SkuDetails;
 import com.discord.R;
@@ -28,14 +28,14 @@ import com.discord.utilities.billing.GooglePlayBillingManager;
 import com.discord.utilities.color.ColorCompat;
 import com.discord.utilities.drawable.DrawableCompat;
 import com.discord.utilities.gifting.GiftStyle;
-import com.discord.utilities.gifting.GiftStyleKt;
+import com.discord.utilities.gifting.GiftStyle3;
 import com.discord.utilities.logging.Logger;
 import com.discord.utilities.uri.UriHandler;
 import com.discord.utilities.user.UserUtils;
-import d0.t.n0;
-import d0.t.o0;
-import d0.z.d.m;
-import d0.z.d.o;
+import d0.t.Sets5;
+import d0.t._Sets;
+import d0.z.d.Intrinsics3;
+import d0.z.d.Lambda;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
@@ -60,7 +60,7 @@ public final class PremiumUtils {
 
     /* JADX INFO: renamed from: com.discord.utilities.premium.PremiumUtils$getBoostFeatureBadgeDataForGuildFeature$1, reason: invalid class name */
     /* JADX INFO: compiled from: PremiumUtils.kt */
-    public final class AnonymousClass1 extends o implements Function1<View, Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function1<View, Unit> {
         public final /* synthetic */ Long $channelId;
         public final /* synthetic */ FragmentManager $fragmentManager;
         public final /* synthetic */ Guild $guild;
@@ -85,10 +85,10 @@ public final class PremiumUtils {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(View view) {
-            m.checkNotNullParameter(view, "it");
+            Intrinsics3.checkNotNullParameter(view, "it");
             Guild guild = this.$guild;
             if (guild != null) {
-                e.INSTANCE.a(this.$fragmentManager, guild.getId(), this.$channelId, this.$minimumBoostTier, this.$locationTrait);
+                GuildBoostUpsellDialog.INSTANCE.a(this.$fragmentManager, guild.getId(), this.$channelId, this.$minimumBoostTier, this.$locationTrait);
             }
         }
     }
@@ -102,7 +102,7 @@ public final class PremiumUtils {
 
         /* JADX WARN: Multi-variable type inference failed */
         public BoostFeatureBadgeData(Function1<? super View, Unit> function1, int i, CharSequence charSequence, int i2) {
-            m.checkNotNullParameter(charSequence, NotificationCompat.MessagingStyle.Message.KEY_TEXT);
+            Intrinsics3.checkNotNullParameter(charSequence, NotificationCompat.MessagingStyle.Message.KEY_TEXT);
             this.onClickListener = function1;
             this.iconColor = i;
             this.text = charSequence;
@@ -131,7 +131,7 @@ public final class PremiumUtils {
         }
 
         public final BoostFeatureBadgeData copy(Function1<? super View, Unit> onClickListener, int iconColor, CharSequence text, int textColor) {
-            m.checkNotNullParameter(text, NotificationCompat.MessagingStyle.Message.KEY_TEXT);
+            Intrinsics3.checkNotNullParameter(text, NotificationCompat.MessagingStyle.Message.KEY_TEXT);
             return new BoostFeatureBadgeData(onClickListener, iconColor, text, textColor);
         }
 
@@ -143,7 +143,7 @@ public final class PremiumUtils {
                 return false;
             }
             BoostFeatureBadgeData boostFeatureBadgeData = (BoostFeatureBadgeData) other;
-            return m.areEqual(this.onClickListener, boostFeatureBadgeData.onClickListener) && this.iconColor == boostFeatureBadgeData.iconColor && m.areEqual(this.text, boostFeatureBadgeData.text) && this.textColor == boostFeatureBadgeData.textColor;
+            return Intrinsics3.areEqual(this.onClickListener, boostFeatureBadgeData.onClickListener) && this.iconColor == boostFeatureBadgeData.iconColor && Intrinsics3.areEqual(this.text, boostFeatureBadgeData.text) && this.textColor == boostFeatureBadgeData.textColor;
         }
 
         /* JADX INFO: renamed from: component2, reason: from getter */
@@ -185,14 +185,14 @@ public final class PremiumUtils {
         }
 
         public String toString() {
-            StringBuilder sbU = a.U("BoostFeatureBadgeData(onClickListener=");
+            StringBuilder sbU = outline.U("BoostFeatureBadgeData(onClickListener=");
             sbU.append(this.onClickListener);
             sbU.append(", iconColor=");
             sbU.append(this.iconColor);
             sbU.append(", text=");
             sbU.append(this.text);
             sbU.append(", textColor=");
-            return a.B(sbU, this.textColor, ")");
+            return outline.B(sbU, this.textColor, ")");
         }
     }
 
@@ -209,25 +209,25 @@ public final class PremiumUtils {
     }
 
     static {
-        Set<GuildFeature> of = n0.setOf((Object[]) new GuildFeature[]{GuildFeature.INVITE_SPLASH, GuildFeature.ANIMATED_ICON});
+        Set<GuildFeature> of = Sets5.setOf((Object[]) new GuildFeature[]{GuildFeature.INVITE_SPLASH, GuildFeature.ANIMATED_ICON});
         tier1BoostFeatures = of;
-        Set<GuildFeature> setPlus = o0.plus((Set) of, (Iterable) n0.setOf((Object[]) new GuildFeature[]{GuildFeature.BANNER, GuildFeature.PRIVATE_THREADS, GuildFeature.ROLE_ICONS}));
+        Set<GuildFeature> setPlus = _Sets.plus((Set) of, (Iterable) Sets5.setOf((Object[]) new GuildFeature[]{GuildFeature.BANNER, GuildFeature.PRIVATE_THREADS, GuildFeature.ROLE_ICONS}));
         tier2BoostFeatures = setPlus;
-        tier3BoostFeatures = o0.plus((Set) setPlus, (Iterable) n0.setOf((Object[]) new GuildFeature[]{GuildFeature.VANITY_URL, GuildFeature.ANIMATED_BANNER}));
+        tier3BoostFeatures = _Sets.plus((Set) setPlus, (Iterable) Sets5.setOf((Object[]) new GuildFeature[]{GuildFeature.VANITY_URL, GuildFeature.ANIMATED_BANNER}));
     }
 
     private PremiumUtils() {
     }
 
     public final boolean doesGuildHaveEnoughBoostsForFeature(Guild guild, GuildFeature feature) {
-        m.checkNotNullParameter(feature, "feature");
+        Intrinsics3.checkNotNullParameter(feature, "feature");
         int premiumTier = guild != null ? guild.getPremiumTier() : -1;
         Integer minimumBoostTierForGuildFeature = getMinimumBoostTierForGuildFeature(feature);
         return premiumTier >= (minimumBoostTierForGuildFeature != null ? minimumBoostTierForGuildFeature.intValue() : 0);
     }
 
     public final Purchase findPurchaseForSkuName(List<? extends Purchase> purchases, String skuName) {
-        m.checkNotNullParameter(skuName, "skuName");
+        Intrinsics3.checkNotNullParameter(skuName, "skuName");
         Object obj = null;
         if (purchases == null) {
             return null;
@@ -243,12 +243,12 @@ public final class PremiumUtils {
 
     public final ModelSubscription findSubscriptionForSku(List<ModelSubscription> subscriptions, String skuName) {
         Object next;
-        m.checkNotNullParameter(subscriptions, "subscriptions");
-        m.checkNotNullParameter(skuName, "skuName");
+        Intrinsics3.checkNotNullParameter(subscriptions, "subscriptions");
+        Intrinsics3.checkNotNullParameter(skuName, "skuName");
         Iterator<T> it = subscriptions.iterator();
         while (it.hasNext()) {
             next = it.next();
-            if (m.areEqual(((ModelSubscription) next).getPaymentGatewayPlanId(), skuName)) {
+            if (Intrinsics3.areEqual(((ModelSubscription) next).getPaymentGatewayPlanId(), skuName)) {
                 return (ModelSubscription) next;
             }
         }
@@ -262,12 +262,12 @@ public final class PremiumUtils {
     }
 
     public final BoostFeatureBadgeData getBoostFeatureBadgeDataForGuildFeature(Guild guild, Long channelId, GuildFeature guildFeature, Context context, FragmentManager fragmentManager, Function1<? super View, Unit> onEnabledClickListener, Traits.Location locationTrait) {
-        m.checkNotNullParameter(guildFeature, "guildFeature");
-        m.checkNotNullParameter(context, "context");
-        m.checkNotNullParameter(fragmentManager, "fragmentManager");
+        Intrinsics3.checkNotNullParameter(guildFeature, "guildFeature");
+        Intrinsics3.checkNotNullParameter(context, "context");
+        Intrinsics3.checkNotNullParameter(fragmentManager, "fragmentManager");
         if (guild != null && guild.hasFeature(guildFeature)) {
             String string = context.getString(R.string.guild_settings_premium_guild_unlocked);
-            m.checkNotNullExpressionValue(string, "context.getString(R.stri…s_premium_guild_unlocked)");
+            Intrinsics3.checkNotNullExpressionValue(string, "context.getString(R.stri…s_premium_guild_unlocked)");
             return new BoostFeatureBadgeData(onEnabledClickListener, ColorCompat.getColor(context, R.color.guild_boosting_pink), string, ColorCompat.getThemedColor(context, R.attr.colorTextNormal));
         }
         Integer minimumBoostTierForGuildFeature = getMinimumBoostTierForGuildFeature(guildFeature);
@@ -280,21 +280,21 @@ public final class PremiumUtils {
     }
 
     public final CharSequence getBoostTierShortText(Context context, Integer premiumTier) {
-        m.checkNotNullParameter(context, "context");
+        Intrinsics3.checkNotNullParameter(context, "context");
         if (premiumTier != null && premiumTier.intValue() == 1) {
-            return b.h(context, R.string.premium_guild_tier_1_short, new Object[0], null, 4);
+            return FormatUtils.h(context, R.string.premium_guild_tier_1_short, new Object[0], null, 4);
         }
         if (premiumTier != null && premiumTier.intValue() == 2) {
-            return b.h(context, R.string.premium_guild_tier_2_short, new Object[0], null, 4);
+            return FormatUtils.h(context, R.string.premium_guild_tier_2_short, new Object[0], null, 4);
         }
         if (premiumTier != null && premiumTier.intValue() == 3) {
-            return b.h(context, R.string.premium_guild_tier_3_short, new Object[0], null, 4);
+            return FormatUtils.h(context, R.string.premium_guild_tier_3_short, new Object[0], null, 4);
         }
         return null;
     }
 
     public final int getGuildBoostCountFromSubscription(ModelSubscription modelSubscription) {
-        m.checkNotNullParameter(modelSubscription, "$this$getGuildBoostCountFromSubscription");
+        Intrinsics3.checkNotNullParameter(modelSubscription, "$this$getGuildBoostCountFromSubscription");
         return (modelSubscription.getPremiumBasePlanId() == SubscriptionPlanType.PREMIUM_MONTH_TIER_2.getPlanId() || modelSubscription.getPremiumBasePlanId() == SubscriptionPlanType.PREMIUM_YEAR_TIER_2.getPlanId() || modelSubscription.getPremiumBasePlanId() == SubscriptionPlanType.PREMIUM_3_MONTH_TIER_2.getPlanId() || modelSubscription.getPremiumBasePlanId() == SubscriptionPlanType.PREMIUM_6_MONTH_TIER_2.getPlanId()) ? 2 : 0;
     }
 
@@ -312,7 +312,7 @@ public final class PremiumUtils {
     }
 
     public final int getGuildEmojiMaxCount(Guild guild) {
-        m.checkNotNullParameter(guild, "guild");
+        Intrinsics3.checkNotNullParameter(guild, "guild");
         return getGuildEmojiMaxCount(guild.getPremiumTier(), guild.getFeatures().contains(GuildFeature.MORE_EMOJI));
     }
 
@@ -350,7 +350,7 @@ public final class PremiumUtils {
     }
 
     public final Integer getMinimumBoostTierForGuildFeature(GuildFeature guildFeature) {
-        m.checkNotNullParameter(guildFeature, "guildFeature");
+        Intrinsics3.checkNotNullParameter(guildFeature, "guildFeature");
         if (tier1BoostFeatures.contains(guildFeature)) {
             return 1;
         }
@@ -362,15 +362,15 @@ public final class PremiumUtils {
 
     @DrawableRes
     public final int getNitroGiftBackground(ModelGift gift, Context context) {
-        m.checkNotNullParameter(gift, "gift");
-        m.checkNotNullParameter(context, "context");
-        return GiftStyleKt.hasCustomStyle(gift) ? ColorCompat.getThemedColor(context, R.attr.colorBackgroundSecondaryAlt) : DrawableCompat.getThemedDrawableRes(context, R.attr.gift_nitro_splash, R.drawable.img_nitro_splash_dark);
+        Intrinsics3.checkNotNullParameter(gift, "gift");
+        Intrinsics3.checkNotNullParameter(context, "context");
+        return GiftStyle3.hasCustomStyle(gift) ? ColorCompat.getThemedColor(context, R.attr.colorBackgroundSecondaryAlt) : DrawableCompat.getThemedDrawableRes(context, R.attr.gift_nitro_splash, R.drawable.img_nitro_splash_dark);
     }
 
     @DrawableRes
     public final int getNitroGiftIcon(ModelGift gift) {
-        m.checkNotNullParameter(gift, "gift");
-        GiftStyle customStyle = GiftStyleKt.getCustomStyle(gift);
+        Intrinsics3.checkNotNullParameter(gift, "gift");
+        GiftStyle customStyle = GiftStyle3.getCustomStyle(gift);
         if (customStyle != null) {
             return customStyle.getStaticRes();
         }
@@ -379,25 +379,25 @@ public final class PremiumUtils {
     }
 
     public final CharSequence getPlanPriceText(Context context, SkuDetails skuDetails) {
-        m.checkNotNullParameter(context, "context");
-        m.checkNotNullParameter(skuDetails, "skuDetails");
+        Intrinsics3.checkNotNullParameter(context, "context");
+        Intrinsics3.checkNotNullParameter(skuDetails, "skuDetails");
         String strOptString = skuDetails.f2006b.optString("subscriptionPeriod");
         int iHashCode = strOptString.hashCode();
         if (iHashCode != 78476) {
             if (iHashCode == 78488 && strOptString.equals(YEARLY_ISO8601)) {
-                return b.h(context, R.string.billing_price_per_year, new Object[]{skuDetails.b()}, null, 4);
+                return FormatUtils.h(context, R.string.billing_price_per_year, new Object[]{skuDetails.b()}, null, 4);
             }
         } else if (strOptString.equals(MONTHLY_ISO8601)) {
-            return b.h(context, R.string.billing_price_per_month, new Object[]{skuDetails.b()}, null, 4);
+            return FormatUtils.h(context, R.string.billing_price_per_month, new Object[]{skuDetails.b()}, null, 4);
         }
         return "";
     }
 
     public final String getSkuPrice(String paymentGatewaySkuId) {
-        m.checkNotNullParameter(paymentGatewaySkuId, "paymentGatewaySkuId");
+        Intrinsics3.checkNotNullParameter(paymentGatewaySkuId, "paymentGatewaySkuId");
         StoreGooglePlaySkuDetails.State state = StoreStream.INSTANCE.getGooglePlaySkuDetails().getSkuStateSnapshot();
         if (!(state instanceof StoreGooglePlaySkuDetails.State.Loaded)) {
-            Logger.w$default(AppLog.g, a.w("SkuDetails not loaded. Unable to get price for sku id ", paymentGatewaySkuId), null, 2, null);
+            Logger.w$default(AppLog.g, outline.w("SkuDetails not loaded. Unable to get price for sku id ", paymentGatewaySkuId), null, 2, null);
             return null;
         }
         SkuDetails skuDetails = ((StoreGooglePlaySkuDetails.State.Loaded) state).getSkuDetails().get(paymentGatewaySkuId);
@@ -408,13 +408,13 @@ public final class PremiumUtils {
     }
 
     public final boolean isNitroSku(ModelSku sku) {
-        m.checkNotNullParameter(sku, "sku");
+        Intrinsics3.checkNotNullParameter(sku, "sku");
         return sku.getSkuCategory() == ModelSku.SkuCategory.NITRO_CLASSIC || sku.getSkuCategory() == ModelSku.SkuCategory.NITRO;
     }
 
     public final boolean isPremiumTierAtLeast(PremiumTier premiumTier, PremiumTier minimumLevel) {
-        m.checkNotNullParameter(premiumTier, "premiumTier");
-        m.checkNotNullParameter(minimumLevel, "minimumLevel");
+        Intrinsics3.checkNotNullParameter(premiumTier, "premiumTier");
+        Intrinsics3.checkNotNullParameter(minimumLevel, "minimumLevel");
         return premiumTier.ordinal() >= minimumLevel.ordinal();
     }
 
@@ -423,14 +423,14 @@ public final class PremiumUtils {
     }
 
     public final void openAppleBilling(Context context) {
-        m.checkNotNullParameter(context, "context");
-        UriHandler.handle$default(UriHandler.INSTANCE, context, b.h(context, R.string.apple_billing_url, new Object[0], null, 4).toString(), false, false, null, 28, null);
+        Intrinsics3.checkNotNullParameter(context, "context");
+        UriHandler.handle$default(UriHandler.INSTANCE, context, FormatUtils.h(context, R.string.apple_billing_url, new Object[0], null, 4).toString(), false, false, null, 28, null);
     }
 
     public final void openGooglePlayBilling(Context context, String skuName) {
         String strP;
-        m.checkNotNullParameter(context, "context");
-        if (skuName == null || (strP = a.P(new Object[]{skuName, context.getPackageName()}, 2, GooglePlayBillingManager.PLAY_STORE_SUBSCRIPTION_DEEPLINK_URL, "java.lang.String.format(this, *args)")) == null) {
+        Intrinsics3.checkNotNullParameter(context, "context");
+        if (skuName == null || (strP = outline.P(new Object[]{skuName, context.getPackageName()}, 2, GooglePlayBillingManager.PLAY_STORE_SUBSCRIPTION_DEEPLINK_URL, "java.lang.String.format(this, *args)")) == null) {
             strP = GooglePlayBillingManager.PLAY_STORE_SUBSCRIPTION_URL;
         }
         UriHandler.handle$default(UriHandler.INSTANCE, context, strP, false, false, null, 28, null);

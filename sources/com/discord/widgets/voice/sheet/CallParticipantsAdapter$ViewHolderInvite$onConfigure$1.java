@@ -1,7 +1,7 @@
 package com.discord.widgets.voice.sheet;
 
 import android.view.View;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function1;
 
@@ -17,7 +17,7 @@ public final class CallParticipantsAdapter$ViewHolderInvite$onConfigure$1 implem
     @Override // android.view.View.OnClickListener
     public final void onClick(View view) {
         Function1<View, Unit> onInviteFriendsClicked = CallParticipantsAdapter.ViewHolderInvite.access$getAdapter$p(this.this$0).getOnInviteFriendsClicked();
-        m.checkNotNullExpressionValue(view, "it");
+        Intrinsics3.checkNotNullExpressionValue(view, "it");
         onInviteFriendsClicked.invoke(view);
     }
 }

@@ -1,31 +1,31 @@
 package com.facebook.animated.webp;
 
 import android.graphics.Bitmap;
-import b.f.d.d.c;
-import b.f.j.a.a.d;
+import b.f.d.d.DoNotStrip;
+import b.f.j.a.a.AnimatedImageFrame;
 
 /* JADX INFO: loaded from: classes.dex */
-public class WebPFrame implements d {
+public class WebPFrame implements AnimatedImageFrame {
 
-    @c
+    @DoNotStrip
     private long mNativeContext;
 
-    @c
+    @DoNotStrip
     public WebPFrame(long j) {
         this.mNativeContext = j;
     }
 
-    @Override // b.f.j.a.a.d
+    @Override // b.f.j.a.a.AnimatedImageFrame
     public void a(int i, int i2, Bitmap bitmap) {
         nativeRenderFrame(i, i2, bitmap);
     }
 
-    @Override // b.f.j.a.a.d
+    @Override // b.f.j.a.a.AnimatedImageFrame
     public int b() {
         return nativeGetXOffset();
     }
 
-    @Override // b.f.j.a.a.d
+    @Override // b.f.j.a.a.AnimatedImageFrame
     public int c() {
         return nativeGetYOffset();
     }
@@ -34,7 +34,7 @@ public class WebPFrame implements d {
         return nativeIsBlendWithPreviousFrame();
     }
 
-    @Override // b.f.j.a.a.d
+    @Override // b.f.j.a.a.AnimatedImageFrame
     public void dispose() {
         nativeDispose();
     }
@@ -47,12 +47,12 @@ public class WebPFrame implements d {
         nativeFinalize();
     }
 
-    @Override // b.f.j.a.a.d
+    @Override // b.f.j.a.a.AnimatedImageFrame
     public int getHeight() {
         return nativeGetHeight();
     }
 
-    @Override // b.f.j.a.a.d
+    @Override // b.f.j.a.a.AnimatedImageFrame
     public int getWidth() {
         return nativeGetWidth();
     }

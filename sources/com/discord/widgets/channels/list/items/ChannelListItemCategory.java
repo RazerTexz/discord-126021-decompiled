@@ -1,8 +1,8 @@
 package com.discord.widgets.channels.list.items;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.api.channel.Channel;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: ChannelListItemCategory.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -15,7 +15,7 @@ public final /* data */ class ChannelListItemCategory implements ChannelListItem
     private final int type;
 
     public ChannelListItemCategory(Channel channel, boolean z2, boolean z3, boolean z4) {
-        m.checkNotNullParameter(channel, "channel");
+        Intrinsics3.checkNotNullParameter(channel, "channel");
         this.channel = channel;
         this.isCollapsed = z2;
         this.isMuted = z3;
@@ -41,7 +41,7 @@ public final /* data */ class ChannelListItemCategory implements ChannelListItem
     }
 
     public final ChannelListItemCategory copy(Channel channel, boolean isCollapsed, boolean isMuted, boolean canManageChannels) {
-        m.checkNotNullParameter(channel, "channel");
+        Intrinsics3.checkNotNullParameter(channel, "channel");
         return new ChannelListItemCategory(channel, isCollapsed, isMuted, canManageChannels);
     }
 
@@ -53,7 +53,7 @@ public final /* data */ class ChannelListItemCategory implements ChannelListItem
             return false;
         }
         ChannelListItemCategory channelListItemCategory = (ChannelListItemCategory) other;
-        return m.areEqual(this.channel, channelListItemCategory.channel) && this.isCollapsed == channelListItemCategory.isCollapsed && this.isMuted == channelListItemCategory.isMuted && this.canManageChannels == channelListItemCategory.canManageChannels;
+        return Intrinsics3.areEqual(this.channel, channelListItemCategory.channel) && this.isCollapsed == channelListItemCategory.isCollapsed && this.isMuted == channelListItemCategory.isMuted && this.canManageChannels == channelListItemCategory.canManageChannels;
     }
 
     /* JADX INFO: renamed from: component4, reason: from getter */
@@ -135,13 +135,13 @@ public final /* data */ class ChannelListItemCategory implements ChannelListItem
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("ChannelListItemCategory(channel=");
+        StringBuilder sbU = outline.U("ChannelListItemCategory(channel=");
         sbU.append(this.channel);
         sbU.append(", isCollapsed=");
         sbU.append(this.isCollapsed);
         sbU.append(", isMuted=");
         sbU.append(this.isMuted);
         sbU.append(", canManageChannels=");
-        return a.O(sbU, this.canManageChannels, ")");
+        return outline.O(sbU, this.canManageChannels, ")");
     }
 }

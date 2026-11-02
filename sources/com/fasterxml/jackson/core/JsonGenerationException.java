@@ -1,16 +1,16 @@
 package com.fasterxml.jackson.core;
 
-import b.g.a.b.d;
-import b.g.a.b.e;
+import b.g.a.b.JsonGenerator;
+import b.g.a.b.JsonLocation;
 
 /* JADX INFO: loaded from: classes3.dex */
 public class JsonGenerationException extends JsonProcessingException {
     private static final long serialVersionUID = 123;
-    public transient d j;
+    public transient JsonGenerator j;
 
-    public JsonGenerationException(String str, d dVar) {
-        super(str, (e) null);
-        this.j = dVar;
+    public JsonGenerationException(String str, JsonGenerator jsonGenerator) {
+        super(str, (JsonLocation) null);
+        this.j = jsonGenerator;
     }
 
     @Override // com.fasterxml.jackson.core.JsonProcessingException

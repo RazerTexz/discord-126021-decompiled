@@ -1,8 +1,8 @@
 package co.discord.media_engine;
 
 import a0.a.a.b;
-import b.d.b.a.a;
-import d0.z.d.m;
+import b.d.b.a.outline;
+import d0.z.d.Intrinsics3;
 import java.util.Arrays;
 
 /* JADX INFO: compiled from: Statistics.kt */
@@ -42,7 +42,7 @@ public final /* data */ class Transport {
             return false;
         }
         Transport transport = (Transport) other;
-        return this.availableOutgoingBitrate == transport.availableOutgoingBitrate && this.bytesReceived == transport.bytesReceived && this.bytesSent == transport.bytesSent && this.ping == transport.ping && m.areEqual(this.decryptionFailures, transport.decryptionFailures) && m.areEqual(this.localAddress, transport.localAddress) && m.areEqual(this.receiverReports, transport.receiverReports);
+        return this.availableOutgoingBitrate == transport.availableOutgoingBitrate && this.bytesReceived == transport.bytesReceived && this.bytesSent == transport.bytesSent && this.ping == transport.ping && Intrinsics3.areEqual(this.decryptionFailures, transport.decryptionFailures) && Intrinsics3.areEqual(this.localAddress, transport.localAddress) && Intrinsics3.areEqual(this.receiverReports, transport.receiverReports);
     }
 
     /* JADX INFO: renamed from: component1, reason: from getter */
@@ -119,7 +119,7 @@ public final /* data */ class Transport {
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("Transport(availableOutgoingBitrate=");
+        StringBuilder sbU = outline.U("Transport(availableOutgoingBitrate=");
         sbU.append(this.availableOutgoingBitrate);
         sbU.append(", bytesReceived=");
         sbU.append(this.bytesReceived);

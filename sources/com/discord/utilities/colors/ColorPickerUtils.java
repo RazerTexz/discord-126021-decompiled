@@ -8,8 +8,8 @@ import com.discord.R;
 import com.discord.utilities.color.ColorCompat;
 import com.discord.utilities.font.FontUtils;
 import com.jaredrummler.android.colorpicker.ColorPickerDialog;
-import d0.t.u;
-import d0.z.d.m;
+import d0.t._Collections;
+import d0.z.d.Intrinsics3;
 import java.util.ArrayList;
 
 /* JADX INFO: compiled from: ColorPickerUtils.kt */
@@ -21,14 +21,14 @@ public final class ColorPickerUtils {
     }
 
     public final ColorPickerDialog buildColorPickerDialog(Context context, @StringRes int titleResId, @ColorInt int initialColor) {
-        m.checkNotNullParameter(context, "context");
+        Intrinsics3.checkNotNullParameter(context, "context");
         int[] iArr = ColorPickerDialog.j;
         ColorPickerDialog.k kVar = new ColorPickerDialog.k();
         kVar.h = initialColor;
         kVar.f3148s = ColorCompat.getThemedColor(context, R.attr.colorBackgroundPrimary);
         kVar.i = false;
         Resources resources = context.getResources();
-        m.checkNotNullExpressionValue(resources, "context.resources");
+        Intrinsics3.checkNotNullExpressionValue(resources, "context.resources");
         kVar.g = getColorsToDisplayForPicker(resources, initialColor);
         kVar.a = titleResId;
         kVar.r = ColorCompat.getThemedColor(context, R.attr.colorHeaderPrimary);
@@ -49,14 +49,14 @@ public final class ColorPickerUtils {
         kVar.u = R.drawable.drawable_cpv_edit_text_background;
         kVar.f3151z = fontUtils.getThemedFontResId(context, R.attr.font_primary_normal);
         ColorPickerDialog colorPickerDialogA = kVar.a();
-        m.checkNotNullExpressionValue(colorPickerDialogA, "ColorPickerDialog.newBui…mal))\n          .create()");
+        Intrinsics3.checkNotNullExpressionValue(colorPickerDialogA, "ColorPickerDialog.newBui…mal))\n          .create()");
         return colorPickerDialogA;
     }
 
     @ColorInt
     private static final int[] getColorsToDisplayForPicker(Resources resources, @ColorInt int i) {
         int[] intArray = resources.getIntArray(R.array.color_picker_palette);
-        m.checkNotNullExpressionValue(intArray, "getIntArray(com.discord.…ray.color_picker_palette)");
+        Intrinsics3.checkNotNullExpressionValue(intArray, "getIntArray(com.discord.…ray.color_picker_palette)");
         ArrayList arrayList = new ArrayList();
         boolean z2 = false;
         for (int i2 : intArray) {
@@ -68,6 +68,6 @@ public final class ColorPickerUtils {
         if (!z2) {
             arrayList.add(Integer.valueOf(i));
         }
-        return u.toIntArray(arrayList);
+        return _Collections.toIntArray(arrayList);
     }
 }

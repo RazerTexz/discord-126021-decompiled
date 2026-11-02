@@ -1,13 +1,13 @@
 package com.discord.widgets.chat.input;
 
-import d0.z.d.o;
+import d0.z.d.Lambda;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function2;
 
 /* JADX INFO: compiled from: ChatInputViewModel.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class ChatInputViewModel$sendCommand$validated$3 extends o implements Function2<Integer, Boolean, Unit> {
+public final class ChatInputViewModel$sendCommand$validated$3 extends Lambda implements Function2<Integer, Boolean, Unit> {
     public final /* synthetic */ ChatInputViewModel.AttachmentContext $attachmentsContext;
     public final /* synthetic */ Function0 $commandResendCompressedHandler;
     public final /* synthetic */ ChatInputViewModel this$0;

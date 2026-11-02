@@ -1,22 +1,22 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.api.science.AnalyticsSchema;
 import com.discord.models.domain.ModelAuditLogEntry;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackUserPhoneVerificationRequestFailed.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackUserPhoneVerificationRequestFailed implements AnalyticsSchema, TrackBaseReceiver {
+public final /* data */ class TrackUserPhoneVerificationRequestFailed implements AnalyticsSchema, TrackBase2 {
     private final CharSequence reason = null;
     private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "user_phone_verification_request_failed";
 
     public boolean equals(Object other) {
         if (this != other) {
-            return (other instanceof TrackUserPhoneVerificationRequestFailed) && m.areEqual(this.reason, ((TrackUserPhoneVerificationRequestFailed) other).reason);
+            return (other instanceof TrackUserPhoneVerificationRequestFailed) && Intrinsics3.areEqual(this.reason, ((TrackUserPhoneVerificationRequestFailed) other).reason);
         }
         return true;
     }
@@ -36,6 +36,6 @@ public final /* data */ class TrackUserPhoneVerificationRequestFailed implements
     }
 
     public String toString() {
-        return a.E(a.U("TrackUserPhoneVerificationRequestFailed(reason="), this.reason, ")");
+        return outline.E(outline.U("TrackUserPhoneVerificationRequestFailed(reason="), this.reason, ")");
     }
 }

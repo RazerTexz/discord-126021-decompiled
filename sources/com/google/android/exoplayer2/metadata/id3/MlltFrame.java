@@ -3,7 +3,7 @@ package com.google.android.exoplayer2.metadata.id3;
 import android.os.Parcel;
 import android.os.Parcelable;
 import androidx.annotation.Nullable;
-import b.i.a.c.f3.e0;
+import b.i.a.c.f3.Util2;
 import java.util.Arrays;
 
 /* JADX INFO: loaded from: classes3.dex */
@@ -71,7 +71,7 @@ public final class MlltFrame extends Id3Frame {
         this.l = parcel.readInt();
         this.m = parcel.readInt();
         int[] iArrCreateIntArray = parcel.createIntArray();
-        int i = e0.a;
+        int i = Util2.a;
         this.n = iArrCreateIntArray;
         this.o = parcel.createIntArray();
     }

@@ -1,8 +1,8 @@
 package com.discord.api.commands;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.models.domain.ModelAuditLogEntry;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 import java.util.List;
 
 /* JADX INFO: compiled from: ApplicationCommandOption.kt */
@@ -36,7 +36,7 @@ public final /* data */ class ApplicationCommandOption {
             return false;
         }
         ApplicationCommandOption applicationCommandOption = (ApplicationCommandOption) other;
-        return m.areEqual(this.type, applicationCommandOption.type) && m.areEqual(this.name, applicationCommandOption.name) && m.areEqual(this.description, applicationCommandOption.description) && this.required == applicationCommandOption.required && this.default == applicationCommandOption.default && m.areEqual(this.channelTypes, applicationCommandOption.channelTypes) && m.areEqual(this.choices, applicationCommandOption.choices) && m.areEqual(this.options, applicationCommandOption.options) && this.autocomplete == applicationCommandOption.autocomplete && m.areEqual(this.minValue, applicationCommandOption.minValue) && m.areEqual(this.maxValue, applicationCommandOption.maxValue);
+        return Intrinsics3.areEqual(this.type, applicationCommandOption.type) && Intrinsics3.areEqual(this.name, applicationCommandOption.name) && Intrinsics3.areEqual(this.description, applicationCommandOption.description) && this.required == applicationCommandOption.required && this.default == applicationCommandOption.default && Intrinsics3.areEqual(this.channelTypes, applicationCommandOption.channelTypes) && Intrinsics3.areEqual(this.choices, applicationCommandOption.choices) && Intrinsics3.areEqual(this.options, applicationCommandOption.options) && this.autocomplete == applicationCommandOption.autocomplete && Intrinsics3.areEqual(this.minValue, applicationCommandOption.minValue) && Intrinsics3.areEqual(this.maxValue, applicationCommandOption.maxValue);
     }
 
     /* JADX INFO: renamed from: a, reason: from getter */
@@ -128,7 +128,7 @@ public final /* data */ class ApplicationCommandOption {
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("ApplicationCommandOption(type=");
+        StringBuilder sbU = outline.U("ApplicationCommandOption(type=");
         sbU.append(this.type);
         sbU.append(", name=");
         sbU.append(this.name);

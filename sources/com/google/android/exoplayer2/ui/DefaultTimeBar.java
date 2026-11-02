@@ -19,11 +19,11 @@ import android.view.accessibility.AccessibilityNodeInfo;
 import androidx.annotation.ColorInt;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
-import b.c.a.a0.d;
+import b.c.a.a0.AnimatableValueParser;
+import b.i.a.c.d3.TimeBar;
 import b.i.a.c.d3.b;
 import b.i.a.c.d3.c;
-import b.i.a.c.d3.o;
-import b.i.a.c.f3.e0;
+import b.i.a.c.f3.Util2;
 import java.util.Collections;
 import java.util.Formatter;
 import java.util.Iterator;
@@ -32,14 +32,14 @@ import java.util.Objects;
 import java.util.concurrent.CopyOnWriteArraySet;
 
 /* JADX INFO: loaded from: classes3.dex */
-public class DefaultTimeBar extends View implements o {
+public class DefaultTimeBar extends View implements TimeBar {
     public final int A;
     public final int B;
     public final int C;
     public final StringBuilder D;
     public final Formatter E;
     public final Runnable F;
-    public final CopyOnWriteArraySet<o.a> G;
+    public final CopyOnWriteArraySet<TimeBar.a> G;
     public final Point H;
     public final float I;
     public int J;
@@ -92,17 +92,17 @@ public class DefaultTimeBar extends View implements o {
         this(context, attributeSet, 0, attributeSet);
     }
 
-    @Override // b.i.a.c.d3.o
+    @Override // b.i.a.c.d3.TimeBar
     public void a(@Nullable long[] jArr, @Nullable boolean[] zArr, int i) {
-        d.j(i == 0 || !(jArr == null || zArr == null));
+        AnimatableValueParser.j(i == 0 || !(jArr == null || zArr == null));
         this.U = i;
         this.V = jArr;
         this.W = zArr;
         h();
     }
 
-    @Override // b.i.a.c.d3.o
-    public void b(o.a aVar) {
+    @Override // b.i.a.c.d3.TimeBar
+    public void b(TimeBar.a aVar) {
         this.G.add(aVar);
     }
 
@@ -113,7 +113,7 @@ public class DefaultTimeBar extends View implements o {
     public final void d(float f) {
         Rect rect = this.m;
         Rect rect2 = this.k;
-        rect.right = e0.h((int) f, rect2.left, rect2.right);
+        rect.right = Util2.h((int) f, rect2.left, rect2.right);
     }
 
     @Override // android.view.View
@@ -128,7 +128,7 @@ public class DefaultTimeBar extends View implements o {
             return false;
         }
         long j3 = this.P ? this.Q : this.S;
-        long jI = e0.i(j3 + j, 0L, j2);
+        long jI = Util2.i(j3 + j, 0L, j2);
         if (jI == j3) {
             return false;
         }
@@ -149,7 +149,7 @@ public class DefaultTimeBar extends View implements o {
         if (parent != null) {
             parent.requestDisallowInterceptTouchEvent(true);
         }
-        Iterator<o.a> it = this.G.iterator();
+        Iterator<TimeBar.a> it = this.G.iterator();
         while (it.hasNext()) {
             it.next().m(this, j);
         }
@@ -164,7 +164,7 @@ public class DefaultTimeBar extends View implements o {
             parent.requestDisallowInterceptTouchEvent(false);
         }
         invalidate();
-        Iterator<o.a> it = this.G.iterator();
+        Iterator<TimeBar.a> it = this.G.iterator();
         while (it.hasNext()) {
             it.next().l(this, this.Q, z2);
         }
@@ -182,7 +182,7 @@ public class DefaultTimeBar extends View implements o {
         return j2 / ((long) this.J);
     }
 
-    @Override // b.i.a.c.d3.o
+    @Override // b.i.a.c.d3.TimeBar
     public long getPreferredUpdateDelay() {
         int iWidth = (int) (this.k.width() / this.I);
         if (iWidth != 0) {
@@ -195,7 +195,7 @@ public class DefaultTimeBar extends View implements o {
     }
 
     private String getProgressText() {
-        return e0.u(this.D, this.E, this.S);
+        return Util2.u(this.D, this.E, this.S);
     }
 
     private long getScrubberPosition() {
@@ -239,7 +239,7 @@ public class DefaultTimeBar extends View implements o {
             return;
         }
         this.Q = j;
-        Iterator<o.a> it = this.G.iterator();
+        Iterator<TimeBar.a> it = this.G.iterator();
         while (it.hasNext()) {
             it.next().k(this, j);
         }
@@ -287,7 +287,7 @@ public class DefaultTimeBar extends View implements o {
                 Objects.requireNonNull(zArr);
                 int i5 = this.f2955x / 2;
                 for (int i6 = 0; i6 < this.U; i6++) {
-                    int iWidth = ((int) ((((long) this.k.width()) * e0.i(jArr[i6], 0L, this.R)) / this.R)) - i5;
+                    int iWidth = ((int) ((((long) this.k.width()) * Util2.i(jArr[i6], 0L, this.R)) / this.R)) - i5;
                     Rect rect4 = this.k;
                     int iMin = Math.min(rect4.width() - this.f2955x, Math.max(0, iWidth)) + rect4.left;
                     canvas.drawRect(iMin, iCenterY, iMin + this.f2955x, i, zArr[i6] ? this.r : this.q);
@@ -296,7 +296,7 @@ public class DefaultTimeBar extends View implements o {
         }
         if (this.R > 0) {
             Rect rect5 = this.m;
-            int iH = e0.h(rect5.right, rect5.left, this.k.right);
+            int iH = Util2.h(rect5.right, rect5.left, this.k.right);
             int iCenterY2 = this.m.centerY();
             Drawable drawable = this.t;
             if (drawable == null) {
@@ -337,7 +337,7 @@ public class DefaultTimeBar extends View implements o {
         if (this.R <= 0) {
             return;
         }
-        if (e0.a >= 21) {
+        if (Util2.a >= 21) {
             accessibilityNodeInfo.addAction(AccessibilityNodeInfo.AccessibilityAction.ACTION_SCROLL_FORWARD);
             accessibilityNodeInfo.addAction(AccessibilityNodeInfo.AccessibilityAction.ACTION_SCROLL_BACKWARD);
         } else {
@@ -409,7 +409,7 @@ public class DefaultTimeBar extends View implements o {
         Rect rect2 = this.k;
         Rect rect3 = this.j;
         rect2.set(rect3.left + i7, iMax, rect3.right - i7, this.u + iMax);
-        if (e0.a >= 29 && ((rect = this.M) == null || rect.width() != i5 || this.M.height() != i6)) {
+        if (Util2.a >= 29 && ((rect = this.M) == null || rect.width() != i5 || this.M.height() != i6)) {
             Rect rect4 = new Rect(0, 0, i5, i6);
             this.M = rect4;
             setSystemGestureExclusionRects(Collections.singletonList(rect4));
@@ -434,7 +434,7 @@ public class DefaultTimeBar extends View implements o {
     public void onRtlPropertiesChanged(int i) {
         Drawable drawable = this.t;
         if (drawable != null) {
-            if (e0.a >= 23 && drawable.setLayoutDirection(i)) {
+            if (Util2.a >= 23 && drawable.setLayoutDirection(i)) {
                 invalidate();
             }
         }
@@ -523,7 +523,7 @@ public class DefaultTimeBar extends View implements o {
         invalidate(this.j);
     }
 
-    @Override // b.i.a.c.d3.o
+    @Override // b.i.a.c.d3.TimeBar
     public void setBufferedPosition(long j) {
         if (this.T == j) {
             return;
@@ -532,7 +532,7 @@ public class DefaultTimeBar extends View implements o {
         h();
     }
 
-    @Override // b.i.a.c.d3.o
+    @Override // b.i.a.c.d3.TimeBar
     public void setDuration(long j) {
         if (this.R == j) {
             return;
@@ -544,7 +544,7 @@ public class DefaultTimeBar extends View implements o {
         h();
     }
 
-    @Override // android.view.View, b.i.a.c.d3.o
+    @Override // android.view.View, b.i.a.c.d3.TimeBar
     public void setEnabled(boolean z2) {
         super.setEnabled(z2);
         if (!this.P || z2) {
@@ -554,13 +554,13 @@ public class DefaultTimeBar extends View implements o {
     }
 
     public void setKeyCountIncrement(int i) {
-        d.j(i > 0);
+        AnimatableValueParser.j(i > 0);
         this.J = i;
         this.K = -9223372036854775807L;
     }
 
     public void setKeyTimeIncrement(long j) {
-        d.j(j > 0);
+        AnimatableValueParser.j(j > 0);
         this.J = -1;
         this.K = j;
     }
@@ -575,7 +575,7 @@ public class DefaultTimeBar extends View implements o {
         invalidate(this.j);
     }
 
-    @Override // b.i.a.c.d3.o
+    @Override // b.i.a.c.d3.TimeBar
     public void setPosition(long j) {
         if (this.S == j) {
             return;
@@ -631,7 +631,7 @@ public class DefaultTimeBar extends View implements o {
                 Drawable drawable = typedArrayObtainStyledAttributes.getDrawable(R.g.DefaultTimeBar_scrubber_drawable);
                 this.t = drawable;
                 if (drawable != null) {
-                    int i2 = e0.a;
+                    int i2 = Util2.a;
                     if (i2 >= 23) {
                         int layoutDirection = getLayoutDirection();
                         if (i2 >= 23) {

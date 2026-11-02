@@ -8,10 +8,10 @@ import android.opengl.GLES20;
 import android.os.Bundle;
 import android.view.Surface;
 import androidx.annotation.Nullable;
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.models.domain.ModelAuditLogEntry;
+import h0.c.VideoEncoder2;
 import h0.c.n;
-import h0.c.r0;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.util.Map;
@@ -160,7 +160,7 @@ public class HardwareVideoEncoder implements VideoEncoder {
             if (i == 21 || i == 2141391872 || i == 2141391876) {
                 return NV12;
             }
-            throw new IllegalArgumentException(a.q("Unsupported colorFormat: ", i));
+            throw new IllegalArgumentException(outline.q("Unsupported colorFormat: ", i));
         }
     }
 
@@ -206,7 +206,7 @@ public class HardwareVideoEncoder implements VideoEncoder {
 
     @Override // org.webrtc.VideoEncoder
     public /* synthetic */ long createNativeVideoEncoder() {
-        return r0.a(this);
+        return VideoEncoder2.a(this);
     }
 
     private Thread createOutputThread() {
@@ -357,7 +357,7 @@ public class HardwareVideoEncoder implements VideoEncoder {
 
     @Override // org.webrtc.VideoEncoder
     public /* synthetic */ VideoEncoder.ResolutionBitrateLimits[] getResolutionBitrateLimits() {
-        return r0.b(this);
+        return VideoEncoder2.b(this);
     }
 
     @Override // org.webrtc.VideoEncoder
@@ -389,7 +389,7 @@ public class HardwareVideoEncoder implements VideoEncoder {
             this.bitrateAdjuster.setTargets(i2 * 1000, i);
         }
         this.adjustedBitrate = this.bitrateAdjuster.getAdjustedBitrateBps();
-        StringBuilder sbU = a.U("initEncode: ");
+        StringBuilder sbU = outline.U("initEncode: ");
         sbU.append(this.width);
         sbU.append(" x ");
         sbU.append(this.height);
@@ -466,7 +466,7 @@ public class HardwareVideoEncoder implements VideoEncoder {
                 return VideoCodecStatus.FALLBACK_SOFTWARE;
             }
         } catch (IOException | IllegalArgumentException unused) {
-            StringBuilder sbU = a.U("Cannot create media encoder ");
+            StringBuilder sbU = outline.U("Cannot create media encoder ");
             sbU.append(this.codecName);
             Logging.e(TAG, sbU.toString());
             return VideoCodecStatus.FALLBACK_SOFTWARE;
@@ -475,7 +475,7 @@ public class HardwareVideoEncoder implements VideoEncoder {
 
     @Override // org.webrtc.VideoEncoder
     public /* synthetic */ boolean isHardwareEncoder() {
-        return r0.c(this);
+        return VideoEncoder2.c(this);
     }
 
     @Override // org.webrtc.VideoEncoder

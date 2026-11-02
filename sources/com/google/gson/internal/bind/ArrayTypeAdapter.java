@@ -1,7 +1,7 @@
 package com.google.gson.internal.bind;
 
-import b.i.d.o;
-import b.i.d.q.a;
+import b.i.d.TypeAdapterFactory2;
+import b.i.d.q.C$Gson$Types;
 import com.google.gson.Gson;
 import com.google.gson.TypeAdapter;
 import com.google.gson.reflect.TypeToken;
@@ -20,11 +20,11 @@ public final class ArrayTypeAdapter<E> extends TypeAdapter<Object> {
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
     public final Class<E> f3117b;
-    public static final o a = new AnonymousClass1();
+    public static final TypeAdapterFactory2 a = new AnonymousClass1();
 
     /* JADX INFO: renamed from: com.google.gson.internal.bind.ArrayTypeAdapter$1, reason: invalid class name */
-    public class AnonymousClass1 implements o {
-        @Override // b.i.d.o
+    public class AnonymousClass1 implements TypeAdapterFactory2 {
+        @Override // b.i.d.TypeAdapterFactory2
         public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> typeToken) {
             Type type = typeToken.getType();
             boolean z2 = type instanceof GenericArrayType;
@@ -32,7 +32,7 @@ public final class ArrayTypeAdapter<E> extends TypeAdapter<Object> {
                 return null;
             }
             Type genericComponentType = z2 ? ((GenericArrayType) type).getGenericComponentType() : ((Class) type).getComponentType();
-            return new ArrayTypeAdapter(gson, gson.h(TypeToken.get(genericComponentType)), a.e(genericComponentType));
+            return new ArrayTypeAdapter(gson, gson.h(TypeToken.get(genericComponentType)), C$Gson$Types.e(genericComponentType));
         }
     }
 

@@ -10,6 +10,7 @@ import android.util.Log;
 import android.util.SparseArray;
 import androidx.annotation.MainThread;
 import androidx.annotation.Nullable;
+import b.c.a.a0.AnimatableValueParser;
 import com.google.android.gms.cloudmessaging.zzp;
 import java.util.ArrayDeque;
 import java.util.Iterator;
@@ -75,7 +76,7 @@ public final class g implements ServiceConnection {
         int i = this.j;
         if (i == 0) {
             this.m.add(qVar);
-            b.c.a.a0.d.F(this.j == 0);
+            AnimatableValueParser.F(this.j == 0);
             if (Log.isLoggable("MessengerIpcClient", 2)) {
                 Log.v("MessengerIpcClient", "Starting bind to GmsCore");
             }

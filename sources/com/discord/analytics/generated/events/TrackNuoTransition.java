@@ -1,14 +1,14 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackNuoTransition.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackNuoTransition implements AnalyticsSchema, TrackBaseReceiver {
+public final /* data */ class TrackNuoTransition implements AnalyticsSchema, TrackBase2 {
     private final Boolean back = null;
     private final CharSequence flowType = null;
     private final CharSequence fromStep = null;
@@ -27,7 +27,7 @@ public final /* data */ class TrackNuoTransition implements AnalyticsSchema, Tra
             return false;
         }
         TrackNuoTransition trackNuoTransition = (TrackNuoTransition) other;
-        return m.areEqual(this.flowType, trackNuoTransition.flowType) && m.areEqual(this.fromStep, trackNuoTransition.fromStep) && m.areEqual(this.toStep, trackNuoTransition.toStep) && m.areEqual(this.skip, trackNuoTransition.skip) && m.areEqual(this.secondsOnFromStep, trackNuoTransition.secondsOnFromStep) && m.areEqual(this.skipAttempt, trackNuoTransition.skipAttempt) && m.areEqual(this.back, trackNuoTransition.back);
+        return Intrinsics3.areEqual(this.flowType, trackNuoTransition.flowType) && Intrinsics3.areEqual(this.fromStep, trackNuoTransition.fromStep) && Intrinsics3.areEqual(this.toStep, trackNuoTransition.toStep) && Intrinsics3.areEqual(this.skip, trackNuoTransition.skip) && Intrinsics3.areEqual(this.secondsOnFromStep, trackNuoTransition.secondsOnFromStep) && Intrinsics3.areEqual(this.skipAttempt, trackNuoTransition.skipAttempt) && Intrinsics3.areEqual(this.back, trackNuoTransition.back);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -54,7 +54,7 @@ public final /* data */ class TrackNuoTransition implements AnalyticsSchema, Tra
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackNuoTransition(flowType=");
+        StringBuilder sbU = outline.U("TrackNuoTransition(flowType=");
         sbU.append(this.flowType);
         sbU.append(", fromStep=");
         sbU.append(this.fromStep);
@@ -67,6 +67,6 @@ public final /* data */ class TrackNuoTransition implements AnalyticsSchema, Tra
         sbU.append(", skipAttempt=");
         sbU.append(this.skipAttempt);
         sbU.append(", back=");
-        return a.D(sbU, this.back, ")");
+        return outline.D(sbU, this.back, ")");
     }
 }

@@ -2,9 +2,11 @@ package s.a;
 
 import androidx.recyclerview.widget.RecyclerView;
 import com.discord.api.permission.Permission;
+import d0.t._ArraysJvm;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Objects;
 import kotlinx.coroutines.CoroutineDispatcher;
+import s.a.a.ArrayQueue;
 
 /* JADX INFO: compiled from: EventLoop.common.kt */
 /* JADX INFO: loaded from: classes3.dex */
@@ -12,7 +14,7 @@ public abstract class q0 extends CoroutineDispatcher {
     public static final /* synthetic */ int j = 0;
     public long k;
     public boolean l;
-    public s.a.a.b<j0<?>> m;
+    public ArrayQueue<DispatchedTask<?>> m;
 
     public final void H(boolean z2) {
         long jI = this.k - I(z2);
@@ -29,29 +31,29 @@ public abstract class q0 extends CoroutineDispatcher {
         return 1L;
     }
 
-    public final void J(j0<?> j0Var) {
-        s.a.a.b<j0<?>> bVar = this.m;
-        if (bVar == null) {
-            bVar = new s.a.a.b<>();
-            this.m = bVar;
+    public final void J(DispatchedTask<?> dispatchedTask) {
+        ArrayQueue<DispatchedTask<?>> arrayQueue = this.m;
+        if (arrayQueue == null) {
+            arrayQueue = new ArrayQueue<>();
+            this.m = arrayQueue;
         }
-        Object[] objArr = bVar.a;
-        int i = bVar.c;
-        objArr[i] = j0Var;
+        Object[] objArr = arrayQueue.a;
+        int i = arrayQueue.c;
+        objArr[i] = dispatchedTask;
         int length = (objArr.length - 1) & (i + 1);
-        bVar.c = length;
-        int i2 = bVar.f3826b;
+        arrayQueue.c = length;
+        int i2 = arrayQueue.f3826b;
         if (length == i2) {
             int length2 = objArr.length;
             Object[] objArr2 = new Object[length2 << 1];
-            d0.t.j.copyInto$default(objArr, objArr2, 0, i2, 0, 10, (Object) null);
-            Object[] objArr3 = bVar.a;
+            _ArraysJvm.copyInto$default(objArr, objArr2, 0, i2, 0, 10, (Object) null);
+            Object[] objArr3 = arrayQueue.a;
             int length3 = objArr3.length;
-            int i3 = bVar.f3826b;
-            d0.t.j.copyInto$default(objArr3, objArr2, length3 - i3, 0, i3, 4, (Object) null);
-            bVar.a = objArr2;
-            bVar.f3826b = 0;
-            bVar.c = length2;
+            int i3 = arrayQueue.f3826b;
+            _ArraysJvm.copyInto$default(objArr3, objArr2, length3 - i3, 0, i3, 4, (Object) null);
+            arrayQueue.a = objArr2;
+            arrayQueue.f3826b = 0;
+            arrayQueue.c = length2;
         }
     }
 
@@ -75,21 +77,21 @@ public abstract class q0 extends CoroutineDispatcher {
     }
 
     public final boolean R() throws IllegalAccessException, InvocationTargetException {
-        s.a.a.b<j0<?>> bVar = this.m;
-        if (bVar != null) {
-            int i = bVar.f3826b;
+        ArrayQueue<DispatchedTask<?>> arrayQueue = this.m;
+        if (arrayQueue != null) {
+            int i = arrayQueue.f3826b;
             Object obj = null;
-            if (i != bVar.c) {
-                Object[] objArr = bVar.a;
+            if (i != arrayQueue.c) {
+                Object[] objArr = arrayQueue.a;
                 Object obj2 = objArr[i];
                 objArr[i] = null;
-                bVar.f3826b = (i + 1) & (objArr.length - 1);
+                arrayQueue.f3826b = (i + 1) & (objArr.length - 1);
                 Objects.requireNonNull(obj2, "null cannot be cast to non-null type T");
                 obj = obj2;
             }
-            j0 j0Var = (j0) obj;
-            if (j0Var != null) {
-                j0Var.run();
+            DispatchedTask dispatchedTask = (DispatchedTask) obj;
+            if (dispatchedTask != null) {
+                dispatchedTask.run();
                 return true;
             }
         }

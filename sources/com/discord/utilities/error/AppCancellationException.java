@@ -1,7 +1,7 @@
 package com.discord.utilities.error;
 
-import b.d.b.a.a;
-import d0.z.d.m;
+import b.d.b.a.outline;
+import d0.z.d.Intrinsics3;
 import java.util.concurrent.CancellationException;
 
 /* JADX INFO: compiled from: AppCancellationException.kt */
@@ -12,7 +12,7 @@ public final /* data */ class AppCancellationException extends CancellationExcep
     private final String message;
 
     public AppCancellationException(String str, Throwable th, Error error) {
-        m.checkNotNullParameter(error, "error");
+        Intrinsics3.checkNotNullParameter(error, "error");
         this.message = str;
         this.cause = th;
         this.error = error;
@@ -40,7 +40,7 @@ public final /* data */ class AppCancellationException extends CancellationExcep
     }
 
     public final AppCancellationException copy(String message, Throwable cause, Error error) {
-        m.checkNotNullParameter(error, "error");
+        Intrinsics3.checkNotNullParameter(error, "error");
         return new AppCancellationException(message, cause, error);
     }
 
@@ -52,7 +52,7 @@ public final /* data */ class AppCancellationException extends CancellationExcep
             return false;
         }
         AppCancellationException appCancellationException = (AppCancellationException) other;
-        return m.areEqual(getMessage(), appCancellationException.getMessage()) && m.areEqual(getCause(), appCancellationException.getCause()) && m.areEqual(this.error, appCancellationException.error);
+        return Intrinsics3.areEqual(getMessage(), appCancellationException.getMessage()) && Intrinsics3.areEqual(getCause(), appCancellationException.getCause()) && Intrinsics3.areEqual(this.error, appCancellationException.error);
     }
 
     @Override // java.lang.Throwable
@@ -85,7 +85,7 @@ public final /* data */ class AppCancellationException extends CancellationExcep
 
     @Override // java.lang.Throwable
     public String toString() {
-        StringBuilder sbU = a.U("AppCancellationException(message=");
+        StringBuilder sbU = outline.U("AppCancellationException(message=");
         sbU.append(getMessage());
         sbU.append(", cause=");
         sbU.append(getCause());

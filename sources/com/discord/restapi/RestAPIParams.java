@@ -3,11 +3,12 @@ package com.discord.restapi;
 import androidx.appcompat.widget.ActivityChooserModel;
 import androidx.core.app.NotificationCompat;
 import androidx.media.AudioAttributesCompat;
-import b.d.b.a.a;
-import b.i.d.j;
-import b.i.d.l;
+import b.d.b.a.outline;
+import b.i.d.JsonNull;
+import b.i.d.JsonSerializationContext;
+import b.i.d.JsonSerializer2;
 import com.discord.api.application.Application;
-import com.discord.api.botuikit.ComponentType;
+import com.discord.api.botuikit.Component6;
 import com.discord.api.commands.ApplicationCommandData;
 import com.discord.api.friendsuggestions.AllowedInSuggestionsType;
 import com.discord.api.guild.Guild;
@@ -21,7 +22,7 @@ import com.discord.api.guildscheduledevent.GuildScheduledEventEntityType;
 import com.discord.api.guildscheduledevent.GuildScheduledEventStatus;
 import com.discord.api.message.activity.MessageActivityType;
 import com.discord.api.message.allowedmentions.MessageAllowedMentions;
-import com.discord.api.message.allowedmentions.MessageAllowedMentionsTypes;
+import com.discord.api.message.allowedmentions.MessageAllowedMentions2;
 import com.discord.api.permission.PermissionOverwrite;
 import com.discord.api.presence.ClientStatus;
 import com.discord.api.role.GuildRole;
@@ -38,10 +39,12 @@ import com.discord.nullserializable.NullSerializable;
 import com.discord.widgets.settings.account.WidgetSettingsAccountChangePassword;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import d0.t.g0;
-import d0.t.n;
-import d0.t.o;
-import d0.z.d.m;
+import d0.Tuples;
+import d0.t.Collections2;
+import d0.t.CollectionsJVM;
+import d0.t.Iterables2;
+import d0.t.MapsJVM;
+import d0.z.d.Intrinsics3;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -63,7 +66,7 @@ public final class RestAPIParams {
         private final String password;
 
         public ActivateMfaSMS(String str) {
-            m.checkNotNullParameter(str, WidgetSettingsAccountChangePassword.CURRENT_PASSWORD_FIELD);
+            Intrinsics3.checkNotNullParameter(str, WidgetSettingsAccountChangePassword.CURRENT_PASSWORD_FIELD);
             this.password = str;
         }
     }
@@ -74,7 +77,7 @@ public final class RestAPIParams {
         private final int primaryCategoryId;
 
         public AddServerBody(String str, int i) {
-            m.checkNotNullParameter(str, ModelAuditLogEntry.CHANGE_KEY_DESCRIPTION);
+            Intrinsics3.checkNotNullParameter(str, ModelAuditLogEntry.CHANGE_KEY_DESCRIPTION);
             this.description = str;
             this.primaryCategoryId = i;
         }
@@ -90,7 +93,7 @@ public final class RestAPIParams {
         }
 
         public final AddServerBody copy(String description, int primaryCategoryId) {
-            m.checkNotNullParameter(description, ModelAuditLogEntry.CHANGE_KEY_DESCRIPTION);
+            Intrinsics3.checkNotNullParameter(description, ModelAuditLogEntry.CHANGE_KEY_DESCRIPTION);
             return new AddServerBody(description, primaryCategoryId);
         }
 
@@ -102,7 +105,7 @@ public final class RestAPIParams {
                 return false;
             }
             AddServerBody addServerBody = (AddServerBody) other;
-            return m.areEqual(this.description, addServerBody.description) && this.primaryCategoryId == addServerBody.primaryCategoryId;
+            return Intrinsics3.areEqual(this.description, addServerBody.description) && this.primaryCategoryId == addServerBody.primaryCategoryId;
         }
 
         /* JADX INFO: renamed from: component1, reason: from getter */
@@ -129,10 +132,10 @@ public final class RestAPIParams {
         }
 
         public String toString() {
-            StringBuilder sbU = a.U("AddServerBody(description=");
+            StringBuilder sbU = outline.U("AddServerBody(description=");
             sbU.append(this.description);
             sbU.append(", primaryCategoryId=");
-            return a.B(sbU, this.primaryCategoryId, ")");
+            return outline.B(sbU, this.primaryCategoryId, ")");
         }
     }
 
@@ -147,10 +150,10 @@ public final class RestAPIParams {
         private final long type;
 
         public ApplicationCommand(long j, String str, String str2, String str3, ApplicationCommandData applicationCommandData, String str4, String str5) {
-            m.checkNotNullParameter(str, "channelId");
-            m.checkNotNullParameter(str2, "applicationId");
-            m.checkNotNullParameter(applicationCommandData, "data");
-            m.checkNotNullParameter(str5, "nonce");
+            Intrinsics3.checkNotNullParameter(str, "channelId");
+            Intrinsics3.checkNotNullParameter(str2, "applicationId");
+            Intrinsics3.checkNotNullParameter(applicationCommandData, "data");
+            Intrinsics3.checkNotNullParameter(str5, "nonce");
             this.type = j;
             this.channelId = str;
             this.applicationId = str2;
@@ -165,10 +168,10 @@ public final class RestAPIParams {
         }
 
         public final ApplicationCommand copy(long type, String channelId, String applicationId, String guildId, ApplicationCommandData data, String sessionId, String nonce) {
-            m.checkNotNullParameter(channelId, "channelId");
-            m.checkNotNullParameter(applicationId, "applicationId");
-            m.checkNotNullParameter(data, "data");
-            m.checkNotNullParameter(nonce, "nonce");
+            Intrinsics3.checkNotNullParameter(channelId, "channelId");
+            Intrinsics3.checkNotNullParameter(applicationId, "applicationId");
+            Intrinsics3.checkNotNullParameter(data, "data");
+            Intrinsics3.checkNotNullParameter(nonce, "nonce");
             return new ApplicationCommand(type, channelId, applicationId, guildId, data, sessionId, nonce);
         }
 
@@ -180,7 +183,7 @@ public final class RestAPIParams {
                 return false;
             }
             ApplicationCommand applicationCommand = (ApplicationCommand) other;
-            return this.type == applicationCommand.type && m.areEqual(this.channelId, applicationCommand.channelId) && m.areEqual(this.applicationId, applicationCommand.applicationId) && m.areEqual(this.guildId, applicationCommand.guildId) && m.areEqual(this.data, applicationCommand.data) && m.areEqual(this.sessionId, applicationCommand.sessionId) && m.areEqual(this.nonce, applicationCommand.nonce);
+            return this.type == applicationCommand.type && Intrinsics3.areEqual(this.channelId, applicationCommand.channelId) && Intrinsics3.areEqual(this.applicationId, applicationCommand.applicationId) && Intrinsics3.areEqual(this.guildId, applicationCommand.guildId) && Intrinsics3.areEqual(this.data, applicationCommand.data) && Intrinsics3.areEqual(this.sessionId, applicationCommand.sessionId) && Intrinsics3.areEqual(this.nonce, applicationCommand.nonce);
         }
 
         /* JADX INFO: renamed from: component3, reason: from getter */
@@ -264,7 +267,7 @@ public final class RestAPIParams {
         }
 
         public String toString() {
-            StringBuilder sbU = a.U("ApplicationCommand(type=");
+            StringBuilder sbU = outline.U("ApplicationCommand(type=");
             sbU.append(this.type);
             sbU.append(", channelId=");
             sbU.append(this.channelId);
@@ -277,7 +280,7 @@ public final class RestAPIParams {
             sbU.append(", sessionId=");
             sbU.append(this.sessionId);
             sbU.append(", nonce=");
-            return a.J(sbU, this.nonce, ")");
+            return outline.J(sbU, this.nonce, ")");
         }
     }
 
@@ -349,7 +352,7 @@ public final class RestAPIParams {
         private final String phone;
 
         public AuthRegisterPhone(String str, String str2, String str3) {
-            m.checkNotNullParameter(str, "phone");
+            Intrinsics3.checkNotNullParameter(str, "phone");
             this.phone = str;
             this.captchaKey = str2;
             this.captchaRqtoken = str3;
@@ -454,7 +457,7 @@ public final class RestAPIParams {
             }
 
             public final ChannelPermissionOverwrites fromPermissionOverwrite(PermissionOverwrite overwrite) {
-                m.checkNotNullParameter(overwrite, "overwrite");
+                Intrinsics3.checkNotNullParameter(overwrite, "overwrite");
                 int iOrdinal = overwrite.getType().ordinal();
                 int i = 1;
                 if (iOrdinal == 0) {
@@ -498,15 +501,15 @@ public final class RestAPIParams {
         private final int position;
 
         /* JADX INFO: compiled from: RestAPIParams.kt */
-        public final class Serializer implements b.i.d.m<ChannelPosition> {
-            @Override // b.i.d.m
-            public /* bridge */ /* synthetic */ JsonElement serialize(ChannelPosition channelPosition, Type type, l lVar) {
-                return serialize2(channelPosition, type, lVar);
+        public final class Serializer implements JsonSerializer2<ChannelPosition> {
+            @Override // b.i.d.JsonSerializer2
+            public /* bridge */ /* synthetic */ JsonElement serialize(ChannelPosition channelPosition, Type type, JsonSerializationContext jsonSerializationContext) {
+                return serialize2(channelPosition, type, jsonSerializationContext);
             }
 
             /* JADX INFO: renamed from: serialize, reason: avoid collision after fix types in other method */
-            public JsonElement serialize2(ChannelPosition src, Type typeOfSrc, l context) {
-                if (src == null || (!m.areEqual(typeOfSrc, ChannelPosition.class))) {
+            public JsonElement serialize2(ChannelPosition src, Type typeOfSrc, JsonSerializationContext context) {
+                if (src == null || (!Intrinsics3.areEqual(typeOfSrc, ChannelPosition.class))) {
                     return null;
                 }
                 JsonObject jsonObject = new JsonObject();
@@ -516,7 +519,7 @@ public final class RestAPIParams {
                 if (parentId != null) {
                     long jLongValue = parentId.longValue();
                     if (jLongValue == -1) {
-                        jsonObject.a.put("parent_id", j.a);
+                        jsonObject.a.put("parent_id", JsonNull.a);
                     } else {
                         jsonObject.i("parent_id", Long.valueOf(jLongValue));
                     }
@@ -581,7 +584,7 @@ public final class RestAPIParams {
                 return false;
             }
             ChannelVoiceStateUpdate channelVoiceStateUpdate = (ChannelVoiceStateUpdate) other;
-            return this.channelId == channelVoiceStateUpdate.channelId && m.areEqual(this.suppress, channelVoiceStateUpdate.suppress) && m.areEqual(this.requestToSpeakTimestamp, channelVoiceStateUpdate.requestToSpeakTimestamp);
+            return this.channelId == channelVoiceStateUpdate.channelId && Intrinsics3.areEqual(this.suppress, channelVoiceStateUpdate.suppress) && Intrinsics3.areEqual(this.requestToSpeakTimestamp, channelVoiceStateUpdate.requestToSpeakTimestamp);
         }
 
         /* JADX INFO: renamed from: component1, reason: from getter */
@@ -621,7 +624,7 @@ public final class RestAPIParams {
         }
 
         public String toString() {
-            StringBuilder sbU = a.U("ChannelVoiceStateUpdate(channelId=");
+            StringBuilder sbU = outline.U("ChannelVoiceStateUpdate(channelId=");
             sbU.append(this.channelId);
             sbU.append(", suppress=");
             sbU.append(this.suppress);
@@ -649,8 +652,8 @@ public final class RestAPIParams {
         private final long type;
 
         public ComponentInteraction(long j, long j2, long j3, Long l, long j4, Long l2, ComponentInteractionData componentInteractionData, String str, String str2) {
-            m.checkNotNullParameter(componentInteractionData, "data");
-            m.checkNotNullParameter(str2, "nonce");
+            Intrinsics3.checkNotNullParameter(componentInteractionData, "data");
+            Intrinsics3.checkNotNullParameter(str2, "nonce");
             this.type = j;
             this.channelId = j2;
             this.applicationId = j3;
@@ -667,8 +670,8 @@ public final class RestAPIParams {
         }
 
         public final ComponentInteraction copy(long type, long channelId, long applicationId, Long guildId, long messageId, Long messageFlags, ComponentInteractionData data, String sessionId, String nonce) {
-            m.checkNotNullParameter(data, "data");
-            m.checkNotNullParameter(nonce, "nonce");
+            Intrinsics3.checkNotNullParameter(data, "data");
+            Intrinsics3.checkNotNullParameter(nonce, "nonce");
             return new ComponentInteraction(type, channelId, applicationId, guildId, messageId, messageFlags, data, sessionId, nonce);
         }
 
@@ -680,7 +683,7 @@ public final class RestAPIParams {
                 return false;
             }
             ComponentInteraction componentInteraction = (ComponentInteraction) other;
-            return this.type == componentInteraction.type && this.channelId == componentInteraction.channelId && this.applicationId == componentInteraction.applicationId && m.areEqual(this.guildId, componentInteraction.guildId) && this.messageId == componentInteraction.messageId && m.areEqual(this.messageFlags, componentInteraction.messageFlags) && m.areEqual(this.data, componentInteraction.data) && m.areEqual(this.sessionId, componentInteraction.sessionId) && m.areEqual(this.nonce, componentInteraction.nonce);
+            return this.type == componentInteraction.type && this.channelId == componentInteraction.channelId && this.applicationId == componentInteraction.applicationId && Intrinsics3.areEqual(this.guildId, componentInteraction.guildId) && this.messageId == componentInteraction.messageId && Intrinsics3.areEqual(this.messageFlags, componentInteraction.messageFlags) && Intrinsics3.areEqual(this.data, componentInteraction.data) && Intrinsics3.areEqual(this.sessionId, componentInteraction.sessionId) && Intrinsics3.areEqual(this.nonce, componentInteraction.nonce);
         }
 
         /* JADX INFO: renamed from: component3, reason: from getter */
@@ -785,7 +788,7 @@ public final class RestAPIParams {
         }
 
         public String toString() {
-            StringBuilder sbU = a.U("ComponentInteraction(type=");
+            StringBuilder sbU = outline.U("ComponentInteraction(type=");
             sbU.append(this.type);
             sbU.append(", channelId=");
             sbU.append(this.channelId);
@@ -802,7 +805,7 @@ public final class RestAPIParams {
             sbU.append(", sessionId=");
             sbU.append(this.sessionId);
             sbU.append(", nonce=");
-            return a.J(sbU, this.nonce, ")");
+            return outline.J(sbU, this.nonce, ")");
         }
     }
 
@@ -811,26 +814,26 @@ public final class RestAPIParams {
 
         /* JADX INFO: compiled from: RestAPIParams.kt */
         public final /* data */ class ButtonComponentInteractionData extends ComponentInteractionData {
-            private final ComponentType componentType;
+            private final Component6 componentType;
             private final String customId;
 
-            public /* synthetic */ ButtonComponentInteractionData(ComponentType componentType, String str, int i, DefaultConstructorMarker defaultConstructorMarker) {
-                this((i & 1) != 0 ? ComponentType.BUTTON : componentType, str);
+            public /* synthetic */ ButtonComponentInteractionData(Component6 component6, String str, int i, DefaultConstructorMarker defaultConstructorMarker) {
+                this((i & 1) != 0 ? Component6.BUTTON : component6, str);
             }
 
-            public static /* synthetic */ ButtonComponentInteractionData copy$default(ButtonComponentInteractionData buttonComponentInteractionData, ComponentType componentType, String str, int i, Object obj) {
+            public static /* synthetic */ ButtonComponentInteractionData copy$default(ButtonComponentInteractionData buttonComponentInteractionData, Component6 component6, String str, int i, Object obj) {
                 if ((i & 1) != 0) {
-                    componentType = buttonComponentInteractionData.componentType;
+                    component6 = buttonComponentInteractionData.componentType;
                 }
                 if ((i & 2) != 0) {
                     str = buttonComponentInteractionData.customId;
                 }
-                return buttonComponentInteractionData.copy(componentType, str);
+                return buttonComponentInteractionData.copy(component6, str);
             }
 
-            public final ButtonComponentInteractionData copy(ComponentType componentType, String customId) {
-                m.checkNotNullParameter(componentType, "componentType");
-                m.checkNotNullParameter(customId, "customId");
+            public final ButtonComponentInteractionData copy(Component6 componentType, String customId) {
+                Intrinsics3.checkNotNullParameter(componentType, "componentType");
+                Intrinsics3.checkNotNullParameter(customId, "customId");
                 return new ButtonComponentInteractionData(componentType, customId);
             }
 
@@ -842,15 +845,15 @@ public final class RestAPIParams {
                     return false;
                 }
                 ButtonComponentInteractionData buttonComponentInteractionData = (ButtonComponentInteractionData) other;
-                return m.areEqual(this.componentType, buttonComponentInteractionData.componentType) && m.areEqual(this.customId, buttonComponentInteractionData.customId);
+                return Intrinsics3.areEqual(this.componentType, buttonComponentInteractionData.componentType) && Intrinsics3.areEqual(this.customId, buttonComponentInteractionData.customId);
             }
 
             /* JADX INFO: renamed from: component1, reason: from getter */
-            public final ComponentType getComponentType() {
+            public final Component6 getComponentType() {
                 return this.componentType;
             }
 
-            public final ComponentType getComponentType() {
+            public final Component6 getComponentType() {
                 return this.componentType;
             }
 
@@ -864,37 +867,37 @@ public final class RestAPIParams {
             }
 
             public int hashCode() {
-                ComponentType componentType = this.componentType;
-                int iHashCode = (componentType != null ? componentType.hashCode() : 0) * 31;
+                Component6 component6 = this.componentType;
+                int iHashCode = (component6 != null ? component6.hashCode() : 0) * 31;
                 String str = this.customId;
                 return iHashCode + (str != null ? str.hashCode() : 0);
             }
 
             public String toString() {
-                StringBuilder sbU = a.U("ButtonComponentInteractionData(componentType=");
+                StringBuilder sbU = outline.U("ButtonComponentInteractionData(componentType=");
                 sbU.append(this.componentType);
                 sbU.append(", customId=");
-                return a.J(sbU, this.customId, ")");
+                return outline.J(sbU, this.customId, ")");
             }
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-            public ButtonComponentInteractionData(ComponentType componentType, String str) {
+            public ButtonComponentInteractionData(Component6 component6, String str) {
                 super(null);
-                m.checkNotNullParameter(componentType, "componentType");
-                m.checkNotNullParameter(str, "customId");
-                this.componentType = componentType;
+                Intrinsics3.checkNotNullParameter(component6, "componentType");
+                Intrinsics3.checkNotNullParameter(str, "customId");
+                this.componentType = component6;
                 this.customId = str;
             }
         }
 
         /* JADX INFO: compiled from: RestAPIParams.kt */
         public final /* data */ class SelectComponentInteractionData extends ComponentInteractionData {
-            private final ComponentType componentType;
+            private final Component6 componentType;
             private final String customId;
             private final List<String> values;
 
-            public /* synthetic */ SelectComponentInteractionData(ComponentType componentType, String str, List list, int i, DefaultConstructorMarker defaultConstructorMarker) {
-                this((i & 1) != 0 ? ComponentType.SELECT : componentType, str, list);
+            public /* synthetic */ SelectComponentInteractionData(Component6 component6, String str, List list, int i, DefaultConstructorMarker defaultConstructorMarker) {
+                this((i & 1) != 0 ? Component6.SELECT : component6, str, list);
             }
 
             public final List<String> component3() {
@@ -902,9 +905,9 @@ public final class RestAPIParams {
             }
 
             /* JADX WARN: Multi-variable type inference failed */
-            public static /* synthetic */ SelectComponentInteractionData copy$default(SelectComponentInteractionData selectComponentInteractionData, ComponentType componentType, String str, List list, int i, Object obj) {
+            public static /* synthetic */ SelectComponentInteractionData copy$default(SelectComponentInteractionData selectComponentInteractionData, Component6 component6, String str, List list, int i, Object obj) {
                 if ((i & 1) != 0) {
-                    componentType = selectComponentInteractionData.componentType;
+                    component6 = selectComponentInteractionData.componentType;
                 }
                 if ((i & 2) != 0) {
                     str = selectComponentInteractionData.customId;
@@ -912,13 +915,13 @@ public final class RestAPIParams {
                 if ((i & 4) != 0) {
                     list = selectComponentInteractionData.values;
                 }
-                return selectComponentInteractionData.copy(componentType, str, list);
+                return selectComponentInteractionData.copy(component6, str, list);
             }
 
-            public final SelectComponentInteractionData copy(ComponentType componentType, String customId, List<String> values) {
-                m.checkNotNullParameter(componentType, "componentType");
-                m.checkNotNullParameter(customId, "customId");
-                m.checkNotNullParameter(values, "values");
+            public final SelectComponentInteractionData copy(Component6 componentType, String customId, List<String> values) {
+                Intrinsics3.checkNotNullParameter(componentType, "componentType");
+                Intrinsics3.checkNotNullParameter(customId, "customId");
+                Intrinsics3.checkNotNullParameter(values, "values");
                 return new SelectComponentInteractionData(componentType, customId, values);
             }
 
@@ -930,15 +933,15 @@ public final class RestAPIParams {
                     return false;
                 }
                 SelectComponentInteractionData selectComponentInteractionData = (SelectComponentInteractionData) other;
-                return m.areEqual(this.componentType, selectComponentInteractionData.componentType) && m.areEqual(this.customId, selectComponentInteractionData.customId) && m.areEqual(this.values, selectComponentInteractionData.values);
+                return Intrinsics3.areEqual(this.componentType, selectComponentInteractionData.componentType) && Intrinsics3.areEqual(this.customId, selectComponentInteractionData.customId) && Intrinsics3.areEqual(this.values, selectComponentInteractionData.values);
             }
 
             /* JADX INFO: renamed from: component1, reason: from getter */
-            public final ComponentType getComponentType() {
+            public final Component6 getComponentType() {
                 return this.componentType;
             }
 
-            public final ComponentType getComponentType() {
+            public final Component6 getComponentType() {
                 return this.componentType;
             }
 
@@ -956,8 +959,8 @@ public final class RestAPIParams {
             }
 
             public int hashCode() {
-                ComponentType componentType = this.componentType;
-                int iHashCode = (componentType != null ? componentType.hashCode() : 0) * 31;
+                Component6 component6 = this.componentType;
+                int iHashCode = (component6 != null ? component6.hashCode() : 0) * 31;
                 String str = this.customId;
                 int iHashCode2 = (iHashCode + (str != null ? str.hashCode() : 0)) * 31;
                 List<String> list = this.values;
@@ -965,21 +968,21 @@ public final class RestAPIParams {
             }
 
             public String toString() {
-                StringBuilder sbU = a.U("SelectComponentInteractionData(componentType=");
+                StringBuilder sbU = outline.U("SelectComponentInteractionData(componentType=");
                 sbU.append(this.componentType);
                 sbU.append(", customId=");
                 sbU.append(this.customId);
                 sbU.append(", values=");
-                return a.L(sbU, this.values, ")");
+                return outline.L(sbU, this.values, ")");
             }
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-            public SelectComponentInteractionData(ComponentType componentType, String str, List<String> list) {
+            public SelectComponentInteractionData(Component6 component6, String str, List<String> list) {
                 super(null);
-                m.checkNotNullParameter(componentType, "componentType");
-                m.checkNotNullParameter(str, "customId");
-                m.checkNotNullParameter(list, "values");
-                this.componentType = componentType;
+                Intrinsics3.checkNotNullParameter(component6, "componentType");
+                Intrinsics3.checkNotNullParameter(str, "customId");
+                Intrinsics3.checkNotNullParameter(list, "values");
+                this.componentType = component6;
                 this.customId = str;
                 this.values = list;
             }
@@ -1013,7 +1016,7 @@ public final class RestAPIParams {
             }
 
             public final ConnectedAccount create(com.discord.api.connectedaccounts.ConnectedAccount connectedAccount, boolean syncFriends, boolean showActivity, int visibility) {
-                m.checkNotNullParameter(connectedAccount, "connectedAccount");
+                Intrinsics3.checkNotNullParameter(connectedAccount, "connectedAccount");
                 return new ConnectedAccount(syncFriends, connectedAccount.getId(), connectedAccount.getName(), connectedAccount.getRevoked(), showActivity, connectedAccount.getType(), connectedAccount.getVerified(), visibility);
             }
 
@@ -1023,8 +1026,8 @@ public final class RestAPIParams {
         }
 
         public ConnectedAccount(boolean z2, String str, String str2, boolean z3, boolean z4, String str3, boolean z5, int i) {
-            m.checkNotNullParameter(str, ModelAuditLogEntry.CHANGE_KEY_ID);
-            m.checkNotNullParameter(str3, "type");
+            Intrinsics3.checkNotNullParameter(str, ModelAuditLogEntry.CHANGE_KEY_ID);
+            Intrinsics3.checkNotNullParameter(str3, "type");
             this.friend_sync = z2;
             this.id = str;
             this.name = str2;
@@ -1068,7 +1071,7 @@ public final class RestAPIParams {
                 return false;
             }
             ConnectedAccountContacts connectedAccountContacts = (ConnectedAccountContacts) other;
-            return m.areEqual(this.name, connectedAccountContacts.name) && this.friend_sync == connectedAccountContacts.friend_sync;
+            return Intrinsics3.areEqual(this.name, connectedAccountContacts.name) && this.friend_sync == connectedAccountContacts.friend_sync;
         }
 
         /* JADX INFO: renamed from: component2, reason: from getter */
@@ -1098,10 +1101,10 @@ public final class RestAPIParams {
         }
 
         public String toString() {
-            StringBuilder sbU = a.U("ConnectedAccountContacts(name=");
+            StringBuilder sbU = outline.U("ConnectedAccountContacts(name=");
             sbU.append(this.name);
             sbU.append(", friend_sync=");
-            return a.O(sbU, this.friend_sync, ")");
+            return outline.O(sbU, this.friend_sync, ")");
         }
     }
 
@@ -1130,7 +1133,7 @@ public final class RestAPIParams {
 
         public boolean equals(Object other) {
             if (this != other) {
-                return (other instanceof ConnectedAccountNameOnly) && m.areEqual(this.name, ((ConnectedAccountNameOnly) other).name);
+                return (other instanceof ConnectedAccountNameOnly) && Intrinsics3.areEqual(this.name, ((ConnectedAccountNameOnly) other).name);
             }
             return true;
         }
@@ -1149,7 +1152,7 @@ public final class RestAPIParams {
         }
 
         public String toString() {
-            return a.J(a.U("ConnectedAccountNameOnly(name="), this.name, ")");
+            return outline.J(outline.U("ConnectedAccountNameOnly(name="), this.name, ")");
         }
 
         public /* synthetic */ ConnectedAccountNameOnly(String str, int i, DefaultConstructorMarker defaultConstructorMarker) {
@@ -1192,14 +1195,14 @@ public final class RestAPIParams {
         }
 
         public Consents(List<String> list, List<String> list2) {
-            m.checkNotNullParameter(list, "grant");
-            m.checkNotNullParameter(list2, "revoke");
+            Intrinsics3.checkNotNullParameter(list, "grant");
+            Intrinsics3.checkNotNullParameter(list2, "revoke");
             this.grant = list;
             this.revoke = list2;
         }
 
         public /* synthetic */ Consents(List list, List list2, int i, DefaultConstructorMarker defaultConstructorMarker) {
-            this((i & 1) != 0 ? n.emptyList() : list, (i & 2) != 0 ? n.emptyList() : list2);
+            this((i & 1) != 0 ? Collections2.emptyList() : list, (i & 2) != 0 ? Collections2.emptyList() : list2);
         }
     }
 
@@ -1210,9 +1213,9 @@ public final class RestAPIParams {
         private final String mutual_id_hash;
 
         public ContactEntry(String str, String str2, Map<String, String> map) {
-            m.checkNotNullParameter(str, "mutual_id_hash");
-            m.checkNotNullParameter(str2, "friend_id");
-            m.checkNotNullParameter(map, "metadata");
+            Intrinsics3.checkNotNullParameter(str, "mutual_id_hash");
+            Intrinsics3.checkNotNullParameter(str2, "friend_id");
+            Intrinsics3.checkNotNullParameter(map, "metadata");
             this.mutual_id_hash = str;
             this.friend_id = str2;
             this.metadata = map;
@@ -1227,7 +1230,7 @@ public final class RestAPIParams {
         private final Long systemChannelId;
 
         public CreateGuild(String str, String str2, List<CreateGuildChannel> list, Long l) {
-            m.checkNotNullParameter(str, ModelAuditLogEntry.CHANGE_KEY_NAME);
+            Intrinsics3.checkNotNullParameter(str, ModelAuditLogEntry.CHANGE_KEY_NAME);
             this.name = str;
             this.icon = str2;
             this.channels = list;
@@ -1264,7 +1267,7 @@ public final class RestAPIParams {
         private final String name;
 
         public CreateGuildFromTemplate(String str, String str2) {
-            m.checkNotNullParameter(str, ModelAuditLogEntry.CHANGE_KEY_NAME);
+            Intrinsics3.checkNotNullParameter(str, ModelAuditLogEntry.CHANGE_KEY_NAME);
             this.name = str;
             this.icon = str2;
         }
@@ -1307,7 +1310,7 @@ public final class RestAPIParams {
                 return false;
             }
             CreateGuildRoleSubscriptionGroupListing createGuildRoleSubscriptionGroupListing = (CreateGuildRoleSubscriptionGroupListing) other;
-            return m.areEqual(this.image, createGuildRoleSubscriptionGroupListing.image) && m.areEqual(this.description, createGuildRoleSubscriptionGroupListing.description) && m.areEqual(this.fullServerGate, createGuildRoleSubscriptionGroupListing.fullServerGate);
+            return Intrinsics3.areEqual(this.image, createGuildRoleSubscriptionGroupListing.image) && Intrinsics3.areEqual(this.description, createGuildRoleSubscriptionGroupListing.description) && Intrinsics3.areEqual(this.fullServerGate, createGuildRoleSubscriptionGroupListing.fullServerGate);
         }
 
         /* JADX INFO: renamed from: component2, reason: from getter */
@@ -1347,12 +1350,12 @@ public final class RestAPIParams {
         }
 
         public String toString() {
-            StringBuilder sbU = a.U("CreateGuildRoleSubscriptionGroupListing(image=");
+            StringBuilder sbU = outline.U("CreateGuildRoleSubscriptionGroupListing(image=");
             sbU.append(this.image);
             sbU.append(", description=");
             sbU.append(this.description);
             sbU.append(", fullServerGate=");
-            return a.D(sbU, this.fullServerGate, ")");
+            return outline.D(sbU, this.fullServerGate, ")");
         }
     }
 
@@ -1366,8 +1369,8 @@ public final class RestAPIParams {
         private final int priceTier;
 
         public CreateGuildRoleSubscriptionTierListing(String str, String str2, String str3, List<GuildRoleSubscriptionBenefit> list, int i, boolean z2) {
-            m.checkNotNullParameter(str, ModelAuditLogEntry.CHANGE_KEY_NAME);
-            m.checkNotNullParameter(list, "benefits");
+            Intrinsics3.checkNotNullParameter(str, ModelAuditLogEntry.CHANGE_KEY_NAME);
+            Intrinsics3.checkNotNullParameter(list, "benefits");
             this.name = str;
             this.image = str2;
             this.description = str3;
@@ -1408,8 +1411,8 @@ public final class RestAPIParams {
         }
 
         public final CreateGuildRoleSubscriptionTierListing copy(String name, String image, String description, List<GuildRoleSubscriptionBenefit> benefits, int priceTier, boolean canAccessAllChannels) {
-            m.checkNotNullParameter(name, ModelAuditLogEntry.CHANGE_KEY_NAME);
-            m.checkNotNullParameter(benefits, "benefits");
+            Intrinsics3.checkNotNullParameter(name, ModelAuditLogEntry.CHANGE_KEY_NAME);
+            Intrinsics3.checkNotNullParameter(benefits, "benefits");
             return new CreateGuildRoleSubscriptionTierListing(name, image, description, benefits, priceTier, canAccessAllChannels);
         }
 
@@ -1421,7 +1424,7 @@ public final class RestAPIParams {
                 return false;
             }
             CreateGuildRoleSubscriptionTierListing createGuildRoleSubscriptionTierListing = (CreateGuildRoleSubscriptionTierListing) other;
-            return m.areEqual(this.name, createGuildRoleSubscriptionTierListing.name) && m.areEqual(this.image, createGuildRoleSubscriptionTierListing.image) && m.areEqual(this.description, createGuildRoleSubscriptionTierListing.description) && m.areEqual(this.benefits, createGuildRoleSubscriptionTierListing.benefits) && this.priceTier == createGuildRoleSubscriptionTierListing.priceTier && this.canAccessAllChannels == createGuildRoleSubscriptionTierListing.canAccessAllChannels;
+            return Intrinsics3.areEqual(this.name, createGuildRoleSubscriptionTierListing.name) && Intrinsics3.areEqual(this.image, createGuildRoleSubscriptionTierListing.image) && Intrinsics3.areEqual(this.description, createGuildRoleSubscriptionTierListing.description) && Intrinsics3.areEqual(this.benefits, createGuildRoleSubscriptionTierListing.benefits) && this.priceTier == createGuildRoleSubscriptionTierListing.priceTier && this.canAccessAllChannels == createGuildRoleSubscriptionTierListing.canAccessAllChannels;
         }
 
         public final List<GuildRoleSubscriptionBenefit> getBenefits() {
@@ -1496,7 +1499,7 @@ public final class RestAPIParams {
         }
 
         public String toString() {
-            StringBuilder sbU = a.U("CreateGuildRoleSubscriptionTierListing(name=");
+            StringBuilder sbU = outline.U("CreateGuildRoleSubscriptionTierListing(name=");
             sbU.append(this.name);
             sbU.append(", image=");
             sbU.append(this.image);
@@ -1507,7 +1510,7 @@ public final class RestAPIParams {
             sbU.append(", priceTier=");
             sbU.append(this.priceTier);
             sbU.append(", canAccessAllChannels=");
-            return a.O(sbU, this.canAccessAllChannels, ")");
+            return outline.O(sbU, this.canAccessAllChannels, ")");
         }
     }
 
@@ -1524,10 +1527,10 @@ public final class RestAPIParams {
         private final String scheduledStartTime;
 
         public CreateGuildScheduledEventBody(String str, String str2, StageInstancePrivacyLevel stageInstancePrivacyLevel, String str3, String str4, Long l, GuildScheduledEventEntityType guildScheduledEventEntityType, GuildScheduledEventEntityMetadata guildScheduledEventEntityMetadata, Boolean bool) {
-            m.checkNotNullParameter(str, ModelAuditLogEntry.CHANGE_KEY_NAME);
-            m.checkNotNullParameter(stageInstancePrivacyLevel, "privacyLevel");
-            m.checkNotNullParameter(str3, "scheduledStartTime");
-            m.checkNotNullParameter(guildScheduledEventEntityType, "entityType");
+            Intrinsics3.checkNotNullParameter(str, ModelAuditLogEntry.CHANGE_KEY_NAME);
+            Intrinsics3.checkNotNullParameter(stageInstancePrivacyLevel, "privacyLevel");
+            Intrinsics3.checkNotNullParameter(str3, "scheduledStartTime");
+            Intrinsics3.checkNotNullParameter(guildScheduledEventEntityType, "entityType");
             this.name = str;
             this.description = str2;
             this.privacyLevel = stageInstancePrivacyLevel;
@@ -1544,10 +1547,10 @@ public final class RestAPIParams {
         }
 
         public final CreateGuildScheduledEventBody copy(String name, String description, StageInstancePrivacyLevel privacyLevel, String scheduledStartTime, String scheduledEndTime, Long channelId, GuildScheduledEventEntityType entityType, GuildScheduledEventEntityMetadata entityMetadata, Boolean broadcastToDirectoryChannels) {
-            m.checkNotNullParameter(name, ModelAuditLogEntry.CHANGE_KEY_NAME);
-            m.checkNotNullParameter(privacyLevel, "privacyLevel");
-            m.checkNotNullParameter(scheduledStartTime, "scheduledStartTime");
-            m.checkNotNullParameter(entityType, "entityType");
+            Intrinsics3.checkNotNullParameter(name, ModelAuditLogEntry.CHANGE_KEY_NAME);
+            Intrinsics3.checkNotNullParameter(privacyLevel, "privacyLevel");
+            Intrinsics3.checkNotNullParameter(scheduledStartTime, "scheduledStartTime");
+            Intrinsics3.checkNotNullParameter(entityType, "entityType");
             return new CreateGuildScheduledEventBody(name, description, privacyLevel, scheduledStartTime, scheduledEndTime, channelId, entityType, entityMetadata, broadcastToDirectoryChannels);
         }
 
@@ -1559,7 +1562,7 @@ public final class RestAPIParams {
                 return false;
             }
             CreateGuildScheduledEventBody createGuildScheduledEventBody = (CreateGuildScheduledEventBody) other;
-            return m.areEqual(this.name, createGuildScheduledEventBody.name) && m.areEqual(this.description, createGuildScheduledEventBody.description) && m.areEqual(this.privacyLevel, createGuildScheduledEventBody.privacyLevel) && m.areEqual(this.scheduledStartTime, createGuildScheduledEventBody.scheduledStartTime) && m.areEqual(this.scheduledEndTime, createGuildScheduledEventBody.scheduledEndTime) && m.areEqual(this.channelId, createGuildScheduledEventBody.channelId) && m.areEqual(this.entityType, createGuildScheduledEventBody.entityType) && m.areEqual(this.entityMetadata, createGuildScheduledEventBody.entityMetadata) && m.areEqual(this.broadcastToDirectoryChannels, createGuildScheduledEventBody.broadcastToDirectoryChannels);
+            return Intrinsics3.areEqual(this.name, createGuildScheduledEventBody.name) && Intrinsics3.areEqual(this.description, createGuildScheduledEventBody.description) && Intrinsics3.areEqual(this.privacyLevel, createGuildScheduledEventBody.privacyLevel) && Intrinsics3.areEqual(this.scheduledStartTime, createGuildScheduledEventBody.scheduledStartTime) && Intrinsics3.areEqual(this.scheduledEndTime, createGuildScheduledEventBody.scheduledEndTime) && Intrinsics3.areEqual(this.channelId, createGuildScheduledEventBody.channelId) && Intrinsics3.areEqual(this.entityType, createGuildScheduledEventBody.entityType) && Intrinsics3.areEqual(this.entityMetadata, createGuildScheduledEventBody.entityMetadata) && Intrinsics3.areEqual(this.broadcastToDirectoryChannels, createGuildScheduledEventBody.broadcastToDirectoryChannels);
         }
 
         /* JADX INFO: renamed from: component9, reason: from getter */
@@ -1665,7 +1668,7 @@ public final class RestAPIParams {
         }
 
         public String toString() {
-            StringBuilder sbU = a.U("CreateGuildScheduledEventBody(name=");
+            StringBuilder sbU = outline.U("CreateGuildScheduledEventBody(name=");
             sbU.append(this.name);
             sbU.append(", description=");
             sbU.append(this.description);
@@ -1682,7 +1685,7 @@ public final class RestAPIParams {
             sbU.append(", entityMetadata=");
             sbU.append(this.entityMetadata);
             sbU.append(", broadcastToDirectoryChannels=");
-            return a.D(sbU, this.broadcastToDirectoryChannels, ")");
+            return outline.D(sbU, this.broadcastToDirectoryChannels, ")");
         }
     }
 
@@ -1700,7 +1703,7 @@ public final class RestAPIParams {
         private final String password;
 
         public DeletePhone(String str) {
-            m.checkNotNullParameter(str, WidgetSettingsAccountChangePassword.CURRENT_PASSWORD_FIELD);
+            Intrinsics3.checkNotNullParameter(str, WidgetSettingsAccountChangePassword.CURRENT_PASSWORD_FIELD);
             this.password = str;
         }
     }
@@ -1711,7 +1714,7 @@ public final class RestAPIParams {
         private final String password;
 
         public DisableAccount(String str, String str2) {
-            m.checkNotNullParameter(str, WidgetSettingsAccountChangePassword.CURRENT_PASSWORD_FIELD);
+            Intrinsics3.checkNotNullParameter(str, WidgetSettingsAccountChangePassword.CURRENT_PASSWORD_FIELD);
             this.password = str;
             this.code = str2;
         }
@@ -1745,7 +1748,7 @@ public final class RestAPIParams {
         private final String subscriptionSkuId;
 
         public DowngradeSubscriptionBody(String str, String str2, String str3) {
-            a.q0(str, "subscriptionId", str2, "purchaseToken", str3, "subscriptionSkuId");
+            outline.q0(str, "subscriptionId", str2, "purchaseToken", str3, "subscriptionSkuId");
             this.subscriptionId = str;
             this.purchaseToken = str2;
             this.subscriptionSkuId = str3;
@@ -1765,9 +1768,9 @@ public final class RestAPIParams {
         }
 
         public final DowngradeSubscriptionBody copy(String subscriptionId, String purchaseToken, String subscriptionSkuId) {
-            m.checkNotNullParameter(subscriptionId, "subscriptionId");
-            m.checkNotNullParameter(purchaseToken, "purchaseToken");
-            m.checkNotNullParameter(subscriptionSkuId, "subscriptionSkuId");
+            Intrinsics3.checkNotNullParameter(subscriptionId, "subscriptionId");
+            Intrinsics3.checkNotNullParameter(purchaseToken, "purchaseToken");
+            Intrinsics3.checkNotNullParameter(subscriptionSkuId, "subscriptionSkuId");
             return new DowngradeSubscriptionBody(subscriptionId, purchaseToken, subscriptionSkuId);
         }
 
@@ -1779,7 +1782,7 @@ public final class RestAPIParams {
                 return false;
             }
             DowngradeSubscriptionBody downgradeSubscriptionBody = (DowngradeSubscriptionBody) other;
-            return m.areEqual(this.subscriptionId, downgradeSubscriptionBody.subscriptionId) && m.areEqual(this.purchaseToken, downgradeSubscriptionBody.purchaseToken) && m.areEqual(this.subscriptionSkuId, downgradeSubscriptionBody.subscriptionSkuId);
+            return Intrinsics3.areEqual(this.subscriptionId, downgradeSubscriptionBody.subscriptionId) && Intrinsics3.areEqual(this.purchaseToken, downgradeSubscriptionBody.purchaseToken) && Intrinsics3.areEqual(this.subscriptionSkuId, downgradeSubscriptionBody.subscriptionSkuId);
         }
 
         /* JADX INFO: renamed from: component2, reason: from getter */
@@ -1819,12 +1822,12 @@ public final class RestAPIParams {
         }
 
         public String toString() {
-            StringBuilder sbU = a.U("DowngradeSubscriptionBody(subscriptionId=");
+            StringBuilder sbU = outline.U("DowngradeSubscriptionBody(subscriptionId=");
             sbU.append(this.subscriptionId);
             sbU.append(", purchaseToken=");
             sbU.append(this.purchaseToken);
             sbU.append(", subscriptionSkuId=");
-            return a.J(sbU, this.subscriptionSkuId, ")");
+            return outline.J(sbU, this.subscriptionSkuId, ")");
         }
     }
 
@@ -1850,7 +1853,7 @@ public final class RestAPIParams {
         private final String secret;
 
         public EnableMFA(String str, String str2, String str3) {
-            a.q0(str, ModelAuditLogEntry.CHANGE_KEY_CODE, str2, "secret", str3, WidgetSettingsAccountChangePassword.CURRENT_PASSWORD_FIELD);
+            outline.q0(str, ModelAuditLogEntry.CHANGE_KEY_CODE, str2, "secret", str3, WidgetSettingsAccountChangePassword.CURRENT_PASSWORD_FIELD);
             this.code = str;
             this.secret = str2;
             this.password = str3;
@@ -1894,7 +1897,7 @@ public final class RestAPIParams {
         private final List<Long> threadIds;
 
         public GetForumPostData(List<Long> list) {
-            m.checkNotNullParameter(list, "threadIds");
+            Intrinsics3.checkNotNullParameter(list, "threadIds");
             this.threadIds = list;
         }
 
@@ -1911,13 +1914,13 @@ public final class RestAPIParams {
         }
 
         public final GetForumPostData copy(List<Long> threadIds) {
-            m.checkNotNullParameter(threadIds, "threadIds");
+            Intrinsics3.checkNotNullParameter(threadIds, "threadIds");
             return new GetForumPostData(threadIds);
         }
 
         public boolean equals(Object other) {
             if (this != other) {
-                return (other instanceof GetForumPostData) && m.areEqual(this.threadIds, ((GetForumPostData) other).threadIds);
+                return (other instanceof GetForumPostData) && Intrinsics3.areEqual(this.threadIds, ((GetForumPostData) other).threadIds);
             }
             return true;
         }
@@ -1935,7 +1938,7 @@ public final class RestAPIParams {
         }
 
         public String toString() {
-            return a.L(a.U("GetForumPostData(threadIds="), this.threadIds, ")");
+            return outline.L(outline.U("GetForumPostData(threadIds="), this.threadIds, ")");
         }
     }
 
@@ -1944,7 +1947,7 @@ public final class RestAPIParams {
         private final List<Long> sticker_ids;
 
         public GreetMessage(List<Long> list) {
-            m.checkNotNullParameter(list, "sticker_ids");
+            Intrinsics3.checkNotNullParameter(list, "sticker_ids");
             this.sticker_ids = list;
         }
     }
@@ -1965,7 +1968,7 @@ public final class RestAPIParams {
         private final List<Long> userPremiumGuildSubscriptionSlotIds;
 
         public GuildBoosting(List<Long> list) {
-            m.checkNotNullParameter(list, "userPremiumGuildSubscriptionSlotIds");
+            Intrinsics3.checkNotNullParameter(list, "userPremiumGuildSubscriptionSlotIds");
             this.userPremiumGuildSubscriptionSlotIds = list;
         }
 
@@ -2110,8 +2113,8 @@ public final class RestAPIParams {
         private final String school;
 
         public HubWaitlist(String str, String str2) {
-            m.checkNotNullParameter(str, NotificationCompat.CATEGORY_EMAIL);
-            m.checkNotNullParameter(str2, "school");
+            Intrinsics3.checkNotNullParameter(str, NotificationCompat.CATEGORY_EMAIL);
+            Intrinsics3.checkNotNullParameter(str2, "school");
             this.email = str;
             this.school = str2;
         }
@@ -2127,8 +2130,8 @@ public final class RestAPIParams {
         }
 
         public final HubWaitlist copy(String email, String school) {
-            m.checkNotNullParameter(email, NotificationCompat.CATEGORY_EMAIL);
-            m.checkNotNullParameter(school, "school");
+            Intrinsics3.checkNotNullParameter(email, NotificationCompat.CATEGORY_EMAIL);
+            Intrinsics3.checkNotNullParameter(school, "school");
             return new HubWaitlist(email, school);
         }
 
@@ -2140,7 +2143,7 @@ public final class RestAPIParams {
                 return false;
             }
             HubWaitlist hubWaitlist = (HubWaitlist) other;
-            return m.areEqual(this.email, hubWaitlist.email) && m.areEqual(this.school, hubWaitlist.school);
+            return Intrinsics3.areEqual(this.email, hubWaitlist.email) && Intrinsics3.areEqual(this.school, hubWaitlist.school);
         }
 
         /* JADX INFO: renamed from: component1, reason: from getter */
@@ -2169,10 +2172,10 @@ public final class RestAPIParams {
         }
 
         public String toString() {
-            StringBuilder sbU = a.U("HubWaitlist(email=");
+            StringBuilder sbU = outline.U("HubWaitlist(email=");
             sbU.append(this.email);
             sbU.append(", school=");
-            return a.J(sbU, this.school, ")");
+            return outline.J(sbU, this.school, ")");
         }
     }
 
@@ -2209,7 +2212,7 @@ public final class RestAPIParams {
         private final String subscriptionId;
 
         public InvoicePreviewBody(String str, boolean z2, boolean z3) {
-            m.checkNotNullParameter(str, "subscriptionId");
+            Intrinsics3.checkNotNullParameter(str, "subscriptionId");
             this.subscriptionId = str;
             this.renewal = z2;
             this.applyEntitlements = z3;
@@ -2229,7 +2232,7 @@ public final class RestAPIParams {
         }
 
         public final InvoicePreviewBody copy(String subscriptionId, boolean renewal, boolean applyEntitlements) {
-            m.checkNotNullParameter(subscriptionId, "subscriptionId");
+            Intrinsics3.checkNotNullParameter(subscriptionId, "subscriptionId");
             return new InvoicePreviewBody(subscriptionId, renewal, applyEntitlements);
         }
 
@@ -2241,7 +2244,7 @@ public final class RestAPIParams {
                 return false;
             }
             InvoicePreviewBody invoicePreviewBody = (InvoicePreviewBody) other;
-            return m.areEqual(this.subscriptionId, invoicePreviewBody.subscriptionId) && this.renewal == invoicePreviewBody.renewal && this.applyEntitlements == invoicePreviewBody.applyEntitlements;
+            return Intrinsics3.areEqual(this.subscriptionId, invoicePreviewBody.subscriptionId) && this.renewal == invoicePreviewBody.renewal && this.applyEntitlements == invoicePreviewBody.applyEntitlements;
         }
 
         /* JADX INFO: renamed from: component3, reason: from getter */
@@ -2294,12 +2297,12 @@ public final class RestAPIParams {
         }
 
         public String toString() {
-            StringBuilder sbU = a.U("InvoicePreviewBody(subscriptionId=");
+            StringBuilder sbU = outline.U("InvoicePreviewBody(subscriptionId=");
             sbU.append(this.subscriptionId);
             sbU.append(", renewal=");
             sbU.append(this.renewal);
             sbU.append(", applyEntitlements=");
-            return a.O(sbU, this.applyEntitlements, ")");
+            return outline.O(sbU, this.applyEntitlements, ")");
         }
     }
 
@@ -2351,7 +2354,7 @@ public final class RestAPIParams {
         }
 
         public String toString() {
-            return a.O(a.U("LeaveGuildBody(lurking="), this.lurking, ")");
+            return outline.O(outline.U("LeaveGuildBody(lurking="), this.lurking, ")");
         }
 
         public /* synthetic */ LeaveGuildBody(boolean z2, int i, DefaultConstructorMarker defaultConstructorMarker) {
@@ -2408,9 +2411,9 @@ public final class RestAPIParams {
             private final MessageActivityType type;
 
             public Activity(MessageActivityType messageActivityType, String str, String str2) {
-                m.checkNotNullParameter(messageActivityType, "type");
-                m.checkNotNullParameter(str, "partyId");
-                m.checkNotNullParameter(str2, "sessionId");
+                Intrinsics3.checkNotNullParameter(messageActivityType, "type");
+                Intrinsics3.checkNotNullParameter(str, "partyId");
+                Intrinsics3.checkNotNullParameter(str2, "sessionId");
                 this.type = messageActivityType;
                 this.partyId = str;
                 this.sessionId = str2;
@@ -2446,13 +2449,13 @@ public final class RestAPIParams {
 
                 public final AllowedMentions create(MessageAllowedMentions model) {
                     ArrayList arrayList;
-                    m.checkNotNullParameter(model, "model");
-                    List<MessageAllowedMentionsTypes> listA = model.a();
+                    Intrinsics3.checkNotNullParameter(model, "model");
+                    List<MessageAllowedMentions2> listA = model.a();
                     if (listA != null) {
-                        arrayList = new ArrayList(o.collectionSizeOrDefault(listA, 10));
+                        arrayList = new ArrayList(Iterables2.collectionSizeOrDefault(listA, 10));
                         Iterator<T> it = listA.iterator();
                         while (it.hasNext()) {
-                            arrayList.add(((MessageAllowedMentionsTypes) it.next()).getApiStringRepresentation());
+                            arrayList.add(((MessageAllowedMentions2) it.next()).getApiStringRepresentation());
                         }
                     } else {
                         arrayList = null;
@@ -2547,7 +2550,7 @@ public final class RestAPIParams {
                 return false;
             }
             Message message = (Message) other;
-            return m.areEqual(this.content, message.content) && m.areEqual(this.nonce, message.nonce) && m.areEqual(this.applicationId, message.applicationId) && m.areEqual(this.activity, message.activity) && m.areEqual(this.stickerIds, message.stickerIds) && m.areEqual(this.messageReference, message.messageReference) && m.areEqual(this.allowedMentions, message.allowedMentions) && m.areEqual(this.captchaKey, message.captchaKey) && m.areEqual(this.captchaRqtoken, message.captchaRqtoken);
+            return Intrinsics3.areEqual(this.content, message.content) && Intrinsics3.areEqual(this.nonce, message.nonce) && Intrinsics3.areEqual(this.applicationId, message.applicationId) && Intrinsics3.areEqual(this.activity, message.activity) && Intrinsics3.areEqual(this.stickerIds, message.stickerIds) && Intrinsics3.areEqual(this.messageReference, message.messageReference) && Intrinsics3.areEqual(this.allowedMentions, message.allowedMentions) && Intrinsics3.areEqual(this.captchaKey, message.captchaKey) && Intrinsics3.areEqual(this.captchaRqtoken, message.captchaRqtoken);
         }
 
         /* JADX INFO: renamed from: component4, reason: from getter */
@@ -2648,7 +2651,7 @@ public final class RestAPIParams {
         }
 
         public String toString() {
-            StringBuilder sbU = a.U("Message(content=");
+            StringBuilder sbU = outline.U("Message(content=");
             sbU.append(this.content);
             sbU.append(", nonce=");
             sbU.append(this.nonce);
@@ -2665,7 +2668,7 @@ public final class RestAPIParams {
             sbU.append(", captchaKey=");
             sbU.append(this.captchaKey);
             sbU.append(", captchaRqtoken=");
-            return a.J(sbU, this.captchaRqtoken, ")");
+            return outline.J(sbU, this.captchaRqtoken, ")");
         }
 
         public /* synthetic */ Message(String str, String str2, Long l, Activity activity, List list, MessageReference messageReference, AllowedMentions allowedMentions, String str3, String str4, int i, DefaultConstructorMarker defaultConstructorMarker) {
@@ -2685,7 +2688,7 @@ public final class RestAPIParams {
         private final long type;
 
         public ModalInteraction(long j, long j2, Long l, long j3, Long l2, String str, long j4, ModalInteractionData modalInteractionData) {
-            m.checkNotNullParameter(modalInteractionData, "data");
+            Intrinsics3.checkNotNullParameter(modalInteractionData, "data");
             this.type = j;
             this.applicationId = j2;
             this.messageId = l;
@@ -2701,7 +2704,7 @@ public final class RestAPIParams {
         }
 
         public final ModalInteraction copy(long type, long applicationId, Long messageId, long channelId, Long guildId, String sessionId, long nonce, ModalInteractionData data) {
-            m.checkNotNullParameter(data, "data");
+            Intrinsics3.checkNotNullParameter(data, "data");
             return new ModalInteraction(type, applicationId, messageId, channelId, guildId, sessionId, nonce, data);
         }
 
@@ -2713,7 +2716,7 @@ public final class RestAPIParams {
                 return false;
             }
             ModalInteraction modalInteraction = (ModalInteraction) other;
-            return this.type == modalInteraction.type && this.applicationId == modalInteraction.applicationId && m.areEqual(this.messageId, modalInteraction.messageId) && this.channelId == modalInteraction.channelId && m.areEqual(this.guildId, modalInteraction.guildId) && m.areEqual(this.sessionId, modalInteraction.sessionId) && this.nonce == modalInteraction.nonce && m.areEqual(this.data, modalInteraction.data);
+            return this.type == modalInteraction.type && this.applicationId == modalInteraction.applicationId && Intrinsics3.areEqual(this.messageId, modalInteraction.messageId) && this.channelId == modalInteraction.channelId && Intrinsics3.areEqual(this.guildId, modalInteraction.guildId) && Intrinsics3.areEqual(this.sessionId, modalInteraction.sessionId) && this.nonce == modalInteraction.nonce && Intrinsics3.areEqual(this.data, modalInteraction.data);
         }
 
         /* JADX INFO: renamed from: component2, reason: from getter */
@@ -2807,7 +2810,7 @@ public final class RestAPIParams {
         }
 
         public String toString() {
-            StringBuilder sbU = a.U("ModalInteraction(type=");
+            StringBuilder sbU = outline.U("ModalInteraction(type=");
             sbU.append(this.type);
             sbU.append(", applicationId=");
             sbU.append(this.applicationId);
@@ -2835,8 +2838,8 @@ public final class RestAPIParams {
         private final long id;
 
         public ModalInteractionData(long j, String str, List<ModalInteractionDataComponent> list) {
-            m.checkNotNullParameter(str, "customId");
-            m.checkNotNullParameter(list, "components");
+            Intrinsics3.checkNotNullParameter(str, "customId");
+            Intrinsics3.checkNotNullParameter(list, "components");
             this.id = j;
             this.customId = str;
             this.components = list;
@@ -2861,8 +2864,8 @@ public final class RestAPIParams {
         }
 
         public final ModalInteractionData copy(long id2, String customId, List<ModalInteractionDataComponent> components) {
-            m.checkNotNullParameter(customId, "customId");
-            m.checkNotNullParameter(components, "components");
+            Intrinsics3.checkNotNullParameter(customId, "customId");
+            Intrinsics3.checkNotNullParameter(components, "components");
             return new ModalInteractionData(id2, customId, components);
         }
 
@@ -2874,7 +2877,7 @@ public final class RestAPIParams {
                 return false;
             }
             ModalInteractionData modalInteractionData = (ModalInteractionData) other;
-            return this.id == modalInteractionData.id && m.areEqual(this.customId, modalInteractionData.customId) && m.areEqual(this.components, modalInteractionData.components);
+            return this.id == modalInteractionData.id && Intrinsics3.areEqual(this.customId, modalInteractionData.customId) && Intrinsics3.areEqual(this.components, modalInteractionData.components);
         }
 
         public final List<ModalInteractionDataComponent> getComponents() {
@@ -2909,12 +2912,12 @@ public final class RestAPIParams {
         }
 
         public String toString() {
-            StringBuilder sbU = a.U("ModalInteractionData(id=");
+            StringBuilder sbU = outline.U("ModalInteractionData(id=");
             sbU.append(this.id);
             sbU.append(", customId=");
             sbU.append(this.customId);
             sbU.append(", components=");
-            return a.L(sbU, this.components, ")");
+            return outline.L(sbU, this.components, ")");
         }
     }
 
@@ -2922,12 +2925,12 @@ public final class RestAPIParams {
     public final /* data */ class ModalInteractionDataComponent {
         private final List<ModalInteractionDataComponent> components;
         private final String customId;
-        private final ComponentType type;
+        private final Component6 type;
         private final String value;
 
-        public ModalInteractionDataComponent(ComponentType componentType, List<ModalInteractionDataComponent> list, String str, String str2) {
-            m.checkNotNullParameter(componentType, "type");
-            this.type = componentType;
+        public ModalInteractionDataComponent(Component6 component6, List<ModalInteractionDataComponent> list, String str, String str2) {
+            Intrinsics3.checkNotNullParameter(component6, "type");
+            this.type = component6;
             this.components = list;
             this.customId = str;
             this.value = str2;
@@ -2938,9 +2941,9 @@ public final class RestAPIParams {
         }
 
         /* JADX WARN: Multi-variable type inference failed */
-        public static /* synthetic */ ModalInteractionDataComponent copy$default(ModalInteractionDataComponent modalInteractionDataComponent, ComponentType componentType, List list, String str, String str2, int i, Object obj) {
+        public static /* synthetic */ ModalInteractionDataComponent copy$default(ModalInteractionDataComponent modalInteractionDataComponent, Component6 component6, List list, String str, String str2, int i, Object obj) {
             if ((i & 1) != 0) {
-                componentType = modalInteractionDataComponent.type;
+                component6 = modalInteractionDataComponent.type;
             }
             if ((i & 2) != 0) {
                 list = modalInteractionDataComponent.components;
@@ -2951,11 +2954,11 @@ public final class RestAPIParams {
             if ((i & 8) != 0) {
                 str2 = modalInteractionDataComponent.value;
             }
-            return modalInteractionDataComponent.copy(componentType, list, str, str2);
+            return modalInteractionDataComponent.copy(component6, list, str, str2);
         }
 
-        public final ModalInteractionDataComponent copy(ComponentType type, List<ModalInteractionDataComponent> components, String customId, String value) {
-            m.checkNotNullParameter(type, "type");
+        public final ModalInteractionDataComponent copy(Component6 type, List<ModalInteractionDataComponent> components, String customId, String value) {
+            Intrinsics3.checkNotNullParameter(type, "type");
             return new ModalInteractionDataComponent(type, components, customId, value);
         }
 
@@ -2967,7 +2970,7 @@ public final class RestAPIParams {
                 return false;
             }
             ModalInteractionDataComponent modalInteractionDataComponent = (ModalInteractionDataComponent) other;
-            return m.areEqual(this.type, modalInteractionDataComponent.type) && m.areEqual(this.components, modalInteractionDataComponent.components) && m.areEqual(this.customId, modalInteractionDataComponent.customId) && m.areEqual(this.value, modalInteractionDataComponent.value);
+            return Intrinsics3.areEqual(this.type, modalInteractionDataComponent.type) && Intrinsics3.areEqual(this.components, modalInteractionDataComponent.components) && Intrinsics3.areEqual(this.customId, modalInteractionDataComponent.customId) && Intrinsics3.areEqual(this.value, modalInteractionDataComponent.value);
         }
 
         public final List<ModalInteractionDataComponent> getComponents() {
@@ -2984,11 +2987,11 @@ public final class RestAPIParams {
         }
 
         /* JADX INFO: renamed from: component1, reason: from getter */
-        public final ComponentType getType() {
+        public final Component6 getType() {
             return this.type;
         }
 
-        public final ComponentType getType() {
+        public final Component6 getType() {
             return this.type;
         }
 
@@ -3002,8 +3005,8 @@ public final class RestAPIParams {
         }
 
         public int hashCode() {
-            ComponentType componentType = this.type;
-            int iHashCode = (componentType != null ? componentType.hashCode() : 0) * 31;
+            Component6 component6 = this.type;
+            int iHashCode = (component6 != null ? component6.hashCode() : 0) * 31;
             List<ModalInteractionDataComponent> list = this.components;
             int iHashCode2 = (iHashCode + (list != null ? list.hashCode() : 0)) * 31;
             String str = this.customId;
@@ -3013,14 +3016,14 @@ public final class RestAPIParams {
         }
 
         public String toString() {
-            StringBuilder sbU = a.U("ModalInteractionDataComponent(type=");
+            StringBuilder sbU = outline.U("ModalInteractionDataComponent(type=");
             sbU.append(this.type);
             sbU.append(", components=");
             sbU.append(this.components);
             sbU.append(", customId=");
             sbU.append(this.customId);
             sbU.append(", value=");
-            return a.J(sbU, this.value, ")");
+            return outline.J(sbU, this.value, ")");
         }
     }
 
@@ -3045,10 +3048,10 @@ public final class RestAPIParams {
             private final User user;
 
             public ResponseGet(User user, Application application, List<ConnectedAccount> list, List<Guild> list2) {
-                m.checkNotNullParameter(user, "user");
-                m.checkNotNullParameter(application, "application");
-                m.checkNotNullParameter(list, "connections");
-                m.checkNotNullParameter(list2, "guilds");
+                Intrinsics3.checkNotNullParameter(user, "user");
+                Intrinsics3.checkNotNullParameter(application, "application");
+                Intrinsics3.checkNotNullParameter(list, "connections");
+                Intrinsics3.checkNotNullParameter(list2, "guilds");
                 this.user = user;
                 this.application = application;
                 this.connections = list;
@@ -3077,7 +3080,7 @@ public final class RestAPIParams {
             private final String location;
 
             public ResponsePost(String str) {
-                m.checkNotNullParameter(str, ModelAuditLogEntry.CHANGE_KEY_LOCATION);
+                Intrinsics3.checkNotNullParameter(str, ModelAuditLogEntry.CHANGE_KEY_LOCATION);
                 this.location = str;
             }
 
@@ -3095,7 +3098,7 @@ public final class RestAPIParams {
         private final String name;
 
         public PatchGuildEmoji(String str) {
-            m.checkNotNullParameter(str, ModelAuditLogEntry.CHANGE_KEY_NAME);
+            Intrinsics3.checkNotNullParameter(str, ModelAuditLogEntry.CHANGE_KEY_NAME);
             this.name = str;
         }
     }
@@ -3121,8 +3124,8 @@ public final class RestAPIParams {
         private final String name;
 
         public PostGuildEmoji(String str, String str2) {
-            m.checkNotNullParameter(str, ModelAuditLogEntry.CHANGE_KEY_NAME);
-            m.checkNotNullParameter(str2, "image");
+            Intrinsics3.checkNotNullParameter(str, ModelAuditLogEntry.CHANGE_KEY_NAME);
+            Intrinsics3.checkNotNullParameter(str2, "image");
             this.name = str;
             this.image = str2;
         }
@@ -3153,7 +3156,7 @@ public final class RestAPIParams {
         private final long skuId;
 
         public PurchaseMetadataBody(long j, String str) {
-            m.checkNotNullParameter(str, "paymentGatewaySkuId");
+            Intrinsics3.checkNotNullParameter(str, "paymentGatewaySkuId");
             this.skuId = j;
             this.paymentGatewaySkuId = str;
         }
@@ -3169,7 +3172,7 @@ public final class RestAPIParams {
         }
 
         public final PurchaseMetadataBody copy(long skuId, String paymentGatewaySkuId) {
-            m.checkNotNullParameter(paymentGatewaySkuId, "paymentGatewaySkuId");
+            Intrinsics3.checkNotNullParameter(paymentGatewaySkuId, "paymentGatewaySkuId");
             return new PurchaseMetadataBody(skuId, paymentGatewaySkuId);
         }
 
@@ -3181,7 +3184,7 @@ public final class RestAPIParams {
                 return false;
             }
             PurchaseMetadataBody purchaseMetadataBody = (PurchaseMetadataBody) other;
-            return this.skuId == purchaseMetadataBody.skuId && m.areEqual(this.paymentGatewaySkuId, purchaseMetadataBody.paymentGatewaySkuId);
+            return this.skuId == purchaseMetadataBody.skuId && Intrinsics3.areEqual(this.paymentGatewaySkuId, purchaseMetadataBody.paymentGatewaySkuId);
         }
 
         /* JADX INFO: renamed from: component2, reason: from getter */
@@ -3210,10 +3213,10 @@ public final class RestAPIParams {
         }
 
         public String toString() {
-            StringBuilder sbU = a.U("PurchaseMetadataBody(skuId=");
+            StringBuilder sbU = outline.U("PurchaseMetadataBody(skuId=");
             sbU.append(this.skuId);
             sbU.append(", paymentGatewaySkuId=");
-            return a.J(sbU, this.paymentGatewaySkuId, ")");
+            return outline.J(sbU, this.paymentGatewaySkuId, ")");
         }
     }
 
@@ -3222,7 +3225,7 @@ public final class RestAPIParams {
         private final String handshakeToken;
 
         public RemoteAuthCancel(String str) {
-            m.checkNotNullParameter(str, "handshakeToken");
+            Intrinsics3.checkNotNullParameter(str, "handshakeToken");
             this.handshakeToken = str;
         }
     }
@@ -3233,7 +3236,7 @@ public final class RestAPIParams {
         private final boolean temporary;
 
         public RemoteAuthFinish(boolean z2, String str) {
-            m.checkNotNullParameter(str, "handshakeToken");
+            Intrinsics3.checkNotNullParameter(str, "handshakeToken");
             this.temporary = z2;
             this.handshakeToken = str;
         }
@@ -3244,7 +3247,7 @@ public final class RestAPIParams {
         private final String fingerprint;
 
         public RemoteAuthInitialize(String str) {
-            m.checkNotNullParameter(str, "fingerprint");
+            Intrinsics3.checkNotNullParameter(str, "fingerprint");
             this.fingerprint = str;
         }
     }
@@ -3299,7 +3302,7 @@ public final class RestAPIParams {
             }
 
             public final Role createWithRole(GuildRole role) {
-                m.checkNotNullParameter(role, "role");
+                Intrinsics3.checkNotNullParameter(role, "role");
                 return new Role(Boolean.valueOf(role.getHoist()), role.getName(), Boolean.valueOf(role.getMentionable()), Integer.valueOf(role.getColor()), Integer.valueOf(role.getPosition()), Long.valueOf(role.getPermissions()), role.getId(), null, 128, null);
             }
 
@@ -3409,8 +3412,8 @@ public final class RestAPIParams {
         private final String topic;
 
         public StartStageInstanceBody(long j, String str, StageInstancePrivacyLevel stageInstancePrivacyLevel, boolean z2, String str2) {
-            m.checkNotNullParameter(str, ModelAuditLogEntry.CHANGE_KEY_TOPIC);
-            m.checkNotNullParameter(stageInstancePrivacyLevel, "privacyLevel");
+            Intrinsics3.checkNotNullParameter(str, ModelAuditLogEntry.CHANGE_KEY_TOPIC);
+            Intrinsics3.checkNotNullParameter(stageInstancePrivacyLevel, "privacyLevel");
             this.channelId = j;
             this.topic = str;
             this.privacyLevel = stageInstancePrivacyLevel;
@@ -3442,8 +3445,8 @@ public final class RestAPIParams {
         }
 
         public final StartStageInstanceBody copy(long channelId, String topic, StageInstancePrivacyLevel privacyLevel, boolean sendStartNotification, String guildScheduledEventId) {
-            m.checkNotNullParameter(topic, ModelAuditLogEntry.CHANGE_KEY_TOPIC);
-            m.checkNotNullParameter(privacyLevel, "privacyLevel");
+            Intrinsics3.checkNotNullParameter(topic, ModelAuditLogEntry.CHANGE_KEY_TOPIC);
+            Intrinsics3.checkNotNullParameter(privacyLevel, "privacyLevel");
             return new StartStageInstanceBody(channelId, topic, privacyLevel, sendStartNotification, guildScheduledEventId);
         }
 
@@ -3455,7 +3458,7 @@ public final class RestAPIParams {
                 return false;
             }
             StartStageInstanceBody startStageInstanceBody = (StartStageInstanceBody) other;
-            return this.channelId == startStageInstanceBody.channelId && m.areEqual(this.topic, startStageInstanceBody.topic) && m.areEqual(this.privacyLevel, startStageInstanceBody.privacyLevel) && this.sendStartNotification == startStageInstanceBody.sendStartNotification && m.areEqual(this.guildScheduledEventId, startStageInstanceBody.guildScheduledEventId);
+            return this.channelId == startStageInstanceBody.channelId && Intrinsics3.areEqual(this.topic, startStageInstanceBody.topic) && Intrinsics3.areEqual(this.privacyLevel, startStageInstanceBody.privacyLevel) && this.sendStartNotification == startStageInstanceBody.sendStartNotification && Intrinsics3.areEqual(this.guildScheduledEventId, startStageInstanceBody.guildScheduledEventId);
         }
 
         /* JADX INFO: renamed from: component1, reason: from getter */
@@ -3526,7 +3529,7 @@ public final class RestAPIParams {
         }
 
         public String toString() {
-            StringBuilder sbU = a.U("StartStageInstanceBody(channelId=");
+            StringBuilder sbU = outline.U("StartStageInstanceBody(channelId=");
             sbU.append(this.channelId);
             sbU.append(", topic=");
             sbU.append(this.topic);
@@ -3535,7 +3538,7 @@ public final class RestAPIParams {
             sbU.append(", sendStartNotification=");
             sbU.append(this.sendStartNotification);
             sbU.append(", guildScheduledEventId=");
-            return a.J(sbU, this.guildScheduledEventId, ")");
+            return outline.J(sbU, this.guildScheduledEventId, ")");
         }
 
         public /* synthetic */ StartStageInstanceBody(long j, String str, StageInstancePrivacyLevel stageInstancePrivacyLevel, boolean z2, String str2, int i, DefaultConstructorMarker defaultConstructorMarker) {
@@ -3569,7 +3572,7 @@ public final class RestAPIParams {
         private final int type;
 
         public ThreadCreationSettings(String str, int i, Integer num) {
-            m.checkNotNullParameter(str, ModelAuditLogEntry.CHANGE_KEY_NAME);
+            Intrinsics3.checkNotNullParameter(str, ModelAuditLogEntry.CHANGE_KEY_NAME);
             this.name = str;
             this.type = i;
             this.autoArchiveDuration = num;
@@ -3589,7 +3592,7 @@ public final class RestAPIParams {
         }
 
         public final ThreadCreationSettings copy(String name, int type, Integer autoArchiveDuration) {
-            m.checkNotNullParameter(name, ModelAuditLogEntry.CHANGE_KEY_NAME);
+            Intrinsics3.checkNotNullParameter(name, ModelAuditLogEntry.CHANGE_KEY_NAME);
             return new ThreadCreationSettings(name, type, autoArchiveDuration);
         }
 
@@ -3601,7 +3604,7 @@ public final class RestAPIParams {
                 return false;
             }
             ThreadCreationSettings threadCreationSettings = (ThreadCreationSettings) other;
-            return m.areEqual(this.name, threadCreationSettings.name) && this.type == threadCreationSettings.type && m.areEqual(this.autoArchiveDuration, threadCreationSettings.autoArchiveDuration);
+            return Intrinsics3.areEqual(this.name, threadCreationSettings.name) && this.type == threadCreationSettings.type && Intrinsics3.areEqual(this.autoArchiveDuration, threadCreationSettings.autoArchiveDuration);
         }
 
         /* JADX INFO: renamed from: component3, reason: from getter */
@@ -3627,12 +3630,12 @@ public final class RestAPIParams {
         }
 
         public String toString() {
-            StringBuilder sbU = a.U("ThreadCreationSettings(name=");
+            StringBuilder sbU = outline.U("ThreadCreationSettings(name=");
             sbU.append(this.name);
             sbU.append(", type=");
             sbU.append(this.type);
             sbU.append(", autoArchiveDuration=");
-            return a.F(sbU, this.autoArchiveDuration, ")");
+            return outline.F(sbU, this.autoArchiveDuration, ")");
         }
 
         public /* synthetic */ ThreadCreationSettings(String str, int i, Integer num, int i2, DefaultConstructorMarker defaultConstructorMarker) {
@@ -3681,7 +3684,7 @@ public final class RestAPIParams {
                 return false;
             }
             ThreadMemberSettings threadMemberSettings = (ThreadMemberSettings) other;
-            return m.areEqual(this.flags, threadMemberSettings.flags) && m.areEqual(this.muted, threadMemberSettings.muted) && m.areEqual(this.muteConfig, threadMemberSettings.muteConfig);
+            return Intrinsics3.areEqual(this.flags, threadMemberSettings.flags) && Intrinsics3.areEqual(this.muted, threadMemberSettings.muted) && Intrinsics3.areEqual(this.muteConfig, threadMemberSettings.muteConfig);
         }
 
         /* JADX INFO: renamed from: component1, reason: from getter */
@@ -3721,7 +3724,7 @@ public final class RestAPIParams {
         }
 
         public String toString() {
-            StringBuilder sbU = a.U("ThreadMemberSettings(flags=");
+            StringBuilder sbU = outline.U("ThreadMemberSettings(flags=");
             sbU.append(this.flags);
             sbU.append(", muted=");
             sbU.append(this.muted);
@@ -3777,7 +3780,7 @@ public final class RestAPIParams {
                 return false;
             }
             ThreadSettings threadSettings = (ThreadSettings) other;
-            return m.areEqual(this.archived, threadSettings.archived) && m.areEqual(this.locked, threadSettings.locked) && m.areEqual(this.autoArchiveDuration, threadSettings.autoArchiveDuration);
+            return Intrinsics3.areEqual(this.archived, threadSettings.archived) && Intrinsics3.areEqual(this.locked, threadSettings.locked) && Intrinsics3.areEqual(this.autoArchiveDuration, threadSettings.autoArchiveDuration);
         }
 
         /* JADX INFO: renamed from: component1, reason: from getter */
@@ -3805,12 +3808,12 @@ public final class RestAPIParams {
         }
 
         public String toString() {
-            StringBuilder sbU = a.U("ThreadSettings(archived=");
+            StringBuilder sbU = outline.U("ThreadSettings(archived=");
             sbU.append(this.archived);
             sbU.append(", locked=");
             sbU.append(this.locked);
             sbU.append(", autoArchiveDuration=");
-            return a.F(sbU, this.autoArchiveDuration, ")");
+            return outline.F(sbU, this.autoArchiveDuration, ")");
         }
 
         public /* synthetic */ ThreadSettings(Boolean bool, Boolean bool2, Integer num, int i, DefaultConstructorMarker defaultConstructorMarker) {
@@ -3823,7 +3826,7 @@ public final class RestAPIParams {
         private final String thumbnail;
 
         public Thumbnail(String str) {
-            m.checkNotNullParameter(str, "thumbnail");
+            Intrinsics3.checkNotNullParameter(str, "thumbnail");
             this.thumbnail = str;
         }
     }
@@ -3879,12 +3882,12 @@ public final class RestAPIParams {
             }
 
             public final UpdateGuild createForExplicitContentFilter(GuildExplicitContentFilter explicitContentFilter) {
-                m.checkNotNullParameter(explicitContentFilter, "explicitContentFilter");
+                Intrinsics3.checkNotNullParameter(explicitContentFilter, "explicitContentFilter");
                 return new UpdateGuild(null, null, null, null, null, null, null, explicitContentFilter, null, null, null, null, null, null, null, 32639, null);
             }
 
             public final UpdateGuild createForVerificationLevel(GuildVerificationLevel verificationLevel) {
-                m.checkNotNullParameter(verificationLevel, "verificationLevel");
+                Intrinsics3.checkNotNullParameter(verificationLevel, "verificationLevel");
                 return new UpdateGuild(null, null, null, null, null, null, verificationLevel, null, null, null, null, null, null, null, null, 32703, null);
             }
 
@@ -3982,7 +3985,7 @@ public final class RestAPIParams {
                 return false;
             }
             UpdateGuildRoleSubscriptionGroupListing updateGuildRoleSubscriptionGroupListing = (UpdateGuildRoleSubscriptionGroupListing) other;
-            return m.areEqual(this.image, updateGuildRoleSubscriptionGroupListing.image) && m.areEqual(this.description, updateGuildRoleSubscriptionGroupListing.description) && m.areEqual(this.fullServerGate, updateGuildRoleSubscriptionGroupListing.fullServerGate);
+            return Intrinsics3.areEqual(this.image, updateGuildRoleSubscriptionGroupListing.image) && Intrinsics3.areEqual(this.description, updateGuildRoleSubscriptionGroupListing.description) && Intrinsics3.areEqual(this.fullServerGate, updateGuildRoleSubscriptionGroupListing.fullServerGate);
         }
 
         /* JADX INFO: renamed from: component2, reason: from getter */
@@ -4022,12 +4025,12 @@ public final class RestAPIParams {
         }
 
         public String toString() {
-            StringBuilder sbU = a.U("UpdateGuildRoleSubscriptionGroupListing(image=");
+            StringBuilder sbU = outline.U("UpdateGuildRoleSubscriptionGroupListing(image=");
             sbU.append(this.image);
             sbU.append(", description=");
             sbU.append(this.description);
             sbU.append(", fullServerGate=");
-            return a.D(sbU, this.fullServerGate, ")");
+            return outline.D(sbU, this.fullServerGate, ")");
         }
     }
 
@@ -4072,7 +4075,7 @@ public final class RestAPIParams {
                 return false;
             }
             UpdateGuildRoleSubscriptionTierFreeTrial updateGuildRoleSubscriptionTierFreeTrial = (UpdateGuildRoleSubscriptionTierFreeTrial) other;
-            return m.areEqual(this.trial, updateGuildRoleSubscriptionTierFreeTrial.trial) && m.areEqual(this.maxNumActiveTrialUsers, updateGuildRoleSubscriptionTierFreeTrial.maxNumActiveTrialUsers);
+            return Intrinsics3.areEqual(this.trial, updateGuildRoleSubscriptionTierFreeTrial.trial) && Intrinsics3.areEqual(this.maxNumActiveTrialUsers, updateGuildRoleSubscriptionTierFreeTrial.maxNumActiveTrialUsers);
         }
 
         public final NullSerializable<Integer> getMaxNumActiveTrialUsers() {
@@ -4091,7 +4094,7 @@ public final class RestAPIParams {
         }
 
         public String toString() {
-            StringBuilder sbU = a.U("UpdateGuildRoleSubscriptionTierFreeTrial(trial=");
+            StringBuilder sbU = outline.U("UpdateGuildRoleSubscriptionTierFreeTrial(trial=");
             sbU.append(this.trial);
             sbU.append(", maxNumActiveTrialUsers=");
             sbU.append(this.maxNumActiveTrialUsers);
@@ -4167,7 +4170,7 @@ public final class RestAPIParams {
                 return false;
             }
             UpdateGuildRoleSubscriptionTierListing updateGuildRoleSubscriptionTierListing = (UpdateGuildRoleSubscriptionTierListing) other;
-            return m.areEqual(this.name, updateGuildRoleSubscriptionTierListing.name) && m.areEqual(this.image, updateGuildRoleSubscriptionTierListing.image) && m.areEqual(this.description, updateGuildRoleSubscriptionTierListing.description) && m.areEqual(this.priceTier, updateGuildRoleSubscriptionTierListing.priceTier) && m.areEqual(this.benefits, updateGuildRoleSubscriptionTierListing.benefits) && m.areEqual(this.published, updateGuildRoleSubscriptionTierListing.published) && m.areEqual(this.canAccessAllChannels, updateGuildRoleSubscriptionTierListing.canAccessAllChannels);
+            return Intrinsics3.areEqual(this.name, updateGuildRoleSubscriptionTierListing.name) && Intrinsics3.areEqual(this.image, updateGuildRoleSubscriptionTierListing.image) && Intrinsics3.areEqual(this.description, updateGuildRoleSubscriptionTierListing.description) && Intrinsics3.areEqual(this.priceTier, updateGuildRoleSubscriptionTierListing.priceTier) && Intrinsics3.areEqual(this.benefits, updateGuildRoleSubscriptionTierListing.benefits) && Intrinsics3.areEqual(this.published, updateGuildRoleSubscriptionTierListing.published) && Intrinsics3.areEqual(this.canAccessAllChannels, updateGuildRoleSubscriptionTierListing.canAccessAllChannels);
         }
 
         public final List<GuildRoleSubscriptionBenefit> getBenefits() {
@@ -4246,7 +4249,7 @@ public final class RestAPIParams {
         }
 
         public String toString() {
-            StringBuilder sbU = a.U("UpdateGuildRoleSubscriptionTierListing(name=");
+            StringBuilder sbU = outline.U("UpdateGuildRoleSubscriptionTierListing(name=");
             sbU.append(this.name);
             sbU.append(", image=");
             sbU.append(this.image);
@@ -4259,7 +4262,7 @@ public final class RestAPIParams {
             sbU.append(", published=");
             sbU.append(this.published);
             sbU.append(", canAccessAllChannels=");
-            return a.D(sbU, this.canAccessAllChannels, ")");
+            return outline.D(sbU, this.canAccessAllChannels, ")");
         }
     }
 
@@ -4318,7 +4321,7 @@ public final class RestAPIParams {
                 return false;
             }
             UpdateGuildScheduledEventBody updateGuildScheduledEventBody = (UpdateGuildScheduledEventBody) other;
-            return m.areEqual(this.name, updateGuildScheduledEventBody.name) && m.areEqual(this.description, updateGuildScheduledEventBody.description) && m.areEqual(this.privacyLevel, updateGuildScheduledEventBody.privacyLevel) && m.areEqual(this.scheduledStartTime, updateGuildScheduledEventBody.scheduledStartTime) && m.areEqual(this.scheduledEndTime, updateGuildScheduledEventBody.scheduledEndTime) && m.areEqual(this.channelId, updateGuildScheduledEventBody.channelId) && m.areEqual(this.entityType, updateGuildScheduledEventBody.entityType) && m.areEqual(this.entityMetadata, updateGuildScheduledEventBody.entityMetadata) && m.areEqual(this.status, updateGuildScheduledEventBody.status) && m.areEqual(this.broadcastToDirectoryChannels, updateGuildScheduledEventBody.broadcastToDirectoryChannels);
+            return Intrinsics3.areEqual(this.name, updateGuildScheduledEventBody.name) && Intrinsics3.areEqual(this.description, updateGuildScheduledEventBody.description) && Intrinsics3.areEqual(this.privacyLevel, updateGuildScheduledEventBody.privacyLevel) && Intrinsics3.areEqual(this.scheduledStartTime, updateGuildScheduledEventBody.scheduledStartTime) && Intrinsics3.areEqual(this.scheduledEndTime, updateGuildScheduledEventBody.scheduledEndTime) && Intrinsics3.areEqual(this.channelId, updateGuildScheduledEventBody.channelId) && Intrinsics3.areEqual(this.entityType, updateGuildScheduledEventBody.entityType) && Intrinsics3.areEqual(this.entityMetadata, updateGuildScheduledEventBody.entityMetadata) && Intrinsics3.areEqual(this.status, updateGuildScheduledEventBody.status) && Intrinsics3.areEqual(this.broadcastToDirectoryChannels, updateGuildScheduledEventBody.broadcastToDirectoryChannels);
         }
 
         /* JADX INFO: renamed from: component10, reason: from getter */
@@ -4425,7 +4428,7 @@ public final class RestAPIParams {
         }
 
         public String toString() {
-            StringBuilder sbU = a.U("UpdateGuildScheduledEventBody(name=");
+            StringBuilder sbU = outline.U("UpdateGuildScheduledEventBody(name=");
             sbU.append(this.name);
             sbU.append(", description=");
             sbU.append(this.description);
@@ -4444,7 +4447,7 @@ public final class RestAPIParams {
             sbU.append(", status=");
             sbU.append(this.status);
             sbU.append(", broadcastToDirectoryChannels=");
-            return a.D(sbU, this.broadcastToDirectoryChannels, ")");
+            return outline.D(sbU, this.broadcastToDirectoryChannels, ")");
         }
 
         public /* synthetic */ UpdateGuildScheduledEventBody(String str, String str2, StageInstancePrivacyLevel stageInstancePrivacyLevel, String str3, String str4, NullSerializable nullSerializable, GuildScheduledEventEntityType guildScheduledEventEntityType, NullSerializable nullSerializable2, GuildScheduledEventStatus guildScheduledEventStatus, Boolean bool, int i, DefaultConstructorMarker defaultConstructorMarker) {
@@ -4488,7 +4491,7 @@ public final class RestAPIParams {
                 return false;
             }
             UpdateStageInstanceBody updateStageInstanceBody = (UpdateStageInstanceBody) other;
-            return m.areEqual(this.topic, updateStageInstanceBody.topic) && m.areEqual(this.privacyLevel, updateStageInstanceBody.privacyLevel);
+            return Intrinsics3.areEqual(this.topic, updateStageInstanceBody.topic) && Intrinsics3.areEqual(this.privacyLevel, updateStageInstanceBody.privacyLevel);
         }
 
         /* JADX INFO: renamed from: component2, reason: from getter */
@@ -4517,7 +4520,7 @@ public final class RestAPIParams {
         }
 
         public String toString() {
-            StringBuilder sbU = a.U("UpdateStageInstanceBody(topic=");
+            StringBuilder sbU = outline.U("UpdateStageInstanceBody(topic=");
             sbU.append(this.topic);
             sbU.append(", privacyLevel=");
             sbU.append(this.privacyLevel);
@@ -4560,7 +4563,7 @@ public final class RestAPIParams {
         private final AllowedInSuggestionsType set_use_for_suggestions;
 
         public UploadContacts(List<ContactEntry> list, boolean z2, AllowedInSuggestionsType allowedInSuggestionsType) {
-            m.checkNotNullParameter(list, "friend_list_entries");
+            Intrinsics3.checkNotNullParameter(list, "friend_list_entries");
             this.friend_list_entries = list;
             this.background = z2;
             this.set_use_for_suggestions = allowedInSuggestionsType;
@@ -4620,8 +4623,8 @@ public final class RestAPIParams {
         private final List<Long> user_ids;
 
         public UserBulkRelationship(List<Long> list, String str) {
-            m.checkNotNullParameter(list, "user_ids");
-            m.checkNotNullParameter(str, "token");
+            Intrinsics3.checkNotNullParameter(list, "user_ids");
+            Intrinsics3.checkNotNullParameter(str, "token");
             this.user_ids = list;
             this.token = str;
         }
@@ -4642,8 +4645,8 @@ public final class RestAPIParams {
         }
 
         public final UserBulkRelationship copy(List<Long> user_ids, String token) {
-            m.checkNotNullParameter(user_ids, "user_ids");
-            m.checkNotNullParameter(token, "token");
+            Intrinsics3.checkNotNullParameter(user_ids, "user_ids");
+            Intrinsics3.checkNotNullParameter(token, "token");
             return new UserBulkRelationship(user_ids, token);
         }
 
@@ -4655,7 +4658,7 @@ public final class RestAPIParams {
                 return false;
             }
             UserBulkRelationship userBulkRelationship = (UserBulkRelationship) other;
-            return m.areEqual(this.user_ids, userBulkRelationship.user_ids) && m.areEqual(this.token, userBulkRelationship.token);
+            return Intrinsics3.areEqual(this.user_ids, userBulkRelationship.user_ids) && Intrinsics3.areEqual(this.token, userBulkRelationship.token);
         }
 
         /* JADX INFO: renamed from: component2, reason: from getter */
@@ -4671,10 +4674,10 @@ public final class RestAPIParams {
         }
 
         public String toString() {
-            StringBuilder sbU = a.U("UserBulkRelationship(user_ids=");
+            StringBuilder sbU = outline.U("UserBulkRelationship(user_ids=");
             sbU.append(this.user_ids);
             sbU.append(", token=");
-            return a.J(sbU, this.token, ")");
+            return outline.J(sbU, this.token, ")");
         }
     }
 
@@ -4683,7 +4686,7 @@ public final class RestAPIParams {
         private final String code;
 
         public UserEmailConfirmCode(String str) {
-            m.checkNotNullParameter(str, ModelAuditLogEntry.CHANGE_KEY_CODE);
+            Intrinsics3.checkNotNullParameter(str, ModelAuditLogEntry.CHANGE_KEY_CODE);
             this.code = str;
         }
 
@@ -4695,13 +4698,13 @@ public final class RestAPIParams {
         }
 
         public final UserEmailConfirmCode copy(String code) {
-            m.checkNotNullParameter(code, ModelAuditLogEntry.CHANGE_KEY_CODE);
+            Intrinsics3.checkNotNullParameter(code, ModelAuditLogEntry.CHANGE_KEY_CODE);
             return new UserEmailConfirmCode(code);
         }
 
         public boolean equals(Object other) {
             if (this != other) {
-                return (other instanceof UserEmailConfirmCode) && m.areEqual(this.code, ((UserEmailConfirmCode) other).code);
+                return (other instanceof UserEmailConfirmCode) && Intrinsics3.areEqual(this.code, ((UserEmailConfirmCode) other).code);
             }
             return true;
         }
@@ -4724,7 +4727,7 @@ public final class RestAPIParams {
         }
 
         public String toString() {
-            return a.J(a.U("UserEmailConfirmCode(code="), this.code, ")");
+            return outline.J(outline.U("UserEmailConfirmCode(code="), this.code, ")");
         }
     }
 
@@ -4831,8 +4834,8 @@ public final class RestAPIParams {
 
         /* JADX WARN: 'this' call moved to the top of the method (can break code semantics) */
         public UserGuildSettings(long j, ChannelOverride channelOverride) {
-            this(null, null, null, null, null, null, g0.mapOf(d0.o.to(Long.valueOf(j), channelOverride)), null, Opcodes.ATHROW, null);
-            m.checkNotNullParameter(channelOverride, "channelOverride");
+            this(null, null, null, null, null, null, MapsJVM.mapOf(Tuples.to(Long.valueOf(j), channelOverride)), null, Opcodes.ATHROW, null);
+            Intrinsics3.checkNotNullParameter(channelOverride, "channelOverride");
         }
     }
 
@@ -4857,7 +4860,7 @@ public final class RestAPIParams {
 
         public boolean equals(Object other) {
             if (this != other) {
-                return (other instanceof UserNoteUpdate) && m.areEqual(this.note, ((UserNoteUpdate) other).note);
+                return (other instanceof UserNoteUpdate) && Intrinsics3.areEqual(this.note, ((UserNoteUpdate) other).note);
             }
             return true;
         }
@@ -4876,7 +4879,7 @@ public final class RestAPIParams {
         }
 
         public String toString() {
-            return a.J(a.U("UserNoteUpdate(note="), this.note, ")");
+            return outline.J(outline.U("UserNoteUpdate(note="), this.note, ")");
         }
     }
 
@@ -4895,7 +4898,7 @@ public final class RestAPIParams {
             private final String username;
 
             public Add(String str, int i, String str2, String str3) {
-                m.checkNotNullParameter(str, "username");
+                Intrinsics3.checkNotNullParameter(str, "username");
                 this.username = str;
                 this.discriminator = i;
                 this.captchaKey = str2;
@@ -4974,7 +4977,7 @@ public final class RestAPIParams {
             }
 
             public final UserSettings createWithGuildFolders(List<ModelGuildFolder> guildFolders) {
-                m.checkNotNullParameter(guildFolders, "guildFolders");
+                Intrinsics3.checkNotNullParameter(guildFolders, "guildFolders");
                 return new UserSettings(null, null, null, null, null, null, null, null, null, null, guildFolders, null, null, null, null, null, null, null, null, 523263, null);
             }
 
@@ -4987,7 +4990,7 @@ public final class RestAPIParams {
             }
 
             public final UserSettings createWithLocale(String locale) {
-                m.checkNotNullParameter(locale, "locale");
+                Intrinsics3.checkNotNullParameter(locale, "locale");
                 return new UserSettings(null, null, null, null, null, null, locale, null, null, null, null, null, null, null, null, null, null, null, null, 524223, null);
             }
 
@@ -5004,13 +5007,13 @@ public final class RestAPIParams {
             }
 
             public final UserSettings createWithStatus(ClientStatus status) {
-                m.checkNotNullParameter(status, "status");
+                Intrinsics3.checkNotNullParameter(status, "status");
                 String strName = status.name();
                 Locale locale = Locale.ROOT;
-                m.checkNotNullExpressionValue(locale, "Locale.ROOT");
+                Intrinsics3.checkNotNullExpressionValue(locale, "Locale.ROOT");
                 Objects.requireNonNull(strName, "null cannot be cast to non-null type java.lang.String");
                 String lowerCase = strName.toLowerCase(locale);
-                m.checkNotNullExpressionValue(lowerCase, "(this as java.lang.String).toLowerCase(locale)");
+                Intrinsics3.checkNotNullExpressionValue(lowerCase, "(this as java.lang.String).toLowerCase(locale)");
                 return new UserSettings(null, null, null, null, null, null, null, null, lowerCase, null, null, null, null, null, null, null, null, null, null, 524031, null);
             }
 
@@ -5019,7 +5022,7 @@ public final class RestAPIParams {
             }
 
             public final UserSettings createWithTheme(String theme) {
-                m.checkNotNullParameter(theme, "theme");
+                Intrinsics3.checkNotNullParameter(theme, "theme");
                 return new UserSettings(theme, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 524286, null);
             }
 
@@ -5172,8 +5175,8 @@ public final class RestAPIParams {
         private final String phone;
 
         public VerificationCode(String str, String str2) {
-            m.checkNotNullParameter(str, "phone");
-            m.checkNotNullParameter(str2, ModelAuditLogEntry.CHANGE_KEY_CODE);
+            Intrinsics3.checkNotNullParameter(str, "phone");
+            Intrinsics3.checkNotNullParameter(str2, ModelAuditLogEntry.CHANGE_KEY_CODE);
             this.phone = str;
             this.code = str2;
         }
@@ -5184,7 +5187,7 @@ public final class RestAPIParams {
         private final String code;
 
         public VerificationCodeOnly(String str) {
-            m.checkNotNullParameter(str, ModelAuditLogEntry.CHANGE_KEY_CODE);
+            Intrinsics3.checkNotNullParameter(str, ModelAuditLogEntry.CHANGE_KEY_CODE);
             this.code = str;
         }
     }
@@ -5194,7 +5197,7 @@ public final class RestAPIParams {
         private final String phone;
 
         public VerificationCodeResend(String str) {
-            m.checkNotNullParameter(str, "phone");
+            Intrinsics3.checkNotNullParameter(str, "phone");
             this.phone = str;
         }
     }
@@ -5206,7 +5209,7 @@ public final class RestAPIParams {
         private final String source;
 
         public VerificationPhoneCode(String str, String str2, String str3) {
-            a.q0(str, "phoneToken", str2, WidgetSettingsAccountChangePassword.CURRENT_PASSWORD_FIELD, str3, "source");
+            outline.q0(str, "phoneToken", str2, WidgetSettingsAccountChangePassword.CURRENT_PASSWORD_FIELD, str3, "source");
             this.phoneToken = str;
             this.password = str2;
             this.source = str3;
@@ -5221,7 +5224,7 @@ public final class RestAPIParams {
         private final boolean useVerificationCode;
 
         public VerifyEmail(String str, Long l, boolean z2, boolean z3) {
-            m.checkNotNullParameter(str, NotificationCompat.CATEGORY_EMAIL);
+            Intrinsics3.checkNotNullParameter(str, NotificationCompat.CATEGORY_EMAIL);
             this.email = str;
             this.guildId = l;
             this.allowMultipleGuilds = z2;
@@ -5245,7 +5248,7 @@ public final class RestAPIParams {
         }
 
         public final VerifyEmail copy(String email, Long guildId, boolean allowMultipleGuilds, boolean useVerificationCode) {
-            m.checkNotNullParameter(email, NotificationCompat.CATEGORY_EMAIL);
+            Intrinsics3.checkNotNullParameter(email, NotificationCompat.CATEGORY_EMAIL);
             return new VerifyEmail(email, guildId, allowMultipleGuilds, useVerificationCode);
         }
 
@@ -5257,7 +5260,7 @@ public final class RestAPIParams {
                 return false;
             }
             VerifyEmail verifyEmail = (VerifyEmail) other;
-            return m.areEqual(this.email, verifyEmail.email) && m.areEqual(this.guildId, verifyEmail.guildId) && this.allowMultipleGuilds == verifyEmail.allowMultipleGuilds && this.useVerificationCode == verifyEmail.useVerificationCode;
+            return Intrinsics3.areEqual(this.email, verifyEmail.email) && Intrinsics3.areEqual(this.guildId, verifyEmail.guildId) && this.allowMultipleGuilds == verifyEmail.allowMultipleGuilds && this.useVerificationCode == verifyEmail.useVerificationCode;
         }
 
         /* JADX INFO: renamed from: component3, reason: from getter */
@@ -5321,14 +5324,14 @@ public final class RestAPIParams {
         }
 
         public String toString() {
-            StringBuilder sbU = a.U("VerifyEmail(email=");
+            StringBuilder sbU = outline.U("VerifyEmail(email=");
             sbU.append(this.email);
             sbU.append(", guildId=");
             sbU.append(this.guildId);
             sbU.append(", allowMultipleGuilds=");
             sbU.append(this.allowMultipleGuilds);
             sbU.append(", useVerificationCode=");
-            return a.O(sbU, this.useVerificationCode, ")");
+            return outline.O(sbU, this.useVerificationCode, ")");
         }
 
         public /* synthetic */ VerifyEmail(String str, Long l, boolean z2, boolean z3, int i, DefaultConstructorMarker defaultConstructorMarker) {
@@ -5343,8 +5346,8 @@ public final class RestAPIParams {
         private final Long guildId;
 
         public VerifyEmailCode(String str, String str2, Long l) {
-            m.checkNotNullParameter(str, NotificationCompat.CATEGORY_EMAIL);
-            m.checkNotNullParameter(str2, ModelAuditLogEntry.CHANGE_KEY_CODE);
+            Intrinsics3.checkNotNullParameter(str, NotificationCompat.CATEGORY_EMAIL);
+            Intrinsics3.checkNotNullParameter(str2, ModelAuditLogEntry.CHANGE_KEY_CODE);
             this.email = str;
             this.code = str2;
             this.guildId = l;
@@ -5364,8 +5367,8 @@ public final class RestAPIParams {
         }
 
         public final VerifyEmailCode copy(String email, String code, Long guildId) {
-            m.checkNotNullParameter(email, NotificationCompat.CATEGORY_EMAIL);
-            m.checkNotNullParameter(code, ModelAuditLogEntry.CHANGE_KEY_CODE);
+            Intrinsics3.checkNotNullParameter(email, NotificationCompat.CATEGORY_EMAIL);
+            Intrinsics3.checkNotNullParameter(code, ModelAuditLogEntry.CHANGE_KEY_CODE);
             return new VerifyEmailCode(email, code, guildId);
         }
 
@@ -5377,7 +5380,7 @@ public final class RestAPIParams {
                 return false;
             }
             VerifyEmailCode verifyEmailCode = (VerifyEmailCode) other;
-            return m.areEqual(this.email, verifyEmailCode.email) && m.areEqual(this.code, verifyEmailCode.code) && m.areEqual(this.guildId, verifyEmailCode.guildId);
+            return Intrinsics3.areEqual(this.email, verifyEmailCode.email) && Intrinsics3.areEqual(this.code, verifyEmailCode.code) && Intrinsics3.areEqual(this.guildId, verifyEmailCode.guildId);
         }
 
         /* JADX INFO: renamed from: component2, reason: from getter */
@@ -5417,12 +5420,12 @@ public final class RestAPIParams {
         }
 
         public String toString() {
-            StringBuilder sbU = a.U("VerifyEmailCode(email=");
+            StringBuilder sbU = outline.U("VerifyEmailCode(email=");
             sbU.append(this.email);
             sbU.append(", code=");
             sbU.append(this.code);
             sbU.append(", guildId=");
-            return a.G(sbU, this.guildId, ")");
+            return outline.G(sbU, this.guildId, ")");
         }
     }
 
@@ -5463,7 +5466,7 @@ public final class RestAPIParams {
                 return false;
             }
             VerifyPurchaseResponse verifyPurchaseResponse = (VerifyPurchaseResponse) other;
-            return this.verifiedSkuId == verifyPurchaseResponse.verifiedSkuId && m.areEqual(this.subscriptionPlanId, verifyPurchaseResponse.subscriptionPlanId) && m.areEqual(this.giftCode, verifyPurchaseResponse.giftCode);
+            return this.verifiedSkuId == verifyPurchaseResponse.verifiedSkuId && Intrinsics3.areEqual(this.subscriptionPlanId, verifyPurchaseResponse.subscriptionPlanId) && Intrinsics3.areEqual(this.giftCode, verifyPurchaseResponse.giftCode);
         }
 
         /* JADX INFO: renamed from: component3, reason: from getter */
@@ -5503,12 +5506,12 @@ public final class RestAPIParams {
         }
 
         public String toString() {
-            StringBuilder sbU = a.U("VerifyPurchaseResponse(verifiedSkuId=");
+            StringBuilder sbU = outline.U("VerifyPurchaseResponse(verifiedSkuId=");
             sbU.append(this.verifiedSkuId);
             sbU.append(", subscriptionPlanId=");
             sbU.append(this.subscriptionPlanId);
             sbU.append(", giftCode=");
-            return a.J(sbU, this.giftCode, ")");
+            return outline.J(sbU, this.giftCode, ")");
         }
     }
 
@@ -5521,8 +5524,8 @@ public final class RestAPIParams {
         private final long userId;
 
         public VerifyPurchaseTokenBody(String str, long j, String str2, String str3, String str4) {
-            m.checkNotNullParameter(str, "purchaseToken");
-            m.checkNotNullParameter(str2, "packageName");
+            Intrinsics3.checkNotNullParameter(str, "purchaseToken");
+            Intrinsics3.checkNotNullParameter(str2, "packageName");
             this.purchaseToken = str;
             this.userId = j;
             this.packageName = str2;
@@ -5553,8 +5556,8 @@ public final class RestAPIParams {
         }
 
         public final VerifyPurchaseTokenBody copy(String purchaseToken, long userId, String packageName, String subscriptionSkuId, String oneTimePurchaseSkuId) {
-            m.checkNotNullParameter(purchaseToken, "purchaseToken");
-            m.checkNotNullParameter(packageName, "packageName");
+            Intrinsics3.checkNotNullParameter(purchaseToken, "purchaseToken");
+            Intrinsics3.checkNotNullParameter(packageName, "packageName");
             return new VerifyPurchaseTokenBody(purchaseToken, userId, packageName, subscriptionSkuId, oneTimePurchaseSkuId);
         }
 
@@ -5566,7 +5569,7 @@ public final class RestAPIParams {
                 return false;
             }
             VerifyPurchaseTokenBody verifyPurchaseTokenBody = (VerifyPurchaseTokenBody) other;
-            return m.areEqual(this.purchaseToken, verifyPurchaseTokenBody.purchaseToken) && this.userId == verifyPurchaseTokenBody.userId && m.areEqual(this.packageName, verifyPurchaseTokenBody.packageName) && m.areEqual(this.subscriptionSkuId, verifyPurchaseTokenBody.subscriptionSkuId) && m.areEqual(this.oneTimePurchaseSkuId, verifyPurchaseTokenBody.oneTimePurchaseSkuId);
+            return Intrinsics3.areEqual(this.purchaseToken, verifyPurchaseTokenBody.purchaseToken) && this.userId == verifyPurchaseTokenBody.userId && Intrinsics3.areEqual(this.packageName, verifyPurchaseTokenBody.packageName) && Intrinsics3.areEqual(this.subscriptionSkuId, verifyPurchaseTokenBody.subscriptionSkuId) && Intrinsics3.areEqual(this.oneTimePurchaseSkuId, verifyPurchaseTokenBody.oneTimePurchaseSkuId);
         }
 
         /* JADX INFO: renamed from: component5, reason: from getter */
@@ -5628,7 +5631,7 @@ public final class RestAPIParams {
         }
 
         public String toString() {
-            StringBuilder sbU = a.U("VerifyPurchaseTokenBody(purchaseToken=");
+            StringBuilder sbU = outline.U("VerifyPurchaseTokenBody(purchaseToken=");
             sbU.append(this.purchaseToken);
             sbU.append(", userId=");
             sbU.append(this.userId);
@@ -5637,7 +5640,7 @@ public final class RestAPIParams {
             sbU.append(", subscriptionSkuId=");
             sbU.append(this.subscriptionSkuId);
             sbU.append(", oneTimePurchaseSkuId=");
-            return a.J(sbU, this.oneTimePurchaseSkuId, ")");
+            return outline.J(sbU, this.oneTimePurchaseSkuId, ")");
         }
     }
 
@@ -5667,11 +5670,11 @@ public final class RestAPIParams {
         private final List<Long> recipients;
 
         public CreateChannel(List<Long> list) {
-            this.recipients = list == null ? n.emptyList() : list;
+            this.recipients = list == null ? Collections2.emptyList() : list;
         }
 
         public CreateChannel(long j) {
-            this((List<Long>) d0.t.m.listOf(Long.valueOf(j)));
+            this((List<Long>) CollectionsJVM.listOf(Long.valueOf(j)));
         }
     }
 
@@ -5709,8 +5712,8 @@ public final class RestAPIParams {
             }
 
             public final UserInfo createForEmail(CharSequence email, CharSequence password) {
-                m.checkNotNullParameter(email, NotificationCompat.CATEGORY_EMAIL);
-                m.checkNotNullParameter(password, WidgetSettingsAccountChangePassword.CURRENT_PASSWORD_FIELD);
+                Intrinsics3.checkNotNullParameter(email, NotificationCompat.CATEGORY_EMAIL);
+                Intrinsics3.checkNotNullParameter(password, WidgetSettingsAccountChangePassword.CURRENT_PASSWORD_FIELD);
                 return new UserInfo(null, email.toString(), null, password.toString(), null, null, null, null, null, null, null, 2037, null);
             }
 

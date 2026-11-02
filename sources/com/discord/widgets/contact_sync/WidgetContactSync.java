@@ -14,18 +14,19 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentViewModelLazyKt;
 import androidx.recyclerview.widget.RecyclerView;
-import b.a.d.f0;
-import b.a.d.j;
-import b.a.k.b;
-import b.d.b.a.a;
+import b.a.d.AppScreen2;
+import b.a.d.AppToast;
+import b.a.d.AppViewModelDelegates2;
+import b.a.k.FormatUtils;
+import b.d.b.a.outline;
 import com.discord.BuildConfig;
 import com.discord.R;
 import com.discord.analytics.generated.traits.TrackImpressionMetadata;
 import com.discord.analytics.utils.ImpressionGroups;
 import com.discord.app.AppActivity;
 import com.discord.app.AppFragment;
+import com.discord.app.AppLogger2;
 import com.discord.app.AppViewFlipper;
-import com.discord.app.LoggingConfig;
 import com.discord.databinding.WidgetContactSyncBinding;
 import com.discord.i18n.Hook;
 import com.discord.i18n.RenderContext;
@@ -44,18 +45,18 @@ import com.discord.utilities.spans.ClickableSpan;
 import com.discord.utilities.view.extensions.ViewExtensions;
 import com.discord.utilities.view.text.LinkifiedTextView;
 import com.discord.utilities.viewbinding.FragmentViewBindingDelegate;
-import com.discord.utilities.viewbinding.FragmentViewBindingDelegateKt;
+import com.discord.utilities.viewbinding.FragmentViewBindingDelegate3;
 import com.discord.views.CheckedSetting;
 import com.discord.views.LoadingButton;
 import com.discord.widgets.captcha.WidgetCaptcha;
 import com.google.android.material.badge.BadgeDrawable;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputLayout;
-import d0.g0.t;
-import d0.t.u;
-import d0.z.d.a0;
-import d0.z.d.m;
-import d0.z.d.o;
+import d0.g0.StringsJVM;
+import d0.t._Collections;
+import d0.z.d.Intrinsics3;
+import d0.z.d.Lambda;
+import d0.z.d.Reflection2;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Objects;
@@ -73,7 +74,7 @@ import rx.functions.Func0;
 /* JADX INFO: compiled from: WidgetContactSync.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetContactSync extends AppFragment {
-    public static final /* synthetic */ KProperty[] $$delegatedProperties = {a.d0(WidgetContactSync.class, "binding", "getBinding()Lcom/discord/databinding/WidgetContactSyncBinding;", 0)};
+    public static final /* synthetic */ KProperty[] $$delegatedProperties = {outline.d0(WidgetContactSync.class, "binding", "getBinding()Lcom/discord/databinding/WidgetContactSyncBinding;", 0)};
 
     /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
     public static final Companion INSTANCE = new Companion(null);
@@ -88,7 +89,7 @@ public final class WidgetContactSync extends AppFragment {
     private final TrackImpressionMetadata contactSyncFlowMetadata;
     private int displayedChildIndex;
     private ContactSyncFriendSuggestionListAdapter friendSuggestionsAdapter;
-    private final LoggingConfig loggingConfig;
+    private final AppLogger2 loggingConfig;
     private String phoneNumber;
 
     /* JADX INFO: renamed from: viewModel$delegate, reason: from kotlin metadata */
@@ -107,7 +108,7 @@ public final class WidgetContactSync extends AppFragment {
 
         /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
         public final void call2(MenuItem menuItem, Context context) {
-            m.checkNotNullExpressionValue(menuItem, "menuItem");
+            Intrinsics3.checkNotNullExpressionValue(menuItem, "menuItem");
             if (menuItem.getItemId() != R.id.menu_contact_sync_skip) {
                 return;
             }
@@ -123,11 +124,11 @@ public final class WidgetContactSync extends AppFragment {
         @Override // android.view.View.OnClickListener
         public final void onClick(View view) {
             Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
-            m.checkNotNullExpressionValue(view, "view");
+            Intrinsics3.checkNotNullExpressionValue(view, "view");
             Context context = view.getContext();
-            m.checkNotNullExpressionValue(context, "view.context");
+            Intrinsics3.checkNotNullExpressionValue(context, "view.context");
             Uri uriFromParts = Uri.fromParts("package", context.getPackageName(), null);
-            m.checkNotNullExpressionValue(uriFromParts, "Uri.fromParts(\"package\",…ontext.packageName, null)");
+            Intrinsics3.checkNotNullExpressionValue(uriFromParts, "Uri.fromParts(\"package\",…ontext.packageName, null)");
             intent.setData(uriFromParts);
             view.getContext().startActivity(intent);
         }
@@ -135,7 +136,7 @@ public final class WidgetContactSync extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.contact_sync.WidgetContactSync$onViewBoundOrOnResume$1, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetContactSync.kt */
-    public final class AnonymousClass1 extends o implements Function1<WidgetContactSyncViewModel.ViewState, Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function1<WidgetContactSyncViewModel.ViewState, Unit> {
         public AnonymousClass1() {
             super(1);
         }
@@ -148,14 +149,14 @@ public final class WidgetContactSync extends AppFragment {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(WidgetContactSyncViewModel.ViewState viewState) {
-            m.checkNotNullParameter(viewState, "it");
+            Intrinsics3.checkNotNullParameter(viewState, "it");
             WidgetContactSync.access$configureUI(WidgetContactSync.this, viewState);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.widgets.contact_sync.WidgetContactSync$requestContactsPermissions$1, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetContactSync.kt */
-    public final class AnonymousClass1 extends o implements Function0<Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function0<Unit> {
         public AnonymousClass1() {
             super(0);
         }
@@ -184,10 +185,10 @@ public final class WidgetContactSync extends AppFragment {
         @Override // android.view.View.OnClickListener
         public final void onClick(View view) {
             AnalyticsTracker.INSTANCE.friendAddViewed("Invite");
-            m.checkNotNullExpressionValue(view, "it");
+            Intrinsics3.checkNotNullExpressionValue(view, "it");
             Context context = view.getContext();
-            m.checkNotNullExpressionValue(context, "it.context");
-            IntentUtils.performChooserSendIntent(context, b.k(WidgetContactSync.this, R.string.friends_share_tabbar_title, new Object[]{BuildConfig.HOST, this.$viewState.getUsername()}, null, 4).toString(), b.k(WidgetContactSync.this, R.string.tip_instant_invite_title3, new Object[0], null, 4));
+            Intrinsics3.checkNotNullExpressionValue(context, "it.context");
+            IntentUtils.performChooserSendIntent(context, FormatUtils.k(WidgetContactSync.this, R.string.friends_share_tabbar_title, new Object[]{BuildConfig.HOST, this.$viewState.getUsername()}, null, 4).toString(), FormatUtils.k(WidgetContactSync.this, R.string.tip_instant_invite_title3, new Object[0], null, 4));
         }
     }
 
@@ -220,7 +221,7 @@ public final class WidgetContactSync extends AppFragment {
         /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
         public final void call2(Menu menu) {
             MenuItem menuItemFindItem = menu.findItem(R.id.menu_contact_sync_skip);
-            m.checkNotNullExpressionValue(menuItemFindItem, "menu.findItem(R.id.menu_contact_sync_skip)");
+            Intrinsics3.checkNotNullExpressionValue(menuItemFindItem, "menu.findItem(R.id.menu_contact_sync_skip)");
             menuItemFindItem.setVisible(this.$toolbarConfig.getShowSkip());
         }
     }
@@ -239,7 +240,7 @@ public final class WidgetContactSync extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.contact_sync.WidgetContactSync$onViewBound$2, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetContactSync.kt */
-    public final class AnonymousClass2 extends o implements Function2<Long, Boolean, Unit> {
+    public final class AnonymousClass2 extends Lambda implements Function2<Long, Boolean, Unit> {
         public AnonymousClass2() {
             super(2);
         }
@@ -257,7 +258,7 @@ public final class WidgetContactSync extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.contact_sync.WidgetContactSync$onViewBoundOrOnResume$2, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetContactSync.kt */
-    public final class AnonymousClass2 extends o implements Function1<WidgetContactSyncViewModel.Event, Unit> {
+    public final class AnonymousClass2 extends Lambda implements Function1<WidgetContactSyncViewModel.Event, Unit> {
         public AnonymousClass2() {
             super(1);
         }
@@ -270,14 +271,14 @@ public final class WidgetContactSync extends AppFragment {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(WidgetContactSyncViewModel.Event event) {
-            m.checkNotNullParameter(event, "it");
+            Intrinsics3.checkNotNullParameter(event, "it");
             WidgetContactSync.access$handleEvent(WidgetContactSync.this, event);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.widgets.contact_sync.WidgetContactSync$requestContactsPermissions$2, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetContactSync.kt */
-    public final class AnonymousClass2 extends o implements Function0<Unit> {
+    public final class AnonymousClass2 extends Lambda implements Function0<Unit> {
         public AnonymousClass2() {
             super(0);
         }
@@ -327,7 +328,7 @@ public final class WidgetContactSync extends AppFragment {
         @Override // android.view.View.OnClickListener
         public final void onClick(View view) {
             CheckedSetting checkedSetting = WidgetContactSync.access$getBinding$p(WidgetContactSync.this).e.e.c;
-            m.checkNotNullExpressionValue(checkedSetting, "binding.contactSyncLandi…ontactSyncDiscoveryToggle");
+            Intrinsics3.checkNotNullExpressionValue(checkedSetting, "binding.contactSyncLandi…ontactSyncDiscoveryToggle");
             boolean zIsChecked = checkedSetting.isChecked();
             WidgetContactSync.access$getViewModel$p(WidgetContactSync.this).onPermissionsToggle(!zIsChecked, !zIsChecked);
         }
@@ -335,7 +336,7 @@ public final class WidgetContactSync extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.contact_sync.WidgetContactSync$configureUI$4, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetContactSync.kt */
-    public final class AnonymousClass4 extends o implements Function1<RenderContext, Unit> {
+    public final class AnonymousClass4 extends Lambda implements Function1<RenderContext, Unit> {
         public AnonymousClass4() {
             super(1);
         }
@@ -348,12 +349,12 @@ public final class WidgetContactSync extends AppFragment {
 
         /* JADX INFO: renamed from: com.discord.widgets.contact_sync.WidgetContactSync$configureUI$4$1, reason: invalid class name */
         /* JADX INFO: compiled from: WidgetContactSync.kt */
-        public final class AnonymousClass1 extends o implements Function1<Hook, Unit> {
+        public final class AnonymousClass1 extends Lambda implements Function1<Hook, Unit> {
 
             /* JADX INFO: renamed from: com.discord.widgets.contact_sync.WidgetContactSync$configureUI$4$1$1, reason: invalid class name and collision with other inner class name */
             /* JADX INFO: compiled from: WidgetContactSync.kt */
-            public final class C04071 extends o implements Function1<View, Unit> {
-                public C04071() {
+            public final class C02871 extends Lambda implements Function1<View, Unit> {
+                public C02871() {
                     super(1);
                 }
 
@@ -365,11 +366,11 @@ public final class WidgetContactSync extends AppFragment {
 
                 /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
                 public final void invoke2(View view) {
-                    m.checkNotNullParameter(view, "it");
+                    Intrinsics3.checkNotNullParameter(view, "it");
                     AnalyticsTracker.INSTANCE.openPopout("Contact Sync", new Traits.Location("Contact Sync Learn More", null, null, null, null, 30, null));
                     ContactSyncPermissionsSheet.Companion companion = ContactSyncPermissionsSheet.INSTANCE;
                     FragmentManager parentFragmentManager = WidgetContactSync.this.getParentFragmentManager();
-                    m.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
+                    Intrinsics3.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
                     companion.show(parentFragmentManager);
                 }
             }
@@ -380,8 +381,8 @@ public final class WidgetContactSync extends AppFragment {
 
             /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
             public final void invoke2(Hook hook) {
-                m.checkNotNullParameter(hook, "$receiver");
-                hook.styles.add(new ClickableSpan(Integer.valueOf(ColorCompat.getColor(WidgetContactSync.this.getContext(), R.color.link)), false, null, new C04071(), 4, null));
+                Intrinsics3.checkNotNullParameter(hook, "$receiver");
+                hook.styles.add(new ClickableSpan(Integer.valueOf(ColorCompat.getColor(WidgetContactSync.this.getContext(), R.color.link)), false, null, new C02871(), 4, null));
             }
 
             @Override // kotlin.jvm.functions.Function1
@@ -393,7 +394,7 @@ public final class WidgetContactSync extends AppFragment {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(RenderContext renderContext) {
-            m.checkNotNullParameter(renderContext, "$receiver");
+            Intrinsics3.checkNotNullParameter(renderContext, "$receiver");
             renderContext.a("learnMoreHook", new AnonymousClass1());
         }
     }
@@ -408,7 +409,7 @@ public final class WidgetContactSync extends AppFragment {
         public final void onClick(View view) {
             WidgetContactSyncViewModel widgetContactSyncViewModelAccess$getViewModel$p = WidgetContactSync.access$getViewModel$p(WidgetContactSync.this);
             TextInputLayout textInputLayout = WidgetContactSync.access$getBinding$p(WidgetContactSync.this).f.c;
-            m.checkNotNullExpressionValue(textInputLayout, "binding.contactSyncName.contactSyncNameInputWrap");
+            Intrinsics3.checkNotNullExpressionValue(textInputLayout, "binding.contactSyncName.contactSyncNameInputWrap");
             widgetContactSyncViewModelAccess$getViewModel$p.onNameSubmitted(ViewExtensions.getTextOrEmpty(textInputLayout));
         }
     }
@@ -439,7 +440,7 @@ public final class WidgetContactSync extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.contact_sync.WidgetContactSync$configureUI$8, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetContactSync.kt */
-    public final class AnonymousClass8 extends o implements Function0<Unit> {
+    public final class AnonymousClass8 extends Lambda implements Function0<Unit> {
         public AnonymousClass8() {
             super(0);
         }
@@ -458,7 +459,7 @@ public final class WidgetContactSync extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.contact_sync.WidgetContactSync$configureUI$9, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetContactSync.kt */
-    public final class AnonymousClass9 extends o implements Function1<String, Unit> {
+    public final class AnonymousClass9 extends Lambda implements Function1<String, Unit> {
         public AnonymousClass9() {
             super(1);
         }
@@ -471,7 +472,7 @@ public final class WidgetContactSync extends AppFragment {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(String str) {
-            m.checkNotNullParameter(str, ModelAuditLogEntry.CHANGE_KEY_CODE);
+            Intrinsics3.checkNotNullParameter(str, ModelAuditLogEntry.CHANGE_KEY_CODE);
             WidgetContactSync.access$getViewModel$p(WidgetContactSync.this).onVerifyPhone(str);
         }
     }
@@ -482,19 +483,19 @@ public final class WidgetContactSync extends AppFragment {
         }
 
         public final ContactSyncMode getContactSyncModeFromIntent(AppActivity appActivity) {
-            m.checkNotNullParameter(appActivity, "appActivity");
+            Intrinsics3.checkNotNullParameter(appActivity, "appActivity");
             Serializable serializableExtra = appActivity.c().getSerializableExtra(WidgetContactSync.INTENT_EXTRA_CONTACT_SYNC_MODE);
             Objects.requireNonNull(serializableExtra, "null cannot be cast to non-null type com.discord.widgets.contact_sync.ContactSyncMode");
             return (ContactSyncMode) serializableExtra;
         }
 
         public final boolean getEmailDiscoverableFromIntent(AppActivity appActivity) {
-            m.checkNotNullParameter(appActivity, "appActivity");
+            Intrinsics3.checkNotNullParameter(appActivity, "appActivity");
             return appActivity.c().getBooleanExtra(WidgetContactSync.INTENT_EXTRA_CONTACT_SYNC_ALLOW_EMAIL, true);
         }
 
         public final boolean getPhoneDiscoverableFromIntent(AppActivity appActivity) {
-            m.checkNotNullParameter(appActivity, "appActivity");
+            Intrinsics3.checkNotNullParameter(appActivity, "appActivity");
             return appActivity.c().getBooleanExtra(WidgetContactSync.INTENT_EXTRA_CONTACT_SYNC_ALLOW_PHONE, true);
         }
 
@@ -506,14 +507,14 @@ public final class WidgetContactSync extends AppFragment {
         }
 
         public final void launch(Context context, ContactSyncMode mode, boolean immediatelyProceed, boolean discoverByPhone, boolean discoverByEmail) {
-            m.checkNotNullParameter(context, "context");
-            m.checkNotNullParameter(mode, "mode");
+            Intrinsics3.checkNotNullParameter(context, "context");
+            Intrinsics3.checkNotNullParameter(mode, "mode");
             Intent intent = new Intent();
             intent.putExtra(WidgetContactSync.INTENT_EXTRA_CONTACT_SYNC_MODE, mode);
             intent.putExtra(WidgetContactSync.INTENT_EXTRA_CONTACT_SYNC_IMMEDIATELY_PROCEED, immediatelyProceed);
             intent.putExtra(WidgetContactSync.INTENT_EXTRA_CONTACT_SYNC_ALLOW_PHONE, discoverByPhone);
             intent.putExtra(WidgetContactSync.INTENT_EXTRA_CONTACT_SYNC_ALLOW_EMAIL, discoverByEmail);
-            j.d(context, WidgetContactSync.class, intent);
+            AppScreen2.d(context, WidgetContactSync.class, intent);
         }
 
         public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
@@ -523,11 +524,11 @@ public final class WidgetContactSync extends AppFragment {
 
     public WidgetContactSync() {
         super(R.layout.widget_contact_sync);
-        this.binding = FragmentViewBindingDelegateKt.viewBinding$default(this, WidgetContactSync$binding$2.INSTANCE, null, 2, null);
-        this.viewModel = FragmentViewModelLazyKt.createViewModelLazy(this, a0.getOrCreateKotlinClass(WidgetContactSyncViewModel.class), new WidgetContactSync$appActivityViewModels$$inlined$activityViewModels$1(this), new f0(new WidgetContactSync$viewModel$2(this)));
+        this.binding = FragmentViewBindingDelegate3.viewBinding$default(this, WidgetContactSync2.INSTANCE, null, 2, null);
+        this.viewModel = FragmentViewModelLazyKt.createViewModelLazy(this, Reflection2.getOrCreateKotlinClass(WidgetContactSyncViewModel.class), new WidgetContactSync$appActivityViewModels$$inlined$activityViewModels$1(this), new AppViewModelDelegates2(new WidgetContactSync7(this)));
         this.contactSyncFlowMetadata = new TrackImpressionMetadata(null, null, null, ImpressionGroups.CONTACT_SYNC_FLOW, 7);
-        this.captchaLauncher = WidgetCaptcha.INSTANCE.registerForResult(this, new WidgetContactSync$captchaLauncher$1(this));
-        this.loggingConfig = new LoggingConfig(false, null, new WidgetContactSync$loggingConfig$1(this), 3);
+        this.captchaLauncher = WidgetCaptcha.INSTANCE.registerForResult(this, new WidgetContactSync3(this));
+        this.loggingConfig = new AppLogger2(false, null, new WidgetContactSync6(this), 3);
     }
 
     public static final /* synthetic */ void access$configureUI(WidgetContactSync widgetContactSync, WidgetContactSyncViewModel.ViewState viewState) {
@@ -589,43 +590,43 @@ public final class WidgetContactSync extends AppFragment {
         configureViewFlipper(viewState.getDisplayedChild());
         configureToolbar(viewState.getToolbarConfig());
         LoadingButton loadingButton = getBinding().e.c;
-        m.checkNotNullExpressionValue(loadingButton, "binding.contactSyncLandi…tactSyncLandingNextButton");
+        Intrinsics3.checkNotNullExpressionValue(loadingButton, "binding.contactSyncLandi…tactSyncLandingNextButton");
         loadingButton.setEnabled(viewState.getLandingNextEnabled());
         getBinding().e.c.setIsLoading(viewState.isSubmitting());
         getBinding().f.d.setIsLoading(viewState.isSubmitting());
         getBinding().c.c.setIsLoading(viewState.isSubmitting());
         if (viewState.getPermissionsDenied()) {
             TextView textView = getBinding().e.f144b;
-            m.checkNotNullExpressionValue(textView, "binding.contactSyncLandi…ncLandingNeedsPermissions");
+            Intrinsics3.checkNotNullExpressionValue(textView, "binding.contactSyncLandi…ncLandingNeedsPermissions");
             textView.setVisibility(0);
             View view = getBinding().e.d;
-            m.checkNotNullExpressionValue(view, "binding.contactSyncLandi…LandingPermissionsDivider");
+            Intrinsics3.checkNotNullExpressionValue(view, "binding.contactSyncLandi…LandingPermissionsDivider");
             view.setVisibility(0);
-            getBinding().e.c.setText(b.k(this, R.string.password_manager_open_settings, new Object[0], null, 4));
+            getBinding().e.c.setText(FormatUtils.k(this, R.string.password_manager_open_settings, new Object[0], null, 4));
             getBinding().e.c.setOnClickListener(AnonymousClass1.INSTANCE);
         } else {
             TextView textView2 = getBinding().e.f144b;
-            m.checkNotNullExpressionValue(textView2, "binding.contactSyncLandi…ncLandingNeedsPermissions");
+            Intrinsics3.checkNotNullExpressionValue(textView2, "binding.contactSyncLandi…ncLandingNeedsPermissions");
             textView2.setVisibility(8);
             View view2 = getBinding().e.d;
-            m.checkNotNullExpressionValue(view2, "binding.contactSyncLandi…LandingPermissionsDivider");
+            Intrinsics3.checkNotNullExpressionValue(view2, "binding.contactSyncLandi…LandingPermissionsDivider");
             view2.setVisibility(8);
-            getBinding().e.c.setText(b.k(this, R.string.get_started, new Object[0], null, 4));
+            getBinding().e.c.setText(FormatUtils.k(this, R.string.get_started, new Object[0], null, 4));
             getBinding().e.c.setOnClickListener(new AnonymousClass2());
         }
         CheckedSetting checkedSetting = getBinding().e.e.c;
-        m.checkNotNullExpressionValue(checkedSetting, "binding.contactSyncLandi…ontactSyncDiscoveryToggle");
+        Intrinsics3.checkNotNullExpressionValue(checkedSetting, "binding.contactSyncLandi…ontactSyncDiscoveryToggle");
         checkedSetting.setChecked(viewState.getAllowPhone() || viewState.getAllowEmail());
         getBinding().e.e.c.e(new AnonymousClass3());
         LinkifiedTextView linkifiedTextView = getBinding().e.e.f171b;
-        m.checkNotNullExpressionValue(linkifiedTextView, "binding.contactSyncLandi…contactSyncDiscoveryInfo2");
-        b.m(linkifiedTextView, R.string.contact_sync_permissions_description_android, new Object[0], new AnonymousClass4());
+        Intrinsics3.checkNotNullExpressionValue(linkifiedTextView, "binding.contactSyncLandi…contactSyncDiscoveryInfo2");
+        FormatUtils.m(linkifiedTextView, R.string.contact_sync_permissions_description_android, new Object[0], new AnonymousClass4());
         getBinding().f.d.setOnClickListener(new AnonymousClass5());
         ContactSyncFriendSuggestionListAdapter contactSyncFriendSuggestionListAdapter = this.friendSuggestionsAdapter;
         if (contactSyncFriendSuggestionListAdapter != null) {
             contactSyncFriendSuggestionListAdapter.setData(viewState.getFriendSuggestions());
         }
-        getBinding().c.c.setText(b.k(this, R.string.next, new Object[0], null, 4));
+        getBinding().c.c.setText(FormatUtils.k(this, R.string.next, new Object[0], null, 4));
         getBinding().c.c.setOnClickListener(new AnonymousClass6());
         getBinding().f2355b.f138b.b(this);
         getBinding().f2355b.f138b.setCountryCode(viewState.getCountryCode());
@@ -648,31 +649,31 @@ public final class WidgetContactSync extends AppFragment {
         }
         if (AccessibilityUtils.INSTANCE.isReducedMotionEnabled()) {
             AppViewFlipper appViewFlipper = getBinding().h;
-            m.checkNotNullExpressionValue(appViewFlipper, "binding.contactSyncViewFlipper");
+            Intrinsics3.checkNotNullExpressionValue(appViewFlipper, "binding.contactSyncViewFlipper");
             appViewFlipper.setInAnimation(AnimationUtils.loadAnimation(getContext(), R.anim.anim_fade_in_fast));
             AppViewFlipper appViewFlipper2 = getBinding().h;
-            m.checkNotNullExpressionValue(appViewFlipper2, "binding.contactSyncViewFlipper");
+            Intrinsics3.checkNotNullExpressionValue(appViewFlipper2, "binding.contactSyncViewFlipper");
             appViewFlipper2.setOutAnimation(AnimationUtils.loadAnimation(getContext(), R.anim.anim_fade_out_fast));
         } else {
             int i2 = this.displayedChildIndex;
             if (iOrdinal > i2 || z2) {
                 AppViewFlipper appViewFlipper3 = getBinding().h;
-                m.checkNotNullExpressionValue(appViewFlipper3, "binding.contactSyncViewFlipper");
+                Intrinsics3.checkNotNullExpressionValue(appViewFlipper3, "binding.contactSyncViewFlipper");
                 appViewFlipper3.setInAnimation(AnimationUtils.loadAnimation(getContext(), R.anim.activity_slide_horizontal_open_in));
                 AppViewFlipper appViewFlipper4 = getBinding().h;
-                m.checkNotNullExpressionValue(appViewFlipper4, "binding.contactSyncViewFlipper");
+                Intrinsics3.checkNotNullExpressionValue(appViewFlipper4, "binding.contactSyncViewFlipper");
                 appViewFlipper4.setOutAnimation(AnimationUtils.loadAnimation(getContext(), R.anim.activity_slide_horizontal_open_out));
             } else if (iOrdinal < i2) {
                 AppViewFlipper appViewFlipper5 = getBinding().h;
-                m.checkNotNullExpressionValue(appViewFlipper5, "binding.contactSyncViewFlipper");
+                Intrinsics3.checkNotNullExpressionValue(appViewFlipper5, "binding.contactSyncViewFlipper");
                 appViewFlipper5.setInAnimation(AnimationUtils.loadAnimation(getContext(), R.anim.activity_slide_horizontal_close_in));
                 AppViewFlipper appViewFlipper6 = getBinding().h;
-                m.checkNotNullExpressionValue(appViewFlipper6, "binding.contactSyncViewFlipper");
+                Intrinsics3.checkNotNullExpressionValue(appViewFlipper6, "binding.contactSyncViewFlipper");
                 appViewFlipper6.setOutAnimation(AnimationUtils.loadAnimation(getContext(), R.anim.activity_slide_horizontal_close_out));
             }
         }
         AppViewFlipper appViewFlipper7 = getBinding().h;
-        m.checkNotNullExpressionValue(appViewFlipper7, "binding.contactSyncViewFlipper");
+        Intrinsics3.checkNotNullExpressionValue(appViewFlipper7, "binding.contactSyncViewFlipper");
         appViewFlipper7.setDisplayedChild(iOrdinal);
         this.displayedChildIndex = iOrdinal;
         getAppLogger().a(null);
@@ -683,7 +684,7 @@ public final class WidgetContactSync extends AppFragment {
     }
 
     @Override // com.discord.app.AppFragment, com.discord.app.AppLogger.a
-    public LoggingConfig getLoggingConfig() {
+    public AppLogger2 getLoggingConfig() {
         return this.loggingConfig;
     }
 
@@ -692,56 +693,56 @@ public final class WidgetContactSync extends AppFragment {
     }
 
     private final void handleEvent(WidgetContactSyncViewModel.Event event) {
-        if (m.areEqual(event, WidgetContactSyncViewModel.Event.MaybeProceedFromLanding.INSTANCE)) {
+        if (Intrinsics3.areEqual(event, WidgetContactSyncViewModel.Event.MaybeProceedFromLanding.INSTANCE)) {
             if (getMostRecentIntent().getBooleanExtra(INTENT_EXTRA_CONTACT_SYNC_IMMEDIATELY_PROCEED, false)) {
                 getViewModel().onLandingNext();
                 return;
             }
             return;
         }
-        if (m.areEqual(event, WidgetContactSyncViewModel.Event.PermissionsNeeded.INSTANCE)) {
+        if (Intrinsics3.areEqual(event, WidgetContactSyncViewModel.Event.PermissionsNeeded.INSTANCE)) {
             requestContactsPermissions();
             return;
         }
-        if (m.areEqual(event, WidgetContactSyncViewModel.Event.ContactsEnabled.INSTANCE)) {
+        if (Intrinsics3.areEqual(event, WidgetContactSyncViewModel.Event.ContactsEnabled.INSTANCE)) {
             getViewModel().onContactsFetched(ContactsProviderUtils.INSTANCE.getAllContactPhoneNumbers(requireContext()));
             return;
         }
-        if (m.areEqual(event, WidgetContactSyncViewModel.Event.RateLimited.INSTANCE)) {
-            b.a.d.m.f(this, b.k(this, R.string.contact_sync_failed_alert_title, new Object[0], null, 4), 1);
+        if (Intrinsics3.areEqual(event, WidgetContactSyncViewModel.Event.RateLimited.INSTANCE)) {
+            AppToast.f(this, FormatUtils.k(this, R.string.contact_sync_failed_alert_title, new Object[0], null, 4), 1);
             return;
         }
-        if (m.areEqual(event, WidgetContactSyncViewModel.Event.UploadFailed.INSTANCE)) {
-            b.a.d.m.f(this, b.k(this, R.string.contact_sync_failed_alert_message, new Object[0], null, 4), 1);
+        if (Intrinsics3.areEqual(event, WidgetContactSyncViewModel.Event.UploadFailed.INSTANCE)) {
+            AppToast.f(this, FormatUtils.k(this, R.string.contact_sync_failed_alert_message, new Object[0], null, 4), 1);
             return;
         }
-        if (m.areEqual(event, WidgetContactSyncViewModel.Event.ContactsEnableFailed.INSTANCE)) {
-            b.a.d.m.f(this, b.k(this, R.string.contact_sync_failed_alert_title, new Object[0], null, 4), 1);
+        if (Intrinsics3.areEqual(event, WidgetContactSyncViewModel.Event.ContactsEnableFailed.INSTANCE)) {
+            AppToast.f(this, FormatUtils.k(this, R.string.contact_sync_failed_alert_title, new Object[0], null, 4), 1);
             return;
         }
-        if (m.areEqual(event, WidgetContactSyncViewModel.Event.AddFriendsFailed.INSTANCE)) {
+        if (Intrinsics3.areEqual(event, WidgetContactSyncViewModel.Event.AddFriendsFailed.INSTANCE)) {
             AddFriendsFailed.Companion companion = AddFriendsFailed.INSTANCE;
             FragmentManager parentFragmentManager = getParentFragmentManager();
-            m.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
-            companion.show(parentFragmentManager).setOnClose(new WidgetContactSync$handleEvent$$inlined$apply$lambda$1(this));
+            Intrinsics3.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
+            companion.show(parentFragmentManager).setOnClose(new WidgetContactSync4(this));
             return;
         }
-        if (m.areEqual(event, WidgetContactSyncViewModel.Event.AddFriendsFailedPartial.INSTANCE)) {
+        if (Intrinsics3.areEqual(event, WidgetContactSyncViewModel.Event.AddFriendsFailedPartial.INSTANCE)) {
             AddFriendsFailed.Companion companion2 = AddFriendsFailed.INSTANCE;
             FragmentManager parentFragmentManager2 = getParentFragmentManager();
-            m.checkNotNullExpressionValue(parentFragmentManager2, "parentFragmentManager");
-            companion2.show(parentFragmentManager2).setOnClose(new WidgetContactSync$handleEvent$$inlined$apply$lambda$2(this));
+            Intrinsics3.checkNotNullExpressionValue(parentFragmentManager2, "parentFragmentManager");
+            companion2.show(parentFragmentManager2).setOnClose(new WidgetContactSync5(this));
             return;
         }
-        if (m.areEqual(event, WidgetContactSyncViewModel.Event.PhoneInvalid.INSTANCE)) {
-            b.a.d.m.j(this, b.k(this, R.string.phone_invalid, new Object[0], null, 4), 0, 4);
+        if (Intrinsics3.areEqual(event, WidgetContactSyncViewModel.Event.PhoneInvalid.INSTANCE)) {
+            AppToast.j(this, FormatUtils.k(this, R.string.phone_invalid, new Object[0], null, 4), 0, 4);
             return;
         }
-        if (m.areEqual(event, WidgetContactSyncViewModel.Event.VerificationCodeInvalid.INSTANCE)) {
-            b.a.d.m.j(this, b.k(this, R.string.application_entitlement_code_redemption_invalid, new Object[0], null, 4), 0, 4);
-        } else if (m.areEqual(event, WidgetContactSyncViewModel.Event.VerificationFailed.INSTANCE)) {
-            b.a.d.m.j(this, b.k(this, R.string.phone_failed_to_add, new Object[0], null, 4), 0, 4);
-        } else if (m.areEqual(event, WidgetContactSyncViewModel.Event.Completed.INSTANCE)) {
+        if (Intrinsics3.areEqual(event, WidgetContactSyncViewModel.Event.VerificationCodeInvalid.INSTANCE)) {
+            AppToast.j(this, FormatUtils.k(this, R.string.application_entitlement_code_redemption_invalid, new Object[0], null, 4), 0, 4);
+        } else if (Intrinsics3.areEqual(event, WidgetContactSyncViewModel.Event.VerificationFailed.INSTANCE)) {
+            AppToast.j(this, FormatUtils.k(this, R.string.phone_failed_to_add, new Object[0], null, 4), 0, 4);
+        } else if (Intrinsics3.areEqual(event, WidgetContactSyncViewModel.Event.Completed.INSTANCE)) {
             requireAppActivity().finish();
         }
     }
@@ -749,8 +750,8 @@ public final class WidgetContactSync extends AppFragment {
     private final void handlePhoneNumberTextChanged() {
         String textOrEmpty = getBinding().f2355b.f138b.getTextOrEmpty();
         MaterialButton materialButton = getBinding().f2355b.c;
-        m.checkNotNullExpressionValue(materialButton, "binding.contactSyncAddPh…e.contactSyncAddPhoneNext");
-        materialButton.setEnabled((textOrEmpty.length() > 0) && t.startsWith$default(textOrEmpty, BadgeDrawable.DEFAULT_EXCEED_MAX_BADGE_NUMBER_SUFFIX, false, 2, null));
+        Intrinsics3.checkNotNullExpressionValue(materialButton, "binding.contactSyncAddPh…e.contactSyncAddPhoneNext");
+        materialButton.setEnabled((textOrEmpty.length() > 0) && StringsJVM.startsWith$default(textOrEmpty, BadgeDrawable.DEFAULT_EXCEED_MAX_BADGE_NUMBER_SUFFIX, false, 2, null));
     }
 
     private final void launchCaptchaFlow(Error error) {
@@ -758,8 +759,8 @@ public final class WidgetContactSync extends AppFragment {
         Context contextRequireContext = requireContext();
         ActivityResultLauncher<Intent> activityResultLauncher = this.captchaLauncher;
         Error.Response response = error.getResponse();
-        m.checkNotNullExpressionValue(response, "error.response");
-        companion.processErrorsForCaptcha(contextRequireContext, activityResultLauncher, u.toMutableList((Collection) response.getMessages().keySet()), error);
+        Intrinsics3.checkNotNullExpressionValue(response, "error.response");
+        companion.processErrorsForCaptcha(contextRequireContext, activityResultLauncher, _Collections.toMutableList((Collection) response.getMessages().keySet()), error);
     }
 
     private final void onPermissionsDenied() {
@@ -772,12 +773,12 @@ public final class WidgetContactSync extends AppFragment {
             ContactsProviderUtils contactsProviderUtils = ContactsProviderUtils.INSTANCE;
             Context contextRequireContext = requireContext();
             String str = this.phoneNumber;
-            m.checkNotNull(str);
+            Intrinsics3.checkNotNull(str);
             String ownName = contactsProviderUtils.getOwnName(contextRequireContext, str);
             if (ownName != null) {
                 getBinding().f.f150b.setText(ownName);
                 TextView textView = getBinding().f.e;
-                m.checkNotNullExpressionValue(textView, "binding.contactSyncName.contactSyncNamePrefillHint");
+                Intrinsics3.checkNotNullExpressionValue(textView, "binding.contactSyncName.contactSyncNamePrefillHint");
                 textView.setVisibility(0);
             }
         }
@@ -793,11 +794,11 @@ public final class WidgetContactSync extends AppFragment {
 
     @Override // com.discord.app.AppFragment
     public void onViewBound(View view) {
-        m.checkNotNullParameter(view, "view");
+        Intrinsics3.checkNotNullParameter(view, "view");
         super.onViewBound(view);
         RecyclerView recyclerView = getBinding().c.f157b;
         MGRecyclerAdapter.Companion companion = MGRecyclerAdapter.INSTANCE;
-        m.checkNotNullExpressionValue(recyclerView, "it");
+        Intrinsics3.checkNotNullExpressionValue(recyclerView, "it");
         ContactSyncFriendSuggestionListAdapter contactSyncFriendSuggestionListAdapter = (ContactSyncFriendSuggestionListAdapter) companion.configure(new ContactSyncFriendSuggestionListAdapter(recyclerView));
         this.friendSuggestionsAdapter = contactSyncFriendSuggestionListAdapter;
         if (contactSyncFriendSuggestionListAdapter != null) {

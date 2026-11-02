@@ -4,7 +4,7 @@ import android.media.AudioRecord;
 import android.os.Build;
 import android.os.Process;
 import androidx.annotation.Nullable;
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import java.nio.ByteBuffer;
 import java.util.Arrays;
 import org.webrtc.Logging;
@@ -88,7 +88,7 @@ public class WebRtcAudioRecord {
                     WebRtcAudioRecord.access$000(WebRtcAudioRecord.this).stop();
                 }
             } catch (IllegalStateException e) {
-                StringBuilder sbU = a.U("AudioRecord.stop failed: ");
+                StringBuilder sbU = outline.U("AudioRecord.stop failed: ");
                 sbU.append(e.getMessage());
                 Logging.e(WebRtcAudioRecord.TAG, sbU.toString());
             }
@@ -153,7 +153,7 @@ public class WebRtcAudioRecord {
     }
 
     public WebRtcAudioRecord(long j) {
-        StringBuilder sbU = a.U("ctor");
+        StringBuilder sbU = outline.U("ctor");
         sbU.append(WebRtcAudioUtils.getThreadInfo());
         Logging.d(TAG, sbU.toString());
         this.nativeAudioRecord = j;
@@ -238,7 +238,7 @@ public class WebRtcAudioRecord {
         }
         int i3 = i / 100;
         this.byteBuffer = ByteBuffer.allocateDirect(i2 * 2 * i3);
-        StringBuilder sbU = a.U("byteBuffer.capacity: ");
+        StringBuilder sbU = outline.U("byteBuffer.capacity: ");
         sbU.append(this.byteBuffer.capacity());
         Logging.d(TAG, sbU.toString());
         this.emptyBytes = new byte[this.byteBuffer.capacity()];
@@ -246,7 +246,7 @@ public class WebRtcAudioRecord {
         int iChannelCountToConfiguration = channelCountToConfiguration(i2);
         int minBufferSize = AudioRecord.getMinBufferSize(i, iChannelCountToConfiguration, 2);
         if (minBufferSize == -1 || minBufferSize == -2) {
-            reportWebRtcAudioRecordInitError(a.q("AudioRecord.getMinBufferSize failed: ", minBufferSize));
+            reportWebRtcAudioRecordInitError(outline.q("AudioRecord.getMinBufferSize failed: ", minBufferSize));
             return -1;
         }
         Logging.d(TAG, "AudioRecord.getMinBufferSize: " + minBufferSize);
@@ -268,7 +268,7 @@ public class WebRtcAudioRecord {
             logMainParametersExtended();
             return i3;
         } catch (IllegalArgumentException e) {
-            StringBuilder sbU2 = a.U("AudioRecord ctor error: ");
+            StringBuilder sbU2 = outline.U("AudioRecord ctor error: ");
             sbU2.append(e.getMessage());
             reportWebRtcAudioRecordInitError(sbU2.toString());
             releaseAudioResources();
@@ -277,7 +277,7 @@ public class WebRtcAudioRecord {
     }
 
     private void logMainParameters() {
-        StringBuilder sbU = a.U("AudioRecord: session ID: ");
+        StringBuilder sbU = outline.U("AudioRecord: session ID: ");
         sbU.append(this.audioRecord.getAudioSessionId());
         sbU.append(", channels: ");
         sbU.append(this.audioRecord.getChannelCount());
@@ -288,7 +288,7 @@ public class WebRtcAudioRecord {
 
     private void logMainParametersExtended() {
         if (Build.VERSION.SDK_INT >= 23) {
-            StringBuilder sbU = a.U("AudioRecord: buffer size in frames: ");
+            StringBuilder sbU = outline.U("AudioRecord: buffer size in frames: ");
             sbU.append(this.audioRecord.getBufferSizeInFrames());
             Logging.d(TAG, sbU.toString());
         }

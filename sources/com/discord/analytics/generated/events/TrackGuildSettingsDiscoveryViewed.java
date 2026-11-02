@@ -1,15 +1,15 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 import java.util.List;
 
 /* JADX INFO: compiled from: TrackGuildSettingsDiscoveryViewed.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackGuildSettingsDiscoveryViewed implements AnalyticsSchema, TrackBaseReceiver {
+public final /* data */ class TrackGuildSettingsDiscoveryViewed implements AnalyticsSchema, TrackBase2 {
     private final List<CharSequence> failedReasons = null;
     private final Long guildId = null;
     private TrackBase trackBase;
@@ -23,7 +23,7 @@ public final /* data */ class TrackGuildSettingsDiscoveryViewed implements Analy
             return false;
         }
         TrackGuildSettingsDiscoveryViewed trackGuildSettingsDiscoveryViewed = (TrackGuildSettingsDiscoveryViewed) other;
-        return m.areEqual(this.guildId, trackGuildSettingsDiscoveryViewed.guildId) && m.areEqual(this.failedReasons, trackGuildSettingsDiscoveryViewed.failedReasons);
+        return Intrinsics3.areEqual(this.guildId, trackGuildSettingsDiscoveryViewed.guildId) && Intrinsics3.areEqual(this.failedReasons, trackGuildSettingsDiscoveryViewed.failedReasons);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -40,9 +40,9 @@ public final /* data */ class TrackGuildSettingsDiscoveryViewed implements Analy
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackGuildSettingsDiscoveryViewed(guildId=");
+        StringBuilder sbU = outline.U("TrackGuildSettingsDiscoveryViewed(guildId=");
         sbU.append(this.guildId);
         sbU.append(", failedReasons=");
-        return a.L(sbU, this.failedReasons, ")");
+        return outline.L(sbU, this.failedReasons, ")");
     }
 }

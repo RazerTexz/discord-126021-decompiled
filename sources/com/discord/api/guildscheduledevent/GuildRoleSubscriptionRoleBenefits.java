@@ -1,8 +1,8 @@
 package com.discord.api.guildscheduledevent;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.api.guildrolesubscription.GuildRoleSubscriptionBenefit;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 import java.util.List;
 
 /* JADX INFO: compiled from: GuildRoleSubscriptionRoleBenefits.kt */
@@ -23,7 +23,7 @@ public final /* data */ class GuildRoleSubscriptionRoleBenefits {
             return false;
         }
         GuildRoleSubscriptionRoleBenefits guildRoleSubscriptionRoleBenefits = (GuildRoleSubscriptionRoleBenefits) other;
-        return this.skuId == guildRoleSubscriptionRoleBenefits.skuId && m.areEqual(this.benefits, guildRoleSubscriptionRoleBenefits.benefits);
+        return this.skuId == guildRoleSubscriptionRoleBenefits.skuId && Intrinsics3.areEqual(this.benefits, guildRoleSubscriptionRoleBenefits.benefits);
     }
 
     public int hashCode() {
@@ -34,9 +34,9 @@ public final /* data */ class GuildRoleSubscriptionRoleBenefits {
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("GuildRoleSubscriptionRoleBenefits(skuId=");
+        StringBuilder sbU = outline.U("GuildRoleSubscriptionRoleBenefits(skuId=");
         sbU.append(this.skuId);
         sbU.append(", benefits=");
-        return a.L(sbU, this.benefits, ")");
+        return outline.L(sbU, this.benefits, ")");
     }
 }

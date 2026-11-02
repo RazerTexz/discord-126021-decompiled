@@ -1,9 +1,9 @@
 package com.discord.widgets.chat.input.models;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.models.commands.Application;
 import com.discord.models.commands.ApplicationCommand;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 import kotlin.jvm.internal.DefaultConstructorMarker;
 
 /* JADX INFO: compiled from: InputCommandContext.kt */
@@ -45,7 +45,7 @@ public final /* data */ class InputCommandContext {
             return false;
         }
         InputCommandContext inputCommandContext = (InputCommandContext) other;
-        return m.areEqual(this.selectedApplication, inputCommandContext.selectedApplication) && m.areEqual(this.selectedCommand, inputCommandContext.selectedCommand);
+        return Intrinsics3.areEqual(this.selectedApplication, inputCommandContext.selectedApplication) && Intrinsics3.areEqual(this.selectedCommand, inputCommandContext.selectedCommand);
     }
 
     /* JADX INFO: renamed from: isCommand, reason: from getter */
@@ -79,7 +79,7 @@ public final /* data */ class InputCommandContext {
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("InputCommandContext(selectedApplication=");
+        StringBuilder sbU = outline.U("InputCommandContext(selectedApplication=");
         sbU.append(this.selectedApplication);
         sbU.append(", selectedCommand=");
         sbU.append(this.selectedCommand);

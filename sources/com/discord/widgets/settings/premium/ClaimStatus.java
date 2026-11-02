@@ -3,11 +3,11 @@ package com.discord.widgets.settings.premium;
 import a0.a.a.b;
 import android.os.Parcel;
 import android.os.Parcelable;
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.api.utcdatetime.UtcDateTime;
 import com.discord.models.domain.ModelAuditLogEntry;
-import com.discord.utilities.UtcDateTimeParceler;
-import d0.z.d.m;
+import com.discord.utilities.Parcelers;
+import d0.z.d.Intrinsics3;
 import kotlin.jvm.internal.DefaultConstructorMarker;
 
 /* JADX INFO: compiled from: ClaimStatus.kt */
@@ -27,8 +27,8 @@ public abstract class ClaimStatus implements Parcelable {
             /* JADX WARN: Can't rename method to resolve collision */
             @Override // android.os.Parcelable.Creator
             public final Claimed createFromParcel(Parcel parcel) {
-                m.checkNotNullParameter(parcel, "in");
-                return new Claimed(parcel.readLong(), parcel.readString(), parcel.readString(), parcel.readString(), UtcDateTimeParceler.INSTANCE.create(parcel));
+                Intrinsics3.checkNotNullParameter(parcel, "in");
+                return new Claimed(parcel.readLong(), parcel.readString(), parcel.readString(), parcel.readString(), Parcelers.INSTANCE.create(parcel));
             }
 
             @Override // android.os.Parcelable.Creator
@@ -51,10 +51,10 @@ public abstract class ClaimStatus implements Parcelable {
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
         public Claimed(long j, String str, String str2, String str3, UtcDateTime utcDateTime) {
             super(null);
-            m.checkNotNullParameter(str, ModelAuditLogEntry.CHANGE_KEY_CODE);
-            m.checkNotNullParameter(str2, "body");
-            m.checkNotNullParameter(str3, "link");
-            m.checkNotNullParameter(utcDateTime, "redeemBy");
+            Intrinsics3.checkNotNullParameter(str, ModelAuditLogEntry.CHANGE_KEY_CODE);
+            Intrinsics3.checkNotNullParameter(str2, "body");
+            Intrinsics3.checkNotNullParameter(str3, "link");
+            Intrinsics3.checkNotNullParameter(utcDateTime, "redeemBy");
             this.promoId = j;
             this.code = str;
             this.body = str2;
@@ -86,10 +86,10 @@ public abstract class ClaimStatus implements Parcelable {
         }
 
         public final Claimed copy(long promoId, String code, String body, String link, UtcDateTime redeemBy) {
-            m.checkNotNullParameter(code, ModelAuditLogEntry.CHANGE_KEY_CODE);
-            m.checkNotNullParameter(body, "body");
-            m.checkNotNullParameter(link, "link");
-            m.checkNotNullParameter(redeemBy, "redeemBy");
+            Intrinsics3.checkNotNullParameter(code, ModelAuditLogEntry.CHANGE_KEY_CODE);
+            Intrinsics3.checkNotNullParameter(body, "body");
+            Intrinsics3.checkNotNullParameter(link, "link");
+            Intrinsics3.checkNotNullParameter(redeemBy, "redeemBy");
             return new Claimed(promoId, code, body, link, redeemBy);
         }
 
@@ -106,7 +106,7 @@ public abstract class ClaimStatus implements Parcelable {
                 return false;
             }
             Claimed claimed = (Claimed) other;
-            return this.promoId == claimed.promoId && m.areEqual(this.code, claimed.code) && m.areEqual(this.body, claimed.body) && m.areEqual(this.link, claimed.link) && m.areEqual(this.redeemBy, claimed.redeemBy);
+            return this.promoId == claimed.promoId && Intrinsics3.areEqual(this.code, claimed.code) && Intrinsics3.areEqual(this.body, claimed.body) && Intrinsics3.areEqual(this.link, claimed.link) && Intrinsics3.areEqual(this.redeemBy, claimed.redeemBy);
         }
 
         /* JADX INFO: renamed from: component3, reason: from getter */
@@ -167,7 +167,7 @@ public abstract class ClaimStatus implements Parcelable {
         }
 
         public String toString() {
-            StringBuilder sbU = a.U("Claimed(promoId=");
+            StringBuilder sbU = outline.U("Claimed(promoId=");
             sbU.append(this.promoId);
             sbU.append(", code=");
             sbU.append(this.code);
@@ -183,12 +183,12 @@ public abstract class ClaimStatus implements Parcelable {
 
         @Override // android.os.Parcelable
         public void writeToParcel(Parcel parcel, int flags) {
-            m.checkNotNullParameter(parcel, "parcel");
+            Intrinsics3.checkNotNullParameter(parcel, "parcel");
             parcel.writeLong(this.promoId);
             parcel.writeString(this.code);
             parcel.writeString(this.body);
             parcel.writeString(this.link);
-            UtcDateTimeParceler.INSTANCE.write(this.redeemBy, parcel, flags);
+            Parcelers.INSTANCE.write(this.redeemBy, parcel, flags);
         }
     }
 
@@ -202,8 +202,8 @@ public abstract class ClaimStatus implements Parcelable {
             /* JADX WARN: Can't rename method to resolve collision */
             @Override // android.os.Parcelable.Creator
             public final Unclaimed createFromParcel(Parcel parcel) {
-                m.checkNotNullParameter(parcel, "in");
-                return new Unclaimed(parcel.readLong(), UtcDateTimeParceler.INSTANCE.create(parcel));
+                Intrinsics3.checkNotNullParameter(parcel, "in");
+                return new Unclaimed(parcel.readLong(), Parcelers.INSTANCE.create(parcel));
             }
 
             @Override // android.os.Parcelable.Creator
@@ -226,7 +226,7 @@ public abstract class ClaimStatus implements Parcelable {
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
         public Unclaimed(long j, UtcDateTime utcDateTime) {
             super(null);
-            m.checkNotNullParameter(utcDateTime, "claimBy");
+            Intrinsics3.checkNotNullParameter(utcDateTime, "claimBy");
             this.promoId = j;
             this.claimBy = utcDateTime;
         }
@@ -242,7 +242,7 @@ public abstract class ClaimStatus implements Parcelable {
         }
 
         public final Unclaimed copy(long promoId, UtcDateTime claimBy) {
-            m.checkNotNullParameter(claimBy, "claimBy");
+            Intrinsics3.checkNotNullParameter(claimBy, "claimBy");
             return new Unclaimed(promoId, claimBy);
         }
 
@@ -259,7 +259,7 @@ public abstract class ClaimStatus implements Parcelable {
                 return false;
             }
             Unclaimed unclaimed = (Unclaimed) other;
-            return this.promoId == unclaimed.promoId && m.areEqual(this.claimBy, unclaimed.claimBy);
+            return this.promoId == unclaimed.promoId && Intrinsics3.areEqual(this.claimBy, unclaimed.claimBy);
         }
 
         /* JADX INFO: renamed from: component2, reason: from getter */
@@ -287,7 +287,7 @@ public abstract class ClaimStatus implements Parcelable {
         }
 
         public String toString() {
-            StringBuilder sbU = a.U("Unclaimed(promoId=");
+            StringBuilder sbU = outline.U("Unclaimed(promoId=");
             sbU.append(this.promoId);
             sbU.append(", claimBy=");
             sbU.append(this.claimBy);
@@ -297,9 +297,9 @@ public abstract class ClaimStatus implements Parcelable {
 
         @Override // android.os.Parcelable
         public void writeToParcel(Parcel parcel, int flags) {
-            m.checkNotNullParameter(parcel, "parcel");
+            Intrinsics3.checkNotNullParameter(parcel, "parcel");
             parcel.writeLong(this.promoId);
-            UtcDateTimeParceler.INSTANCE.write(this.claimBy, parcel, flags);
+            Parcelers.INSTANCE.write(this.claimBy, parcel, flags);
         }
     }
 

@@ -18,7 +18,7 @@ import b.a.m.a.w;
 import b.a.m.a.x;
 import b.a.m.a.y;
 import b.a.m.a.z;
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.api.channel.Channel;
 import com.discord.api.connectedaccounts.ConnectedAccount;
 import com.discord.api.guild.Guild;
@@ -119,7 +119,7 @@ public class ModelPayload implements Model {
         }
 
         public String toString() {
-            StringBuilder sbU = a.U("ModelPayload.Hello(heartbeatInterval=");
+            StringBuilder sbU = outline.U("ModelPayload.Hello(heartbeatInterval=");
             sbU.append(getHeartbeatInterval());
             sbU.append(", trace=");
             sbU.append(getTrace());
@@ -194,7 +194,7 @@ public class ModelPayload implements Model {
         }
 
         public String toString() {
-            StringBuilder sbU = a.U("ModelPayload.MergedPresences(friends=");
+            StringBuilder sbU = outline.U("ModelPayload.MergedPresences(friends=");
             sbU.append(getFriends());
             sbU.append(", guilds=");
             sbU.append(getGuilds());
@@ -272,7 +272,7 @@ public class ModelPayload implements Model {
         public abstract T parseEntry(Model.JsonReader jsonReader) throws IOException;
 
         public String toString() {
-            StringBuilder sbU = a.U("ModelPayload.VersionedModel(version=");
+            StringBuilder sbU = outline.U("ModelPayload.VersionedModel(version=");
             sbU.append(getVersion());
             sbU.append(", entries=");
             sbU.append(getEntries());
@@ -691,7 +691,7 @@ public class ModelPayload implements Model {
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("ModelPayload(v=");
+        StringBuilder sbU = outline.U("ModelPayload(v=");
         sbU.append(getV());
         sbU.append(", me=");
         sbU.append(getMe());

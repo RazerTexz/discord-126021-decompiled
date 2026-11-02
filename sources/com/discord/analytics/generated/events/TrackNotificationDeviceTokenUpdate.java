@@ -1,14 +1,14 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackNotificationDeviceTokenUpdate.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackNotificationDeviceTokenUpdate implements AnalyticsSchema, TrackBaseReceiver {
+public final /* data */ class TrackNotificationDeviceTokenUpdate implements AnalyticsSchema, TrackBase2 {
     private final CharSequence provider = null;
     private final CharSequence pushToken = null;
     private final CharSequence token = null;
@@ -24,7 +24,7 @@ public final /* data */ class TrackNotificationDeviceTokenUpdate implements Anal
             return false;
         }
         TrackNotificationDeviceTokenUpdate trackNotificationDeviceTokenUpdate = (TrackNotificationDeviceTokenUpdate) other;
-        return m.areEqual(this.provider, trackNotificationDeviceTokenUpdate.provider) && m.areEqual(this.token, trackNotificationDeviceTokenUpdate.token) && m.areEqual(this.type, trackNotificationDeviceTokenUpdate.type) && m.areEqual(this.pushToken, trackNotificationDeviceTokenUpdate.pushToken);
+        return Intrinsics3.areEqual(this.provider, trackNotificationDeviceTokenUpdate.provider) && Intrinsics3.areEqual(this.token, trackNotificationDeviceTokenUpdate.token) && Intrinsics3.areEqual(this.type, trackNotificationDeviceTokenUpdate.type) && Intrinsics3.areEqual(this.pushToken, trackNotificationDeviceTokenUpdate.pushToken);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -45,13 +45,13 @@ public final /* data */ class TrackNotificationDeviceTokenUpdate implements Anal
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackNotificationDeviceTokenUpdate(provider=");
+        StringBuilder sbU = outline.U("TrackNotificationDeviceTokenUpdate(provider=");
         sbU.append(this.provider);
         sbU.append(", token=");
         sbU.append(this.token);
         sbU.append(", type=");
         sbU.append(this.type);
         sbU.append(", pushToken=");
-        return a.E(sbU, this.pushToken, ")");
+        return outline.E(sbU, this.pushToken, ")");
     }
 }

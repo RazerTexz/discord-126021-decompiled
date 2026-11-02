@@ -6,10 +6,10 @@ import com.discord.api.channel.Channel;
 import com.discord.api.guild.Guild;
 import com.discord.models.domain.ModelPayload;
 import com.discord.stores.updates.ObservationDeck;
-import com.discord.utilities.cache.SharedPreferenceExtensionsKt;
-import d0.t.n0;
-import d0.z.d.m;
-import d0.z.d.o;
+import com.discord.utilities.cache.SharedPreferenceExtensions;
+import d0.t.Sets5;
+import d0.z.d.Intrinsics3;
+import d0.z.d.Lambda;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -35,7 +35,7 @@ public final class StoreCollapsedChannelCategories extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreCollapsedChannelCategories$observeCollapsedCategories$1, reason: invalid class name */
     /* JADX INFO: compiled from: StoreCollapsedChannelCategories.kt */
-    public final class AnonymousClass1 extends o implements Function0<Set<? extends Long>> {
+    public final class AnonymousClass1 extends Lambda implements Function0<Set<? extends Long>> {
         public final /* synthetic */ long $guildId;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -54,7 +54,7 @@ public final class StoreCollapsedChannelCategories extends StoreV2 {
         public final Set<? extends Long> invoke2() {
             Set<Long> setEmptySet = StoreCollapsedChannelCategories.this.getCollapsedCategories().get(Long.valueOf(this.$guildId));
             if (setEmptySet == null) {
-                setEmptySet = n0.emptySet();
+                setEmptySet = Sets5.emptySet();
             }
             return setEmptySet;
         }
@@ -62,7 +62,7 @@ public final class StoreCollapsedChannelCategories extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreCollapsedChannelCategories$setCollapsedCategory$1, reason: invalid class name */
     /* JADX INFO: compiled from: StoreCollapsedChannelCategories.kt */
-    public final class AnonymousClass1 extends o implements Function0<Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function0<Unit> {
         public final /* synthetic */ long $categoryId;
         public final /* synthetic */ boolean $collapsed;
         public final /* synthetic */ long $guildId;
@@ -101,13 +101,13 @@ public final class StoreCollapsedChannelCategories extends StoreV2 {
         }
 
         private final Map<Long, Set<Long>> fromCache(SharedPreferences prefs) {
-            return SharedPreferenceExtensionsKt.getStringEntrySetAsMap$default(prefs, StoreCollapsedChannelCategories.CACHE_KEY_COLLAPSED_CATEGORIES, null, StoreCollapsedChannelCategories$Companion$fromCache$1.INSTANCE, 2, null);
+            return SharedPreferenceExtensions.getStringEntrySetAsMap$default(prefs, StoreCollapsedChannelCategories.CACHE_KEY_COLLAPSED_CATEGORIES, null, StoreCollapsedChannelCategories2.INSTANCE, 2, null);
         }
 
         private final void toCache(SharedPreferences prefs, Map<Long, Set<Long>> collapsedCategories) {
             SharedPreferences.Editor editorEdit = prefs.edit();
-            m.checkNotNullExpressionValue(editorEdit, "editor");
-            SharedPreferenceExtensionsKt.putStringEntrySetAsMap$default(editorEdit, StoreCollapsedChannelCategories.CACHE_KEY_COLLAPSED_CATEGORIES, collapsedCategories, null, StoreCollapsedChannelCategories$Companion$toCache$1$1.INSTANCE, 4, null);
+            Intrinsics3.checkNotNullExpressionValue(editorEdit, "editor");
+            SharedPreferenceExtensions.putStringEntrySetAsMap$default(editorEdit, StoreCollapsedChannelCategories.CACHE_KEY_COLLAPSED_CATEGORIES, collapsedCategories, null, StoreCollapsedChannelCategories4.INSTANCE, 4, null);
             editorEdit.apply();
         }
 
@@ -117,8 +117,8 @@ public final class StoreCollapsedChannelCategories extends StoreV2 {
     }
 
     public StoreCollapsedChannelCategories(Dispatcher dispatcher, ObservationDeck observationDeck) {
-        m.checkNotNullParameter(dispatcher, "dispatcher");
-        m.checkNotNullParameter(observationDeck, "observationDeck");
+        Intrinsics3.checkNotNullParameter(dispatcher, "dispatcher");
+        Intrinsics3.checkNotNullParameter(observationDeck, "observationDeck");
         this.dispatcher = dispatcher;
         this.observationDeck = observationDeck;
         this.collapsedCategories = new HashMap();
@@ -133,12 +133,12 @@ public final class StoreCollapsedChannelCategories extends StoreV2 {
         return this.collapsedCategoriesSnapshot;
     }
 
-    @StoreThread
+    @Store3
     public final void handleConnectionOpen(ModelPayload payload) {
-        m.checkNotNullParameter(payload, "payload");
+        Intrinsics3.checkNotNullParameter(payload, "payload");
         HashSet hashSet = new HashSet(this.collapsedCategories.keySet());
         List<Guild> guilds = payload.getGuilds();
-        m.checkNotNullExpressionValue(guilds, "payload.guilds");
+        Intrinsics3.checkNotNullExpressionValue(guilds, "payload.guilds");
         for (Guild guild : guilds) {
             Set<Long> set = this.collapsedCategories.get(Long.valueOf(guild.getId()));
             if (set != null) {
@@ -152,7 +152,7 @@ public final class StoreCollapsedChannelCategories extends StoreV2 {
                 }
                 for (Long l : hashSet2) {
                     long id2 = guild.getId();
-                    m.checkNotNullExpressionValue(l, "channelId");
+                    Intrinsics3.checkNotNullExpressionValue(l, "channelId");
                     setCollapsedState(id2, l.longValue(), false);
                 }
                 hashSet.remove(Long.valueOf(guild.getId()));
@@ -166,9 +166,9 @@ public final class StoreCollapsedChannelCategories extends StoreV2 {
     }
 
     @Override // com.discord.stores.Store
-    @StoreThread
+    @Store3
     public void init(Context context) {
-        m.checkNotNullParameter(context, "context");
+        Intrinsics3.checkNotNullParameter(context, "context");
         super.init(context);
         this.collapsedCategories = Companion.access$fromCache(INSTANCE, getPrefs());
         markChanged();
@@ -176,7 +176,7 @@ public final class StoreCollapsedChannelCategories extends StoreV2 {
 
     public final Observable<Set<Long>> observeCollapsedCategories(long guildId) {
         Observable<Set<Long>> observableR = ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck.UpdateSource[]{this}, false, null, null, new AnonymousClass1(guildId), 14, null).r();
-        m.checkNotNullExpressionValue(observableR, "observationDeck\n        …  .distinctUntilChanged()");
+        Intrinsics3.checkNotNullExpressionValue(observableR, "observationDeck\n        …  .distinctUntilChanged()");
         return observableR;
     }
 

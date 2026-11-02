@@ -2,13 +2,14 @@ package b.i.a.f.j.b;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import b.c.a.a0.AnimatableValueParser;
 import com.google.android.gms.nearby.messages.Strategy;
 
 /* JADX INFO: loaded from: classes3.dex */
 public final class j implements Parcelable.Creator<Strategy> {
     @Override // android.os.Parcelable.Creator
     public final Strategy createFromParcel(Parcel parcel) {
-        int iM2 = b.c.a.a0.d.m2(parcel);
+        int iM2 = AnimatableValueParser.m2(parcel);
         int iG1 = 0;
         int iG2 = 0;
         int iG3 = 0;
@@ -23,35 +24,35 @@ public final class j implements Parcelable.Creator<Strategy> {
             if (c != 1000) {
                 switch (c) {
                     case 1:
-                        iG2 = b.c.a.a0.d.G1(parcel, i);
+                        iG2 = AnimatableValueParser.G1(parcel, i);
                         break;
                     case 2:
-                        iG3 = b.c.a.a0.d.G1(parcel, i);
+                        iG3 = AnimatableValueParser.G1(parcel, i);
                         break;
                     case 3:
-                        iG4 = b.c.a.a0.d.G1(parcel, i);
+                        iG4 = AnimatableValueParser.G1(parcel, i);
                         break;
                     case 4:
-                        zE1 = b.c.a.a0.d.E1(parcel, i);
+                        zE1 = AnimatableValueParser.E1(parcel, i);
                         break;
                     case 5:
-                        iG5 = b.c.a.a0.d.G1(parcel, i);
+                        iG5 = AnimatableValueParser.G1(parcel, i);
                         break;
                     case 6:
-                        iG6 = b.c.a.a0.d.G1(parcel, i);
+                        iG6 = AnimatableValueParser.G1(parcel, i);
                         break;
                     case 7:
-                        iG7 = b.c.a.a0.d.G1(parcel, i);
+                        iG7 = AnimatableValueParser.G1(parcel, i);
                         break;
                     default:
-                        b.c.a.a0.d.d2(parcel, i);
+                        AnimatableValueParser.d2(parcel, i);
                         break;
                 }
             } else {
-                iG1 = b.c.a.a0.d.G1(parcel, i);
+                iG1 = AnimatableValueParser.G1(parcel, i);
             }
         }
-        b.c.a.a0.d.f0(parcel, iM2);
+        AnimatableValueParser.f0(parcel, iM2);
         return new Strategy(iG1, iG2, iG3, iG4, zE1, iG5, iG6, iG7);
     }
 

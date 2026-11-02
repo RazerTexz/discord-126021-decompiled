@@ -1,7 +1,7 @@
 package com.discord.models.botuikit;
 
-import b.d.b.a.a;
-import d0.z.d.m;
+import b.d.b.a.outline;
+import d0.z.d.Intrinsics3;
 import kotlin.jvm.internal.DefaultConstructorMarker;
 import org.webrtc.PeerConnectionFactory;
 
@@ -49,7 +49,7 @@ public abstract class ActionInteractionComponentState {
 
         public boolean equals(Object other) {
             if (this != other) {
-                return (other instanceof Failed) && m.areEqual(this.errorMessage, ((Failed) other).errorMessage);
+                return (other instanceof Failed) && Intrinsics3.areEqual(this.errorMessage, ((Failed) other).errorMessage);
             }
             return true;
         }
@@ -72,7 +72,7 @@ public abstract class ActionInteractionComponentState {
         }
 
         public String toString() {
-            return a.J(a.U("Failed(errorMessage="), this.errorMessage, ")");
+            return outline.J(outline.U("Failed(errorMessage="), this.errorMessage, ")");
         }
     }
 

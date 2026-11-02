@@ -5,20 +5,20 @@ import java.util.Objects;
 /* JADX INFO: compiled from: lambda */
 /* JADX INFO: loaded from: classes3.dex */
 public final /* synthetic */ class i implements Runnable {
-    public final /* synthetic */ e0 j;
+    public final /* synthetic */ ProgressiveMediaPeriod j;
 
-    public /* synthetic */ i(e0 e0Var) {
-        this.j = e0Var;
+    public /* synthetic */ i(ProgressiveMediaPeriod progressiveMediaPeriod) {
+        this.j = progressiveMediaPeriod;
     }
 
     @Override // java.lang.Runnable
     public final void run() {
-        e0 e0Var = this.j;
-        if (e0Var.W) {
+        ProgressiveMediaPeriod progressiveMediaPeriod = this.j;
+        if (progressiveMediaPeriod.W) {
             return;
         }
-        x.a aVar = e0Var.B;
+        MediaPeriod.a aVar = progressiveMediaPeriod.B;
         Objects.requireNonNull(aVar);
-        aVar.a(e0Var);
+        aVar.a(progressiveMediaPeriod);
     }
 }

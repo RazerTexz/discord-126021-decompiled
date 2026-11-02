@@ -1,7 +1,7 @@
 package com.discord.analytics.generated.traits;
 
-import b.d.b.a.a;
-import d0.z.d.m;
+import b.d.b.a.outline;
+import d0.z.d.Intrinsics3;
 import java.util.List;
 
 /* JADX INFO: compiled from: TrackGuildWelcomeScreen.kt */
@@ -20,7 +20,7 @@ public final /* data */ class TrackGuildWelcomeScreen {
             return false;
         }
         TrackGuildWelcomeScreen trackGuildWelcomeScreen = (TrackGuildWelcomeScreen) other;
-        return m.areEqual(this.options, trackGuildWelcomeScreen.options) && m.areEqual(this.optionsChannelIds, trackGuildWelcomeScreen.optionsChannelIds) && m.areEqual(this.guildDescription, trackGuildWelcomeScreen.guildDescription) && m.areEqual(this.hasCustomEmojis, trackGuildWelcomeScreen.hasCustomEmojis);
+        return Intrinsics3.areEqual(this.options, trackGuildWelcomeScreen.options) && Intrinsics3.areEqual(this.optionsChannelIds, trackGuildWelcomeScreen.optionsChannelIds) && Intrinsics3.areEqual(this.guildDescription, trackGuildWelcomeScreen.guildDescription) && Intrinsics3.areEqual(this.hasCustomEmojis, trackGuildWelcomeScreen.hasCustomEmojis);
     }
 
     public int hashCode() {
@@ -35,13 +35,13 @@ public final /* data */ class TrackGuildWelcomeScreen {
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackGuildWelcomeScreen(options=");
+        StringBuilder sbU = outline.U("TrackGuildWelcomeScreen(options=");
         sbU.append(this.options);
         sbU.append(", optionsChannelIds=");
         sbU.append(this.optionsChannelIds);
         sbU.append(", guildDescription=");
         sbU.append(this.guildDescription);
         sbU.append(", hasCustomEmojis=");
-        return a.D(sbU, this.hasCustomEmojis, ")");
+        return outline.D(sbU, this.hasCustomEmojis, ")");
     }
 }

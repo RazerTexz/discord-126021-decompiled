@@ -1,5 +1,7 @@
 package d0.f0;
 
+import d0.z.d.Intrinsics3;
+import d0.z.d.g0.KMarkers;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 import kotlin.jvm.functions.Function1;
@@ -15,8 +17,8 @@ public final class t<T> implements Sequence<T> {
 
     /* JADX WARN: Multi-variable type inference failed */
     public t(Sequence<? extends T> sequence, Function1<? super T, Boolean> function1) {
-        d0.z.d.m.checkNotNullParameter(sequence, "sequence");
-        d0.z.d.m.checkNotNullParameter(function1, "predicate");
+        Intrinsics3.checkNotNullParameter(sequence, "sequence");
+        Intrinsics3.checkNotNullParameter(function1, "predicate");
         this.a = sequence;
         this.f3577b = function1;
     }
@@ -35,7 +37,7 @@ public final class t<T> implements Sequence<T> {
     }
 
     /* JADX INFO: compiled from: Sequences.kt */
-    public final class a implements Iterator<T>, d0.z.d.g0.a {
+    public final class a implements Iterator<T>, KMarkers {
         public final Iterator<T> j;
         public T l;
         public int k = -1;

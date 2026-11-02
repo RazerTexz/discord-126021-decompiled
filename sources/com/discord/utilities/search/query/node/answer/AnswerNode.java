@@ -6,7 +6,7 @@ import com.discord.utilities.search.network.SearchQuery;
 import com.discord.utilities.search.query.FilterType;
 import com.discord.utilities.search.query.node.QueryNode;
 import com.discord.utilities.search.validation.SearchData;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 import java.util.Set;
 
 /* JADX INFO: compiled from: AnswerNode.kt */
@@ -25,8 +25,8 @@ public abstract class AnswerNode extends QueryNode {
 
     /* JADX INFO: renamed from: render, reason: avoid collision after fix types in other method */
     public void render2(SpannableStringBuilder builder, Context renderContext) {
-        m.checkNotNullParameter(builder, "builder");
-        m.checkNotNullParameter(renderContext, "renderContext");
+        Intrinsics3.checkNotNullParameter(builder, "builder");
+        Intrinsics3.checkNotNullParameter(renderContext, "renderContext");
         builder.append(getText()).append(' ');
     }
 }

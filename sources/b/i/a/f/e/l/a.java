@@ -3,6 +3,7 @@ package b.i.a.f.e.l;
 import android.util.Log;
 import androidx.annotation.Nullable;
 import androidx.annotation.RecentlyNonNull;
+import b.d.b.a.outline;
 import b.i.a.f.e.k.f;
 import java.util.Locale;
 
@@ -20,7 +21,7 @@ public class a {
         if (strArr.length == 0) {
             string = "";
         } else {
-            StringBuilder sbQ = b.d.b.a.a.Q('[');
+            StringBuilder sbQ = outline.Q('[');
             for (String str2 : strArr) {
                 if (sbQ.length() > 1) {
                     sbQ.append(",");

@@ -8,8 +8,8 @@ import android.widget.TextView;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.Guideline;
-import b.a.k.b;
-import b.d.b.a.a;
+import b.a.k.FormatUtils;
+import b.d.b.a.outline;
 import com.discord.R;
 import com.discord.api.message.MessageReference;
 import com.discord.api.message.embed.MessageEmbed;
@@ -37,9 +37,9 @@ import com.discord.widgets.chat.list.entries.ChatListEntry;
 import com.discord.widgets.chat.list.entries.MessageEntry;
 import com.discord.widgets.servers.guildboost.WidgetGuildBoost;
 import com.facebook.drawee.view.SimpleDraweeView;
-import d0.t.u;
-import d0.z.d.m;
-import d0.z.d.o;
+import d0.t._Collections;
+import d0.z.d.Intrinsics3;
+import d0.z.d.Lambda;
 import java.util.List;
 import java.util.Map;
 import kotlin.NoWhenBranchMatchedException;
@@ -55,7 +55,7 @@ public final class WidgetChatListAdapterItemSystemMessage extends WidgetChatList
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemSystemMessage$getSystemMessage$1, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetChatListAdapterItemSystemMessage.kt */
-    public final class AnonymousClass1 extends o implements Function1<Context, CharSequence> {
+    public final class AnonymousClass1 extends Lambda implements Function1<Context, CharSequence> {
         public final /* synthetic */ Function1 $actorRenderContext;
         public final /* synthetic */ String $authorName;
         public final /* synthetic */ Function1 $autoModRenderContext;
@@ -91,67 +91,67 @@ public final class WidgetChatListAdapterItemSystemMessage extends WidgetChatList
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final CharSequence invoke2(Context context) {
-            m.checkNotNullParameter(context, "$this$getString");
+            Intrinsics3.checkNotNullParameter(context, "$this$getString");
             Integer type = this.$this_getSystemMessage.getType();
             if (type != null && type.intValue() == 1) {
-                return b.b(context, R.string.system_message_recipient_add, new Object[]{this.$authorName, this.$firstMentionedUserName}, this.$usernameRenderContext);
+                return FormatUtils.b(context, R.string.system_message_recipient_add, new Object[]{this.$authorName, this.$firstMentionedUserName}, this.$usernameRenderContext);
             }
             if (type != null && type.intValue() == 2) {
                 Long l = this.$firstMentionedUserId;
                 User author = this.$this_getSystemMessage.getAuthor();
-                return m.areEqual(l, author != null ? Long.valueOf(author.getId()) : null) ? b.b(context, R.string.system_message_recipient_remove_self, new Object[]{this.$authorName}, this.$usernameRenderContext) : b.b(context, R.string.system_message_recipient_remove, new Object[]{this.$authorName, this.$firstMentionedUserName}, this.$usernameRenderContext);
+                return Intrinsics3.areEqual(l, author != null ? Long.valueOf(author.getId()) : null) ? FormatUtils.b(context, R.string.system_message_recipient_remove_self, new Object[]{this.$authorName}, this.$usernameRenderContext) : FormatUtils.b(context, R.string.system_message_recipient_remove, new Object[]{this.$authorName, this.$firstMentionedUserName}, this.$usernameRenderContext);
             }
             if (type != null && type.intValue() == 4) {
-                return b.b(context, R.string.system_message_channel_name_change, new Object[]{this.$authorName, this.$this_getSystemMessage.getContent()}, this.$usernameRenderContext);
+                return FormatUtils.b(context, R.string.system_message_channel_name_change, new Object[]{this.$authorName, this.$this_getSystemMessage.getContent()}, this.$usernameRenderContext);
             }
             if (type != null && type.intValue() == 5) {
-                return b.b(context, R.string.system_message_channel_icon_change, new Object[]{this.$authorName}, this.$usernameRenderContext);
+                return FormatUtils.b(context, R.string.system_message_channel_icon_change, new Object[]{this.$authorName}, this.$usernameRenderContext);
             }
             if (type != null && type.intValue() == 6) {
-                return b.b(context, R.string.system_message_pinned_message_no_cta, new Object[]{this.$authorName}, this.$usernameRenderContext);
+                return FormatUtils.b(context, R.string.system_message_pinned_message_no_cta, new Object[]{this.$authorName}, this.$usernameRenderContext);
             }
             if (type != null && type.intValue() == 7) {
-                return b.b(context, MessageUtils.INSTANCE.getSystemMessageUserJoin(this.$context, this.$this_getSystemMessage.getId()), new Object[]{this.$authorName}, this.$usernameRenderContext);
+                return FormatUtils.b(context, MessageUtils.INSTANCE.getSystemMessageUserJoin(this.$context, this.$this_getSystemMessage.getId()), new Object[]{this.$authorName}, this.$usernameRenderContext);
             }
             if (type != null && type.intValue() == 8) {
                 String content = this.$this_getSystemMessage.getContent();
                 int i = content == null || content.length() == 0 ? 1 : Integer.parseInt(this.$this_getSystemMessage.getContent());
-                return i > 1 ? b.b(context, R.string.system_message_guild_member_subscribed_many, new Object[]{this.$authorName, String.valueOf(i)}, this.$usernameRenderContext) : b.b(context, R.string.system_message_guild_member_subscribed, new Object[]{this.$authorName}, this.$usernameRenderContext);
+                return i > 1 ? FormatUtils.b(context, R.string.system_message_guild_member_subscribed_many, new Object[]{this.$authorName, String.valueOf(i)}, this.$usernameRenderContext) : FormatUtils.b(context, R.string.system_message_guild_member_subscribed, new Object[]{this.$authorName}, this.$usernameRenderContext);
             }
             if (type != null && type.intValue() == 9) {
-                return b.b(context, R.string.system_message_guild_member_subscribed_achieved_tier, new Object[]{this.$authorName, this.$guildName, b.h(context, R.string.premium_guild_tier_1, new Object[0], null, 4)}, this.$usernameRenderContext);
+                return FormatUtils.b(context, R.string.system_message_guild_member_subscribed_achieved_tier, new Object[]{this.$authorName, this.$guildName, FormatUtils.h(context, R.string.premium_guild_tier_1, new Object[0], null, 4)}, this.$usernameRenderContext);
             }
             if (type != null && type.intValue() == 10) {
-                return b.b(context, R.string.system_message_guild_member_subscribed_achieved_tier, new Object[]{this.$authorName, this.$guildName, b.h(context, R.string.premium_guild_tier_2, new Object[0], null, 4)}, this.$usernameRenderContext);
+                return FormatUtils.b(context, R.string.system_message_guild_member_subscribed_achieved_tier, new Object[]{this.$authorName, this.$guildName, FormatUtils.h(context, R.string.premium_guild_tier_2, new Object[0], null, 4)}, this.$usernameRenderContext);
             }
             if (type != null && type.intValue() == 11) {
-                return b.b(context, R.string.system_message_guild_member_subscribed_achieved_tier, new Object[]{this.$authorName, this.$guildName, b.h(context, R.string.premium_guild_tier_3, new Object[0], null, 4)}, this.$usernameRenderContext);
+                return FormatUtils.b(context, R.string.system_message_guild_member_subscribed_achieved_tier, new Object[]{this.$authorName, this.$guildName, FormatUtils.h(context, R.string.premium_guild_tier_3, new Object[0], null, 4)}, this.$usernameRenderContext);
             }
             if (type != null && type.intValue() == 12) {
-                return b.b(context, R.string.system_message_channel_follow_add, new Object[]{this.$authorName, this.$this_getSystemMessage.getContent()}, this.$usernameRenderContext);
+                return FormatUtils.b(context, R.string.system_message_channel_follow_add, new Object[]{this.$authorName, this.$this_getSystemMessage.getContent()}, this.$usernameRenderContext);
             }
             if (type != null && type.intValue() == 14) {
-                return b.h(context, R.string.system_message_guild_discovery_disqualified_mobile, new Object[0], null, 4);
+                return FormatUtils.h(context, R.string.system_message_guild_discovery_disqualified_mobile, new Object[0], null, 4);
             }
             if (type != null && type.intValue() == 15) {
-                return b.h(context, R.string.system_message_guild_discovery_requalified, new Object[0], null, 4);
+                return FormatUtils.h(context, R.string.system_message_guild_discovery_requalified, new Object[0], null, 4);
             }
             if (type != null && type.intValue() == 16) {
-                return b.h(context, R.string.system_message_guild_discovery_grace_period_initial_warning, new Object[0], null, 4);
+                return FormatUtils.h(context, R.string.system_message_guild_discovery_grace_period_initial_warning, new Object[0], null, 4);
             }
             if (type != null && type.intValue() == 17) {
-                return b.h(context, R.string.system_message_guild_discovery_grace_period_final_warning, new Object[0], null, 4);
+                return FormatUtils.h(context, R.string.system_message_guild_discovery_grace_period_final_warning, new Object[0], null, 4);
             }
             if (type != null && type.intValue() == 18) {
-                return b.b(context, R.string.system_message_thread_created_mobile, new Object[]{this.$authorName, this.$this_getSystemMessage.getContent()}, this.$actorRenderContext);
+                return FormatUtils.b(context, R.string.system_message_thread_created_mobile, new Object[]{this.$authorName, this.$this_getSystemMessage.getContent()}, this.$actorRenderContext);
             }
             if (type != null && type.intValue() == -7) {
-                return b.h(context, R.string.thread_starter_message_not_loaded, new Object[0], null, 4);
+                return FormatUtils.h(context, R.string.thread_starter_message_not_loaded, new Object[0], null, 4);
             }
             if (type != null && type.intValue() == 24) {
-                return b.b(context, this.$autoModSystemMessage, new Object[0], this.$autoModRenderContext);
+                return FormatUtils.b(context, this.$autoModSystemMessage, new Object[0], this.$autoModRenderContext);
             }
-            return (type != null && type.intValue() == 25) ? MessageUtils.INSTANCE.getSystemMessageRoleSubscriptionPurchase(this.$context, this.$guildName, this.$authorName, this.$this_getSystemMessage.getRoleSubscriptionData(), this.$roleSubscriptionPurchaseContext) : b.h(context, R.string.reply_quote_message_not_loaded, new Object[0], null, 4);
+            return (type != null && type.intValue() == 25) ? MessageUtils.INSTANCE.getSystemMessageRoleSubscriptionPurchase(this.$context, this.$guildName, this.$authorName, this.$this_getSystemMessage.getRoleSubscriptionData(), this.$roleSubscriptionPurchaseContext) : FormatUtils.h(context, R.string.reply_quote_message_not_loaded, new Object[0], null, 4);
         }
     }
 
@@ -175,9 +175,9 @@ public final class WidgetChatListAdapterItemSystemMessage extends WidgetChatList
                 AnalyticsTracker.guildBoostPromotionOpened$default(AnalyticsTracker.INSTANCE, WidgetChatListAdapterItemSystemMessage.access$getAdapter$p(WidgetChatListAdapterItemSystemMessage.this).getData().getGuildId(), new Traits.Location(null, Traits.Location.Section.CHANNEL_TEXT_AREA, Traits.Location.Obj.BOOST_GEM_ICON, null, null, 25, null), null, 4, null);
                 WidgetGuildBoost.Companion companion = WidgetGuildBoost.INSTANCE;
                 LinkifiedTextView linkifiedTextView = WidgetChatListAdapterItemSystemMessage.access$getBinding$p(WidgetChatListAdapterItemSystemMessage.this).h;
-                m.checkNotNullExpressionValue(linkifiedTextView, "binding.systemText");
+                Intrinsics3.checkNotNullExpressionValue(linkifiedTextView, "binding.systemText");
                 Context context = linkifiedTextView.getContext();
-                m.checkNotNullExpressionValue(context, "binding.systemText.context");
+                Intrinsics3.checkNotNullExpressionValue(context, "binding.systemText.context");
                 companion.create(context, WidgetChatListAdapterItemSystemMessage.access$getAdapter$p(WidgetChatListAdapterItemSystemMessage.this).getData().getGuildId());
                 return;
             }
@@ -201,7 +201,7 @@ public final class WidgetChatListAdapterItemSystemMessage extends WidgetChatList
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemSystemMessage$onConfigure$2, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetChatListAdapterItemSystemMessage.kt */
-    public final class AnonymousClass2 extends o implements Function1<View, Unit> {
+    public final class AnonymousClass2 extends Lambda implements Function1<View, Unit> {
         public final /* synthetic */ Message $message;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -218,13 +218,13 @@ public final class WidgetChatListAdapterItemSystemMessage extends WidgetChatList
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(View view) {
-            m.checkNotNullParameter(view, "it");
+            Intrinsics3.checkNotNullParameter(view, "it");
             WidgetChatListAdapter.EventHandler eventHandler = WidgetChatListAdapterItemSystemMessage.access$getAdapter$p(WidgetChatListAdapterItemSystemMessage.this).getEventHandler();
             Message message = this.$message;
             LinkifiedTextView linkifiedTextView = WidgetChatListAdapterItemSystemMessage.access$getBinding$p(WidgetChatListAdapterItemSystemMessage.this).h;
-            m.checkNotNullExpressionValue(linkifiedTextView, "binding.systemText");
+            Intrinsics3.checkNotNullExpressionValue(linkifiedTextView, "binding.systemText");
             CharSequence text = linkifiedTextView.getText();
-            m.checkNotNullExpressionValue(text, "binding.systemText.text");
+            Intrinsics3.checkNotNullExpressionValue(text, "binding.systemText.text");
             eventHandler.onMessageLongClicked(message, text, false);
         }
     }
@@ -270,7 +270,7 @@ public final class WidgetChatListAdapterItemSystemMessage extends WidgetChatList
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public WidgetChatListAdapterItemSystemMessage(WidgetChatListAdapter widgetChatListAdapter) {
         super(R.layout.widget_chat_list_adapter_item_system, widgetChatListAdapter);
-        m.checkNotNullParameter(widgetChatListAdapter, "adapter");
+        Intrinsics3.checkNotNullParameter(widgetChatListAdapter, "adapter");
         View view = this.itemView;
         int i = R.id.chat_list_adapter_item_thread_embed_spine;
         AppCompatImageView appCompatImageView = (AppCompatImageView) view.findViewById(R.id.chat_list_adapter_item_thread_embed_spine);
@@ -318,7 +318,7 @@ public final class WidgetChatListAdapterItemSystemMessage extends WidgetChatList
                                                                 Guideline guideline = (Guideline) view.findViewById(R.id.uikit_chat_guideline);
                                                                 if (guideline != null) {
                                                                     WidgetChatListAdapterItemSystemBinding widgetChatListAdapterItemSystemBinding = new WidgetChatListAdapterItemSystemBinding((ConstraintLayout) view, appCompatImageView, viewFindViewById, appCompatImageView2, appCompatImageView3, textView, constraintLayout, simpleDraweeView, textView2, imageView, imageView2, linkifiedTextView, textView3, linearLayout, stickerView, guideline);
-                                                                    m.checkNotNullExpressionValue(widgetChatListAdapterItemSystemBinding, "WidgetChatListAdapterIte…temBinding.bind(itemView)");
+                                                                    Intrinsics3.checkNotNullExpressionValue(widgetChatListAdapterItemSystemBinding, "WidgetChatListAdapterIte…temBinding.bind(itemView)");
                                                                     this.binding = widgetChatListAdapterItemSystemBinding;
                                                                     return;
                                                                 }
@@ -403,7 +403,7 @@ public final class WidgetChatListAdapterItemSystemMessage extends WidgetChatList
             }
             i3 = R.string.guild_automod_system_message_text;
         }
-        return new AnonymousClass1(message, str, str2, new WidgetChatListAdapterItemSystemMessage$getSystemMessage$usernameRenderContext$1(i, i2), l, context, str3, new WidgetChatListAdapterItemSystemMessage$getSystemMessage$actorRenderContext$1(i), i3, new WidgetChatListAdapterItemSystemMessage$getSystemMessage$autoModRenderContext$1(context), new WidgetChatListAdapterItemSystemMessage$getSystemMessage$roleSubscriptionPurchaseContext$1(this, message, i, context, l3)).invoke2(context);
+        return new AnonymousClass1(message, str, str2, new WidgetChatListAdapterItemSystemMessage5(i, i2), l, context, str3, new WidgetChatListAdapterItemSystemMessage2(i), i3, new WidgetChatListAdapterItemSystemMessage3(context), new WidgetChatListAdapterItemSystemMessage4(this, message, i, context, l3)).invoke2(context);
     }
 
     @Override // com.discord.widgets.chat.list.adapter.WidgetChatListItem, com.discord.utilities.mg_recycler.MGRecyclerViewHolder
@@ -416,7 +416,7 @@ public final class WidgetChatListAdapterItemSystemMessage extends WidgetChatList
     public void onConfigure(int position, ChatListEntry data) {
         MessageEmbed messageEmbed;
         User user;
-        m.checkNotNullParameter(data, "data");
+        Intrinsics3.checkNotNullParameter(data, "data");
         super.onConfigure(position, data);
         MessageEntry messageEntry = (MessageEntry) data;
         Message messageComponent1 = messageEntry.getMessage();
@@ -428,48 +428,48 @@ public final class WidgetChatListAdapterItemSystemMessage extends WidgetChatList
         Guild guild = ((WidgetChatListAdapter) this.adapter).getData().getGuild();
         String name = guild != null ? guild.getName() : null;
         List<User> mentions = messageComponent1.getMentions();
-        Long lValueOf = (mentions == null || (user = (User) u.firstOrNull((List) mentions)) == null) ? null : Long.valueOf(user.getId());
+        Long lValueOf = (mentions == null || (user = (User) _Collections.firstOrNull((List) mentions)) == null) ? null : Long.valueOf(user.getId());
         String str2 = lValueOf != null ? mapComponent6.get(Long.valueOf(lValueOf.longValue())) : null;
         LinkifiedTextView linkifiedTextView = this.binding.h;
-        m.checkNotNullExpressionValue(linkifiedTextView, "binding.systemText");
+        Intrinsics3.checkNotNullExpressionValue(linkifiedTextView, "binding.systemText");
         int themedColor = ColorCompat.getThemedColor(linkifiedTextView.getContext(), R.attr.colorHeaderPrimary);
         GuildMember.Companion companion = GuildMember.INSTANCE;
         int color = companion.getColor(guildMemberComponent3, themedColor);
         int color2 = companion.getColor(guildMemberComponent4, themedColor);
         List<MessageEmbed> embeds = messageComponent1.getEmbeds();
-        boolean z2 = (embeds == null || (messageEmbed = (MessageEmbed) u.firstOrNull((List) embeds)) == null) ? false : !m.areEqual(AutoModUtils.INSTANCE.getEmbedFieldValue(messageEmbed, WidgetChatListAdapterItemAutoModSystemMessageEmbedKt.getAUTOMOD_EMBED_FLAGGED_MESSAGE_ID()), "");
+        boolean z2 = (embeds == null || (messageEmbed = (MessageEmbed) _Collections.firstOrNull((List) embeds)) == null) ? false : !Intrinsics3.areEqual(AutoModUtils.INSTANCE.getEmbedFieldValue(messageEmbed, WidgetChatListAdapterItemAutoModSystemMessageEmbed2.getAUTOMOD_EMBED_FLAGGED_MESSAGE_ID()), "");
         RoleSubscriptionData roleSubscriptionData = messageComponent1.getRoleSubscriptionData();
         Long lValueOf2 = roleSubscriptionData != null ? Long.valueOf(roleSubscriptionData.getRoleSubscriptionListingId()) : null;
         Guild guild2 = ((WidgetChatListAdapter) this.adapter).getData().getGuild();
         Long lValueOf3 = guild2 != null ? Long.valueOf(guild2.getId()) : null;
         LinkifiedTextView linkifiedTextView2 = this.binding.h;
-        m.checkNotNullExpressionValue(linkifiedTextView2, "binding.systemText");
+        Intrinsics3.checkNotNullExpressionValue(linkifiedTextView2, "binding.systemText");
         Context context = linkifiedTextView2.getContext();
-        m.checkNotNullExpressionValue(context, "binding.systemText.context");
+        Intrinsics3.checkNotNullExpressionValue(context, "binding.systemText.context");
         Long l = lValueOf3;
         CharSequence systemMessage = getSystemMessage(messageComponent1, context, str, color, lValueOf, str2, color2, name, z2, l, lValueOf2);
         this.binding.a.setOnClickListener(new AnonymousClass1(messageComponent1));
         ConstraintLayout constraintLayout = this.binding.a;
-        m.checkNotNullExpressionValue(constraintLayout, "binding.root");
+        Intrinsics3.checkNotNullExpressionValue(constraintLayout, "binding.root");
         ViewExtensions.setOnLongClickListenerConsumeClick(constraintLayout, new AnonymousClass2(messageComponent1));
         TextView textView = this.binding.i;
-        m.checkNotNullExpressionValue(textView, "binding.systemTimestamp");
-        Context contextX = a.x(this.itemView, "itemView", "itemView.context");
+        Intrinsics3.checkNotNullExpressionValue(textView, "binding.systemTimestamp");
+        Context contextX = outline.x(this.itemView, "itemView", "itemView.context");
         UtcDateTime timestamp = messageComponent1.getTimestamp();
         textView.setText(TimeUtils.toReadableTimeString$default(contextX, timestamp != null ? timestamp.getDateTimeMillis() : 0L, null, 4, null));
         LinkifiedTextView linkifiedTextView3 = this.binding.h;
-        m.checkNotNullExpressionValue(linkifiedTextView3, "binding.systemText");
+        Intrinsics3.checkNotNullExpressionValue(linkifiedTextView3, "binding.systemText");
         linkifiedTextView3.setText(systemMessage);
         this.binding.f.setImageResource(getIcon(messageComponent1));
         ImageView imageView = this.binding.g;
-        m.checkNotNullExpressionValue(imageView, "binding.systemIconAutomod");
+        Intrinsics3.checkNotNullExpressionValue(imageView, "binding.systemIconAutomod");
         Integer type = messageEntry.getMessage().getType();
         imageView.setVisibility(type != null && type.intValue() == 24 ? 0 : 8);
         AppCompatImageView appCompatImageView = this.binding.f2337b;
-        m.checkNotNullExpressionValue(appCompatImageView, "binding.chatListAdapterItemThreadEmbedSpine");
+        Intrinsics3.checkNotNullExpressionValue(appCompatImageView, "binding.chatListAdapterItemThreadEmbedSpine");
         appCompatImageView.setVisibility(messageComponent1.hasThread() && !messageEntry.isThreadStarterMessage() ? 0 : 8);
         LinearLayout linearLayout = this.binding.j;
-        m.checkNotNullExpressionValue(linearLayout, "binding.systemWelcomeCtaButton");
+        Intrinsics3.checkNotNullExpressionValue(linearLayout, "binding.systemWelcomeCtaButton");
         linearLayout.setVisibility(messageEntry.getCtaData() != null ? 0 : 8);
         if (messageEntry.getCtaData() != null) {
             StickerView.e(this.binding.k, messageEntry.getCtaData().getSticker(), null, 2);
@@ -478,15 +478,15 @@ public final class WidgetChatListAdapterItemSystemMessage extends WidgetChatList
         }
         boolean z3 = messageComponent1.getRoleSubscriptionData() != null && messageComponent1.getRoleSubscriptionData().getTotalMonthsSubscribed() <= 1;
         ConstraintLayout constraintLayout2 = this.binding.c;
-        m.checkNotNullExpressionValue(constraintLayout2, "binding.roleSubscriptionPurchaseWelcomeCard");
+        Intrinsics3.checkNotNullExpressionValue(constraintLayout2, "binding.roleSubscriptionPurchaseWelcomeCard");
         constraintLayout2.setVisibility(z3 ? 0 : 8);
         if (z3) {
             TextView textView2 = this.binding.e;
-            m.checkNotNullExpressionValue(textView2, "binding.roleSubscriptionPurchaserUsername");
+            Intrinsics3.checkNotNullExpressionValue(textView2, "binding.roleSubscriptionPurchaserUsername");
             textView2.setText(str);
             if (messageComponent1.getAuthor() != null) {
                 SimpleDraweeView simpleDraweeView = this.binding.d;
-                m.checkNotNullExpressionValue(simpleDraweeView, "binding.roleSubscriptionPurchaserAvatar");
+                Intrinsics3.checkNotNullExpressionValue(simpleDraweeView, "binding.roleSubscriptionPurchaserAvatar");
                 IconUtils.setIcon$default(simpleDraweeView, new CoreUser(messageComponent1.getAuthor()), R.dimen.avatar_size_large, null, null, messageEntry.getAuthor(), 24, null);
                 this.binding.d.setOnClickListener(new AnonymousClass4(l, messageComponent1));
             }

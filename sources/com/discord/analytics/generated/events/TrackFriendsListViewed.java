@@ -1,14 +1,14 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackFriendsListViewed.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackFriendsListViewed implements AnalyticsSchema, TrackBaseReceiver {
+public final /* data */ class TrackFriendsListViewed implements AnalyticsSchema, TrackBase2 {
     private final Boolean contactSyncIsEnabled = null;
     private final Boolean isDiscoverableEmail = null;
     private final Boolean isDiscoverablePhone = null;
@@ -29,7 +29,7 @@ public final /* data */ class TrackFriendsListViewed implements AnalyticsSchema,
             return false;
         }
         TrackFriendsListViewed trackFriendsListViewed = (TrackFriendsListViewed) other;
-        return m.areEqual(this.tabOpened, trackFriendsListViewed.tabOpened) && m.areEqual(this.numFriends, trackFriendsListViewed.numFriends) && m.areEqual(this.numOutgoingRequests, trackFriendsListViewed.numOutgoingRequests) && m.areEqual(this.numIncomingRequests, trackFriendsListViewed.numIncomingRequests) && m.areEqual(this.numSuggestions, trackFriendsListViewed.numSuggestions) && m.areEqual(this.wasDismissed, trackFriendsListViewed.wasDismissed) && m.areEqual(this.contactSyncIsEnabled, trackFriendsListViewed.contactSyncIsEnabled) && m.areEqual(this.isDiscoverableEmail, trackFriendsListViewed.isDiscoverableEmail) && m.areEqual(this.isDiscoverablePhone, trackFriendsListViewed.isDiscoverablePhone);
+        return Intrinsics3.areEqual(this.tabOpened, trackFriendsListViewed.tabOpened) && Intrinsics3.areEqual(this.numFriends, trackFriendsListViewed.numFriends) && Intrinsics3.areEqual(this.numOutgoingRequests, trackFriendsListViewed.numOutgoingRequests) && Intrinsics3.areEqual(this.numIncomingRequests, trackFriendsListViewed.numIncomingRequests) && Intrinsics3.areEqual(this.numSuggestions, trackFriendsListViewed.numSuggestions) && Intrinsics3.areEqual(this.wasDismissed, trackFriendsListViewed.wasDismissed) && Intrinsics3.areEqual(this.contactSyncIsEnabled, trackFriendsListViewed.contactSyncIsEnabled) && Intrinsics3.areEqual(this.isDiscoverableEmail, trackFriendsListViewed.isDiscoverableEmail) && Intrinsics3.areEqual(this.isDiscoverablePhone, trackFriendsListViewed.isDiscoverablePhone);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -60,7 +60,7 @@ public final /* data */ class TrackFriendsListViewed implements AnalyticsSchema,
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackFriendsListViewed(tabOpened=");
+        StringBuilder sbU = outline.U("TrackFriendsListViewed(tabOpened=");
         sbU.append(this.tabOpened);
         sbU.append(", numFriends=");
         sbU.append(this.numFriends);
@@ -77,6 +77,6 @@ public final /* data */ class TrackFriendsListViewed implements AnalyticsSchema,
         sbU.append(", isDiscoverableEmail=");
         sbU.append(this.isDiscoverableEmail);
         sbU.append(", isDiscoverablePhone=");
-        return a.D(sbU, this.isDiscoverablePhone, ")");
+        return outline.D(sbU, this.isDiscoverablePhone, ")");
     }
 }

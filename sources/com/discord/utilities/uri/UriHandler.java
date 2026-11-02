@@ -14,8 +14,11 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.browser.customtabs.CustomTabColorSchemeParams;
 import androidx.browser.customtabs.CustomTabsIntent;
 import androidx.core.app.NotificationCompat;
-import b.a.h.b;
-import b.d.b.a.a;
+import b.a.a.g.WidgetMaskedLinksDialog;
+import b.a.h.CustomTabs;
+import b.a.h.CustomTabsPackages;
+import b.a.h.CustomTabsPackages2;
+import b.d.b.a.outline;
 import com.adjust.sdk.Constants;
 import com.discord.R;
 import com.discord.app.AppTransitionActivity;
@@ -32,13 +35,13 @@ import com.discord.widgets.media.WidgetMedia;
 import com.discord.widgets.search.WidgetSearch;
 import com.discord.widgets.user.WidgetUserMentions;
 import com.google.android.material.button.MaterialButton;
-import d0.e0.c;
-import d0.f0.q;
-import d0.t.n;
-import d0.t.u;
-import d0.z.d.a0;
-import d0.z.d.m;
-import d0.z.d.o;
+import d0.e0.KClass;
+import d0.f0._Sequences2;
+import d0.t.Collections2;
+import d0.t._Collections;
+import d0.z.d.Intrinsics3;
+import d0.z.d.Lambda;
+import d0.z.d.Reflection2;
 import java.util.List;
 import java.util.Objects;
 import kotlin.Unit;
@@ -56,7 +59,7 @@ public final class UriHandler {
 
     /* JADX INFO: renamed from: com.discord.utilities.uri.UriHandler$directToPlayStore$1, reason: invalid class name */
     /* JADX INFO: compiled from: UriHandler.kt */
-    public final class AnonymousClass1 extends o implements Function1<String, String> {
+    public final class AnonymousClass1 extends Lambda implements Function1<String, String> {
         public final /* synthetic */ String $packageName;
         public final /* synthetic */ String $source;
 
@@ -74,19 +77,19 @@ public final class UriHandler {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final String invoke2(String str) {
-            m.checkNotNullParameter(str, NotificationCompat.MessagingStyle.Message.KEY_DATA_URI);
+            Intrinsics3.checkNotNullParameter(str, NotificationCompat.MessagingStyle.Message.KEY_DATA_URI);
             Uri.Builder builderAppendQueryParameter = Uri.parse(str).buildUpon().appendQueryParameter(ModelAuditLogEntry.CHANGE_KEY_ID, this.$packageName);
-            StringBuilder sbU = a.U("utm_source=");
+            StringBuilder sbU = outline.U("utm_source=");
             sbU.append(this.$source);
             String string = builderAppendQueryParameter.appendQueryParameter(Constants.REFERRER, sbU.toString()).build().toString();
-            m.checkNotNullExpressionValue(string, "Uri.parse(uri).buildUpon…ild()\n        .toString()");
+            Intrinsics3.checkNotNullExpressionValue(string, "Uri.parse(uri).buildUpon…ild()\n        .toString()");
             return string;
         }
     }
 
     /* JADX INFO: renamed from: com.discord.utilities.uri.UriHandler$openUrlExternally$1, reason: invalid class name */
     /* JADX INFO: compiled from: UriHandler.kt */
-    public final class AnonymousClass1 extends o implements Function1<ResolveInfo, String> {
+    public final class AnonymousClass1 extends Lambda implements Function1<ResolveInfo, String> {
         public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
 
         public AnonymousClass1() {
@@ -106,7 +109,7 @@ public final class UriHandler {
 
     /* JADX INFO: renamed from: com.discord.utilities.uri.UriHandler$directToPlayStore$2, reason: invalid class name */
     /* JADX INFO: compiled from: UriHandler.kt */
-    public final class AnonymousClass2 extends o implements Function0<Unit> {
+    public final class AnonymousClass2 extends Lambda implements Function0<Unit> {
         public final /* synthetic */ Context $context;
         public final /* synthetic */ AnonymousClass1 $createFullUriString$1;
 
@@ -131,7 +134,7 @@ public final class UriHandler {
 
     /* JADX INFO: renamed from: com.discord.utilities.uri.UriHandler$openUrlExternally$2, reason: invalid class name */
     /* JADX INFO: compiled from: UriHandler.kt */
-    public final class AnonymousClass2 extends o implements Function1<String, Boolean> {
+    public final class AnonymousClass2 extends Lambda implements Function1<String, Boolean> {
         public final /* synthetic */ Context $context;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -147,8 +150,8 @@ public final class UriHandler {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final boolean invoke2(String str) {
-            m.checkNotNullParameter(str, "it");
-            return !m.areEqual(str, this.$context.getPackageName());
+            Intrinsics3.checkNotNullParameter(str, "it");
+            return !Intrinsics3.areEqual(str, this.$context.getPackageName());
         }
     }
 
@@ -178,9 +181,9 @@ public final class UriHandler {
     }
 
     public static final void directToPlayStore(Context context, String packageName, String source) {
-        m.checkNotNullParameter(context, "context");
-        m.checkNotNullParameter(packageName, "packageName");
-        m.checkNotNullParameter(source, "source");
+        Intrinsics3.checkNotNullParameter(context, "context");
+        Intrinsics3.checkNotNullParameter(packageName, "packageName");
+        Intrinsics3.checkNotNullParameter(source, "source");
         AnonymousClass1 anonymousClass1 = new AnonymousClass1(packageName, source);
         handle$default(INSTANCE, context, anonymousClass1.invoke2(URL_PLAY_STORE_DIRECT), false, false, new AnonymousClass2(context, anonymousClass1), 12, null);
     }
@@ -197,7 +200,7 @@ public final class UriHandler {
 
     public final void handle(Context context, String url, boolean forceExternal, boolean preventCustomTab, Function0<Unit> onFailure) {
         Uri uri;
-        m.checkNotNullParameter(context, "context");
+        Intrinsics3.checkNotNullParameter(context, "context");
         if (url != null) {
             try {
                 uri = Uri.parse(url);
@@ -221,14 +224,14 @@ public final class UriHandler {
     }
 
     public static final void handleOrUntrusted(Context context, String url, String mask) {
-        m.checkNotNullParameter(context, "context");
-        m.checkNotNullParameter(url, "url");
+        Intrinsics3.checkNotNullParameter(context, "context");
+        Intrinsics3.checkNotNullParameter(url, "url");
         StoreStream.Companion companion = StoreStream.INSTANCE;
         if (companion.getMaskedLinks().isTrustedDomain(url, mask)) {
             handle$default(INSTANCE, context, url, false, false, null, 28, null);
         } else {
-            Objects.requireNonNull(b.a.a.g.a.INSTANCE);
-            companion.getNotices().requestToShow(new StoreNotices.Notice("WIDGET_SPOOPY_LINKS_DIALOG", null, 0L, 0, false, n.listOf((Object[]) new c[]{a0.getOrCreateKotlinClass(WidgetHome.class), a0.getOrCreateKotlinClass(WidgetUserMentions.class), a0.getOrCreateKotlinClass(WidgetSearch.class), a0.getOrCreateKotlinClass(WidgetChannelPinnedMessages.class), a0.getOrCreateKotlinClass(WidgetMedia.class)}), 0L, false, 0L, new UriHandler$handleOrUntrusted$notice$1(url), Opcodes.I2F, null));
+            Objects.requireNonNull(WidgetMaskedLinksDialog.INSTANCE);
+            companion.getNotices().requestToShow(new StoreNotices.Notice("WIDGET_SPOOPY_LINKS_DIALOG", null, 0L, 0, false, Collections2.listOf((Object[]) new KClass[]{Reflection2.getOrCreateKotlinClass(WidgetHome.class), Reflection2.getOrCreateKotlinClass(WidgetUserMentions.class), Reflection2.getOrCreateKotlinClass(WidgetSearch.class), Reflection2.getOrCreateKotlinClass(WidgetChannelPinnedMessages.class), Reflection2.getOrCreateKotlinClass(WidgetMedia.class)}), 0L, false, 0L, new UriHandler2(url), Opcodes.I2F, null));
         }
     }
 
@@ -249,22 +252,22 @@ public final class UriHandler {
         AppTransitionActivity.j = true;
         int themedColor = ColorCompat.getThemedColor(context, R.attr.colorPrimary);
         AnonymousClass1 anonymousClass1 = new AnonymousClass1(context, uri, url, forceExternal, onFailure);
-        m.checkNotNullParameter(context, "context");
-        m.checkNotNullParameter(uri, NotificationCompat.MessagingStyle.Message.KEY_DATA_URI);
-        m.checkNotNullParameter(anonymousClass1, "onFailure");
-        String strA = forceExternal ? b.a.h.c.a.a(context, new b.a.h.a(context)) : b.a.h.c.a.a(context, b.j);
+        Intrinsics3.checkNotNullParameter(context, "context");
+        Intrinsics3.checkNotNullParameter(uri, NotificationCompat.MessagingStyle.Message.KEY_DATA_URI);
+        Intrinsics3.checkNotNullParameter(anonymousClass1, "onFailure");
+        String strA = forceExternal ? CustomTabsPackages2.a.a(context, new CustomTabs(context)) : CustomTabsPackages2.a.a(context, CustomTabsPackages.j);
         if (strA == null) {
             anonymousClass1.invoke();
             return;
         }
         CustomTabColorSchemeParams customTabColorSchemeParamsBuild = new CustomTabColorSchemeParams.Builder().setNavigationBarColor(themedColor).setToolbarColor(themedColor).setSecondaryToolbarColor(themedColor).build();
-        m.checkNotNullExpressionValue(customTabColorSchemeParamsBuild, "CustomTabColorSchemePara…Color)\n          .build()");
+        Intrinsics3.checkNotNullExpressionValue(customTabColorSchemeParamsBuild, "CustomTabColorSchemePara…Color)\n          .build()");
         CustomTabsIntent customTabsIntentBuild = new CustomTabsIntent.Builder().setDefaultColorSchemeParams(customTabColorSchemeParamsBuild).setShowTitle(false).setStartAnimations(context, R.anim.activity_slide_horizontal_open_in, R.anim.activity_slide_horizontal_open_out).setExitAnimations(context, R.anim.activity_slide_horizontal_close_in, R.anim.activity_slide_horizontal_close_out).build();
-        m.checkNotNullExpressionValue(customTabsIntentBuild, "CustomTabsIntent.Builder…ResId)\n          .build()");
+        Intrinsics3.checkNotNullExpressionValue(customTabsIntentBuild, "CustomTabsIntent.Builder…ResId)\n          .build()");
         if (forceExternal) {
             try {
                 Intent intent = customTabsIntentBuild.intent;
-                m.checkNotNullExpressionValue(intent, "customTabsIntent.intent");
+                Intrinsics3.checkNotNullExpressionValue(intent, "customTabsIntent.intent");
                 intent.setPackage(strA);
             } catch (ActivityNotFoundException unused) {
                 anonymousClass1.invoke();
@@ -272,7 +275,7 @@ public final class UriHandler {
             }
         }
         Intent intent2 = customTabsIntentBuild.intent;
-        m.checkNotNullExpressionValue(intent2, "customTabsIntent.intent");
+        Intrinsics3.checkNotNullExpressionValue(intent2, "customTabsIntent.intent");
         intent2.setData(uri);
         customTabsIntentBuild.launchUrl(context, uri);
     }
@@ -287,8 +290,8 @@ public final class UriHandler {
             Intent intent = new Intent("android.intent.action.VIEW", uri);
             if (forceExternal) {
                 List<ResolveInfo> listQueryIntentActivities = context.getPackageManager().queryIntentActivities(intent, 0);
-                m.checkNotNullExpressionValue(listQueryIntentActivities, "context.packageManager.q…tentActivities(intent, 0)");
-                intent.setPackage((String) q.firstOrNull(q.filter(q.mapNotNull(u.asSequence(listQueryIntentActivities), AnonymousClass1.INSTANCE), new AnonymousClass2(context))));
+                Intrinsics3.checkNotNullExpressionValue(listQueryIntentActivities, "context.packageManager.q…tentActivities(intent, 0)");
+                intent.setPackage((String) _Sequences2.firstOrNull(_Sequences2.filter(_Sequences2.mapNotNull(_Collections.asSequence(listQueryIntentActivities), AnonymousClass1.INSTANCE), new AnonymousClass2(context))));
             }
             context.startActivity(intent);
         } catch (ActivityNotFoundException unused) {
@@ -309,12 +312,12 @@ public final class UriHandler {
             if (materialButton != null) {
                 LinearLayout linearLayout = (LinearLayout) viewInflate;
                 LayoutUnhandledUriBinding layoutUnhandledUriBinding = new LayoutUnhandledUriBinding(linearLayout, textView, materialButton);
-                m.checkNotNullExpressionValue(layoutUnhandledUriBinding, "LayoutUnhandledUriBindin…utInflater.from(context))");
+                Intrinsics3.checkNotNullExpressionValue(layoutUnhandledUriBinding, "LayoutUnhandledUriBindin…utInflater.from(context))");
                 AlertDialog alertDialogCreate = new AlertDialog.Builder(context).setView(linearLayout).create();
-                m.checkNotNullExpressionValue(textView, "binding.unhandledUriDisplay");
+                Intrinsics3.checkNotNullExpressionValue(textView, "binding.unhandledUriDisplay");
                 textView.setText(url);
-                textView.setOnClickListener(new UriHandler$showUnhandledUrlDialog$$inlined$apply$lambda$1(layoutUnhandledUriBinding, url));
-                materialButton.setOnClickListener(new UriHandler$showUnhandledUrlDialog$1$2(alertDialogCreate));
+                textView.setOnClickListener(new UriHandler3(layoutUnhandledUriBinding, url));
+                materialButton.setOnClickListener(new UriHandler4(alertDialogCreate));
                 alertDialogCreate.show();
                 return;
             }
@@ -324,7 +327,7 @@ public final class UriHandler {
 
     /* JADX INFO: renamed from: com.discord.utilities.uri.UriHandler$openUrl$1, reason: invalid class name */
     /* JADX INFO: compiled from: UriHandler.kt */
-    public final class AnonymousClass1 extends o implements Function0<Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function0<Unit> {
         public final /* synthetic */ Context $context;
         public final /* synthetic */ boolean $forceExternal;
         public final /* synthetic */ Function0 $onFailure;

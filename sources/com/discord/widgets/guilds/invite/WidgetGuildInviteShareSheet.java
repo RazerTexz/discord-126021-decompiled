@@ -17,16 +17,16 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentViewModelLazyKt;
 import androidx.recyclerview.widget.RecyclerView;
-import b.a.d.g0;
-import b.a.d.i0;
-import b.a.k.b;
-import b.d.b.a.a;
+import b.a.d.AppViewModelDelegates3;
+import b.a.d.AppViewModelDelegates5;
+import b.a.k.FormatUtils;
+import b.d.b.a.outline;
 import com.discord.R;
 import com.discord.api.channel.Channel;
 import com.discord.api.channel.ChannelUtils;
 import com.discord.app.AppBottomSheet;
+import com.discord.app.AppLogger2;
 import com.discord.app.AppViewFlipper;
-import com.discord.app.LoggingConfig;
 import com.discord.databinding.WidgetGuildInviteShareSheetBinding;
 import com.discord.models.domain.ModelInvite;
 import com.discord.stores.StoreNotices;
@@ -36,13 +36,14 @@ import com.discord.utilities.mg_recycler.MGRecyclerAdapter;
 import com.discord.utilities.rx.ObservableExtensionsKt;
 import com.discord.utilities.time.ClockFactory;
 import com.discord.utilities.viewbinding.FragmentViewBindingDelegate;
-import com.discord.utilities.viewbinding.FragmentViewBindingDelegateKt;
+import com.discord.utilities.viewbinding.FragmentViewBindingDelegate3;
 import com.discord.views.SearchInputView;
 import com.discord.widgets.home.WidgetHome;
-import d0.g0.t;
-import d0.z.d.a0;
-import d0.z.d.m;
-import d0.z.d.o;
+import d0.g0.StringsJVM;
+import d0.t.CollectionsJVM;
+import d0.z.d.Intrinsics3;
+import d0.z.d.Lambda;
+import d0.z.d.Reflection2;
 import java.util.Objects;
 import kotlin.Lazy;
 import kotlin.Unit;
@@ -55,7 +56,7 @@ import org.objectweb.asm.Opcodes;
 /* JADX INFO: compiled from: WidgetGuildInviteShareSheet.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetGuildInviteShareSheet extends AppBottomSheet {
-    public static final /* synthetic */ KProperty[] $$delegatedProperties = {a.d0(WidgetGuildInviteShareSheet.class, "binding", "getBinding()Lcom/discord/databinding/WidgetGuildInviteShareSheetBinding;", 0)};
+    public static final /* synthetic */ KProperty[] $$delegatedProperties = {outline.d0(WidgetGuildInviteShareSheet.class, "binding", "getBinding()Lcom/discord/databinding/WidgetGuildInviteShareSheetBinding;", 0)};
     private static final String ARG_ANALYTICS_SOURCE = "ARG_ANALYTICS_SOURCE";
     private static final String ARG_CHANNEL_ID = "ARG_CHANNEL_ID";
     private static final String ARG_GUILD_ID = "ARG_GUILD_ID";
@@ -69,7 +70,7 @@ public final class WidgetGuildInviteShareSheet extends AppBottomSheet {
     private final FragmentViewBindingDelegate binding;
     private final ActivityResultLauncher<Intent> guildInviteSettingsLauncher;
     private boolean isFixedHeight;
-    private final LoggingConfig loggingConfig;
+    private final AppLogger2 loggingConfig;
     private boolean restoredSearchQueryFromViewModel;
 
     /* JADX INFO: renamed from: viewModel$delegate, reason: from kotlin metadata */
@@ -77,7 +78,7 @@ public final class WidgetGuildInviteShareSheet extends AppBottomSheet {
 
     /* JADX INFO: renamed from: com.discord.widgets.guilds.invite.WidgetGuildInviteShareSheet$onResume$1, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetGuildInviteShareSheet.kt */
-    public final class AnonymousClass1 extends o implements Function1<GuildInviteShareSheetViewModel.ViewState, Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function1<GuildInviteShareSheetViewModel.ViewState, Unit> {
         public AnonymousClass1() {
             super(1);
         }
@@ -90,14 +91,14 @@ public final class WidgetGuildInviteShareSheet extends AppBottomSheet {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(GuildInviteShareSheetViewModel.ViewState viewState) {
-            m.checkNotNullParameter(viewState, "viewState");
+            Intrinsics3.checkNotNullParameter(viewState, "viewState");
             WidgetGuildInviteShareSheet.this.configureUI(viewState);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.widgets.guilds.invite.WidgetGuildInviteShareSheet$setUpSearchBar$1, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetGuildInviteShareSheet.kt */
-    public final class AnonymousClass1 extends o implements Function1<String, Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function1<String, Unit> {
         public AnonymousClass1() {
             super(1);
         }
@@ -110,14 +111,14 @@ public final class WidgetGuildInviteShareSheet extends AppBottomSheet {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(String str) {
-            m.checkNotNullParameter(str, "searchQuery");
+            Intrinsics3.checkNotNullParameter(str, "searchQuery");
             WidgetGuildInviteShareSheet.access$getViewModel$p(WidgetGuildInviteShareSheet.this).onSearchTextChanged(str);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.widgets.guilds.invite.WidgetGuildInviteShareSheet$configureNormalUI$3, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetGuildInviteShareSheet.kt */
-    public final class AnonymousClass3 extends o implements Function1<InviteSuggestionItemV2, Unit> {
+    public final class AnonymousClass3 extends Lambda implements Function1<InviteSuggestionItemV2, Unit> {
         public AnonymousClass3() {
             super(1);
         }
@@ -130,7 +131,7 @@ public final class WidgetGuildInviteShareSheet extends AppBottomSheet {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(InviteSuggestionItemV2 inviteSuggestionItemV2) {
-            m.checkNotNullParameter(inviteSuggestionItemV2, "item");
+            Intrinsics3.checkNotNullParameter(inviteSuggestionItemV2, "item");
             WidgetGuildInviteShareSheet.access$getViewModel$p(WidgetGuildInviteShareSheet.this).sendInvite(inviteSuggestionItemV2);
         }
     }
@@ -148,9 +149,9 @@ public final class WidgetGuildInviteShareSheet extends AppBottomSheet {
         }
 
         public final void enqueueNoticeForHomeTab(Long channelId, long guildId, String source) {
-            m.checkNotNullParameter(source, "source");
+            Intrinsics3.checkNotNullParameter(source, "source");
             StoreNotices notices = StoreStream.INSTANCE.getNotices();
-            notices.requestToShow(new StoreNotices.Notice(getNoticeName(), null, ClockFactory.get().currentTimeMillis(), 0, false, d0.t.m.listOf(a0.getOrCreateKotlinClass(WidgetHome.class)), 0L, false, 0L, new WidgetGuildInviteShareSheet$Companion$enqueueNoticeForHomeTab$notice$1(channelId, guildId, source, notices, getNoticeName()), Opcodes.I2C, null));
+            notices.requestToShow(new StoreNotices.Notice(getNoticeName(), null, ClockFactory.get().currentTimeMillis(), 0, false, CollectionsJVM.listOf(Reflection2.getOrCreateKotlinClass(WidgetHome.class)), 0L, false, 0L, new WidgetGuildInviteShareSheet$Companion$enqueueNoticeForHomeTab$notice$1(channelId, guildId, source, notices, getNoticeName()), Opcodes.I2C, null));
         }
 
         private final String getNoticeName() {
@@ -165,8 +166,8 @@ public final class WidgetGuildInviteShareSheet extends AppBottomSheet {
         }
 
         public final void show(FragmentManager fragmentManager, Long channelId, long guildId, String source) {
-            m.checkNotNullParameter(fragmentManager, "fragmentManager");
-            m.checkNotNullParameter(source, "source");
+            Intrinsics3.checkNotNullParameter(fragmentManager, "fragmentManager");
+            Intrinsics3.checkNotNullParameter(source, "source");
             AnalyticsTracker.INSTANCE.openPopout("Instant Invite", source);
             WidgetGuildInviteShareSheet widgetGuildInviteShareSheet = new WidgetGuildInviteShareSheet();
             Bundle bundle = new Bundle();
@@ -186,13 +187,13 @@ public final class WidgetGuildInviteShareSheet extends AppBottomSheet {
 
     public WidgetGuildInviteShareSheet() {
         super(false, 1, null);
-        this.binding = FragmentViewBindingDelegateKt.viewBinding$default(this, WidgetGuildInviteShareSheet$binding$2.INSTANCE, null, 2, null);
+        this.binding = FragmentViewBindingDelegate3.viewBinding$default(this, WidgetGuildInviteShareSheet$binding$2.INSTANCE, null, 2, null);
         WidgetGuildInviteShareSheet$viewModel$2 widgetGuildInviteShareSheet$viewModel$2 = new WidgetGuildInviteShareSheet$viewModel$2(this);
-        g0 g0Var = new g0(this);
-        this.viewModel = FragmentViewModelLazyKt.createViewModelLazy(this, a0.getOrCreateKotlinClass(GuildInviteShareSheetViewModel.class), new WidgetGuildInviteShareSheet$appViewModels$$inlined$viewModels$1(g0Var), new i0(widgetGuildInviteShareSheet$viewModel$2));
+        AppViewModelDelegates3 appViewModelDelegates3 = new AppViewModelDelegates3(this);
+        this.viewModel = FragmentViewModelLazyKt.createViewModelLazy(this, Reflection2.getOrCreateKotlinClass(GuildInviteShareSheetViewModel.class), new WidgetGuildInviteShareSheet$appViewModels$$inlined$viewModels$1(appViewModelDelegates3), new AppViewModelDelegates5(widgetGuildInviteShareSheet$viewModel$2));
         this.guildInviteSettingsLauncher = WidgetGuildInviteSettings.INSTANCE.registerForResult(this, new WidgetGuildInviteShareSheet$guildInviteSettingsLauncher$1(this));
         this.analyticsSource = "";
-        this.loggingConfig = new LoggingConfig(false, null, new WidgetGuildInviteShareSheet$loggingConfig$1(this), 3);
+        this.loggingConfig = new AppLogger2(false, null, new WidgetGuildInviteShareSheet$loggingConfig$1(this), 3);
     }
 
     public static final /* synthetic */ String access$getAnalyticsSource$p(WidgetGuildInviteShareSheet widgetGuildInviteShareSheet) {
@@ -223,7 +224,7 @@ public final class WidgetGuildInviteShareSheet extends AppBottomSheet {
         if (this.isFixedHeight) {
             this.isFixedHeight = false;
             FrameLayout frameLayout = getBinding().j;
-            m.checkNotNullExpressionValue(frameLayout, "binding.root");
+            Intrinsics3.checkNotNullExpressionValue(frameLayout, "binding.root");
             if (!ViewCompat.isLaidOut(frameLayout) || frameLayout.isLayoutRequested()) {
                 frameLayout.addOnLayoutChangeListener(new WidgetGuildInviteShareSheet$configureEmptyStateUI$$inlined$doOnLayout$1());
             } else {
@@ -236,10 +237,10 @@ public final class WidgetGuildInviteShareSheet extends AppBottomSheet {
         }
         WidgetGuildInviteShareSheetBinding binding = getBinding();
         AppViewFlipper appViewFlipper = binding.n;
-        m.checkNotNullExpressionValue(appViewFlipper, "suggestionsFlipper");
+        Intrinsics3.checkNotNullExpressionValue(appViewFlipper, "suggestionsFlipper");
         appViewFlipper.setDisplayedChild(0);
         NestedScrollView nestedScrollView = binding.f;
-        m.checkNotNullExpressionValue(nestedScrollView, "emptyStateScroller");
+        Intrinsics3.checkNotNullExpressionValue(nestedScrollView, "emptyStateScroller");
         nestedScrollView.setNestedScrollingEnabled(true);
         GuildInvite invite = viewState.getInvite();
         ModelInvite.Settings inviteSettings = viewState.getInviteSettings();
@@ -247,28 +248,28 @@ public final class WidgetGuildInviteShareSheet extends AppBottomSheet {
         if (invite != null) {
             long expirationTimeMs = invite.getExpirationTimeMs() - ClockFactory.get().currentTimeMillis();
             TextView textView = binding.d;
-            m.checkNotNullExpressionValue(textView, "emptyStateInviteLink");
+            Intrinsics3.checkNotNullExpressionValue(textView, "emptyStateInviteLink");
             textView.setText(invite.toLink());
             TextView textView2 = binding.g;
-            m.checkNotNullExpressionValue(textView2, "emptyStateSettingsSubtext");
+            Intrinsics3.checkNotNullExpressionValue(textView2, "emptyStateSettingsSubtext");
             if (inviteSettings != null) {
                 Context contextRequireContext = requireContext();
-                m.checkNotNullExpressionValue(contextRequireContext, "requireContext()");
-                inviteSettingsText = GuildInviteUiHelperKt.getInviteSettingsText(contextRequireContext, expirationTimeMs, inviteSettings.getMaxUses());
+                Intrinsics3.checkNotNullExpressionValue(contextRequireContext, "requireContext()");
+                inviteSettingsText = GuildInviteUiHelper.getInviteSettingsText(contextRequireContext, expirationTimeMs, inviteSettings.getMaxUses());
             }
             textView2.setText(inviteSettingsText);
         } else {
             TextView textView3 = binding.d;
-            m.checkNotNullExpressionValue(textView3, "emptyStateInviteLink");
+            Intrinsics3.checkNotNullExpressionValue(textView3, "emptyStateInviteLink");
             textView3.setText(getString(R.string.loading));
             TextView textView4 = binding.g;
-            m.checkNotNullExpressionValue(textView4, "emptyStateSettingsSubtext");
+            Intrinsics3.checkNotNullExpressionValue(textView4, "emptyStateSettingsSubtext");
             textView4.setText((CharSequence) null);
         }
         binding.d.setOnClickListener(new WidgetGuildInviteShareSheet$configureEmptyStateUI$$inlined$with$lambda$1(invite, this, viewState));
         binding.h.setOnClickListener(new WidgetGuildInviteShareSheet$configureEmptyStateUI$$inlined$with$lambda$2(invite, this, viewState));
         ImageButton imageButton = binding.e;
-        m.checkNotNullExpressionValue(imageButton, "emptyStateLinkOptions");
+        Intrinsics3.checkNotNullExpressionValue(imageButton, "emptyStateLinkOptions");
         imageButton.setVisibility(viewState.getShowInviteSettings() ? 0 : 8);
         binding.e.setOnClickListener(new WidgetGuildInviteShareSheet$configureEmptyStateUI$$inlined$with$lambda$3(invite, this, viewState));
     }
@@ -277,7 +278,7 @@ public final class WidgetGuildInviteShareSheet extends AppBottomSheet {
         if (!this.isFixedHeight) {
             this.isFixedHeight = true;
             FrameLayout frameLayout = getBinding().j;
-            m.checkNotNullExpressionValue(frameLayout, "binding.root");
+            Intrinsics3.checkNotNullExpressionValue(frameLayout, "binding.root");
             if (!ViewCompat.isLaidOut(frameLayout) || frameLayout.isLayoutRequested()) {
                 frameLayout.addOnLayoutChangeListener(new WidgetGuildInviteShareSheet$configureNormalUI$$inlined$doOnLayout$1(this));
             } else {
@@ -285,7 +286,7 @@ public final class WidgetGuildInviteShareSheet extends AppBottomSheet {
                 Objects.requireNonNull(layoutParams, "null cannot be cast to non-null type android.widget.FrameLayout.LayoutParams");
                 FrameLayout.LayoutParams layoutParams2 = (FrameLayout.LayoutParams) layoutParams;
                 Resources resources = getResources();
-                m.checkNotNullExpressionValue(resources, "resources");
+                Intrinsics3.checkNotNullExpressionValue(resources, "resources");
                 layoutParams2.height = (int) (((double) resources.getDisplayMetrics().heightPixels) * 0.9d);
                 frameLayout.setLayoutParams(layoutParams2);
                 access$getBinding$p(this).m.requestLayout();
@@ -293,65 +294,65 @@ public final class WidgetGuildInviteShareSheet extends AppBottomSheet {
         }
         String searchQuery = viewState.getSearchQuery();
         WidgetGuildInviteShareSheetBinding binding = getBinding();
-        if (!this.restoredSearchQueryFromViewModel && (!t.isBlank(searchQuery))) {
+        if (!this.restoredSearchQueryFromViewModel && (!StringsJVM.isBlank(searchQuery))) {
             this.restoredSearchQueryFromViewModel = true;
             binding.k.setText(searchQuery);
         }
         AppViewFlipper appViewFlipper = binding.n;
-        m.checkNotNullExpressionValue(appViewFlipper, "suggestionsFlipper");
+        Intrinsics3.checkNotNullExpressionValue(appViewFlipper, "suggestionsFlipper");
         appViewFlipper.setDisplayedChild(1);
         NestedScrollView nestedScrollView = binding.f;
-        m.checkNotNullExpressionValue(nestedScrollView, "emptyStateScroller");
+        Intrinsics3.checkNotNullExpressionValue(nestedScrollView, "emptyStateScroller");
         nestedScrollView.setNestedScrollingEnabled(false);
         if (viewState.getChannel() != null) {
             SearchInputView searchInputView = binding.k;
             Channel channel = viewState.getChannel();
             Context contextRequireContext = requireContext();
-            m.checkNotNullExpressionValue(contextRequireContext, "requireContext()");
-            searchInputView.setHint(b.k(this, R.string.invite_your_friends_channel_mobile, new Object[]{ChannelUtils.e(channel, contextRequireContext, false, 2)}, null, 4));
+            Intrinsics3.checkNotNullExpressionValue(contextRequireContext, "requireContext()");
+            searchInputView.setHint(FormatUtils.k(this, R.string.invite_your_friends_channel_mobile, new Object[]{ChannelUtils.e(channel, contextRequireContext, false, 2)}, null, 4));
         } else {
             SearchInputView searchInputView2 = binding.k;
             String string = getString(R.string.invite_your_friends);
-            m.checkNotNullExpressionValue(string, "getString(R.string.invite_your_friends)");
+            Intrinsics3.checkNotNullExpressionValue(string, "getString(R.string.invite_your_friends)");
             searchInputView2.setHint(string);
         }
         GuildInvite invite = viewState.getInvite();
         if (invite != null) {
             CardView cardView = binding.l;
-            m.checkNotNullExpressionValue(cardView, "shareButton");
-            cardView.setContentDescription(b.k(this, R.string.share_invite_mobile, new Object[]{invite}, null, 4));
+            Intrinsics3.checkNotNullExpressionValue(cardView, "shareButton");
+            cardView.setContentDescription(FormatUtils.k(this, R.string.share_invite_mobile, new Object[]{invite}, null, 4));
             long expirationTimeMs = invite.getExpirationTimeMs() - ClockFactory.get().currentTimeMillis();
             String link = invite.toLink();
             Context contextRequireContext2 = requireContext();
-            m.checkNotNullExpressionValue(contextRequireContext2, "requireContext()");
-            CharSequence inviteSettingsText = GuildInviteUiHelperKt.getInviteSettingsText(contextRequireContext2, expirationTimeMs);
+            Intrinsics3.checkNotNullExpressionValue(contextRequireContext2, "requireContext()");
+            CharSequence inviteSettingsText = GuildInviteUiHelper.getInviteSettingsText(contextRequireContext2, expirationTimeMs);
             TextView textView = binding.c;
-            m.checkNotNullExpressionValue(textView, "copyLinkSubtitle");
+            Intrinsics3.checkNotNullExpressionValue(textView, "copyLinkSubtitle");
             textView.setText(link + ' ' + inviteSettingsText);
             binding.l.setOnClickListener(new WidgetGuildInviteShareSheet$configureNormalUI$$inlined$with$lambda$1(invite, this, searchQuery, viewState));
             binding.f2422b.setOnClickListener(new WidgetGuildInviteShareSheet$configureNormalUI$$inlined$with$lambda$2(invite, this, searchQuery, viewState));
         }
         CardView cardView2 = binding.l;
-        m.checkNotNullExpressionValue(cardView2, "shareButton");
+        Intrinsics3.checkNotNullExpressionValue(cardView2, "shareButton");
         cardView2.setVisibility(invite != null ? 0 : 8);
         FrameLayout frameLayout2 = binding.i;
-        m.checkNotNullExpressionValue(frameLayout2, "inviteSettingsButton");
+        Intrinsics3.checkNotNullExpressionValue(frameLayout2, "inviteSettingsButton");
         frameLayout2.setVisibility(viewState.getShowInviteSettings() ? 0 : 8);
         binding.i.setOnClickListener(new WidgetGuildInviteShareSheet$configureNormalUI$$inlined$with$lambda$3(invite, this, searchQuery, viewState));
         InviteSuggestionsAdapter inviteSuggestionsAdapter = this.adapter;
         if (inviteSuggestionsAdapter == null) {
-            m.throwUninitializedPropertyAccessException("adapter");
+            Intrinsics3.throwUninitializedPropertyAccessException("adapter");
         }
         inviteSuggestionsAdapter.setOnClick(new AnonymousClass3());
         InviteSuggestionsAdapter inviteSuggestionsAdapter2 = this.adapter;
         if (inviteSuggestionsAdapter2 == null) {
-            m.throwUninitializedPropertyAccessException("adapter");
+            Intrinsics3.throwUninitializedPropertyAccessException("adapter");
         }
         inviteSuggestionsAdapter2.setData(viewState.getInviteSuggestionItems());
     }
 
     public final void configureUI(GuildInviteShareSheetViewModel.ViewState viewState) {
-        m.checkNotNullParameter(viewState, "viewState");
+        Intrinsics3.checkNotNullParameter(viewState, "viewState");
         if (viewState.getHasResults()) {
             configureNormalUI(viewState);
         } else {
@@ -369,7 +370,7 @@ public final class WidgetGuildInviteShareSheet extends AppBottomSheet {
     }
 
     @Override // com.discord.app.AppBottomSheet, com.discord.app.AppLogger.a
-    public LoggingConfig getLoggingConfig() {
+    public AppLogger2 getLoggingConfig() {
         return this.loggingConfig;
     }
 
@@ -385,7 +386,7 @@ public final class WidgetGuildInviteShareSheet extends AppBottomSheet {
 
     @Override // com.discord.app.AppBottomSheet, androidx.fragment.app.Fragment
     public void onViewCreated(View view, Bundle savedInstanceState) {
-        m.checkNotNullParameter(view, "view");
+        Intrinsics3.checkNotNullParameter(view, "view");
         super.onViewCreated(view, savedInstanceState);
         setBottomSheetCollapsedStateDisabled();
         String string = getArgumentsOrDefault().getString(ARG_ANALYTICS_SOURCE);
@@ -395,7 +396,7 @@ public final class WidgetGuildInviteShareSheet extends AppBottomSheet {
         this.analyticsSource = string;
         MGRecyclerAdapter.Companion companion = MGRecyclerAdapter.INSTANCE;
         RecyclerView recyclerView = getBinding().m;
-        m.checkNotNullExpressionValue(recyclerView, "binding.suggestionList");
+        Intrinsics3.checkNotNullExpressionValue(recyclerView, "binding.suggestionList");
         this.adapter = (InviteSuggestionsAdapter) companion.configure(new InviteSuggestionsAdapter(recyclerView));
         setUpSearchBar();
     }

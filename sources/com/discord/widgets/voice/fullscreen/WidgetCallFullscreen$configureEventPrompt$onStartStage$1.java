@@ -2,14 +2,14 @@ package com.discord.widgets.voice.fullscreen;
 
 import androidx.fragment.app.FragmentManager;
 import com.discord.widgets.stage.sheet.WidgetStageStartEventBottomSheet;
-import d0.z.d.m;
-import d0.z.d.o;
+import d0.z.d.Intrinsics3;
+import d0.z.d.Lambda;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 
 /* JADX INFO: compiled from: WidgetCallFullscreen.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final class WidgetCallFullscreen$configureEventPrompt$onStartStage$1 extends o implements Function0<Unit> {
+public final class WidgetCallFullscreen$configureEventPrompt$onStartStage$1 extends Lambda implements Function0<Unit> {
     public final /* synthetic */ WidgetCallFullscreen this$0;
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -28,7 +28,7 @@ public final class WidgetCallFullscreen$configureEventPrompt$onStartStage$1 exte
     public final void invoke2() {
         WidgetStageStartEventBottomSheet.Companion companion = WidgetStageStartEventBottomSheet.INSTANCE;
         FragmentManager parentFragmentManager = this.this$0.getParentFragmentManager();
-        m.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
+        Intrinsics3.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
         WidgetStageStartEventBottomSheet.Companion.show$default(companion, parentFragmentManager, WidgetCallFullscreen.access$getChannelId(this.this$0), null, 4, null);
     }
 }

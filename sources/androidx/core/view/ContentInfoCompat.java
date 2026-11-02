@@ -10,7 +10,7 @@ import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
 import androidx.core.util.Preconditions;
 import androidx.core.util.Predicate;
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.util.ArrayList;
@@ -130,7 +130,7 @@ public final class ContentInfoCompat {
     @NonNull
     public String toString() {
         String string;
-        StringBuilder sbU = a.U("ContentInfoCompat{clip=");
+        StringBuilder sbU = outline.U("ContentInfoCompat{clip=");
         sbU.append(this.mClip.getDescription());
         sbU.append(", source=");
         sbU.append(sourceToString(this.mSource));
@@ -139,13 +139,13 @@ public final class ContentInfoCompat {
         if (this.mLinkUri == null) {
             string = "";
         } else {
-            StringBuilder sbU2 = a.U(", hasLinkUri(");
+            StringBuilder sbU2 = outline.U(", hasLinkUri(");
             sbU2.append(this.mLinkUri.toString().length());
             sbU2.append(")");
             string = sbU2.toString();
         }
         sbU.append(string);
-        return a.J(sbU, this.mExtras != null ? ", hasExtras" : "", "}");
+        return outline.J(sbU, this.mExtras != null ? ", hasExtras" : "", "}");
     }
 
     public final class Builder {

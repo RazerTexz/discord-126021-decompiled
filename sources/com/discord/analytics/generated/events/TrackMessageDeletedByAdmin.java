@@ -1,20 +1,20 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.analytics.generated.traits.TrackChannel;
-import com.discord.analytics.generated.traits.TrackChannelReceiver;
+import com.discord.analytics.generated.traits.TrackChannel2;
 import com.discord.analytics.generated.traits.TrackGuild;
-import com.discord.analytics.generated.traits.TrackGuildReceiver;
+import com.discord.analytics.generated.traits.TrackGuild2;
 import com.discord.api.science.AnalyticsSchema;
 import com.discord.models.domain.ModelAuditLogEntry;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 import java.util.List;
 
 /* JADX INFO: compiled from: TrackMessageDeletedByAdmin.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackMessageDeletedByAdmin implements AnalyticsSchema, TrackBaseReceiver, TrackChannelReceiver, TrackGuildReceiver {
+public final /* data */ class TrackMessageDeletedByAdmin implements AnalyticsSchema, TrackBase2, TrackChannel2, TrackGuild2 {
     private final Long length = null;
     private final Long messageId = null;
     private final Long numAttachments = null;
@@ -29,7 +29,7 @@ public final /* data */ class TrackMessageDeletedByAdmin implements AnalyticsSch
     private final Long wordCount = null;
     private final transient String analyticsSchemaTypeName = "message_deleted_by_admin";
 
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    @Override // com.discord.analytics.generated.traits.TrackGuild2
     public void c(TrackGuild trackGuild) {
         this.trackGuild = trackGuild;
     }
@@ -42,7 +42,7 @@ public final /* data */ class TrackMessageDeletedByAdmin implements AnalyticsSch
             return false;
         }
         TrackMessageDeletedByAdmin trackMessageDeletedByAdmin = (TrackMessageDeletedByAdmin) other;
-        return m.areEqual(this.messageId, trackMessageDeletedByAdmin.messageId) && m.areEqual(this.reason, trackMessageDeletedByAdmin.reason) && m.areEqual(this.numUrls, trackMessageDeletedByAdmin.numUrls) && m.areEqual(this.numAttachments, trackMessageDeletedByAdmin.numAttachments) && m.areEqual(this.numEmbeds, trackMessageDeletedByAdmin.numEmbeds) && m.areEqual(this.numMentions, trackMessageDeletedByAdmin.numMentions) && m.areEqual(this.length, trackMessageDeletedByAdmin.length) && m.areEqual(this.wordCount, trackMessageDeletedByAdmin.wordCount) && m.areEqual(this.urls, trackMessageDeletedByAdmin.urls);
+        return Intrinsics3.areEqual(this.messageId, trackMessageDeletedByAdmin.messageId) && Intrinsics3.areEqual(this.reason, trackMessageDeletedByAdmin.reason) && Intrinsics3.areEqual(this.numUrls, trackMessageDeletedByAdmin.numUrls) && Intrinsics3.areEqual(this.numAttachments, trackMessageDeletedByAdmin.numAttachments) && Intrinsics3.areEqual(this.numEmbeds, trackMessageDeletedByAdmin.numEmbeds) && Intrinsics3.areEqual(this.numMentions, trackMessageDeletedByAdmin.numMentions) && Intrinsics3.areEqual(this.length, trackMessageDeletedByAdmin.length) && Intrinsics3.areEqual(this.wordCount, trackMessageDeletedByAdmin.wordCount) && Intrinsics3.areEqual(this.urls, trackMessageDeletedByAdmin.urls);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -51,7 +51,7 @@ public final /* data */ class TrackMessageDeletedByAdmin implements AnalyticsSch
         return this.analyticsSchemaTypeName;
     }
 
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    @Override // com.discord.analytics.generated.traits.TrackGuild2
     /* JADX INFO: renamed from: a, reason: from getter */
     public TrackGuild getTrackGuild() {
         return this.trackGuild;
@@ -79,7 +79,7 @@ public final /* data */ class TrackMessageDeletedByAdmin implements AnalyticsSch
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackMessageDeletedByAdmin(messageId=");
+        StringBuilder sbU = outline.U("TrackMessageDeletedByAdmin(messageId=");
         sbU.append(this.messageId);
         sbU.append(", reason=");
         sbU.append(this.reason);
@@ -96,6 +96,6 @@ public final /* data */ class TrackMessageDeletedByAdmin implements AnalyticsSch
         sbU.append(", wordCount=");
         sbU.append(this.wordCount);
         sbU.append(", urls=");
-        return a.L(sbU, this.urls, ")");
+        return outline.L(sbU, this.urls, ")");
     }
 }

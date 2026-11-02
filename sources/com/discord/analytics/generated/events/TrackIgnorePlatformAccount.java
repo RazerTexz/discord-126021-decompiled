@@ -1,14 +1,14 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackIgnorePlatformAccount.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackIgnorePlatformAccount implements AnalyticsSchema, TrackBaseReceiver {
+public final /* data */ class TrackIgnorePlatformAccount implements AnalyticsSchema, TrackBase2 {
     private final CharSequence displayType = null;
     private final CharSequence platformType = null;
     private TrackBase trackBase;
@@ -22,7 +22,7 @@ public final /* data */ class TrackIgnorePlatformAccount implements AnalyticsSch
             return false;
         }
         TrackIgnorePlatformAccount trackIgnorePlatformAccount = (TrackIgnorePlatformAccount) other;
-        return m.areEqual(this.platformType, trackIgnorePlatformAccount.platformType) && m.areEqual(this.displayType, trackIgnorePlatformAccount.displayType);
+        return Intrinsics3.areEqual(this.platformType, trackIgnorePlatformAccount.platformType) && Intrinsics3.areEqual(this.displayType, trackIgnorePlatformAccount.displayType);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -39,9 +39,9 @@ public final /* data */ class TrackIgnorePlatformAccount implements AnalyticsSch
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackIgnorePlatformAccount(platformType=");
+        StringBuilder sbU = outline.U("TrackIgnorePlatformAccount(platformType=");
         sbU.append(this.platformType);
         sbU.append(", displayType=");
-        return a.E(sbU, this.displayType, ")");
+        return outline.E(sbU, this.displayType, ")");
     }
 }

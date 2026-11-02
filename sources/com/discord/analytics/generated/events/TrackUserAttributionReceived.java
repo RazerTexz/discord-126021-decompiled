@@ -1,14 +1,14 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackUserAttributionReceived.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackUserAttributionReceived implements AnalyticsSchema, TrackBaseReceiver {
+public final /* data */ class TrackUserAttributionReceived implements AnalyticsSchema, TrackBase2 {
     private final CharSequence adjustAdid = null;
     private final CharSequence adjustTrackerName = null;
     private final CharSequence adjustTrackerToken = null;
@@ -27,7 +27,7 @@ public final /* data */ class TrackUserAttributionReceived implements AnalyticsS
             return false;
         }
         TrackUserAttributionReceived trackUserAttributionReceived = (TrackUserAttributionReceived) other;
-        return m.areEqual(this.adjustTrackerToken, trackUserAttributionReceived.adjustTrackerToken) && m.areEqual(this.adjustTrackerName, trackUserAttributionReceived.adjustTrackerName) && m.areEqual(this.attributionNetwork, trackUserAttributionReceived.attributionNetwork) && m.areEqual(this.attributionCampaign, trackUserAttributionReceived.attributionCampaign) && m.areEqual(this.attributionAdgroup, trackUserAttributionReceived.attributionAdgroup) && m.areEqual(this.attributionCreative, trackUserAttributionReceived.attributionCreative) && m.areEqual(this.adjustAdid, trackUserAttributionReceived.adjustAdid);
+        return Intrinsics3.areEqual(this.adjustTrackerToken, trackUserAttributionReceived.adjustTrackerToken) && Intrinsics3.areEqual(this.adjustTrackerName, trackUserAttributionReceived.adjustTrackerName) && Intrinsics3.areEqual(this.attributionNetwork, trackUserAttributionReceived.attributionNetwork) && Intrinsics3.areEqual(this.attributionCampaign, trackUserAttributionReceived.attributionCampaign) && Intrinsics3.areEqual(this.attributionAdgroup, trackUserAttributionReceived.attributionAdgroup) && Intrinsics3.areEqual(this.attributionCreative, trackUserAttributionReceived.attributionCreative) && Intrinsics3.areEqual(this.adjustAdid, trackUserAttributionReceived.adjustAdid);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -54,7 +54,7 @@ public final /* data */ class TrackUserAttributionReceived implements AnalyticsS
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackUserAttributionReceived(adjustTrackerToken=");
+        StringBuilder sbU = outline.U("TrackUserAttributionReceived(adjustTrackerToken=");
         sbU.append(this.adjustTrackerToken);
         sbU.append(", adjustTrackerName=");
         sbU.append(this.adjustTrackerName);
@@ -67,6 +67,6 @@ public final /* data */ class TrackUserAttributionReceived implements AnalyticsS
         sbU.append(", attributionCreative=");
         sbU.append(this.attributionCreative);
         sbU.append(", adjustAdid=");
-        return a.E(sbU, this.adjustAdid, ")");
+        return outline.E(sbU, this.adjustAdid, ")");
     }
 }

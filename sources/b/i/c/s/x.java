@@ -9,6 +9,8 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.PowerManager;
 import android.util.Log;
+import b.d.b.a.outline;
+import b.i.c.FirebaseApp2;
 import com.google.firebase.iid.FirebaseInstanceId;
 import java.io.IOException;
 import java.util.concurrent.ExecutorService;
@@ -60,19 +62,19 @@ public class x implements Runnable {
     }
 
     public Context a() {
-        b.i.c.c cVar = this.l.f;
-        cVar.a();
-        return cVar.d;
+        FirebaseApp2 firebaseApp2 = this.l.f;
+        firebaseApp2.a();
+        return firebaseApp2.d;
     }
 
     public final void b(String str) {
-        b.i.c.c cVar = this.l.f;
-        cVar.a();
-        if ("[DEFAULT]".equals(cVar.e)) {
+        FirebaseApp2 firebaseApp2 = this.l.f;
+        firebaseApp2.a();
+        if ("[DEFAULT]".equals(firebaseApp2.e)) {
             if (Log.isLoggable("FirebaseInstanceId", 3)) {
-                b.i.c.c cVar2 = this.l.f;
-                cVar2.a();
-                String strValueOf = String.valueOf(cVar2.e);
+                FirebaseApp2 firebaseApp3 = this.l.f;
+                firebaseApp3.a();
+                String strValueOf = String.valueOf(firebaseApp3.e);
                 Log.d("FirebaseInstanceId", strValueOf.length() != 0 ? "Invoking onNewToken for app: ".concat(strValueOf) : new String("Invoking onNewToken for app: "));
             }
             Intent intent = new Intent("com.google.firebase.messaging.NEW_TOKEN");
@@ -113,7 +115,7 @@ public class x implements Runnable {
             }
             if (z2) {
                 String message2 = e.getMessage();
-                b.d.b.a.a.i0(b.d.b.a.a.b(message2, 52), "Token retrieval failed: ", message2, ". Will retry token retrieval", "FirebaseInstanceId");
+                outline.i0(outline.b(message2, 52), "Token retrieval failed: ", message2, ". Will retry token retrieval", "FirebaseInstanceId");
                 return false;
             }
             if (e.getMessage() != null) {

@@ -1,9 +1,9 @@
 package com.discord.widgets.servers.guild_role_subscription.model;
 
 import a0.a.a.b;
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.api.guildrolesubscription.PayoutGroup;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 import java.util.Map;
 import kotlin.jvm.internal.DefaultConstructorMarker;
 
@@ -16,7 +16,7 @@ public final /* data */ class TotalPayoutsForPeriod {
     private final long subscriberCount;
 
     public TotalPayoutsForPeriod(String str, long j, long j2, Map<Long, PayoutGroup> map) {
-        m.checkNotNullParameter(str, "periodStartingAt");
+        Intrinsics3.checkNotNullParameter(str, "periodStartingAt");
         this.periodStartingAt = str;
         this.subscriberCount = j;
         this.revenue = j2;
@@ -47,7 +47,7 @@ public final /* data */ class TotalPayoutsForPeriod {
     }
 
     public final TotalPayoutsForPeriod copy(String periodStartingAt, long subscriberCount, long revenue, Map<Long, PayoutGroup> payoutGroups) {
-        m.checkNotNullParameter(periodStartingAt, "periodStartingAt");
+        Intrinsics3.checkNotNullParameter(periodStartingAt, "periodStartingAt");
         return new TotalPayoutsForPeriod(periodStartingAt, subscriberCount, revenue, payoutGroups);
     }
 
@@ -59,7 +59,7 @@ public final /* data */ class TotalPayoutsForPeriod {
             return false;
         }
         TotalPayoutsForPeriod totalPayoutsForPeriod = (TotalPayoutsForPeriod) other;
-        return m.areEqual(this.periodStartingAt, totalPayoutsForPeriod.periodStartingAt) && this.subscriberCount == totalPayoutsForPeriod.subscriberCount && this.revenue == totalPayoutsForPeriod.revenue && m.areEqual(this.payoutGroups, totalPayoutsForPeriod.payoutGroups);
+        return Intrinsics3.areEqual(this.periodStartingAt, totalPayoutsForPeriod.periodStartingAt) && this.subscriberCount == totalPayoutsForPeriod.subscriberCount && this.revenue == totalPayoutsForPeriod.revenue && Intrinsics3.areEqual(this.payoutGroups, totalPayoutsForPeriod.payoutGroups);
     }
 
     public final Map<Long, PayoutGroup> getPayoutGroups() {
@@ -101,14 +101,14 @@ public final /* data */ class TotalPayoutsForPeriod {
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TotalPayoutsForPeriod(periodStartingAt=");
+        StringBuilder sbU = outline.U("TotalPayoutsForPeriod(periodStartingAt=");
         sbU.append(this.periodStartingAt);
         sbU.append(", subscriberCount=");
         sbU.append(this.subscriberCount);
         sbU.append(", revenue=");
         sbU.append(this.revenue);
         sbU.append(", payoutGroups=");
-        return a.M(sbU, this.payoutGroups, ")");
+        return outline.M(sbU, this.payoutGroups, ")");
     }
 
     public /* synthetic */ TotalPayoutsForPeriod(String str, long j, long j2, Map map, int i, DefaultConstructorMarker defaultConstructorMarker) {

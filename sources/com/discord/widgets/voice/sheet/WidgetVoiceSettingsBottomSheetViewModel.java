@@ -1,8 +1,8 @@
 package com.discord.widgets.voice.sheet;
 
 import android.content.Context;
-import b.a.d.d0;
-import b.d.b.a.a;
+import b.a.d.AppViewModel;
+import b.d.b.a.outline;
 import com.discord.api.channel.Channel;
 import com.discord.api.channel.ChannelUtils;
 import com.discord.models.guild.Guild;
@@ -12,8 +12,8 @@ import com.discord.stores.StoreStream;
 import com.discord.utilities.rx.ObservableExtensionsKt;
 import com.discord.widgets.stage.StageRoles;
 import com.discord.widgets.voice.model.CallModel;
-import d0.z.d.m;
-import d0.z.d.o;
+import d0.z.d.Intrinsics3;
+import d0.z.d.Lambda;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
@@ -22,7 +22,7 @@ import rx.Observable;
 
 /* JADX INFO: compiled from: WidgetVoiceSettingsBottomSheetViewModel.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final class WidgetVoiceSettingsBottomSheetViewModel extends d0<ViewState> {
+public final class WidgetVoiceSettingsBottomSheetViewModel extends AppViewModel<ViewState> {
 
     /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
     public static final Companion INSTANCE = new Companion(null);
@@ -33,7 +33,7 @@ public final class WidgetVoiceSettingsBottomSheetViewModel extends d0<ViewState>
 
     /* JADX INFO: renamed from: com.discord.widgets.voice.sheet.WidgetVoiceSettingsBottomSheetViewModel$1, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetVoiceSettingsBottomSheetViewModel.kt */
-    public final class AnonymousClass1 extends o implements Function1<StoreState, Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function1<StoreState, Unit> {
         public AnonymousClass1() {
             super(1);
         }
@@ -46,7 +46,7 @@ public final class WidgetVoiceSettingsBottomSheetViewModel extends d0<ViewState>
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(StoreState storeState) {
-            m.checkNotNullParameter(storeState, "storeState");
+            Intrinsics3.checkNotNullParameter(storeState, "storeState");
             WidgetVoiceSettingsBottomSheetViewModel.access$handleStoreState(WidgetVoiceSettingsBottomSheetViewModel.this, storeState);
         }
     }
@@ -61,8 +61,8 @@ public final class WidgetVoiceSettingsBottomSheetViewModel extends d0<ViewState>
         }
 
         private final Observable<StoreState> observeStoreState(long channelId, StoreStageChannels stageChannelsStore) {
-            Observable<StoreState> observableY = ObservableExtensionsKt.computationLatest(CallModel.INSTANCE.get(channelId)).r().Y(new WidgetVoiceSettingsBottomSheetViewModel$Companion$observeStoreState$1(stageChannelsStore, channelId));
-            m.checkNotNullExpressionValue(observableY, "CallModel.get(channelId)…          }\n            }");
+            Observable<StoreState> observableY = ObservableExtensionsKt.computationLatest(CallModel.INSTANCE.get(channelId)).r().Y(new WidgetVoiceSettingsBottomSheetViewModel2(stageChannelsStore, channelId));
+            Intrinsics3.checkNotNullExpressionValue(observableY, "CallModel.get(channelId)…          }\n            }");
             return observableY;
         }
 
@@ -100,7 +100,7 @@ public final class WidgetVoiceSettingsBottomSheetViewModel extends d0<ViewState>
                     return false;
                 }
                 Valid valid = (Valid) other;
-                return m.areEqual(this.callModel, valid.callModel) && m.areEqual(this.myStageRoles, valid.myStageRoles);
+                return Intrinsics3.areEqual(this.callModel, valid.callModel) && Intrinsics3.areEqual(this.myStageRoles, valid.myStageRoles);
             }
 
             /* JADX INFO: renamed from: component1, reason: from getter */
@@ -137,7 +137,7 @@ public final class WidgetVoiceSettingsBottomSheetViewModel extends d0<ViewState>
 
             /* JADX INFO: renamed from: copy-FZvHQiQ, reason: not valid java name */
             public final Valid m75copyFZvHQiQ(CallModel callModel, StageRoles myStageRoles) {
-                m.checkNotNullParameter(callModel, "callModel");
+                Intrinsics3.checkNotNullParameter(callModel, "callModel");
                 return new Valid(callModel, myStageRoles);
             }
 
@@ -147,7 +147,7 @@ public final class WidgetVoiceSettingsBottomSheetViewModel extends d0<ViewState>
             }
 
             public String toString() {
-                StringBuilder sbU = a.U("Valid(callModel=");
+                StringBuilder sbU = outline.U("Valid(callModel=");
                 sbU.append(this.callModel);
                 sbU.append(", myStageRoles=");
                 sbU.append(this.myStageRoles);
@@ -182,7 +182,7 @@ public final class WidgetVoiceSettingsBottomSheetViewModel extends d0<ViewState>
         private final boolean showVoiceParticipantsToggle;
 
         public ViewState(Channel channel, boolean z2, boolean z3, boolean z4, boolean z5, boolean z6, boolean z7, Guild guild) {
-            m.checkNotNullParameter(channel, "channel");
+            Intrinsics3.checkNotNullParameter(channel, "channel");
             this.channel = channel;
             this.showVoiceParticipants = z2;
             this.showVoiceParticipantsToggle = z3;
@@ -230,7 +230,7 @@ public final class WidgetVoiceSettingsBottomSheetViewModel extends d0<ViewState>
         }
 
         public final ViewState copy(Channel channel, boolean showVoiceParticipants, boolean showVoiceParticipantsToggle, boolean showInviteItem, boolean noiseCancellationEnabled, boolean showStageSettings, boolean showReportItem, Guild guild) {
-            m.checkNotNullParameter(channel, "channel");
+            Intrinsics3.checkNotNullParameter(channel, "channel");
             return new ViewState(channel, showVoiceParticipants, showVoiceParticipantsToggle, showInviteItem, noiseCancellationEnabled, showStageSettings, showReportItem, guild);
         }
 
@@ -242,7 +242,7 @@ public final class WidgetVoiceSettingsBottomSheetViewModel extends d0<ViewState>
                 return false;
             }
             ViewState viewState = (ViewState) other;
-            return m.areEqual(getChannel(), viewState.getChannel()) && getShowVoiceParticipants() == viewState.getShowVoiceParticipants() && getShowVoiceParticipantsToggle() == viewState.getShowVoiceParticipantsToggle() && getShowInviteItem() == viewState.getShowInviteItem() && getNoiseCancellationEnabled() == viewState.getNoiseCancellationEnabled() && getShowStageSettings() == viewState.getShowStageSettings() && getShowReportItem() == viewState.getShowReportItem() && m.areEqual(getGuild(), viewState.getGuild());
+            return Intrinsics3.areEqual(getChannel(), viewState.getChannel()) && getShowVoiceParticipants() == viewState.getShowVoiceParticipants() && getShowVoiceParticipantsToggle() == viewState.getShowVoiceParticipantsToggle() && getShowInviteItem() == viewState.getShowInviteItem() && getNoiseCancellationEnabled() == viewState.getNoiseCancellationEnabled() && getShowStageSettings() == viewState.getShowStageSettings() && getShowReportItem() == viewState.getShowReportItem() && Intrinsics3.areEqual(getGuild(), viewState.getGuild());
         }
 
         @Override // com.discord.widgets.voice.sheet.WidgetVoiceSettingsBottomSheet.ViewState
@@ -325,7 +325,7 @@ public final class WidgetVoiceSettingsBottomSheetViewModel extends d0<ViewState>
         }
 
         public String toString() {
-            StringBuilder sbU = a.U("ViewState(channel=");
+            StringBuilder sbU = outline.U("ViewState(channel=");
             sbU.append(getChannel());
             sbU.append(", showVoiceParticipants=");
             sbU.append(getShowVoiceParticipants());
@@ -391,9 +391,9 @@ public final class WidgetVoiceSettingsBottomSheetViewModel extends d0<ViewState>
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public WidgetVoiceSettingsBottomSheetViewModel(long j, StoreStageChannels storeStageChannels, Observable<StoreState> observable, StoreMediaSettings storeMediaSettings) {
         super(null, 1, null);
-        m.checkNotNullParameter(storeStageChannels, "stageChannelsStore");
-        m.checkNotNullParameter(observable, "storeObservable");
-        m.checkNotNullParameter(storeMediaSettings, "mediaSettingsStore");
+        Intrinsics3.checkNotNullParameter(storeStageChannels, "stageChannelsStore");
+        Intrinsics3.checkNotNullParameter(observable, "storeObservable");
+        Intrinsics3.checkNotNullParameter(storeMediaSettings, "mediaSettingsStore");
         this.channelId = j;
         this.stageChannelsStore = storeStageChannels;
         this.storeObservable = observable;

@@ -11,6 +11,8 @@ import android.text.TextUtils;
 import android.util.Pair;
 import androidx.annotation.WorkerThread;
 import androidx.collection.ArrayMap;
+import b.c.a.a0.AnimatableValueParser;
+import b.d.b.a.outline;
 import com.discord.models.domain.ModelAuditLogEntry;
 import com.google.android.gms.measurement.internal.zzaq;
 import com.google.android.gms.measurement.internal.zzku;
@@ -125,7 +127,7 @@ public final class g extends i9 {
     public final List<u9> C(String str) throws Throwable {
         Cursor cursorQuery;
         Cursor cursor;
-        b.c.a.a0.d.w(str);
+        AnimatableValueParser.w(str);
         b();
         n();
         ArrayList arrayList = new ArrayList();
@@ -194,9 +196,9 @@ public final class g extends i9 {
     public final List<Pair<b.i.a.f.h.l.e1, Long>> D(String str, int i2, int i3) {
         b();
         n();
-        b.c.a.a0.d.l(i2 > 0);
-        b.c.a.a0.d.l(i3 > 0);
-        b.c.a.a0.d.w(str);
+        AnimatableValueParser.l(i2 > 0);
+        AnimatableValueParser.l(i3 > 0);
+        AnimatableValueParser.w(str);
         Cursor cursor = null;
         try {
             try {
@@ -260,7 +262,7 @@ public final class g extends i9 {
     public final List<u9> E(String str, String str2, String str3) throws Throwable {
         String str4;
         Cursor cursorQuery;
-        b.c.a.a0.d.w(str);
+        AnimatableValueParser.w(str);
         b();
         n();
         ArrayList arrayList = new ArrayList();
@@ -404,7 +406,7 @@ public final class g extends i9 {
 
     @WorkerThread
     public static void G(ContentValues contentValues, String str, Object obj) {
-        b.c.a.a0.d.w(str);
+        AnimatableValueParser.w(str);
         Objects.requireNonNull(obj, "null reference");
         if (obj instanceof String) {
             contentValues.put(str, (String) obj);
@@ -517,8 +519,8 @@ public final class g extends i9 {
         }
         if (R()) {
             String strJoin = TextUtils.join(",", list);
-            String strK = b.d.b.a.a.k(b.d.b.a.a.b(strJoin, 2), "(", strJoin, ")");
-            if (S(b.d.b.a.a.k(b.d.b.a.a.b(strK, 80), "SELECT COUNT(1) FROM queue WHERE rowid IN ", strK, " AND retry_count =  2147483647 LIMIT 1"), null) > 0) {
+            String strK = outline.k(outline.b(strJoin, 2), "(", strJoin, ")");
+            if (S(outline.k(outline.b(strK, 80), "SELECT COUNT(1) FROM queue WHERE rowid IN ", strK, " AND retry_count =  2147483647 LIMIT 1"), null) > 0) {
                 g().i.a("The number of upload retries exceeds the limit. Will remain unchanged.");
             }
             try {
@@ -538,8 +540,8 @@ public final class g extends i9 {
     public final boolean K(b.i.a.f.h.l.e1 e1Var, boolean z2) {
         b();
         n();
-        b.c.a.a0.d.w(e1Var.G1());
-        b.c.a.a0.d.F(e1Var.n1());
+        AnimatableValueParser.w(e1Var.G1());
+        AnimatableValueParser.F(e1Var.n1());
         i0();
         Objects.requireNonNull((b.i.a.f.e.o.c) this.a.o);
         long jCurrentTimeMillis = System.currentTimeMillis();
@@ -576,7 +578,7 @@ public final class g extends i9 {
     public final boolean L(m mVar, long j2, boolean z2) {
         b();
         n();
-        b.c.a.a0.d.w(mVar.a);
+        AnimatableValueParser.w(mVar.a);
         byte[] bArrD = m().v(mVar).d();
         ContentValues contentValues = new ContentValues();
         contentValues.put("app_id", mVar.a);
@@ -672,7 +674,7 @@ public final class g extends i9 {
     public final boolean O(String str, int i2, b.i.a.f.h.l.l0 l0Var) {
         n();
         b();
-        b.c.a.a0.d.w(str);
+        AnimatableValueParser.w(str);
         Objects.requireNonNull(l0Var, "null reference");
         if (TextUtils.isEmpty(l0Var.z())) {
             g().i.d("Event filter had no event name. Audience definition ignored. appId, audienceId, filterId", q3.s(str), Integer.valueOf(i2), String.valueOf(l0Var.x() ? Integer.valueOf(l0Var.y()) : null));
@@ -702,7 +704,7 @@ public final class g extends i9 {
     public final boolean P(String str, int i2, b.i.a.f.h.l.o0 o0Var) {
         n();
         b();
-        b.c.a.a0.d.w(str);
+        AnimatableValueParser.w(str);
         Objects.requireNonNull(o0Var, "null reference");
         if (TextUtils.isEmpty(o0Var.x())) {
             g().i.d("Property filter had no property name. Audience definition ignored. appId, audienceId, filterId", q3.s(str), Integer.valueOf(i2), String.valueOf(o0Var.v() ? Integer.valueOf(o0Var.w()) : null));
@@ -732,7 +734,7 @@ public final class g extends i9 {
         b();
         n();
         Objects.requireNonNull(a1Var, "null reference");
-        b.c.a.a0.d.w(str);
+        AnimatableValueParser.w(str);
         Objects.requireNonNull(l, "null reference");
         byte[] bArrD = a1Var.d();
         g().n.c("Saving complex main event, appId, data size", d().u(str), Integer.valueOf(bArrD.length));
@@ -784,7 +786,7 @@ public final class g extends i9 {
     @WorkerThread
     public final a4 T(String str) throws Throwable {
         Cursor cursorQuery;
-        b.c.a.a0.d.w(str);
+        AnimatableValueParser.w(str);
         b();
         n();
         Cursor cursor = null;
@@ -893,7 +895,7 @@ public final class g extends i9 {
 
     @WorkerThread
     public final List<zzz> U(String str, String str2, String str3) {
-        b.c.a.a0.d.w(str);
+        AnimatableValueParser.w(str);
         b();
         n();
         ArrayList arrayList = new ArrayList(3);
@@ -912,8 +914,8 @@ public final class g extends i9 {
 
     @WorkerThread
     public final void V(String str, String str2) {
-        b.c.a.a0.d.w(str);
-        b.c.a.a0.d.w(str2);
+        AnimatableValueParser.w(str);
+        AnimatableValueParser.w(str2);
         b();
         n();
         try {
@@ -924,7 +926,7 @@ public final class g extends i9 {
     }
 
     public final boolean W(String str, List<Integer> list) {
-        b.c.a.a0.d.w(str);
+        AnimatableValueParser.w(str);
         n();
         b();
         SQLiteDatabase sQLiteDatabaseT = t();
@@ -943,8 +945,8 @@ public final class g extends i9 {
                 arrayList.add(Integer.toString(num.intValue()));
             }
             String strJoin = TextUtils.join(",", arrayList);
-            String strK = b.d.b.a.a.k(b.d.b.a.a.b(strJoin, 2), "(", strJoin, ")");
-            return sQLiteDatabaseT.delete("audience_filter_values", b.d.b.a.a.k(b.d.b.a.a.b(strK, Opcodes.F2L), "audience_id in (select audience_id from audience_filter_values where app_id=? and audience_id not in ", strK, " order by rowid desc limit -1 offset ?)"), new String[]{str, Integer.toString(iMax)}) > 0;
+            String strK = outline.k(outline.b(strJoin, 2), "(", strJoin, ")");
+            return sQLiteDatabaseT.delete("audience_filter_values", outline.k(outline.b(strK, Opcodes.F2L), "audience_id in (select audience_id from audience_filter_values where app_id=? and audience_id not in ", strK, " order by rowid desc limit -1 offset ?)"), new String[]{str, Integer.toString(iMax)}) > 0;
         } catch (SQLiteException e2) {
             g().f.c("Database error querying filters. appId", q3.s(str), e2);
             return false;
@@ -952,7 +954,7 @@ public final class g extends i9 {
     }
 
     public final long X(String str) {
-        b.c.a.a0.d.w(str);
+        AnimatableValueParser.w(str);
         b();
         n();
         try {
@@ -967,8 +969,8 @@ public final class g extends i9 {
     @WorkerThread
     public final u9 Y(String str, String str2) throws Throwable {
         Cursor cursorQuery;
-        b.c.a.a0.d.w(str);
-        b.c.a.a0.d.w(str2);
+        AnimatableValueParser.w(str);
+        AnimatableValueParser.w(str2);
         b();
         n();
         Cursor cursor = null;
@@ -1024,8 +1026,8 @@ public final class g extends i9 {
     @WorkerThread
     public final zzz Z(String str, String str2) throws Throwable {
         Cursor cursorQuery;
-        b.c.a.a0.d.w(str);
-        b.c.a.a0.d.w(str2);
+        AnimatableValueParser.w(str);
+        AnimatableValueParser.w(str2);
         b();
         n();
         Cursor cursor = null;
@@ -1087,8 +1089,8 @@ public final class g extends i9 {
 
     @WorkerThread
     public final int a0(String str, String str2) {
-        b.c.a.a0.d.w(str);
-        b.c.a.a0.d.w(str2);
+        AnimatableValueParser.w(str);
+        AnimatableValueParser.w(str2);
         b();
         n();
         try {
@@ -1114,8 +1116,8 @@ public final class g extends i9 {
         Cursor cursorQuery;
         n();
         b();
-        b.c.a.a0.d.w(str);
-        b.c.a.a0.d.w(str2);
+        AnimatableValueParser.w(str);
+        AnimatableValueParser.w(str2);
         ArrayMap arrayMap = new ArrayMap();
         ?? r9 = 0;
         try {
@@ -1187,8 +1189,8 @@ public final class g extends i9 {
         Cursor cursorQuery;
         n();
         b();
-        b.c.a.a0.d.w(str);
-        b.c.a.a0.d.w(str2);
+        AnimatableValueParser.w(str);
+        AnimatableValueParser.w(str2);
         ArrayMap arrayMap = new ArrayMap();
         ?? r9 = 0;
         try {
@@ -1258,14 +1260,14 @@ public final class g extends i9 {
     }
 
     public final long f0(String str) {
-        b.c.a.a0.d.w(str);
+        AnimatableValueParser.w(str);
         return w("select count(1) from events where app_id=? and name not like '!_%' escape '!'", new String[]{str}, 0L);
     }
 
     @WorkerThread
     public final long g0(String str, String str2) throws Throwable {
-        b.c.a.a0.d.w(str);
-        b.c.a.a0.d.w(str2);
+        AnimatableValueParser.w(str);
+        AnimatableValueParser.w(str2);
         b();
         n();
         SQLiteDatabase sQLiteDatabaseT = t();
@@ -1519,7 +1521,7 @@ public final class g extends i9 {
     public final long v(b.i.a.f.h.l.e1 e1Var) throws IOException {
         b();
         n();
-        b.c.a.a0.d.w(e1Var.G1());
+        AnimatableValueParser.w(e1Var.G1());
         byte[] bArrD = e1Var.d();
         long jT = m().t(bArrD);
         ContentValues contentValues = new ContentValues();
@@ -1562,7 +1564,7 @@ public final class g extends i9 {
 
     @WorkerThread
     public final f x(long j2, String str, long j3, boolean z2, boolean z3, boolean z4, boolean z5, boolean z6) {
-        b.c.a.a0.d.w(str);
+        AnimatableValueParser.w(str);
         b();
         n();
         String[] strArr = {str};
@@ -1636,8 +1638,8 @@ public final class g extends i9 {
         Cursor cursor;
         Cursor cursor2;
         Boolean boolValueOf;
-        b.c.a.a0.d.w(str);
-        b.c.a.a0.d.w(str2);
+        AnimatableValueParser.w(str);
+        AnimatableValueParser.w(str2);
         b();
         n();
         Cursor cursor3 = null;

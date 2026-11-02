@@ -1,14 +1,14 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackVerifyAccount.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackVerifyAccount implements AnalyticsSchema, TrackBaseReceiver {
+public final /* data */ class TrackVerifyAccount implements AnalyticsSchema, TrackBase2 {
     private final Long fingerprint = null;
     private final CharSequence source = null;
     private TrackBase trackBase;
@@ -22,7 +22,7 @@ public final /* data */ class TrackVerifyAccount implements AnalyticsSchema, Tra
             return false;
         }
         TrackVerifyAccount trackVerifyAccount = (TrackVerifyAccount) other;
-        return m.areEqual(this.source, trackVerifyAccount.source) && m.areEqual(this.fingerprint, trackVerifyAccount.fingerprint);
+        return Intrinsics3.areEqual(this.source, trackVerifyAccount.source) && Intrinsics3.areEqual(this.fingerprint, trackVerifyAccount.fingerprint);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -39,9 +39,9 @@ public final /* data */ class TrackVerifyAccount implements AnalyticsSchema, Tra
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackVerifyAccount(source=");
+        StringBuilder sbU = outline.U("TrackVerifyAccount(source=");
         sbU.append(this.source);
         sbU.append(", fingerprint=");
-        return a.G(sbU, this.fingerprint, ")");
+        return outline.G(sbU, this.fingerprint, ")");
     }
 }

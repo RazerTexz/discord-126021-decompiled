@@ -1,30 +1,30 @@
 package com.discord.models.botuikit;
 
-import b.d.b.a.a;
-import com.discord.api.botuikit.ButtonStyle;
+import b.d.b.a.outline;
+import com.discord.api.botuikit.ButtonComponent2;
+import com.discord.api.botuikit.Component6;
 import com.discord.api.botuikit.ComponentEmoji;
-import com.discord.api.botuikit.ComponentType;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 import kotlin.jvm.internal.DefaultConstructorMarker;
 
 /* JADX INFO: compiled from: ButtonMessageComponent.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class ButtonMessageComponent extends ActionMessageComponent {
+public final /* data */ class ButtonMessageComponent extends MessageComponent2 {
     private final String customId;
     private final ComponentEmoji emoji;
     private final boolean emojiAnimationsEnabled;
     private final int index;
     private final String label;
     private final ActionInteractionComponentState stateInteraction;
-    private final ButtonStyle style;
-    private final ComponentType type;
+    private final ButtonComponent2 style;
+    private final Component6 type;
     private final String url;
 
-    public /* synthetic */ ButtonMessageComponent(ComponentType componentType, int i, ActionInteractionComponentState actionInteractionComponentState, String str, String str2, ButtonStyle buttonStyle, ComponentEmoji componentEmoji, String str3, boolean z2, int i2, DefaultConstructorMarker defaultConstructorMarker) {
-        this(componentType, i, (i2 & 4) != 0 ? ActionInteractionComponentState.Enabled.INSTANCE : actionInteractionComponentState, str, str2, buttonStyle, (i2 & 64) != 0 ? null : componentEmoji, (i2 & 128) != 0 ? null : str3, z2);
+    public /* synthetic */ ButtonMessageComponent(Component6 component6, int i, ActionInteractionComponentState actionInteractionComponentState, String str, String str2, ButtonComponent2 buttonComponent2, ComponentEmoji componentEmoji, String str3, boolean z2, int i2, DefaultConstructorMarker defaultConstructorMarker) {
+        this(component6, i, (i2 & 4) != 0 ? ActionInteractionComponentState.Enabled.INSTANCE : actionInteractionComponentState, str, str2, buttonComponent2, (i2 & 64) != 0 ? null : componentEmoji, (i2 & 128) != 0 ? null : str3, z2);
     }
 
-    public final ComponentType component1() {
+    public final Component6 component1() {
         return getType();
     }
 
@@ -36,14 +36,14 @@ public final /* data */ class ButtonMessageComponent extends ActionMessageCompon
         return getStateInteraction();
     }
 
-    public static /* synthetic */ ButtonMessageComponent copy$default(ButtonMessageComponent buttonMessageComponent, ComponentType componentType, int i, ActionInteractionComponentState actionInteractionComponentState, String str, String str2, ButtonStyle buttonStyle, ComponentEmoji componentEmoji, String str3, boolean z2, int i2, Object obj) {
-        return buttonMessageComponent.copy((i2 & 1) != 0 ? buttonMessageComponent.getType() : componentType, (i2 & 2) != 0 ? buttonMessageComponent.getIndex() : i, (i2 & 4) != 0 ? buttonMessageComponent.getStateInteraction() : actionInteractionComponentState, (i2 & 8) != 0 ? buttonMessageComponent.customId : str, (i2 & 16) != 0 ? buttonMessageComponent.label : str2, (i2 & 32) != 0 ? buttonMessageComponent.style : buttonStyle, (i2 & 64) != 0 ? buttonMessageComponent.emoji : componentEmoji, (i2 & 128) != 0 ? buttonMessageComponent.url : str3, (i2 & 256) != 0 ? buttonMessageComponent.emojiAnimationsEnabled : z2);
+    public static /* synthetic */ ButtonMessageComponent copy$default(ButtonMessageComponent buttonMessageComponent, Component6 component6, int i, ActionInteractionComponentState actionInteractionComponentState, String str, String str2, ButtonComponent2 buttonComponent2, ComponentEmoji componentEmoji, String str3, boolean z2, int i2, Object obj) {
+        return buttonMessageComponent.copy((i2 & 1) != 0 ? buttonMessageComponent.getType() : component6, (i2 & 2) != 0 ? buttonMessageComponent.getIndex() : i, (i2 & 4) != 0 ? buttonMessageComponent.getStateInteraction() : actionInteractionComponentState, (i2 & 8) != 0 ? buttonMessageComponent.customId : str, (i2 & 16) != 0 ? buttonMessageComponent.label : str2, (i2 & 32) != 0 ? buttonMessageComponent.style : buttonComponent2, (i2 & 64) != 0 ? buttonMessageComponent.emoji : componentEmoji, (i2 & 128) != 0 ? buttonMessageComponent.url : str3, (i2 & 256) != 0 ? buttonMessageComponent.emojiAnimationsEnabled : z2);
     }
 
-    public final ButtonMessageComponent copy(ComponentType type, int index, ActionInteractionComponentState stateInteraction, String customId, String label, ButtonStyle style, ComponentEmoji emoji, String url, boolean emojiAnimationsEnabled) {
-        m.checkNotNullParameter(type, "type");
-        m.checkNotNullParameter(stateInteraction, "stateInteraction");
-        m.checkNotNullParameter(style, "style");
+    public final ButtonMessageComponent copy(Component6 type, int index, ActionInteractionComponentState stateInteraction, String customId, String label, ButtonComponent2 style, ComponentEmoji emoji, String url, boolean emojiAnimationsEnabled) {
+        Intrinsics3.checkNotNullParameter(type, "type");
+        Intrinsics3.checkNotNullParameter(stateInteraction, "stateInteraction");
+        Intrinsics3.checkNotNullParameter(style, "style");
         return new ButtonMessageComponent(type, index, stateInteraction, customId, label, style, emoji, url, emojiAnimationsEnabled);
     }
 
@@ -55,7 +55,7 @@ public final /* data */ class ButtonMessageComponent extends ActionMessageCompon
             return false;
         }
         ButtonMessageComponent buttonMessageComponent = (ButtonMessageComponent) other;
-        return m.areEqual(getType(), buttonMessageComponent.getType()) && getIndex() == buttonMessageComponent.getIndex() && m.areEqual(getStateInteraction(), buttonMessageComponent.getStateInteraction()) && m.areEqual(this.customId, buttonMessageComponent.customId) && m.areEqual(this.label, buttonMessageComponent.label) && m.areEqual(this.style, buttonMessageComponent.style) && m.areEqual(this.emoji, buttonMessageComponent.emoji) && m.areEqual(this.url, buttonMessageComponent.url) && this.emojiAnimationsEnabled == buttonMessageComponent.emojiAnimationsEnabled;
+        return Intrinsics3.areEqual(getType(), buttonMessageComponent.getType()) && getIndex() == buttonMessageComponent.getIndex() && Intrinsics3.areEqual(getStateInteraction(), buttonMessageComponent.getStateInteraction()) && Intrinsics3.areEqual(this.customId, buttonMessageComponent.customId) && Intrinsics3.areEqual(this.label, buttonMessageComponent.label) && Intrinsics3.areEqual(this.style, buttonMessageComponent.style) && Intrinsics3.areEqual(this.emoji, buttonMessageComponent.emoji) && Intrinsics3.areEqual(this.url, buttonMessageComponent.url) && this.emojiAnimationsEnabled == buttonMessageComponent.emojiAnimationsEnabled;
     }
 
     /* JADX INFO: renamed from: component4, reason: from getter */
@@ -99,22 +99,22 @@ public final /* data */ class ButtonMessageComponent extends ActionMessageCompon
         return this.label;
     }
 
-    @Override // com.discord.models.botuikit.ActionMessageComponent
+    @Override // com.discord.models.botuikit.MessageComponent2
     public ActionInteractionComponentState getStateInteraction() {
         return this.stateInteraction;
     }
 
     /* JADX INFO: renamed from: component6, reason: from getter */
-    public final ButtonStyle getStyle() {
+    public final ButtonComponent2 getStyle() {
         return this.style;
     }
 
-    public final ButtonStyle getStyle() {
+    public final ButtonComponent2 getStyle() {
         return this.style;
     }
 
     @Override // com.discord.models.botuikit.MessageComponent
-    public ComponentType getType() {
+    public Component6 getType() {
         return this.type;
     }
 
@@ -133,7 +133,7 @@ public final /* data */ class ButtonMessageComponent extends ActionMessageCompon
     /* JADX WARN: Type inference failed for: r0v29 */
     /* JADX WARN: Type inference failed for: r2v15, types: [int] */
     public int hashCode() {
-        ComponentType type = getType();
+        Component6 type = getType();
         int index = (getIndex() + ((type != null ? type.hashCode() : 0) * 31)) * 31;
         ActionInteractionComponentState stateInteraction = getStateInteraction();
         int iHashCode = (index + (stateInteraction != null ? stateInteraction.hashCode() : 0)) * 31;
@@ -141,8 +141,8 @@ public final /* data */ class ButtonMessageComponent extends ActionMessageCompon
         int iHashCode2 = (iHashCode + (str != null ? str.hashCode() : 0)) * 31;
         String str2 = this.label;
         int iHashCode3 = (iHashCode2 + (str2 != null ? str2.hashCode() : 0)) * 31;
-        ButtonStyle buttonStyle = this.style;
-        int iHashCode4 = (iHashCode3 + (buttonStyle != null ? buttonStyle.hashCode() : 0)) * 31;
+        ButtonComponent2 buttonComponent2 = this.style;
+        int iHashCode4 = (iHashCode3 + (buttonComponent2 != null ? buttonComponent2.hashCode() : 0)) * 31;
         ComponentEmoji componentEmoji = this.emoji;
         int iHashCode5 = (iHashCode4 + (componentEmoji != null ? componentEmoji.hashCode() : 0)) * 31;
         String str3 = this.url;
@@ -156,7 +156,7 @@ public final /* data */ class ButtonMessageComponent extends ActionMessageCompon
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("ButtonMessageComponent(type=");
+        StringBuilder sbU = outline.U("ButtonMessageComponent(type=");
         sbU.append(getType());
         sbU.append(", index=");
         sbU.append(getIndex());
@@ -173,19 +173,19 @@ public final /* data */ class ButtonMessageComponent extends ActionMessageCompon
         sbU.append(", url=");
         sbU.append(this.url);
         sbU.append(", emojiAnimationsEnabled=");
-        return a.O(sbU, this.emojiAnimationsEnabled, ")");
+        return outline.O(sbU, this.emojiAnimationsEnabled, ")");
     }
 
-    public ButtonMessageComponent(ComponentType componentType, int i, ActionInteractionComponentState actionInteractionComponentState, String str, String str2, ButtonStyle buttonStyle, ComponentEmoji componentEmoji, String str3, boolean z2) {
-        m.checkNotNullParameter(componentType, "type");
-        m.checkNotNullParameter(actionInteractionComponentState, "stateInteraction");
-        m.checkNotNullParameter(buttonStyle, "style");
-        this.type = componentType;
+    public ButtonMessageComponent(Component6 component6, int i, ActionInteractionComponentState actionInteractionComponentState, String str, String str2, ButtonComponent2 buttonComponent2, ComponentEmoji componentEmoji, String str3, boolean z2) {
+        Intrinsics3.checkNotNullParameter(component6, "type");
+        Intrinsics3.checkNotNullParameter(actionInteractionComponentState, "stateInteraction");
+        Intrinsics3.checkNotNullParameter(buttonComponent2, "style");
+        this.type = component6;
         this.index = i;
         this.stateInteraction = actionInteractionComponentState;
         this.customId = str;
         this.label = str2;
-        this.style = buttonStyle;
+        this.style = buttonComponent2;
         this.emoji = componentEmoji;
         this.url = str3;
         this.emojiAnimationsEnabled = z2;

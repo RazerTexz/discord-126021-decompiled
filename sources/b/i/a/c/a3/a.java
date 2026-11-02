@@ -1,54 +1,54 @@
 package b.i.a.c.a3;
 
 import android.util.Pair;
-import b.i.a.c.o2;
+import b.i.a.c.Timeline;
 import java.util.Objects;
 
 /* JADX INFO: compiled from: lambda */
 /* JADX INFO: loaded from: classes3.dex */
-public final /* synthetic */ class a implements a0.b {
-    public final /* synthetic */ o a;
+public final /* synthetic */ class a implements MediaSource2.b {
+    public final /* synthetic */ CompositeMediaSource a;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
     public final /* synthetic */ Object f806b;
 
-    public /* synthetic */ a(o oVar, Object obj) {
-        this.a = oVar;
+    public /* synthetic */ a(CompositeMediaSource compositeMediaSource, Object obj) {
+        this.a = compositeMediaSource;
         this.f806b = obj;
     }
 
     /* JADX WARN: Code duplicated, block: B:19:0x007e  */
     /* JADX WARN: Code duplicated, block: B:35:0x00da  */
     /* JADX WARN: Code duplicated, block: B:37:? A[RETURN, SYNTHETIC] */
-    @Override // b.i.a.c.a3.a0.b
-    public final void a(a0 a0Var, o2 o2Var) {
+    @Override // b.i.a.c.a3.MediaSource2.b
+    public final void a(MediaSource2 mediaSource2, Timeline timeline) {
         long j;
-        v.a aVar;
-        a0.a aVarB;
-        v.a aVar2;
-        o oVar = this.a;
+        MaskingMediaSource.a aVar;
+        MediaSource2.a aVarB;
+        MaskingMediaSource.a aVar2;
+        CompositeMediaSource compositeMediaSource = this.a;
         Object obj = this.f806b;
-        Objects.requireNonNull(oVar);
-        v vVar = (v) oVar;
-        if (vVar.q) {
-            v.a aVar3 = vVar.n;
-            vVar.n = new v.a(o2Var, aVar3.m, aVar3.n);
-            u uVar = vVar.o;
-            if (uVar != null) {
-                vVar.v(uVar.p);
+        Objects.requireNonNull(compositeMediaSource);
+        MaskingMediaSource maskingMediaSource = (MaskingMediaSource) compositeMediaSource;
+        if (maskingMediaSource.q) {
+            MaskingMediaSource.a aVar3 = maskingMediaSource.n;
+            maskingMediaSource.n = new MaskingMediaSource.a(timeline, aVar3.m, aVar3.n);
+            MaskingMediaPeriod maskingMediaPeriod = maskingMediaSource.o;
+            if (maskingMediaPeriod != null) {
+                maskingMediaSource.v(maskingMediaPeriod.p);
             }
         } else {
-            if (!o2Var.q()) {
-                o2Var.n(0, vVar.l);
-                o2.c cVar = vVar.l;
+            if (!timeline.q()) {
+                timeline.n(0, maskingMediaSource.l);
+                Timeline.c cVar = maskingMediaSource.l;
                 long j2 = cVar.f1045z;
                 Object obj2 = cVar.n;
-                u uVar2 = vVar.o;
-                if (uVar2 != null) {
-                    long j3 = uVar2.k;
-                    vVar.n.h(uVar2.j.a, vVar.m);
-                    long j4 = vVar.m.n + j3;
-                    if (j4 != vVar.n.n(0, vVar.l).f1045z) {
+                MaskingMediaPeriod maskingMediaPeriod2 = maskingMediaSource.o;
+                if (maskingMediaPeriod2 != null) {
+                    long j3 = maskingMediaPeriod2.k;
+                    maskingMediaSource.n.h(maskingMediaPeriod2.j.a, maskingMediaSource.m);
+                    long j4 = maskingMediaSource.m.n + j3;
+                    if (j4 != maskingMediaSource.n.n(0, maskingMediaSource.l).f1045z) {
                         j = j4;
                     } else {
                         j = j2;
@@ -56,51 +56,51 @@ public final /* synthetic */ class a implements a0.b {
                 } else {
                     j = j2;
                 }
-                Pair<Object, Long> pairJ = o2Var.j(vVar.l, vVar.m, 0, j);
+                Pair<Object, Long> pairJ = timeline.j(maskingMediaSource.l, maskingMediaSource.m, 0, j);
                 Object obj3 = pairJ.first;
                 long jLongValue = ((Long) pairJ.second).longValue();
-                if (vVar.r) {
-                    v.a aVar4 = vVar.n;
-                    aVar = new v.a(o2Var, aVar4.m, aVar4.n);
+                if (maskingMediaSource.r) {
+                    MaskingMediaSource.a aVar4 = maskingMediaSource.n;
+                    aVar = new MaskingMediaSource.a(timeline, aVar4.m, aVar4.n);
                 } else {
-                    aVar = new v.a(o2Var, obj2, obj3);
+                    aVar = new MaskingMediaSource.a(timeline, obj2, obj3);
                 }
-                vVar.n = aVar;
-                u uVar3 = vVar.o;
-                if (uVar3 != null) {
-                    vVar.v(jLongValue);
-                    a0.a aVar5 = uVar3.j;
+                maskingMediaSource.n = aVar;
+                MaskingMediaPeriod maskingMediaPeriod3 = maskingMediaSource.o;
+                if (maskingMediaPeriod3 != null) {
+                    maskingMediaSource.v(jLongValue);
+                    MediaSource2.a aVar5 = maskingMediaPeriod3.j;
                     Object obj4 = aVar5.a;
-                    if (vVar.n.n != null && obj4.equals(v.a.l)) {
-                        obj4 = vVar.n.n;
+                    if (maskingMediaSource.n.n != null && obj4.equals(MaskingMediaSource.a.l)) {
+                        obj4 = maskingMediaSource.n.n;
                     }
                     aVarB = aVar5.b(obj4);
                 }
-                vVar.r = true;
-                vVar.q = true;
-                vVar.r(vVar.n);
+                maskingMediaSource.r = true;
+                maskingMediaSource.q = true;
+                maskingMediaSource.r(maskingMediaSource.n);
                 if (aVarB != null) {
-                    u uVar4 = vVar.o;
-                    Objects.requireNonNull(uVar4);
-                    uVar4.d(aVarB);
+                    MaskingMediaPeriod maskingMediaPeriod4 = maskingMediaSource.o;
+                    Objects.requireNonNull(maskingMediaPeriod4);
+                    maskingMediaPeriod4.d(aVarB);
                 }
             }
-            if (vVar.r) {
-                v.a aVar6 = vVar.n;
-                aVar2 = new v.a(o2Var, aVar6.m, aVar6.n);
+            if (maskingMediaSource.r) {
+                MaskingMediaSource.a aVar6 = maskingMediaSource.n;
+                aVar2 = new MaskingMediaSource.a(timeline, aVar6.m, aVar6.n);
             } else {
-                aVar2 = new v.a(o2Var, o2.c.j, v.a.l);
+                aVar2 = new MaskingMediaSource.a(timeline, Timeline.c.j, MaskingMediaSource.a.l);
             }
-            vVar.n = aVar2;
+            maskingMediaSource.n = aVar2;
         }
         aVarB = null;
-        vVar.r = true;
-        vVar.q = true;
-        vVar.r(vVar.n);
+        maskingMediaSource.r = true;
+        maskingMediaSource.q = true;
+        maskingMediaSource.r(maskingMediaSource.n);
         if (aVarB != null) {
-            u uVar5 = vVar.o;
-            Objects.requireNonNull(uVar5);
-            uVar5.d(aVarB);
+            MaskingMediaPeriod maskingMediaPeriod5 = maskingMediaSource.o;
+            Objects.requireNonNull(maskingMediaPeriod5);
+            maskingMediaPeriod5.d(aVarB);
         }
     }
 }

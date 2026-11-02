@@ -1,7 +1,7 @@
 package com.discord.widgets.chat.list.entries;
 
 import a0.a.a.b;
-import b.d.b.a.a;
+import b.d.b.a.outline;
 
 /* JADX INFO: compiled from: NewMessagesEntry.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -75,9 +75,9 @@ public final /* data */ class NewMessagesEntry extends ChatListEntry {
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("NewMessagesEntry(channelId=");
+        StringBuilder sbU = outline.U("NewMessagesEntry(channelId=");
         sbU.append(this.channelId);
         sbU.append(", messageId=");
-        return a.C(sbU, this.messageId, ")");
+        return outline.C(sbU, this.messageId, ")");
     }
 }

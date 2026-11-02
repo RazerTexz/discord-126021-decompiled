@@ -7,7 +7,7 @@ import android.net.Uri;
 import android.os.Handler;
 import android.os.Process;
 import androidx.appcompat.widget.ActivityChooserModel;
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.adjust.sdk.scheduler.SingleThreadCachedScheduler;
 import com.adjust.sdk.scheduler.ThreadExecutor;
 import com.adjust.sdk.scheduler.TimerCycle;
@@ -1593,7 +1593,7 @@ public class ActivityHandler implements IActivityHandler {
                 return;
             }
             ILogger iLogger = this.logger;
-            StringBuilder sbU = a.U("Deep link (");
+            StringBuilder sbU = outline.U("Deep link (");
             sbU.append(uri.toString());
             sbU.append(") processing skipped");
             iLogger.debug(sbU.toString(), new Object[0]);
@@ -2109,7 +2109,7 @@ public class ActivityHandler implements IActivityHandler {
         } else if (pausedI(true)) {
             this.logger.info(str2, new Object[0]);
         } else {
-            this.logger.info(a.w(str2, ", except the Sdk Click Handler"), new Object[0]);
+            this.logger.info(outline.w(str2, ", except the Sdk Click Handler"), new Object[0]);
         }
         updateHandlersStatusAndSendI();
     }

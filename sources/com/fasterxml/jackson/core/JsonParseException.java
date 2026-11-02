@@ -1,6 +1,6 @@
 package com.fasterxml.jackson.core;
 
-import b.g.a.b.f;
+import b.g.a.b.JsonParser;
 import com.fasterxml.jackson.core.exc.StreamReadException;
 
 /* JADX INFO: loaded from: classes3.dex */
@@ -13,7 +13,7 @@ public class JsonParseException extends StreamReadException {
     }
 
     @Override // com.fasterxml.jackson.core.exc.StreamReadException
-    public f d() {
+    public JsonParser d() {
         return null;
     }
 

@@ -2,7 +2,7 @@ package com.discord.simpleast.core.parser;
 
 import androidx.exifinterface.media.ExifInterface;
 import com.discord.simpleast.core.node.Node;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: ParseSpec.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -24,7 +24,7 @@ public final class ParseSpec<R, S> {
     public int endIndex;
 
     public ParseSpec(Node<R> node, S s2, int i, int i2) {
-        m.checkNotNullParameter(node, "root");
+        Intrinsics3.checkNotNullParameter(node, "root");
         this.root = node;
         this.state = s2;
         this.isTerminal = false;
@@ -33,7 +33,7 @@ public final class ParseSpec<R, S> {
     }
 
     public ParseSpec(Node<R> node, S s2) {
-        m.checkNotNullParameter(node, "root");
+        Intrinsics3.checkNotNullParameter(node, "root");
         this.root = node;
         this.state = s2;
         this.isTerminal = true;

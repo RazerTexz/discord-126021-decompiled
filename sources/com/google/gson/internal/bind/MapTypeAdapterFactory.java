@@ -1,12 +1,15 @@
 package com.google.gson.internal.bind;
 
-import b.d.b.a.a;
-import b.i.d.j;
-import b.i.d.k;
-import b.i.d.o;
+import b.d.b.a.outline;
+import b.i.d.JsonArray;
+import b.i.d.JsonNull;
+import b.i.d.JsonPrimitive;
+import b.i.d.TypeAdapterFactory2;
+import b.i.d.q.C$Gson$Types;
+import b.i.d.q.JsonReaderInternalAccess;
+import b.i.d.q.ObjectConstructor;
 import b.i.d.q.g;
-import b.i.d.q.p;
-import b.i.d.q.r;
+import b.i.d.q.x.JsonTreeReader;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -26,7 +29,7 @@ import java.util.Objects;
 import java.util.Properties;
 
 /* JADX INFO: loaded from: classes3.dex */
-public final class MapTypeAdapterFactory implements o {
+public final class MapTypeAdapterFactory implements TypeAdapterFactory2 {
     public final g j;
     public final boolean k;
 
@@ -35,12 +38,12 @@ public final class MapTypeAdapterFactory implements o {
 
         /* JADX INFO: renamed from: b, reason: collision with root package name */
         public final TypeAdapter<V> f3120b;
-        public final r<? extends Map<K, V>> c;
+        public final ObjectConstructor<? extends Map<K, V>> c;
 
-        public Adapter(Gson gson, Type type, TypeAdapter<K> typeAdapter, Type type2, TypeAdapter<V> typeAdapter2, r<? extends Map<K, V>> rVar) {
+        public Adapter(Gson gson, Type type, TypeAdapter<K> typeAdapter, Type type2, TypeAdapter<V> typeAdapter2, ObjectConstructor<? extends Map<K, V>> objectConstructor) {
             this.a = new TypeAdapterRuntimeTypeWrapper(gson, typeAdapter, type);
             this.f3120b = new TypeAdapterRuntimeTypeWrapper(gson, typeAdapter2, type2);
-            this.c = rVar;
+            this.c = objectConstructor;
         }
 
         @Override // com.google.gson.TypeAdapter
@@ -57,7 +60,7 @@ public final class MapTypeAdapterFactory implements o {
                     jsonReader.a();
                     K k = this.a.read(jsonReader);
                     if (mapA.put(k, this.f3120b.read(jsonReader)) != null) {
-                        throw new JsonSyntaxException(a.v("duplicate key: ", k));
+                        throw new JsonSyntaxException(outline.v("duplicate key: ", k));
                     }
                     jsonReader.e();
                 }
@@ -65,13 +68,13 @@ public final class MapTypeAdapterFactory implements o {
             } else {
                 jsonReader.b();
                 while (jsonReader.q()) {
-                    Objects.requireNonNull((JsonReader.a) p.a);
-                    if (jsonReader instanceof b.i.d.q.x.a) {
-                        b.i.d.q.x.a aVar = (b.i.d.q.x.a) jsonReader;
-                        aVar.W(JsonToken.NAME);
-                        Map.Entry entry = (Map.Entry) ((Iterator) aVar.X()).next();
-                        aVar.c0(entry.getValue());
-                        aVar.c0(new k((String) entry.getKey()));
+                    Objects.requireNonNull((JsonReader.a) JsonReaderInternalAccess.a);
+                    if (jsonReader instanceof JsonTreeReader) {
+                        JsonTreeReader jsonTreeReader = (JsonTreeReader) jsonReader;
+                        jsonTreeReader.W(JsonToken.NAME);
+                        Map.Entry entry = (Map.Entry) ((Iterator) jsonTreeReader.X()).next();
+                        jsonTreeReader.c0(entry.getValue());
+                        jsonTreeReader.c0(new JsonPrimitive((String) entry.getKey()));
                     } else {
                         int iD = jsonReader.r;
                         if (iD == 0) {
@@ -83,7 +86,7 @@ public final class MapTypeAdapterFactory implements o {
                             jsonReader.r = 8;
                         } else {
                             if (iD != 14) {
-                                StringBuilder sbU = a.U("Expected a name but was ");
+                                StringBuilder sbU = outline.U("Expected a name but was ");
                                 sbU.append(jsonReader.N());
                                 sbU.append(jsonReader.t());
                                 throw new IllegalStateException(sbU.toString());
@@ -93,7 +96,7 @@ public final class MapTypeAdapterFactory implements o {
                     }
                     K k2 = this.a.read(jsonReader);
                     if (mapA.put(k2, this.f3120b.read(jsonReader)) != null) {
-                        throw new JsonSyntaxException(a.v("duplicate key: ", k2));
+                        throw new JsonSyntaxException(outline.v("duplicate key: ", k2));
                     }
                 }
                 jsonReader.f();
@@ -127,7 +130,7 @@ public final class MapTypeAdapterFactory implements o {
                 arrayList.add(jsonTree);
                 arrayList2.add(entry2.getValue());
                 Objects.requireNonNull(jsonTree);
-                z2 |= (jsonTree instanceof b.i.d.g) || (jsonTree instanceof JsonObject);
+                z2 |= (jsonTree instanceof JsonArray) || (jsonTree instanceof JsonObject);
             }
             if (z2) {
                 jsonWriter.b();
@@ -147,21 +150,21 @@ public final class MapTypeAdapterFactory implements o {
             while (i < size2) {
                 JsonElement jsonElement = (JsonElement) arrayList.get(i);
                 Objects.requireNonNull(jsonElement);
-                if (jsonElement instanceof k) {
-                    k kVarE = jsonElement.e();
-                    Object obj2 = kVarE.a;
+                if (jsonElement instanceof JsonPrimitive) {
+                    JsonPrimitive jsonPrimitiveE = jsonElement.e();
+                    Object obj2 = jsonPrimitiveE.a;
                     if (obj2 instanceof Number) {
-                        strG = String.valueOf(kVarE.i());
+                        strG = String.valueOf(jsonPrimitiveE.i());
                     } else if (obj2 instanceof Boolean) {
-                        strG = Boolean.toString(kVarE.h());
+                        strG = Boolean.toString(jsonPrimitiveE.h());
                     } else {
                         if (!(obj2 instanceof String)) {
                             throw new AssertionError();
                         }
-                        strG = kVarE.g();
+                        strG = jsonPrimitiveE.g();
                     }
                 } else {
-                    if (!(jsonElement instanceof j)) {
+                    if (!(jsonElement instanceof JsonNull)) {
                         throw new AssertionError();
                     }
                     strG = "null";
@@ -179,18 +182,18 @@ public final class MapTypeAdapterFactory implements o {
         this.k = z2;
     }
 
-    @Override // b.i.d.o
+    @Override // b.i.d.TypeAdapterFactory2
     public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> typeToken) {
         Type[] actualTypeArguments;
         Type type = typeToken.getType();
         if (!Map.class.isAssignableFrom(typeToken.getRawType())) {
             return null;
         }
-        Class<?> clsE = b.i.d.q.a.e(type);
+        Class<?> clsE = C$Gson$Types.e(type);
         if (type == Properties.class) {
             actualTypeArguments = new Type[]{String.class, String.class};
         } else {
-            Type typeF = b.i.d.q.a.f(type, clsE, Map.class);
+            Type typeF = C$Gson$Types.f(type, clsE, Map.class);
             actualTypeArguments = typeF instanceof ParameterizedType ? ((ParameterizedType) typeF).getActualTypeArguments() : new Type[]{Object.class, Object.class};
         }
         Type type2 = actualTypeArguments[0];

@@ -1,14 +1,14 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackChangeLogCtaClicked.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackChangeLogCtaClicked implements AnalyticsSchema, TrackBaseReceiver {
+public final /* data */ class TrackChangeLogCtaClicked implements AnalyticsSchema, TrackBase2 {
     private final CharSequence changeLogId = null;
     private final CharSequence ctaType = null;
     private final Float maxScrolledPercentage = null;
@@ -25,7 +25,7 @@ public final /* data */ class TrackChangeLogCtaClicked implements AnalyticsSchem
             return false;
         }
         TrackChangeLogCtaClicked trackChangeLogCtaClicked = (TrackChangeLogCtaClicked) other;
-        return m.areEqual(this.changeLogId, trackChangeLogCtaClicked.changeLogId) && m.areEqual(this.secondsOpen, trackChangeLogCtaClicked.secondsOpen) && m.areEqual(this.maxScrolledPercentage, trackChangeLogCtaClicked.maxScrolledPercentage) && m.areEqual(this.ctaType, trackChangeLogCtaClicked.ctaType) && m.areEqual(this.target, trackChangeLogCtaClicked.target);
+        return Intrinsics3.areEqual(this.changeLogId, trackChangeLogCtaClicked.changeLogId) && Intrinsics3.areEqual(this.secondsOpen, trackChangeLogCtaClicked.secondsOpen) && Intrinsics3.areEqual(this.maxScrolledPercentage, trackChangeLogCtaClicked.maxScrolledPercentage) && Intrinsics3.areEqual(this.ctaType, trackChangeLogCtaClicked.ctaType) && Intrinsics3.areEqual(this.target, trackChangeLogCtaClicked.target);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -48,7 +48,7 @@ public final /* data */ class TrackChangeLogCtaClicked implements AnalyticsSchem
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackChangeLogCtaClicked(changeLogId=");
+        StringBuilder sbU = outline.U("TrackChangeLogCtaClicked(changeLogId=");
         sbU.append(this.changeLogId);
         sbU.append(", secondsOpen=");
         sbU.append(this.secondsOpen);
@@ -57,6 +57,6 @@ public final /* data */ class TrackChangeLogCtaClicked implements AnalyticsSchem
         sbU.append(", ctaType=");
         sbU.append(this.ctaType);
         sbU.append(", target=");
-        return a.E(sbU, this.target, ")");
+        return outline.E(sbU, this.target, ")");
     }
 }

@@ -6,7 +6,7 @@ import androidx.work.BackoffPolicy;
 import androidx.work.ContentUriTriggers;
 import androidx.work.NetworkType;
 import androidx.work.WorkInfo;
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -294,7 +294,7 @@ public class WorkTypeConverters {
         if (i == 1) {
             return BackoffPolicy.LINEAR;
         }
-        throw new IllegalArgumentException(a.r("Could not convert ", i, " to BackoffPolicy"));
+        throw new IllegalArgumentException(outline.r("Could not convert ", i, " to BackoffPolicy"));
     }
 
     @TypeConverter
@@ -314,7 +314,7 @@ public class WorkTypeConverters {
         if (i == 4) {
             return NetworkType.METERED;
         }
-        throw new IllegalArgumentException(a.r("Could not convert ", i, " to NetworkType"));
+        throw new IllegalArgumentException(outline.r("Could not convert ", i, " to NetworkType"));
     }
 
     @TypeConverter
@@ -337,7 +337,7 @@ public class WorkTypeConverters {
         if (i == 5) {
             return WorkInfo.State.CANCELLED;
         }
-        throw new IllegalArgumentException(a.r("Could not convert ", i, " to State"));
+        throw new IllegalArgumentException(outline.r("Could not convert ", i, " to State"));
     }
 
     @TypeConverter

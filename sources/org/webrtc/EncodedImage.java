@@ -1,7 +1,7 @@
 package org.webrtc;
 
 import androidx.annotation.Nullable;
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import java.nio.ByteBuffer;
 import java.util.concurrent.TimeUnit;
 
@@ -107,7 +107,7 @@ public class EncodedImage implements RefCounted {
                     return frameType;
                 }
             }
-            throw new IllegalArgumentException(a.q("Unknown native frame type: ", i));
+            throw new IllegalArgumentException(outline.q("Unknown native frame type: ", i));
         }
 
         public int getNative() {

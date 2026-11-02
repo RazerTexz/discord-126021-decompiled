@@ -1,13 +1,13 @@
 package com.discord.widgets.channels.list;
 
 import com.discord.api.channel.Channel;
-import d0.z.d.o;
+import d0.z.d.Lambda;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function1;
 
 /* JADX INFO: compiled from: WidgetChannelsListAdapter.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class WidgetChannelsListAdapter$onSelectGuildRoleSubscriptionLockedChannel$1 extends o implements Function1<Channel, Unit> {
+public final class WidgetChannelsListAdapter$onSelectGuildRoleSubscriptionLockedChannel$1 extends Lambda implements Function1<Channel, Unit> {
     public static final WidgetChannelsListAdapter$onSelectGuildRoleSubscriptionLockedChannel$1 INSTANCE = new WidgetChannelsListAdapter$onSelectGuildRoleSubscriptionLockedChannel$1();
 
     public WidgetChannelsListAdapter$onSelectGuildRoleSubscriptionLockedChannel$1() {

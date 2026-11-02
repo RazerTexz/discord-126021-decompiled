@@ -6,10 +6,10 @@ import android.widget.TextView;
 import androidx.core.app.NotificationCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-import b.a.a.b.c;
-import b.a.d.j;
-import b.a.k.b;
-import b.d.b.a.a;
+import b.a.a.b.MultiValuePropPremiumUpsellDialog;
+import b.a.d.AppScreen2;
+import b.a.k.FormatUtils;
+import b.d.b.a.outline;
 import com.discord.R;
 import com.discord.app.AppActivity;
 import com.discord.app.AppFragment;
@@ -23,11 +23,11 @@ import com.discord.utilities.analytics.AnalyticsTracker;
 import com.discord.utilities.analytics.Traits;
 import com.discord.utilities.view.text.LinkifiedTextView;
 import com.discord.utilities.viewbinding.FragmentViewBindingDelegate;
-import com.discord.utilities.viewbinding.FragmentViewBindingDelegateKt;
+import com.discord.utilities.viewbinding.FragmentViewBindingDelegate3;
 import com.discord.views.CheckedSetting;
-import d0.t.n;
-import d0.z.d.m;
-import d0.z.d.o;
+import d0.t.Collections2;
+import d0.z.d.Intrinsics3;
+import d0.z.d.Lambda;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function1;
 import kotlin.jvm.internal.DefaultConstructorMarker;
@@ -37,7 +37,7 @@ import rx.functions.Action1;
 /* JADX INFO: compiled from: WidgetSettingsMedia.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetSettingsMedia extends AppFragment {
-    public static final /* synthetic */ KProperty[] $$delegatedProperties = {a.d0(WidgetSettingsMedia.class, "binding", "getBinding()Lcom/discord/databinding/WidgetSettingsMediaBinding;", 0)};
+    public static final /* synthetic */ KProperty[] $$delegatedProperties = {outline.d0(WidgetSettingsMedia.class, "binding", "getBinding()Lcom/discord/databinding/WidgetSettingsMediaBinding;", 0)};
 
     /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
     public static final Companion INSTANCE = new Companion(null);
@@ -63,7 +63,7 @@ public final class WidgetSettingsMedia extends AppFragment {
         public final void call2(Boolean bool) {
             StoreUserSettings storeUserSettingsAccess$getUserSettings$p = WidgetSettingsMedia.access$getUserSettings$p(WidgetSettingsMedia.this);
             AppActivity appActivity = WidgetSettingsMedia.this.getAppActivity();
-            m.checkNotNullExpressionValue(bool, "checked");
+            Intrinsics3.checkNotNullExpressionValue(bool, "checked");
             storeUserSettingsAccess$getUserSettings$p.setIsAttachmentMediaInline(appActivity, bool.booleanValue());
         }
     }
@@ -82,18 +82,18 @@ public final class WidgetSettingsMedia extends AppFragment {
         /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
         public final void call2(Boolean bool) {
             StoreUserSettings storeUserSettingsAccess$getUserSettings$p = WidgetSettingsMedia.access$getUserSettings$p(WidgetSettingsMedia.this);
-            m.checkNotNullExpressionValue(bool, "checked");
+            Intrinsics3.checkNotNullExpressionValue(bool, "checked");
             storeUserSettingsAccess$getUserSettings$p.setIsAutoImageCompressionEnabled(bool.booleanValue());
         }
     }
 
     /* JADX INFO: renamed from: com.discord.widgets.settings.WidgetSettingsMedia$onViewBound$3, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetSettingsMedia.kt */
-    public final class AnonymousClass3 extends o implements Function1<RenderContext, Unit> {
+    public final class AnonymousClass3 extends Lambda implements Function1<RenderContext, Unit> {
 
         /* JADX INFO: renamed from: com.discord.widgets.settings.WidgetSettingsMedia$onViewBound$3$1, reason: invalid class name */
         /* JADX INFO: compiled from: WidgetSettingsMedia.kt */
-        public final class AnonymousClass1 extends o implements Function1<View, Unit> {
+        public final class AnonymousClass1 extends Lambda implements Function1<View, Unit> {
             public AnonymousClass1() {
                 super(1);
             }
@@ -106,11 +106,11 @@ public final class WidgetSettingsMedia extends AppFragment {
 
             /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
             public final void invoke2(View view) {
-                m.checkNotNullParameter(view, "it");
-                c.Companion companion = c.INSTANCE;
+                Intrinsics3.checkNotNullParameter(view, "it");
+                MultiValuePropPremiumUpsellDialog.Companion companion = MultiValuePropPremiumUpsellDialog.INSTANCE;
                 FragmentManager childFragmentManager = WidgetSettingsMedia.this.getChildFragmentManager();
-                m.checkNotNullExpressionValue(childFragmentManager, "childFragmentManager");
-                c.Companion.a(companion, childFragmentManager, 3, null, null, null, "Image Compression Settings", null, null, false, false, 988);
+                Intrinsics3.checkNotNullExpressionValue(childFragmentManager, "childFragmentManager");
+                MultiValuePropPremiumUpsellDialog.Companion.a(companion, childFragmentManager, 3, null, null, null, "Image Compression Settings", null, null, false, false, 988);
             }
         }
 
@@ -126,7 +126,7 @@ public final class WidgetSettingsMedia extends AppFragment {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(RenderContext renderContext) {
-            m.checkNotNullParameter(renderContext, "$receiver");
+            Intrinsics3.checkNotNullParameter(renderContext, "$receiver");
             renderContext.b("getNitro", new AnonymousClass1());
         }
     }
@@ -146,7 +146,7 @@ public final class WidgetSettingsMedia extends AppFragment {
         public final void call2(Boolean bool) {
             StoreUserSettings storeUserSettingsAccess$getUserSettings$p = WidgetSettingsMedia.access$getUserSettings$p(WidgetSettingsMedia.this);
             AppActivity appActivity = WidgetSettingsMedia.this.getAppActivity();
-            m.checkNotNullExpressionValue(bool, "checked");
+            Intrinsics3.checkNotNullExpressionValue(bool, "checked");
             storeUserSettingsAccess$getUserSettings$p.setIsEmbedMediaInlined(appActivity, bool.booleanValue());
         }
     }
@@ -166,7 +166,7 @@ public final class WidgetSettingsMedia extends AppFragment {
         public final void call2(Boolean bool) {
             StoreUserSettings storeUserSettingsAccess$getUserSettings$p = WidgetSettingsMedia.access$getUserSettings$p(WidgetSettingsMedia.this);
             AppActivity appActivity = WidgetSettingsMedia.this.getAppActivity();
-            m.checkNotNullExpressionValue(bool, "checked");
+            Intrinsics3.checkNotNullExpressionValue(bool, "checked");
             storeUserSettingsAccess$getUserSettings$p.setIsRenderEmbedsEnabled(appActivity, bool.booleanValue());
         }
     }
@@ -185,7 +185,7 @@ public final class WidgetSettingsMedia extends AppFragment {
         /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
         public final void call2(Boolean bool) {
             StoreUserSettings storeUserSettingsAccess$getUserSettings$p = WidgetSettingsMedia.access$getUserSettings$p(WidgetSettingsMedia.this);
-            m.checkNotNullExpressionValue(bool, "checked");
+            Intrinsics3.checkNotNullExpressionValue(bool, "checked");
             storeUserSettingsAccess$getUserSettings$p.getIsSyncTextAndImagesEnabled(bool.booleanValue());
         }
     }
@@ -204,7 +204,7 @@ public final class WidgetSettingsMedia extends AppFragment {
         /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
         public final void call2(Boolean bool) {
             AnalyticsTracker analyticsTracker = AnalyticsTracker.INSTANCE;
-            m.checkNotNullExpressionValue(bool, "checked");
+            Intrinsics3.checkNotNullExpressionValue(bool, "checked");
             analyticsTracker.stickerSuggestionsEnabledToggled(bool.booleanValue(), new Traits.Location(null, Traits.Location.Section.SETTINGS_TEXT_AND_IMAGES, null, null, null, 29, null));
             WidgetSettingsMedia.access$getUserSettings$p(WidgetSettingsMedia.this).setIsStickerSuggestionsEnabled(bool.booleanValue());
         }
@@ -216,8 +216,8 @@ public final class WidgetSettingsMedia extends AppFragment {
         }
 
         public final void launch(Context context) {
-            m.checkNotNullParameter(context, "context");
-            j.e(context, WidgetSettingsMedia.class, null, 4);
+            Intrinsics3.checkNotNullParameter(context, "context");
+            AppScreen2.e(context, WidgetSettingsMedia.class, null, 4);
         }
 
         public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
@@ -227,13 +227,13 @@ public final class WidgetSettingsMedia extends AppFragment {
 
     public WidgetSettingsMedia() {
         super(R.layout.widget_settings_media);
-        this.binding = FragmentViewBindingDelegateKt.viewBinding$default(this, WidgetSettingsMedia$binding$2.INSTANCE, null, 2, null);
+        this.binding = FragmentViewBindingDelegate3.viewBinding$default(this, WidgetSettingsMedia2.INSTANCE, null, 2, null);
     }
 
     public static final /* synthetic */ StoreUserSettings access$getUserSettings$p(WidgetSettingsMedia widgetSettingsMedia) {
         StoreUserSettings storeUserSettings = widgetSettingsMedia.userSettings;
         if (storeUserSettings == null) {
-            m.throwUninitializedPropertyAccessException("userSettings");
+            Intrinsics3.throwUninitializedPropertyAccessException("userSettings");
         }
         return storeUserSettings;
     }
@@ -252,7 +252,7 @@ public final class WidgetSettingsMedia extends AppFragment {
 
     @Override // com.discord.app.AppFragment
     public void onViewBound(View view) {
-        m.checkNotNullParameter(view, "view");
+        Intrinsics3.checkNotNullParameter(view, "view");
         super.onViewBound(view);
         setActionBarSubtitle(R.string.user_settings);
         setActionBarTitle(R.string.text_and_images);
@@ -261,60 +261,60 @@ public final class WidgetSettingsMedia extends AppFragment {
         this.userSettings = companion.getUserSettings();
         this.accessibilitySettings = companion.getAccessibility();
         CheckedSetting checkedSetting = getBinding().f2630b;
-        m.checkNotNullExpressionValue(checkedSetting, "binding.attachmentsToggle");
+        Intrinsics3.checkNotNullExpressionValue(checkedSetting, "binding.attachmentsToggle");
         StoreUserSettings storeUserSettings = this.userSettings;
         if (storeUserSettings == null) {
-            m.throwUninitializedPropertyAccessException("userSettings");
+            Intrinsics3.throwUninitializedPropertyAccessException("userSettings");
         }
         checkedSetting.setChecked(storeUserSettings.getIsAttachmentMediaInline());
-        CheckedSetting.i(getBinding().f2630b, b.k(this, R.string.inline_attachment_media_help, new Object[]{PREVIEW_MAX_SIZE_MB}, null, 4), false, 2);
+        CheckedSetting.i(getBinding().f2630b, FormatUtils.k(this, R.string.inline_attachment_media_help, new Object[]{PREVIEW_MAX_SIZE_MB}, null, 4), false, 2);
         getBinding().f2630b.setOnCheckedListener(new AnonymousClass1());
         getBinding().c.setOnCheckedListener(new AnonymousClass2());
         CheckedSetting checkedSetting2 = getBinding().c;
-        m.checkNotNullExpressionValue(checkedSetting2, "binding.compressionToggle");
+        Intrinsics3.checkNotNullExpressionValue(checkedSetting2, "binding.compressionToggle");
         StoreUserSettings storeUserSettings2 = this.userSettings;
         if (storeUserSettings2 == null) {
-            m.throwUninitializedPropertyAccessException("userSettings");
+            Intrinsics3.throwUninitializedPropertyAccessException("userSettings");
         }
         checkedSetting2.setChecked(storeUserSettings2.getIsAutoImageCompressionEnabled());
         LinkifiedTextView linkifiedTextView = getBinding().d;
-        m.checkNotNullExpressionValue(linkifiedTextView, "binding.compressionToggleSubtext");
-        b.m(linkifiedTextView, R.string.image_compression_nitro_upsell, new Object[]{"getNitro"}, new AnonymousClass3());
+        Intrinsics3.checkNotNullExpressionValue(linkifiedTextView, "binding.compressionToggleSubtext");
+        FormatUtils.m(linkifiedTextView, R.string.image_compression_nitro_upsell, new Object[]{"getNitro"}, new AnonymousClass3());
         CheckedSetting checkedSetting3 = getBinding().g;
-        m.checkNotNullExpressionValue(checkedSetting3, "binding.settingsTextImagesEmbedsToggle");
+        Intrinsics3.checkNotNullExpressionValue(checkedSetting3, "binding.settingsTextImagesEmbedsToggle");
         StoreUserSettings storeUserSettings3 = this.userSettings;
         if (storeUserSettings3 == null) {
-            m.throwUninitializedPropertyAccessException("userSettings");
+            Intrinsics3.throwUninitializedPropertyAccessException("userSettings");
         }
         checkedSetting3.setChecked(storeUserSettings3.getIsEmbedMediaInlined());
         getBinding().g.setOnCheckedListener(new AnonymousClass4());
         CheckedSetting checkedSetting4 = getBinding().h;
-        m.checkNotNullExpressionValue(checkedSetting4, "binding.settingsTextImagesLinksToggle");
+        Intrinsics3.checkNotNullExpressionValue(checkedSetting4, "binding.settingsTextImagesLinksToggle");
         StoreUserSettings storeUserSettings4 = this.userSettings;
         if (storeUserSettings4 == null) {
-            m.throwUninitializedPropertyAccessException("userSettings");
+            Intrinsics3.throwUninitializedPropertyAccessException("userSettings");
         }
         checkedSetting4.setChecked(storeUserSettings4.getIsRenderEmbedsEnabled());
         getBinding().h.setOnCheckedListener(new AnonymousClass5());
         CheckedSetting checkedSetting5 = getBinding().l;
-        m.checkNotNullExpressionValue(checkedSetting5, "binding.settingsTextImagesSyncToggle");
+        Intrinsics3.checkNotNullExpressionValue(checkedSetting5, "binding.settingsTextImagesSyncToggle");
         StoreUserSettings storeUserSettings5 = this.userSettings;
         if (storeUserSettings5 == null) {
-            m.throwUninitializedPropertyAccessException("userSettings");
+            Intrinsics3.throwUninitializedPropertyAccessException("userSettings");
         }
         checkedSetting5.setChecked(storeUserSettings5.getIsSyncTextAndImagesEnabled());
         getBinding().l.setOnCheckedListener(new AnonymousClass6());
         CheckedSetting checkedSetting6 = getBinding().m;
-        m.checkNotNullExpressionValue(checkedSetting6, "binding.stickersSuggestions");
+        Intrinsics3.checkNotNullExpressionValue(checkedSetting6, "binding.stickersSuggestions");
         StoreUserSettings storeUserSettings6 = this.userSettings;
         if (storeUserSettings6 == null) {
-            m.throwUninitializedPropertyAccessException("userSettings");
+            Intrinsics3.throwUninitializedPropertyAccessException("userSettings");
         }
         checkedSetting6.setChecked(storeUserSettings6.getIsStickerSuggestionsEnabled());
         getBinding().m.setOnCheckedListener(new AnonymousClass7());
-        for (TextView textView : n.listOf((Object[]) new TextView[]{getBinding().f, getBinding().j, getBinding().e, getBinding().i, getBinding().k})) {
+        for (TextView textView : Collections2.listOf((Object[]) new TextView[]{getBinding().f, getBinding().j, getBinding().e, getBinding().i, getBinding().k})) {
             AccessibilityUtils accessibilityUtils = AccessibilityUtils.INSTANCE;
-            m.checkNotNullExpressionValue(textView, "header");
+            Intrinsics3.checkNotNullExpressionValue(textView, "header");
             accessibilityUtils.setViewIsHeading(textView);
         }
     }

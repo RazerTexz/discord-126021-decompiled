@@ -1,8 +1,8 @@
 package com.discord.models.domain.spotify;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.models.domain.ModelAuditLogEntry;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 import java.util.List;
 
 /* JADX INFO: compiled from: ModelSpotifyAlbum.kt */
@@ -34,7 +34,7 @@ public final /* data */ class ModelSpotifyAlbum {
 
         public boolean equals(Object other) {
             if (this != other) {
-                return (other instanceof AlbumImage) && m.areEqual(this.url, ((AlbumImage) other).url);
+                return (other instanceof AlbumImage) && Intrinsics3.areEqual(this.url, ((AlbumImage) other).url);
             }
             return true;
         }
@@ -57,15 +57,15 @@ public final /* data */ class ModelSpotifyAlbum {
         }
 
         public String toString() {
-            return a.J(a.U("AlbumImage(url="), this.url, ")");
+            return outline.J(outline.U("AlbumImage(url="), this.url, ")");
         }
     }
 
     public ModelSpotifyAlbum(String str, String str2, List<AlbumImage> list, String str3) {
-        m.checkNotNullParameter(str, "albumType");
-        m.checkNotNullParameter(str2, ModelAuditLogEntry.CHANGE_KEY_ID);
-        m.checkNotNullParameter(list, "images");
-        m.checkNotNullParameter(str3, ModelAuditLogEntry.CHANGE_KEY_NAME);
+        Intrinsics3.checkNotNullParameter(str, "albumType");
+        Intrinsics3.checkNotNullParameter(str2, ModelAuditLogEntry.CHANGE_KEY_ID);
+        Intrinsics3.checkNotNullParameter(list, "images");
+        Intrinsics3.checkNotNullParameter(str3, ModelAuditLogEntry.CHANGE_KEY_NAME);
         this.albumType = str;
         this.id = str2;
         this.images = list;
@@ -94,10 +94,10 @@ public final /* data */ class ModelSpotifyAlbum {
     }
 
     public final ModelSpotifyAlbum copy(String albumType, String id2, List<AlbumImage> images, String name) {
-        m.checkNotNullParameter(albumType, "albumType");
-        m.checkNotNullParameter(id2, ModelAuditLogEntry.CHANGE_KEY_ID);
-        m.checkNotNullParameter(images, "images");
-        m.checkNotNullParameter(name, ModelAuditLogEntry.CHANGE_KEY_NAME);
+        Intrinsics3.checkNotNullParameter(albumType, "albumType");
+        Intrinsics3.checkNotNullParameter(id2, ModelAuditLogEntry.CHANGE_KEY_ID);
+        Intrinsics3.checkNotNullParameter(images, "images");
+        Intrinsics3.checkNotNullParameter(name, ModelAuditLogEntry.CHANGE_KEY_NAME);
         return new ModelSpotifyAlbum(albumType, id2, images, name);
     }
 
@@ -109,7 +109,7 @@ public final /* data */ class ModelSpotifyAlbum {
             return false;
         }
         ModelSpotifyAlbum modelSpotifyAlbum = (ModelSpotifyAlbum) other;
-        return m.areEqual(this.albumType, modelSpotifyAlbum.albumType) && m.areEqual(this.id, modelSpotifyAlbum.id) && m.areEqual(this.images, modelSpotifyAlbum.images) && m.areEqual(this.name, modelSpotifyAlbum.name);
+        return Intrinsics3.areEqual(this.albumType, modelSpotifyAlbum.albumType) && Intrinsics3.areEqual(this.id, modelSpotifyAlbum.id) && Intrinsics3.areEqual(this.images, modelSpotifyAlbum.images) && Intrinsics3.areEqual(this.name, modelSpotifyAlbum.name);
     }
 
     /* JADX INFO: renamed from: component1, reason: from getter */
@@ -155,13 +155,13 @@ public final /* data */ class ModelSpotifyAlbum {
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("ModelSpotifyAlbum(albumType=");
+        StringBuilder sbU = outline.U("ModelSpotifyAlbum(albumType=");
         sbU.append(this.albumType);
         sbU.append(", id=");
         sbU.append(this.id);
         sbU.append(", images=");
         sbU.append(this.images);
         sbU.append(", name=");
-        return a.J(sbU, this.name, ")");
+        return outline.J(sbU, this.name, ")");
     }
 }

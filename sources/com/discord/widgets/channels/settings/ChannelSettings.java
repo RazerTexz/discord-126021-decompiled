@@ -1,9 +1,9 @@
 package com.discord.widgets.channels.settings;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.api.channel.Channel;
 import com.discord.models.domain.ModelNotificationSettings;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 import kotlin.jvm.internal.DefaultConstructorMarker;
 
 /* JADX INFO: compiled from: ChannelSettings.kt */
@@ -22,12 +22,12 @@ public final /* data */ class ChannelSettings {
         }
 
         public final ChannelSettings createFromNotificationSettings(Channel channel, ModelNotificationSettings notificationSettings) {
-            m.checkNotNullParameter(channel, "channel");
-            m.checkNotNullParameter(notificationSettings, "notificationSettings");
+            Intrinsics3.checkNotNullParameter(channel, "channel");
+            Intrinsics3.checkNotNullParameter(notificationSettings, "notificationSettings");
             boolean zIsMuted = notificationSettings.isMuted();
             String muteEndTime = notificationSettings.getMuteEndTime();
             for (ModelNotificationSettings.ChannelOverride channelOverride : notificationSettings.getChannelOverrides()) {
-                m.checkNotNullExpressionValue(channelOverride, "override");
+                Intrinsics3.checkNotNullExpressionValue(channelOverride, "override");
                 if (channelOverride.getChannelId() == channel.getId()) {
                     zIsMuted = channelOverride.isMuted();
                     muteEndTime = channelOverride.getMuteEndTime();
@@ -43,7 +43,7 @@ public final /* data */ class ChannelSettings {
     }
 
     public ChannelSettings(Channel channel, boolean z2, String str) {
-        m.checkNotNullParameter(channel, "channel");
+        Intrinsics3.checkNotNullParameter(channel, "channel");
         this.channel = channel;
         this.isMuted = z2;
         this.muteEndTime = str;
@@ -63,7 +63,7 @@ public final /* data */ class ChannelSettings {
     }
 
     public final ChannelSettings copy(Channel channel, boolean isMuted, String muteEndTime) {
-        m.checkNotNullParameter(channel, "channel");
+        Intrinsics3.checkNotNullParameter(channel, "channel");
         return new ChannelSettings(channel, isMuted, muteEndTime);
     }
 
@@ -75,7 +75,7 @@ public final /* data */ class ChannelSettings {
             return false;
         }
         ChannelSettings channelSettings = (ChannelSettings) other;
-        return m.areEqual(this.channel, channelSettings.channel) && this.isMuted == channelSettings.isMuted && m.areEqual(this.muteEndTime, channelSettings.muteEndTime);
+        return Intrinsics3.areEqual(this.channel, channelSettings.channel) && this.isMuted == channelSettings.isMuted && Intrinsics3.areEqual(this.muteEndTime, channelSettings.muteEndTime);
     }
 
     /* JADX INFO: renamed from: component1, reason: from getter */
@@ -124,11 +124,11 @@ public final /* data */ class ChannelSettings {
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("ChannelSettings(channel=");
+        StringBuilder sbU = outline.U("ChannelSettings(channel=");
         sbU.append(this.channel);
         sbU.append(", isMuted=");
         sbU.append(this.isMuted);
         sbU.append(", muteEndTime=");
-        return a.J(sbU, this.muteEndTime, ")");
+        return outline.J(sbU, this.muteEndTime, ")");
     }
 }

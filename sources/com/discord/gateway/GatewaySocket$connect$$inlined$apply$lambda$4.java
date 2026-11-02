@@ -1,7 +1,7 @@
 package com.discord.gateway;
 
 import com.discord.utilities.websocket.RawMessageHandler;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: GatewaySocket.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -16,13 +16,13 @@ public final class GatewaySocket$connect$$inlined$apply$lambda$4 implements RawM
 
     @Override // com.discord.utilities.websocket.RawMessageHandler
     public void onRawMessage(String rawMessage) {
-        m.checkNotNullParameter(rawMessage, "rawMessage");
+        Intrinsics3.checkNotNullParameter(rawMessage, "rawMessage");
         GatewaySocket.access$getGatewaySocketLogger$p(this.this$0).logInboundMessage(rawMessage);
     }
 
     @Override // com.discord.utilities.websocket.RawMessageHandler
     public void onRawMessageInflateFailed(Throwable throwable) {
-        m.checkNotNullParameter(throwable, "throwable");
+        Intrinsics3.checkNotNullParameter(throwable, "throwable");
         GatewaySocket.access$getGatewaySocketLogger$p(this.this$0).logMessageInflateFailed(throwable);
     }
 }

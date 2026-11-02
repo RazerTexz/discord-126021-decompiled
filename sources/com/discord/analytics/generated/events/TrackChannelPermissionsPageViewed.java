@@ -1,18 +1,18 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.analytics.generated.traits.TrackChannel;
-import com.discord.analytics.generated.traits.TrackChannelReceiver;
+import com.discord.analytics.generated.traits.TrackChannel2;
 import com.discord.analytics.generated.traits.TrackGuild;
-import com.discord.analytics.generated.traits.TrackGuildReceiver;
+import com.discord.analytics.generated.traits.TrackGuild2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackChannelPermissionsPageViewed.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackChannelPermissionsPageViewed implements AnalyticsSchema, TrackBaseReceiver, TrackGuildReceiver, TrackChannelReceiver {
+public final /* data */ class TrackChannelPermissionsPageViewed implements AnalyticsSchema, TrackBase2, TrackGuild2, TrackChannel2 {
     private final Boolean channelIsPrivate = null;
     private final Boolean channelIsReadOnly = null;
     private final CharSequence mode = null;
@@ -21,7 +21,7 @@ public final /* data */ class TrackChannelPermissionsPageViewed implements Analy
     private TrackGuild trackGuild;
     private final transient String analyticsSchemaTypeName = "channel_permissions_page_viewed";
 
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    @Override // com.discord.analytics.generated.traits.TrackGuild2
     public void c(TrackGuild trackGuild) {
         this.trackGuild = trackGuild;
     }
@@ -34,7 +34,7 @@ public final /* data */ class TrackChannelPermissionsPageViewed implements Analy
             return false;
         }
         TrackChannelPermissionsPageViewed trackChannelPermissionsPageViewed = (TrackChannelPermissionsPageViewed) other;
-        return m.areEqual(this.mode, trackChannelPermissionsPageViewed.mode) && m.areEqual(this.channelIsPrivate, trackChannelPermissionsPageViewed.channelIsPrivate) && m.areEqual(this.channelIsReadOnly, trackChannelPermissionsPageViewed.channelIsReadOnly);
+        return Intrinsics3.areEqual(this.mode, trackChannelPermissionsPageViewed.mode) && Intrinsics3.areEqual(this.channelIsPrivate, trackChannelPermissionsPageViewed.channelIsPrivate) && Intrinsics3.areEqual(this.channelIsReadOnly, trackChannelPermissionsPageViewed.channelIsReadOnly);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -43,7 +43,7 @@ public final /* data */ class TrackChannelPermissionsPageViewed implements Analy
         return this.analyticsSchemaTypeName;
     }
 
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    @Override // com.discord.analytics.generated.traits.TrackGuild2
     /* JADX INFO: renamed from: a, reason: from getter */
     public TrackGuild getTrackGuild() {
         return this.trackGuild;
@@ -59,11 +59,11 @@ public final /* data */ class TrackChannelPermissionsPageViewed implements Analy
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackChannelPermissionsPageViewed(mode=");
+        StringBuilder sbU = outline.U("TrackChannelPermissionsPageViewed(mode=");
         sbU.append(this.mode);
         sbU.append(", channelIsPrivate=");
         sbU.append(this.channelIsPrivate);
         sbU.append(", channelIsReadOnly=");
-        return a.D(sbU, this.channelIsReadOnly, ")");
+        return outline.D(sbU, this.channelIsReadOnly, ")");
     }
 }

@@ -1,9 +1,9 @@
 package com.discord.api.channel;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.api.user.User;
 import com.discord.models.domain.ModelAuditLogEntry;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: ChannelRecipient.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -20,7 +20,7 @@ public final /* data */ class ChannelRecipient {
             return false;
         }
         ChannelRecipient channelRecipient = (ChannelRecipient) other;
-        return m.areEqual(this.nick, channelRecipient.nick) && this.channelId == channelRecipient.channelId && m.areEqual(this.user, channelRecipient.user);
+        return Intrinsics3.areEqual(this.nick, channelRecipient.nick) && this.channelId == channelRecipient.channelId && Intrinsics3.areEqual(this.user, channelRecipient.user);
     }
 
     /* JADX INFO: renamed from: a, reason: from getter */
@@ -48,7 +48,7 @@ public final /* data */ class ChannelRecipient {
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("ChannelRecipient(nick=");
+        StringBuilder sbU = outline.U("ChannelRecipient(nick=");
         sbU.append(this.nick);
         sbU.append(", channelId=");
         sbU.append(this.channelId);

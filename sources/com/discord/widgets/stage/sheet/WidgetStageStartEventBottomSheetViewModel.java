@@ -2,8 +2,8 @@ package com.discord.widgets.stage.sheet;
 
 import android.content.Context;
 import androidx.annotation.MainThread;
-import b.a.d.d0;
-import b.d.b.a.a;
+import b.a.d.AppViewModel;
+import b.d.b.a.outline;
 import com.discord.R;
 import com.discord.api.channel.Channel;
 import com.discord.api.stageinstance.StageInstance;
@@ -16,9 +16,9 @@ import com.discord.utilities.error.Error;
 import com.discord.utilities.rest.RestAPI;
 import com.discord.utilities.rx.ObservableExtensionsKt;
 import com.discord.widgets.stage.StageChannelAPI;
-import d0.g0.w;
-import d0.z.d.m;
-import d0.z.d.o;
+import d0.g0.Strings4;
+import d0.z.d.Intrinsics3;
+import d0.z.d.Lambda;
 import java.util.Objects;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
@@ -29,7 +29,7 @@ import rx.subjects.PublishSubject;
 
 /* JADX INFO: compiled from: WidgetStageStartEventBottomSheetViewModel.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class WidgetStageStartEventBottomSheetViewModel extends d0<ViewState> {
+public final class WidgetStageStartEventBottomSheetViewModel extends AppViewModel<ViewState> {
 
     /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
     public static final Companion INSTANCE = new Companion(null);
@@ -41,7 +41,7 @@ public final class WidgetStageStartEventBottomSheetViewModel extends d0<ViewStat
 
     /* JADX INFO: renamed from: com.discord.widgets.stage.sheet.WidgetStageStartEventBottomSheetViewModel$1, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetStageStartEventBottomSheetViewModel.kt */
-    public final class AnonymousClass1 extends o implements Function1<StoreState, Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function1<StoreState, Unit> {
         public AnonymousClass1() {
             super(1);
         }
@@ -54,14 +54,14 @@ public final class WidgetStageStartEventBottomSheetViewModel extends d0<ViewStat
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(StoreState storeState) {
-            m.checkNotNullParameter(storeState, "storeState");
+            Intrinsics3.checkNotNullParameter(storeState, "storeState");
             WidgetStageStartEventBottomSheetViewModel.access$handleStoreState(WidgetStageStartEventBottomSheetViewModel.this, storeState);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.widgets.stage.sheet.WidgetStageStartEventBottomSheetViewModel$openStage$1, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetStageStartEventBottomSheetViewModel.kt */
-    public final class AnonymousClass1 extends o implements Function1<Error, Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function1<Error, Unit> {
         public AnonymousClass1() {
             super(1);
         }
@@ -74,14 +74,14 @@ public final class WidgetStageStartEventBottomSheetViewModel extends d0<ViewStat
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(Error error) {
-            m.checkNotNullParameter(error, "it");
+            Intrinsics3.checkNotNullParameter(error, "it");
             WidgetStageStartEventBottomSheetViewModel.access$emitSetStatusFailureEvent(WidgetStageStartEventBottomSheetViewModel.this);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.widgets.stage.sheet.WidgetStageStartEventBottomSheetViewModel$setSelfSpeaker$1, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetStageStartEventBottomSheetViewModel.kt */
-    public final class AnonymousClass1 extends o implements Function1<Void, Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function1<Void, Unit> {
         public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
 
         public AnonymousClass1() {
@@ -101,7 +101,7 @@ public final class WidgetStageStartEventBottomSheetViewModel extends d0<ViewStat
 
     /* JADX INFO: renamed from: com.discord.widgets.stage.sheet.WidgetStageStartEventBottomSheetViewModel$openStage$2, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetStageStartEventBottomSheetViewModel.kt */
-    public final class AnonymousClass2 extends o implements Function1<StageInstance, Unit> {
+    public final class AnonymousClass2 extends Lambda implements Function1<StageInstance, Unit> {
         public final /* synthetic */ boolean $microphonePermissionGranted;
         public final /* synthetic */ ViewState.Loaded $viewState;
 
@@ -120,7 +120,7 @@ public final class WidgetStageStartEventBottomSheetViewModel extends d0<ViewStat
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(StageInstance stageInstance) {
-            m.checkNotNullParameter(stageInstance, "it");
+            Intrinsics3.checkNotNullParameter(stageInstance, "it");
             if (this.$microphonePermissionGranted) {
                 WidgetStageStartEventBottomSheetViewModel.access$setSelfSpeaker(WidgetStageStartEventBottomSheetViewModel.this);
             }
@@ -130,7 +130,7 @@ public final class WidgetStageStartEventBottomSheetViewModel extends d0<ViewStat
 
     /* JADX INFO: renamed from: com.discord.widgets.stage.sheet.WidgetStageStartEventBottomSheetViewModel$setSelfSpeaker$2, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetStageStartEventBottomSheetViewModel.kt */
-    public final class AnonymousClass2 extends o implements Function1<Error, Unit> {
+    public final class AnonymousClass2 extends Lambda implements Function1<Error, Unit> {
         public static final AnonymousClass2 INSTANCE = new AnonymousClass2();
 
         public AnonymousClass2() {
@@ -145,13 +145,13 @@ public final class WidgetStageStartEventBottomSheetViewModel extends d0<ViewStat
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(Error error) {
-            m.checkNotNullParameter(error, "it");
+            Intrinsics3.checkNotNullParameter(error, "it");
         }
     }
 
     /* JADX INFO: renamed from: com.discord.widgets.stage.sheet.WidgetStageStartEventBottomSheetViewModel$openStage$3, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetStageStartEventBottomSheetViewModel.kt */
-    public final class AnonymousClass3 extends o implements Function1<Error, Unit> {
+    public final class AnonymousClass3 extends Lambda implements Function1<Error, Unit> {
         public AnonymousClass3() {
             super(1);
         }
@@ -164,14 +164,14 @@ public final class WidgetStageStartEventBottomSheetViewModel extends d0<ViewStat
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(Error error) {
-            m.checkNotNullParameter(error, "it");
+            Intrinsics3.checkNotNullParameter(error, "it");
             WidgetStageStartEventBottomSheetViewModel.access$emitSetStatusFailureEvent(WidgetStageStartEventBottomSheetViewModel.this);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.widgets.stage.sheet.WidgetStageStartEventBottomSheetViewModel$openStage$4, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetStageStartEventBottomSheetViewModel.kt */
-    public final class AnonymousClass4 extends o implements Function1<StageInstance, Unit> {
+    public final class AnonymousClass4 extends Lambda implements Function1<StageInstance, Unit> {
         public final /* synthetic */ ViewState.Loaded $viewState;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -188,7 +188,7 @@ public final class WidgetStageStartEventBottomSheetViewModel extends d0<ViewStat
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(StageInstance stageInstance) {
-            m.checkNotNullParameter(stageInstance, "it");
+            Intrinsics3.checkNotNullParameter(stageInstance, "it");
             WidgetStageStartEventBottomSheetViewModel.access$emitSetStatusSuccessEvent(WidgetStageStartEventBottomSheetViewModel.this, this.$viewState.getChannel());
         }
     }
@@ -204,9 +204,9 @@ public final class WidgetStageStartEventBottomSheetViewModel extends d0<ViewStat
 
         private final Observable<StoreState> observeStoreState(long channelId, StoreChannels channelsStore, StoreStageInstances stageInstanceStore) {
             Observable<R> observableG = channelsStore.observeChannel(channelId).y(ObservableExtensionsKt.AnonymousClass1.INSTANCE).G(ObservableExtensionsKt.AnonymousClass2.INSTANCE);
-            m.checkNotNullExpressionValue(observableG, "filter { it != null }.map { it!! }");
-            Observable<StoreState> observableJ = Observable.j(observableG, stageInstanceStore.observeStageInstanceForChannel(channelId).z(), WidgetStageStartEventBottomSheetViewModel$Companion$observeStoreState$1.INSTANCE);
-            m.checkNotNullExpressionValue(observableJ, "Observable.combineLatest… stageInstance)\n        }");
+            Intrinsics3.checkNotNullExpressionValue(observableG, "filter { it != null }.map { it!! }");
+            Observable<StoreState> observableJ = Observable.j(observableG, stageInstanceStore.observeStageInstanceForChannel(channelId).z(), WidgetStageStartEventBottomSheetViewModel2.INSTANCE);
+            Intrinsics3.checkNotNullExpressionValue(observableJ, "Observable.combineLatest… stageInstance)\n        }");
             return observableJ;
         }
 
@@ -259,7 +259,7 @@ public final class WidgetStageStartEventBottomSheetViewModel extends d0<ViewStat
             }
 
             public String toString() {
-                return a.B(a.U("InvalidTopic(failureMessageStringRes="), this.failureMessageStringRes, ")");
+                return outline.B(outline.U("InvalidTopic(failureMessageStringRes="), this.failureMessageStringRes, ")");
             }
         }
 
@@ -304,7 +304,7 @@ public final class WidgetStageStartEventBottomSheetViewModel extends d0<ViewStat
             }
 
             public String toString() {
-                return a.B(a.U("SetTopicFailure(failureMessageStringRes="), this.failureMessageStringRes, ")");
+                return outline.B(outline.U("SetTopicFailure(failureMessageStringRes="), this.failureMessageStringRes, ")");
             }
         }
 
@@ -315,7 +315,7 @@ public final class WidgetStageStartEventBottomSheetViewModel extends d0<ViewStat
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
             public SetTopicSuccess(Channel channel) {
                 super(null);
-                m.checkNotNullParameter(channel, "channel");
+                Intrinsics3.checkNotNullParameter(channel, "channel");
                 this.channel = channel;
             }
 
@@ -327,13 +327,13 @@ public final class WidgetStageStartEventBottomSheetViewModel extends d0<ViewStat
             }
 
             public final SetTopicSuccess copy(Channel channel) {
-                m.checkNotNullParameter(channel, "channel");
+                Intrinsics3.checkNotNullParameter(channel, "channel");
                 return new SetTopicSuccess(channel);
             }
 
             public boolean equals(Object other) {
                 if (this != other) {
-                    return (other instanceof SetTopicSuccess) && m.areEqual(this.channel, ((SetTopicSuccess) other).channel);
+                    return (other instanceof SetTopicSuccess) && Intrinsics3.areEqual(this.channel, ((SetTopicSuccess) other).channel);
                 }
                 return true;
             }
@@ -356,7 +356,7 @@ public final class WidgetStageStartEventBottomSheetViewModel extends d0<ViewStat
             }
 
             public String toString() {
-                StringBuilder sbU = a.U("SetTopicSuccess(channel=");
+                StringBuilder sbU = outline.U("SetTopicSuccess(channel=");
                 sbU.append(this.channel);
                 sbU.append(")");
                 return sbU.toString();
@@ -377,7 +377,7 @@ public final class WidgetStageStartEventBottomSheetViewModel extends d0<ViewStat
         private final StageInstance stageInstance;
 
         public StoreState(Channel channel, StageInstance stageInstance) {
-            m.checkNotNullParameter(channel, "channel");
+            Intrinsics3.checkNotNullParameter(channel, "channel");
             this.channel = channel;
             this.stageInstance = stageInstance;
         }
@@ -393,7 +393,7 @@ public final class WidgetStageStartEventBottomSheetViewModel extends d0<ViewStat
         }
 
         public final StoreState copy(Channel channel, StageInstance stageInstance) {
-            m.checkNotNullParameter(channel, "channel");
+            Intrinsics3.checkNotNullParameter(channel, "channel");
             return new StoreState(channel, stageInstance);
         }
 
@@ -405,7 +405,7 @@ public final class WidgetStageStartEventBottomSheetViewModel extends d0<ViewStat
                 return false;
             }
             StoreState storeState = (StoreState) other;
-            return m.areEqual(this.channel, storeState.channel) && m.areEqual(this.stageInstance, storeState.stageInstance);
+            return Intrinsics3.areEqual(this.channel, storeState.channel) && Intrinsics3.areEqual(this.stageInstance, storeState.stageInstance);
         }
 
         /* JADX INFO: renamed from: component1, reason: from getter */
@@ -434,7 +434,7 @@ public final class WidgetStageStartEventBottomSheetViewModel extends d0<ViewStat
         }
 
         public String toString() {
-            StringBuilder sbU = a.U("StoreState(channel=");
+            StringBuilder sbU = outline.U("StoreState(channel=");
             sbU.append(this.channel);
             sbU.append(", stageInstance=");
             sbU.append(this.stageInstance);
@@ -464,8 +464,8 @@ public final class WidgetStageStartEventBottomSheetViewModel extends d0<ViewStat
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
             public Loaded(Channel channel, String str, StageInstance stageInstance) {
                 super(null);
-                m.checkNotNullParameter(channel, "channel");
-                m.checkNotNullParameter(str, ModelAuditLogEntry.CHANGE_KEY_TOPIC);
+                Intrinsics3.checkNotNullParameter(channel, "channel");
+                Intrinsics3.checkNotNullParameter(str, ModelAuditLogEntry.CHANGE_KEY_TOPIC);
                 this.channel = channel;
                 this.topic = str;
                 this.stageInstance = stageInstance;
@@ -485,8 +485,8 @@ public final class WidgetStageStartEventBottomSheetViewModel extends d0<ViewStat
             }
 
             public final Loaded copy(Channel channel, String topic, StageInstance stageInstance) {
-                m.checkNotNullParameter(channel, "channel");
-                m.checkNotNullParameter(topic, ModelAuditLogEntry.CHANGE_KEY_TOPIC);
+                Intrinsics3.checkNotNullParameter(channel, "channel");
+                Intrinsics3.checkNotNullParameter(topic, ModelAuditLogEntry.CHANGE_KEY_TOPIC);
                 return new Loaded(channel, topic, stageInstance);
             }
 
@@ -498,7 +498,7 @@ public final class WidgetStageStartEventBottomSheetViewModel extends d0<ViewStat
                     return false;
                 }
                 Loaded loaded = (Loaded) other;
-                return m.areEqual(this.channel, loaded.channel) && m.areEqual(this.topic, loaded.topic) && m.areEqual(this.stageInstance, loaded.stageInstance);
+                return Intrinsics3.areEqual(this.channel, loaded.channel) && Intrinsics3.areEqual(this.topic, loaded.topic) && Intrinsics3.areEqual(this.stageInstance, loaded.stageInstance);
             }
 
             /* JADX INFO: renamed from: component1, reason: from getter */
@@ -538,7 +538,7 @@ public final class WidgetStageStartEventBottomSheetViewModel extends d0<ViewStat
             }
 
             public String toString() {
-                StringBuilder sbU = a.U("Loaded(channel=");
+                StringBuilder sbU = outline.U("Loaded(channel=");
                 sbU.append(this.channel);
                 sbU.append(", topic=");
                 sbU.append(this.topic);
@@ -604,7 +604,7 @@ public final class WidgetStageStartEventBottomSheetViewModel extends d0<ViewStat
 
     public final Observable<Event> observeEvents() {
         PublishSubject<Event> publishSubject = this.eventSubject;
-        m.checkNotNullExpressionValue(publishSubject, "eventSubject");
+        Intrinsics3.checkNotNullExpressionValue(publishSubject, "eventSubject");
         return publishSubject;
     }
 
@@ -617,7 +617,7 @@ public final class WidgetStageStartEventBottomSheetViewModel extends d0<ViewStat
         if (loaded != null) {
             String topic = loaded.getTopic();
             Objects.requireNonNull(topic, "null cannot be cast to non-null type kotlin.CharSequence");
-            String string = w.trim(topic).toString();
+            String string = Strings4.trim(topic).toString();
             String str = string.length() > 0 ? string : null;
             if (str == null) {
                 this.eventSubject.k.onNext(new Event.InvalidTopic(R.string.start_stage_channel_event_modal_topic_required));
@@ -639,7 +639,7 @@ public final class WidgetStageStartEventBottomSheetViewModel extends d0<ViewStat
     }
 
     public final void setTopic(String topic) {
-        m.checkNotNullParameter(topic, ModelAuditLogEntry.CHANGE_KEY_TOPIC);
+        Intrinsics3.checkNotNullParameter(topic, ModelAuditLogEntry.CHANGE_KEY_TOPIC);
         ViewState viewState = getViewState();
         if (!(viewState instanceof ViewState.Loaded)) {
             viewState = null;
@@ -653,9 +653,9 @@ public final class WidgetStageStartEventBottomSheetViewModel extends d0<ViewStat
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public WidgetStageStartEventBottomSheetViewModel(long j, StoreChannels storeChannels, StoreStageInstances storeStageInstances, Observable<StoreState> observable) {
         super(null, 1, null);
-        m.checkNotNullParameter(storeChannels, "channelsStore");
-        m.checkNotNullParameter(storeStageInstances, "stageInstanceStore");
-        m.checkNotNullParameter(observable, "storeStateObservable");
+        Intrinsics3.checkNotNullParameter(storeChannels, "channelsStore");
+        Intrinsics3.checkNotNullParameter(storeStageInstances, "stageInstanceStore");
+        Intrinsics3.checkNotNullParameter(observable, "storeStateObservable");
         this.channelId = j;
         this.channelsStore = storeChannels;
         this.stageInstanceStore = storeStageInstances;

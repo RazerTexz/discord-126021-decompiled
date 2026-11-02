@@ -2,6 +2,7 @@ package b.c.a.y;
 
 import android.graphics.Paint;
 import androidx.browser.trusted.sharing.ShareTarget;
+import b.i.c.m.d.s.h.AppSettingsData;
 
 /* JADX INFO: loaded from: classes.dex */
 public /* synthetic */ class b {
@@ -173,9 +174,9 @@ public /* synthetic */ class b {
         return Paint.Join.BEVEL;
     }
 
-    public static int m(b.i.c.m.d.s.h.b bVar) {
-        boolean z2 = bVar.g == 2;
-        boolean z3 = bVar.h == 2;
+    public static int m(AppSettingsData appSettingsData) {
+        boolean z2 = appSettingsData.g == 2;
+        boolean z3 = appSettingsData.h == 2;
         if (z2) {
             return !z3 ? 2 : 3;
         }

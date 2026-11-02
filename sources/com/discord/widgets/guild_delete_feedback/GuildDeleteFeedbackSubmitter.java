@@ -4,7 +4,7 @@ import com.discord.utilities.analytics.AnalyticsTracker;
 import com.discord.widgets.voice.feedback.FeedbackIssue;
 import com.discord.widgets.voice.feedback.FeedbackSubmitter;
 import com.discord.widgets.voice.feedback.PendingFeedback;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: GuildDeleteFeedbackSubmitter.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -29,7 +29,7 @@ public final class GuildDeleteFeedbackSubmitter implements FeedbackSubmitter {
     }
 
     public GuildDeleteFeedbackSubmitter(PendingFeedback.GuildDeleteFeedback guildDeleteFeedback) {
-        m.checkNotNullParameter(guildDeleteFeedback, "pendingFeedback");
+        Intrinsics3.checkNotNullParameter(guildDeleteFeedback, "pendingFeedback");
         this.pendingFeedback = guildDeleteFeedback;
     }
 

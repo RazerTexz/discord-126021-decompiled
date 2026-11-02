@@ -1,6 +1,6 @@
 package b.i.a.c.c3;
 
-import b.i.a.c.j1;
+import b.i.a.c.Format2;
 import java.util.Comparator;
 
 /* JADX INFO: compiled from: lambda */
@@ -10,6 +10,6 @@ public final /* synthetic */ class a implements Comparator {
 
     @Override // java.util.Comparator
     public final int compare(Object obj, Object obj2) {
-        return ((j1) obj2).f1017s - ((j1) obj).f1017s;
+        return ((Format2) obj2).f1017s - ((Format2) obj).f1017s;
     }
 }

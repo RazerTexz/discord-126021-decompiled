@@ -1,6 +1,7 @@
 package com.esotericsoftware.kryo.util;
 
-import b.e.a.a;
+import b.d.b.a.outline;
+import b.e.a.Log;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.nio.ByteBuffer;
@@ -57,7 +58,7 @@ public class UnsafeUtil {
         long j4;
         try {
             if (Util.IS_ANDROID) {
-                a.C0064a c0064a = a.a;
+                Log.a aVar = Log.a;
                 jArrayBaseOffset7 = 0;
                 j3 = 0;
                 j2 = 0;
@@ -89,7 +90,7 @@ public class UnsafeUtil {
                                             j2 = jArrayBaseOffset;
                                             j3 = jArrayBaseOffset2;
                                         } catch (Exception unused) {
-                                            a.C0064a c0064a2 = a.a;
+                                            Log.a aVar2 = Log.a;
                                             j = 0;
                                             unsafe2 = unsafe;
                                             j2 = jArrayBaseOffset;
@@ -101,7 +102,7 @@ public class UnsafeUtil {
                                 } catch (Exception unused3) {
                                     jArrayBaseOffset = 0;
                                     jArrayBaseOffset6 = 0;
-                                    a.C0064a c0064a3 = a.a;
+                                    Log.a aVar3 = Log.a;
                                     j = 0;
                                     unsafe2 = unsafe;
                                     j2 = jArrayBaseOffset;
@@ -122,7 +123,7 @@ public class UnsafeUtil {
                                 jArrayBaseOffset = 0;
                                 jArrayBaseOffset5 = 0;
                                 jArrayBaseOffset6 = 0;
-                                a.C0064a c0064a4 = a.a;
+                                Log.a aVar4 = Log.a;
                                 j = 0;
                                 unsafe2 = unsafe;
                                 j2 = jArrayBaseOffset;
@@ -144,7 +145,7 @@ public class UnsafeUtil {
                             jArrayBaseOffset4 = 0;
                             jArrayBaseOffset5 = 0;
                             jArrayBaseOffset6 = 0;
-                            a.C0064a c0064a5 = a.a;
+                            Log.a aVar5 = Log.a;
                             j = 0;
                             unsafe2 = unsafe;
                             j2 = jArrayBaseOffset;
@@ -167,7 +168,7 @@ public class UnsafeUtil {
                         jArrayBaseOffset4 = 0;
                         jArrayBaseOffset5 = 0;
                         jArrayBaseOffset6 = 0;
-                        a.C0064a c0064a6 = a.a;
+                        Log.a aVar6 = Log.a;
                         j = 0;
                         unsafe2 = unsafe;
                         j2 = jArrayBaseOffset;
@@ -191,7 +192,7 @@ public class UnsafeUtil {
                     jArrayBaseOffset4 = 0;
                     jArrayBaseOffset5 = 0;
                     jArrayBaseOffset6 = 0;
-                    a.C0064a c0064a7 = a.a;
+                    Log.a aVar7 = Log.a;
                     j = 0;
                     unsafe2 = unsafe;
                     j2 = jArrayBaseOffset;
@@ -240,7 +241,7 @@ public class UnsafeUtil {
         try {
             return constructor.newInstance(Long.valueOf(j), Integer.valueOf(i), null);
         } catch (Exception e) {
-            throw new RuntimeException(b.d.b.a.a.t("Cannot allocate ByteBuffer at a given address: ", j), e);
+            throw new RuntimeException(outline.t("Cannot allocate ByteBuffer at a given address: ", j), e);
         }
     }
 
@@ -256,7 +257,7 @@ public class UnsafeUtil {
         Field[] fieldArr = (Field[]) list.toArray(new Field[0]);
         Arrays.sort(fieldArr, new AnonymousClass1());
         for (Field field : list) {
-            a.C0064a c0064a = a.a;
+            Log.a aVar = Log.a;
         }
         return fieldArr;
     }

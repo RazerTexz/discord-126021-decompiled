@@ -2,7 +2,7 @@ package com.discord.utilities.search.suggestion;
 
 import android.content.Context;
 import androidx.core.app.NotificationCompat;
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.api.channel.Channel;
 import com.discord.api.channel.ChannelUtils;
 import com.discord.api.permission.Permission;
@@ -15,7 +15,7 @@ import com.discord.utilities.permissions.PermissionUtils;
 import com.discord.utilities.rx.ObservableExtensionsKt;
 import com.discord.utilities.search.query.FilterType;
 import com.discord.utilities.search.query.node.QueryNode;
-import com.discord.utilities.search.query.node.answer.HasAnswerOption;
+import com.discord.utilities.search.query.node.answer.HasNode2;
 import com.discord.utilities.search.query.node.content.ContentNode;
 import com.discord.utilities.search.query.node.filter.FilterNode;
 import com.discord.utilities.search.strings.SearchStringProvider;
@@ -26,13 +26,15 @@ import com.discord.utilities.search.suggestion.entries.RecentQuerySuggestion;
 import com.discord.utilities.search.suggestion.entries.SearchSuggestion;
 import com.discord.utilities.search.suggestion.entries.UserSuggestion;
 import com.discord.utilities.search.validation.SearchData;
-import d0.g0.w;
-import d0.t.n;
-import d0.t.u;
-import d0.z.d.k;
-import d0.z.d.m;
-import d0.z.d.o;
-import j0.k.b;
+import d0.g0.Strings4;
+import d0.g0.k;
+import d0.t.Collections2;
+import d0.t.Iterables2;
+import d0.t._Collections;
+import d0.z.d.FunctionReferenceImpl;
+import d0.z.d.Intrinsics3;
+import d0.z.d.Lambda;
+import j0.k.Func1;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
@@ -59,10 +61,10 @@ public final class SearchSuggestionEngine {
 
     /* JADX INFO: renamed from: com.discord.utilities.search.suggestion.SearchSuggestionEngine$setupMemberRequestSubscription$1, reason: invalid class name */
     /* JADX INFO: compiled from: SearchSuggestionEngine.kt */
-    public final class AnonymousClass1<T, R> implements b<CharSequence, String> {
+    public final class AnonymousClass1<T, R> implements Func1<CharSequence, String> {
         public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
 
-        @Override // j0.k.b
+        @Override // j0.k.Func1
         public /* bridge */ /* synthetic */ String call(CharSequence charSequence) {
             return call2(charSequence);
         }
@@ -75,11 +77,11 @@ public final class SearchSuggestionEngine {
 
     /* JADX INFO: renamed from: com.discord.utilities.search.suggestion.SearchSuggestionEngine$setupMemberRequestSubscription$2, reason: invalid class name */
     /* JADX INFO: compiled from: SearchSuggestionEngine.kt */
-    public final /* synthetic */ class AnonymousClass2 extends k implements Function1<CharSequence, Boolean> {
+    public final /* synthetic */ class AnonymousClass2 extends FunctionReferenceImpl implements Function1<CharSequence, Boolean> {
         public static final AnonymousClass2 INSTANCE = new AnonymousClass2();
 
         public AnonymousClass2() {
-            super(1, d0.g0.k.class, "isNotEmpty", "isNotEmpty(Ljava/lang/CharSequence;)Z", 1);
+            super(1, k.class, "isNotEmpty", "isNotEmpty(Ljava/lang/CharSequence;)Z", 1);
         }
 
         @Override // kotlin.jvm.functions.Function1
@@ -88,14 +90,14 @@ public final class SearchSuggestionEngine {
         }
 
         public final boolean invoke(String str) {
-            m.checkNotNullParameter(str, "p1");
+            Intrinsics3.checkNotNullParameter(str, "p1");
             return str.length() > 0;
         }
     }
 
     /* JADX INFO: renamed from: com.discord.utilities.search.suggestion.SearchSuggestionEngine$setupMemberRequestSubscription$3, reason: invalid class name */
     /* JADX INFO: compiled from: SearchSuggestionEngine.kt */
-    public final class AnonymousClass3 extends o implements Function1<String, Unit> {
+    public final class AnonymousClass3 extends Lambda implements Function1<String, Unit> {
         public static final AnonymousClass3 INSTANCE = new AnonymousClass3();
 
         public AnonymousClass3() {
@@ -144,12 +146,12 @@ public final class SearchSuggestionEngine {
 
     private final List<ChannelSuggestion> getChannelSuggestions(CharSequence rawContent, FilterType currentFilter, Map<Long, Channel> channels, Map<Long, Long> channelPermissions) {
         if (currentFilter != FilterType.IN) {
-            return n.emptyList();
+            return Collections2.emptyList();
         }
         Collection<Channel> collectionValues = channels.values();
         ArrayList arrayList = new ArrayList();
         for (Object obj : collectionValues) {
-            if (PermissionUtils.can(Permission.VIEW_CHANNEL, (Long) a.d((Channel) obj, channelPermissions))) {
+            if (PermissionUtils.can(Permission.VIEW_CHANNEL, (Long) outline.d((Channel) obj, channelPermissions))) {
                 arrayList.add(obj);
             }
         }
@@ -159,26 +161,26 @@ public final class SearchSuggestionEngine {
                 arrayList2.add(obj2);
             }
         }
-        List<Channel> listSortedWith = u.sortedWith(arrayList2, ChannelUtils.h(Channel.INSTANCE));
-        ArrayList arrayList3 = new ArrayList(d0.t.o.collectionSizeOrDefault(listSortedWith, 10));
+        List<Channel> listSortedWith = _Collections.sortedWith(arrayList2, ChannelUtils.h(Channel.INSTANCE));
+        ArrayList arrayList3 = new ArrayList(Iterables2.collectionSizeOrDefault(listSortedWith, 10));
         for (Channel channel : listSortedWith) {
             arrayList3.add(new ChannelSuggestion(ChannelUtils.c(channel), channel.getId()));
         }
-        return u.take(arrayList3, MAX_ENTRY_TYPE_COUNT);
+        return _Collections.take(arrayList3, MAX_ENTRY_TYPE_COUNT);
     }
 
     private final FilterType getCurrentFilterType(List<? extends QueryNode> input) {
         if (input.isEmpty()) {
             return null;
         }
-        QueryNode queryNode = (QueryNode) u.last((List) input);
+        QueryNode queryNode = (QueryNode) _Collections.last((List) input);
         if (queryNode instanceof FilterNode) {
             return ((FilterNode) queryNode).getFilterType();
         }
         if (input.size() == 1) {
             return null;
         }
-        QueryNode queryNode2 = input.get(n.getLastIndex(input) - 1);
+        QueryNode queryNode2 = input.get(Collections2.getLastIndex(input) - 1);
         if ((queryNode instanceof ContentNode) && (queryNode2 instanceof FilterNode)) {
             return ((FilterNode) queryNode2).getFilterType();
         }
@@ -200,7 +202,7 @@ public final class SearchSuggestionEngine {
                 arrayList2.add(obj);
             }
         }
-        ArrayList arrayList3 = new ArrayList(d0.t.o.collectionSizeOrDefault(arrayList2, 10));
+        ArrayList arrayList3 = new ArrayList(Iterables2.collectionSizeOrDefault(arrayList2, 10));
         Iterator it = arrayList2.iterator();
         while (it.hasNext()) {
             arrayList3.add(new FilterSuggestion((FilterType) it.next()));
@@ -210,26 +212,26 @@ public final class SearchSuggestionEngine {
 
     private final List<SearchSuggestion> getHasSuggestions(CharSequence rawContent, FilterType currentFilterType, SearchStringProvider searchStringProvider) {
         if (currentFilterType != FilterType.HAS) {
-            return n.emptyList();
+            return Collections2.emptyList();
         }
-        HasAnswerOption[] hasAnswerOptionArrValues = HasAnswerOption.values();
+        HasNode2[] hasNode2ArrValues = HasNode2.values();
         ArrayList arrayList = new ArrayList();
         for (int i = 0; i < 7; i++) {
-            HasAnswerOption hasAnswerOption = hasAnswerOptionArrValues[i];
-            if (HasSuggestion.INSTANCE.canComplete(rawContent, hasAnswerOption, searchStringProvider)) {
-                arrayList.add(hasAnswerOption);
+            HasNode2 hasNode2 = hasNode2ArrValues[i];
+            if (HasSuggestion.INSTANCE.canComplete(rawContent, hasNode2, searchStringProvider)) {
+                arrayList.add(hasNode2);
             }
         }
         ArrayList arrayList2 = new ArrayList();
         Iterator it = arrayList.iterator();
         while (it.hasNext()) {
-            arrayList2.add(new HasSuggestion((HasAnswerOption) it.next()));
+            arrayList2.add(new HasSuggestion((HasNode2) it.next()));
         }
         return arrayList2;
     }
 
     private final Collection<SearchSuggestion> getHistorySuggestions(Collection<? extends List<? extends QueryNode>> recentQueries) {
-        ArrayList arrayList = new ArrayList(d0.t.o.collectionSizeOrDefault(recentQueries, 10));
+        ArrayList arrayList = new ArrayList(Iterables2.collectionSizeOrDefault(recentQueries, 10));
         Iterator<T> it = recentQueries.iterator();
         while (it.hasNext()) {
             arrayList.add(new RecentQuerySuggestion((List) it.next()));
@@ -241,20 +243,20 @@ public final class SearchSuggestionEngine {
         if (input.isEmpty()) {
             return "";
         }
-        QueryNode queryNode = (QueryNode) u.last((List) input);
+        QueryNode queryNode = (QueryNode) _Collections.last((List) input);
         if (!(queryNode instanceof ContentNode)) {
             return "";
         }
         String string = ((ContentNode) queryNode).getContent().toString();
         Objects.requireNonNull(string, "null cannot be cast to non-null type kotlin.CharSequence");
-        return w.trim(string).toString();
+        return Strings4.trim(string).toString();
     }
 
     public static final List<SearchSuggestion> getSuggestions(List<? extends QueryNode> input, SearchData searchData, SearchStringProvider searchStringProvider, Collection<? extends List<? extends QueryNode>> recentQueries) {
-        m.checkNotNullParameter(input, "input");
-        m.checkNotNullParameter(searchData, "searchData");
-        m.checkNotNullParameter(searchStringProvider, "searchStringProvider");
-        m.checkNotNullParameter(recentQueries, "recentQueries");
+        Intrinsics3.checkNotNullParameter(input, "input");
+        Intrinsics3.checkNotNullParameter(searchData, "searchData");
+        Intrinsics3.checkNotNullParameter(searchStringProvider, "searchStringProvider");
+        Intrinsics3.checkNotNullParameter(recentQueries, "recentQueries");
         ArrayList arrayList = new ArrayList();
         SearchSuggestionEngine searchSuggestionEngine = INSTANCE;
         FilterType currentFilterType = searchSuggestionEngine.getCurrentFilterType(input);
@@ -283,7 +285,7 @@ public final class SearchSuggestionEngine {
             targetType = UserSuggestion.TargetType.FROM;
         } else {
             if (iOrdinal != 1) {
-                return n.emptyList();
+                return Collections2.emptyList();
             }
             targetType = UserSuggestion.TargetType.MENTIONS;
         }
@@ -302,7 +304,7 @@ public final class SearchSuggestionEngine {
                 }
             }
         }
-        return u.take(treeSet, MAX_ENTRY_TYPE_COUNT);
+        return _Collections.take(treeSet, MAX_ENTRY_TYPE_COUNT);
     }
 
     public final void setTargetGuildId(Long l) {
@@ -312,12 +314,12 @@ public final class SearchSuggestionEngine {
     private final void setupMemberRequestSubscription() {
         Observable<R> observableG = membersRequestSubject.P(750L, TimeUnit.MILLISECONDS).G(AnonymousClass1.INSTANCE);
         AnonymousClass2 anonymousClass2 = AnonymousClass2.INSTANCE;
-        Object searchSuggestionEngine$sam$rx_functions_Func1$0 = anonymousClass2;
+        Object searchSuggestionEngine2 = anonymousClass2;
         if (anonymousClass2 != null) {
-            searchSuggestionEngine$sam$rx_functions_Func1$0 = new SearchSuggestionEngine$sam$rx_functions_Func1$0(anonymousClass2);
+            searchSuggestionEngine2 = new SearchSuggestionEngine2(anonymousClass2);
         }
-        Observable observableR = observableG.y((b) searchSuggestionEngine$sam$rx_functions_Func1$0).r();
-        m.checkNotNullExpressionValue(observableR, "membersRequestSubject\n  …  .distinctUntilChanged()");
+        Observable observableR = observableG.y((Func1) searchSuggestionEngine2).r();
+        Intrinsics3.checkNotNullExpressionValue(observableR, "membersRequestSubject\n  …  .distinctUntilChanged()");
         ObservableExtensionsKt.appSubscribe$default(observableR, SearchSuggestionEngine.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, AnonymousClass3.INSTANCE, 62, (Object) null);
     }
 }

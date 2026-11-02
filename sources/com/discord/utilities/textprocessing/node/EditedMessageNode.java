@@ -4,12 +4,12 @@ import android.content.Context;
 import android.text.style.CharacterStyle;
 import android.text.style.ForegroundColorSpan;
 import android.text.style.RelativeSizeSpan;
-import b.a.t.b.a.a;
+import b.a.t.b.a.TextNode;
 import com.discord.R;
 import com.discord.simpleast.core.node.StyleNode;
 import com.discord.utilities.color.ColorCompat;
-import d0.t.n;
-import d0.z.d.m;
+import d0.t.Collections2;
+import d0.z.d.Intrinsics3;
 import kotlin.jvm.internal.DefaultConstructorMarker;
 
 /* JADX INFO: compiled from: EditedMessageNode.kt */
@@ -29,9 +29,9 @@ public final class EditedMessageNode<RC> extends StyleNode<RC, CharacterStyle> {
         }
 
         public final String getEditedString(Context context) {
-            m.checkNotNullParameter(context, "context");
+            Intrinsics3.checkNotNullParameter(context, "context");
             String string = context.getString(R.string.message_edited);
-            m.checkNotNullExpressionValue(string, "context.getString(R.string.message_edited)");
+            Intrinsics3.checkNotNullExpressionValue(string, "context.getString(R.string.message_edited)");
             return " (" + string + ')';
         }
 
@@ -57,9 +57,9 @@ public final class EditedMessageNode<RC> extends StyleNode<RC, CharacterStyle> {
 
     /* JADX WARN: Illegal instructions before constructor call */
     public EditedMessageNode(Context context) {
-        m.checkNotNullParameter(context, "context");
+        Intrinsics3.checkNotNullParameter(context, "context");
         Companion companion = INSTANCE;
-        super(n.listOf(Companion.getRelativeSizeSpan$default(companion, 0.0f, 1, null), Companion.access$getForegroundColorSpan(companion, context)));
-        addChild(new a(companion.getEditedString(context)));
+        super(Collections2.listOf(Companion.getRelativeSizeSpan$default(companion, 0.0f, 1, null), Companion.access$getForegroundColorSpan(companion, context)));
+        addChild(new TextNode(companion.getEditedString(context)));
     }
 }

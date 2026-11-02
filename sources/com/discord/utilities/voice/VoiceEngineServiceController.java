@@ -1,11 +1,12 @@
 package com.discord.utilities.voice;
 
+import a0.a.a.b;
 import android.content.Context;
 import android.content.Intent;
 import androidx.annotation.StringRes;
-import b.a.d.m;
-import b.a.k.b;
-import b.d.b.a.a;
+import b.a.d.AppToast;
+import b.a.k.FormatUtils;
+import b.d.b.a.outline;
 import com.discord.R;
 import com.discord.rtcconnection.RtcConnection;
 import com.discord.stores.StoreAudioManagerV2;
@@ -13,8 +14,9 @@ import com.discord.stores.StoreMediaSettings;
 import com.discord.stores.StoreRtcConnection;
 import com.discord.stores.StoreVoiceChannelSelected;
 import com.discord.utilities.rx.ObservableExtensionsKt;
-import d0.g;
-import d0.z.d.o;
+import d0.LazyJVM;
+import d0.z.d.Intrinsics3;
+import d0.z.d.Lambda;
 import kotlin.Lazy;
 import kotlin.NoWhenBranchMatchedException;
 import kotlin.Unit;
@@ -34,12 +36,12 @@ public final class VoiceEngineServiceController {
     private final Observable<NotificationData> notificationDataObservable;
     private VoiceEngineForegroundService.Connection serviceBinding;
     private final StoreVoiceChannelSelected voiceChannelSelectedStore;
-    private static final Lazy INSTANCE$delegate = g.lazy(VoiceEngineServiceController$Companion$INSTANCE$2.INSTANCE);
+    private static final Lazy INSTANCE$delegate = LazyJVM.lazy(VoiceEngineServiceController2.INSTANCE);
     private static final NotificationData NOTIFICATION_DATA_DISCONNECTED = new NotificationData(new RtcConnection.State.d(false), "", false, false, false, false, -1, null, false, false);
 
     /* JADX INFO: renamed from: com.discord.utilities.voice.VoiceEngineServiceController$init$1, reason: invalid class name */
     /* JADX INFO: compiled from: VoiceEngineServiceController.kt */
-    public final class AnonymousClass1 extends o implements Function0<Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function0<Unit> {
         public AnonymousClass1() {
             super(0);
         }
@@ -58,7 +60,7 @@ public final class VoiceEngineServiceController {
 
     /* JADX INFO: renamed from: com.discord.utilities.voice.VoiceEngineServiceController$init$2, reason: invalid class name */
     /* JADX INFO: compiled from: VoiceEngineServiceController.kt */
-    public final class AnonymousClass2 extends o implements Function0<Unit> {
+    public final class AnonymousClass2 extends Lambda implements Function0<Unit> {
         public AnonymousClass2() {
             super(0);
         }
@@ -77,7 +79,7 @@ public final class VoiceEngineServiceController {
 
     /* JADX INFO: renamed from: com.discord.utilities.voice.VoiceEngineServiceController$init$3, reason: invalid class name */
     /* JADX INFO: compiled from: VoiceEngineServiceController.kt */
-    public final class AnonymousClass3 extends o implements Function0<Unit> {
+    public final class AnonymousClass3 extends Lambda implements Function0<Unit> {
         public final /* synthetic */ Context $context;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -98,13 +100,13 @@ public final class VoiceEngineServiceController {
             if (selfMuteFailure == null || selfMuteFailure.ordinal() != 0) {
                 return;
             }
-            m.g(this.$context, R.string.vad_permission_small, 0, null, 12);
+            AppToast.g(this.$context, R.string.vad_permission_small, 0, null, 12);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.utilities.voice.VoiceEngineServiceController$init$4, reason: invalid class name */
     /* JADX INFO: compiled from: VoiceEngineServiceController.kt */
-    public final class AnonymousClass4 extends o implements Function1<NotificationData, Unit> {
+    public final class AnonymousClass4 extends Lambda implements Function1<NotificationData, Unit> {
         public final /* synthetic */ Context $context;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -127,8 +129,8 @@ public final class VoiceEngineServiceController {
                 return;
             }
             Context context = this.$context;
-            VoiceEngineForegroundService.INSTANCE.startForegroundAndBind(VoiceEngineServiceController.access$getServiceBinding$p(VoiceEngineServiceController.this), b.h(context, R.string.call_mobile_tap_to_return, new Object[]{b.h(context, notificationData.getStateString(), new Object[0], null, 4)}, null, 4), notificationData.getChannelName(), notificationData.isSelfMuted(), notificationData.isSelfDeafened(), notificationData.isSelfStreaming(), notificationData.getChannelId(), notificationData.getGuildId(), notificationData.getProximityLockEnabled(), notificationData.getCanSpeak());
-            if (d0.z.d.m.areEqual(notificationData.getRtcConnectionState(), RtcConnection.State.f.a)) {
+            VoiceEngineForegroundService.INSTANCE.startForegroundAndBind(VoiceEngineServiceController.access$getServiceBinding$p(VoiceEngineServiceController.this), FormatUtils.h(context, R.string.call_mobile_tap_to_return, new Object[]{FormatUtils.h(context, notificationData.getStateString(), new Object[0], null, 4)}, null, 4), notificationData.getChannelName(), notificationData.isSelfMuted(), notificationData.isSelfDeafened(), notificationData.isSelfStreaming(), notificationData.getChannelId(), notificationData.getGuildId(), notificationData.getProximityLockEnabled(), notificationData.getCanSpeak());
+            if (Intrinsics3.areEqual(notificationData.getRtcConnectionState(), RtcConnection.State.f.a)) {
                 DiscordOverlayService.INSTANCE.launchForVoice(this.$context);
             }
         }
@@ -168,8 +170,8 @@ public final class VoiceEngineServiceController {
 
         public NotificationData(RtcConnection.State state, String str, boolean z2, boolean z3, boolean z4, boolean z5, long j, Long l, boolean z6, boolean z7) {
             int i;
-            d0.z.d.m.checkNotNullParameter(state, "rtcConnectionState");
-            d0.z.d.m.checkNotNullParameter(str, "channelName");
+            Intrinsics3.checkNotNullParameter(state, "rtcConnectionState");
+            Intrinsics3.checkNotNullParameter(str, "channelName");
             this.rtcConnectionState = state;
             this.channelName = str;
             this.isSelfMuted = z2;
@@ -182,20 +184,20 @@ public final class VoiceEngineServiceController {
             this.canSpeak = z7;
             if (state instanceof RtcConnection.State.d) {
                 i = R.string.connection_status_disconnected;
-            } else if (d0.z.d.m.areEqual(state, RtcConnection.State.b.a)) {
+            } else if (Intrinsics3.areEqual(state, RtcConnection.State.b.a)) {
                 i = R.string.connection_status_awaiting_endpoint;
-            } else if (d0.z.d.m.areEqual(state, RtcConnection.State.a.a)) {
+            } else if (Intrinsics3.areEqual(state, RtcConnection.State.a.a)) {
                 i = R.string.connection_status_authenticating;
-            } else if (d0.z.d.m.areEqual(state, RtcConnection.State.c.a)) {
+            } else if (Intrinsics3.areEqual(state, RtcConnection.State.c.a)) {
                 i = R.string.connection_status_connecting;
-            } else if (d0.z.d.m.areEqual(state, RtcConnection.State.h.a)) {
+            } else if (Intrinsics3.areEqual(state, RtcConnection.State.h.a)) {
                 i = R.string.connection_status_rtc_disconnected;
-            } else if (d0.z.d.m.areEqual(state, RtcConnection.State.g.a)) {
+            } else if (Intrinsics3.areEqual(state, RtcConnection.State.g.a)) {
                 i = R.string.connection_status_rtc_connecting;
-            } else if (d0.z.d.m.areEqual(state, RtcConnection.State.f.a)) {
+            } else if (Intrinsics3.areEqual(state, RtcConnection.State.f.a)) {
                 i = z4 ? R.string.connection_status_stream_self_connected : z5 ? R.string.connection_status_video_connected : R.string.connection_status_voice_connected;
             } else {
-                if (!d0.z.d.m.areEqual(state, RtcConnection.State.e.a)) {
+                if (!Intrinsics3.areEqual(state, RtcConnection.State.e.a)) {
                     throw new NoWhenBranchMatchedException();
                 }
                 i = R.string.connection_status_no_route;
@@ -208,8 +210,8 @@ public final class VoiceEngineServiceController {
         }
 
         public final NotificationData copy(RtcConnection.State rtcConnectionState, String channelName, boolean isSelfMuted, boolean isSelfDeafened, boolean isSelfStreaming, boolean isVideo, long channelId, Long guildId, boolean proximityLockEnabled, boolean canSpeak) {
-            d0.z.d.m.checkNotNullParameter(rtcConnectionState, "rtcConnectionState");
-            d0.z.d.m.checkNotNullParameter(channelName, "channelName");
+            Intrinsics3.checkNotNullParameter(rtcConnectionState, "rtcConnectionState");
+            Intrinsics3.checkNotNullParameter(channelName, "channelName");
             return new NotificationData(rtcConnectionState, channelName, isSelfMuted, isSelfDeafened, isSelfStreaming, isVideo, channelId, guildId, proximityLockEnabled, canSpeak);
         }
 
@@ -221,7 +223,7 @@ public final class VoiceEngineServiceController {
                 return false;
             }
             NotificationData notificationData = (NotificationData) other;
-            return d0.z.d.m.areEqual(this.rtcConnectionState, notificationData.rtcConnectionState) && d0.z.d.m.areEqual(this.channelName, notificationData.channelName) && this.isSelfMuted == notificationData.isSelfMuted && this.isSelfDeafened == notificationData.isSelfDeafened && this.isSelfStreaming == notificationData.isSelfStreaming && this.isVideo == notificationData.isVideo && this.channelId == notificationData.channelId && d0.z.d.m.areEqual(this.guildId, notificationData.guildId) && this.proximityLockEnabled == notificationData.proximityLockEnabled && this.canSpeak == notificationData.canSpeak;
+            return Intrinsics3.areEqual(this.rtcConnectionState, notificationData.rtcConnectionState) && Intrinsics3.areEqual(this.channelName, notificationData.channelName) && this.isSelfMuted == notificationData.isSelfMuted && this.isSelfDeafened == notificationData.isSelfDeafened && this.isSelfStreaming == notificationData.isSelfStreaming && this.isVideo == notificationData.isVideo && this.channelId == notificationData.channelId && Intrinsics3.areEqual(this.guildId, notificationData.guildId) && this.proximityLockEnabled == notificationData.proximityLockEnabled && this.canSpeak == notificationData.canSpeak;
         }
 
         /* JADX INFO: renamed from: component10, reason: from getter */
@@ -352,7 +354,7 @@ public final class VoiceEngineServiceController {
             if (z5) {
                 r5 = 1;
             }
-            int iA = (a0.a.a.b.a(this.channelId) + ((i3 + r5) * 31)) * 31;
+            int iA = (b.a(this.channelId) + ((i3 + r5) * 31)) * 31;
             Long l = this.guildId;
             int iHashCode3 = (iA + (l != null ? l.hashCode() : 0)) * 31;
             boolean z6 = this.proximityLockEnabled;
@@ -382,7 +384,7 @@ public final class VoiceEngineServiceController {
         }
 
         public String toString() {
-            StringBuilder sbU = a.U("NotificationData(rtcConnectionState=");
+            StringBuilder sbU = outline.U("NotificationData(rtcConnectionState=");
             sbU.append(this.rtcConnectionState);
             sbU.append(", channelName=");
             sbU.append(this.channelName);
@@ -401,7 +403,7 @@ public final class VoiceEngineServiceController {
             sbU.append(", proximityLockEnabled=");
             sbU.append(this.proximityLockEnabled);
             sbU.append(", canSpeak=");
-            return a.O(sbU, this.canSpeak, ")");
+            return outline.O(sbU, this.canSpeak, ")");
         }
     }
 
@@ -417,15 +419,15 @@ public final class VoiceEngineServiceController {
     }
 
     public VoiceEngineServiceController(StoreAudioManagerV2 storeAudioManagerV2, StoreMediaSettings storeMediaSettings, StoreVoiceChannelSelected storeVoiceChannelSelected, StoreRtcConnection storeRtcConnection) {
-        d0.z.d.m.checkNotNullParameter(storeAudioManagerV2, "audioManagerStore");
-        d0.z.d.m.checkNotNullParameter(storeMediaSettings, "mediaSettingsStore");
-        d0.z.d.m.checkNotNullParameter(storeVoiceChannelSelected, "voiceChannelSelectedStore");
-        d0.z.d.m.checkNotNullParameter(storeRtcConnection, "rtcConnectionStore");
+        Intrinsics3.checkNotNullParameter(storeAudioManagerV2, "audioManagerStore");
+        Intrinsics3.checkNotNullParameter(storeMediaSettings, "mediaSettingsStore");
+        Intrinsics3.checkNotNullParameter(storeVoiceChannelSelected, "voiceChannelSelectedStore");
+        Intrinsics3.checkNotNullParameter(storeRtcConnection, "rtcConnectionStore");
         this.audioManagerStore = storeAudioManagerV2;
         this.mediaSettingsStore = storeMediaSettings;
         this.voiceChannelSelectedStore = storeVoiceChannelSelected;
-        Observable<R> observableY = storeRtcConnection.getConnectionState().Y(new VoiceEngineServiceController$notificationDataObservable$1(this));
-        d0.z.d.m.checkNotNullExpressionValue(observableY, "rtcConnectionStore\n     …            }\n          }");
+        Observable<R> observableY = storeRtcConnection.getConnectionState().Y(new VoiceEngineServiceController3(this));
+        Intrinsics3.checkNotNullExpressionValue(observableY, "rtcConnectionStore\n     …            }\n          }");
         this.notificationDataObservable = ObservableExtensionsKt.computationLatest(observableY).r();
     }
 
@@ -448,7 +450,7 @@ public final class VoiceEngineServiceController {
     public static final /* synthetic */ VoiceEngineForegroundService.Connection access$getServiceBinding$p(VoiceEngineServiceController voiceEngineServiceController) {
         VoiceEngineForegroundService.Connection connection = voiceEngineServiceController.serviceBinding;
         if (connection == null) {
-            d0.z.d.m.throwUninitializedPropertyAccessException("serviceBinding");
+            Intrinsics3.throwUninitializedPropertyAccessException("serviceBinding");
         }
         return connection;
     }
@@ -462,23 +464,23 @@ public final class VoiceEngineServiceController {
     }
 
     public final void init(Context context) {
-        d0.z.d.m.checkNotNullParameter(context, "context");
+        Intrinsics3.checkNotNullParameter(context, "context");
         VoiceEngineForegroundService.Companion companion = VoiceEngineForegroundService.INSTANCE;
         companion.setOnDisconnect(new AnonymousClass1());
         companion.setOnToggleSelfDeafen(new AnonymousClass2());
         companion.setOnToggleSelfMute(new AnonymousClass3(context));
         this.serviceBinding = new VoiceEngineForegroundService.Connection(context);
         Observable<NotificationData> observable = this.notificationDataObservable;
-        d0.z.d.m.checkNotNullExpressionValue(observable, "notificationDataObservable");
+        Intrinsics3.checkNotNullExpressionValue(observable, "notificationDataObservable");
         ObservableExtensionsKt.appSubscribe$default(observable, VoiceEngineServiceController.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass4(context), 62, (Object) null);
     }
 
     public final void startStream(Intent permissionIntent) {
-        d0.z.d.m.checkNotNullParameter(permissionIntent, "permissionIntent");
+        Intrinsics3.checkNotNullParameter(permissionIntent, "permissionIntent");
         VoiceEngineForegroundService.Companion companion = VoiceEngineForegroundService.INSTANCE;
         VoiceEngineForegroundService.Connection connection = this.serviceBinding;
         if (connection == null) {
-            d0.z.d.m.throwUninitializedPropertyAccessException("serviceBinding");
+            Intrinsics3.throwUninitializedPropertyAccessException("serviceBinding");
         }
         companion.startStream(connection, permissionIntent);
     }
@@ -487,7 +489,7 @@ public final class VoiceEngineServiceController {
         VoiceEngineForegroundService.Companion companion = VoiceEngineForegroundService.INSTANCE;
         VoiceEngineForegroundService.Connection connection = this.serviceBinding;
         if (connection == null) {
-            d0.z.d.m.throwUninitializedPropertyAccessException("serviceBinding");
+            Intrinsics3.throwUninitializedPropertyAccessException("serviceBinding");
         }
         companion.stopStream(connection);
     }

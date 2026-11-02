@@ -10,16 +10,17 @@ import com.discord.models.gifpicker.dto.ModelGif;
 import com.discord.models.gifpicker.dto.TrendingGifCategoriesResponseDto;
 import com.discord.models.gifpicker.dto.TrendingGifPreviewDto;
 import com.discord.stores.updates.ObservationDeck;
-import com.discord.stores.updates.ObservationDeckProvider;
+import com.discord.stores.updates.ObservationDeck4;
 import com.discord.utilities.error.Error;
 import com.discord.utilities.rest.RestAPI;
 import com.discord.utilities.rx.ObservableExtensionsKt;
-import d0.t.h0;
-import d0.t.n;
-import d0.z.d.k;
-import d0.z.d.m;
-import d0.z.d.o;
-import j0.k.b;
+import d0.t.Collections2;
+import d0.t.Iterables2;
+import d0.t.Maps6;
+import d0.z.d.FunctionReferenceImpl;
+import d0.z.d.Intrinsics3;
+import d0.z.d.Lambda;
+import j0.k.Func1;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -58,12 +59,12 @@ public final class StoreGifPicker extends StoreV2 {
     private final List<ModelGif> trendingCategoryGifs;
     private List<ModelGif> trendingCategoryGifsSnapshot;
     private String trendingGifCategoryPreviewUrl;
-    private static final List<ModelGif> searchResultsLoadingList = n.emptyList();
-    private static final List<String> searchTermsLoadingList = n.emptyList();
+    private static final List<ModelGif> searchResultsLoadingList = Collections2.emptyList();
+    private static final List<String> searchTermsLoadingList = Collections2.emptyList();
 
     /* JADX INFO: renamed from: com.discord.stores.StoreGifPicker$fetchGifCategories$1, reason: invalid class name */
     /* JADX INFO: compiled from: StoreGifPicker.kt */
-    public final class AnonymousClass1 extends o implements Function1<Error, Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function1<Error, Unit> {
         public AnonymousClass1() {
             super(1);
         }
@@ -76,14 +77,14 @@ public final class StoreGifPicker extends StoreV2 {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(Error error) {
-            m.checkNotNullParameter(error, "it");
+            Intrinsics3.checkNotNullParameter(error, "it");
             StoreGifPicker.access$handleFetchGifCategoriesError(StoreGifPicker.this);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.stores.StoreGifPicker$fetchGifTrendingSearchTerms$1, reason: invalid class name */
     /* JADX INFO: compiled from: StoreGifPicker.kt */
-    public final class AnonymousClass1 extends o implements Function1<Error, Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function1<Error, Unit> {
         public AnonymousClass1() {
             super(1);
         }
@@ -96,25 +97,25 @@ public final class StoreGifPicker extends StoreV2 {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(Error error) {
-            m.checkNotNullParameter(error, "it");
+            Intrinsics3.checkNotNullParameter(error, "it");
             StoreGifPicker.access$handleFetchTrendingSearchTermsError(StoreGifPicker.this);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.stores.StoreGifPicker$fetchGifsForSearchQuery$1, reason: invalid class name */
     /* JADX INFO: compiled from: StoreGifPicker.kt */
-    public final class AnonymousClass1<T, R> implements b<List<? extends GifDto>, List<? extends ModelGif>> {
+    public final class AnonymousClass1<T, R> implements Func1<List<? extends GifDto>, List<? extends ModelGif>> {
         public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
 
-        @Override // j0.k.b
+        @Override // j0.k.Func1
         public /* bridge */ /* synthetic */ List<? extends ModelGif> call(List<? extends GifDto> list) {
             return call2((List<GifDto>) list);
         }
 
         /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
         public final List<ModelGif> call2(List<GifDto> list) {
-            m.checkNotNullExpressionValue(list, "gifDtos");
-            ArrayList arrayList = new ArrayList(d0.t.o.collectionSizeOrDefault(list, 10));
+            Intrinsics3.checkNotNullExpressionValue(list, "gifDtos");
+            ArrayList arrayList = new ArrayList(Iterables2.collectionSizeOrDefault(list, 10));
             Iterator<T> it = list.iterator();
             while (it.hasNext()) {
                 arrayList.add(ModelGif.INSTANCE.createFromGifDto((GifDto) it.next()));
@@ -125,13 +126,13 @@ public final class StoreGifPicker extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreGifPicker$fetchSuggestedSearchTerms$1, reason: invalid class name */
     /* JADX INFO: compiled from: StoreGifPicker.kt */
-    public final class AnonymousClass1 extends o implements Function1<Error, Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function1<Error, Unit> {
         public final /* synthetic */ String $query;
 
         /* JADX INFO: renamed from: com.discord.stores.StoreGifPicker$fetchSuggestedSearchTerms$1$1, reason: invalid class name and collision with other inner class name */
         /* JADX INFO: compiled from: StoreGifPicker.kt */
-        public final class C02311 extends o implements Function0<Unit> {
-            public C02311() {
+        public final class C01111 extends Lambda implements Function0<Unit> {
+            public C01111() {
                 super(0);
             }
 
@@ -144,7 +145,7 @@ public final class StoreGifPicker extends StoreV2 {
             /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
             public final void invoke2() {
                 AnonymousClass1 anonymousClass1 = AnonymousClass1.this;
-                StoreGifPicker.access$handleSuggestedSearchTerms(StoreGifPicker.this, anonymousClass1.$query, n.emptyList());
+                StoreGifPicker.access$handleSuggestedSearchTerms(StoreGifPicker.this, anonymousClass1.$query, Collections2.emptyList());
             }
         }
 
@@ -162,25 +163,25 @@ public final class StoreGifPicker extends StoreV2 {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(Error error) {
-            m.checkNotNullParameter(error, "it");
-            StoreGifPicker.access$getDispatcher$p(StoreGifPicker.this).schedule(new C02311());
+            Intrinsics3.checkNotNullParameter(error, "it");
+            StoreGifPicker.access$getDispatcher$p(StoreGifPicker.this).schedule(new C01111());
         }
     }
 
     /* JADX INFO: renamed from: com.discord.stores.StoreGifPicker$fetchTrendingCategoryGifs$1, reason: invalid class name */
     /* JADX INFO: compiled from: StoreGifPicker.kt */
-    public final class AnonymousClass1<T, R> implements b<List<? extends GifDto>, List<? extends ModelGif>> {
+    public final class AnonymousClass1<T, R> implements Func1<List<? extends GifDto>, List<? extends ModelGif>> {
         public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
 
-        @Override // j0.k.b
+        @Override // j0.k.Func1
         public /* bridge */ /* synthetic */ List<? extends ModelGif> call(List<? extends GifDto> list) {
             return call2((List<GifDto>) list);
         }
 
         /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
         public final List<ModelGif> call2(List<GifDto> list) {
-            m.checkNotNullExpressionValue(list, "gifDtos");
-            ArrayList arrayList = new ArrayList(d0.t.o.collectionSizeOrDefault(list, 10));
+            Intrinsics3.checkNotNullExpressionValue(list, "gifDtos");
+            ArrayList arrayList = new ArrayList(Iterables2.collectionSizeOrDefault(list, 10));
             Iterator<T> it = list.iterator();
             while (it.hasNext()) {
                 arrayList.add(ModelGif.INSTANCE.createFromGifDto((GifDto) it.next()));
@@ -191,7 +192,7 @@ public final class StoreGifPicker extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreGifPicker$handleFetchGifCategoriesError$1, reason: invalid class name */
     /* JADX INFO: compiled from: StoreGifPicker.kt */
-    public final class AnonymousClass1 extends o implements Function0<Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function0<Unit> {
         public AnonymousClass1() {
             super(0);
         }
@@ -210,7 +211,7 @@ public final class StoreGifPicker extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreGifPicker$handleFetchGifCategoriesOnNext$1, reason: invalid class name */
     /* JADX INFO: compiled from: StoreGifPicker.kt */
-    public final class AnonymousClass1 extends o implements Function0<Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function0<Unit> {
         public final /* synthetic */ TrendingGifCategoriesResponseDto $trendingGifsResponseRaw;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -234,7 +235,7 @@ public final class StoreGifPicker extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreGifPicker$handleFetchTrendingGifsError$1, reason: invalid class name */
     /* JADX INFO: compiled from: StoreGifPicker.kt */
-    public final class AnonymousClass1 extends o implements Function0<Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function0<Unit> {
         public AnonymousClass1() {
             super(0);
         }
@@ -253,7 +254,7 @@ public final class StoreGifPicker extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreGifPicker$handleFetchTrendingGifsOnNext$1, reason: invalid class name */
     /* JADX INFO: compiled from: StoreGifPicker.kt */
-    public final class AnonymousClass1 extends o implements Function0<Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function0<Unit> {
         public final /* synthetic */ List $gifs;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -277,7 +278,7 @@ public final class StoreGifPicker extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreGifPicker$handleFetchTrendingSearchTermsError$1, reason: invalid class name */
     /* JADX INFO: compiled from: StoreGifPicker.kt */
-    public final class AnonymousClass1 extends o implements Function0<Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function0<Unit> {
         public AnonymousClass1() {
             super(0);
         }
@@ -296,7 +297,7 @@ public final class StoreGifPicker extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreGifPicker$handleFetchTrendingSearchTermsOnNext$1, reason: invalid class name */
     /* JADX INFO: compiled from: StoreGifPicker.kt */
-    public final class AnonymousClass1 extends o implements Function0<Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function0<Unit> {
         public final /* synthetic */ List $trendingSearchTerms;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -320,7 +321,7 @@ public final class StoreGifPicker extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreGifPicker$observeGifCategories$1, reason: invalid class name */
     /* JADX INFO: compiled from: StoreGifPicker.kt */
-    public final class AnonymousClass1 extends o implements Function0<Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function0<Unit> {
         public AnonymousClass1() {
             super(0);
         }
@@ -342,7 +343,7 @@ public final class StoreGifPicker extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreGifPicker$observeGifTrendingSearchTerms$1, reason: invalid class name */
     /* JADX INFO: compiled from: StoreGifPicker.kt */
-    public final class AnonymousClass1 extends o implements Function0<Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function0<Unit> {
         public AnonymousClass1() {
             super(0);
         }
@@ -364,7 +365,7 @@ public final class StoreGifPicker extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreGifPicker$observeGifsForSearchQuery$1, reason: invalid class name */
     /* JADX INFO: compiled from: StoreGifPicker.kt */
-    public final class AnonymousClass1 extends o implements Function0<Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function0<Unit> {
         public final /* synthetic */ String $query;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -391,7 +392,7 @@ public final class StoreGifPicker extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreGifPicker$observeSearchHistory$1, reason: invalid class name */
     /* JADX INFO: compiled from: StoreGifPicker.kt */
-    public final class AnonymousClass1 extends o implements Function0<Map<String, ? extends List<? extends ModelGif>>> {
+    public final class AnonymousClass1 extends Lambda implements Function0<Map<String, ? extends List<? extends ModelGif>>> {
         public AnonymousClass1() {
             super(0);
         }
@@ -410,7 +411,7 @@ public final class StoreGifPicker extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreGifPicker$observeSuggestedSearchTerms$1, reason: invalid class name */
     /* JADX INFO: compiled from: StoreGifPicker.kt */
-    public final class AnonymousClass1 extends o implements Function0<Map<String, ? extends List<? extends String>>> {
+    public final class AnonymousClass1 extends Lambda implements Function0<Map<String, ? extends List<? extends String>>> {
         public AnonymousClass1() {
             super(0);
         }
@@ -429,7 +430,7 @@ public final class StoreGifPicker extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreGifPicker$observeTrendingCategoryGifs$1, reason: invalid class name */
     /* JADX INFO: compiled from: StoreGifPicker.kt */
-    public final class AnonymousClass1 extends o implements Function0<Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function0<Unit> {
         public AnonymousClass1() {
             super(0);
         }
@@ -451,7 +452,7 @@ public final class StoreGifPicker extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreGifPicker$observeTrendingGifCategoryPreviewUrl$1, reason: invalid class name */
     /* JADX INFO: compiled from: StoreGifPicker.kt */
-    public final class AnonymousClass1 extends o implements Function0<String> {
+    public final class AnonymousClass1 extends Lambda implements Function0<String> {
         public AnonymousClass1() {
             super(0);
         }
@@ -470,7 +471,7 @@ public final class StoreGifPicker extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreGifPicker$fetchGifCategories$2, reason: invalid class name */
     /* JADX INFO: compiled from: StoreGifPicker.kt */
-    public final /* synthetic */ class AnonymousClass2 extends k implements Function1<TrendingGifCategoriesResponseDto, Unit> {
+    public final /* synthetic */ class AnonymousClass2 extends FunctionReferenceImpl implements Function1<TrendingGifCategoriesResponseDto, Unit> {
         public AnonymousClass2(StoreGifPicker storeGifPicker) {
             super(1, storeGifPicker, StoreGifPicker.class, "handleFetchGifCategoriesOnNext", "handleFetchGifCategoriesOnNext(Lcom/discord/models/gifpicker/dto/TrendingGifCategoriesResponseDto;)V", 0);
         }
@@ -483,14 +484,14 @@ public final class StoreGifPicker extends StoreV2 {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(TrendingGifCategoriesResponseDto trendingGifCategoriesResponseDto) {
-            m.checkNotNullParameter(trendingGifCategoriesResponseDto, "p1");
+            Intrinsics3.checkNotNullParameter(trendingGifCategoriesResponseDto, "p1");
             StoreGifPicker.access$handleFetchGifCategoriesOnNext((StoreGifPicker) this.receiver, trendingGifCategoriesResponseDto);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.stores.StoreGifPicker$fetchGifTrendingSearchTerms$2, reason: invalid class name */
     /* JADX INFO: compiled from: StoreGifPicker.kt */
-    public final /* synthetic */ class AnonymousClass2 extends k implements Function1<List<? extends String>, Unit> {
+    public final /* synthetic */ class AnonymousClass2 extends FunctionReferenceImpl implements Function1<List<? extends String>, Unit> {
         public AnonymousClass2(StoreGifPicker storeGifPicker) {
             super(1, storeGifPicker, StoreGifPicker.class, "handleFetchTrendingSearchTermsOnNext", "handleFetchTrendingSearchTermsOnNext(Ljava/util/List;)V", 0);
         }
@@ -503,19 +504,19 @@ public final class StoreGifPicker extends StoreV2 {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(List<String> list) {
-            m.checkNotNullParameter(list, "p1");
+            Intrinsics3.checkNotNullParameter(list, "p1");
             StoreGifPicker.access$handleFetchTrendingSearchTermsOnNext((StoreGifPicker) this.receiver, list);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.stores.StoreGifPicker$fetchGifsForSearchQuery$2, reason: invalid class name */
     /* JADX INFO: compiled from: StoreGifPicker.kt */
-    public final class AnonymousClass2 extends o implements Function1<Error, Unit> {
+    public final class AnonymousClass2 extends Lambda implements Function1<Error, Unit> {
         public final /* synthetic */ String $query;
 
         /* JADX INFO: renamed from: com.discord.stores.StoreGifPicker$fetchGifsForSearchQuery$2$1, reason: invalid class name */
         /* JADX INFO: compiled from: StoreGifPicker.kt */
-        public final class AnonymousClass1 extends o implements Function0<Unit> {
+        public final class AnonymousClass1 extends Lambda implements Function0<Unit> {
             public AnonymousClass1() {
                 super(0);
             }
@@ -529,7 +530,7 @@ public final class StoreGifPicker extends StoreV2 {
             /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
             public final void invoke2() {
                 AnonymousClass2 anonymousClass2 = AnonymousClass2.this;
-                StoreGifPicker.access$handleGifSearchResults(StoreGifPicker.this, anonymousClass2.$query, n.emptyList());
+                StoreGifPicker.access$handleGifSearchResults(StoreGifPicker.this, anonymousClass2.$query, Collections2.emptyList());
             }
         }
 
@@ -547,19 +548,19 @@ public final class StoreGifPicker extends StoreV2 {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(Error error) {
-            m.checkNotNullParameter(error, "it");
+            Intrinsics3.checkNotNullParameter(error, "it");
             StoreGifPicker.access$getDispatcher$p(StoreGifPicker.this).schedule(new AnonymousClass1());
         }
     }
 
     /* JADX INFO: renamed from: com.discord.stores.StoreGifPicker$fetchSuggestedSearchTerms$2, reason: invalid class name */
     /* JADX INFO: compiled from: StoreGifPicker.kt */
-    public final class AnonymousClass2 extends o implements Function1<List<? extends String>, Unit> {
+    public final class AnonymousClass2 extends Lambda implements Function1<List<? extends String>, Unit> {
         public final /* synthetic */ String $query;
 
         /* JADX INFO: renamed from: com.discord.stores.StoreGifPicker$fetchSuggestedSearchTerms$2$1, reason: invalid class name */
         /* JADX INFO: compiled from: StoreGifPicker.kt */
-        public final class AnonymousClass1 extends o implements Function0<Unit> {
+        public final class AnonymousClass1 extends Lambda implements Function0<Unit> {
             public final /* synthetic */ List $suggestedSearchTerms;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -595,14 +596,14 @@ public final class StoreGifPicker extends StoreV2 {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(List<String> list) {
-            m.checkNotNullParameter(list, "suggestedSearchTerms");
+            Intrinsics3.checkNotNullParameter(list, "suggestedSearchTerms");
             StoreGifPicker.access$getDispatcher$p(StoreGifPicker.this).schedule(new AnonymousClass1(list));
         }
     }
 
     /* JADX INFO: renamed from: com.discord.stores.StoreGifPicker$fetchTrendingCategoryGifs$2, reason: invalid class name */
     /* JADX INFO: compiled from: StoreGifPicker.kt */
-    public final class AnonymousClass2 extends o implements Function1<Error, Unit> {
+    public final class AnonymousClass2 extends Lambda implements Function1<Error, Unit> {
         public AnonymousClass2() {
             super(1);
         }
@@ -615,14 +616,14 @@ public final class StoreGifPicker extends StoreV2 {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(Error error) {
-            m.checkNotNullParameter(error, "it");
+            Intrinsics3.checkNotNullParameter(error, "it");
             StoreGifPicker.access$handleFetchTrendingGifsError(StoreGifPicker.this);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.stores.StoreGifPicker$observeGifCategories$2, reason: invalid class name */
     /* JADX INFO: compiled from: StoreGifPicker.kt */
-    public final class AnonymousClass2 extends o implements Function0<List<? extends ModelGifCategory>> {
+    public final class AnonymousClass2 extends Lambda implements Function0<List<? extends ModelGifCategory>> {
         public AnonymousClass2() {
             super(0);
         }
@@ -641,7 +642,7 @@ public final class StoreGifPicker extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreGifPicker$observeGifTrendingSearchTerms$2, reason: invalid class name */
     /* JADX INFO: compiled from: StoreGifPicker.kt */
-    public final class AnonymousClass2 extends o implements Function0<List<? extends String>> {
+    public final class AnonymousClass2 extends Lambda implements Function0<List<? extends String>> {
         public AnonymousClass2() {
             super(0);
         }
@@ -660,14 +661,14 @@ public final class StoreGifPicker extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreGifPicker$observeGifsForSearchQuery$2, reason: invalid class name */
     /* JADX INFO: compiled from: StoreGifPicker.kt */
-    public final class AnonymousClass2<T, R> implements b<Map<String, ? extends List<? extends ModelGif>>, List<? extends ModelGif>> {
+    public final class AnonymousClass2<T, R> implements Func1<Map<String, ? extends List<? extends ModelGif>>, List<? extends ModelGif>> {
         public final /* synthetic */ String $query;
 
         public AnonymousClass2(String str) {
             this.$query = str;
         }
 
-        @Override // j0.k.b
+        @Override // j0.k.Func1
         public /* bridge */ /* synthetic */ List<? extends ModelGif> call(Map<String, ? extends List<? extends ModelGif>> map) {
             return call2((Map<String, ? extends List<ModelGif>>) map);
         }
@@ -680,7 +681,7 @@ public final class StoreGifPicker extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreGifPicker$observeSuggestedSearchTerms$2, reason: invalid class name */
     /* JADX INFO: compiled from: StoreGifPicker.kt */
-    public final class AnonymousClass2 extends o implements Function0<Unit> {
+    public final class AnonymousClass2 extends Lambda implements Function0<Unit> {
         public final /* synthetic */ String $query;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -707,7 +708,7 @@ public final class StoreGifPicker extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreGifPicker$observeTrendingCategoryGifs$2, reason: invalid class name */
     /* JADX INFO: compiled from: StoreGifPicker.kt */
-    public final class AnonymousClass2 extends o implements Function0<List<? extends ModelGif>> {
+    public final class AnonymousClass2 extends Lambda implements Function0<List<? extends ModelGif>> {
         public AnonymousClass2() {
             super(0);
         }
@@ -726,12 +727,12 @@ public final class StoreGifPicker extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreGifPicker$fetchGifsForSearchQuery$3, reason: invalid class name */
     /* JADX INFO: compiled from: StoreGifPicker.kt */
-    public final class AnonymousClass3 extends o implements Function1<List<? extends ModelGif>, Unit> {
+    public final class AnonymousClass3 extends Lambda implements Function1<List<? extends ModelGif>, Unit> {
         public final /* synthetic */ String $query;
 
         /* JADX INFO: renamed from: com.discord.stores.StoreGifPicker$fetchGifsForSearchQuery$3$1, reason: invalid class name */
         /* JADX INFO: compiled from: StoreGifPicker.kt */
-        public final class AnonymousClass1 extends o implements Function0<Unit> {
+        public final class AnonymousClass1 extends Lambda implements Function0<Unit> {
             public final /* synthetic */ List $gifs;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -752,7 +753,7 @@ public final class StoreGifPicker extends StoreV2 {
                 StoreGifPicker storeGifPicker = StoreGifPicker.this;
                 String str = anonymousClass3.$query;
                 List list = this.$gifs;
-                m.checkNotNullExpressionValue(list, "gifs");
+                Intrinsics3.checkNotNullExpressionValue(list, "gifs");
                 StoreGifPicker.access$handleGifSearchResults(storeGifPicker, str, list);
             }
         }
@@ -777,7 +778,7 @@ public final class StoreGifPicker extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreGifPicker$fetchTrendingCategoryGifs$3, reason: invalid class name */
     /* JADX INFO: compiled from: StoreGifPicker.kt */
-    public final /* synthetic */ class AnonymousClass3 extends k implements Function1<List<? extends ModelGif>, Unit> {
+    public final /* synthetic */ class AnonymousClass3 extends FunctionReferenceImpl implements Function1<List<? extends ModelGif>, Unit> {
         public AnonymousClass3(StoreGifPicker storeGifPicker) {
             super(1, storeGifPicker, StoreGifPicker.class, "handleFetchTrendingGifsOnNext", "handleFetchTrendingGifsOnNext(Ljava/util/List;)V", 0);
         }
@@ -790,21 +791,21 @@ public final class StoreGifPicker extends StoreV2 {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(List<ModelGif> list) {
-            m.checkNotNullParameter(list, "p1");
+            Intrinsics3.checkNotNullParameter(list, "p1");
             StoreGifPicker.access$handleFetchTrendingGifsOnNext((StoreGifPicker) this.receiver, list);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.stores.StoreGifPicker$observeSuggestedSearchTerms$3, reason: invalid class name */
     /* JADX INFO: compiled from: StoreGifPicker.kt */
-    public final class AnonymousClass3<T, R> implements b<Map<String, ? extends List<? extends String>>, List<? extends String>> {
+    public final class AnonymousClass3<T, R> implements Func1<Map<String, ? extends List<? extends String>>, List<? extends String>> {
         public final /* synthetic */ String $query;
 
         public AnonymousClass3(String str) {
             this.$query = str;
         }
 
-        @Override // j0.k.b
+        @Override // j0.k.Func1
         public /* bridge */ /* synthetic */ List<? extends String> call(Map<String, ? extends List<? extends String>> map) {
             return call2((Map<String, ? extends List<String>>) map);
         }
@@ -878,7 +879,7 @@ public final class StoreGifPicker extends StoreV2 {
     }
 
     public /* synthetic */ StoreGifPicker(Dispatcher dispatcher, StoreUserSettingsSystem storeUserSettingsSystem, RestAPI restAPI, ObservationDeck observationDeck, int i, DefaultConstructorMarker defaultConstructorMarker) {
-        this(dispatcher, storeUserSettingsSystem, (i & 4) != 0 ? RestAPI.INSTANCE.getApi() : restAPI, (i & 8) != 0 ? ObservationDeckProvider.get() : observationDeck);
+        this(dispatcher, storeUserSettingsSystem, (i & 4) != 0 ? RestAPI.INSTANCE.getApi() : restAPI, (i & 8) != 0 ? ObservationDeck4.get() : observationDeck);
     }
 
     public static final /* synthetic */ void access$fetchGifTrendingSearchTerms(StoreGifPicker storeGifPicker) {
@@ -1033,7 +1034,7 @@ public final class StoreGifPicker extends StoreV2 {
 
     private final void fetchGifsForSearchQuery(String query) {
         Observable<R> observableG = this.restAPI.getGifSearchResults(query, "tenor", this.storeUserSettingsSystem.getLocale(), "tinygif", 50).G(AnonymousClass1.INSTANCE);
-        m.checkNotNullExpressionValue(observableG, "restAPI.getGifSearchResu…to)\n          }\n        }");
+        Intrinsics3.checkNotNullExpressionValue(observableG, "restAPI.getGifSearchResu…to)\n          }\n        }");
         ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.restSubscribeOn$default(observableG, false, 1, null), StoreGifPicker.class, (Context) null, (Function1) null, new AnonymousClass2(query), (Function0) null, (Function0) null, new AnonymousClass3(query), 54, (Object) null);
     }
 
@@ -1044,7 +1045,7 @@ public final class StoreGifPicker extends StoreV2 {
     private final void fetchTrendingCategoryGifs() {
         this.isFetchingTrendingCategoryGifs = true;
         Observable<R> observableG = this.restAPI.getTrendingGifCategory("tenor", this.storeUserSettingsSystem.getLocale(), "tinygif", 50).G(AnonymousClass1.INSTANCE);
-        m.checkNotNullExpressionValue(observableG, "restAPI.getTrendingGifCa…to)\n          }\n        }");
+        Intrinsics3.checkNotNullExpressionValue(observableG, "restAPI.getTrendingGifCa…to)\n          }\n        }");
         ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.restSubscribeOn$default(observableG, false, 1, null), StoreGifPicker.class, (Context) null, (Function1) null, new AnonymousClass2(), (Function0) null, (Function0) null, new AnonymousClass3(this), 54, (Object) null);
     }
 
@@ -1096,22 +1097,22 @@ public final class StoreGifPicker extends StoreV2 {
         this.dispatcher.schedule(new AnonymousClass1(trendingSearchTerms));
     }
 
-    @StoreThread
+    @Store3
     private final void handleGifSearchResults(String query, List<ModelGif> gifs) {
         this.gifSearchHistory.put(query, gifs);
         markChanged();
     }
 
-    @StoreThread
+    @Store3
     private final void handleSuggestedSearchTerms(String query, List<String> suggestedSearchTerms) {
         this.gifSuggestedSearchTermsHistory.put(query, suggestedSearchTerms);
         markChanged();
     }
 
-    @StoreThread
+    @Store3
     private final void handleTrendingCategoriesResponse(TrendingGifCategoriesResponseDto trendingGifCategoriesResponseDto) {
         List<GifCategoryDto> categories = trendingGifCategoriesResponseDto.getCategories();
-        ArrayList arrayList = new ArrayList(d0.t.o.collectionSizeOrDefault(categories, 10));
+        ArrayList arrayList = new ArrayList(Iterables2.collectionSizeOrDefault(categories, 10));
         for (GifCategoryDto gifCategoryDto : categories) {
             arrayList.add(new ModelGifCategory(gifCategoryDto.getName(), gifCategoryDto.getSrc()));
         }
@@ -1132,12 +1133,12 @@ public final class StoreGifPicker extends StoreV2 {
     }
 
     public final Observable<List<ModelGif>> observeGifsForSearchQuery(String query) {
-        m.checkNotNullParameter(query, "query");
+        Intrinsics3.checkNotNullParameter(query, "query");
         this.dispatcher.schedule(new AnonymousClass1(query));
         Observable<R> observableG = observeSearchHistory().G(new AnonymousClass2(query));
-        m.checkNotNullExpressionValue(observableG, "observeSearchHistory().m…gifSearchHistory[query] }");
+        Intrinsics3.checkNotNullExpressionValue(observableG, "observeSearchHistory().m…gifSearchHistory[query] }");
         Observable<List<ModelGif>> observableG2 = observableG.y(ObservableExtensionsKt.AnonymousClass1.INSTANCE).G(ObservableExtensionsKt.AnonymousClass2.INSTANCE);
-        m.checkNotNullExpressionValue(observableG2, "filter { it != null }.map { it!! }");
+        Intrinsics3.checkNotNullExpressionValue(observableG2, "filter { it != null }.map { it!! }");
         return observableG2;
     }
 
@@ -1168,21 +1169,21 @@ public final class StoreGifPicker extends StoreV2 {
         this.trendingCategoryGifsSnapshot = new ArrayList(this.trendingCategoryGifs);
     }
 
-    @StoreThread
+    @Store3
     private final void updateGifCategories(List<ModelGifCategory> categories) {
         this.gifCategories.clear();
         this.gifCategories.addAll(categories);
         markChanged();
     }
 
-    @StoreThread
+    @Store3
     private final void updateTrendingCategoryGifs(List<ModelGif> gifs) {
         this.trendingCategoryGifs.clear();
         this.trendingCategoryGifs.addAll(gifs);
         markChanged();
     }
 
-    @StoreThread
+    @Store3
     private final void updateTrendingSearchTerms(List<String> trendingGifSearchTerms) {
         this.gifTrendingSearchTerms.clear();
         this.gifTrendingSearchTerms.addAll(trendingGifSearchTerms);
@@ -1190,29 +1191,29 @@ public final class StoreGifPicker extends StoreV2 {
     }
 
     public final Observable<List<String>> observeSuggestedSearchTerms(String query) {
-        m.checkNotNullParameter(query, "query");
+        Intrinsics3.checkNotNullParameter(query, "query");
         this.dispatcher.schedule(new AnonymousClass2(query));
         Observable<R> observableG = observeSuggestedSearchTerms().G(new AnonymousClass3(query));
-        m.checkNotNullExpressionValue(observableG, "observeSuggestedSearchTe…archTermsHistory[query] }");
+        Intrinsics3.checkNotNullExpressionValue(observableG, "observeSuggestedSearchTe…archTermsHistory[query] }");
         Observable<List<String>> observableG2 = observableG.y(ObservableExtensionsKt.AnonymousClass1.INSTANCE).G(ObservableExtensionsKt.AnonymousClass2.INSTANCE);
-        m.checkNotNullExpressionValue(observableG2, "filter { it != null }.map { it!! }");
+        Intrinsics3.checkNotNullExpressionValue(observableG2, "filter { it != null }.map { it!! }");
         return observableG2;
     }
 
     public StoreGifPicker(Dispatcher dispatcher, StoreUserSettingsSystem storeUserSettingsSystem, RestAPI restAPI, ObservationDeck observationDeck) {
-        m.checkNotNullParameter(dispatcher, "dispatcher");
-        m.checkNotNullParameter(storeUserSettingsSystem, "storeUserSettingsSystem");
-        m.checkNotNullParameter(restAPI, "restAPI");
-        m.checkNotNullParameter(observationDeck, "observationDeck");
+        Intrinsics3.checkNotNullParameter(dispatcher, "dispatcher");
+        Intrinsics3.checkNotNullParameter(storeUserSettingsSystem, "storeUserSettingsSystem");
+        Intrinsics3.checkNotNullParameter(restAPI, "restAPI");
+        Intrinsics3.checkNotNullParameter(observationDeck, "observationDeck");
         this.dispatcher = dispatcher;
         this.storeUserSettingsSystem = storeUserSettingsSystem;
         this.restAPI = restAPI;
         this.observationDeck = observationDeck;
-        this.gifCategoriesSnapshot = n.emptyList();
-        this.gifTrendingSearchTermsSnapshot = n.emptyList();
-        this.gifSearchHistorySnapshot = h0.emptyMap();
-        this.suggestedSearchTermsSnapshot = h0.emptyMap();
-        this.trendingCategoryGifsSnapshot = n.emptyList();
+        this.gifCategoriesSnapshot = Collections2.emptyList();
+        this.gifTrendingSearchTermsSnapshot = Collections2.emptyList();
+        this.gifSearchHistorySnapshot = Maps6.emptyMap();
+        this.suggestedSearchTermsSnapshot = Maps6.emptyMap();
+        this.trendingCategoryGifsSnapshot = Collections2.emptyList();
         this.gifCategories = new ArrayList();
         this.gifTrendingSearchTerms = new ArrayList();
         this.trendingCategoryGifs = new ArrayList();

@@ -1,14 +1,14 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackMediaDeviceChanged.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackMediaDeviceChanged implements AnalyticsSchema, TrackBaseReceiver {
+public final /* data */ class TrackMediaDeviceChanged implements AnalyticsSchema, TrackBase2 {
     private final CharSequence deviceFromName = null;
     private final Boolean deviceIsCertified = null;
     private final CharSequence deviceToName = null;
@@ -24,7 +24,7 @@ public final /* data */ class TrackMediaDeviceChanged implements AnalyticsSchema
             return false;
         }
         TrackMediaDeviceChanged trackMediaDeviceChanged = (TrackMediaDeviceChanged) other;
-        return m.areEqual(this.deviceFromName, trackMediaDeviceChanged.deviceFromName) && m.areEqual(this.deviceToName, trackMediaDeviceChanged.deviceToName) && m.areEqual(this.deviceType, trackMediaDeviceChanged.deviceType) && m.areEqual(this.deviceIsCertified, trackMediaDeviceChanged.deviceIsCertified);
+        return Intrinsics3.areEqual(this.deviceFromName, trackMediaDeviceChanged.deviceFromName) && Intrinsics3.areEqual(this.deviceToName, trackMediaDeviceChanged.deviceToName) && Intrinsics3.areEqual(this.deviceType, trackMediaDeviceChanged.deviceType) && Intrinsics3.areEqual(this.deviceIsCertified, trackMediaDeviceChanged.deviceIsCertified);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -45,13 +45,13 @@ public final /* data */ class TrackMediaDeviceChanged implements AnalyticsSchema
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackMediaDeviceChanged(deviceFromName=");
+        StringBuilder sbU = outline.U("TrackMediaDeviceChanged(deviceFromName=");
         sbU.append(this.deviceFromName);
         sbU.append(", deviceToName=");
         sbU.append(this.deviceToName);
         sbU.append(", deviceType=");
         sbU.append(this.deviceType);
         sbU.append(", deviceIsCertified=");
-        return a.D(sbU, this.deviceIsCertified, ")");
+        return outline.D(sbU, this.deviceIsCertified, ")");
     }
 }

@@ -1,9 +1,9 @@
 package com.discord.api.premium;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.api.utcdatetime.UtcDateTime;
 import com.discord.models.domain.ModelAuditLogEntry;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: OutboundPromotion.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -25,7 +25,7 @@ public final /* data */ class OutboundPromotion {
             return false;
         }
         OutboundPromotion outboundPromotion = (OutboundPromotion) other;
-        return this.id == outboundPromotion.id && m.areEqual(this.startDate, outboundPromotion.startDate) && m.areEqual(this.endDate, outboundPromotion.endDate) && m.areEqual(this.outboundTitle, outboundPromotion.outboundTitle) && m.areEqual(this.outboundRedemptionModalBody, outboundPromotion.outboundRedemptionModalBody) && m.areEqual(this.outboundRedemptionPageLink, outboundPromotion.outboundRedemptionPageLink) && m.areEqual(this.outboundRedemptionUrlFormat, outboundPromotion.outboundRedemptionUrlFormat) && m.areEqual(this.outboundTermsAndConditions, outboundPromotion.outboundTermsAndConditions);
+        return this.id == outboundPromotion.id && Intrinsics3.areEqual(this.startDate, outboundPromotion.startDate) && Intrinsics3.areEqual(this.endDate, outboundPromotion.endDate) && Intrinsics3.areEqual(this.outboundTitle, outboundPromotion.outboundTitle) && Intrinsics3.areEqual(this.outboundRedemptionModalBody, outboundPromotion.outboundRedemptionModalBody) && Intrinsics3.areEqual(this.outboundRedemptionPageLink, outboundPromotion.outboundRedemptionPageLink) && Intrinsics3.areEqual(this.outboundRedemptionUrlFormat, outboundPromotion.outboundRedemptionUrlFormat) && Intrinsics3.areEqual(this.outboundTermsAndConditions, outboundPromotion.outboundTermsAndConditions);
     }
 
     /* JADX INFO: renamed from: a, reason: from getter */
@@ -88,7 +88,7 @@ public final /* data */ class OutboundPromotion {
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("OutboundPromotion(id=");
+        StringBuilder sbU = outline.U("OutboundPromotion(id=");
         sbU.append(this.id);
         sbU.append(", startDate=");
         sbU.append(this.startDate);
@@ -103,6 +103,6 @@ public final /* data */ class OutboundPromotion {
         sbU.append(", outboundRedemptionUrlFormat=");
         sbU.append(this.outboundRedemptionUrlFormat);
         sbU.append(", outboundTermsAndConditions=");
-        return a.J(sbU, this.outboundTermsAndConditions, ")");
+        return outline.J(sbU, this.outboundTermsAndConditions, ")");
     }
 }

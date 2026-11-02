@@ -1,8 +1,8 @@
 package com.discord.utilities.billing;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.android.billingclient.api.SkuDetails;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 import kotlin.jvm.internal.DefaultConstructorMarker;
 
 /* JADX INFO: compiled from: GooglePlayInAppSku.kt */
@@ -11,23 +11,23 @@ public final /* data */ class GooglePlayInAppSku {
     private final String paymentGatewaySkuId;
     private SkuDetails skuDetails;
     private final Long skuId;
-    private InAppSkuType type;
+    private GooglePlayInAppSku4 type;
 
-    public GooglePlayInAppSku(String str, InAppSkuType inAppSkuType, SkuDetails skuDetails, Long l) {
-        m.checkNotNullParameter(str, "paymentGatewaySkuId");
-        m.checkNotNullParameter(inAppSkuType, "type");
+    public GooglePlayInAppSku(String str, GooglePlayInAppSku4 googlePlayInAppSku4, SkuDetails skuDetails, Long l) {
+        Intrinsics3.checkNotNullParameter(str, "paymentGatewaySkuId");
+        Intrinsics3.checkNotNullParameter(googlePlayInAppSku4, "type");
         this.paymentGatewaySkuId = str;
-        this.type = inAppSkuType;
+        this.type = googlePlayInAppSku4;
         this.skuDetails = skuDetails;
         this.skuId = l;
     }
 
-    public static /* synthetic */ GooglePlayInAppSku copy$default(GooglePlayInAppSku googlePlayInAppSku, String str, InAppSkuType inAppSkuType, SkuDetails skuDetails, Long l, int i, Object obj) {
+    public static /* synthetic */ GooglePlayInAppSku copy$default(GooglePlayInAppSku googlePlayInAppSku, String str, GooglePlayInAppSku4 googlePlayInAppSku4, SkuDetails skuDetails, Long l, int i, Object obj) {
         if ((i & 1) != 0) {
             str = googlePlayInAppSku.paymentGatewaySkuId;
         }
         if ((i & 2) != 0) {
-            inAppSkuType = googlePlayInAppSku.type;
+            googlePlayInAppSku4 = googlePlayInAppSku.type;
         }
         if ((i & 4) != 0) {
             skuDetails = googlePlayInAppSku.skuDetails;
@@ -35,12 +35,12 @@ public final /* data */ class GooglePlayInAppSku {
         if ((i & 8) != 0) {
             l = googlePlayInAppSku.skuId;
         }
-        return googlePlayInAppSku.copy(str, inAppSkuType, skuDetails, l);
+        return googlePlayInAppSku.copy(str, googlePlayInAppSku4, skuDetails, l);
     }
 
-    public final GooglePlayInAppSku copy(String paymentGatewaySkuId, InAppSkuType type, SkuDetails skuDetails, Long skuId) {
-        m.checkNotNullParameter(paymentGatewaySkuId, "paymentGatewaySkuId");
-        m.checkNotNullParameter(type, "type");
+    public final GooglePlayInAppSku copy(String paymentGatewaySkuId, GooglePlayInAppSku4 type, SkuDetails skuDetails, Long skuId) {
+        Intrinsics3.checkNotNullParameter(paymentGatewaySkuId, "paymentGatewaySkuId");
+        Intrinsics3.checkNotNullParameter(type, "type");
         return new GooglePlayInAppSku(paymentGatewaySkuId, type, skuDetails, skuId);
     }
 
@@ -52,7 +52,7 @@ public final /* data */ class GooglePlayInAppSku {
             return false;
         }
         GooglePlayInAppSku googlePlayInAppSku = (GooglePlayInAppSku) other;
-        return m.areEqual(this.paymentGatewaySkuId, googlePlayInAppSku.paymentGatewaySkuId) && m.areEqual(this.type, googlePlayInAppSku.type) && m.areEqual(this.skuDetails, googlePlayInAppSku.skuDetails) && m.areEqual(this.skuId, googlePlayInAppSku.skuId);
+        return Intrinsics3.areEqual(this.paymentGatewaySkuId, googlePlayInAppSku.paymentGatewaySkuId) && Intrinsics3.areEqual(this.type, googlePlayInAppSku.type) && Intrinsics3.areEqual(this.skuDetails, googlePlayInAppSku.skuDetails) && Intrinsics3.areEqual(this.skuId, googlePlayInAppSku.skuId);
     }
 
     /* JADX INFO: renamed from: component1, reason: from getter */
@@ -83,19 +83,19 @@ public final /* data */ class GooglePlayInAppSku {
     }
 
     /* JADX INFO: renamed from: component2, reason: from getter */
-    public final InAppSkuType getType() {
+    public final GooglePlayInAppSku4 getType() {
         return this.type;
     }
 
-    public final InAppSkuType getType() {
+    public final GooglePlayInAppSku4 getType() {
         return this.type;
     }
 
     public int hashCode() {
         String str = this.paymentGatewaySkuId;
         int iHashCode = (str != null ? str.hashCode() : 0) * 31;
-        InAppSkuType inAppSkuType = this.type;
-        int iHashCode2 = (iHashCode + (inAppSkuType != null ? inAppSkuType.hashCode() : 0)) * 31;
+        GooglePlayInAppSku4 googlePlayInAppSku4 = this.type;
+        int iHashCode2 = (iHashCode + (googlePlayInAppSku4 != null ? googlePlayInAppSku4.hashCode() : 0)) * 31;
         SkuDetails skuDetails = this.skuDetails;
         int iHashCode3 = (iHashCode2 + (skuDetails != null ? skuDetails.hashCode() : 0)) * 31;
         Long l = this.skuId;
@@ -106,23 +106,23 @@ public final /* data */ class GooglePlayInAppSku {
         this.skuDetails = skuDetails;
     }
 
-    public final void setType(InAppSkuType inAppSkuType) {
-        m.checkNotNullParameter(inAppSkuType, "<set-?>");
-        this.type = inAppSkuType;
+    public final void setType(GooglePlayInAppSku4 googlePlayInAppSku4) {
+        Intrinsics3.checkNotNullParameter(googlePlayInAppSku4, "<set-?>");
+        this.type = googlePlayInAppSku4;
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("GooglePlayInAppSku(paymentGatewaySkuId=");
+        StringBuilder sbU = outline.U("GooglePlayInAppSku(paymentGatewaySkuId=");
         sbU.append(this.paymentGatewaySkuId);
         sbU.append(", type=");
         sbU.append(this.type);
         sbU.append(", skuDetails=");
         sbU.append(this.skuDetails);
         sbU.append(", skuId=");
-        return a.G(sbU, this.skuId, ")");
+        return outline.G(sbU, this.skuId, ")");
     }
 
-    public /* synthetic */ GooglePlayInAppSku(String str, InAppSkuType inAppSkuType, SkuDetails skuDetails, Long l, int i, DefaultConstructorMarker defaultConstructorMarker) {
-        this(str, inAppSkuType, (i & 4) != 0 ? null : skuDetails, (i & 8) != 0 ? null : l);
+    public /* synthetic */ GooglePlayInAppSku(String str, GooglePlayInAppSku4 googlePlayInAppSku4, SkuDetails skuDetails, Long l, int i, DefaultConstructorMarker defaultConstructorMarker) {
+        this(str, googlePlayInAppSku4, (i & 4) != 0 ? null : skuDetails, (i & 8) != 0 ? null : l);
     }
 }

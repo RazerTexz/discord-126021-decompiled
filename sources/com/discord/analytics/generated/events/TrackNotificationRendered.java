@@ -1,14 +1,14 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackNotificationRendered.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackNotificationRendered implements AnalyticsSchema, TrackBaseReceiver {
+public final /* data */ class TrackNotificationRendered implements AnalyticsSchema, TrackBase2 {
     private final Long anyNewerMessagesRenderDurationMs = null;
     private final Long appActiveDurationMs = null;
     private final Long appBackgroundedDurationMs = null;
@@ -39,7 +39,7 @@ public final /* data */ class TrackNotificationRendered implements AnalyticsSche
             return false;
         }
         TrackNotificationRendered trackNotificationRendered = (TrackNotificationRendered) other;
-        return m.areEqual(this.hasCache, trackNotificationRendered.hasCache) && m.areEqual(this.messageInPushPayload, trackNotificationRendered.messageInPushPayload) && m.areEqual(this.coldStartDurationMs, trackNotificationRendered.coldStartDurationMs) && m.areEqual(this.cachedRenderDurationMs, trackNotificationRendered.cachedRenderDurationMs) && m.areEqual(this.anyNewerMessagesRenderDurationMs, trackNotificationRendered.anyNewerMessagesRenderDurationMs) && m.areEqual(this.loadedMessagesRenderDurationMs, trackNotificationRendered.loadedMessagesRenderDurationMs) && m.areEqual(this.fullRenderDurationMs, trackNotificationRendered.fullRenderDurationMs) && m.areEqual(this.cacheLoadDurationMs, trackNotificationRendered.cacheLoadDurationMs) && m.areEqual(this.fullCacheLoadDurationMs, trackNotificationRendered.fullCacheLoadDurationMs) && m.areEqual(this.connectionPreOpenDurationMs, trackNotificationRendered.connectionPreOpenDurationMs) && m.areEqual(this.connectionOpenDurationMs, trackNotificationRendered.connectionOpenDurationMs) && m.areEqual(this.connectionResumeDurationMs, trackNotificationRendered.connectionResumeDurationMs) && m.areEqual(this.onlineDurationMs, trackNotificationRendered.onlineDurationMs) && m.areEqual(this.firstMessageFetchStartDurationMs, trackNotificationRendered.firstMessageFetchStartDurationMs) && m.areEqual(this.firstMessageFetchEndDurationMs, trackNotificationRendered.firstMessageFetchEndDurationMs) && m.areEqual(this.initialAppState, trackNotificationRendered.initialAppState) && m.areEqual(this.appActiveDurationMs, trackNotificationRendered.appActiveDurationMs) && m.areEqual(this.appInactiveDurationMs, trackNotificationRendered.appInactiveDurationMs) && m.areEqual(this.appBackgroundedDurationMs, trackNotificationRendered.appBackgroundedDurationMs);
+        return Intrinsics3.areEqual(this.hasCache, trackNotificationRendered.hasCache) && Intrinsics3.areEqual(this.messageInPushPayload, trackNotificationRendered.messageInPushPayload) && Intrinsics3.areEqual(this.coldStartDurationMs, trackNotificationRendered.coldStartDurationMs) && Intrinsics3.areEqual(this.cachedRenderDurationMs, trackNotificationRendered.cachedRenderDurationMs) && Intrinsics3.areEqual(this.anyNewerMessagesRenderDurationMs, trackNotificationRendered.anyNewerMessagesRenderDurationMs) && Intrinsics3.areEqual(this.loadedMessagesRenderDurationMs, trackNotificationRendered.loadedMessagesRenderDurationMs) && Intrinsics3.areEqual(this.fullRenderDurationMs, trackNotificationRendered.fullRenderDurationMs) && Intrinsics3.areEqual(this.cacheLoadDurationMs, trackNotificationRendered.cacheLoadDurationMs) && Intrinsics3.areEqual(this.fullCacheLoadDurationMs, trackNotificationRendered.fullCacheLoadDurationMs) && Intrinsics3.areEqual(this.connectionPreOpenDurationMs, trackNotificationRendered.connectionPreOpenDurationMs) && Intrinsics3.areEqual(this.connectionOpenDurationMs, trackNotificationRendered.connectionOpenDurationMs) && Intrinsics3.areEqual(this.connectionResumeDurationMs, trackNotificationRendered.connectionResumeDurationMs) && Intrinsics3.areEqual(this.onlineDurationMs, trackNotificationRendered.onlineDurationMs) && Intrinsics3.areEqual(this.firstMessageFetchStartDurationMs, trackNotificationRendered.firstMessageFetchStartDurationMs) && Intrinsics3.areEqual(this.firstMessageFetchEndDurationMs, trackNotificationRendered.firstMessageFetchEndDurationMs) && Intrinsics3.areEqual(this.initialAppState, trackNotificationRendered.initialAppState) && Intrinsics3.areEqual(this.appActiveDurationMs, trackNotificationRendered.appActiveDurationMs) && Intrinsics3.areEqual(this.appInactiveDurationMs, trackNotificationRendered.appInactiveDurationMs) && Intrinsics3.areEqual(this.appBackgroundedDurationMs, trackNotificationRendered.appBackgroundedDurationMs);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -90,7 +90,7 @@ public final /* data */ class TrackNotificationRendered implements AnalyticsSche
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackNotificationRendered(hasCache=");
+        StringBuilder sbU = outline.U("TrackNotificationRendered(hasCache=");
         sbU.append(this.hasCache);
         sbU.append(", messageInPushPayload=");
         sbU.append(this.messageInPushPayload);
@@ -127,6 +127,6 @@ public final /* data */ class TrackNotificationRendered implements AnalyticsSche
         sbU.append(", appInactiveDurationMs=");
         sbU.append(this.appInactiveDurationMs);
         sbU.append(", appBackgroundedDurationMs=");
-        return a.G(sbU, this.appBackgroundedDurationMs, ")");
+        return outline.G(sbU, this.appBackgroundedDurationMs, ")");
     }
 }

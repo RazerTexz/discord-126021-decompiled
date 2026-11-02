@@ -4,7 +4,7 @@ import androidx.core.app.NotificationCompat;
 import com.discord.api.channel.Channel;
 import com.discord.models.domain.ModelNotificationSettings;
 import com.discord.models.guild.Guild;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -29,9 +29,9 @@ public final class WidgetGlobalSearchModel$Companion$get$guildsListObservable$1<
         Set<Long> unreadGuildIds = channelContext.getUnreadGuildIds();
         Map<Long, Integer> mentionCounts = searchContext.getMentionCounts();
         Map<Long, Channel> channelsPrivate = channelContext.getChannelsPrivate();
-        m.checkNotNullExpressionValue(linkedHashMap, "sortedGuilds");
+        Intrinsics3.checkNotNullExpressionValue(linkedHashMap, "sortedGuilds");
         Map<Long, List<Long>> guildToChannels = channelContext.getGuildToChannels();
-        m.checkNotNullExpressionValue(map, "guildSettings");
+        Intrinsics3.checkNotNullExpressionValue(map, "guildSettings");
         return companion.create(recentGuildIds, selectedVoiceChannelId, unreadGuildIds, mentionCounts, channelsPrivate, linkedHashMap, guildToChannels, map);
     }
 }

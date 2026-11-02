@@ -6,7 +6,7 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import java.io.PrintStream;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
@@ -15,7 +15,7 @@ import java.lang.reflect.Modifier;
 public class Debug {
     public static void dumpLayoutParams(ViewGroup viewGroup, String str) {
         StackTraceElement stackTraceElement = new Throwable().getStackTrace()[1];
-        StringBuilder sbU = a.U(".(");
+        StringBuilder sbU = outline.U(".(");
         sbU.append(stackTraceElement.getFileName());
         sbU.append(":");
         sbU.append(stackTraceElement.getLineNumber());
@@ -28,7 +28,7 @@ public class Debug {
         for (int i = 0; i < childCount; i++) {
             View childAt = viewGroup.getChildAt(i);
             PrintStream printStream = System.out;
-            StringBuilder sbX = a.X(string, "     ");
+            StringBuilder sbX = outline.X(string, "     ");
             sbX.append(getName(childAt));
             printStream.println(sbX.toString());
             ViewGroup.LayoutParams layoutParams = childAt.getLayoutParams();
@@ -46,7 +46,7 @@ public class Debug {
 
     public static void dumpPoc(Object obj) {
         StackTraceElement stackTraceElement = new Throwable().getStackTrace()[1];
-        StringBuilder sbU = a.U(".(");
+        StringBuilder sbU = outline.U(".(");
         sbU.append(stackTraceElement.getFileName());
         sbU.append(":");
         sbU.append(stackTraceElement.getLineNumber());
@@ -54,7 +54,7 @@ public class Debug {
         String string = sbU.toString();
         Class<?> cls = obj.getClass();
         PrintStream printStream = System.out;
-        StringBuilder sbX = a.X(string, "------------- ");
+        StringBuilder sbX = outline.X(string, "------------- ");
         sbX.append(cls.getName());
         sbX.append(" --------------------");
         printStream.println(sbX.toString());
@@ -68,7 +68,7 @@ public class Debug {
             }
         }
         PrintStream printStream2 = System.out;
-        StringBuilder sbX2 = a.X(string, "------------- ");
+        StringBuilder sbX2 = outline.X(string, "------------- ");
         sbX2.append(cls.getSimpleName());
         sbX2.append(" --------------------");
         printStream2.println(sbX2.toString());
@@ -89,7 +89,7 @@ public class Debug {
 
     public static String getCallFrom(int i) {
         StackTraceElement stackTraceElement = new Throwable().getStackTrace()[i + 2];
-        StringBuilder sbU = a.U(".(");
+        StringBuilder sbU = outline.U(".(");
         sbU.append(stackTraceElement.getFileName());
         sbU.append(":");
         sbU.append(stackTraceElement.getLineNumber());
@@ -99,7 +99,7 @@ public class Debug {
 
     public static String getLoc() {
         StackTraceElement stackTraceElement = new Throwable().getStackTrace()[1];
-        StringBuilder sbU = a.U(".(");
+        StringBuilder sbU = outline.U(".(");
         sbU.append(stackTraceElement.getFileName());
         sbU.append(":");
         sbU.append(stackTraceElement.getLineNumber());
@@ -111,7 +111,7 @@ public class Debug {
 
     public static String getLocation() {
         StackTraceElement stackTraceElement = new Throwable().getStackTrace()[1];
-        StringBuilder sbU = a.U(".(");
+        StringBuilder sbU = outline.U(".(");
         sbU.append(stackTraceElement.getFileName());
         sbU.append(":");
         sbU.append(stackTraceElement.getLineNumber());
@@ -121,7 +121,7 @@ public class Debug {
 
     public static String getLocation2() {
         StackTraceElement stackTraceElement = new Throwable().getStackTrace()[2];
-        StringBuilder sbU = a.U(".(");
+        StringBuilder sbU = outline.U(".(");
         sbU.append(stackTraceElement.getFileName());
         sbU.append(":");
         sbU.append(stackTraceElement.getLineNumber());
@@ -147,14 +147,14 @@ public class Debug {
         String strW = " ";
         for (int i2 = 1; i2 <= iMin; i2++) {
             StackTraceElement stackTraceElement = stackTrace[i2];
-            StringBuilder sbU = a.U(".(");
+            StringBuilder sbU = outline.U(".(");
             sbU.append(stackTrace[i2].getFileName());
             sbU.append(":");
             sbU.append(stackTrace[i2].getLineNumber());
             sbU.append(") ");
             sbU.append(stackTrace[i2].getMethodName());
             String string = sbU.toString();
-            strW = a.w(strW, " ");
+            strW = outline.w(strW, " ");
             Log.v(str, str2 + strW + string + strW);
         }
     }
@@ -165,13 +165,13 @@ public class Debug {
         String strW = " ";
         for (int i2 = 1; i2 <= iMin; i2++) {
             StackTraceElement stackTraceElement = stackTrace[i2];
-            StringBuilder sbU = a.U(".(");
+            StringBuilder sbU = outline.U(".(");
             sbU.append(stackTrace[i2].getFileName());
             sbU.append(":");
             sbU.append(stackTrace[i2].getLineNumber());
             sbU.append(") ");
             String string = sbU.toString();
-            strW = a.w(strW, " ");
+            strW = outline.w(strW, " ");
             System.out.println(str + strW + string + strW);
         }
     }
@@ -183,7 +183,7 @@ public class Debug {
         try {
             return context.getResources().getResourceEntryName(i);
         } catch (Exception unused) {
-            return a.q("?", i);
+            return outline.q("?", i);
         }
     }
 
@@ -214,7 +214,7 @@ public class Debug {
 
     public static void dumpLayoutParams(ViewGroup.LayoutParams layoutParams, String str) {
         StackTraceElement stackTraceElement = new Throwable().getStackTrace()[1];
-        StringBuilder sbU = a.U(".(");
+        StringBuilder sbU = outline.U(".(");
         sbU.append(stackTraceElement.getFileName());
         sbU.append(":");
         sbU.append(stackTraceElement.getLineNumber());
@@ -223,7 +223,7 @@ public class Debug {
         sbU.append("  ");
         String string = sbU.toString();
         PrintStream printStream = System.out;
-        StringBuilder sbY = a.Y(" >>>>>>>>>>>>>>>>>>. dump ", string, "  ");
+        StringBuilder sbY = outline.Y(" >>>>>>>>>>>>>>>>>>. dump ", string, "  ");
         sbY.append(layoutParams.getClass().getName());
         printStream.println(sbY.toString());
         for (Field field : layoutParams.getClass().getFields()) {

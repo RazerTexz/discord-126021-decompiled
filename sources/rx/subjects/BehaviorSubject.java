@@ -1,8 +1,8 @@
 package rx.subjects;
 
 import b.i.a.f.e.o.f;
-import j0.l.a.e;
-import j0.q.c;
+import j0.l.a.NotificationLite;
+import j0.q.SubjectSubscriptionManager2;
 import java.util.ArrayList;
 import java.util.List;
 import rx.Observable;
@@ -10,21 +10,21 @@ import rx.functions.Action1;
 
 /* JADX INFO: loaded from: classes3.dex */
 public final class BehaviorSubject<T> extends Subject<T, T> {
-    public final c<T> l;
+    public final SubjectSubscriptionManager2<T> l;
     public static final Object[] k = new Object[0];
 
-    public final class a implements Action1<c.b<T>> {
-        public final /* synthetic */ c j;
+    public final class a implements Action1<SubjectSubscriptionManager2.b<T>> {
+        public final /* synthetic */ SubjectSubscriptionManager2 j;
 
-        public a(c cVar) {
-            this.j = cVar;
+        public a(SubjectSubscriptionManager2 subjectSubscriptionManager2) {
+            this.j = subjectSubscriptionManager2;
         }
 
         /* JADX WARN: Code duplicated, block: B:46:0x005b  */
         /* JADX WARN: Code duplicated, block: B:59:0x005c A[EXC_TOP_SPLITTER, SYNTHETIC] */
         @Override // rx.functions.Action1
         public void call(Object obj) throws Throwable {
-            c.b bVar = (c.b) obj;
+            SubjectSubscriptionManager2.b bVar = (SubjectSubscriptionManager2.b) obj;
             Object obj2 = this.j.latest;
             synchronized (bVar) {
                 if (bVar.k && !bVar.l) {
@@ -39,7 +39,7 @@ public final class BehaviorSubject<T> extends Subject<T, T> {
                                 try {
                                     for (Object obj3 : list) {
                                         if (obj3 != null) {
-                                            e.a(bVar.j, obj3);
+                                            NotificationLite.a(bVar.j, obj3);
                                         }
                                     }
                                 } catch (Throwable th) {
@@ -54,7 +54,7 @@ public final class BehaviorSubject<T> extends Subject<T, T> {
                                 }
                             }
                             if (z3) {
-                                e.a(bVar.j, obj2);
+                                NotificationLite.a(bVar.j, obj2);
                                 z3 = false;
                             }
                             try {
@@ -92,9 +92,9 @@ public final class BehaviorSubject<T> extends Subject<T, T> {
         }
     }
 
-    public BehaviorSubject(Observable.a<T> aVar, c<T> cVar) {
+    public BehaviorSubject(Observable.a<T> aVar, SubjectSubscriptionManager2<T> subjectSubscriptionManager2) {
         super(aVar);
-        this.l = cVar;
+        this.l = subjectSubscriptionManager2;
     }
 
     public static <T> BehaviorSubject<T> k0() {
@@ -106,43 +106,43 @@ public final class BehaviorSubject<T> extends Subject<T, T> {
     }
 
     public static <T> BehaviorSubject<T> m0(T t, boolean z2) {
-        c cVar = new c();
+        SubjectSubscriptionManager2 subjectSubscriptionManager2 = new SubjectSubscriptionManager2();
         if (z2) {
             if (t == null) {
-                t = (T) e.f3771b;
+                t = (T) NotificationLite.f3771b;
             }
-            cVar.latest = t;
+            subjectSubscriptionManager2.latest = t;
         }
-        a aVar = new a(cVar);
-        cVar.onAdded = aVar;
-        cVar.onTerminated = aVar;
-        return new BehaviorSubject<>(cVar, cVar);
+        a aVar = new a(subjectSubscriptionManager2);
+        subjectSubscriptionManager2.onAdded = aVar;
+        subjectSubscriptionManager2.onTerminated = aVar;
+        return new BehaviorSubject<>(subjectSubscriptionManager2, subjectSubscriptionManager2);
     }
 
     public T n0() {
         Object obj = this.l.latest;
-        if ((obj == null || (obj instanceof e.c) || e.c(obj)) ? false : true) {
-            return (T) e.b(obj);
+        if ((obj == null || (obj instanceof NotificationLite.c) || NotificationLite.c(obj)) ? false : true) {
+            return (T) NotificationLite.b(obj);
         }
         return null;
     }
 
-    @Override // j0.g
+    @Override // j0.Observer2
     public void onCompleted() {
         if (this.l.latest == null || this.l.active) {
-            Object obj = e.a;
-            for (c.b<T> bVar : this.l.b(obj)) {
+            Object obj = NotificationLite.a;
+            for (SubjectSubscriptionManager2.b<T> bVar : this.l.b(obj)) {
                 bVar.a(obj);
             }
         }
     }
 
-    @Override // j0.g
+    @Override // j0.Observer2
     public void onError(Throwable th) {
         if (this.l.latest == null || this.l.active) {
-            e.c cVar = new e.c(th);
+            NotificationLite.c cVar = new NotificationLite.c(th);
             ArrayList arrayList = null;
-            for (c.b<T> bVar : this.l.b(cVar)) {
+            for (SubjectSubscriptionManager2.b<T> bVar : this.l.b(cVar)) {
                 try {
                     bVar.a(cVar);
                 } catch (Throwable th2) {
@@ -156,15 +156,15 @@ public final class BehaviorSubject<T> extends Subject<T, T> {
         }
     }
 
-    @Override // j0.g
+    @Override // j0.Observer2
     public void onNext(T t) {
         if (this.l.latest == null || this.l.active) {
             if (t == null) {
-                t = (T) e.f3771b;
+                t = (T) NotificationLite.f3771b;
             }
-            c<T> cVar = this.l;
-            cVar.latest = t;
-            for (c.b bVar : cVar.get().e) {
+            SubjectSubscriptionManager2<T> subjectSubscriptionManager2 = this.l;
+            subjectSubscriptionManager2.latest = t;
+            for (SubjectSubscriptionManager2.b bVar : subjectSubscriptionManager2.get().e) {
                 bVar.a(t);
             }
         }

@@ -44,7 +44,7 @@ public abstract class dc extends s0 implements ec {
         fc hcVar14 = null;
         switch (i) {
             case 1:
-                initialize(b.i.a.f.f.a.AbstractBinderC0117a.g(parcel.readStrongBinder()), (zzae) v.a(parcel, zzae.CREATOR), parcel.readLong());
+                initialize(b.i.a.f.f.a.AbstractBinderC0040a.g(parcel.readStrongBinder()), (zzae) v.a(parcel, zzae.CREATOR), parcel.readLong());
                 break;
             case 2:
                 logEvent(parcel.readString(), parcel.readString(), (Bundle) v.a(parcel, Bundle.CREATOR), parcel.readInt() != 0, parcel.readInt() != 0, parcel.readLong());
@@ -63,7 +63,7 @@ public abstract class dc extends s0 implements ec {
             case 4:
                 String string3 = parcel.readString();
                 String string4 = parcel.readString();
-                b.i.a.f.f.a aVarG = b.i.a.f.f.a.AbstractBinderC0117a.g(parcel.readStrongBinder());
+                b.i.a.f.f.a aVarG = b.i.a.f.f.a.AbstractBinderC0040a.g(parcel.readStrongBinder());
                 ClassLoader classLoader = v.a;
                 setUserProperty(string3, string4, aVarG, parcel.readInt() != 0, parcel.readLong());
                 break;
@@ -121,7 +121,7 @@ public abstract class dc extends s0 implements ec {
                 setSessionTimeoutDuration(parcel.readLong());
                 break;
             case 15:
-                setCurrentScreen(b.i.a.f.f.a.AbstractBinderC0117a.g(parcel.readStrongBinder()), parcel.readString(), parcel.readString(), parcel.readLong());
+                setCurrentScreen(b.i.a.f.f.a.AbstractBinderC0040a.g(parcel.readStrongBinder()), parcel.readString(), parcel.readString(), parcel.readLong());
                 break;
             case 16:
                 IBinder strongBinder5 = parcel.readStrongBinder();
@@ -186,25 +186,25 @@ public abstract class dc extends s0 implements ec {
                 endAdUnitExposure(parcel.readString(), parcel.readLong());
                 break;
             case 25:
-                onActivityStarted(b.i.a.f.f.a.AbstractBinderC0117a.g(parcel.readStrongBinder()), parcel.readLong());
+                onActivityStarted(b.i.a.f.f.a.AbstractBinderC0040a.g(parcel.readStrongBinder()), parcel.readLong());
                 break;
             case 26:
-                onActivityStopped(b.i.a.f.f.a.AbstractBinderC0117a.g(parcel.readStrongBinder()), parcel.readLong());
+                onActivityStopped(b.i.a.f.f.a.AbstractBinderC0040a.g(parcel.readStrongBinder()), parcel.readLong());
                 break;
             case 27:
-                onActivityCreated(b.i.a.f.f.a.AbstractBinderC0117a.g(parcel.readStrongBinder()), (Bundle) v.a(parcel, Bundle.CREATOR), parcel.readLong());
+                onActivityCreated(b.i.a.f.f.a.AbstractBinderC0040a.g(parcel.readStrongBinder()), (Bundle) v.a(parcel, Bundle.CREATOR), parcel.readLong());
                 break;
             case 28:
-                onActivityDestroyed(b.i.a.f.f.a.AbstractBinderC0117a.g(parcel.readStrongBinder()), parcel.readLong());
+                onActivityDestroyed(b.i.a.f.f.a.AbstractBinderC0040a.g(parcel.readStrongBinder()), parcel.readLong());
                 break;
             case 29:
-                onActivityPaused(b.i.a.f.f.a.AbstractBinderC0117a.g(parcel.readStrongBinder()), parcel.readLong());
+                onActivityPaused(b.i.a.f.f.a.AbstractBinderC0040a.g(parcel.readStrongBinder()), parcel.readLong());
                 break;
             case 30:
-                onActivityResumed(b.i.a.f.f.a.AbstractBinderC0117a.g(parcel.readStrongBinder()), parcel.readLong());
+                onActivityResumed(b.i.a.f.f.a.AbstractBinderC0040a.g(parcel.readStrongBinder()), parcel.readLong());
                 break;
             case 31:
-                b.i.a.f.f.a aVarG2 = b.i.a.f.f.a.AbstractBinderC0117a.g(parcel.readStrongBinder());
+                b.i.a.f.f.a aVarG2 = b.i.a.f.f.a.AbstractBinderC0040a.g(parcel.readStrongBinder());
                 IBinder strongBinder12 = parcel.readStrongBinder();
                 if (strongBinder12 != null) {
                     IInterface iInterfaceQueryLocalInterface12 = strongBinder12.queryLocalInterface("com.google.android.gms.measurement.api.internal.IBundleReceiver");
@@ -222,7 +222,7 @@ public abstract class dc extends s0 implements ec {
                 performAction(bundle2, hcVar4, parcel.readLong());
                 break;
             case 33:
-                logHealthData(parcel.readInt(), parcel.readString(), b.i.a.f.f.a.AbstractBinderC0117a.g(parcel.readStrongBinder()), b.i.a.f.f.a.AbstractBinderC0117a.g(parcel.readStrongBinder()), b.i.a.f.f.a.AbstractBinderC0117a.g(parcel.readStrongBinder()));
+                logHealthData(parcel.readInt(), parcel.readString(), b.i.a.f.f.a.AbstractBinderC0040a.g(parcel.readStrongBinder()), b.i.a.f.f.a.AbstractBinderC0040a.g(parcel.readStrongBinder()), b.i.a.f.f.a.AbstractBinderC0040a.g(parcel.readStrongBinder()));
                 break;
             case 34:
                 IBinder strongBinder14 = parcel.readStrongBinder();

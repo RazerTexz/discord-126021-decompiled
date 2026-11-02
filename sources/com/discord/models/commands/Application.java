@@ -1,10 +1,10 @@
 package com.discord.models.commands;
 
 import a0.a.a.b;
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.api.user.User;
 import com.discord.models.domain.ModelAuditLogEntry;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 import kotlin.jvm.internal.DefaultConstructorMarker;
 
 /* JADX INFO: compiled from: Application.kt */
@@ -27,7 +27,7 @@ public final /* data */ class Application {
         }
 
         public final Application fromApiApplication(com.discord.api.application.Application apiApplication) {
-            m.checkNotNullParameter(apiApplication, "apiApplication");
+            Intrinsics3.checkNotNullParameter(apiApplication, "apiApplication");
             return new Application(apiApplication.getId(), apiApplication.getName(), apiApplication.getIcon(), null, 0, null, false, 104, null);
         }
 
@@ -37,7 +37,7 @@ public final /* data */ class Application {
     }
 
     public Application(long j, String str, String str2, Integer num, int i, User user, boolean z2) {
-        m.checkNotNullParameter(str, ModelAuditLogEntry.CHANGE_KEY_NAME);
+        Intrinsics3.checkNotNullParameter(str, ModelAuditLogEntry.CHANGE_KEY_NAME);
         this.id = j;
         this.name = str;
         this.icon = str2;
@@ -52,7 +52,7 @@ public final /* data */ class Application {
     }
 
     public final Application copy(long id2, String name, String icon, Integer iconRes, int commandCount, User bot, boolean builtIn) {
-        m.checkNotNullParameter(name, ModelAuditLogEntry.CHANGE_KEY_NAME);
+        Intrinsics3.checkNotNullParameter(name, ModelAuditLogEntry.CHANGE_KEY_NAME);
         return new Application(id2, name, icon, iconRes, commandCount, bot, builtIn);
     }
 
@@ -64,7 +64,7 @@ public final /* data */ class Application {
             return false;
         }
         Application application = (Application) other;
-        return this.id == application.id && m.areEqual(this.name, application.name) && m.areEqual(this.icon, application.icon) && m.areEqual(this.iconRes, application.iconRes) && this.commandCount == application.commandCount && m.areEqual(this.bot, application.bot) && this.builtIn == application.builtIn;
+        return this.id == application.id && Intrinsics3.areEqual(this.name, application.name) && Intrinsics3.areEqual(this.icon, application.icon) && Intrinsics3.areEqual(this.iconRes, application.iconRes) && this.commandCount == application.commandCount && Intrinsics3.areEqual(this.bot, application.bot) && this.builtIn == application.builtIn;
     }
 
     /* JADX INFO: renamed from: component6, reason: from getter */
@@ -154,7 +154,7 @@ public final /* data */ class Application {
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("Application(id=");
+        StringBuilder sbU = outline.U("Application(id=");
         sbU.append(this.id);
         sbU.append(", name=");
         sbU.append(this.name);
@@ -167,7 +167,7 @@ public final /* data */ class Application {
         sbU.append(", bot=");
         sbU.append(this.bot);
         sbU.append(", builtIn=");
-        return a.O(sbU, this.builtIn, ")");
+        return outline.O(sbU, this.builtIn, ")");
     }
 
     public /* synthetic */ Application(long j, String str, String str2, Integer num, int i, User user, boolean z2, int i2, DefaultConstructorMarker defaultConstructorMarker) {

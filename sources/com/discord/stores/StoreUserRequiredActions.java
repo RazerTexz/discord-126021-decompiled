@@ -4,8 +4,8 @@ import com.discord.api.requiredaction.UserRequiredActionUpdate;
 import com.discord.models.domain.ModelPayload;
 import com.discord.models.requiredaction.RequiredAction;
 import com.discord.stores.updates.ObservationDeck;
-import d0.z.d.m;
-import d0.z.d.o;
+import d0.z.d.Intrinsics3;
+import d0.z.d.Lambda;
 import kotlin.jvm.functions.Function0;
 import rx.Observable;
 
@@ -17,7 +17,7 @@ public final class StoreUserRequiredActions extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreUserRequiredActions$observeUserRequiredAction$1, reason: invalid class name */
     /* JADX INFO: compiled from: StoreUserRequiredActions.kt */
-    public final class AnonymousClass1 extends o implements Function0<RequiredAction> {
+    public final class AnonymousClass1 extends Lambda implements Function0<RequiredAction> {
         public AnonymousClass1() {
             super(0);
         }
@@ -35,7 +35,7 @@ public final class StoreUserRequiredActions extends StoreV2 {
     }
 
     public StoreUserRequiredActions(ObservationDeck observationDeck) {
-        m.checkNotNullParameter(observationDeck, "observationDeck");
+        Intrinsics3.checkNotNullParameter(observationDeck, "observationDeck");
         this.observationDeck = observationDeck;
         this.userRequiredAction = RequiredAction.NONE;
     }
@@ -48,15 +48,15 @@ public final class StoreUserRequiredActions extends StoreV2 {
         storeUserRequiredActions.userRequiredAction = requiredAction;
     }
 
-    @StoreThread
+    @Store3
     public final void handleConnectionOpen(ModelPayload payload) {
         updateUserRequiredAction(RequiredAction.INSTANCE.fromApiString(payload != null ? payload.getRequiredAction() : null));
         markChanged();
     }
 
-    @StoreThread
+    @Store3
     public final void handleUserRequiredActionUpdate(UserRequiredActionUpdate userRequiredActionUpdate) {
-        m.checkNotNullParameter(userRequiredActionUpdate, "userRequiredActionUpdate");
+        Intrinsics3.checkNotNullParameter(userRequiredActionUpdate, "userRequiredActionUpdate");
         updateUserRequiredAction(RequiredAction.INSTANCE.fromApiString(userRequiredActionUpdate.getRequiredAction()));
         markChanged();
     }
@@ -65,7 +65,7 @@ public final class StoreUserRequiredActions extends StoreV2 {
         return ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck.UpdateSource[]{this}, false, null, null, new AnonymousClass1(), 14, null);
     }
 
-    @StoreThread
+    @Store3
     private final void updateUserRequiredAction(RequiredAction userRequiredAction) {
         if (userRequiredAction == RequiredAction.REQUIRE_CAPTCHA) {
             userRequiredAction = RequiredAction.REQUIRE_VERIFIED_PHONE;

@@ -1,18 +1,18 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackAfCard;
-import com.discord.analytics.generated.traits.TrackAfCardReceiver;
+import com.discord.analytics.generated.traits.TrackAfCard2;
 import com.discord.analytics.generated.traits.TrackAfGame;
-import com.discord.analytics.generated.traits.TrackAfGameReceiver;
+import com.discord.analytics.generated.traits.TrackAfGame2;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackGameNewsChanged.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackGameNewsChanged implements AnalyticsSchema, TrackBaseReceiver, TrackAfGameReceiver, TrackAfCardReceiver {
+public final /* data */ class TrackGameNewsChanged implements AnalyticsSchema, TrackBase2, TrackAfGame2, TrackAfCard2 {
     private final Long changeCount = null;
     private final CharSequence newsChangeType = null;
     private final Long newsFromIndex = null;
@@ -31,7 +31,7 @@ public final /* data */ class TrackGameNewsChanged implements AnalyticsSchema, T
             return false;
         }
         TrackGameNewsChanged trackGameNewsChanged = (TrackGameNewsChanged) other;
-        return m.areEqual(this.changeCount, trackGameNewsChanged.changeCount) && m.areEqual(this.newsUrl, trackGameNewsChanged.newsUrl) && m.areEqual(this.newsToIndex, trackGameNewsChanged.newsToIndex) && m.areEqual(this.newsFromIndex, trackGameNewsChanged.newsFromIndex) && m.areEqual(this.newsChangeType, trackGameNewsChanged.newsChangeType);
+        return Intrinsics3.areEqual(this.changeCount, trackGameNewsChanged.changeCount) && Intrinsics3.areEqual(this.newsUrl, trackGameNewsChanged.newsUrl) && Intrinsics3.areEqual(this.newsToIndex, trackGameNewsChanged.newsToIndex) && Intrinsics3.areEqual(this.newsFromIndex, trackGameNewsChanged.newsFromIndex) && Intrinsics3.areEqual(this.newsChangeType, trackGameNewsChanged.newsChangeType);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -54,7 +54,7 @@ public final /* data */ class TrackGameNewsChanged implements AnalyticsSchema, T
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackGameNewsChanged(changeCount=");
+        StringBuilder sbU = outline.U("TrackGameNewsChanged(changeCount=");
         sbU.append(this.changeCount);
         sbU.append(", newsUrl=");
         sbU.append(this.newsUrl);
@@ -63,6 +63,6 @@ public final /* data */ class TrackGameNewsChanged implements AnalyticsSchema, T
         sbU.append(", newsFromIndex=");
         sbU.append(this.newsFromIndex);
         sbU.append(", newsChangeType=");
-        return a.E(sbU, this.newsChangeType, ")");
+        return outline.E(sbU, this.newsChangeType, ")");
     }
 }

@@ -1,8 +1,8 @@
 package com.discord.api.application;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.models.domain.ModelAuditLogEntry;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: ApplicationAsset.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -19,7 +19,7 @@ public final /* data */ class ApplicationAsset {
             return false;
         }
         ApplicationAsset applicationAsset = (ApplicationAsset) other;
-        return this.id == applicationAsset.id && this.type == applicationAsset.type && m.areEqual(this.name, applicationAsset.name);
+        return this.id == applicationAsset.id && this.type == applicationAsset.type && Intrinsics3.areEqual(this.name, applicationAsset.name);
     }
 
     /* JADX INFO: renamed from: a, reason: from getter */
@@ -40,11 +40,11 @@ public final /* data */ class ApplicationAsset {
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("ApplicationAsset(id=");
+        StringBuilder sbU = outline.U("ApplicationAsset(id=");
         sbU.append(this.id);
         sbU.append(", type=");
         sbU.append(this.type);
         sbU.append(", name=");
-        return a.J(sbU, this.name, ")");
+        return outline.J(sbU, this.name, ")");
     }
 }

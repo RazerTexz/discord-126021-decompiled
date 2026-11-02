@@ -10,19 +10,25 @@ import androidx.annotation.Keep;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.VisibleForTesting;
-import b.i.a.b.g;
+import b.c.a.a0.AnimatableValueParser;
+import b.i.a.b.TransportFactory;
 import b.i.a.f.e.o.f;
 import b.i.a.f.n.c0;
 import b.i.a.f.n.v;
-import b.i.c.c;
-import b.i.c.q.b;
-import b.i.c.q.d;
+import b.i.c.DataCollectionDefaultChange;
+import b.i.c.FirebaseApp2;
+import b.i.c.q.EventHandler2;
+import b.i.c.q.Subscriber2;
+import b.i.c.r.HeartBeatInfo;
 import b.i.c.s.n;
 import b.i.c.s.q;
+import b.i.c.t.Provider2;
+import b.i.c.u.g;
+import b.i.c.w.h;
 import b.i.c.w.j;
 import b.i.c.w.x;
 import b.i.c.w.y;
-import b.i.c.x.h;
+import b.i.c.x.UserAgentPublisher;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.iid.FirebaseInstanceId;
 import java.util.concurrent.Executor;
@@ -38,11 +44,11 @@ public class FirebaseMessaging {
     @Nullable
     @SuppressLint({"FirebaseUnknownNullness"})
     @VisibleForTesting
-    public static g a;
+    public static TransportFactory a;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
     public final Context f3112b;
-    public final c c;
+    public final FirebaseApp2 c;
     public final FirebaseInstanceId d;
     public final a e;
     public final Executor f;
@@ -50,19 +56,19 @@ public class FirebaseMessaging {
 
     /* JADX INFO: compiled from: com.google.firebase:firebase-messaging@@21.0.0 */
     public class a {
-        public final d a;
+        public final Subscriber2 a;
 
         /* JADX INFO: renamed from: b, reason: collision with root package name */
         public boolean f3113b;
 
         @Nullable
-        public b<b.i.c.a> c;
+        public EventHandler2<DataCollectionDefaultChange> c;
 
         @Nullable
         public Boolean d;
 
-        public a(d dVar) {
-            this.a = dVar;
+        public a(Subscriber2 subscriber2) {
+            this.a = subscriber2;
         }
 
         public synchronized void a() {
@@ -74,7 +80,7 @@ public class FirebaseMessaging {
             if (boolC == null) {
                 j jVar = new j(this);
                 this.c = jVar;
-                this.a.a(b.i.c.a.class, jVar);
+                this.a.a(DataCollectionDefaultChange.class, jVar);
             }
             this.f3113b = true;
         }
@@ -92,9 +98,9 @@ public class FirebaseMessaging {
         public final Boolean c() {
             ApplicationInfo applicationInfo;
             Bundle bundle;
-            c cVar = FirebaseMessaging.this.c;
-            cVar.a();
-            Context context = cVar.d;
+            FirebaseApp2 firebaseApp2 = FirebaseMessaging.this.c;
+            firebaseApp2.a();
+            Context context = firebaseApp2.d;
             SharedPreferences sharedPreferences = context.getSharedPreferences("com.google.firebase.messaging", 0);
             if (sharedPreferences.contains("auto_init")) {
                 return Boolean.valueOf(sharedPreferences.getBoolean("auto_init", false));
@@ -112,15 +118,15 @@ public class FirebaseMessaging {
     }
 
     /* JADX WARN: Type inference incomplete: some casts might be missing */
-    public FirebaseMessaging(c cVar, FirebaseInstanceId firebaseInstanceId, b.i.c.t.a<h> aVar, b.i.c.t.a<b.i.c.r.d> aVar2, b.i.c.u.g gVar, @Nullable g gVar2, d dVar) {
+    public FirebaseMessaging(FirebaseApp2 firebaseApp2, FirebaseInstanceId firebaseInstanceId, Provider2<UserAgentPublisher> provider2, Provider2<HeartBeatInfo> provider3, g gVar, @Nullable TransportFactory transportFactory, Subscriber2 subscriber2) {
         try {
             Class.forName("com.google.firebase.iid.FirebaseInstanceIdReceiver");
-            a = gVar2;
-            this.c = cVar;
+            a = transportFactory;
+            this.c = firebaseApp2;
             this.d = firebaseInstanceId;
-            this.e = new a(dVar);
-            cVar.a();
-            Context context = cVar.d;
+            this.e = new a(subscriber2);
+            firebaseApp2.a();
+            Context context = firebaseApp2.d;
             this.f3112b = context;
             ScheduledThreadPoolExecutor scheduledThreadPoolExecutor = new ScheduledThreadPoolExecutor(1, new b.i.a.f.e.o.j.a("Firebase-Messaging-Init"));
             this.f = scheduledThreadPoolExecutor;
@@ -128,10 +134,10 @@ public class FirebaseMessaging {
             q qVar = new q(context);
             ScheduledThreadPoolExecutor scheduledThreadPoolExecutor2 = new ScheduledThreadPoolExecutor(1, new b.i.a.f.e.o.j.a("Firebase-Messaging-Topics-Io"));
             int i = y.f1800b;
-            Task<y> taskO = f.o(scheduledThreadPoolExecutor2, new x(context, scheduledThreadPoolExecutor2, firebaseInstanceId, qVar, new n(cVar, qVar, aVar, aVar2, gVar)));
+            Task<y> taskO = f.o(scheduledThreadPoolExecutor2, new x(context, scheduledThreadPoolExecutor2, firebaseInstanceId, qVar, new n(firebaseApp2, qVar, provider2, provider3, gVar)));
             this.g = taskO;
             c0 c0Var = (c0) taskO;
-            c0Var.f1592b.a(new v(new ThreadPoolExecutor(0, 1, 30L, TimeUnit.SECONDS, new LinkedBlockingQueue(), new b.i.a.f.e.o.j.a("Firebase-Messaging-Trigger-Topics-Io")), new b.i.c.w.h(this)));
+            c0Var.f1592b.a(new v(new ThreadPoolExecutor(0, 1, 30L, TimeUnit.SECONDS, new LinkedBlockingQueue(), new b.i.a.f.e.o.j.a("Firebase-Messaging-Trigger-Topics-Io")), new h(this)));
             c0Var.w();
         } catch (ClassNotFoundException unused) {
             throw new IllegalStateException("FirebaseMessaging and FirebaseInstanceId versions not compatible. Update to latest version of firebase-messaging.");
@@ -140,11 +146,11 @@ public class FirebaseMessaging {
 
     @NonNull
     @Keep
-    public static synchronized FirebaseMessaging getInstance(@NonNull c cVar) {
+    public static synchronized FirebaseMessaging getInstance(@NonNull FirebaseApp2 firebaseApp2) {
         FirebaseMessaging firebaseMessaging;
-        cVar.a();
-        firebaseMessaging = (FirebaseMessaging) cVar.g.a(FirebaseMessaging.class);
-        b.c.a.a0.d.z(firebaseMessaging, "Firebase Messaging component is not present");
+        firebaseApp2.a();
+        firebaseMessaging = (FirebaseMessaging) firebaseApp2.g.a(FirebaseMessaging.class);
+        AnimatableValueParser.z(firebaseMessaging, "Firebase Messaging component is not present");
         return firebaseMessaging;
     }
 }

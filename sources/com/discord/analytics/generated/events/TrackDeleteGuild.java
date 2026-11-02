@@ -1,14 +1,14 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackDeleteGuild.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackDeleteGuild implements AnalyticsSchema, TrackBaseReceiver {
+public final /* data */ class TrackDeleteGuild implements AnalyticsSchema, TrackBase2 {
     private final Long guildId = null;
     private final Boolean guildIsVip = null;
     private final CharSequence guildName = null;
@@ -28,7 +28,7 @@ public final /* data */ class TrackDeleteGuild implements AnalyticsSchema, Track
             return false;
         }
         TrackDeleteGuild trackDeleteGuild = (TrackDeleteGuild) other;
-        return m.areEqual(this.guildId, trackDeleteGuild.guildId) && m.areEqual(this.guildName, trackDeleteGuild.guildName) && m.areEqual(this.guildSizeTotal, trackDeleteGuild.guildSizeTotal) && m.areEqual(this.guildNumChannels, trackDeleteGuild.guildNumChannels) && m.areEqual(this.guildNumTextChannels, trackDeleteGuild.guildNumTextChannels) && m.areEqual(this.guildNumVoiceChannels, trackDeleteGuild.guildNumVoiceChannels) && m.areEqual(this.guildNumRoles, trackDeleteGuild.guildNumRoles) && m.areEqual(this.guildIsVip, trackDeleteGuild.guildIsVip);
+        return Intrinsics3.areEqual(this.guildId, trackDeleteGuild.guildId) && Intrinsics3.areEqual(this.guildName, trackDeleteGuild.guildName) && Intrinsics3.areEqual(this.guildSizeTotal, trackDeleteGuild.guildSizeTotal) && Intrinsics3.areEqual(this.guildNumChannels, trackDeleteGuild.guildNumChannels) && Intrinsics3.areEqual(this.guildNumTextChannels, trackDeleteGuild.guildNumTextChannels) && Intrinsics3.areEqual(this.guildNumVoiceChannels, trackDeleteGuild.guildNumVoiceChannels) && Intrinsics3.areEqual(this.guildNumRoles, trackDeleteGuild.guildNumRoles) && Intrinsics3.areEqual(this.guildIsVip, trackDeleteGuild.guildIsVip);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -57,7 +57,7 @@ public final /* data */ class TrackDeleteGuild implements AnalyticsSchema, Track
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackDeleteGuild(guildId=");
+        StringBuilder sbU = outline.U("TrackDeleteGuild(guildId=");
         sbU.append(this.guildId);
         sbU.append(", guildName=");
         sbU.append(this.guildName);
@@ -72,6 +72,6 @@ public final /* data */ class TrackDeleteGuild implements AnalyticsSchema, Track
         sbU.append(", guildNumRoles=");
         sbU.append(this.guildNumRoles);
         sbU.append(", guildIsVip=");
-        return a.D(sbU, this.guildIsVip, ")");
+        return outline.D(sbU, this.guildIsVip, ")");
     }
 }

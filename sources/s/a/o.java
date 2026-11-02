@@ -1,20 +1,24 @@
 package s.a;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
+import d0.z.d.Intrinsics3;
 import java.util.Objects;
 import java.util.concurrent.CancellationException;
 import kotlin.Unit;
 import kotlin.coroutines.Continuation;
 import kotlinx.coroutines.Job;
+import s.a.a.DispatchedContinuation;
+import s.a.a.DispatchedContinuation2;
+import s.a.a.Symbol3;
 
 /* JADX INFO: compiled from: JobSupport.kt */
 /* JADX INFO: loaded from: classes3.dex */
 public final class o extends e1<Job> {
-    public final l<?> n;
+    public final CancellableContinuationImpl5<?> n;
 
-    public o(Job job, l<?> lVar) {
+    public o(Job job, CancellableContinuationImpl5<?> cancellableContinuationImpl5) {
         super(job);
-        this.n = lVar;
+        this.n = cancellableContinuationImpl5;
     }
 
     @Override // kotlin.jvm.functions.Function1
@@ -23,32 +27,32 @@ public final class o extends e1<Job> {
         return Unit.a;
     }
 
-    @Override // s.a.y
+    @Override // s.a.CompletionHandler2
     public void q(Throwable th) {
-        l<?> lVar = this.n;
+        CancellableContinuationImpl5<?> cancellableContinuationImpl5 = this.n;
         J j = this.m;
-        Objects.requireNonNull(lVar);
+        Objects.requireNonNull(cancellableContinuationImpl5);
         CancellationException cancellationExceptionQ = j.q();
         boolean z2 = true;
         boolean z3 = false;
-        if (lVar.l == 2) {
-            Continuation<?> continuation = lVar.p;
-            if (!(continuation instanceof s.a.a.g)) {
+        if (cancellableContinuationImpl5.l == 2) {
+            Continuation<?> continuation = cancellableContinuationImpl5.p;
+            if (!(continuation instanceof DispatchedContinuation)) {
                 continuation = null;
             }
-            s.a.a.g gVar = (s.a.a.g) continuation;
-            if (gVar != null) {
+            DispatchedContinuation dispatchedContinuation = (DispatchedContinuation) continuation;
+            if (dispatchedContinuation != null) {
                 while (true) {
-                    Object obj = gVar._reusableCancellableContinuation;
-                    s.a.a.t tVar = s.a.a.h.f3827b;
-                    if (!d0.z.d.m.areEqual(obj, tVar)) {
+                    Object obj = dispatchedContinuation._reusableCancellableContinuation;
+                    Symbol3 symbol3 = DispatchedContinuation2.f3827b;
+                    if (!Intrinsics3.areEqual(obj, symbol3)) {
                         if (obj instanceof Throwable) {
                             break;
-                        } else if (s.a.a.g.m.compareAndSet(gVar, obj, null)) {
+                        } else if (DispatchedContinuation.m.compareAndSet(dispatchedContinuation, obj, null)) {
                             z2 = false;
                             break;
                         }
-                    } else if (s.a.a.g.m.compareAndSet(gVar, tVar, cancellationExceptionQ)) {
+                    } else if (DispatchedContinuation.m.compareAndSet(dispatchedContinuation, symbol3, cancellationExceptionQ)) {
                         break;
                     }
                 }
@@ -58,13 +62,13 @@ public final class o extends e1<Job> {
         if (z3) {
             return;
         }
-        lVar.k(cancellationExceptionQ);
-        lVar.s();
+        cancellableContinuationImpl5.k(cancellationExceptionQ);
+        cancellableContinuationImpl5.s();
     }
 
-    @Override // s.a.a.k
+    @Override // s.a.a.LockFreeLinkedList3
     public String toString() {
-        StringBuilder sbU = a.U("ChildContinuation[");
+        StringBuilder sbU = outline.U("ChildContinuation[");
         sbU.append(this.n);
         sbU.append(']');
         return sbU.toString();

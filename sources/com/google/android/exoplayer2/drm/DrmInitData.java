@@ -3,8 +3,9 @@ package com.google.android.exoplayer2.drm;
 import android.os.Parcel;
 import android.os.Parcelable;
 import androidx.annotation.Nullable;
-import b.i.a.c.f3.e0;
-import b.i.a.c.x0;
+import b.d.b.a.outline;
+import b.i.a.c.C;
+import b.i.a.c.f3.Util2;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.Objects;
@@ -54,7 +55,7 @@ public final class DrmInitData implements Comparator<SchemeData>, Parcelable {
         }
 
         public boolean a(UUID uuid) {
-            return x0.a.equals(this.k) || uuid.equals(this.k);
+            return C.a.equals(this.k) || uuid.equals(this.k);
         }
 
         @Override // android.os.Parcelable
@@ -70,14 +71,14 @@ public final class DrmInitData implements Comparator<SchemeData>, Parcelable {
                 return true;
             }
             SchemeData schemeData = (SchemeData) obj;
-            return e0.a(this.l, schemeData.l) && e0.a(this.m, schemeData.m) && e0.a(this.k, schemeData.k) && Arrays.equals(this.n, schemeData.n);
+            return Util2.a(this.l, schemeData.l) && Util2.a(this.m, schemeData.m) && Util2.a(this.k, schemeData.k) && Arrays.equals(this.n, schemeData.n);
         }
 
         public int hashCode() {
             if (this.j == 0) {
                 int iHashCode = this.k.hashCode() * 31;
                 String str = this.l;
-                this.j = Arrays.hashCode(this.n) + b.d.b.a.a.m(this.m, (iHashCode + (str == null ? 0 : str.hashCode())) * 31, 31);
+                this.j = Arrays.hashCode(this.n) + outline.m(this.m, (iHashCode + (str == null ? 0 : str.hashCode())) * 31, 31);
             }
             return this.j;
         }
@@ -103,7 +104,7 @@ public final class DrmInitData implements Comparator<SchemeData>, Parcelable {
             this.k = new UUID(parcel.readLong(), parcel.readLong());
             this.l = parcel.readString();
             String string = parcel.readString();
-            int i = e0.a;
+            int i = Util2.a;
             this.m = string;
             this.n = parcel.createByteArray();
         }
@@ -130,14 +131,14 @@ public final class DrmInitData implements Comparator<SchemeData>, Parcelable {
     }
 
     public DrmInitData a(@Nullable String str) {
-        return e0.a(this.l, str) ? this : new DrmInitData(str, false, this.j);
+        return Util2.a(this.l, str) ? this : new DrmInitData(str, false, this.j);
     }
 
     @Override // java.util.Comparator
     public int compare(SchemeData schemeData, SchemeData schemeData2) {
         SchemeData schemeData3 = schemeData;
         SchemeData schemeData4 = schemeData2;
-        UUID uuid = x0.a;
+        UUID uuid = C.a;
         if (uuid.equals(schemeData3.k)) {
             return uuid.equals(schemeData4.k) ? 0 : 1;
         }
@@ -158,7 +159,7 @@ public final class DrmInitData implements Comparator<SchemeData>, Parcelable {
             return false;
         }
         DrmInitData drmInitData = (DrmInitData) obj;
-        return e0.a(this.l, drmInitData.l) && Arrays.equals(this.j, drmInitData.j);
+        return Util2.a(this.l, drmInitData.l) && Arrays.equals(this.j, drmInitData.j);
     }
 
     public int hashCode() {
@@ -178,7 +179,7 @@ public final class DrmInitData implements Comparator<SchemeData>, Parcelable {
     public DrmInitData(Parcel parcel) {
         this.l = parcel.readString();
         SchemeData[] schemeDataArr = (SchemeData[]) parcel.createTypedArray(SchemeData.CREATOR);
-        int i = e0.a;
+        int i = Util2.a;
         this.j = schemeDataArr;
         this.m = schemeDataArr.length;
     }

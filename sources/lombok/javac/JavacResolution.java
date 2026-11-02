@@ -418,7 +418,7 @@ public class JavacResolution {
 
         /* JADX INFO: renamed from: lombok.javac.JavacResolution$1$1, reason: invalid class name and collision with other inner class name */
         /* JADX INFO: loaded from: discord-126021.apk:lombok/javac/JavacResolution$1$1.SCL.lombok */
-        class C06431 implements Iterator<Type> {
+        class C04361 implements Iterator<Type> {
             private final /* synthetic */ Type val$t;
             private Iterator<? extends Type> wrap;
             private boolean first = true;
@@ -428,7 +428,7 @@ public class JavacResolution {
                 return next();
             }
 
-            C06431(Collection collection, Type type) {
+            C04361(Collection collection, Type type) {
                 this.val$t = type;
                 this.wrap = collection == null ? null : collection.iterator();
             }
@@ -465,7 +465,7 @@ public class JavacResolution {
 
         @Override // java.lang.Iterable
         public Iterator<Type> iterator() {
-            return new C06431(this.val$ts, this.val$t);
+            return new C04361(this.val$ts, this.val$t);
         }
     }
 

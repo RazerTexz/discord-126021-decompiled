@@ -1,6 +1,6 @@
 package androidx.constraintlayout.solver;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import java.util.Arrays;
 import java.util.Comparator;
 
@@ -134,13 +134,13 @@ public class PriorityGoalRow extends ArrayRow {
             String string = "[ ";
             if (this.variable != null) {
                 for (int i = 0; i < 9; i++) {
-                    StringBuilder sbU = a.U(string);
+                    StringBuilder sbU = outline.U(string);
                     sbU.append(this.variable.goalStrengthVector[i]);
                     sbU.append(" ");
                     string = sbU.toString();
                 }
             }
-            StringBuilder sbX = a.X(string, "] ");
+            StringBuilder sbX = outline.X(string, "] ");
             sbX.append(this.variable);
             return sbX.toString();
         }
@@ -260,7 +260,7 @@ public class PriorityGoalRow extends ArrayRow {
 
     @Override // androidx.constraintlayout.solver.ArrayRow
     public String toString() {
-        StringBuilder sbX = a.X("", " goal -> (");
+        StringBuilder sbX = outline.X("", " goal -> (");
         sbX.append(this.constantValue);
         sbX.append(") : ");
         String string = sbX.toString();

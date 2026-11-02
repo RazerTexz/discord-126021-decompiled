@@ -9,8 +9,8 @@ import android.widget.TextView;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
-import b.a.i.q;
-import b.a.k.b;
+import b.a.i.GifSearchEmptyStateTextBoxViewBinding;
+import b.a.k.FormatUtils;
 import com.discord.R;
 import com.discord.databinding.GifItemViewBinding;
 import com.discord.databinding.GifSuggestedTermViewBinding;
@@ -21,7 +21,8 @@ import com.discord.utilities.icon.IconUtils;
 import com.discord.utilities.images.MGImages;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.google.android.flexbox.FlexboxLayout;
-import d0.z.d.m;
+import d0.t.CollectionsJVM;
+import d0.z.d.Intrinsics3;
 import java.util.List;
 import java.util.Objects;
 import kotlin.Unit;
@@ -38,9 +39,9 @@ public abstract class GifViewHolder extends RecyclerView.ViewHolder {
 
         /* JADX WARN: Illegal instructions before constructor call */
         public Gif(GifItemViewBinding gifItemViewBinding) {
-            m.checkNotNullParameter(gifItemViewBinding, "binding");
+            Intrinsics3.checkNotNullParameter(gifItemViewBinding, "binding");
             CardView cardView = gifItemViewBinding.a;
-            m.checkNotNullExpressionValue(cardView, "binding.root");
+            Intrinsics3.checkNotNullExpressionValue(cardView, "binding.root");
             super(cardView, null);
             this.binding = gifItemViewBinding;
             this.itemView.setOnTouchListener(new ViewScalingOnTouchListener(0.9f));
@@ -55,21 +56,21 @@ public abstract class GifViewHolder extends RecyclerView.ViewHolder {
         }
 
         public final void configure(GifAdapterItem.GifItem gifItem, int columnWidthPx, Function1<? super GifAdapterItem.GifItem, Unit> onSelectGif) {
-            m.checkNotNullParameter(gifItem, "gifItem");
+            Intrinsics3.checkNotNullParameter(gifItem, "gifItem");
             ModelGif gif = gifItem.getGif();
             float height = columnWidthPx * (gif.getHeight() / gif.getWidth());
             CardView cardView = this.binding.a;
-            m.checkNotNullExpressionValue(cardView, "binding.root");
+            Intrinsics3.checkNotNullExpressionValue(cardView, "binding.root");
             cardView.getLayoutParams().height = (int) height;
             setGifImage(gif);
-            this.binding.a.setOnClickListener(new GifViewHolder$Gif$configure$1(onSelectGif, gifItem));
+            this.binding.a.setOnClickListener(new GifViewHolder2(onSelectGif, gifItem));
         }
 
         private final void setGifImage(ModelGif gif) {
             String gifImageUrl = gif.getGifImageUrl();
             SimpleDraweeView simpleDraweeView = this.binding.f2112b;
-            m.checkNotNullExpressionValue(simpleDraweeView, "binding.gifItemImage");
-            MGImages.setImage$default(simpleDraweeView, d0.t.m.listOf(gifImageUrl), 0, 0, false, null, null, null, 252, null);
+            Intrinsics3.checkNotNullExpressionValue(simpleDraweeView, "binding.gifItemImage");
+            MGImages.setImage$default(simpleDraweeView, CollectionsJVM.listOf(gifImageUrl), 0, 0, false, null, null, null, 252, null);
         }
     }
 
@@ -87,63 +88,63 @@ public abstract class GifViewHolder extends RecyclerView.ViewHolder {
 
         /* JADX WARN: Illegal instructions before constructor call */
         public SuggestedTerms(GifSuggestedTermViewBinding gifSuggestedTermViewBinding) {
-            m.checkNotNullParameter(gifSuggestedTermViewBinding, "binding");
+            Intrinsics3.checkNotNullParameter(gifSuggestedTermViewBinding, "binding");
             LinearLayout linearLayout = gifSuggestedTermViewBinding.a;
-            m.checkNotNullExpressionValue(linearLayout, "binding.root");
+            Intrinsics3.checkNotNullExpressionValue(linearLayout, "binding.root");
             super(linearLayout, null);
             this.binding = gifSuggestedTermViewBinding;
         }
 
         public final void configure(GifAdapterItem.SuggestedTermsItem.SuggestedTermsEmptyResults termsItem, Function1<? super String, Unit> onTermSelected) {
-            m.checkNotNullParameter(termsItem, "termsItem");
+            Intrinsics3.checkNotNullParameter(termsItem, "termsItem");
             TextView textView = this.binding.c;
-            m.checkNotNullExpressionValue(textView, "binding.gifSearchSuggestedTermsIconText");
+            Intrinsics3.checkNotNullExpressionValue(textView, "binding.gifSearchSuggestedTermsIconText");
             View view = this.itemView;
-            m.checkNotNullExpressionValue(view, "itemView");
+            Intrinsics3.checkNotNullExpressionValue(view, "itemView");
             DrawableCompat.setCompoundDrawablesCompat$default(textView, 0, DrawableCompat.getThemedDrawableRes$default(view, R.attr.theme_expression_tray_search_icon_empty, 0, 2, (Object) null), 0, 0, 13, (Object) null);
             configureSearchTerms(termsItem, onTermSelected, -1);
             View view2 = this.itemView;
-            m.checkNotNullExpressionValue(view2, "itemView");
+            Intrinsics3.checkNotNullExpressionValue(view2, "itemView");
             view2.setPadding(view2.getPaddingLeft(), 0, view2.getPaddingRight(), 0);
         }
 
         private final void configureSearchTerms(GifAdapterItem.SuggestedTermsItem termsItem, Function1<? super String, Unit> onTermSelected, int layoutHeight) {
             List<String> terms = termsItem.getTerms();
             TextView textView = this.binding.c;
-            m.checkNotNullExpressionValue(textView, "binding.gifSearchSuggestedTermsIconText");
-            b.n(textView, termsItem.getTitleResId(), new Object[0], null, 4);
+            Intrinsics3.checkNotNullExpressionValue(textView, "binding.gifSearchSuggestedTermsIconText");
+            FormatUtils.n(textView, termsItem.getTitleResId(), new Object[0], null, 4);
             int size = terms.size();
             if (size > 0) {
                 for (int i = 0; i < size; i++) {
                     FlexboxLayout flexboxLayout = this.binding.f2113b;
-                    m.checkNotNullExpressionValue(flexboxLayout, "binding.gifSearchSuggestedTermsFlexBox");
+                    Intrinsics3.checkNotNullExpressionValue(flexboxLayout, "binding.gifSearchSuggestedTermsFlexBox");
                     int childCount = flexboxLayout.getChildCount();
                     String str = terms.get(i);
                     if (i >= childCount) {
                         LinearLayout linearLayout = this.binding.a;
-                        m.checkNotNullExpressionValue(linearLayout, "binding.root");
+                        Intrinsics3.checkNotNullExpressionValue(linearLayout, "binding.root");
                         View viewInflate = LayoutInflater.from(linearLayout.getContext()).inflate(R.layout.gif_search_empty_state_text_box_view, (ViewGroup) this.binding.f2113b, false);
                         Objects.requireNonNull(viewInflate, "rootView");
                         TextView textView2 = (TextView) viewInflate;
-                        m.checkNotNullExpressionValue(new q(textView2), "GifSearchEmptyStateTextB…      false\n            )");
-                        m.checkNotNullExpressionValue(textView2, "GifSearchEmptyStateTextB… false\n            ).root");
+                        Intrinsics3.checkNotNullExpressionValue(new GifSearchEmptyStateTextBoxViewBinding(textView2), "GifSearchEmptyStateTextB…      false\n            )");
+                        Intrinsics3.checkNotNullExpressionValue(textView2, "GifSearchEmptyStateTextB… false\n            ).root");
                         this.binding.f2113b.addView(textView2, i);
                     }
                     View childAt = this.binding.f2113b.getChildAt(i);
                     Objects.requireNonNull(childAt, "null cannot be cast to non-null type android.widget.TextView");
                     TextView textView3 = (TextView) childAt;
                     textView3.setText(str);
-                    textView3.setOnClickListener(new GifViewHolder$SuggestedTerms$configureSearchTerms$1(onTermSelected, str));
+                    textView3.setOnClickListener(new GifViewHolder3(onTermSelected, str));
                 }
             }
             FlexboxLayout flexboxLayout2 = this.binding.f2113b;
-            m.checkNotNullExpressionValue(flexboxLayout2, "binding.gifSearchSuggestedTermsFlexBox");
+            Intrinsics3.checkNotNullExpressionValue(flexboxLayout2, "binding.gifSearchSuggestedTermsFlexBox");
             if (size < flexboxLayout2.getChildCount()) {
                 FlexboxLayout flexboxLayout3 = this.binding.f2113b;
-                m.checkNotNullExpressionValue(flexboxLayout3, "binding.gifSearchSuggestedTermsFlexBox");
+                Intrinsics3.checkNotNullExpressionValue(flexboxLayout3, "binding.gifSearchSuggestedTermsFlexBox");
                 if (flexboxLayout3.getChildCount() > 0) {
                     FlexboxLayout flexboxLayout4 = this.binding.f2113b;
-                    m.checkNotNullExpressionValue(flexboxLayout4, "binding.gifSearchSuggestedTermsFlexBox");
+                    Intrinsics3.checkNotNullExpressionValue(flexboxLayout4, "binding.gifSearchSuggestedTermsFlexBox");
                     int childCount2 = flexboxLayout4.getChildCount() - 1;
                     if (childCount2 >= size) {
                         while (true) {
@@ -160,18 +161,18 @@ public abstract class GifViewHolder extends RecyclerView.ViewHolder {
             StaggeredGridLayoutManager.LayoutParams layoutParams = new StaggeredGridLayoutManager.LayoutParams(-1, layoutHeight);
             layoutParams.setFullSpan(true);
             View view = this.itemView;
-            m.checkNotNullExpressionValue(view, "itemView");
+            Intrinsics3.checkNotNullExpressionValue(view, "itemView");
             view.setLayoutParams(layoutParams);
         }
 
         public final void configure(GifAdapterItem.SuggestedTermsItem.SuggestedTermsNonEmptyResults termsItem, Function1<? super String, Unit> onTermSelected) {
-            m.checkNotNullParameter(termsItem, "termsItem");
+            Intrinsics3.checkNotNullParameter(termsItem, "termsItem");
             TextView textView = this.binding.c;
-            m.checkNotNullExpressionValue(textView, "binding.gifSearchSuggestedTermsIconText");
+            Intrinsics3.checkNotNullExpressionValue(textView, "binding.gifSearchSuggestedTermsIconText");
             DrawableCompat.setCompoundDrawablesCompat$default(textView, (Drawable) null, (Drawable) null, (Drawable) null, (Drawable) null, 13, (Object) null);
             configureSearchTerms(termsItem, onTermSelected, -2);
             View view = this.itemView;
-            m.checkNotNullExpressionValue(view, "itemView");
+            Intrinsics3.checkNotNullExpressionValue(view, "itemView");
             view.setPadding(view.getPaddingLeft(), DimenUtils.dpToPixels(32), view.getPaddingRight(), DimenUtils.dpToPixels(40));
         }
     }

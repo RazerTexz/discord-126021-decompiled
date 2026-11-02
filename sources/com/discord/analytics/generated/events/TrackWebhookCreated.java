@@ -1,14 +1,14 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackWebhookCreated.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackWebhookCreated implements AnalyticsSchema, TrackBaseReceiver {
+public final /* data */ class TrackWebhookCreated implements AnalyticsSchema, TrackBase2 {
     private final Long channelId = null;
     private final Long channelType = null;
     private final Long guildId = null;
@@ -29,7 +29,7 @@ public final /* data */ class TrackWebhookCreated implements AnalyticsSchema, Tr
             return false;
         }
         TrackWebhookCreated trackWebhookCreated = (TrackWebhookCreated) other;
-        return m.areEqual(this.webhookId, trackWebhookCreated.webhookId) && m.areEqual(this.webhookName, trackWebhookCreated.webhookName) && m.areEqual(this.type, trackWebhookCreated.type) && m.areEqual(this.channelId, trackWebhookCreated.channelId) && m.areEqual(this.channelType, trackWebhookCreated.channelType) && m.areEqual(this.guildId, trackWebhookCreated.guildId) && m.areEqual(this.webhookSourceChannelId, trackWebhookCreated.webhookSourceChannelId) && m.areEqual(this.webhookSourceGuildId, trackWebhookCreated.webhookSourceGuildId) && m.areEqual(this.webhookSourceChannelType, trackWebhookCreated.webhookSourceChannelType);
+        return Intrinsics3.areEqual(this.webhookId, trackWebhookCreated.webhookId) && Intrinsics3.areEqual(this.webhookName, trackWebhookCreated.webhookName) && Intrinsics3.areEqual(this.type, trackWebhookCreated.type) && Intrinsics3.areEqual(this.channelId, trackWebhookCreated.channelId) && Intrinsics3.areEqual(this.channelType, trackWebhookCreated.channelType) && Intrinsics3.areEqual(this.guildId, trackWebhookCreated.guildId) && Intrinsics3.areEqual(this.webhookSourceChannelId, trackWebhookCreated.webhookSourceChannelId) && Intrinsics3.areEqual(this.webhookSourceGuildId, trackWebhookCreated.webhookSourceGuildId) && Intrinsics3.areEqual(this.webhookSourceChannelType, trackWebhookCreated.webhookSourceChannelType);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -60,7 +60,7 @@ public final /* data */ class TrackWebhookCreated implements AnalyticsSchema, Tr
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackWebhookCreated(webhookId=");
+        StringBuilder sbU = outline.U("TrackWebhookCreated(webhookId=");
         sbU.append(this.webhookId);
         sbU.append(", webhookName=");
         sbU.append(this.webhookName);
@@ -77,6 +77,6 @@ public final /* data */ class TrackWebhookCreated implements AnalyticsSchema, Tr
         sbU.append(", webhookSourceGuildId=");
         sbU.append(this.webhookSourceGuildId);
         sbU.append(", webhookSourceChannelType=");
-        return a.G(sbU, this.webhookSourceChannelType, ")");
+        return outline.G(sbU, this.webhookSourceChannelType, ")");
     }
 }

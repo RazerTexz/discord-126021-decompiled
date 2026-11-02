@@ -1,7 +1,7 @@
 package com.discord.widgets.channels.list.items;
 
 import a0.a.a.b;
-import b.d.b.a.a;
+import b.d.b.a.outline;
 
 /* JADX INFO: compiled from: ChannelListItemInvite.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -85,9 +85,9 @@ public final /* data */ class ChannelListItemInvite implements ChannelListItem {
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("ChannelListItemInvite(guildId=");
+        StringBuilder sbU = outline.U("ChannelListItemInvite(guildId=");
         sbU.append(this.guildId);
         sbU.append(", isHub=");
-        return a.O(sbU, this.isHub, ")");
+        return outline.O(sbU, this.isHub, ")");
     }
 }

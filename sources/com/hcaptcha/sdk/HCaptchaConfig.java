@@ -1,5 +1,6 @@
 package com.hcaptcha.sdk;
 
+import b.d.b.a.outline;
 import java.io.Serializable;
 import java.util.Locale;
 import java.util.Objects;
@@ -42,7 +43,7 @@ public class HCaptchaConfig implements Serializable {
         public HCaptchaTheme r;
 
         public String toString() {
-            StringBuilder sbU = b.d.b.a.a.U("HCaptchaConfig.HCaptchaConfigBuilder(siteKey=");
+            StringBuilder sbU = outline.U("HCaptchaConfig.HCaptchaConfigBuilder(siteKey=");
             sbU.append(this.a);
             sbU.append(", sentry$value=");
             sbU.append(this.c);
@@ -364,7 +365,7 @@ public class HCaptchaConfig implements Serializable {
     }
 
     public String toString() {
-        StringBuilder sbU = b.d.b.a.a.U("HCaptchaConfig(siteKey=");
+        StringBuilder sbU = outline.U("HCaptchaConfig(siteKey=");
         sbU.append(getSiteKey());
         sbU.append(", sentry=");
         sbU.append(getSentry());

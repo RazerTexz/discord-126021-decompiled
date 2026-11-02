@@ -11,7 +11,7 @@ import android.widget.TextView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.Guideline;
 import androidx.core.content.ContextCompat;
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.R;
 import com.discord.api.role.GuildRole;
 import com.discord.api.thread.ThreadMetadata;
@@ -32,7 +32,7 @@ import com.discord.widgets.chat.list.entries.ThreadEmbedEntry;
 import com.discord.widgets.chat.list.utils.EmbeddedMessageParser;
 import com.facebook.drawee.span.DraweeSpanStringBuilder;
 import com.facebook.drawee.view.SimpleDraweeView;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 import java.util.Map;
 
 /* JADX INFO: compiled from: WidgetChatListAdapterItemThreadEmbed.kt */
@@ -75,7 +75,7 @@ public final class WidgetChatListAdapterItemThreadEmbed extends WidgetChatListIt
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public WidgetChatListAdapterItemThreadEmbed(WidgetChatListAdapter widgetChatListAdapter) {
         super(R.layout.widget_chat_list_adapter_item_thread_embed, widgetChatListAdapter);
-        m.checkNotNullParameter(widgetChatListAdapter, "adapter");
+        Intrinsics3.checkNotNullParameter(widgetChatListAdapter, "adapter");
         View view = this.itemView;
         int i = R.id.chat_list_adapter_item_gutter_bg;
         View viewFindViewById = view.findViewById(R.id.chat_list_adapter_item_gutter_bg);
@@ -121,7 +121,7 @@ public final class WidgetChatListAdapterItemThreadEmbed extends WidgetChatListIt
                                                             Guideline guideline = (Guideline) view.findViewById(R.id.uikit_chat_guideline);
                                                             if (guideline != null) {
                                                                 WidgetChatListAdapterItemThreadEmbedBinding widgetChatListAdapterItemThreadEmbedBinding = new WidgetChatListAdapterItemThreadEmbedBinding(constraintLayout, viewFindViewById, viewFindViewById2, constraintLayout, imageView, viewFindViewById3, textView, imageView2, simpleDraweeView, simpleDraweeSpanTextView, constraintLayout2, textView2, textView3, constraintLayout3, viewReplySpline, guideline);
-                                                                m.checkNotNullExpressionValue(widgetChatListAdapterItemThreadEmbedBinding, "WidgetChatListAdapterIte…bedBinding.bind(itemView)");
+                                                                Intrinsics3.checkNotNullExpressionValue(widgetChatListAdapterItemThreadEmbedBinding, "WidgetChatListAdapterIte…bedBinding.bind(itemView)");
                                                                 this.binding = widgetChatListAdapterItemThreadEmbedBinding;
                                                                 return;
                                                             }
@@ -159,44 +159,44 @@ public final class WidgetChatListAdapterItemThreadEmbed extends WidgetChatListIt
 
     private final void configureMostRecentMessageText(ThreadEmbedEntry data) {
         ConstraintLayout constraintLayout = this.binding.d;
-        m.checkNotNullExpressionValue(constraintLayout, "binding.threadEmbedContainer");
+        Intrinsics3.checkNotNullExpressionValue(constraintLayout, "binding.threadEmbedContainer");
         Context context = constraintLayout.getContext();
         Message mostRecentMessage = data.getMostRecentMessage();
         ConstraintLayout constraintLayout2 = this.binding.j;
-        m.checkNotNullExpressionValue(constraintLayout2, "binding.threadEmbedMostRecentMessageHeader");
+        Intrinsics3.checkNotNullExpressionValue(constraintLayout2, "binding.threadEmbedMostRecentMessageHeader");
         constraintLayout2.setVisibility(8);
         ThreadMetadata threadMetadata = data.getThread().getThreadMetadata();
         if (threadMetadata != null && threadMetadata.getArchived()) {
-            m.checkNotNullExpressionValue(context, "context");
+            Intrinsics3.checkNotNullExpressionValue(context, "context");
             Drawable drawable = ContextCompat.getDrawable(context, DrawableCompat.getThemedDrawableRes(context, R.attr.ic_thread_archived_clock, 0));
             View view = this.itemView;
-            m.checkNotNullExpressionValue(view, "itemView");
+            Intrinsics3.checkNotNullExpressionValue(view, "itemView");
             String string = view.getResources().getString(R.string.thread_archived);
-            m.checkNotNullExpressionValue(string, "itemView.resources.getSt…R.string.thread_archived)");
+            Intrinsics3.checkNotNullExpressionValue(string, "itemView.resources.getSt…R.string.thread_archived)");
             setNoMostRecentMessage$default(this, string, null, data.getNickOrUsernames(), null, drawable, 10, null);
             return;
         }
         if (data.getThreadMessageCount() == 0) {
             View view2 = this.itemView;
-            m.checkNotNullExpressionValue(view2, "itemView");
+            Intrinsics3.checkNotNullExpressionValue(view2, "itemView");
             String string2 = view2.getResources().getString(R.string.no_thread_messages);
-            m.checkNotNullExpressionValue(string2, "itemView.resources.getSt…tring.no_thread_messages)");
+            Intrinsics3.checkNotNullExpressionValue(string2, "itemView.resources.getSt…tring.no_thread_messages)");
             setNoMostRecentMessage$default(this, string2, null, data.getNickOrUsernames(), null, null, 26, null);
             return;
         }
         if ((mostRecentMessage != null ? mostRecentMessage.getContent() : null) == null || mostRecentMessage.getAuthor() == null || data.getMostRecentMessageGuildMember() == null) {
             View view3 = this.itemView;
-            m.checkNotNullExpressionValue(view3, "itemView");
+            Intrinsics3.checkNotNullExpressionValue(view3, "itemView");
             String string3 = view3.getResources().getString(R.string.no_recent_thread_messages);
-            m.checkNotNullExpressionValue(string3, "itemView.resources.getSt…o_recent_thread_messages)");
+            Intrinsics3.checkNotNullExpressionValue(string3, "itemView.resources.getSt…o_recent_thread_messages)");
             setNoMostRecentMessage$default(this, string3, null, data.getNickOrUsernames(), null, null, 26, null);
             return;
         }
         if (mostRecentMessage.hasStickers()) {
             View view4 = this.itemView;
-            m.checkNotNullExpressionValue(view4, "itemView");
+            Intrinsics3.checkNotNullExpressionValue(view4, "itemView");
             String string4 = view4.getResources().getString(R.string.reply_quote_sticker_mobile);
-            m.checkNotNullExpressionValue(string4, "itemView.resources.getSt…ply_quote_sticker_mobile)");
+            Intrinsics3.checkNotNullExpressionValue(string4, "itemView.resources.getSt…ply_quote_sticker_mobile)");
             setNoMostRecentMessage$default(this, string4, mostRecentMessage, data.getNickOrUsernames(), data.getMostRecentMessageGuildMember(), null, 16, null);
             return;
         }
@@ -204,18 +204,18 @@ public final class WidgetChatListAdapterItemThreadEmbed extends WidgetChatListIt
             setMostRecentMessage(mostRecentMessage, data.getRoleMentions(), data.getNickOrUsernames(), data.getAnimateEmojis(), data.getMostRecentMessageGuildMember());
             return;
         }
-        m.checkNotNullExpressionValue(context, "context");
+        Intrinsics3.checkNotNullExpressionValue(context, "context");
         Drawable drawable2 = ContextCompat.getDrawable(context, DrawableCompat.getThemedDrawableRes(context, R.attr.ic_flex_input_image, 0));
         View view5 = this.itemView;
-        m.checkNotNullExpressionValue(view5, "itemView");
+        Intrinsics3.checkNotNullExpressionValue(view5, "itemView");
         String string5 = view5.getResources().getString(R.string.reply_quote_no_text_content_mobile);
-        m.checkNotNullExpressionValue(string5, "itemView.resources.getSt…e_no_text_content_mobile)");
+        Intrinsics3.checkNotNullExpressionValue(string5, "itemView.resources.getSt…e_no_text_content_mobile)");
         setNoMostRecentMessage(string5, mostRecentMessage, data.getNickOrUsernames(), data.getMostRecentMessageGuildMember(), drawable2);
     }
 
     private final int getAuthorTextColor(GuildMember member) {
         View view = this.itemView;
-        m.checkNotNullExpressionValue(view, "itemView");
+        Intrinsics3.checkNotNullExpressionValue(view, "itemView");
         return GuildMember.INSTANCE.getColor(member, ColorCompat.getThemedColor(view.getContext(), R.attr.colorHeaderPrimary));
     }
 
@@ -231,7 +231,7 @@ public final class WidgetChatListAdapterItemThreadEmbed extends WidgetChatListIt
         this.binding.j.measure(0, 0);
         if (showAuthor) {
             ConstraintLayout constraintLayout = this.binding.j;
-            m.checkNotNullExpressionValue(constraintLayout, "binding.threadEmbedMostRecentMessageHeader");
+            Intrinsics3.checkNotNullExpressionValue(constraintLayout, "binding.threadEmbedMostRecentMessageHeader");
             measuredWidth = constraintLayout.getMeasuredWidth();
         } else {
             measuredWidth = 0;
@@ -249,15 +249,15 @@ public final class WidgetChatListAdapterItemThreadEmbed extends WidgetChatListIt
             return;
         }
         ConstraintLayout constraintLayout = this.binding.j;
-        m.checkNotNullExpressionValue(constraintLayout, "binding.threadEmbedMostRecentMessageHeader");
+        Intrinsics3.checkNotNullExpressionValue(constraintLayout, "binding.threadEmbedMostRecentMessageHeader");
         constraintLayout.setVisibility(0);
         TextView textView = this.binding.k;
-        m.checkNotNullExpressionValue(textView, "binding.threadEmbedMostRecentMessageName");
+        Intrinsics3.checkNotNullExpressionValue(textView, "binding.threadEmbedMostRecentMessageName");
         textView.setText(nickOrUsernames.get(Long.valueOf(mostRecentMessage.getAuthor().getId())));
         this.binding.k.setTextColor(getAuthorTextColor(mostRecentMessageAuthorGuildMember));
         CoreUser coreUser = new CoreUser(mostRecentMessage.getAuthor());
         SimpleDraweeView simpleDraweeView = this.binding.h;
-        m.checkNotNullExpressionValue(simpleDraweeView, "binding.threadEmbedMostRecentMessageAvatar");
+        Intrinsics3.checkNotNullExpressionValue(simpleDraweeView, "binding.threadEmbedMostRecentMessageAvatar");
         IconUtils.setIcon$default(simpleDraweeView, coreUser, R.dimen.avatar_size_small, null, null, mostRecentMessageAuthorGuildMember, 24, null);
     }
 
@@ -270,20 +270,20 @@ public final class WidgetChatListAdapterItemThreadEmbed extends WidgetChatListIt
 
     private final void setIcon(Drawable icon) {
         ImageView imageView = this.binding.e;
-        m.checkNotNullExpressionValue(imageView, "binding.threadEmbedIcon");
+        Intrinsics3.checkNotNullExpressionValue(imageView, "binding.threadEmbedIcon");
         imageView.setVisibility(icon != null ? 0 : 8);
         this.binding.e.setImageDrawable(icon);
     }
 
     private final void setMostRecentMessage(Message mostRecentMessage, Map<Long, GuildRole> roleMentions, Map<Long, String> nickOrUsernames, boolean animateEmojis, GuildMember mostRecentMessageAuthorGuildMember) {
-        DraweeSpanStringBuilder draweeSpanStringBuilder = EmbeddedMessageParser.INSTANCE.parse(new EmbeddedMessageParser.ParserData(a.x(this.itemView, "itemView", "itemView.context"), roleMentions, nickOrUsernames, animateEmojis, new StoreMessageState.State(null, null, 3, null), 50, mostRecentMessage, (WidgetChatListAdapter) this.adapter));
+        DraweeSpanStringBuilder draweeSpanStringBuilder = EmbeddedMessageParser.INSTANCE.parse(new EmbeddedMessageParser.ParserData(outline.x(this.itemView, "itemView", "itemView.context"), roleMentions, nickOrUsernames, animateEmojis, new StoreMessageState.State(null, null, 3, null), 50, mostRecentMessage, (WidgetChatListAdapter) this.adapter));
         setAuthorAndAvatar(mostRecentMessage, nickOrUsernames, mostRecentMessageAuthorGuildMember);
         draweeSpanStringBuilder.setSpan(getLeadingMarginSpan$default(this, false, 1, null), 0, draweeSpanStringBuilder.length(), 33);
         this.binding.i.setDraweeSpanStringBuilder(draweeSpanStringBuilder);
         SimpleDraweeSpanTextView simpleDraweeSpanTextView = this.binding.i;
         FontUtils fontUtils = FontUtils.INSTANCE;
         Context context = simpleDraweeSpanTextView.getContext();
-        m.checkNotNullExpressionValue(context, "context");
+        Intrinsics3.checkNotNullExpressionValue(context, "context");
         simpleDraweeSpanTextView.setTypeface(fontUtils.getThemedFont(context, R.attr.font_primary_normal), 0);
         setIcon$default(this, null, 1, null);
     }
@@ -297,12 +297,12 @@ public final class WidgetChatListAdapterItemThreadEmbed extends WidgetChatListIt
         setAuthorAndAvatar(mostRecentMessage, nickOrUsernames, mostRecentMessageAuthorGuildMember);
         spannableString.setSpan(getLeadingMarginSpan((mostRecentMessage == null || mostRecentMessageAuthorGuildMember == null) ? false : true), 0, spannableString.length(), 33);
         SimpleDraweeSpanTextView simpleDraweeSpanTextView = this.binding.i;
-        m.checkNotNullExpressionValue(simpleDraweeSpanTextView, "binding.threadEmbedMostRecentMessageContent");
+        Intrinsics3.checkNotNullExpressionValue(simpleDraweeSpanTextView, "binding.threadEmbedMostRecentMessageContent");
         simpleDraweeSpanTextView.setText(spannableString);
         SimpleDraweeSpanTextView simpleDraweeSpanTextView2 = this.binding.i;
         FontUtils fontUtils = FontUtils.INSTANCE;
         Context context = simpleDraweeSpanTextView2.getContext();
-        m.checkNotNullExpressionValue(context, "context");
+        Intrinsics3.checkNotNullExpressionValue(context, "context");
         simpleDraweeSpanTextView2.setTypeface(fontUtils.getThemedFont(context, R.attr.font_primary_normal), 2);
         setIcon(icon);
     }
@@ -310,11 +310,11 @@ public final class WidgetChatListAdapterItemThreadEmbed extends WidgetChatListIt
     /* JADX WARN: Can't rename method to resolve collision */
     @Override // com.discord.widgets.chat.list.adapter.WidgetChatListItem
     public void onConfigure(int position, ChatListEntry data) {
-        m.checkNotNullParameter(data, "data");
+        Intrinsics3.checkNotNullParameter(data, "data");
         super.onConfigure(position, data);
         if (data instanceof ThreadEmbedEntry) {
             TextView textView = this.binding.l;
-            m.checkNotNullExpressionValue(textView, "binding.threadEmbedName");
+            Intrinsics3.checkNotNullExpressionValue(textView, "binding.threadEmbedName");
             ThreadEmbedEntry threadEmbedEntry = (ThreadEmbedEntry) data;
             textView.setText(threadEmbedEntry.getThread().getName());
             this.binding.d.setOnClickListener(new AnonymousClass1(data));
@@ -323,9 +323,9 @@ public final class WidgetChatListAdapterItemThreadEmbed extends WidgetChatListIt
             configureMostRecentMessageText(threadEmbedEntry);
             Message parentMessage = threadEmbedEntry.getParentMessage();
             View view = this.binding.c;
-            m.checkNotNullExpressionValue(view, "binding.chatListAdapterItemHighlightedBg");
+            Intrinsics3.checkNotNullExpressionValue(view, "binding.chatListAdapterItemHighlightedBg");
             View view2 = this.binding.f2341b;
-            m.checkNotNullExpressionValue(view2, "binding.chatListAdapterItemGutterBg");
+            Intrinsics3.checkNotNullExpressionValue(view2, "binding.chatListAdapterItemGutterBg");
             configureCellHighlight(parentMessage, view, view2);
         }
     }

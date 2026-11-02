@@ -17,23 +17,26 @@ import android.webkit.MimeTypeMap;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
+import b.b.a.d.FileListAdapter2;
 import b.b.a.d.e;
 import b.b.a.d.f;
-import b.b.a.d.g;
-import b.f.g.a.a.d;
+import b.b.a.g.FileUtils;
+import b.f.g.a.a.Fresco;
+import b.f.g.a.a.PipelineDraweeControllerBuilder;
 import com.discord.utilities.analytics.ChatInputComponentTypes;
 import com.discord.utilities.drawable.DrawableCompat;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.lytefast.flexinput.R;
 import com.lytefast.flexinput.model.Attachment;
 import com.lytefast.flexinput.utils.SelectionCoordinator;
-import d0.g0.t;
-import d0.g0.w;
-import d0.t.n;
-import d0.t.q;
-import d0.t.r;
-import d0.z.d.m;
-import d0.z.d.o;
+import d0.g0.Strings4;
+import d0.g0.StringsJVM;
+import d0.t.Collections2;
+import d0.t.MutableCollections;
+import d0.t.MutableCollectionsJVM;
+import d0.y.Closeable;
+import d0.z.d.Intrinsics3;
+import d0.z.d.Lambda;
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
@@ -64,38 +67,38 @@ public final class FileListAdapter extends RecyclerView.Adapter<b> {
         public final FileListAdapter a;
 
         public a(FileListAdapter fileListAdapter) {
-            m.checkNotNullParameter(fileListAdapter, "adapter");
+            Intrinsics3.checkNotNullParameter(fileListAdapter, "adapter");
             this.a = fileListAdapter;
         }
 
         @Override // android.os.AsyncTask
         public List<? extends Attachment<? extends File>> doInBackground(File[] fileArr) {
             File[] fileArr2 = fileArr;
-            m.checkNotNullParameter(fileArr2, "rootFiles");
+            Intrinsics3.checkNotNullParameter(fileArr2, "rootFiles");
             File file = fileArr2[0];
-            g gVar = g.j;
+            FileListAdapter2 fileListAdapter2 = FileListAdapter2.j;
             ArrayList arrayList = new ArrayList();
             LinkedList linkedList = new LinkedList();
-            r.addAll(linkedList, gVar.a(file));
+            MutableCollections.addAll(linkedList, fileListAdapter2.a(file));
             while (!linkedList.isEmpty()) {
                 File file2 = (File) linkedList.remove();
-                m.checkNotNullExpressionValue(file2, "file");
+                Intrinsics3.checkNotNullExpressionValue(file2, "file");
                 if (!file2.isHidden()) {
                     if (file2.isDirectory()) {
-                        r.addAll(linkedList, gVar.a(file2));
+                        MutableCollections.addAll(linkedList, fileListAdapter2.a(file2));
                     } else {
-                        arrayList.add(b.b.a.g.a.a(file2));
+                        arrayList.add(FileUtils.a(file2));
                     }
                 }
             }
-            q.sortWith(arrayList, d0.u.a.then(new f(this), new e()));
+            MutableCollectionsJVM.sortWith(arrayList, d0.u.a.then(new f(this), new e()));
             return arrayList;
         }
 
         @Override // android.os.AsyncTask
         public void onPostExecute(List<? extends Attachment<? extends File>> list) {
             List<? extends Attachment<? extends File>> list2 = list;
-            m.checkNotNullParameter(list2, ChatInputComponentTypes.FILES);
+            Intrinsics3.checkNotNullParameter(list2, ChatInputComponentTypes.FILES);
             FileListAdapter fileListAdapter = this.a;
             fileListAdapter.files = list2;
             fileListAdapter.notifyDataSetChanged();
@@ -117,17 +120,17 @@ public final class FileListAdapter extends RecyclerView.Adapter<b> {
 
         /* JADX INFO: renamed from: com.lytefast.flexinput.adapters.FileListAdapter$b$b, reason: collision with other inner class name */
         /* JADX INFO: compiled from: FileListAdapter.kt */
-        public final class C0488b extends o implements Function1<AnimatorSet, Unit> {
+        public final class C0368b extends Lambda implements Function1<AnimatorSet, Unit> {
             public final /* synthetic */ boolean $isAnimationRequested;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-            public C0488b(boolean z2) {
+            public C0368b(boolean z2) {
                 super(1);
                 this.$isAnimationRequested = z2;
             }
 
             public final void a(AnimatorSet animatorSet) {
-                m.checkNotNullParameter(animatorSet, "animation");
+                Intrinsics3.checkNotNullParameter(animatorSet, "animation");
                 animatorSet.start();
                 if (this.$isAnimationRequested) {
                     return;
@@ -168,22 +171,22 @@ public final class FileListAdapter extends RecyclerView.Adapter<b> {
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
         public b(FileListAdapter fileListAdapter, View view) {
             super(view);
-            m.checkNotNullParameter(view, "itemView");
+            Intrinsics3.checkNotNullParameter(view, "itemView");
             this.h = fileListAdapter;
             View viewFindViewById = view.findViewById(R.f.thumb_iv);
-            m.checkNotNullExpressionValue(viewFindViewById, "itemView.findViewById(R.id.thumb_iv)");
+            Intrinsics3.checkNotNullExpressionValue(viewFindViewById, "itemView.findViewById(R.id.thumb_iv)");
             this.c = (SimpleDraweeView) viewFindViewById;
             View viewFindViewById2 = view.findViewById(R.f.type_iv);
-            m.checkNotNullExpressionValue(viewFindViewById2, "itemView.findViewById(R.id.type_iv)");
+            Intrinsics3.checkNotNullExpressionValue(viewFindViewById2, "itemView.findViewById(R.id.type_iv)");
             this.d = (ImageView) viewFindViewById2;
             View viewFindViewById3 = view.findViewById(R.f.file_name_tv);
-            m.checkNotNullExpressionValue(viewFindViewById3, "itemView.findViewById(R.id.file_name_tv)");
+            Intrinsics3.checkNotNullExpressionValue(viewFindViewById3, "itemView.findViewById(R.id.file_name_tv)");
             this.e = (TextView) viewFindViewById3;
             View viewFindViewById4 = view.findViewById(R.f.file_subtitle_tv);
-            m.checkNotNullExpressionValue(viewFindViewById4, "itemView.findViewById(R.id.file_subtitle_tv)");
+            Intrinsics3.checkNotNullExpressionValue(viewFindViewById4, "itemView.findViewById(R.id.file_subtitle_tv)");
             this.f = (TextView) viewFindViewById4;
             View view2 = this.itemView;
-            m.checkNotNullExpressionValue(view2, "this.itemView");
+            Intrinsics3.checkNotNullExpressionValue(view2, "this.itemView");
             view2.setClickable(true);
             this.itemView.setOnClickListener(new a());
             Animator animatorLoadAnimator = AnimatorInflater.loadAnimator(view.getContext(), R.a.selection_shrink);
@@ -204,7 +207,7 @@ public final class FileListAdapter extends RecyclerView.Adapter<b> {
             if (cursorQuery != null) {
                 try {
                     if (!cursorQuery.moveToFirst()) {
-                        d0.y.b.closeFinally(cursorQuery, null);
+                        Closeable.closeFinally(cursorQuery, null);
                         return;
                     }
                     long j = cursorQuery.getLong(0);
@@ -215,34 +218,34 @@ public final class FileListAdapter extends RecyclerView.Adapter<b> {
                     if (cursorQuery2 != null) {
                         try {
                             if (!cursorQuery2.moveToFirst()) {
-                                d0.y.b.closeFinally(cursorQuery2, null);
-                                d0.y.b.closeFinally(cursorQuery, null);
+                                Closeable.closeFinally(cursorQuery2, null);
+                                Closeable.closeFinally(cursorQuery, null);
                                 return;
                             }
                             String string = cursorQuery2.getString(0);
                             SimpleDraweeView simpleDraweeView = this.c;
-                            d dVarA = b.f.g.a.a.b.a();
-                            dVarA.n = this.c.getController();
-                            d dVarF = dVarA.f(Uri.withAppendedPath(MediaStore.Images.Thumbnails.EXTERNAL_CONTENT_URI, string));
-                            dVarF.l = true;
-                            simpleDraweeView.setController(dVarF.a());
-                            d0.y.b.closeFinally(cursorQuery2, null);
+                            PipelineDraweeControllerBuilder pipelineDraweeControllerBuilderA = Fresco.a();
+                            pipelineDraweeControllerBuilderA.n = this.c.getController();
+                            PipelineDraweeControllerBuilder pipelineDraweeControllerBuilderF = pipelineDraweeControllerBuilderA.f(Uri.withAppendedPath(MediaStore.Images.Thumbnails.EXTERNAL_CONTENT_URI, string));
+                            pipelineDraweeControllerBuilderF.l = true;
+                            simpleDraweeView.setController(pipelineDraweeControllerBuilderF.a());
+                            Closeable.closeFinally(cursorQuery2, null);
                         } catch (Throwable th) {
                             try {
                                 throw th;
                             } catch (Throwable th2) {
-                                d0.y.b.closeFinally(cursorQuery2, th);
+                                Closeable.closeFinally(cursorQuery2, th);
                                 throw th2;
                             }
                         }
                         try {
                             throw th;
                         } catch (Throwable th3) {
-                            d0.y.b.closeFinally(cursorQuery, th);
+                            Closeable.closeFinally(cursorQuery, th);
                             throw th3;
                         }
                     }
-                    d0.y.b.closeFinally(cursorQuery, null);
+                    Closeable.closeFinally(cursorQuery, null);
                 } catch (Throwable th4) {
                     throw th4;
                 }
@@ -251,28 +254,28 @@ public final class FileListAdapter extends RecyclerView.Adapter<b> {
 
         public final void b(boolean z2, boolean z3) {
             View view = this.itemView;
-            m.checkNotNullExpressionValue(view, "itemView");
+            Intrinsics3.checkNotNullExpressionValue(view, "itemView");
             view.setSelected(z2);
-            C0488b c0488b = new C0488b(z3);
+            C0368b c0368b = new C0368b(z3);
             if (z2) {
                 if (this.c.getScaleX() == 1.0f) {
-                    c0488b.a(this.a);
+                    c0368b.a(this.a);
                 }
             } else if (this.c.getScaleX() != 1.0f) {
-                c0488b.a(this.f3162b);
+                c0368b.a(this.f3162b);
             }
         }
     }
 
     public FileListAdapter(ContentResolver contentResolver, SelectionCoordinator<?, Attachment<File>> selectionCoordinator) {
-        m.checkNotNullParameter(contentResolver, "contentResolver");
-        m.checkNotNullParameter(selectionCoordinator, "selectionCoordinator");
+        Intrinsics3.checkNotNullParameter(contentResolver, "contentResolver");
+        Intrinsics3.checkNotNullParameter(selectionCoordinator, "selectionCoordinator");
         this.contentResolver = contentResolver;
         Objects.requireNonNull(selectionCoordinator);
-        m.checkNotNullParameter(this, "adapter");
+        Intrinsics3.checkNotNullParameter(this, "adapter");
         selectionCoordinator.adapter = this;
         this.selectionCoordinator = selectionCoordinator;
-        this.files = n.emptyList();
+        this.files = Collections2.emptyList();
     }
 
     @Override // androidx.recyclerview.widget.RecyclerView.Adapter
@@ -286,17 +289,17 @@ public final class FileListAdapter extends RecyclerView.Adapter<b> {
         String mimeTypeFromExtension;
         String str;
         b bVar = (b) viewHolder;
-        m.checkNotNullParameter(bVar, "holder");
+        Intrinsics3.checkNotNullParameter(bVar, "holder");
         Attachment<? extends File> attachment = this.files.get(i);
         Objects.requireNonNull(bVar);
-        m.checkNotNullParameter(attachment, "fileAttachment");
+        Intrinsics3.checkNotNullParameter(attachment, "fileAttachment");
         bVar.g = attachment;
         bVar.b(bVar.h.selectionCoordinator.a(attachment, bVar.getAdapterPosition()), false);
         File data = attachment.getData();
         if (data != null) {
             bVar.e.setText(data.getName());
             TextView textView = bVar.f;
-            m.checkNotNullParameter(data, "$this$getFileSize");
+            Intrinsics3.checkNotNullParameter(data, "$this$getFileSize");
             long j = 1024;
             long length = data.length() / j;
             if (length < j) {
@@ -321,11 +324,11 @@ public final class FileListAdapter extends RecyclerView.Adapter<b> {
         if (data != null) {
             Objects.requireNonNull(bVar.h);
             String name = data.getName();
-            m.checkNotNullExpressionValue(name, "fileName");
-            int iLastIndexOf$default = w.lastIndexOf$default((CharSequence) name, '.', 0, false, 6, (Object) null) + 1;
+            Intrinsics3.checkNotNullExpressionValue(name, "fileName");
+            int iLastIndexOf$default = Strings4.lastIndexOf$default((CharSequence) name, '.', 0, false, 6, (Object) null) + 1;
             Objects.requireNonNull(name, "null cannot be cast to non-null type java.lang.String");
             String strSubstring = name.substring(iLastIndexOf$default);
-            m.checkNotNullExpressionValue(strSubstring, "(this as java.lang.String).substring(startIndex)");
+            Intrinsics3.checkNotNullExpressionValue(strSubstring, "(this as java.lang.String).substring(startIndex)");
             if (TextUtils.isEmpty(strSubstring)) {
                 mimeTypeFromExtension = null;
             } else {
@@ -341,21 +344,21 @@ public final class FileListAdapter extends RecyclerView.Adapter<b> {
             return;
         }
         bVar.c.setImageURI(Uri.fromFile(data), bVar.c.getContext());
-        if (t.startsWith$default(mimeTypeFromExtension, "image", false, 2, null)) {
+        if (StringsJVM.startsWith$default(mimeTypeFromExtension, "image", false, 2, null)) {
             ImageView imageView = bVar.d;
             imageView.setImageResource(DrawableCompat.getThemedDrawableRes$default(imageView, R.b.ic_flex_input_image, 0, 2, (Object) null));
             bVar.d.setVisibility(0);
             bVar.a(data);
             return;
         }
-        if (t.startsWith$default(mimeTypeFromExtension, MediaStreamTrack.VIDEO_TRACK_KIND, false, 2, null)) {
+        if (StringsJVM.startsWith$default(mimeTypeFromExtension, MediaStreamTrack.VIDEO_TRACK_KIND, false, 2, null)) {
             ImageView imageView2 = bVar.d;
             imageView2.setImageResource(DrawableCompat.getThemedDrawableRes$default(imageView2, R.b.ic_flex_input_movie, 0, 2, (Object) null));
             bVar.d.setVisibility(0);
             bVar.a(data);
             return;
         }
-        if (t.startsWith$default(mimeTypeFromExtension, MediaStreamTrack.AUDIO_TRACK_KIND, false, 2, null)) {
+        if (StringsJVM.startsWith$default(mimeTypeFromExtension, MediaStreamTrack.AUDIO_TRACK_KIND, false, 2, null)) {
             ImageView imageView3 = bVar.d;
             imageView3.setImageResource(DrawableCompat.getThemedDrawableRes$default(imageView3, R.b.ic_flex_input_audio, 0, 2, (Object) null));
             bVar.d.setVisibility(0);
@@ -365,9 +368,9 @@ public final class FileListAdapter extends RecyclerView.Adapter<b> {
 
     @Override // androidx.recyclerview.widget.RecyclerView.Adapter
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-        m.checkNotNullParameter(viewGroup, "parent");
+        Intrinsics3.checkNotNullParameter(viewGroup, "parent");
         View viewInflate = LayoutInflater.from(viewGroup.getContext()).inflate(R.g.view_file_item, viewGroup, false);
-        m.checkNotNullExpressionValue(viewInflate, "view");
+        Intrinsics3.checkNotNullExpressionValue(viewInflate, "view");
         return new b(this, viewInflate);
     }
 
@@ -375,8 +378,8 @@ public final class FileListAdapter extends RecyclerView.Adapter<b> {
     public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i, List list) {
         Object next;
         b bVar = (b) viewHolder;
-        m.checkNotNullParameter(bVar, "holder");
-        m.checkNotNullParameter(list, "payloads");
+        Intrinsics3.checkNotNullParameter(bVar, "holder");
+        Intrinsics3.checkNotNullParameter(list, "payloads");
         Iterator it = list.iterator();
         do {
             if (!it.hasNext()) {

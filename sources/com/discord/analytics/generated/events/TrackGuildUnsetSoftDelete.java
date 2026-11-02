@@ -1,19 +1,19 @@
 package com.discord.analytics.generated.events;
 
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.analytics.generated.traits.TrackGuild;
-import com.discord.analytics.generated.traits.TrackGuildReceiver;
+import com.discord.analytics.generated.traits.TrackGuild2;
 import com.discord.api.science.AnalyticsSchema;
 
 /* JADX INFO: compiled from: TrackGuildUnsetSoftDelete.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final class TrackGuildUnsetSoftDelete implements AnalyticsSchema, TrackBaseReceiver, TrackGuildReceiver {
+public final class TrackGuildUnsetSoftDelete implements AnalyticsSchema, TrackBase2, TrackGuild2 {
     private TrackBase trackBase;
     private TrackGuild trackGuild;
     private final transient String analyticsSchemaTypeName = "guild_unset_soft_delete";
 
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    @Override // com.discord.analytics.generated.traits.TrackGuild2
     public void c(TrackGuild trackGuild) {
         this.trackGuild = trackGuild;
     }
@@ -24,7 +24,7 @@ public final class TrackGuildUnsetSoftDelete implements AnalyticsSchema, TrackBa
         return this.analyticsSchemaTypeName;
     }
 
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    @Override // com.discord.analytics.generated.traits.TrackGuild2
     /* JADX INFO: renamed from: a, reason: from getter */
     public TrackGuild getTrackGuild() {
         return this.trackGuild;

@@ -1,16 +1,16 @@
 package com.discord.analytics.generated.events.activity_internal;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackActivityInternalMetadata;
-import com.discord.analytics.generated.traits.TrackActivityInternalMetadataReceiver;
+import com.discord.analytics.generated.traits.TrackActivityInternalMetadata2;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackActivityInternalActionSketchHeads.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackActivityInternalActionSketchHeads implements AnalyticsSchema, TrackBaseReceiver, TrackActivityInternalMetadataReceiver {
+public final /* data */ class TrackActivityInternalActionSketchHeads implements AnalyticsSchema, TrackBase2, TrackActivityInternalMetadata2 {
     private final CharSequence actionName = null;
     private final CharSequence mode = null;
     private final Long numDrawers = null;
@@ -33,7 +33,7 @@ public final /* data */ class TrackActivityInternalActionSketchHeads implements 
             return false;
         }
         TrackActivityInternalActionSketchHeads trackActivityInternalActionSketchHeads = (TrackActivityInternalActionSketchHeads) other;
-        return m.areEqual(this.actionName, trackActivityInternalActionSketchHeads.actionName) && m.areEqual(this.mode, trackActivityInternalActionSketchHeads.mode) && m.areEqual(this.phase, trackActivityInternalActionSketchHeads.phase) && m.areEqual(this.theme, trackActivityInternalActionSketchHeads.theme) && m.areEqual(this.numRounds, trackActivityInternalActionSketchHeads.numRounds) && m.areEqual(this.roundLengthMs, trackActivityInternalActionSketchHeads.roundLengthMs) && m.areEqual(this.numPlayers, trackActivityInternalActionSketchHeads.numPlayers) && m.areEqual(this.numDrawers, trackActivityInternalActionSketchHeads.numDrawers) && m.areEqual(this.numGuessers, trackActivityInternalActionSketchHeads.numGuessers) && m.areEqual(this.numSpectators, trackActivityInternalActionSketchHeads.numSpectators);
+        return Intrinsics3.areEqual(this.actionName, trackActivityInternalActionSketchHeads.actionName) && Intrinsics3.areEqual(this.mode, trackActivityInternalActionSketchHeads.mode) && Intrinsics3.areEqual(this.phase, trackActivityInternalActionSketchHeads.phase) && Intrinsics3.areEqual(this.theme, trackActivityInternalActionSketchHeads.theme) && Intrinsics3.areEqual(this.numRounds, trackActivityInternalActionSketchHeads.numRounds) && Intrinsics3.areEqual(this.roundLengthMs, trackActivityInternalActionSketchHeads.roundLengthMs) && Intrinsics3.areEqual(this.numPlayers, trackActivityInternalActionSketchHeads.numPlayers) && Intrinsics3.areEqual(this.numDrawers, trackActivityInternalActionSketchHeads.numDrawers) && Intrinsics3.areEqual(this.numGuessers, trackActivityInternalActionSketchHeads.numGuessers) && Intrinsics3.areEqual(this.numSpectators, trackActivityInternalActionSketchHeads.numSpectators);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -66,7 +66,7 @@ public final /* data */ class TrackActivityInternalActionSketchHeads implements 
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackActivityInternalActionSketchHeads(actionName=");
+        StringBuilder sbU = outline.U("TrackActivityInternalActionSketchHeads(actionName=");
         sbU.append(this.actionName);
         sbU.append(", mode=");
         sbU.append(this.mode);
@@ -85,6 +85,6 @@ public final /* data */ class TrackActivityInternalActionSketchHeads implements 
         sbU.append(", numGuessers=");
         sbU.append(this.numGuessers);
         sbU.append(", numSpectators=");
-        return a.G(sbU, this.numSpectators, ")");
+        return outline.G(sbU, this.numSpectators, ")");
     }
 }

@@ -4,7 +4,7 @@ import android.content.Context;
 import android.view.View;
 import androidx.exifinterface.media.ExifInterface;
 import androidx.fragment.app.ViewKt;
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.R;
 import com.discord.api.channel.Channel;
 import com.discord.api.guildscheduledevent.GuildScheduledEvent;
@@ -21,16 +21,16 @@ import com.discord.stores.StoreStream;
 import com.discord.stores.StoreUser;
 import com.discord.stores.StoreVoiceChannelSelected;
 import com.discord.stores.updates.ObservationDeck;
-import com.discord.stores.updates.ObservationDeckProvider;
+import com.discord.stores.updates.ObservationDeck4;
 import com.discord.utilities.analytics.Traits;
 import com.discord.utilities.rx.ObservableExtensionsKt;
 import com.discord.widgets.chat.list.entries.ChatListEntry;
 import com.discord.widgets.chat.list.entries.GuildScheduledEventInviteEntry;
 import com.discord.widgets.guildscheduledevent.GuildScheduledEventItemView;
 import com.discord.widgets.guildscheduledevent.WidgetGuildScheduledEventDetailsBottomSheet;
-import d0.z.d.k;
-import d0.z.d.m;
-import d0.z.d.o;
+import d0.z.d.FunctionReferenceImpl;
+import d0.z.d.Intrinsics3;
+import d0.z.d.Lambda;
 import java.lang.ref.WeakReference;
 import java.util.Objects;
 import kotlin.Unit;
@@ -51,7 +51,7 @@ public final class WidgetChatListAdapterItemGuildScheduledEventInvite extends Wi
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemGuildScheduledEventInvite$onConfigure$1, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetChatListAdapterItemGuildScheduledEventInvite.kt */
-    public final /* synthetic */ class AnonymousClass1 extends k implements Function1<Model, Unit> {
+    public final /* synthetic */ class AnonymousClass1 extends FunctionReferenceImpl implements Function1<Model, Unit> {
         public AnonymousClass1(WidgetChatListAdapterItemGuildScheduledEventInvite widgetChatListAdapterItemGuildScheduledEventInvite) {
             super(1, widgetChatListAdapterItemGuildScheduledEventInvite, WidgetChatListAdapterItemGuildScheduledEventInvite.class, "configureUI", "configureUI(Lcom/discord/widgets/chat/list/adapter/WidgetChatListAdapterItemGuildScheduledEventInvite$Model;)V", 0);
         }
@@ -64,7 +64,7 @@ public final class WidgetChatListAdapterItemGuildScheduledEventInvite extends Wi
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(Model model) {
-            m.checkNotNullParameter(model, "p1");
+            Intrinsics3.checkNotNullParameter(model, "p1");
             WidgetChatListAdapterItemGuildScheduledEventInvite.access$configureUI((WidgetChatListAdapterItemGuildScheduledEventInvite) this.receiver, model);
         }
     }
@@ -90,7 +90,7 @@ public final class WidgetChatListAdapterItemGuildScheduledEventInvite extends Wi
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemGuildScheduledEventInvite$onConfigure$2, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetChatListAdapterItemGuildScheduledEventInvite.kt */
-    public final class AnonymousClass2 extends o implements Function1<Subscription, Unit> {
+    public final class AnonymousClass2 extends Lambda implements Function1<Subscription, Unit> {
         public AnonymousClass2() {
             super(1);
         }
@@ -103,7 +103,7 @@ public final class WidgetChatListAdapterItemGuildScheduledEventInvite extends Wi
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(Subscription subscription) {
-            m.checkNotNullParameter(subscription, "it");
+            Intrinsics3.checkNotNullParameter(subscription, "it");
             WidgetChatListAdapterItemGuildScheduledEventInvite.access$setSubscription$p(WidgetChatListAdapterItemGuildScheduledEventInvite.this, subscription);
         }
     }
@@ -183,14 +183,14 @@ public final class WidgetChatListAdapterItemGuildScheduledEventInvite extends Wi
             }
 
             public final Observable<Model> observe(GuildScheduledEventInviteEntry item, StoreGuilds guildStore, StoreUser userStore, StoreChannels channelStore, StoreGuildScheduledEvents guildScheduledEventStore, StoreVoiceChannelSelected voiceChannelSelectedStore, StorePermissions permissionStore) {
-                m.checkNotNullParameter(item, "item");
-                m.checkNotNullParameter(guildStore, "guildStore");
-                m.checkNotNullParameter(userStore, "userStore");
-                m.checkNotNullParameter(channelStore, "channelStore");
-                m.checkNotNullParameter(guildScheduledEventStore, "guildScheduledEventStore");
-                m.checkNotNullParameter(voiceChannelSelectedStore, "voiceChannelSelectedStore");
-                m.checkNotNullParameter(permissionStore, "permissionStore");
-                return ObservationDeck.connectRx$default(ObservationDeckProvider.get(), new ObservationDeck.UpdateSource[]{guildStore, userStore, guildScheduledEventStore, voiceChannelSelectedStore, permissionStore}, false, null, null, new WidgetChatListAdapterItemGuildScheduledEventInvite$Model$Companion$observe$1(item, guildStore, userStore, guildScheduledEventStore, channelStore, voiceChannelSelectedStore, permissionStore), 14, null);
+                Intrinsics3.checkNotNullParameter(item, "item");
+                Intrinsics3.checkNotNullParameter(guildStore, "guildStore");
+                Intrinsics3.checkNotNullParameter(userStore, "userStore");
+                Intrinsics3.checkNotNullParameter(channelStore, "channelStore");
+                Intrinsics3.checkNotNullParameter(guildScheduledEventStore, "guildScheduledEventStore");
+                Intrinsics3.checkNotNullParameter(voiceChannelSelectedStore, "voiceChannelSelectedStore");
+                Intrinsics3.checkNotNullParameter(permissionStore, "permissionStore");
+                return ObservationDeck.connectRx$default(ObservationDeck4.get(), new ObservationDeck.UpdateSource[]{guildStore, userStore, guildScheduledEventStore, voiceChannelSelectedStore, permissionStore}, false, null, null, new WidgetChatListAdapterItemGuildScheduledEventInvite2(item, guildStore, userStore, guildScheduledEventStore, channelStore, voiceChannelSelectedStore, permissionStore), 14, null);
             }
 
             public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
@@ -199,8 +199,8 @@ public final class WidgetChatListAdapterItemGuildScheduledEventInvite extends Wi
         }
 
         public Model(ModelInvite modelInvite, boolean z2, boolean z3, GuildScheduledEvent guildScheduledEvent, Channel channel, Guild guild, UserGuildMember userGuildMember, Long l, boolean z4, boolean z5) {
-            m.checkNotNullParameter(modelInvite, "invite");
-            m.checkNotNullParameter(guildScheduledEvent, "guildScheduledEvent");
+            Intrinsics3.checkNotNullParameter(modelInvite, "invite");
+            Intrinsics3.checkNotNullParameter(guildScheduledEvent, "guildScheduledEvent");
             this.invite = modelInvite;
             this.isInGuild = z2;
             this.isRsvped = z3;
@@ -218,8 +218,8 @@ public final class WidgetChatListAdapterItemGuildScheduledEventInvite extends Wi
         }
 
         public final Model copy(ModelInvite invite, boolean isInGuild, boolean isRsvped, GuildScheduledEvent guildScheduledEvent, Channel channel, Guild guild, UserGuildMember creator, Long selectedVoiceChannelId, boolean canConnect, boolean canShare) {
-            m.checkNotNullParameter(invite, "invite");
-            m.checkNotNullParameter(guildScheduledEvent, "guildScheduledEvent");
+            Intrinsics3.checkNotNullParameter(invite, "invite");
+            Intrinsics3.checkNotNullParameter(guildScheduledEvent, "guildScheduledEvent");
             return new Model(invite, isInGuild, isRsvped, guildScheduledEvent, channel, guild, creator, selectedVoiceChannelId, canConnect, canShare);
         }
 
@@ -231,7 +231,7 @@ public final class WidgetChatListAdapterItemGuildScheduledEventInvite extends Wi
                 return false;
             }
             Model model = (Model) other;
-            return m.areEqual(this.invite, model.invite) && this.isInGuild == model.isInGuild && this.isRsvped == model.isRsvped && m.areEqual(this.guildScheduledEvent, model.guildScheduledEvent) && m.areEqual(this.channel, model.channel) && m.areEqual(this.guild, model.guild) && m.areEqual(this.creator, model.creator) && m.areEqual(this.selectedVoiceChannelId, model.selectedVoiceChannelId) && this.canConnect == model.canConnect && this.canShare == model.canShare;
+            return Intrinsics3.areEqual(this.invite, model.invite) && this.isInGuild == model.isInGuild && this.isRsvped == model.isRsvped && Intrinsics3.areEqual(this.guildScheduledEvent, model.guildScheduledEvent) && Intrinsics3.areEqual(this.channel, model.channel) && Intrinsics3.areEqual(this.guild, model.guild) && Intrinsics3.areEqual(this.creator, model.creator) && Intrinsics3.areEqual(this.selectedVoiceChannelId, model.selectedVoiceChannelId) && this.canConnect == model.canConnect && this.canShare == model.canShare;
         }
 
         /* JADX INFO: renamed from: component9, reason: from getter */
@@ -376,7 +376,7 @@ public final class WidgetChatListAdapterItemGuildScheduledEventInvite extends Wi
         }
 
         public String toString() {
-            StringBuilder sbU = a.U("Model(invite=");
+            StringBuilder sbU = outline.U("Model(invite=");
             sbU.append(this.invite);
             sbU.append(", isInGuild=");
             sbU.append(this.isInGuild);
@@ -395,7 +395,7 @@ public final class WidgetChatListAdapterItemGuildScheduledEventInvite extends Wi
             sbU.append(", canConnect=");
             sbU.append(this.canConnect);
             sbU.append(", canShare=");
-            return a.O(sbU, this.canShare, ")");
+            return outline.O(sbU, this.canShare, ")");
         }
     }
 
@@ -433,7 +433,7 @@ public final class WidgetChatListAdapterItemGuildScheduledEventInvite extends Wi
 
     private final void configureUI(Model model) {
         GuildScheduledEventItemView guildScheduledEventItemView = this.binding.f2322b;
-        m.checkNotNullExpressionValue(guildScheduledEventItemView, "binding.guildScheduledEventInviteContainer");
+        Intrinsics3.checkNotNullExpressionValue(guildScheduledEventItemView, "binding.guildScheduledEventInviteContainer");
         guildScheduledEventItemView.setBackground(null);
         GuildScheduledEventItemView guildScheduledEventItemView2 = this.binding.f2322b;
         GuildScheduledEvent guildScheduledEvent = model.getGuildScheduledEvent();
@@ -467,21 +467,21 @@ public final class WidgetChatListAdapterItemGuildScheduledEventInvite extends Wi
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public WidgetChatListAdapterItemGuildScheduledEventInvite(WidgetChatListAdapter widgetChatListAdapter, StoreGuildScheduledEvents storeGuildScheduledEvents) {
         super(R.layout.widget_chat_list_adapter_item_guild_scheduled_event_invite, widgetChatListAdapter);
-        m.checkNotNullParameter(widgetChatListAdapter, "adapter");
-        m.checkNotNullParameter(storeGuildScheduledEvents, "guildScheduledEventStore");
+        Intrinsics3.checkNotNullParameter(widgetChatListAdapter, "adapter");
+        Intrinsics3.checkNotNullParameter(storeGuildScheduledEvents, "guildScheduledEventStore");
         this.guildScheduledEventStore = storeGuildScheduledEvents;
         View view = this.itemView;
         Objects.requireNonNull(view, "rootView");
         GuildScheduledEventItemView guildScheduledEventItemView = (GuildScheduledEventItemView) view;
         WidgetChatListAdapterItemGuildScheduledEventInviteBinding widgetChatListAdapterItemGuildScheduledEventInviteBinding = new WidgetChatListAdapterItemGuildScheduledEventInviteBinding(guildScheduledEventItemView, guildScheduledEventItemView);
-        m.checkNotNullExpressionValue(widgetChatListAdapterItemGuildScheduledEventInviteBinding, "WidgetChatListAdapterIte…iteBinding.bind(itemView)");
+        Intrinsics3.checkNotNullExpressionValue(widgetChatListAdapterItemGuildScheduledEventInviteBinding, "WidgetChatListAdapterIte…iteBinding.bind(itemView)");
         this.binding = widgetChatListAdapterItemGuildScheduledEventInviteBinding;
     }
 
     /* JADX WARN: Can't rename method to resolve collision */
     @Override // com.discord.widgets.chat.list.adapter.WidgetChatListItem
     public void onConfigure(int position, ChatListEntry data) {
-        m.checkNotNullParameter(data, "data");
+        Intrinsics3.checkNotNullParameter(data, "data");
         super.onConfigure(position, data);
         ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui(Model.Companion.observe$default(Model.INSTANCE, (GuildScheduledEventInviteEntry) data, null, null, null, null, null, null, 126, null)), WidgetChatListAdapterItemGuildScheduledEventInvite.class, (Context) null, new AnonymousClass2(), (Function1) null, (Function0) null, (Function0) null, new AnonymousClass1(this), 58, (Object) null);
     }

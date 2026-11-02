@@ -1,27 +1,29 @@
 package b.i.a.c.s2;
 
+import b.i.a.c.f3.ListenerSet;
+
 /* JADX INFO: compiled from: lambda */
 /* JADX INFO: loaded from: classes3.dex */
-public final /* synthetic */ class d implements b.i.a.c.f3.p.a {
-    public final /* synthetic */ h1.a a;
+public final /* synthetic */ class d implements ListenerSet.a {
+    public final /* synthetic */ AnalyticsListener.a a;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
     public final /* synthetic */ String f1071b;
     public final /* synthetic */ long c;
     public final /* synthetic */ long d;
 
-    public /* synthetic */ d(h1.a aVar, String str, long j, long j2) {
+    public /* synthetic */ d(AnalyticsListener.a aVar, String str, long j, long j2) {
         this.a = aVar;
         this.f1071b = str;
         this.c = j;
         this.d = j2;
     }
 
-    @Override // b.i.a.c.f3.p.a
+    @Override // b.i.a.c.f3.ListenerSet.a
     public final void invoke(Object obj) {
-        h1 h1Var = (h1) obj;
-        h1Var.i0();
-        h1Var.M();
-        h1Var.T();
+        AnalyticsListener analyticsListener = (AnalyticsListener) obj;
+        analyticsListener.i0();
+        analyticsListener.M();
+        analyticsListener.T();
     }
 }

@@ -1,14 +1,14 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackSeoServerLandingPageViewed.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackSeoServerLandingPageViewed implements AnalyticsSchema, TrackBaseReceiver {
+public final /* data */ class TrackSeoServerLandingPageViewed implements AnalyticsSchema, TrackBase2 {
     private final Long guildId = null;
     private final CharSequence guildName = null;
     private final CharSequence slug = null;
@@ -23,7 +23,7 @@ public final /* data */ class TrackSeoServerLandingPageViewed implements Analyti
             return false;
         }
         TrackSeoServerLandingPageViewed trackSeoServerLandingPageViewed = (TrackSeoServerLandingPageViewed) other;
-        return m.areEqual(this.guildId, trackSeoServerLandingPageViewed.guildId) && m.areEqual(this.guildName, trackSeoServerLandingPageViewed.guildName) && m.areEqual(this.slug, trackSeoServerLandingPageViewed.slug);
+        return Intrinsics3.areEqual(this.guildId, trackSeoServerLandingPageViewed.guildId) && Intrinsics3.areEqual(this.guildName, trackSeoServerLandingPageViewed.guildName) && Intrinsics3.areEqual(this.slug, trackSeoServerLandingPageViewed.slug);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -42,11 +42,11 @@ public final /* data */ class TrackSeoServerLandingPageViewed implements Analyti
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackSeoServerLandingPageViewed(guildId=");
+        StringBuilder sbU = outline.U("TrackSeoServerLandingPageViewed(guildId=");
         sbU.append(this.guildId);
         sbU.append(", guildName=");
         sbU.append(this.guildName);
         sbU.append(", slug=");
-        return a.E(sbU, this.slug, ")");
+        return outline.E(sbU, this.slug, ")");
     }
 }

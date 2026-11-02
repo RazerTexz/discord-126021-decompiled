@@ -5,7 +5,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.arch.core.executor.ArchTaskExecutor;
 import androidx.arch.core.internal.SafeIterableMap;
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import java.util.Map;
 
 /* JADX INFO: loaded from: classes.dex */
@@ -104,7 +104,7 @@ public abstract class LiveData<T> {
 
     public static void assertMainThread(String str) {
         if (!ArchTaskExecutor.getInstance().isMainThread()) {
-            throw new IllegalStateException(a.y("Cannot invoke ", str, " on a background thread"));
+            throw new IllegalStateException(outline.y("Cannot invoke ", str, " on a background thread"));
         }
     }
 

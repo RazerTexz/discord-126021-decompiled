@@ -1,7 +1,7 @@
 package com.discord.widgets.forums;
 
 import android.content.Context;
-import b.a.k.b;
+import b.a.k.FormatUtils;
 import com.discord.R;
 import com.discord.api.channel.Channel;
 import com.discord.api.channel.ChannelUtils;
@@ -17,12 +17,12 @@ import com.discord.stores.StoreEmoji;
 import com.discord.stores.StoreExperiments;
 import com.discord.stores.StoreStream;
 import com.discord.stores.updates.ObservationDeck;
-import com.discord.stores.updates.ObservationDeckProvider;
+import com.discord.stores.updates.ObservationDeck4;
 import com.discord.utilities.time.ClockFactory;
 import com.discord.utilities.time.TimeUtils;
-import d0.t.u;
-import d0.z.d.m;
-import d0.z.d.o;
+import d0.t._Collections;
+import d0.z.d.Intrinsics3;
+import d0.z.d.Lambda;
 import java.util.Comparator;
 import java.util.List;
 import kotlin.jvm.functions.Function0;
@@ -64,10 +64,10 @@ public final class ForumUtils {
                 if (count2 != count) {
                     return count2 - count;
                 }
-                if (m.areEqual(strAccess$getPlaceholderReactionName, name)) {
+                if (Intrinsics3.areEqual(strAccess$getPlaceholderReactionName, name)) {
                     return 1;
                 }
-                if (!m.areEqual(strAccess$getPlaceholderReactionName, name2) && strC2.compareTo(strC) <= 0) {
+                if (!Intrinsics3.areEqual(strAccess$getPlaceholderReactionName, name2) && strC2.compareTo(strC) <= 0) {
                     return 1;
                 }
             } else if (messageReaction == null || messageReaction2 != null) {
@@ -79,7 +79,7 @@ public final class ForumUtils {
 
     /* JADX INFO: renamed from: com.discord.widgets.forums.ForumUtils$observeCanAccessRedesignedForumChannels$1, reason: invalid class name */
     /* JADX INFO: compiled from: ForumUtils.kt */
-    public final class AnonymousClass1 extends o implements Function0<Boolean> {
+    public final class AnonymousClass1 extends Lambda implements Function0<Boolean> {
         public final /* synthetic */ StoreExperiments $experimentsStore;
         public final /* synthetic */ long $guildId;
 
@@ -103,7 +103,7 @@ public final class ForumUtils {
 
     /* JADX INFO: renamed from: com.discord.widgets.forums.ForumUtils$observeCanCreateForumChannels$1, reason: invalid class name */
     /* JADX INFO: compiled from: ForumUtils.kt */
-    public final class AnonymousClass1 extends o implements Function0<Boolean> {
+    public final class AnonymousClass1 extends Lambda implements Function0<Boolean> {
         public final /* synthetic */ StoreExperiments $experimentsStore;
         public final /* synthetic */ long $guildId;
 
@@ -127,7 +127,7 @@ public final class ForumUtils {
 
     /* JADX INFO: renamed from: com.discord.widgets.forums.ForumUtils$observeSelectedPostChannel$1, reason: invalid class name */
     /* JADX INFO: compiled from: ForumUtils.kt */
-    public final class AnonymousClass1 extends o implements Function0<Channel> {
+    public final class AnonymousClass1 extends Lambda implements Function0<Channel> {
         public final /* synthetic */ StoreChannels $storeChannels;
         public final /* synthetic */ StoreChannelsSelected $storeChannelsSelected;
         public final /* synthetic */ StoreExperiments $storeExperiments;
@@ -192,13 +192,13 @@ public final class ForumUtils {
     }
 
     public final boolean canAccessRedesignedForumChannels(long guildId, StoreExperiments experimentsStore) {
-        m.checkNotNullParameter(experimentsStore, "experimentsStore");
+        Intrinsics3.checkNotNullParameter(experimentsStore, "experimentsStore");
         Experiment guildExperiment = experimentsStore.getGuildExperiment("2022-03_android_forum_channel_redesign", guildId, false);
         return guildExperiment != null && guildExperiment.getBucket() == 1;
     }
 
     public final CharSequence getActiveAgoTimestamp(Context context, Long lastMessageTimestampMs) {
-        m.checkNotNullParameter(context, "context");
+        Intrinsics3.checkNotNullParameter(context, "context");
         if (lastMessageTimestampMs == null) {
             return null;
         }
@@ -207,12 +207,12 @@ public final class ForumUtils {
             return null;
         }
         if (jCurrentTimeMillis < ONE_HOUR_IN_MILLIS) {
-            return b.h(context, R.string.form_post_active_ago_timestamp_minutes, new Object[]{Integer.valueOf(TimeUtils.INSTANCE.getMinutesFromMillis(jCurrentTimeMillis))}, null, 4);
+            return FormatUtils.h(context, R.string.form_post_active_ago_timestamp_minutes, new Object[]{Integer.valueOf(TimeUtils.INSTANCE.getMinutesFromMillis(jCurrentTimeMillis))}, null, 4);
         }
         if (jCurrentTimeMillis < ONE_DAY_IN_MILLIS) {
-            return b.h(context, R.string.form_post_active_ago_timestamp_hours, new Object[]{Integer.valueOf(TimeUtils.INSTANCE.getHoursFromMillis(jCurrentTimeMillis))}, null, 4);
+            return FormatUtils.h(context, R.string.form_post_active_ago_timestamp_hours, new Object[]{Integer.valueOf(TimeUtils.INSTANCE.getHoursFromMillis(jCurrentTimeMillis))}, null, 4);
         }
-        return jCurrentTimeMillis < 2592000000L ? b.h(context, R.string.form_post_active_ago_timestamp_days, new Object[]{Integer.valueOf(TimeUtils.INSTANCE.getDaysFromMillis(jCurrentTimeMillis))}, null, 4) : context.getString(R.string.form_post_active_ago_timestamp_more_than_month);
+        return jCurrentTimeMillis < 2592000000L ? FormatUtils.h(context, R.string.form_post_active_ago_timestamp_days, new Object[]{Integer.valueOf(TimeUtils.INSTANCE.getDaysFromMillis(jCurrentTimeMillis))}, null, 4) : context.getString(R.string.form_post_active_ago_timestamp_more_than_month);
     }
 
     public final String getMessageCountString(Integer messageCount) {
@@ -227,7 +227,7 @@ public final class ForumUtils {
     }
 
     public final MessageReaction getPlaceholderMessageReaction(StoreEmoji storeEmoji) {
-        m.checkNotNullParameter(storeEmoji, "storeEmoji");
+        Intrinsics3.checkNotNullParameter(storeEmoji, "storeEmoji");
         ModelEmojiUnicode modelEmojiUnicode = storeEmoji.getUnicodeEmojisNamesMap().get(PLACEHOLDER_EMOJI_KEY);
         if (modelEmojiUnicode != null) {
             return new MessageReaction(0, new MessageReactionEmoji(null, modelEmojiUnicode.getUniqueId(), false), false);
@@ -245,17 +245,17 @@ public final class ForumUtils {
     }
 
     public final CharSequence getUnreadMessageCountString(Context context, Integer unreadCount) {
-        m.checkNotNullParameter(context, "context");
+        Intrinsics3.checkNotNullParameter(context, "context");
         if (unreadCount == null || unreadCount.intValue() == 0) {
             return null;
         }
-        return b.h(context, R.string.forum_post_message_count_short_parenthetical, new Object[]{unreadCount.intValue() < 10 ? String.valueOf(unreadCount.intValue()) : "10+"}, null, 4);
+        return FormatUtils.h(context, R.string.forum_post_message_count_short_parenthetical, new Object[]{unreadCount.intValue() < 10 ? String.valueOf(unreadCount.intValue()) : "10+"}, null, 4);
     }
 
     public final boolean isDefaultPostReaction(MessageReaction messageReaction, StoreEmoji storeEmoji) {
-        m.checkNotNullParameter(messageReaction, "$this$isDefaultPostReaction");
-        m.checkNotNullParameter(storeEmoji, "storeEmoji");
-        return m.areEqual(messageReaction.getEmoji().getName(), getPlaceholderReactionName(storeEmoji));
+        Intrinsics3.checkNotNullParameter(messageReaction, "$this$isDefaultPostReaction");
+        Intrinsics3.checkNotNullParameter(storeEmoji, "storeEmoji");
+        return Intrinsics3.areEqual(messageReaction.getEmoji().getName(), getPlaceholderReactionName(storeEmoji));
     }
 
     public static /* synthetic */ Observable maybeLoadAndObserveThreadListing$default(ForumUtils forumUtils, long j, boolean z2, ArchivedThreadsStore archivedThreadsStore, int i, Object obj) {
@@ -266,19 +266,19 @@ public final class ForumUtils {
     }
 
     public final Observable<ArchivedThreadsStore.ThreadListingState> maybeLoadAndObserveThreadListing(long channelId, boolean hasActiveThreads, ArchivedThreadsStore storeArchivedThreads) {
-        m.checkNotNullParameter(storeArchivedThreads, "storeArchivedThreads");
+        Intrinsics3.checkNotNullParameter(storeArchivedThreads, "storeArchivedThreads");
         return hasActiveThreads ? storeArchivedThreads.observeGuildForumThreadListing(channelId) : storeArchivedThreads.loadAndObserveGuildForumThreadListing(channelId);
     }
 
     public final MessageReaction mostCommonReaction(Message message, StoreEmoji storeEmoji) {
         List listSortedWith;
-        m.checkNotNullParameter(message, "$this$mostCommonReaction");
-        m.checkNotNullParameter(storeEmoji, "storeEmoji");
+        Intrinsics3.checkNotNullParameter(message, "$this$mostCommonReaction");
+        Intrinsics3.checkNotNullParameter(storeEmoji, "storeEmoji");
         List<MessageReaction> reactions = message.getReactions();
-        if (reactions == null || (listSortedWith = u.sortedWith(reactions, getMessageReactionComparator(storeEmoji))) == null) {
+        if (reactions == null || (listSortedWith = _Collections.sortedWith(reactions, getMessageReactionComparator(storeEmoji))) == null) {
             return null;
         }
-        return (MessageReaction) u.firstOrNull(listSortedWith);
+        return (MessageReaction) _Collections.firstOrNull(listSortedWith);
     }
 
     public static /* synthetic */ Observable observeCanAccessRedesignedForumChannels$default(ForumUtils forumUtils, long j, StoreExperiments storeExperiments, ObservationDeck observationDeck, int i, Object obj) {
@@ -286,16 +286,16 @@ public final class ForumUtils {
             storeExperiments = StoreStream.INSTANCE.getExperiments();
         }
         if ((i & 4) != 0) {
-            observationDeck = ObservationDeckProvider.get();
+            observationDeck = ObservationDeck4.get();
         }
         return forumUtils.observeCanAccessRedesignedForumChannels(j, storeExperiments, observationDeck);
     }
 
     public final Observable<Boolean> observeCanAccessRedesignedForumChannels(long guildId, StoreExperiments experimentsStore, ObservationDeck observationDeck) {
-        m.checkNotNullParameter(experimentsStore, "experimentsStore");
-        m.checkNotNullParameter(observationDeck, "observationDeck");
+        Intrinsics3.checkNotNullParameter(experimentsStore, "experimentsStore");
+        Intrinsics3.checkNotNullParameter(observationDeck, "observationDeck");
         Observable<Boolean> observableR = ObservationDeck.connectRx$default(observationDeck, new ObservationDeck.UpdateSource[]{experimentsStore}, false, null, null, new AnonymousClass1(guildId, experimentsStore), 14, null).r();
-        m.checkNotNullExpressionValue(observableR, "observationDeck.connectR… }.distinctUntilChanged()");
+        Intrinsics3.checkNotNullExpressionValue(observableR, "observationDeck.connectR… }.distinctUntilChanged()");
         return observableR;
     }
 
@@ -304,16 +304,16 @@ public final class ForumUtils {
             storeExperiments = StoreStream.INSTANCE.getExperiments();
         }
         if ((i & 4) != 0) {
-            observationDeck = ObservationDeckProvider.get();
+            observationDeck = ObservationDeck4.get();
         }
         return forumUtils.observeCanCreateForumChannels(j, storeExperiments, observationDeck);
     }
 
     public final Observable<Boolean> observeCanCreateForumChannels(long guildId, StoreExperiments experimentsStore, ObservationDeck observationDeck) {
-        m.checkNotNullParameter(experimentsStore, "experimentsStore");
-        m.checkNotNullParameter(observationDeck, "observationDeck");
+        Intrinsics3.checkNotNullParameter(experimentsStore, "experimentsStore");
+        Intrinsics3.checkNotNullParameter(observationDeck, "observationDeck");
         Observable<Boolean> observableR = ObservationDeck.connectRx$default(observationDeck, new ObservationDeck.UpdateSource[]{experimentsStore}, false, null, null, new AnonymousClass1(guildId, experimentsStore), 14, null).r();
-        m.checkNotNullExpressionValue(observableR, "observationDeck.connectR… }.distinctUntilChanged()");
+        Intrinsics3.checkNotNullExpressionValue(observableR, "observationDeck.connectR… }.distinctUntilChanged()");
         return observableR;
     }
 
@@ -322,18 +322,18 @@ public final class ForumUtils {
             storeExperiments = StoreStream.INSTANCE.getExperiments();
         }
         if ((i & 8) != 0) {
-            observationDeck = ObservationDeckProvider.get();
+            observationDeck = ObservationDeck4.get();
         }
         return forumUtils.observeSelectedPostChannel(storeChannels, storeChannelsSelected, storeExperiments, observationDeck);
     }
 
     public final Observable<Channel> observeSelectedPostChannel(StoreChannels storeChannels, StoreChannelsSelected storeChannelsSelected, StoreExperiments storeExperiments, ObservationDeck observationDeck) {
-        m.checkNotNullParameter(storeChannels, "storeChannels");
-        m.checkNotNullParameter(storeChannelsSelected, "storeChannelsSelected");
-        m.checkNotNullParameter(storeExperiments, "storeExperiments");
-        m.checkNotNullParameter(observationDeck, "observationDeck");
+        Intrinsics3.checkNotNullParameter(storeChannels, "storeChannels");
+        Intrinsics3.checkNotNullParameter(storeChannelsSelected, "storeChannelsSelected");
+        Intrinsics3.checkNotNullParameter(storeExperiments, "storeExperiments");
+        Intrinsics3.checkNotNullParameter(observationDeck, "observationDeck");
         Observable<Channel> observableR = ObservationDeck.connectRx$default(observationDeck, new ObservationDeck.UpdateSource[]{storeChannels, storeChannelsSelected, storeExperiments}, false, null, null, new AnonymousClass1(storeChannelsSelected, storeExperiments, storeChannels), 14, null).r();
-        m.checkNotNullExpressionValue(observableR, "observationDeck.connectR… }.distinctUntilChanged()");
+        Intrinsics3.checkNotNullExpressionValue(observableR, "observationDeck.connectR… }.distinctUntilChanged()");
         return observableR;
     }
 }

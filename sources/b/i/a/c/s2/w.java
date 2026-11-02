@@ -1,22 +1,23 @@
 package b.i.a.c.s2;
 
-import b.i.a.c.p2;
+import b.i.a.c.TracksInfo;
+import b.i.a.c.f3.ListenerSet;
 
 /* JADX INFO: compiled from: lambda */
 /* JADX INFO: loaded from: classes3.dex */
-public final /* synthetic */ class w implements b.i.a.c.f3.p.a {
-    public final /* synthetic */ h1.a a;
+public final /* synthetic */ class w implements ListenerSet.a {
+    public final /* synthetic */ AnalyticsListener.a a;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    public final /* synthetic */ p2 f1107b;
+    public final /* synthetic */ TracksInfo f1107b;
 
-    public /* synthetic */ w(h1.a aVar, p2 p2Var) {
+    public /* synthetic */ w(AnalyticsListener.a aVar, TracksInfo tracksInfo) {
         this.a = aVar;
-        this.f1107b = p2Var;
+        this.f1107b = tracksInfo;
     }
 
-    @Override // b.i.a.c.f3.p.a
+    @Override // b.i.a.c.f3.ListenerSet.a
     public final void invoke(Object obj) {
-        ((h1) obj).i();
+        ((AnalyticsListener) obj).i();
     }
 }

@@ -7,13 +7,18 @@ import android.os.StrictMode;
 import android.os.Trace;
 import android.text.TextUtils;
 import android.util.Log;
-import b.f.m.c;
-import b.f.m.d;
-import b.f.m.e;
-import b.f.m.j;
-import b.f.m.k;
-import b.f.m.l;
-import b.f.m.m;
+import b.c.a.a0.AnimatableValueParser;
+import b.d.b.a.outline;
+import b.f.m.ApkSoSource;
+import b.f.m.ApplicationSoSource;
+import b.f.m.DirectorySoSource;
+import b.f.m.DoNotOptimize;
+import b.f.m.ExoSoSource;
+import b.f.m.NativeLoaderToSoLoaderDelegate;
+import b.f.m.SoFileLoader;
+import b.f.m.SoSource;
+import b.f.m.UnpackingSoSource;
+import b.f.m.n.NativeLoader;
 import com.adjust.sdk.Constants;
 import dalvik.system.BaseDexClassLoader;
 import java.io.File;
@@ -39,20 +44,20 @@ import org.objectweb.asm.Opcodes;
 public class SoLoader {
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    public static k f2906b;
-    public static m[] f;
-    public static b.f.m.b g;
+    public static SoFileLoader f2906b;
+    public static UnpackingSoSource[] f;
+    public static ApplicationSoSource g;
     public static int k;
     public static boolean l;
     public static final ReentrantReadWriteLock c = new ReentrantReadWriteLock();
-    public static l[] d = null;
+    public static SoSource[] d = null;
     public static volatile int e = 0;
     public static final HashSet<String> h = new HashSet<>();
     public static final Map<String, Object> i = new HashMap();
     public static final Set<String> j = Collections.newSetFromMap(new ConcurrentHashMap());
     public static final boolean a = true;
 
-    @d
+    @DoNotOptimize
     @TargetApi(14)
     public class Api14Utils {
         private Api14Utils() {
@@ -67,14 +72,14 @@ public class SoLoader {
                     throw new RuntimeException("Cannot call getLdLibraryPath", e);
                 }
             }
-            StringBuilder sbU = b.d.b.a.a.U("ClassLoader ");
+            StringBuilder sbU = outline.U("ClassLoader ");
             sbU.append(classLoader.getClass().getName());
             sbU.append(" should be of type BaseDexClassLoader");
             throw new IllegalStateException(sbU.toString());
         }
     }
 
-    public final class a implements k {
+    public final class a implements SoFileLoader {
         public final /* synthetic */ boolean a;
 
         /* JADX INFO: renamed from: b, reason: collision with root package name */
@@ -173,7 +178,7 @@ public class SoLoader {
                         }
                     }
                     if (str2 != null) {
-                        StringBuilder sbY = b.d.b.a.a.Y("Error when loading lib: ", str2, " lib hash: ");
+                        StringBuilder sbY = outline.Y("Error when loading lib: ", str2, " lib hash: ");
                         sbY.append(a(str));
                         sbY.append(" search path is ");
                         sbY.append(str3);
@@ -182,7 +187,7 @@ public class SoLoader {
                 } catch (Throwable th3) {
                     th = th3;
                     if (0 != 0) {
-                        StringBuilder sbY2 = b.d.b.a.a.Y("Error when loading lib: ", null, " lib hash: ");
+                        StringBuilder sbY2 = outline.Y("Error when loading lib: ", null, " lib hash: ");
                         sbY2.append(aVar.a(str));
                         sbY2.append(" search path is ");
                         sbY2.append(str3);
@@ -203,7 +208,7 @@ public class SoLoader {
                 th = th4;
                 aVar = this;
                 if (0 != 0) {
-                    StringBuilder sbY3 = b.d.b.a.a.Y("Error when loading lib: ", null, " lib hash: ");
+                    StringBuilder sbY3 = outline.Y("Error when loading lib: ", null, " lib hash: ");
                     sbY3.append(aVar.a(str));
                     sbY3.append(" search path is ");
                     sbY3.append(str3);
@@ -217,8 +222,8 @@ public class SoLoader {
     public final class b extends UnsatisfiedLinkError {
         /* JADX WARN: Illegal instructions before constructor call */
         public b(Throwable th, String str) {
-            StringBuilder sbU = b.d.b.a.a.U("APK was built for a different platform. Supported ABIs: ");
-            sbU.append(Arrays.toString(b.c.a.a0.d.C0()));
+            StringBuilder sbU = outline.U("APK was built for a different platform. Supported ABIs: ");
+            sbU.append(Arrays.toString(AnimatableValueParser.C0()));
             sbU.append(" error: ");
             sbU.append(str);
             super(sbU.toString());
@@ -253,22 +258,22 @@ public class SoLoader {
                 int i4 = 0;
                 while (iA == 0) {
                     try {
-                        l[] lVarArr = d;
-                        if (i4 >= lVarArr.length) {
+                        SoSource[] soSourceArr = d;
+                        if (i4 >= soSourceArr.length) {
                             break;
                         }
-                        iA = lVarArr[i4].a(str, i2, threadPolicy);
+                        iA = soSourceArr[i4].a(str, i2, threadPolicy);
                         if (iA != 3 || f == null) {
                             i4++;
                         } else {
                             Log.d("SoLoader", "Trying backup SoSource for " + str);
-                            for (m mVar : f) {
-                                synchronized (mVar) {
+                            for (UnpackingSoSource unpackingSoSource : f) {
+                                synchronized (unpackingSoSource) {
                                     try {
-                                        synchronized (mVar.h(str)) {
+                                        synchronized (unpackingSoSource.h(str)) {
                                             try {
-                                                mVar.d = str;
-                                                mVar.b(2);
+                                                unpackingSoSource.d = str;
+                                                unpackingSoSource.b(2);
                                             } catch (Throwable th) {
                                                 throw th;
                                             }
@@ -277,7 +282,7 @@ public class SoLoader {
                                         throw th2;
                                     }
                                 }
-                                int iA2 = mVar.a(str, i2, threadPolicy);
+                                int iA2 = unpackingSoSource.a(str, i2, threadPolicy);
                                 if (iA2 == 1) {
                                     iA = iA2;
                                     break;
@@ -293,7 +298,7 @@ public class SoLoader {
                             StrictMode.setThreadPolicy(threadPolicy);
                         }
                         if (iA == 0 || iA == 3) {
-                            StringBuilder sbX = b.d.b.a.a.X("couldn't find DSO to load: ", str);
+                            StringBuilder sbX = outline.X("couldn't find DSO to load: ", str);
                             String message = th.getMessage();
                             if (message == null) {
                                 message = th.toString();
@@ -326,7 +331,7 @@ public class SoLoader {
                         StrictMode.setThreadPolicy(threadPolicy);
                     }
                     if (iA == 0 || iA == 3) {
-                        StringBuilder sbX2 = b.d.b.a.a.X("couldn't find DSO to load: ", str);
+                        StringBuilder sbX2 = outline.X("couldn't find DSO to load: ", str);
                         reentrantReadWriteLock2.readLock().lock();
                         while (i3 < d.length) {
                             sbX2.append("\n\tSoSource ");
@@ -335,9 +340,9 @@ public class SoLoader {
                             sbX2.append(d[i3].toString());
                             i3++;
                         }
-                        b.f.m.b bVar = g;
-                        if (bVar != null) {
-                            File fileD = b.f.m.b.d(bVar.e());
+                        ApplicationSoSource applicationSoSource = g;
+                        if (applicationSoSource != null) {
+                            File fileD = ApplicationSoSource.d(applicationSoSource.e());
                             sbX2.append("\n\tNative lib dir: ");
                             sbX2.append(fileD.getAbsolutePath());
                             sbX2.append("\n");
@@ -362,12 +367,12 @@ public class SoLoader {
         }
     }
 
-    public static synchronized void b(k kVar) {
+    public static synchronized void b(SoFileLoader soFileLoader) {
         Method declaredMethod;
         String strJoin;
         try {
-            if (kVar != null) {
-                f2906b = kVar;
+            if (soFileLoader != null) {
+                f2906b = soFileLoader;
                 return;
             }
             Runtime runtime = Runtime.getRuntime();
@@ -428,18 +433,18 @@ public class SoLoader {
                 }
                 for (String str2 : str.split(":")) {
                     Log.d("SoLoader", "adding system library source: " + str2);
-                    arrayList.add(new c(new File(str2), 2));
+                    arrayList.add(new DirectorySoSource(new File(str2), 2));
                 }
                 if (context != null) {
                     if ((i2 & 1) != 0) {
                         f = null;
                         Log.d("SoLoader", "adding exo package source: lib-main");
-                        arrayList.add(0, new e(context, "lib-main"));
+                        arrayList.add(0, new ExoSoSource(context, "lib-main"));
                     } else {
                         if (l) {
                             i3 = 0;
                         } else {
-                            g = new b.f.m.b(context, 0);
+                            g = new ApplicationSoSource(context, 0);
                             Log.d("SoLoader", "adding application source: " + g.toString());
                             arrayList.add(0, g);
                             i3 = 1;
@@ -449,9 +454,9 @@ public class SoLoader {
                         } else {
                             File file = new File(context.getApplicationInfo().sourceDir);
                             ArrayList arrayList2 = new ArrayList();
-                            b.f.m.a aVar = new b.f.m.a(context, file, "lib-main", i3);
-                            arrayList2.add(aVar);
-                            Log.d("SoLoader", "adding backup source from : " + aVar.toString());
+                            ApkSoSource apkSoSource = new ApkSoSource(context, file, "lib-main", i3);
+                            arrayList2.add(apkSoSource);
+                            Log.d("SoLoader", "adding backup source from : " + apkSoSource.toString());
                             if (context.getApplicationInfo().splitSourceDirs != null) {
                                 Log.d("SoLoader", "adding backup sources from split apks");
                                 String[] strArr = context.getApplicationInfo().splitSourceDirs;
@@ -463,35 +468,35 @@ public class SoLoader {
                                     StringBuilder sb = new StringBuilder();
                                     sb.append("lib-");
                                     sb.append(i5);
-                                    b.f.m.a aVar2 = new b.f.m.a(context, file2, sb.toString(), i3);
-                                    Log.d("SoLoader", "adding backup source: " + aVar2.toString());
-                                    arrayList2.add(aVar2);
+                                    ApkSoSource apkSoSource2 = new ApkSoSource(context, file2, sb.toString(), i3);
+                                    Log.d("SoLoader", "adding backup source: " + apkSoSource2.toString());
+                                    arrayList2.add(apkSoSource2);
                                     i4++;
                                     i5++;
                                 }
                             }
-                            f = (m[]) arrayList2.toArray(new m[arrayList2.size()]);
+                            f = (UnpackingSoSource[]) arrayList2.toArray(new UnpackingSoSource[arrayList2.size()]);
                             arrayList.addAll(0, arrayList2);
                         }
                     }
                 }
-                l[] lVarArr = (l[]) arrayList.toArray(new l[arrayList.size()]);
+                SoSource[] soSourceArr = (SoSource[]) arrayList.toArray(new SoSource[arrayList.size()]);
                 ReentrantReadWriteLock reentrantReadWriteLock = c;
                 reentrantReadWriteLock.writeLock().lock();
                 try {
                     int i6 = (k & 2) != 0 ? 1 : 0;
                     reentrantReadWriteLock.writeLock().unlock();
-                    int length2 = lVarArr.length;
+                    int length2 = soSourceArr.length;
                     while (true) {
                         int i7 = length2 - 1;
                         if (length2 <= 0) {
                             break;
                         }
-                        Log.d("SoLoader", "Preparing SO source: " + lVarArr[i7]);
-                        lVarArr[i7].b(i6);
+                        Log.d("SoLoader", "Preparing SO source: " + soSourceArr[i7]);
+                        soSourceArr[i7].b(i6);
                         length2 = i7;
                     }
-                    d = lVarArr;
+                    d = soSourceArr;
                     e++;
                     Log.d("SoLoader", "init finish: " + d.length + " SO sources prepared");
                 } finally {
@@ -551,7 +556,7 @@ public class SoLoader {
                                     Api18TraceUtils.a("MergedSoMapping.invokeJniOnload[", str2, "]");
                                 }
                                 Log.d("SoLoader", "About to merge: " + str2 + " / " + str);
-                                b.c.a.a0.d.Q0(str2);
+                                AnimatableValueParser.Q0(str2);
                                 throw null;
                             }
                         }
@@ -576,7 +581,7 @@ public class SoLoader {
                                         Api18TraceUtils.a("MergedSoMapping.invokeJniOnload[", str2, "]");
                                     }
                                     Log.d("SoLoader", "About to merge: " + str2 + " / " + str);
-                                    b.c.a.a0.d.Q0(str2);
+                                    AnimatableValueParser.Q0(str2);
                                     throw null;
                                 }
                             }
@@ -601,7 +606,7 @@ public class SoLoader {
                                     try {
                                         try {
                                             Log.d("SoLoader", "About to merge: " + str2 + " / " + str);
-                                            b.c.a.a0.d.Q0(str2);
+                                            AnimatableValueParser.Q0(str2);
                                             throw null;
                                         } catch (UnsatisfiedLinkError e2) {
                                             throw new RuntimeException("Failed to call JNI_OnLoad from '" + str2 + "', which has been merged into '" + str + "'.  See comment for details.", e2);
@@ -647,6 +652,6 @@ public class SoLoader {
         l = z2;
         b(null);
         c(context, i2);
-        b.f.m.n.a.a(new j());
+        NativeLoader.a(new NativeLoaderToSoLoaderDelegate());
     }
 }

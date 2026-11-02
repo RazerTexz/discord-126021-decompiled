@@ -1,8 +1,8 @@
 package com.discord.p000native.engine;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.models.domain.ModelAuditLogEntry;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: VideoInputDeviceDescription.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -12,9 +12,9 @@ public final /* data */ class VideoInputDeviceDescription {
     private final String name;
 
     public VideoInputDeviceDescription(String str, String str2, VideoInputDeviceFacing videoInputDeviceFacing) {
-        m.checkNotNullParameter(str, ModelAuditLogEntry.CHANGE_KEY_NAME);
-        m.checkNotNullParameter(str2, "guid");
-        m.checkNotNullParameter(videoInputDeviceFacing, "facing");
+        Intrinsics3.checkNotNullParameter(str, ModelAuditLogEntry.CHANGE_KEY_NAME);
+        Intrinsics3.checkNotNullParameter(str2, "guid");
+        Intrinsics3.checkNotNullParameter(videoInputDeviceFacing, "facing");
         this.name = str;
         this.guid = str2;
         this.facing = videoInputDeviceFacing;
@@ -34,9 +34,9 @@ public final /* data */ class VideoInputDeviceDescription {
     }
 
     public final VideoInputDeviceDescription copy(String name, String guid, VideoInputDeviceFacing facing) {
-        m.checkNotNullParameter(name, ModelAuditLogEntry.CHANGE_KEY_NAME);
-        m.checkNotNullParameter(guid, "guid");
-        m.checkNotNullParameter(facing, "facing");
+        Intrinsics3.checkNotNullParameter(name, ModelAuditLogEntry.CHANGE_KEY_NAME);
+        Intrinsics3.checkNotNullParameter(guid, "guid");
+        Intrinsics3.checkNotNullParameter(facing, "facing");
         return new VideoInputDeviceDescription(name, guid, facing);
     }
 
@@ -48,7 +48,7 @@ public final /* data */ class VideoInputDeviceDescription {
             return false;
         }
         VideoInputDeviceDescription videoInputDeviceDescription = (VideoInputDeviceDescription) other;
-        return m.areEqual(this.name, videoInputDeviceDescription.name) && m.areEqual(this.guid, videoInputDeviceDescription.guid) && m.areEqual(this.facing, videoInputDeviceDescription.facing);
+        return Intrinsics3.areEqual(this.name, videoInputDeviceDescription.name) && Intrinsics3.areEqual(this.guid, videoInputDeviceDescription.guid) && Intrinsics3.areEqual(this.facing, videoInputDeviceDescription.facing);
     }
 
     /* JADX INFO: renamed from: component3, reason: from getter */
@@ -88,7 +88,7 @@ public final /* data */ class VideoInputDeviceDescription {
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("VideoInputDeviceDescription(name=");
+        StringBuilder sbU = outline.U("VideoInputDeviceDescription(name=");
         sbU.append(this.name);
         sbU.append(", guid=");
         sbU.append(this.guid);

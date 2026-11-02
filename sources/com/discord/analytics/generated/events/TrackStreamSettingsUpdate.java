@@ -1,14 +1,14 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackStreamSettingsUpdate.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackStreamSettingsUpdate implements AnalyticsSchema, TrackBaseReceiver {
+public final /* data */ class TrackStreamSettingsUpdate implements AnalyticsSchema, TrackBase2 {
     private final Long guildPremiumTier = null;
     private final Long streamQualityFrameRate = null;
     private final Long streamQualityGuildPremiumTier = null;
@@ -27,7 +27,7 @@ public final /* data */ class TrackStreamSettingsUpdate implements AnalyticsSche
             return false;
         }
         TrackStreamSettingsUpdate trackStreamSettingsUpdate = (TrackStreamSettingsUpdate) other;
-        return m.areEqual(this.userPremiumTier, trackStreamSettingsUpdate.userPremiumTier) && m.areEqual(this.guildPremiumTier, trackStreamSettingsUpdate.guildPremiumTier) && m.areEqual(this.streamQualityUserPremiumTier, trackStreamSettingsUpdate.streamQualityUserPremiumTier) && m.areEqual(this.streamQualityGuildPremiumTier, trackStreamSettingsUpdate.streamQualityGuildPremiumTier) && m.areEqual(this.streamQualityPreset, trackStreamSettingsUpdate.streamQualityPreset) && m.areEqual(this.streamQualityResolution, trackStreamSettingsUpdate.streamQualityResolution) && m.areEqual(this.streamQualityFrameRate, trackStreamSettingsUpdate.streamQualityFrameRate);
+        return Intrinsics3.areEqual(this.userPremiumTier, trackStreamSettingsUpdate.userPremiumTier) && Intrinsics3.areEqual(this.guildPremiumTier, trackStreamSettingsUpdate.guildPremiumTier) && Intrinsics3.areEqual(this.streamQualityUserPremiumTier, trackStreamSettingsUpdate.streamQualityUserPremiumTier) && Intrinsics3.areEqual(this.streamQualityGuildPremiumTier, trackStreamSettingsUpdate.streamQualityGuildPremiumTier) && Intrinsics3.areEqual(this.streamQualityPreset, trackStreamSettingsUpdate.streamQualityPreset) && Intrinsics3.areEqual(this.streamQualityResolution, trackStreamSettingsUpdate.streamQualityResolution) && Intrinsics3.areEqual(this.streamQualityFrameRate, trackStreamSettingsUpdate.streamQualityFrameRate);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -54,7 +54,7 @@ public final /* data */ class TrackStreamSettingsUpdate implements AnalyticsSche
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackStreamSettingsUpdate(userPremiumTier=");
+        StringBuilder sbU = outline.U("TrackStreamSettingsUpdate(userPremiumTier=");
         sbU.append(this.userPremiumTier);
         sbU.append(", guildPremiumTier=");
         sbU.append(this.guildPremiumTier);
@@ -67,6 +67,6 @@ public final /* data */ class TrackStreamSettingsUpdate implements AnalyticsSche
         sbU.append(", streamQualityResolution=");
         sbU.append(this.streamQualityResolution);
         sbU.append(", streamQualityFrameRate=");
-        return a.G(sbU, this.streamQualityFrameRate, ")");
+        return outline.G(sbU, this.streamQualityFrameRate, ")");
     }
 }

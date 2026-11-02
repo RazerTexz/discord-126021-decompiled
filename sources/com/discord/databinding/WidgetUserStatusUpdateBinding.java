@@ -5,7 +5,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.core.widget.NestedScrollView;
 import androidx.viewbinding.ViewBinding;
-import b.a.i.e4;
+import b.a.i.ViewUserStatusPresenceBinding;
 import com.discord.widgets.user.profile.UserStatusPresenceCustomView;
 
 /* JADX INFO: loaded from: classes.dex */
@@ -19,24 +19,24 @@ public final class WidgetUserStatusUpdateBinding implements ViewBinding {
     public final UserStatusPresenceCustomView f2698b;
 
     @NonNull
-    public final e4 c;
+    public final ViewUserStatusPresenceBinding c;
 
     @NonNull
-    public final e4 d;
+    public final ViewUserStatusPresenceBinding d;
 
     @NonNull
-    public final e4 e;
+    public final ViewUserStatusPresenceBinding e;
 
     @NonNull
-    public final e4 f;
+    public final ViewUserStatusPresenceBinding f;
 
-    public WidgetUserStatusUpdateBinding(@NonNull NestedScrollView nestedScrollView, @NonNull TextView textView, @NonNull UserStatusPresenceCustomView userStatusPresenceCustomView, @NonNull e4 e4Var, @NonNull e4 e4Var2, @NonNull e4 e4Var3, @NonNull e4 e4Var4) {
+    public WidgetUserStatusUpdateBinding(@NonNull NestedScrollView nestedScrollView, @NonNull TextView textView, @NonNull UserStatusPresenceCustomView userStatusPresenceCustomView, @NonNull ViewUserStatusPresenceBinding viewUserStatusPresenceBinding, @NonNull ViewUserStatusPresenceBinding viewUserStatusPresenceBinding2, @NonNull ViewUserStatusPresenceBinding viewUserStatusPresenceBinding3, @NonNull ViewUserStatusPresenceBinding viewUserStatusPresenceBinding4) {
         this.a = nestedScrollView;
         this.f2698b = userStatusPresenceCustomView;
-        this.c = e4Var;
-        this.d = e4Var2;
-        this.e = e4Var3;
-        this.f = e4Var4;
+        this.c = viewUserStatusPresenceBinding;
+        this.d = viewUserStatusPresenceBinding2;
+        this.e = viewUserStatusPresenceBinding3;
+        this.f = viewUserStatusPresenceBinding4;
     }
 
     @Override // androidx.viewbinding.ViewBinding

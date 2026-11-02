@@ -1,11 +1,11 @@
 package com.discord.widgets.user.presence;
 
 import a0.a.a.b;
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.models.domain.ModelAuditLogEntry;
 import com.discord.stores.StoreStream;
 import com.discord.stores.StoreUserPresence;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 import java.util.List;
 import java.util.Set;
 import kotlin.jvm.internal.DefaultConstructorMarker;
@@ -44,9 +44,9 @@ public final /* data */ class ModelStageRichPresence {
         }
 
         public final Observable<List<ModelStageRichPresence>> observeStageRichPresence(StoreUserPresence storeUserPresence) {
-            m.checkNotNullParameter(storeUserPresence, "storeUserPresence");
-            Observable observableG = storeUserPresence.observeAllPresences().G(ModelStageRichPresence$Companion$observeStageRichPresence$1.INSTANCE);
-            m.checkNotNullExpressionValue(observableG, "storeUserPresence\n      …   }.toList()\n          }");
+            Intrinsics3.checkNotNullParameter(storeUserPresence, "storeUserPresence");
+            Observable observableG = storeUserPresence.observeAllPresences().G(ModelStageRichPresence2.INSTANCE);
+            Intrinsics3.checkNotNullExpressionValue(observableG, "storeUserPresence\n      …   }.toList()\n          }");
             return observableG;
         }
 
@@ -56,10 +56,10 @@ public final /* data */ class ModelStageRichPresence {
     }
 
     public ModelStageRichPresence(long j, long j2, boolean z2, long j3, boolean z3, boolean z4, String str, String str2, String str3, Set<Long> set, Set<Long> set2, long j4, long j5) {
-        m.checkNotNullParameter(str, "guildName");
-        m.checkNotNullParameter(str3, ModelAuditLogEntry.CHANGE_KEY_TOPIC);
-        m.checkNotNullParameter(set, "knownUserIds");
-        m.checkNotNullParameter(set2, "speakerIds");
+        Intrinsics3.checkNotNullParameter(str, "guildName");
+        Intrinsics3.checkNotNullParameter(str3, ModelAuditLogEntry.CHANGE_KEY_TOPIC);
+        Intrinsics3.checkNotNullParameter(set, "knownUserIds");
+        Intrinsics3.checkNotNullParameter(set2, "speakerIds");
         this.channelId = j;
         this.stageInstanceId = j2;
         this.userIsSpeaker = z2;
@@ -89,10 +89,10 @@ public final /* data */ class ModelStageRichPresence {
     }
 
     public final ModelStageRichPresence copy(long channelId, long stageInstanceId, boolean userIsSpeaker, long guildId, boolean guildIsPartnered, boolean guildIsVerified, String guildName, String guildIcon, String topic, Set<Long> knownUserIds, Set<Long> speakerIds, long speakerCount, long audienceSize) {
-        m.checkNotNullParameter(guildName, "guildName");
-        m.checkNotNullParameter(topic, ModelAuditLogEntry.CHANGE_KEY_TOPIC);
-        m.checkNotNullParameter(knownUserIds, "knownUserIds");
-        m.checkNotNullParameter(speakerIds, "speakerIds");
+        Intrinsics3.checkNotNullParameter(guildName, "guildName");
+        Intrinsics3.checkNotNullParameter(topic, ModelAuditLogEntry.CHANGE_KEY_TOPIC);
+        Intrinsics3.checkNotNullParameter(knownUserIds, "knownUserIds");
+        Intrinsics3.checkNotNullParameter(speakerIds, "speakerIds");
         return new ModelStageRichPresence(channelId, stageInstanceId, userIsSpeaker, guildId, guildIsPartnered, guildIsVerified, guildName, guildIcon, topic, knownUserIds, speakerIds, speakerCount, audienceSize);
     }
 
@@ -104,7 +104,7 @@ public final /* data */ class ModelStageRichPresence {
             return false;
         }
         ModelStageRichPresence modelStageRichPresence = (ModelStageRichPresence) other;
-        return this.channelId == modelStageRichPresence.channelId && this.stageInstanceId == modelStageRichPresence.stageInstanceId && this.userIsSpeaker == modelStageRichPresence.userIsSpeaker && this.guildId == modelStageRichPresence.guildId && this.guildIsPartnered == modelStageRichPresence.guildIsPartnered && this.guildIsVerified == modelStageRichPresence.guildIsVerified && m.areEqual(this.guildName, modelStageRichPresence.guildName) && m.areEqual(this.guildIcon, modelStageRichPresence.guildIcon) && m.areEqual(this.topic, modelStageRichPresence.topic) && m.areEqual(this.knownUserIds, modelStageRichPresence.knownUserIds) && m.areEqual(this.speakerIds, modelStageRichPresence.speakerIds) && this.speakerCount == modelStageRichPresence.speakerCount && this.audienceSize == modelStageRichPresence.audienceSize;
+        return this.channelId == modelStageRichPresence.channelId && this.stageInstanceId == modelStageRichPresence.stageInstanceId && this.userIsSpeaker == modelStageRichPresence.userIsSpeaker && this.guildId == modelStageRichPresence.guildId && this.guildIsPartnered == modelStageRichPresence.guildIsPartnered && this.guildIsVerified == modelStageRichPresence.guildIsVerified && Intrinsics3.areEqual(this.guildName, modelStageRichPresence.guildName) && Intrinsics3.areEqual(this.guildIcon, modelStageRichPresence.guildIcon) && Intrinsics3.areEqual(this.topic, modelStageRichPresence.topic) && Intrinsics3.areEqual(this.knownUserIds, modelStageRichPresence.knownUserIds) && Intrinsics3.areEqual(this.speakerIds, modelStageRichPresence.speakerIds) && this.speakerCount == modelStageRichPresence.speakerCount && this.audienceSize == modelStageRichPresence.audienceSize;
     }
 
     /* JADX INFO: renamed from: component13, reason: from getter */
@@ -256,7 +256,7 @@ public final /* data */ class ModelStageRichPresence {
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("ModelStageRichPresence(channelId=");
+        StringBuilder sbU = outline.U("ModelStageRichPresence(channelId=");
         sbU.append(this.channelId);
         sbU.append(", stageInstanceId=");
         sbU.append(this.stageInstanceId);
@@ -281,6 +281,6 @@ public final /* data */ class ModelStageRichPresence {
         sbU.append(", speakerCount=");
         sbU.append(this.speakerCount);
         sbU.append(", audienceSize=");
-        return a.C(sbU, this.audienceSize, ")");
+        return outline.C(sbU, this.audienceSize, ")");
     }
 }

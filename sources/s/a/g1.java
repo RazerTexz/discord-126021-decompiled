@@ -5,7 +5,7 @@ import kotlinx.coroutines.Job;
 
 /* JADX INFO: compiled from: JobSupport.kt */
 /* JADX INFO: loaded from: classes3.dex */
-public abstract class g1<J extends Job> extends y implements m0, z0 {
+public abstract class g1<J extends Job> extends CompletionHandler2 implements Job2, z0 {
     public final J m;
 
     public g1(J j) {
@@ -17,7 +17,7 @@ public abstract class g1<J extends Job> extends y implements m0, z0 {
         return true;
     }
 
-    @Override // s.a.m0
+    @Override // s.a.Job2
     public void dispose() {
         Object objM;
         J j = this.m;

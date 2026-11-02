@@ -1,9 +1,9 @@
 package co.discord.media_engine.internal;
 
 import a0.a.a.b;
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import co.discord.media_engine.ReceiverReport;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 import java.util.Arrays;
 
 /* JADX INFO: compiled from: NativeStatistics.kt */
@@ -18,7 +18,7 @@ public final /* data */ class Transport {
     private final int sendBandwidth;
 
     public Transport(long j, int i, long j2, int i2, int i3, String str, ReceiverReport[] receiverReportArr) {
-        m.checkNotNullParameter(str, "localAddress");
+        Intrinsics3.checkNotNullParameter(str, "localAddress");
         this.decryptionFailures = j;
         this.maxPaddingBitrate = i;
         this.pacerDelay = j2;
@@ -33,7 +33,7 @@ public final /* data */ class Transport {
     }
 
     public final Transport copy(long decryptionFailures, int maxPaddingBitrate, long pacerDelay, int rtt, int sendBandwidth, String localAddress, ReceiverReport[] receiverReports) {
-        m.checkNotNullParameter(localAddress, "localAddress");
+        Intrinsics3.checkNotNullParameter(localAddress, "localAddress");
         return new Transport(decryptionFailures, maxPaddingBitrate, pacerDelay, rtt, sendBandwidth, localAddress, receiverReports);
     }
 
@@ -45,7 +45,7 @@ public final /* data */ class Transport {
             return false;
         }
         Transport transport = (Transport) other;
-        return this.decryptionFailures == transport.decryptionFailures && this.maxPaddingBitrate == transport.maxPaddingBitrate && this.pacerDelay == transport.pacerDelay && this.rtt == transport.rtt && this.sendBandwidth == transport.sendBandwidth && m.areEqual(this.localAddress, transport.localAddress) && m.areEqual(this.receiverReports, transport.receiverReports);
+        return this.decryptionFailures == transport.decryptionFailures && this.maxPaddingBitrate == transport.maxPaddingBitrate && this.pacerDelay == transport.pacerDelay && this.rtt == transport.rtt && this.sendBandwidth == transport.sendBandwidth && Intrinsics3.areEqual(this.localAddress, transport.localAddress) && Intrinsics3.areEqual(this.receiverReports, transport.receiverReports);
     }
 
     /* JADX INFO: renamed from: component1, reason: from getter */
@@ -120,7 +120,7 @@ public final /* data */ class Transport {
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("Transport(decryptionFailures=");
+        StringBuilder sbU = outline.U("Transport(decryptionFailures=");
         sbU.append(this.decryptionFailures);
         sbU.append(", maxPaddingBitrate=");
         sbU.append(this.maxPaddingBitrate);

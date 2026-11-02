@@ -10,10 +10,10 @@ import androidx.core.app.NotificationCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentViewModelLazyKt;
 import androidx.recyclerview.widget.RecyclerView;
-import b.a.d.g0;
-import b.a.d.i0;
-import b.a.d.j;
-import b.d.b.a.a;
+import b.a.d.AppScreen2;
+import b.a.d.AppViewModelDelegates3;
+import b.a.d.AppViewModelDelegates5;
+import b.d.b.a.outline;
 import com.discord.BuildConfig;
 import com.discord.R;
 import com.discord.api.channel.ChannelUtils;
@@ -34,17 +34,18 @@ import com.discord.utilities.mg_recycler.MGRecyclerViewHolder;
 import com.discord.utilities.rx.ObservableExtensionsKt;
 import com.discord.utilities.view.extensions.ViewExtensions;
 import com.discord.utilities.viewbinding.FragmentViewBindingDelegate;
-import com.discord.utilities.viewbinding.FragmentViewBindingDelegateKt;
+import com.discord.utilities.viewbinding.FragmentViewBindingDelegate3;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputLayout;
-import d0.t.n;
-import d0.t.u;
-import d0.z.d.a0;
-import d0.z.d.k;
-import d0.z.d.m;
-import d0.z.d.o;
+import d0.t.Collections2;
+import d0.t.Iterables2;
+import d0.t._Collections;
+import d0.z.d.FunctionReferenceImpl;
+import d0.z.d.Intrinsics3;
+import d0.z.d.Lambda;
+import d0.z.d.Reflection2;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -59,7 +60,7 @@ import rx.functions.Func0;
 /* JADX INFO: compiled from: WidgetGuildInviteShareCompact.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetGuildInviteShareCompact extends AppFragment {
-    public static final /* synthetic */ KProperty[] $$delegatedProperties = {a.d0(WidgetGuildInviteShareCompact.class, "binding", "getBinding()Lcom/discord/databinding/WidgetGuildInviteShareCompactBinding;", 0)};
+    public static final /* synthetic */ KProperty[] $$delegatedProperties = {outline.d0(WidgetGuildInviteShareCompact.class, "binding", "getBinding()Lcom/discord/databinding/WidgetGuildInviteShareCompactBinding;", 0)};
     private PrivateChannelAdapter adapter;
 
     /* JADX INFO: renamed from: binding$delegate, reason: from kotlin metadata */
@@ -72,7 +73,7 @@ public final class WidgetGuildInviteShareCompact extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.guilds.invite.WidgetGuildInviteShareCompact$initBottomSheet$1, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetGuildInviteShareCompact.kt */
-    public final class AnonymousClass1 extends o implements Function0<Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function0<Unit> {
         public AnonymousClass1() {
             super(0);
         }
@@ -97,12 +98,12 @@ public final class WidgetGuildInviteShareCompact extends AppFragment {
 
         @Override // com.google.android.material.bottomsheet.BottomSheetBehavior.BottomSheetCallback
         public void onSlide(View bottomSheet, float slideOffset) {
-            m.checkNotNullParameter(bottomSheet, "bottomSheet");
+            Intrinsics3.checkNotNullParameter(bottomSheet, "bottomSheet");
         }
 
         @Override // com.google.android.material.bottomsheet.BottomSheetBehavior.BottomSheetCallback
         public void onStateChanged(View bottomSheet, int newState) {
-            m.checkNotNullParameter(bottomSheet, "bottomSheet");
+            Intrinsics3.checkNotNullParameter(bottomSheet, "bottomSheet");
             if (newState == 5) {
                 WidgetGuildInviteShareCompact.access$getViewModel$p(WidgetGuildInviteShareCompact.this).refreshUi();
             }
@@ -133,14 +134,14 @@ public final class WidgetGuildInviteShareCompact extends AppFragment {
             if (!this.$isNuxFlow) {
                 return Boolean.FALSE;
             }
-            j.c(WidgetGuildInviteShareCompact.this.requireContext(), false, null, 6);
+            AppScreen2.c(WidgetGuildInviteShareCompact.this.requireContext(), false, null, 6);
             return Boolean.TRUE;
         }
     }
 
     /* JADX INFO: renamed from: com.discord.widgets.guilds.invite.WidgetGuildInviteShareCompact$onViewBoundOrOnResume$1, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetGuildInviteShareCompact.kt */
-    public final /* synthetic */ class AnonymousClass1 extends k implements Function1<WidgetGuildInviteShareViewModel.ViewState.Loaded, Unit> {
+    public final /* synthetic */ class AnonymousClass1 extends FunctionReferenceImpl implements Function1<WidgetGuildInviteShareViewModel.ViewState.Loaded, Unit> {
         public AnonymousClass1(WidgetGuildInviteShareCompact widgetGuildInviteShareCompact) {
             super(1, widgetGuildInviteShareCompact, WidgetGuildInviteShareCompact.class, "configureUI", "configureUI(Lcom/discord/widgets/guilds/invite/WidgetGuildInviteShareViewModel$ViewState$Loaded;)V", 0);
         }
@@ -153,14 +154,14 @@ public final class WidgetGuildInviteShareCompact extends AppFragment {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(WidgetGuildInviteShareViewModel.ViewState.Loaded loaded) {
-            m.checkNotNullParameter(loaded, "p1");
+            Intrinsics3.checkNotNullParameter(loaded, "p1");
             WidgetGuildInviteShareCompact.access$configureUI((WidgetGuildInviteShareCompact) this.receiver, loaded);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.widgets.guilds.invite.WidgetGuildInviteShareCompact$onViewBound$2, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetGuildInviteShareCompact.kt */
-    public final class AnonymousClass2 extends o implements Function1<Editable, Unit> {
+    public final class AnonymousClass2 extends Lambda implements Function1<Editable, Unit> {
         public AnonymousClass2() {
             super(1);
         }
@@ -173,14 +174,14 @@ public final class WidgetGuildInviteShareCompact extends AppFragment {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(Editable editable) {
-            m.checkNotNullParameter(editable, "editable");
+            Intrinsics3.checkNotNullParameter(editable, "editable");
             WidgetGuildInviteShareCompact.access$getViewModel$p(WidgetGuildInviteShareCompact.this).updateSearchQuery(editable.toString());
         }
     }
 
     /* JADX INFO: renamed from: com.discord.widgets.guilds.invite.WidgetGuildInviteShareCompact$configureUI$3, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetGuildInviteShareCompact.kt */
-    public final class AnonymousClass3 extends o implements Function1<InviteSuggestionItem, Unit> {
+    public final class AnonymousClass3 extends Lambda implements Function1<InviteSuggestionItem, Unit> {
         public final /* synthetic */ ModelInvite $invite;
         public final /* synthetic */ WidgetGuildInviteShareViewModel.ViewState.Loaded $viewState;
 
@@ -199,7 +200,7 @@ public final class WidgetGuildInviteShareCompact extends AppFragment {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(InviteSuggestionItem inviteSuggestionItem) {
-            m.checkNotNullParameter(inviteSuggestionItem, "item");
+            Intrinsics3.checkNotNullParameter(inviteSuggestionItem, "item");
             WidgetGuildInviteShareCompact.access$sendInvite(WidgetGuildInviteShareCompact.this, inviteSuggestionItem, this.$viewState, this.$invite);
         }
     }
@@ -229,7 +230,7 @@ public final class WidgetGuildInviteShareCompact extends AppFragment {
         public final void onClick(View view) {
             ModelInvite modelInvite = this.$invite;
             if (modelInvite != null) {
-                GuildInviteUiHelperKt.shareLinkClick(WidgetGuildInviteShareCompact.this.getContext(), modelInvite);
+                GuildInviteUiHelper.shareLinkClick(WidgetGuildInviteShareCompact.this.getContext(), modelInvite);
             }
         }
     }
@@ -269,9 +270,9 @@ public final class WidgetGuildInviteShareCompact extends AppFragment {
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
             public Item(PrivateChannelAdapter privateChannelAdapter) {
                 super(R.layout.widget_guild_invite_share_item, privateChannelAdapter);
-                m.checkNotNullParameter(privateChannelAdapter, "adapter");
+                Intrinsics3.checkNotNullParameter(privateChannelAdapter, "adapter");
                 WidgetGuildInviteShareItemBinding widgetGuildInviteShareItemBindingA = WidgetGuildInviteShareItemBinding.a(this.itemView);
-                m.checkNotNullExpressionValue(widgetGuildInviteShareItemBindingA, "WidgetGuildInviteShareItemBinding.bind(itemView)");
+                Intrinsics3.checkNotNullExpressionValue(widgetGuildInviteShareItemBindingA, "WidgetGuildInviteShareItemBinding.bind(itemView)");
                 this.binding = widgetGuildInviteShareItemBindingA;
             }
 
@@ -286,40 +287,40 @@ public final class WidgetGuildInviteShareCompact extends AppFragment {
 
             /* JADX INFO: renamed from: onConfigure, reason: avoid collision after fix types in other method */
             public void onConfigure2(int position, InviteSuggestionItem data) {
-                m.checkNotNullParameter(data, "data");
+                Intrinsics3.checkNotNullParameter(data, "data");
                 super.onConfigure(position, data);
                 boolean z2 = data instanceof InviteSuggestionItem.ChannelItem;
                 if (z2) {
                     InviteSuggestionItem.ChannelItem channelItem = (InviteSuggestionItem.ChannelItem) data;
                     if (channelItem.getChannel().getType() != 1) {
                         SimpleDraweeView simpleDraweeView = this.binding.f2421b;
-                        m.checkNotNullExpressionValue(simpleDraweeView, "binding.itemIconIv");
+                        Intrinsics3.checkNotNullExpressionValue(simpleDraweeView, "binding.itemIconIv");
                         IconUtils.setIcon$default(simpleDraweeView, channelItem.getChannel(), 0, (MGImages.ChangeDetector) null, 12, (Object) null);
                     } else {
                         SimpleDraweeView simpleDraweeView2 = this.binding.f2421b;
-                        m.checkNotNullExpressionValue(simpleDraweeView2, "binding.itemIconIv");
+                        Intrinsics3.checkNotNullExpressionValue(simpleDraweeView2, "binding.itemIconIv");
                         IconUtils.setIcon$default(simpleDraweeView2, ChannelUtils.a(channelItem.getChannel()), 0, null, null, null, 60, null);
                     }
                     TextView textView = this.binding.d;
-                    m.checkNotNullExpressionValue(textView, "binding.itemNameTv");
+                    Intrinsics3.checkNotNullExpressionValue(textView, "binding.itemNameTv");
                     textView.setText(ChannelUtils.c(channelItem.getChannel()));
                 } else if (data instanceof InviteSuggestionItem.UserItem) {
                     SimpleDraweeView simpleDraweeView3 = this.binding.f2421b;
-                    m.checkNotNullExpressionValue(simpleDraweeView3, "binding.itemIconIv");
+                    Intrinsics3.checkNotNullExpressionValue(simpleDraweeView3, "binding.itemIconIv");
                     InviteSuggestionItem.UserItem userItem = (InviteSuggestionItem.UserItem) data;
                     IconUtils.setIcon$default(simpleDraweeView3, userItem.getUser(), 0, null, null, null, 60, null);
                     TextView textView2 = this.binding.d;
-                    m.checkNotNullExpressionValue(textView2, "binding.itemNameTv");
+                    Intrinsics3.checkNotNullExpressionValue(textView2, "binding.itemNameTv");
                     textView2.setText(userItem.getUser().getUsername());
                 }
                 if (z2 || (data instanceof InviteSuggestionItem.UserItem)) {
                     MaterialButton materialButton = this.binding.e;
-                    m.checkNotNullExpressionValue(materialButton, "binding.itemSent");
+                    Intrinsics3.checkNotNullExpressionValue(materialButton, "binding.itemSent");
                     materialButton.setVisibility(data.hasSentInvite() ? 0 : 8);
                     MaterialButton materialButton2 = this.binding.c;
-                    m.checkNotNullExpressionValue(materialButton2, "binding.itemInviteBtn");
+                    Intrinsics3.checkNotNullExpressionValue(materialButton2, "binding.itemInviteBtn");
                     materialButton2.setVisibility(data.hasSentInvite() ^ true ? 0 : 8);
-                    this.binding.c.setOnClickListener(new WidgetGuildInviteShareCompact$PrivateChannelAdapter$Item$onConfigure$1(this, data));
+                    this.binding.c.setOnClickListener(new WidgetGuildInviteShareCompact2(this, data));
                 }
             }
         }
@@ -327,8 +328,8 @@ public final class WidgetGuildInviteShareCompact extends AppFragment {
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
         public PrivateChannelAdapter(RecyclerView recyclerView) {
             super(recyclerView, false, 2, null);
-            m.checkNotNullParameter(recyclerView, "recycler");
-            this.onClick = WidgetGuildInviteShareCompact$PrivateChannelAdapter$onClick$1.INSTANCE;
+            Intrinsics3.checkNotNullParameter(recyclerView, "recycler");
+            this.onClick = WidgetGuildInviteShareCompact3.INSTANCE;
         }
 
         public final Function1<InviteSuggestionItem, Unit> getOnClick() {
@@ -341,23 +342,23 @@ public final class WidgetGuildInviteShareCompact extends AppFragment {
         }
 
         public final void setOnClick(Function1<? super InviteSuggestionItem, Unit> function1) {
-            m.checkNotNullParameter(function1, "<set-?>");
+            Intrinsics3.checkNotNullParameter(function1, "<set-?>");
             this.onClick = function1;
         }
 
         @Override // androidx.recyclerview.widget.RecyclerView.Adapter
         public Item onCreateViewHolder(ViewGroup parent, int viewType) {
-            m.checkNotNullParameter(parent, "parent");
+            Intrinsics3.checkNotNullParameter(parent, "parent");
             return new Item(this);
         }
     }
 
     public WidgetGuildInviteShareCompact() {
         super(R.layout.widget_guild_invite_share_compact);
-        this.binding = FragmentViewBindingDelegateKt.viewBinding$default(this, WidgetGuildInviteShareCompact$binding$2.INSTANCE, null, 2, null);
-        WidgetGuildInviteShareCompact$viewModel$2 widgetGuildInviteShareCompact$viewModel$2 = new WidgetGuildInviteShareCompact$viewModel$2(this);
-        g0 g0Var = new g0(this);
-        this.viewModel = FragmentViewModelLazyKt.createViewModelLazy(this, a0.getOrCreateKotlinClass(WidgetGuildInviteShareViewModel.class), new WidgetGuildInviteShareCompact$appViewModels$$inlined$viewModels$1(g0Var), new i0(widgetGuildInviteShareCompact$viewModel$2));
+        this.binding = FragmentViewBindingDelegate3.viewBinding$default(this, WidgetGuildInviteShareCompact4.INSTANCE, null, 2, null);
+        WidgetGuildInviteShareCompact5 widgetGuildInviteShareCompact5 = new WidgetGuildInviteShareCompact5(this);
+        AppViewModelDelegates3 appViewModelDelegates3 = new AppViewModelDelegates3(this);
+        this.viewModel = FragmentViewModelLazyKt.createViewModelLazy(this, Reflection2.getOrCreateKotlinClass(WidgetGuildInviteShareViewModel.class), new WidgetGuildInviteShareCompact$appViewModels$$inlined$viewModels$1(appViewModelDelegates3), new AppViewModelDelegates5(widgetGuildInviteShareCompact5));
     }
 
     public static final /* synthetic */ void access$configureUI(WidgetGuildInviteShareCompact widgetGuildInviteShareCompact, WidgetGuildInviteShareViewModel.ViewState.Loaded loaded) {
@@ -371,7 +372,7 @@ public final class WidgetGuildInviteShareCompact extends AppFragment {
     public static final /* synthetic */ BottomSheetBehavior access$getBottomSheetBehavior$p(WidgetGuildInviteShareCompact widgetGuildInviteShareCompact) {
         BottomSheetBehavior<ViewInviteSettingsSheet> bottomSheetBehavior = widgetGuildInviteShareCompact.bottomSheetBehavior;
         if (bottomSheetBehavior == null) {
-            m.throwUninitializedPropertyAccessException("bottomSheetBehavior");
+            Intrinsics3.throwUninitializedPropertyAccessException("bottomSheetBehavior");
         }
         return bottomSheetBehavior;
     }
@@ -394,13 +395,13 @@ public final class WidgetGuildInviteShareCompact extends AppFragment {
         List<InviteSuggestionItem> inviteSuggestionItems = viewState.getInviteSuggestionItems();
         ModelInvite invite = widgetInviteModel.getInvite();
         AppViewFlipper appViewFlipper = getBinding().i;
-        m.checkNotNullExpressionValue(appViewFlipper, "binding.guildInviteSuggestionsFlipper");
+        Intrinsics3.checkNotNullExpressionValue(appViewFlipper, "binding.guildInviteSuggestionsFlipper");
         appViewFlipper.setDisplayedChild(!inviteSuggestionItems.isEmpty() ? 1 : 0);
-        if (inviteSuggestionItems.size() == 1 && (u.firstOrNull((List) inviteSuggestionItems) instanceof InviteSuggestionItem.Companion)) {
+        if (inviteSuggestionItems.size() == 1 && (_Collections.firstOrNull((List) inviteSuggestionItems) instanceof InviteSuggestionItem.Companion)) {
             inviteSuggestionItems = null;
         }
         if (inviteSuggestionItems == null) {
-            inviteSuggestionItems = n.emptyList();
+            inviteSuggestionItems = Collections2.emptyList();
         }
         if ((!inviteSuggestionItems.isEmpty()) && !this.hasTrackedSuggestionsViewed) {
             ModelInvite invite2 = widgetInviteModel.getInvite();
@@ -412,7 +413,7 @@ public final class WidgetGuildInviteShareCompact extends AppFragment {
                     arrayList.add(obj);
                 }
             }
-            ArrayList arrayList2 = new ArrayList(d0.t.o.collectionSizeOrDefault(arrayList, 10));
+            ArrayList arrayList2 = new ArrayList(Iterables2.collectionSizeOrDefault(arrayList, 10));
             Iterator it = arrayList.iterator();
             while (it.hasNext()) {
                 arrayList2.add(((InviteSuggestionItem.ChannelItem) it.next()).getChannel());
@@ -423,7 +424,7 @@ public final class WidgetGuildInviteShareCompact extends AppFragment {
                     arrayList3.add(obj2);
                 }
             }
-            ArrayList arrayList4 = new ArrayList(d0.t.o.collectionSizeOrDefault(arrayList3, 10));
+            ArrayList arrayList4 = new ArrayList(Iterables2.collectionSizeOrDefault(arrayList3, 10));
             Iterator it2 = arrayList3.iterator();
             while (it2.hasNext()) {
                 arrayList4.add(((InviteSuggestionItem.UserItem) it2.next()).getUser());
@@ -432,35 +433,35 @@ public final class WidgetGuildInviteShareCompact extends AppFragment {
             this.hasTrackedSuggestionsViewed = true;
         }
         TextView textView = getBinding().c;
-        m.checkNotNullExpressionValue(textView, "binding.guildInviteEmptyResults");
+        Intrinsics3.checkNotNullExpressionValue(textView, "binding.guildInviteEmptyResults");
         textView.setVisibility(inviteSuggestionItems.isEmpty() ? 0 : 8);
         RecyclerView recyclerView = getBinding().h;
-        m.checkNotNullExpressionValue(recyclerView, "binding.guildInviteSuggestionList");
+        Intrinsics3.checkNotNullExpressionValue(recyclerView, "binding.guildInviteSuggestionList");
         recyclerView.setVisibility(inviteSuggestionItems.isEmpty() ^ true ? 0 : 8);
         PrivateChannelAdapter privateChannelAdapter = this.adapter;
         if (privateChannelAdapter == null) {
-            m.throwUninitializedPropertyAccessException("adapter");
+            Intrinsics3.throwUninitializedPropertyAccessException("adapter");
         }
         privateChannelAdapter.setData(inviteSuggestionItems);
         PrivateChannelAdapter privateChannelAdapter2 = this.adapter;
         if (privateChannelAdapter2 == null) {
-            m.throwUninitializedPropertyAccessException("adapter");
+            Intrinsics3.throwUninitializedPropertyAccessException("adapter");
         }
         privateChannelAdapter2.setOnClick(new AnonymousClass3(viewState, invite));
         getBinding().j.configureUi(viewState.getWidgetInviteModel());
         MaterialButton materialButton = getBinding().f;
-        m.checkNotNullExpressionValue(materialButton, "binding.guildInviteShareBtn");
+        Intrinsics3.checkNotNullExpressionValue(materialButton, "binding.guildInviteShareBtn");
         materialButton.setText(getInviteLink(invite));
         getBinding().f.setOnClickListener(new AnonymousClass4(invite));
         ImageView imageView = getBinding().e;
-        m.checkNotNullExpressionValue(imageView, "binding.guildInviteSettingsEdit");
+        Intrinsics3.checkNotNullExpressionValue(imageView, "binding.guildInviteSettingsEdit");
         imageView.setVisibility(viewState.getShowInviteSettings() ? 0 : 8);
         TextView textView2 = getBinding().d;
-        m.checkNotNullExpressionValue(textView2, "binding.guildInviteNeverExpire");
+        Intrinsics3.checkNotNullExpressionValue(textView2, "binding.guildInviteNeverExpire");
         textView2.setVisibility(viewState.getShowInviteSettings() ? 0 : 8);
         TextView textView3 = getBinding().d;
-        m.checkNotNullExpressionValue(textView3, "binding.guildInviteNeverExpire");
-        textView3.setText(GuildInviteUiHelperKt.getInviteLinkText(requireContext(), getViewModel().getDefaultInviteExperiment()));
+        Intrinsics3.checkNotNullExpressionValue(textView3, "binding.guildInviteNeverExpire");
+        textView3.setText(GuildInviteUiHelper.getInviteLinkText(requireContext(), getViewModel().getDefaultInviteExperiment()));
     }
 
     private final WidgetGuildInviteShareCompactBinding getBinding() {
@@ -487,11 +488,11 @@ public final class WidgetGuildInviteShareCompact extends AppFragment {
 
     @Override // com.discord.app.AppFragment
     public void onViewBound(View view) {
-        m.checkNotNullParameter(view, "view");
+        Intrinsics3.checkNotNullParameter(view, "view");
         super.onViewBound(view);
         MGRecyclerAdapter.Companion companion = MGRecyclerAdapter.INSTANCE;
         RecyclerView recyclerView = getBinding().h;
-        m.checkNotNullExpressionValue(recyclerView, "binding.guildInviteSuggestionList");
+        Intrinsics3.checkNotNullExpressionValue(recyclerView, "binding.guildInviteSuggestionList");
         this.adapter = (PrivateChannelAdapter) companion.configure(new PrivateChannelAdapter(recyclerView));
         boolean booleanExtra = getMostRecentIntent().getBooleanExtra(WidgetGuildInviteShare.INTENT_IS_NUX_FLOW, false);
         long longExtra = getMostRecentIntent().getLongExtra("com.discord.intent.extra.EXTRA_CHANNEL_ID", 0L);
@@ -502,13 +503,13 @@ public final class WidgetGuildInviteShareCompact extends AppFragment {
         setActionBarTitle(R.string.invite_people);
         AppFragment.setOnBackPressed$default(this, new AnonymousClass1(booleanExtra), 0, 2, null);
         TextInputLayout textInputLayout = getBinding().g;
-        m.checkNotNullExpressionValue(textInputLayout, "binding.guildInviteShareCompactSearch");
+        Intrinsics3.checkNotNullExpressionValue(textInputLayout, "binding.guildInviteShareCompactSearch");
         ViewExtensions.addBindedTextWatcher(textInputLayout, this, new AnonymousClass2());
         BottomSheetBehavior<ViewInviteSettingsSheet> bottomSheetBehaviorFrom = BottomSheetBehavior.from(getBinding().j);
-        m.checkNotNullExpressionValue(bottomSheetBehaviorFrom, "BottomSheetBehavior.from…nviteSettingsBottomSheet)");
+        Intrinsics3.checkNotNullExpressionValue(bottomSheetBehaviorFrom, "BottomSheetBehavior.from…nviteSettingsBottomSheet)");
         this.bottomSheetBehavior = bottomSheetBehaviorFrom;
         if (bottomSheetBehaviorFrom == null) {
-            m.throwUninitializedPropertyAccessException("bottomSheetBehavior");
+            Intrinsics3.throwUninitializedPropertyAccessException("bottomSheetBehavior");
         }
         initBottomSheetBehavior(bottomSheetBehaviorFrom);
         initBottomSheet();
@@ -521,10 +522,10 @@ public final class WidgetGuildInviteShareCompact extends AppFragment {
     public void onViewBoundOrOnResume() {
         super.onViewBoundOrOnResume();
         Observable<R> observableG = getViewModel().observeViewState().y(WidgetGuildInviteShareCompact$onViewBoundOrOnResume$$inlined$filterIs$1.INSTANCE).G(WidgetGuildInviteShareCompact$onViewBoundOrOnResume$$inlined$filterIs$2.INSTANCE);
-        m.checkNotNullExpressionValue(observableG, "filter { it is T }.map { it as T }");
+        Intrinsics3.checkNotNullExpressionValue(observableG, "filter { it is T }.map { it as T }");
         PrivateChannelAdapter privateChannelAdapter = this.adapter;
         if (privateChannelAdapter == null) {
-            m.throwUninitializedPropertyAccessException("adapter");
+            Intrinsics3.throwUninitializedPropertyAccessException("adapter");
         }
         ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.bindToComponentLifecycle(observableG, this, privateChannelAdapter), WidgetGuildInviteShareCompact.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass1(this), 62, (Object) null);
     }

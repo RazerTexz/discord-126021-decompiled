@@ -13,7 +13,7 @@ import android.view.accessibility.AccessibilityEvent;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.BitSet;
@@ -180,7 +180,7 @@ public class StaggeredGridLayoutManager extends RecyclerView.LayoutManager imple
             }
 
             public String toString() {
-                StringBuilder sbU = a.U("FullSpanItem{mPosition=");
+                StringBuilder sbU = outline.U("FullSpanItem{mPosition=");
                 sbU.append(this.mPosition);
                 sbU.append(", mGapDir=");
                 sbU.append(this.mGapDir);
@@ -989,7 +989,7 @@ public class StaggeredGridLayoutManager extends RecyclerView.LayoutManager imple
         if (iArr == null) {
             iArr = new int[this.mSpanCount];
         } else if (iArr.length < this.mSpanCount) {
-            StringBuilder sbU = a.U("Provided int[]'s size must be more than or equal to span count. Expected:");
+            StringBuilder sbU = outline.U("Provided int[]'s size must be more than or equal to span count. Expected:");
             sbU.append(this.mSpanCount);
             sbU.append(", array size:");
             sbU.append(iArr.length);
@@ -1064,7 +1064,7 @@ public class StaggeredGridLayoutManager extends RecyclerView.LayoutManager imple
         if (iArr == null) {
             iArr = new int[this.mSpanCount];
         } else if (iArr.length < this.mSpanCount) {
-            StringBuilder sbU = a.U("Provided int[]'s size must be more than or equal to span count. Expected:");
+            StringBuilder sbU = outline.U("Provided int[]'s size must be more than or equal to span count. Expected:");
             sbU.append(this.mSpanCount);
             sbU.append(", array size:");
             sbU.append(iArr.length);
@@ -1080,7 +1080,7 @@ public class StaggeredGridLayoutManager extends RecyclerView.LayoutManager imple
         if (iArr == null) {
             iArr = new int[this.mSpanCount];
         } else if (iArr.length < this.mSpanCount) {
-            StringBuilder sbU = a.U("Provided int[]'s size must be more than or equal to span count. Expected:");
+            StringBuilder sbU = outline.U("Provided int[]'s size must be more than or equal to span count. Expected:");
             sbU.append(this.mSpanCount);
             sbU.append(", array size:");
             sbU.append(iArr.length);
@@ -1106,7 +1106,7 @@ public class StaggeredGridLayoutManager extends RecyclerView.LayoutManager imple
         if (iArr == null) {
             iArr = new int[this.mSpanCount];
         } else if (iArr.length < this.mSpanCount) {
-            StringBuilder sbU = a.U("Provided int[]'s size must be more than or equal to span count. Expected:");
+            StringBuilder sbU = outline.U("Provided int[]'s size must be more than or equal to span count. Expected:");
             sbU.append(this.mSpanCount);
             sbU.append(", array size:");
             sbU.append(iArr.length);

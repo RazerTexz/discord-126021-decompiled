@@ -4,7 +4,9 @@ import android.content.Context;
 import androidx.annotation.MainThread;
 import androidx.core.app.NotificationCompat;
 import androidx.fragment.app.FragmentManager;
-import b.d.b.a.a;
+import b.a.a.GuildVideoAtCapacityDialog;
+import b.a.d.AppToast;
+import b.d.b.a.outline;
 import b.i.a.f.e.o.f;
 import com.discord.R;
 import com.discord.api.channel.Channel;
@@ -17,23 +19,25 @@ import com.discord.stores.StoreUserRelationships;
 import com.discord.stores.StoreVoiceChannelSelected;
 import com.discord.stores.StoreVoiceStates;
 import com.discord.utilities.rx.ObservableExtensionsKt;
-import com.discord.utilities.rx.RxCoroutineUtilsKt;
-import com.discord.utilities.voice.VoiceChannelJoinability;
+import com.discord.utilities.rx.RxCoroutineUtils;
 import com.discord.utilities.voice.VoiceChannelJoinabilityUtils;
+import com.discord.utilities.voice.VoiceChannelJoinabilityUtils2;
 import com.discord.widgets.stage.sheet.WidgetStageAudienceBlockedBottomSheet;
 import com.discord.widgets.voice.fullscreen.WidgetCallFullscreen;
-import d0.f0.q;
-import d0.l;
-import d0.t.h0;
-import d0.t.u;
-import d0.w.h.c;
-import d0.w.i.a.d;
-import d0.w.i.a.e;
-import d0.w.i.a.g;
-import d0.w.i.a.k;
-import d0.z.d.m;
-import d0.z.d.o;
-import j0.k.b;
+import d0.Result3;
+import d0.f0._Sequences2;
+import d0.t.Maps6;
+import d0.t._Collections;
+import d0.w.h.Intrinsics2;
+import d0.w.h.IntrinsicsJvm;
+import d0.w.i.a.ContinuationImpl3;
+import d0.w.i.a.ContinuationImpl6;
+import d0.w.i.a.DebugMetadata;
+import d0.w.i.a.DebugProbes;
+import d0.w.i.a.boxing;
+import d0.z.d.Intrinsics3;
+import d0.z.d.Lambda;
+import j0.k.Func1;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
@@ -47,6 +51,7 @@ import kotlinx.coroutines.CoroutineScope;
 import kotlinx.coroutines.Job;
 import org.objectweb.asm.Opcodes;
 import rx.Observable;
+import s.a.CancellableContinuationImpl5;
 
 /* JADX INFO: compiled from: StageChannelJoinHelper.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -56,7 +61,7 @@ public final class StageChannelJoinHelper {
 
     /* JADX INFO: renamed from: com.discord.widgets.stage.StageChannelJoinHelper$connectToStage$1, reason: invalid class name */
     /* JADX INFO: compiled from: StageChannelJoinHelper.kt */
-    public final class AnonymousClass1 extends o implements Function0<Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function0<Unit> {
         public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
 
         public AnonymousClass1() {
@@ -76,8 +81,8 @@ public final class StageChannelJoinHelper {
 
     /* JADX INFO: renamed from: com.discord.widgets.stage.StageChannelJoinHelper$lurkAndJoinStage$1, reason: invalid class name */
     /* JADX INFO: compiled from: StageChannelJoinHelper.kt */
-    @e(c = "com.discord.widgets.stage.StageChannelJoinHelper$lurkAndJoinStage$1", f = "StageChannelJoinHelper.kt", l = {123}, m = "invokeSuspend")
-    public final class AnonymousClass1 extends k implements Function2<CoroutineScope, Continuation<? super Unit>, Object> {
+    @DebugMetadata(c = "com.discord.widgets.stage.StageChannelJoinHelper$lurkAndJoinStage$1", f = "StageChannelJoinHelper.kt", l = {123}, m = "invokeSuspend")
+    public final class AnonymousClass1 extends ContinuationImpl6 implements Function2<CoroutineScope, Continuation<? super Unit>, Object> {
         public final /* synthetic */ long $channelId;
         public final /* synthetic */ Context $context;
         public final /* synthetic */ FragmentManager $fragmentManager;
@@ -101,9 +106,9 @@ public final class StageChannelJoinHelper {
             this.$selectedVoiceChannelStore = storeVoiceChannelSelected;
         }
 
-        @Override // d0.w.i.a.a
+        @Override // d0.w.i.a.ContinuationImpl
         public final Continuation<Unit> create(Object obj, Continuation<?> continuation) {
-            m.checkNotNullParameter(continuation, "completion");
+            Intrinsics3.checkNotNullParameter(continuation, "completion");
             return new AnonymousClass1(this.$context, this.$fragmentManager, this.$guildId, this.$channelId, this.$launchFullscreen, this.$guildsStore, this.$lurkingStore, this.$selectedVoiceChannelStore, continuation);
         }
 
@@ -112,12 +117,12 @@ public final class StageChannelJoinHelper {
             return ((AnonymousClass1) create(coroutineScope, continuation)).invokeSuspend(Unit.a);
         }
 
-        @Override // d0.w.i.a.a
+        @Override // d0.w.i.a.ContinuationImpl
         public final Object invokeSuspend(Object obj) throws Throwable {
-            Object coroutine_suspended = c.getCOROUTINE_SUSPENDED();
+            Object coroutine_suspended = Intrinsics2.getCOROUTINE_SUSPENDED();
             int i = this.label;
             if (i == 0) {
-                l.throwOnFailure(obj);
+                Result3.throwOnFailure(obj);
                 StageChannelJoinHelper stageChannelJoinHelper = StageChannelJoinHelper.INSTANCE;
                 Context context = this.$context;
                 FragmentManager fragmentManager = this.$fragmentManager;
@@ -135,7 +140,7 @@ public final class StageChannelJoinHelper {
                 if (i != 1) {
                     throw new IllegalStateException("call to 'resume' before 'invoke' with coroutine");
                 }
-                l.throwOnFailure(obj);
+                Result3.throwOnFailure(obj);
             }
             return Unit.a;
         }
@@ -143,8 +148,8 @@ public final class StageChannelJoinHelper {
 
     /* JADX INFO: renamed from: com.discord.widgets.stage.StageChannelJoinHelper$lurkAndJoinStageAsync$1, reason: invalid class name */
     /* JADX INFO: compiled from: StageChannelJoinHelper.kt */
-    @e(c = "com.discord.widgets.stage.StageChannelJoinHelper", f = "StageChannelJoinHelper.kt", l = {180, Opcodes.IF_ICMPEQ, Opcodes.IF_ACMPNE}, m = "lurkAndJoinStageAsync")
-    public final class AnonymousClass1 extends d {
+    @DebugMetadata(c = "com.discord.widgets.stage.StageChannelJoinHelper", f = "StageChannelJoinHelper.kt", l = {180, Opcodes.IF_ICMPEQ, Opcodes.IF_ACMPNE}, m = "lurkAndJoinStageAsync")
+    public final class AnonymousClass1 extends ContinuationImpl3 {
         public long J$0;
         public long J$1;
         public Object L$0;
@@ -161,7 +166,7 @@ public final class StageChannelJoinHelper {
             super(continuation);
         }
 
-        @Override // d0.w.i.a.a
+        @Override // d0.w.i.a.ContinuationImpl
         public final Object invokeSuspend(Object obj) {
             this.result = obj;
             this.label |= Integer.MIN_VALUE;
@@ -171,7 +176,7 @@ public final class StageChannelJoinHelper {
 
     /* JADX INFO: renamed from: com.discord.widgets.stage.StageChannelJoinHelper$connectToStage$2, reason: invalid class name */
     /* JADX INFO: compiled from: StageChannelJoinHelper.kt */
-    public final class AnonymousClass2 extends o implements Function0<Unit> {
+    public final class AnonymousClass2 extends Lambda implements Function0<Unit> {
         public final /* synthetic */ long $channelId;
         public final /* synthetic */ StoreChannels $channelsStore;
         public final /* synthetic */ Context $context;
@@ -185,7 +190,7 @@ public final class StageChannelJoinHelper {
 
         /* JADX INFO: renamed from: com.discord.widgets.stage.StageChannelJoinHelper$connectToStage$2$1, reason: invalid class name */
         /* JADX INFO: compiled from: StageChannelJoinHelper.kt */
-        public final class AnonymousClass1 extends o implements Function1<StoreVoiceChannelSelected.JoinVoiceChannelResult, Unit> {
+        public final class AnonymousClass1 extends Lambda implements Function1<StoreVoiceChannelSelected.JoinVoiceChannelResult, Unit> {
             public AnonymousClass1() {
                 super(1);
             }
@@ -198,7 +203,7 @@ public final class StageChannelJoinHelper {
 
             /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
             public final void invoke2(StoreVoiceChannelSelected.JoinVoiceChannelResult joinVoiceChannelResult) {
-                m.checkNotNullParameter(joinVoiceChannelResult, "it");
+                Intrinsics3.checkNotNullParameter(joinVoiceChannelResult, "it");
                 AnonymousClass2 anonymousClass2 = AnonymousClass2.this;
                 if (anonymousClass2.$launchFullscreen) {
                     WidgetCallFullscreen.Companion.launch$default(WidgetCallFullscreen.INSTANCE, anonymousClass2.$context, anonymousClass2.$channelId, true, null, AppTransitionActivity.Transition.TYPE_SLIDE_VERTICAL_WITH_FADE, 8, null);
@@ -236,11 +241,11 @@ public final class StageChannelJoinHelper {
             Integer num;
             Channel channel = this.$channelsStore.getChannel(this.$channelId);
             if (channel != null) {
-                Map mapEmptyMap = (Map) a.c(channel, this.$voiceStatesStore.get());
+                Map mapEmptyMap = (Map) outline.c(channel, this.$voiceStatesStore.get());
                 if (mapEmptyMap == null) {
-                    mapEmptyMap = h0.emptyMap();
+                    mapEmptyMap = Maps6.emptyMap();
                 }
-                Sequence map = q.map(q.filter(u.asSequence(mapEmptyMap.values()), new StageChannelJoinHelper$connectToStage$2$channelVoiceStateUserIds$1(channel)), StageChannelJoinHelper$connectToStage$2$channelVoiceStateUserIds$2.INSTANCE);
+                Sequence map = _Sequences2.map(_Sequences2.filter(_Collections.asSequence(mapEmptyMap.values()), new StageChannelJoinHelper2(channel)), StageChannelJoinHelper3.INSTANCE);
                 Map<Long, Integer> relationships = this.$userRelationshipsStore.getRelationships();
                 if (!this.$warnedAboutBlockedUsers) {
                     Iterator it = map.iterator();
@@ -267,14 +272,14 @@ public final class StageChannelJoinHelper {
 
     /* JADX INFO: renamed from: com.discord.widgets.stage.StageChannelJoinHelper$lurkAndJoinStageAsync$3, reason: invalid class name */
     /* JADX INFO: compiled from: StageChannelJoinHelper.kt */
-    public final class AnonymousClass3<T, R> implements b<Set<? extends Long>, Boolean> {
+    public final class AnonymousClass3<T, R> implements Func1<Set<? extends Long>, Boolean> {
         public final /* synthetic */ long $guildId;
 
         public AnonymousClass3(long j) {
             this.$guildId = j;
         }
 
-        @Override // j0.k.b
+        @Override // j0.k.Func1
         public /* bridge */ /* synthetic */ Boolean call(Set<? extends Long> set) {
             return call2((Set<Long>) set);
         }
@@ -287,10 +292,10 @@ public final class StageChannelJoinHelper {
 
     /* JADX INFO: renamed from: com.discord.widgets.stage.StageChannelJoinHelper$lurkAndJoinStageAsync$4, reason: invalid class name */
     /* JADX INFO: compiled from: StageChannelJoinHelper.kt */
-    public final class AnonymousClass4<T, R> implements b<Channel, Boolean> {
+    public final class AnonymousClass4<T, R> implements Func1<Channel, Boolean> {
         public static final AnonymousClass4 INSTANCE = new AnonymousClass4();
 
-        @Override // j0.k.b
+        @Override // j0.k.Func1
         public /* bridge */ /* synthetic */ Boolean call(Channel channel) {
             return call2(channel);
         }
@@ -303,7 +308,7 @@ public final class StageChannelJoinHelper {
 
     /* JADX INFO: renamed from: com.discord.widgets.stage.StageChannelJoinHelper$lurkAndJoinStageAsync$5, reason: invalid class name */
     /* JADX INFO: compiled from: StageChannelJoinHelper.kt */
-    public final class AnonymousClass5 extends o implements Function0<Unit> {
+    public final class AnonymousClass5 extends Lambda implements Function0<Unit> {
         public final /* synthetic */ long $guildId;
         public final /* synthetic */ StoreLurking $lurkingStore;
 
@@ -330,14 +335,14 @@ public final class StageChannelJoinHelper {
         public static final /* synthetic */ int[] $EnumSwitchMapping$0;
 
         static {
-            VoiceChannelJoinability.values();
+            VoiceChannelJoinabilityUtils2.values();
             int[] iArr = new int[5];
             $EnumSwitchMapping$0 = iArr;
-            iArr[VoiceChannelJoinability.GUILD_VIDEO_AT_CAPACITY.ordinal()] = 1;
-            iArr[VoiceChannelJoinability.PERMISSIONS_MISSING.ordinal()] = 2;
-            iArr[VoiceChannelJoinability.CHANNEL_FULL.ordinal()] = 3;
-            iArr[VoiceChannelJoinability.CHANNEL_DOES_NOT_EXIST.ordinal()] = 4;
-            iArr[VoiceChannelJoinability.CAN_JOIN.ordinal()] = 5;
+            iArr[VoiceChannelJoinabilityUtils2.GUILD_VIDEO_AT_CAPACITY.ordinal()] = 1;
+            iArr[VoiceChannelJoinabilityUtils2.PERMISSIONS_MISSING.ordinal()] = 2;
+            iArr[VoiceChannelJoinabilityUtils2.CHANNEL_FULL.ordinal()] = 3;
+            iArr[VoiceChannelJoinabilityUtils2.CHANNEL_DOES_NOT_EXIST.ordinal()] = 4;
+            iArr[VoiceChannelJoinabilityUtils2.CAN_JOIN.ordinal()] = 5;
         }
     }
 
@@ -351,13 +356,13 @@ public final class StageChannelJoinHelper {
 
     @MainThread
     public final void connectToStage(Context context, FragmentManager fragmentManager, long channelId, boolean warnedAboutBlockedUsers, boolean launchFullscreen, StoreVoiceChannelSelected voiceChannelSelectedStore, StoreChannels channelsStore, StoreVoiceStates voiceStatesStore, StoreUserRelationships userRelationshipsStore, Function0<Unit> onCompleted) {
-        m.checkNotNullParameter(context, "context");
-        m.checkNotNullParameter(fragmentManager, "fragmentManager");
-        m.checkNotNullParameter(voiceChannelSelectedStore, "voiceChannelSelectedStore");
-        m.checkNotNullParameter(channelsStore, "channelsStore");
-        m.checkNotNullParameter(voiceStatesStore, "voiceStatesStore");
-        m.checkNotNullParameter(userRelationshipsStore, "userRelationshipsStore");
-        m.checkNotNullParameter(onCompleted, "onCompleted");
+        Intrinsics3.checkNotNullParameter(context, "context");
+        Intrinsics3.checkNotNullParameter(fragmentManager, "fragmentManager");
+        Intrinsics3.checkNotNullParameter(voiceChannelSelectedStore, "voiceChannelSelectedStore");
+        Intrinsics3.checkNotNullParameter(channelsStore, "channelsStore");
+        Intrinsics3.checkNotNullParameter(voiceStatesStore, "voiceStatesStore");
+        Intrinsics3.checkNotNullParameter(userRelationshipsStore, "userRelationshipsStore");
+        Intrinsics3.checkNotNullParameter(onCompleted, "onCompleted");
         verifyStageJoinability(context, fragmentManager, channelId, new AnonymousClass2(channelsStore, channelId, voiceStatesStore, userRelationshipsStore, warnedAboutBlockedUsers, voiceChannelSelectedStore, fragmentManager, launchFullscreen, onCompleted, context));
     }
 
@@ -367,11 +372,11 @@ public final class StageChannelJoinHelper {
 
     @MainThread
     public final void lurkAndJoinStage(Context context, FragmentManager fragmentManager, CoroutineScope coroutineScope, long guildId, long channelId, boolean launchFullscreen, StoreGuilds guildsStore, StoreLurking lurkingStore, StoreVoiceChannelSelected selectedVoiceChannelStore) {
-        m.checkNotNullParameter(context, "context");
-        m.checkNotNullParameter(fragmentManager, "fragmentManager");
-        m.checkNotNullParameter(guildsStore, "guildsStore");
-        m.checkNotNullParameter(lurkingStore, "lurkingStore");
-        m.checkNotNullParameter(selectedVoiceChannelStore, "selectedVoiceChannelStore");
+        Intrinsics3.checkNotNullParameter(context, "context");
+        Intrinsics3.checkNotNullParameter(fragmentManager, "fragmentManager");
+        Intrinsics3.checkNotNullParameter(guildsStore, "guildsStore");
+        Intrinsics3.checkNotNullParameter(lurkingStore, "lurkingStore");
+        Intrinsics3.checkNotNullParameter(selectedVoiceChannelStore, "selectedVoiceChannelStore");
         Job job = lurkJob;
         if (job != null) {
             f.t(job, null, 1, null);
@@ -424,7 +429,7 @@ public final class StageChannelJoinHelper {
             anonymousClass1 = new AnonymousClass1(continuation);
         }
         Object obj2 = anonymousClass1.result;
-        Object coroutine_suspended = c.getCOROUTINE_SUSPENDED();
+        Object coroutine_suspended = Intrinsics2.getCOROUTINE_SUSPENDED();
         int i2 = anonymousClass1.label;
         if (i2 != 0) {
             if (i2 == 1) {
@@ -437,7 +442,7 @@ public final class StageChannelJoinHelper {
                 FragmentManager fragmentManager5 = (FragmentManager) anonymousClass1.L$2;
                 context2 = (Context) anonymousClass1.L$1;
                 StageChannelJoinHelper stageChannelJoinHelper4 = (StageChannelJoinHelper) anonymousClass1.L$0;
-                l.throwOnFailure(obj2);
+                Result3.throwOnFailure(obj2);
                 storeVoiceChannelSelected2 = storeVoiceChannelSelected4;
                 storeLurking2 = storeLurking5;
                 obj = obj2;
@@ -454,9 +459,9 @@ public final class StageChannelJoinHelper {
                 fragmentManager3 = (FragmentManager) anonymousClass1.L$2;
                 context3 = (Context) anonymousClass1.L$1;
                 stageChannelJoinHelper2 = (StageChannelJoinHelper) anonymousClass1.L$0;
-                l.throwOnFailure(obj2);
+                Result3.throwOnFailure(obj2);
                 observableZ = storeVoiceChannelSelected3.observeSelectedChannel().y(AnonymousClass4.INSTANCE).z();
-                m.checkNotNullExpressionValue(observableZ, "selectedVoiceChannelStor…= null }\n        .first()");
+                Intrinsics3.checkNotNullExpressionValue(observableZ, "selectedVoiceChannelStor…= null }\n        .first()");
                 anonymousClass1.L$0 = stageChannelJoinHelper2;
                 anonymousClass1.L$1 = context3;
                 anonymousClass1.L$2 = fragmentManager3;
@@ -466,7 +471,7 @@ public final class StageChannelJoinHelper {
                 anonymousClass1.J$1 = j4;
                 anonymousClass1.Z$0 = z4;
                 anonymousClass1.label = 3;
-                if (RxCoroutineUtilsKt.awaitSingle(observableZ, anonymousClass1) == coroutine_suspended) {
+                if (RxCoroutineUtils.awaitSingle(observableZ, anonymousClass1) == coroutine_suspended) {
                     return coroutine_suspended;
                 }
                 z5 = z4;
@@ -487,7 +492,7 @@ public final class StageChannelJoinHelper {
                 FragmentManager fragmentManager6 = (FragmentManager) anonymousClass1.L$2;
                 Context context5 = (Context) anonymousClass1.L$1;
                 StageChannelJoinHelper stageChannelJoinHelper5 = (StageChannelJoinHelper) anonymousClass1.L$0;
-                l.throwOnFailure(obj2);
+                Result3.throwOnFailure(obj2);
                 stageChannelJoinHelper3 = stageChannelJoinHelper5;
                 z5 = z7;
                 j5 = j7;
@@ -495,9 +500,9 @@ public final class StageChannelJoinHelper {
                 context4 = context5;
             }
             connectToStage$default(stageChannelJoinHelper3, context4, fragmentManager4, j5, false, z5, null, null, null, null, new AnonymousClass5(storeLurking4, j6), 488, null);
-            return d0.w.i.a.b.boxBoolean(true);
+            return boxing.boxBoolean(true);
         }
-        l.throwOnFailure(obj2);
+        Result3.throwOnFailure(obj2);
         storeVoiceChannelSelected.clear();
         anonymousClass1.L$0 = this;
         anonymousClass1.L$1 = context;
@@ -512,12 +517,12 @@ public final class StageChannelJoinHelper {
         anonymousClass1.J$1 = j2;
         anonymousClass1.Z$0 = z2;
         anonymousClass1.label = 1;
-        s.a.l lVar = new s.a.l(d0.w.h.b.intercepted(anonymousClass1), 1);
-        lVar.A();
-        storeLurking.startLurking(j, d0.w.i.a.b.boxLong(j2), false, new StageChannelJoinHelper$lurkAndJoinStageAsync$2$1(lVar), new StageChannelJoinHelper$lurkAndJoinStageAsync$2$2(lVar));
-        Object objU = lVar.u();
-        if (objU == c.getCOROUTINE_SUSPENDED()) {
-            g.probeCoroutineSuspended(anonymousClass1);
+        CancellableContinuationImpl5 cancellableContinuationImpl5 = new CancellableContinuationImpl5(IntrinsicsJvm.intercepted(anonymousClass1), 1);
+        cancellableContinuationImpl5.A();
+        storeLurking.startLurking(j, boxing.boxLong(j2), false, new StageChannelJoinHelper4(cancellableContinuationImpl5), new StageChannelJoinHelper5(cancellableContinuationImpl5));
+        Object objU = cancellableContinuationImpl5.u();
+        if (objU == Intrinsics2.getCOROUTINE_SUSPENDED()) {
+            DebugProbes.probeCoroutineSuspended(anonymousClass1);
         }
         if (objU == coroutine_suspended) {
             return coroutine_suspended;
@@ -530,10 +535,10 @@ public final class StageChannelJoinHelper {
         context2 = context;
         z3 = z2;
         if (((Unit) obj) == null) {
-            return d0.w.i.a.b.boxBoolean(false);
+            return boxing.boxBoolean(false);
         }
         Observable<Set<Long>> observableZ2 = storeGuilds2.observeGuildIds().y(new AnonymousClass3(j3)).z();
-        m.checkNotNullExpressionValue(observableZ2, "guildsStore\n        .obs…in ids }\n        .first()");
+        Intrinsics3.checkNotNullExpressionValue(observableZ2, "guildsStore\n        .obs…in ids }\n        .first()");
         anonymousClass1.L$0 = stageChannelJoinHelper;
         anonymousClass1.L$1 = context2;
         anonymousClass1.L$2 = fragmentManager2;
@@ -544,7 +549,7 @@ public final class StageChannelJoinHelper {
         anonymousClass1.J$1 = j4;
         anonymousClass1.Z$0 = z3;
         anonymousClass1.label = 2;
-        if (RxCoroutineUtilsKt.awaitSingle(observableZ2, anonymousClass1) == coroutine_suspended) {
+        if (RxCoroutineUtils.awaitSingle(observableZ2, anonymousClass1) == coroutine_suspended) {
             return coroutine_suspended;
         }
         storeLurking3 = storeLurking2;
@@ -554,7 +559,7 @@ public final class StageChannelJoinHelper {
         fragmentManager3 = fragmentManager2;
         z4 = z3;
         observableZ = storeVoiceChannelSelected3.observeSelectedChannel().y(AnonymousClass4.INSTANCE).z();
-        m.checkNotNullExpressionValue(observableZ, "selectedVoiceChannelStor…= null }\n        .first()");
+        Intrinsics3.checkNotNullExpressionValue(observableZ, "selectedVoiceChannelStor…= null }\n        .first()");
         anonymousClass1.L$0 = stageChannelJoinHelper2;
         anonymousClass1.L$1 = context3;
         anonymousClass1.L$2 = fragmentManager3;
@@ -564,7 +569,7 @@ public final class StageChannelJoinHelper {
         anonymousClass1.J$1 = j4;
         anonymousClass1.Z$0 = z4;
         anonymousClass1.label = 3;
-        if (RxCoroutineUtilsKt.awaitSingle(observableZ, anonymousClass1) == coroutine_suspended) {
+        if (RxCoroutineUtils.awaitSingle(observableZ, anonymousClass1) == coroutine_suspended) {
             return coroutine_suspended;
         }
         z5 = z4;
@@ -575,32 +580,32 @@ public final class StageChannelJoinHelper {
         fragmentManager4 = fragmentManager3;
         context4 = context3;
         connectToStage$default(stageChannelJoinHelper3, context4, fragmentManager4, j5, false, z5, null, null, null, null, new AnonymousClass5(storeLurking4, j6), 488, null);
-        return d0.w.i.a.b.boxBoolean(true);
+        return boxing.boxBoolean(true);
     }
 
     @MainThread
     public final void verifyStageJoinability(Context context, FragmentManager fragmentManager, long channelId, Function0<Unit> onJoinVerified) {
-        m.checkNotNullParameter(context, "context");
-        m.checkNotNullParameter(fragmentManager, "fragmentManager");
-        m.checkNotNullParameter(onJoinVerified, "onJoinVerified");
+        Intrinsics3.checkNotNullParameter(context, "context");
+        Intrinsics3.checkNotNullParameter(fragmentManager, "fragmentManager");
+        Intrinsics3.checkNotNullParameter(onJoinVerified, "onJoinVerified");
         int iOrdinal = VoiceChannelJoinabilityUtils.INSTANCE.getJoinability(channelId).ordinal();
         if (iOrdinal == 0) {
             onJoinVerified.invoke();
             return;
         }
         if (iOrdinal == 1) {
-            b.a.d.m.g(context, R.string.channel_locked, 0, null, 12);
+            AppToast.g(context, R.string.channel_locked, 0, null, 12);
             return;
         }
         if (iOrdinal == 2) {
-            b.a.a.m.INSTANCE.a(fragmentManager);
+            GuildVideoAtCapacityDialog.INSTANCE.a(fragmentManager);
         } else if (iOrdinal == 3) {
-            b.a.d.m.g(context, R.string.unable_to_join_channel_full, 0, null, 12);
+            AppToast.g(context, R.string.unable_to_join_channel_full, 0, null, 12);
         } else {
             if (iOrdinal != 4) {
                 return;
             }
-            b.a.d.m.g(context, R.string.guild_settings_public_welcome_invalid_channel, 0, null, 12);
+            AppToast.g(context, R.string.guild_settings_public_welcome_invalid_channel, 0, null, 12);
         }
     }
 }

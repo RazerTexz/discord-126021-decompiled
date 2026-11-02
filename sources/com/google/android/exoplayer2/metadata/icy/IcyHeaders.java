@@ -4,10 +4,12 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import android.util.Log;
 import androidx.annotation.Nullable;
-import b.c.a.a0.d;
-import b.i.a.c.f3.e0;
-import b.i.a.c.j1;
-import b.i.a.c.p1;
+import b.c.a.a0.AnimatableValueParser;
+import b.d.b.a.outline;
+import b.i.a.c.Format2;
+import b.i.a.c.MediaMetadata;
+import b.i.a.c.f3.Util2;
+import b.i.a.c.z2.Metadata2;
 import com.google.android.exoplayer2.metadata.Metadata;
 import java.util.List;
 import java.util.Map;
@@ -41,7 +43,7 @@ public final class IcyHeaders implements Metadata.Entry {
     }
 
     public IcyHeaders(int i, @Nullable String str, @Nullable String str2, @Nullable String str3, boolean z2, int i2) {
-        d.j(i2 == -1 || i2 > 0);
+        AnimatableValueParser.j(i2 == -1 || i2 > 0);
         this.j = i;
         this.k = str;
         this.l = str2;
@@ -158,7 +160,7 @@ public final class IcyHeaders implements Metadata.Entry {
             return false;
         }
         IcyHeaders icyHeaders = (IcyHeaders) obj;
-        return this.j == icyHeaders.j && e0.a(this.k, icyHeaders.k) && e0.a(this.l, icyHeaders.l) && e0.a(this.m, icyHeaders.m) && this.n == icyHeaders.n && this.o == icyHeaders.o;
+        return this.j == icyHeaders.j && Util2.a(this.k, icyHeaders.k) && Util2.a(this.l, icyHeaders.l) && Util2.a(this.m, icyHeaders.m) && this.n == icyHeaders.n && this.o == icyHeaders.o;
     }
 
     public int hashCode() {
@@ -172,13 +174,13 @@ public final class IcyHeaders implements Metadata.Entry {
     }
 
     @Override // com.google.android.exoplayer2.metadata.Metadata.Entry
-    public /* synthetic */ void n(p1.b bVar) {
-        b.i.a.c.z2.a.c(this, bVar);
+    public /* synthetic */ void n(MediaMetadata.b bVar) {
+        Metadata2.c(this, bVar);
     }
 
     @Override // com.google.android.exoplayer2.metadata.Metadata.Entry
     public /* synthetic */ byte[] o0() {
-        return b.i.a.c.z2.a.a(this);
+        return Metadata2.a(this);
     }
 
     public String toString() {
@@ -186,7 +188,7 @@ public final class IcyHeaders implements Metadata.Entry {
         String str2 = this.k;
         int i = this.j;
         int i2 = this.o;
-        StringBuilder sbS = b.d.b.a.a.S(b.d.b.a.a.b(str2, b.d.b.a.a.b(str, 80)), "IcyHeaders: name=\"", str, "\", genre=\"", str2);
+        StringBuilder sbS = outline.S(outline.b(str2, outline.b(str, 80)), "IcyHeaders: name=\"", str, "\", genre=\"", str2);
         sbS.append("\", bitrate=");
         sbS.append(i);
         sbS.append(", metadataInterval=");
@@ -201,14 +203,14 @@ public final class IcyHeaders implements Metadata.Entry {
         parcel.writeString(this.l);
         parcel.writeString(this.m);
         boolean z2 = this.n;
-        int i2 = e0.a;
+        int i2 = Util2.a;
         parcel.writeInt(z2 ? 1 : 0);
         parcel.writeInt(this.o);
     }
 
     @Override // com.google.android.exoplayer2.metadata.Metadata.Entry
-    public /* synthetic */ j1 y() {
-        return b.i.a.c.z2.a.b(this);
+    public /* synthetic */ Format2 y() {
+        return Metadata2.b(this);
     }
 
     public IcyHeaders(Parcel parcel) {
@@ -216,7 +218,7 @@ public final class IcyHeaders implements Metadata.Entry {
         this.k = parcel.readString();
         this.l = parcel.readString();
         this.m = parcel.readString();
-        int i = e0.a;
+        int i = Util2.a;
         this.n = parcel.readInt() != 0;
         this.o = parcel.readInt();
     }

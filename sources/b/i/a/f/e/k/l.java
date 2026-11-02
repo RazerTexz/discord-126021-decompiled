@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.collection.SimpleArrayMap;
 import androidx.core.os.ConfigurationCompat;
+import b.c.a.a0.AnimatableValueParser;
 import com.google.android.gms.base.R;
 import java.util.Locale;
 
@@ -144,7 +145,7 @@ public final class l {
             return resources.getString(R.b.common_google_play_services_install_text, strD);
         }
         if (i == 2) {
-            return b.c.a.a0.d.a1(context) ? resources.getString(R.b.common_google_play_services_wear_update_text) : resources.getString(R.b.common_google_play_services_update_text, strD);
+            return AnimatableValueParser.a1(context) ? resources.getString(R.b.common_google_play_services_wear_update_text) : resources.getString(R.b.common_google_play_services_update_text, strD);
         }
         if (i == 3) {
             return resources.getString(R.b.common_google_play_services_enable_text, strD);

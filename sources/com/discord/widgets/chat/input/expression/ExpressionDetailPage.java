@@ -1,8 +1,8 @@
 package com.discord.widgets.chat.input.expression;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.widgets.chat.input.gifpicker.GifCategoryItem;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 import kotlin.jvm.internal.DefaultConstructorMarker;
 
 /* JADX INFO: compiled from: ExpressionDetailPage.kt */
@@ -16,7 +16,7 @@ public abstract class ExpressionDetailPage {
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
         public GifCategoryPage(GifCategoryItem gifCategoryItem) {
             super(null);
-            m.checkNotNullParameter(gifCategoryItem, "gifCategoryItem");
+            Intrinsics3.checkNotNullParameter(gifCategoryItem, "gifCategoryItem");
             this.gifCategoryItem = gifCategoryItem;
         }
 
@@ -28,13 +28,13 @@ public abstract class ExpressionDetailPage {
         }
 
         public final GifCategoryPage copy(GifCategoryItem gifCategoryItem) {
-            m.checkNotNullParameter(gifCategoryItem, "gifCategoryItem");
+            Intrinsics3.checkNotNullParameter(gifCategoryItem, "gifCategoryItem");
             return new GifCategoryPage(gifCategoryItem);
         }
 
         public boolean equals(Object other) {
             if (this != other) {
-                return (other instanceof GifCategoryPage) && m.areEqual(this.gifCategoryItem, ((GifCategoryPage) other).gifCategoryItem);
+                return (other instanceof GifCategoryPage) && Intrinsics3.areEqual(this.gifCategoryItem, ((GifCategoryPage) other).gifCategoryItem);
             }
             return true;
         }
@@ -57,7 +57,7 @@ public abstract class ExpressionDetailPage {
         }
 
         public String toString() {
-            StringBuilder sbU = a.U("GifCategoryPage(gifCategoryItem=");
+            StringBuilder sbU = outline.U("GifCategoryPage(gifCategoryItem=");
             sbU.append(this.gifCategoryItem);
             sbU.append(")");
             return sbU.toString();

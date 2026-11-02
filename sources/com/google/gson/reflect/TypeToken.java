@@ -1,6 +1,6 @@
 package com.google.gson.reflect;
 
-import b.i.d.q.a;
+import b.i.d.q.C$Gson$Types;
 import java.lang.reflect.GenericArrayType;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
@@ -18,7 +18,7 @@ public class TypeToken<T> {
     public TypeToken() {
         Type superclassTypeParameter = getSuperclassTypeParameter(getClass());
         this.type = superclassTypeParameter;
-        this.rawType = (Class<? super T>) a.e(superclassTypeParameter);
+        this.rawType = (Class<? super T>) C$Gson$Types.e(superclassTypeParameter);
         this.hashCode = superclassTypeParameter.hashCode();
     }
 
@@ -37,7 +37,7 @@ public class TypeToken<T> {
     }
 
     public final boolean equals(Object obj) {
-        return (obj instanceof TypeToken) && a.c(this.type, ((TypeToken) obj).type);
+        return (obj instanceof TypeToken) && C$Gson$Types.c(this.type, ((TypeToken) obj).type);
     }
 
     public static TypeToken<?> get(Type type) {
@@ -45,11 +45,11 @@ public class TypeToken<T> {
     }
 
     public static TypeToken<?> getArray(Type type) {
-        return new TypeToken<>(new a.C0156a(type));
+        return new TypeToken<>(new C$Gson$Types.a(type));
     }
 
     public static TypeToken<?> getParameterized(Type type, Type... typeArr) {
-        return new TypeToken<>(new a.b(null, type, typeArr));
+        return new TypeToken<>(new C$Gson$Types.b(null, type, typeArr));
     }
 
     public final Class<? super T> getRawType() {
@@ -61,7 +61,7 @@ public class TypeToken<T> {
         if (genericSuperclass instanceof Class) {
             throw new RuntimeException("Missing type parameter.");
         }
-        return a.a(((ParameterizedType) genericSuperclass).getActualTypeArguments()[0]);
+        return C$Gson$Types.a(((ParameterizedType) genericSuperclass).getActualTypeArguments()[0]);
     }
 
     public final Type getType() {
@@ -82,7 +82,7 @@ public class TypeToken<T> {
     }
 
     public final String toString() {
-        return a.i(this.type);
+        return C$Gson$Types.i(this.type);
     }
 
     private static boolean typeEquals(ParameterizedType parameterizedType, ParameterizedType parameterizedType2, Map<String, Type> map) {
@@ -113,22 +113,22 @@ public class TypeToken<T> {
         }
         Type type2 = this.type;
         if (type2 instanceof Class) {
-            return this.rawType.isAssignableFrom(a.e(type));
+            return this.rawType.isAssignableFrom(C$Gson$Types.e(type));
         }
         if (type2 instanceof ParameterizedType) {
             return isAssignableFrom(type, (ParameterizedType) type2, new HashMap());
         }
         if (type2 instanceof GenericArrayType) {
-            return this.rawType.isAssignableFrom(a.e(type)) && isAssignableFrom(type, (GenericArrayType) this.type);
+            return this.rawType.isAssignableFrom(C$Gson$Types.e(type)) && isAssignableFrom(type, (GenericArrayType) this.type);
         }
         throw buildUnexpectedTypeError(type2, Class.class, ParameterizedType.class, GenericArrayType.class);
     }
 
     public TypeToken(Type type) {
         Objects.requireNonNull(type);
-        Type typeA = a.a(type);
+        Type typeA = C$Gson$Types.a(type);
         this.type = typeA;
-        this.rawType = (Class<? super T>) a.e(typeA);
+        this.rawType = (Class<? super T>) C$Gson$Types.e(typeA);
         this.hashCode = typeA.hashCode();
     }
 
@@ -167,7 +167,7 @@ public class TypeToken<T> {
         if (parameterizedType.equals(type)) {
             return true;
         }
-        Class<?> clsE = a.e(type);
+        Class<?> clsE = C$Gson$Types.e(type);
         ParameterizedType parameterizedType2 = type instanceof ParameterizedType ? (ParameterizedType) type : null;
         if (parameterizedType2 != null) {
             Type[] actualTypeArguments = parameterizedType2.getActualTypeArguments();

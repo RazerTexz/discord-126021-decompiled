@@ -1,6 +1,6 @@
 package com.discord.stores;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.api.channel.Channel;
 import com.discord.api.guild.Guild;
 import com.discord.api.thread.ThreadMemberUpdate;
@@ -8,12 +8,13 @@ import com.discord.api.thread.ThreadMembersUpdate;
 import com.discord.api.utcdatetime.UtcDateTime;
 import com.discord.models.thread.dto.ModelThreadListSync;
 import com.discord.stores.updates.ObservationDeck;
-import com.discord.stores.updates.ObservationDeckProvider;
-import d0.d0.f;
-import d0.t.g0;
-import d0.t.h0;
-import d0.z.d.m;
-import d0.z.d.o;
+import com.discord.stores.updates.ObservationDeck4;
+import d0.d0._Ranges;
+import d0.t.Iterables2;
+import d0.t.Maps6;
+import d0.t.MapsJVM;
+import d0.z.d.Intrinsics3;
+import d0.z.d.Lambda;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -42,8 +43,8 @@ public final class StoreThreadsActiveJoined extends StoreV2 {
         private final boolean muted;
 
         public ActiveJoinedThread(Channel channel, UtcDateTime utcDateTime, boolean z2) {
-            m.checkNotNullParameter(channel, "channel");
-            m.checkNotNullParameter(utcDateTime, "joinTimestamp");
+            Intrinsics3.checkNotNullParameter(channel, "channel");
+            Intrinsics3.checkNotNullParameter(utcDateTime, "joinTimestamp");
             this.channel = channel;
             this.joinTimestamp = utcDateTime;
             this.muted = z2;
@@ -63,8 +64,8 @@ public final class StoreThreadsActiveJoined extends StoreV2 {
         }
 
         public final ActiveJoinedThread copy(Channel channel, UtcDateTime joinTimestamp, boolean muted) {
-            m.checkNotNullParameter(channel, "channel");
-            m.checkNotNullParameter(joinTimestamp, "joinTimestamp");
+            Intrinsics3.checkNotNullParameter(channel, "channel");
+            Intrinsics3.checkNotNullParameter(joinTimestamp, "joinTimestamp");
             return new ActiveJoinedThread(channel, joinTimestamp, muted);
         }
 
@@ -76,7 +77,7 @@ public final class StoreThreadsActiveJoined extends StoreV2 {
                 return false;
             }
             ActiveJoinedThread activeJoinedThread = (ActiveJoinedThread) other;
-            return m.areEqual(this.channel, activeJoinedThread.channel) && m.areEqual(this.joinTimestamp, activeJoinedThread.joinTimestamp) && this.muted == activeJoinedThread.muted;
+            return Intrinsics3.areEqual(this.channel, activeJoinedThread.channel) && Intrinsics3.areEqual(this.joinTimestamp, activeJoinedThread.joinTimestamp) && this.muted == activeJoinedThread.muted;
         }
 
         /* JADX INFO: renamed from: component1, reason: from getter */
@@ -125,18 +126,18 @@ public final class StoreThreadsActiveJoined extends StoreV2 {
         }
 
         public String toString() {
-            StringBuilder sbU = a.U("ActiveJoinedThread(channel=");
+            StringBuilder sbU = outline.U("ActiveJoinedThread(channel=");
             sbU.append(this.channel);
             sbU.append(", joinTimestamp=");
             sbU.append(this.joinTimestamp);
             sbU.append(", muted=");
-            return a.O(sbU, this.muted, ")");
+            return outline.O(sbU, this.muted, ")");
         }
     }
 
     /* JADX INFO: renamed from: com.discord.stores.StoreThreadsActiveJoined$observeActiveJoinedThreadsChannelsForGuild$1, reason: invalid class name */
     /* JADX INFO: compiled from: StoreThreadsActiveJoined.kt */
-    public final class AnonymousClass1 extends o implements Function0<Map<Long, ? extends Channel>> {
+    public final class AnonymousClass1 extends Lambda implements Function0<Map<Long, ? extends Channel>> {
         public final /* synthetic */ long $guildId;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -158,20 +159,20 @@ public final class StoreThreadsActiveJoined extends StoreV2 {
             Map map = (Map) StoreThreadsActiveJoined.access$getActiveJoinedThreadsHierarchicalSnapshot$p(StoreThreadsActiveJoined.this).get(Long.valueOf(this.$guildId));
             if (map != null && (collectionValues = map.values()) != null) {
                 for (Map map2 : collectionValues) {
-                    LinkedHashMap linkedHashMap2 = new LinkedHashMap(g0.mapCapacity(map2.size()));
+                    LinkedHashMap linkedHashMap2 = new LinkedHashMap(MapsJVM.mapCapacity(map2.size()));
                     for (Map.Entry entry : map2.entrySet()) {
                         linkedHashMap2.put(entry.getKey(), ((ActiveJoinedThread) entry.getValue()).getChannel());
                     }
                     linkedHashMap.putAll(linkedHashMap2);
                 }
             }
-            return h0.toMap(linkedHashMap);
+            return Maps6.toMap(linkedHashMap);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.stores.StoreThreadsActiveJoined$observeActiveJoinedThreadsForChannel$1, reason: invalid class name */
     /* JADX INFO: compiled from: StoreThreadsActiveJoined.kt */
-    public final class AnonymousClass1 extends o implements Function0<Map<Long, ? extends ActiveJoinedThread>> {
+    public final class AnonymousClass1 extends Lambda implements Function0<Map<Long, ? extends ActiveJoinedThread>> {
         public final /* synthetic */ long $channelId;
         public final /* synthetic */ long $guildId;
 
@@ -192,13 +193,13 @@ public final class StoreThreadsActiveJoined extends StoreV2 {
         public final Map<Long, ? extends ActiveJoinedThread> invoke2() {
             Map<Long, ? extends ActiveJoinedThread> map;
             Map map2 = (Map) StoreThreadsActiveJoined.access$getActiveJoinedThreadsHierarchicalSnapshot$p(StoreThreadsActiveJoined.this).get(Long.valueOf(this.$guildId));
-            return (map2 == null || (map = (Map) map2.get(Long.valueOf(this.$channelId))) == null) ? h0.emptyMap() : map;
+            return (map2 == null || (map = (Map) map2.get(Long.valueOf(this.$channelId))) == null) ? Maps6.emptyMap() : map;
         }
     }
 
     /* JADX INFO: renamed from: com.discord.stores.StoreThreadsActiveJoined$observeActiveJoinedThreadsForGuild$1, reason: invalid class name */
     /* JADX INFO: compiled from: StoreThreadsActiveJoined.kt */
-    public final class AnonymousClass1 extends o implements Function0<Map<Long, ? extends Map<Long, ? extends ActiveJoinedThread>>> {
+    public final class AnonymousClass1 extends Lambda implements Function0<Map<Long, ? extends Map<Long, ? extends ActiveJoinedThread>>> {
         public final /* synthetic */ long $guildId;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -216,13 +217,13 @@ public final class StoreThreadsActiveJoined extends StoreV2 {
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final Map<Long, ? extends Map<Long, ? extends ActiveJoinedThread>> invoke2() {
             Map<Long, ? extends Map<Long, ? extends ActiveJoinedThread>> map = (Map) StoreThreadsActiveJoined.access$getActiveJoinedThreadsHierarchicalSnapshot$p(StoreThreadsActiveJoined.this).get(Long.valueOf(this.$guildId));
-            return map != null ? map : h0.emptyMap();
+            return map != null ? map : Maps6.emptyMap();
         }
     }
 
     /* JADX INFO: renamed from: com.discord.stores.StoreThreadsActiveJoined$observeAllActiveJoinedThreadsById$1, reason: invalid class name */
     /* JADX INFO: compiled from: StoreThreadsActiveJoined.kt */
-    public final class AnonymousClass1 extends o implements Function0<Map<Long, ? extends ActiveJoinedThread>> {
+    public final class AnonymousClass1 extends Lambda implements Function0<Map<Long, ? extends ActiveJoinedThread>> {
         public AnonymousClass1() {
             super(0);
         }
@@ -241,7 +242,7 @@ public final class StoreThreadsActiveJoined extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreThreadsActiveJoined$observeAllActiveJoinedThreadsChannelsById$1, reason: invalid class name */
     /* JADX INFO: compiled from: StoreThreadsActiveJoined.kt */
-    public final class AnonymousClass1 extends o implements Function0<Map<Long, ? extends Channel>> {
+    public final class AnonymousClass1 extends Lambda implements Function0<Map<Long, ? extends Channel>> {
         public AnonymousClass1() {
             super(0);
         }
@@ -255,7 +256,7 @@ public final class StoreThreadsActiveJoined extends StoreV2 {
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final Map<Long, ? extends Channel> invoke2() {
             Map mapAccess$getActiveJoinedThreadsByThreadIdSnapshot$p = StoreThreadsActiveJoined.access$getActiveJoinedThreadsByThreadIdSnapshot$p(StoreThreadsActiveJoined.this);
-            LinkedHashMap linkedHashMap = new LinkedHashMap(g0.mapCapacity(mapAccess$getActiveJoinedThreadsByThreadIdSnapshot$p.size()));
+            LinkedHashMap linkedHashMap = new LinkedHashMap(MapsJVM.mapCapacity(mapAccess$getActiveJoinedThreadsByThreadIdSnapshot$p.size()));
             for (Map.Entry entry : mapAccess$getActiveJoinedThreadsByThreadIdSnapshot$p.entrySet()) {
                 linkedHashMap.put(entry.getKey(), ((ActiveJoinedThread) entry.getValue()).getChannel());
             }
@@ -264,7 +265,7 @@ public final class StoreThreadsActiveJoined extends StoreV2 {
     }
 
     public /* synthetic */ StoreThreadsActiveJoined(StoreThreadsActive storeThreadsActive, StoreThreadsJoined storeThreadsJoined, ObservationDeck observationDeck, int i, DefaultConstructorMarker defaultConstructorMarker) {
-        this(storeThreadsActive, storeThreadsJoined, (i & 4) != 0 ? ObservationDeckProvider.get() : observationDeck);
+        this(storeThreadsActive, storeThreadsJoined, (i & 4) != 0 ? ObservationDeck4.get() : observationDeck);
     }
 
     public static final /* synthetic */ Map access$getActiveJoinedThreadsByThreadIdSnapshot$p(StoreThreadsActiveJoined storeThreadsActiveJoined) {
@@ -283,7 +284,7 @@ public final class StoreThreadsActiveJoined extends StoreV2 {
         storeThreadsActiveJoined.activeJoinedThreadsHierarchicalSnapshot = map;
     }
 
-    @StoreThread
+    @Store3
     public final List<Channel> getActiveJoinedThreadsForChannelInternal$app_productionGoogleRelease(long channelId) {
         Collection<ActiveJoinedThread> collectionValues = this.activeJoinedThreads.values();
         ArrayList arrayList = new ArrayList();
@@ -292,7 +293,7 @@ public final class StoreThreadsActiveJoined extends StoreV2 {
                 arrayList.add(obj);
             }
         }
-        ArrayList arrayList2 = new ArrayList(d0.t.o.collectionSizeOrDefault(arrayList, 10));
+        ArrayList arrayList2 = new ArrayList(Iterables2.collectionSizeOrDefault(arrayList, 10));
         Iterator it = arrayList.iterator();
         while (it.hasNext()) {
             arrayList2.add(((ActiveJoinedThread) it.next()).getChannel());
@@ -300,33 +301,33 @@ public final class StoreThreadsActiveJoined extends StoreV2 {
         return arrayList2;
     }
 
-    @StoreThread
+    @Store3
     public final Map<Long, ActiveJoinedThread> getActiveJoinedThreadsInternal$app_productionGoogleRelease() {
         return this.activeJoinedThreads;
     }
 
-    @StoreThread
+    @Store3
     public final void handleChannelCreateOrUpdate(Channel channel) {
-        m.checkNotNullParameter(channel, "channel");
+        Intrinsics3.checkNotNullParameter(channel, "channel");
         for (Channel channel2 : getActiveJoinedThreadsForChannelInternal$app_productionGoogleRelease(channel.getId())) {
             updateThread(channel2.getGuildId(), channel2.getId());
         }
     }
 
-    @StoreThread
+    @Store3
     public final void handleConnectionOpen() {
         this.activeJoinedThreads.clear();
         saveThreads$default(this, null, 1, null);
         markChanged();
     }
 
-    @StoreThread
+    @Store3
     public final void handleGuildCreate(Guild guild) {
-        m.checkNotNullParameter(guild, "guild");
+        Intrinsics3.checkNotNullParameter(guild, "guild");
         saveThreads(Long.valueOf(guild.getId()));
     }
 
-    @StoreThread
+    @Store3
     public final void handleGuildDelete(long guildId) {
         Iterator<ActiveJoinedThread> it = this.activeJoinedThreads.values().iterator();
         while (it.hasNext()) {
@@ -337,46 +338,46 @@ public final class StoreThreadsActiveJoined extends StoreV2 {
         }
     }
 
-    @StoreThread
+    @Store3
     public final void handleThreadCreateOrUpdateOrDelete(Channel channel) {
-        m.checkNotNullParameter(channel, "channel");
+        Intrinsics3.checkNotNullParameter(channel, "channel");
         updateThread(channel.getGuildId(), channel.getId());
     }
 
-    @StoreThread
+    @Store3
     public final void handleThreadListSync(ModelThreadListSync payload) {
-        m.checkNotNullParameter(payload, "payload");
+        Intrinsics3.checkNotNullParameter(payload, "payload");
         handleGuildDelete(payload.getGuildId());
         saveThreads(Long.valueOf(payload.getGuildId()));
     }
 
-    @StoreThread
+    @Store3
     public final void handleThreadMemberUpdate(ThreadMemberUpdate payload) {
-        m.checkNotNullParameter(payload, "payload");
+        Intrinsics3.checkNotNullParameter(payload, "payload");
         updateThread(payload.getGuildId(), payload.getId());
     }
 
-    @StoreThread
+    @Store3
     public final void handleThreadMembersUpdate(ThreadMembersUpdate payload) {
-        m.checkNotNullParameter(payload, "payload");
+        Intrinsics3.checkNotNullParameter(payload, "payload");
         updateThread(payload.getGuildId(), payload.getId());
     }
 
     public final Observable<Map<Long, Channel>> observeActiveJoinedThreadsChannelsForGuild(long guildId) {
         Observable<Map<Long, Channel>> observableR = ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck.UpdateSource[]{this}, false, null, null, new AnonymousClass1(guildId), 14, null).r();
-        m.checkNotNullExpressionValue(observableR, "observationDeck\n        …  .distinctUntilChanged()");
+        Intrinsics3.checkNotNullExpressionValue(observableR, "observationDeck\n        …  .distinctUntilChanged()");
         return observableR;
     }
 
     public final Observable<Map<Long, ActiveJoinedThread>> observeActiveJoinedThreadsForChannel(long guildId, long channelId) {
         Observable<Map<Long, ActiveJoinedThread>> observableR = ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck.UpdateSource[]{this}, false, null, null, new AnonymousClass1(guildId, channelId), 14, null).r();
-        m.checkNotNullExpressionValue(observableR, "observationDeck\n        …  .distinctUntilChanged()");
+        Intrinsics3.checkNotNullExpressionValue(observableR, "observationDeck\n        …  .distinctUntilChanged()");
         return observableR;
     }
 
     public final Observable<Map<Long, Map<Long, ActiveJoinedThread>>> observeActiveJoinedThreadsForGuild(long guildId) {
         Observable<Map<Long, Map<Long, ActiveJoinedThread>>> observableR = ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck.UpdateSource[]{this}, false, null, null, new AnonymousClass1(guildId), 14, null).r();
-        m.checkNotNullExpressionValue(observableR, "observationDeck\n        …  .distinctUntilChanged()");
+        Intrinsics3.checkNotNullExpressionValue(observableR, "observationDeck\n        …  .distinctUntilChanged()");
         return observableR;
     }
 
@@ -395,7 +396,7 @@ public final class StoreThreadsActiveJoined extends StoreV2 {
         storeThreadsActiveJoined.saveThreads(l);
     }
 
-    @StoreThread
+    @Store3
     private final void saveThreads(Long guildId) {
         Channel channel;
         Map<Long, Map<Long, Channel>> allActiveThreadsInternal$app_productionGoogleRelease = this.storeThreadsActive.getAllActiveThreadsInternal$app_productionGoogleRelease();
@@ -411,7 +412,7 @@ public final class StoreThreadsActiveJoined extends StoreV2 {
     }
 
     @Override // com.discord.stores.StoreV2
-    @StoreThread
+    @Store3
     public void snapshotData() {
         this.activeJoinedThreadsByThreadIdSnapshot = new HashMap(this.activeJoinedThreads);
         Collection<ActiveJoinedThread> collectionValues = this.activeJoinedThreads.values();
@@ -425,7 +426,7 @@ public final class StoreThreadsActiveJoined extends StoreV2 {
             }
             ((List) arrayList).add(obj);
         }
-        LinkedHashMap linkedHashMap2 = new LinkedHashMap(g0.mapCapacity(linkedHashMap.size()));
+        LinkedHashMap linkedHashMap2 = new LinkedHashMap(MapsJVM.mapCapacity(linkedHashMap.size()));
         for (Map.Entry entry : linkedHashMap.entrySet()) {
             Object key = entry.getKey();
             List list = (List) entry.getValue();
@@ -439,11 +440,11 @@ public final class StoreThreadsActiveJoined extends StoreV2 {
                 }
                 ((List) arrayList2).add(obj2);
             }
-            LinkedHashMap linkedHashMap4 = new LinkedHashMap(g0.mapCapacity(linkedHashMap3.size()));
+            LinkedHashMap linkedHashMap4 = new LinkedHashMap(MapsJVM.mapCapacity(linkedHashMap3.size()));
             for (Map.Entry entry2 : linkedHashMap3.entrySet()) {
                 Object key2 = entry2.getKey();
                 List list2 = (List) entry2.getValue();
-                LinkedHashMap linkedHashMap5 = new LinkedHashMap(f.coerceAtLeast(g0.mapCapacity(d0.t.o.collectionSizeOrDefault(list2, 10)), 16));
+                LinkedHashMap linkedHashMap5 = new LinkedHashMap(_Ranges.coerceAtLeast(MapsJVM.mapCapacity(Iterables2.collectionSizeOrDefault(list2, 10)), 16));
                 for (Object obj3 : list2) {
                     linkedHashMap5.put(Long.valueOf(((ActiveJoinedThread) obj3).getChannel().getId()), obj3);
                 }
@@ -454,7 +455,7 @@ public final class StoreThreadsActiveJoined extends StoreV2 {
         this.activeJoinedThreadsHierarchicalSnapshot = linkedHashMap2;
     }
 
-    @StoreThread
+    @Store3
     private final void updateThread(long guildId, long channelId) {
         Map<Long, Channel> map = this.storeThreadsActive.getAllActiveThreadsInternal$app_productionGoogleRelease().get(Long.valueOf(guildId));
         Channel channel = map != null ? map.get(Long.valueOf(channelId)) : null;
@@ -469,9 +470,9 @@ public final class StoreThreadsActiveJoined extends StoreV2 {
     }
 
     public StoreThreadsActiveJoined(StoreThreadsActive storeThreadsActive, StoreThreadsJoined storeThreadsJoined, ObservationDeck observationDeck) {
-        m.checkNotNullParameter(storeThreadsActive, "storeThreadsActive");
-        m.checkNotNullParameter(storeThreadsJoined, "storeThreadsJoined");
-        m.checkNotNullParameter(observationDeck, "observationDeck");
+        Intrinsics3.checkNotNullParameter(storeThreadsActive, "storeThreadsActive");
+        Intrinsics3.checkNotNullParameter(storeThreadsJoined, "storeThreadsJoined");
+        Intrinsics3.checkNotNullParameter(observationDeck, "observationDeck");
         this.storeThreadsActive = storeThreadsActive;
         this.storeThreadsJoined = storeThreadsJoined;
         this.observationDeck = observationDeck;

@@ -2,7 +2,8 @@ package com.discord.simpleast.core.node;
 
 import android.text.SpannableStringBuilder;
 import androidx.exifinterface.media.ExifInterface;
-import d0.z.d.m;
+import b.a.t.b.a.TextNode;
+import d0.z.d.Intrinsics3;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
@@ -31,20 +32,20 @@ public class StyleNode<RC, T> extends Node.a<RC> {
     }
 
     /* JADX INFO: compiled from: StyleNode.kt */
-    public final class b<RC> extends b.a.t.b.a.a<RC> {
+    public final class b<RC> extends TextNode<RC> {
         public final a<RC> a;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
         public b(String str, a<RC> aVar) {
             super(str);
-            m.checkNotNullParameter(str, "content");
-            m.checkNotNullParameter(aVar, "stylesProvider");
+            Intrinsics3.checkNotNullParameter(str, "content");
+            Intrinsics3.checkNotNullParameter(aVar, "stylesProvider");
             this.a = aVar;
         }
 
-        @Override // b.a.t.b.a.a, com.discord.simpleast.core.node.Node
+        @Override // b.a.t.b.a.TextNode, com.discord.simpleast.core.node.Node
         public void render(SpannableStringBuilder spannableStringBuilder, RC rc) {
-            m.checkNotNullParameter(spannableStringBuilder, "builder");
+            Intrinsics3.checkNotNullParameter(spannableStringBuilder, "builder");
             int length = spannableStringBuilder.length();
             super.render(spannableStringBuilder, rc);
             Iterator<?> it = this.a.get(rc).iterator();
@@ -58,7 +59,7 @@ public class StyleNode<RC, T> extends Node.a<RC> {
     /* JADX WARN: Multi-variable type inference failed */
     public StyleNode(List<? extends T> list) {
         super(new Node[0]);
-        m.checkNotNullParameter(list, "styles");
+        Intrinsics3.checkNotNullParameter(list, "styles");
         this.styles = list;
     }
 
@@ -68,7 +69,7 @@ public class StyleNode<RC, T> extends Node.a<RC> {
 
     @Override // com.discord.simpleast.core.node.Node.a, com.discord.simpleast.core.node.Node
     public void render(SpannableStringBuilder builder, RC renderContext) {
-        m.checkNotNullParameter(builder, "builder");
+        Intrinsics3.checkNotNullParameter(builder, "builder");
         int length = builder.length();
         super.render(builder, renderContext);
         Iterator<T> it = this.styles.iterator();
@@ -79,10 +80,10 @@ public class StyleNode<RC, T> extends Node.a<RC> {
 
     public static final <RC, T> StyleNode<RC, T> wrapText(String str, List<? extends T> list) {
         Objects.requireNonNull(INSTANCE);
-        m.checkNotNullParameter(str, "content");
-        m.checkNotNullParameter(list, "styles");
+        Intrinsics3.checkNotNullParameter(str, "content");
+        Intrinsics3.checkNotNullParameter(list, "styles");
         StyleNode<RC, T> styleNode = new StyleNode<>(list);
-        styleNode.addChild(new b.a.t.b.a.a(str));
+        styleNode.addChild(new TextNode(str));
         return styleNode;
     }
 }

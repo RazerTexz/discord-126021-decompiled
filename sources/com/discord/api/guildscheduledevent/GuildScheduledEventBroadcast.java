@@ -1,7 +1,7 @@
 package com.discord.api.guildscheduledevent;
 
-import b.d.b.a.a;
-import d0.z.d.m;
+import b.d.b.a.outline;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: GuildScheduledEventBroadcast.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -17,7 +17,7 @@ public final /* data */ class GuildScheduledEventBroadcast {
             return false;
         }
         GuildScheduledEventBroadcast guildScheduledEventBroadcast = (GuildScheduledEventBroadcast) other;
-        return this.canBroadcast == guildScheduledEventBroadcast.canBroadcast && m.areEqual(this.hasBroadcast, guildScheduledEventBroadcast.hasBroadcast);
+        return this.canBroadcast == guildScheduledEventBroadcast.canBroadcast && Intrinsics3.areEqual(this.hasBroadcast, guildScheduledEventBroadcast.hasBroadcast);
     }
 
     /* JADX INFO: renamed from: a, reason: from getter */
@@ -46,9 +46,9 @@ public final /* data */ class GuildScheduledEventBroadcast {
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("GuildScheduledEventBroadcast(canBroadcast=");
+        StringBuilder sbU = outline.U("GuildScheduledEventBroadcast(canBroadcast=");
         sbU.append(this.canBroadcast);
         sbU.append(", hasBroadcast=");
-        return a.D(sbU, this.hasBroadcast, ")");
+        return outline.D(sbU, this.hasBroadcast, ")");
     }
 }

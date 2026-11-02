@@ -33,6 +33,7 @@ import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import x.a.b.b.a.IMediaSession;
 
 /* JADX INFO: loaded from: classes.dex */
 public final class MediaBrowserCompat {
@@ -311,9 +312,9 @@ public final class MediaBrowserCompat {
                                     Log.i("MediaBrowserCompat", "Remote error registering client messenger.");
                                 }
                             }
-                            x.a.b.b.a.b bVarC = x.a.b.b.a.b.a.c(BundleCompat.getBinder(extras, MediaBrowserProtocol.EXTRA_SESSION_BINDER));
-                            if (bVarC != null) {
-                                eVar.h = MediaSessionCompat.Token.a(eVar.f16b.getSessionToken(), bVarC);
+                            IMediaSession iMediaSessionC = IMediaSession.a.c(BundleCompat.getBinder(extras, MediaBrowserProtocol.EXTRA_SESSION_BINDER));
+                            if (iMediaSessionC != null) {
+                                eVar.h = MediaSessionCompat.Token.a(eVar.f16b.getSessionToken(), iMediaSessionC);
                             }
                         }
                     } catch (IllegalStateException e) {

@@ -1,8 +1,8 @@
 package com.discord.models.domain.billing;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.models.domain.ModelAuditLogEntry;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 import java.util.List;
 
 /* JADX INFO: compiled from: ModelInvoicePreview.kt */
@@ -10,7 +10,7 @@ import java.util.List;
 public final /* data */ class ModelInvoicePreview {
     private final String currency;
     private final long id;
-    private final List<ModelInvoiceItem> invoiceItems;
+    private final List<ModelInvoicePreview3> invoiceItems;
     private final String subscriptionPeriodEnd;
     private final String subscriptionPeriodStart;
     private final int subtotal;
@@ -18,11 +18,11 @@ public final /* data */ class ModelInvoicePreview {
     private final boolean taxInclusive;
     private final int total;
 
-    public ModelInvoicePreview(String str, long j, List<ModelInvoiceItem> list, String str2, String str3, int i, int i2, boolean z2, int i3) {
-        m.checkNotNullParameter(str, "currency");
-        m.checkNotNullParameter(list, "invoiceItems");
-        m.checkNotNullParameter(str2, "subscriptionPeriodEnd");
-        m.checkNotNullParameter(str3, "subscriptionPeriodStart");
+    public ModelInvoicePreview(String str, long j, List<ModelInvoicePreview3> list, String str2, String str3, int i, int i2, boolean z2, int i3) {
+        Intrinsics3.checkNotNullParameter(str, "currency");
+        Intrinsics3.checkNotNullParameter(list, "invoiceItems");
+        Intrinsics3.checkNotNullParameter(str2, "subscriptionPeriodEnd");
+        Intrinsics3.checkNotNullParameter(str3, "subscriptionPeriodStart");
         this.currency = str;
         this.id = j;
         this.invoiceItems = list;
@@ -34,7 +34,7 @@ public final /* data */ class ModelInvoicePreview {
         this.total = i3;
     }
 
-    public final List<ModelInvoiceItem> component3() {
+    public final List<ModelInvoicePreview3> component3() {
         return this.invoiceItems;
     }
 
@@ -43,11 +43,11 @@ public final /* data */ class ModelInvoicePreview {
         return modelInvoicePreview.copy((i4 & 1) != 0 ? modelInvoicePreview.currency : str, (i4 & 2) != 0 ? modelInvoicePreview.id : j, (i4 & 4) != 0 ? modelInvoicePreview.invoiceItems : list, (i4 & 8) != 0 ? modelInvoicePreview.subscriptionPeriodEnd : str2, (i4 & 16) != 0 ? modelInvoicePreview.subscriptionPeriodStart : str3, (i4 & 32) != 0 ? modelInvoicePreview.subtotal : i, (i4 & 64) != 0 ? modelInvoicePreview.tax : i2, (i4 & 128) != 0 ? modelInvoicePreview.taxInclusive : z2, (i4 & 256) != 0 ? modelInvoicePreview.total : i3);
     }
 
-    public final ModelInvoicePreview copy(String currency, long id2, List<ModelInvoiceItem> invoiceItems, String subscriptionPeriodEnd, String subscriptionPeriodStart, int subtotal, int tax, boolean taxInclusive, int total) {
-        m.checkNotNullParameter(currency, "currency");
-        m.checkNotNullParameter(invoiceItems, "invoiceItems");
-        m.checkNotNullParameter(subscriptionPeriodEnd, "subscriptionPeriodEnd");
-        m.checkNotNullParameter(subscriptionPeriodStart, "subscriptionPeriodStart");
+    public final ModelInvoicePreview copy(String currency, long id2, List<ModelInvoicePreview3> invoiceItems, String subscriptionPeriodEnd, String subscriptionPeriodStart, int subtotal, int tax, boolean taxInclusive, int total) {
+        Intrinsics3.checkNotNullParameter(currency, "currency");
+        Intrinsics3.checkNotNullParameter(invoiceItems, "invoiceItems");
+        Intrinsics3.checkNotNullParameter(subscriptionPeriodEnd, "subscriptionPeriodEnd");
+        Intrinsics3.checkNotNullParameter(subscriptionPeriodStart, "subscriptionPeriodStart");
         return new ModelInvoicePreview(currency, id2, invoiceItems, subscriptionPeriodEnd, subscriptionPeriodStart, subtotal, tax, taxInclusive, total);
     }
 
@@ -59,7 +59,7 @@ public final /* data */ class ModelInvoicePreview {
             return false;
         }
         ModelInvoicePreview modelInvoicePreview = (ModelInvoicePreview) other;
-        return m.areEqual(this.currency, modelInvoicePreview.currency) && this.id == modelInvoicePreview.id && m.areEqual(this.invoiceItems, modelInvoicePreview.invoiceItems) && m.areEqual(this.subscriptionPeriodEnd, modelInvoicePreview.subscriptionPeriodEnd) && m.areEqual(this.subscriptionPeriodStart, modelInvoicePreview.subscriptionPeriodStart) && this.subtotal == modelInvoicePreview.subtotal && this.tax == modelInvoicePreview.tax && this.taxInclusive == modelInvoicePreview.taxInclusive && this.total == modelInvoicePreview.total;
+        return Intrinsics3.areEqual(this.currency, modelInvoicePreview.currency) && this.id == modelInvoicePreview.id && Intrinsics3.areEqual(this.invoiceItems, modelInvoicePreview.invoiceItems) && Intrinsics3.areEqual(this.subscriptionPeriodEnd, modelInvoicePreview.subscriptionPeriodEnd) && Intrinsics3.areEqual(this.subscriptionPeriodStart, modelInvoicePreview.subscriptionPeriodStart) && this.subtotal == modelInvoicePreview.subtotal && this.tax == modelInvoicePreview.tax && this.taxInclusive == modelInvoicePreview.taxInclusive && this.total == modelInvoicePreview.total;
     }
 
     /* JADX INFO: renamed from: component1, reason: from getter */
@@ -80,7 +80,7 @@ public final /* data */ class ModelInvoicePreview {
         return this.id;
     }
 
-    public final List<ModelInvoiceItem> getInvoiceItems() {
+    public final List<ModelInvoicePreview3> getInvoiceItems() {
         return this.invoiceItems;
     }
 
@@ -148,7 +148,7 @@ public final /* data */ class ModelInvoicePreview {
         int iHashCode = str != null ? str.hashCode() : 0;
         long j = this.id;
         int i = ((iHashCode * 31) + ((int) (j ^ (j >>> 32)))) * 31;
-        List<ModelInvoiceItem> list = this.invoiceItems;
+        List<ModelInvoicePreview3> list = this.invoiceItems;
         int iHashCode2 = (i + (list != null ? list.hashCode() : 0)) * 31;
         String str2 = this.subscriptionPeriodEnd;
         int iHashCode3 = (iHashCode2 + (str2 != null ? str2.hashCode() : 0)) * 31;
@@ -163,7 +163,7 @@ public final /* data */ class ModelInvoicePreview {
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("ModelInvoicePreview(currency=");
+        StringBuilder sbU = outline.U("ModelInvoicePreview(currency=");
         sbU.append(this.currency);
         sbU.append(", id=");
         sbU.append(this.id);
@@ -180,6 +180,6 @@ public final /* data */ class ModelInvoicePreview {
         sbU.append(", taxInclusive=");
         sbU.append(this.taxInclusive);
         sbU.append(", total=");
-        return a.B(sbU, this.total, ")");
+        return outline.B(sbU, this.total, ")");
     }
 }

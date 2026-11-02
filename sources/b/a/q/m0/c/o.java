@@ -2,6 +2,7 @@ package b.a.q.m0.c;
 
 import com.discord.rtcconnection.mediaengine.MediaEngine;
 import com.hammerandchisel.libdiscord.Discord;
+import d0.z.d.Intrinsics3;
 import rx.Emitter;
 
 /* JADX INFO: compiled from: MediaEngineLegacy.kt */
@@ -15,8 +16,8 @@ public final class o implements Discord.GetAudioSubsystemCallback {
 
     @Override // com.hammerandchisel.libdiscord.Discord.GetAudioSubsystemCallback
     public final void onAudioSubsystem(String str, String str2) {
-        d0.z.d.m.checkNotNullParameter(str, "audioSubsystem");
-        d0.z.d.m.checkNotNullParameter(str2, "audioLayer");
+        Intrinsics3.checkNotNullParameter(str, "audioSubsystem");
+        Intrinsics3.checkNotNullParameter(str2, "audioLayer");
         this.a.onNext(new MediaEngine.AudioInfo(str, str2));
         this.a.onCompleted();
     }

@@ -1,27 +1,27 @@
 package com.discord.api.bugreport;
 
-import b.d.b.a.a;
-import d0.z.d.m;
+import b.d.b.a.outline;
+import d0.z.d.Intrinsics3;
 import java.util.List;
 
 /* JADX INFO: compiled from: BugReportConfig.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class BugReportConfig {
-    private final List<Feature> features;
+    private final List<BugReportConfig2> features;
 
-    public final List<Feature> a() {
+    public final List<BugReportConfig2> a() {
         return this.features;
     }
 
     public boolean equals(Object other) {
         if (this != other) {
-            return (other instanceof BugReportConfig) && m.areEqual(this.features, ((BugReportConfig) other).features);
+            return (other instanceof BugReportConfig) && Intrinsics3.areEqual(this.features, ((BugReportConfig) other).features);
         }
         return true;
     }
 
     public int hashCode() {
-        List<Feature> list = this.features;
+        List<BugReportConfig2> list = this.features;
         if (list != null) {
             return list.hashCode();
         }
@@ -29,6 +29,6 @@ public final /* data */ class BugReportConfig {
     }
 
     public String toString() {
-        return a.L(a.U("BugReportConfig(features="), this.features, ")");
+        return outline.L(outline.U("BugReportConfig(features="), this.features, ")");
     }
 }

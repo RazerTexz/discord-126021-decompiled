@@ -1,7 +1,7 @@
 package androidx.constraintlayout.solver;
 
 import androidx.exifinterface.media.ExifInterface;
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import java.util.Arrays;
 import java.util.HashSet;
 
@@ -136,34 +136,34 @@ public class SolverVariable {
 
     private static String getUniqueName(Type type, String str) {
         if (str != null) {
-            StringBuilder sbU = a.U(str);
+            StringBuilder sbU = outline.U(str);
             sbU.append(uniqueErrorId);
             return sbU.toString();
         }
         int iOrdinal = type.ordinal();
         if (iOrdinal == 0) {
-            StringBuilder sbU2 = a.U("U");
+            StringBuilder sbU2 = outline.U("U");
             int i = uniqueUnrestrictedId + 1;
             uniqueUnrestrictedId = i;
             sbU2.append(i);
             return sbU2.toString();
         }
         if (iOrdinal == 1) {
-            StringBuilder sbU3 = a.U("C");
+            StringBuilder sbU3 = outline.U("C");
             int i2 = uniqueConstantId + 1;
             uniqueConstantId = i2;
             sbU3.append(i2);
             return sbU3.toString();
         }
         if (iOrdinal == 2) {
-            StringBuilder sbU4 = a.U(ExifInterface.LATITUDE_SOUTH);
+            StringBuilder sbU4 = outline.U(ExifInterface.LATITUDE_SOUTH);
             int i3 = uniqueSlackId + 1;
             uniqueSlackId = i3;
             sbU4.append(i3);
             return sbU4.toString();
         }
         if (iOrdinal == 3) {
-            StringBuilder sbU5 = a.U("e");
+            StringBuilder sbU5 = outline.U("e");
             int i4 = uniqueErrorId + 1;
             uniqueErrorId = i4;
             sbU5.append(i4);
@@ -172,7 +172,7 @@ public class SolverVariable {
         if (iOrdinal != 4) {
             throw new AssertionError(type.name());
         }
-        StringBuilder sbU6 = a.U(ExifInterface.GPS_MEASUREMENT_INTERRUPTED);
+        StringBuilder sbU6 = outline.U(ExifInterface.GPS_MEASUREMENT_INTERRUPTED);
         int i5 = uniqueId + 1;
         uniqueId = i5;
         sbU6.append(i5);
@@ -263,7 +263,7 @@ public class SolverVariable {
         boolean z2 = false;
         boolean z3 = true;
         while (i < this.strengthVector.length) {
-            StringBuilder sbU = a.U(strW);
+            StringBuilder sbU = outline.U(strW);
             sbU.append(this.strengthVector[i]);
             String string = sbU.toString();
             float[] fArr = this.strengthVector;
@@ -275,22 +275,22 @@ public class SolverVariable {
             if (fArr[i] != 0.0f) {
                 z3 = false;
             }
-            strW = i < fArr.length + (-1) ? a.w(string, ", ") : a.w(string, "] ");
+            strW = i < fArr.length + (-1) ? outline.w(string, ", ") : outline.w(string, "] ");
             i++;
         }
         if (z2) {
-            strW = a.w(strW, " (-)");
+            strW = outline.w(strW, " (-)");
         }
-        return z3 ? a.w(strW, " (*)") : strW;
+        return z3 ? outline.w(strW, " (*)") : strW;
     }
 
     public String toString() {
         if (this.mName != null) {
-            StringBuilder sbU = a.U("");
+            StringBuilder sbU = outline.U("");
             sbU.append(this.mName);
             return sbU.toString();
         }
-        StringBuilder sbU2 = a.U("");
+        StringBuilder sbU2 = outline.U("");
         sbU2.append(this.f30id);
         return sbU2.toString();
     }

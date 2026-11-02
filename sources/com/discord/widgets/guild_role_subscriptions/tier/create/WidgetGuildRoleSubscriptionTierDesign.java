@@ -10,12 +10,12 @@ import android.widget.TextView;
 import androidx.annotation.ColorInt;
 import androidx.core.app.NotificationCompat;
 import androidx.core.content.ContextCompat;
-import androidx.core.os.BundleKt;
+import androidx.core.os.Bundle2;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentViewModelLazyKt;
-import b.a.d.f0;
-import b.d.b.a.a;
+import b.a.d.AppViewModelDelegates2;
+import b.d.b.a.outline;
 import com.discord.R;
 import com.discord.app.AppFragment;
 import com.discord.databinding.WidgetGuildRoleSubscriptionTierDesignBinding;
@@ -25,15 +25,16 @@ import com.discord.utilities.dimen.DimenUtils;
 import com.discord.utilities.images.MGImages;
 import com.discord.utilities.rx.ObservableExtensionsKt;
 import com.discord.utilities.viewbinding.FragmentViewBindingDelegate;
-import com.discord.utilities.viewbinding.FragmentViewBindingDelegateKt;
-import com.discord.widgets.chat.input.MentionUtilsKt;
+import com.discord.utilities.viewbinding.FragmentViewBindingDelegate3;
+import com.discord.widgets.chat.input.MentionUtils;
 import com.discord.widgets.guild_role_subscriptions.tier.model.GuildRoleSubscriptionTier;
 import com.jaredrummler.android.colorpicker.ColorPickerDialog;
-import d0.g;
-import d0.z.d.a0;
-import d0.z.d.m;
-import d0.z.d.o;
-import f0.e0.c;
+import d0.LazyJVM;
+import d0.Tuples;
+import d0.z.d.Intrinsics3;
+import d0.z.d.Lambda;
+import d0.z.d.Reflection2;
+import f0.e0.Util7;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Objects;
 import kotlin.Lazy;
@@ -47,7 +48,7 @@ import rx.functions.Action1;
 /* JADX INFO: compiled from: WidgetGuildRoleSubscriptionTierDesign.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetGuildRoleSubscriptionTierDesign extends AppFragment {
-    public static final /* synthetic */ KProperty[] $$delegatedProperties = {a.d0(WidgetGuildRoleSubscriptionTierDesign.class, "binding", "getBinding()Lcom/discord/databinding/WidgetGuildRoleSubscriptionTierDesignBinding;", 0)};
+    public static final /* synthetic */ KProperty[] $$delegatedProperties = {outline.d0(WidgetGuildRoleSubscriptionTierDesign.class, "binding", "getBinding()Lcom/discord/databinding/WidgetGuildRoleSubscriptionTierDesignBinding;", 0)};
     private static final String DIALOG_TAG_COLOR_PICKER = "DIALOG_TAG_COLOR_PICKER";
 
     /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
@@ -69,7 +70,7 @@ public final class WidgetGuildRoleSubscriptionTierDesign extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.guild_role_subscriptions.tier.create.WidgetGuildRoleSubscriptionTierDesign$onViewBound$1, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetGuildRoleSubscriptionTierDesign.kt */
-    public final class AnonymousClass1 extends o implements Function0<Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function0<Unit> {
         public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
 
         public AnonymousClass1() {
@@ -89,7 +90,7 @@ public final class WidgetGuildRoleSubscriptionTierDesign extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.guild_role_subscriptions.tier.create.WidgetGuildRoleSubscriptionTierDesign$onViewBoundOrOnResume$1, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetGuildRoleSubscriptionTierDesign.kt */
-    public final class AnonymousClass1 extends o implements Function1<GuildRoleSubscriptionTierViewModel.ViewState, Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function1<GuildRoleSubscriptionTierViewModel.ViewState, Unit> {
         public AnonymousClass1() {
             super(1);
         }
@@ -102,14 +103,14 @@ public final class WidgetGuildRoleSubscriptionTierDesign extends AppFragment {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(GuildRoleSubscriptionTierViewModel.ViewState viewState) {
-            m.checkNotNullParameter(viewState, "it");
+            Intrinsics3.checkNotNullParameter(viewState, "it");
             WidgetGuildRoleSubscriptionTierDesign.access$configureUI(WidgetGuildRoleSubscriptionTierDesign.this, viewState);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.widgets.guild_role_subscriptions.tier.create.WidgetGuildRoleSubscriptionTierDesign$onViewBound$2, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetGuildRoleSubscriptionTierDesign.kt */
-    public final class AnonymousClass2 extends o implements Function0<Unit> {
+    public final class AnonymousClass2 extends Lambda implements Function0<Unit> {
         public AnonymousClass2() {
             super(0);
         }
@@ -155,7 +156,7 @@ public final class WidgetGuildRoleSubscriptionTierDesign extends AppFragment {
 
         public final WidgetGuildRoleSubscriptionTierDesign newInstance(boolean hideHeader) {
             WidgetGuildRoleSubscriptionTierDesign widgetGuildRoleSubscriptionTierDesign = new WidgetGuildRoleSubscriptionTierDesign();
-            widgetGuildRoleSubscriptionTierDesign.setArguments(BundleKt.bundleOf(d0.o.to(WidgetGuildRoleSubscriptionTierDesign.INTENT_EXTRA_HIDE_HEADER, Boolean.valueOf(hideHeader))));
+            widgetGuildRoleSubscriptionTierDesign.setArguments(Bundle2.bundleOf(Tuples.to(WidgetGuildRoleSubscriptionTierDesign.INTENT_EXTRA_HIDE_HEADER, Boolean.valueOf(hideHeader))));
             return widgetGuildRoleSubscriptionTierDesign;
         }
 
@@ -166,11 +167,11 @@ public final class WidgetGuildRoleSubscriptionTierDesign extends AppFragment {
 
     public WidgetGuildRoleSubscriptionTierDesign() {
         super(R.layout.widget_guild_role_subscription_tier_design);
-        this.binding = FragmentViewBindingDelegateKt.viewBinding$default(this, WidgetGuildRoleSubscriptionTierDesign$binding$2.INSTANCE, null, 2, null);
-        this.viewModel = FragmentViewModelLazyKt.createViewModelLazy(this, a0.getOrCreateKotlinClass(GuildRoleSubscriptionTierViewModel.class), new WidgetGuildRoleSubscriptionTierDesign$appActivityViewModels$$inlined$activityViewModels$1(this), new f0(WidgetGuildRoleSubscriptionTierDesign$viewModel$2.INSTANCE));
-        this.hideHeader = g.lazy(new WidgetGuildRoleSubscriptionTierDesign$hideHeader$2(this));
-        this.memberBadgeImageSelectedResult = new WidgetGuildRoleSubscriptionTierDesign$memberBadgeImageSelectedResult$1(this);
-        this.defaultColor = g.lazy(new WidgetGuildRoleSubscriptionTierDesign$defaultColor$2(this));
+        this.binding = FragmentViewBindingDelegate3.viewBinding$default(this, WidgetGuildRoleSubscriptionTierDesign2.INSTANCE, null, 2, null);
+        this.viewModel = FragmentViewModelLazyKt.createViewModelLazy(this, Reflection2.getOrCreateKotlinClass(GuildRoleSubscriptionTierViewModel.class), new WidgetGuildRoleSubscriptionTierDesign$appActivityViewModels$$inlined$activityViewModels$1(this), new AppViewModelDelegates2(WidgetGuildRoleSubscriptionTierDesign7.INSTANCE));
+        this.hideHeader = LazyJVM.lazy(new WidgetGuildRoleSubscriptionTierDesign4(this));
+        this.memberBadgeImageSelectedResult = new WidgetGuildRoleSubscriptionTierDesign6(this);
+        this.defaultColor = LazyJVM.lazy(new WidgetGuildRoleSubscriptionTierDesign3(this));
     }
 
     public static final /* synthetic */ void access$configureUI(WidgetGuildRoleSubscriptionTierDesign widgetGuildRoleSubscriptionTierDesign, GuildRoleSubscriptionTierViewModel.ViewState viewState) {
@@ -213,43 +214,43 @@ public final class WidgetGuildRoleSubscriptionTierDesign extends AppFragment {
 
     private final void launchColorPicker(@ColorInt int currentColor) {
         ColorPickerDialog colorPickerDialogBuildColorPickerDialog = ColorPickerUtils.INSTANCE.buildColorPickerDialog(requireContext(), R.string.guild_role_subscription_tier_design_member_color_label, currentColor);
-        colorPickerDialogBuildColorPickerDialog.k = new WidgetGuildRoleSubscriptionTierDesign$launchColorPicker$$inlined$apply$lambda$1(this);
+        colorPickerDialogBuildColorPickerDialog.k = new WidgetGuildRoleSubscriptionTierDesign5(this);
         colorPickerDialogBuildColorPickerDialog.show(getParentFragmentManager(), DIALOG_TAG_COLOR_PICKER);
     }
 
     @Override // com.discord.app.AppFragment
     public void onImageChosen(Uri uri, String mimeType) {
-        m.checkNotNullParameter(uri, NotificationCompat.MessagingStyle.Message.KEY_DATA_URI);
-        m.checkNotNullParameter(mimeType, "mimeType");
+        Intrinsics3.checkNotNullParameter(uri, NotificationCompat.MessagingStyle.Message.KEY_DATA_URI);
+        Intrinsics3.checkNotNullParameter(mimeType, "mimeType");
         super.onImageChosen(uri, mimeType);
         FragmentManager parentFragmentManager = getParentFragmentManager();
-        m.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
+        Intrinsics3.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
         MGImages.prepareImageUpload(uri, mimeType, parentFragmentManager, this, this.memberBadgeImageSelectedResult, ImageUploadDialog.PreviewType.GUILD_SUBSCRIPTION_ROLE_AVATAR);
     }
 
     @Override // com.discord.app.AppFragment
     public void onImageCropped(Uri uri, String mimeType) throws IllegalAccessException, InvocationTargetException {
-        m.checkNotNullParameter(uri, NotificationCompat.MessagingStyle.Message.KEY_DATA_URI);
-        m.checkNotNullParameter(mimeType, "mimeType");
+        Intrinsics3.checkNotNullParameter(uri, NotificationCompat.MessagingStyle.Message.KEY_DATA_URI);
+        Intrinsics3.checkNotNullParameter(mimeType, "mimeType");
         super.onImageCropped(uri, mimeType);
         MGImages.requestDataUrl(getContext(), uri, mimeType, this.memberBadgeImageSelectedResult);
     }
 
     @Override // com.discord.app.AppFragment
     public void onViewBound(View view) {
-        m.checkNotNullParameter(view, "view");
+        Intrinsics3.checkNotNullParameter(view, "view");
         super.onViewBound(view);
         getBinding().g.configureUI(AnonymousClass1.INSTANCE, new AnonymousClass2());
         getViewModel().setDefaultMemberColor(getDefaultColor());
         TextView textView = getBinding().f;
-        m.checkNotNullExpressionValue(textView, "binding.guildRoleSubscriptionTierAppearanceTitle");
+        Intrinsics3.checkNotNullExpressionValue(textView, "binding.guildRoleSubscriptionTierAppearanceTitle");
         textView.setVisibility(getHideHeader() ^ true ? 0 : 8);
         if (getHideHeader()) {
             getBinding().e.setPadding(0, DimenUtils.dpToPixels(16), 0, 0);
             return;
         }
         TextView textView2 = getBinding().e;
-        m.checkNotNullExpressionValue(textView2, "binding.guildRoleSubscri…ionTierAppearanceSubtitle");
+        Intrinsics3.checkNotNullExpressionValue(textView2, "binding.guildRoleSubscri…ionTierAppearanceSubtitle");
         textView2.setPadding(0, 0, 0, 0);
     }
 
@@ -261,7 +262,7 @@ public final class WidgetGuildRoleSubscriptionTierDesign extends AppFragment {
 
     private final void setupMemberColor(@ColorInt int currentColor) {
         View view = getBinding().f2440b;
-        m.checkNotNullExpressionValue(view, "binding.guildRoleSubscriptionTierAppearanceColor");
+        Intrinsics3.checkNotNullExpressionValue(view, "binding.guildRoleSubscriptionTierAppearanceColor");
         Drawable drawable = ContextCompat.getDrawable(requireContext(), R.drawable.rounded_rectangle_4dp_radius);
         if (drawable != null) {
             drawable.mutate();
@@ -275,13 +276,13 @@ public final class WidgetGuildRoleSubscriptionTierDesign extends AppFragment {
         view.setBackground(drawable);
         getBinding().c.setOnClickListener(new AnonymousClass2(currentColor));
         TextView textView = getBinding().d;
-        m.checkNotNullExpressionValue(textView, "binding.guildRoleSubscri…onTierAppearanceColorText");
+        Intrinsics3.checkNotNullExpressionValue(textView, "binding.guildRoleSubscri…onTierAppearanceColorText");
         StringBuilder sb = new StringBuilder();
-        sb.append(MentionUtilsKt.CHANNELS_CHAR);
-        String strX = c.x(currentColor);
+        sb.append(MentionUtils.CHANNELS_CHAR);
+        String strX = Util7.x(currentColor);
         Objects.requireNonNull(strX, "null cannot be cast to non-null type java.lang.String");
         String strSubstring = strX.substring(2);
-        m.checkNotNullExpressionValue(strSubstring, "(this as java.lang.String).substring(startIndex)");
+        Intrinsics3.checkNotNullExpressionValue(strSubstring, "(this as java.lang.String).substring(startIndex)");
         sb.append(strSubstring);
         textView.setText(sb.toString());
     }

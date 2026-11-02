@@ -3,6 +3,7 @@ package b.i.c.k.d;
 import android.os.Bundle;
 import android.os.Parcel;
 import android.os.Parcelable;
+import b.c.a.a0.AnimatableValueParser;
 import com.google.firebase.appindexing.internal.zza;
 import com.google.firebase.appindexing.internal.zzc;
 
@@ -11,7 +12,7 @@ import com.google.firebase.appindexing.internal.zzc;
 public final class a implements Parcelable.Creator<zza> {
     @Override // android.os.Parcelable.Creator
     public final zza createFromParcel(Parcel parcel) {
-        int iM2 = b.c.a.a0.d.m2(parcel);
+        int iM2 = AnimatableValueParser.m2(parcel);
         String strR = null;
         String strR2 = null;
         String strR3 = null;
@@ -23,32 +24,32 @@ public final class a implements Parcelable.Creator<zza> {
             int i = parcel.readInt();
             switch ((char) i) {
                 case 1:
-                    strR = b.c.a.a0.d.R(parcel, i);
+                    strR = AnimatableValueParser.R(parcel, i);
                     break;
                 case 2:
-                    strR2 = b.c.a.a0.d.R(parcel, i);
+                    strR2 = AnimatableValueParser.R(parcel, i);
                     break;
                 case 3:
-                    strR3 = b.c.a.a0.d.R(parcel, i);
+                    strR3 = AnimatableValueParser.R(parcel, i);
                     break;
                 case 4:
-                    strR4 = b.c.a.a0.d.R(parcel, i);
+                    strR4 = AnimatableValueParser.R(parcel, i);
                     break;
                 case 5:
-                    zzcVar = (zzc) b.c.a.a0.d.Q(parcel, i, zzc.CREATOR);
+                    zzcVar = (zzc) AnimatableValueParser.Q(parcel, i, zzc.CREATOR);
                     break;
                 case 6:
-                    strR5 = b.c.a.a0.d.R(parcel, i);
+                    strR5 = AnimatableValueParser.R(parcel, i);
                     break;
                 case 7:
-                    bundleM = b.c.a.a0.d.M(parcel, i);
+                    bundleM = AnimatableValueParser.M(parcel, i);
                     break;
                 default:
-                    b.c.a.a0.d.d2(parcel, i);
+                    AnimatableValueParser.d2(parcel, i);
                     break;
             }
         }
-        b.c.a.a0.d.f0(parcel, iM2);
+        AnimatableValueParser.f0(parcel, iM2);
         return new zza(strR, strR2, strR3, strR4, zzcVar, strR5, bundleM);
     }
 

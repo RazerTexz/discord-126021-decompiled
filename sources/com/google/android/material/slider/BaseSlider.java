@@ -44,6 +44,7 @@ import androidx.core.math.MathUtils;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.accessibility.AccessibilityNodeInfoCompat;
 import androidx.customview.widget.ExploreByTouchHelper;
+import b.d.b.a.outline;
 import com.google.android.material.R;
 import com.google.android.material.animation.AnimationUtils;
 import com.google.android.material.drawable.DrawableUtils;
@@ -500,7 +501,7 @@ public abstract class BaseSlider<S extends BaseSlider<S, L, T>, L extends BaseOn
         }
         float f3 = (f2 - this.trackSidePadding) / this.trackWidth;
         float f4 = this.valueFrom;
-        return b.d.b.a.a.a(f4, this.valueTo, f3, f4);
+        return outline.a(f4, this.valueTo, f3, f4);
     }
 
     @Override // android.view.View
@@ -831,7 +832,7 @@ public abstract class BaseSlider<S extends BaseSlider<S, L, T>, L extends BaseOn
         }
         float f3 = this.valueTo;
         float f4 = this.valueFrom;
-        return b.d.b.a.a.a(f3, f4, f2, f4);
+        return outline.a(f3, f4, f2, f4);
     }
 
     public float getValueTo() {

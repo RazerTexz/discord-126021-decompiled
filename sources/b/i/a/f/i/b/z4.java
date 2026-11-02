@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import androidx.annotation.BinderThread;
 import androidx.annotation.Nullable;
+import b.c.a.a0.AnimatableValueParser;
 import com.google.android.gms.measurement.internal.zzaq;
 import com.google.android.gms.measurement.internal.zzku;
 import com.google.android.gms.measurement.internal.zzn;
@@ -139,8 +140,8 @@ public final class z4 extends l3 {
 
     @Override // b.i.a.f.i.b.i3
     @BinderThread
-    public final byte[] j(zzaq zzaqVar, String str) {
-        b.c.a.a0.d.w(str);
+    public final byte[] j(zzaq zzaqVar, String str) throws ExecutionException, InterruptedException {
+        AnimatableValueParser.w(str);
         Objects.requireNonNull(zzaqVar, "null reference");
         t0(str, true);
         this.a.g().m.b("Log and bundle. event", this.a.O().u(zzaqVar.j));
@@ -182,7 +183,7 @@ public final class z4 extends l3 {
     @BinderThread
     public final void m(zzn zznVar) throws Throwable {
         if (b.i.a.f.h.l.t8.b() && this.a.k.h.o(p.J0)) {
-            b.c.a.a0.d.w(zznVar.j);
+            AnimatableValueParser.w(zznVar.j);
             Objects.requireNonNull(zznVar.F, "null reference");
             k5 k5Var = new k5(this, zznVar);
             if (this.a.f().y()) {
@@ -256,7 +257,7 @@ public final class z4 extends l3 {
 
     @Override // b.i.a.f.i.b.i3
     @BinderThread
-    public final List<zzku> u(String str, String str2, String str3, boolean z2) {
+    public final List<zzku> u(String str, String str2, String str3, boolean z2) throws ExecutionException, InterruptedException {
         t0(str, true);
         try {
             List<u9> list = (List) ((FutureTask) this.a.f().t(new g5(this, str, str2, str3))).get();

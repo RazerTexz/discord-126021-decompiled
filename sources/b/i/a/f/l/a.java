@@ -1,6 +1,7 @@
 package b.i.a.f.l;
 
 import androidx.annotation.Nullable;
+import b.c.a.a0.AnimatableValueParser;
 import java.util.Arrays;
 import java.util.Objects;
 
@@ -17,7 +18,7 @@ public final class a implements b.i.a.f.e.h.a.d {
             return false;
         }
         Objects.requireNonNull((a) obj);
-        return b.c.a.a0.d.h0(null, null) && b.c.a.a0.d.h0(null, null) && b.c.a.a0.d.h0(null, null) && b.c.a.a0.d.h0(null, null) && b.c.a.a0.d.h0(null, null);
+        return AnimatableValueParser.h0(null, null) && AnimatableValueParser.h0(null, null) && AnimatableValueParser.h0(null, null) && AnimatableValueParser.h0(null, null) && AnimatableValueParser.h0(null, null);
     }
 
     public final int hashCode() {

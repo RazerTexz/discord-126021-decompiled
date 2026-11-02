@@ -1,14 +1,14 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackAccountDeletionInitiated.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackAccountDeletionInitiated implements AnalyticsSchema, TrackBaseReceiver {
+public final /* data */ class TrackAccountDeletionInitiated implements AnalyticsSchema, TrackBase2 {
     private final CharSequence initiatedBy = null;
     private final Long reasonCode = null;
     private TrackBase trackBase;
@@ -22,7 +22,7 @@ public final /* data */ class TrackAccountDeletionInitiated implements Analytics
             return false;
         }
         TrackAccountDeletionInitiated trackAccountDeletionInitiated = (TrackAccountDeletionInitiated) other;
-        return m.areEqual(this.initiatedBy, trackAccountDeletionInitiated.initiatedBy) && m.areEqual(this.reasonCode, trackAccountDeletionInitiated.reasonCode);
+        return Intrinsics3.areEqual(this.initiatedBy, trackAccountDeletionInitiated.initiatedBy) && Intrinsics3.areEqual(this.reasonCode, trackAccountDeletionInitiated.reasonCode);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -39,9 +39,9 @@ public final /* data */ class TrackAccountDeletionInitiated implements Analytics
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackAccountDeletionInitiated(initiatedBy=");
+        StringBuilder sbU = outline.U("TrackAccountDeletionInitiated(initiatedBy=");
         sbU.append(this.initiatedBy);
         sbU.append(", reasonCode=");
-        return a.G(sbU, this.reasonCode, ")");
+        return outline.G(sbU, this.reasonCode, ")");
     }
 }

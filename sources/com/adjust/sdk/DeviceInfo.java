@@ -10,7 +10,7 @@ import android.os.Build;
 import android.util.DisplayMetrics;
 import androidx.core.app.NotificationCompat;
 import androidx.vectordrawable.graphics.drawable.PathInterpolatorCompat;
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import java.util.Date;
 import java.util.Locale;
 
@@ -85,7 +85,7 @@ public class DeviceInfo {
     }
 
     private String getApiLevel() {
-        StringBuilder sbU = a.U("");
+        StringBuilder sbU = outline.U("");
         sbU.append(Build.VERSION.SDK_INT);
         return sbU.toString();
     }

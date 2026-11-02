@@ -5,7 +5,7 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.R;
 import com.discord.databinding.PaymentMethodListItemBinding;
 import com.discord.models.domain.ModelAuditLogEntry;
@@ -14,7 +14,7 @@ import com.discord.utilities.mg_recycler.MGRecyclerAdapterSimple;
 import com.discord.utilities.mg_recycler.MGRecyclerDataPayload;
 import com.discord.utilities.mg_recycler.MGRecyclerViewHolder;
 import com.google.android.material.button.MaterialButton;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 import java.util.Objects;
 import kotlin.NoWhenBranchMatchedException;
 import kotlin.Unit;
@@ -39,7 +39,7 @@ public final class PaymentSourceAdapter extends MGRecyclerAdapterSimple<Item> {
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
         public PaymentSourceAddViewHolder(PaymentSourceAdapter paymentSourceAdapter) {
             super(R.layout.payment_method_list_add_item, paymentSourceAdapter);
-            m.checkNotNullParameter(paymentSourceAdapter, "adapter");
+            Intrinsics3.checkNotNullParameter(paymentSourceAdapter, "adapter");
         }
 
         public static final /* synthetic */ PaymentSourceAdapter access$getAdapter$p(PaymentSourceAddViewHolder paymentSourceAddViewHolder) {
@@ -53,8 +53,8 @@ public final class PaymentSourceAdapter extends MGRecyclerAdapterSimple<Item> {
 
         /* JADX INFO: renamed from: onConfigure, reason: avoid collision after fix types in other method */
         public void onConfigure2(int position, Item data) {
-            m.checkNotNullParameter(data, "data");
-            this.itemView.setOnClickListener(new PaymentSourceAdapter$PaymentSourceAddViewHolder$onConfigure$1(this));
+            Intrinsics3.checkNotNullParameter(data, "data");
+            this.itemView.setOnClickListener(new PaymentSourceAdapter2(this));
         }
     }
 
@@ -71,7 +71,7 @@ public final class PaymentSourceAdapter extends MGRecyclerAdapterSimple<Item> {
         }
 
         public PaymentSourceHeader(Type type) {
-            m.checkNotNullParameter(type, "headerType");
+            Intrinsics3.checkNotNullParameter(type, "headerType");
             this.headerType = type;
             this.type = 2;
             this.key = "headerType" + type;
@@ -85,13 +85,13 @@ public final class PaymentSourceAdapter extends MGRecyclerAdapterSimple<Item> {
         }
 
         public final PaymentSourceHeader copy(Type headerType) {
-            m.checkNotNullParameter(headerType, "headerType");
+            Intrinsics3.checkNotNullParameter(headerType, "headerType");
             return new PaymentSourceHeader(headerType);
         }
 
         public boolean equals(Object other) {
             if (this != other) {
-                return (other instanceof PaymentSourceHeader) && m.areEqual(this.headerType, ((PaymentSourceHeader) other).headerType);
+                return (other instanceof PaymentSourceHeader) && Intrinsics3.areEqual(this.headerType, ((PaymentSourceHeader) other).headerType);
             }
             return true;
         }
@@ -124,7 +124,7 @@ public final class PaymentSourceAdapter extends MGRecyclerAdapterSimple<Item> {
         }
 
         public String toString() {
-            StringBuilder sbU = a.U("PaymentSourceHeader(headerType=");
+            StringBuilder sbU = outline.U("PaymentSourceHeader(headerType=");
             sbU.append(this.headerType);
             sbU.append(")");
             return sbU.toString();
@@ -149,7 +149,7 @@ public final class PaymentSourceAdapter extends MGRecyclerAdapterSimple<Item> {
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
         public PaymentSourceHeaderViewHolder(PaymentSourceAdapter paymentSourceAdapter) {
             super(R.layout.payment_method_list_header, paymentSourceAdapter);
-            m.checkNotNullParameter(paymentSourceAdapter, "adapter");
+            Intrinsics3.checkNotNullParameter(paymentSourceAdapter, "adapter");
         }
 
         @Override // com.discord.utilities.mg_recycler.MGRecyclerViewHolder
@@ -160,7 +160,7 @@ public final class PaymentSourceAdapter extends MGRecyclerAdapterSimple<Item> {
         /* JADX INFO: renamed from: onConfigure, reason: avoid collision after fix types in other method */
         public void onConfigure2(int position, Item data) {
             int i;
-            m.checkNotNullParameter(data, "data");
+            Intrinsics3.checkNotNullParameter(data, "data");
             View view = this.itemView;
             Objects.requireNonNull(view, "null cannot be cast to non-null type android.widget.TextView");
             TextView textView = (TextView) view;
@@ -185,7 +185,7 @@ public final class PaymentSourceAdapter extends MGRecyclerAdapterSimple<Item> {
         private final int type;
 
         public PaymentSourceItem(ModelPaymentSource modelPaymentSource, boolean z2) {
-            m.checkNotNullParameter(modelPaymentSource, "paymentSource");
+            Intrinsics3.checkNotNullParameter(modelPaymentSource, "paymentSource");
             this.paymentSource = modelPaymentSource;
             this.isPremium = z2;
             this.key = modelPaymentSource.getId();
@@ -202,7 +202,7 @@ public final class PaymentSourceAdapter extends MGRecyclerAdapterSimple<Item> {
         }
 
         public final PaymentSourceItem copy(ModelPaymentSource paymentSource, boolean isPremium) {
-            m.checkNotNullParameter(paymentSource, "paymentSource");
+            Intrinsics3.checkNotNullParameter(paymentSource, "paymentSource");
             return new PaymentSourceItem(paymentSource, isPremium);
         }
 
@@ -214,7 +214,7 @@ public final class PaymentSourceAdapter extends MGRecyclerAdapterSimple<Item> {
                 return false;
             }
             PaymentSourceItem paymentSourceItem = (PaymentSourceItem) other;
-            return m.areEqual(this.paymentSource, paymentSourceItem.paymentSource) && this.isPremium == paymentSourceItem.isPremium;
+            return Intrinsics3.areEqual(this.paymentSource, paymentSourceItem.paymentSource) && this.isPremium == paymentSourceItem.isPremium;
         }
 
         /* JADX INFO: renamed from: component2, reason: from getter */
@@ -262,10 +262,10 @@ public final class PaymentSourceAdapter extends MGRecyclerAdapterSimple<Item> {
         }
 
         public String toString() {
-            StringBuilder sbU = a.U("PaymentSourceItem(paymentSource=");
+            StringBuilder sbU = outline.U("PaymentSourceItem(paymentSource=");
             sbU.append(this.paymentSource);
             sbU.append(", isPremium=");
-            return a.O(sbU, this.isPremium, ")");
+            return outline.O(sbU, this.isPremium, ")");
         }
     }
 
@@ -276,7 +276,7 @@ public final class PaymentSourceAdapter extends MGRecyclerAdapterSimple<Item> {
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
         public PaymentSourceItemViewHolder(PaymentSourceAdapter paymentSourceAdapter) {
             super(R.layout.payment_method_list_item, paymentSourceAdapter);
-            m.checkNotNullParameter(paymentSourceAdapter, "adapter");
+            Intrinsics3.checkNotNullParameter(paymentSourceAdapter, "adapter");
             View view = this.itemView;
             int i = R.id.payment_method_edit;
             MaterialButton materialButton = (MaterialButton) view.findViewById(R.id.payment_method_edit);
@@ -285,7 +285,7 @@ public final class PaymentSourceAdapter extends MGRecyclerAdapterSimple<Item> {
                 PaymentSourceView paymentSourceView = (PaymentSourceView) view.findViewById(R.id.payment_method_summary);
                 if (paymentSourceView != null) {
                     PaymentMethodListItemBinding paymentMethodListItemBinding = new PaymentMethodListItemBinding((RelativeLayout) view, materialButton, paymentSourceView);
-                    m.checkNotNullExpressionValue(paymentMethodListItemBinding, "PaymentMethodListItemBinding.bind(itemView)");
+                    Intrinsics3.checkNotNullExpressionValue(paymentMethodListItemBinding, "PaymentMethodListItemBinding.bind(itemView)");
                     this.binding = paymentMethodListItemBinding;
                     return;
                 }
@@ -304,11 +304,11 @@ public final class PaymentSourceAdapter extends MGRecyclerAdapterSimple<Item> {
 
         /* JADX INFO: renamed from: onConfigure, reason: avoid collision after fix types in other method */
         public void onConfigure2(int position, Item data) {
-            m.checkNotNullParameter(data, "data");
+            Intrinsics3.checkNotNullParameter(data, "data");
             PaymentSourceItem paymentSourceItem = (PaymentSourceItem) data;
             ModelPaymentSource paymentSource = paymentSourceItem.getPaymentSource();
             this.binding.c.bind(paymentSource, paymentSourceItem.isPremium());
-            this.binding.f2134b.setOnClickListener(new PaymentSourceAdapter$PaymentSourceItemViewHolder$onConfigure$1(this, paymentSource));
+            this.binding.f2134b.setOnClickListener(new PaymentSourceAdapter3(this, paymentSource));
         }
     }
 
@@ -316,9 +316,9 @@ public final class PaymentSourceAdapter extends MGRecyclerAdapterSimple<Item> {
     /* JADX WARN: Multi-variable type inference failed */
     public PaymentSourceAdapter(RecyclerView recyclerView, Function0<Unit> function0, Function1<? super ModelPaymentSource, Unit> function1) {
         super(recyclerView, false, 2, null);
-        m.checkNotNullParameter(recyclerView, "recycler");
-        m.checkNotNullParameter(function0, "onAddClick");
-        m.checkNotNullParameter(function1, "onEditPaymentSource");
+        Intrinsics3.checkNotNullParameter(recyclerView, "recycler");
+        Intrinsics3.checkNotNullParameter(function0, "onAddClick");
+        Intrinsics3.checkNotNullParameter(function1, "onEditPaymentSource");
         this.onAddClick = function0;
         this.onEditPaymentSource = function1;
     }
@@ -354,7 +354,7 @@ public final class PaymentSourceAdapter extends MGRecyclerAdapterSimple<Item> {
 
     @Override // androidx.recyclerview.widget.RecyclerView.Adapter
     public MGRecyclerViewHolder<?, Item> onCreateViewHolder(ViewGroup parent, int viewType) {
-        m.checkNotNullParameter(parent, "parent");
+        Intrinsics3.checkNotNullParameter(parent, "parent");
         if (viewType == 0) {
             return new PaymentSourceItemViewHolder(this);
         }
@@ -364,6 +364,6 @@ public final class PaymentSourceAdapter extends MGRecyclerAdapterSimple<Item> {
         if (viewType == 2) {
             return new PaymentSourceHeaderViewHolder(this);
         }
-        throw new IllegalArgumentException(a.q("unknown type ", viewType));
+        throw new IllegalArgumentException(outline.q("unknown type ", viewType));
     }
 }

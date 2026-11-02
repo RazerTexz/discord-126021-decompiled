@@ -1,8 +1,8 @@
 package com.discord.widgets.directories;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.api.directory.DirectoryEntryGuild;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: WidgetDirectoryEntryViewHolder.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -12,7 +12,7 @@ public final /* data */ class DirectoryEntryData {
     private final boolean hasJoinedGuild;
 
     public DirectoryEntryData(DirectoryEntryGuild directoryEntryGuild, boolean z2, boolean z3) {
-        m.checkNotNullParameter(directoryEntryGuild, "entry");
+        Intrinsics3.checkNotNullParameter(directoryEntryGuild, "entry");
         this.entry = directoryEntryGuild;
         this.hasJoinedGuild = z2;
         this.hasEditPermissions = z3;
@@ -32,7 +32,7 @@ public final /* data */ class DirectoryEntryData {
     }
 
     public final DirectoryEntryData copy(DirectoryEntryGuild entry, boolean hasJoinedGuild, boolean hasEditPermissions) {
-        m.checkNotNullParameter(entry, "entry");
+        Intrinsics3.checkNotNullParameter(entry, "entry");
         return new DirectoryEntryData(entry, hasJoinedGuild, hasEditPermissions);
     }
 
@@ -44,7 +44,7 @@ public final /* data */ class DirectoryEntryData {
             return false;
         }
         DirectoryEntryData directoryEntryData = (DirectoryEntryData) other;
-        return m.areEqual(this.entry, directoryEntryData.entry) && this.hasJoinedGuild == directoryEntryData.hasJoinedGuild && this.hasEditPermissions == directoryEntryData.hasEditPermissions;
+        return Intrinsics3.areEqual(this.entry, directoryEntryData.entry) && this.hasJoinedGuild == directoryEntryData.hasJoinedGuild && this.hasEditPermissions == directoryEntryData.hasEditPermissions;
     }
 
     /* JADX INFO: renamed from: component1, reason: from getter */
@@ -97,11 +97,11 @@ public final /* data */ class DirectoryEntryData {
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("DirectoryEntryData(entry=");
+        StringBuilder sbU = outline.U("DirectoryEntryData(entry=");
         sbU.append(this.entry);
         sbU.append(", hasJoinedGuild=");
         sbU.append(this.hasJoinedGuild);
         sbU.append(", hasEditPermissions=");
-        return a.O(sbU, this.hasEditPermissions, ")");
+        return outline.O(sbU, this.hasEditPermissions, ")");
     }
 }

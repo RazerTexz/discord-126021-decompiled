@@ -2,6 +2,8 @@ package b.i.a.f.e.h.j;
 
 import android.os.DeadObjectException;
 import androidx.annotation.NonNull;
+import b.c.a.a0.AnimatableValueParser;
+import b.d.b.a.outline;
 import b.i.a.f.e.h.j.d;
 import com.google.android.gms.common.api.Status;
 
@@ -14,7 +16,7 @@ public final class o0<A extends d<? extends b.i.a.f.e.h.h, b.i.a.f.e.h.a.b>> ext
 
     public o0(int i, A a) {
         super(i);
-        b.c.a.a0.d.z(a, "Null methods are not runnable.");
+        AnimatableValueParser.z(a, "Null methods are not runnable.");
         this.f1368b = a;
     }
 
@@ -43,6 +45,6 @@ public final class o0<A extends d<? extends b.i.a.f.e.h.h, b.i.a.f.e.h.a.b>> ext
     public final void e(@NonNull Exception exc) {
         String simpleName = exc.getClass().getSimpleName();
         String localizedMessage = exc.getLocalizedMessage();
-        this.f1368b.a(new Status(10, b.d.b.a.a.k(b.d.b.a.a.b(localizedMessage, simpleName.length() + 2), simpleName, ": ", localizedMessage)));
+        this.f1368b.a(new Status(10, outline.k(outline.b(localizedMessage, simpleName.length() + 2), simpleName, ": ", localizedMessage)));
     }
 }

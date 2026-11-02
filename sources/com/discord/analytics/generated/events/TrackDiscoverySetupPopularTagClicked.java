@@ -1,23 +1,23 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.analytics.generated.traits.TrackGuild;
-import com.discord.analytics.generated.traits.TrackGuildReceiver;
+import com.discord.analytics.generated.traits.TrackGuild2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackDiscoverySetupPopularTagClicked.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackDiscoverySetupPopularTagClicked implements AnalyticsSchema, TrackBaseReceiver, TrackGuildReceiver {
+public final /* data */ class TrackDiscoverySetupPopularTagClicked implements AnalyticsSchema, TrackBase2, TrackGuild2 {
     private final Long primaryCategoryId = null;
     private final CharSequence tag = null;
     private TrackBase trackBase;
     private TrackGuild trackGuild;
     private final transient String analyticsSchemaTypeName = "discovery_setup_popular_tag_clicked";
 
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    @Override // com.discord.analytics.generated.traits.TrackGuild2
     public void c(TrackGuild trackGuild) {
         this.trackGuild = trackGuild;
     }
@@ -30,7 +30,7 @@ public final /* data */ class TrackDiscoverySetupPopularTagClicked implements An
             return false;
         }
         TrackDiscoverySetupPopularTagClicked trackDiscoverySetupPopularTagClicked = (TrackDiscoverySetupPopularTagClicked) other;
-        return m.areEqual(this.tag, trackDiscoverySetupPopularTagClicked.tag) && m.areEqual(this.primaryCategoryId, trackDiscoverySetupPopularTagClicked.primaryCategoryId);
+        return Intrinsics3.areEqual(this.tag, trackDiscoverySetupPopularTagClicked.tag) && Intrinsics3.areEqual(this.primaryCategoryId, trackDiscoverySetupPopularTagClicked.primaryCategoryId);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -39,7 +39,7 @@ public final /* data */ class TrackDiscoverySetupPopularTagClicked implements An
         return this.analyticsSchemaTypeName;
     }
 
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    @Override // com.discord.analytics.generated.traits.TrackGuild2
     /* JADX INFO: renamed from: a, reason: from getter */
     public TrackGuild getTrackGuild() {
         return this.trackGuild;
@@ -53,9 +53,9 @@ public final /* data */ class TrackDiscoverySetupPopularTagClicked implements An
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackDiscoverySetupPopularTagClicked(tag=");
+        StringBuilder sbU = outline.U("TrackDiscoverySetupPopularTagClicked(tag=");
         sbU.append(this.tag);
         sbU.append(", primaryCategoryId=");
-        return a.G(sbU, this.primaryCategoryId, ")");
+        return outline.G(sbU, this.primaryCategoryId, ")");
     }
 }

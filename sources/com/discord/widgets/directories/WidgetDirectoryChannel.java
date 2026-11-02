@@ -13,10 +13,12 @@ import androidx.core.app.NotificationCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentViewModelLazyKt;
 import androidx.viewpager2.widget.ViewPager2;
-import b.a.d.f0;
-import b.a.d.j;
-import b.a.i.d5;
-import b.d.b.a.a;
+import b.a.d.AppScreen2;
+import b.a.d.AppViewModelDelegates2;
+import b.a.i.WidgetDirectoryChannelEmptyBinding;
+import b.a.k.FormatUtils;
+import b.a.o.PanelsChildGestureRegionObserver;
+import b.d.b.a.outline;
 import com.discord.R;
 import com.discord.api.directory.DirectoryEntryGuild;
 import com.discord.app.AppFragment;
@@ -27,30 +29,31 @@ import com.discord.models.member.GuildMember;
 import com.discord.stores.StoreStream;
 import com.discord.utilities.dimen.DimenUtils;
 import com.discord.utilities.features.GrowthTeamFeatures;
-import com.discord.utilities.hubs.HubUtilsKt;
+import com.discord.utilities.hubs.HubUtils;
 import com.discord.utilities.rx.ObservableExtensionsKt;
-import com.discord.utilities.view.recycler.ViewPager2ExtensionsKt;
+import com.discord.utilities.view.recycler.ViewPager2Extensions;
 import com.discord.utilities.viewbinding.FragmentViewBindingDelegate;
-import com.discord.utilities.viewbinding.FragmentViewBindingDelegateKt;
+import com.discord.utilities.viewbinding.FragmentViewBindingDelegate3;
 import com.discord.views.directories.ServerDiscoveryHeader;
-import com.discord.widgets.hubs.HubAddNameArgs;
 import com.discord.widgets.hubs.WidgetHubAddName;
+import com.discord.widgets.hubs.WidgetHubAddNameViewModel3;
 import com.discord.widgets.hubs.WidgetHubAddServer;
 import com.google.android.material.tabs.TabLayout;
-import d0.g;
-import d0.g0.t;
-import d0.t.u;
-import d0.z.d.a0;
-import d0.z.d.m;
-import d0.z.d.o;
-import j0.k.b;
+import d0.LazyJVM;
+import d0.g0.StringsJVM;
+import d0.t.Iterables2;
+import d0.t._Collections;
+import d0.z.d.Intrinsics3;
+import d0.z.d.Lambda;
+import d0.z.d.Reflection2;
+import j0.k.Func1;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import kotlin.Lazy;
-import kotlin.Pair;
+import kotlin.Tuples2;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
@@ -61,7 +64,7 @@ import rx.Observable;
 /* JADX INFO: compiled from: WidgetDirectoryChannel.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetDirectoryChannel extends AppFragment {
-    public static final /* synthetic */ KProperty[] $$delegatedProperties = {a.d0(WidgetDirectoryChannel.class, "binding", "getBinding()Lcom/discord/databinding/WidgetDirectoryChannelBinding;", 0)};
+    public static final /* synthetic */ KProperty[] $$delegatedProperties = {outline.d0(WidgetDirectoryChannel.class, "binding", "getBinding()Lcom/discord/databinding/WidgetDirectoryChannelBinding;", 0)};
 
     /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
     public static final Companion INSTANCE = new Companion(null);
@@ -86,16 +89,16 @@ public final class WidgetDirectoryChannel extends AppFragment {
 
         @Override // android.view.View.OnClickListener
         public final void onClick(View view) {
-            j.g.f(WidgetDirectoryChannel.this.requireContext(), WidgetDirectoryChannel.access$getActivityResult$p(WidgetDirectoryChannel.this), WidgetHubAddServer.class, null);
+            AppScreen2.g.f(WidgetDirectoryChannel.this.requireContext(), WidgetDirectoryChannel.access$getActivityResult$p(WidgetDirectoryChannel.this), WidgetHubAddServer.class, null);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.widgets.directories.WidgetDirectoryChannel$onViewBoundOrOnResume$1, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetDirectoryChannel.kt */
-    public final class AnonymousClass1<T, R> implements b<WidgetDirectoriesViewModel.ViewState, Boolean> {
+    public final class AnonymousClass1<T, R> implements Func1<WidgetDirectoriesViewModel.ViewState, Boolean> {
         public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
 
-        @Override // j0.k.b
+        @Override // j0.k.Func1
         public /* bridge */ /* synthetic */ Boolean call(WidgetDirectoriesViewModel.ViewState viewState) {
             return call2(viewState);
         }
@@ -108,7 +111,7 @@ public final class WidgetDirectoryChannel extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.directories.WidgetDirectoryChannel$onViewBoundOrOnResume$2, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetDirectoryChannel.kt */
-    public final class AnonymousClass2 extends o implements Function1<WidgetDirectoriesViewModel.ViewState, Unit> {
+    public final class AnonymousClass2 extends Lambda implements Function1<WidgetDirectoriesViewModel.ViewState, Unit> {
         public AnonymousClass2() {
             super(1);
         }
@@ -127,10 +130,10 @@ public final class WidgetDirectoryChannel extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.directories.WidgetDirectoryChannel$onViewBoundOrOnResume$3, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetDirectoryChannel.kt */
-    public final class AnonymousClass3<T, R> implements b<WidgetDirectoriesViewModel.ViewState, Boolean> {
+    public final class AnonymousClass3<T, R> implements Func1<WidgetDirectoriesViewModel.ViewState, Boolean> {
         public static final AnonymousClass3 INSTANCE = new AnonymousClass3();
 
-        @Override // j0.k.b
+        @Override // j0.k.Func1
         public /* bridge */ /* synthetic */ Boolean call(WidgetDirectoriesViewModel.ViewState viewState) {
             return call2(viewState);
         }
@@ -143,7 +146,7 @@ public final class WidgetDirectoryChannel extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.directories.WidgetDirectoryChannel$onViewBoundOrOnResume$4, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetDirectoryChannel.kt */
-    public final class AnonymousClass4 extends o implements Function1<WidgetDirectoriesViewModel.ViewState, Unit> {
+    public final class AnonymousClass4 extends Lambda implements Function1<WidgetDirectoriesViewModel.ViewState, Unit> {
         public AnonymousClass4() {
             super(1);
         }
@@ -157,14 +160,14 @@ public final class WidgetDirectoryChannel extends AppFragment {
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(WidgetDirectoriesViewModel.ViewState viewState) {
             WidgetDirectoryChannel widgetDirectoryChannel = WidgetDirectoryChannel.this;
-            m.checkNotNullExpressionValue(viewState, "it");
+            Intrinsics3.checkNotNullExpressionValue(viewState, "it");
             WidgetDirectoryChannel.access$configureUi(widgetDirectoryChannel, viewState);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.widgets.directories.WidgetDirectoryChannel$initializeUI$5, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetDirectoryChannel.kt */
-    public final class AnonymousClass5 extends o implements Function1<Long, Unit> {
+    public final class AnonymousClass5 extends Lambda implements Function1<Long, Unit> {
         public AnonymousClass5() {
             super(1);
         }
@@ -184,13 +187,13 @@ public final class WidgetDirectoryChannel extends AppFragment {
             if (member == null || (guild = companion.getGuilds().getGuild(selectedGuildId)) == null || (context = WidgetDirectoryChannel.this.getContext()) == null) {
                 return;
             }
-            m.checkNotNullExpressionValue(context, "context ?: return@appSubscribe");
+            Intrinsics3.checkNotNullExpressionValue(context, "context ?: return@appSubscribe");
             if (WidgetDirectoryChannel.this.isVisible() && selectedGuildId == j && guild.isHub()) {
                 String nick = member.getNick();
-                if (!(nick == null || t.isBlank(nick)) || companion.getDirectories().getAndSetSeenNamePrompt(selectedGuildId) || GrowthTeamFeatures.INSTANCE.isHubNameKillSwitchEnabled()) {
+                if (!(nick == null || StringsJVM.isBlank(nick)) || companion.getDirectories().getAndSetSeenNamePrompt(selectedGuildId) || GrowthTeamFeatures.INSTANCE.isHubNameKillSwitchEnabled()) {
                     return;
                 }
-                j.d(context, WidgetHubAddName.class, new HubAddNameArgs(guild.getId()));
+                AppScreen2.d(context, WidgetHubAddName.class, new WidgetHubAddNameViewModel3(guild.getId()));
             }
         }
     }
@@ -211,10 +214,10 @@ public final class WidgetDirectoryChannel extends AppFragment {
 
     public WidgetDirectoryChannel() {
         super(R.layout.widget_directory_channel);
-        this.binding = FragmentViewBindingDelegateKt.viewBinding(this, WidgetDirectoryChannel$binding$2.INSTANCE, new WidgetDirectoryChannel$binding$3(this));
-        this.viewModel = FragmentViewModelLazyKt.createViewModelLazy(this, a0.getOrCreateKotlinClass(WidgetDirectoriesViewModel.class), new WidgetDirectoryChannel$appActivityViewModels$$inlined$activityViewModels$1(this), new f0(WidgetDirectoryChannel$viewModel$2.INSTANCE));
-        this.adapter = g.lazy(new WidgetDirectoryChannel$adapter$2(this));
-        this.activityResult = HubUtilsKt.getAddServerActivityResultHandler(this);
+        this.binding = FragmentViewBindingDelegate3.viewBinding(this, WidgetDirectoryChannel3.INSTANCE, new WidgetDirectoryChannel4(this));
+        this.viewModel = FragmentViewModelLazyKt.createViewModelLazy(this, Reflection2.getOrCreateKotlinClass(WidgetDirectoriesViewModel.class), new WidgetDirectoryChannel$appActivityViewModels$$inlined$activityViewModels$1(this), new AppViewModelDelegates2(WidgetDirectoryChannel8.INSTANCE));
+        this.adapter = LazyJVM.lazy(new WidgetDirectoryChannel2(this));
+        this.activityResult = HubUtils.getAddServerActivityResultHandler(this);
     }
 
     public static final /* synthetic */ void access$configureUi(WidgetDirectoryChannel widgetDirectoryChannel, WidgetDirectoriesViewModel.ViewState viewState) {
@@ -245,68 +248,68 @@ public final class WidgetDirectoryChannel extends AppFragment {
             binding = getBinding();
         }
         if (!this.hasBound && bind) {
-            b.a.o.b bVarA = b.a.o.b.C0039b.a();
+            PanelsChildGestureRegionObserver panelsChildGestureRegionObserverA = PanelsChildGestureRegionObserver.b.a();
             TabLayout tabLayout = binding.d;
-            m.checkNotNullExpressionValue(tabLayout, "nonNullBinding.tabs");
-            bVarA.b(tabLayout);
-            b.a.o.b bVarA2 = b.a.o.b.C0039b.a();
+            Intrinsics3.checkNotNullExpressionValue(tabLayout, "nonNullBinding.tabs");
+            panelsChildGestureRegionObserverA.b(tabLayout);
+            PanelsChildGestureRegionObserver panelsChildGestureRegionObserverA2 = PanelsChildGestureRegionObserver.b.a();
             ViewPager2 viewPager2 = binding.e;
-            m.checkNotNullExpressionValue(viewPager2, "nonNullBinding.viewPager");
-            bVarA2.b(viewPager2);
+            Intrinsics3.checkNotNullExpressionValue(viewPager2, "nonNullBinding.viewPager");
+            panelsChildGestureRegionObserverA2.b(viewPager2);
             this.hasBound = true;
             return;
         }
         if (bind) {
             return;
         }
-        b.a.o.b bVarA3 = b.a.o.b.C0039b.a();
+        PanelsChildGestureRegionObserver panelsChildGestureRegionObserverA3 = PanelsChildGestureRegionObserver.b.a();
         TabLayout tabLayout2 = binding.d;
-        m.checkNotNullExpressionValue(tabLayout2, "nonNullBinding.tabs");
-        bVarA3.c(tabLayout2);
-        b.a.o.b bVarA4 = b.a.o.b.C0039b.a();
+        Intrinsics3.checkNotNullExpressionValue(tabLayout2, "nonNullBinding.tabs");
+        panelsChildGestureRegionObserverA3.c(tabLayout2);
+        PanelsChildGestureRegionObserver panelsChildGestureRegionObserverA4 = PanelsChildGestureRegionObserver.b.a();
         ViewPager2 viewPager3 = binding.e;
-        m.checkNotNullExpressionValue(viewPager3, "nonNullBinding.viewPager");
-        bVarA4.c(viewPager3);
+        Intrinsics3.checkNotNullExpressionValue(viewPager3, "nonNullBinding.viewPager");
+        panelsChildGestureRegionObserverA4.c(viewPager3);
         this.hasBound = false;
     }
 
     private final void configureUi(WidgetDirectoriesViewModel.ViewState state) {
         Guild guild = state.getGuild();
         if (guild != null) {
-            getBinding().f.d.setOnClickListener(new WidgetDirectoryChannel$configureUi$$inlined$let$lambda$1(guild, this));
+            getBinding().f.d.setOnClickListener(new WidgetDirectoryChannel6(guild, this));
             TextView textView = getBinding().f.f100b;
-            m.checkNotNullExpressionValue(textView, "binding.widgetDirectoryC….itemDirectoryEmptyHeader");
-            textView.setText(b.a.k.b.k(this, R.string.hub_directory_channel_empty_title, new Object[]{guild.getName()}, null, 4));
+            Intrinsics3.checkNotNullExpressionValue(textView, "binding.widgetDirectoryC….itemDirectoryEmptyHeader");
+            textView.setText(FormatUtils.k(this, R.string.hub_directory_channel_empty_title, new Object[]{guild.getName()}, null, 4));
         }
         ServerDiscoveryHeader serverDiscoveryHeader = getBinding().c;
-        serverDiscoveryHeader.setButtonOnClickListener(new WidgetDirectoryChannel$configureUi$$inlined$apply$lambda$1(serverDiscoveryHeader, state));
+        serverDiscoveryHeader.setButtonOnClickListener(new WidgetDirectoryChannel5(serverDiscoveryHeader, state));
         List<DirectoryEntryGuild> listInvoke = state.getDirectories().invoke();
         boolean z2 = listInvoke != null && (listInvoke.isEmpty() ^ true);
         ServerDiscoveryHeader serverDiscoveryHeader2 = getBinding().c;
-        m.checkNotNullExpressionValue(serverDiscoveryHeader2, "binding.header");
+        Intrinsics3.checkNotNullExpressionValue(serverDiscoveryHeader2, "binding.header");
         serverDiscoveryHeader2.setVisibility(z2 ? 0 : 8);
         ViewPager2 viewPager2 = getBinding().e;
-        m.checkNotNullExpressionValue(viewPager2, "binding.viewPager");
+        Intrinsics3.checkNotNullExpressionValue(viewPager2, "binding.viewPager");
         viewPager2.setVisibility(z2 ? 0 : 8);
-        d5 d5Var = getBinding().f;
-        m.checkNotNullExpressionValue(d5Var, "binding.widgetDirectoryChannelEmpty");
-        LinearLayout linearLayout = d5Var.a;
-        m.checkNotNullExpressionValue(linearLayout, "binding.widgetDirectoryChannelEmpty.root");
+        WidgetDirectoryChannelEmptyBinding widgetDirectoryChannelEmptyBinding = getBinding().f;
+        Intrinsics3.checkNotNullExpressionValue(widgetDirectoryChannelEmptyBinding, "binding.widgetDirectoryChannelEmpty");
+        LinearLayout linearLayout = widgetDirectoryChannelEmptyBinding.a;
+        Intrinsics3.checkNotNullExpressionValue(linearLayout, "binding.widgetDirectoryChannelEmpty.root");
         linearLayout.setVisibility(z2 ^ true ? 0 : 8);
         Map<Integer, Integer> mapInvoke = state.getTabs().invoke();
         boolean z3 = !(mapInvoke == null || mapInvoke.isEmpty());
         toggleHeaderMargins(z3);
         TabLayout tabLayout = getBinding().d;
-        m.checkNotNullExpressionValue(tabLayout, "binding.tabs");
+        Intrinsics3.checkNotNullExpressionValue(tabLayout, "binding.tabs");
         tabLayout.setVisibility(z3 ? 0 : 8);
         WidgetDirectoryChannelViewPagerAdapter adapter = getAdapter();
-        List<Pair<DirectoryEntryCategory, Integer>> mappedTabs = state.getMappedTabs();
-        ArrayList arrayList = new ArrayList(d0.t.o.collectionSizeOrDefault(mappedTabs, 10));
+        List<Tuples2<DirectoryEntryCategory, Integer>> mappedTabs = state.getMappedTabs();
+        ArrayList arrayList = new ArrayList(Iterables2.collectionSizeOrDefault(mappedTabs, 10));
         Iterator<T> it = mappedTabs.iterator();
         while (it.hasNext()) {
-            arrayList.add((DirectoryEntryCategory) ((Pair) it.next()).getFirst());
+            arrayList.add((DirectoryEntryCategory) ((Tuples2) it.next()).getFirst());
         }
-        adapter.setTabs(u.toList(arrayList));
+        adapter.setTabs(_Collections.toList(arrayList));
     }
 
     public final WidgetDirectoryChannelViewPagerAdapter getAdapter() {
@@ -330,13 +333,13 @@ public final class WidgetDirectoryChannel extends AppFragment {
         getBinding().e.setAdapter(getAdapter());
         TabLayout tabLayout = getBinding().d;
         ViewPager2 viewPager2 = getBinding().e;
-        m.checkNotNullExpressionValue(viewPager2, "binding.viewPager");
-        ViewPager2ExtensionsKt.setUpWithViewPager2(tabLayout, viewPager2, new WidgetDirectoryChannel$initializeUI$$inlined$apply$lambda$1(tabLayout, this));
+        Intrinsics3.checkNotNullExpressionValue(viewPager2, "binding.viewPager");
+        ViewPager2Extensions.setUpWithViewPager2(tabLayout, viewPager2, new WidgetDirectoryChannel7(tabLayout, this));
         bindGestureObservers$default(this, true, null, 2, null);
         Observable<Long> observableR = StoreStream.INSTANCE.getGuildSelected().observeSelectedGuildId().r();
-        m.checkNotNullExpressionValue(observableR, "StoreStream\n        .get…  .distinctUntilChanged()");
+        Intrinsics3.checkNotNullExpressionValue(observableR, "StoreStream\n        .get…  .distinctUntilChanged()");
         Observable<R> observableG = observableR.y(ObservableExtensionsKt.AnonymousClass1.INSTANCE).G(ObservableExtensionsKt.AnonymousClass2.INSTANCE);
-        m.checkNotNullExpressionValue(observableG, "filter { it != null }.map { it!! }");
+        Intrinsics3.checkNotNullExpressionValue(observableG, "filter { it != null }.map { it!! }");
         ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui(observableG), WidgetDirectoryChannel.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass5(), 62, (Object) null);
     }
 
@@ -348,24 +351,24 @@ public final class WidgetDirectoryChannel extends AppFragment {
     public void onViewBoundOrOnResume() {
         super.onViewBoundOrOnResume();
         Observable<WidgetDirectoriesViewModel.ViewState> observableZ = getViewModel().observeViewState().y(AnonymousClass1.INSTANCE).z();
-        m.checkNotNullExpressionValue(observableZ, "viewModel\n        .obser…= null }\n        .first()");
+        Intrinsics3.checkNotNullExpressionValue(observableZ, "viewModel\n        .obser…= null }\n        .first()");
         ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.bindToComponentLifecycle$default(observableZ, this, null, 2, null), WidgetDirectoryChannel.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass2(), 62, (Object) null);
         Observable<WidgetDirectoriesViewModel.ViewState> observableY = getViewModel().observeViewState().y(AnonymousClass3.INSTANCE);
-        m.checkNotNullExpressionValue(observableY, "viewModel\n        .obser…   .filter { it != null }");
+        Intrinsics3.checkNotNullExpressionValue(observableY, "viewModel\n        .obser…   .filter { it != null }");
         ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.bindToComponentLifecycle$default(observableY, this, null, 2, null), WidgetDirectoryChannel.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass4(), 62, (Object) null);
     }
 
     private final void toggleHeaderMargins(boolean showTabLayout) {
         int i = showTabLayout ? TAB_LAYOUT_MARGINS : 0;
         ServerDiscoveryHeader serverDiscoveryHeader = getBinding().c;
-        m.checkNotNullExpressionValue(serverDiscoveryHeader, "binding.header");
+        Intrinsics3.checkNotNullExpressionValue(serverDiscoveryHeader, "binding.header");
         ViewGroup.LayoutParams layoutParams = serverDiscoveryHeader.getLayoutParams();
         Objects.requireNonNull(layoutParams, "null cannot be cast to non-null type android.view.ViewGroup.MarginLayoutParams");
         ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) layoutParams;
         marginLayoutParams.bottomMargin = i;
         serverDiscoveryHeader.setLayoutParams(marginLayoutParams);
         Toolbar toolbar = getBinding().f2365b;
-        m.checkNotNullExpressionValue(toolbar, "binding.actionBarToolbar");
+        Intrinsics3.checkNotNullExpressionValue(toolbar, "binding.actionBarToolbar");
         ViewGroup.LayoutParams layoutParams2 = toolbar.getLayoutParams();
         Objects.requireNonNull(layoutParams2, "null cannot be cast to non-null type android.view.ViewGroup.MarginLayoutParams");
         ViewGroup.MarginLayoutParams marginLayoutParams2 = (ViewGroup.MarginLayoutParams) layoutParams2;

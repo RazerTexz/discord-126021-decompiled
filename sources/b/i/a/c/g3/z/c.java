@@ -7,30 +7,30 @@ import java.util.Iterator;
 /* JADX INFO: compiled from: lambda */
 /* JADX INFO: loaded from: classes3.dex */
 public final /* synthetic */ class c implements Runnable {
-    public final /* synthetic */ k j;
+    public final /* synthetic */ SphericalGLSurfaceView j;
 
-    public /* synthetic */ c(k kVar) {
-        this.j = kVar;
+    public /* synthetic */ c(SphericalGLSurfaceView sphericalGLSurfaceView) {
+        this.j = sphericalGLSurfaceView;
     }
 
     @Override // java.lang.Runnable
     public final void run() {
-        k kVar = this.j;
-        Surface surface = kVar.r;
+        SphericalGLSurfaceView sphericalGLSurfaceView = this.j;
+        Surface surface = sphericalGLSurfaceView.r;
         if (surface != null) {
-            Iterator<k.b> it = kVar.j.iterator();
+            Iterator<SphericalGLSurfaceView.b> it = sphericalGLSurfaceView.j.iterator();
             while (it.hasNext()) {
                 it.next().q(surface);
             }
         }
-        SurfaceTexture surfaceTexture = kVar.q;
+        SurfaceTexture surfaceTexture = sphericalGLSurfaceView.q;
         if (surfaceTexture != null) {
             surfaceTexture.release();
         }
         if (surface != null) {
             surface.release();
         }
-        kVar.q = null;
-        kVar.r = null;
+        sphericalGLSurfaceView.q = null;
+        sphericalGLSurfaceView.r = null;
     }
 }

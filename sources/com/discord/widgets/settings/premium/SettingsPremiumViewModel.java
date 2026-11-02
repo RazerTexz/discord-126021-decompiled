@@ -3,8 +3,8 @@ package com.discord.widgets.settings.premium;
 import android.content.Context;
 import androidx.annotation.MainThread;
 import androidx.annotation.StringRes;
-import b.a.d.d0;
-import b.d.b.a.a;
+import b.a.d.AppViewModel;
+import b.d.b.a.outline;
 import com.android.billingclient.api.Purchase;
 import com.android.billingclient.api.SkuDetails;
 import com.discord.R;
@@ -27,13 +27,13 @@ import com.discord.utilities.billing.GooglePlayBillingManager;
 import com.discord.utilities.error.Error;
 import com.discord.utilities.rest.RestAPI;
 import com.discord.utilities.rx.ObservableExtensionsKt;
-import d0.g0.t;
-import d0.t.n;
-import d0.t.n0;
-import d0.z.d.m;
-import d0.z.d.o;
-import j0.l.a.d;
-import j0.l.e.k;
+import d0.g0.StringsJVM;
+import d0.t.Collections2;
+import d0.t.Sets5;
+import d0.z.d.Intrinsics3;
+import d0.z.d.Lambda;
+import j0.l.a.NeverObservableHolder;
+import j0.l.e.ScalarSynchronousObservable;
 import java.util.List;
 import java.util.Map;
 import kotlin.Unit;
@@ -45,7 +45,7 @@ import rx.subjects.PublishSubject;
 
 /* JADX INFO: compiled from: SettingsPremiumViewModel.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class SettingsPremiumViewModel extends d0<ViewState> {
+public final class SettingsPremiumViewModel extends AppViewModel<ViewState> {
 
     /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
     public static final Companion INSTANCE = new Companion(null);
@@ -58,7 +58,7 @@ public final class SettingsPremiumViewModel extends d0<ViewState> {
 
     /* JADX INFO: renamed from: com.discord.widgets.settings.premium.SettingsPremiumViewModel$1, reason: invalid class name */
     /* JADX INFO: compiled from: SettingsPremiumViewModel.kt */
-    public final class AnonymousClass1 extends o implements Function1<StoreState, Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function1<StoreState, Unit> {
         public AnonymousClass1() {
             super(1);
         }
@@ -71,14 +71,14 @@ public final class SettingsPremiumViewModel extends d0<ViewState> {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(StoreState storeState) {
-            m.checkNotNullParameter(storeState, "storeState");
+            Intrinsics3.checkNotNullParameter(storeState, "storeState");
             SettingsPremiumViewModel.access$handleStoreState(SettingsPremiumViewModel.this, storeState);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.widgets.settings.premium.SettingsPremiumViewModel$cancelSubscription$1, reason: invalid class name */
     /* JADX INFO: compiled from: SettingsPremiumViewModel.kt */
-    public final class AnonymousClass1 extends o implements Function1<Void, Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function1<Void, Unit> {
         public AnonymousClass1() {
             super(1);
         }
@@ -97,7 +97,7 @@ public final class SettingsPremiumViewModel extends d0<ViewState> {
 
     /* JADX INFO: renamed from: com.discord.widgets.settings.premium.SettingsPremiumViewModel$cancelSubscription$2, reason: invalid class name */
     /* JADX INFO: compiled from: SettingsPremiumViewModel.kt */
-    public final class AnonymousClass2 extends o implements Function1<Error, Unit> {
+    public final class AnonymousClass2 extends Lambda implements Function1<Error, Unit> {
         public AnonymousClass2() {
             super(1);
         }
@@ -110,7 +110,7 @@ public final class SettingsPremiumViewModel extends d0<ViewState> {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(Error error) {
-            m.checkNotNullParameter(error, "it");
+            Intrinsics3.checkNotNullParameter(error, "it");
             SettingsPremiumViewModel.access$onCancelError(SettingsPremiumViewModel.this);
         }
     }
@@ -131,24 +131,24 @@ public final class SettingsPremiumViewModel extends d0<ViewState> {
         private final Observable<SubscriptionAndInvoice> getSubscriptionsAndInvoicePreview(RestAPI restAPI, StoreSubscriptions.SubscriptionsState state, boolean applyEntitlements) {
             String id2;
             if (!(state instanceof StoreSubscriptions.SubscriptionsState.Loaded)) {
-                Observable observable = d.k;
-                m.checkNotNullExpressionValue(observable, "Observable.never()");
+                Observable observable = NeverObservableHolder.k;
+                Intrinsics3.checkNotNullExpressionValue(observable, "Observable.never()");
                 return observable;
             }
             ModelSubscription premiumSubscription = ((StoreSubscriptions.SubscriptionsState.Loaded) state).getPremiumSubscription();
             if (premiumSubscription == null || (id2 = premiumSubscription.getId()) == null) {
-                k kVar = new k(new SubscriptionAndInvoice(state, new InvoicePreviewFetch.Invoice(null)));
-                m.checkNotNullExpressionValue(kVar, "Observable.just(\n       …nvoice(null))\n          )");
-                return kVar;
+                ScalarSynchronousObservable scalarSynchronousObservable = new ScalarSynchronousObservable(new SubscriptionAndInvoice(state, new InvoicePreviewFetch.Invoice(null)));
+                Intrinsics3.checkNotNullExpressionValue(scalarSynchronousObservable, "Observable.just(\n       …nvoice(null))\n          )");
+                return scalarSynchronousObservable;
             }
-            Observable<SubscriptionAndInvoice> observableM = ObservableExtensionsKt.restSubscribeOn$default(restAPI.getInvoicePreview(new RestAPIParams.InvoicePreviewBody(id2, true, applyEntitlements && !premiumSubscription.isGoogleSubscription())), false, 1, null).G(new SettingsPremiumViewModel$Companion$getSubscriptionsAndInvoicePreview$1(state)).M(new SettingsPremiumViewModel$Companion$getSubscriptionsAndInvoicePreview$2(state));
-            m.checkNotNullExpressionValue(observableM, "restAPI\n              .g…ch.Error)\n              }");
+            Observable<SubscriptionAndInvoice> observableM = ObservableExtensionsKt.restSubscribeOn$default(restAPI.getInvoicePreview(new RestAPIParams.InvoicePreviewBody(id2, true, applyEntitlements && !premiumSubscription.isGoogleSubscription())), false, 1, null).G(new SettingsPremiumViewModel2(state)).M(new SettingsPremiumViewModel3(state));
+            Intrinsics3.checkNotNullExpressionValue(observableM, "restAPI\n              .g…ch.Error)\n              }");
             return observableM;
         }
 
         private final Observable<StoreState> observeStores(StorePaymentSources storePaymentsSources, StoreSubscriptions storeSubscriptions, StoreEntitlements storeEntitlements, StoreGuildBoost storeGuildBoost, StoreGooglePlaySkuDetails storeGooglePlaySkuDetails, StoreGooglePlayPurchases storeGooglePlayPurchases, StoreExperiments storeExperiments, RestAPI restAPI) {
-            Observable<StoreState> observableE = Observable.e(storePaymentsSources.observePaymentSourcesState(), storeSubscriptions.observeSubscriptions().Y(new SettingsPremiumViewModel$Companion$observeStores$1(restAPI)), storeSubscriptions.observeSubscriptions().Y(new SettingsPremiumViewModel$Companion$observeStores$2(restAPI)), storeEntitlements.observeEntitlementState(), StoreGuildBoost.observeGuildBoostState$default(storeGuildBoost, null, 1, null), storeGooglePlaySkuDetails.observeState(), storeGooglePlayPurchases.observeState(), SettingsPremiumViewModel$Companion$observeStores$3.INSTANCE);
-            m.checkNotNullExpressionValue(observableE, "Observable\n          .co…            )\n          }");
+            Observable<StoreState> observableE = Observable.e(storePaymentsSources.observePaymentSourcesState(), storeSubscriptions.observeSubscriptions().Y(new SettingsPremiumViewModel4(restAPI)), storeSubscriptions.observeSubscriptions().Y(new SettingsPremiumViewModel5(restAPI)), storeEntitlements.observeEntitlementState(), StoreGuildBoost.observeGuildBoostState$default(storeGuildBoost, null, 1, null), storeGooglePlaySkuDetails.observeState(), storeGooglePlayPurchases.observeState(), SettingsPremiumViewModel6.INSTANCE);
+            Intrinsics3.checkNotNullExpressionValue(observableE, "Observable\n          .co…            )\n          }");
             return observableE;
         }
 
@@ -201,7 +201,7 @@ public final class SettingsPremiumViewModel extends d0<ViewState> {
             }
 
             public String toString() {
-                return a.B(a.U("ErrorToast(errorStringResId="), this.errorStringResId, ")");
+                return outline.B(outline.U("ErrorToast(errorStringResId="), this.errorStringResId, ")");
             }
         }
 
@@ -247,7 +247,7 @@ public final class SettingsPremiumViewModel extends d0<ViewState> {
 
             public boolean equals(Object other) {
                 if (this != other) {
-                    return (other instanceof Invoice) && m.areEqual(this.modelInvoicePreview, ((Invoice) other).modelInvoicePreview);
+                    return (other instanceof Invoice) && Intrinsics3.areEqual(this.modelInvoicePreview, ((Invoice) other).modelInvoicePreview);
                 }
                 return true;
             }
@@ -270,7 +270,7 @@ public final class SettingsPremiumViewModel extends d0<ViewState> {
             }
 
             public String toString() {
-                StringBuilder sbU = a.U("Invoice(modelInvoicePreview=");
+                StringBuilder sbU = outline.U("Invoice(modelInvoicePreview=");
                 sbU.append(this.modelInvoicePreview);
                 sbU.append(")");
                 return sbU.toString();
@@ -297,14 +297,14 @@ public final class SettingsPremiumViewModel extends d0<ViewState> {
         private final StoreSubscriptions.SubscriptionsState subscriptionsState;
 
         public StoreState(StorePaymentSources.PaymentSourcesState paymentSourcesState, StoreSubscriptions.SubscriptionsState subscriptionsState, StoreEntitlements.State state, StoreGuildBoost.State state2, InvoicePreviewFetch invoicePreviewFetch, InvoicePreviewFetch invoicePreviewFetch2, StoreGooglePlaySkuDetails.State state3, StoreGooglePlayPurchases.State state4) {
-            m.checkNotNullParameter(paymentSourcesState, "paymentSourcesState");
-            m.checkNotNullParameter(subscriptionsState, "subscriptionsState");
-            m.checkNotNullParameter(state, "entitlementState");
-            m.checkNotNullParameter(state2, "guildBoostState");
-            m.checkNotNullParameter(invoicePreviewFetch, "renewalInvoicePreviewFetch");
-            m.checkNotNullParameter(invoicePreviewFetch2, "currentInvoicePreviewFetch");
-            m.checkNotNullParameter(state3, "skuDetailsState");
-            m.checkNotNullParameter(state4, "purchaseState");
+            Intrinsics3.checkNotNullParameter(paymentSourcesState, "paymentSourcesState");
+            Intrinsics3.checkNotNullParameter(subscriptionsState, "subscriptionsState");
+            Intrinsics3.checkNotNullParameter(state, "entitlementState");
+            Intrinsics3.checkNotNullParameter(state2, "guildBoostState");
+            Intrinsics3.checkNotNullParameter(invoicePreviewFetch, "renewalInvoicePreviewFetch");
+            Intrinsics3.checkNotNullParameter(invoicePreviewFetch2, "currentInvoicePreviewFetch");
+            Intrinsics3.checkNotNullParameter(state3, "skuDetailsState");
+            Intrinsics3.checkNotNullParameter(state4, "purchaseState");
             this.paymentSourcesState = paymentSourcesState;
             this.subscriptionsState = subscriptionsState;
             this.entitlementState = state;
@@ -320,14 +320,14 @@ public final class SettingsPremiumViewModel extends d0<ViewState> {
         }
 
         public final StoreState copy(StorePaymentSources.PaymentSourcesState paymentSourcesState, StoreSubscriptions.SubscriptionsState subscriptionsState, StoreEntitlements.State entitlementState, StoreGuildBoost.State guildBoostState, InvoicePreviewFetch renewalInvoicePreviewFetch, InvoicePreviewFetch currentInvoicePreviewFetch, StoreGooglePlaySkuDetails.State skuDetailsState, StoreGooglePlayPurchases.State purchaseState) {
-            m.checkNotNullParameter(paymentSourcesState, "paymentSourcesState");
-            m.checkNotNullParameter(subscriptionsState, "subscriptionsState");
-            m.checkNotNullParameter(entitlementState, "entitlementState");
-            m.checkNotNullParameter(guildBoostState, "guildBoostState");
-            m.checkNotNullParameter(renewalInvoicePreviewFetch, "renewalInvoicePreviewFetch");
-            m.checkNotNullParameter(currentInvoicePreviewFetch, "currentInvoicePreviewFetch");
-            m.checkNotNullParameter(skuDetailsState, "skuDetailsState");
-            m.checkNotNullParameter(purchaseState, "purchaseState");
+            Intrinsics3.checkNotNullParameter(paymentSourcesState, "paymentSourcesState");
+            Intrinsics3.checkNotNullParameter(subscriptionsState, "subscriptionsState");
+            Intrinsics3.checkNotNullParameter(entitlementState, "entitlementState");
+            Intrinsics3.checkNotNullParameter(guildBoostState, "guildBoostState");
+            Intrinsics3.checkNotNullParameter(renewalInvoicePreviewFetch, "renewalInvoicePreviewFetch");
+            Intrinsics3.checkNotNullParameter(currentInvoicePreviewFetch, "currentInvoicePreviewFetch");
+            Intrinsics3.checkNotNullParameter(skuDetailsState, "skuDetailsState");
+            Intrinsics3.checkNotNullParameter(purchaseState, "purchaseState");
             return new StoreState(paymentSourcesState, subscriptionsState, entitlementState, guildBoostState, renewalInvoicePreviewFetch, currentInvoicePreviewFetch, skuDetailsState, purchaseState);
         }
 
@@ -339,7 +339,7 @@ public final class SettingsPremiumViewModel extends d0<ViewState> {
                 return false;
             }
             StoreState storeState = (StoreState) other;
-            return m.areEqual(this.paymentSourcesState, storeState.paymentSourcesState) && m.areEqual(this.subscriptionsState, storeState.subscriptionsState) && m.areEqual(this.entitlementState, storeState.entitlementState) && m.areEqual(this.guildBoostState, storeState.guildBoostState) && m.areEqual(this.renewalInvoicePreviewFetch, storeState.renewalInvoicePreviewFetch) && m.areEqual(this.currentInvoicePreviewFetch, storeState.currentInvoicePreviewFetch) && m.areEqual(this.skuDetailsState, storeState.skuDetailsState) && m.areEqual(this.purchaseState, storeState.purchaseState);
+            return Intrinsics3.areEqual(this.paymentSourcesState, storeState.paymentSourcesState) && Intrinsics3.areEqual(this.subscriptionsState, storeState.subscriptionsState) && Intrinsics3.areEqual(this.entitlementState, storeState.entitlementState) && Intrinsics3.areEqual(this.guildBoostState, storeState.guildBoostState) && Intrinsics3.areEqual(this.renewalInvoicePreviewFetch, storeState.renewalInvoicePreviewFetch) && Intrinsics3.areEqual(this.currentInvoicePreviewFetch, storeState.currentInvoicePreviewFetch) && Intrinsics3.areEqual(this.skuDetailsState, storeState.skuDetailsState) && Intrinsics3.areEqual(this.purchaseState, storeState.purchaseState);
         }
 
         /* JADX INFO: renamed from: component6, reason: from getter */
@@ -434,7 +434,7 @@ public final class SettingsPremiumViewModel extends d0<ViewState> {
         }
 
         public String toString() {
-            StringBuilder sbU = a.U("StoreState(paymentSourcesState=");
+            StringBuilder sbU = outline.U("StoreState(paymentSourcesState=");
             sbU.append(this.paymentSourcesState);
             sbU.append(", subscriptionsState=");
             sbU.append(this.subscriptionsState);
@@ -461,8 +461,8 @@ public final class SettingsPremiumViewModel extends d0<ViewState> {
         private final StoreSubscriptions.SubscriptionsState subscriptionsState;
 
         public SubscriptionAndInvoice(StoreSubscriptions.SubscriptionsState subscriptionsState, InvoicePreviewFetch invoicePreviewFetch) {
-            m.checkNotNullParameter(subscriptionsState, "subscriptionsState");
-            m.checkNotNullParameter(invoicePreviewFetch, "invoicePreviewFetch");
+            Intrinsics3.checkNotNullParameter(subscriptionsState, "subscriptionsState");
+            Intrinsics3.checkNotNullParameter(invoicePreviewFetch, "invoicePreviewFetch");
             this.subscriptionsState = subscriptionsState;
             this.invoicePreviewFetch = invoicePreviewFetch;
         }
@@ -478,8 +478,8 @@ public final class SettingsPremiumViewModel extends d0<ViewState> {
         }
 
         public final SubscriptionAndInvoice copy(StoreSubscriptions.SubscriptionsState subscriptionsState, InvoicePreviewFetch invoicePreviewFetch) {
-            m.checkNotNullParameter(subscriptionsState, "subscriptionsState");
-            m.checkNotNullParameter(invoicePreviewFetch, "invoicePreviewFetch");
+            Intrinsics3.checkNotNullParameter(subscriptionsState, "subscriptionsState");
+            Intrinsics3.checkNotNullParameter(invoicePreviewFetch, "invoicePreviewFetch");
             return new SubscriptionAndInvoice(subscriptionsState, invoicePreviewFetch);
         }
 
@@ -491,7 +491,7 @@ public final class SettingsPremiumViewModel extends d0<ViewState> {
                 return false;
             }
             SubscriptionAndInvoice subscriptionAndInvoice = (SubscriptionAndInvoice) other;
-            return m.areEqual(this.subscriptionsState, subscriptionAndInvoice.subscriptionsState) && m.areEqual(this.invoicePreviewFetch, subscriptionAndInvoice.invoicePreviewFetch);
+            return Intrinsics3.areEqual(this.subscriptionsState, subscriptionAndInvoice.subscriptionsState) && Intrinsics3.areEqual(this.invoicePreviewFetch, subscriptionAndInvoice.invoicePreviewFetch);
         }
 
         /* JADX INFO: renamed from: component2, reason: from getter */
@@ -520,7 +520,7 @@ public final class SettingsPremiumViewModel extends d0<ViewState> {
         }
 
         public String toString() {
-            StringBuilder sbU = a.U("SubscriptionAndInvoice(subscriptionsState=");
+            StringBuilder sbU = outline.U("SubscriptionAndInvoice(subscriptionsState=");
             sbU.append(this.subscriptionsState);
             sbU.append(", invoicePreviewFetch=");
             sbU.append(this.invoicePreviewFetch);
@@ -559,11 +559,11 @@ public final class SettingsPremiumViewModel extends d0<ViewState> {
             /* JADX WARN: Multi-variable type inference failed */
             public Loaded(ModelSubscription modelSubscription, List<? extends ModelPaymentSource> list, boolean z2, List<ModelEntitlement> list2, Map<Long, ModelGuildBoostSlot> map, boolean z3, ModelInvoicePreview modelInvoicePreview, ModelInvoicePreview modelInvoicePreview2, Map<String, ? extends SkuDetails> map2, List<? extends Purchase> list3, int i) {
                 super(null);
-                m.checkNotNullParameter(list, "paymentSources");
-                m.checkNotNullParameter(list2, "entitlements");
-                m.checkNotNullParameter(map, "guildSubscriptions");
-                m.checkNotNullParameter(map2, "skuDetails");
-                m.checkNotNullParameter(list3, "purchases");
+                Intrinsics3.checkNotNullParameter(list, "paymentSources");
+                Intrinsics3.checkNotNullParameter(list2, "entitlements");
+                Intrinsics3.checkNotNullParameter(map, "guildSubscriptions");
+                Intrinsics3.checkNotNullParameter(map2, "skuDetails");
+                Intrinsics3.checkNotNullParameter(list3, "purchases");
                 this.premiumSubscription = modelSubscription;
                 this.paymentSources = list;
                 this.isBusy = z2;
@@ -603,11 +603,11 @@ public final class SettingsPremiumViewModel extends d0<ViewState> {
             }
 
             public final Loaded copy(ModelSubscription premiumSubscription, List<? extends ModelPaymentSource> paymentSources, boolean isBusy, List<ModelEntitlement> entitlements, Map<Long, ModelGuildBoostSlot> guildSubscriptions, boolean hasAnyGuildBoosts, ModelInvoicePreview renewalInvoicePreview, ModelInvoicePreview currentInvoicePreview, Map<String, ? extends SkuDetails> skuDetails, List<? extends Purchase> purchases, int pastDueGracePeriodDays) {
-                m.checkNotNullParameter(paymentSources, "paymentSources");
-                m.checkNotNullParameter(entitlements, "entitlements");
-                m.checkNotNullParameter(guildSubscriptions, "guildSubscriptions");
-                m.checkNotNullParameter(skuDetails, "skuDetails");
-                m.checkNotNullParameter(purchases, "purchases");
+                Intrinsics3.checkNotNullParameter(paymentSources, "paymentSources");
+                Intrinsics3.checkNotNullParameter(entitlements, "entitlements");
+                Intrinsics3.checkNotNullParameter(guildSubscriptions, "guildSubscriptions");
+                Intrinsics3.checkNotNullParameter(skuDetails, "skuDetails");
+                Intrinsics3.checkNotNullParameter(purchases, "purchases");
                 return new Loaded(premiumSubscription, paymentSources, isBusy, entitlements, guildSubscriptions, hasAnyGuildBoosts, renewalInvoicePreview, currentInvoicePreview, skuDetails, purchases, pastDueGracePeriodDays);
             }
 
@@ -619,7 +619,7 @@ public final class SettingsPremiumViewModel extends d0<ViewState> {
                     return false;
                 }
                 Loaded loaded = (Loaded) other;
-                return m.areEqual(this.premiumSubscription, loaded.premiumSubscription) && m.areEqual(this.paymentSources, loaded.paymentSources) && this.isBusy == loaded.isBusy && m.areEqual(this.entitlements, loaded.entitlements) && m.areEqual(this.guildSubscriptions, loaded.guildSubscriptions) && this.hasAnyGuildBoosts == loaded.hasAnyGuildBoosts && m.areEqual(this.renewalInvoicePreview, loaded.renewalInvoicePreview) && m.areEqual(this.currentInvoicePreview, loaded.currentInvoicePreview) && m.areEqual(this.skuDetails, loaded.skuDetails) && m.areEqual(this.purchases, loaded.purchases) && this.pastDueGracePeriodDays == loaded.pastDueGracePeriodDays;
+                return Intrinsics3.areEqual(this.premiumSubscription, loaded.premiumSubscription) && Intrinsics3.areEqual(this.paymentSources, loaded.paymentSources) && this.isBusy == loaded.isBusy && Intrinsics3.areEqual(this.entitlements, loaded.entitlements) && Intrinsics3.areEqual(this.guildSubscriptions, loaded.guildSubscriptions) && this.hasAnyGuildBoosts == loaded.hasAnyGuildBoosts && Intrinsics3.areEqual(this.renewalInvoicePreview, loaded.renewalInvoicePreview) && Intrinsics3.areEqual(this.currentInvoicePreview, loaded.currentInvoicePreview) && Intrinsics3.areEqual(this.skuDetails, loaded.skuDetails) && Intrinsics3.areEqual(this.purchases, loaded.purchases) && this.pastDueGracePeriodDays == loaded.pastDueGracePeriodDays;
             }
 
             /* JADX INFO: renamed from: component8, reason: from getter */
@@ -732,7 +732,7 @@ public final class SettingsPremiumViewModel extends d0<ViewState> {
             }
 
             public String toString() {
-                StringBuilder sbU = a.U("Loaded(premiumSubscription=");
+                StringBuilder sbU = outline.U("Loaded(premiumSubscription=");
                 sbU.append(this.premiumSubscription);
                 sbU.append(", paymentSources=");
                 sbU.append(this.paymentSources);
@@ -753,7 +753,7 @@ public final class SettingsPremiumViewModel extends d0<ViewState> {
                 sbU.append(", purchases=");
                 sbU.append(this.purchases);
                 sbU.append(", pastDueGracePeriodDays=");
-                return a.B(sbU, this.pastDueGracePeriodDays, ")");
+                return outline.B(sbU, this.pastDueGracePeriodDays, ")");
             }
         }
 
@@ -834,14 +834,14 @@ public final class SettingsPremiumViewModel extends d0<ViewState> {
     @MainThread
     public final Observable<Event> getEventSubject() {
         PublishSubject<Event> publishSubject = this.eventSubject;
-        m.checkNotNullExpressionValue(publishSubject, "eventSubject");
+        Intrinsics3.checkNotNullExpressionValue(publishSubject, "eventSubject");
         return publishSubject;
     }
 
     private final int getPastDueGracePeriodDays(ModelSubscription sub) {
         if (sub != null && !sub.isMobileManaged()) {
             String paymentSourceId = sub.getPaymentSourceId();
-            if (!(paymentSourceId == null || t.isBlank(paymentSourceId))) {
+            if (!(paymentSourceId == null || StringsJVM.isBlank(paymentSourceId))) {
                 return 7;
             }
         }
@@ -860,11 +860,11 @@ public final class SettingsPremiumViewModel extends d0<ViewState> {
         StoreGooglePlayPurchases.State purchaseState = storeState.getPurchaseState();
         if ((paymentSourcesState instanceof StorePaymentSources.PaymentSourcesState.Loaded) && (subscriptionsState instanceof StoreSubscriptions.SubscriptionsState.Loaded) && (entitlementState instanceof StoreEntitlements.State.Loaded) && (guildBoostState instanceof StoreGuildBoost.State.Loaded) && (renewalInvoicePreviewFetch instanceof InvoicePreviewFetch.Invoice) && (currentInvoicePreviewFetch instanceof InvoicePreviewFetch.Invoice) && (skuDetailsState instanceof StoreGooglePlaySkuDetails.State.Loaded) && (purchaseState instanceof StoreGooglePlayPurchases.State.Loaded)) {
             ModelSubscription premiumSubscription = ((StoreSubscriptions.SubscriptionsState.Loaded) subscriptionsState).getPremiumSubscription();
-            boolean zHasAnyOfPlans = premiumSubscription != null ? premiumSubscription.hasAnyOfPlans(n0.setOf((Object[]) new Long[]{Long.valueOf(SubscriptionPlanType.PREMIUM_GUILD_MONTH.getPlanId()), Long.valueOf(SubscriptionPlanType.PREMIUM_GUILD_3_MONTH.getPlanId()), Long.valueOf(SubscriptionPlanType.PREMIUM_GUILD_6_MONTH.getPlanId()), Long.valueOf(SubscriptionPlanType.PREMIUM_GUILD_YEAR.getPlanId())})) : false;
+            boolean zHasAnyOfPlans = premiumSubscription != null ? premiumSubscription.hasAnyOfPlans(Sets5.setOf((Object[]) new Long[]{Long.valueOf(SubscriptionPlanType.PREMIUM_GUILD_MONTH.getPlanId()), Long.valueOf(SubscriptionPlanType.PREMIUM_GUILD_3_MONTH.getPlanId()), Long.valueOf(SubscriptionPlanType.PREMIUM_GUILD_6_MONTH.getPlanId()), Long.valueOf(SubscriptionPlanType.PREMIUM_GUILD_YEAR.getPlanId())})) : false;
             List<ModelPaymentSource> paymentSources = ((StorePaymentSources.PaymentSourcesState.Loaded) paymentSourcesState).getPaymentSources();
             List<ModelEntitlement> listEmptyList = ((StoreEntitlements.State.Loaded) entitlementState).getOwnedEntitlements().get(521842831262875670L);
             if (listEmptyList == null) {
-                listEmptyList = n.emptyList();
+                listEmptyList = Collections2.emptyList();
             }
             loaded = new ViewState.Loaded(premiumSubscription, paymentSources, false, listEmptyList, ((StoreGuildBoost.State.Loaded) guildBoostState).getBoostSlotMap(), zHasAnyOfPlans, ((InvoicePreviewFetch.Invoice) renewalInvoicePreviewFetch).getModelInvoicePreview(), ((InvoicePreviewFetch.Invoice) currentInvoicePreviewFetch).getModelInvoicePreview(), ((StoreGooglePlaySkuDetails.State.Loaded) skuDetailsState).getSkuDetails(), ((StoreGooglePlayPurchases.State.Loaded) purchaseState).getPurchases(), getPastDueGracePeriodDays(premiumSubscription));
         } else {
@@ -899,12 +899,12 @@ public final class SettingsPremiumViewModel extends d0<ViewState> {
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public SettingsPremiumViewModel(StorePaymentSources storePaymentSources, StoreSubscriptions storeSubscriptions, StoreEntitlements storeEntitlements, StoreGuildBoost storeGuildBoost, RestAPI restAPI, Observable<StoreState> observable) {
         super(ViewState.Loading.INSTANCE);
-        m.checkNotNullParameter(storePaymentSources, "storePaymentsSources");
-        m.checkNotNullParameter(storeSubscriptions, "storeSubscriptions");
-        m.checkNotNullParameter(storeEntitlements, "storeEntitlements");
-        m.checkNotNullParameter(storeGuildBoost, "storeGuildBoost");
-        m.checkNotNullParameter(restAPI, "restAPI");
-        m.checkNotNullParameter(observable, "storeObservable");
+        Intrinsics3.checkNotNullParameter(storePaymentSources, "storePaymentsSources");
+        Intrinsics3.checkNotNullParameter(storeSubscriptions, "storeSubscriptions");
+        Intrinsics3.checkNotNullParameter(storeEntitlements, "storeEntitlements");
+        Intrinsics3.checkNotNullParameter(storeGuildBoost, "storeGuildBoost");
+        Intrinsics3.checkNotNullParameter(restAPI, "restAPI");
+        Intrinsics3.checkNotNullParameter(observable, "storeObservable");
         this.storePaymentsSources = storePaymentSources;
         this.storeSubscriptions = storeSubscriptions;
         this.storeEntitlements = storeEntitlements;

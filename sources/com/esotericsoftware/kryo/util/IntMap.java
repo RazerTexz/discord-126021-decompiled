@@ -1,6 +1,6 @@
 package com.esotericsoftware.kryo.util;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
@@ -905,7 +905,7 @@ public class IntMap<V> {
 
     public void shrink(int i) {
         if (i < 0) {
-            throw new IllegalArgumentException(a.q("maximumCapacity must be >= 0: ", i));
+            throw new IllegalArgumentException(outline.q("maximumCapacity must be >= 0: ", i));
         }
         int i2 = this.size;
         if (i2 > i) {
@@ -921,10 +921,11 @@ public class IntMap<V> {
     /* JADX WARN: Code duplicated, block: B:21:0x0048 A[EDGE_INSN: B:21:0x0048->B:15:0x003e BREAK  A[LOOP:0: B:9:0x0029->B:13:0x0031]] */
     /* JADX WARN: Code duplicated, block: B:22:0x0059  */
     /* JADX WARN: Unsupported multi-entry loop pattern (BACK_EDGE: B:15:0x003e -> B:16:0x003f). Please report as a decompilation issue!!! */
-    /*  JADX ERROR: StackOverflowError in pass: RegionMakerVisitor
-        java.lang.StackOverflowError
-        	at jadx.core.utils.BlockUtils.traverseSuccessorsUntil(BlockUtils.java:731)
-        	at jadx.core.utils.BlockUtils.traverseSuccessorsUntil(BlockUtils.java:749)
+    /*  JADX ERROR: JadxOverflowException in pass: RegionMakerVisitor
+        jadx.core.utils.exceptions.JadxOverflowException: Regions stack size limit reached
+        	at jadx.core.utils.ErrorsCounter.addError(ErrorsCounter.java:59)
+        	at jadx.core.utils.ErrorsCounter.error(ErrorsCounter.java:31)
+        	at jadx.core.dex.attributes.nodes.NotificationAttrNode.addError(NotificationAttrNode.java:19)
         */
     public java.lang.String toString() {
         /*
@@ -997,7 +998,7 @@ public class IntMap<V> {
 
     public IntMap(int i, float f) {
         if (i < 0) {
-            throw new IllegalArgumentException(a.q("initialCapacity must be >= 0: ", i));
+            throw new IllegalArgumentException(outline.q("initialCapacity must be >= 0: ", i));
         }
         if (i <= 1073741824) {
             int iNextPowerOfTwo = ObjectMap.nextPowerOfTwo(i);
@@ -1017,7 +1018,7 @@ public class IntMap<V> {
             }
             throw new IllegalArgumentException("loadFactor must be > 0: " + f);
         }
-        throw new IllegalArgumentException(a.q("initialCapacity is too large: ", i));
+        throw new IllegalArgumentException(outline.q("initialCapacity is too large: ", i));
     }
 
     public void clear() {

@@ -3,7 +3,7 @@ package b.a.n;
 import android.animation.Animator;
 import com.discord.overlay.OverlayManager;
 import com.discord.overlay.views.OverlayBubbleWrap;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: Animator.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -20,30 +20,30 @@ public final class e implements Animator.AnimatorListener {
 
     @Override // android.animation.Animator.AnimatorListener
     public void onAnimationCancel(Animator animator) {
-        m.checkNotNullParameter(animator, "animator");
+        Intrinsics3.checkNotNullParameter(animator, "animator");
     }
 
     @Override // android.animation.Animator.AnimatorListener
     public void onAnimationEnd(Animator animator) {
-        m.checkNotNullParameter(animator, "animator");
+        Intrinsics3.checkNotNullParameter(animator, "animator");
         if (this.a.trashWrap != null) {
             OverlayBubbleWrap overlayBubbleWrap = this.f249b;
-            m.checkNotNullParameter(overlayBubbleWrap, "bubble");
-            m.checkNotNullParameter(overlayBubbleWrap, "bubble");
+            Intrinsics3.checkNotNullParameter(overlayBubbleWrap, "bubble");
+            Intrinsics3.checkNotNullParameter(overlayBubbleWrap, "bubble");
         }
-        f fVar = this.a.trashEventListener;
-        if (fVar != null) {
-            fVar.b(this.f249b);
+        TrashEventListener trashEventListener = this.a.trashEventListener;
+        if (trashEventListener != null) {
+            trashEventListener.b(this.f249b);
         }
     }
 
     @Override // android.animation.Animator.AnimatorListener
     public void onAnimationRepeat(Animator animator) {
-        m.checkNotNullParameter(animator, "animator");
+        Intrinsics3.checkNotNullParameter(animator, "animator");
     }
 
     @Override // android.animation.Animator.AnimatorListener
     public void onAnimationStart(Animator animator) {
-        m.checkNotNullParameter(animator, "animator");
+        Intrinsics3.checkNotNullParameter(animator, "animator");
     }
 }

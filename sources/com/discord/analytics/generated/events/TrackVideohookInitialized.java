@@ -1,14 +1,14 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackVideohookInitialized.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackVideohookInitialized implements AnalyticsSchema, TrackBaseReceiver {
+public final /* data */ class TrackVideohookInitialized implements AnalyticsSchema, TrackBase2 {
     private final Long backend = null;
     private final Long format = null;
     private final Long framebufferFormat = null;
@@ -29,7 +29,7 @@ public final /* data */ class TrackVideohookInitialized implements AnalyticsSche
             return false;
         }
         TrackVideohookInitialized trackVideohookInitialized = (TrackVideohookInitialized) other;
-        return m.areEqual(this.backend, trackVideohookInitialized.backend) && m.areEqual(this.format, trackVideohookInitialized.format) && m.areEqual(this.framebufferFormat, trackVideohookInitialized.framebufferFormat) && m.areEqual(this.sampleCount, trackVideohookInitialized.sampleCount) && m.areEqual(this.success, trackVideohookInitialized.success) && m.areEqual(this.reinitialization, trackVideohookInitialized.reinitialization) && m.areEqual(this.soundshareSession, trackVideohookInitialized.soundshareSession) && m.areEqual(this.shareGameName, trackVideohookInitialized.shareGameName) && m.areEqual(this.shareGameId, trackVideohookInitialized.shareGameId);
+        return Intrinsics3.areEqual(this.backend, trackVideohookInitialized.backend) && Intrinsics3.areEqual(this.format, trackVideohookInitialized.format) && Intrinsics3.areEqual(this.framebufferFormat, trackVideohookInitialized.framebufferFormat) && Intrinsics3.areEqual(this.sampleCount, trackVideohookInitialized.sampleCount) && Intrinsics3.areEqual(this.success, trackVideohookInitialized.success) && Intrinsics3.areEqual(this.reinitialization, trackVideohookInitialized.reinitialization) && Intrinsics3.areEqual(this.soundshareSession, trackVideohookInitialized.soundshareSession) && Intrinsics3.areEqual(this.shareGameName, trackVideohookInitialized.shareGameName) && Intrinsics3.areEqual(this.shareGameId, trackVideohookInitialized.shareGameId);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -60,7 +60,7 @@ public final /* data */ class TrackVideohookInitialized implements AnalyticsSche
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackVideohookInitialized(backend=");
+        StringBuilder sbU = outline.U("TrackVideohookInitialized(backend=");
         sbU.append(this.backend);
         sbU.append(", format=");
         sbU.append(this.format);
@@ -77,6 +77,6 @@ public final /* data */ class TrackVideohookInitialized implements AnalyticsSche
         sbU.append(", shareGameName=");
         sbU.append(this.shareGameName);
         sbU.append(", shareGameId=");
-        return a.G(sbU, this.shareGameId, ")");
+        return outline.G(sbU, this.shareGameId, ")");
     }
 }

@@ -1,10 +1,10 @@
 package com.discord.widgets.guilds.join;
 
 import a0.a.a.b;
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.api.guild.Guild;
 import com.discord.utilities.error.Error;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function1;
 import kotlin.jvm.internal.DefaultConstructorMarker;
@@ -48,8 +48,8 @@ public final /* data */ class JoinArgs extends CaptchaArgs {
     }
 
     public final JoinArgs copy(long guildId, boolean isLurker, String sessionId, Long directoryChannelId, Class<?> errorClass, Function1<? super Subscription, Unit> subscriptionHandler, Function1<? super Error, Unit> errorHandler, Function1<? super Guild, Unit> onNext) {
-        m.checkNotNullParameter(errorClass, "errorClass");
-        m.checkNotNullParameter(onNext, "onNext");
+        Intrinsics3.checkNotNullParameter(errorClass, "errorClass");
+        Intrinsics3.checkNotNullParameter(onNext, "onNext");
         return new JoinArgs(guildId, isLurker, sessionId, directoryChannelId, errorClass, subscriptionHandler, errorHandler, onNext);
     }
 
@@ -61,7 +61,7 @@ public final /* data */ class JoinArgs extends CaptchaArgs {
             return false;
         }
         JoinArgs joinArgs = (JoinArgs) other;
-        return this.guildId == joinArgs.guildId && this.isLurker == joinArgs.isLurker && m.areEqual(this.sessionId, joinArgs.sessionId) && m.areEqual(this.directoryChannelId, joinArgs.directoryChannelId) && m.areEqual(this.errorClass, joinArgs.errorClass) && m.areEqual(this.subscriptionHandler, joinArgs.subscriptionHandler) && m.areEqual(this.errorHandler, joinArgs.errorHandler) && m.areEqual(this.onNext, joinArgs.onNext);
+        return this.guildId == joinArgs.guildId && this.isLurker == joinArgs.isLurker && Intrinsics3.areEqual(this.sessionId, joinArgs.sessionId) && Intrinsics3.areEqual(this.directoryChannelId, joinArgs.directoryChannelId) && Intrinsics3.areEqual(this.errorClass, joinArgs.errorClass) && Intrinsics3.areEqual(this.subscriptionHandler, joinArgs.subscriptionHandler) && Intrinsics3.areEqual(this.errorHandler, joinArgs.errorHandler) && Intrinsics3.areEqual(this.onNext, joinArgs.onNext);
     }
 
     /* JADX INFO: renamed from: component4, reason: from getter */
@@ -144,7 +144,7 @@ public final /* data */ class JoinArgs extends CaptchaArgs {
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("JoinArgs(guildId=");
+        StringBuilder sbU = outline.U("JoinArgs(guildId=");
         sbU.append(this.guildId);
         sbU.append(", isLurker=");
         sbU.append(this.isLurker);
@@ -168,8 +168,8 @@ public final /* data */ class JoinArgs extends CaptchaArgs {
     /* JADX WARN: Multi-variable type inference failed */
     public JoinArgs(long j, boolean z2, String str, Long l, Class<?> cls, Function1<? super Subscription, Unit> function1, Function1<? super Error, Unit> function2, Function1<? super Guild, Unit> function3) {
         super(null);
-        m.checkNotNullParameter(cls, "errorClass");
-        m.checkNotNullParameter(function3, "onNext");
+        Intrinsics3.checkNotNullParameter(cls, "errorClass");
+        Intrinsics3.checkNotNullParameter(function3, "onNext");
         this.guildId = j;
         this.isLurker = z2;
         this.sessionId = str;

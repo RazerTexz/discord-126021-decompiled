@@ -10,13 +10,14 @@ import android.net.Uri;
 import android.util.Patterns;
 import androidx.core.app.NotificationCompat;
 import androidx.core.content.ContextCompat;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.events.network_action.TrackNetworkActionAuthorizeIp;
 import com.discord.analytics.generated.events.network_action.TrackNetworkActionForgotPassword;
 import com.discord.analytics.generated.events.network_action.TrackNetworkActionUserLogin;
 import com.discord.analytics.generated.events.network_action.TrackNetworkActionUserLoginMfa;
 import com.discord.analytics.generated.events.network_action.TrackNetworkActionUserLogout;
 import com.discord.analytics.generated.events.network_action.TrackNetworkActionUserRegister;
-import com.discord.analytics.generated.traits.TrackNetworkMetadataReceiver;
+import com.discord.analytics.generated.traits.TrackNetworkMetadata2;
 import com.discord.api.auth.RegisterResponse;
 import com.discord.api.auth.RequiredAction;
 import com.discord.api.channel.Channel;
@@ -30,7 +31,7 @@ import com.discord.models.domain.auth.ModelLoginResult;
 import com.discord.models.user.MeUser;
 import com.discord.restapi.RestAPIParams;
 import com.discord.stores.authentication.AuthStateCache;
-import com.discord.stores.utilities.RestCallStateKt;
+import com.discord.stores.utilities.RestCallState5;
 import com.discord.utilities.SnowflakeUtils;
 import com.discord.utilities.analytics.AnalyticsTracker;
 import com.discord.utilities.captcha.CaptchaHelper;
@@ -41,15 +42,16 @@ import com.discord.utilities.rx.ObservableExtensionsKt;
 import com.discord.utilities.time.TimeUtils;
 import com.discord.widgets.settings.account.WidgetSettingsAccountChangePassword;
 import com.google.firebase.crashlytics.FirebaseCrashlytics;
-import d0.g0.t;
-import d0.t.n0;
-import d0.t.o0;
-import d0.t.u;
-import d0.z.d.m;
-import d0.z.d.o;
-import j0.k.b;
-import j0.l.e.k;
-import j0.m.a;
+import d0.g0.StringsJVM;
+import d0.t.Sets5;
+import d0.t._Collections;
+import d0.t._Sets;
+import d0.z.d.FunctionReferenceImpl;
+import d0.z.d.Intrinsics3;
+import d0.z.d.Lambda;
+import j0.k.Func1;
+import j0.l.e.ScalarSynchronousObservable;
+import j0.m.BlockingObservable;
 import java.util.List;
 import java.util.Set;
 import kotlin.Unit;
@@ -92,7 +94,7 @@ public final class StoreAuthentication extends Store {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreAuthentication$authMFA$1, reason: invalid class name */
     /* JADX INFO: compiled from: StoreAuthentication.kt */
-    public final class AnonymousClass1 extends o implements Function1<ModelLoginResult, TrackNetworkMetadataReceiver> {
+    public final class AnonymousClass1 extends Lambda implements Function1<ModelLoginResult, TrackNetworkMetadata2> {
         public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
 
         public AnonymousClass1() {
@@ -100,19 +102,19 @@ public final class StoreAuthentication extends Store {
         }
 
         @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ TrackNetworkMetadataReceiver invoke(ModelLoginResult modelLoginResult) {
+        public /* bridge */ /* synthetic */ TrackNetworkMetadata2 invoke(ModelLoginResult modelLoginResult) {
             return invoke2(modelLoginResult);
         }
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final TrackNetworkMetadataReceiver invoke2(ModelLoginResult modelLoginResult) {
+        public final TrackNetworkMetadata2 invoke2(ModelLoginResult modelLoginResult) {
             return new TrackNetworkActionUserLoginMfa();
         }
     }
 
     /* JADX INFO: renamed from: com.discord.stores.StoreAuthentication$authorizeIP$1, reason: invalid class name */
     /* JADX INFO: compiled from: StoreAuthentication.kt */
-    public final class AnonymousClass1 extends o implements Function1<Void, TrackNetworkMetadataReceiver> {
+    public final class AnonymousClass1 extends Lambda implements Function1<Void, TrackNetworkMetadata2> {
         public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
 
         public AnonymousClass1() {
@@ -120,19 +122,19 @@ public final class StoreAuthentication extends Store {
         }
 
         @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ TrackNetworkMetadataReceiver invoke(Void r1) {
+        public /* bridge */ /* synthetic */ TrackNetworkMetadata2 invoke(Void r1) {
             return invoke2(r1);
         }
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final TrackNetworkMetadataReceiver invoke2(Void r1) {
+        public final TrackNetworkMetadata2 invoke2(Void r1) {
             return new TrackNetworkActionAuthorizeIp();
         }
     }
 
     /* JADX INFO: renamed from: com.discord.stores.StoreAuthentication$dispatchLogin$1, reason: invalid class name */
     /* JADX INFO: compiled from: StoreAuthentication.kt */
-    public final class AnonymousClass1 extends o implements Function0<Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function0<Unit> {
         public final /* synthetic */ ModelLoginResult $loginResult;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -155,7 +157,7 @@ public final class StoreAuthentication extends Store {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreAuthentication$forgotPassword$1, reason: invalid class name */
     /* JADX INFO: compiled from: StoreAuthentication.kt */
-    public final class AnonymousClass1 extends o implements Function1<Void, TrackNetworkMetadataReceiver> {
+    public final class AnonymousClass1 extends Lambda implements Function1<Void, TrackNetworkMetadata2> {
         public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
 
         public AnonymousClass1() {
@@ -163,27 +165,27 @@ public final class StoreAuthentication extends Store {
         }
 
         @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ TrackNetworkMetadataReceiver invoke(Void r1) {
+        public /* bridge */ /* synthetic */ TrackNetworkMetadata2 invoke(Void r1) {
             return invoke2(r1);
         }
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final TrackNetworkMetadataReceiver invoke2(Void r1) {
+        public final TrackNetworkMetadata2 invoke2(Void r1) {
             return new TrackNetworkActionForgotPassword();
         }
     }
 
     /* JADX INFO: renamed from: com.discord.stores.StoreAuthentication$getFingerprintSnapshotOrGenerate$1, reason: invalid class name */
     /* JADX INFO: compiled from: StoreAuthentication.kt */
-    public final class AnonymousClass1<T, R> implements b<String, Observable<? extends String>> {
+    public final class AnonymousClass1<T, R> implements Func1<String, Observable<? extends String>> {
         public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
 
         /* JADX INFO: renamed from: com.discord.stores.StoreAuthentication$getFingerprintSnapshotOrGenerate$1$2, reason: invalid class name */
         /* JADX INFO: compiled from: StoreAuthentication.kt */
-        public final class AnonymousClass2<T, R> implements b<FingerprintResponse, String> {
+        public final class AnonymousClass2<T, R> implements Func1<FingerprintResponse, String> {
             public static final AnonymousClass2 INSTANCE = new AnonymousClass2();
 
-            @Override // j0.k.b
+            @Override // j0.k.Func1
             public /* bridge */ /* synthetic */ String call(FingerprintResponse fingerprintResponse) {
                 return call2(fingerprintResponse);
             }
@@ -194,14 +196,14 @@ public final class StoreAuthentication extends Store {
             }
         }
 
-        @Override // j0.k.b
+        @Override // j0.k.Func1
         public /* bridge */ /* synthetic */ Observable<? extends String> call(String str) {
             return call2(str);
         }
 
         /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
         public final Observable<? extends String> call2(String str) {
-            return str != null ? new k(str) : ObservableExtensionsKt.restSubscribeOn$default(RestAPI.INSTANCE.getApi().postAuthFingerprint(new RestAPIParams.EmptyBody()), false, 1, null).G(AnonymousClass2.INSTANCE);
+            return str != null ? new ScalarSynchronousObservable(str) : ObservableExtensionsKt.restSubscribeOn$default(RestAPI.INSTANCE.getApi().postAuthFingerprint(new RestAPIParams.EmptyBody()), false, 1, null).G(AnonymousClass2.INSTANCE);
         }
     }
 
@@ -230,7 +232,7 @@ public final class StoreAuthentication extends Store {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreAuthentication$init$1, reason: invalid class name */
     /* JADX INFO: compiled from: StoreAuthentication.kt */
-    public final class AnonymousClass1 extends o implements Function1<Boolean, Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function1<Boolean, Unit> {
         public final /* synthetic */ Context $context;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -248,14 +250,14 @@ public final class StoreAuthentication extends Store {
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(Boolean bool) {
             Context context = this.$context;
-            m.checkNotNullExpressionValue(bool, "isLoggedIn");
+            Intrinsics3.checkNotNullExpressionValue(bool, "isLoggedIn");
             context.sendBroadcast(new Intent(bool.booleanValue() ? "com.discord.broadcast.LOGGED_IN" : "com.discord.broadcast.LOGGED_OUT"));
         }
     }
 
     /* JADX INFO: renamed from: com.discord.stores.StoreAuthentication$login$1, reason: invalid class name */
     /* JADX INFO: compiled from: StoreAuthentication.kt */
-    public final class AnonymousClass1<T, R> implements b<String, Observable<? extends ModelLoginResult>> {
+    public final class AnonymousClass1<T, R> implements Func1<String, Observable<? extends ModelLoginResult>> {
         public final /* synthetic */ CaptchaHelper.CaptchaPayload $captchaPayload;
         public final /* synthetic */ String $login;
         public final /* synthetic */ String $loginSource;
@@ -264,22 +266,22 @@ public final class StoreAuthentication extends Store {
 
         /* JADX INFO: renamed from: com.discord.stores.StoreAuthentication$login$1$1, reason: invalid class name and collision with other inner class name */
         /* JADX INFO: compiled from: StoreAuthentication.kt */
-        public final class C02111 extends o implements Function1<ModelLoginResult, TrackNetworkMetadataReceiver> {
-            public static final C02111 INSTANCE = new C02111();
+        public final class C00911 extends Lambda implements Function1<ModelLoginResult, TrackNetworkMetadata2> {
+            public static final C00911 INSTANCE = new C00911();
 
-            public C02111() {
+            public C00911() {
                 super(1);
             }
 
             @Override // kotlin.jvm.functions.Function1
-            public /* bridge */ /* synthetic */ TrackNetworkMetadataReceiver invoke(ModelLoginResult modelLoginResult) {
+            public /* bridge */ /* synthetic */ TrackNetworkMetadata2 invoke(ModelLoginResult modelLoginResult) {
                 return invoke2(modelLoginResult);
             }
 
             /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-            public final TrackNetworkMetadataReceiver invoke2(ModelLoginResult modelLoginResult) {
-                Observable<T> observableM = ObservableExtensionsKt.takeSingleUntilTimeout$default(StoreStream.INSTANCE.getInviteSettings().getInvite(), 250L, false, 2, null).M(StoreAuthentication$login$1$1$invite$1.INSTANCE);
-                ModelInvite modelInvite = (ModelInvite) new a(observableM).a(observableM.z());
+            public final TrackNetworkMetadata2 invoke2(ModelLoginResult modelLoginResult) {
+                Observable<T> observableM = ObservableExtensionsKt.takeSingleUntilTimeout$default(StoreStream.INSTANCE.getInviteSettings().getInvite(), 250L, false, 2, null).M(StoreAuthentication4.INSTANCE);
+                ModelInvite modelInvite = (ModelInvite) new BlockingObservable(observableM).a(observableM.z());
                 return new TrackNetworkActionUserLogin(modelInvite != null ? modelInvite.code : null, null, 2);
             }
         }
@@ -292,7 +294,7 @@ public final class StoreAuthentication extends Store {
             this.$loginSource = str3;
         }
 
-        @Override // j0.k.b
+        @Override // j0.k.Func1
         public /* bridge */ /* synthetic */ Observable<? extends ModelLoginResult> call(String str) {
             return call2(str);
         }
@@ -305,13 +307,13 @@ public final class StoreAuthentication extends Store {
             CaptchaHelper.CaptchaPayload captchaPayload = this.$captchaPayload;
             String captchaKey = captchaPayload != null ? captchaPayload.getCaptchaKey() : null;
             CaptchaHelper.CaptchaPayload captchaPayload2 = this.$captchaPayload;
-            return RestCallStateKt.logNetworkAction(ObservableExtensionsKt.restSubscribeOn$default(api.postAuthLogin(new RestAPIParams.AuthLogin(str2, str3, captchaKey, captchaPayload2 != null ? captchaPayload2.getCaptchaRqtoken() : null, Boolean.valueOf(this.$undelete), this.$loginSource)), false, 1, null), C02111.INSTANCE);
+            return RestCallState5.logNetworkAction(ObservableExtensionsKt.restSubscribeOn$default(api.postAuthLogin(new RestAPIParams.AuthLogin(str2, str3, captchaKey, captchaPayload2 != null ? captchaPayload2.getCaptchaRqtoken() : null, Boolean.valueOf(this.$undelete), this.$loginSource)), false, 1, null), C00911.INSTANCE);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.stores.StoreAuthentication$logout$1, reason: invalid class name */
     /* JADX INFO: compiled from: StoreAuthentication.kt */
-    public final class AnonymousClass1 extends o implements Function1<Void, TrackNetworkMetadataReceiver> {
+    public final class AnonymousClass1 extends Lambda implements Function1<Void, TrackNetworkMetadata2> {
         public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
 
         public AnonymousClass1() {
@@ -319,19 +321,19 @@ public final class StoreAuthentication extends Store {
         }
 
         @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ TrackNetworkMetadataReceiver invoke(Void r1) {
+        public /* bridge */ /* synthetic */ TrackNetworkMetadata2 invoke(Void r1) {
             return invoke2(r1);
         }
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final TrackNetworkMetadataReceiver invoke2(Void r1) {
+        public final TrackNetworkMetadata2 invoke2(Void r1) {
             return new TrackNetworkActionUserLogout();
         }
     }
 
     /* JADX INFO: renamed from: com.discord.stores.StoreAuthentication$onPasswordChanged$1, reason: invalid class name */
     /* JADX INFO: compiled from: StoreAuthentication.kt */
-    public final class AnonymousClass1 extends o implements Function0<Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function0<Unit> {
         public final /* synthetic */ String $token;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -351,15 +353,15 @@ public final class StoreAuthentication extends Store {
             Set<RequiredAction> setEmptySet;
             AuthState authState = StoreAuthentication.this.getAuthState();
             if (authState == null || (setEmptySet = authState.getRequiredActions()) == null) {
-                setEmptySet = n0.emptySet();
+                setEmptySet = Sets5.emptySet();
             }
-            StoreAuthentication.access$publishAuthState(StoreAuthentication.this, AuthState.INSTANCE.from(this.$token, o0.minus(setEmptySet, RequiredAction.UPDATE_PASSWORD)));
+            StoreAuthentication.access$publishAuthState(StoreAuthentication.this, AuthState.INSTANCE.from(this.$token, _Sets.minus(setEmptySet, RequiredAction.UPDATE_PASSWORD)));
         }
     }
 
     /* JADX INFO: renamed from: com.discord.stores.StoreAuthentication$register$1, reason: invalid class name */
     /* JADX INFO: compiled from: StoreAuthentication.kt */
-    public final class AnonymousClass1<T, R> implements b<String, Observable<? extends RegisterResponse>> {
+    public final class AnonymousClass1<T, R> implements Func1<String, Observable<? extends RegisterResponse>> {
         public final /* synthetic */ CaptchaHelper.CaptchaPayload $captchaPayload;
         public final /* synthetic */ boolean $consent;
         public final /* synthetic */ String $dateOfBirth;
@@ -370,27 +372,27 @@ public final class StoreAuthentication extends Store {
 
         /* JADX INFO: renamed from: com.discord.stores.StoreAuthentication$register$1$2, reason: invalid class name */
         /* JADX INFO: compiled from: StoreAuthentication.kt */
-        public final class AnonymousClass2<T, R> implements b<AuthRequestParams, Observable<? extends RegisterResponse>> {
+        public final class AnonymousClass2<T, R> implements Func1<AuthRequestParams, Observable<? extends RegisterResponse>> {
             public final /* synthetic */ String $fingerprint;
 
             /* JADX INFO: renamed from: com.discord.stores.StoreAuthentication$register$1$2$1, reason: invalid class name and collision with other inner class name */
             /* JADX INFO: compiled from: StoreAuthentication.kt */
-            public final class C02131 extends o implements Function1<RegisterResponse, TrackNetworkMetadataReceiver> {
+            public final class C00931 extends Lambda implements Function1<RegisterResponse, TrackNetworkMetadata2> {
                 public final /* synthetic */ String $inviteCode;
 
                 /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-                public C02131(String str) {
+                public C00931(String str) {
                     super(1);
                     this.$inviteCode = str;
                 }
 
                 @Override // kotlin.jvm.functions.Function1
-                public /* bridge */ /* synthetic */ TrackNetworkMetadataReceiver invoke(RegisterResponse registerResponse) {
+                public /* bridge */ /* synthetic */ TrackNetworkMetadata2 invoke(RegisterResponse registerResponse) {
                     return invoke2(registerResponse);
                 }
 
                 /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-                public final TrackNetworkMetadataReceiver invoke2(RegisterResponse registerResponse) {
+                public final TrackNetworkMetadata2 invoke2(RegisterResponse registerResponse) {
                     return new TrackNetworkActionUserRegister(this.$inviteCode, Boolean.valueOf(AnonymousClass1.this.$consent), Boolean.FALSE);
                 }
             }
@@ -399,7 +401,7 @@ public final class StoreAuthentication extends Store {
                 this.$fingerprint = str;
             }
 
-            @Override // j0.k.b
+            @Override // j0.k.Func1
             public /* bridge */ /* synthetic */ Observable<? extends RegisterResponse> call(AuthRequestParams authRequestParams) {
                 return call2(authRequestParams);
             }
@@ -426,7 +428,7 @@ public final class StoreAuthentication extends Store {
                 String captchaRqtoken = captchaPayload2 != null ? captchaPayload2.getCaptchaRqtoken() : null;
                 String guildTemplateCode = authRequestParams.getGuildTemplateCode();
                 AnonymousClass1 anonymousClass2 = AnonymousClass1.this;
-                return RestCallStateKt.logNetworkAction(api.postAuthRegister(new RestAPIParams.AuthRegister(str, str2, str3, str4, str5, captchaKey, captchaRqtoken, inviteCode2, guildTemplateCode, anonymousClass2.$consent, anonymousClass2.$dateOfBirth)), new C02131(inviteCode2));
+                return RestCallState5.logNetworkAction(api.postAuthRegister(new RestAPIParams.AuthRegister(str, str2, str3, str4, str5, captchaKey, captchaRqtoken, inviteCode2, guildTemplateCode, anonymousClass2.$consent, anonymousClass2.$dateOfBirth)), new C00931(inviteCode2));
             }
         }
 
@@ -446,7 +448,7 @@ public final class StoreAuthentication extends Store {
                 StoreStream.Companion companion = StoreStream.INSTANCE;
                 companion.getUserSettingsSystem().setIsSyncThemeEnabled(false);
                 StoreAuthentication.this.setFingerprint(null, true);
-                StoreAuthentication.access$publishAuthState(StoreAuthentication.this, new AuthState(registerResponse.getToken(), n0.emptySet()));
+                StoreAuthentication.access$publishAuthState(StoreAuthentication.this, new AuthState(registerResponse.getToken(), Sets5.emptySet()));
                 AnalyticsTracker.INSTANCE.appFirstLogin();
                 companion.getNotifications().setEnabledInApp(true, false);
                 companion.getNux().setFirstOpen(true);
@@ -455,10 +457,10 @@ public final class StoreAuthentication extends Store {
 
         /* JADX INFO: renamed from: com.discord.stores.StoreAuthentication$register$1$1, reason: invalid class name and collision with other inner class name */
         /* JADX INFO: compiled from: StoreAuthentication.kt */
-        public final /* synthetic */ class C02121 extends d0.z.d.k implements Function2<StoreInviteSettings.InviteCode, String, AuthRequestParams> {
-            public static final C02121 INSTANCE = new C02121();
+        public final /* synthetic */ class C00921 extends FunctionReferenceImpl implements Function2<StoreInviteSettings.InviteCode, String, AuthRequestParams> {
+            public static final C00921 INSTANCE = new C00921();
 
-            public C02121() {
+            public C00921() {
                 super(2, AuthRequestParams.class, "<init>", "<init>(Lcom/discord/stores/StoreInviteSettings$InviteCode;Ljava/lang/String;)V", 0);
             }
 
@@ -483,7 +485,7 @@ public final class StoreAuthentication extends Store {
             this.$dateOfBirth = str5;
         }
 
-        @Override // j0.k.b
+        @Override // j0.k.Func1
         public /* bridge */ /* synthetic */ Observable<? extends RegisterResponse> call(String str) {
             return call2(str);
         }
@@ -493,22 +495,22 @@ public final class StoreAuthentication extends Store {
             StoreStream.Companion companion = StoreStream.INSTANCE;
             Observable<StoreInviteSettings.InviteCode> inviteCode = companion.getInviteSettings().getInviteCode();
             Observable<String> observableObserveDynamicLinkGuildTemplateCode = companion.getGuildTemplates().observeDynamicLinkGuildTemplateCode();
-            C02121 c02121 = C02121.INSTANCE;
-            Object storeAuthentication$sam$rx_functions_Func2$0 = c02121;
-            if (c02121 != null) {
-                storeAuthentication$sam$rx_functions_Func2$0 = new StoreAuthentication$sam$rx_functions_Func2$0(c02121);
+            C00921 c00921 = C00921.INSTANCE;
+            Object storeAuthentication6 = c00921;
+            if (c00921 != null) {
+                storeAuthentication6 = new StoreAuthentication6(c00921);
             }
-            Observable observableJ = Observable.j(inviteCode, observableObserveDynamicLinkGuildTemplateCode, (Func2) storeAuthentication$sam$rx_functions_Func2$0);
-            m.checkNotNullExpressionValue(observableJ, "Observable.combineLatest…RequestParams\n          )");
+            Observable observableJ = Observable.j(inviteCode, observableObserveDynamicLinkGuildTemplateCode, (Func2) storeAuthentication6);
+            Intrinsics3.checkNotNullExpressionValue(observableJ, "Observable.combineLatest…RequestParams\n          )");
             Observable<R> observableA = ObservableExtensionsKt.takeSingleUntilTimeout$default(observableJ, 500L, false, 2, null).A(new AnonymousClass2(str));
-            m.checkNotNullExpressionValue(observableA, "Observable.combineLatest…        }\n              }");
+            Intrinsics3.checkNotNullExpressionValue(observableA, "Observable.combineLatest…        }\n              }");
             return ObservableExtensionsKt.takeSingleUntilTimeout$default(ObservableExtensionsKt.restSubscribeOn$default(observableA, false, 1, null), 0L, false, 3, null).u(new AnonymousClass3());
         }
     }
 
     /* JADX INFO: renamed from: com.discord.stores.StoreAuthentication$requestConsentRequired$1, reason: invalid class name */
     /* JADX INFO: compiled from: StoreAuthentication.kt */
-    public final class AnonymousClass1 extends o implements Function1<ModelLocationMetadata, Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function1<ModelLocationMetadata, Unit> {
         public AnonymousClass1() {
             super(1);
         }
@@ -521,7 +523,7 @@ public final class StoreAuthentication extends Store {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(ModelLocationMetadata modelLocationMetadata) {
-            m.checkNotNullParameter(modelLocationMetadata, "it");
+            Intrinsics3.checkNotNullParameter(modelLocationMetadata, "it");
             StoreAuthentication.access$setConsentRequired$p(StoreAuthentication.this, modelLocationMetadata.getConsentRequired());
             String countryCode = modelLocationMetadata.getCountryCode();
             if (countryCode != null) {
@@ -532,7 +534,7 @@ public final class StoreAuthentication extends Store {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreAuthentication$setAgeGateError$1, reason: invalid class name */
     /* JADX INFO: compiled from: StoreAuthentication.kt */
-    public final class AnonymousClass1 extends o implements Function0<Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function0<Unit> {
         public final /* synthetic */ String $error;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -567,7 +569,7 @@ public final class StoreAuthentication extends Store {
         /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
         public final void call2(ModelLoginResult modelLoginResult) {
             StoreAuthentication storeAuthentication = StoreAuthentication.this;
-            m.checkNotNullExpressionValue(modelLoginResult, "loginResult");
+            Intrinsics3.checkNotNullExpressionValue(modelLoginResult, "loginResult");
             StoreAuthentication.access$dispatchLogin(storeAuthentication, modelLoginResult);
         }
     }
@@ -606,18 +608,18 @@ public final class StoreAuthentication extends Store {
                 return;
             }
             StoreAuthentication storeAuthentication = StoreAuthentication.this;
-            m.checkNotNullExpressionValue(modelLoginResult, "loginResult");
+            Intrinsics3.checkNotNullExpressionValue(modelLoginResult, "loginResult");
             StoreAuthentication.access$dispatchLogin(storeAuthentication, modelLoginResult);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.stores.StoreAuthentication$logout$2, reason: invalid class name */
     /* JADX INFO: compiled from: StoreAuthentication.kt */
-    public final class AnonymousClass2<T, R> implements b<Void, Observable<? extends String>> {
+    public final class AnonymousClass2<T, R> implements Func1<Void, Observable<? extends String>> {
         public AnonymousClass2() {
         }
 
-        @Override // j0.k.b
+        @Override // j0.k.Func1
         public /* bridge */ /* synthetic */ Observable<? extends String> call(Void r1) {
             return call2(r1);
         }
@@ -630,7 +632,7 @@ public final class StoreAuthentication extends Store {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreAuthentication$requestConsentRequired$2, reason: invalid class name */
     /* JADX INFO: compiled from: StoreAuthentication.kt */
-    public final class AnonymousClass2 extends o implements Function1<Error, Unit> {
+    public final class AnonymousClass2 extends Lambda implements Function1<Error, Unit> {
         public AnonymousClass2() {
             super(1);
         }
@@ -643,14 +645,14 @@ public final class StoreAuthentication extends Store {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(Error error) {
-            m.checkNotNullParameter(error, "it");
+            Intrinsics3.checkNotNullParameter(error, "it");
             StoreAuthentication.access$setConsentRequired$p(StoreAuthentication.this, true);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.stores.StoreAuthentication$logout$3, reason: invalid class name */
     /* JADX INFO: compiled from: StoreAuthentication.kt */
-    public final class AnonymousClass3 extends o implements Function1<String, Unit> {
+    public final class AnonymousClass3 extends Lambda implements Function1<String, Unit> {
         public AnonymousClass3() {
             super(1);
         }
@@ -670,7 +672,7 @@ public final class StoreAuthentication extends Store {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreAuthentication$requestConsentRequired$3, reason: invalid class name */
     /* JADX INFO: compiled from: StoreAuthentication.kt */
-    public final class AnonymousClass3 extends o implements Function1<Subscription, Unit> {
+    public final class AnonymousClass3 extends Lambda implements Function1<Subscription, Unit> {
         public AnonymousClass3() {
             super(1);
         }
@@ -683,14 +685,14 @@ public final class StoreAuthentication extends Store {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(Subscription subscription) {
-            m.checkNotNullParameter(subscription, "consentSubscription");
+            Intrinsics3.checkNotNullParameter(subscription, "consentSubscription");
             StoreAuthentication.access$setConsentRequiredSubscription$p(StoreAuthentication.this, subscription);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.stores.StoreAuthentication$logout$4, reason: invalid class name */
     /* JADX INFO: compiled from: StoreAuthentication.kt */
-    public final class AnonymousClass4 extends o implements Function1<Error, Unit> {
+    public final class AnonymousClass4 extends Lambda implements Function1<Error, Unit> {
         public AnonymousClass4() {
             super(1);
         }
@@ -703,7 +705,7 @@ public final class StoreAuthentication extends Store {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(Error error) {
-            m.checkNotNullParameter(error, "it");
+            Intrinsics3.checkNotNullParameter(error, "it");
             StoreAuthentication.access$publishAuthState(StoreAuthentication.this, null);
         }
     }
@@ -740,7 +742,7 @@ public final class StoreAuthentication extends Store {
                 return false;
             }
             AuthRequestParams authRequestParams = (AuthRequestParams) other;
-            return m.areEqual(this.inviteCode, authRequestParams.inviteCode) && m.areEqual(this.guildTemplateCode, authRequestParams.guildTemplateCode);
+            return Intrinsics3.areEqual(this.inviteCode, authRequestParams.inviteCode) && Intrinsics3.areEqual(this.guildTemplateCode, authRequestParams.guildTemplateCode);
         }
 
         /* JADX INFO: renamed from: component2, reason: from getter */
@@ -769,10 +771,10 @@ public final class StoreAuthentication extends Store {
         }
 
         public String toString() {
-            StringBuilder sbU = b.d.b.a.a.U("AuthRequestParams(inviteCode=");
+            StringBuilder sbU = outline.U("AuthRequestParams(inviteCode=");
             sbU.append(this.inviteCode);
             sbU.append(", guildTemplateCode=");
-            return b.d.b.a.a.J(sbU, this.guildTemplateCode, ")");
+            return outline.J(sbU, this.guildTemplateCode, ")");
         }
     }
 
@@ -797,9 +799,9 @@ public final class StoreAuthentication extends Store {
                 return null;
             }
             AccountManager accountManager = AccountManager.get(context);
-            m.checkNotNullExpressionValue(accountManager, "AccountManager.get(context)");
+            Intrinsics3.checkNotNullExpressionValue(accountManager, "AccountManager.get(context)");
             Account[] accounts = accountManager.getAccounts();
-            m.checkNotNullExpressionValue(accounts, "AccountManager.get(context).accounts");
+            Intrinsics3.checkNotNullExpressionValue(accounts, "AccountManager.get(context).accounts");
             for (Account account : accounts) {
                 if (Patterns.EMAIL_ADDRESS.matcher(account.type).matches()) {
                     if (account != null) {
@@ -818,7 +820,7 @@ public final class StoreAuthentication extends Store {
         private final String getRnaAuthToken(Context context) {
             String string = context.getSharedPreferences(StoreAuthentication.SHARED_PREFS_NAME_RNA, 0).getString(StoreAuthentication.CACHE_KEY_TOKEN_RNA, null);
             if (string != null) {
-                return t.replace$default(string, "\"", "", false, 4, (Object) null);
+                return StringsJVM.replace$default(string, "\"", "", false, 4, (Object) null);
             }
             return null;
         }
@@ -829,15 +831,15 @@ public final class StoreAuthentication extends Store {
     }
 
     public StoreAuthentication(StoreStream storeStream, Dispatcher dispatcher) {
-        m.checkNotNullParameter(storeStream, "storeStream");
-        m.checkNotNullParameter(dispatcher, "dispatcher");
+        Intrinsics3.checkNotNullParameter(storeStream, "storeStream");
+        Intrinsics3.checkNotNullParameter(dispatcher, "dispatcher");
         this.storeStream = storeStream;
         this.dispatcher = dispatcher;
         this.userInitiatedAuthEventSubject = PublishSubject.k0();
         this.fingerprintSubject = new SerializedSubject<>(BehaviorSubject.k0());
         this.authStateSubject = new SerializedSubject<>(BehaviorSubject.l0(null));
         BehaviorSubject<String> behaviorSubjectK0 = BehaviorSubject.k0();
-        m.checkNotNullExpressionValue(behaviorSubjectK0, "BehaviorSubject.create()");
+        Intrinsics3.checkNotNullExpressionValue(behaviorSubjectK0, "BehaviorSubject.create()");
         this.ageGateError = behaviorSubjectK0;
         this.oauthUriSubject = new SerializedSubject<>(BehaviorSubject.l0(Uri.EMPTY));
         this.authStateCache = new AuthStateCache(getPrefs());
@@ -884,16 +886,16 @@ public final class StoreAuthentication extends Store {
     }
 
     public final Observable<ModelLoginResult> authMFA(String code, String ticket) {
-        m.checkNotNullParameter(code, ModelAuditLogEntry.CHANGE_KEY_CODE);
-        m.checkNotNullParameter(ticket, "ticket");
-        Observable<ModelLoginResult> observableU = ObservableExtensionsKt.restSubscribeOn$default(RestCallStateKt.logNetworkAction(RestAPI.INSTANCE.getApi().postMFACode(new RestAPIParams.MFALogin(ticket, code)), AnonymousClass1.INSTANCE), false, 1, null).u(new AnonymousClass2());
-        m.checkNotNullExpressionValue(observableU, "RestAPI\n        .api\n   …in(loginResult)\n        }");
+        Intrinsics3.checkNotNullParameter(code, ModelAuditLogEntry.CHANGE_KEY_CODE);
+        Intrinsics3.checkNotNullParameter(ticket, "ticket");
+        Observable<ModelLoginResult> observableU = ObservableExtensionsKt.restSubscribeOn$default(RestCallState5.logNetworkAction(RestAPI.INSTANCE.getApi().postMFACode(new RestAPIParams.MFALogin(ticket, code)), AnonymousClass1.INSTANCE), false, 1, null).u(new AnonymousClass2());
+        Intrinsics3.checkNotNullExpressionValue(observableU, "RestAPI\n        .api\n   …in(loginResult)\n        }");
         return observableU;
     }
 
     public final Observable<Void> authorizeIP(String token) {
-        m.checkNotNullParameter(token, CACHE_KEY_TOKEN_RNA);
-        return RestCallStateKt.logNetworkAction(ObservableExtensionsKt.restSubscribeOn$default(RestAPI.INSTANCE.getApi().authorizeIP(new RestAPIParams.AuthorizeIP(token)), false, 1, null), AnonymousClass1.INSTANCE);
+        Intrinsics3.checkNotNullParameter(token, CACHE_KEY_TOKEN_RNA);
+        return RestCallState5.logNetworkAction(ObservableExtensionsKt.restSubscribeOn$default(RestAPI.INSTANCE.getApi().authorizeIP(new RestAPIParams.AuthorizeIP(token)), false, 1, null), AnonymousClass1.INSTANCE);
     }
 
     private final void dispatchLogin(ModelLoginResult loginResult) {
@@ -901,13 +903,13 @@ public final class StoreAuthentication extends Store {
     }
 
     public final Observable<Void> forgotPassword(String login, CaptchaHelper.CaptchaPayload captchaPayload) {
-        m.checkNotNullParameter(login, "login");
-        return ObservableExtensionsKt.restSubscribeOn$default(RestCallStateKt.logNetworkAction(RestAPI.INSTANCE.getApi().forgotPassword(new RestAPIParams.ForgotPassword(login, captchaPayload != null ? captchaPayload.getCaptchaKey() : null, captchaPayload != null ? captchaPayload.getCaptchaRqtoken() : null)), AnonymousClass1.INSTANCE), false, 1, null);
+        Intrinsics3.checkNotNullParameter(login, "login");
+        return ObservableExtensionsKt.restSubscribeOn$default(RestCallState5.logNetworkAction(RestAPI.INSTANCE.getApi().forgotPassword(new RestAPIParams.ForgotPassword(login, captchaPayload != null ? captchaPayload.getCaptchaKey() : null, captchaPayload != null ? captchaPayload.getCaptchaRqtoken() : null)), AnonymousClass1.INSTANCE), false, 1, null);
     }
 
     public final Observable<String> getAgeGateError() {
         Observable<String> observableR = this.ageGateError.r();
-        m.checkNotNullExpressionValue(observableR, "ageGateError.distinctUntilChanged()");
+        Intrinsics3.checkNotNullExpressionValue(observableR, "ageGateError.distinctUntilChanged()");
         return observableR;
     }
 
@@ -917,14 +919,14 @@ public final class StoreAuthentication extends Store {
     }
 
     public final Observable<String> getAuthedToken$app_productionGoogleRelease() {
-        Observable observableG = this.authStateSubject.r().G(StoreAuthentication$getAuthedToken$1.INSTANCE);
-        m.checkNotNullExpressionValue(observableG, "authStateSubject.distinc…anged().map { it?.token }");
+        Observable observableG = this.authStateSubject.r().G(StoreAuthentication2.INSTANCE);
+        Intrinsics3.checkNotNullExpressionValue(observableG, "authStateSubject.distinc…anged().map { it?.token }");
         return observableG;
     }
 
     public final Observable<String> getFingerPrint$app_productionGoogleRelease() {
         Observable<String> observableR = this.fingerprintSubject.r();
-        m.checkNotNullExpressionValue(observableR, "fingerprintSubject.distinctUntilChanged()");
+        Intrinsics3.checkNotNullExpressionValue(observableR, "fingerprintSubject.distinctUntilChanged()");
         return observableR;
     }
 
@@ -935,26 +937,26 @@ public final class StoreAuthentication extends Store {
 
     private final Observable<String> getFingerprintSnapshotOrGenerate() {
         Observable<String> observableU = this.fingerprintSubject.Z(1).Y(AnonymousClass1.INSTANCE).u(new AnonymousClass2());
-        m.checkNotNullExpressionValue(observableU, "fingerprintSubject\n     …int(fingerprint, false) }");
+        Intrinsics3.checkNotNullExpressionValue(observableU, "fingerprintSubject\n     …int(fingerprint, false) }");
         return observableU;
     }
 
     public final Observable<Uri> getOAuthUriObservable() {
         Observable<Uri> observableR = this.oauthUriSubject.r();
-        m.checkNotNullExpressionValue(observableR, "oauthUriSubject.distinctUntilChanged()");
+        Intrinsics3.checkNotNullExpressionValue(observableR, "oauthUriSubject.distinctUntilChanged()");
         return observableR;
     }
 
     public final Observable<Boolean> getPreLogoutSignal$app_productionGoogleRelease() {
-        Observable<Boolean> observableY = this.userInitiatedAuthEventSubject.y(StoreAuthentication$getPreLogoutSignal$1.INSTANCE);
-        m.checkNotNullExpressionValue(observableY, "userInitiatedAuthEventSu…LoggedIn -> !isLoggedIn }");
+        Observable<Boolean> observableY = this.userInitiatedAuthEventSubject.y(StoreAuthentication3.INSTANCE);
+        Intrinsics3.checkNotNullExpressionValue(observableY, "userInitiatedAuthEventSu…LoggedIn -> !isLoggedIn }");
         return observableY;
     }
 
     private final Set<RequiredAction> getRequiredActionsFromLoginResponse(ModelLoginResult loginResult) {
         Set<RequiredAction> set;
         List<RequiredAction> requiredActions = loginResult.getRequiredActions();
-        return (requiredActions == null || (set = u.toSet(requiredActions)) == null) ? n0.emptySet() : set;
+        return (requiredActions == null || (set = _Collections.toSet(requiredActions)) == null) ? Sets5.emptySet() : set;
     }
 
     public final String getSavedLogin() {
@@ -963,31 +965,31 @@ public final class StoreAuthentication extends Store {
 
     public final Observable<StoreNavigation.AgeGate> getShouldShowAgeGate() {
         Observable<StoreNavigation.AgeGate> observableR = Observable.i(this.storeStream.getUsers().observeMe(true), this.storeStream.getAuthentication().getAgeGateError(), this.storeStream.getChannelsSelected().observeSelectedChannel(), AnonymousClass1.INSTANCE).r();
-        m.checkNotNullExpressionValue(observableR, "Observable.combineLatest…  .distinctUntilChanged()");
+        Intrinsics3.checkNotNullExpressionValue(observableR, "Observable.combineLatest…  .distinctUntilChanged()");
         return observableR;
     }
 
-    @StoreThread
+    @Store3
     public final void handleAgeGateError(String error) {
         this.ageGateError.onNext(error);
     }
 
-    @StoreThread
+    @Store3
     public final void handleAuthState$app_productionGoogleRelease(AuthState authState) {
         this.authState = authState;
         this.authStateCache.cacheAuthState(authState);
         if (authState == null) {
             Persister.INSTANCE.reset();
             SharedPreferences.Editor editorEdit = getPrefs().edit();
-            m.checkNotNullExpressionValue(editorEdit, "editor");
+            Intrinsics3.checkNotNullExpressionValue(editorEdit, "editor");
             editorEdit.clear();
             editorEdit.apply();
         }
     }
 
-    @StoreThread
+    @Store3
     public final void handleLoginResult(ModelLoginResult loginResult) {
-        m.checkNotNullParameter(loginResult, "loginResult");
+        Intrinsics3.checkNotNullParameter(loginResult, "loginResult");
         setFingerprint(null, true);
         publishAuthState(AuthState.INSTANCE.from(loginResult.getToken(), getRequiredActionsFromLoginResponse(loginResult)));
         if (loginResult.getToken() != null) {
@@ -999,15 +1001,15 @@ public final class StoreAuthentication extends Store {
         StoreStream.INSTANCE.getNux().setFirstOpen(true);
     }
 
-    @StoreThread
+    @Store3
     public final void handlePreLogout$app_productionGoogleRelease() {
         resetIsConsentRequired();
     }
 
     @Override // com.discord.stores.Store
-    @StoreThread
+    @Store3
     public synchronized void init(Context context) {
-        m.checkNotNullParameter(context, "context");
+        Intrinsics3.checkNotNullParameter(context, "context");
         super.init(context);
         String string = getPrefsSessionDurable().getString(CACHE_KEY_FINGERPRINT, null);
         if (string != null) {
@@ -1015,7 +1017,7 @@ public final class StoreAuthentication extends Store {
         }
         AuthState cachedAuthState = this.authStateCache.getCachedAuthState();
         if (cachedAuthState == null) {
-            cachedAuthState = AuthState.INSTANCE.from(Companion.access$getRnaAuthToken(INSTANCE, context), n0.emptySet());
+            cachedAuthState = AuthState.INSTANCE.from(Companion.access$getRnaAuthToken(INSTANCE, context), Sets5.emptySet());
         }
         if (AuthState.INSTANCE.isUpdatePasswordRequired(cachedAuthState)) {
             logout();
@@ -1026,7 +1028,7 @@ public final class StoreAuthentication extends Store {
         handleAgeGateError(null);
         setSavedLogin(getPrefsSessionDurable().getString(CACHE_KEY_LOGIN, Companion.access$getDeviceEmail(INSTANCE, context)));
         Observable<Boolean> observableR = this.userInitiatedAuthEventSubject.r();
-        m.checkNotNullExpressionValue(observableR, "userInitiatedAuthEventSu…  .distinctUntilChanged()");
+        Intrinsics3.checkNotNullExpressionValue(observableR, "userInitiatedAuthEventSu…  .distinctUntilChanged()");
         ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui(ObservableExtensionsKt.computationLatest(observableR)), getClass(), (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass1(context), 62, (Object) null);
     }
 
@@ -1048,25 +1050,25 @@ public final class StoreAuthentication extends Store {
     }
 
     public final Observable<ModelLoginResult> login(String login, String password, CaptchaHelper.CaptchaPayload captchaPayload, boolean undelete, String loginSource) {
-        m.checkNotNullParameter(login, "login");
-        m.checkNotNullParameter(password, WidgetSettingsAccountChangePassword.CURRENT_PASSWORD_FIELD);
+        Intrinsics3.checkNotNullParameter(login, "login");
+        Intrinsics3.checkNotNullParameter(password, WidgetSettingsAccountChangePassword.CURRENT_PASSWORD_FIELD);
         setSavedLogin(login);
         Observable<ModelLoginResult> observableU = getFingerprintSnapshotOrGenerate().A(new AnonymousClass1(login, password, captchaPayload, undelete, loginSource)).u(new AnonymousClass2());
-        m.checkNotNullExpressionValue(observableU, "getFingerprintSnapshotOr…lt)\n          }\n        }");
+        Intrinsics3.checkNotNullExpressionValue(observableU, "getFingerprintSnapshotOr…lt)\n          }\n        }");
         return observableU;
     }
 
     public final void logout() {
         PublishSubject<Boolean> publishSubject = this.userInitiatedAuthEventSubject;
         publishSubject.k.onNext(Boolean.FALSE);
-        Observable observableA = ObservableExtensionsKt.restSubscribeOn$default(RestCallStateKt.logNetworkAction(RestAPI.INSTANCE.getApi().logout(new RestAPIParams.UserDevices(StoreStream.INSTANCE.getNotifications().getPushToken())), AnonymousClass1.INSTANCE), false, 1, null).A(new AnonymousClass2());
-        m.checkNotNullExpressionValue(observableA, "RestAPI\n        .api\n   …intSnapshotOrGenerate() }");
+        Observable observableA = ObservableExtensionsKt.restSubscribeOn$default(RestCallState5.logNetworkAction(RestAPI.INSTANCE.getApi().logout(new RestAPIParams.UserDevices(StoreStream.INSTANCE.getNotifications().getPushToken())), AnonymousClass1.INSTANCE), false, 1, null).A(new AnonymousClass2());
+        Intrinsics3.checkNotNullExpressionValue(observableA, "RestAPI\n        .api\n   …intSnapshotOrGenerate() }");
         ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.takeSingleUntilTimeout$default(observableA, 0L, false, 3, null), (Context) null, "logout", (Function1) null, new AnonymousClass3(), new AnonymousClass4(), (Function0) null, (Function0) null, 101, (Object) null);
     }
 
     public final Observable<Boolean> observeIsAuthed$app_productionGoogleRelease() {
-        Observable observableG = m8getAuthState$app_productionGoogleRelease().G(StoreAuthentication$observeIsAuthed$1.INSTANCE);
-        m.checkNotNullExpressionValue(observableG, "getAuthState()\n      .ma…te -> authState != null }");
+        Observable observableG = m8getAuthState$app_productionGoogleRelease().G(StoreAuthentication5.INSTANCE);
+        Intrinsics3.checkNotNullExpressionValue(observableG, "getAuthState()\n      .ma…te -> authState != null }");
         return observableG;
     }
 
@@ -1083,11 +1085,11 @@ public final class StoreAuthentication extends Store {
     }
 
     public final Observable<RegisterResponse> register(String username, String email, String phoneToken, String password, CaptchaHelper.CaptchaPayload captchaPayload, boolean consent, String dateOfBirth) {
-        m.checkNotNullParameter(username, "username");
-        m.checkNotNullParameter(password, WidgetSettingsAccountChangePassword.CURRENT_PASSWORD_FIELD);
+        Intrinsics3.checkNotNullParameter(username, "username");
+        Intrinsics3.checkNotNullParameter(password, WidgetSettingsAccountChangePassword.CURRENT_PASSWORD_FIELD);
         setSavedLogin(email);
         Observable observableA = getFingerprintSnapshotOrGenerate().A(new AnonymousClass1(username, email, phoneToken, password, captchaPayload, consent, dateOfBirth));
-        m.checkNotNullExpressionValue(observableA, "getFingerprintSnapshotOr…              }\n        }");
+        Intrinsics3.checkNotNullExpressionValue(observableA, "getFingerprintSnapshotOr…              }\n        }");
         return observableA;
     }
 
@@ -1116,7 +1118,7 @@ public final class StoreAuthentication extends Store {
     }
 
     public final void setAuthed(String authToken) {
-        publishAuthState(AuthState.INSTANCE.from(authToken, n0.emptySet()));
+        publishAuthState(AuthState.INSTANCE.from(authToken, Sets5.emptySet()));
     }
 
     private final synchronized void setConsentRequired(boolean z2) {
@@ -1137,7 +1139,7 @@ public final class StoreAuthentication extends Store {
             str = this.fingerprint;
             if (str != null) {
                 String str2 = this.fingerprint;
-                m.checkNotNull(str2);
+                Intrinsics3.checkNotNull(str2);
                 AnalyticsTracker.externalFingerprintDropped(str2, fingerprint);
             }
         } else {
@@ -1150,16 +1152,16 @@ public final class StoreAuthentication extends Store {
                 }
             }
             str = this.fingerprint;
-            if (str != null && (!m.areEqual(str, fingerprint)) && fingerprint != null) {
+            if (str != null && (!Intrinsics3.areEqual(str, fingerprint)) && fingerprint != null) {
                 String str3 = this.fingerprint;
-                m.checkNotNull(str3);
+                Intrinsics3.checkNotNull(str3);
                 AnalyticsTracker.externalFingerprintDropped(str3, fingerprint);
             }
         }
     }
 
     public final void setOAuthUriSubject(Uri uri) {
-        m.checkNotNullParameter(uri, NotificationCompat.MessagingStyle.Message.KEY_DATA_URI);
+        Intrinsics3.checkNotNullParameter(uri, NotificationCompat.MessagingStyle.Message.KEY_DATA_URI);
         this.oauthUriSubject.k.onNext(uri);
     }
 
@@ -1172,7 +1174,7 @@ public final class StoreAuthentication extends Store {
     /* JADX INFO: renamed from: getAuthState$app_productionGoogleRelease, reason: collision with other method in class */
     public final Observable<AuthState> m8getAuthState$app_productionGoogleRelease() {
         Observable<AuthState> observableR = this.authStateSubject.r();
-        m.checkNotNullExpressionValue(observableR, "authStateSubject.distinctUntilChanged()");
+        Intrinsics3.checkNotNullExpressionValue(observableR, "authStateSubject.distinctUntilChanged()");
         return observableR;
     }
 }

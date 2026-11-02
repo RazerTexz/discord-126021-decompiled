@@ -4,7 +4,7 @@ import com.discord.stores.StoreAnalytics;
 import com.discord.stores.StoreStream;
 import com.discord.widgets.voice.feedback.FeedbackSubmitter;
 import com.discord.widgets.voice.feedback.PendingFeedback;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 import kotlin.jvm.internal.DefaultConstructorMarker;
 import org.objectweb.asm.Opcodes;
 
@@ -15,8 +15,8 @@ public final class CallFeedbackSubmitter implements FeedbackSubmitter {
     private PendingFeedback.CallFeedback pendingCallFeedback;
 
     public CallFeedbackSubmitter(PendingFeedback.CallFeedback callFeedback, StoreAnalytics storeAnalytics) {
-        m.checkNotNullParameter(callFeedback, "pendingCallFeedback");
-        m.checkNotNullParameter(storeAnalytics, "analyticsStore");
+        Intrinsics3.checkNotNullParameter(callFeedback, "pendingCallFeedback");
+        Intrinsics3.checkNotNullParameter(storeAnalytics, "analyticsStore");
         this.pendingCallFeedback = callFeedback;
         this.analyticsStore = storeAnalytics;
     }
@@ -26,7 +26,7 @@ public final class CallFeedbackSubmitter implements FeedbackSubmitter {
     }
 
     public final void setPendingCallFeedback(PendingFeedback.CallFeedback callFeedback) {
-        m.checkNotNullParameter(callFeedback, "<set-?>");
+        Intrinsics3.checkNotNullParameter(callFeedback, "<set-?>");
         this.pendingCallFeedback = callFeedback;
     }
 

@@ -15,16 +15,16 @@ import androidx.exifinterface.media.ExifInterface;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
-import b.a.i.w4;
-import b.a.k.b;
-import b.b.a.d.d;
+import b.a.i.WidgetChatInputPermReqFilesBinding;
+import b.a.k.FormatUtils;
+import b.b.a.d.AddContentPagerAdapter4;
 import com.discord.R;
 import com.discord.app.AppFragment;
 import com.discord.app.AppLog;
 import com.discord.models.experiments.domain.Experiment;
 import com.discord.stores.StoreStream;
 import com.discord.utilities.analytics.AnalyticsTracker;
-import com.discord.utilities.attachments.AttachmentUtilsKt;
+import com.discord.utilities.attachments.AttachmentUtils;
 import com.discord.utilities.drawable.DrawableCompat;
 import com.discord.widgets.chat.input.expression.WidgetExpressionTray;
 import com.google.android.material.button.MaterialButton;
@@ -39,9 +39,9 @@ import com.lytefast.flexinput.model.Attachment;
 import com.lytefast.flexinput.utils.SelectionAggregator;
 import com.lytefast.flexinput.utils.SelectionCoordinator;
 import com.lytefast.flexinput.viewmodel.FlexInputViewModel;
-import d0.t.n;
-import d0.z.d.m;
-import d0.z.d.o;
+import d0.t.Collections2;
+import d0.z.d.Intrinsics3;
+import d0.z.d.Lambda;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
@@ -57,7 +57,7 @@ public final class WidgetChatInputAttachments {
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.input.WidgetChatInputAttachments$addExternalAttachment$1, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetChatInputAttachments.kt */
-    public final class AnonymousClass1 extends o implements Function0<Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function0<Unit> {
         public final /* synthetic */ Attachment $attachment;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -80,7 +80,7 @@ public final class WidgetChatInputAttachments {
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.input.WidgetChatInputAttachments$configureFlexInputContentPages$1, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetChatInputAttachments.kt */
-    public final class AnonymousClass1 extends o implements Function0<Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function0<Unit> {
         public final /* synthetic */ boolean $canCreateThread;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -98,17 +98,17 @@ public final class WidgetChatInputAttachments {
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2() {
             Context contextRequireContext = WidgetChatInputAttachments.access$getFlexInputFragment$p(WidgetChatInputAttachments.this).requireContext();
-            m.checkNotNullExpressionValue(contextRequireContext, "flexInputFragment.requireContext()");
-            List listMutableListOf = n.mutableListOf(new WidgetChatInputAttachments$configureFlexInputContentPages$1$pageArray$1(contextRequireContext, DrawableCompat.getThemedDrawableRes$default(contextRequireContext, R.attr.ic_flex_input_image, 0, 2, (Object) null), R.string.attachment_media), new WidgetChatInputAttachments$configureFlexInputContentPages$1$pageArray$2(contextRequireContext, DrawableCompat.getThemedDrawableRes$default(contextRequireContext, R.attr.ic_flex_input_file, 0, 2, (Object) null), R.string.attachment_files), new WidgetChatInputAttachments$configureFlexInputContentPages$1$pageArray$3(contextRequireContext, DrawableCompat.getThemedDrawableRes$default(contextRequireContext, R.attr.ic_flex_input_add_a_photo, 0, 2, (Object) null), R.string.camera));
+            Intrinsics3.checkNotNullExpressionValue(contextRequireContext, "flexInputFragment.requireContext()");
+            List listMutableListOf = Collections2.mutableListOf(new WidgetChatInputAttachments$configureFlexInputContentPages$1$pageArray$1(contextRequireContext, DrawableCompat.getThemedDrawableRes$default(contextRequireContext, R.attr.ic_flex_input_image, 0, 2, (Object) null), R.string.attachment_media), new WidgetChatInputAttachments$configureFlexInputContentPages$1$pageArray$2(contextRequireContext, DrawableCompat.getThemedDrawableRes$default(contextRequireContext, R.attr.ic_flex_input_file, 0, 2, (Object) null), R.string.attachment_files), new WidgetChatInputAttachments$configureFlexInputContentPages$1$pageArray$3(contextRequireContext, DrawableCompat.getThemedDrawableRes$default(contextRequireContext, R.attr.ic_flex_input_add_a_photo, 0, 2, (Object) null), R.string.camera));
             if (this.$canCreateThread) {
                 listMutableListOf.add(new WidgetChatInputAttachments$configureFlexInputContentPages$1$page$1(contextRequireContext, DrawableCompat.getThemedDrawableRes$default(contextRequireContext, R.attr.ic_flex_input_create_thread, 0, 2, (Object) null), R.string.create_thread));
             }
             FlexInputFragment flexInputFragmentAccess$getFlexInputFragment$p = WidgetChatInputAttachments.access$getFlexInputFragment$p(WidgetChatInputAttachments.this);
-            Object[] array = listMutableListOf.toArray(new d.a[0]);
+            Object[] array = listMutableListOf.toArray(new AddContentPagerAdapter4.a[0]);
             Objects.requireNonNull(array, "null cannot be cast to non-null type kotlin.Array<T>");
-            d.a[] aVarArr = (d.a[]) array;
+            AddContentPagerAdapter4.a[] aVarArr = (AddContentPagerAdapter4.a[]) array;
             Objects.requireNonNull(flexInputFragmentAccess$getFlexInputFragment$p);
-            m.checkNotNullParameter(aVarArr, "pageSuppliers");
+            Intrinsics3.checkNotNullParameter(aVarArr, "pageSuppliers");
             flexInputFragmentAccess$getFlexInputFragment$p.r = aVarArr;
             Iterator<Function0<Unit>> it = flexInputFragmentAccess$getFlexInputFragment$p.onContentPagesInitializedUpdates.iterator();
             while (it.hasNext()) {
@@ -120,7 +120,7 @@ public final class WidgetChatInputAttachments {
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.input.WidgetChatInputAttachments$configureFlexInputFragment$1, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetChatInputAttachments.kt */
-    public final class AnonymousClass1 extends o implements Function0<Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function0<Unit> {
         public final /* synthetic */ AppFragment $fragment;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -142,38 +142,38 @@ public final class WidgetChatInputAttachments {
             FlexInputFragment flexInputFragmentAccess$getFlexInputFragment$p = WidgetChatInputAttachments.access$getFlexInputFragment$p(WidgetChatInputAttachments.this);
             FileManager fileManager = this.$fragment.getFileManager();
             Objects.requireNonNull(flexInputFragmentAccess$getFlexInputFragment$p);
-            m.checkNotNullParameter(fileManager, "<set-?>");
+            Intrinsics3.checkNotNullParameter(fileManager, "<set-?>");
             flexInputFragmentAccess$getFlexInputFragment$p.fileManager = fileManager;
             flexInputFragmentAccess$getFlexInputFragment$p.keyboardManager = new WidgetChatInputAttachments$configureFlexInputFragment$1$$special$$inlined$apply$lambda$1(this);
             WidgetChatInputAttachments.access$getFlexInputFragment$p(WidgetChatInputAttachments.this).l().setInputContentHandler(new WidgetChatInputAttachments$configureFlexInputFragment$1$$special$$inlined$apply$lambda$2(this));
             AttachmentPreviewAdapter<Attachment<Object>> attachmentPreviewAdapterAccess$createPreviewAdapter = WidgetChatInputAttachments.access$createPreviewAdapter(WidgetChatInputAttachments.this, this.$fragment.getContext());
-            m.checkNotNullParameter(attachmentPreviewAdapterAccess$createPreviewAdapter, "previewAdapter");
+            Intrinsics3.checkNotNullParameter(attachmentPreviewAdapterAccess$createPreviewAdapter, "previewAdapter");
             attachmentPreviewAdapterAccess$createPreviewAdapter.selectionAggregator.initFrom((SelectionAggregator<T>) flexInputFragmentAccess$getFlexInputFragment$p.b());
             flexInputFragmentAccess$getFlexInputFragment$p.attachmentPreviewAdapter = attachmentPreviewAdapterAccess$createPreviewAdapter;
             RecyclerView recyclerView = flexInputFragmentAccess$getFlexInputFragment$p.j().d;
-            m.checkNotNullExpressionValue(recyclerView, "binding.attachmentPreviewList");
+            Intrinsics3.checkNotNullExpressionValue(recyclerView, "binding.attachmentPreviewList");
             AttachmentPreviewAdapter<Attachment<Object>> attachmentPreviewAdapter = flexInputFragmentAccess$getFlexInputFragment$p.attachmentPreviewAdapter;
             if (attachmentPreviewAdapter == null) {
-                m.throwUninitializedPropertyAccessException("attachmentPreviewAdapter");
+                Intrinsics3.throwUninitializedPropertyAccessException("attachmentPreviewAdapter");
             }
             recyclerView.setAdapter(attachmentPreviewAdapter);
             WidgetChatInputAttachments widgetChatInputAttachments = WidgetChatInputAttachments.this;
             FragmentManager childFragmentManager = this.$fragment.getChildFragmentManager();
-            m.checkNotNullExpressionValue(childFragmentManager, "fragment.childFragmentManager");
+            Intrinsics3.checkNotNullExpressionValue(childFragmentManager, "fragment.childFragmentManager");
             Fragment fragmentAccess$createAndConfigureExpressionFragment = WidgetChatInputAttachments.access$createAndConfigureExpressionFragment(widgetChatInputAttachments, childFragmentManager, WidgetChatInputAttachments.access$getFlexInputFragment$p(WidgetChatInputAttachments.this).l());
             if (fragmentAccess$createAndConfigureExpressionFragment == null) {
                 return;
             }
             flexInputFragmentAccess$getFlexInputFragment$p.getChildFragmentManager().beginTransaction().replace(com.lytefast.flexinput.R.f.expression_tray_container, fragmentAccess$createAndConfigureExpressionFragment, fragmentAccess$createAndConfigureExpressionFragment.getClass().getSimpleName()).commit();
             AppCompatImageButton appCompatImageButton = flexInputFragmentAccess$getFlexInputFragment$p.j().i;
-            m.checkNotNullExpressionValue(appCompatImageButton, "binding.expressionBtn");
+            Intrinsics3.checkNotNullExpressionValue(appCompatImageButton, "binding.expressionBtn");
             appCompatImageButton.setVisibility(0);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.input.WidgetChatInputAttachments$createAndConfigureExpressionFragment$1, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetChatInputAttachments.kt */
-    public final class AnonymousClass1 extends o implements Function0<Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function0<Unit> {
         public AnonymousClass1() {
             super(0);
         }
@@ -196,30 +196,30 @@ public final class WidgetChatInputAttachments {
     /* JADX INFO: Add missing generic type declarations: [T] */
     /* JADX INFO: renamed from: com.discord.widgets.chat.input.WidgetChatInputAttachments$createPreviewAdapter$1, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetChatInputAttachments.kt */
-    public final class AnonymousClass1<T> extends o implements Function1<AttachmentPreviewAdapter<T>, SelectionAggregator<T>> {
+    public final class AnonymousClass1<T> extends Lambda implements Function1<AttachmentPreviewAdapter<T>, SelectionAggregator<T>> {
         public final /* synthetic */ Context $context;
 
         /* JADX INFO: renamed from: com.discord.widgets.chat.input.WidgetChatInputAttachments$createPreviewAdapter$1$1, reason: invalid class name and collision with other inner class name */
         /* JADX INFO: compiled from: WidgetChatInputAttachments.kt */
-        public final class C03731 extends SelectionAggregator<T> {
+        public final class C02531 extends SelectionAggregator<T> {
             public final /* synthetic */ AttachmentPreviewAdapter $previewAdapter;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-            public C03731(AttachmentPreviewAdapter attachmentPreviewAdapter, AttachmentPreviewAdapter attachmentPreviewAdapter2) {
+            public C02531(AttachmentPreviewAdapter attachmentPreviewAdapter, AttachmentPreviewAdapter attachmentPreviewAdapter2) {
                 super(attachmentPreviewAdapter2, null, null, null, 14, null);
                 this.$previewAdapter = attachmentPreviewAdapter;
             }
 
-            public static final /* synthetic */ void access$track(C03731 c03731, Attachment attachment) {
-                c03731.track(attachment);
+            public static final /* synthetic */ void access$track(C02531 c02531, Attachment attachment) {
+                c02531.track(attachment);
             }
 
             @Override // com.lytefast.flexinput.utils.SelectionAggregator
             public void registerSelectionCoordinatorInternal(SelectionCoordinator<T, ?> selectionCoordinator) {
-                m.checkNotNullParameter(selectionCoordinator, "selectionCoordinator");
+                Intrinsics3.checkNotNullParameter(selectionCoordinator, "selectionCoordinator");
                 super.registerSelectionCoordinatorInternal(selectionCoordinator);
                 WidgetChatInputAttachments$createPreviewAdapter$1$1$registerSelectionCoordinatorInternal$1 widgetChatInputAttachments$createPreviewAdapter$1$1$registerSelectionCoordinatorInternal$1 = new WidgetChatInputAttachments$createPreviewAdapter$1$1$registerSelectionCoordinatorInternal$1(this, selectionCoordinator.itemSelectionListener);
-                m.checkNotNullParameter(widgetChatInputAttachments$createPreviewAdapter$1$1$registerSelectionCoordinatorInternal$1, "<set-?>");
+                Intrinsics3.checkNotNullParameter(widgetChatInputAttachments$createPreviewAdapter$1$1$registerSelectionCoordinatorInternal$1, "<set-?>");
                 selectionCoordinator.itemSelectionListener = widgetChatInputAttachments$createPreviewAdapter$1$1$registerSelectionCoordinatorInternal$1;
             }
 
@@ -229,7 +229,7 @@ public final class WidgetChatInputAttachments {
                 try {
                     int size = WidgetChatInputAttachments.access$getFlexInputFragment$p(WidgetChatInputAttachments.this).b().getSize();
                     Context context = AnonymousClass1.this.$context;
-                    AnalyticsTracker.addAttachment(source, AttachmentUtilsKt.getMimeType(attachment, context != null ? context.getContentResolver() : null), size);
+                    AnalyticsTracker.addAttachment(source, AttachmentUtils.getMimeType(attachment, context != null ? context.getContentResolver() : null), size);
                 } catch (Throwable th) {
                     AppLog.g.i("Analytic error on attachment update", th);
                 }
@@ -248,8 +248,8 @@ public final class WidgetChatInputAttachments {
         }
 
         public final SelectionAggregator<T> invoke(AttachmentPreviewAdapter<T> attachmentPreviewAdapter) {
-            m.checkNotNullParameter(attachmentPreviewAdapter, "previewAdapter");
-            return new C03731(attachmentPreviewAdapter, attachmentPreviewAdapter);
+            Intrinsics3.checkNotNullParameter(attachmentPreviewAdapter, "previewAdapter");
+            return new C02531(attachmentPreviewAdapter, attachmentPreviewAdapter);
         }
     }
 
@@ -276,7 +276,7 @@ public final class WidgetChatInputAttachments {
     public final class DiscordFilesFragment extends FilesFragment {
         @Override // com.lytefast.flexinput.fragment.FilesFragment
         public EmptyListAdapter newPermissionsRequestAdapter(View.OnClickListener onClickListener) {
-            m.checkNotNullParameter(onClickListener, "onClickListener");
+            Intrinsics3.checkNotNullParameter(onClickListener, "onClickListener");
             return new PermissionsEmptyListAdapter(R.layout.widget_chat_input_perm_req_files, R.id.action_btn, onClickListener);
         }
     }
@@ -285,7 +285,7 @@ public final class WidgetChatInputAttachments {
     public final class DiscordMediaFragment extends MediaFragment {
         @Override // com.lytefast.flexinput.fragment.MediaFragment
         public EmptyListAdapter newPermissionsRequestAdapter(View.OnClickListener onClickListener) {
-            m.checkNotNullParameter(onClickListener, "onClickListener");
+            Intrinsics3.checkNotNullParameter(onClickListener, "onClickListener");
             return new PermissionsEmptyListAdapter(R.layout.widget_chat_input_perm_req_files, R.id.action_btn, onClickListener);
         }
     }
@@ -295,7 +295,7 @@ public final class WidgetChatInputAttachments {
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
         public PermissionsEmptyListAdapter(@LayoutRes int i, @IdRes int i2, View.OnClickListener onClickListener) {
             super(i, i2, onClickListener);
-            m.checkNotNullParameter(onClickListener, "onClickListener");
+            Intrinsics3.checkNotNullParameter(onClickListener, "onClickListener");
         }
 
         @Override // com.lytefast.flexinput.adapters.EmptyListAdapter, androidx.recyclerview.widget.RecyclerView.Adapter
@@ -305,7 +305,7 @@ public final class WidgetChatInputAttachments {
 
         @Override // com.lytefast.flexinput.adapters.EmptyListAdapter, androidx.recyclerview.widget.RecyclerView.Adapter
         public EmptyListAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            m.checkNotNullParameter(parent, "parent");
+            Intrinsics3.checkNotNullParameter(parent, "parent");
             EmptyListAdapter.ViewHolder viewHolderOnCreateViewHolder = super.onCreateViewHolder(parent, viewType);
             View view = viewHolderOnCreateViewHolder.itemView;
             int i = R.id.action_btn;
@@ -314,9 +314,9 @@ public final class WidgetChatInputAttachments {
                 i = R.id.perm_req_text;
                 TextView textView = (TextView) view.findViewById(R.id.perm_req_text);
                 if (textView != null) {
-                    m.checkNotNullExpressionValue(new w4((LinearLayout) view, materialButton, textView), "WidgetChatInputPermReqFi…ing.bind(holder.itemView)");
-                    m.checkNotNullExpressionValue(textView, "binding.permReqText");
-                    b.n(textView, R.string.system_permission_request_files, new Object[0], null, 4);
+                    Intrinsics3.checkNotNullExpressionValue(new WidgetChatInputPermReqFilesBinding((LinearLayout) view, materialButton, textView), "WidgetChatInputPermReqFi…ing.bind(holder.itemView)");
+                    Intrinsics3.checkNotNullExpressionValue(textView, "binding.permReqText");
+                    FormatUtils.n(textView, R.string.system_permission_request_files, new Object[0], null, 4);
                     return viewHolderOnCreateViewHolder;
                 }
             }
@@ -325,7 +325,7 @@ public final class WidgetChatInputAttachments {
     }
 
     public WidgetChatInputAttachments(FlexInputFragment flexInputFragment) {
-        m.checkNotNullParameter(flexInputFragment, "flexInputFragment");
+        Intrinsics3.checkNotNullParameter(flexInputFragment, "flexInputFragment");
         this.flexInputFragment = flexInputFragment;
     }
 
@@ -346,7 +346,7 @@ public final class WidgetChatInputAttachments {
     }
 
     public final void addExternalAttachment(Attachment<? extends Object> attachment) {
-        m.checkNotNullParameter(attachment, "attachment");
+        Intrinsics3.checkNotNullParameter(attachment, "attachment");
         this.flexInputFragment.i(new AnonymousClass1(attachment));
     }
 
@@ -355,7 +355,7 @@ public final class WidgetChatInputAttachments {
     }
 
     public final void configureFlexInputFragment(AppFragment fragment) {
-        m.checkNotNullParameter(fragment, "fragment");
+        Intrinsics3.checkNotNullParameter(fragment, "fragment");
         this.flexInputFragment.i(new AnonymousClass1(fragment));
         fragment.setOnBackPressed(new AnonymousClass2(), 1);
     }
@@ -388,15 +388,15 @@ public final class WidgetChatInputAttachments {
     private final void setAttachmentFromPicker(Context context, InputContentInfoCompat inputContentInfoCompat) {
         ContentResolver contentResolver = context.getContentResolver();
         if (contentResolver != null) {
-            this.flexInputFragment.f(new SourcedAttachment(Attachment.INSTANCE.c(inputContentInfoCompat, contentResolver, true, b.h(context, R.string.attachment_filename_unknown, new Object[0], null, 4).toString()), AnalyticsTracker.ATTACHMENT_SOURCE_KEYBOARD));
+            this.flexInputFragment.f(new SourcedAttachment(Attachment.INSTANCE.c(inputContentInfoCompat, contentResolver, true, FormatUtils.h(context, R.string.attachment_filename_unknown, new Object[0], null, 4).toString()), AnalyticsTracker.ATTACHMENT_SOURCE_KEYBOARD));
         }
     }
 
     public final void setInputListener(FlexInputListener inputListener) {
-        m.checkNotNullParameter(inputListener, "inputListener");
+        Intrinsics3.checkNotNullParameter(inputListener, "inputListener");
         FlexInputFragment flexInputFragment = this.flexInputFragment;
         Objects.requireNonNull(flexInputFragment);
-        m.checkNotNullParameter(inputListener, "inputListener");
+        Intrinsics3.checkNotNullParameter(inputListener, "inputListener");
         flexInputFragment.inputListener = inputListener;
     }
 

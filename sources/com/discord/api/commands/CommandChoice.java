@@ -1,8 +1,8 @@
 package com.discord.api.commands;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.models.domain.ModelAuditLogEntry;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: CommandChoice.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -11,8 +11,8 @@ public final /* data */ class CommandChoice {
     private final String value;
 
     public CommandChoice(String str, String str2) {
-        m.checkNotNullParameter(str, ModelAuditLogEntry.CHANGE_KEY_NAME);
-        m.checkNotNullParameter(str2, "value");
+        Intrinsics3.checkNotNullParameter(str, ModelAuditLogEntry.CHANGE_KEY_NAME);
+        Intrinsics3.checkNotNullParameter(str2, "value");
         this.name = str;
         this.value = str2;
     }
@@ -25,7 +25,7 @@ public final /* data */ class CommandChoice {
             return false;
         }
         CommandChoice commandChoice = (CommandChoice) other;
-        return m.areEqual(this.name, commandChoice.name) && m.areEqual(this.value, commandChoice.value);
+        return Intrinsics3.areEqual(this.name, commandChoice.name) && Intrinsics3.areEqual(this.value, commandChoice.value);
     }
 
     /* JADX INFO: renamed from: a, reason: from getter */
@@ -46,9 +46,9 @@ public final /* data */ class CommandChoice {
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("CommandChoice(name=");
+        StringBuilder sbU = outline.U("CommandChoice(name=");
         sbU.append(this.name);
         sbU.append(", value=");
-        return a.J(sbU, this.value, ")");
+        return outline.J(sbU, this.value, ")");
     }
 }

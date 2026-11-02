@@ -10,8 +10,10 @@ import androidx.exifinterface.media.ExifInterface;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
-import b.a.d.j;
-import b.d.b.a.a;
+import b.a.d.AppScreen2;
+import b.a.d.AppToast;
+import b.a.k.FormatUtils;
+import b.d.b.a.outline;
 import com.discord.R;
 import com.discord.api.guild.GuildFeature;
 import com.discord.app.AppActivity;
@@ -29,16 +31,16 @@ import com.discord.utilities.rx.ObservableExtensionsKt;
 import com.discord.utilities.stateful.StatefulViews;
 import com.discord.utilities.view.extensions.ViewExtensions;
 import com.discord.utilities.viewbinding.FragmentViewBindingDelegate;
-import com.discord.utilities.viewbinding.FragmentViewBindingDelegateKt;
+import com.discord.utilities.viewbinding.FragmentViewBindingDelegate3;
 import com.discord.widgets.guildcommunicationdisabled.start.WidgetDisableGuildCommunication;
 import com.discord.widgets.guildcommunicationdisabled.start.WidgetEnableGuildCommunication;
 import com.discord.widgets.user.WidgetBanUser;
 import com.discord.widgets.user.WidgetKickUser;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputLayout;
-import d0.z.d.k;
-import d0.z.d.m;
-import d0.z.d.o;
+import d0.z.d.FunctionReferenceImpl;
+import d0.z.d.Intrinsics3;
+import d0.z.d.Lambda;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -53,7 +55,7 @@ import rx.Observable;
 /* JADX INFO: compiled from: WidgetServerSettingsEditMember.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetServerSettingsEditMember extends AppFragment {
-    public static final /* synthetic */ KProperty[] $$delegatedProperties = {a.d0(WidgetServerSettingsEditMember.class, "binding", "getBinding()Lcom/discord/databinding/WidgetServerSettingsEditMemberBinding;", 0)};
+    public static final /* synthetic */ KProperty[] $$delegatedProperties = {outline.d0(WidgetServerSettingsEditMember.class, "binding", "getBinding()Lcom/discord/databinding/WidgetServerSettingsEditMemberBinding;", 0)};
 
     /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
     public static final Companion INSTANCE = new Companion(null);
@@ -67,7 +69,7 @@ public final class WidgetServerSettingsEditMember extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.servers.WidgetServerSettingsEditMember$changeNickname$1, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetServerSettingsEditMember.kt */
-    public final class AnonymousClass1 extends o implements Function1<Void, Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function1<Void, Unit> {
         public final /* synthetic */ String $nickname;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -100,15 +102,15 @@ public final class WidgetServerSettingsEditMember extends AppFragment {
         @Override // android.view.View.OnClickListener
         public final void onClick(View view) {
             TextInputLayout textInputLayout = WidgetServerSettingsEditMember.access$getBinding$p(WidgetServerSettingsEditMember.this).e;
-            m.checkNotNullExpressionValue(textInputLayout, "binding.editMemberNickname");
+            Intrinsics3.checkNotNullExpressionValue(textInputLayout, "binding.editMemberNickname");
             TextInputLayout textInputLayout2 = WidgetServerSettingsEditMember.access$getBinding$p(WidgetServerSettingsEditMember.this).e;
-            m.checkNotNullExpressionValue(textInputLayout2, "binding.editMemberNickname");
+            Intrinsics3.checkNotNullExpressionValue(textInputLayout2, "binding.editMemberNickname");
             String textOrEmpty = ViewExtensions.getTextOrEmpty(textInputLayout2);
             int length = textOrEmpty.length() - 1;
             int i = 0;
             boolean z2 = false;
             while (i <= length) {
-                boolean z3 = m.compare(textOrEmpty.charAt(!z2 ? i : length), 32) <= 0;
+                boolean z3 = Intrinsics3.compare(textOrEmpty.charAt(!z2 ? i : length), 32) <= 0;
                 if (z2) {
                     if (!z3) {
                         break;
@@ -125,14 +127,14 @@ public final class WidgetServerSettingsEditMember extends AppFragment {
             WidgetServerSettingsEditMember widgetServerSettingsEditMember = WidgetServerSettingsEditMember.this;
             Model model = this.$data;
             TextInputLayout textInputLayout3 = WidgetServerSettingsEditMember.access$getBinding$p(widgetServerSettingsEditMember).e;
-            m.checkNotNullExpressionValue(textInputLayout3, "binding.editMemberNickname");
+            Intrinsics3.checkNotNullExpressionValue(textInputLayout3, "binding.editMemberNickname");
             WidgetServerSettingsEditMember.access$changeNickname(widgetServerSettingsEditMember, model, ViewExtensions.getTextOrEmpty(textInputLayout3));
         }
     }
 
     /* JADX INFO: renamed from: com.discord.widgets.servers.WidgetServerSettingsEditMember$onViewBoundOrOnResume$1, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetServerSettingsEditMember.kt */
-    public final /* synthetic */ class AnonymousClass1 extends k implements Function1<Model, Unit> {
+    public final /* synthetic */ class AnonymousClass1 extends FunctionReferenceImpl implements Function1<Model, Unit> {
         public AnonymousClass1(WidgetServerSettingsEditMember widgetServerSettingsEditMember) {
             super(1, widgetServerSettingsEditMember, WidgetServerSettingsEditMember.class, "configureUI", "configureUI(Lcom/discord/widgets/servers/WidgetServerSettingsEditMember$Model;)V", 0);
         }
@@ -151,15 +153,15 @@ public final class WidgetServerSettingsEditMember extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.servers.WidgetServerSettingsEditMember$setupRoles$1, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetServerSettingsEditMember.kt */
-    public final class AnonymousClass1 extends o implements Function1<Long, Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function1<Long, Unit> {
         public final /* synthetic */ Model $data;
 
         /* JADX INFO: renamed from: com.discord.widgets.servers.WidgetServerSettingsEditMember$setupRoles$1$1, reason: invalid class name and collision with other inner class name */
         /* JADX INFO: compiled from: WidgetServerSettingsEditMember.kt */
-        public final class C04281 extends o implements Function1<Void, Unit> {
-            public static final C04281 INSTANCE = new C04281();
+        public final class C03081 extends Lambda implements Function1<Void, Unit> {
+            public static final C03081 INSTANCE = new C03081();
 
-            public C04281() {
+            public C03081() {
                 super(1);
             }
 
@@ -201,13 +203,13 @@ public final class WidgetServerSettingsEditMember extends AppFragment {
                 arrayList.addAll(this.$data.getUserRoles());
                 arrayList.add(Long.valueOf(j));
             }
-            ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.restSubscribeOn$default(RestAPI.INSTANCE.getApi().changeGuildMember(this.$data.getGuild().getId(), this.$data.getUser().getId(), RestAPIParams.GuildMember.INSTANCE.createWithRoles(arrayList)), false, 1, null), WidgetServerSettingsEditMember.this, null, 2, null), WidgetServerSettingsEditMember.this.getClass(), WidgetServerSettingsEditMember.this.requireContext(), (Function1) null, (Function1) null, (Function0) null, (Function0) null, C04281.INSTANCE, 60, (Object) null);
+            ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.restSubscribeOn$default(RestAPI.INSTANCE.getApi().changeGuildMember(this.$data.getGuild().getId(), this.$data.getUser().getId(), RestAPIParams.GuildMember.INSTANCE.createWithRoles(arrayList)), false, 1, null), WidgetServerSettingsEditMember.this, null, 2, null), WidgetServerSettingsEditMember.this.getClass(), WidgetServerSettingsEditMember.this.requireContext(), (Function1) null, (Function1) null, (Function0) null, (Function0) null, C03081.INSTANCE, 60, (Object) null);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.widgets.servers.WidgetServerSettingsEditMember$changeNickname$2, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetServerSettingsEditMember.kt */
-    public final class AnonymousClass2 extends o implements Function1<Void, Unit> {
+    public final class AnonymousClass2 extends Lambda implements Function1<Void, Unit> {
         public final /* synthetic */ String $nickname;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -249,7 +251,7 @@ public final class WidgetServerSettingsEditMember extends AppFragment {
             }
             WidgetEnableGuildCommunication.Companion companion = WidgetEnableGuildCommunication.INSTANCE;
             FragmentManager parentFragmentManager = WidgetServerSettingsEditMember.this.getParentFragmentManager();
-            m.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
+            Intrinsics3.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
             companion.launch(id2, id3, parentFragmentManager);
         }
     }
@@ -272,7 +274,7 @@ public final class WidgetServerSettingsEditMember extends AppFragment {
             long id2 = this.$data.getGuild().getId();
             long id3 = this.$data.getUser().getId();
             FragmentManager parentFragmentManager = WidgetServerSettingsEditMember.this.getParentFragmentManager();
-            m.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
+            Intrinsics3.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
             companion.launch(str, id2, id3, parentFragmentManager);
         }
     }
@@ -306,14 +308,14 @@ public final class WidgetServerSettingsEditMember extends AppFragment {
         @Override // android.view.View.OnClickListener
         public final void onClick(View view) {
             if (this.$data.getGuild().getFeatures().contains(GuildFeature.VERIFIED) || this.$data.getGuild().getFeatures().contains(GuildFeature.PARTNERED)) {
-                b.a.d.m.i(WidgetServerSettingsEditMember.this, R.string.transfer_ownership_protected_guild, 0, 4);
+                AppToast.i(WidgetServerSettingsEditMember.this, R.string.transfer_ownership_protected_guild, 0, 4);
                 return;
             }
             WidgetServerSettingsTransferOwnership.Companion companion = WidgetServerSettingsTransferOwnership.INSTANCE;
             long id2 = this.$data.getGuild().getId();
             long id3 = this.$data.getUser().getId();
             FragmentManager parentFragmentManager = WidgetServerSettingsEditMember.this.getParentFragmentManager();
-            m.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
+            Intrinsics3.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
             companion.create(id2, id3, parentFragmentManager);
         }
     }
@@ -324,11 +326,11 @@ public final class WidgetServerSettingsEditMember extends AppFragment {
         }
 
         public final void launch(long guildId, long userId, Context context) {
-            m.checkNotNullParameter(context, "context");
+            Intrinsics3.checkNotNullParameter(context, "context");
             Intent intent = new Intent();
             intent.putExtra("INTENT_EXTRA_GUILD_ID", guildId);
             intent.putExtra(WidgetServerSettingsEditMember.INTENT_EXTRA_USER_ID, userId);
-            j.d(context, WidgetServerSettingsEditMember.class, intent);
+            AppScreen2.d(context, WidgetServerSettingsEditMember.class, intent);
         }
 
         public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
@@ -361,8 +363,8 @@ public final class WidgetServerSettingsEditMember extends AppFragment {
 
             public final Observable<Model> get(long guildId, long userId) {
                 StoreStream.Companion companion = StoreStream.INSTANCE;
-                Observable observableR = Observable.f(StoreUser.observeMe$default(companion.getUsers(), false, 1, null), companion.getUsers().observeUser(userId), companion.getGuilds().observeComputed(guildId), companion.getGuilds().observeGuild(guildId), companion.getGuilds().observeRoles(guildId), companion.getPermissions().observePermissionsForGuild(guildId), new WidgetServerSettingsEditMember$Model$Companion$get$1(guildId, userId)).r();
-                m.checkNotNullExpressionValue(observableR, "Observable.combineLatest…  .distinctUntilChanged()");
+                Observable observableR = Observable.f(StoreUser.observeMe$default(companion.getUsers(), false, 1, null), companion.getUsers().observeUser(userId), companion.getGuilds().observeComputed(guildId), companion.getGuilds().observeGuild(guildId), companion.getGuilds().observeRoles(guildId), companion.getPermissions().observePermissionsForGuild(guildId), new WidgetServerSettingsEditMember2(guildId, userId)).r();
+                Intrinsics3.checkNotNullExpressionValue(observableR, "Observable.combineLatest…  .distinctUntilChanged()");
                 return ObservableExtensionsKt.computationLatest(observableR);
             }
 
@@ -372,11 +374,11 @@ public final class WidgetServerSettingsEditMember extends AppFragment {
         }
 
         public Model(long j, Guild guild, GuildMember guildMember, Set<Long> set, User user, List<WidgetServerSettingsEditMemberRolesAdapter.RoleItem> list, boolean z2, boolean z3, boolean z4, boolean z5, boolean z6, boolean z7) {
-            m.checkNotNullParameter(guild, "guild");
-            m.checkNotNullParameter(guildMember, "userComputed");
-            m.checkNotNullParameter(set, "userRoles");
-            m.checkNotNullParameter(user, "user");
-            m.checkNotNullParameter(list, "roleItems");
+            Intrinsics3.checkNotNullParameter(guild, "guild");
+            Intrinsics3.checkNotNullParameter(guildMember, "userComputed");
+            Intrinsics3.checkNotNullParameter(set, "userRoles");
+            Intrinsics3.checkNotNullParameter(user, "user");
+            Intrinsics3.checkNotNullParameter(list, "roleItems");
             this.myId = j;
             this.guild = guild;
             this.userComputed = guildMember;
@@ -405,11 +407,11 @@ public final class WidgetServerSettingsEditMember extends AppFragment {
         }
 
         public final Model copy(long myId, Guild guild, GuildMember userComputed, Set<Long> userRoles, User user, List<WidgetServerSettingsEditMemberRolesAdapter.RoleItem> roleItems, boolean canManage, boolean canKick, boolean canBan, boolean canChangeNickname, boolean canTransferOwnership, boolean canDisableCommunication) {
-            m.checkNotNullParameter(guild, "guild");
-            m.checkNotNullParameter(userComputed, "userComputed");
-            m.checkNotNullParameter(userRoles, "userRoles");
-            m.checkNotNullParameter(user, "user");
-            m.checkNotNullParameter(roleItems, "roleItems");
+            Intrinsics3.checkNotNullParameter(guild, "guild");
+            Intrinsics3.checkNotNullParameter(userComputed, "userComputed");
+            Intrinsics3.checkNotNullParameter(userRoles, "userRoles");
+            Intrinsics3.checkNotNullParameter(user, "user");
+            Intrinsics3.checkNotNullParameter(roleItems, "roleItems");
             return new Model(myId, guild, userComputed, userRoles, user, roleItems, canManage, canKick, canBan, canChangeNickname, canTransferOwnership, canDisableCommunication);
         }
 
@@ -421,7 +423,7 @@ public final class WidgetServerSettingsEditMember extends AppFragment {
                 return false;
             }
             Model model = (Model) other;
-            return this.myId == model.myId && m.areEqual(this.guild, model.guild) && m.areEqual(this.userComputed, model.userComputed) && m.areEqual(this.userRoles, model.userRoles) && m.areEqual(this.user, model.user) && m.areEqual(this.roleItems, model.roleItems) && this.canManage == model.canManage && this.canKick == model.canKick && this.canBan == model.canBan && this.canChangeNickname == model.canChangeNickname && this.canTransferOwnership == model.canTransferOwnership && this.canDisableCommunication == model.canDisableCommunication;
+            return this.myId == model.myId && Intrinsics3.areEqual(this.guild, model.guild) && Intrinsics3.areEqual(this.userComputed, model.userComputed) && Intrinsics3.areEqual(this.userRoles, model.userRoles) && Intrinsics3.areEqual(this.user, model.user) && Intrinsics3.areEqual(this.roleItems, model.roleItems) && this.canManage == model.canManage && this.canKick == model.canKick && this.canBan == model.canBan && this.canChangeNickname == model.canChangeNickname && this.canTransferOwnership == model.canTransferOwnership && this.canDisableCommunication == model.canDisableCommunication;
         }
 
         /* JADX INFO: renamed from: component9, reason: from getter */
@@ -594,7 +596,7 @@ public final class WidgetServerSettingsEditMember extends AppFragment {
         }
 
         public String toString() {
-            StringBuilder sbU = a.U("Model(myId=");
+            StringBuilder sbU = outline.U("Model(myId=");
             sbU.append(this.myId);
             sbU.append(", guild=");
             sbU.append(this.guild);
@@ -617,13 +619,13 @@ public final class WidgetServerSettingsEditMember extends AppFragment {
             sbU.append(", canTransferOwnership=");
             sbU.append(this.canTransferOwnership);
             sbU.append(", canDisableCommunication=");
-            return a.O(sbU, this.canDisableCommunication, ")");
+            return outline.O(sbU, this.canDisableCommunication, ")");
         }
     }
 
     public WidgetServerSettingsEditMember() {
         super(R.layout.widget_server_settings_edit_member);
-        this.binding = FragmentViewBindingDelegateKt.viewBinding$default(this, WidgetServerSettingsEditMember$binding$2.INSTANCE, null, 2, null);
+        this.binding = FragmentViewBindingDelegate3.viewBinding$default(this, WidgetServerSettingsEditMember3.INSTANCE, null, 2, null);
         this.state = new StatefulViews(R.id.edit_member_nickname);
     }
 
@@ -663,7 +665,7 @@ public final class WidgetServerSettingsEditMember extends AppFragment {
         boolean z2 = true;
         AppFragment.setActionBarDisplayHomeAsUpEnabled$default(this, false, 1, null);
         Context context = getContext();
-        setActionBarTitle(context != null ? b.a.k.b.h(context, R.string.guild_members_header, new Object[]{data.getGuild().getName()}, null, 4) : null);
+        setActionBarTitle(context != null ? FormatUtils.h(context, R.string.guild_members_header, new Object[]{data.getGuild().getName()}, null, 4) : null);
         GuildMember.Companion companion = GuildMember.INSTANCE;
         setActionBarSubtitle(companion.getNickOrUsername(data.getUserComputed(), data.getUser()));
         setupNickname(data);
@@ -674,59 +676,59 @@ public final class WidgetServerSettingsEditMember extends AppFragment {
         if (data.getCanDisableCommunication()) {
             boolean zIsCommunicationDisabled = data.getUserComputed().isCommunicationDisabled();
             TextView textView = getBinding().i;
-            m.checkNotNullExpressionValue(textView, "binding.editMemberTimeoutButton");
-            b.a.k.b.n(textView, zIsCommunicationDisabled ? R.string.enable_guild_communication_for_user : R.string.disable_guild_communication_for_user, new Object[]{nickOrUsername}, null, 4);
+            Intrinsics3.checkNotNullExpressionValue(textView, "binding.editMemberTimeoutButton");
+            FormatUtils.n(textView, zIsCommunicationDisabled ? R.string.enable_guild_communication_for_user : R.string.disable_guild_communication_for_user, new Object[]{nickOrUsername}, null, 4);
             TextView textView2 = getBinding().i;
-            m.checkNotNullExpressionValue(textView2, "binding.editMemberTimeoutButton");
+            Intrinsics3.checkNotNullExpressionValue(textView2, "binding.editMemberTimeoutButton");
             textView2.setVisibility(0);
             getBinding().i.setOnClickListener(new AnonymousClass2(data, zIsCommunicationDisabled));
         } else {
             TextView textView3 = getBinding().i;
-            m.checkNotNullExpressionValue(textView3, "binding.editMemberTimeoutButton");
+            Intrinsics3.checkNotNullExpressionValue(textView3, "binding.editMemberTimeoutButton");
             textView3.setVisibility(8);
             getBinding().i.setOnClickListener(null);
         }
         if (data.getCanKick()) {
             TextView textView4 = getBinding().d;
-            m.checkNotNullExpressionValue(textView4, "binding.editMemberKickButton");
-            b.a.k.b.n(textView4, R.string.kick_user, new Object[]{nickOrUsername}, null, 4);
+            Intrinsics3.checkNotNullExpressionValue(textView4, "binding.editMemberKickButton");
+            FormatUtils.n(textView4, R.string.kick_user, new Object[]{nickOrUsername}, null, 4);
             TextView textView5 = getBinding().d;
-            m.checkNotNullExpressionValue(textView5, "binding.editMemberKickButton");
+            Intrinsics3.checkNotNullExpressionValue(textView5, "binding.editMemberKickButton");
             textView5.setVisibility(0);
             getBinding().d.setOnClickListener(new AnonymousClass3(nickOrUsername, data));
         } else {
             TextView textView6 = getBinding().d;
-            m.checkNotNullExpressionValue(textView6, "binding.editMemberKickButton");
+            Intrinsics3.checkNotNullExpressionValue(textView6, "binding.editMemberKickButton");
             textView6.setVisibility(8);
             getBinding().d.setOnClickListener(null);
         }
         if (data.getCanBan()) {
             TextView textView7 = getBinding().c;
-            m.checkNotNullExpressionValue(textView7, "binding.editMemberBanButton");
-            b.a.k.b.n(textView7, R.string.ban_user, new Object[]{nickOrUsername}, null, 4);
+            Intrinsics3.checkNotNullExpressionValue(textView7, "binding.editMemberBanButton");
+            FormatUtils.n(textView7, R.string.ban_user, new Object[]{nickOrUsername}, null, 4);
             TextView textView8 = getBinding().c;
-            m.checkNotNullExpressionValue(textView8, "binding.editMemberBanButton");
+            Intrinsics3.checkNotNullExpressionValue(textView8, "binding.editMemberBanButton");
             textView8.setVisibility(0);
             getBinding().c.setOnClickListener(new AnonymousClass4(nickOrUsername, data));
         } else {
             TextView textView9 = getBinding().c;
-            m.checkNotNullExpressionValue(textView9, "binding.editMemberBanButton");
+            Intrinsics3.checkNotNullExpressionValue(textView9, "binding.editMemberBanButton");
             textView9.setVisibility(8);
             getBinding().c.setOnClickListener(null);
         }
         if (data.getCanTransferOwnership()) {
             TextView textView10 = getBinding().j;
-            m.checkNotNullExpressionValue(textView10, "binding.editMemberTransferOwnershipButton");
+            Intrinsics3.checkNotNullExpressionValue(textView10, "binding.editMemberTransferOwnershipButton");
             textView10.setVisibility(0);
             getBinding().j.setOnClickListener(new AnonymousClass5(data));
         } else {
             TextView textView11 = getBinding().j;
-            m.checkNotNullExpressionValue(textView11, "binding.editMemberTransferOwnershipButton");
+            Intrinsics3.checkNotNullExpressionValue(textView11, "binding.editMemberTransferOwnershipButton");
             textView11.setVisibility(8);
             getBinding().j.setOnClickListener(null);
         }
         LinearLayout linearLayout = getBinding().f2561b;
-        m.checkNotNullExpressionValue(linearLayout, "binding.editMemberAdministrativeContainer");
+        Intrinsics3.checkNotNullExpressionValue(linearLayout, "binding.editMemberAdministrativeContainer");
         if (!data.getCanKick() && !data.getCanBan() && !data.getCanTransferOwnership()) {
             z2 = false;
         }
@@ -739,31 +741,31 @@ public final class WidgetServerSettingsEditMember extends AppFragment {
 
     private final void onNicknameChangeSuccessful(String nickname) {
         AppFragment.hideKeyboard$default(this, null, 1, null);
-        b.a.d.m.j(this, nickname.length() > 0 ? b.a.k.b.k(this, R.string.nickname_changed, new Object[]{nickname}, null, 4) : b.a.k.b.k(this, R.string.nickname_cleared, new Object[0], null, 4), 0, 4);
+        AppToast.j(this, nickname.length() > 0 ? FormatUtils.k(this, R.string.nickname_changed, new Object[]{nickname}, null, 4) : FormatUtils.k(this, R.string.nickname_cleared, new Object[0], null, 4), 0, 4);
     }
 
     @Override // com.discord.app.AppFragment
     public void onViewBound(View view) {
-        m.checkNotNullParameter(view, "view");
+        Intrinsics3.checkNotNullParameter(view, "view");
         super.onViewBound(view);
         setRetainInstance(true);
         MGRecyclerAdapter.Companion companion = MGRecyclerAdapter.INSTANCE;
         RecyclerView recyclerView = getBinding().g;
-        m.checkNotNullExpressionValue(recyclerView, "binding.editMemberRolesRecycler");
+        Intrinsics3.checkNotNullExpressionValue(recyclerView, "binding.editMemberRolesRecycler");
         this.rolesAdapter = (WidgetServerSettingsEditMemberRolesAdapter) companion.configure(new WidgetServerSettingsEditMemberRolesAdapter(recyclerView));
         RecyclerView recyclerView2 = getBinding().g;
-        m.checkNotNullExpressionValue(recyclerView2, "binding.editMemberRolesRecycler");
+        Intrinsics3.checkNotNullExpressionValue(recyclerView2, "binding.editMemberRolesRecycler");
         recyclerView2.setNestedScrollingEnabled(false);
         getBinding().g.setHasFixedSize(false);
         this.state.setupUnsavedChangesConfirmation(this);
         StatefulViews statefulViews = this.state;
         TextInputLayout textInputLayout = getBinding().e;
-        m.checkNotNullExpressionValue(textInputLayout, "binding.editMemberNickname");
+        Intrinsics3.checkNotNullExpressionValue(textInputLayout, "binding.editMemberNickname");
         statefulViews.addOptionalFields(textInputLayout);
         StatefulViews statefulViews2 = this.state;
         FloatingActionButton floatingActionButton = getBinding().h;
         TextInputLayout textInputLayout2 = getBinding().e;
-        m.checkNotNullExpressionValue(textInputLayout2, "binding.editMemberNickname");
+        Intrinsics3.checkNotNullExpressionValue(textInputLayout2, "binding.editMemberNickname");
         statefulViews2.setupTextWatcherWithSaveAction(this, floatingActionButton, textInputLayout2);
     }
 
@@ -783,35 +785,35 @@ public final class WidgetServerSettingsEditMember extends AppFragment {
         }
         if (data.getCanChangeNickname()) {
             TextInputLayout textInputLayout = getBinding().e;
-            m.checkNotNullExpressionValue(textInputLayout, "binding.editMemberNickname");
+            Intrinsics3.checkNotNullExpressionValue(textInputLayout, "binding.editMemberNickname");
             textInputLayout.setEndIconVisible(false);
             TextInputLayout textInputLayout2 = getBinding().e;
-            m.checkNotNullExpressionValue(textInputLayout2, "binding.editMemberNickname");
+            Intrinsics3.checkNotNullExpressionValue(textInputLayout2, "binding.editMemberNickname");
             textInputLayout2.setEnabled(true);
         } else {
             TextInputLayout textInputLayout3 = getBinding().e;
-            m.checkNotNullExpressionValue(textInputLayout3, "binding.editMemberNickname");
+            Intrinsics3.checkNotNullExpressionValue(textInputLayout3, "binding.editMemberNickname");
             textInputLayout3.setEndIconVisible(true);
             TextInputLayout textInputLayout4 = getBinding().e;
-            m.checkNotNullExpressionValue(textInputLayout4, "binding.editMemberNickname");
+            Intrinsics3.checkNotNullExpressionValue(textInputLayout4, "binding.editMemberNickname");
             textInputLayout4.setEnabled(false);
             StatefulViews statefulViews = this.state;
             TextInputLayout textInputLayout5 = getBinding().e;
-            m.checkNotNullExpressionValue(textInputLayout5, "binding.editMemberNickname");
+            Intrinsics3.checkNotNullExpressionValue(textInputLayout5, "binding.editMemberNickname");
             statefulViews.put(textInputLayout5.getId(), nick);
         }
         TextInputLayout textInputLayout6 = getBinding().e;
-        m.checkNotNullExpressionValue(textInputLayout6, "binding.editMemberNickname");
+        Intrinsics3.checkNotNullExpressionValue(textInputLayout6, "binding.editMemberNickname");
         StatefulViews statefulViews2 = this.state;
         TextInputLayout textInputLayout7 = getBinding().e;
-        m.checkNotNullExpressionValue(textInputLayout7, "binding.editMemberNickname");
+        Intrinsics3.checkNotNullExpressionValue(textInputLayout7, "binding.editMemberNickname");
         ViewExtensions.setText(textInputLayout6, (CharSequence) statefulViews2.get(textInputLayout7.getId(), nick));
     }
 
     private final void setupRoles(Model data) {
         WidgetServerSettingsEditMemberRolesAdapter widgetServerSettingsEditMemberRolesAdapter;
         LinearLayout linearLayout = getBinding().f;
-        m.checkNotNullExpressionValue(linearLayout, "binding.editMemberRolesContainer");
+        Intrinsics3.checkNotNullExpressionValue(linearLayout, "binding.editMemberRolesContainer");
         linearLayout.setVisibility(data.getRoleItems().isEmpty() ^ true ? 0 : 8);
         if (!(!data.getRoleItems().isEmpty()) || (widgetServerSettingsEditMemberRolesAdapter = this.rolesAdapter) == null) {
             return;

@@ -1,9 +1,9 @@
 package com.discord.api.presence;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.api.activity.Activity;
 import com.discord.api.user.User;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 import java.util.List;
 
 /* JADX INFO: compiled from: Presence.kt */
@@ -17,7 +17,7 @@ public final /* data */ class Presence {
     private final Long userId;
 
     public Presence(ClientStatus clientStatus, List<Activity> list, ClientStatuses clientStatuses, User user, Long l, Long l2) {
-        m.checkNotNullParameter(clientStatus, "status");
+        Intrinsics3.checkNotNullParameter(clientStatus, "status");
         this.status = clientStatus;
         this.activities = list;
         this.clientStatus = clientStatuses;
@@ -36,7 +36,7 @@ public final /* data */ class Presence {
         User user2 = user;
         Long l3 = (i & 16) != 0 ? presence.userId : null;
         Long l4 = (i & 32) != 0 ? presence.guildId : null;
-        m.checkNotNullParameter(clientStatus2, "status");
+        Intrinsics3.checkNotNullParameter(clientStatus2, "status");
         return new Presence(clientStatus2, list2, clientStatuses2, user2, l3, l4);
     }
 
@@ -52,7 +52,7 @@ public final /* data */ class Presence {
             return false;
         }
         Presence presence = (Presence) other;
-        return m.areEqual(this.status, presence.status) && m.areEqual(this.activities, presence.activities) && m.areEqual(this.clientStatus, presence.clientStatus) && m.areEqual(this.user, presence.user) && m.areEqual(this.userId, presence.userId) && m.areEqual(this.guildId, presence.guildId);
+        return Intrinsics3.areEqual(this.status, presence.status) && Intrinsics3.areEqual(this.activities, presence.activities) && Intrinsics3.areEqual(this.clientStatus, presence.clientStatus) && Intrinsics3.areEqual(this.user, presence.user) && Intrinsics3.areEqual(this.userId, presence.userId) && Intrinsics3.areEqual(this.guildId, presence.guildId);
     }
 
     /* JADX INFO: renamed from: c, reason: from getter */
@@ -96,7 +96,7 @@ public final /* data */ class Presence {
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("Presence(status=");
+        StringBuilder sbU = outline.U("Presence(status=");
         sbU.append(this.status);
         sbU.append(", activities=");
         sbU.append(this.activities);
@@ -107,6 +107,6 @@ public final /* data */ class Presence {
         sbU.append(", userId=");
         sbU.append(this.userId);
         sbU.append(", guildId=");
-        return a.G(sbU, this.guildId, ")");
+        return outline.G(sbU, this.guildId, ")");
     }
 }

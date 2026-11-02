@@ -1,19 +1,19 @@
 package com.discord.stores;
 
 import android.content.SharedPreferences;
-import b.a.b.a;
-import b.i.d.e;
+import b.a.b.TypeAdapterRegistrar;
+import b.i.d.GsonBuilder;
 import com.discord.app.AppLog;
 import com.discord.models.message.Message;
 import com.discord.utilities.cache.SharedPreferencesProvider;
 import com.discord.utilities.logging.Logger;
 import com.discord.utilities.message.MessageUtils;
 import com.google.gson.Gson;
-import d0.t.h0;
-import d0.t.n;
-import d0.t.o;
-import d0.t.u;
-import d0.z.d.m;
+import d0.t.Collections2;
+import d0.t.Iterables2;
+import d0.t.Maps6;
+import d0.t._Collections;
+import d0.z.d.Intrinsics3;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -36,19 +36,19 @@ public final class StoreLocalMessagesHolder {
     private SharedPreferences sharedPreferences;
     private final HashMap<Long, TreeMap<Long, Message>> messages = new HashMap<>();
     private final Subject<Map<Long, List<Message>>, Map<Long, List<Message>>> messagesPublisher = new SerializedSubject(BehaviorSubject.k0());
-    private Map<Long, ? extends List<Message>> messagesSnapshot = h0.emptyMap();
-    private Map<Long, ? extends List<Message>> cacheSnapshot = h0.emptyMap();
+    private Map<Long, ? extends List<Message>> messagesSnapshot = Maps6.emptyMap();
+    private Map<Long, ? extends List<Message>> cacheSnapshot = Maps6.emptyMap();
     private final Set<Long> updatedChannels = new HashSet();
 
     public StoreLocalMessagesHolder() {
-        e eVar = new e();
-        a.a(eVar);
-        this.gson = eVar.a();
+        GsonBuilder gsonBuilder = new GsonBuilder();
+        TypeAdapterRegistrar.a(gsonBuilder);
+        this.gson = gsonBuilder.a();
     }
 
-    @StoreThread
+    @Store3
     public final void addMessage(Message message) {
-        m.checkNotNullParameter(message, "message");
+        Intrinsics3.checkNotNullParameter(message, "message");
         long channelId = message.getChannelId();
         TreeMap<Long, Message> treeMap = this.messages.get(Long.valueOf(channelId));
         if (treeMap == null) {
@@ -60,27 +60,27 @@ public final class StoreLocalMessagesHolder {
         publishIfUpdated$default(this, false, 1, null);
     }
 
-    @StoreThread
+    @Store3
     public final void clearCache() {
         for (Map.Entry<Long, TreeMap<Long, Message>> entry : this.messages.entrySet()) {
             Long key = entry.getKey();
             TreeMap<Long, Message> value = entry.getValue();
             Set<Long> set = this.updatedChannels;
-            m.checkNotNullExpressionValue(key, "channelId");
+            Intrinsics3.checkNotNullExpressionValue(key, "channelId");
             set.add(key);
             value.clear();
         }
         publishIfUpdated$default(this, false, 1, null);
     }
 
-    @StoreThread
+    @Store3
     public final void deleteMessage(Message message) {
-        m.checkNotNullParameter(message, "message");
+        Intrinsics3.checkNotNullParameter(message, "message");
         long id2 = message.getId();
         long channelId = message.getChannelId();
         TreeMap<Long, Message> treeMap = this.messages.get(Long.valueOf(channelId));
         if (treeMap != null) {
-            m.checkNotNullExpressionValue(treeMap, "messages[channelId] ?: return");
+            Intrinsics3.checkNotNullExpressionValue(treeMap, "messages[channelId] ?: return");
             if (treeMap.containsKey(Long.valueOf(id2))) {
                 treeMap.remove(Long.valueOf(id2));
                 this.updatedChannels.add(Long.valueOf(channelId));
@@ -92,22 +92,22 @@ public final class StoreLocalMessagesHolder {
         }
     }
 
-    @StoreThread
+    @Store3
     public final List<Message> getFlattenedMessages() {
-        return o.flatten(this.messagesSnapshot.values());
+        return Iterables2.flatten(this.messagesSnapshot.values());
     }
 
-    @StoreThread
+    @Store3
     public final Message getMessage(long channelId, String nonce) {
         Collection<Message> collectionValues;
-        m.checkNotNullParameter(nonce, "nonce");
+        Intrinsics3.checkNotNullParameter(nonce, "nonce");
         TreeMap<Long, Message> treeMap = this.messages.get(Long.valueOf(channelId));
         Object obj = null;
         if (treeMap == null || (collectionValues = treeMap.values()) == null) {
             return null;
         }
         for (Object obj2 : collectionValues) {
-            if (m.areEqual(((Message) obj2).getNonce(), nonce)) {
+            if (Intrinsics3.areEqual(((Message) obj2).getNonce(), nonce)) {
                 obj = obj2;
                 break;
             }
@@ -126,17 +126,17 @@ public final class StoreLocalMessagesHolder {
         storeLocalMessagesHolder.init(z2);
     }
 
-    @StoreThread
+    @Store3
     public final void init(boolean cacheEnabled) {
         if (cacheEnabled) {
             try {
                 SharedPreferences sharedPreferences = SharedPreferencesProvider.INSTANCE.get();
                 this.sharedPreferences = sharedPreferences;
                 if (sharedPreferences == null) {
-                    m.throwUninitializedPropertyAccessException("sharedPreferences");
+                    Intrinsics3.throwUninitializedPropertyAccessException("sharedPreferences");
                 }
                 String string = sharedPreferences.getString("STORE_LOCAL_MESSAGES_CACHE_V11", null);
-                for (Map.Entry entry : (string != null ? (Map) this.gson.g(string, new StoreLocalMessagesHolder$init$type$1().getType()) : h0.emptyMap()).entrySet()) {
+                for (Map.Entry entry : (string != null ? (Map) this.gson.g(string, new StoreLocalMessagesHolder2().getType()) : Maps6.emptyMap()).entrySet()) {
                     long jLongValue = ((Number) entry.getKey()).longValue();
                     this.messages.put(Long.valueOf(jLongValue), new TreeMap<>(MessageUtils.getSORT_BY_IDS_COMPARATOR()));
                     TreeMap<Long, Message> treeMap = this.messages.get(Long.valueOf(jLongValue));
@@ -158,22 +158,22 @@ public final class StoreLocalMessagesHolder {
         publishIfUpdated(true);
     }
 
-    @StoreThread
+    @Store3
     private final void messageCacheTryPersist() {
         if (this.cacheEnabled) {
             HashMap map = new HashMap();
             for (Map.Entry<Long, TreeMap<Long, Message>> entry : this.messages.entrySet()) {
                 Long key = entry.getKey();
                 Collection<Message> collectionValues = entry.getValue().values();
-                m.checkNotNullExpressionValue(collectionValues, "entry.value.values");
-                map.put(key, u.toList(collectionValues));
+                Intrinsics3.checkNotNullExpressionValue(collectionValues, "entry.value.values");
+                map.put(key, _Collections.toList(collectionValues));
             }
-            if (!m.areEqual(this.cacheSnapshot, map)) {
+            if (!Intrinsics3.areEqual(this.cacheSnapshot, map)) {
                 this.cacheSnapshot = map;
                 String strM = this.gson.m(map);
                 SharedPreferences sharedPreferences = this.sharedPreferences;
                 if (sharedPreferences == null) {
-                    m.throwUninitializedPropertyAccessException("sharedPreferences");
+                    Intrinsics3.throwUninitializedPropertyAccessException("sharedPreferences");
                 }
                 sharedPreferences.edit().putString("STORE_LOCAL_MESSAGES_CACHE_V11", strM).apply();
             }
@@ -197,7 +197,7 @@ public final class StoreLocalMessagesHolder {
                 Long lValueOf = Long.valueOf(jLongValue);
                 TreeMap<Long, Message> treeMap = this.messages.get(Long.valueOf(jLongValue));
                 if (treeMap == null || (collectionEmptyList = treeMap.values()) == null) {
-                    collectionEmptyList = n.emptyList();
+                    collectionEmptyList = Collections2.emptyList();
                 }
                 map.put(lValueOf, new ArrayList(collectionEmptyList));
             }
@@ -208,15 +208,15 @@ public final class StoreLocalMessagesHolder {
         }
     }
 
-    @StoreThread
+    @Store3
     public final void deleteMessage(long channelId, String nonce) {
         Object next;
-        m.checkNotNullParameter(nonce, "nonce");
+        Intrinsics3.checkNotNullParameter(nonce, "nonce");
         TreeMap<Long, Message> treeMap = this.messages.get(Long.valueOf(channelId));
         if (treeMap != null) {
-            m.checkNotNullExpressionValue(treeMap, "messages[channelId] ?: return");
+            Intrinsics3.checkNotNullExpressionValue(treeMap, "messages[channelId] ?: return");
             Collection<Message> collectionValues = treeMap.values();
-            m.checkNotNullExpressionValue(collectionValues, "messagesForChannel.values");
+            Intrinsics3.checkNotNullExpressionValue(collectionValues, "messagesForChannel.values");
             Iterator<T> it = collectionValues.iterator();
             do {
                 if (!it.hasNext()) {
@@ -224,10 +224,10 @@ public final class StoreLocalMessagesHolder {
                     break;
                 }
                 next = it.next();
-            } while (!m.areEqual(((Message) next).getNonce(), nonce));
+            } while (!Intrinsics3.areEqual(((Message) next).getNonce(), nonce));
             Message message = (Message) next;
             if (message != null) {
-                m.checkNotNullExpressionValue(message, "messagesForChannel.value…once == nonce } ?: return");
+                Intrinsics3.checkNotNullExpressionValue(message, "messagesForChannel.value…once == nonce } ?: return");
                 deleteMessage(message);
             }
         }

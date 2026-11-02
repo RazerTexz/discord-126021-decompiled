@@ -8,15 +8,15 @@ import android.text.style.ForegroundColorSpan;
 import android.text.style.StyleSpan;
 import android.view.View;
 import androidx.exifinterface.media.ExifInterface;
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.R;
 import com.discord.simpleast.core.node.Node;
 import com.discord.utilities.color.ColorCompat;
 import com.discord.utilities.spans.ClickableSpan;
 import com.discord.utilities.textprocessing.node.UserMentionNode.RenderContext;
-import d0.t.n;
-import d0.z.d.m;
-import d0.z.d.o;
+import d0.t.Collections2;
+import d0.z.d.Intrinsics3;
+import d0.z.d.Lambda;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -33,7 +33,7 @@ public final class UserMentionNode<T extends RenderContext> extends Node<T> {
 
     /* JADX INFO: renamed from: com.discord.utilities.textprocessing.node.UserMentionNode$renderUserMention$1, reason: invalid class name */
     /* JADX INFO: compiled from: UserMentionNode.kt */
-    public final class AnonymousClass1 extends o implements Function1<View, Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function1<View, Unit> {
         public final /* synthetic */ Function1 $onClick;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -50,7 +50,7 @@ public final class UserMentionNode<T extends RenderContext> extends Node<T> {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(View view) {
-            m.checkNotNullParameter(view, "it");
+            Intrinsics3.checkNotNullParameter(view, "it");
             this.$onClick.invoke(Long.valueOf(UserMentionNode.this.getUserId()));
         }
     }
@@ -100,7 +100,7 @@ public final class UserMentionNode<T extends RenderContext> extends Node<T> {
         Context context = renderContext.getContext();
         int length = builder.length();
         boolean zContainsKey = userNames != null ? userNames.containsKey(Long.valueOf(this.userId)) : false;
-        StringBuilder sbU = a.U("@");
+        StringBuilder sbU = outline.U("@");
         if (userNames == null || (str = userNames.get(Long.valueOf(this.userId))) == null) {
             str = "invalid-user";
         }
@@ -125,19 +125,19 @@ public final class UserMentionNode<T extends RenderContext> extends Node<T> {
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public UserMentionNode(Type type, long j) {
         super(null, 1, null);
-        m.checkNotNullParameter(type, "type");
+        Intrinsics3.checkNotNullParameter(type, "type");
         this.type = type;
         this.userId = j;
     }
 
     public void render(SpannableStringBuilder builder, T renderContext) {
-        m.checkNotNullParameter(builder, "builder");
-        m.checkNotNullParameter(renderContext, "renderContext");
+        Intrinsics3.checkNotNullParameter(builder, "builder");
+        Intrinsics3.checkNotNullParameter(renderContext, "renderContext");
         if (this.type == Type.USER) {
             renderUserMention(builder, renderContext);
             return;
         }
-        List listListOf = n.listOf(new StyleSpan(1), new BackgroundColorSpan(ColorCompat.getThemedColor(renderContext.getContext(), R.attr.theme_chat_mention_background)), new ForegroundColorSpan(ColorCompat.getThemedColor(renderContext.getContext(), R.attr.theme_chat_mention_foreground)));
+        List listListOf = Collections2.listOf(new StyleSpan(1), new BackgroundColorSpan(ColorCompat.getThemedColor(renderContext.getContext(), R.attr.theme_chat_mention_background)), new ForegroundColorSpan(ColorCompat.getThemedColor(renderContext.getContext(), R.attr.theme_chat_mention_foreground)));
         int length = builder.length();
         builder.append((CharSequence) (this.type == Type.HERE ? "@here" : "@everyone"));
         Iterator it = listListOf.iterator();

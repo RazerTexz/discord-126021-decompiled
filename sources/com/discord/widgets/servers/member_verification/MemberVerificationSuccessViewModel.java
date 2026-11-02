@@ -2,14 +2,14 @@ package com.discord.widgets.servers.member_verification;
 
 import android.content.Context;
 import androidx.annotation.MainThread;
-import b.a.d.d0;
-import b.d.b.a.a;
+import b.a.d.AppViewModel;
+import b.d.b.a.outline;
 import com.discord.stores.StoreStream;
 import com.discord.utilities.error.Error;
 import com.discord.utilities.rest.RestAPI;
 import com.discord.utilities.rx.ObservableExtensionsKt;
-import d0.z.d.m;
-import d0.z.d.o;
+import d0.z.d.Intrinsics3;
+import d0.z.d.Lambda;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
@@ -19,7 +19,7 @@ import rx.subjects.PublishSubject;
 
 /* JADX INFO: compiled from: MemberVerificationSuccessViewModel.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class MemberVerificationSuccessViewModel extends d0<ViewState> {
+public final class MemberVerificationSuccessViewModel extends AppViewModel<ViewState> {
 
     /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
     public static final Companion INSTANCE = new Companion(null);
@@ -29,7 +29,7 @@ public final class MemberVerificationSuccessViewModel extends d0<ViewState> {
 
     /* JADX INFO: renamed from: com.discord.widgets.servers.member_verification.MemberVerificationSuccessViewModel$1, reason: invalid class name */
     /* JADX INFO: compiled from: MemberVerificationSuccessViewModel.kt */
-    public final class AnonymousClass1 extends o implements Function1<StoreState, Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function1<StoreState, Unit> {
         public AnonymousClass1() {
             super(1);
         }
@@ -42,14 +42,14 @@ public final class MemberVerificationSuccessViewModel extends d0<ViewState> {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(StoreState storeState) {
-            m.checkNotNullParameter(storeState, "storeState");
+            Intrinsics3.checkNotNullParameter(storeState, "storeState");
             MemberVerificationSuccessViewModel.access$handleStoreState(MemberVerificationSuccessViewModel.this, storeState);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.widgets.servers.member_verification.MemberVerificationSuccessViewModel$ackGuildJoinRequest$1, reason: invalid class name */
     /* JADX INFO: compiled from: MemberVerificationSuccessViewModel.kt */
-    public final class AnonymousClass1 extends o implements Function1<Error, Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function1<Error, Unit> {
         public AnonymousClass1() {
             super(1);
         }
@@ -63,14 +63,14 @@ public final class MemberVerificationSuccessViewModel extends d0<ViewState> {
         /* JADX WARN: Type inference incomplete: some casts might be missing */
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(Error error) {
-            m.checkNotNullParameter(error, "it");
+            Intrinsics3.checkNotNullParameter(error, "it");
             MemberVerificationSuccessViewModel.access$getEventSubject$p(MemberVerificationSuccessViewModel.this).k.onNext((T) Event.Error.INSTANCE);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.widgets.servers.member_verification.MemberVerificationSuccessViewModel$ackGuildJoinRequest$2, reason: invalid class name */
     /* JADX INFO: compiled from: MemberVerificationSuccessViewModel.kt */
-    public final class AnonymousClass2 extends o implements Function1<Void, Unit> {
+    public final class AnonymousClass2 extends Lambda implements Function1<Void, Unit> {
         public AnonymousClass2() {
             super(1);
         }
@@ -99,8 +99,8 @@ public final class MemberVerificationSuccessViewModel extends d0<ViewState> {
 
         private final Observable<StoreState> observeStores(long guildId) {
             StoreStream.Companion companion = StoreStream.INSTANCE;
-            Observable<StoreState> observableJ = Observable.j(companion.getGuildJoinRequests().observeGuildJoinRequest(guildId), companion.getGuilds().observeGuild(guildId), MemberVerificationSuccessViewModel$Companion$observeStores$1.INSTANCE);
-            m.checkNotNullExpressionValue(observableJ, "Observable.combineLatest…?.name,\n        )\n      }");
+            Observable<StoreState> observableJ = Observable.j(companion.getGuildJoinRequests().observeGuildJoinRequest(guildId), companion.getGuilds().observeGuild(guildId), MemberVerificationSuccessViewModel2.INSTANCE);
+            Intrinsics3.checkNotNullExpressionValue(observableJ, "Observable.combineLatest…?.name,\n        )\n      }");
             return observableJ;
         }
 
@@ -170,7 +170,7 @@ public final class MemberVerificationSuccessViewModel extends d0<ViewState> {
                 return false;
             }
             StoreState storeState = (StoreState) other;
-            return m.areEqual(this.lastSeen, storeState.lastSeen) && m.areEqual(this.guildName, storeState.guildName);
+            return Intrinsics3.areEqual(this.lastSeen, storeState.lastSeen) && Intrinsics3.areEqual(this.guildName, storeState.guildName);
         }
 
         /* JADX INFO: renamed from: component2, reason: from getter */
@@ -199,10 +199,10 @@ public final class MemberVerificationSuccessViewModel extends d0<ViewState> {
         }
 
         public String toString() {
-            StringBuilder sbU = a.U("StoreState(lastSeen=");
+            StringBuilder sbU = outline.U("StoreState(lastSeen=");
             sbU.append(this.lastSeen);
             sbU.append(", guildName=");
-            return a.J(sbU, this.guildName, ")");
+            return outline.J(sbU, this.guildName, ")");
         }
     }
 
@@ -240,7 +240,7 @@ public final class MemberVerificationSuccessViewModel extends d0<ViewState> {
 
             public boolean equals(Object other) {
                 if (this != other) {
-                    return (other instanceof Loaded) && m.areEqual(this.guildName, ((Loaded) other).guildName);
+                    return (other instanceof Loaded) && Intrinsics3.areEqual(this.guildName, ((Loaded) other).guildName);
                 }
                 return true;
             }
@@ -263,7 +263,7 @@ public final class MemberVerificationSuccessViewModel extends d0<ViewState> {
             }
 
             public String toString() {
-                return a.J(a.U("Loaded(guildName="), this.guildName, ")");
+                return outline.J(outline.U("Loaded(guildName="), this.guildName, ")");
             }
         }
 
@@ -307,12 +307,12 @@ public final class MemberVerificationSuccessViewModel extends d0<ViewState> {
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public MemberVerificationSuccessViewModel(long j, RestAPI restAPI, Observable<StoreState> observable) {
         super(null);
-        m.checkNotNullParameter(restAPI, "restAPI");
-        m.checkNotNullParameter(observable, "storeObservable");
+        Intrinsics3.checkNotNullParameter(restAPI, "restAPI");
+        Intrinsics3.checkNotNullParameter(observable, "storeObservable");
         this.guildId = j;
         this.restAPI = restAPI;
         PublishSubject<Event> publishSubjectK0 = PublishSubject.k0();
-        m.checkNotNullExpressionValue(publishSubjectK0, "PublishSubject.create()");
+        Intrinsics3.checkNotNullExpressionValue(publishSubjectK0, "PublishSubject.create()");
         this.eventSubject = publishSubjectK0;
         ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.computationLatest(observable), this, null, 2, null), MemberVerificationSuccessViewModel.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass1(), 62, (Object) null);
     }

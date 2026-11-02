@@ -1,12 +1,12 @@
 package defpackage;
 
-import d0.z.d.o;
+import d0.z.d.Lambda;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 
 /* JADX INFO: compiled from: kotlin-style lambda group */
 /* JADX INFO: loaded from: classes2.dex */
-public final class q extends o implements Function0<Unit> {
+public final class q extends Lambda implements Function0<Unit> {
     public static final q j = new q(0);
     public static final q k = new q(1);
     public final /* synthetic */ int l;

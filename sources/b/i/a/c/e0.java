@@ -1,17 +1,19 @@
 package b.i.a.c;
 
+import b.i.a.c.f3.ListenerSet;
+
 /* JADX INFO: compiled from: lambda */
 /* JADX INFO: loaded from: classes3.dex */
-public final /* synthetic */ class e0 implements b.i.a.c.f3.p.a {
-    public final /* synthetic */ w1 a;
+public final /* synthetic */ class e0 implements ListenerSet.a {
+    public final /* synthetic */ PlaybackInfo a;
 
-    public /* synthetic */ e0(w1 w1Var) {
-        this.a = w1Var;
+    public /* synthetic */ e0(PlaybackInfo playbackInfo) {
+        this.a = playbackInfo;
     }
 
-    @Override // b.i.a.c.f3.p.a
+    @Override // b.i.a.c.f3.ListenerSet.a
     public final void invoke(Object obj) {
-        w1 w1Var = this.a;
-        ((y1.c) obj).H(w1Var.m, w1Var.f);
+        PlaybackInfo playbackInfo = this.a;
+        ((Player2.c) obj).H(playbackInfo.m, playbackInfo.f);
     }
 }

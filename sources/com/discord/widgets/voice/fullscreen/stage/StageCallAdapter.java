@@ -4,14 +4,14 @@ import android.view.ViewGroup;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.api.channel.Channel;
 import com.discord.utilities.mg_recycler.MGRecyclerAdapterSimple;
 import com.discord.utilities.mg_recycler.MGRecyclerViewHolder;
 import com.discord.views.calls.VideoCallParticipantView;
 import com.discord.widgets.user.usersheet.WidgetUserSheet;
 import com.discord.widgets.voice.fullscreen.CallParticipant;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 import java.util.List;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function1;
@@ -39,21 +39,21 @@ public final class StageCallAdapter extends MGRecyclerAdapterSimple<StageCallIte
     /* JADX WARN: Multi-variable type inference failed */
     public StageCallAdapter(RecyclerView recyclerView, FragmentManager fragmentManager, Function1<? super CallParticipant.UserOrStreamParticipant, Unit> function1, Function1<? super CallParticipant.UserOrStreamParticipant, Unit> function2, Function1<? super String, Unit> function3, Function2<? super VideoCallParticipantView.StreamResolution, ? super VideoCallParticipantView.StreamFps, Unit> function4, Function2<? super VideoCallParticipantView.StreamResolution, ? super VideoCallParticipantView.StreamFps, Unit> function5) {
         super(recyclerView, false, 2, null);
-        m.checkNotNullParameter(recyclerView, "recyclerView");
-        m.checkNotNullParameter(fragmentManager, "fragmentManager");
-        m.checkNotNullParameter(function1, "onMediaParticipantTapped");
-        m.checkNotNullParameter(function2, "onMediaParticipantLongClicked");
-        m.checkNotNullParameter(function3, "onWatchStreamClicked");
-        m.checkNotNullParameter(function4, "onStreamQualityIndicatorShown");
-        m.checkNotNullParameter(function5, "onStreamQualityIndicatorClick");
+        Intrinsics3.checkNotNullParameter(recyclerView, "recyclerView");
+        Intrinsics3.checkNotNullParameter(fragmentManager, "fragmentManager");
+        Intrinsics3.checkNotNullParameter(function1, "onMediaParticipantTapped");
+        Intrinsics3.checkNotNullParameter(function2, "onMediaParticipantLongClicked");
+        Intrinsics3.checkNotNullParameter(function3, "onWatchStreamClicked");
+        Intrinsics3.checkNotNullParameter(function4, "onStreamQualityIndicatorShown");
+        Intrinsics3.checkNotNullParameter(function5, "onStreamQualityIndicatorClick");
         this.fragmentManager = fragmentManager;
         this.onMediaParticipantTapped = function1;
         this.onMediaParticipantLongClicked = function2;
         this.onWatchStreamClicked = function3;
         this.onStreamQualityIndicatorShown = function4;
         this.onStreamQualityIndicatorClick = function5;
-        this.spanSizeLookup = new StageCallAdapter$spanSizeLookup$1(this);
-        this.itemDecoration = new StageCallAdapter$itemDecoration$1(this);
+        this.spanSizeLookup = new StageCallAdapter3(this);
+        this.itemDecoration = new StageCallAdapter2(this);
     }
 
     public static final /* synthetic */ List access$getInternalData$p(StageCallAdapter stageCallAdapter) {
@@ -103,10 +103,10 @@ public final class StageCallAdapter extends MGRecyclerAdapterSimple<StageCallIte
 
     /* JADX WARN: Multi-variable type inference failed */
     public final void onItemClick$app_productionGoogleRelease(StageCallItem item) {
-        m.checkNotNullParameter(item, "item");
-        if (item instanceof StageCallParticipantItem) {
-            StageCallParticipantItem stageCallParticipantItem = (StageCallParticipantItem) item;
-            openWidgetUserSheet(stageCallParticipantItem.getVoiceUser().getUser().getId(), stageCallParticipantItem.getChannel());
+        Intrinsics3.checkNotNullParameter(item, "item");
+        if (item instanceof StageCallItem2) {
+            StageCallItem2 stageCallItem2 = (StageCallItem2) item;
+            openWidgetUserSheet(stageCallItem2.getVoiceUser().getUser().getId(), stageCallItem2.getChannel());
         }
     }
 
@@ -115,31 +115,31 @@ public final class StageCallAdapter extends MGRecyclerAdapterSimple<StageCallIte
     }
 
     public final void setData(List<? extends StageCallItem> data, int numSpeakers) {
-        m.checkNotNullParameter(data, "data");
+        Intrinsics3.checkNotNullParameter(data, "data");
         this.numSpeakers = numSpeakers;
         super.setData(data);
     }
 
     @Override // androidx.recyclerview.widget.RecyclerView.Adapter
     public MGRecyclerViewHolder<StageCallAdapter, StageCallItem> onCreateViewHolder(ViewGroup parent, int viewType) {
-        m.checkNotNullParameter(parent, "parent");
+        Intrinsics3.checkNotNullParameter(parent, "parent");
         switch (viewType) {
             case 0:
-                return new DetailsViewHolder(this);
+                return new StageCallViewHolder4(this);
             case 1:
-                return new SpeakerViewHolder(this);
+                return new StageCallViewHolder8(this);
             case 2:
-                return new AudienceHeaderViewHolder(this);
+                return new StageCallViewHolder2(this);
             case 3:
-                return new AudienceViewHolder(this);
+                return new StageCallViewHolder3(this);
             case 4:
-                return new DividerViewHolder(this);
+                return new StageCallViewHolder5(this);
             case 5:
-                return new PrestartDetailsViewHolder(this);
+                return new StageCallViewHolder7(this);
             case 6:
-                return new MediaViewHolder(this);
+                return new StageCallViewHolder6(this);
             default:
-                throw new IllegalStateException(a.q("Invalid view type: ", viewType));
+                throw new IllegalStateException(outline.q("Invalid view type: ", viewType));
         }
     }
 }

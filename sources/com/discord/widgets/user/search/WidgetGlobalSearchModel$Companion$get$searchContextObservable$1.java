@@ -1,7 +1,7 @@
 package com.discord.widgets.user.search;
 
 import androidx.core.app.NotificationCompat;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 import rx.functions.Func2;
 
 /* JADX INFO: compiled from: WidgetGlobalSearchModel.kt */
@@ -16,7 +16,7 @@ public final class WidgetGlobalSearchModel$Companion$get$searchContextObservable
 
     /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
     public final WidgetGlobalSearchModel.SearchContext call2(String str, WidgetGlobalSearchModel.SearchContext searchContext) {
-        m.checkNotNullExpressionValue(str, "filterStr");
+        Intrinsics3.checkNotNullExpressionValue(str, "filterStr");
         return WidgetGlobalSearchModel.SearchContext.copy$default(searchContext, str, null, 0L, 0L, 0L, null, null, 126, null);
     }
 }

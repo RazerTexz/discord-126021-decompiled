@@ -1,6 +1,6 @@
 package com.google.gson.internal.bind;
 
-import b.i.d.o;
+import b.i.d.TypeAdapterFactory2;
 import com.google.gson.Gson;
 import com.google.gson.TypeAdapter;
 import com.google.gson.internal.LinkedTreeMap;
@@ -15,11 +15,11 @@ public final class ObjectTypeAdapter extends TypeAdapter<Object> {
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
     public final Gson f3121b;
-    public static final o a = new AnonymousClass1();
+    public static final TypeAdapterFactory2 a = new AnonymousClass1();
 
     /* JADX INFO: renamed from: com.google.gson.internal.bind.ObjectTypeAdapter$1, reason: invalid class name */
-    public class AnonymousClass1 implements o {
-        @Override // b.i.d.o
+    public class AnonymousClass1 implements TypeAdapterFactory2 {
+        @Override // b.i.d.TypeAdapterFactory2
         public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> typeToken) {
             if (typeToken.getRawType() == Object.class) {
                 return new ObjectTypeAdapter(gson);

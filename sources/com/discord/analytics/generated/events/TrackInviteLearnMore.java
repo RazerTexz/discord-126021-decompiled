@@ -1,14 +1,14 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackInviteLearnMore.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackInviteLearnMore implements AnalyticsSchema, TrackBaseReceiver {
+public final /* data */ class TrackInviteLearnMore implements AnalyticsSchema, TrackBase2 {
     private final Long channelId = null;
     private final Long guildId = null;
     private final CharSequence inviteCode = null;
@@ -24,7 +24,7 @@ public final /* data */ class TrackInviteLearnMore implements AnalyticsSchema, T
             return false;
         }
         TrackInviteLearnMore trackInviteLearnMore = (TrackInviteLearnMore) other;
-        return m.areEqual(this.inviteCode, trackInviteLearnMore.inviteCode) && m.areEqual(this.guildId, trackInviteLearnMore.guildId) && m.areEqual(this.channelId, trackInviteLearnMore.channelId) && m.areEqual(this.inviterId, trackInviteLearnMore.inviterId);
+        return Intrinsics3.areEqual(this.inviteCode, trackInviteLearnMore.inviteCode) && Intrinsics3.areEqual(this.guildId, trackInviteLearnMore.guildId) && Intrinsics3.areEqual(this.channelId, trackInviteLearnMore.channelId) && Intrinsics3.areEqual(this.inviterId, trackInviteLearnMore.inviterId);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -45,13 +45,13 @@ public final /* data */ class TrackInviteLearnMore implements AnalyticsSchema, T
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackInviteLearnMore(inviteCode=");
+        StringBuilder sbU = outline.U("TrackInviteLearnMore(inviteCode=");
         sbU.append(this.inviteCode);
         sbU.append(", guildId=");
         sbU.append(this.guildId);
         sbU.append(", channelId=");
         sbU.append(this.channelId);
         sbU.append(", inviterId=");
-        return a.G(sbU, this.inviterId, ")");
+        return outline.G(sbU, this.inviterId, ")");
     }
 }

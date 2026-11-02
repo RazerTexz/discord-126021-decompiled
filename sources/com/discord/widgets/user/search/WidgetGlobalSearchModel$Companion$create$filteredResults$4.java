@@ -1,13 +1,13 @@
 package com.discord.widgets.user.search;
 
 import com.discord.api.channel.Channel;
-import d0.z.d.m;
-import d0.z.d.o;
+import d0.z.d.Intrinsics3;
+import d0.z.d.Lambda;
 import kotlin.jvm.functions.Function1;
 
 /* JADX INFO: compiled from: WidgetGlobalSearchModel.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final class WidgetGlobalSearchModel$Companion$create$filteredResults$4 extends o implements Function1<Channel, WidgetGlobalSearchModel.ItemDataPayload> {
+public final class WidgetGlobalSearchModel$Companion$create$filteredResults$4 extends Lambda implements Function1<Channel, WidgetGlobalSearchModel.ItemDataPayload> {
     public final /* synthetic */ String $sanitizedFilter;
     public final /* synthetic */ WidgetGlobalSearchModel$Companion$create$4 $toItemChannel$4;
 
@@ -25,7 +25,7 @@ public final class WidgetGlobalSearchModel$Companion$create$filteredResults$4 ex
 
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final WidgetGlobalSearchModel.ItemDataPayload invoke2(Channel channel) {
-        m.checkNotNullParameter(channel, "it");
+        Intrinsics3.checkNotNullParameter(channel, "it");
         return this.$toItemChannel$4.invoke2(channel, this.$sanitizedFilter);
     }
 }

@@ -1,6 +1,6 @@
 package com.adjust.sdk;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.adjust.sdk.scheduler.SingleThreadCachedScheduler;
 import com.adjust.sdk.scheduler.ThreadScheduler;
 import java.io.IOException;
@@ -217,11 +217,11 @@ public class SdkClickHandler implements ISdkClickHandler {
         }
         String baseUrl = AdjustFactory.getBaseUrl();
         if (this.basePath != null) {
-            StringBuilder sbU = a.U(baseUrl);
+            StringBuilder sbU = outline.U(baseUrl);
             sbU.append(this.basePath);
             baseUrl = sbU.toString();
         }
-        StringBuilder sbU2 = a.U(baseUrl);
+        StringBuilder sbU2 = outline.U(baseUrl);
         sbU2.append(activityPackage.getPath());
         try {
             SdkClickResponseData sdkClickResponseData = (SdkClickResponseData) UtilNetworking.createPOSTHttpsURLConnection(sbU2.toString(), activityPackage, this.packageQueue.size() - 1);

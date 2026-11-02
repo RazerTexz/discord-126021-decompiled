@@ -4,7 +4,7 @@ import androidx.annotation.IntRange;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.VisibleForTesting;
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -35,7 +35,7 @@ public final class LocaleListCompatWrapper implements LocaleListInterface {
         for (int i = 0; i < localeArr.length; i++) {
             Locale locale = localeArr[i];
             if (locale == null) {
-                throw new NullPointerException(a.r("list[", i, "] is null"));
+                throw new NullPointerException(outline.r("list[", i, "] is null"));
             }
             if (!hashSet.contains(locale)) {
                 Locale locale2 = (Locale) locale.clone();
@@ -236,7 +236,7 @@ public final class LocaleListCompatWrapper implements LocaleListInterface {
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("[");
+        StringBuilder sbU = outline.U("[");
         int i = 0;
         while (true) {
             Locale[] localeArr = this.mList;

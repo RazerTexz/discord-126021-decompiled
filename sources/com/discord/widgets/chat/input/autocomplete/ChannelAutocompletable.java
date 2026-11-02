@@ -1,8 +1,9 @@
 package com.discord.widgets.chat.input.autocomplete;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.api.channel.Channel;
-import d0.z.d.m;
+import d0.t.CollectionsJVM;
+import d0.z.d.Intrinsics3;
 import java.util.List;
 
 /* JADX INFO: compiled from: Autocompletable.kt */
@@ -14,9 +15,9 @@ public final /* data */ class ChannelAutocompletable extends Autocompletable {
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public ChannelAutocompletable(Channel channel) {
         super(null);
-        m.checkNotNullParameter(channel, "channel");
+        Intrinsics3.checkNotNullParameter(channel, "channel");
         this.channel = channel;
-        this.textMatchers = d0.t.m.listOf(leadingIdentifier().getIdentifier() + channel.getName());
+        this.textMatchers = CollectionsJVM.listOf(leadingIdentifier().getIdentifier() + channel.getName());
     }
 
     public static /* synthetic */ ChannelAutocompletable copy$default(ChannelAutocompletable channelAutocompletable, Channel channel, int i, Object obj) {
@@ -27,13 +28,13 @@ public final /* data */ class ChannelAutocompletable extends Autocompletable {
     }
 
     public final ChannelAutocompletable copy(Channel channel) {
-        m.checkNotNullParameter(channel, "channel");
+        Intrinsics3.checkNotNullParameter(channel, "channel");
         return new ChannelAutocompletable(channel);
     }
 
     public boolean equals(Object other) {
         if (this != other) {
-            return (other instanceof ChannelAutocompletable) && m.areEqual(this.channel, ((ChannelAutocompletable) other).channel);
+            return (other instanceof ChannelAutocompletable) && Intrinsics3.areEqual(this.channel, ((ChannelAutocompletable) other).channel);
         }
         return true;
     }
@@ -49,7 +50,7 @@ public final /* data */ class ChannelAutocompletable extends Autocompletable {
 
     @Override // com.discord.widgets.chat.input.autocomplete.Autocompletable
     public String getInputReplacement() {
-        StringBuilder sbU = a.U("<#");
+        StringBuilder sbU = outline.U("<#");
         sbU.append(this.channel.getId());
         sbU.append('>');
         return sbU.toString();
@@ -78,7 +79,7 @@ public final /* data */ class ChannelAutocompletable extends Autocompletable {
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("ChannelAutocompletable(channel=");
+        StringBuilder sbU = outline.U("ChannelAutocompletable(channel=");
         sbU.append(this.channel);
         sbU.append(")");
         return sbU.toString();

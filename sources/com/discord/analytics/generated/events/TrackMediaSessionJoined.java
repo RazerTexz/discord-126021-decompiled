@@ -1,14 +1,14 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackMediaSessionJoined.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackMediaSessionJoined implements AnalyticsSchema, TrackBaseReceiver {
+public final /* data */ class TrackMediaSessionJoined implements AnalyticsSchema, TrackBase2 {
     private final Long channelId = null;
     private final Long channelType = null;
     private final CharSequence context = null;
@@ -29,7 +29,7 @@ public final /* data */ class TrackMediaSessionJoined implements AnalyticsSchema
             return false;
         }
         TrackMediaSessionJoined trackMediaSessionJoined = (TrackMediaSessionJoined) other;
-        return m.areEqual(this.channelId, trackMediaSessionJoined.channelId) && m.areEqual(this.guildId, trackMediaSessionJoined.guildId) && m.areEqual(this.rtcConnectionId, trackMediaSessionJoined.rtcConnectionId) && m.areEqual(this.context, trackMediaSessionJoined.context) && m.areEqual(this.mediaSessionId, trackMediaSessionJoined.mediaSessionId) && m.areEqual(this.parentMediaSessionId, trackMediaSessionJoined.parentMediaSessionId) && m.areEqual(this.channelType, trackMediaSessionJoined.channelType) && m.areEqual(this.voiceBackendVersion, trackMediaSessionJoined.voiceBackendVersion) && m.areEqual(this.rtcWorkerBackendVersion, trackMediaSessionJoined.rtcWorkerBackendVersion);
+        return Intrinsics3.areEqual(this.channelId, trackMediaSessionJoined.channelId) && Intrinsics3.areEqual(this.guildId, trackMediaSessionJoined.guildId) && Intrinsics3.areEqual(this.rtcConnectionId, trackMediaSessionJoined.rtcConnectionId) && Intrinsics3.areEqual(this.context, trackMediaSessionJoined.context) && Intrinsics3.areEqual(this.mediaSessionId, trackMediaSessionJoined.mediaSessionId) && Intrinsics3.areEqual(this.parentMediaSessionId, trackMediaSessionJoined.parentMediaSessionId) && Intrinsics3.areEqual(this.channelType, trackMediaSessionJoined.channelType) && Intrinsics3.areEqual(this.voiceBackendVersion, trackMediaSessionJoined.voiceBackendVersion) && Intrinsics3.areEqual(this.rtcWorkerBackendVersion, trackMediaSessionJoined.rtcWorkerBackendVersion);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -60,7 +60,7 @@ public final /* data */ class TrackMediaSessionJoined implements AnalyticsSchema
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackMediaSessionJoined(channelId=");
+        StringBuilder sbU = outline.U("TrackMediaSessionJoined(channelId=");
         sbU.append(this.channelId);
         sbU.append(", guildId=");
         sbU.append(this.guildId);
@@ -77,6 +77,6 @@ public final /* data */ class TrackMediaSessionJoined implements AnalyticsSchema
         sbU.append(", voiceBackendVersion=");
         sbU.append(this.voiceBackendVersion);
         sbU.append(", rtcWorkerBackendVersion=");
-        return a.E(sbU, this.rtcWorkerBackendVersion, ")");
+        return outline.E(sbU, this.rtcWorkerBackendVersion, ")");
     }
 }

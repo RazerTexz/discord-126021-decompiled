@@ -5,7 +5,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.annotation.RestrictTo;
-import b.d.b.a.a;
+import b.d.b.a.outline;
 
 /* JADX INFO: loaded from: classes.dex */
 @RequiresApi(21)
@@ -147,7 +147,7 @@ public class AudioAttributesImplApi21 implements AudioAttributesImpl {
 
     @NonNull
     public String toString() {
-        StringBuilder sbU = a.U("AudioAttributesCompat: audioattributes=");
+        StringBuilder sbU = outline.U("AudioAttributesCompat: audioattributes=");
         sbU.append(this.mAudioAttributes);
         return sbU.toString();
     }

@@ -13,7 +13,7 @@ import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.annotation.RestrictTo;
 import androidx.core.provider.FontsContractCompat;
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import java.io.Closeable;
 import java.io.File;
 import java.io.FileInputStream;
@@ -107,14 +107,14 @@ public class TypefaceCompatUtil {
         if (cacheDir == null) {
             return null;
         }
-        StringBuilder sbU = a.U(CACHE_FILE_PREFIX);
+        StringBuilder sbU = outline.U(CACHE_FILE_PREFIX);
         sbU.append(Process.myPid());
         sbU.append("-");
         sbU.append(Process.myTid());
         sbU.append("-");
         String string = sbU.toString();
         for (int i = 0; i < 100; i++) {
-            File file = new File(cacheDir, a.q(string, i));
+            File file = new File(cacheDir, outline.q(string, i));
             try {
                 if (file.createNewFile()) {
                     return file;

@@ -1,17 +1,17 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.analytics.generated.traits.TrackLocationMetadata;
-import com.discord.analytics.generated.traits.TrackLocationMetadataReceiver;
+import com.discord.analytics.generated.traits.TrackLocationMetadata2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 import java.util.List;
 
 /* JADX INFO: compiled from: TrackAfExited.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackAfExited implements AnalyticsSchema, TrackBaseReceiver, TrackLocationMetadataReceiver {
+public final /* data */ class TrackAfExited implements AnalyticsSchema, TrackBase2, TrackLocationMetadata2 {
     private final CharSequence feedLayout = null;
     private final List<Long> gameIdsViewed = null;
     private final CharSequence loadId = null;
@@ -37,7 +37,7 @@ public final /* data */ class TrackAfExited implements AnalyticsSchema, TrackBas
             return false;
         }
         TrackAfExited trackAfExited = (TrackAfExited) other;
-        return m.areEqual(this.loadId, trackAfExited.loadId) && m.areEqual(this.gameIdsViewed, trackAfExited.gameIdsViewed) && m.areEqual(this.storeApplicationIdsViewed, trackAfExited.storeApplicationIdsViewed) && m.areEqual(this.storeSkuIdsViewed, trackAfExited.storeSkuIdsViewed) && m.areEqual(this.numGamesViewed, trackAfExited.numGamesViewed) && m.areEqual(this.numCardsViewed, trackAfExited.numCardsViewed) && m.areEqual(this.secondsSpent, trackAfExited.secondsSpent) && m.areEqual(this.feedLayout, trackAfExited.feedLayout) && m.areEqual(this.windowWidth, trackAfExited.windowWidth) && m.areEqual(this.windowHeight, trackAfExited.windowHeight) && m.areEqual(this.subscribedGames, trackAfExited.subscribedGames) && m.areEqual(this.numCardsTotal, trackAfExited.numCardsTotal) && m.areEqual(this.newsIdsViewed, trackAfExited.newsIdsViewed);
+        return Intrinsics3.areEqual(this.loadId, trackAfExited.loadId) && Intrinsics3.areEqual(this.gameIdsViewed, trackAfExited.gameIdsViewed) && Intrinsics3.areEqual(this.storeApplicationIdsViewed, trackAfExited.storeApplicationIdsViewed) && Intrinsics3.areEqual(this.storeSkuIdsViewed, trackAfExited.storeSkuIdsViewed) && Intrinsics3.areEqual(this.numGamesViewed, trackAfExited.numGamesViewed) && Intrinsics3.areEqual(this.numCardsViewed, trackAfExited.numCardsViewed) && Intrinsics3.areEqual(this.secondsSpent, trackAfExited.secondsSpent) && Intrinsics3.areEqual(this.feedLayout, trackAfExited.feedLayout) && Intrinsics3.areEqual(this.windowWidth, trackAfExited.windowWidth) && Intrinsics3.areEqual(this.windowHeight, trackAfExited.windowHeight) && Intrinsics3.areEqual(this.subscribedGames, trackAfExited.subscribedGames) && Intrinsics3.areEqual(this.numCardsTotal, trackAfExited.numCardsTotal) && Intrinsics3.areEqual(this.newsIdsViewed, trackAfExited.newsIdsViewed);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -76,7 +76,7 @@ public final /* data */ class TrackAfExited implements AnalyticsSchema, TrackBas
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackAfExited(loadId=");
+        StringBuilder sbU = outline.U("TrackAfExited(loadId=");
         sbU.append(this.loadId);
         sbU.append(", gameIdsViewed=");
         sbU.append(this.gameIdsViewed);
@@ -101,6 +101,6 @@ public final /* data */ class TrackAfExited implements AnalyticsSchema, TrackBas
         sbU.append(", numCardsTotal=");
         sbU.append(this.numCardsTotal);
         sbU.append(", newsIdsViewed=");
-        return a.L(sbU, this.newsIdsViewed, ")");
+        return outline.L(sbU, this.newsIdsViewed, ")");
     }
 }

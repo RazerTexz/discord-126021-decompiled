@@ -1,16 +1,18 @@
 package b.i.a.c.s2;
 
+import b.i.a.c.f3.ListenerSet;
+
 /* JADX INFO: compiled from: lambda */
 /* JADX INFO: loaded from: classes3.dex */
-public final /* synthetic */ class v0 implements b.i.a.c.f3.p.a {
-    public final /* synthetic */ h1.a a;
+public final /* synthetic */ class v0 implements ListenerSet.a {
+    public final /* synthetic */ AnalyticsListener.a a;
 
-    public /* synthetic */ v0(h1.a aVar) {
+    public /* synthetic */ v0(AnalyticsListener.a aVar) {
         this.a = aVar;
     }
 
-    @Override // b.i.a.c.f3.p.a
+    @Override // b.i.a.c.f3.ListenerSet.a
     public final void invoke(Object obj) {
-        ((h1) obj).s();
+        ((AnalyticsListener) obj).s();
     }
 }

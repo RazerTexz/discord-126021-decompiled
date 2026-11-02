@@ -2,7 +2,7 @@ package com.discord.widgets.user;
 
 import androidx.core.app.NotificationCompat;
 import com.discord.views.CheckedSetting;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 import rx.functions.Action1;
 
 /* JADX INFO: compiled from: WidgetUserMentions.kt */
@@ -24,7 +24,7 @@ public final class WidgetUserMentions$WidgetUserMentionFilter$onResume$1<T> impl
         WidgetUserMentions.WidgetUserMentionFilter widgetUserMentionFilter = this.this$0;
         WidgetUserMentions.Model.MessageLoader.Filters filtersAccess$getFilters$p = WidgetUserMentions.WidgetUserMentionFilter.access$getFilters$p(widgetUserMentionFilter);
         CheckedSetting checkedSetting = WidgetUserMentions.WidgetUserMentionFilter.access$getBinding$p(this.this$0).d;
-        m.checkNotNullExpressionValue(checkedSetting, "binding.userMentionsFilterThisServer");
+        Intrinsics3.checkNotNullExpressionValue(checkedSetting, "binding.userMentionsFilterThisServer");
         WidgetUserMentions.WidgetUserMentionFilter.access$updateFilters(widgetUserMentionFilter, WidgetUserMentions.Model.MessageLoader.Filters.copy$default(filtersAccess$getFilters$p, 0L, !checkedSetting.isChecked(), false, false, 13, null));
         WidgetUserMentions.WidgetUserMentionFilter.access$delayedDismiss(this.this$0);
     }

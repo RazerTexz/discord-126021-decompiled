@@ -1,24 +1,24 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.analytics.generated.traits.TrackLocationMetadata;
-import com.discord.analytics.generated.traits.TrackLocationMetadataReceiver;
+import com.discord.analytics.generated.traits.TrackLocationMetadata2;
 import com.discord.analytics.generated.traits.TrackPaymentMetadata;
-import com.discord.analytics.generated.traits.TrackPaymentMetadataReceiver;
+import com.discord.analytics.generated.traits.TrackPaymentMetadata2;
 import com.discord.analytics.generated.traits.TrackSourceMetadata;
-import com.discord.analytics.generated.traits.TrackSourceMetadataReceiver;
+import com.discord.analytics.generated.traits.TrackSourceMetadata2;
 import com.discord.analytics.generated.traits.TrackStoreSkuMetadata;
-import com.discord.analytics.generated.traits.TrackStoreSkuMetadataReceiver;
+import com.discord.analytics.generated.traits.TrackStoreSkuMetadata2;
 import com.discord.analytics.generated.traits.TrackSubscriptionMetadata;
-import com.discord.analytics.generated.traits.TrackSubscriptionMetadataReceiver;
+import com.discord.analytics.generated.traits.TrackSubscriptionMetadata2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackPaymentFlowCompleted.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackPaymentFlowCompleted implements AnalyticsSchema, TrackBaseReceiver, TrackLocationMetadataReceiver, TrackStoreSkuMetadataReceiver, TrackSubscriptionMetadataReceiver, TrackPaymentMetadataReceiver, TrackSourceMetadataReceiver {
+public final /* data */ class TrackPaymentFlowCompleted implements AnalyticsSchema, TrackBase2, TrackLocationMetadata2, TrackStoreSkuMetadata2, TrackSubscriptionMetadata2, TrackPaymentMetadata2, TrackSourceMetadata2 {
     private final Long durationMs = null;
     private final Boolean eligibleForTrial = null;
     private final Long guildId = null;
@@ -40,7 +40,7 @@ public final /* data */ class TrackPaymentFlowCompleted implements AnalyticsSche
             return false;
         }
         TrackPaymentFlowCompleted trackPaymentFlowCompleted = (TrackPaymentFlowCompleted) other;
-        return m.areEqual(this.loadId, trackPaymentFlowCompleted.loadId) && m.areEqual(this.durationMs, trackPaymentFlowCompleted.durationMs) && m.areEqual(this.trialPeriodLengthDays, trackPaymentFlowCompleted.trialPeriodLengthDays) && m.areEqual(this.eligibleForTrial, trackPaymentFlowCompleted.eligibleForTrial) && m.areEqual(this.guildId, trackPaymentFlowCompleted.guildId);
+        return Intrinsics3.areEqual(this.loadId, trackPaymentFlowCompleted.loadId) && Intrinsics3.areEqual(this.durationMs, trackPaymentFlowCompleted.durationMs) && Intrinsics3.areEqual(this.trialPeriodLengthDays, trackPaymentFlowCompleted.trialPeriodLengthDays) && Intrinsics3.areEqual(this.eligibleForTrial, trackPaymentFlowCompleted.eligibleForTrial) && Intrinsics3.areEqual(this.guildId, trackPaymentFlowCompleted.guildId);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -63,7 +63,7 @@ public final /* data */ class TrackPaymentFlowCompleted implements AnalyticsSche
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackPaymentFlowCompleted(loadId=");
+        StringBuilder sbU = outline.U("TrackPaymentFlowCompleted(loadId=");
         sbU.append(this.loadId);
         sbU.append(", durationMs=");
         sbU.append(this.durationMs);
@@ -72,6 +72,6 @@ public final /* data */ class TrackPaymentFlowCompleted implements AnalyticsSche
         sbU.append(", eligibleForTrial=");
         sbU.append(this.eligibleForTrial);
         sbU.append(", guildId=");
-        return a.G(sbU, this.guildId, ")");
+        return outline.G(sbU, this.guildId, ")");
     }
 }

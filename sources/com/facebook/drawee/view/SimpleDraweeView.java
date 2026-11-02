@@ -6,9 +6,11 @@ import android.content.res.TypedArray;
 import android.net.Uri;
 import android.util.AttributeSet;
 import androidx.annotation.DrawableRes;
-import b.c.a.a0.d;
-import b.f.g.j.a;
-import b.f.j.r.b;
+import b.c.a.a0.AnimatableValueParser;
+import b.f.d.l.UriUtil;
+import b.f.g.a.a.PipelineDraweeControllerBuilder;
+import b.f.g.j.GenericDraweeView;
+import b.f.j.r.FrescoSystrace;
 import com.facebook.common.internal.Supplier;
 import com.facebook.drawee.R;
 import com.facebook.drawee.controller.AbstractDraweeControllerBuilder;
@@ -16,7 +18,7 @@ import com.facebook.drawee.generic.GenericDraweeHierarchy;
 import com.facebook.imagepipeline.request.ImageRequest;
 
 /* JADX INFO: loaded from: classes.dex */
-public class SimpleDraweeView extends a {
+public class SimpleDraweeView extends GenericDraweeView {
     private static Supplier<? extends AbstractDraweeControllerBuilder> sDraweecontrollerbuildersupplier;
     private AbstractDraweeControllerBuilder mControllerBuilder;
 
@@ -32,12 +34,12 @@ public class SimpleDraweeView extends a {
     private void init(Context context, AttributeSet attributeSet) {
         int resourceId;
         try {
-            b.b();
+            FrescoSystrace.b();
             if (isInEditMode()) {
                 getTopLevelDrawable().setVisible(true, false);
                 getTopLevelDrawable().invalidateSelf();
             } else {
-                d.y(sDraweecontrollerbuildersupplier, "SimpleDraweeView was not initialized!");
+                AnimatableValueParser.y(sDraweecontrollerbuildersupplier, "SimpleDraweeView was not initialized!");
                 this.mControllerBuilder = sDraweecontrollerbuildersupplier.get();
             }
             if (attributeSet != null) {
@@ -62,9 +64,9 @@ public class SimpleDraweeView extends a {
                     throw th;
                 }
             }
-            b.b();
+            FrescoSystrace.b();
         } catch (Throwable th2) {
-            b.b();
+            FrescoSystrace.b();
             throw th2;
         }
     }
@@ -74,7 +76,7 @@ public class SimpleDraweeView extends a {
     }
 
     public void setActualImageResource(@DrawableRes int i, Object obj) {
-        Uri uri = b.f.d.l.b.a;
+        Uri uri = UriUtil.a;
         setImageURI(new Uri.Builder().scheme("res").path(String.valueOf(i)).build(), obj);
     }
 
@@ -112,9 +114,9 @@ public class SimpleDraweeView extends a {
     public void setImageURI(Uri uri, Object obj) {
         AbstractDraweeControllerBuilder abstractDraweeControllerBuilder = this.mControllerBuilder;
         abstractDraweeControllerBuilder.g = obj;
-        b.f.g.a.a.d dVarF = ((b.f.g.a.a.d) abstractDraweeControllerBuilder).f(uri);
-        dVarF.n = getController();
-        setController(dVarF.a());
+        PipelineDraweeControllerBuilder pipelineDraweeControllerBuilderF = ((PipelineDraweeControllerBuilder) abstractDraweeControllerBuilder).f(uri);
+        pipelineDraweeControllerBuilderF.n = getController();
+        setController(pipelineDraweeControllerBuilderF.a());
     }
 
     public void setActualImageResource(@DrawableRes int i) {

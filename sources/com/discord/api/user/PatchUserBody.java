@@ -1,8 +1,8 @@
 package com.discord.api.user;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.nullserializable.NullSerializable;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: PatchUserBody.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -27,7 +27,7 @@ public final /* data */ class PatchUserBody {
             return false;
         }
         PatchUserBody patchUserBody = (PatchUserBody) other;
-        return m.areEqual(this.avatar, patchUserBody.avatar) && m.areEqual(this.banner, patchUserBody.banner) && m.areEqual(this.bannerColor, patchUserBody.bannerColor) && m.areEqual(this.bio, patchUserBody.bio);
+        return Intrinsics3.areEqual(this.avatar, patchUserBody.avatar) && Intrinsics3.areEqual(this.banner, patchUserBody.banner) && Intrinsics3.areEqual(this.bannerColor, patchUserBody.bannerColor) && Intrinsics3.areEqual(this.bio, patchUserBody.bio);
     }
 
     public int hashCode() {
@@ -42,7 +42,7 @@ public final /* data */ class PatchUserBody {
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("PatchUserBody(avatar=");
+        StringBuilder sbU = outline.U("PatchUserBody(avatar=");
         sbU.append(this.avatar);
         sbU.append(", banner=");
         sbU.append(this.banner);

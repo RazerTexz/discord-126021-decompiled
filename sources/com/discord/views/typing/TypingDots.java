@@ -4,11 +4,11 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import b.a.i.t1;
-import b.a.y.r0.a;
+import b.a.i.TypingDotsViewBinding;
+import b.a.y.r0.TypingDots2;
 import com.discord.R;
-import d0.t.n;
-import d0.z.d.m;
+import d0.t.Collections2;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TypingDots.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -16,7 +16,7 @@ public final class TypingDots extends ConstraintLayout {
     public static final /* synthetic */ int j = 0;
 
     /* JADX INFO: renamed from: k, reason: from kotlin metadata */
-    public final t1 binding;
+    public final TypingDotsViewBinding binding;
 
     /* JADX INFO: renamed from: l, reason: from kotlin metadata */
     public final int dotsAnimationTimeMs;
@@ -30,7 +30,7 @@ public final class TypingDots extends ConstraintLayout {
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public TypingDots(Context context, AttributeSet attributeSet) {
         super(context, attributeSet, 0);
-        m.checkNotNullParameter(context, "context");
+        Intrinsics3.checkNotNullParameter(context, "context");
         LayoutInflater.from(context).inflate(R.layout.typing_dots_view, this);
         int i = R.id.view_typing_dots_1;
         TypingDot typingDot = (TypingDot) findViewById(R.id.view_typing_dots_1);
@@ -41,13 +41,13 @@ public final class TypingDots extends ConstraintLayout {
                 i = R.id.view_typing_dots_3;
                 TypingDot typingDot3 = (TypingDot) findViewById(R.id.view_typing_dots_3);
                 if (typingDot3 != null) {
-                    t1 t1Var = new t1(this, typingDot, typingDot2, typingDot3);
-                    m.checkNotNullExpressionValue(t1Var, "TypingDotsViewBinding.in…ater.from(context), this)");
-                    this.binding = t1Var;
+                    TypingDotsViewBinding typingDotsViewBinding = new TypingDotsViewBinding(this, typingDot, typingDot2, typingDot3);
+                    Intrinsics3.checkNotNullExpressionValue(typingDotsViewBinding, "TypingDotsViewBinding.in…ater.from(context), this)");
+                    this.binding = typingDotsViewBinding;
                     int integer = getResources().getInteger(R.integer.animation_time_standard);
                     this.dotsAnimationTimeMs = integer;
                     this.dotsAnimationStaggerTimeMs = (long) (((double) integer) / 1.5d);
-                    typingDot3.setOnScaleDownCompleteListener(new a(this));
+                    typingDot3.setOnScaleDownCompleteListener(new TypingDots2(this));
                     return;
                 }
             }
@@ -76,8 +76,8 @@ public final class TypingDots extends ConstraintLayout {
     }
 
     public final void c() {
-        t1 t1Var = this.binding;
-        for (TypingDot typingDot : n.listOf((Object[]) new TypingDot[]{t1Var.f202b, t1Var.c, t1Var.d})) {
+        TypingDotsViewBinding typingDotsViewBinding = this.binding;
+        for (TypingDot typingDot : Collections2.listOf((Object[]) new TypingDot[]{typingDotsViewBinding.f202b, typingDotsViewBinding.c, typingDotsViewBinding.d})) {
             typingDot.scaleAndFadeUpAnimation.cancel();
             typingDot.scaleAndFadeDownAnimation.cancel();
         }

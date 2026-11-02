@@ -1,8 +1,8 @@
 package com.discord.api.sticker;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.api.guildhash.GuildHashes;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 import java.util.List;
 
 /* JADX INFO: compiled from: GuildStickersUpdate.kt */
@@ -24,7 +24,7 @@ public final /* data */ class GuildStickersUpdate {
             return false;
         }
         GuildStickersUpdate guildStickersUpdate = (GuildStickersUpdate) other;
-        return this.guildId == guildStickersUpdate.guildId && m.areEqual(this.stickers, guildStickersUpdate.stickers) && m.areEqual(this.guildHashes, guildStickersUpdate.guildHashes);
+        return this.guildId == guildStickersUpdate.guildId && Intrinsics3.areEqual(this.stickers, guildStickersUpdate.stickers) && Intrinsics3.areEqual(this.guildHashes, guildStickersUpdate.guildHashes);
     }
 
     /* JADX INFO: renamed from: a, reason: from getter */
@@ -47,7 +47,7 @@ public final /* data */ class GuildStickersUpdate {
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("GuildStickersUpdate(guildId=");
+        StringBuilder sbU = outline.U("GuildStickersUpdate(guildId=");
         sbU.append(this.guildId);
         sbU.append(", stickers=");
         sbU.append(this.stickers);

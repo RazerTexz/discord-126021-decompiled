@@ -1,5 +1,7 @@
 package d0.f0;
 
+import d0.z.d.Intrinsics3;
+import d0.z.d.g0.KMarkers;
 import java.util.Iterator;
 import kotlin.sequences.Sequence;
 
@@ -12,7 +14,7 @@ public final class d<T> implements Sequence<T>, e<T> {
     public final int f3570b;
 
     /* JADX INFO: compiled from: Sequences.kt */
-    public final class a implements Iterator<T>, d0.z.d.g0.a {
+    public final class a implements Iterator<T>, KMarkers {
         public final Iterator<T> j;
         public int k;
 
@@ -48,7 +50,7 @@ public final class d<T> implements Sequence<T>, e<T> {
 
     /* JADX WARN: Multi-variable type inference failed */
     public d(Sequence<? extends T> sequence, int i) {
-        d0.z.d.m.checkNotNullParameter(sequence, "sequence");
+        Intrinsics3.checkNotNullParameter(sequence, "sequence");
         this.a = sequence;
         this.f3570b = i;
         if (i >= 0) {

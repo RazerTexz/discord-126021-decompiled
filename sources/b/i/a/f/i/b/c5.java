@@ -1,5 +1,6 @@
 package b.i.a.f.i.b;
 
+import b.c.a.a0.AnimatableValueParser;
 import com.google.android.gms.measurement.internal.zzn;
 
 /* JADX INFO: compiled from: com.google.android.gms:play-services-measurement@@18.0.0 */
@@ -20,7 +21,7 @@ public final class c5 implements Runnable {
         zzn zznVar = this.j;
         k9Var.f().b();
         k9Var.P();
-        b.c.a.a0.d.w(zznVar.j);
+        AnimatableValueParser.w(zznVar.j);
         k9Var.G(zznVar);
     }
 }

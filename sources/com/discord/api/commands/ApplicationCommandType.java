@@ -1,6 +1,6 @@
 package com.discord.api.commands;
 
-import com.discord.widgets.chat.AutocompleteSelectionTypes;
+import com.discord.widgets.chat.AutocompleteUtils;
 import kotlin.jvm.internal.DefaultConstructorMarker;
 
 /* JADX INFO: compiled from: ApplicationCommandType.kt */

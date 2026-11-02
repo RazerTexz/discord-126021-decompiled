@@ -6,7 +6,7 @@ import android.os.IInterface;
 import android.os.Parcelable;
 import androidx.annotation.RestrictTo;
 import androidx.collection.ArrayMap;
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import java.io.ByteArrayOutputStream;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -258,7 +258,7 @@ public class VersionedParcelStream extends VersionedParcel {
                 bundle.putFloatArray(str, readFloatArray());
                 return;
             default:
-                throw new RuntimeException(a.q("Unknown type ", i));
+                throw new RuntimeException(outline.q("Unknown type ", i));
         }
     }
 
@@ -452,7 +452,7 @@ public class VersionedParcelStream extends VersionedParcel {
             writeInt(14);
             writeFloatArray((float[]) obj);
         } else {
-            StringBuilder sbU = a.U("Unsupported type ");
+            StringBuilder sbU = outline.U("Unsupported type ");
             sbU.append(obj.getClass());
             throw new IllegalArgumentException(sbU.toString());
         }

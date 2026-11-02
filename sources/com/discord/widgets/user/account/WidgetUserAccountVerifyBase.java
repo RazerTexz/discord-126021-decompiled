@@ -7,8 +7,8 @@ import android.view.View;
 import androidx.annotation.LayoutRes;
 import androidx.core.app.NotificationCompat;
 import androidx.fragment.app.FragmentActivity;
-import b.a.d.j;
-import b.d.b.a.a;
+import b.a.d.AppScreen2;
+import b.d.b.a.outline;
 import com.discord.R;
 import com.discord.app.AppFragment;
 import com.discord.app.AppLog;
@@ -19,8 +19,8 @@ import com.discord.stores.StoreUser;
 import com.discord.utilities.logging.Logger;
 import com.discord.utilities.rx.ObservableExtensionsKt;
 import com.discord.utilities.user.UserUtils;
-import d0.z.d.k;
-import d0.z.d.m;
+import d0.z.d.FunctionReferenceImpl;
+import d0.z.d.Intrinsics3;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
@@ -59,7 +59,7 @@ public abstract class WidgetUserAccountVerifyBase extends AppFragment {
             boolean z2;
             if (WidgetUserAccountVerifyBase.this.getIsPhoneAllowed()) {
                 UserUtils userUtils = UserUtils.INSTANCE;
-                m.checkNotNullExpressionValue(meUser, "me");
+                Intrinsics3.checkNotNullExpressionValue(meUser, "me");
                 if (userUtils.getHasPhone(meUser)) {
                     z2 = false;
                 } else {
@@ -70,14 +70,14 @@ public abstract class WidgetUserAccountVerifyBase extends AppFragment {
             }
             boolean z3 = WidgetUserAccountVerifyBase.this.getIsEmailAllowed() && !meUser.isVerified();
             WidgetUserAccountVerifyBase widgetUserAccountVerifyBase = WidgetUserAccountVerifyBase.this;
-            m.checkNotNullExpressionValue(requiredAction, "requiredAction");
+            Intrinsics3.checkNotNullExpressionValue(requiredAction, "requiredAction");
             return Boolean.valueOf(WidgetUserAccountVerifyBase.access$computeShouldDismiss(widgetUserAccountVerifyBase, z2, z3, requiredAction));
         }
     }
 
     /* JADX INFO: renamed from: com.discord.widgets.user.account.WidgetUserAccountVerifyBase$onViewBoundOrOnResume$1, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetUserAccountVerifyBase.kt */
-    public final /* synthetic */ class AnonymousClass1 extends k implements Function1<Boolean, Unit> {
+    public final /* synthetic */ class AnonymousClass1 extends FunctionReferenceImpl implements Function1<Boolean, Unit> {
         public AnonymousClass1(WidgetUserAccountVerifyBase widgetUserAccountVerifyBase) {
             super(1, widgetUserAccountVerifyBase, WidgetUserAccountVerifyBase.class, "handleIsAuthorized", "handleIsAuthorized(Z)V", 0);
         }
@@ -105,7 +105,7 @@ public abstract class WidgetUserAccountVerifyBase extends AppFragment {
 
         /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
         public final void call2(MenuItem menuItem, Context context) {
-            m.checkNotNullExpressionValue(menuItem, "menuItem");
+            Intrinsics3.checkNotNullExpressionValue(menuItem, "menuItem");
             if (menuItem.getItemId() != R.id.menu_settings_log_out) {
                 return;
             }
@@ -119,7 +119,7 @@ public abstract class WidgetUserAccountVerifyBase extends AppFragment {
         }
 
         public final Intent getLaunchIntent(Mode mode, boolean phoneAllowed, boolean emailAllowed) {
-            m.checkNotNullParameter(mode, "mode");
+            Intrinsics3.checkNotNullParameter(mode, "mode");
             Intent intent = new Intent();
             intent.putExtra(WidgetUserAccountVerifyBase.INTENT_PHONE_ALLOWED, phoneAllowed);
             intent.putExtra(WidgetUserAccountVerifyBase.INTENT_EMAIL_ALLOWED, emailAllowed);
@@ -156,14 +156,14 @@ public abstract class WidgetUserAccountVerifyBase extends AppFragment {
     private final boolean computeShouldDismiss(boolean isMissingPhone, boolean isMissingEmailOrUnverified, RequiredAction requiredAction) {
         Mode mode = this.mode;
         if (mode == null) {
-            m.throwUninitializedPropertyAccessException("mode");
+            Intrinsics3.throwUninitializedPropertyAccessException("mode");
         }
         if (mode == Mode.UNFORCED) {
             return true;
         }
         Mode mode2 = this.mode;
         if (mode2 == null) {
-            m.throwUninitializedPropertyAccessException("mode");
+            Intrinsics3.throwUninitializedPropertyAccessException("mode");
         }
         if (mode2 == Mode.NO_HISTORY_FROM_USER_SETTINGS) {
             return true;
@@ -191,7 +191,7 @@ public abstract class WidgetUserAccountVerifyBase extends AppFragment {
     public final Mode getMode() {
         Mode mode = this.mode;
         if (mode == null) {
-            m.throwUninitializedPropertyAccessException("mode");
+            Intrinsics3.throwUninitializedPropertyAccessException("mode");
         }
         return mode;
     }
@@ -199,34 +199,34 @@ public abstract class WidgetUserAccountVerifyBase extends AppFragment {
     private final Observable<Boolean> getShouldDismissObservable() {
         StoreStream.Companion companion = StoreStream.INSTANCE;
         Observable observableJ = Observable.j(companion.getUserRequiredActions().observeUserRequiredAction(), StoreUser.observeMe$default(companion.getUsers(), false, 1, null), new AnonymousClass1());
-        m.checkNotNullExpressionValue(observableJ, "Observable\n        .comb…requiredAction)\n        }");
+        Intrinsics3.checkNotNullExpressionValue(observableJ, "Observable\n        .comb…requiredAction)\n        }");
         Observable<Boolean> observableR = ObservableExtensionsKt.computationBuffered(observableJ).r();
-        m.checkNotNullExpressionValue(observableR, "Observable\n        .comb…  .distinctUntilChanged()");
+        Intrinsics3.checkNotNullExpressionValue(observableR, "Observable\n        .comb…  .distinctUntilChanged()");
         return observableR;
     }
 
     private final void handleIsAuthorized(boolean isAuthorized) {
         Context context = getContext();
         if (context != null) {
-            m.checkNotNullExpressionValue(context, "context ?: return");
+            Intrinsics3.checkNotNullExpressionValue(context, "context ?: return");
             if (isAuthorized) {
                 return;
             }
-            j.c(context, false, null, 6);
+            AppScreen2.c(context, false, null, 6);
         }
     }
 
     public final boolean isForced() {
         Mode mode = this.mode;
         if (mode == null) {
-            m.throwUninitializedPropertyAccessException("mode");
+            Intrinsics3.throwUninitializedPropertyAccessException("mode");
         }
         return mode == Mode.FORCED;
     }
 
     @Override // com.discord.app.AppFragment
     public void onViewBound(View view) {
-        m.checkNotNullParameter(view, "view");
+        Intrinsics3.checkNotNullParameter(view, "view");
         super.onViewBound(view);
         int intExtra = getMostRecentIntent().getIntExtra(INTENT_MODE, -1);
         Mode.values();
@@ -238,7 +238,7 @@ public abstract class WidgetUserAccountVerifyBase extends AppFragment {
             return;
         }
         AppLog appLog = AppLog.g;
-        StringBuilder sbU = a.U("Invalid mode passed into ");
+        StringBuilder sbU = outline.U("Invalid mode passed into ");
         sbU.append(WidgetUserAccountVerifyBase.class.getName());
         Logger.e$default(appLog, sbU.toString(), null, null, 6, null);
         FragmentActivity activity = getActivity();
@@ -258,14 +258,14 @@ public abstract class WidgetUserAccountVerifyBase extends AppFragment {
     }
 
     public final void setMode(Mode mode) {
-        m.checkNotNullParameter(mode, "<set-?>");
+        Intrinsics3.checkNotNullParameter(mode, "<set-?>");
         this.mode = mode;
     }
 
     private final void setOptionsMenu() {
         Mode mode = this.mode;
         if (mode == null) {
-            m.throwUninitializedPropertyAccessException("mode");
+            Intrinsics3.throwUninitializedPropertyAccessException("mode");
         }
         AppFragment.setActionBarOptionsMenu$default(this, mode == Mode.FORCED ? R.menu.menu_settings_logout : R.menu.menu_empty, AnonymousClass1.INSTANCE, null, 4, null);
     }

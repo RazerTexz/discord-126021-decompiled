@@ -1,16 +1,16 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.analytics.generated.traits.TrackChannel;
-import com.discord.analytics.generated.traits.TrackChannelReceiver;
+import com.discord.analytics.generated.traits.TrackChannel2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackDmEmptyAction.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackDmEmptyAction implements AnalyticsSchema, TrackBaseReceiver, TrackChannelReceiver {
+public final /* data */ class TrackDmEmptyAction implements AnalyticsSchema, TrackBase2, TrackChannel2 {
     private final CharSequence source = null;
     private TrackBase trackBase;
     private TrackChannel trackChannel;
@@ -25,7 +25,7 @@ public final /* data */ class TrackDmEmptyAction implements AnalyticsSchema, Tra
             return false;
         }
         TrackDmEmptyAction trackDmEmptyAction = (TrackDmEmptyAction) other;
-        return m.areEqual(this.source, trackDmEmptyAction.source) && m.areEqual(this.type, trackDmEmptyAction.type);
+        return Intrinsics3.areEqual(this.source, trackDmEmptyAction.source) && Intrinsics3.areEqual(this.type, trackDmEmptyAction.type);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -42,9 +42,9 @@ public final /* data */ class TrackDmEmptyAction implements AnalyticsSchema, Tra
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackDmEmptyAction(source=");
+        StringBuilder sbU = outline.U("TrackDmEmptyAction(source=");
         sbU.append(this.source);
         sbU.append(", type=");
-        return a.E(sbU, this.type, ")");
+        return outline.E(sbU, this.type, ")");
     }
 }

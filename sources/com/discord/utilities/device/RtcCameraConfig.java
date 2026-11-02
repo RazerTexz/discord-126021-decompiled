@@ -8,8 +8,8 @@ import com.discord.stores.StoreExperiments;
 import com.discord.stores.StoreStream;
 import com.discord.utilities.lifecycle.ApplicationProvider;
 import com.discord.utilities.rx.ObservableExtensionsKt;
-import d0.z.d.m;
-import d0.z.d.o;
+import d0.z.d.Intrinsics3;
+import d0.z.d.Lambda;
 import java.util.concurrent.atomic.AtomicBoolean;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
@@ -24,7 +24,7 @@ public final class RtcCameraConfig {
 
     /* JADX INFO: renamed from: com.discord.utilities.device.RtcCameraConfig$init$1, reason: invalid class name */
     /* JADX INFO: compiled from: RtcCameraConfig.kt */
-    public final class AnonymousClass1 extends o implements Function1<Experiment, Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function1<Experiment, Unit> {
         public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
 
         public AnonymousClass1() {
@@ -39,7 +39,7 @@ public final class RtcCameraConfig {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(Experiment experiment) {
-            m.checkNotNullParameter(experiment, "it");
+            Intrinsics3.checkNotNullParameter(experiment, "it");
             CameraEnumeratorProvider.INSTANCE.init(ApplicationProvider.INSTANCE.get(), experiment.getBucket() == 1);
         }
     }
@@ -56,9 +56,9 @@ public final class RtcCameraConfig {
 
     private final Observable<Experiment> observeExperiment(StoreExperiments storeExperiments) {
         Observable<R> observableG = storeExperiments.observeUserExperiment("2021-02_android_webrtc_camera2", true).y(ObservableExtensionsKt.AnonymousClass1.INSTANCE).G(ObservableExtensionsKt.AnonymousClass2.INSTANCE);
-        m.checkNotNullExpressionValue(observableG, "filter { it != null }.map { it!! }");
+        Intrinsics3.checkNotNullExpressionValue(observableG, "filter { it != null }.map { it!! }");
         Observable observableZ = observableG.Z(1);
-        m.checkNotNullExpressionValue(observableZ, "storeExperiments.observe…Null()\n          .take(1)");
+        Intrinsics3.checkNotNullExpressionValue(observableZ, "storeExperiments.observe…Null()\n          .take(1)");
         return ObservableExtensionsKt.computationLatest(observableZ);
     }
 }

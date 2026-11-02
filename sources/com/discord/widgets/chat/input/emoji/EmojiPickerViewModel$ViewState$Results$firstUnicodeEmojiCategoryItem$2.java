@@ -1,12 +1,12 @@
 package com.discord.widgets.chat.input.emoji;
 
-import d0.z.d.o;
+import d0.z.d.Lambda;
 import java.util.Iterator;
 import kotlin.jvm.functions.Function0;
 
 /* JADX INFO: compiled from: EmojiPickerViewModel.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class EmojiPickerViewModel$ViewState$Results$firstUnicodeEmojiCategoryItem$2 extends o implements Function0<EmojiCategoryItem.StandardItem> {
+public final class EmojiPickerViewModel$ViewState$Results$firstUnicodeEmojiCategoryItem$2 extends Lambda implements Function0<EmojiCategoryItem.StandardItem> {
     public final /* synthetic */ EmojiPickerViewModel.ViewState.Results this$0;
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */

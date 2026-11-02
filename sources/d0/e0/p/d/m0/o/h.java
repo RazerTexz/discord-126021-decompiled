@@ -1,8 +1,9 @@
 package d0.e0.p.d.m0.o;
 
-import d0.e0.p.d.m0.c.c1;
-import d0.e0.p.d.m0.c.x;
-import d0.z.d.m;
+import d0.e0.p.d.m0.c.FunctionDescriptor;
+import d0.e0.p.d.m0.c.ValueParameterDescriptor;
+import d0.e0.p.d.m0.k.x.DescriptorUtils2;
+import d0.z.d.Intrinsics3;
 import java.util.Collection;
 import java.util.List;
 
@@ -12,14 +13,14 @@ public final class h implements b {
     public static final h a = new h();
 
     @Override // d0.e0.p.d.m0.o.b
-    public boolean check(x xVar) {
-        m.checkNotNullParameter(xVar, "functionDescriptor");
-        List<c1> valueParameters = xVar.getValueParameters();
-        m.checkNotNullExpressionValue(valueParameters, "functionDescriptor.valueParameters");
+    public boolean check(FunctionDescriptor functionDescriptor) {
+        Intrinsics3.checkNotNullParameter(functionDescriptor, "functionDescriptor");
+        List<ValueParameterDescriptor> valueParameters = functionDescriptor.getValueParameters();
+        Intrinsics3.checkNotNullExpressionValue(valueParameters, "functionDescriptor.valueParameters");
         if (!(valueParameters instanceof Collection) || !valueParameters.isEmpty()) {
-            for (c1 c1Var : valueParameters) {
-                m.checkNotNullExpressionValue(c1Var, "it");
-                if (!(!d0.e0.p.d.m0.k.x.a.declaresOrInheritsDefaultValue(c1Var) && c1Var.getVarargElementType() == null)) {
+            for (ValueParameterDescriptor valueParameterDescriptor : valueParameters) {
+                Intrinsics3.checkNotNullExpressionValue(valueParameterDescriptor, "it");
+                if (!(!DescriptorUtils2.declaresOrInheritsDefaultValue(valueParameterDescriptor) && valueParameterDescriptor.getVarargElementType() == null)) {
                     return false;
                 }
             }
@@ -33,7 +34,7 @@ public final class h implements b {
     }
 
     @Override // d0.e0.p.d.m0.o.b
-    public String invoke(x xVar) {
-        return b.a.invoke(this, xVar);
+    public String invoke(FunctionDescriptor functionDescriptor) {
+        return b.a.invoke(this, functionDescriptor);
     }
 }

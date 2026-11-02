@@ -3,6 +3,7 @@ package b.i.a.f.b;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Process;
+import b.d.b.a.outline;
 import b.i.a.f.h.j.f1;
 import java.util.Objects;
 import java.util.concurrent.CopyOnWriteArrayList;
@@ -45,7 +46,7 @@ public final class f {
 
         @Override // java.util.concurrent.ThreadFactory
         public final Thread newThread(Runnable runnable) {
-            return new c(runnable, b.d.b.a.a.g(23, "measurement-", j.incrementAndGet()));
+            return new c(runnable, outline.g(23, "measurement-", j.incrementAndGet()));
         }
     }
 

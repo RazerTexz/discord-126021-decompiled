@@ -1,5 +1,7 @@
 package d0.e0.p.d.m0.e.a.k0;
 
+import d0.e0.p.d.m0.g.FqName;
+import d0.e0.p.d.m0.g.Name;
 import java.util.Collection;
 
 /* JADX INFO: compiled from: javaElements.kt */
@@ -9,9 +11,9 @@ public interface g extends i, s, z {
 
     Collection<n> getFields();
 
-    d0.e0.p.d.m0.g.b getFqName();
+    FqName getFqName();
 
-    Collection<d0.e0.p.d.m0.g.e> getInnerClassNames();
+    Collection<Name> getInnerClassNames();
 
     c0 getLightClassOriginKind();
 
@@ -19,11 +21,11 @@ public interface g extends i, s, z {
 
     g getOuterClass();
 
-    Collection<j> getPermittedTypes();
+    Collection<javaTypes3> getPermittedTypes();
 
     Collection<w> getRecordComponents();
 
-    Collection<j> getSupertypes();
+    Collection<javaTypes3> getSupertypes();
 
     boolean hasDefaultConstructor();
 

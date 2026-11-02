@@ -1,14 +1,14 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackPaymentSourceAdded.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackPaymentSourceAdded implements AnalyticsSchema, TrackBaseReceiver {
+public final /* data */ class TrackPaymentSourceAdded implements AnalyticsSchema, TrackBase2 {
     private final CharSequence cardBrand = null;
     private final Long cardExpirationDate = null;
     private final Boolean isDefault = null;
@@ -27,7 +27,7 @@ public final /* data */ class TrackPaymentSourceAdded implements AnalyticsSchema
             return false;
         }
         TrackPaymentSourceAdded trackPaymentSourceAdded = (TrackPaymentSourceAdded) other;
-        return m.areEqual(this.paymentSourceId, trackPaymentSourceAdded.paymentSourceId) && m.areEqual(this.paymentSourceType, trackPaymentSourceAdded.paymentSourceType) && m.areEqual(this.paymentGateway, trackPaymentSourceAdded.paymentGateway) && m.areEqual(this.cardBrand, trackPaymentSourceAdded.cardBrand) && m.areEqual(this.cardExpirationDate, trackPaymentSourceAdded.cardExpirationDate) && m.areEqual(this.paymentSourceCountry, trackPaymentSourceAdded.paymentSourceCountry) && m.areEqual(this.isDefault, trackPaymentSourceAdded.isDefault);
+        return Intrinsics3.areEqual(this.paymentSourceId, trackPaymentSourceAdded.paymentSourceId) && Intrinsics3.areEqual(this.paymentSourceType, trackPaymentSourceAdded.paymentSourceType) && Intrinsics3.areEqual(this.paymentGateway, trackPaymentSourceAdded.paymentGateway) && Intrinsics3.areEqual(this.cardBrand, trackPaymentSourceAdded.cardBrand) && Intrinsics3.areEqual(this.cardExpirationDate, trackPaymentSourceAdded.cardExpirationDate) && Intrinsics3.areEqual(this.paymentSourceCountry, trackPaymentSourceAdded.paymentSourceCountry) && Intrinsics3.areEqual(this.isDefault, trackPaymentSourceAdded.isDefault);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -54,7 +54,7 @@ public final /* data */ class TrackPaymentSourceAdded implements AnalyticsSchema
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackPaymentSourceAdded(paymentSourceId=");
+        StringBuilder sbU = outline.U("TrackPaymentSourceAdded(paymentSourceId=");
         sbU.append(this.paymentSourceId);
         sbU.append(", paymentSourceType=");
         sbU.append(this.paymentSourceType);
@@ -67,6 +67,6 @@ public final /* data */ class TrackPaymentSourceAdded implements AnalyticsSchema
         sbU.append(", paymentSourceCountry=");
         sbU.append(this.paymentSourceCountry);
         sbU.append(", isDefault=");
-        return a.D(sbU, this.isDefault, ")");
+        return outline.D(sbU, this.isDefault, ")");
     }
 }

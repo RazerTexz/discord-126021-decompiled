@@ -1,14 +1,14 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackNotificationSent.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackNotificationSent implements AnalyticsSchema, TrackBaseReceiver {
+public final /* data */ class TrackNotificationSent implements AnalyticsSchema, TrackBase2 {
     private final Boolean hasApnsToken = null;
     private final Boolean hasGcmToken = null;
     private final CharSequence notifType = null;
@@ -25,7 +25,7 @@ public final /* data */ class TrackNotificationSent implements AnalyticsSchema, 
             return false;
         }
         TrackNotificationSent trackNotificationSent = (TrackNotificationSent) other;
-        return m.areEqual(this.notifType, trackNotificationSent.notifType) && m.areEqual(this.notifUserId, trackNotificationSent.notifUserId) && m.areEqual(this.relType, trackNotificationSent.relType) && m.areEqual(this.hasApnsToken, trackNotificationSent.hasApnsToken) && m.areEqual(this.hasGcmToken, trackNotificationSent.hasGcmToken);
+        return Intrinsics3.areEqual(this.notifType, trackNotificationSent.notifType) && Intrinsics3.areEqual(this.notifUserId, trackNotificationSent.notifUserId) && Intrinsics3.areEqual(this.relType, trackNotificationSent.relType) && Intrinsics3.areEqual(this.hasApnsToken, trackNotificationSent.hasApnsToken) && Intrinsics3.areEqual(this.hasGcmToken, trackNotificationSent.hasGcmToken);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -48,7 +48,7 @@ public final /* data */ class TrackNotificationSent implements AnalyticsSchema, 
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackNotificationSent(notifType=");
+        StringBuilder sbU = outline.U("TrackNotificationSent(notifType=");
         sbU.append(this.notifType);
         sbU.append(", notifUserId=");
         sbU.append(this.notifUserId);
@@ -57,6 +57,6 @@ public final /* data */ class TrackNotificationSent implements AnalyticsSchema, 
         sbU.append(", hasApnsToken=");
         sbU.append(this.hasApnsToken);
         sbU.append(", hasGcmToken=");
-        return a.D(sbU, this.hasGcmToken, ")");
+        return outline.D(sbU, this.hasGcmToken, ")");
     }
 }

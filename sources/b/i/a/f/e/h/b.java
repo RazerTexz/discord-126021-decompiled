@@ -10,6 +10,7 @@ import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.collection.ArraySet;
+import b.c.a.a0.AnimatableValueParser;
 import b.i.a.f.e.h.a.d;
 import b.i.a.f.e.h.j.a1;
 import b.i.a.f.e.h.j.c0;
@@ -53,7 +54,7 @@ public class b<O extends b.i.a.f.e.h.a.d> {
     @Deprecated
     public b(@NonNull Context context, b.i.a.f.e.h.a<O> aVar, O o, n nVar) {
         this(context, aVar, o, new a(nVar, null, Looper.getMainLooper()));
-        b.c.a.a0.d.z(nVar, "StatusExceptionMapper must not be null.");
+        AnimatableValueParser.z(nVar, "StatusExceptionMapper must not be null.");
     }
 
     public b.i.a.f.e.k.c.a a() {
@@ -64,8 +65,8 @@ public class b<O extends b.i.a.f.e.h.a.d> {
         Account accountT = null;
         if (!(o instanceof b.i.a.f.e.h.a.d.b) || (googleSignInAccountL2 = ((b.i.a.f.e.h.a.d.b) o).L()) == null) {
             O o2 = this.c;
-            if (o2 instanceof b.i.a.f.e.h.a.d.InterfaceC0113a) {
-                accountT = ((b.i.a.f.e.h.a.d.InterfaceC0113a) o2).T();
+            if (o2 instanceof b.i.a.f.e.h.a.d.InterfaceC0036a) {
+                accountT = ((b.i.a.f.e.h.a.d.InterfaceC0036a) o2).T();
             }
         } else if (googleSignInAccountL2.m != null) {
             accountT = new Account(googleSignInAccountL2.m, "com.google");
@@ -83,7 +84,7 @@ public class b<O extends b.i.a.f.e.h.a.d> {
     }
 
     public Task<Boolean> b(@NonNull b.i.a.f.e.h.j.k.a<?> aVar) {
-        b.c.a.a0.d.z(aVar, "Listener key cannot be null.");
+        AnimatableValueParser.z(aVar, "Listener key cannot be null.");
         b.i.a.f.e.h.j.g gVar = this.i;
         Objects.requireNonNull(gVar);
         TaskCompletionSource taskCompletionSource = new TaskCompletionSource();
@@ -142,9 +143,9 @@ public class b<O extends b.i.a.f.e.h.a.d> {
 
     @MainThread
     public b(@NonNull Activity activity, b.i.a.f.e.h.a<O> aVar, O o, a aVar2) {
-        b.c.a.a0.d.z(activity, "Null activity is not permitted.");
-        b.c.a.a0.d.z(aVar, "Api must not be null.");
-        b.c.a.a0.d.z(aVar2, "Settings must not be null; use Settings.DEFAULT_SETTINGS instead.");
+        AnimatableValueParser.z(activity, "Null activity is not permitted.");
+        AnimatableValueParser.z(aVar, "Api must not be null.");
+        AnimatableValueParser.z(aVar2, "Settings must not be null; use Settings.DEFAULT_SETTINGS instead.");
         Context applicationContext = activity.getApplicationContext();
         this.a = applicationContext;
         e(activity);
@@ -169,9 +170,9 @@ public class b<O extends b.i.a.f.e.h.a.d> {
     }
 
     public b(@NonNull Context context, b.i.a.f.e.h.a<O> aVar, O o, a aVar2) {
-        b.c.a.a0.d.z(context, "Null context is not permitted.");
-        b.c.a.a0.d.z(aVar, "Api must not be null.");
-        b.c.a.a0.d.z(aVar2, "Settings must not be null; use Settings.DEFAULT_SETTINGS instead.");
+        AnimatableValueParser.z(context, "Null context is not permitted.");
+        AnimatableValueParser.z(aVar, "Api must not be null.");
+        AnimatableValueParser.z(aVar2, "Settings must not be null; use Settings.DEFAULT_SETTINGS instead.");
         Context applicationContext = context.getApplicationContext();
         this.a = applicationContext;
         e(context);

@@ -1,9 +1,9 @@
 package com.discord.models.domain;
 
 import androidx.core.app.NotificationCompat;
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.google.gson.stream.JsonToken;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 import java.io.IOException;
 import kotlin.jvm.internal.DefaultConstructorMarker;
 import kotlin.jvm.internal.Ref$ObjectRef;
@@ -50,7 +50,7 @@ public final /* data */ class ModelCustomStatusSetting {
         /* JADX WARN: Multi-variable type inference failed */
         @Override // com.discord.models.domain.Model.Parser
         public ModelCustomStatusSetting parse(Model.JsonReader reader) throws IOException {
-            Ref$ObjectRef ref$ObjectRefC0 = a.c0(reader, "reader");
+            Ref$ObjectRef ref$ObjectRefC0 = outline.c0(reader, "reader");
             ref$ObjectRefC0.element = null;
             Ref$ObjectRef ref$ObjectRef = new Ref$ObjectRef();
             ref$ObjectRef.element = null;
@@ -62,7 +62,7 @@ public final /* data */ class ModelCustomStatusSetting {
                 reader.nextNull();
                 return ModelCustomStatusSetting.INSTANCE.getCLEAR();
             }
-            reader.nextObject(new ModelCustomStatusSetting$Parser$parse$1(ref$ObjectRefC0, reader, ref$ObjectRef, ref$ObjectRef2, ref$ObjectRef3));
+            reader.nextObject(new ModelCustomStatusSetting2(ref$ObjectRefC0, reader, ref$ObjectRef, ref$ObjectRef2, ref$ObjectRef3));
             return new ModelCustomStatusSetting((String) ref$ObjectRefC0.element, (Long) ref$ObjectRef.element, (String) ref$ObjectRef2.element, (String) ref$ObjectRef3.element);
         }
     }
@@ -106,7 +106,7 @@ public final /* data */ class ModelCustomStatusSetting {
             return false;
         }
         ModelCustomStatusSetting modelCustomStatusSetting = (ModelCustomStatusSetting) other;
-        return m.areEqual(this.text, modelCustomStatusSetting.text) && m.areEqual(this.emojiId, modelCustomStatusSetting.emojiId) && m.areEqual(this.emojiName, modelCustomStatusSetting.emojiName) && m.areEqual(this.expiresAt, modelCustomStatusSetting.expiresAt);
+        return Intrinsics3.areEqual(this.text, modelCustomStatusSetting.text) && Intrinsics3.areEqual(this.emojiId, modelCustomStatusSetting.emojiId) && Intrinsics3.areEqual(this.emojiName, modelCustomStatusSetting.emojiName) && Intrinsics3.areEqual(this.expiresAt, modelCustomStatusSetting.expiresAt);
     }
 
     /* JADX INFO: renamed from: component2, reason: from getter */
@@ -157,13 +157,13 @@ public final /* data */ class ModelCustomStatusSetting {
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("ModelCustomStatusSetting(text=");
+        StringBuilder sbU = outline.U("ModelCustomStatusSetting(text=");
         sbU.append(this.text);
         sbU.append(", emojiId=");
         sbU.append(this.emojiId);
         sbU.append(", emojiName=");
         sbU.append(this.emojiName);
         sbU.append(", expiresAt=");
-        return a.J(sbU, this.expiresAt, ")");
+        return outline.J(sbU, this.expiresAt, ")");
     }
 }

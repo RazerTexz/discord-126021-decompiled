@@ -1,8 +1,8 @@
 package com.discord.widgets.chat.list.entries;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.models.message.Message;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: BlockedMessagesEntry.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -14,7 +14,7 @@ public final /* data */ class BlockedMessagesEntry extends ChatListEntry {
     private final int type;
 
     public BlockedMessagesEntry(Message message, int i, boolean z2) {
-        m.checkNotNullParameter(message, "message");
+        Intrinsics3.checkNotNullParameter(message, "message");
         this.message = message;
         this.blockedCount = i;
         this.isExpandedBlock = z2;
@@ -36,7 +36,7 @@ public final /* data */ class BlockedMessagesEntry extends ChatListEntry {
     }
 
     public final BlockedMessagesEntry copy(Message message, int blockedCount, boolean isExpandedBlock) {
-        m.checkNotNullParameter(message, "message");
+        Intrinsics3.checkNotNullParameter(message, "message");
         return new BlockedMessagesEntry(message, blockedCount, isExpandedBlock);
     }
 
@@ -48,7 +48,7 @@ public final /* data */ class BlockedMessagesEntry extends ChatListEntry {
             return false;
         }
         BlockedMessagesEntry blockedMessagesEntry = (BlockedMessagesEntry) other;
-        return m.areEqual(this.message, blockedMessagesEntry.message) && this.blockedCount == blockedMessagesEntry.blockedCount && this.isExpandedBlock == blockedMessagesEntry.isExpandedBlock;
+        return Intrinsics3.areEqual(this.message, blockedMessagesEntry.message) && this.blockedCount == blockedMessagesEntry.blockedCount && this.isExpandedBlock == blockedMessagesEntry.isExpandedBlock;
     }
 
     /* JADX INFO: renamed from: component2, reason: from getter */
@@ -106,11 +106,11 @@ public final /* data */ class BlockedMessagesEntry extends ChatListEntry {
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("BlockedMessagesEntry(message=");
+        StringBuilder sbU = outline.U("BlockedMessagesEntry(message=");
         sbU.append(this.message);
         sbU.append(", blockedCount=");
         sbU.append(this.blockedCount);
         sbU.append(", isExpandedBlock=");
-        return a.O(sbU, this.isExpandedBlock, ")");
+        return outline.O(sbU, this.isExpandedBlock, ")");
     }
 }

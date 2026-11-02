@@ -1,8 +1,8 @@
 package com.discord.widgets.channels.list.items;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.api.channel.Channel;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: ChannelListItemDirectory.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -14,7 +14,7 @@ public final /* data */ class ChannelListItemDirectory implements ChannelListIte
     private final int unreadCount;
 
     public ChannelListItemDirectory(Channel channel, boolean z2, int i) {
-        m.checkNotNullParameter(channel, "channel");
+        Intrinsics3.checkNotNullParameter(channel, "channel");
         this.channel = channel;
         this.selected = z2;
         this.unreadCount = i;
@@ -36,7 +36,7 @@ public final /* data */ class ChannelListItemDirectory implements ChannelListIte
     }
 
     public final ChannelListItemDirectory copy(Channel channel, boolean selected, int unreadCount) {
-        m.checkNotNullParameter(channel, "channel");
+        Intrinsics3.checkNotNullParameter(channel, "channel");
         return new ChannelListItemDirectory(channel, selected, unreadCount);
     }
 
@@ -48,7 +48,7 @@ public final /* data */ class ChannelListItemDirectory implements ChannelListIte
             return false;
         }
         ChannelListItemDirectory channelListItemDirectory = (ChannelListItemDirectory) other;
-        return m.areEqual(this.channel, channelListItemDirectory.channel) && this.selected == channelListItemDirectory.selected && this.unreadCount == channelListItemDirectory.unreadCount;
+        return Intrinsics3.areEqual(this.channel, channelListItemDirectory.channel) && this.selected == channelListItemDirectory.selected && this.unreadCount == channelListItemDirectory.unreadCount;
     }
 
     /* JADX INFO: renamed from: component1, reason: from getter */
@@ -105,11 +105,11 @@ public final /* data */ class ChannelListItemDirectory implements ChannelListIte
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("ChannelListItemDirectory(channel=");
+        StringBuilder sbU = outline.U("ChannelListItemDirectory(channel=");
         sbU.append(this.channel);
         sbU.append(", selected=");
         sbU.append(this.selected);
         sbU.append(", unreadCount=");
-        return a.B(sbU, this.unreadCount, ")");
+        return outline.B(sbU, this.unreadCount, ")");
     }
 }

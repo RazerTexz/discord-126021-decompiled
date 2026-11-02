@@ -1,9 +1,9 @@
 package com.discord.widgets.guildscheduledevent;
 
 import a0.a.a.b;
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.utilities.mg_recycler.MGRecyclerDataPayload;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 import kotlin.jvm.internal.DefaultConstructorMarker;
 
 /* JADX INFO: compiled from: GuildScheduledEventRsvpUserListItem.kt */
@@ -33,7 +33,7 @@ public abstract class GuildScheduledEventRsvpUserListItem implements MGRecyclerD
             }
 
             public final RsvpUser from(GuildScheduledEventUser guildScheduledEventUser, long guildId) {
-                m.checkNotNullParameter(guildScheduledEventUser, "guildScheduledEventUser");
+                Intrinsics3.checkNotNullParameter(guildScheduledEventUser, "guildScheduledEventUser");
                 return new RsvpUser(guildScheduledEventUser.getUser().getId(), guildScheduledEventUser.getUser().getUsername(), guildScheduledEventUser.getUser().getAvatar(), guildScheduledEventUser.getUser().getDiscriminator(), guildScheduledEventUser.getGuildMember().getNick(), guildScheduledEventUser.getGuildMember().getAvatarHash(), guildId);
             }
 
@@ -45,7 +45,7 @@ public abstract class GuildScheduledEventRsvpUserListItem implements MGRecyclerD
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
         public RsvpUser(long j, String str, String str2, int i, String str3, String str4, long j2) {
             super(null);
-            m.checkNotNullParameter(str, "username");
+            Intrinsics3.checkNotNullParameter(str, "username");
             this.userId = j;
             this.username = str;
             this.userAvatar = str2;
@@ -62,7 +62,7 @@ public abstract class GuildScheduledEventRsvpUserListItem implements MGRecyclerD
         }
 
         public final RsvpUser copy(long userId, String username, String userAvatar, int discriminator, String nickname, String guildAvatar, long guildId) {
-            m.checkNotNullParameter(username, "username");
+            Intrinsics3.checkNotNullParameter(username, "username");
             return new RsvpUser(userId, username, userAvatar, discriminator, nickname, guildAvatar, guildId);
         }
 
@@ -74,7 +74,7 @@ public abstract class GuildScheduledEventRsvpUserListItem implements MGRecyclerD
                 return false;
             }
             RsvpUser rsvpUser = (RsvpUser) other;
-            return this.userId == rsvpUser.userId && m.areEqual(this.username, rsvpUser.username) && m.areEqual(this.userAvatar, rsvpUser.userAvatar) && this.discriminator == rsvpUser.discriminator && m.areEqual(this.nickname, rsvpUser.nickname) && m.areEqual(this.guildAvatar, rsvpUser.guildAvatar) && this.guildId == rsvpUser.guildId;
+            return this.userId == rsvpUser.userId && Intrinsics3.areEqual(this.username, rsvpUser.username) && Intrinsics3.areEqual(this.userAvatar, rsvpUser.userAvatar) && this.discriminator == rsvpUser.discriminator && Intrinsics3.areEqual(this.nickname, rsvpUser.nickname) && Intrinsics3.areEqual(this.guildAvatar, rsvpUser.guildAvatar) && this.guildId == rsvpUser.guildId;
         }
 
         /* JADX INFO: renamed from: component4, reason: from getter */
@@ -167,7 +167,7 @@ public abstract class GuildScheduledEventRsvpUserListItem implements MGRecyclerD
         }
 
         public String toString() {
-            StringBuilder sbU = a.U("RsvpUser(userId=");
+            StringBuilder sbU = outline.U("RsvpUser(userId=");
             sbU.append(this.userId);
             sbU.append(", username=");
             sbU.append(this.username);
@@ -180,7 +180,7 @@ public abstract class GuildScheduledEventRsvpUserListItem implements MGRecyclerD
             sbU.append(", guildAvatar=");
             sbU.append(this.guildAvatar);
             sbU.append(", guildId=");
-            return a.C(sbU, this.guildId, ")");
+            return outline.C(sbU, this.guildId, ")");
         }
     }
 

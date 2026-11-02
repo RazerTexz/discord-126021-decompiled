@@ -1,8 +1,8 @@
 package com.discord.api.premium;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.models.domain.ModelAuditLogEntry;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: SubscriptionPlan.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -21,7 +21,7 @@ public final /* data */ class SubscriptionPlan {
             return false;
         }
         SubscriptionPlan subscriptionPlan = (SubscriptionPlan) other;
-        return this.id == subscriptionPlan.id && this.intervalCount == subscriptionPlan.intervalCount && m.areEqual(this.interval, subscriptionPlan.interval) && m.areEqual(this.name, subscriptionPlan.name) && this.price == subscriptionPlan.price;
+        return this.id == subscriptionPlan.id && this.intervalCount == subscriptionPlan.intervalCount && Intrinsics3.areEqual(this.interval, subscriptionPlan.interval) && Intrinsics3.areEqual(this.name, subscriptionPlan.name) && this.price == subscriptionPlan.price;
     }
 
     /* JADX INFO: renamed from: a, reason: from getter */
@@ -54,7 +54,7 @@ public final /* data */ class SubscriptionPlan {
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("SubscriptionPlan(id=");
+        StringBuilder sbU = outline.U("SubscriptionPlan(id=");
         sbU.append(this.id);
         sbU.append(", intervalCount=");
         sbU.append(this.intervalCount);
@@ -63,6 +63,6 @@ public final /* data */ class SubscriptionPlan {
         sbU.append(", name=");
         sbU.append(this.name);
         sbU.append(", price=");
-        return a.B(sbU, this.price, ")");
+        return outline.B(sbU, this.price, ")");
     }
 }

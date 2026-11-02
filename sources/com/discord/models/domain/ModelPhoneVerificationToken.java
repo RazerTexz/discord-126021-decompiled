@@ -1,7 +1,7 @@
 package com.discord.models.domain;
 
-import b.d.b.a.a;
-import d0.z.d.m;
+import b.d.b.a.outline;
+import d0.z.d.Intrinsics3;
 import java.io.IOException;
 import kotlin.jvm.internal.Ref$ObjectRef;
 
@@ -30,15 +30,15 @@ public final /* data */ class ModelPhoneVerificationToken {
             /* JADX WARN: Multi-variable type inference failed */
             @Override // com.discord.models.domain.Model.Parser
             public Update parse(Model.JsonReader reader) throws IOException {
-                Ref$ObjectRef ref$ObjectRefC0 = a.c0(reader, "reader");
+                Ref$ObjectRef ref$ObjectRefC0 = outline.c0(reader, "reader");
                 ref$ObjectRefC0.element = "";
-                reader.nextObject(new ModelPhoneVerificationToken$Update$Parser$parse$1(ref$ObjectRefC0, reader));
+                reader.nextObject(new ModelPhoneVerificationToken2(ref$ObjectRefC0, reader));
                 return new Update((String) ref$ObjectRefC0.element);
             }
         }
 
         public Update(String str) {
-            m.checkNotNullParameter(str, "token");
+            Intrinsics3.checkNotNullParameter(str, "token");
             this.token = str;
         }
 
@@ -50,13 +50,13 @@ public final /* data */ class ModelPhoneVerificationToken {
         }
 
         public final Update copy(String token) {
-            m.checkNotNullParameter(token, "token");
+            Intrinsics3.checkNotNullParameter(token, "token");
             return new Update(token);
         }
 
         public boolean equals(Object other) {
             if (this != other) {
-                return (other instanceof Update) && m.areEqual(this.token, ((Update) other).token);
+                return (other instanceof Update) && Intrinsics3.areEqual(this.token, ((Update) other).token);
             }
             return true;
         }
@@ -79,12 +79,12 @@ public final /* data */ class ModelPhoneVerificationToken {
         }
 
         public String toString() {
-            return a.J(a.U("Update(token="), this.token, ")");
+            return outline.J(outline.U("Update(token="), this.token, ")");
         }
     }
 
     public ModelPhoneVerificationToken(String str) {
-        m.checkNotNullParameter(str, "token");
+        Intrinsics3.checkNotNullParameter(str, "token");
         this.token = str;
     }
 
@@ -96,13 +96,13 @@ public final /* data */ class ModelPhoneVerificationToken {
     }
 
     public final ModelPhoneVerificationToken copy(String token) {
-        m.checkNotNullParameter(token, "token");
+        Intrinsics3.checkNotNullParameter(token, "token");
         return new ModelPhoneVerificationToken(token);
     }
 
     public boolean equals(Object other) {
         if (this != other) {
-            return (other instanceof ModelPhoneVerificationToken) && m.areEqual(this.token, ((ModelPhoneVerificationToken) other).token);
+            return (other instanceof ModelPhoneVerificationToken) && Intrinsics3.areEqual(this.token, ((ModelPhoneVerificationToken) other).token);
         }
         return true;
     }
@@ -125,6 +125,6 @@ public final /* data */ class ModelPhoneVerificationToken {
     }
 
     public String toString() {
-        return a.J(a.U("ModelPhoneVerificationToken(token="), this.token, ")");
+        return outline.J(outline.U("ModelPhoneVerificationToken(token="), this.token, ")");
     }
 }

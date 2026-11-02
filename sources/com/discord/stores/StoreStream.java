@@ -5,8 +5,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import androidx.core.app.NotificationCompat;
 import androidx.exifinterface.media.ExifInterface;
-import b.a.e.d;
-import co.discord.media_engine.VideoInputDeviceDescription;
+import b.a.e.Backgrounded4;
+import co.discord.media_engine.DeviceDescription4;
 import com.discord.api.channel.Channel;
 import com.discord.api.channel.ChannelRecipient;
 import com.discord.api.commands.ApplicationCommandAutocompleteResult;
@@ -20,8 +20,8 @@ import com.discord.api.friendsuggestions.FriendSuggestionDelete;
 import com.discord.api.guild.Guild;
 import com.discord.api.guild.welcome.GuildWelcomeScreen;
 import com.discord.api.guildhash.GuildHashes;
-import com.discord.api.guildjoinrequest.GuildJoinRequestCreateOrUpdate;
-import com.discord.api.guildjoinrequest.GuildJoinRequestDelete;
+import com.discord.api.guildjoinrequest.GuildJoinRequest2;
+import com.discord.api.guildjoinrequest.GuildJoinRequest3;
 import com.discord.api.guildmember.GuildMember;
 import com.discord.api.guildmember.GuildMemberRemove;
 import com.discord.api.guildmember.GuildMembersChunk;
@@ -50,6 +50,9 @@ import com.discord.api.voice.server.VoiceServer;
 import com.discord.api.voice.state.VoiceState;
 import com.discord.app.AppLog;
 import com.discord.models.authentication.AuthState;
+import com.discord.models.domain.ModelApplicationStream3;
+import com.discord.models.domain.ModelApplicationStream5;
+import com.discord.models.domain.ModelApplicationStream7;
 import com.discord.models.domain.ModelAuditLogEntry;
 import com.discord.models.domain.ModelBan;
 import com.discord.models.domain.ModelCall;
@@ -64,15 +67,12 @@ import com.discord.models.domain.ModelSession;
 import com.discord.models.domain.ModelUserNote;
 import com.discord.models.domain.ModelUserRelationship;
 import com.discord.models.domain.ModelUserSettings;
-import com.discord.models.domain.StreamCreateOrUpdate;
-import com.discord.models.domain.StreamDelete;
-import com.discord.models.domain.StreamServerUpdate;
 import com.discord.models.domain.auth.ModelLoginResult;
 import com.discord.models.thread.dto.ModelThreadListSync;
 import com.discord.rtcconnection.RtcConnection;
 import com.discord.rtcconnection.VideoMetadata;
 import com.discord.stores.updates.ObservationDeck;
-import com.discord.stores.updates.ObservationDeckProvider;
+import com.discord.stores.updates.ObservationDeck4;
 import com.discord.stores.utilities.Batched;
 import com.discord.utilities.StoreUIEventHandler;
 import com.discord.utilities.analytics.AnalyticsTracker;
@@ -95,14 +95,15 @@ import com.discord.widgets.chat.list.TextInVoiceFeatureFlag;
 import com.discord.widgets.settings.account.WidgetSettingsAccountChangePassword;
 import com.discord.widgets.settings.premium.OutboundPromosPreviewFeatureFlag;
 import com.google.gson.Gson;
-import d0.g;
-import d0.t.n;
-import d0.t.n0;
-import d0.z.d.k;
-import d0.z.d.m;
-import d0.z.d.o;
-import j0.l.c.c;
-import j0.p.a;
+import d0.LazyJVM;
+import d0.t.Collections2;
+import d0.t.CollectionsJVM;
+import d0.t.Sets5;
+import d0.z.d.FunctionReferenceImpl;
+import d0.z.d.Intrinsics3;
+import d0.z.d.Lambda;
+import j0.l.c.ExecutorScheduler;
+import j0.p.Schedulers2;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
@@ -278,16 +279,16 @@ public final class StoreStream {
     private static final String LAST_LOGGED_NOTIFICATION_PERMISSIONS_KEY = "last_logged_notification_permissions_key";
     private final BehaviorSubject<Boolean> initialized = BehaviorSubject.l0(Boolean.FALSE);
     private static final long DAY_IN_MILLS = TimeUnit.DAYS.toMillis(1);
-    private static final Lazy collector$delegate = g.lazy(StoreStream$Companion$collector$2.INSTANCE);
+    private static final Lazy collector$delegate = LazyJVM.lazy(StoreStream$Companion$collector$2.INSTANCE);
 
     /* JADX INFO: renamed from: com.discord.stores.StoreStream$deferredInit$1, reason: invalid class name */
     /* JADX INFO: compiled from: StoreStream.kt */
-    public final class AnonymousClass1 extends o implements Function0<Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function0<Unit> {
         public final /* synthetic */ Application $context;
 
         /* JADX INFO: renamed from: com.discord.stores.StoreStream$deferredInit$1$10, reason: invalid class name */
         /* JADX INFO: compiled from: StoreStream.kt */
-        public final /* synthetic */ class AnonymousClass10 extends k implements Function1<Boolean, Unit> {
+        public final /* synthetic */ class AnonymousClass10 extends FunctionReferenceImpl implements Function1<Boolean, Unit> {
             public AnonymousClass10(StoreStream storeStream) {
                 super(1, storeStream, StoreStream.class, "handleBackgrounded", "handleBackgrounded(Z)V", 0);
             }
@@ -317,12 +318,12 @@ public final class StoreStream {
             /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
             public final Boolean call2(Boolean bool, Boolean bool2, Boolean bool3, Boolean bool4) {
                 boolean z2;
-                m.checkNotNullExpressionValue(bool, "experimentsInitialized");
+                Intrinsics3.checkNotNullExpressionValue(bool, "experimentsInitialized");
                 if (bool.booleanValue()) {
-                    m.checkNotNullExpressionValue(bool4, "cachesInitialized");
+                    Intrinsics3.checkNotNullExpressionValue(bool4, "cachesInitialized");
                     if (bool4.booleanValue()) {
                         if (bool2.booleanValue()) {
-                            m.checkNotNullExpressionValue(bool3, "channelsSelectedInitialized");
+                            Intrinsics3.checkNotNullExpressionValue(bool3, "channelsSelectedInitialized");
                             if (!bool3.booleanValue()) {
                                 z2 = false;
                             }
@@ -340,7 +341,7 @@ public final class StoreStream {
 
         /* JADX INFO: renamed from: com.discord.stores.StoreStream$deferredInit$1$12, reason: invalid class name */
         /* JADX INFO: compiled from: StoreStream.kt */
-        public final /* synthetic */ class AnonymousClass12 extends k implements Function1<Boolean, Unit> {
+        public final /* synthetic */ class AnonymousClass12 extends FunctionReferenceImpl implements Function1<Boolean, Unit> {
             public AnonymousClass12(BehaviorSubject behaviorSubject) {
                 super(1, behaviorSubject, BehaviorSubject.class, "onNext", "onNext(Ljava/lang/Object;)V", 0);
             }
@@ -359,7 +360,7 @@ public final class StoreStream {
 
         /* JADX INFO: renamed from: com.discord.stores.StoreStream$deferredInit$1$2, reason: invalid class name */
         /* JADX INFO: compiled from: StoreStream.kt */
-        public final /* synthetic */ class AnonymousClass2 extends k implements Function1<AuthState, Unit> {
+        public final /* synthetic */ class AnonymousClass2 extends FunctionReferenceImpl implements Function1<AuthState, Unit> {
             public AnonymousClass2(StoreStream storeStream) {
                 super(1, storeStream, StoreStream.class, "handleAuthState", "handleAuthState(Lcom/discord/models/authentication/AuthState;)V", 0);
             }
@@ -378,7 +379,7 @@ public final class StoreStream {
 
         /* JADX INFO: renamed from: com.discord.stores.StoreStream$deferredInit$1$3, reason: invalid class name */
         /* JADX INFO: compiled from: StoreStream.kt */
-        public final /* synthetic */ class AnonymousClass3 extends k implements Function1<String, Unit> {
+        public final /* synthetic */ class AnonymousClass3 extends FunctionReferenceImpl implements Function1<String, Unit> {
             public AnonymousClass3(StoreStream storeStream) {
                 super(1, storeStream, StoreStream.class, "handleFingerprint", "handleFingerprint(Ljava/lang/String;)V", 0);
             }
@@ -397,7 +398,7 @@ public final class StoreStream {
 
         /* JADX INFO: renamed from: com.discord.stores.StoreStream$deferredInit$1$4, reason: invalid class name */
         /* JADX INFO: compiled from: StoreStream.kt */
-        public final /* synthetic */ class AnonymousClass4 extends k implements Function1<StoreMessagesLoader.ChannelChunk, Unit> {
+        public final /* synthetic */ class AnonymousClass4 extends FunctionReferenceImpl implements Function1<StoreMessagesLoader.ChannelChunk, Unit> {
             public AnonymousClass4(StoreStream storeStream) {
                 super(1, storeStream, StoreStream.class, "handleMessagesLoaded", "handleMessagesLoaded(Lcom/discord/stores/StoreMessagesLoader$ChannelChunk;)V", 0);
             }
@@ -410,14 +411,14 @@ public final class StoreStream {
 
             /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
             public final void invoke2(StoreMessagesLoader.ChannelChunk channelChunk) {
-                m.checkNotNullParameter(channelChunk, "p1");
+                Intrinsics3.checkNotNullParameter(channelChunk, "p1");
                 StoreStream.access$handleMessagesLoaded((StoreStream) this.receiver, channelChunk);
             }
         }
 
         /* JADX INFO: renamed from: com.discord.stores.StoreStream$deferredInit$1$5, reason: invalid class name */
         /* JADX INFO: compiled from: StoreStream.kt */
-        public final /* synthetic */ class AnonymousClass5 extends k implements Function1<Long, Unit> {
+        public final /* synthetic */ class AnonymousClass5 extends FunctionReferenceImpl implements Function1<Long, Unit> {
             public AnonymousClass5(StoreStream storeStream) {
                 super(1, storeStream, StoreStream.class, "handleChannelSelected", "handleChannelSelected(J)V", 0);
             }
@@ -435,7 +436,7 @@ public final class StoreStream {
 
         /* JADX INFO: renamed from: com.discord.stores.StoreStream$deferredInit$1$6, reason: invalid class name */
         /* JADX INFO: compiled from: StoreStream.kt */
-        public final /* synthetic */ class AnonymousClass6 extends k implements Function1<Long, Unit> {
+        public final /* synthetic */ class AnonymousClass6 extends FunctionReferenceImpl implements Function1<Long, Unit> {
             public AnonymousClass6(StoreStream storeStream) {
                 super(1, storeStream, StoreStream.class, "handleVoiceChannelSelected", "handleVoiceChannelSelected(J)V", 0);
             }
@@ -453,7 +454,7 @@ public final class StoreStream {
 
         /* JADX INFO: renamed from: com.discord.stores.StoreStream$deferredInit$1$7, reason: invalid class name */
         /* JADX INFO: compiled from: StoreStream.kt */
-        public final /* synthetic */ class AnonymousClass7 extends k implements Function1<Set<? extends Long>, Unit> {
+        public final /* synthetic */ class AnonymousClass7 extends FunctionReferenceImpl implements Function1<Set<? extends Long>, Unit> {
             public AnonymousClass7(StoreStream storeStream) {
                 super(1, storeStream, StoreStream.class, "handleSpeakingUsers", "handleSpeakingUsers(Ljava/util/Set;)V", 0);
             }
@@ -466,14 +467,14 @@ public final class StoreStream {
 
             /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
             public final void invoke2(Set<Long> set) {
-                m.checkNotNullParameter(set, "p1");
+                Intrinsics3.checkNotNullParameter(set, "p1");
                 StoreStream.access$handleSpeakingUsers((StoreStream) this.receiver, set);
             }
         }
 
         /* JADX INFO: renamed from: com.discord.stores.StoreStream$deferredInit$1$8, reason: invalid class name */
         /* JADX INFO: compiled from: StoreStream.kt */
-        public final /* synthetic */ class AnonymousClass8 extends k implements Function1<RtcConnection.StateChange, Unit> {
+        public final /* synthetic */ class AnonymousClass8 extends FunctionReferenceImpl implements Function1<RtcConnection.StateChange, Unit> {
             public AnonymousClass8(StoreStream storeStream) {
                 super(1, storeStream, StoreStream.class, "handleRtcConnectionStateChanged", "handleRtcConnectionStateChanged(Lcom/discord/rtcconnection/RtcConnection$StateChange;)V", 0);
             }
@@ -486,14 +487,14 @@ public final class StoreStream {
 
             /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
             public final void invoke2(RtcConnection.StateChange stateChange) {
-                m.checkNotNullParameter(stateChange, "p1");
+                Intrinsics3.checkNotNullParameter(stateChange, "p1");
                 StoreStream.access$handleRtcConnectionStateChanged((StoreStream) this.receiver, stateChange);
             }
         }
 
         /* JADX INFO: renamed from: com.discord.stores.StoreStream$deferredInit$1$9, reason: invalid class name */
         /* JADX INFO: compiled from: StoreStream.kt */
-        public final /* synthetic */ class AnonymousClass9 extends k implements Function1<List<? extends StoreRtcConnection.SpeakingUserUpdate>, Unit> {
+        public final /* synthetic */ class AnonymousClass9 extends FunctionReferenceImpl implements Function1<List<? extends StoreRtcConnection.SpeakingUserUpdate>, Unit> {
             public AnonymousClass9(StoreStream storeStream) {
                 super(1, storeStream, StoreStream.class, "handleSpeakingUpdates", "handleSpeakingUpdates(Ljava/util/List;)V", 0);
             }
@@ -506,15 +507,15 @@ public final class StoreStream {
 
             /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
             public final void invoke2(List<StoreRtcConnection.SpeakingUserUpdate> list) {
-                m.checkNotNullParameter(list, "p1");
+                Intrinsics3.checkNotNullParameter(list, "p1");
                 StoreStream.access$handleSpeakingUpdates((StoreStream) this.receiver, list);
             }
         }
 
         /* JADX INFO: renamed from: com.discord.stores.StoreStream$deferredInit$1$1, reason: invalid class name and collision with other inner class name */
         /* JADX INFO: compiled from: StoreStream.kt */
-        public final class C02971 extends o implements Function1<Boolean, Unit> {
-            public C02971() {
+        public final class C01771 extends Lambda implements Function1<Boolean, Unit> {
+            public C01771() {
                 super(1);
             }
 
@@ -598,7 +599,7 @@ public final class StoreStream {
             StoreStream.this.getAudioManagerV2().init(this.$context);
             StoreStream.this.getOutboundPromotions().init(this.$context);
             StoreStream storeStream = StoreStream.this;
-            StoreStream.access$dispatchSubscribe(storeStream, storeStream.getAuthentication().getPreLogoutSignal$app_productionGoogleRelease(), "streamPreLogout", new C02971());
+            StoreStream.access$dispatchSubscribe(storeStream, storeStream.getAuthentication().getPreLogoutSignal$app_productionGoogleRelease(), "streamPreLogout", new C01771());
             StoreStream storeStream2 = StoreStream.this;
             StoreStream.access$dispatchSubscribe(storeStream2, storeStream2.getAuthentication().m8getAuthState$app_productionGoogleRelease(), "streamAuthState", new AnonymousClass2(StoreStream.this));
             StoreStream storeStream3 = StoreStream.this;
@@ -616,10 +617,10 @@ public final class StoreStream {
             StoreStream storeStream9 = StoreStream.this;
             StoreStream.access$dispatchSubscribe(storeStream9, storeStream9.getRtcConnection().getSpeakingUpdates(), "streamRtcSpeakingUpdates", new AnonymousClass9(StoreStream.this));
             StoreStream.access$initGatewaySocketListeners(StoreStream.this);
-            StoreStream.access$dispatchSubscribe(StoreStream.this, d.d.a(), "streamBackgrounded", new AnonymousClass10(StoreStream.this));
+            StoreStream.access$dispatchSubscribe(StoreStream.this, Backgrounded4.d.a(), "streamBackgrounded", new AnonymousClass10(StoreStream.this));
             StoreStream storeStream10 = StoreStream.this;
             Observable observableH = Observable.h(storeStream10.getExperiments().isInitialized().r(), StoreStream.this.getAuthentication().observeIsAuthed$app_productionGoogleRelease(), StoreStream.this.getChannelsSelected().observeInitializedForAuthedUser(), Persister.INSTANCE.isPreloaded(), AnonymousClass11.INSTANCE);
-            m.checkNotNullExpressionValue(observableH, "Observable\n        .comb…tedInitialized)\n        }");
+            Intrinsics3.checkNotNullExpressionValue(observableH, "Observable\n        .comb…tedInitialized)\n        }");
             StoreStream.access$dispatchSubscribe(storeStream10, observableH, "streamInit", new AnonymousClass12(StoreStream.access$getInitialized$p(StoreStream.this)));
             AppLog.i("[StoreStream] Application stores initialized in: " + timeElapsed.getSeconds() + " seconds.");
             VoiceEngineServiceController.INSTANCE.getINSTANCE().init(this.$context);
@@ -631,16 +632,16 @@ public final class StoreStream {
     /* JADX INFO: Add missing generic type declarations: [T] */
     /* JADX INFO: renamed from: com.discord.stores.StoreStream$dispatchSubscribe$1, reason: invalid class name */
     /* JADX INFO: compiled from: StoreStream.kt */
-    public final class AnonymousClass1<T> extends o implements Function1<T, Unit> {
+    public final class AnonymousClass1<T> extends Lambda implements Function1<T, Unit> {
         public final /* synthetic */ Function1 $onNext;
 
         /* JADX INFO: renamed from: com.discord.stores.StoreStream$dispatchSubscribe$1$1, reason: invalid class name and collision with other inner class name */
         /* JADX INFO: compiled from: StoreStream.kt */
-        public final class C02981 extends o implements Function0<Unit> {
+        public final class C01781 extends Lambda implements Function0<Unit> {
             public final /* synthetic */ Object $emission;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-            public C02981(Object obj) {
+            public C01781(Object obj) {
                 super(0);
                 this.$emission = obj;
             }
@@ -672,13 +673,13 @@ public final class StoreStream {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(T t) {
-            StoreStream.access$getDispatcher$p(StoreStream.this).schedule(new C02981(t));
+            StoreStream.access$getDispatcher$p(StoreStream.this).schedule(new C01781(t));
         }
     }
 
     /* JADX INFO: renamed from: com.discord.stores.StoreStream$initGatewaySocketListeners$1, reason: invalid class name */
     /* JADX INFO: compiled from: StoreStream.kt */
-    public final /* synthetic */ class AnonymousClass1 extends k implements Function1<ModelPayload, Unit> {
+    public final /* synthetic */ class AnonymousClass1 extends FunctionReferenceImpl implements Function1<ModelPayload, Unit> {
         public AnonymousClass1(StoreStream storeStream) {
             super(1, storeStream, StoreStream.class, "handleConnectionOpen", "handleConnectionOpen(Lcom/discord/models/domain/ModelPayload;)V", 0);
         }
@@ -691,14 +692,14 @@ public final class StoreStream {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(ModelPayload modelPayload) {
-            m.checkNotNullParameter(modelPayload, "p1");
+            Intrinsics3.checkNotNullParameter(modelPayload, "p1");
             StoreStream.access$handleConnectionOpen((StoreStream) this.receiver, modelPayload);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.stores.StoreStream$maybeLogNotificationPermissionStatus$1, reason: invalid class name */
     /* JADX INFO: compiled from: StoreStream.kt */
-    public final class AnonymousClass1 extends o implements Function1<NotificationClient.SettingsV2, Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function1<NotificationClient.SettingsV2, Unit> {
         public final /* synthetic */ Application $context;
         public final /* synthetic */ long $currentTime;
         public final /* synthetic */ SharedPreferences $sharedPrefs;
@@ -722,19 +723,19 @@ public final class StoreStream {
             this.$sharedPrefs.edit().putLong(StoreStream.access$getLAST_LOGGED_NOTIFICATION_PERMISSIONS_KEY$cp(), this.$currentTime).apply();
             AnalyticsTracker analyticsTracker = AnalyticsTracker.INSTANCE;
             Application application = this.$context;
-            m.checkNotNullExpressionValue(settingsV2, "it");
+            Intrinsics3.checkNotNullExpressionValue(settingsV2, "it");
             analyticsTracker.notificationPermissionStatus(application, settingsV2);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.stores.StoreStream$startStoreInitializationTimer$1, reason: invalid class name */
     /* JADX INFO: compiled from: StoreStream.kt */
-    public final class AnonymousClass1 extends o implements Function1<Object, Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function1<Object, Unit> {
 
         /* JADX INFO: renamed from: com.discord.stores.StoreStream$startStoreInitializationTimer$1$1, reason: invalid class name and collision with other inner class name */
         /* JADX INFO: compiled from: StoreStream.kt */
-        public final class C02991 extends o implements Function0<Unit> {
-            public C02991() {
+        public final class C01791 extends Lambda implements Function0<Unit> {
+            public C01791() {
                 super(0);
             }
 
@@ -762,13 +763,13 @@ public final class StoreStream {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(Object obj) {
-            StoreStream.access$getDispatcher$p(StoreStream.this).schedule(new C02991());
+            StoreStream.access$getDispatcher$p(StoreStream.this).schedule(new C01791());
         }
     }
 
     /* JADX INFO: renamed from: com.discord.stores.StoreStream$initGatewaySocketListeners$10, reason: invalid class name */
     /* JADX INFO: compiled from: StoreStream.kt */
-    public final /* synthetic */ class AnonymousClass10 extends k implements Function1<Guild, Unit> {
+    public final /* synthetic */ class AnonymousClass10 extends FunctionReferenceImpl implements Function1<Guild, Unit> {
         public AnonymousClass10(StoreStream storeStream) {
             super(1, storeStream, StoreStream.class, "handleGuildRemove", "handleGuildRemove(Lcom/discord/api/guild/Guild;)V", 0);
         }
@@ -787,7 +788,7 @@ public final class StoreStream {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreStream$initGatewaySocketListeners$11, reason: invalid class name */
     /* JADX INFO: compiled from: StoreStream.kt */
-    public final /* synthetic */ class AnonymousClass11 extends k implements Function1<ModelBan, Unit> {
+    public final /* synthetic */ class AnonymousClass11 extends FunctionReferenceImpl implements Function1<ModelBan, Unit> {
         public AnonymousClass11(StoreStream storeStream) {
             super(1, storeStream, StoreStream.class, "handleBanAdd", "handleBanAdd(Lcom/discord/models/domain/ModelBan;)V", 0);
         }
@@ -800,14 +801,14 @@ public final class StoreStream {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(ModelBan modelBan) {
-            m.checkNotNullParameter(modelBan, "p1");
+            Intrinsics3.checkNotNullParameter(modelBan, "p1");
             StoreStream.access$handleBanAdd((StoreStream) this.receiver, modelBan);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.stores.StoreStream$initGatewaySocketListeners$12, reason: invalid class name */
     /* JADX INFO: compiled from: StoreStream.kt */
-    public final /* synthetic */ class AnonymousClass12 extends k implements Function1<ModelBan, Unit> {
+    public final /* synthetic */ class AnonymousClass12 extends FunctionReferenceImpl implements Function1<ModelBan, Unit> {
         public AnonymousClass12(StoreStream storeStream) {
             super(1, storeStream, StoreStream.class, "handleBanRemove", "handleBanRemove(Lcom/discord/models/domain/ModelBan;)V", 0);
         }
@@ -820,14 +821,14 @@ public final class StoreStream {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(ModelBan modelBan) {
-            m.checkNotNullParameter(modelBan, "p1");
+            Intrinsics3.checkNotNullParameter(modelBan, "p1");
             StoreStream.access$handleBanRemove((StoreStream) this.receiver, modelBan);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.stores.StoreStream$initGatewaySocketListeners$13, reason: invalid class name */
     /* JADX INFO: compiled from: StoreStream.kt */
-    public final /* synthetic */ class AnonymousClass13 extends k implements Function1<ModelGuildIntegration.Update, Unit> {
+    public final /* synthetic */ class AnonymousClass13 extends FunctionReferenceImpl implements Function1<ModelGuildIntegration.Update, Unit> {
         public AnonymousClass13(StoreStream storeStream) {
             super(1, storeStream, StoreStream.class, "handleGuildIntegrationUpdate", "handleGuildIntegrationUpdate(Lcom/discord/models/domain/ModelGuildIntegration$Update;)V", 0);
         }
@@ -840,14 +841,14 @@ public final class StoreStream {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(ModelGuildIntegration.Update update) {
-            m.checkNotNullParameter(update, "p1");
+            Intrinsics3.checkNotNullParameter(update, "p1");
             StoreStream.access$handleGuildIntegrationUpdate((StoreStream) this.receiver, update);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.stores.StoreStream$initGatewaySocketListeners$14, reason: invalid class name */
     /* JADX INFO: compiled from: StoreStream.kt */
-    public final /* synthetic */ class AnonymousClass14 extends k implements Function1<GuildMember, Unit> {
+    public final /* synthetic */ class AnonymousClass14 extends FunctionReferenceImpl implements Function1<GuildMember, Unit> {
         public AnonymousClass14(StoreStream storeStream) {
             super(1, storeStream, StoreStream.class, "handleGuildMemberAdd", "handleGuildMemberAdd(Lcom/discord/api/guildmember/GuildMember;)V", 0);
         }
@@ -860,54 +861,54 @@ public final class StoreStream {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(GuildMember guildMember) {
-            m.checkNotNullParameter(guildMember, "p1");
+            Intrinsics3.checkNotNullParameter(guildMember, "p1");
             StoreStream.access$handleGuildMemberAdd((StoreStream) this.receiver, guildMember);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.stores.StoreStream$initGatewaySocketListeners$15, reason: invalid class name */
     /* JADX INFO: compiled from: StoreStream.kt */
-    public final /* synthetic */ class AnonymousClass15 extends k implements Function1<GuildJoinRequestCreateOrUpdate, Unit> {
+    public final /* synthetic */ class AnonymousClass15 extends FunctionReferenceImpl implements Function1<GuildJoinRequest2, Unit> {
         public AnonymousClass15(StoreStream storeStream) {
             super(1, storeStream, StoreStream.class, "handleGuildJoinRequestCreateOrUpdate", "handleGuildJoinRequestCreateOrUpdate(Lcom/discord/api/guildjoinrequest/GuildJoinRequestCreateOrUpdate;)V", 0);
         }
 
         @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(GuildJoinRequestCreateOrUpdate guildJoinRequestCreateOrUpdate) {
-            invoke2(guildJoinRequestCreateOrUpdate);
+        public /* bridge */ /* synthetic */ Unit invoke(GuildJoinRequest2 guildJoinRequest2) {
+            invoke2(guildJoinRequest2);
             return Unit.a;
         }
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(GuildJoinRequestCreateOrUpdate guildJoinRequestCreateOrUpdate) {
-            m.checkNotNullParameter(guildJoinRequestCreateOrUpdate, "p1");
-            ((StoreStream) this.receiver).handleGuildJoinRequestCreateOrUpdate(guildJoinRequestCreateOrUpdate);
+        public final void invoke2(GuildJoinRequest2 guildJoinRequest2) {
+            Intrinsics3.checkNotNullParameter(guildJoinRequest2, "p1");
+            ((StoreStream) this.receiver).handleGuildJoinRequestCreateOrUpdate(guildJoinRequest2);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.stores.StoreStream$initGatewaySocketListeners$16, reason: invalid class name */
     /* JADX INFO: compiled from: StoreStream.kt */
-    public final /* synthetic */ class AnonymousClass16 extends k implements Function1<GuildJoinRequestDelete, Unit> {
+    public final /* synthetic */ class AnonymousClass16 extends FunctionReferenceImpl implements Function1<GuildJoinRequest3, Unit> {
         public AnonymousClass16(StoreStream storeStream) {
             super(1, storeStream, StoreStream.class, "handleGuildJoinRequestDelete", "handleGuildJoinRequestDelete(Lcom/discord/api/guildjoinrequest/GuildJoinRequestDelete;)V", 0);
         }
 
         @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(GuildJoinRequestDelete guildJoinRequestDelete) {
-            invoke2(guildJoinRequestDelete);
+        public /* bridge */ /* synthetic */ Unit invoke(GuildJoinRequest3 guildJoinRequest3) {
+            invoke2(guildJoinRequest3);
             return Unit.a;
         }
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(GuildJoinRequestDelete guildJoinRequestDelete) {
-            m.checkNotNullParameter(guildJoinRequestDelete, "p1");
-            ((StoreStream) this.receiver).handleGuildJoinRequestDelete(guildJoinRequestDelete);
+        public final void invoke2(GuildJoinRequest3 guildJoinRequest3) {
+            Intrinsics3.checkNotNullParameter(guildJoinRequest3, "p1");
+            ((StoreStream) this.receiver).handleGuildJoinRequestDelete(guildJoinRequest3);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.stores.StoreStream$initGatewaySocketListeners$17, reason: invalid class name */
     /* JADX INFO: compiled from: StoreStream.kt */
-    public final /* synthetic */ class AnonymousClass17 extends k implements Function1<GuildMembersChunk, Unit> {
+    public final /* synthetic */ class AnonymousClass17 extends FunctionReferenceImpl implements Function1<GuildMembersChunk, Unit> {
         public AnonymousClass17(StoreStream storeStream) {
             super(1, storeStream, StoreStream.class, "handleGuildMembersChunk", "handleGuildMembersChunk(Lcom/discord/api/guildmember/GuildMembersChunk;)V", 0);
         }
@@ -920,14 +921,14 @@ public final class StoreStream {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(GuildMembersChunk guildMembersChunk) {
-            m.checkNotNullParameter(guildMembersChunk, "p1");
+            Intrinsics3.checkNotNullParameter(guildMembersChunk, "p1");
             StoreStream.access$handleGuildMembersChunk((StoreStream) this.receiver, guildMembersChunk);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.stores.StoreStream$initGatewaySocketListeners$18, reason: invalid class name */
     /* JADX INFO: compiled from: StoreStream.kt */
-    public final /* synthetic */ class AnonymousClass18 extends k implements Function1<GuildMemberRemove, Unit> {
+    public final /* synthetic */ class AnonymousClass18 extends FunctionReferenceImpl implements Function1<GuildMemberRemove, Unit> {
         public AnonymousClass18(StoreStream storeStream) {
             super(1, storeStream, StoreStream.class, "handleGuildMemberRemove", "handleGuildMemberRemove(Lcom/discord/api/guildmember/GuildMemberRemove;)V", 0);
         }
@@ -940,14 +941,14 @@ public final class StoreStream {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(GuildMemberRemove guildMemberRemove) {
-            m.checkNotNullParameter(guildMemberRemove, "p1");
+            Intrinsics3.checkNotNullParameter(guildMemberRemove, "p1");
             StoreStream.access$handleGuildMemberRemove((StoreStream) this.receiver, guildMemberRemove);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.stores.StoreStream$initGatewaySocketListeners$19, reason: invalid class name */
     /* JADX INFO: compiled from: StoreStream.kt */
-    public final /* synthetic */ class AnonymousClass19 extends k implements Function1<Channel, Unit> {
+    public final /* synthetic */ class AnonymousClass19 extends FunctionReferenceImpl implements Function1<Channel, Unit> {
         public AnonymousClass19(StoreStream storeStream) {
             super(1, storeStream, StoreStream.class, "handleChannelCreateOrUpdate", "handleChannelCreateOrUpdate(Lcom/discord/api/channel/Channel;)V", 0);
         }
@@ -960,7 +961,7 @@ public final class StoreStream {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(Channel channel) {
-            m.checkNotNullParameter(channel, "p1");
+            Intrinsics3.checkNotNullParameter(channel, "p1");
             StoreStream.access$handleChannelCreateOrUpdate((StoreStream) this.receiver, channel);
         }
     }
@@ -968,7 +969,7 @@ public final class StoreStream {
     /* JADX INFO: Add missing generic type declarations: [T] */
     /* JADX INFO: renamed from: com.discord.stores.StoreStream$dispatchSubscribe$2, reason: invalid class name */
     /* JADX INFO: compiled from: StoreStream.kt */
-    public final class AnonymousClass2<T> extends o implements Function1<List<? extends T>, Unit> {
+    public final class AnonymousClass2<T> extends Lambda implements Function1<List<? extends T>, Unit> {
         public final /* synthetic */ Function1 $onNext;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -984,7 +985,7 @@ public final class StoreStream {
         }
 
         public final void invoke(List<? extends T> list) {
-            m.checkNotNullParameter(list, "batch");
+            Intrinsics3.checkNotNullParameter(list, "batch");
             Iterator<? extends T> it = list.iterator();
             while (it.hasNext()) {
                 this.$onNext.invoke(it.next());
@@ -994,7 +995,7 @@ public final class StoreStream {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreStream$initGatewaySocketListeners$2, reason: invalid class name */
     /* JADX INFO: compiled from: StoreStream.kt */
-    public final /* synthetic */ class AnonymousClass2 extends k implements Function1<Boolean, Unit> {
+    public final /* synthetic */ class AnonymousClass2 extends FunctionReferenceImpl implements Function1<Boolean, Unit> {
         public AnonymousClass2(StoreStream storeStream) {
             super(1, storeStream, StoreStream.class, "handleConnected", "handleConnected(Z)V", 0);
         }
@@ -1012,7 +1013,7 @@ public final class StoreStream {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreStream$initGatewaySocketListeners$20, reason: invalid class name */
     /* JADX INFO: compiled from: StoreStream.kt */
-    public final /* synthetic */ class AnonymousClass20 extends k implements Function1<Channel, Unit> {
+    public final /* synthetic */ class AnonymousClass20 extends FunctionReferenceImpl implements Function1<Channel, Unit> {
         public AnonymousClass20(StoreStream storeStream) {
             super(1, storeStream, StoreStream.class, "handleChannelDelete", "handleChannelDelete(Lcom/discord/api/channel/Channel;)V", 0);
         }
@@ -1025,14 +1026,14 @@ public final class StoreStream {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(Channel channel) {
-            m.checkNotNullParameter(channel, "p1");
+            Intrinsics3.checkNotNullParameter(channel, "p1");
             StoreStream.access$handleChannelDelete((StoreStream) this.receiver, channel);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.stores.StoreStream$initGatewaySocketListeners$21, reason: invalid class name */
     /* JADX INFO: compiled from: StoreStream.kt */
-    public final /* synthetic */ class AnonymousClass21 extends k implements Function1<ModelChannelUnreadUpdate, Unit> {
+    public final /* synthetic */ class AnonymousClass21 extends FunctionReferenceImpl implements Function1<ModelChannelUnreadUpdate, Unit> {
         public AnonymousClass21(StoreStream storeStream) {
             super(1, storeStream, StoreStream.class, "handleChannelUnreadUpdate", "handleChannelUnreadUpdate(Lcom/discord/models/domain/ModelChannelUnreadUpdate;)V", 0);
         }
@@ -1045,14 +1046,14 @@ public final class StoreStream {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(ModelChannelUnreadUpdate modelChannelUnreadUpdate) {
-            m.checkNotNullParameter(modelChannelUnreadUpdate, "p1");
+            Intrinsics3.checkNotNullParameter(modelChannelUnreadUpdate, "p1");
             StoreStream.access$handleChannelUnreadUpdate((StoreStream) this.receiver, modelChannelUnreadUpdate);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.stores.StoreStream$initGatewaySocketListeners$22, reason: invalid class name */
     /* JADX INFO: compiled from: StoreStream.kt */
-    public final /* synthetic */ class AnonymousClass22 extends k implements Function1<Channel, Unit> {
+    public final /* synthetic */ class AnonymousClass22 extends FunctionReferenceImpl implements Function1<Channel, Unit> {
         public AnonymousClass22(StoreStream storeStream) {
             super(1, storeStream, StoreStream.class, "handleThreadCreateOrUpdate", "handleThreadCreateOrUpdate(Lcom/discord/api/channel/Channel;)V", 0);
         }
@@ -1065,14 +1066,14 @@ public final class StoreStream {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(Channel channel) {
-            m.checkNotNullParameter(channel, "p1");
+            Intrinsics3.checkNotNullParameter(channel, "p1");
             ((StoreStream) this.receiver).handleThreadCreateOrUpdate(channel);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.stores.StoreStream$initGatewaySocketListeners$23, reason: invalid class name */
     /* JADX INFO: compiled from: StoreStream.kt */
-    public final /* synthetic */ class AnonymousClass23 extends k implements Function1<Channel, Unit> {
+    public final /* synthetic */ class AnonymousClass23 extends FunctionReferenceImpl implements Function1<Channel, Unit> {
         public AnonymousClass23(StoreStream storeStream) {
             super(1, storeStream, StoreStream.class, "handleThreadDelete", "handleThreadDelete(Lcom/discord/api/channel/Channel;)V", 0);
         }
@@ -1085,14 +1086,14 @@ public final class StoreStream {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(Channel channel) {
-            m.checkNotNullParameter(channel, "p1");
+            Intrinsics3.checkNotNullParameter(channel, "p1");
             StoreStream.access$handleThreadDelete((StoreStream) this.receiver, channel);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.stores.StoreStream$initGatewaySocketListeners$24, reason: invalid class name */
     /* JADX INFO: compiled from: StoreStream.kt */
-    public final /* synthetic */ class AnonymousClass24 extends k implements Function1<ModelThreadListSync, Unit> {
+    public final /* synthetic */ class AnonymousClass24 extends FunctionReferenceImpl implements Function1<ModelThreadListSync, Unit> {
         public AnonymousClass24(StoreStream storeStream) {
             super(1, storeStream, StoreStream.class, "handleThreadListSync", "handleThreadListSync(Lcom/discord/models/thread/dto/ModelThreadListSync;)V", 0);
         }
@@ -1105,14 +1106,14 @@ public final class StoreStream {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(ModelThreadListSync modelThreadListSync) {
-            m.checkNotNullParameter(modelThreadListSync, "p1");
+            Intrinsics3.checkNotNullParameter(modelThreadListSync, "p1");
             StoreStream.access$handleThreadListSync((StoreStream) this.receiver, modelThreadListSync);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.stores.StoreStream$initGatewaySocketListeners$25, reason: invalid class name */
     /* JADX INFO: compiled from: StoreStream.kt */
-    public final /* synthetic */ class AnonymousClass25 extends k implements Function1<ThreadMemberUpdate, Unit> {
+    public final /* synthetic */ class AnonymousClass25 extends FunctionReferenceImpl implements Function1<ThreadMemberUpdate, Unit> {
         public AnonymousClass25(StoreStream storeStream) {
             super(1, storeStream, StoreStream.class, "handleThreadMemberUpdate", "handleThreadMemberUpdate(Lcom/discord/api/thread/ThreadMemberUpdate;)V", 0);
         }
@@ -1125,14 +1126,14 @@ public final class StoreStream {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(ThreadMemberUpdate threadMemberUpdate) {
-            m.checkNotNullParameter(threadMemberUpdate, "p1");
+            Intrinsics3.checkNotNullParameter(threadMemberUpdate, "p1");
             StoreStream.access$handleThreadMemberUpdate((StoreStream) this.receiver, threadMemberUpdate);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.stores.StoreStream$initGatewaySocketListeners$26, reason: invalid class name */
     /* JADX INFO: compiled from: StoreStream.kt */
-    public final /* synthetic */ class AnonymousClass26 extends k implements Function1<ThreadMembersUpdate, Unit> {
+    public final /* synthetic */ class AnonymousClass26 extends FunctionReferenceImpl implements Function1<ThreadMembersUpdate, Unit> {
         public AnonymousClass26(StoreStream storeStream) {
             super(1, storeStream, StoreStream.class, "handleThreadMembersUpdate", "handleThreadMembersUpdate(Lcom/discord/api/thread/ThreadMembersUpdate;)V", 0);
         }
@@ -1145,14 +1146,14 @@ public final class StoreStream {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(ThreadMembersUpdate threadMembersUpdate) {
-            m.checkNotNullParameter(threadMembersUpdate, "p1");
+            Intrinsics3.checkNotNullParameter(threadMembersUpdate, "p1");
             StoreStream.access$handleThreadMembersUpdate((StoreStream) this.receiver, threadMembersUpdate);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.stores.StoreStream$initGatewaySocketListeners$27, reason: invalid class name */
     /* JADX INFO: compiled from: StoreStream.kt */
-    public final /* synthetic */ class AnonymousClass27 extends k implements Function1<ThreadMemberListUpdate, Unit> {
+    public final /* synthetic */ class AnonymousClass27 extends FunctionReferenceImpl implements Function1<ThreadMemberListUpdate, Unit> {
         public AnonymousClass27(StoreStream storeStream) {
             super(1, storeStream, StoreStream.class, "handleThreadMemberListUpdate", "handleThreadMemberListUpdate(Lcom/discord/api/thread/ThreadMemberListUpdate;)V", 0);
         }
@@ -1165,14 +1166,14 @@ public final class StoreStream {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(ThreadMemberListUpdate threadMemberListUpdate) {
-            m.checkNotNullParameter(threadMemberListUpdate, "p1");
+            Intrinsics3.checkNotNullParameter(threadMemberListUpdate, "p1");
             StoreStream.access$handleThreadMemberListUpdate((StoreStream) this.receiver, threadMemberListUpdate);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.stores.StoreStream$initGatewaySocketListeners$28, reason: invalid class name */
     /* JADX INFO: compiled from: StoreStream.kt */
-    public final /* synthetic */ class AnonymousClass28 extends k implements Function1<User, Unit> {
+    public final /* synthetic */ class AnonymousClass28 extends FunctionReferenceImpl implements Function1<User, Unit> {
         public AnonymousClass28(StoreStream storeStream) {
             super(1, storeStream, StoreStream.class, "handleUserUpdated", "handleUserUpdated(Lcom/discord/api/user/User;)V", 0);
         }
@@ -1185,14 +1186,14 @@ public final class StoreStream {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(User user) {
-            m.checkNotNullParameter(user, "p1");
+            Intrinsics3.checkNotNullParameter(user, "p1");
             StoreStream.access$handleUserUpdated((StoreStream) this.receiver, user);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.stores.StoreStream$initGatewaySocketListeners$29, reason: invalid class name */
     /* JADX INFO: compiled from: StoreStream.kt */
-    public final /* synthetic */ class AnonymousClass29 extends k implements Function1<ModelUserNote.Update, Unit> {
+    public final /* synthetic */ class AnonymousClass29 extends FunctionReferenceImpl implements Function1<ModelUserNote.Update, Unit> {
         public AnonymousClass29(StoreStream storeStream) {
             super(1, storeStream, StoreStream.class, "handleUserNoteUpdated", "handleUserNoteUpdated(Lcom/discord/models/domain/ModelUserNote$Update;)V", 0);
         }
@@ -1205,14 +1206,14 @@ public final class StoreStream {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(ModelUserNote.Update update) {
-            m.checkNotNullParameter(update, "p1");
+            Intrinsics3.checkNotNullParameter(update, "p1");
             StoreStream.access$handleUserNoteUpdated((StoreStream) this.receiver, update);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.stores.StoreStream$initGatewaySocketListeners$3, reason: invalid class name */
     /* JADX INFO: compiled from: StoreStream.kt */
-    public final /* synthetic */ class AnonymousClass3 extends k implements Function1<Boolean, Unit> {
+    public final /* synthetic */ class AnonymousClass3 extends FunctionReferenceImpl implements Function1<Boolean, Unit> {
         public AnonymousClass3(StoreStream storeStream) {
             super(1, storeStream, StoreStream.class, "handleConnectionReady", "handleConnectionReady(Z)V", 0);
         }
@@ -1230,7 +1231,7 @@ public final class StoreStream {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreStream$initGatewaySocketListeners$30, reason: invalid class name */
     /* JADX INFO: compiled from: StoreStream.kt */
-    public final /* synthetic */ class AnonymousClass30 extends k implements Function1<ModelUserRelationship, Unit> {
+    public final /* synthetic */ class AnonymousClass30 extends FunctionReferenceImpl implements Function1<ModelUserRelationship, Unit> {
         public AnonymousClass30(StoreStream storeStream) {
             super(1, storeStream, StoreStream.class, "handleRelationshipAdd", "handleRelationshipAdd(Lcom/discord/models/domain/ModelUserRelationship;)V", 0);
         }
@@ -1243,14 +1244,14 @@ public final class StoreStream {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(ModelUserRelationship modelUserRelationship) {
-            m.checkNotNullParameter(modelUserRelationship, "p1");
+            Intrinsics3.checkNotNullParameter(modelUserRelationship, "p1");
             ((StoreStream) this.receiver).handleRelationshipAdd(modelUserRelationship);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.stores.StoreStream$initGatewaySocketListeners$31, reason: invalid class name */
     /* JADX INFO: compiled from: StoreStream.kt */
-    public final /* synthetic */ class AnonymousClass31 extends k implements Function1<ModelUserRelationship, Unit> {
+    public final /* synthetic */ class AnonymousClass31 extends FunctionReferenceImpl implements Function1<ModelUserRelationship, Unit> {
         public AnonymousClass31(StoreStream storeStream) {
             super(1, storeStream, StoreStream.class, "handleRelationshipRemove", "handleRelationshipRemove(Lcom/discord/models/domain/ModelUserRelationship;)V", 0);
         }
@@ -1263,14 +1264,14 @@ public final class StoreStream {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(ModelUserRelationship modelUserRelationship) {
-            m.checkNotNullParameter(modelUserRelationship, "p1");
+            Intrinsics3.checkNotNullParameter(modelUserRelationship, "p1");
             StoreStream.access$handleRelationshipRemove((StoreStream) this.receiver, modelUserRelationship);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.stores.StoreStream$initGatewaySocketListeners$32, reason: invalid class name */
     /* JADX INFO: compiled from: StoreStream.kt */
-    public final /* synthetic */ class AnonymousClass32 extends k implements Function1<Message, Unit> {
+    public final /* synthetic */ class AnonymousClass32 extends FunctionReferenceImpl implements Function1<Message, Unit> {
         public AnonymousClass32(StoreStream storeStream) {
             super(1, storeStream, StoreStream.class, "handleMessageUpdate", "handleMessageUpdate(Lcom/discord/api/message/Message;)V", 0);
         }
@@ -1283,14 +1284,14 @@ public final class StoreStream {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(Message message) {
-            m.checkNotNullParameter(message, "p1");
+            Intrinsics3.checkNotNullParameter(message, "p1");
             StoreStream.access$handleMessageUpdate((StoreStream) this.receiver, message);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.stores.StoreStream$initGatewaySocketListeners$33, reason: invalid class name */
     /* JADX INFO: compiled from: StoreStream.kt */
-    public final /* synthetic */ class AnonymousClass33 extends k implements Function1<Message, Unit> {
+    public final /* synthetic */ class AnonymousClass33 extends FunctionReferenceImpl implements Function1<Message, Unit> {
         public AnonymousClass33(StoreStream storeStream) {
             super(1, storeStream, StoreStream.class, "handleMessageCreate", "handleMessageCreate(Lcom/discord/api/message/Message;)V", 0);
         }
@@ -1303,14 +1304,14 @@ public final class StoreStream {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(Message message) {
-            m.checkNotNullParameter(message, "p1");
+            Intrinsics3.checkNotNullParameter(message, "p1");
             StoreStream.access$handleMessageCreate((StoreStream) this.receiver, message);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.stores.StoreStream$initGatewaySocketListeners$34, reason: invalid class name */
     /* JADX INFO: compiled from: StoreStream.kt */
-    public final /* synthetic */ class AnonymousClass34 extends k implements Function1<MessageReactionUpdate, Unit> {
+    public final /* synthetic */ class AnonymousClass34 extends FunctionReferenceImpl implements Function1<MessageReactionUpdate, Unit> {
         public AnonymousClass34(StoreStream storeStream) {
             super(1, storeStream, StoreStream.class, "handleReactionAdd", "handleReactionAdd(Lcom/discord/api/message/reaction/MessageReactionUpdate;)V", 0);
         }
@@ -1323,14 +1324,14 @@ public final class StoreStream {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(MessageReactionUpdate messageReactionUpdate) {
-            m.checkNotNullParameter(messageReactionUpdate, "p1");
+            Intrinsics3.checkNotNullParameter(messageReactionUpdate, "p1");
             StoreStream.access$handleReactionAdd((StoreStream) this.receiver, messageReactionUpdate);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.stores.StoreStream$initGatewaySocketListeners$35, reason: invalid class name */
     /* JADX INFO: compiled from: StoreStream.kt */
-    public final /* synthetic */ class AnonymousClass35 extends k implements Function1<MessageReactionUpdate, Unit> {
+    public final /* synthetic */ class AnonymousClass35 extends FunctionReferenceImpl implements Function1<MessageReactionUpdate, Unit> {
         public AnonymousClass35(StoreStream storeStream) {
             super(1, storeStream, StoreStream.class, "handleReactionRemove", "handleReactionRemove(Lcom/discord/api/message/reaction/MessageReactionUpdate;)V", 0);
         }
@@ -1343,14 +1344,14 @@ public final class StoreStream {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(MessageReactionUpdate messageReactionUpdate) {
-            m.checkNotNullParameter(messageReactionUpdate, "p1");
+            Intrinsics3.checkNotNullParameter(messageReactionUpdate, "p1");
             StoreStream.access$handleReactionRemove((StoreStream) this.receiver, messageReactionUpdate);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.stores.StoreStream$initGatewaySocketListeners$36, reason: invalid class name */
     /* JADX INFO: compiled from: StoreStream.kt */
-    public final /* synthetic */ class AnonymousClass36 extends k implements Function1<MessageReactionUpdate, Unit> {
+    public final /* synthetic */ class AnonymousClass36 extends FunctionReferenceImpl implements Function1<MessageReactionUpdate, Unit> {
         public AnonymousClass36(StoreStream storeStream) {
             super(1, storeStream, StoreStream.class, "handleReactionRemoveEmoji", "handleReactionRemoveEmoji(Lcom/discord/api/message/reaction/MessageReactionUpdate;)V", 0);
         }
@@ -1363,14 +1364,14 @@ public final class StoreStream {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(MessageReactionUpdate messageReactionUpdate) {
-            m.checkNotNullParameter(messageReactionUpdate, "p1");
+            Intrinsics3.checkNotNullParameter(messageReactionUpdate, "p1");
             StoreStream.access$handleReactionRemoveEmoji((StoreStream) this.receiver, messageReactionUpdate);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.stores.StoreStream$initGatewaySocketListeners$37, reason: invalid class name */
     /* JADX INFO: compiled from: StoreStream.kt */
-    public final /* synthetic */ class AnonymousClass37 extends k implements Function1<MessageReactionUpdate, Unit> {
+    public final /* synthetic */ class AnonymousClass37 extends FunctionReferenceImpl implements Function1<MessageReactionUpdate, Unit> {
         public AnonymousClass37(StoreStream storeStream) {
             super(1, storeStream, StoreStream.class, "handleReactionRemoveAll", "handleReactionRemoveAll(Lcom/discord/api/message/reaction/MessageReactionUpdate;)V", 0);
         }
@@ -1383,14 +1384,14 @@ public final class StoreStream {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(MessageReactionUpdate messageReactionUpdate) {
-            m.checkNotNullParameter(messageReactionUpdate, "p1");
+            Intrinsics3.checkNotNullParameter(messageReactionUpdate, "p1");
             StoreStream.access$handleReactionRemoveAll((StoreStream) this.receiver, messageReactionUpdate);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.stores.StoreStream$initGatewaySocketListeners$38, reason: invalid class name */
     /* JADX INFO: compiled from: StoreStream.kt */
-    public final /* synthetic */ class AnonymousClass38 extends k implements Function1<ModelMessageDelete, Unit> {
+    public final /* synthetic */ class AnonymousClass38 extends FunctionReferenceImpl implements Function1<ModelMessageDelete, Unit> {
         public AnonymousClass38(StoreStream storeStream) {
             super(1, storeStream, StoreStream.class, "handleMessageDelete", "handleMessageDelete(Lcom/discord/models/domain/ModelMessageDelete;)V", 0);
         }
@@ -1403,14 +1404,14 @@ public final class StoreStream {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(ModelMessageDelete modelMessageDelete) {
-            m.checkNotNullParameter(modelMessageDelete, "p1");
+            Intrinsics3.checkNotNullParameter(modelMessageDelete, "p1");
             StoreStream.access$handleMessageDelete((StoreStream) this.receiver, modelMessageDelete);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.stores.StoreStream$initGatewaySocketListeners$39, reason: invalid class name */
     /* JADX INFO: compiled from: StoreStream.kt */
-    public final /* synthetic */ class AnonymousClass39 extends k implements Function1<ModelReadState, Unit> {
+    public final /* synthetic */ class AnonymousClass39 extends FunctionReferenceImpl implements Function1<ModelReadState, Unit> {
         public AnonymousClass39(StoreStream storeStream) {
             super(1, storeStream, StoreStream.class, "handleMessageAck", "handleMessageAck(Lcom/discord/models/domain/ModelReadState;)V", 0);
         }
@@ -1423,14 +1424,14 @@ public final class StoreStream {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(ModelReadState modelReadState) {
-            m.checkNotNullParameter(modelReadState, "p1");
+            Intrinsics3.checkNotNullParameter(modelReadState, "p1");
             StoreStream.access$handleMessageAck((StoreStream) this.receiver, modelReadState);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.stores.StoreStream$initGatewaySocketListeners$4, reason: invalid class name */
     /* JADX INFO: compiled from: StoreStream.kt */
-    public final /* synthetic */ class AnonymousClass4 extends k implements Function1<GuildApplicationCommands, Unit> {
+    public final /* synthetic */ class AnonymousClass4 extends FunctionReferenceImpl implements Function1<GuildApplicationCommands, Unit> {
         public AnonymousClass4(StoreStream storeStream) {
             super(1, storeStream, StoreStream.class, "handleGuildApplicationCommands", "handleGuildApplicationCommands(Lcom/discord/api/commands/GuildApplicationCommands;)V", 0);
         }
@@ -1443,14 +1444,14 @@ public final class StoreStream {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(GuildApplicationCommands guildApplicationCommands) {
-            m.checkNotNullParameter(guildApplicationCommands, "p1");
+            Intrinsics3.checkNotNullParameter(guildApplicationCommands, "p1");
             StoreStream.access$handleGuildApplicationCommands((StoreStream) this.receiver, guildApplicationCommands);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.stores.StoreStream$initGatewaySocketListeners$40, reason: invalid class name */
     /* JADX INFO: compiled from: StoreStream.kt */
-    public final /* synthetic */ class AnonymousClass40 extends k implements Function1<VoiceState, Unit> {
+    public final /* synthetic */ class AnonymousClass40 extends FunctionReferenceImpl implements Function1<VoiceState, Unit> {
         public AnonymousClass40(StoreStream storeStream) {
             super(1, storeStream, StoreStream.class, "handleVoiceStateUpdate", "handleVoiceStateUpdate(Lcom/discord/api/voice/state/VoiceState;)V", 0);
         }
@@ -1463,14 +1464,14 @@ public final class StoreStream {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(VoiceState voiceState) {
-            m.checkNotNullParameter(voiceState, "p1");
+            Intrinsics3.checkNotNullParameter(voiceState, "p1");
             StoreStream.access$handleVoiceStateUpdate((StoreStream) this.receiver, voiceState);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.stores.StoreStream$initGatewaySocketListeners$41, reason: invalid class name */
     /* JADX INFO: compiled from: StoreStream.kt */
-    public final /* synthetic */ class AnonymousClass41 extends k implements Function1<VoiceServer, Unit> {
+    public final /* synthetic */ class AnonymousClass41 extends FunctionReferenceImpl implements Function1<VoiceServer, Unit> {
         public AnonymousClass41(StoreStream storeStream) {
             super(1, storeStream, StoreStream.class, "handleVoiceServerUpdate", "handleVoiceServerUpdate(Lcom/discord/api/voice/server/VoiceServer;)V", 0);
         }
@@ -1483,14 +1484,14 @@ public final class StoreStream {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(VoiceServer voiceServer) {
-            m.checkNotNullParameter(voiceServer, "p1");
+            Intrinsics3.checkNotNullParameter(voiceServer, "p1");
             StoreStream.access$handleVoiceServerUpdate((StoreStream) this.receiver, voiceServer);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.stores.StoreStream$initGatewaySocketListeners$42, reason: invalid class name */
     /* JADX INFO: compiled from: StoreStream.kt */
-    public final /* synthetic */ class AnonymousClass42 extends k implements Function1<ModelNotificationSettings, Unit> {
+    public final /* synthetic */ class AnonymousClass42 extends FunctionReferenceImpl implements Function1<ModelNotificationSettings, Unit> {
         public AnonymousClass42(StoreStream storeStream) {
             super(1, storeStream, StoreStream.class, "handleGuildSettingUpdated", "handleGuildSettingUpdated(Lcom/discord/models/domain/ModelNotificationSettings;)V", 0);
         }
@@ -1503,14 +1504,14 @@ public final class StoreStream {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(ModelNotificationSettings modelNotificationSettings) {
-            m.checkNotNullParameter(modelNotificationSettings, "p1");
+            Intrinsics3.checkNotNullParameter(modelNotificationSettings, "p1");
             StoreStream.access$handleGuildSettingUpdated((StoreStream) this.receiver, modelNotificationSettings);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.stores.StoreStream$initGatewaySocketListeners$43, reason: invalid class name */
     /* JADX INFO: compiled from: StoreStream.kt */
-    public final /* synthetic */ class AnonymousClass43 extends k implements Function1<ModelUserSettings, Unit> {
+    public final /* synthetic */ class AnonymousClass43 extends FunctionReferenceImpl implements Function1<ModelUserSettings, Unit> {
         public AnonymousClass43(StoreStream storeStream) {
             super(1, storeStream, StoreStream.class, "handleUserSettingsUpdate", "handleUserSettingsUpdate(Lcom/discord/models/domain/ModelUserSettings;)V", 0);
         }
@@ -1523,14 +1524,14 @@ public final class StoreStream {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(ModelUserSettings modelUserSettings) {
-            m.checkNotNullParameter(modelUserSettings, "p1");
+            Intrinsics3.checkNotNullParameter(modelUserSettings, "p1");
             StoreStream.access$handleUserSettingsUpdate((StoreStream) this.receiver, modelUserSettings);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.stores.StoreStream$initGatewaySocketListeners$44, reason: invalid class name */
     /* JADX INFO: compiled from: StoreStream.kt */
-    public final /* synthetic */ class AnonymousClass44 extends k implements Function1<TypingUser, Unit> {
+    public final /* synthetic */ class AnonymousClass44 extends FunctionReferenceImpl implements Function1<TypingUser, Unit> {
         public AnonymousClass44(StoreStream storeStream) {
             super(1, storeStream, StoreStream.class, "handleTypingStart", "handleTypingStart(Lcom/discord/api/user/TypingUser;)V", 0);
         }
@@ -1543,14 +1544,14 @@ public final class StoreStream {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(TypingUser typingUser) {
-            m.checkNotNullParameter(typingUser, "p1");
+            Intrinsics3.checkNotNullParameter(typingUser, "p1");
             StoreStream.access$handleTypingStart((StoreStream) this.receiver, typingUser);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.stores.StoreStream$initGatewaySocketListeners$45, reason: invalid class name */
     /* JADX INFO: compiled from: StoreStream.kt */
-    public final class AnonymousClass45 extends o implements Function1<Presence, Unit> {
+    public final class AnonymousClass45 extends Lambda implements Function1<Presence, Unit> {
         public AnonymousClass45() {
             super(1);
         }
@@ -1566,14 +1567,14 @@ public final class StoreStream {
             StoreStream storeStream = StoreStream.this;
             Long guildId = presence.getGuildId();
             long jLongValue = guildId != null ? guildId.longValue() : 0L;
-            m.checkNotNullExpressionValue(presence, "it");
+            Intrinsics3.checkNotNullExpressionValue(presence, "it");
             StoreStream.access$handlePresenceUpdate(storeStream, jLongValue, presence);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.stores.StoreStream$initGatewaySocketListeners$46, reason: invalid class name */
     /* JADX INFO: compiled from: StoreStream.kt */
-    public final /* synthetic */ class AnonymousClass46 extends k implements Function1<List<? extends Presence>, Unit> {
+    public final /* synthetic */ class AnonymousClass46 extends FunctionReferenceImpl implements Function1<List<? extends Presence>, Unit> {
         public AnonymousClass46(StoreStream storeStream) {
             super(1, storeStream, StoreStream.class, "handlePresenceReplace", "handlePresenceReplace(Ljava/util/List;)V", 0);
         }
@@ -1586,14 +1587,14 @@ public final class StoreStream {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(List<Presence> list) {
-            m.checkNotNullParameter(list, "p1");
+            Intrinsics3.checkNotNullParameter(list, "p1");
             StoreStream.access$handlePresenceReplace((StoreStream) this.receiver, list);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.stores.StoreStream$initGatewaySocketListeners$47, reason: invalid class name */
     /* JADX INFO: compiled from: StoreStream.kt */
-    public final /* synthetic */ class AnonymousClass47 extends k implements Function1<ChannelRecipient, Unit> {
+    public final /* synthetic */ class AnonymousClass47 extends FunctionReferenceImpl implements Function1<ChannelRecipient, Unit> {
         public AnonymousClass47(StoreStream storeStream) {
             super(1, storeStream, StoreStream.class, "handleGroupDMRecipientAdd", "handleGroupDMRecipientAdd(Lcom/discord/api/channel/ChannelRecipient;)V", 0);
         }
@@ -1606,14 +1607,14 @@ public final class StoreStream {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(ChannelRecipient channelRecipient) {
-            m.checkNotNullParameter(channelRecipient, "p1");
+            Intrinsics3.checkNotNullParameter(channelRecipient, "p1");
             StoreStream.access$handleGroupDMRecipientAdd((StoreStream) this.receiver, channelRecipient);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.stores.StoreStream$initGatewaySocketListeners$48, reason: invalid class name */
     /* JADX INFO: compiled from: StoreStream.kt */
-    public final /* synthetic */ class AnonymousClass48 extends k implements Function1<ChannelRecipient, Unit> {
+    public final /* synthetic */ class AnonymousClass48 extends FunctionReferenceImpl implements Function1<ChannelRecipient, Unit> {
         public AnonymousClass48(StoreStream storeStream) {
             super(1, storeStream, StoreStream.class, "handleGroupDMRecipientRemove", "handleGroupDMRecipientRemove(Lcom/discord/api/channel/ChannelRecipient;)V", 0);
         }
@@ -1626,14 +1627,14 @@ public final class StoreStream {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(ChannelRecipient channelRecipient) {
-            m.checkNotNullParameter(channelRecipient, "p1");
+            Intrinsics3.checkNotNullParameter(channelRecipient, "p1");
             StoreStream.access$handleGroupDMRecipientRemove((StoreStream) this.receiver, channelRecipient);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.stores.StoreStream$initGatewaySocketListeners$49, reason: invalid class name */
     /* JADX INFO: compiled from: StoreStream.kt */
-    public final /* synthetic */ class AnonymousClass49 extends k implements Function1<ModelCall, Unit> {
+    public final /* synthetic */ class AnonymousClass49 extends FunctionReferenceImpl implements Function1<ModelCall, Unit> {
         public AnonymousClass49(StoreStream storeStream) {
             super(1, storeStream, StoreStream.class, "handleCallDelete", "handleCallDelete(Lcom/discord/models/domain/ModelCall;)V", 0);
         }
@@ -1646,14 +1647,14 @@ public final class StoreStream {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(ModelCall modelCall) {
-            m.checkNotNullParameter(modelCall, "p1");
+            Intrinsics3.checkNotNullParameter(modelCall, "p1");
             StoreStream.access$handleCallDelete((StoreStream) this.receiver, modelCall);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.stores.StoreStream$initGatewaySocketListeners$5, reason: invalid class name */
     /* JADX INFO: compiled from: StoreStream.kt */
-    public final /* synthetic */ class AnonymousClass5 extends k implements Function1<Guild, Unit> {
+    public final /* synthetic */ class AnonymousClass5 extends FunctionReferenceImpl implements Function1<Guild, Unit> {
         public AnonymousClass5(StoreStream storeStream) {
             super(1, storeStream, StoreStream.class, "handleGuildCreate", "handleGuildCreate(Lcom/discord/api/guild/Guild;)V", 0);
         }
@@ -1666,14 +1667,14 @@ public final class StoreStream {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(Guild guild) {
-            m.checkNotNullParameter(guild, "p1");
+            Intrinsics3.checkNotNullParameter(guild, "p1");
             StoreStream.access$handleGuildCreate((StoreStream) this.receiver, guild);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.stores.StoreStream$initGatewaySocketListeners$50, reason: invalid class name */
     /* JADX INFO: compiled from: StoreStream.kt */
-    public final /* synthetic */ class AnonymousClass50 extends k implements Function1<ModelCall, Unit> {
+    public final /* synthetic */ class AnonymousClass50 extends FunctionReferenceImpl implements Function1<ModelCall, Unit> {
         public AnonymousClass50(StoreStream storeStream) {
             super(1, storeStream, StoreStream.class, "handleCallCreateOrUpdate", "handleCallCreateOrUpdate(Lcom/discord/models/domain/ModelCall;)V", 0);
         }
@@ -1686,14 +1687,14 @@ public final class StoreStream {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(ModelCall modelCall) {
-            m.checkNotNullParameter(modelCall, "p1");
+            Intrinsics3.checkNotNullParameter(modelCall, "p1");
             StoreStream.access$handleCallCreateOrUpdate((StoreStream) this.receiver, modelCall);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.stores.StoreStream$initGatewaySocketListeners$51, reason: invalid class name */
     /* JADX INFO: compiled from: StoreStream.kt */
-    public final /* synthetic */ class AnonymousClass51 extends k implements Function1<GuildEmojisUpdate, Unit> {
+    public final /* synthetic */ class AnonymousClass51 extends FunctionReferenceImpl implements Function1<GuildEmojisUpdate, Unit> {
         public AnonymousClass51(StoreStream storeStream) {
             super(1, storeStream, StoreStream.class, "handleEmojiUpdate", "handleEmojiUpdate(Lcom/discord/api/emoji/GuildEmojisUpdate;)V", 0);
         }
@@ -1706,14 +1707,14 @@ public final class StoreStream {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(GuildEmojisUpdate guildEmojisUpdate) {
-            m.checkNotNullParameter(guildEmojisUpdate, "p1");
+            Intrinsics3.checkNotNullParameter(guildEmojisUpdate, "p1");
             StoreStream.access$handleEmojiUpdate((StoreStream) this.receiver, guildEmojisUpdate);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.stores.StoreStream$initGatewaySocketListeners$52, reason: invalid class name */
     /* JADX INFO: compiled from: StoreStream.kt */
-    public final /* synthetic */ class AnonymousClass52 extends k implements Function1<GuildStickersUpdate, Unit> {
+    public final /* synthetic */ class AnonymousClass52 extends FunctionReferenceImpl implements Function1<GuildStickersUpdate, Unit> {
         public AnonymousClass52(StoreStream storeStream) {
             super(1, storeStream, StoreStream.class, "handleStickersUpdate", "handleStickersUpdate(Lcom/discord/api/sticker/GuildStickersUpdate;)V", 0);
         }
@@ -1726,14 +1727,14 @@ public final class StoreStream {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(GuildStickersUpdate guildStickersUpdate) {
-            m.checkNotNullParameter(guildStickersUpdate, "p1");
+            Intrinsics3.checkNotNullParameter(guildStickersUpdate, "p1");
             StoreStream.access$handleStickersUpdate((StoreStream) this.receiver, guildStickersUpdate);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.stores.StoreStream$initGatewaySocketListeners$53, reason: invalid class name */
     /* JADX INFO: compiled from: StoreStream.kt */
-    public final /* synthetic */ class AnonymousClass53 extends k implements Function1<UserRequiredActionUpdate, Unit> {
+    public final /* synthetic */ class AnonymousClass53 extends FunctionReferenceImpl implements Function1<UserRequiredActionUpdate, Unit> {
         public AnonymousClass53(StoreStream storeStream) {
             super(1, storeStream, StoreStream.class, "handleRequiredActionUpdate", "handleRequiredActionUpdate(Lcom/discord/api/requiredaction/UserRequiredActionUpdate;)V", 0);
         }
@@ -1746,14 +1747,14 @@ public final class StoreStream {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(UserRequiredActionUpdate userRequiredActionUpdate) {
-            m.checkNotNullParameter(userRequiredActionUpdate, "p1");
+            Intrinsics3.checkNotNullParameter(userRequiredActionUpdate, "p1");
             StoreStream.access$handleRequiredActionUpdate((StoreStream) this.receiver, userRequiredActionUpdate);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.stores.StoreStream$initGatewaySocketListeners$54, reason: invalid class name */
     /* JADX INFO: compiled from: StoreStream.kt */
-    public final /* synthetic */ class AnonymousClass54 extends k implements Function1<ModelGuildMemberListUpdate, Unit> {
+    public final /* synthetic */ class AnonymousClass54 extends FunctionReferenceImpl implements Function1<ModelGuildMemberListUpdate, Unit> {
         public AnonymousClass54(StoreStream storeStream) {
             super(1, storeStream, StoreStream.class, "handleGuildMemberListUpdate", "handleGuildMemberListUpdate(Lcom/discord/models/domain/ModelGuildMemberListUpdate;)V", 0);
         }
@@ -1766,14 +1767,14 @@ public final class StoreStream {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(ModelGuildMemberListUpdate modelGuildMemberListUpdate) {
-            m.checkNotNullParameter(modelGuildMemberListUpdate, "p1");
+            Intrinsics3.checkNotNullParameter(modelGuildMemberListUpdate, "p1");
             StoreStream.access$handleGuildMemberListUpdate((StoreStream) this.receiver, modelGuildMemberListUpdate);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.stores.StoreStream$initGatewaySocketListeners$55, reason: invalid class name */
     /* JADX INFO: compiled from: StoreStream.kt */
-    public final /* synthetic */ class AnonymousClass55 extends k implements Function1<List<? extends ModelSession>, Unit> {
+    public final /* synthetic */ class AnonymousClass55 extends FunctionReferenceImpl implements Function1<List<? extends ModelSession>, Unit> {
         public AnonymousClass55(StoreStream storeStream) {
             super(1, storeStream, StoreStream.class, "handleSessionsReplace", "handleSessionsReplace(Ljava/util/List;)V", 0);
         }
@@ -1786,14 +1787,14 @@ public final class StoreStream {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(List<? extends ModelSession> list) {
-            m.checkNotNullParameter(list, "p1");
+            Intrinsics3.checkNotNullParameter(list, "p1");
             StoreStream.access$handleSessionsReplace((StoreStream) this.receiver, list);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.stores.StoreStream$initGatewaySocketListeners$56, reason: invalid class name */
     /* JADX INFO: compiled from: StoreStream.kt */
-    public final class AnonymousClass56 extends o implements Function1<Unit, Unit> {
+    public final class AnonymousClass56 extends Lambda implements Function1<Unit, Unit> {
         public AnonymousClass56() {
             super(1);
         }
@@ -1812,7 +1813,7 @@ public final class StoreStream {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreStream$initGatewaySocketListeners$57, reason: invalid class name */
     /* JADX INFO: compiled from: StoreStream.kt */
-    public final class AnonymousClass57 extends o implements Function1<Unit, Unit> {
+    public final class AnonymousClass57 extends Lambda implements Function1<Unit, Unit> {
         public AnonymousClass57() {
             super(1);
         }
@@ -1831,47 +1832,47 @@ public final class StoreStream {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreStream$initGatewaySocketListeners$58, reason: invalid class name */
     /* JADX INFO: compiled from: StoreStream.kt */
-    public final /* synthetic */ class AnonymousClass58 extends k implements Function1<StreamCreateOrUpdate, Unit> {
+    public final /* synthetic */ class AnonymousClass58 extends FunctionReferenceImpl implements Function1<ModelApplicationStream3, Unit> {
         public AnonymousClass58(StoreStream storeStream) {
             super(1, storeStream, StoreStream.class, "handleStreamCreate", "handleStreamCreate(Lcom/discord/models/domain/StreamCreateOrUpdate;)V", 0);
         }
 
         @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(StreamCreateOrUpdate streamCreateOrUpdate) {
-            invoke2(streamCreateOrUpdate);
+        public /* bridge */ /* synthetic */ Unit invoke(ModelApplicationStream3 modelApplicationStream3) {
+            invoke2(modelApplicationStream3);
             return Unit.a;
         }
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(StreamCreateOrUpdate streamCreateOrUpdate) {
-            m.checkNotNullParameter(streamCreateOrUpdate, "p1");
-            StoreStream.access$handleStreamCreate((StoreStream) this.receiver, streamCreateOrUpdate);
+        public final void invoke2(ModelApplicationStream3 modelApplicationStream3) {
+            Intrinsics3.checkNotNullParameter(modelApplicationStream3, "p1");
+            StoreStream.access$handleStreamCreate((StoreStream) this.receiver, modelApplicationStream3);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.stores.StoreStream$initGatewaySocketListeners$59, reason: invalid class name */
     /* JADX INFO: compiled from: StoreStream.kt */
-    public final /* synthetic */ class AnonymousClass59 extends k implements Function1<StreamCreateOrUpdate, Unit> {
+    public final /* synthetic */ class AnonymousClass59 extends FunctionReferenceImpl implements Function1<ModelApplicationStream3, Unit> {
         public AnonymousClass59(StoreStream storeStream) {
             super(1, storeStream, StoreStream.class, "handleStreamUpdate", "handleStreamUpdate(Lcom/discord/models/domain/StreamCreateOrUpdate;)V", 0);
         }
 
         @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(StreamCreateOrUpdate streamCreateOrUpdate) {
-            invoke2(streamCreateOrUpdate);
+        public /* bridge */ /* synthetic */ Unit invoke(ModelApplicationStream3 modelApplicationStream3) {
+            invoke2(modelApplicationStream3);
             return Unit.a;
         }
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(StreamCreateOrUpdate streamCreateOrUpdate) {
-            m.checkNotNullParameter(streamCreateOrUpdate, "p1");
-            StoreStream.access$handleStreamUpdate((StoreStream) this.receiver, streamCreateOrUpdate);
+        public final void invoke2(ModelApplicationStream3 modelApplicationStream3) {
+            Intrinsics3.checkNotNullParameter(modelApplicationStream3, "p1");
+            StoreStream.access$handleStreamUpdate((StoreStream) this.receiver, modelApplicationStream3);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.stores.StoreStream$initGatewaySocketListeners$6, reason: invalid class name */
     /* JADX INFO: compiled from: StoreStream.kt */
-    public final /* synthetic */ class AnonymousClass6 extends k implements Function1<Guild, Unit> {
+    public final /* synthetic */ class AnonymousClass6 extends FunctionReferenceImpl implements Function1<Guild, Unit> {
         public AnonymousClass6(StoreStream storeStream) {
             super(1, storeStream, StoreStream.class, "handleGuildUpdate", "handleGuildUpdate(Lcom/discord/api/guild/Guild;)V", 0);
         }
@@ -1884,55 +1885,55 @@ public final class StoreStream {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(Guild guild) {
-            m.checkNotNullParameter(guild, "p1");
+            Intrinsics3.checkNotNullParameter(guild, "p1");
             StoreStream.access$handleGuildUpdate((StoreStream) this.receiver, guild);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.stores.StoreStream$initGatewaySocketListeners$60, reason: invalid class name */
     /* JADX INFO: compiled from: StoreStream.kt */
-    public final class AnonymousClass60 extends o implements Function1<StreamDelete, Unit> {
+    public final class AnonymousClass60 extends Lambda implements Function1<ModelApplicationStream5, Unit> {
         public AnonymousClass60() {
             super(1);
         }
 
         @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(StreamDelete streamDelete) {
-            invoke2(streamDelete);
+        public /* bridge */ /* synthetic */ Unit invoke(ModelApplicationStream5 modelApplicationStream5) {
+            invoke2(modelApplicationStream5);
             return Unit.a;
         }
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(StreamDelete streamDelete) {
+        public final void invoke2(ModelApplicationStream5 modelApplicationStream5) {
             StoreStream storeStream = StoreStream.this;
-            m.checkNotNullExpressionValue(streamDelete, "it");
-            storeStream.handleStreamDelete(streamDelete, false);
+            Intrinsics3.checkNotNullExpressionValue(modelApplicationStream5, "it");
+            storeStream.handleStreamDelete(modelApplicationStream5, false);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.stores.StoreStream$initGatewaySocketListeners$61, reason: invalid class name */
     /* JADX INFO: compiled from: StoreStream.kt */
-    public final /* synthetic */ class AnonymousClass61 extends k implements Function1<StreamServerUpdate, Unit> {
+    public final /* synthetic */ class AnonymousClass61 extends FunctionReferenceImpl implements Function1<ModelApplicationStream7, Unit> {
         public AnonymousClass61(StoreStream storeStream) {
             super(1, storeStream, StoreStream.class, "handleStreamServerUpdate", "handleStreamServerUpdate(Lcom/discord/models/domain/StreamServerUpdate;)V", 0);
         }
 
         @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(StreamServerUpdate streamServerUpdate) {
-            invoke2(streamServerUpdate);
+        public /* bridge */ /* synthetic */ Unit invoke(ModelApplicationStream7 modelApplicationStream7) {
+            invoke2(modelApplicationStream7);
             return Unit.a;
         }
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(StreamServerUpdate streamServerUpdate) {
-            m.checkNotNullParameter(streamServerUpdate, "p1");
-            StoreStream.access$handleStreamServerUpdate((StoreStream) this.receiver, streamServerUpdate);
+        public final void invoke2(ModelApplicationStream7 modelApplicationStream7) {
+            Intrinsics3.checkNotNullParameter(modelApplicationStream7, "p1");
+            StoreStream.access$handleStreamServerUpdate((StoreStream) this.receiver, modelApplicationStream7);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.stores.StoreStream$initGatewaySocketListeners$62, reason: invalid class name */
     /* JADX INFO: compiled from: StoreStream.kt */
-    public final /* synthetic */ class AnonymousClass62 extends k implements Function1<InteractionStateUpdate, Unit> {
+    public final /* synthetic */ class AnonymousClass62 extends FunctionReferenceImpl implements Function1<InteractionStateUpdate, Unit> {
         public AnonymousClass62(StoreStream storeStream) {
             super(1, storeStream, StoreStream.class, "handleInteractionCreate", "handleInteractionCreate(Lcom/discord/api/interaction/InteractionStateUpdate;)V", 0);
         }
@@ -1945,14 +1946,14 @@ public final class StoreStream {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(InteractionStateUpdate interactionStateUpdate) {
-            m.checkNotNullParameter(interactionStateUpdate, "p1");
+            Intrinsics3.checkNotNullParameter(interactionStateUpdate, "p1");
             StoreStream.access$handleInteractionCreate((StoreStream) this.receiver, interactionStateUpdate);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.stores.StoreStream$initGatewaySocketListeners$63, reason: invalid class name */
     /* JADX INFO: compiled from: StoreStream.kt */
-    public final /* synthetic */ class AnonymousClass63 extends k implements Function1<InteractionStateUpdate, Unit> {
+    public final /* synthetic */ class AnonymousClass63 extends FunctionReferenceImpl implements Function1<InteractionStateUpdate, Unit> {
         public AnonymousClass63(StoreStream storeStream) {
             super(1, storeStream, StoreStream.class, "handleInteractionSuccess", "handleInteractionSuccess(Lcom/discord/api/interaction/InteractionStateUpdate;)V", 0);
         }
@@ -1965,14 +1966,14 @@ public final class StoreStream {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(InteractionStateUpdate interactionStateUpdate) {
-            m.checkNotNullParameter(interactionStateUpdate, "p1");
+            Intrinsics3.checkNotNullParameter(interactionStateUpdate, "p1");
             StoreStream.access$handleInteractionSuccess((StoreStream) this.receiver, interactionStateUpdate);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.stores.StoreStream$initGatewaySocketListeners$64, reason: invalid class name */
     /* JADX INFO: compiled from: StoreStream.kt */
-    public final /* synthetic */ class AnonymousClass64 extends k implements Function1<InteractionStateUpdate, Unit> {
+    public final /* synthetic */ class AnonymousClass64 extends FunctionReferenceImpl implements Function1<InteractionStateUpdate, Unit> {
         public AnonymousClass64(StoreStream storeStream) {
             super(1, storeStream, StoreStream.class, "handleInteractionFailure", "handleInteractionFailure(Lcom/discord/api/interaction/InteractionStateUpdate;)V", 0);
         }
@@ -1985,14 +1986,14 @@ public final class StoreStream {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(InteractionStateUpdate interactionStateUpdate) {
-            m.checkNotNullParameter(interactionStateUpdate, "p1");
+            Intrinsics3.checkNotNullParameter(interactionStateUpdate, "p1");
             ((StoreStream) this.receiver).handleInteractionFailure(interactionStateUpdate);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.stores.StoreStream$initGatewaySocketListeners$65, reason: invalid class name */
     /* JADX INFO: compiled from: StoreStream.kt */
-    public final /* synthetic */ class AnonymousClass65 extends k implements Function1<InteractionModalCreate, Unit> {
+    public final /* synthetic */ class AnonymousClass65 extends FunctionReferenceImpl implements Function1<InteractionModalCreate, Unit> {
         public AnonymousClass65(StoreStream storeStream) {
             super(1, storeStream, StoreStream.class, "handleInteractionModalCreate", "handleInteractionModalCreate(Lcom/discord/api/interaction/InteractionModalCreate;)V", 0);
         }
@@ -2005,14 +2006,14 @@ public final class StoreStream {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(InteractionModalCreate interactionModalCreate) {
-            m.checkNotNullParameter(interactionModalCreate, "p1");
+            Intrinsics3.checkNotNullParameter(interactionModalCreate, "p1");
             ((StoreStream) this.receiver).handleInteractionModalCreate(interactionModalCreate);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.stores.StoreStream$initGatewaySocketListeners$66, reason: invalid class name */
     /* JADX INFO: compiled from: StoreStream.kt */
-    public final /* synthetic */ class AnonymousClass66 extends k implements Function1<ApplicationCommandAutocompleteResult, Unit> {
+    public final /* synthetic */ class AnonymousClass66 extends FunctionReferenceImpl implements Function1<ApplicationCommandAutocompleteResult, Unit> {
         public AnonymousClass66(StoreStream storeStream) {
             super(1, storeStream, StoreStream.class, "handleApplicationCommandAutocompleteResult", "handleApplicationCommandAutocompleteResult(Lcom/discord/api/commands/ApplicationCommandAutocompleteResult;)V", 0);
         }
@@ -2025,14 +2026,14 @@ public final class StoreStream {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(ApplicationCommandAutocompleteResult applicationCommandAutocompleteResult) {
-            m.checkNotNullParameter(applicationCommandAutocompleteResult, "p1");
+            Intrinsics3.checkNotNullParameter(applicationCommandAutocompleteResult, "p1");
             ((StoreStream) this.receiver).handleApplicationCommandAutocompleteResult(applicationCommandAutocompleteResult);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.stores.StoreStream$initGatewaySocketListeners$67, reason: invalid class name */
     /* JADX INFO: compiled from: StoreStream.kt */
-    public final /* synthetic */ class AnonymousClass67 extends k implements Function1<StageInstance, Unit> {
+    public final /* synthetic */ class AnonymousClass67 extends FunctionReferenceImpl implements Function1<StageInstance, Unit> {
         public AnonymousClass67(StoreStream storeStream) {
             super(1, storeStream, StoreStream.class, "handleStageInstanceCreate", "handleStageInstanceCreate(Lcom/discord/api/stageinstance/StageInstance;)V", 0);
         }
@@ -2045,14 +2046,14 @@ public final class StoreStream {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(StageInstance stageInstance) {
-            m.checkNotNullParameter(stageInstance, "p1");
+            Intrinsics3.checkNotNullParameter(stageInstance, "p1");
             ((StoreStream) this.receiver).handleStageInstanceCreate(stageInstance);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.stores.StoreStream$initGatewaySocketListeners$68, reason: invalid class name */
     /* JADX INFO: compiled from: StoreStream.kt */
-    public final /* synthetic */ class AnonymousClass68 extends k implements Function1<StageInstance, Unit> {
+    public final /* synthetic */ class AnonymousClass68 extends FunctionReferenceImpl implements Function1<StageInstance, Unit> {
         public AnonymousClass68(StoreStream storeStream) {
             super(1, storeStream, StoreStream.class, "handleStageInstanceUpdate", "handleStageInstanceUpdate(Lcom/discord/api/stageinstance/StageInstance;)V", 0);
         }
@@ -2065,14 +2066,14 @@ public final class StoreStream {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(StageInstance stageInstance) {
-            m.checkNotNullParameter(stageInstance, "p1");
+            Intrinsics3.checkNotNullParameter(stageInstance, "p1");
             ((StoreStream) this.receiver).handleStageInstanceUpdate(stageInstance);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.stores.StoreStream$initGatewaySocketListeners$69, reason: invalid class name */
     /* JADX INFO: compiled from: StoreStream.kt */
-    public final /* synthetic */ class AnonymousClass69 extends k implements Function1<StageInstance, Unit> {
+    public final /* synthetic */ class AnonymousClass69 extends FunctionReferenceImpl implements Function1<StageInstance, Unit> {
         public AnonymousClass69(StoreStream storeStream) {
             super(1, storeStream, StoreStream.class, "handleStageInstanceDelete", "handleStageInstanceDelete(Lcom/discord/api/stageinstance/StageInstance;)V", 0);
         }
@@ -2085,14 +2086,14 @@ public final class StoreStream {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(StageInstance stageInstance) {
-            m.checkNotNullParameter(stageInstance, "p1");
+            Intrinsics3.checkNotNullParameter(stageInstance, "p1");
             ((StoreStream) this.receiver).handleStageInstanceDelete(stageInstance);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.stores.StoreStream$initGatewaySocketListeners$7, reason: invalid class name */
     /* JADX INFO: compiled from: StoreStream.kt */
-    public final /* synthetic */ class AnonymousClass7 extends k implements Function1<GuildRoleCreate, Unit> {
+    public final /* synthetic */ class AnonymousClass7 extends FunctionReferenceImpl implements Function1<GuildRoleCreate, Unit> {
         public AnonymousClass7(StoreStream storeStream) {
             super(1, storeStream, StoreStream.class, "handleGuildRoleCreate", "handleGuildRoleCreate(Lcom/discord/api/role/GuildRoleCreate;)V", 0);
         }
@@ -2105,14 +2106,14 @@ public final class StoreStream {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(GuildRoleCreate guildRoleCreate) {
-            m.checkNotNullParameter(guildRoleCreate, "p1");
+            Intrinsics3.checkNotNullParameter(guildRoleCreate, "p1");
             StoreStream.access$handleGuildRoleCreate((StoreStream) this.receiver, guildRoleCreate);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.stores.StoreStream$initGatewaySocketListeners$70, reason: invalid class name */
     /* JADX INFO: compiled from: StoreStream.kt */
-    public final /* synthetic */ class AnonymousClass70 extends k implements Function1<FriendSuggestion, Unit> {
+    public final /* synthetic */ class AnonymousClass70 extends FunctionReferenceImpl implements Function1<FriendSuggestion, Unit> {
         public AnonymousClass70(StoreStream storeStream) {
             super(1, storeStream, StoreStream.class, "handleFriendSuggestionCreate", "handleFriendSuggestionCreate(Lcom/discord/api/friendsuggestions/FriendSuggestion;)V", 0);
         }
@@ -2125,14 +2126,14 @@ public final class StoreStream {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(FriendSuggestion friendSuggestion) {
-            m.checkNotNullParameter(friendSuggestion, "p1");
+            Intrinsics3.checkNotNullParameter(friendSuggestion, "p1");
             ((StoreStream) this.receiver).handleFriendSuggestionCreate(friendSuggestion);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.stores.StoreStream$initGatewaySocketListeners$71, reason: invalid class name */
     /* JADX INFO: compiled from: StoreStream.kt */
-    public final /* synthetic */ class AnonymousClass71 extends k implements Function1<FriendSuggestionDelete, Unit> {
+    public final /* synthetic */ class AnonymousClass71 extends FunctionReferenceImpl implements Function1<FriendSuggestionDelete, Unit> {
         public AnonymousClass71(StoreStream storeStream) {
             super(1, storeStream, StoreStream.class, "handleFriendSuggestionDelete", "handleFriendSuggestionDelete(Lcom/discord/api/friendsuggestions/FriendSuggestionDelete;)V", 0);
         }
@@ -2145,14 +2146,14 @@ public final class StoreStream {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(FriendSuggestionDelete friendSuggestionDelete) {
-            m.checkNotNullParameter(friendSuggestionDelete, "p1");
+            Intrinsics3.checkNotNullParameter(friendSuggestionDelete, "p1");
             ((StoreStream) this.receiver).handleFriendSuggestionDelete(friendSuggestionDelete);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.stores.StoreStream$initGatewaySocketListeners$72, reason: invalid class name */
     /* JADX INFO: compiled from: StoreStream.kt */
-    public final /* synthetic */ class AnonymousClass72 extends k implements Function1<GuildScheduledEvent, Unit> {
+    public final /* synthetic */ class AnonymousClass72 extends FunctionReferenceImpl implements Function1<GuildScheduledEvent, Unit> {
         public AnonymousClass72(StoreStream storeStream) {
             super(1, storeStream, StoreStream.class, "handleGuildScheduledEventCreate", "handleGuildScheduledEventCreate(Lcom/discord/api/guildscheduledevent/GuildScheduledEvent;)V", 0);
         }
@@ -2165,14 +2166,14 @@ public final class StoreStream {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(GuildScheduledEvent guildScheduledEvent) {
-            m.checkNotNullParameter(guildScheduledEvent, "p1");
+            Intrinsics3.checkNotNullParameter(guildScheduledEvent, "p1");
             StoreStream.access$handleGuildScheduledEventCreate((StoreStream) this.receiver, guildScheduledEvent);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.stores.StoreStream$initGatewaySocketListeners$73, reason: invalid class name */
     /* JADX INFO: compiled from: StoreStream.kt */
-    public final /* synthetic */ class AnonymousClass73 extends k implements Function1<GuildScheduledEvent, Unit> {
+    public final /* synthetic */ class AnonymousClass73 extends FunctionReferenceImpl implements Function1<GuildScheduledEvent, Unit> {
         public AnonymousClass73(StoreStream storeStream) {
             super(1, storeStream, StoreStream.class, "handleGuildScheduledEventUpdate", "handleGuildScheduledEventUpdate(Lcom/discord/api/guildscheduledevent/GuildScheduledEvent;)V", 0);
         }
@@ -2185,14 +2186,14 @@ public final class StoreStream {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(GuildScheduledEvent guildScheduledEvent) {
-            m.checkNotNullParameter(guildScheduledEvent, "p1");
+            Intrinsics3.checkNotNullParameter(guildScheduledEvent, "p1");
             StoreStream.access$handleGuildScheduledEventUpdate((StoreStream) this.receiver, guildScheduledEvent);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.stores.StoreStream$initGatewaySocketListeners$74, reason: invalid class name */
     /* JADX INFO: compiled from: StoreStream.kt */
-    public final /* synthetic */ class AnonymousClass74 extends k implements Function1<GuildScheduledEvent, Unit> {
+    public final /* synthetic */ class AnonymousClass74 extends FunctionReferenceImpl implements Function1<GuildScheduledEvent, Unit> {
         public AnonymousClass74(StoreStream storeStream) {
             super(1, storeStream, StoreStream.class, "handleGuildScheduledEventDelete", "handleGuildScheduledEventDelete(Lcom/discord/api/guildscheduledevent/GuildScheduledEvent;)V", 0);
         }
@@ -2205,14 +2206,14 @@ public final class StoreStream {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(GuildScheduledEvent guildScheduledEvent) {
-            m.checkNotNullParameter(guildScheduledEvent, "p1");
+            Intrinsics3.checkNotNullParameter(guildScheduledEvent, "p1");
             StoreStream.access$handleGuildScheduledEventDelete((StoreStream) this.receiver, guildScheduledEvent);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.stores.StoreStream$initGatewaySocketListeners$75, reason: invalid class name */
     /* JADX INFO: compiled from: StoreStream.kt */
-    public final /* synthetic */ class AnonymousClass75 extends k implements Function1<GuildScheduledEventUserUpdate, Unit> {
+    public final /* synthetic */ class AnonymousClass75 extends FunctionReferenceImpl implements Function1<GuildScheduledEventUserUpdate, Unit> {
         public AnonymousClass75(StoreStream storeStream) {
             super(1, storeStream, StoreStream.class, "guildScheduledEventUserAdd", "guildScheduledEventUserAdd(Lcom/discord/api/guildscheduledevent/GuildScheduledEventUserUpdate;)V", 0);
         }
@@ -2225,14 +2226,14 @@ public final class StoreStream {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(GuildScheduledEventUserUpdate guildScheduledEventUserUpdate) {
-            m.checkNotNullParameter(guildScheduledEventUserUpdate, "p1");
+            Intrinsics3.checkNotNullParameter(guildScheduledEventUserUpdate, "p1");
             StoreStream.access$guildScheduledEventUserAdd((StoreStream) this.receiver, guildScheduledEventUserUpdate);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.stores.StoreStream$initGatewaySocketListeners$76, reason: invalid class name */
     /* JADX INFO: compiled from: StoreStream.kt */
-    public final /* synthetic */ class AnonymousClass76 extends k implements Function1<GuildScheduledEventUserUpdate, Unit> {
+    public final /* synthetic */ class AnonymousClass76 extends FunctionReferenceImpl implements Function1<GuildScheduledEventUserUpdate, Unit> {
         public AnonymousClass76(StoreStream storeStream) {
             super(1, storeStream, StoreStream.class, "guildScheduledEventUserRemove", "guildScheduledEventUserRemove(Lcom/discord/api/guildscheduledevent/GuildScheduledEventUserUpdate;)V", 0);
         }
@@ -2245,14 +2246,14 @@ public final class StoreStream {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(GuildScheduledEventUserUpdate guildScheduledEventUserUpdate) {
-            m.checkNotNullParameter(guildScheduledEventUserUpdate, "p1");
+            Intrinsics3.checkNotNullParameter(guildScheduledEventUserUpdate, "p1");
             StoreStream.access$guildScheduledEventUserRemove((StoreStream) this.receiver, guildScheduledEventUserUpdate);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.stores.StoreStream$initGatewaySocketListeners$77, reason: invalid class name */
     /* JADX INFO: compiled from: StoreStream.kt */
-    public final /* synthetic */ class AnonymousClass77 extends k implements Function1<EmbeddedActivityInboundUpdate, Unit> {
+    public final /* synthetic */ class AnonymousClass77 extends FunctionReferenceImpl implements Function1<EmbeddedActivityInboundUpdate, Unit> {
         public AnonymousClass77(StoreStream storeStream) {
             super(1, storeStream, StoreStream.class, "handleEmbeddedActivityInboundUpdate", "handleEmbeddedActivityInboundUpdate(Lcom/discord/api/embeddedactivities/EmbeddedActivityInboundUpdate;)V", 0);
         }
@@ -2265,14 +2266,14 @@ public final class StoreStream {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(EmbeddedActivityInboundUpdate embeddedActivityInboundUpdate) {
-            m.checkNotNullParameter(embeddedActivityInboundUpdate, "p1");
+            Intrinsics3.checkNotNullParameter(embeddedActivityInboundUpdate, "p1");
             StoreStream.access$handleEmbeddedActivityInboundUpdate((StoreStream) this.receiver, embeddedActivityInboundUpdate);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.stores.StoreStream$initGatewaySocketListeners$78, reason: invalid class name */
     /* JADX INFO: compiled from: StoreStream.kt */
-    public final /* synthetic */ class AnonymousClass78 extends k implements Function1<ForumUnreads, Unit> {
+    public final /* synthetic */ class AnonymousClass78 extends FunctionReferenceImpl implements Function1<ForumUnreads, Unit> {
         public AnonymousClass78(StoreStream storeStream) {
             super(1, storeStream, StoreStream.class, "handleForumUnreads", "handleForumUnreads(Lcom/discord/api/forum/ForumUnreads;)V", 0);
         }
@@ -2285,14 +2286,14 @@ public final class StoreStream {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(ForumUnreads forumUnreads) {
-            m.checkNotNullParameter(forumUnreads, "p1");
+            Intrinsics3.checkNotNullParameter(forumUnreads, "p1");
             StoreStream.access$handleForumUnreads((StoreStream) this.receiver, forumUnreads);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.stores.StoreStream$initGatewaySocketListeners$8, reason: invalid class name */
     /* JADX INFO: compiled from: StoreStream.kt */
-    public final /* synthetic */ class AnonymousClass8 extends k implements Function1<GuildRoleUpdate, Unit> {
+    public final /* synthetic */ class AnonymousClass8 extends FunctionReferenceImpl implements Function1<GuildRoleUpdate, Unit> {
         public AnonymousClass8(StoreStream storeStream) {
             super(1, storeStream, StoreStream.class, "handleGuildRoleUpdate", "handleGuildRoleUpdate(Lcom/discord/api/role/GuildRoleUpdate;)V", 0);
         }
@@ -2305,14 +2306,14 @@ public final class StoreStream {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(GuildRoleUpdate guildRoleUpdate) {
-            m.checkNotNullParameter(guildRoleUpdate, "p1");
+            Intrinsics3.checkNotNullParameter(guildRoleUpdate, "p1");
             StoreStream.access$handleGuildRoleUpdate((StoreStream) this.receiver, guildRoleUpdate);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.stores.StoreStream$initGatewaySocketListeners$9, reason: invalid class name */
     /* JADX INFO: compiled from: StoreStream.kt */
-    public final /* synthetic */ class AnonymousClass9 extends k implements Function1<GuildRoleDelete, Unit> {
+    public final /* synthetic */ class AnonymousClass9 extends FunctionReferenceImpl implements Function1<GuildRoleDelete, Unit> {
         public AnonymousClass9(StoreStream storeStream) {
             super(1, storeStream, StoreStream.class, "handleGuildRoleDelete", "handleGuildRoleDelete(Lcom/discord/api/role/GuildRoleDelete;)V", 0);
         }
@@ -2325,7 +2326,7 @@ public final class StoreStream {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(GuildRoleDelete guildRoleDelete) {
-            m.checkNotNullParameter(guildRoleDelete, "p1");
+            Intrinsics3.checkNotNullParameter(guildRoleDelete, "p1");
             StoreStream.access$handleGuildRoleDelete((StoreStream) this.receiver, guildRoleDelete);
         }
     }
@@ -2886,7 +2887,7 @@ public final class StoreStream {
         }
 
         public final void initialize(Application application) {
-            m.checkNotNullParameter(application, "application");
+            Intrinsics3.checkNotNullParameter(application, "application");
             if (StoreStream.access$isInitialized$cp()) {
                 return;
             }
@@ -2901,7 +2902,7 @@ public final class StoreStream {
 
         public final Observable<Boolean> isInitializedObservable() {
             BehaviorSubject behaviorSubjectAccess$getInitialized$p = StoreStream.access$getInitialized$p(StoreStream.INSTANCE.getCollector());
-            m.checkNotNullExpressionValue(behaviorSubjectAccess$getInitialized$p, "collector.initialized");
+            Intrinsics3.checkNotNullExpressionValue(behaviorSubjectAccess$getInitialized$p, "collector.initialized");
             return behaviorSubjectAccess$getInitialized$p;
         }
 
@@ -2916,11 +2917,11 @@ public final class StoreStream {
 
     public StoreStream() {
         ExecutorService executorServiceNewSingleThreadExecutor = Executors.newSingleThreadExecutor(StoreStream$storeThreadScheduler$1.INSTANCE);
-        AtomicReference<a> atomicReference = a.a;
-        c cVar = new c(executorServiceNewSingleThreadExecutor);
-        m.checkNotNullExpressionValue(cVar, "Schedulers.from(Executor…       newThread\n      })");
-        this.storeThreadScheduler = cVar;
-        Dispatcher dispatcher = new Dispatcher(cVar, false);
+        AtomicReference<Schedulers2> atomicReference = Schedulers2.a;
+        ExecutorScheduler executorScheduler = new ExecutorScheduler(executorServiceNewSingleThreadExecutor);
+        Intrinsics3.checkNotNullExpressionValue(executorScheduler, "Schedulers.from(Executor…       newThread\n      })");
+        this.storeThreadScheduler = executorScheduler;
+        Dispatcher dispatcher = new Dispatcher(executorScheduler, false);
         this.dispatcher = dispatcher;
         Clock clock = ClockFactory.get();
         this.clock = clock;
@@ -2928,7 +2929,7 @@ public final class StoreStream {
         this.analytics = storeAnalytics;
         StoreAuthentication storeAuthentication = new StoreAuthentication(this, dispatcher);
         this.authentication = storeAuthentication;
-        StoreChannels storeChannels = new StoreChannels(dispatcher, ObservationDeckProvider.get(), new StoreStream$channels$1(this), new StoreStream$channels$2(this), new StoreStream$channels$3(this), null, 32, null);
+        StoreChannels storeChannels = new StoreChannels(dispatcher, ObservationDeck4.get(), new StoreStream$channels$1(this), new StoreStream$channels$2(this), new StoreStream$channels$3(this), null, 32, null);
         this.channels = storeChannels;
         StoreUser storeUser = new StoreUser(new StoreStream$users$1(this), dispatcher, null, null, 12, null);
         this.users = storeUser;
@@ -2940,32 +2941,32 @@ public final class StoreStream {
         StoreThreadsJoined storeThreadsJoined = new StoreThreadsJoined(storeUser, null, 2, null);
         this.threadsJoined = storeThreadsJoined;
         this.guildSettings = new StoreUserGuildSettings(dispatcher, clock, storeAnalytics, storeChannels, storeThreadsJoined, null, null, 96, null);
-        StorePermissions storePermissions = new StorePermissions(storeUser, storeChannels, storeGuilds, storeThreadsJoined, storeStageInstances, ObservationDeckProvider.get());
+        StorePermissions storePermissions = new StorePermissions(storeUser, storeChannels, storeGuilds, storeThreadsJoined, storeStageInstances, ObservationDeck4.get());
         this.permissions = storePermissions;
         StoreGuildSelected storeGuildSelected = new StoreGuildSelected(this, dispatcher, storeGuilds, storeAnalytics, null, 16, null);
         this.guildSelected = storeGuildSelected;
-        StoreChannelsSelected storeChannelsSelected = new StoreChannelsSelected(this, storeChannels, storePermissions, storeGuildSelected, dispatcher, ObservationDeckProvider.get());
+        StoreChannelsSelected storeChannelsSelected = new StoreChannelsSelected(this, storeChannels, storePermissions, storeGuildSelected, dispatcher, ObservationDeck4.get());
         this.channelsSelected = storeChannelsSelected;
         this.channelConversions = new StoreChannelConversions();
         this.clientVersion = new StoreClientVersion();
         StoreGuildMemberCounts storeGuildMemberCounts = new StoreGuildMemberCounts();
         this.guildMemberCounts = storeGuildMemberCounts;
-        this.guildJoinRequests = new StoreGuildJoinRequest(storeUser, storeGuilds, dispatcher, ObservationDeckProvider.get());
-        StoreGuildsNsfw storeGuildsNsfw = new StoreGuildsNsfw(dispatcher, storeChannels, ObservationDeckProvider.get());
+        this.guildJoinRequests = new StoreGuildJoinRequest(storeUser, storeGuilds, dispatcher, ObservationDeck4.get());
+        StoreGuildsNsfw storeGuildsNsfw = new StoreGuildsNsfw(dispatcher, storeChannels, ObservationDeck4.get());
         this.guildsNsfw = storeGuildsNsfw;
-        this.bans = new StoreBans(dispatcher, ObservationDeckProvider.get());
-        ObservationDeck observationDeck = ObservationDeckProvider.get();
+        this.bans = new StoreBans(dispatcher, ObservationDeck4.get());
+        ObservationDeck observationDeck = ObservationDeck4.get();
         RestAPI.Companion companion = RestAPI.INSTANCE;
         this.guildEmojis = new StoreEmojiGuild(observationDeck, dispatcher, companion.getApi());
         this.integrations = new StoreGuildIntegrations(dispatcher);
         this.instantInvites = new StoreInstantInvites(dispatcher, null, null, 6, null);
-        this.guildTemplates = new StoreGuildTemplates(ObservationDeckProvider.get(), dispatcher, companion.getApi());
+        this.guildTemplates = new StoreGuildTemplates(ObservationDeck4.get(), dispatcher, companion.getApi());
         this.guildInvite = new StoreInviteSettings();
         StoreMessages storeMessages = new StoreMessages(this, dispatcher, clock);
         this.messages = storeMessages;
         this.messagesLoader = new StoreMessagesLoader(this, dispatcher);
         this.messagesMostRecent = new StoreMessagesMostRecent(storeChannels, null, 2, null);
-        StoreMessageAck storeMessageAck = new StoreMessageAck(this, ObservationDeckProvider.get(), dispatcher, companion.getApi());
+        StoreMessageAck storeMessageAck = new StoreMessageAck(this, ObservationDeck4.get(), dispatcher, companion.getApi());
         this.messageAck = storeMessageAck;
         this.messageReplies = new StoreMessageReplies(dispatcher, storeMessages, null, 4, null);
         this.messageStates = new StoreMessageState(dispatcher);
@@ -2974,9 +2975,9 @@ public final class StoreStream {
         this.experiments = storeExperiments;
         this.lurking = new StoreLurking(this, storeGuilds, dispatcher);
         this.userConnections = new StoreUserConnections(this, dispatcher, null, 4, null);
-        StoreUserPresence storeUserPresence = new StoreUserPresence(clock, this, ObservationDeckProvider.get());
+        StoreUserPresence storeUserPresence = new StoreUserPresence(clock, this, ObservationDeck4.get());
         this.presences = storeUserPresence;
-        this.userProfile = new StoreUserProfile(dispatcher, ObservationDeckProvider.get(), this, null, 8, null);
+        this.userProfile = new StoreUserProfile(dispatcher, ObservationDeck4.get(), this, null, 8, null);
         this.userNotes = new StoreUserNotes(dispatcher, null, null, 6, null);
         this.usersTyping = new StoreUserTyping(this, dispatcher, null, null, 12, null);
         StoreAccessibility storeAccessibility = new StoreAccessibility(dispatcher, null, null, 6, null);
@@ -2984,11 +2985,11 @@ public final class StoreStream {
         this.userSettings = new StoreUserSettings(dispatcher, storeAccessibility);
         StoreUserSettingsSystem storeUserSettingsSystem = new StoreUserSettingsSystem(new StoreStream$userSettingsSystem$1(this), dispatcher);
         this.userSettingsSystem = storeUserSettingsSystem;
-        this.userSurvey = new StoreUserSurvey(dispatcher, storeUser, storeGuilds, storePermissions, ObservationDeckProvider.get(), companion.getApi(), clock, SharedPreferencesProvider.INSTANCE.get());
-        this.userRequiredAction = new StoreUserRequiredActions(ObservationDeckProvider.get());
+        this.userSurvey = new StoreUserSurvey(dispatcher, storeUser, storeGuilds, storePermissions, ObservationDeck4.get(), companion.getApi(), clock, SharedPreferencesProvider.INSTANCE.get());
+        this.userRequiredAction = new StoreUserRequiredActions(ObservationDeck4.get());
         StoreUserRelationships storeUserRelationships = new StoreUserRelationships(null, 1, null);
         this.userRelationships = storeUserRelationships;
-        StoreVoiceStates storeVoiceStates = new StoreVoiceStates(new StoreStream$voiceStates$1(this), ObservationDeckProvider.get());
+        StoreVoiceStates storeVoiceStates = new StoreVoiceStates(new StoreStream$voiceStates$1(this), ObservationDeck4.get());
         this.voiceStates = storeVoiceStates;
         this.tabsNavigation = new StoreTabsNavigation(dispatcher, this, null, 4, null);
         this.maskedLinks = new StoreMaskedLinks(this.dispatcher, storeChannelsSelected, storeUserRelationships);
@@ -3002,64 +3003,64 @@ public final class StoreStream {
         this.connectivity = new StoreConnectivity(this, this.dispatcher, this.clock);
         this.connectionOpen = new StoreConnectionOpen();
         this.calls = new StoreCalls(this);
-        this.callsIncoming = new StoreCallsIncoming(this.dispatcher, ObservationDeckProvider.get(), this.users);
+        this.callsIncoming = new StoreCallsIncoming(this.dispatcher, ObservationDeck4.get(), this.users);
         this.chat = new StoreChat(this.dispatcher, null, 2, null);
         this.mentions = new StoreMentions(storeUserRelationships, this.permissions, storeMessageAck, this.guildSettings, this.channels, this.threadsJoined, null, 64, null);
-        this.pinnedMessages = new StorePinnedMessages(this.dispatcher, ObservationDeckProvider.get());
+        this.pinnedMessages = new StorePinnedMessages(this.dispatcher, ObservationDeck4.get());
         this.readStates = new StoreReadStates(this.clock);
         this.voiceParticipants = new StoreVoiceParticipants(this);
-        this.search = new StoreSearch(this, this.dispatcher, storeGuildsNsfw, this.users, ObservationDeckProvider.get(), this.channels, this.guilds);
+        this.search = new StoreSearch(this, this.dispatcher, storeGuildsNsfw, this.users, ObservationDeck4.get(), this.channels, this.guilds);
         StoreMediaSettings storeMediaSettings = new StoreMediaSettings(storeVoiceChannelSelected, this.channels, this.permissions, null, null, 24, null);
         this.mediaSettings = storeMediaSettings;
         this.storeDynamicLink = new StoreDynamicLink(this, this.dispatcher);
-        this.collapsedChannelCategories = new StoreCollapsedChannelCategories(this.dispatcher, ObservationDeckProvider.get());
+        this.collapsedChannelCategories = new StoreCollapsedChannelCategories(this.dispatcher, ObservationDeck4.get());
         StoreMediaEngine storeMediaEngine = new StoreMediaEngine(storeMediaSettings, this, this.dispatcher);
         this.mediaEngine = storeMediaEngine;
         StoreRtcRegion storeRtcRegion = new StoreRtcRegion(this.dispatcher, this.clock, storeMediaEngine, storeExperiments, null, 16, null);
         this.rtcRegion = storeRtcRegion;
         StoreRtcConnection storeRtcConnection = new StoreRtcConnection(this, this.dispatcher, this.clock, storeRtcRegion, this.analytics, storeVoiceStates, null, null, Opcodes.CHECKCAST, null);
         this.rtcConnection = storeRtcConnection;
-        this.voiceSpeaking = new StoreVoiceSpeaking(ObservationDeckProvider.get());
+        this.voiceSpeaking = new StoreVoiceSpeaking(ObservationDeck4.get());
         this.videoStreams = new StoreVideoStreams(null, 1, null);
-        this.gameParty = new StoreGameParty(ObservationDeckProvider.get(), storeUserPresence, this.users);
+        this.gameParty = new StoreGameParty(ObservationDeck4.get(), storeUserPresence, this.users);
         StoreNotices storeNotices = new StoreNotices(this.clock, this);
         this.notices = storeNotices;
         this.guildSubscriptions = new StoreGuildSubscriptions(this, this.dispatcher);
         StoreApplicationStreaming storeApplicationStreaming = new StoreApplicationStreaming(this, this.dispatcher, this.users, storeVoiceChannelSelected, storeRtcConnection, null, 32, null);
         this.applicationStreaming = storeApplicationStreaming;
-        this.lazyChannelMembersStore = new StoreChannelMembers(ObservationDeckProvider.get(), this.dispatcher, this.guilds, this.users, new StoreStream$lazyChannelMembersStore$1(this.channels), new StoreStream$lazyChannelMembersStore$2(this.guildMemberCounts), new StoreStream$lazyChannelMembersStore$3(storeUserPresence.getPresences()), new StoreStream$lazyChannelMembersStore$4(storeApplicationStreaming));
-        this.lazyThreadMembersStore = new StoreThreadMembers(ObservationDeckProvider.get(), this.channels);
+        this.lazyChannelMembersStore = new StoreChannelMembers(ObservationDeck4.get(), this.dispatcher, this.guilds, this.users, new StoreStream$lazyChannelMembersStore$1(this.channels), new StoreStream$lazyChannelMembersStore$2(this.guildMemberCounts), new StoreStream$lazyChannelMembersStore$3(storeUserPresence.getPresences()), new StoreStream$lazyChannelMembersStore$4(storeApplicationStreaming));
+        this.lazyThreadMembersStore = new StoreThreadMembers(ObservationDeck4.get(), this.channels);
         this.guildMemberRequesterStore = new StoreGuildMemberRequester(this, this.dispatcher);
         this.reviewRequestStore = new StoreReviewRequest(this.clock, this);
         this.changeLogStore = new StoreChangeLog(this.clock, storeNotices, this.users, storeUserSettingsSystem, this.experiments, this.dispatcher);
         this.slowMode = new StoreSlowMode(this.clock, this);
-        this.auditLog = new StoreAuditLog(ObservationDeckProvider.get(), this.dispatcher, companion.getApi());
+        this.auditLog = new StoreAuditLog(ObservationDeck4.get(), this.dispatcher, companion.getApi());
         this.messageUploads = new StoreMessageUploads();
         this.nux = new StoreNux(this.dispatcher);
-        this.library = new StoreLibrary(this.dispatcher, ObservationDeckProvider.get());
+        this.library = new StoreLibrary(this.dispatcher, ObservationDeck4.get());
         this.gifting = new StoreGifting(this.dispatcher);
         this.spotify = new StoreSpotify(this, this.dispatcher, this.clock);
         this.messageReactions = new StoreMessageReactions(this.dispatcher, this.users, null, 4, null);
-        this.application = new StoreApplication(this.dispatcher, ObservationDeckProvider.get());
+        this.application = new StoreApplication(this.dispatcher, ObservationDeck4.get());
         this.applicationAssets = new StoreApplicationAssets(this.dispatcher, null, null, 6, null);
         this.paymentSources = new StorePaymentSources(this.dispatcher, null, null, 6, null);
-        this.subscriptions = new StoreSubscriptions(ObservationDeckProvider.get(), this.dispatcher, companion.getApi());
-        this.mfa = new StoreMFA(this, this.dispatcher, ObservationDeckProvider.get());
+        this.subscriptions = new StoreSubscriptions(ObservationDeck4.get(), this.dispatcher, companion.getApi());
+        this.mfa = new StoreMFA(this, this.dispatcher, ObservationDeck4.get());
         StoreStreamRtcConnection storeStreamRtcConnection = new StoreStreamRtcConnection(storeMediaEngine, this.users, this, this.dispatcher, this.clock, this.analytics, storeRtcConnection, null, null, null, 896, null);
         this.streamRtcConnection = storeStreamRtcConnection;
-        this.audioManagerV2 = new StoreAudioManagerV2(ObservationDeckProvider.get(), this.dispatcher, storeVoiceChannelSelected, this.channels, storeStreamRtcConnection, videoUseDetector, this.experiments);
+        this.audioManagerV2 = new StoreAudioManagerV2(ObservationDeck4.get(), this.dispatcher, storeVoiceChannelSelected, this.channels, storeStreamRtcConnection, videoUseDetector, this.experiments);
         this.applicationStreamPreviews = new StoreApplicationStreamPreviews(this.dispatcher, this.clock, null, null, 12, null);
-        StoreGuildsSorted storeGuildsSorted = new StoreGuildsSorted(ObservationDeckProvider.get(), this.dispatcher, this.guilds, this.lurking);
+        StoreGuildsSorted storeGuildsSorted = new StoreGuildsSorted(ObservationDeck4.get(), this.dispatcher, this.guilds, this.lurking);
         this.guildsSorted = storeGuildsSorted;
         this.expandedGuildFolders = new StoreExpandedGuildFolders(this.dispatcher, null, 2, null);
-        StoreMediaFavorites storeMediaFavorites = new StoreMediaFavorites(ObservationDeckProvider.get(), this.dispatcher, null, 4, null);
+        StoreMediaFavorites storeMediaFavorites = new StoreMediaFavorites(ObservationDeck4.get(), this.dispatcher, null, 4, null);
         this.mediaFavorites = storeMediaFavorites;
         this.emojis = new StoreEmoji(this.customEmojis, this.users, this.permissions, storeGuildsSorted, storeMediaFavorites);
-        StoreGuildBoost storeGuildBoost = new StoreGuildBoost(this.dispatcher, ObservationDeckProvider.get());
+        StoreGuildBoost storeGuildBoost = new StoreGuildBoost(this.dispatcher, ObservationDeck4.get());
         this.guildBoosts = storeGuildBoost;
-        StoreEntitlements storeEntitlements = new StoreEntitlements(this.dispatcher, ObservationDeckProvider.get(), null, 4, null);
+        StoreEntitlements storeEntitlements = new StoreEntitlements(this.dispatcher, ObservationDeck4.get(), null, 4, null);
         this.entitlements = storeEntitlements;
-        StoreGuildProfiles storeGuildProfiles = new StoreGuildProfiles(this.dispatcher, ObservationDeckProvider.get());
+        StoreGuildProfiles storeGuildProfiles = new StoreGuildProfiles(this.dispatcher, ObservationDeck4.get());
         this.guildProfiles = storeGuildProfiles;
         StoreGuildWelcomeScreens storeGuildWelcomeScreens = new StoreGuildWelcomeScreens(this.dispatcher, null, 2, null);
         this.guildWelcomeScreens = storeGuildWelcomeScreens;
@@ -3073,19 +3074,19 @@ public final class StoreStream {
         this.gifPicker = storeGifPicker;
         StoreStickers storeStickers = new StoreStickers(this.dispatcher, null, null, null, 14, null);
         this.stickers = storeStickers;
-        StoreGooglePlayPurchases storeGooglePlayPurchases = new StoreGooglePlayPurchases(ObservationDeckProvider.get(), this.dispatcher, companion.getApi(), this.clock, new Gson(), AnalyticsTracker.INSTANCE);
+        StoreGooglePlayPurchases storeGooglePlayPurchases = new StoreGooglePlayPurchases(ObservationDeck4.get(), this.dispatcher, companion.getApi(), this.clock, new Gson(), AnalyticsTracker.INSTANCE);
         this.googlePlayPurchases = storeGooglePlayPurchases;
-        StoreGooglePlaySkuDetails storeGooglePlaySkuDetails = new StoreGooglePlaySkuDetails(ObservationDeckProvider.get(), this.dispatcher);
+        StoreGooglePlaySkuDetails storeGooglePlaySkuDetails = new StoreGooglePlaySkuDetails(ObservationDeck4.get(), this.dispatcher);
         this.googlePlaySkuDetails = storeGooglePlaySkuDetails;
-        StoreExpressionPickerNavigation storeExpressionPickerNavigation = new StoreExpressionPickerNavigation(ObservationDeckProvider.get(), this.dispatcher);
+        StoreExpressionPickerNavigation storeExpressionPickerNavigation = new StoreExpressionPickerNavigation(ObservationDeck4.get(), this.dispatcher);
         this.expressionPickerNavigation = storeExpressionPickerNavigation;
-        StoreChannelFollowerStats storeChannelFollowerStats = new StoreChannelFollowerStats(this.dispatcher, ObservationDeckProvider.get());
+        StoreChannelFollowerStats storeChannelFollowerStats = new StoreChannelFollowerStats(this.dispatcher, ObservationDeck4.get());
         this.channelFollowerStats = storeChannelFollowerStats;
         StoreApplicationCommandFrecency storeApplicationCommandFrecency = new StoreApplicationCommandFrecency(this.dispatcher, null, 2, null);
         this.applicationCommandFrecency = storeApplicationCommandFrecency;
         StorePendingReplies storePendingReplies = new StorePendingReplies(this.dispatcher, null, 2, null);
         this.pendingReplies = storePendingReplies;
-        StoreApplicationCommands storeApplicationCommands = new StoreApplicationCommands(this.gatewaySocket, this.permissions, storeApplicationCommandFrecency, this.guilds, this.users, this.experiments, this.dispatcher, null, ObservationDeckProvider.get(), null, null, 1664, null);
+        StoreApplicationCommands storeApplicationCommands = new StoreApplicationCommands(this.gatewaySocket, this.permissions, storeApplicationCommandFrecency, this.guilds, this.users, this.experiments, this.dispatcher, null, ObservationDeck4.get(), null, null, 1664, null);
         this.applicationCommands = storeApplicationCommands;
         StoreLocalActionComponentState storeLocalActionComponentState = new StoreLocalActionComponentState(this.dispatcher, null, 2, null);
         this.localActionComponentState = storeLocalActionComponentState;
@@ -3097,25 +3098,25 @@ public final class StoreStream {
         this.phone = storePhone;
         StoreThreadsActive storeThreadsActive = new StoreThreadsActive(this.channels, null, 2, null);
         this.threadsActive = storeThreadsActive;
-        StoreThreadsActiveJoined storeThreadsActiveJoined = new StoreThreadsActiveJoined(storeThreadsActive, this.threadsJoined, ObservationDeckProvider.get());
+        StoreThreadsActiveJoined storeThreadsActiveJoined = new StoreThreadsActiveJoined(storeThreadsActive, this.threadsJoined, ObservationDeck4.get());
         this.threadsActiveJoined = storeThreadsActiveJoined;
-        StoreThreadMessages storeThreadMessages = new StoreThreadMessages(this.messages, this.channels, ObservationDeckProvider.get());
+        StoreThreadMessages storeThreadMessages = new StoreThreadMessages(this.messages, this.channels, ObservationDeck4.get());
         this.threadMessages = storeThreadMessages;
-        StoreForumPostMessages storeForumPostMessages = new StoreForumPostMessages(this.dispatcher, this.users, ObservationDeckProvider.get());
+        StoreForumPostMessages storeForumPostMessages = new StoreForumPostMessages(this.dispatcher, this.users, ObservationDeck4.get());
         this.forumPostMessages = storeForumPostMessages;
-        StoreForumPostReadStates storeForumPostReadStates = new StoreForumPostReadStates(this.dispatcher, this.gatewaySocket, storeThreadsActive, this.messageAck, this.channels, this.users, ObservationDeckProvider.get());
+        StoreForumPostReadStates storeForumPostReadStates = new StoreForumPostReadStates(this.dispatcher, this.gatewaySocket, storeThreadsActive, this.messageAck, this.channels, this.users, ObservationDeck4.get());
         this.forumPostReadStates = storeForumPostReadStates;
-        ArchivedThreadsStore archivedThreadsStore = new ArchivedThreadsStore(this, this.dispatcher, storeForumPostMessages, ObservationDeckProvider.get());
+        ArchivedThreadsStore archivedThreadsStore = new ArchivedThreadsStore(this, this.dispatcher, storeForumPostMessages, ObservationDeck4.get());
         this.archivedThreads = archivedThreadsStore;
         StoreThreadDraft storeThreadDraft = new StoreThreadDraft(this.dispatcher);
         this.threadDraft = storeThreadDraft;
-        StoreExpressionSuggestions storeExpressionSuggestions = new StoreExpressionSuggestions(ObservationDeckProvider.get(), this.dispatcher, null, 4, null);
+        StoreExpressionSuggestions storeExpressionSuggestions = new StoreExpressionSuggestions(ObservationDeck4.get(), this.dispatcher, null, 4, null);
         this.expressionSuggestions = storeExpressionSuggestions;
         StoreStageChannels storeStageChannels = new StoreStageChannels(this.users, this.guilds, this.channels, this.voiceStates, this.permissions, this.stageInstances, null, 64, null);
         this.stageChannels = storeStageChannels;
-        StoreStageChannelSelfPresence storeStageChannelSelfPresence = new StoreStageChannelSelfPresence(ObservationDeckProvider.get(), this.users, this.presences, storeStageChannels, this.voiceChannelSelected, this.userSettings, this.dispatcher);
+        StoreStageChannelSelfPresence storeStageChannelSelfPresence = new StoreStageChannelSelfPresence(ObservationDeck4.get(), this.users, this.presences, storeStageChannels, this.voiceChannelSelected, this.userSettings, this.dispatcher);
         this.stageSelfPresence = storeStageChannelSelfPresence;
-        StoreAutocomplete storeAutocomplete = new StoreAutocomplete(ObservationDeckProvider.get(), this.dispatcher);
+        StoreAutocomplete storeAutocomplete = new StoreAutocomplete(ObservationDeck4.get(), this.dispatcher);
         this.autocomplete = storeAutocomplete;
         StoreContactSync storeContactSync = new StoreContactSync(this.dispatcher, companion.getApi(), this.clock, this.userConnections, this.users, this.experiments, this.notices, this.userSettings);
         this.contactSync = storeContactSync;
@@ -3126,9 +3127,9 @@ public final class StoreStream {
         this.guildStickers = storeGuildStickers;
         StoreOutboundPromotions storeOutboundPromotions = new StoreOutboundPromotions(new OutboundPromosPreviewFeatureFlag(this.experiments), this.dispatcher, null, null, 12, null);
         this.outboundPromotions = storeOutboundPromotions;
-        StoreGuildScheduledEvents storeGuildScheduledEvents = new StoreGuildScheduledEvents(this.dispatcher, ObservationDeckProvider.get(), this.permissions, this.users, this.guilds, this.clock, this.experiments);
+        StoreGuildScheduledEvents storeGuildScheduledEvents = new StoreGuildScheduledEvents(this.dispatcher, ObservationDeck4.get(), this.permissions, this.users, this.guilds, this.clock, this.experiments);
         this.guildScheduledEvents = storeGuildScheduledEvents;
-        StoreDirectories storeDirectories = new StoreDirectories(this.dispatcher, ObservationDeckProvider.get(), this.guilds, storeGuildScheduledEvents, null, 16, null);
+        StoreDirectories storeDirectories = new StoreDirectories(this.dispatcher, ObservationDeck4.get(), this.guilds, storeGuildScheduledEvents, null, 16, null);
         this.directories = storeDirectories;
         StoreGuildRoleSubscriptions storeGuildRoleSubscriptions = new StoreGuildRoleSubscriptions(this.dispatcher, null, 2, null);
         this.guildRoleSubscriptions = storeGuildRoleSubscriptions;
@@ -3140,7 +3141,7 @@ public final class StoreStream {
         this.embeddedActivities = storeEmbeddedActivities;
         StoreGuildRoleMemberCounts storeGuildRoleMemberCounts = new StoreGuildRoleMemberCounts(this.dispatcher, this.clock, null, 4, null);
         this.guildRoleMemberCounts = storeGuildRoleMemberCounts;
-        List<StoreV2> listListOf = n.listOf((Object[]) new StoreV2[]{this.bans, this.users, this.guilds, this.channels, this.channelConversions, this.presences, this.permissions, this.voiceChannelSelected, this.voiceSpeaking, this.accessibility, this.callsIncoming, this.connectivity, this.connectionOpen, storeGuildWelcomeScreens, storeGuildVoiceRegions, this.videoStreams, storeClientDataState, storeGifPicker, storeStickers, this.guildMemberCounts, this.guildJoinRequests, this.experiments, this.messageReplies, storeChannelFollowerStats, storePendingReplies, storeGuildProfiles, this.application, this.applicationAssets, storeApplicationCommands, this.guildSelected, this.channelsSelected, this.pinnedMessages, storeGuildMemberVerificationForm, this.userRequiredAction, this.userSurvey, storePhone, storeThreadsActive, this.threadsJoined, storeThreadsActiveJoined, storeThreadMessages, archivedThreadsStore, storeThreadDraft, storeExpressionPickerNavigation, storeGuildBoost, this.collapsedChannelCategories, this.messageUploads, storeExpressionSuggestions, this.applicationStreaming, storeApplicationInteractions, storeApplicationCommandFrecency, storeLocalActionComponentState, this.stageInstances, this.requestedStageChannels, storeStageChannels, storeStageChannelSelfPresence, storeAutocomplete, this.messageReactions, this.library, this.userRelationships, this.userSettingsSystem, this.tabsNavigation, this.voiceStates, this.mentions, storeUserAffinities, this.userProfile, this.userConnections, this.messagesMostRecent, this.usersTyping, this.instantInvites, this.guildSettings, this.customEmojis, storeEntitlements, this.mediaFavorites, this.subscriptions, storeGooglePlayPurchases, storeGooglePlaySkuDetails, this.guildTemplates, this.userNotes, this.mfa, this.messageAck, this.guildSubscriptions, this.lazyChannelMembersStore, this.lazyThreadMembersStore, this.guildEmojis, this.guildsSorted, this.auditLog, this.expandedGuildFolders, this.maskedLinks, this.streamRtcConnection, this.paymentSources, storeContactSync, this.applicationStreamPreviews, this.guildsNsfw, this.gameParty, storeFriendSuggestions, this.chat, this.audioManagerV2, storeGuildStickers, storeOutboundPromotions, storeDirectories, storeGuildScheduledEvents, storeGuildRoleSubscriptions, storeNotificationUpsells, storeEmbeddedActivities, storeGuildRoleMemberCounts, storeForumPostMessages, storeForumPostReadStates});
+        List<StoreV2> listListOf = Collections2.listOf((Object[]) new StoreV2[]{this.bans, this.users, this.guilds, this.channels, this.channelConversions, this.presences, this.permissions, this.voiceChannelSelected, this.voiceSpeaking, this.accessibility, this.callsIncoming, this.connectivity, this.connectionOpen, storeGuildWelcomeScreens, storeGuildVoiceRegions, this.videoStreams, storeClientDataState, storeGifPicker, storeStickers, this.guildMemberCounts, this.guildJoinRequests, this.experiments, this.messageReplies, storeChannelFollowerStats, storePendingReplies, storeGuildProfiles, this.application, this.applicationAssets, storeApplicationCommands, this.guildSelected, this.channelsSelected, this.pinnedMessages, storeGuildMemberVerificationForm, this.userRequiredAction, this.userSurvey, storePhone, storeThreadsActive, this.threadsJoined, storeThreadsActiveJoined, storeThreadMessages, archivedThreadsStore, storeThreadDraft, storeExpressionPickerNavigation, storeGuildBoost, this.collapsedChannelCategories, this.messageUploads, storeExpressionSuggestions, this.applicationStreaming, storeApplicationInteractions, storeApplicationCommandFrecency, storeLocalActionComponentState, this.stageInstances, this.requestedStageChannels, storeStageChannels, storeStageChannelSelfPresence, storeAutocomplete, this.messageReactions, this.library, this.userRelationships, this.userSettingsSystem, this.tabsNavigation, this.voiceStates, this.mentions, storeUserAffinities, this.userProfile, this.userConnections, this.messagesMostRecent, this.usersTyping, this.instantInvites, this.guildSettings, this.customEmojis, storeEntitlements, this.mediaFavorites, this.subscriptions, storeGooglePlayPurchases, storeGooglePlaySkuDetails, this.guildTemplates, this.userNotes, this.mfa, this.messageAck, this.guildSubscriptions, this.lazyChannelMembersStore, this.lazyThreadMembersStore, this.guildEmojis, this.guildsSorted, this.auditLog, this.expandedGuildFolders, this.maskedLinks, this.streamRtcConnection, this.paymentSources, storeContactSync, this.applicationStreamPreviews, this.guildsNsfw, this.gameParty, storeFriendSuggestions, this.chat, this.audioManagerV2, storeGuildStickers, storeOutboundPromotions, storeDirectories, storeGuildScheduledEvents, storeGuildRoleSubscriptions, storeNotificationUpsells, storeEmbeddedActivities, storeGuildRoleMemberCounts, storeForumPostMessages, storeForumPostReadStates});
         this.storesV2 = listListOf;
         StoreV2DispatchHandler storeV2DispatchHandler = new StoreV2DispatchHandler(listListOf, null, 2, null);
         this.storeV2DispatchHandler = storeV2DispatchHandler;
@@ -3434,16 +3435,16 @@ public final class StoreStream {
         storeStream.handleStickersUpdate(guildStickersUpdate);
     }
 
-    public static final /* synthetic */ void access$handleStreamCreate(StoreStream storeStream, StreamCreateOrUpdate streamCreateOrUpdate) {
-        storeStream.handleStreamCreate(streamCreateOrUpdate);
+    public static final /* synthetic */ void access$handleStreamCreate(StoreStream storeStream, ModelApplicationStream3 modelApplicationStream3) {
+        storeStream.handleStreamCreate(modelApplicationStream3);
     }
 
-    public static final /* synthetic */ void access$handleStreamServerUpdate(StoreStream storeStream, StreamServerUpdate streamServerUpdate) {
-        storeStream.handleStreamServerUpdate(streamServerUpdate);
+    public static final /* synthetic */ void access$handleStreamServerUpdate(StoreStream storeStream, ModelApplicationStream7 modelApplicationStream7) {
+        storeStream.handleStreamServerUpdate(modelApplicationStream7);
     }
 
-    public static final /* synthetic */ void access$handleStreamUpdate(StoreStream storeStream, StreamCreateOrUpdate streamCreateOrUpdate) {
-        storeStream.handleStreamUpdate(streamCreateOrUpdate);
+    public static final /* synthetic */ void access$handleStreamUpdate(StoreStream storeStream, ModelApplicationStream3 modelApplicationStream3) {
+        storeStream.handleStreamUpdate(modelApplicationStream3);
     }
 
     public static final /* synthetic */ void access$handleThreadDelete(StoreStream storeStream, Channel channel) {
@@ -3536,7 +3537,7 @@ public final class StoreStream {
 
     private final <T> void dispatchSubscribe(Observable<T> observable, String str, Function1<? super T, Unit> function1) {
         Observable<T> observableK = observable.K();
-        m.checkNotNullExpressionValue(observableK, "onBackpressureBuffer()");
+        Intrinsics3.checkNotNullExpressionValue(observableK, "onBackpressureBuffer()");
         ObservableExtensionsKt.appSubscribe$default(observableK, (Context) null, str, (Function1) null, new AnonymousClass1(function1), (Function1) null, (Function0) null, (Function0) null, 117, (Object) null);
     }
 
@@ -4600,35 +4601,35 @@ public final class StoreStream {
         return this.voiceStates;
     }
 
-    @StoreThread
+    @Store3
     private final void guildScheduledEventUserAdd(GuildScheduledEventUserUpdate guildScheduledEventUserUpdate) {
         this.guildScheduledEvents.handleGuildScheduledEventUserAdd(guildScheduledEventUserUpdate);
     }
 
-    @StoreThread
+    @Store3
     private final void guildScheduledEventUserRemove(GuildScheduledEventUserUpdate guildScheduledEventUserUpdate) {
         this.guildScheduledEvents.handleGuildScheduledEventUserRemove(guildScheduledEventUserUpdate);
     }
 
-    @StoreThread
+    @Store3
     public final void handleApplicationCommandAutocompleteResult(ApplicationCommandAutocompleteResult interactionStateUpdate) {
-        m.checkNotNullParameter(interactionStateUpdate, "interactionStateUpdate");
+        Intrinsics3.checkNotNullParameter(interactionStateUpdate, "interactionStateUpdate");
         this.applicationCommands.handleApplicationCommandAutocompleteResult(interactionStateUpdate);
     }
 
-    @StoreThread
+    @Store3
     public final void handleApplicationStreamUpdate(long userId, Integer streamId) {
         this.videoStreams.handleApplicationStreamUpdate(userId, streamId);
         this.connectionTimeStats.handleApplicationStreamUpdate(userId, streamId);
     }
 
-    @StoreThread
+    @Store3
     public final void handleApplicationStreamVideoMetadataUpdate(VideoMetadata metadata) {
-        m.checkNotNullParameter(metadata, "metadata");
+        Intrinsics3.checkNotNullParameter(metadata, "metadata");
         this.videoStreams.handleApplicationStreamVideoMetadataUpdate(metadata);
     }
 
-    @StoreThread
+    @Store3
     private final void handleAuthState(AuthState authState) {
         this.authentication.handleAuthState$app_productionGoogleRelease(authState);
         this.users.handleAuthToken(authState != null ? authState.getToken() : null);
@@ -4640,43 +4641,43 @@ public final class StoreStream {
         this.voiceStates.handleAuthToken(authState != null ? authState.getToken() : null);
     }
 
-    @StoreThread
+    @Store3
     private final void handleBackgrounded(boolean backgrounded) {
         AppLog.i("[StoreStream] Application backgrounded: " + backgrounded);
         this.connectivity.handleBackgrounded(backgrounded);
         this.messagesLoader.handleBackgrounded(backgrounded);
     }
 
-    @StoreThread
+    @Store3
     private final void handleBanAdd(ModelBan ban) {
         this.bans.handleBanAdd(ban);
     }
 
-    @StoreThread
+    @Store3
     private final void handleBanRemove(ModelBan ban) {
         this.bans.handleBanRemove(ban);
     }
 
-    @StoreThread
+    @Store3
     private final void handleCallCreateOrUpdate(ModelCall call) {
         this.calls.handleCallCreateOrUpdate(call);
         this.callsIncoming.handleCallCreateOrUpdate(call);
         List<VoiceState> voiceStates = call.getVoiceStates();
         if (voiceStates != null) {
             for (VoiceState voiceState : voiceStates) {
-                m.checkNotNullExpressionValue(voiceState, "voiceState");
+                Intrinsics3.checkNotNullExpressionValue(voiceState, "voiceState");
                 handleVoiceStateUpdate(voiceState);
             }
         }
     }
 
-    @StoreThread
+    @Store3
     private final void handleCallDelete(ModelCall callDelete) {
         this.callsIncoming.handleCallDelete(callDelete);
         this.calls.handleCallDelete(callDelete);
     }
 
-    @StoreThread
+    @Store3
     private final void handleChannelCreateOrUpdate(Channel channel) {
         this.users.handleChannelCreated(channel);
         this.channelConversions.handleChannelCreateOrUpdate(channel);
@@ -4691,12 +4692,12 @@ public final class StoreStream {
         this.threadsActiveJoined.handleChannelCreateOrUpdate(channel);
     }
 
-    @StoreThread
+    @Store3
     private final void handleChannelDelete(Channel channel) {
         handleChannelOrThreadDelete(channel);
     }
 
-    @StoreThread
+    @Store3
     private final void handleChannelOrThreadDelete(Channel channel) {
         this.channels.handleChannelOrThreadDelete(channel);
         this.stageInstances.handleChannelDelete(channel);
@@ -4713,7 +4714,7 @@ public final class StoreStream {
         }
     }
 
-    @StoreThread
+    @Store3
     private final void handleChannelSelected(long channelId) {
         this.channelConversions.handleChannelSelected(channelId);
         this.calls.handleChannelSelect(channelId);
@@ -4727,12 +4728,12 @@ public final class StoreStream {
         this.applicationInteractions.handleChannelSelected();
     }
 
-    @StoreThread
+    @Store3
     private final void handleChannelUnreadUpdate(ModelChannelUnreadUpdate channelUnreadUpdate) {
         this.messagesMostRecent.handleChannelUnreadUpdate(channelUnreadUpdate);
     }
 
-    @StoreThread
+    @Store3
     private final void handleConnected(boolean connected) {
         this.messages.handleConnected(connected);
         this.messagesLoader.handleConnected(connected);
@@ -4742,7 +4743,7 @@ public final class StoreStream {
         this.channels.handleConnected(connected);
     }
 
-    @StoreThread
+    @Store3
     private final void handleConnectionOpen(ModelPayload payload_) {
         TimeElapsed timeElapsed = new TimeElapsed(this.clock, 0L, 2, null);
         ReadyPayloadUtils.HydrateResult hydrateResultHydrateReadyPayload = ReadyPayloadUtils.INSTANCE.hydrateReadyPayload(payload_, this.guilds, this.channels, this.customEmojis, this.guildStickers);
@@ -4753,7 +4754,7 @@ public final class StoreStream {
         ModelPayload payload = ((ReadyPayloadUtils.HydrateResult.Success) hydrateResultHydrateReadyPayload).getPayload();
         String authToken = payload.getAuthToken();
         if (authToken != null) {
-            handleAuthState(AuthState.INSTANCE.from(authToken, n0.emptySet()));
+            handleAuthState(AuthState.INSTANCE.from(authToken, Sets5.emptySet()));
             this.authentication.setAuthed(authToken);
         }
         this.users.handleConnectionOpen(payload);
@@ -4822,7 +4823,7 @@ public final class StoreStream {
         AppLog.i("[StoreStream] Processed ready payload in " + timeElapsed.getSeconds() + " seconds");
     }
 
-    @StoreThread
+    @Store3
     private final void handleConnectionReady(boolean connectionReady) {
         this.rtcConnection.handleConnectionReady(connectionReady);
         this.calls.handleConnectionReady(connectionReady);
@@ -4834,75 +4835,75 @@ public final class StoreStream {
         this.applicationInteractions.handleConnectionReady(connectionReady);
     }
 
-    @StoreThread
+    @Store3
     private final void handleEmbeddedActivityInboundUpdate(EmbeddedActivityInboundUpdate embeddedActivityInboundUpdate) {
         this.embeddedActivities.handleEmbeddedActivityInboundUpdate(embeddedActivityInboundUpdate);
     }
 
-    @StoreThread
+    @Store3
     private final void handleEmojiUpdate(GuildEmojisUpdate emojiUpdate) {
         this.customEmojis.handleEmojiUpdate(emojiUpdate);
         this.guildEmojis.handleEmojiUpdate(emojiUpdate);
         this.clientDataState.handleEmojiUpdate(emojiUpdate);
     }
 
-    @StoreThread
+    @Store3
     private final void handleFingerprint(String fingerprint) {
         this.experiments.handleFingerprint(fingerprint);
         this.analytics.handleFingerprint(fingerprint);
     }
 
-    @StoreThread
+    @Store3
     private final void handleForumUnreads(ForumUnreads forumUnreads) {
         this.forumPostReadStates.handleForumUnreads(forumUnreads);
     }
 
-    @StoreThread
+    @Store3
     public final void handleFriendSuggestionCreate(FriendSuggestion friendSuggestionCreate) {
-        m.checkNotNullParameter(friendSuggestionCreate, "friendSuggestionCreate");
+        Intrinsics3.checkNotNullParameter(friendSuggestionCreate, "friendSuggestionCreate");
         this.friendSuggestions.handleFriendSuggestionCreate(friendSuggestionCreate);
         this.users.handleFriendSuggestionCreate(friendSuggestionCreate);
     }
 
-    @StoreThread
+    @Store3
     public final void handleFriendSuggestionDelete(FriendSuggestionDelete friendSuggestionDelete) {
-        m.checkNotNullParameter(friendSuggestionDelete, "friendSuggestionDelete");
+        Intrinsics3.checkNotNullParameter(friendSuggestionDelete, "friendSuggestionDelete");
         this.friendSuggestions.handleFriendSuggestionDelete(friendSuggestionDelete);
     }
 
-    @StoreThread
+    @Store3
     private final void handleFriendSuggestionsFetchFailure() {
         this.friendSuggestions.handleFriendSuggestionsLoadFailure();
     }
 
-    @StoreThread
+    @Store3
     private final void handleFriendSuggestionsFetched(List<FriendSuggestion> friendSuggestions) {
         handleFriendSuggestionsLoaded(friendSuggestions);
     }
 
-    @StoreThread
+    @Store3
     public final void handleFriendSuggestionsLoaded(List<FriendSuggestion> friendSuggestions) {
-        m.checkNotNullParameter(friendSuggestions, "friendSuggestions");
+        Intrinsics3.checkNotNullParameter(friendSuggestions, "friendSuggestions");
         this.friendSuggestions.handleFriendSuggestionsLoaded(friendSuggestions);
         this.users.handleFriendSuggestionsLoaded(friendSuggestions);
     }
 
-    @StoreThread
+    @Store3
     private final void handleGroupDMRecipientAdd(ChannelRecipient recipient) {
         this.channels.handleGroupDMRecipient(recipient, true);
     }
 
-    @StoreThread
+    @Store3
     private final void handleGroupDMRecipientRemove(ChannelRecipient recipient) {
         this.channels.handleGroupDMRecipient(recipient, false);
     }
 
-    @StoreThread
+    @Store3
     private final void handleGuildApplicationCommands(GuildApplicationCommands commandsGateway) {
         this.applicationCommands.handleApplicationCommandsUpdate(commandsGateway);
     }
 
-    @StoreThread
+    @Store3
     private final void handleGuildCreate(Guild guild) {
         handleGuildCreateOrUpdate(guild);
         this.threadsActive.handleGuildCreate();
@@ -4913,7 +4914,7 @@ public final class StoreStream {
         this.embeddedActivities.handleGuildCreate(guild);
     }
 
-    @StoreThread
+    @Store3
     private final void handleGuildCreateOrUpdate(Guild guild_) {
         if (guild_ == null) {
             return;
@@ -4944,29 +4945,29 @@ public final class StoreStream {
         this.embeddedActivities.handleGuildCreate(guild);
     }
 
-    @StoreThread
+    @Store3
     private final void handleGuildIntegrationUpdate(ModelGuildIntegration.Update update) {
         this.integrations.handleUpdate(update);
     }
 
-    @StoreThread
-    public final void handleGuildJoinRequestCreateOrUpdate(GuildJoinRequestCreateOrUpdate update) {
-        m.checkNotNullParameter(update, "update");
+    @Store3
+    public final void handleGuildJoinRequestCreateOrUpdate(GuildJoinRequest2 update) {
+        Intrinsics3.checkNotNullParameter(update, "update");
         this.guildJoinRequests.handleGuildJoinRequestCreateOrUpdate(update.getGuildId(), update.getRequest());
     }
 
-    @StoreThread
-    public final void handleGuildJoinRequestDelete(GuildJoinRequestDelete update) {
-        m.checkNotNullParameter(update, "update");
+    @Store3
+    public final void handleGuildJoinRequestDelete(GuildJoinRequest3 update) {
+        Intrinsics3.checkNotNullParameter(update, "update");
         this.guildJoinRequests.handleGuildJoinRequestDelete(update.getUserId(), update.getGuildId());
     }
 
-    @StoreThread
+    @Store3
     public final void handleGuildJoined(long guildId, GuildWelcomeScreen welcomeScreen) {
         this.guildWelcomeScreens.handleGuildJoined(guildId, welcomeScreen);
     }
 
-    @StoreThread
+    @Store3
     private final void handleGuildMemberAdd(GuildMember member) {
         this.users.handleGuildMemberAdd(member);
         this.guilds.handleGuildMemberAdd(member);
@@ -4978,7 +4979,7 @@ public final class StoreStream {
         this.mentions.handleGuildMemberAdd(member);
     }
 
-    @StoreThread
+    @Store3
     private final void handleGuildMemberListUpdate(ModelGuildMemberListUpdate update) {
         for (ModelGuildMemberListUpdate.Operation operation : update.getOperations()) {
             if (operation.getItem() != null) {
@@ -4995,7 +4996,7 @@ public final class StoreStream {
         this.lazyChannelMembersStore.handleGuildMemberListUpdate(update);
     }
 
-    @StoreThread
+    @Store3
     private final void handleGuildMemberRemove(GuildMemberRemove event) {
         this.guilds.handleGuildMemberRemove(event.getGuildId(), event.getUser().getId());
         this.guildMemberCounts.handleGuildMemberRemove(event.getGuildId());
@@ -5003,7 +5004,7 @@ public final class StoreStream {
         this.stageChannels.handleGuildMemberRemove(event.getGuildId(), event.getUser().getId());
     }
 
-    @StoreThread
+    @Store3
     private final void handleGuildMembersChunk(GuildMembersChunk chunk) {
         this.users.handleGuildMembersChunk(chunk);
         this.guilds.handleGuildMembersChunk(chunk);
@@ -5017,7 +5018,7 @@ public final class StoreStream {
         this.guildMemberRequesterStore.handleGuildMembersChunk(chunk);
     }
 
-    @StoreThread
+    @Store3
     private final void handleGuildRemove(Guild guild) {
         if (guild == null) {
             return;
@@ -5048,12 +5049,12 @@ public final class StoreStream {
         this.guildRoleMemberCounts.handleGuildRemove(guild.getId());
     }
 
-    @StoreThread
+    @Store3
     private final void handleGuildRoleCreate(GuildRoleCreate event) {
         handleGuildRoleCreateOrUpdate(event.getGuildId(), event.getRole(), event.getGuildHashes());
     }
 
-    @StoreThread
+    @Store3
     private final void handleGuildRoleCreateOrUpdate(long guildId, GuildRole role, GuildHashes guildHashes) {
         this.guilds.handleGuildRoleCreateOrUpdate(guildId, role);
         this.permissions.handleGuildRolesChanged(guildId);
@@ -5063,7 +5064,7 @@ public final class StoreStream {
         this.stageChannels.handleGuildRoleCreateOrUpdate(guildId);
     }
 
-    @StoreThread
+    @Store3
     private final void handleGuildRoleDelete(GuildRoleDelete event) {
         this.guilds.handleGuildRoleRemove(event.getRoleId(), event.getGuildId());
         this.permissions.handleGuildRolesChanged(event.getGuildId());
@@ -5071,7 +5072,7 @@ public final class StoreStream {
         this.clientDataState.handleRoleAddOrRemove(event.getGuildId(), event.getGuildHashes());
     }
 
-    @StoreThread
+    @Store3
     private final void handleGuildRoleUpdate(GuildRoleUpdate event) {
         GuildRole guildRoleC = event.getRole();
         if (guildRoleC != null) {
@@ -5079,22 +5080,22 @@ public final class StoreStream {
         }
     }
 
-    @StoreThread
+    @Store3
     private final void handleGuildScheduledEventCreate(GuildScheduledEvent guildScheduledEvent) {
         this.guildScheduledEvents.handleGuildScheduledEventCreate(guildScheduledEvent);
     }
 
-    @StoreThread
+    @Store3
     private final void handleGuildScheduledEventDelete(GuildScheduledEvent guildScheduledEvent) {
         this.guildScheduledEvents.handleGuildScheduledEventDelete(guildScheduledEvent);
     }
 
-    @StoreThread
+    @Store3
     private final void handleGuildScheduledEventUpdate(GuildScheduledEvent guildScheduledEvent) {
         this.guildScheduledEvents.handleGuildScheduledEventUpdate(guildScheduledEvent);
     }
 
-    @StoreThread
+    @Store3
     public final void handleGuildSelected(long guildId) {
         this.guildSelected.handleGuildSelected(guildId);
         this.channelsSelected.handleGuildSelected();
@@ -5105,60 +5106,60 @@ public final class StoreStream {
         this.guildInvite.handleGuildSelected(guildId);
     }
 
-    @StoreThread
+    @Store3
     private final void handleGuildSettingUpdated(ModelNotificationSettings modelNotificationSettings) {
-        this.guildSettings.handleGuildSettingUpdated$app_productionGoogleRelease(d0.t.m.listOf(modelNotificationSettings));
+        this.guildSettings.handleGuildSettingUpdated$app_productionGoogleRelease(CollectionsJVM.listOf(modelNotificationSettings));
         this.clientDataState.handleGuildSettingUpdated(modelNotificationSettings);
     }
 
-    @StoreThread
+    @Store3
     private final void handleGuildUpdate(Guild guild) {
         handleGuildCreateOrUpdate(guild);
     }
 
-    @StoreThread
+    @Store3
     public final void handleHomeTabSelected(StoreNavigation.PanelAction panelAction) {
-        m.checkNotNullParameter(panelAction, "panelAction");
+        Intrinsics3.checkNotNullParameter(panelAction, "panelAction");
         this.navigation.handleHomeTabSelected(panelAction);
     }
 
-    @StoreThread
+    @Store3
     private final void handleHydrateError() {
         this.clientDataState.clear();
         this.gatewaySocket.resetOnError();
     }
 
-    @StoreThread
+    @Store3
     private final void handleInteractionCreate(InteractionStateUpdate interactionStateUpdate) {
         this.applicationInteractions.handleInteractionCreate(interactionStateUpdate);
         this.messages.handleInteractionCreate(interactionStateUpdate);
     }
 
-    @StoreThread
+    @Store3
     public final void handleInteractionFailure(InteractionStateUpdate interactionStateUpdate) {
-        m.checkNotNullParameter(interactionStateUpdate, "interactionStateUpdate");
+        Intrinsics3.checkNotNullParameter(interactionStateUpdate, "interactionStateUpdate");
         this.applicationInteractions.handleInteractionFailure(interactionStateUpdate);
         this.messages.handleInteractionFailure(interactionStateUpdate);
     }
 
-    @StoreThread
+    @Store3
     public final void handleInteractionModalCreate(InteractionModalCreate interactionModalCreate) {
-        m.checkNotNullParameter(interactionModalCreate, "interactionModalCreate");
+        Intrinsics3.checkNotNullParameter(interactionModalCreate, "interactionModalCreate");
         this.applicationInteractions.handleInteractionModalCreate(interactionModalCreate);
         this.messages.handleInteractionModalCreate(interactionModalCreate);
     }
 
-    @StoreThread
+    @Store3
     private final void handleInteractionSuccess(InteractionStateUpdate interactionStateUpdate) {
         this.applicationInteractions.handleInteractionSuccess(interactionStateUpdate);
     }
 
-    @StoreThread
+    @Store3
     public final void handleIsScreenSharingChanged(boolean isScreenSharing) {
         this.analytics.handleIsScreenSharingChanged(isScreenSharing);
     }
 
-    @StoreThread
+    @Store3
     private final void handleItem(long guildId, ModelGuildMemberListUpdate.Operation.Item item) {
         if (item instanceof ModelGuildMemberListUpdate.Operation.Item.MemberItem) {
             GuildMember member = ((ModelGuildMemberListUpdate.Operation.Item.MemberItem) item).getMember();
@@ -5170,20 +5171,20 @@ public final class StoreStream {
         }
     }
 
-    @StoreThread
+    @Store3
     public final void handleLocalMessageDelete(com.discord.models.message.Message message) {
-        m.checkNotNullParameter(message, "message");
+        Intrinsics3.checkNotNullParameter(message, "message");
         this.applicationInteractions.handleLocalMessageDelete(message);
     }
 
-    @StoreThread
+    @Store3
     public final void handleLoginResult(ModelLoginResult loginResult) {
-        m.checkNotNullParameter(loginResult, "loginResult");
+        Intrinsics3.checkNotNullParameter(loginResult, "loginResult");
         this.authentication.handleLoginResult(loginResult);
         this.userSettingsSystem.handleLoginResult(loginResult);
     }
 
-    @StoreThread
+    @Store3
     private final void handleMessageAck(ModelReadState readState) {
         this.mentions.handleMessageAck(readState);
         this.messageAck.handleMessageAck(readState);
@@ -5191,14 +5192,14 @@ public final class StoreStream {
         this.clientDataState.handleMessageAck(readState);
     }
 
-    @StoreThread
+    @Store3
     private final void handleMessageCreate(Message message) {
         processMessageUsers(message);
         this.mentions.handleMessageCreateOrUpdate(message);
         this.users.handleMessageCreateOrUpdate(message);
         this.usersTyping.handleMessageCreate(message);
         this.applicationInteractions.handleMessageCreate(message);
-        this.messages.handleMessageCreate(d0.t.m.listOf(message));
+        this.messages.handleMessageCreate(CollectionsJVM.listOf(message));
         this.messagesMostRecent.handleMessageCreate(message);
         this.messageAck.handleMessageCreate(message);
         this.messageReplies.handleMessageCreate(message);
@@ -5209,14 +5210,14 @@ public final class StoreStream {
         this.forumPostReadStates.handleMessageCreate(message);
     }
 
-    @StoreThread
+    @Store3
     private final void handleMessageDelete(ModelMessageDelete messageDeleteBulk) {
         this.messages.handleMessageDelete(messageDeleteBulk);
         this.mentions.handleMessageDeleted(messageDeleteBulk);
         StorePinnedMessages storePinnedMessages = this.pinnedMessages;
         long channelId = messageDeleteBulk.getChannelId();
         List<Long> messageIds = messageDeleteBulk.getMessageIds();
-        m.checkNotNullExpressionValue(messageIds, "messageDeleteBulk.messageIds");
+        Intrinsics3.checkNotNullExpressionValue(messageIds, "messageDeleteBulk.messageIds");
         storePinnedMessages.handleMessageDeleteBulk(channelId, messageIds);
         this.messageStates.handleMessageDelete(messageDeleteBulk);
         this.messageReplies.handleMessageDelete(messageDeleteBulk);
@@ -5225,7 +5226,7 @@ public final class StoreStream {
         this.forumPostMessages.handleMessageDelete(messageDeleteBulk);
     }
 
-    @StoreThread
+    @Store3
     private final void handleMessageUpdate(Message message) {
         processMessageUsers(message);
         this.mentions.handleMessageCreateOrUpdate(message);
@@ -5239,7 +5240,7 @@ public final class StoreStream {
         this.forumPostMessages.handleMessageUpdate(message);
     }
 
-    @StoreThread
+    @Store3
     private final void handleMessagesLoaded(StoreMessagesLoader.ChannelChunk chunk) {
         this.users.handleMessagesLoaded(chunk);
         this.applicationInteractions.handleMessagesCreateOrLoad(chunk.getMessages());
@@ -5251,7 +5252,7 @@ public final class StoreStream {
         this.permissions.handleMessagesLoaded(chunk.getMessages());
     }
 
-    @StoreThread
+    @Store3
     private final void handlePreLogout() {
         this.gatewaySocket.handlePreLogout();
         this.guildSelected.handlePreLogout();
@@ -5274,146 +5275,146 @@ public final class StoreStream {
         this.applicationInteractions.handlePreLogout();
     }
 
-    @StoreThread
+    @Store3
     private final void handlePresenceReplace(List<Presence> presencesList) {
         this.presences.handlePresenceReplace(presencesList);
         this.gameParty.handlePresenceReplace(presencesList);
     }
 
-    @StoreThread
+    @Store3
     private final void handlePresenceUpdate(long guildId, Presence presence) {
         this.users.handlePresenceUpdate(presence);
         this.presences.handlePresenceUpdate(guildId, presence);
         this.gameParty.handlePresenceUpdate(presence, guildId);
     }
 
-    @StoreThread
+    @Store3
     private final void handleReactionAdd(MessageReactionUpdate update) {
-        this.messages.handleReactionUpdate(d0.t.m.listOf(update), true);
+        this.messages.handleReactionUpdate(CollectionsJVM.listOf(update), true);
         this.messageReactions.handleReactionAdd(update);
         this.forumPostMessages.handleReactionAdd(update);
     }
 
-    @StoreThread
+    @Store3
     private final void handleReactionRemove(MessageReactionUpdate update) {
-        this.messages.handleReactionUpdate(d0.t.m.listOf(update), false);
+        this.messages.handleReactionUpdate(CollectionsJVM.listOf(update), false);
         this.messageReactions.handleReactionRemove(update);
         this.forumPostMessages.handleReactionRemove(update);
     }
 
-    @StoreThread
+    @Store3
     private final void handleReactionRemoveAll(MessageReactionUpdate update) {
         this.messages.handleReactionsRemoveAll(update);
         this.messageReactions.handleReactionRemoveAll(update);
         this.forumPostMessages.handleReactionRemoveAll(update);
     }
 
-    @StoreThread
+    @Store3
     private final void handleReactionRemoveEmoji(MessageReactionUpdate update) {
         this.messages.handleReactionsRemoveEmoji(update);
         this.messageReactions.handleReactionRemoveEmoji(update);
         this.forumPostMessages.handleReactionRemoveEmoji(update);
     }
 
-    @StoreThread
+    @Store3
     public final void handleRelationshipAdd(ModelUserRelationship relationship) {
-        m.checkNotNullParameter(relationship, "relationship");
+        Intrinsics3.checkNotNullParameter(relationship, "relationship");
         this.users.handleUserRelationshipAdd(relationship);
         this.userRelationships.handleRelationshipAdd(relationship);
     }
 
-    @StoreThread
+    @Store3
     private final void handleRelationshipRemove(ModelUserRelationship relationship) {
         this.userRelationships.handleRelationshipRemove(relationship);
     }
 
-    @StoreThread
+    @Store3
     private final void handleRequiredActionUpdate(UserRequiredActionUpdate requiredActionUpdate) {
         this.userRequiredAction.handleUserRequiredActionUpdate(requiredActionUpdate);
     }
 
-    @StoreThread
+    @Store3
     private final void handleRtcConnectionStateChanged(RtcConnection.StateChange stateChange) {
         this.gatewaySocket.handleRtcConnectionStateChanged(stateChange);
         this.voiceChannelSelected.handleRtcConnectionStateChanged(stateChange.state);
         this.audioManagerV2.handleRtcConnectionState(stateChange.state);
     }
 
-    @StoreThread
+    @Store3
     public final void handleSamplePremiumGuildSelected(long guildId) {
         this.guildSelected.handleGuildSelected(guildId);
         this.channelsSelected.handleGuildSelected();
         this.nux.handleSamplePremiumGuildSelected(guildId);
     }
 
-    @StoreThread
+    @Store3
     public final void handleSearchFinish(SearchState searchState) {
-        m.checkNotNullParameter(searchState, "searchState");
+        Intrinsics3.checkNotNullParameter(searchState, "searchState");
         this.channels.handleSearchFinish(searchState);
         this.permissions.handleSearchFinish(searchState);
         this.threadsJoined.handleSearchFinish(searchState);
     }
 
-    @StoreThread
+    @Store3
     private final void handleSessionsReplace(List<? extends ModelSession> sessions) {
         this.presences.handleSessionsReplace(sessions);
     }
 
-    @StoreThread
+    @Store3
     private final void handleSpeakingUpdates(List<StoreRtcConnection.SpeakingUserUpdate> speakingUsers) {
         this.voiceSpeaking.handleSpeakingUpdates(speakingUsers);
     }
 
-    @StoreThread
+    @Store3
     private final void handleSpeakingUsers(Set<Long> speakingUsers) {
         this.analytics.handleUserSpeaking(speakingUsers);
     }
 
-    @StoreThread
+    @Store3
     public final void handleStageInstanceCreate(StageInstance stageInstance) {
-        m.checkNotNullParameter(stageInstance, "stageInstance");
+        Intrinsics3.checkNotNullParameter(stageInstance, "stageInstance");
         this.stageInstances.handleStageInstanceCreate(stageInstance);
         this.stageSelfPresence.handleStageInstanceCreate();
         this.permissions.handleStageInstanceChange(stageInstance);
     }
 
-    @StoreThread
+    @Store3
     public final void handleStageInstanceDelete(StageInstance stageInstance) {
-        m.checkNotNullParameter(stageInstance, "stageInstance");
+        Intrinsics3.checkNotNullParameter(stageInstance, "stageInstance");
         this.stageInstances.handleStageInstanceDelete(stageInstance);
         this.stageSelfPresence.handleStageInstanceDelete();
         this.permissions.handleStageInstanceChange(stageInstance);
     }
 
-    @StoreThread
+    @Store3
     public final void handleStageInstanceUpdate(StageInstance stageInstance) {
-        m.checkNotNullParameter(stageInstance, "stageInstance");
+        Intrinsics3.checkNotNullParameter(stageInstance, "stageInstance");
         this.stageInstances.handleStageInstanceUpdate(stageInstance);
         this.stageSelfPresence.handleStageInstanceUpdate();
         this.permissions.handleStageInstanceChange(stageInstance);
     }
 
-    @StoreThread
+    @Store3
     private final void handleStickersUpdate(GuildStickersUpdate stickerUpdate) {
         this.guildStickers.handleStickerUpdate(stickerUpdate);
         this.clientDataState.handleStickersUpdate(stickerUpdate);
     }
 
-    @StoreThread
+    @Store3
     public final void handleStoreInitializationTimeout() {
         this.channels.handleStoreInitTimeout();
         this.channelsSelected.handleStoreInitTimeout();
     }
 
-    @StoreThread
-    private final void handleStreamCreate(StreamCreateOrUpdate streamCreate) {
+    @Store3
+    private final void handleStreamCreate(ModelApplicationStream3 streamCreate) {
         this.streamRtcConnection.handleStreamCreate(streamCreate);
         this.applicationStreaming.handleStreamCreate(streamCreate);
     }
 
-    @StoreThread
-    public final void handleStreamDelete(StreamDelete streamDelete, boolean isLocal) {
-        m.checkNotNullParameter(streamDelete, "streamDelete");
+    @Store3
+    public final void handleStreamDelete(ModelApplicationStream5 streamDelete, boolean isLocal) {
+        Intrinsics3.checkNotNullParameter(streamDelete, "streamDelete");
         this.streamRtcConnection.handleStreamDelete();
         this.applicationStreaming.handleStreamDelete(streamDelete);
         if (isLocal) {
@@ -5421,33 +5422,33 @@ public final class StoreStream {
         }
     }
 
-    @StoreThread
+    @Store3
     public final void handleStreamRtcConnectionStateChange(RtcConnection.StateChange stateChange) {
-        m.checkNotNullParameter(stateChange, "stateChange");
+        Intrinsics3.checkNotNullParameter(stateChange, "stateChange");
         this.gatewaySocket.handleRtcConnectionStateChanged(stateChange);
         this.streamRtcConnection.handleStreamRtcConnectionStateChange(stateChange.state);
     }
 
-    @StoreThread
-    private final void handleStreamServerUpdate(StreamServerUpdate streamServerUpdate) {
+    @Store3
+    private final void handleStreamServerUpdate(ModelApplicationStream7 streamServerUpdate) {
         this.streamRtcConnection.handleStreamServerUpdate(streamServerUpdate);
     }
 
-    @StoreThread
+    @Store3
     public final void handleStreamTargeted(String streamKey) {
-        m.checkNotNullParameter(streamKey, "streamKey");
+        Intrinsics3.checkNotNullParameter(streamKey, "streamKey");
         this.applicationStreaming.handleStreamTargeted(streamKey);
         this.voiceChannelSelected.handleStreamTargeted(streamKey);
     }
 
-    @StoreThread
-    private final void handleStreamUpdate(StreamCreateOrUpdate streamUpdate) {
+    @Store3
+    private final void handleStreamUpdate(ModelApplicationStream3 streamUpdate) {
         this.applicationStreaming.handleStreamUpdate(streamUpdate);
     }
 
-    @StoreThread
+    @Store3
     public final void handleThreadCreateOrUpdate(Channel channel) {
-        m.checkNotNullParameter(channel, "channel");
+        Intrinsics3.checkNotNullParameter(channel, "channel");
         this.channels.handleThreadCreateOrUpdate(channel);
         this.channelsSelected.handleChannelOrThreadCreateOrUpdate(channel);
         this.permissions.handleChannelOrThreadCreateOrUpdate(channel);
@@ -5464,7 +5465,7 @@ public final class StoreStream {
         this.forumPostReadStates.handleThreadCreateOrUpdate(channel);
     }
 
-    @StoreThread
+    @Store3
     private final void handleThreadDelete(Channel channel) {
         handleChannelOrThreadDelete(channel);
         this.threadsActive.handleThreadDelete(channel);
@@ -5476,7 +5477,7 @@ public final class StoreStream {
         this.forumPostReadStates.handleThreadDelete(channel);
     }
 
-    @StoreThread
+    @Store3
     private final void handleThreadListSync(ModelThreadListSync threadListSync) {
         this.channels.handleThreadListSync(threadListSync);
         this.threadsActive.handleThreadListSync(threadListSync);
@@ -5488,7 +5489,7 @@ public final class StoreStream {
         this.threadMessages.handleThreadListSync(threadListSync);
     }
 
-    @StoreThread
+    @Store3
     private final void handleThreadMemberListUpdate(ThreadMemberListUpdate threadMemberListUpdate) {
         this.presences.handleThreadMemberListUpdate(threadMemberListUpdate);
         this.users.handleThreadMemberListUpdate(threadMemberListUpdate);
@@ -5497,14 +5498,14 @@ public final class StoreStream {
         this.lazyThreadMembersStore.handleThreadMemberListUpdate(threadMemberListUpdate);
     }
 
-    @StoreThread
+    @Store3
     private final void handleThreadMemberUpdate(ThreadMemberUpdate threadMemberUpdate) {
         this.threadsJoined.handleThreadMemberUpdate(threadMemberUpdate);
         this.threadsActiveJoined.handleThreadMemberUpdate(threadMemberUpdate);
         this.permissions.handleThreadMemberUpdate(threadMemberUpdate);
     }
 
-    @StoreThread
+    @Store3
     private final void handleThreadMembersUpdate(ThreadMembersUpdate threadMembersUpdate) {
         this.threadsJoined.handleThreadMembersUpdate(threadMembersUpdate);
         this.threadsActiveJoined.handleThreadMembersUpdate(threadMembersUpdate);
@@ -5517,7 +5518,7 @@ public final class StoreStream {
         this.lazyThreadMembersStore.handleThreadMembersUpdate(threadMembersUpdate);
     }
 
-    @StoreThread
+    @Store3
     private final void handleTypingStart(TypingUser typing) {
         Long lValueOf = Long.valueOf(typing.getGuildId());
         GuildMember guildMemberC = typing.getMember();
@@ -5525,27 +5526,27 @@ public final class StoreStream {
         this.usersTyping.handleTypingStart(typing);
     }
 
-    @StoreThread
+    @Store3
     public final void handleUserConnections(List<ConnectedAccount> accounts) {
-        m.checkNotNullParameter(accounts, "accounts");
+        Intrinsics3.checkNotNullParameter(accounts, "accounts");
         this.userConnections.handleUserConnections(accounts);
         this.spotify.handleUserConnections(accounts);
     }
 
-    @StoreThread
+    @Store3
     private final void handleUserNoteUpdated(ModelUserNote.Update userNote) {
         this.userNotes.handleNoteUpdate(userNote);
     }
 
-    @StoreThread
+    @Store3
     private final void handleUserPaymentSourcesUpdate() {
         this.paymentSources.handleUserPaymentSourcesUpdate();
     }
 
-    @StoreThread
+    @Store3
     public final void handleUserProfile(UserProfile userProfileInstance, Long guildId) {
         GuildMember guildMemberC;
-        m.checkNotNullParameter(userProfileInstance, "userProfileInstance");
+        Intrinsics3.checkNotNullParameter(userProfileInstance, "userProfileInstance");
         this.userProfile.handleUserProfile(userProfileInstance);
         if (guildId == null || (guildMemberC = userProfileInstance.getGuildMember()) == null) {
             return;
@@ -5553,42 +5554,42 @@ public final class StoreStream {
         this.guilds.handleGuildMember(GuildMember.a(guildMemberC, guildId.longValue(), null, null, null, null, null, false, null, null, null, null, null, null, 8190), guildId.longValue(), true);
     }
 
-    @StoreThread
+    @Store3
     private final void handleUserSettingsUpdate(ModelUserSettings userSettingsUpdate) {
         this.userSettings.handleUserSettingsUpdate(userSettingsUpdate);
         this.userSettingsSystem.handleUserSettingsUpdate(userSettingsUpdate);
         this.presences.handleUserSettingsUpdate(userSettingsUpdate);
     }
 
-    @StoreThread
+    @Store3
     private final void handleUserSubscriptionsUpdate() {
         this.subscriptions.handleUserSubscriptionsUpdate();
     }
 
-    @StoreThread
+    @Store3
     private final void handleUserUpdated(User user) {
         this.users.handleUserUpdated(user);
         this.mfa.handleUserUpdated(user);
     }
 
-    @StoreThread
-    public final void handleVideoInputDeviceSelected(VideoInputDeviceDescription selectedVideoInputDevice) {
+    @Store3
+    public final void handleVideoInputDeviceSelected(DeviceDescription4 selectedVideoInputDevice) {
         this.analytics.handleVideoInputDeviceSelected(selectedVideoInputDevice);
     }
 
-    @StoreThread
+    @Store3
     public final void handleVideoMetadataUpdate(VideoMetadata metadata) {
-        m.checkNotNullParameter(metadata, "metadata");
+        Intrinsics3.checkNotNullParameter(metadata, "metadata");
         this.videoStreams.handleVideoMetadataUpdate(metadata);
     }
 
-    @StoreThread
+    @Store3
     public final void handleVideoStreamUpdate(long userId, Integer streamId, int audioSsrc, int videoSsrc, int rtxSsrc) {
         this.videoStreams.handleVideoStreamUpdate(userId, streamId);
         this.connectionTimeStats.handleVideoStreamUpdate(userId, streamId, audioSsrc, videoSsrc, rtxSsrc);
     }
 
-    @StoreThread
+    @Store3
     private final void handleVoiceChannelSelected(long voiceChannelId) {
         this.rtcConnection.handleVoiceChannelSelected(Long.valueOf(voiceChannelId));
         this.applicationStreaming.handleVoiceChannelSelected(voiceChannelId);
@@ -5605,12 +5606,12 @@ public final class StoreStream {
         this.lurking.handleVoiceChannelSelected$app_productionGoogleRelease(voiceChannelId);
     }
 
-    @StoreThread
+    @Store3
     private final void handleVoiceServerUpdate(VoiceServer voiceServer) {
         this.rtcConnection.handleVoiceServerUpdate(voiceServer);
     }
 
-    @StoreThread
+    @Store3
     private final void handleVoiceStateUpdate(VoiceState voiceState) {
         Long lValueOf = Long.valueOf(voiceState.getGuildId());
         GuildMember member = voiceState.getMember();
@@ -5624,7 +5625,7 @@ public final class StoreStream {
         this.connectionTimeStats.handleVoiceStateUpdate(voiceState);
     }
 
-    @StoreThread
+    @Store3
     public final void handleVoiceStatesUpdated(long guildId, long oldChannelId, long userId) {
         this.audioManagerV2.handleVoiceStatesUpdated();
         this.stageChannels.handleVoiceStatesUpdated(guildId, oldChannelId, userId);
@@ -5635,11 +5636,11 @@ public final class StoreStream {
         this.userSettingsSystem.init(context);
         this.emojis.initBlocking(context);
         this.userSettings.init(context);
-        ChannelSelector.INSTANCE.init(this, this.dispatcher, ObservationDeckProvider.get());
+        ChannelSelector.INSTANCE.init(this, this.dispatcher, ObservationDeck4.get());
         new StoreUIEventHandler(context, this.mediaEngine, this.channels, this.voiceChannelSelected, this.stageChannels, this.guildSettings);
     }
 
-    @StoreThread
+    @Store3
     private final void initGatewaySocketListeners() {
         dispatchSubscribe(this.gatewaySocket.getReady(), "streamConnectionOpen", new AnonymousClass1(this));
         dispatchSubscribe(this.gatewaySocket.getConnected(), "streamConnected", new AnonymousClass2(this));
@@ -5726,12 +5727,12 @@ public final class StoreStream {
         long jCurrentTimeMillis = clock.currentTimeMillis();
         if (jCurrentTimeMillis - sharedPreferences.getLong(LAST_LOGGED_NOTIFICATION_PERMISSIONS_KEY, 0L) > DAY_IN_MILLS) {
             Observable<NotificationClient.SettingsV2> observableZ = this.notifications.getSettings().Z(1);
-            m.checkNotNullExpressionValue(observableZ, "notifications.getSettings().take(1)");
+            Intrinsics3.checkNotNullExpressionValue(observableZ, "notifications.getSettings().take(1)");
             ObservableExtensionsKt.appSubscribe$default(observableZ, StoreStream.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass1(sharedPreferences, jCurrentTimeMillis, context), 62, (Object) null);
         }
     }
 
-    @StoreThread
+    @Store3
     private final void processMessageUsers(Message message) {
         synthesizeGuildMemberAdd(message.getGuildId(), message.getAuthor(), message.getMember());
         List<User> listT = message.t();
@@ -5744,7 +5745,7 @@ public final class StoreStream {
 
     private final void startStoreInitializationTimer(NetworkMonitor networkMonitor) {
         Observable observableZ = Observable.I(networkMonitor.observeIsConnected().y(StoreStream$startStoreInitializationTimer$isOfflineObservable$1.INSTANCE), Observable.d0(6000L, TimeUnit.MILLISECONDS)).Z(1);
-        m.checkNotNullExpressionValue(observableZ, "Observable.merge(\n      …le\n    )\n        .take(1)");
+        Intrinsics3.checkNotNullExpressionValue(observableZ, "Observable.merge(\n      …le\n    )\n        .take(1)");
         ObservableExtensionsKt.appSubscribe$default(observableZ, StoreStream.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass1(), 62, (Object) null);
     }
 
@@ -5755,22 +5756,22 @@ public final class StoreStream {
         storeStream.streamCreate(str, str2);
     }
 
-    @StoreThread
+    @Store3
     public final void streamCreate(String streamKey, String preferredRegion) {
-        m.checkNotNullParameter(streamKey, "streamKey");
+        Intrinsics3.checkNotNullParameter(streamKey, "streamKey");
         this.gatewaySocket.streamCreate(streamKey, preferredRegion);
         this.applicationStreaming.handleStreamCreateRequest(streamKey);
     }
 
-    @StoreThread
+    @Store3
     public final void streamWatch(String streamKey) {
-        m.checkNotNullParameter(streamKey, "streamKey");
+        Intrinsics3.checkNotNullParameter(streamKey, "streamKey");
         this.gatewaySocket.streamWatch(streamKey);
         this.applicationStreaming.handleStreamWatch(streamKey);
         this.connectionTimeStats.handleStreamWatch(streamKey);
     }
 
-    @StoreThread
+    @Store3
     private final void synthesizeGuildMemberAdd(Long guildId, User user, List<Long> roles, String nick, String premiumSince, Boolean pending, String avatar, UtcDateTime joinedAt, UtcDateTime communicationDisabledUntil) {
         if (guildId == null || user == null || roles == null) {
             return;
@@ -5782,7 +5783,7 @@ public final class StoreStream {
         dispatchSubscribe(batched.observe(), str, new AnonymousClass2(function1));
     }
 
-    @StoreThread
+    @Store3
     private final void synthesizeGuildMemberAdd(Long guildId, User user, GuildMember member) {
         synthesizeGuildMemberAdd(guildId, user, member != null ? member.l() : null, member != null ? member.getNick() : null, member != null ? member.getPremiumSince() : null, member != null ? Boolean.valueOf(member.getPending()) : null, member != null ? member.getAvatar() : null, member != null ? member.getJoinedAt() : null, member != null ? member.getCommunicationDisabledUntil() : null);
     }

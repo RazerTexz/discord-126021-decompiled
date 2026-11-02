@@ -1,14 +1,14 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackNuoGuildInfo.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackNuoGuildInfo implements AnalyticsSchema, TrackBaseReceiver {
+public final /* data */ class TrackNuoGuildInfo implements AnalyticsSchema, TrackBase2 {
     private final Long channelType = null;
     private final CharSequence evaluatedStep = null;
     private final Long guildCount = null;
@@ -27,7 +27,7 @@ public final /* data */ class TrackNuoGuildInfo implements AnalyticsSchema, Trac
             return false;
         }
         TrackNuoGuildInfo trackNuoGuildInfo = (TrackNuoGuildInfo) other;
-        return m.areEqual(this.evaluatedStep, trackNuoGuildInfo.evaluatedStep) && m.areEqual(this.invitedGuildId, trackNuoGuildInfo.invitedGuildId) && m.areEqual(this.guildCount, trackNuoGuildInfo.guildCount) && m.areEqual(this.memberCount, trackNuoGuildInfo.memberCount) && m.areEqual(this.hasSplash, trackNuoGuildInfo.hasSplash) && m.areEqual(this.channelType, trackNuoGuildInfo.channelType) && m.areEqual(this.verificationLevelEnabled, trackNuoGuildInfo.verificationLevelEnabled);
+        return Intrinsics3.areEqual(this.evaluatedStep, trackNuoGuildInfo.evaluatedStep) && Intrinsics3.areEqual(this.invitedGuildId, trackNuoGuildInfo.invitedGuildId) && Intrinsics3.areEqual(this.guildCount, trackNuoGuildInfo.guildCount) && Intrinsics3.areEqual(this.memberCount, trackNuoGuildInfo.memberCount) && Intrinsics3.areEqual(this.hasSplash, trackNuoGuildInfo.hasSplash) && Intrinsics3.areEqual(this.channelType, trackNuoGuildInfo.channelType) && Intrinsics3.areEqual(this.verificationLevelEnabled, trackNuoGuildInfo.verificationLevelEnabled);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -54,7 +54,7 @@ public final /* data */ class TrackNuoGuildInfo implements AnalyticsSchema, Trac
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackNuoGuildInfo(evaluatedStep=");
+        StringBuilder sbU = outline.U("TrackNuoGuildInfo(evaluatedStep=");
         sbU.append(this.evaluatedStep);
         sbU.append(", invitedGuildId=");
         sbU.append(this.invitedGuildId);
@@ -67,6 +67,6 @@ public final /* data */ class TrackNuoGuildInfo implements AnalyticsSchema, Trac
         sbU.append(", channelType=");
         sbU.append(this.channelType);
         sbU.append(", verificationLevelEnabled=");
-        return a.D(sbU, this.verificationLevelEnabled, ")");
+        return outline.D(sbU, this.verificationLevelEnabled, ")");
     }
 }

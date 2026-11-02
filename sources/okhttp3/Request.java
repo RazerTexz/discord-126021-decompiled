@@ -1,30 +1,31 @@
 package okhttp3;
 
 import androidx.browser.trusted.sharing.ShareTarget;
+import b.d.b.a.outline;
 import com.discord.models.domain.ModelAuditLogEntry;
-import com.discord.widgets.chat.input.MentionUtilsKt;
-import d0.g0.t;
-import d0.t.h0;
-import d0.t.n;
-import d0.z.d.m;
-import f0.d;
-import f0.e0.c;
-import f0.e0.h.f;
-import f0.w;
+import com.discord.widgets.chat.input.MentionUtils;
+import d0.g0.StringsJVM;
+import d0.t.Collections2;
+import d0.t.Maps6;
+import d0.z.d.Intrinsics3;
+import f0.CacheControl;
+import f0.HttpUrl;
+import f0.e0.Util7;
+import f0.e0.h.HttpMethod;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Objects;
-import kotlin.Pair;
+import kotlin.Tuples2;
 
 /* JADX INFO: compiled from: Request.kt */
 /* JADX INFO: loaded from: classes3.dex */
 public final class Request {
 
     /* JADX INFO: renamed from: a, reason: from kotlin metadata */
-    public d lazyCacheControl;
+    public CacheControl lazyCacheControl;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name and from kotlin metadata */
-    public final w url;
+    public final HttpUrl url;
 
     /* JADX INFO: renamed from: c, reason: from kotlin metadata */
     public final String method;
@@ -38,54 +39,54 @@ public final class Request {
     /* JADX INFO: renamed from: f, reason: from kotlin metadata */
     public final Map<Class<?>, Object> tags;
 
-    public Request(w wVar, String str, Headers headers, RequestBody requestBody, Map<Class<?>, ? extends Object> map) {
-        m.checkParameterIsNotNull(wVar, "url");
-        m.checkParameterIsNotNull(str, "method");
-        m.checkParameterIsNotNull(headers, "headers");
-        m.checkParameterIsNotNull(map, ModelAuditLogEntry.CHANGE_KEY_TAGS);
-        this.url = wVar;
+    public Request(HttpUrl httpUrl, String str, Headers headers, RequestBody requestBody, Map<Class<?>, ? extends Object> map) {
+        Intrinsics3.checkParameterIsNotNull(httpUrl, "url");
+        Intrinsics3.checkParameterIsNotNull(str, "method");
+        Intrinsics3.checkParameterIsNotNull(headers, "headers");
+        Intrinsics3.checkParameterIsNotNull(map, ModelAuditLogEntry.CHANGE_KEY_TAGS);
+        this.url = httpUrl;
         this.method = str;
         this.headers = headers;
         this.body = requestBody;
         this.tags = map;
     }
 
-    public final d a() {
-        d dVar = this.lazyCacheControl;
-        if (dVar != null) {
-            return dVar;
+    public final CacheControl a() {
+        CacheControl cacheControl = this.lazyCacheControl;
+        if (cacheControl != null) {
+            return cacheControl;
         }
-        d dVarB = d.a.b(this.headers);
-        this.lazyCacheControl = dVarB;
-        return dVarB;
+        CacheControl cacheControlB = CacheControl.a.b(this.headers);
+        this.lazyCacheControl = cacheControlB;
+        return cacheControlB;
     }
 
     public final String b(String name) {
-        m.checkParameterIsNotNull(name, ModelAuditLogEntry.CHANGE_KEY_NAME);
+        Intrinsics3.checkParameterIsNotNull(name, ModelAuditLogEntry.CHANGE_KEY_NAME);
         return this.headers.c(name);
     }
 
     public String toString() {
-        StringBuilder sbU = b.d.b.a.a.U("Request{method=");
+        StringBuilder sbU = outline.U("Request{method=");
         sbU.append(this.method);
         sbU.append(", url=");
         sbU.append(this.url);
         if (this.headers.size() != 0) {
             sbU.append(", headers=[");
             int i = 0;
-            for (Pair<? extends String, ? extends String> pair : this.headers) {
+            for (Tuples2<? extends String, ? extends String> tuples2 : this.headers) {
                 int i2 = i + 1;
                 if (i < 0) {
-                    n.throwIndexOverflow();
+                    Collections2.throwIndexOverflow();
                 }
-                Pair<? extends String, ? extends String> pair2 = pair;
-                String strComponent1 = pair2.component1();
-                String strComponent2 = pair2.component2();
+                Tuples2<? extends String, ? extends String> tuples3 = tuples2;
+                String strComponent1 = tuples3.component1();
+                String strComponent2 = tuples3.component2();
                 if (i > 0) {
                     sbU.append(", ");
                 }
                 sbU.append(strComponent1);
-                sbU.append(MentionUtilsKt.EMOJIS_AND_STICKERS_CHAR);
+                sbU.append(MentionUtils.EMOJIS_AND_STICKERS_CHAR);
                 sbU.append(strComponent2);
                 i = i2;
             }
@@ -97,13 +98,13 @@ public final class Request {
         }
         sbU.append('}');
         String string = sbU.toString();
-        m.checkExpressionValueIsNotNull(string, "StringBuilder().apply(builderAction).toString()");
+        Intrinsics3.checkExpressionValueIsNotNull(string, "StringBuilder().apply(builderAction).toString()");
         return string;
     }
 
     /* JADX INFO: compiled from: Request.kt */
     public class a {
-        public w a;
+        public HttpUrl a;
 
         /* JADX INFO: renamed from: b, reason: collision with root package name */
         public String f3813b;
@@ -118,20 +119,20 @@ public final class Request {
         }
 
         public Request a() {
-            w wVar = this.a;
-            if (wVar != null) {
-                return new Request(wVar, this.f3813b, this.c.c(), this.d, c.A(this.e));
+            HttpUrl httpUrl = this.a;
+            if (httpUrl != null) {
+                return new Request(httpUrl, this.f3813b, this.c.c(), this.d, Util7.A(this.e));
             }
             throw new IllegalStateException("url == null".toString());
         }
 
         public a b(String str, String str2) {
-            m.checkParameterIsNotNull(str, ModelAuditLogEntry.CHANGE_KEY_NAME);
-            m.checkParameterIsNotNull(str2, "value");
+            Intrinsics3.checkParameterIsNotNull(str, ModelAuditLogEntry.CHANGE_KEY_NAME);
+            Intrinsics3.checkParameterIsNotNull(str2, "value");
             Headers.a aVar = this.c;
             Objects.requireNonNull(aVar);
-            m.checkParameterIsNotNull(str, ModelAuditLogEntry.CHANGE_KEY_NAME);
-            m.checkParameterIsNotNull(str2, "value");
+            Intrinsics3.checkParameterIsNotNull(str, ModelAuditLogEntry.CHANGE_KEY_NAME);
+            Intrinsics3.checkParameterIsNotNull(str2, "value");
             Headers.Companion bVar = Headers.INSTANCE;
             bVar.a(str);
             bVar.b(str2, str);
@@ -141,17 +142,17 @@ public final class Request {
         }
 
         public a c(String str, RequestBody requestBody) {
-            m.checkParameterIsNotNull(str, "method");
+            Intrinsics3.checkParameterIsNotNull(str, "method");
             if (!(str.length() > 0)) {
                 throw new IllegalArgumentException("method.isEmpty() == true".toString());
             }
             if (requestBody == null) {
-                m.checkParameterIsNotNull(str, "method");
-                if (!(!(m.areEqual(str, ShareTarget.METHOD_POST) || m.areEqual(str, "PUT") || m.areEqual(str, "PATCH") || m.areEqual(str, "PROPPATCH") || m.areEqual(str, "REPORT")))) {
-                    throw new IllegalArgumentException(b.d.b.a.a.y("method ", str, " must have a request body.").toString());
+                Intrinsics3.checkParameterIsNotNull(str, "method");
+                if (!(!(Intrinsics3.areEqual(str, ShareTarget.METHOD_POST) || Intrinsics3.areEqual(str, "PUT") || Intrinsics3.areEqual(str, "PATCH") || Intrinsics3.areEqual(str, "PROPPATCH") || Intrinsics3.areEqual(str, "REPORT")))) {
+                    throw new IllegalArgumentException(outline.y("method ", str, " must have a request body.").toString());
                 }
-            } else if (!f.a(str)) {
-                throw new IllegalArgumentException(b.d.b.a.a.y("method ", str, " must not have a request body.").toString());
+            } else if (!HttpMethod.a(str)) {
+                throw new IllegalArgumentException(outline.y("method ", str, " must not have a request body.").toString());
             }
             this.f3813b = str;
             this.d = requestBody;
@@ -159,13 +160,13 @@ public final class Request {
         }
 
         public a d(String str) {
-            m.checkParameterIsNotNull(str, ModelAuditLogEntry.CHANGE_KEY_NAME);
+            Intrinsics3.checkParameterIsNotNull(str, ModelAuditLogEntry.CHANGE_KEY_NAME);
             this.c.d(str);
             return this;
         }
 
         public <T> a e(Class<? super T> cls, T t) {
-            m.checkParameterIsNotNull(cls, "type");
+            Intrinsics3.checkParameterIsNotNull(cls, "type");
             if (t == null) {
                 this.e.remove(cls);
             } else {
@@ -175,7 +176,7 @@ public final class Request {
                 Map<Class<?>, Object> map = this.e;
                 T tCast = cls.cast(t);
                 if (tCast == null) {
-                    m.throwNpe();
+                    Intrinsics3.throwNpe();
                 }
                 map.put(cls, tCast);
             }
@@ -183,36 +184,36 @@ public final class Request {
         }
 
         public a f(String str) {
-            m.checkParameterIsNotNull(str, "url");
-            if (t.startsWith(str, "ws:", true)) {
-                StringBuilder sbU = b.d.b.a.a.U("http:");
+            Intrinsics3.checkParameterIsNotNull(str, "url");
+            if (StringsJVM.startsWith(str, "ws:", true)) {
+                StringBuilder sbU = outline.U("http:");
                 String strSubstring = str.substring(3);
-                m.checkExpressionValueIsNotNull(strSubstring, "(this as java.lang.String).substring(startIndex)");
+                Intrinsics3.checkExpressionValueIsNotNull(strSubstring, "(this as java.lang.String).substring(startIndex)");
                 sbU.append(strSubstring);
                 str = sbU.toString();
-            } else if (t.startsWith(str, "wss:", true)) {
-                StringBuilder sbU2 = b.d.b.a.a.U("https:");
+            } else if (StringsJVM.startsWith(str, "wss:", true)) {
+                StringBuilder sbU2 = outline.U("https:");
                 String strSubstring2 = str.substring(4);
-                m.checkExpressionValueIsNotNull(strSubstring2, "(this as java.lang.String).substring(startIndex)");
+                Intrinsics3.checkExpressionValueIsNotNull(strSubstring2, "(this as java.lang.String).substring(startIndex)");
                 sbU2.append(strSubstring2);
                 str = sbU2.toString();
             }
-            m.checkParameterIsNotNull(str, "$this$toHttpUrl");
-            w.a aVar = new w.a();
+            Intrinsics3.checkParameterIsNotNull(str, "$this$toHttpUrl");
+            HttpUrl.a aVar = new HttpUrl.a();
             aVar.e(null, str);
             g(aVar.b());
             return this;
         }
 
-        public a g(w wVar) {
-            m.checkParameterIsNotNull(wVar, "url");
-            this.a = wVar;
+        public a g(HttpUrl httpUrl) {
+            Intrinsics3.checkParameterIsNotNull(httpUrl, "url");
+            this.a = httpUrl;
             return this;
         }
 
         public a(Request request) {
             Map<Class<?>, Object> mutableMap;
-            m.checkParameterIsNotNull(request, "request");
+            Intrinsics3.checkParameterIsNotNull(request, "request");
             this.e = new LinkedHashMap();
             this.a = request.url;
             this.f3813b = request.method;
@@ -220,7 +221,7 @@ public final class Request {
             if (request.tags.isEmpty()) {
                 mutableMap = new LinkedHashMap<>();
             } else {
-                mutableMap = h0.toMutableMap(request.tags);
+                mutableMap = Maps6.toMutableMap(request.tags);
             }
             this.e = mutableMap;
             this.c = request.headers.e();

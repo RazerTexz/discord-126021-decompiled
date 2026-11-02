@@ -1,14 +1,14 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackNotificationSentGameLaunched.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackNotificationSentGameLaunched implements AnalyticsSchema, TrackBaseReceiver {
+public final /* data */ class TrackNotificationSentGameLaunched implements AnalyticsSchema, TrackBase2 {
     private final Boolean desktop = null;
     private final CharSequence gameName = null;
     private final Long launchingUserId = null;
@@ -24,7 +24,7 @@ public final /* data */ class TrackNotificationSentGameLaunched implements Analy
             return false;
         }
         TrackNotificationSentGameLaunched trackNotificationSentGameLaunched = (TrackNotificationSentGameLaunched) other;
-        return m.areEqual(this.launchingUserId, trackNotificationSentGameLaunched.launchingUserId) && m.areEqual(this.gameName, trackNotificationSentGameLaunched.gameName) && m.areEqual(this.desktop, trackNotificationSentGameLaunched.desktop) && m.areEqual(this.mobile, trackNotificationSentGameLaunched.mobile);
+        return Intrinsics3.areEqual(this.launchingUserId, trackNotificationSentGameLaunched.launchingUserId) && Intrinsics3.areEqual(this.gameName, trackNotificationSentGameLaunched.gameName) && Intrinsics3.areEqual(this.desktop, trackNotificationSentGameLaunched.desktop) && Intrinsics3.areEqual(this.mobile, trackNotificationSentGameLaunched.mobile);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -45,13 +45,13 @@ public final /* data */ class TrackNotificationSentGameLaunched implements Analy
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackNotificationSentGameLaunched(launchingUserId=");
+        StringBuilder sbU = outline.U("TrackNotificationSentGameLaunched(launchingUserId=");
         sbU.append(this.launchingUserId);
         sbU.append(", gameName=");
         sbU.append(this.gameName);
         sbU.append(", desktop=");
         sbU.append(this.desktop);
         sbU.append(", mobile=");
-        return a.D(sbU, this.mobile, ")");
+        return outline.D(sbU, this.mobile, ")");
     }
 }

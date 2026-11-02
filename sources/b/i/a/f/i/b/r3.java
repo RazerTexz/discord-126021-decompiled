@@ -9,8 +9,8 @@ import androidx.annotation.NonNull;
 /* JADX INFO: compiled from: com.google.android.gms:play-services-measurement-impl@@18.0.0 */
 /* JADX INFO: loaded from: classes3.dex */
 public final class r3 extends b.i.a.f.e.k.b<i3> {
-    public r3(Context context, Looper looper, b.i.a.f.e.k.b.a aVar, b.i.a.f.e.k.b.InterfaceC0114b interfaceC0114b) {
-        super(context, looper, b.i.a.f.e.k.e.a(context), b.i.a.f.e.c.f1346b, 93, aVar, interfaceC0114b, null);
+    public r3(Context context, Looper looper, b.i.a.f.e.k.b.a aVar, b.i.a.f.e.k.b.InterfaceC0037b interfaceC0037b) {
+        super(context, looper, b.i.a.f.e.k.e.a(context), b.i.a.f.e.c.f1346b, 93, aVar, interfaceC0037b, null);
     }
 
     @Override // b.i.a.f.e.k.b, b.i.a.f.e.h.a.f

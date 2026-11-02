@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.os.IInterface;
 import android.os.RemoteException;
+import b.i.a.d.a.IGetInstallReferrerService;
 import com.android.installreferrer.commons.InstallReferrerCommons;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -19,7 +20,7 @@ import java.util.List;
 /* JADX INFO: loaded from: classes.dex */
 public class InstallReferrerClientImpl extends InstallReferrerClient {
     public int a = 0;
-    public b.i.a.d.a.a c;
+    public IGetInstallReferrerService c;
     public ServiceConnection d;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
@@ -45,17 +46,17 @@ public class InstallReferrerClientImpl extends InstallReferrerClient {
 
         @Override // android.content.ServiceConnection
         public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
-            b.i.a.d.a.a c0108a;
+            IGetInstallReferrerService c0032a;
             InstallReferrerCommons.logVerbose("InstallReferrerClient", "Install Referrer service connected.");
             InstallReferrerClientImpl installReferrerClientImpl = InstallReferrerClientImpl.this;
-            int i = b.i.a.d.a.a.AbstractBinderC0107a.a;
+            int i = IGetInstallReferrerService.a.a;
             if (iBinder == null) {
-                c0108a = null;
+                c0032a = null;
             } else {
                 IInterface iInterfaceQueryLocalInterface = iBinder.queryLocalInterface("com.google.android.finsky.externalreferrer.IGetInstallReferrerService");
-                c0108a = iInterfaceQueryLocalInterface instanceof b.i.a.d.a.a ? (b.i.a.d.a.a) iInterfaceQueryLocalInterface : new b.i.a.d.a.a.AbstractBinderC0107a.C0108a(iBinder);
+                c0032a = iInterfaceQueryLocalInterface instanceof IGetInstallReferrerService ? (IGetInstallReferrerService) iInterfaceQueryLocalInterface : new IGetInstallReferrerService.a.C0032a(iBinder);
             }
-            installReferrerClientImpl.c = c0108a;
+            installReferrerClientImpl.c = c0032a;
             InstallReferrerClientImpl.this.a = 2;
             this.j.onInstallReferrerSetupFinished(0);
         }

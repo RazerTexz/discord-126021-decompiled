@@ -6,7 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityOptionsCompat;
 import com.discord.R;
 import com.discord.utilities.accessibility.AccessibilityUtils;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: AppTransitionActivity.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -38,7 +38,7 @@ public abstract class AppTransitionActivity extends AppCompatActivity {
         }
 
         public final ActivityOptionsCompat toActivityOptions(Context context) {
-            m.checkNotNullParameter(context, "context");
+            Intrinsics3.checkNotNullParameter(context, "context");
             if ((!AccessibilityUtils.INSTANCE.isReducedMotionEnabled() ? this : null) == null) {
                 return null;
             }

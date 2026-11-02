@@ -1,16 +1,16 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.analytics.generated.traits.TrackEmail;
-import com.discord.analytics.generated.traits.TrackEmailReceiver;
+import com.discord.analytics.generated.traits.TrackEmail2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackEmailClicked.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackEmailClicked implements AnalyticsSchema, TrackBaseReceiver, TrackEmailReceiver {
+public final /* data */ class TrackEmailClicked implements AnalyticsSchema, TrackBase2, TrackEmail2 {
     private final CharSequence actionType = null;
     private final Long channelId = null;
     private final Long guildId = null;
@@ -31,7 +31,7 @@ public final /* data */ class TrackEmailClicked implements AnalyticsSchema, Trac
             return false;
         }
         TrackEmailClicked trackEmailClicked = (TrackEmailClicked) other;
-        return m.areEqual(this.trackingId, trackEmailClicked.trackingId) && m.areEqual(this.guildId, trackEmailClicked.guildId) && m.areEqual(this.channelId, trackEmailClicked.channelId) && m.areEqual(this.path, trackEmailClicked.path) && m.areEqual(this.actionType, trackEmailClicked.actionType) && m.areEqual(this.target, trackEmailClicked.target) && m.areEqual(this.targetGuildId, trackEmailClicked.targetGuildId) && m.areEqual(this.targetChannelId, trackEmailClicked.targetChannelId);
+        return Intrinsics3.areEqual(this.trackingId, trackEmailClicked.trackingId) && Intrinsics3.areEqual(this.guildId, trackEmailClicked.guildId) && Intrinsics3.areEqual(this.channelId, trackEmailClicked.channelId) && Intrinsics3.areEqual(this.path, trackEmailClicked.path) && Intrinsics3.areEqual(this.actionType, trackEmailClicked.actionType) && Intrinsics3.areEqual(this.target, trackEmailClicked.target) && Intrinsics3.areEqual(this.targetGuildId, trackEmailClicked.targetGuildId) && Intrinsics3.areEqual(this.targetChannelId, trackEmailClicked.targetChannelId);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -60,7 +60,7 @@ public final /* data */ class TrackEmailClicked implements AnalyticsSchema, Trac
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackEmailClicked(trackingId=");
+        StringBuilder sbU = outline.U("TrackEmailClicked(trackingId=");
         sbU.append(this.trackingId);
         sbU.append(", guildId=");
         sbU.append(this.guildId);
@@ -75,6 +75,6 @@ public final /* data */ class TrackEmailClicked implements AnalyticsSchema, Trac
         sbU.append(", targetGuildId=");
         sbU.append(this.targetGuildId);
         sbU.append(", targetChannelId=");
-        return a.G(sbU, this.targetChannelId, ")");
+        return outline.G(sbU, this.targetChannelId, ")");
     }
 }

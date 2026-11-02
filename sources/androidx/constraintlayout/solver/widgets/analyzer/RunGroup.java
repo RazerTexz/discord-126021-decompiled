@@ -1,7 +1,7 @@
 package androidx.constraintlayout.solver.widgets.analyzer;
 
 import androidx.constraintlayout.solver.widgets.ConstraintWidgetContainer;
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -85,7 +85,7 @@ public class RunGroup {
             j = (long) ((j2 / (1.0f - biasPercent)) + (j3 / biasPercent));
         }
         float f = j;
-        long jA = ((long) ((f * biasPercent) + 0.5f)) + wrapDimension + ((long) a.a(1.0f, biasPercent, f, 0.5f));
+        long jA = ((long) ((f * biasPercent) + 0.5f)) + wrapDimension + ((long) outline.a(1.0f, biasPercent, f, 0.5f));
         WidgetRun widgetRun4 = this.firstRun;
         return (((long) widgetRun4.start.margin) + jA) - ((long) widgetRun4.end.margin);
     }

@@ -1,11 +1,11 @@
 package com.discord.widgets.guildscheduledevent;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.api.channel.Channel;
 import com.discord.api.guildscheduledevent.GuildScheduledEvent;
 import com.discord.models.guild.UserGuildMember;
 import com.discord.utilities.mg_recycler.MGRecyclerDataPayload;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 import kotlin.jvm.internal.DefaultConstructorMarker;
 
 /* JADX INFO: compiled from: GuildScheduledEventListItem.kt */
@@ -29,7 +29,7 @@ public abstract class GuildScheduledEventListItem implements MGRecyclerDataPaylo
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
         public Event(GuildScheduledEvent guildScheduledEvent, Channel channel, UserGuildMember userGuildMember, boolean z2, boolean z3, boolean z4, boolean z5, boolean z6) {
             super(null);
-            m.checkNotNullParameter(guildScheduledEvent, "event");
+            Intrinsics3.checkNotNullParameter(guildScheduledEvent, "event");
             this.event = guildScheduledEvent;
             this.channel = channel;
             this.creator = userGuildMember;
@@ -46,7 +46,7 @@ public abstract class GuildScheduledEventListItem implements MGRecyclerDataPaylo
         }
 
         public final Event copy(GuildScheduledEvent event, Channel channel, UserGuildMember creator, boolean isRsvped, boolean canStartEvent, boolean canShare, boolean isConnected, boolean canConnect) {
-            m.checkNotNullParameter(event, "event");
+            Intrinsics3.checkNotNullParameter(event, "event");
             return new Event(event, channel, creator, isRsvped, canStartEvent, canShare, isConnected, canConnect);
         }
 
@@ -58,7 +58,7 @@ public abstract class GuildScheduledEventListItem implements MGRecyclerDataPaylo
                 return false;
             }
             Event event = (Event) other;
-            return m.areEqual(this.event, event.event) && m.areEqual(this.channel, event.channel) && m.areEqual(this.creator, event.creator) && this.isRsvped == event.isRsvped && this.canStartEvent == event.canStartEvent && this.canShare == event.canShare && this.isConnected == event.isConnected && this.canConnect == event.canConnect;
+            return Intrinsics3.areEqual(this.event, event.event) && Intrinsics3.areEqual(this.channel, event.channel) && Intrinsics3.areEqual(this.creator, event.creator) && this.isRsvped == event.isRsvped && this.canStartEvent == event.canStartEvent && this.canShare == event.canShare && this.isConnected == event.isConnected && this.canConnect == event.canConnect;
         }
 
         /* JADX INFO: renamed from: component8, reason: from getter */
@@ -200,7 +200,7 @@ public abstract class GuildScheduledEventListItem implements MGRecyclerDataPaylo
         }
 
         public String toString() {
-            StringBuilder sbU = a.U("Event(event=");
+            StringBuilder sbU = outline.U("Event(event=");
             sbU.append(this.event);
             sbU.append(", channel=");
             sbU.append(this.channel);
@@ -215,7 +215,7 @@ public abstract class GuildScheduledEventListItem implements MGRecyclerDataPaylo
             sbU.append(", isConnected=");
             sbU.append(this.isConnected);
             sbU.append(", canConnect=");
-            return a.O(sbU, this.canConnect, ")");
+            return outline.O(sbU, this.canConnect, ")");
         }
     }
 

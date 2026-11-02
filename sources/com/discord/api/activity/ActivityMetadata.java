@@ -1,7 +1,7 @@
 package com.discord.api.activity;
 
-import b.d.b.a.a;
-import d0.z.d.m;
+import b.d.b.a.outline;
+import d0.z.d.Intrinsics3;
 import java.util.List;
 
 /* JADX INFO: compiled from: ActivityMetadata.kt */
@@ -24,7 +24,7 @@ public final /* data */ class ActivityMetadata {
             return false;
         }
         ActivityMetadata activityMetadata = (ActivityMetadata) other;
-        return m.areEqual(this.contextUri, activityMetadata.contextUri) && m.areEqual(this.albumId, activityMetadata.albumId) && m.areEqual(this.artistIds, activityMetadata.artistIds) && m.areEqual(this.buttonUrls, activityMetadata.buttonUrls);
+        return Intrinsics3.areEqual(this.contextUri, activityMetadata.contextUri) && Intrinsics3.areEqual(this.albumId, activityMetadata.albumId) && Intrinsics3.areEqual(this.artistIds, activityMetadata.artistIds) && Intrinsics3.areEqual(this.buttonUrls, activityMetadata.buttonUrls);
     }
 
     /* JADX INFO: renamed from: a, reason: from getter */
@@ -44,13 +44,13 @@ public final /* data */ class ActivityMetadata {
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("ActivityMetadata(contextUri=");
+        StringBuilder sbU = outline.U("ActivityMetadata(contextUri=");
         sbU.append(this.contextUri);
         sbU.append(", albumId=");
         sbU.append(this.albumId);
         sbU.append(", artistIds=");
         sbU.append(this.artistIds);
         sbU.append(", buttonUrls=");
-        return a.L(sbU, this.buttonUrls, ")");
+        return outline.L(sbU, this.buttonUrls, ")");
     }
 }

@@ -1,14 +1,14 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackCaptchaServed.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackCaptchaServed implements AnalyticsSchema, TrackBaseReceiver {
+public final /* data */ class TrackCaptchaServed implements AnalyticsSchema, TrackBase2 {
     private final Boolean captchaRequired = null;
     private final CharSequence captchaService = null;
     private final Boolean forceBad = null;
@@ -29,7 +29,7 @@ public final /* data */ class TrackCaptchaServed implements AnalyticsSchema, Tra
             return false;
         }
         TrackCaptchaServed trackCaptchaServed = (TrackCaptchaServed) other;
-        return m.areEqual(this.captchaService, trackCaptchaServed.captchaService) && m.areEqual(this.sitekey, trackCaptchaServed.sitekey) && m.areEqual(this.userFlow, trackCaptchaServed.userFlow) && m.areEqual(this.forceBad, trackCaptchaServed.forceBad) && m.areEqual(this.captchaRequired, trackCaptchaServed.captchaRequired) && m.areEqual(this.locationGuildId, trackCaptchaServed.locationGuildId) && m.areEqual(this.locationChannelId, trackCaptchaServed.locationChannelId) && m.areEqual(this.locationChannelType, trackCaptchaServed.locationChannelType) && m.areEqual(this.locationMessageId, trackCaptchaServed.locationMessageId);
+        return Intrinsics3.areEqual(this.captchaService, trackCaptchaServed.captchaService) && Intrinsics3.areEqual(this.sitekey, trackCaptchaServed.sitekey) && Intrinsics3.areEqual(this.userFlow, trackCaptchaServed.userFlow) && Intrinsics3.areEqual(this.forceBad, trackCaptchaServed.forceBad) && Intrinsics3.areEqual(this.captchaRequired, trackCaptchaServed.captchaRequired) && Intrinsics3.areEqual(this.locationGuildId, trackCaptchaServed.locationGuildId) && Intrinsics3.areEqual(this.locationChannelId, trackCaptchaServed.locationChannelId) && Intrinsics3.areEqual(this.locationChannelType, trackCaptchaServed.locationChannelType) && Intrinsics3.areEqual(this.locationMessageId, trackCaptchaServed.locationMessageId);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -60,7 +60,7 @@ public final /* data */ class TrackCaptchaServed implements AnalyticsSchema, Tra
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackCaptchaServed(captchaService=");
+        StringBuilder sbU = outline.U("TrackCaptchaServed(captchaService=");
         sbU.append(this.captchaService);
         sbU.append(", sitekey=");
         sbU.append(this.sitekey);
@@ -77,6 +77,6 @@ public final /* data */ class TrackCaptchaServed implements AnalyticsSchema, Tra
         sbU.append(", locationChannelType=");
         sbU.append(this.locationChannelType);
         sbU.append(", locationMessageId=");
-        return a.G(sbU, this.locationMessageId, ")");
+        return outline.G(sbU, this.locationMessageId, ")");
     }
 }

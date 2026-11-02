@@ -1,17 +1,17 @@
 package com.discord.api.botuikit;
 
-import b.d.b.a.a;
-import d0.z.d.m;
+import b.d.b.a.outline;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: ButtonComponent.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class ButtonComponent extends ActionComponent {
+public final /* data */ class ButtonComponent extends Component5 {
     private final String customId;
     private final boolean disabled;
     private final ComponentEmoji emoji;
     private final String label;
-    private final ButtonStyle style;
-    private final ComponentType type;
+    private final ButtonComponent2 style;
+    private final Component6 type;
     private final String url;
 
     public boolean equals(Object other) {
@@ -22,7 +22,7 @@ public final /* data */ class ButtonComponent extends ActionComponent {
             return false;
         }
         ButtonComponent buttonComponent = (ButtonComponent) other;
-        return m.areEqual(this.type, buttonComponent.type) && m.areEqual(this.customId, buttonComponent.customId) && m.areEqual(this.label, buttonComponent.label) && m.areEqual(this.style, buttonComponent.style) && this.disabled == buttonComponent.disabled && m.areEqual(this.emoji, buttonComponent.emoji) && m.areEqual(this.url, buttonComponent.url);
+        return Intrinsics3.areEqual(this.type, buttonComponent.type) && Intrinsics3.areEqual(this.customId, buttonComponent.customId) && Intrinsics3.areEqual(this.label, buttonComponent.label) && Intrinsics3.areEqual(this.style, buttonComponent.style) && this.disabled == buttonComponent.disabled && Intrinsics3.areEqual(this.emoji, buttonComponent.emoji) && Intrinsics3.areEqual(this.url, buttonComponent.url);
     }
 
     /* JADX INFO: renamed from: a, reason: from getter */
@@ -46,12 +46,12 @@ public final /* data */ class ButtonComponent extends ActionComponent {
     }
 
     /* JADX INFO: renamed from: e, reason: from getter */
-    public final ButtonStyle getStyle() {
+    public final ButtonComponent2 getStyle() {
         return this.style;
     }
 
     @Override // com.discord.api.botuikit.Component
-    public ComponentType getType() {
+    public Component6 getType() {
         return this.type;
     }
 
@@ -66,14 +66,14 @@ public final /* data */ class ButtonComponent extends ActionComponent {
     /* JADX WARN: Type inference failed for: r2v16 */
     /* JADX WARN: Type inference failed for: r2v20 */
     public int hashCode() {
-        ComponentType componentType = this.type;
-        int iHashCode = (componentType != null ? componentType.hashCode() : 0) * 31;
+        Component6 component6 = this.type;
+        int iHashCode = (component6 != null ? component6.hashCode() : 0) * 31;
         String str = this.customId;
         int iHashCode2 = (iHashCode + (str != null ? str.hashCode() : 0)) * 31;
         String str2 = this.label;
         int iHashCode3 = (iHashCode2 + (str2 != null ? str2.hashCode() : 0)) * 31;
-        ButtonStyle buttonStyle = this.style;
-        int iHashCode4 = (iHashCode3 + (buttonStyle != null ? buttonStyle.hashCode() : 0)) * 31;
+        ButtonComponent2 buttonComponent2 = this.style;
+        int iHashCode4 = (iHashCode3 + (buttonComponent2 != null ? buttonComponent2.hashCode() : 0)) * 31;
         boolean z2 = this.disabled;
         ?? r2 = z2;
         if (z2) {
@@ -87,7 +87,7 @@ public final /* data */ class ButtonComponent extends ActionComponent {
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("ButtonComponent(type=");
+        StringBuilder sbU = outline.U("ButtonComponent(type=");
         sbU.append(this.type);
         sbU.append(", customId=");
         sbU.append(this.customId);
@@ -100,6 +100,6 @@ public final /* data */ class ButtonComponent extends ActionComponent {
         sbU.append(", emoji=");
         sbU.append(this.emoji);
         sbU.append(", url=");
-        return a.J(sbU, this.url, ")");
+        return outline.J(sbU, this.url, ")");
     }
 }

@@ -1,16 +1,16 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.analytics.generated.traits.TrackMarketingSite;
-import com.discord.analytics.generated.traits.TrackMarketingSiteReceiver;
+import com.discord.analytics.generated.traits.TrackMarketingSite2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackPartnersApplyform.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackPartnersApplyform implements AnalyticsSchema, TrackBaseReceiver, TrackMarketingSiteReceiver {
+public final /* data */ class TrackPartnersApplyform implements AnalyticsSchema, TrackBase2, TrackMarketingSite2 {
     private final Boolean googleanalytics = null;
     private final CharSequence linkclicked = null;
     private TrackBase trackBase;
@@ -25,7 +25,7 @@ public final /* data */ class TrackPartnersApplyform implements AnalyticsSchema,
             return false;
         }
         TrackPartnersApplyform trackPartnersApplyform = (TrackPartnersApplyform) other;
-        return m.areEqual(this.linkclicked, trackPartnersApplyform.linkclicked) && m.areEqual(this.googleanalytics, trackPartnersApplyform.googleanalytics);
+        return Intrinsics3.areEqual(this.linkclicked, trackPartnersApplyform.linkclicked) && Intrinsics3.areEqual(this.googleanalytics, trackPartnersApplyform.googleanalytics);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -42,9 +42,9 @@ public final /* data */ class TrackPartnersApplyform implements AnalyticsSchema,
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackPartnersApplyform(linkclicked=");
+        StringBuilder sbU = outline.U("TrackPartnersApplyform(linkclicked=");
         sbU.append(this.linkclicked);
         sbU.append(", googleanalytics=");
-        return a.D(sbU, this.googleanalytics, ")");
+        return outline.D(sbU, this.googleanalytics, ")");
     }
 }

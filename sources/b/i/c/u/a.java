@@ -1,6 +1,7 @@
 package b.i.c.u;
 
 import androidx.annotation.NonNull;
+import b.d.b.a.outline;
 
 /* JADX INFO: compiled from: com.google.firebase:firebase-installations-interop@@16.0.0 */
 /* JADX INFO: loaded from: classes3.dex */
@@ -11,7 +12,7 @@ public final class a extends k {
     public final long f1778b;
     public final long c;
 
-    public a(String str, long j, long j2, C0151a c0151a) {
+    public a(String str, long j, long j2, C0056a c0056a) {
         this.a = str;
         this.f1778b = j;
         this.c = j2;
@@ -54,11 +55,11 @@ public final class a extends k {
     }
 
     public String toString() {
-        StringBuilder sbU = b.d.b.a.a.U("InstallationTokenResult{token=");
+        StringBuilder sbU = outline.U("InstallationTokenResult{token=");
         sbU.append(this.a);
         sbU.append(", tokenExpirationTimestamp=");
         sbU.append(this.f1778b);
         sbU.append(", tokenCreationTimestamp=");
-        return b.d.b.a.a.C(sbU, this.c, "}");
+        return outline.C(sbU, this.c, "}");
     }
 }

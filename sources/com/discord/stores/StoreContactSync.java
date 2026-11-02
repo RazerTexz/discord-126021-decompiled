@@ -4,14 +4,14 @@ import android.content.Context;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import com.discord.analytics.generated.events.network_action.TrackNetworkActionUserContactsSync;
-import com.discord.analytics.generated.traits.TrackNetworkMetadataReceiver;
+import com.discord.analytics.generated.traits.TrackNetworkMetadata2;
 import com.discord.api.connectedaccounts.ConnectedAccount;
 import com.discord.api.friendsuggestions.AllowedInSuggestionsType;
 import com.discord.api.friendsuggestions.BulkFriendSuggestions;
 import com.discord.models.experiments.domain.Experiment;
 import com.discord.models.user.MeUser;
 import com.discord.restapi.RestAPIParams;
-import com.discord.stores.utilities.RestCallStateKt;
+import com.discord.stores.utilities.RestCallState5;
 import com.discord.utilities.analytics.AnalyticsTracker;
 import com.discord.utilities.analytics.Traits;
 import com.discord.utilities.contacts.ContactsFetcher;
@@ -22,15 +22,17 @@ import com.discord.utilities.time.ClockFactory;
 import com.discord.utilities.user.UserUtils;
 import com.discord.widgets.contact_sync.ContactSyncFlowAnalytics;
 import com.discord.widgets.contact_sync.ContactSyncUpsellSheet;
-import d0.t.g0;
-import d0.z.d.m;
-import d0.z.d.o;
+import d0.Tuples;
+import d0.t.Iterables2;
+import d0.t.MapsJVM;
+import d0.z.d.Intrinsics3;
+import d0.z.d.Lambda;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.ListIterator;
 import java.util.Map;
 import java.util.Set;
-import kotlin.Pair;
+import kotlin.Tuples2;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
@@ -54,7 +56,7 @@ public final class StoreContactSync extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreContactSync$backgroundUploadContacts$1, reason: invalid class name */
     /* JADX INFO: compiled from: StoreContactSync.kt */
-    public final class AnonymousClass1 extends o implements Function1<BulkFriendSuggestions, TrackNetworkMetadataReceiver> {
+    public final class AnonymousClass1 extends Lambda implements Function1<BulkFriendSuggestions, TrackNetworkMetadata2> {
         public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
 
         public AnonymousClass1() {
@@ -62,19 +64,19 @@ public final class StoreContactSync extends StoreV2 {
         }
 
         @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ TrackNetworkMetadataReceiver invoke(BulkFriendSuggestions bulkFriendSuggestions) {
+        public /* bridge */ /* synthetic */ TrackNetworkMetadata2 invoke(BulkFriendSuggestions bulkFriendSuggestions) {
             return invoke2(bulkFriendSuggestions);
         }
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final TrackNetworkMetadataReceiver invoke2(BulkFriendSuggestions bulkFriendSuggestions) {
+        public final TrackNetworkMetadata2 invoke2(BulkFriendSuggestions bulkFriendSuggestions) {
             return new TrackNetworkActionUserContactsSync();
         }
     }
 
     /* JADX INFO: renamed from: com.discord.stores.StoreContactSync$clearDismissStates$1, reason: invalid class name */
     /* JADX INFO: compiled from: StoreContactSync.kt */
-    public final class AnonymousClass1 extends o implements Function0<Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function0<Unit> {
         public AnonymousClass1() {
             super(0);
         }
@@ -94,7 +96,7 @@ public final class StoreContactSync extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreContactSync$createContactSyncNotice$1, reason: invalid class name */
     /* JADX INFO: compiled from: StoreContactSync.kt */
-    public final class AnonymousClass1 extends o implements Function1<FragmentActivity, Boolean> {
+    public final class AnonymousClass1 extends Lambda implements Function1<FragmentActivity, Boolean> {
         public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
 
         public AnonymousClass1() {
@@ -108,12 +110,12 @@ public final class StoreContactSync extends StoreV2 {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final boolean invoke2(FragmentActivity fragmentActivity) {
-            m.checkNotNullParameter(fragmentActivity, "appActivity");
+            Intrinsics3.checkNotNullParameter(fragmentActivity, "appActivity");
             AnalyticsTracker.INSTANCE.openPopout("Contact Sync", new Traits.Location("Release Upsell", null, null, null, null, 30, null));
-            ContactSyncFlowAnalytics.Companion.trackStart$default(ContactSyncFlowAnalytics.INSTANCE, false, g0.mapOf(d0.o.to("location_page", "Release Upsell")), 1, null);
+            ContactSyncFlowAnalytics.Companion.trackStart$default(ContactSyncFlowAnalytics.INSTANCE, false, MapsJVM.mapOf(Tuples.to("location_page", "Release Upsell")), 1, null);
             ContactSyncUpsellSheet.Companion companion = ContactSyncUpsellSheet.INSTANCE;
             FragmentManager supportFragmentManager = fragmentActivity.getSupportFragmentManager();
-            m.checkNotNullExpressionValue(supportFragmentManager, "appActivity.supportFragmentManager");
+            Intrinsics3.checkNotNullExpressionValue(supportFragmentManager, "appActivity.supportFragmentManager");
             companion.show(supportFragmentManager);
             return true;
         }
@@ -121,7 +123,7 @@ public final class StoreContactSync extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreContactSync$dismissFriendsListUpsell$1, reason: invalid class name */
     /* JADX INFO: compiled from: StoreContactSync.kt */
-    public final class AnonymousClass1 extends o implements Function0<Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function0<Unit> {
         public AnonymousClass1() {
             super(0);
         }
@@ -141,7 +143,7 @@ public final class StoreContactSync extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreContactSync$dismissUpsell$1, reason: invalid class name */
     /* JADX INFO: compiled from: StoreContactSync.kt */
-    public final class AnonymousClass1 extends o implements Function0<Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function0<Unit> {
         public AnonymousClass1() {
             super(0);
         }
@@ -161,7 +163,7 @@ public final class StoreContactSync extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreContactSync$handleConnectionOpen$1, reason: invalid class name */
     /* JADX INFO: compiled from: StoreContactSync.kt */
-    public final class AnonymousClass1 extends o implements Function0<Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function0<Unit> {
         public AnonymousClass1() {
             super(0);
         }
@@ -180,7 +182,7 @@ public final class StoreContactSync extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreContactSync$setContactSyncUploadTimestamp$1, reason: invalid class name */
     /* JADX INFO: compiled from: StoreContactSync.kt */
-    public final class AnonymousClass1 extends o implements Function0<Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function0<Unit> {
         public final /* synthetic */ long $timestamp;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -204,14 +206,14 @@ public final class StoreContactSync extends StoreV2 {
     }
 
     public StoreContactSync(Dispatcher dispatcher, RestAPI restAPI, Clock clock, StoreUserConnections storeUserConnections, StoreUser storeUser, StoreExperiments storeExperiments, StoreNotices storeNotices, StoreUserSettings storeUserSettings) {
-        m.checkNotNullParameter(dispatcher, "dispatcher");
-        m.checkNotNullParameter(restAPI, "restAPI");
-        m.checkNotNullParameter(clock, "clock");
-        m.checkNotNullParameter(storeUserConnections, "connectionsStore");
-        m.checkNotNullParameter(storeUser, "usersStore");
-        m.checkNotNullParameter(storeExperiments, "experimentsStore");
-        m.checkNotNullParameter(storeNotices, "noticesStore");
-        m.checkNotNullParameter(storeUserSettings, "userSettingsStore");
+        Intrinsics3.checkNotNullParameter(dispatcher, "dispatcher");
+        Intrinsics3.checkNotNullParameter(restAPI, "restAPI");
+        Intrinsics3.checkNotNullParameter(clock, "clock");
+        Intrinsics3.checkNotNullParameter(storeUserConnections, "connectionsStore");
+        Intrinsics3.checkNotNullParameter(storeUser, "usersStore");
+        Intrinsics3.checkNotNullParameter(storeExperiments, "experimentsStore");
+        Intrinsics3.checkNotNullParameter(storeNotices, "noticesStore");
+        Intrinsics3.checkNotNullParameter(storeUserSettings, "userSettingsStore");
         this.dispatcher = dispatcher;
         this.restAPI = restAPI;
         this.clock = clock;
@@ -244,14 +246,14 @@ public final class StoreContactSync extends StoreV2 {
     public final void backgroundUploadContacts() {
         ContactsFetcher contactsFetcher = this.contactsFetcher;
         if (contactsFetcher == null) {
-            m.throwUninitializedPropertyAccessException("contactsFetcher");
+            Intrinsics3.throwUninitializedPropertyAccessException("contactsFetcher");
         }
         Set<String> setFetchContacts = contactsFetcher.fetchContacts();
-        ArrayList arrayList = new ArrayList(d0.t.o.collectionSizeOrDefault(setFetchContacts, 10));
+        ArrayList arrayList = new ArrayList(Iterables2.collectionSizeOrDefault(setFetchContacts, 10));
         for (String str : setFetchContacts) {
-            arrayList.add(new RestAPIParams.ContactEntry(str, str, g0.mapOf(new Pair("number", str))));
+            arrayList.add(new RestAPIParams.ContactEntry(str, str, MapsJVM.mapOf(new Tuples2("number", str))));
         }
-        RestCallStateKt.logNetworkAction(this.restAPI.uploadContacts(new RestAPIParams.UploadContacts(arrayList, true, AllowedInSuggestionsType.ANYONE_WITH_CONTACT_INFO)), AnonymousClass1.INSTANCE);
+        RestCallState5.logNetworkAction(this.restAPI.uploadContacts(new RestAPIParams.UploadContacts(arrayList, true, AllowedInSuggestionsType.ANYONE_WITH_CONTACT_INFO)), AnonymousClass1.INSTANCE);
         setContactSyncUploadTimestamp(this.clock.currentTimeMillis());
     }
 
@@ -276,15 +278,15 @@ public final class StoreContactSync extends StoreV2 {
     }
 
     public final boolean getFriendsListUpsellDismissed() {
-        return m.areEqual(this.dismissState.get("CONTACT_SYNC_DISMISS_FRIENDS_UPSELL"), Boolean.TRUE);
+        return Intrinsics3.areEqual(this.dismissState.get("CONTACT_SYNC_DISMISS_FRIENDS_UPSELL"), Boolean.TRUE);
     }
 
-    @StoreThread
+    @Store3
     public final void handleConnectionOpen() {
         this.dispatcher.schedule(new AnonymousClass1());
     }
 
-    @StoreThread
+    @Store3
     public final void handlePostConnectionOpen() {
         ConnectedAccount connectedAccountPrevious;
         MeUser meSnapshot = this.usersStore.getMeSnapshot();
@@ -296,7 +298,7 @@ public final class StoreContactSync extends StoreV2 {
                 break;
             }
             connectedAccountPrevious = listIterator.previous();
-        } while (!m.areEqual(connectedAccountPrevious.getType(), "contacts"));
+        } while (!Intrinsics3.areEqual(connectedAccountPrevious.getType(), "contacts"));
         ConnectedAccount connectedAccount = connectedAccountPrevious;
         Boolean bool = this.dismissState.get("CONTACT_SYNC_DISMISS_UPSELL");
         Boolean contactSyncUpsellShown = this.userSettingsStore.getContactSyncUpsellShown();
@@ -306,13 +308,13 @@ public final class StoreContactSync extends StoreV2 {
             UserUtils userUtils = UserUtils.INSTANCE;
             if (userUtils.getHasPhone(meSnapshot)) {
                 Boolean bool2 = Boolean.TRUE;
-                if ((!m.areEqual(bool, bool2)) && (!m.areEqual(contactSyncUpsellShown, bool2)) && userUtils.getAgeMs(meSnapshot, ClockFactory.get()) > 604800000) {
+                if ((!Intrinsics3.areEqual(bool, bool2)) && (!Intrinsics3.areEqual(contactSyncUpsellShown, bool2)) && userUtils.getAgeMs(meSnapshot, ClockFactory.get()) > 604800000) {
                     z2 = true;
                 }
             }
         }
         Boolean bool3 = Boolean.TRUE;
-        if (m.areEqual(bool, bool3) && (!m.areEqual(contactSyncUpsellShown, bool3))) {
+        if (Intrinsics3.areEqual(bool, bool3) && (!Intrinsics3.areEqual(contactSyncUpsellShown, bool3))) {
             this.userSettingsStore.updateContactSyncShown();
         }
         if (z2) {
@@ -325,11 +327,11 @@ public final class StoreContactSync extends StoreV2 {
 
     @Override // com.discord.stores.Store
     public void init(Context context) {
-        m.checkNotNullParameter(context, "context");
+        Intrinsics3.checkNotNullParameter(context, "context");
         super.init(context);
         this.contactsFetcher = new ContactsFetcher(context);
         this.dismissState.putAll(this.dismissStateCache.get());
-        if (m.areEqual(this.dismissState.get("CONTACT_SYNC_DISMISS_UPSELL"), Boolean.TRUE)) {
+        if (Intrinsics3.areEqual(this.dismissState.get("CONTACT_SYNC_DISMISS_UPSELL"), Boolean.TRUE)) {
             getPrefsSessionDurable().edit().putBoolean("CONTACT_SYNC_DISMISS_UPSELL", true).apply();
         }
         this.dismissState.put("CONTACT_SYNC_DISMISS_UPSELL", Boolean.valueOf(getPrefsSessionDurable().getBoolean("CONTACT_SYNC_DISMISS_UPSELL", false)));

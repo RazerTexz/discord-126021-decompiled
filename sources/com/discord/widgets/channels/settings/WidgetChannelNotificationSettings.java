@@ -9,9 +9,9 @@ import androidx.core.app.NotificationCompat;
 import androidx.exifinterface.media.ExifInterface;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
-import b.a.d.j;
-import b.a.k.b;
-import b.d.b.a.a;
+import b.a.d.AppScreen2;
+import b.a.k.FormatUtils;
+import b.d.b.a.outline;
 import com.discord.R;
 import com.discord.api.channel.Channel;
 import com.discord.api.channel.ChannelUtils;
@@ -23,13 +23,13 @@ import com.discord.stores.StoreUserGuildSettings;
 import com.discord.utilities.notifications.NotificationUtils;
 import com.discord.utilities.rx.ObservableExtensionsKt;
 import com.discord.utilities.viewbinding.FragmentViewBindingDelegate;
-import com.discord.utilities.viewbinding.FragmentViewBindingDelegateKt;
+import com.discord.utilities.viewbinding.FragmentViewBindingDelegate3;
 import com.discord.views.CheckedSetting;
 import com.discord.views.RadioManager;
 import com.discord.widgets.servers.NotificationMuteSettingsView;
-import d0.t.n;
-import d0.z.d.m;
-import d0.z.d.o;
+import d0.t.Collections2;
+import d0.z.d.Intrinsics3;
+import d0.z.d.Lambda;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
@@ -43,7 +43,7 @@ import rx.functions.Action1;
 /* JADX INFO: compiled from: WidgetChannelNotificationSettings.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetChannelNotificationSettings extends AppFragment {
-    public static final /* synthetic */ KProperty[] $$delegatedProperties = {a.d0(WidgetChannelNotificationSettings.class, "binding", "getBinding()Lcom/discord/databinding/WidgetChannelNotificationSettingsBinding;", 0)};
+    public static final /* synthetic */ KProperty[] $$delegatedProperties = {outline.d0(WidgetChannelNotificationSettings.class, "binding", "getBinding()Lcom/discord/databinding/WidgetChannelNotificationSettingsBinding;", 0)};
 
     /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
     public static final Companion INSTANCE = new Companion(null);
@@ -69,38 +69,38 @@ public final class WidgetChannelNotificationSettings extends AppFragment {
 
         /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
         public final void call2(Boolean bool) {
-            m.checkNotNullExpressionValue(bool, "isChecked");
+            Intrinsics3.checkNotNullExpressionValue(bool, "isChecked");
             int i = bool.booleanValue() ? ModelNotificationSettings.FORUM_THREAD_CREATED_ON : ModelNotificationSettings.FORUM_THREAD_CREATED_OFF;
             Integer channelOverrideFlags = this.$this_configureGuildForumChannel.getChannelOverrideFlags();
             int iIntValue = i | ((channelOverrideFlags != null ? channelOverrideFlags.intValue() : 0) & (~ModelNotificationSettings.FORUM_THREAD_CREATED_MASK));
             StoreUserGuildSettings userGuildSettings = StoreStream.INSTANCE.getUserGuildSettings();
             CheckedSetting checkedSetting = WidgetChannelNotificationSettings.access$getBinding$p(WidgetChannelNotificationSettings.this).d;
-            m.checkNotNullExpressionValue(checkedSetting, "binding.frequencyAllPosts");
+            Intrinsics3.checkNotNullExpressionValue(checkedSetting, "binding.frequencyAllPosts");
             Context context = checkedSetting.getContext();
-            m.checkNotNullExpressionValue(context, "binding.frequencyAllPosts.context");
+            Intrinsics3.checkNotNullExpressionValue(context, "binding.frequencyAllPosts.context");
             userGuildSettings.setChannelNotificationFlags(context, this.$this_configureGuildForumChannel.getChannel(), iIntValue);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.widgets.channels.settings.WidgetChannelNotificationSettings$configureNotificationRadios$1, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetChannelNotificationSettings.kt */
-    public final class AnonymousClass1 extends o implements Function3<Model, CheckedSetting, Integer, Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function3<Model, CheckedSetting, Integer, Unit> {
         public final /* synthetic */ Ref$IntRef $notificationSetting;
 
         /* JADX INFO: renamed from: com.discord.widgets.channels.settings.WidgetChannelNotificationSettings$configureNotificationRadios$1$1, reason: invalid class name and collision with other inner class name */
         /* JADX INFO: compiled from: WidgetChannelNotificationSettings.kt */
-        public final class ViewOnClickListenerC03691 implements View.OnClickListener {
+        public final class ViewOnClickListenerC02491 implements View.OnClickListener {
             public final /* synthetic */ Model $this_configureNotificationRadio;
             public final /* synthetic */ int $type;
 
-            public ViewOnClickListenerC03691(Model model, int i) {
+            public ViewOnClickListenerC02491(Model model, int i) {
                 this.$this_configureNotificationRadio = model;
                 this.$type = i;
             }
 
             @Override // android.view.View.OnClickListener
             public final void onClick(View view) {
-                StoreStream.INSTANCE.getUserGuildSettings().setChannelFrequency(a.x(view, "it", "it.context"), this.$this_configureNotificationRadio.getChannel(), this.$type);
+                StoreStream.INSTANCE.getUserGuildSettings().setChannelFrequency(outline.x(view, "it", "it.context"), this.$this_configureNotificationRadio.getChannel(), this.$type);
             }
         }
 
@@ -117,15 +117,15 @@ public final class WidgetChannelNotificationSettings extends AppFragment {
         }
 
         public final void invoke(Model model, CheckedSetting checkedSetting, int i) {
-            m.checkNotNullParameter(model, "$this$configureNotificationRadio");
-            m.checkNotNullParameter(checkedSetting, "radio");
+            Intrinsics3.checkNotNullParameter(model, "$this$configureNotificationRadio");
+            Intrinsics3.checkNotNullParameter(checkedSetting, "radio");
             if (model.isGuildMuted() || model.getChannelIsMuted()) {
                 checkedSetting.b(R.string.channel_or_guild_muted);
             } else {
-                checkedSetting.e(new ViewOnClickListenerC03691(model, i));
+                checkedSetting.e(new ViewOnClickListenerC02491(model, i));
             }
             if (model.isAboveNotifyAllSize() && i == ModelNotificationSettings.FREQUENCY_ALL) {
-                CharSequence charSequenceK = b.k(WidgetChannelNotificationSettings.this, R.string.large_guild_notify_all_messages_description, new Object[0], null, 4);
+                CharSequence charSequenceK = FormatUtils.k(WidgetChannelNotificationSettings.this, R.string.large_guild_notify_all_messages_description, new Object[0], null, 4);
                 int i2 = CheckedSetting.j;
                 checkedSetting.h(charSequenceK, false);
             } else {
@@ -154,7 +154,7 @@ public final class WidgetChannelNotificationSettings extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.channels.settings.WidgetChannelNotificationSettings$onViewBoundOrOnResume$2, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetChannelNotificationSettings.kt */
-    public final class AnonymousClass2 extends o implements Function1<Model, Unit> {
+    public final class AnonymousClass2 extends Lambda implements Function1<Model, Unit> {
         public AnonymousClass2() {
             super(1);
         }
@@ -191,10 +191,10 @@ public final class WidgetChannelNotificationSettings extends AppFragment {
         }
 
         public final void launch(Context context, long channelId, boolean showSystemSetting) {
-            m.checkNotNullParameter(context, "context");
+            Intrinsics3.checkNotNullParameter(context, "context");
             Intent intentPutExtra = new Intent().putExtra("com.discord.intent.extra.EXTRA_CHANNEL_ID", channelId).putExtra(WidgetChannelNotificationSettings.INTENT_SHOW_SYSTEM_SETTINGS, showSystemSetting);
-            m.checkNotNullExpressionValue(intentPutExtra, "Intent()\n          .putE…TINGS, showSystemSetting)");
-            j.d(context, WidgetChannelNotificationSettings.class, intentPutExtra);
+            Intrinsics3.checkNotNullExpressionValue(intentPutExtra, "Intent()\n          .putE…TINGS, showSystemSetting)");
+            AppScreen2.d(context, WidgetChannelNotificationSettings.class, intentPutExtra);
         }
 
         public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
@@ -227,10 +227,10 @@ public final class WidgetChannelNotificationSettings extends AppFragment {
             }
 
             public final Observable<Model> get(long channelId) {
-                Observable<R> observableY = StoreStream.INSTANCE.getChannels().observeChannel(channelId).Y(WidgetChannelNotificationSettings$Model$Companion$get$1.INSTANCE);
-                m.checkNotNullExpressionValue(observableY, "StoreStream\n            …ust(null)\n              }");
+                Observable<R> observableY = StoreStream.INSTANCE.getChannels().observeChannel(channelId).Y(WidgetChannelNotificationSettings2.INSTANCE);
+                Intrinsics3.checkNotNullExpressionValue(observableY, "StoreStream\n            …ust(null)\n              }");
                 Observable<Model> observableR = ObservableExtensionsKt.computationBuffered(observableY).r();
-                m.checkNotNullExpressionValue(observableR, "StoreStream\n            …  .distinctUntilChanged()");
+                Intrinsics3.checkNotNullExpressionValue(observableR, "StoreStream\n            …  .distinctUntilChanged()");
                 return observableR;
             }
 
@@ -240,7 +240,7 @@ public final class WidgetChannelNotificationSettings extends AppFragment {
         }
 
         public Model(Channel channel, boolean z2, String str, boolean z3, int i, Integer num, Integer num2, Integer num3, boolean z4, boolean z5, boolean z6) {
-            m.checkNotNullParameter(channel, "channel");
+            Intrinsics3.checkNotNullParameter(channel, "channel");
             this.channel = channel;
             this.channelIsMuted = z2;
             this.channelMuteEndTime = str;
@@ -259,7 +259,7 @@ public final class WidgetChannelNotificationSettings extends AppFragment {
         }
 
         public final Model copy(Channel channel, boolean channelIsMuted, String channelMuteEndTime, boolean isGuildMuted, int notificationSetting, Integer channelOverrideFlags, Integer forumPostNotificationSetting, Integer parentNotificationSetting, boolean notificationSettingIsInherited, boolean isAboveNotifyAllSize, boolean canAccessRedesignedForumChannels) {
-            m.checkNotNullParameter(channel, "channel");
+            Intrinsics3.checkNotNullParameter(channel, "channel");
             return new Model(channel, channelIsMuted, channelMuteEndTime, isGuildMuted, notificationSetting, channelOverrideFlags, forumPostNotificationSetting, parentNotificationSetting, notificationSettingIsInherited, isAboveNotifyAllSize, canAccessRedesignedForumChannels);
         }
 
@@ -271,7 +271,7 @@ public final class WidgetChannelNotificationSettings extends AppFragment {
                 return false;
             }
             Model model = (Model) other;
-            return m.areEqual(this.channel, model.channel) && this.channelIsMuted == model.channelIsMuted && m.areEqual(this.channelMuteEndTime, model.channelMuteEndTime) && this.isGuildMuted == model.isGuildMuted && this.notificationSetting == model.notificationSetting && m.areEqual(this.channelOverrideFlags, model.channelOverrideFlags) && m.areEqual(this.forumPostNotificationSetting, model.forumPostNotificationSetting) && m.areEqual(this.parentNotificationSetting, model.parentNotificationSetting) && this.notificationSettingIsInherited == model.notificationSettingIsInherited && this.isAboveNotifyAllSize == model.isAboveNotifyAllSize && this.canAccessRedesignedForumChannels == model.canAccessRedesignedForumChannels;
+            return Intrinsics3.areEqual(this.channel, model.channel) && this.channelIsMuted == model.channelIsMuted && Intrinsics3.areEqual(this.channelMuteEndTime, model.channelMuteEndTime) && this.isGuildMuted == model.isGuildMuted && this.notificationSetting == model.notificationSetting && Intrinsics3.areEqual(this.channelOverrideFlags, model.channelOverrideFlags) && Intrinsics3.areEqual(this.forumPostNotificationSetting, model.forumPostNotificationSetting) && Intrinsics3.areEqual(this.parentNotificationSetting, model.parentNotificationSetting) && this.notificationSettingIsInherited == model.notificationSettingIsInherited && this.isAboveNotifyAllSize == model.isAboveNotifyAllSize && this.canAccessRedesignedForumChannels == model.canAccessRedesignedForumChannels;
         }
 
         /* JADX INFO: renamed from: component11, reason: from getter */
@@ -433,7 +433,7 @@ public final class WidgetChannelNotificationSettings extends AppFragment {
         }
 
         public String toString() {
-            StringBuilder sbU = a.U("Model(channel=");
+            StringBuilder sbU = outline.U("Model(channel=");
             sbU.append(this.channel);
             sbU.append(", channelIsMuted=");
             sbU.append(this.channelIsMuted);
@@ -454,13 +454,13 @@ public final class WidgetChannelNotificationSettings extends AppFragment {
             sbU.append(", isAboveNotifyAllSize=");
             sbU.append(this.isAboveNotifyAllSize);
             sbU.append(", canAccessRedesignedForumChannels=");
-            return a.O(sbU, this.canAccessRedesignedForumChannels, ")");
+            return outline.O(sbU, this.canAccessRedesignedForumChannels, ")");
         }
     }
 
     public WidgetChannelNotificationSettings() {
         super(R.layout.widget_channel_notification_settings);
-        this.binding = FragmentViewBindingDelegateKt.viewBinding$default(this, WidgetChannelNotificationSettings$binding$2.INSTANCE, null, 2, null);
+        this.binding = FragmentViewBindingDelegate3.viewBinding$default(this, WidgetChannelNotificationSettings4.INSTANCE, null, 2, null);
     }
 
     public static final /* synthetic */ void access$configureUI(WidgetChannelNotificationSettings widgetChannelNotificationSettings, Model model) {
@@ -474,7 +474,7 @@ public final class WidgetChannelNotificationSettings extends AppFragment {
     public static final /* synthetic */ RadioManager access$getNotificationSettingsRadioManager$p(WidgetChannelNotificationSettings widgetChannelNotificationSettings) {
         RadioManager radioManager = widgetChannelNotificationSettings.notificationSettingsRadioManager;
         if (radioManager == null) {
-            m.throwUninitializedPropertyAccessException("notificationSettingsRadioManager");
+            Intrinsics3.throwUninitializedPropertyAccessException("notificationSettingsRadioManager");
         }
         return radioManager;
     }
@@ -485,21 +485,21 @@ public final class WidgetChannelNotificationSettings extends AppFragment {
 
     private final void configureChannel(Model model) {
         LinearLayout linearLayout = getBinding().c;
-        m.checkNotNullExpressionValue(linearLayout, "binding.forumChannelNotificationSettings");
+        Intrinsics3.checkNotNullExpressionValue(linearLayout, "binding.forumChannelNotificationSettings");
         linearLayout.setVisibility(8);
         TextView textView = getBinding().i;
-        m.checkNotNullExpressionValue(textView, "binding.frequencySubheader");
+        Intrinsics3.checkNotNullExpressionValue(textView, "binding.frequencySubheader");
         textView.setVisibility(8);
         getBinding().i.setText(R.string.form_label_notification_frequency);
     }
 
     private final void configureGuildForumChannel(Model model) {
         LinearLayout linearLayout = getBinding().c;
-        m.checkNotNullExpressionValue(linearLayout, "binding.forumChannelNotificationSettings");
+        Intrinsics3.checkNotNullExpressionValue(linearLayout, "binding.forumChannelNotificationSettings");
         boolean z2 = false;
         linearLayout.setVisibility(0);
         TextView textView = getBinding().i;
-        m.checkNotNullExpressionValue(textView, "binding.frequencySubheader");
+        Intrinsics3.checkNotNullExpressionValue(textView, "binding.frequencySubheader");
         textView.setVisibility(0);
         getBinding().e.setText(R.string.forum_message_notifications);
         getBinding().i.setText(R.string.forum_message_notifications_description);
@@ -508,7 +508,7 @@ public final class WidgetChannelNotificationSettings extends AppFragment {
         Integer forumPostNotificationSetting = model.getForumPostNotificationSetting();
         int iIntValue = forumPostNotificationSetting != null ? forumPostNotificationSetting.intValue() : ModelNotificationSettings.FREQUENCY_UNSET;
         CheckedSetting checkedSetting = getBinding().d;
-        m.checkNotNullExpressionValue(checkedSetting, "binding.frequencyAllPosts");
+        Intrinsics3.checkNotNullExpressionValue(checkedSetting, "binding.frequencyAllPosts");
         if (iIntValue == ModelNotificationSettings.FREQUENCY_UNSET) {
             z2 = z3;
         } else if (iIntValue == ModelNotificationSettings.FORUM_THREAD_CREATED_ON) {
@@ -526,37 +526,37 @@ public final class WidgetChannelNotificationSettings extends AppFragment {
         }
         AnonymousClass1 anonymousClass1 = new AnonymousClass1(ref$IntRef);
         CheckedSetting checkedSetting = getBinding().f;
-        m.checkNotNullExpressionValue(checkedSetting, "binding.frequencyRadioAll");
+        Intrinsics3.checkNotNullExpressionValue(checkedSetting, "binding.frequencyRadioAll");
         checkedSetting.setVisibility(ChannelUtils.F(model.getChannel()) || ChannelUtils.k(model.getChannel()) ? 0 : 8);
         CheckedSetting checkedSetting2 = getBinding().g;
         String string = requireContext().getString(ChannelUtils.D(model.getChannel()) ? R.string.form_label_live_stages_only : R.string.form_label_only_mentions);
-        m.checkNotNullExpressionValue(string, "requireContext().getStri…s\n            }\n        )");
-        checkedSetting2.setText(b.l(string, new Object[0], null, 2));
+        Intrinsics3.checkNotNullExpressionValue(string, "requireContext().getStri…s\n            }\n        )");
+        checkedSetting2.setText(FormatUtils.l(string, new Object[0], null, 2));
         CheckedSetting checkedSetting3 = getBinding().f;
-        m.checkNotNullExpressionValue(checkedSetting3, "binding.frequencyRadioAll");
+        Intrinsics3.checkNotNullExpressionValue(checkedSetting3, "binding.frequencyRadioAll");
         anonymousClass1.invoke(model, checkedSetting3, ModelNotificationSettings.FREQUENCY_ALL);
         CheckedSetting checkedSetting4 = getBinding().g;
-        m.checkNotNullExpressionValue(checkedSetting4, "binding.frequencyRadioMentions");
+        Intrinsics3.checkNotNullExpressionValue(checkedSetting4, "binding.frequencyRadioMentions");
         anonymousClass1.invoke(model, checkedSetting4, ModelNotificationSettings.FREQUENCY_MENTIONS);
         CheckedSetting checkedSetting5 = getBinding().h;
-        m.checkNotNullExpressionValue(checkedSetting5, "binding.frequencyRadioNothing");
+        Intrinsics3.checkNotNullExpressionValue(checkedSetting5, "binding.frequencyRadioNothing");
         anonymousClass1.invoke(model, checkedSetting5, ModelNotificationSettings.FREQUENCY_NOTHING);
     }
 
     private final void configureUI(Model model) {
         setActionBarSubtitle(ChannelUtils.e(model.getChannel(), requireContext(), false, 2));
         boolean z2 = true;
-        NotificationMuteSettingsView.ViewState viewState = new NotificationMuteSettingsView.ViewState(model.getChannelIsMuted(), model.getChannelMuteEndTime(), ChannelUtils.F(model.getChannel()) ? b.h(requireContext(), R.string.mute_channel, new Object[]{ChannelUtils.e(model.getChannel(), requireContext(), false, 2)}, null, 4) : b.h(requireContext(), R.string.mute_category, new Object[0], null, 4), ChannelUtils.F(model.getChannel()) ? b.h(requireContext(), R.string.unmute_channel, new Object[]{ChannelUtils.e(model.getChannel(), requireContext(), false, 2)}, null, 4) : b.h(requireContext(), R.string.unmute_category, new Object[0], null, 4), b.h(requireContext(), R.string.form_label_mobile_channel_muted, new Object[0], null, 4), ChannelUtils.F(model.getChannel()) ? R.string.form_label_mobile_channel_muted_until : R.string.form_label_mobile_category_muted_until, ChannelUtils.F(model.getChannel()) ? b.h(requireContext(), R.string.form_label_mobile_channel_override_mute, new Object[0], null, 4) : b.h(requireContext(), R.string.form_label_mobile_category_override_mute, new Object[0], null, 4));
-        WidgetChannelNotificationSettings$configureUI$onMute$1 widgetChannelNotificationSettings$configureUI$onMute$1 = new WidgetChannelNotificationSettings$configureUI$onMute$1(this, model);
-        WidgetChannelNotificationSettings$configureUI$onUnmute$1 widgetChannelNotificationSettings$configureUI$onUnmute$1 = new WidgetChannelNotificationSettings$configureUI$onUnmute$1(this, model);
+        NotificationMuteSettingsView.ViewState viewState = new NotificationMuteSettingsView.ViewState(model.getChannelIsMuted(), model.getChannelMuteEndTime(), ChannelUtils.F(model.getChannel()) ? FormatUtils.h(requireContext(), R.string.mute_channel, new Object[]{ChannelUtils.e(model.getChannel(), requireContext(), false, 2)}, null, 4) : FormatUtils.h(requireContext(), R.string.mute_category, new Object[0], null, 4), ChannelUtils.F(model.getChannel()) ? FormatUtils.h(requireContext(), R.string.unmute_channel, new Object[]{ChannelUtils.e(model.getChannel(), requireContext(), false, 2)}, null, 4) : FormatUtils.h(requireContext(), R.string.unmute_category, new Object[0], null, 4), FormatUtils.h(requireContext(), R.string.form_label_mobile_channel_muted, new Object[0], null, 4), ChannelUtils.F(model.getChannel()) ? R.string.form_label_mobile_channel_muted_until : R.string.form_label_mobile_category_muted_until, ChannelUtils.F(model.getChannel()) ? FormatUtils.h(requireContext(), R.string.form_label_mobile_channel_override_mute, new Object[0], null, 4) : FormatUtils.h(requireContext(), R.string.form_label_mobile_category_override_mute, new Object[0], null, 4));
+        WidgetChannelNotificationSettings5 widgetChannelNotificationSettings5 = new WidgetChannelNotificationSettings5(this, model);
+        WidgetChannelNotificationSettings6 widgetChannelNotificationSettings6 = new WidgetChannelNotificationSettings6(this, model);
         if (!ChannelUtils.F(model.getChannel()) && !ChannelUtils.k(model.getChannel())) {
             z2 = false;
         }
         NotificationMuteSettingsView notificationMuteSettingsView = getBinding().k;
         notificationMuteSettingsView.setVisibility(z2 ? 0 : 8);
-        notificationMuteSettingsView.updateView(viewState, widgetChannelNotificationSettings$configureUI$onMute$1, widgetChannelNotificationSettings$configureUI$onUnmute$1);
+        notificationMuteSettingsView.updateView(viewState, widgetChannelNotificationSettings5, widgetChannelNotificationSettings6);
         View view = getBinding().j;
-        m.checkNotNullExpressionValue(view, "binding.frequencyTopDivider");
+        Intrinsics3.checkNotNullExpressionValue(view, "binding.frequencyTopDivider");
         view.setVisibility(z2 ? 0 : 8);
         configureNotificationRadios(model);
         if (ChannelUtils.q(model.getChannel()) && model.getCanAccessRedesignedForumChannels()) {
@@ -572,14 +572,14 @@ public final class WidgetChannelNotificationSettings extends AppFragment {
 
     @Override // com.discord.app.AppFragment
     public void onViewBound(View view) {
-        m.checkNotNullParameter(view, "view");
+        Intrinsics3.checkNotNullParameter(view, "view");
         super.onViewBound(view);
         setRetainInstance(true);
         AppFragment.setActionBarDisplayHomeAsUpEnabled$default(this, false, 1, null);
         setActionBarTitle(R.string.notification_settings);
-        this.notificationSettingsRadioManager = new RadioManager(n.listOf((Object[]) new CheckedSetting[]{getBinding().f, getBinding().g, getBinding().h}));
+        this.notificationSettingsRadioManager = new RadioManager(Collections2.listOf((Object[]) new CheckedSetting[]{getBinding().f, getBinding().g, getBinding().h}));
         LinearLayout linearLayout = getBinding().f2262b;
-        m.checkNotNullExpressionValue(linearLayout, "binding.channelNotificationSettingsSystem");
+        Intrinsics3.checkNotNullExpressionValue(linearLayout, "binding.channelNotificationSettingsSystem");
         linearLayout.setVisibility(getMostRecentIntent().getBooleanExtra(INTENT_SHOW_SYSTEM_SETTINGS, false) ? 0 : 8);
     }
 

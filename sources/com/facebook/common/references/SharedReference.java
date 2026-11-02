@@ -1,10 +1,10 @@
 package com.facebook.common.references;
 
 import android.graphics.Bitmap;
-import b.c.a.a0.d;
-import b.f.d.e.a;
-import b.f.d.h.c;
-import b.f.d.h.f;
+import b.c.a.a0.AnimatableValueParser;
+import b.f.d.e.FLog;
+import b.f.d.h.HasBitmap;
+import b.f.d.h.ResourceReleaser;
 import java.util.IdentityHashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -12,7 +12,7 @@ import java.util.Objects;
 /* JADX INFO: loaded from: classes.dex */
 public class SharedReference<T> {
     public int c;
-    public final f<T> d;
+    public final ResourceReleaser<T> d;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
     public T f2884b;
@@ -24,13 +24,13 @@ public class SharedReference<T> {
         }
     }
 
-    public SharedReference(T t, f<T> fVar) {
+    public SharedReference(T t, ResourceReleaser<T> resourceReleaser) {
         Objects.requireNonNull(t);
         this.f2884b = t;
-        Objects.requireNonNull(fVar);
-        this.d = fVar;
+        Objects.requireNonNull(resourceReleaser);
+        this.d = resourceReleaser;
         this.c = 1;
-        if ((CloseableReference.k == 3) && ((t instanceof Bitmap) || (t instanceof c))) {
+        if ((CloseableReference.k == 3) && ((t instanceof Bitmap) || (t instanceof HasBitmap))) {
             return;
         }
         Map<Object, Integer> map = a;
@@ -49,7 +49,7 @@ public class SharedReference<T> {
         T t;
         synchronized (this) {
             b();
-            d.i(Boolean.valueOf(this.c > 0));
+            AnimatableValueParser.i(Boolean.valueOf(this.c > 0));
             i = this.c - 1;
             this.c = i;
         }
@@ -64,7 +64,7 @@ public class SharedReference<T> {
                 synchronized (map) {
                     Integer num = map.get(t);
                     if (num == null) {
-                        a.p("SharedReference", "No entry in sLiveObjects for value of type %s", t.getClass());
+                        FLog.p("SharedReference", "No entry in sLiveObjects for value of type %s", t.getClass());
                     } else if (num.intValue() == 1) {
                         map.remove(t);
                     } else {

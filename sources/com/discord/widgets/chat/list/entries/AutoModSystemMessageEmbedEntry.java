@@ -1,13 +1,13 @@
 package com.discord.widgets.chat.list.entries;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.api.channel.Channel;
 import com.discord.api.message.embed.MessageEmbed;
 import com.discord.api.role.GuildRole;
 import com.discord.models.member.GuildMember;
 import com.discord.models.message.Message;
 import com.discord.stores.StoreMessageState;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 import java.util.Map;
 
 /* JADX INFO: compiled from: AutoModSystemMessageEmbedEntry.kt */
@@ -25,10 +25,10 @@ public final /* data */ class AutoModSystemMessageEmbedEntry extends ChatListEnt
     private final int type;
 
     public AutoModSystemMessageEmbedEntry(Channel channel, Message message, StoreMessageState.State state, MessageEmbed messageEmbed, GuildMember guildMember, boolean z2, Map<Long, GuildRole> map, Map<Long, String> map2) {
-        m.checkNotNullParameter(channel, "channel");
-        m.checkNotNullParameter(message, "message");
-        m.checkNotNullParameter(messageEmbed, "embed");
-        m.checkNotNullParameter(map2, "nickOrUsernames");
+        Intrinsics3.checkNotNullParameter(channel, "channel");
+        Intrinsics3.checkNotNullParameter(message, "message");
+        Intrinsics3.checkNotNullParameter(messageEmbed, "embed");
+        Intrinsics3.checkNotNullParameter(map2, "nickOrUsernames");
         this.channel = channel;
         this.message = message;
         this.messageState = state;
@@ -55,10 +55,10 @@ public final /* data */ class AutoModSystemMessageEmbedEntry extends ChatListEnt
     }
 
     public final AutoModSystemMessageEmbedEntry copy(Channel channel, Message message, StoreMessageState.State messageState, MessageEmbed embed, GuildMember author, boolean animateEmojis, Map<Long, GuildRole> roles, Map<Long, String> nickOrUsernames) {
-        m.checkNotNullParameter(channel, "channel");
-        m.checkNotNullParameter(message, "message");
-        m.checkNotNullParameter(embed, "embed");
-        m.checkNotNullParameter(nickOrUsernames, "nickOrUsernames");
+        Intrinsics3.checkNotNullParameter(channel, "channel");
+        Intrinsics3.checkNotNullParameter(message, "message");
+        Intrinsics3.checkNotNullParameter(embed, "embed");
+        Intrinsics3.checkNotNullParameter(nickOrUsernames, "nickOrUsernames");
         return new AutoModSystemMessageEmbedEntry(channel, message, messageState, embed, author, animateEmojis, roles, nickOrUsernames);
     }
 
@@ -70,7 +70,7 @@ public final /* data */ class AutoModSystemMessageEmbedEntry extends ChatListEnt
             return false;
         }
         AutoModSystemMessageEmbedEntry autoModSystemMessageEmbedEntry = (AutoModSystemMessageEmbedEntry) other;
-        return m.areEqual(this.channel, autoModSystemMessageEmbedEntry.channel) && m.areEqual(this.message, autoModSystemMessageEmbedEntry.message) && m.areEqual(this.messageState, autoModSystemMessageEmbedEntry.messageState) && m.areEqual(this.embed, autoModSystemMessageEmbedEntry.embed) && m.areEqual(this.author, autoModSystemMessageEmbedEntry.author) && this.animateEmojis == autoModSystemMessageEmbedEntry.animateEmojis && m.areEqual(this.roles, autoModSystemMessageEmbedEntry.roles) && m.areEqual(this.nickOrUsernames, autoModSystemMessageEmbedEntry.nickOrUsernames);
+        return Intrinsics3.areEqual(this.channel, autoModSystemMessageEmbedEntry.channel) && Intrinsics3.areEqual(this.message, autoModSystemMessageEmbedEntry.message) && Intrinsics3.areEqual(this.messageState, autoModSystemMessageEmbedEntry.messageState) && Intrinsics3.areEqual(this.embed, autoModSystemMessageEmbedEntry.embed) && Intrinsics3.areEqual(this.author, autoModSystemMessageEmbedEntry.author) && this.animateEmojis == autoModSystemMessageEmbedEntry.animateEmojis && Intrinsics3.areEqual(this.roles, autoModSystemMessageEmbedEntry.roles) && Intrinsics3.areEqual(this.nickOrUsernames, autoModSystemMessageEmbedEntry.nickOrUsernames);
     }
 
     /* JADX INFO: renamed from: component6, reason: from getter */
@@ -174,7 +174,7 @@ public final /* data */ class AutoModSystemMessageEmbedEntry extends ChatListEnt
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("AutoModSystemMessageEmbedEntry(channel=");
+        StringBuilder sbU = outline.U("AutoModSystemMessageEmbedEntry(channel=");
         sbU.append(this.channel);
         sbU.append(", message=");
         sbU.append(this.message);
@@ -189,6 +189,6 @@ public final /* data */ class AutoModSystemMessageEmbedEntry extends ChatListEnt
         sbU.append(", roles=");
         sbU.append(this.roles);
         sbU.append(", nickOrUsernames=");
-        return a.M(sbU, this.nickOrUsernames, ")");
+        return outline.M(sbU, this.nickOrUsernames, ")");
     }
 }

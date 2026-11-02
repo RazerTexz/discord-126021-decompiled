@@ -1,7 +1,7 @@
 package defpackage;
 
-import b.d.b.a.a;
-import d0.z.d.m;
+import b.d.b.a.outline;
+import d0.z.d.Intrinsics3;
 import java.util.Set;
 
 /* JADX INFO: compiled from: WidgetFriendsAddUserRequestsModel.kt */
@@ -15,8 +15,8 @@ public final /* data */ class WidgetFriendsAddUserRequestsModel {
     public final Set<Long> incomingIds;
 
     public WidgetFriendsAddUserRequestsModel(Set<Long> set, Set<Long> set2) {
-        m.checkNotNullParameter(set, "outgoingIds");
-        m.checkNotNullParameter(set2, "incomingIds");
+        Intrinsics3.checkNotNullParameter(set, "outgoingIds");
+        Intrinsics3.checkNotNullParameter(set2, "incomingIds");
         this.outgoingIds = set;
         this.incomingIds = set2;
     }
@@ -29,7 +29,7 @@ public final /* data */ class WidgetFriendsAddUserRequestsModel {
             return false;
         }
         WidgetFriendsAddUserRequestsModel widgetFriendsAddUserRequestsModel = (WidgetFriendsAddUserRequestsModel) other;
-        return m.areEqual(this.outgoingIds, widgetFriendsAddUserRequestsModel.outgoingIds) && m.areEqual(this.incomingIds, widgetFriendsAddUserRequestsModel.incomingIds);
+        return Intrinsics3.areEqual(this.outgoingIds, widgetFriendsAddUserRequestsModel.outgoingIds) && Intrinsics3.areEqual(this.incomingIds, widgetFriendsAddUserRequestsModel.incomingIds);
     }
 
     public int hashCode() {
@@ -40,9 +40,9 @@ public final /* data */ class WidgetFriendsAddUserRequestsModel {
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("WidgetFriendsAddUserRequestsModel(outgoingIds=");
+        StringBuilder sbU = outline.U("WidgetFriendsAddUserRequestsModel(outgoingIds=");
         sbU.append(this.outgoingIds);
         sbU.append(", incomingIds=");
-        return a.N(sbU, this.incomingIds, ")");
+        return outline.N(sbU, this.incomingIds, ")");
     }
 }

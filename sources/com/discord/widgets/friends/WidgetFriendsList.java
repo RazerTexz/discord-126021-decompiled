@@ -12,8 +12,10 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentViewModelLazyKt;
 import androidx.recyclerview.widget.RecyclerView;
-import b.a.d.i0;
-import b.d.b.a.a;
+import b.a.d.AppToast;
+import b.a.d.AppViewModelDelegates3;
+import b.a.d.AppViewModelDelegates5;
+import b.d.b.a.outline;
 import com.discord.R;
 import com.discord.app.AppFragment;
 import com.discord.app.AppViewFlipper;
@@ -31,7 +33,7 @@ import com.discord.utilities.mg_recycler.MGRecyclerAdapter;
 import com.discord.utilities.rest.RestAPIAbortMessages;
 import com.discord.utilities.rx.ObservableExtensionsKt;
 import com.discord.utilities.viewbinding.FragmentViewBindingDelegate;
-import com.discord.utilities.viewbinding.FragmentViewBindingDelegateKt;
+import com.discord.utilities.viewbinding.FragmentViewBindingDelegate3;
 import com.discord.widgets.captcha.WidgetCaptchaBottomSheet;
 import com.discord.widgets.channels.WidgetGroupInviteFriends;
 import com.discord.widgets.channels.invite.GroupInviteFriendsSheet;
@@ -43,11 +45,12 @@ import com.discord.widgets.tabs.OnTabSelectedListener;
 import com.discord.widgets.tabs.WidgetTabsHost;
 import com.discord.widgets.user.calls.PrivateCallLauncher;
 import com.discord.widgets.user.usersheet.WidgetUserSheet;
-import d0.o;
-import d0.t.g0;
-import d0.z.d.a0;
-import d0.z.d.k;
-import d0.z.d.m;
+import d0.Tuples;
+import d0.t.MapsJVM;
+import d0.z.d.FunctionReferenceImpl;
+import d0.z.d.Intrinsics3;
+import d0.z.d.Lambda;
+import d0.z.d.Reflection2;
 import kotlin.Lazy;
 import kotlin.NoWhenBranchMatchedException;
 import kotlin.Unit;
@@ -61,7 +64,7 @@ import rx.functions.Action2;
 /* JADX INFO: compiled from: WidgetFriendsList.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetFriendsList extends AppFragment implements OnTabSelectedListener {
-    public static final /* synthetic */ KProperty[] $$delegatedProperties = {a.d0(WidgetFriendsList.class, "binding", "getBinding()Lcom/discord/databinding/WidgetFriendsListBinding;", 0)};
+    public static final /* synthetic */ KProperty[] $$delegatedProperties = {outline.d0(WidgetFriendsList.class, "binding", "getBinding()Lcom/discord/databinding/WidgetFriendsListBinding;", 0)};
     private static final String ANALYTICS_SOURCE = "Friends";
     private static final int VIEW_INDEX_EMPTY = 1;
     private static final int VIEW_INDEX_LOADING = 2;
@@ -70,7 +73,7 @@ public final class WidgetFriendsList extends AppFragment implements OnTabSelecte
 
     /* JADX INFO: renamed from: binding$delegate, reason: from kotlin metadata */
     private final FragmentViewBindingDelegate binding;
-    private WidgetFriendsListLoadingAdapter loadingAdapter;
+    private WidgetFriendsList5 loadingAdapter;
     private PrivateCallLauncher privateCallLauncher;
     private boolean showContactSyncIcon;
 
@@ -90,18 +93,18 @@ public final class WidgetFriendsList extends AppFragment implements OnTabSelecte
 
         /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
         public final void call2(MenuItem menuItem, Context context) {
-            m.checkNotNullExpressionValue(menuItem, "menuItem");
+            Intrinsics3.checkNotNullExpressionValue(menuItem, "menuItem");
             switch (menuItem.getItemId()) {
                 case R.id.menu_friends_add_friend /* 2131364389 */:
                     WidgetFriendsAdd.Companion companion = WidgetFriendsAdd.INSTANCE;
-                    m.checkNotNullExpressionValue(context, "context");
+                    Intrinsics3.checkNotNullExpressionValue(context, "context");
                     WidgetFriendsAdd.Companion.show$default(companion, context, null, WidgetFriendsList.ANALYTICS_SOURCE, 2, null);
                     break;
                 case R.id.menu_friends_contact_sync /* 2131364390 */:
-                    ContactSyncFlowAnalytics.Companion.trackStart$default(ContactSyncFlowAnalytics.INSTANCE, false, g0.mapOf(o.to("location_page", "Friends List Icon")), 1, null);
+                    ContactSyncFlowAnalytics.Companion.trackStart$default(ContactSyncFlowAnalytics.INSTANCE, false, MapsJVM.mapOf(Tuples.to("location_page", "Friends List Icon")), 1, null);
                     AnalyticsTracker.INSTANCE.openModal("Contact Sync", new Traits.Location("Friends List Icon", null, null, null, null, 30, null));
                     WidgetContactSync.Companion companion2 = WidgetContactSync.INSTANCE;
-                    m.checkNotNullExpressionValue(context, "context");
+                    Intrinsics3.checkNotNullExpressionValue(context, "context");
                     WidgetContactSync.Companion.launch$default(companion2, context, null, false, false, false, 30, null);
                     break;
                 case R.id.menu_friends_start_group /* 2131364391 */:
@@ -110,7 +113,7 @@ public final class WidgetFriendsList extends AppFragment implements OnTabSelecte
                     } else {
                         GroupInviteFriendsSheet.Companion companion3 = GroupInviteFriendsSheet.INSTANCE;
                         FragmentManager parentFragmentManager = WidgetFriendsList.this.getParentFragmentManager();
-                        m.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
+                        Intrinsics3.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
                         GroupInviteFriendsSheet.Companion.show$default(companion3, parentFragmentManager, 0L, WidgetFriendsList.ANALYTICS_SOURCE, 2, null);
                     }
                     break;
@@ -120,7 +123,7 @@ public final class WidgetFriendsList extends AppFragment implements OnTabSelecte
 
     /* JADX INFO: renamed from: com.discord.widgets.friends.WidgetFriendsList$handleCaptchaError$1, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetFriendsList.kt */
-    public final class AnonymousClass1 extends d0.z.d.o implements Function2<AppFragment, CaptchaHelper.CaptchaPayload, Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function2<AppFragment, CaptchaHelper.CaptchaPayload, Unit> {
         public final /* synthetic */ FriendsListViewModel.Event.CaptchaError $event;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -137,15 +140,15 @@ public final class WidgetFriendsList extends AppFragment implements OnTabSelecte
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(AppFragment appFragment, CaptchaHelper.CaptchaPayload captchaPayload) {
-            m.checkNotNullParameter(appFragment, "<anonymous parameter 0>");
-            m.checkNotNullParameter(captchaPayload, "captchaPayload");
+            Intrinsics3.checkNotNullParameter(appFragment, "<anonymous parameter 0>");
+            Intrinsics3.checkNotNullParameter(captchaPayload, "captchaPayload");
             WidgetFriendsList.access$getViewModel$p(WidgetFriendsList.this).acceptFriendSuggestion(this.$event.getUsername(), this.$event.getDiscriminator(), captchaPayload);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.widgets.friends.WidgetFriendsList$onViewBound$1, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetFriendsList.kt */
-    public final class AnonymousClass1 extends d0.z.d.o implements Function2<View, User, Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function2<View, User, Unit> {
         public AnonymousClass1() {
             super(2);
         }
@@ -158,19 +161,19 @@ public final class WidgetFriendsList extends AppFragment implements OnTabSelecte
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(View view, User user) {
-            m.checkNotNullParameter(view, "<anonymous parameter 0>");
-            m.checkNotNullParameter(user, "user");
+            Intrinsics3.checkNotNullParameter(view, "<anonymous parameter 0>");
+            Intrinsics3.checkNotNullParameter(user, "user");
             WidgetUserSheet.Companion companion = WidgetUserSheet.INSTANCE;
             long id2 = user.getId();
             FragmentManager parentFragmentManager = WidgetFriendsList.this.getParentFragmentManager();
-            m.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
+            Intrinsics3.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
             WidgetUserSheet.Companion.show$default(companion, id2, null, parentFragmentManager, null, null, null, null, 122, null);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.widgets.friends.WidgetFriendsList$onViewBoundOrOnResume$1, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetFriendsList.kt */
-    public final /* synthetic */ class AnonymousClass1 extends k implements Function1<FriendsListViewModel.ViewState, Unit> {
+    public final /* synthetic */ class AnonymousClass1 extends FunctionReferenceImpl implements Function1<FriendsListViewModel.ViewState, Unit> {
         public AnonymousClass1(WidgetFriendsList widgetFriendsList) {
             super(1, widgetFriendsList, WidgetFriendsList.class, "configureUI", "configureUI(Lcom/discord/widgets/friends/FriendsListViewModel$ViewState;)V", 0);
         }
@@ -183,14 +186,14 @@ public final class WidgetFriendsList extends AppFragment implements OnTabSelecte
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(FriendsListViewModel.ViewState viewState) {
-            m.checkNotNullParameter(viewState, "p1");
+            Intrinsics3.checkNotNullParameter(viewState, "p1");
             WidgetFriendsList.access$configureUI((WidgetFriendsList) this.receiver, viewState);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.widgets.friends.WidgetFriendsList$onViewBound$10, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetFriendsList.kt */
-    public final class AnonymousClass10 extends d0.z.d.o implements Function1<User, Unit> {
+    public final class AnonymousClass10 extends Lambda implements Function1<User, Unit> {
         public AnonymousClass10() {
             super(1);
         }
@@ -203,14 +206,14 @@ public final class WidgetFriendsList extends AppFragment implements OnTabSelecte
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(User user) {
-            m.checkNotNullParameter(user, "user");
+            Intrinsics3.checkNotNullParameter(user, "user");
             FriendsListViewModel.acceptFriendSuggestion$default(WidgetFriendsList.access$getViewModel$p(WidgetFriendsList.this), user.getUsername(), user.getDiscriminator(), null, 4, null);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.widgets.friends.WidgetFriendsList$onViewBound$11, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetFriendsList.kt */
-    public final /* synthetic */ class AnonymousClass11 extends k implements Function1<Long, Unit> {
+    public final /* synthetic */ class AnonymousClass11 extends FunctionReferenceImpl implements Function1<Long, Unit> {
         public AnonymousClass11(FriendsListViewModel friendsListViewModel) {
             super(1, friendsListViewModel, FriendsListViewModel.class, "ignoreSuggestion", "ignoreSuggestion(J)V", 0);
         }
@@ -248,7 +251,7 @@ public final class WidgetFriendsList extends AppFragment implements OnTabSelecte
 
     /* JADX INFO: renamed from: com.discord.widgets.friends.WidgetFriendsList$onViewBound$2, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetFriendsList.kt */
-    public final class AnonymousClass2 extends d0.z.d.o implements Function0<Unit> {
+    public final class AnonymousClass2 extends Lambda implements Function0<Unit> {
         public AnonymousClass2() {
             super(0);
         }
@@ -267,7 +270,7 @@ public final class WidgetFriendsList extends AppFragment implements OnTabSelecte
 
     /* JADX INFO: renamed from: com.discord.widgets.friends.WidgetFriendsList$onViewBoundOrOnResume$2, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetFriendsList.kt */
-    public final /* synthetic */ class AnonymousClass2 extends k implements Function1<FriendsListViewModel.Event, Unit> {
+    public final /* synthetic */ class AnonymousClass2 extends FunctionReferenceImpl implements Function1<FriendsListViewModel.Event, Unit> {
         public AnonymousClass2(WidgetFriendsList widgetFriendsList) {
             super(1, widgetFriendsList, WidgetFriendsList.class, "handleEvent", "handleEvent(Lcom/discord/widgets/friends/FriendsListViewModel$Event;)V", 0);
         }
@@ -280,14 +283,14 @@ public final class WidgetFriendsList extends AppFragment implements OnTabSelecte
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(FriendsListViewModel.Event event) {
-            m.checkNotNullParameter(event, "p1");
+            Intrinsics3.checkNotNullParameter(event, "p1");
             WidgetFriendsList.access$handleEvent((WidgetFriendsList) this.receiver, event);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.widgets.friends.WidgetFriendsList$onViewBound$3, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetFriendsList.kt */
-    public final class AnonymousClass3 extends d0.z.d.o implements Function1<User, Unit> {
+    public final class AnonymousClass3 extends Lambda implements Function1<User, Unit> {
         public AnonymousClass3() {
             super(1);
         }
@@ -300,14 +303,14 @@ public final class WidgetFriendsList extends AppFragment implements OnTabSelecte
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(User user) {
-            m.checkNotNullParameter(user, "user");
+            Intrinsics3.checkNotNullParameter(user, "user");
             WidgetFriendsList.access$getViewModel$p(WidgetFriendsList.this).launchVoiceCall(user.getId());
         }
     }
 
     /* JADX INFO: renamed from: com.discord.widgets.friends.WidgetFriendsList$onViewBound$4, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetFriendsList.kt */
-    public final class AnonymousClass4 extends d0.z.d.o implements Function1<User, Unit> {
+    public final class AnonymousClass4 extends Lambda implements Function1<User, Unit> {
         public AnonymousClass4() {
             super(1);
         }
@@ -320,7 +323,7 @@ public final class WidgetFriendsList extends AppFragment implements OnTabSelecte
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(User user) {
-            m.checkNotNullParameter(user, "user");
+            Intrinsics3.checkNotNullParameter(user, "user");
             ChannelSelector.INSTANCE.getInstance().findAndSetDirectMessage(WidgetFriendsList.this.requireContext(), user.getId());
             StoreTabsNavigation.selectHomeTab$default(StoreStream.INSTANCE.getTabsNavigation(), StoreNavigation.PanelAction.CLOSE, false, 2, null);
         }
@@ -328,7 +331,7 @@ public final class WidgetFriendsList extends AppFragment implements OnTabSelecte
 
     /* JADX INFO: renamed from: com.discord.widgets.friends.WidgetFriendsList$onViewBound$5, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetFriendsList.kt */
-    public final class AnonymousClass5 extends d0.z.d.o implements Function1<User, Unit> {
+    public final class AnonymousClass5 extends Lambda implements Function1<User, Unit> {
         public AnonymousClass5() {
             super(1);
         }
@@ -341,14 +344,14 @@ public final class WidgetFriendsList extends AppFragment implements OnTabSelecte
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(User user) {
-            m.checkNotNullParameter(user, "it");
+            Intrinsics3.checkNotNullParameter(user, "it");
             WidgetFriendsList.access$getViewModel$p(WidgetFriendsList.this).acceptFriendRequest(user.getId(), user.getUsername());
         }
     }
 
     /* JADX INFO: renamed from: com.discord.widgets.friends.WidgetFriendsList$onViewBound$6, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetFriendsList.kt */
-    public final class AnonymousClass6 extends d0.z.d.o implements Function2<User, Integer, Unit> {
+    public final class AnonymousClass6 extends Lambda implements Function2<User, Integer, Unit> {
         public AnonymousClass6() {
             super(2);
         }
@@ -360,14 +363,14 @@ public final class WidgetFriendsList extends AppFragment implements OnTabSelecte
         }
 
         public final void invoke(User user, int i) {
-            m.checkNotNullParameter(user, "user");
+            Intrinsics3.checkNotNullParameter(user, "user");
             WidgetFriendsList.access$getViewModel$p(WidgetFriendsList.this).removeFriendRequest(user.getId(), i);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.widgets.friends.WidgetFriendsList$onViewBound$7, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetFriendsList.kt */
-    public final class AnonymousClass7 extends d0.z.d.o implements Function0<Unit> {
+    public final class AnonymousClass7 extends Lambda implements Function0<Unit> {
         public AnonymousClass7() {
             super(0);
         }
@@ -380,7 +383,7 @@ public final class WidgetFriendsList extends AppFragment implements OnTabSelecte
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2() {
-            ContactSyncFlowAnalytics.Companion.trackStart$default(ContactSyncFlowAnalytics.INSTANCE, false, g0.mapOf(o.to("location_page", "Friends List Upsell")), 1, null);
+            ContactSyncFlowAnalytics.Companion.trackStart$default(ContactSyncFlowAnalytics.INSTANCE, false, MapsJVM.mapOf(Tuples.to("location_page", "Friends List Upsell")), 1, null);
             AnalyticsTracker.INSTANCE.openModal("Contact Sync", new Traits.Location("Friends List Upsell", null, null, null, null, 30, null));
             WidgetContactSync.Companion.launch$default(WidgetContactSync.INSTANCE, WidgetFriendsList.this.requireContext(), null, false, false, false, 30, null);
         }
@@ -388,7 +391,7 @@ public final class WidgetFriendsList extends AppFragment implements OnTabSelecte
 
     /* JADX INFO: renamed from: com.discord.widgets.friends.WidgetFriendsList$onViewBound$8, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetFriendsList.kt */
-    public final class AnonymousClass8 extends d0.z.d.o implements Function1<View, Unit> {
+    public final class AnonymousClass8 extends Lambda implements Function1<View, Unit> {
 
         /* JADX INFO: renamed from: com.discord.widgets.friends.WidgetFriendsList$onViewBound$8$1, reason: invalid class name */
         /* JADX INFO: compiled from: WidgetFriendsList.kt */
@@ -415,7 +418,7 @@ public final class WidgetFriendsList extends AppFragment implements OnTabSelecte
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(View view) {
-            m.checkNotNullParameter(view, "upsellView");
+            Intrinsics3.checkNotNullParameter(view, "upsellView");
             PopupMenu popupMenu = new PopupMenu(new ContextThemeWrapper(view.getContext(), 2131951663), view);
             popupMenu.getMenuInflater().inflate(R.menu.menu_contact_sync_upsell, popupMenu.getMenu());
             popupMenu.getMenu().findItem(R.id.menu_contact_sync_upsell_dismiss).setOnMenuItemClickListener(new AnonymousClass1());
@@ -425,7 +428,7 @@ public final class WidgetFriendsList extends AppFragment implements OnTabSelecte
 
     /* JADX INFO: renamed from: com.discord.widgets.friends.WidgetFriendsList$onViewBound$9, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetFriendsList.kt */
-    public final class AnonymousClass9 extends d0.z.d.o implements Function0<Unit> {
+    public final class AnonymousClass9 extends Lambda implements Function0<Unit> {
         public AnonymousClass9() {
             super(0);
         }
@@ -444,10 +447,10 @@ public final class WidgetFriendsList extends AppFragment implements OnTabSelecte
 
     public WidgetFriendsList() {
         super(R.layout.widget_friends_list);
-        this.binding = FragmentViewBindingDelegateKt.viewBinding$default(this, WidgetFriendsList$binding$2.INSTANCE, null, 2, null);
-        WidgetFriendsList$viewModel$2 widgetFriendsList$viewModel$2 = WidgetFriendsList$viewModel$2.INSTANCE;
-        b.a.d.g0 g0Var = new b.a.d.g0(this);
-        this.viewModel = FragmentViewModelLazyKt.createViewModelLazy(this, a0.getOrCreateKotlinClass(FriendsListViewModel.class), new WidgetFriendsList$appViewModels$$inlined$viewModels$1(g0Var), new i0(widgetFriendsList$viewModel$2));
+        this.binding = FragmentViewBindingDelegate3.viewBinding$default(this, WidgetFriendsList3.INSTANCE, null, 2, null);
+        WidgetFriendsList4 widgetFriendsList4 = WidgetFriendsList4.INSTANCE;
+        AppViewModelDelegates3 appViewModelDelegates3 = new AppViewModelDelegates3(this);
+        this.viewModel = FragmentViewModelLazyKt.createViewModelLazy(this, Reflection2.getOrCreateKotlinClass(FriendsListViewModel.class), new WidgetFriendsList$appViewModels$$inlined$viewModels$1(appViewModelDelegates3), new AppViewModelDelegates5(widgetFriendsList4));
     }
 
     public static final /* synthetic */ void access$configureUI(WidgetFriendsList widgetFriendsList, FriendsListViewModel.ViewState viewState) {
@@ -478,7 +481,7 @@ public final class WidgetFriendsList extends AppFragment implements OnTabSelecte
     }
 
     private final void configureUI(FriendsListViewModel.ViewState viewState) {
-        if (m.areEqual(viewState, FriendsListViewModel.ViewState.Uninitialized.INSTANCE)) {
+        if (Intrinsics3.areEqual(viewState, FriendsListViewModel.ViewState.Uninitialized.INSTANCE)) {
             showLoadingView();
         } else if (viewState instanceof FriendsListViewModel.ViewState.Empty) {
             showEmptyView((FriendsListViewModel.ViewState.Empty) viewState);
@@ -492,10 +495,10 @@ public final class WidgetFriendsList extends AppFragment implements OnTabSelecte
 
     private final void displayFlipperChild(int index) {
         AppViewFlipper appViewFlipper = getBinding().c;
-        m.checkNotNullExpressionValue(appViewFlipper, "binding.friendsListFlipper");
+        Intrinsics3.checkNotNullExpressionValue(appViewFlipper, "binding.friendsListFlipper");
         appViewFlipper.setVisibility(0);
         AppViewFlipper appViewFlipper2 = getBinding().c;
-        m.checkNotNullExpressionValue(appViewFlipper2, "binding.friendsListFlipper");
+        Intrinsics3.checkNotNullExpressionValue(appViewFlipper2, "binding.friendsListFlipper");
         appViewFlipper2.setDisplayedChild(index);
     }
 
@@ -531,17 +534,17 @@ public final class WidgetFriendsList extends AppFragment implements OnTabSelecte
     private final void handleLaunchVoiceCall(FriendsListViewModel.Event.LaunchVoiceCall event) {
         PrivateCallLauncher privateCallLauncher = this.privateCallLauncher;
         if (privateCallLauncher == null) {
-            m.throwUninitializedPropertyAccessException("privateCallLauncher");
+            Intrinsics3.throwUninitializedPropertyAccessException("privateCallLauncher");
         }
         privateCallLauncher.launchVoiceCall(event.getChannelId());
     }
 
     private final void handleShowFriendRequestErrorToast(FriendsListViewModel.Event.ShowFriendRequestErrorToast event) {
-        b.a.d.m.j(this, RestAPIAbortMessages.ResponseResolver.INSTANCE.getRelationshipResponse(getContext(), event.getAbortCode(), event.getUsername()), 0, 4);
+        AppToast.j(this, RestAPIAbortMessages.ResponseResolver.INSTANCE.getRelationshipResponse(getContext(), event.getAbortCode(), event.getUsername()), 0, 4);
     }
 
     private final void handleShowToast(FriendsListViewModel.Event.ShowToast event) {
-        b.a.d.m.i(this, event.getStringRes(), 0, 4);
+        AppToast.i(this, event.getStringRes(), 0, 4);
     }
 
     @Override // androidx.fragment.app.Fragment
@@ -549,7 +552,7 @@ public final class WidgetFriendsList extends AppFragment implements OnTabSelecte
         super.onCreate(savedInstanceState);
         Context contextRequireContext = requireContext();
         FragmentManager parentFragmentManager = getParentFragmentManager();
-        m.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
+        Intrinsics3.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
         this.privateCallLauncher = new PrivateCallLauncher(this, this, contextRequireContext, parentFragmentManager);
     }
 
@@ -562,7 +565,7 @@ public final class WidgetFriendsList extends AppFragment implements OnTabSelecte
 
     @Override // com.discord.app.AppFragment
     public void onViewBound(View view) {
-        m.checkNotNullParameter(view, "view");
+        Intrinsics3.checkNotNullParameter(view, "view");
         super.onViewBound(view);
         Fragment parentFragment = getParentFragment();
         if (!(parentFragment instanceof WidgetTabsHost)) {
@@ -575,71 +578,71 @@ public final class WidgetFriendsList extends AppFragment implements OnTabSelecte
         getBinding().f2396b.updateView(ANALYTICS_SOURCE);
         MGRecyclerAdapter.Companion companion = MGRecyclerAdapter.INSTANCE;
         RecyclerView recyclerView = getBinding().e;
-        m.checkNotNullExpressionValue(recyclerView, "binding.friendsListRecycler");
+        Intrinsics3.checkNotNullExpressionValue(recyclerView, "binding.friendsListRecycler");
         WidgetFriendsListAdapter widgetFriendsListAdapter = (WidgetFriendsListAdapter) companion.configure(new WidgetFriendsListAdapter(recyclerView));
         this.adapter = widgetFriendsListAdapter;
         if (widgetFriendsListAdapter == null) {
-            m.throwUninitializedPropertyAccessException("adapter");
+            Intrinsics3.throwUninitializedPropertyAccessException("adapter");
         }
         widgetFriendsListAdapter.setOnClickUserProfile(new AnonymousClass1());
         WidgetFriendsListAdapter widgetFriendsListAdapter2 = this.adapter;
         if (widgetFriendsListAdapter2 == null) {
-            m.throwUninitializedPropertyAccessException("adapter");
+            Intrinsics3.throwUninitializedPropertyAccessException("adapter");
         }
         widgetFriendsListAdapter2.setOnClickPendingHeaderExpand(new AnonymousClass2());
         WidgetFriendsListAdapter widgetFriendsListAdapter3 = this.adapter;
         if (widgetFriendsListAdapter3 == null) {
-            m.throwUninitializedPropertyAccessException("adapter");
+            Intrinsics3.throwUninitializedPropertyAccessException("adapter");
         }
         widgetFriendsListAdapter3.setOnClickCall(new AnonymousClass3());
         WidgetFriendsListAdapter widgetFriendsListAdapter4 = this.adapter;
         if (widgetFriendsListAdapter4 == null) {
-            m.throwUninitializedPropertyAccessException("adapter");
+            Intrinsics3.throwUninitializedPropertyAccessException("adapter");
         }
         widgetFriendsListAdapter4.setOnClickChat(new AnonymousClass4());
         WidgetFriendsListAdapter widgetFriendsListAdapter5 = this.adapter;
         if (widgetFriendsListAdapter5 == null) {
-            m.throwUninitializedPropertyAccessException("adapter");
+            Intrinsics3.throwUninitializedPropertyAccessException("adapter");
         }
         widgetFriendsListAdapter5.setOnClickAcceptFriend(new AnonymousClass5());
         WidgetFriendsListAdapter widgetFriendsListAdapter6 = this.adapter;
         if (widgetFriendsListAdapter6 == null) {
-            m.throwUninitializedPropertyAccessException("adapter");
+            Intrinsics3.throwUninitializedPropertyAccessException("adapter");
         }
         widgetFriendsListAdapter6.setOnClickDeclineFriend(new AnonymousClass6());
         WidgetFriendsListAdapter widgetFriendsListAdapter7 = this.adapter;
         if (widgetFriendsListAdapter7 == null) {
-            m.throwUninitializedPropertyAccessException("adapter");
+            Intrinsics3.throwUninitializedPropertyAccessException("adapter");
         }
         widgetFriendsListAdapter7.setOnClickContactSyncUpsell(new AnonymousClass7());
         WidgetFriendsListAdapter widgetFriendsListAdapter8 = this.adapter;
         if (widgetFriendsListAdapter8 == null) {
-            m.throwUninitializedPropertyAccessException("adapter");
+            Intrinsics3.throwUninitializedPropertyAccessException("adapter");
         }
         widgetFriendsListAdapter8.setOnClickContactSyncUpsellLongClick(new AnonymousClass8());
         WidgetFriendsListAdapter widgetFriendsListAdapter9 = this.adapter;
         if (widgetFriendsListAdapter9 == null) {
-            m.throwUninitializedPropertyAccessException("adapter");
+            Intrinsics3.throwUninitializedPropertyAccessException("adapter");
         }
         widgetFriendsListAdapter9.setOnClickSuggestedHeaderExpandCollapse(new AnonymousClass9());
         WidgetFriendsListAdapter widgetFriendsListAdapter10 = this.adapter;
         if (widgetFriendsListAdapter10 == null) {
-            m.throwUninitializedPropertyAccessException("adapter");
+            Intrinsics3.throwUninitializedPropertyAccessException("adapter");
         }
         widgetFriendsListAdapter10.setOnClickApproveSuggestion(new AnonymousClass10());
         WidgetFriendsListAdapter widgetFriendsListAdapter11 = this.adapter;
         if (widgetFriendsListAdapter11 == null) {
-            m.throwUninitializedPropertyAccessException("adapter");
+            Intrinsics3.throwUninitializedPropertyAccessException("adapter");
         }
         widgetFriendsListAdapter11.setOnClickRemoveSuggestion(new AnonymousClass11(getViewModel()));
-        this.loadingAdapter = new WidgetFriendsListLoadingAdapter();
+        this.loadingAdapter = new WidgetFriendsList5();
         RecyclerView recyclerView2 = getBinding().d;
-        m.checkNotNullExpressionValue(recyclerView2, "binding.friendsListLoading");
-        WidgetFriendsListLoadingAdapter widgetFriendsListLoadingAdapter = this.loadingAdapter;
-        if (widgetFriendsListLoadingAdapter == null) {
-            m.throwUninitializedPropertyAccessException("loadingAdapter");
+        Intrinsics3.checkNotNullExpressionValue(recyclerView2, "binding.friendsListLoading");
+        WidgetFriendsList5 widgetFriendsList5 = this.loadingAdapter;
+        if (widgetFriendsList5 == null) {
+            Intrinsics3.throwUninitializedPropertyAccessException("loadingAdapter");
         }
-        recyclerView2.setAdapter(widgetFriendsListLoadingAdapter);
+        recyclerView2.setAdapter(widgetFriendsList5);
     }
 
     @Override // com.discord.app.AppFragment
@@ -663,7 +666,7 @@ public final class WidgetFriendsList extends AppFragment implements OnTabSelecte
         displayFlipperChild(0);
         WidgetFriendsListAdapter widgetFriendsListAdapter = this.adapter;
         if (widgetFriendsListAdapter == null) {
-            m.throwUninitializedPropertyAccessException("adapter");
+            Intrinsics3.throwUninitializedPropertyAccessException("adapter");
         }
         widgetFriendsListAdapter.setData(viewState.getItems());
         this.showContactSyncIcon = viewState.getShowContactSyncIcon();

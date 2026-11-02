@@ -6,7 +6,7 @@ import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.arch.core.internal.SafeIterableMap;
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import java.util.Map;
 
 /* JADX INFO: loaded from: classes.dex */
@@ -114,7 +114,7 @@ public final class SavedStateRegistry {
             cls.getDeclaredConstructor(new Class[0]);
             this.mRecreatorProvider.add(cls.getName());
         } catch (NoSuchMethodException e) {
-            StringBuilder sbU = a.U("Class");
+            StringBuilder sbU = outline.U("Class");
             sbU.append(cls.getSimpleName());
             sbU.append(" must have default constructor in order to be automatically recreated");
             throw new IllegalArgumentException(sbU.toString(), e);

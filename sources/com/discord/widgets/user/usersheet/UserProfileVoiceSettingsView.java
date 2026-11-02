@@ -9,12 +9,13 @@ import android.widget.CompoundButton;
 import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.R;
 import com.discord.databinding.UserProfileVoiceSettingsViewBinding;
 import com.discord.views.calls.VolumeSliderView;
 import com.google.android.material.switchmaterial.SwitchMaterial;
-import d0.z.d.m;
+import d0.a0.MathJVM;
+import d0.z.d.Intrinsics3;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function1;
 import kotlin.jvm.functions.Function2;
@@ -91,7 +92,7 @@ public final class UserProfileVoiceSettingsView extends LinearLayout {
                 return false;
             }
             ViewState viewState = (ViewState) other;
-            return this.isMuted == viewState.isMuted && m.areEqual(this.isDeafened, viewState.isDeafened) && m.areEqual(this.outputVolume, viewState.outputVolume);
+            return this.isMuted == viewState.isMuted && Intrinsics3.areEqual(this.isDeafened, viewState.isDeafened) && Intrinsics3.areEqual(this.outputVolume, viewState.outputVolume);
         }
 
         /* JADX INFO: renamed from: component2, reason: from getter */
@@ -139,7 +140,7 @@ public final class UserProfileVoiceSettingsView extends LinearLayout {
         }
 
         public String toString() {
-            StringBuilder sbU = a.U("ViewState(isMuted=");
+            StringBuilder sbU = outline.U("ViewState(isMuted=");
             sbU.append(this.isMuted);
             sbU.append(", isDeafened=");
             sbU.append(this.isDeafened);
@@ -153,8 +154,8 @@ public final class UserProfileVoiceSettingsView extends LinearLayout {
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public UserProfileVoiceSettingsView(Context context, AttributeSet attributeSet) {
         super(context, attributeSet);
-        m.checkNotNullParameter(context, "context");
-        m.checkNotNullParameter(attributeSet, "attrs");
+        Intrinsics3.checkNotNullParameter(context, "context");
+        Intrinsics3.checkNotNullParameter(attributeSet, "attrs");
         View viewInflate = LayoutInflater.from(context).inflate(R.layout.user_profile_voice_settings_view, (ViewGroup) this, false);
         addView(viewInflate);
         int i = R.id.user_sheet_deafen;
@@ -170,7 +171,7 @@ public final class UserProfileVoiceSettingsView extends LinearLayout {
                     VolumeSliderView volumeSliderView = (VolumeSliderView) viewInflate.findViewById(R.id.user_sheet_volume_slider);
                     if (volumeSliderView != null) {
                         UserProfileVoiceSettingsViewBinding userProfileVoiceSettingsViewBinding = new UserProfileVoiceSettingsViewBinding((LinearLayout) viewInflate, switchMaterial, switchMaterial2, textView, volumeSliderView);
-                        m.checkNotNullExpressionValue(userProfileVoiceSettingsViewBinding, "UserProfileVoiceSettings…rom(context), this, true)");
+                        Intrinsics3.checkNotNullExpressionValue(userProfileVoiceSettingsViewBinding, "UserProfileVoiceSettings…rom(context), this, true)");
                         this.binding = userProfileVoiceSettingsViewBinding;
                         return;
                     }
@@ -181,42 +182,42 @@ public final class UserProfileVoiceSettingsView extends LinearLayout {
     }
 
     public final void setOnDeafenChecked(Function1<? super Boolean, Unit> onChecked) {
-        m.checkNotNullParameter(onChecked, "onChecked");
+        Intrinsics3.checkNotNullParameter(onChecked, "onChecked");
         this.binding.f2168b.setOnCheckedChangeListener(new AnonymousClass1(onChecked));
     }
 
     public final void setOnMuteChecked(Function1<? super Boolean, Unit> onChecked) {
-        m.checkNotNullParameter(onChecked, "onChecked");
+        Intrinsics3.checkNotNullParameter(onChecked, "onChecked");
         this.binding.c.setOnCheckedChangeListener(new AnonymousClass1(onChecked));
     }
 
     public final void setOnVolumeChange(Function2<? super Float, ? super Boolean, Unit> onProgressChanged) {
-        m.checkNotNullParameter(onProgressChanged, "onProgressChanged");
+        Intrinsics3.checkNotNullParameter(onProgressChanged, "onProgressChanged");
         this.binding.e.setOnVolumeChange(onProgressChanged);
     }
 
     public final void updateView(ViewState viewState) {
-        m.checkNotNullParameter(viewState, "viewState");
+        Intrinsics3.checkNotNullParameter(viewState, "viewState");
         VolumeSliderView volumeSliderView = this.binding.e;
         Float outputVolume = viewState.getOutputVolume();
-        int iRoundToInt = outputVolume != null ? d0.a0.a.roundToInt(outputVolume.floatValue()) : 0;
+        int iRoundToInt = outputVolume != null ? MathJVM.roundToInt(outputVolume.floatValue()) : 0;
         SeekBar seekBar = volumeSliderView.binding.d;
-        m.checkNotNullExpressionValue(seekBar, "binding.volumeSliderSeekBar");
+        Intrinsics3.checkNotNullExpressionValue(seekBar, "binding.volumeSliderSeekBar");
         seekBar.setProgress(iRoundToInt);
         VolumeSliderView volumeSliderView2 = this.binding.e;
-        m.checkNotNullExpressionValue(volumeSliderView2, "binding.userSheetVolumeSlider");
+        Intrinsics3.checkNotNullExpressionValue(volumeSliderView2, "binding.userSheetVolumeSlider");
         volumeSliderView2.setVisibility(viewState.getOutputVolume() != null ? 0 : 8);
         TextView textView = this.binding.d;
-        m.checkNotNullExpressionValue(textView, "binding.userSheetVolumeLabel");
+        Intrinsics3.checkNotNullExpressionValue(textView, "binding.userSheetVolumeLabel");
         textView.setVisibility(viewState.getOutputVolume() != null ? 0 : 8);
         SwitchMaterial switchMaterial = this.binding.c;
-        m.checkNotNullExpressionValue(switchMaterial, "binding.userSheetMuted");
+        Intrinsics3.checkNotNullExpressionValue(switchMaterial, "binding.userSheetMuted");
         switchMaterial.setChecked(viewState.isMuted());
         SwitchMaterial switchMaterial2 = this.binding.f2168b;
-        m.checkNotNullExpressionValue(switchMaterial2, "binding.userSheetDeafen");
+        Intrinsics3.checkNotNullExpressionValue(switchMaterial2, "binding.userSheetDeafen");
         switchMaterial2.setVisibility(viewState.isDeafened() != null ? 0 : 8);
         SwitchMaterial switchMaterial3 = this.binding.f2168b;
-        m.checkNotNullExpressionValue(switchMaterial3, "binding.userSheetDeafen");
+        Intrinsics3.checkNotNullExpressionValue(switchMaterial3, "binding.userSheetDeafen");
         Boolean boolIsDeafened = viewState.isDeafened();
         switchMaterial3.setChecked(boolIsDeafened != null ? boolIsDeafened.booleanValue() : false);
     }

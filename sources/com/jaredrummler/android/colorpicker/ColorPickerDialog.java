@@ -38,6 +38,9 @@ import androidx.core.graphics.ColorUtils;
 import androidx.core.view.KeyEventDispatcher;
 import androidx.core.view.ViewCompat;
 import androidx.fragment.app.DialogFragment;
+import b.k.a.a.ColorPaletteAdapter;
+import b.k.a.a.ColorPickerDialog2;
+import b.k.a.a.ColorPickerDialogListener;
 import com.discord.models.domain.ModelAuditLogEntry;
 import java.util.Arrays;
 import java.util.Locale;
@@ -67,7 +70,7 @@ public class ColorPickerDialog extends DialogFragment implements ColorPickerView
     /* JADX INFO: renamed from: z, reason: collision with root package name */
     public EditText f3146z;
     public static final int[] j = {-769226, -1499549, -54125, -6543440, -10011977, -12627531, -14575885, -16537100, -16728876, -16738680, -11751600, -7617718, -3285959, -5317, -16121, -26624, -8825528, -10453621, -6381922};
-    public b.k.a.a.f k;
+    public ColorPickerDialogListener k;
     public View l;
     public FrameLayout m;
     public int[] n;
@@ -77,7 +80,7 @@ public class ColorPickerDialog extends DialogFragment implements ColorPickerView
     public int p;
     public int q;
     public boolean r;
-    public b.k.a.a.b t;
+    public ColorPaletteAdapter t;
     public LinearLayout u;
     public SeekBar v;
     public TextView w;
@@ -138,10 +141,10 @@ public class ColorPickerDialog extends DialogFragment implements ColorPickerView
                 colorPickerDialog.k.onColorReset(colorPickerDialog.q);
             } else {
                 KeyEventDispatcher.Component activity = colorPickerDialog.getActivity();
-                if (!(activity instanceof b.k.a.a.f)) {
+                if (!(activity instanceof ColorPickerDialogListener)) {
                     throw new IllegalStateException("The activity must implement ColorPickerDialogListener");
                 }
-                ((b.k.a.a.f) activity).onColorReset(colorPickerDialog.q);
+                ((ColorPickerDialogListener) activity).onColorReset(colorPickerDialog.q);
             }
             ColorPickerDialog.this.dismiss();
         }
@@ -211,7 +214,7 @@ public class ColorPickerDialog extends DialogFragment implements ColorPickerView
         }
     }
 
-    public class h implements b.k.a.a.b.a {
+    public class h implements ColorPaletteAdapter.a {
         public h() {
         }
     }
@@ -247,9 +250,9 @@ public class ColorPickerDialog extends DialogFragment implements ColorPickerView
                 return;
             }
             ColorPickerDialog.this.o = this.j.getColor();
-            b.k.a.a.b bVar = ColorPickerDialog.this.t;
-            bVar.l = -1;
-            bVar.notifyDataSetChanged();
+            ColorPaletteAdapter colorPaletteAdapter = ColorPickerDialog.this.t;
+            colorPaletteAdapter.l = -1;
+            colorPaletteAdapter.notifyDataSetChanged();
             for (int i = 0; i < ColorPickerDialog.this.u.getChildCount(); i++) {
                 FrameLayout frameLayout = (FrameLayout) ColorPickerDialog.this.u.getChildAt(i);
                 ColorPanelView colorPanelView = (ColorPanelView) frameLayout.findViewById(R.c.cpv_color_panel_view);
@@ -361,10 +364,10 @@ public class ColorPickerDialog extends DialogFragment implements ColorPickerView
             colorPickerDialog.k.onColorSelected(colorPickerDialog.q, i2);
         } else {
             KeyEventDispatcher.Component activity = colorPickerDialog.getActivity();
-            if (!(activity instanceof b.k.a.a.f)) {
+            if (!(activity instanceof ColorPickerDialogListener)) {
                 throw new IllegalStateException("The activity must implement ColorPickerDialogListener");
             }
-            ((b.k.a.a.f) activity).onColorSelected(colorPickerDialog.q, i2);
+            ((ColorPickerDialogListener) activity).onColorSelected(colorPickerDialog.q, i2);
         }
     }
 
@@ -524,15 +527,15 @@ public class ColorPickerDialog extends DialogFragment implements ColorPickerView
             }
             i8++;
         }
-        b.k.a.a.b bVar = new b.k.a.a.b(hVar, iArr5, i8, this.f3143s);
-        this.t = bVar;
-        gridView.setAdapter((ListAdapter) bVar);
+        ColorPaletteAdapter colorPaletteAdapter = new ColorPaletteAdapter(hVar, iArr5, i8, this.f3143s);
+        this.t = colorPaletteAdapter;
+        gridView.setAdapter((ListAdapter) colorPaletteAdapter);
         if (this.G) {
             int iAlpha2 = 255 - Color.alpha(this.o);
             this.v.setMax(255);
             this.v.setProgress(iAlpha2);
             this.w.setText(String.format(Locale.ENGLISH, "%d%%", Integer.valueOf((int) ((((double) iAlpha2) * 100.0d) / 255.0d))));
-            this.v.setOnSeekBarChangeListener(new b.k.a.a.e(this));
+            this.v.setOnSeekBarChangeListener(new ColorPickerDialog2(this));
         } else {
             viewInflate.findViewById(R.c.transparency_layout).setVisibility(8);
             viewInflate.findViewById(R.c.transparency_title).setVisibility(8);
@@ -641,8 +644,8 @@ public class ColorPickerDialog extends DialogFragment implements ColorPickerView
             this.k.onDialogDismissed(this.q);
         } else {
             KeyEventDispatcher.Component activity = getActivity();
-            if (activity instanceof b.k.a.a.f) {
-                ((b.k.a.a.f) activity).onDialogDismissed(this.q);
+            if (activity instanceof ColorPickerDialogListener) {
+                ((ColorPickerDialogListener) activity).onDialogDismissed(this.q);
             }
         }
     }

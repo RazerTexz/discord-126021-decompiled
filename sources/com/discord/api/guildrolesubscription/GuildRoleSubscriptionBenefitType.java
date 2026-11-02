@@ -1,6 +1,6 @@
 package com.discord.api.guildrolesubscription;
 
-import com.discord.widgets.chat.AutocompleteSelectionTypes;
+import com.discord.widgets.chat.AutocompleteUtils;
 import kotlin.jvm.internal.DefaultConstructorMarker;
 
 /* JADX INFO: compiled from: GuildRoleSubscriptionBenefitType.kt */

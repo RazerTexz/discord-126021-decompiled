@@ -7,8 +7,8 @@ import androidx.constraintlayout.widget.Barrier;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.exifinterface.media.ExifInterface;
 import androidx.recyclerview.widget.RecyclerView;
-import b.a.k.b;
-import b.d.b.a.a;
+import b.a.k.FormatUtils;
+import b.d.b.a.outline;
 import com.discord.R;
 import com.discord.api.activity.Activity;
 import com.discord.api.activity.ActivityAssets;
@@ -33,13 +33,13 @@ import com.discord.widgets.channels.list.items.CollapsedUser;
 import com.discord.widgets.chat.list.entries.ChatListEntry;
 import com.discord.widgets.chat.list.entries.SpotifyListenTogetherEntry;
 import com.facebook.drawee.view.SimpleDraweeView;
-import d0.d0.f;
-import d0.g;
-import d0.g0.w;
-import d0.t.d0;
-import d0.t.u;
-import d0.z.d.m;
-import d0.z.d.o;
+import d0.LazyJVM;
+import d0.d0._Ranges;
+import d0.g0.Strings4;
+import d0.t.Iterators5;
+import d0.t._Collections;
+import d0.z.d.Intrinsics3;
+import d0.z.d.Lambda;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -66,7 +66,7 @@ public final class WidgetChatListAdapterItemSpotifyListenTogether extends Widget
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemSpotifyListenTogether$onConfigure$1, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetChatListAdapterItemSpotifyListenTogether.kt */
-    public final class AnonymousClass1 extends o implements Function1<Subscription, Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function1<Subscription, Unit> {
         public AnonymousClass1() {
             super(1);
         }
@@ -79,7 +79,7 @@ public final class WidgetChatListAdapterItemSpotifyListenTogether extends Widget
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(Subscription subscription) {
-            m.checkNotNullParameter(subscription, "it");
+            Intrinsics3.checkNotNullParameter(subscription, "it");
             WidgetChatListAdapterItemSpotifyListenTogether.access$setSubscription$p(WidgetChatListAdapterItemSpotifyListenTogether.this, subscription);
         }
     }
@@ -95,13 +95,13 @@ public final class WidgetChatListAdapterItemSpotifyListenTogether extends Widget
 
         @Override // android.view.View.OnClickListener
         public final void onClick(View view) {
-            SpotifyHelper.INSTANCE.launchTrack(a.x(view, "it", "it.context"), this.$listeningActivity);
+            SpotifyHelper.INSTANCE.launchTrack(outline.x(view, "it", "it.context"), this.$listeningActivity);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemSpotifyListenTogether$onConfigure$2, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetChatListAdapterItemSpotifyListenTogether.kt */
-    public final class AnonymousClass2 extends o implements Function1<Model, Unit> {
+    public final class AnonymousClass2 extends Lambda implements Function1<Model, Unit> {
         public AnonymousClass2() {
             super(1);
         }
@@ -114,7 +114,7 @@ public final class WidgetChatListAdapterItemSpotifyListenTogether extends Widget
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(Model model) {
-            m.checkNotNullParameter(model, "it");
+            Intrinsics3.checkNotNullParameter(model, "it");
             WidgetChatListAdapterItemSpotifyListenTogether.access$configureUI(WidgetChatListAdapterItemSpotifyListenTogether.this, model);
         }
     }
@@ -132,7 +132,7 @@ public final class WidgetChatListAdapterItemSpotifyListenTogether extends Widget
 
         @Override // android.view.View.OnClickListener
         public final void onClick(View view) {
-            SpotifyHelper.INSTANCE.launchAlbum(a.x(view, "it", "it.context"), this.$listeningActivity, this.$this_configureUI.getItem().getUserId(), this.$this_configureUI.isMe());
+            SpotifyHelper.INSTANCE.launchAlbum(outline.x(view, "it", "it.context"), this.$listeningActivity, this.$this_configureUI.getItem().getUserId(), this.$this_configureUI.isMe());
         }
     }
 
@@ -168,22 +168,22 @@ public final class WidgetChatListAdapterItemSpotifyListenTogether extends Widget
                 Activity spotifyListeningActivity = presence != null ? PresenceUtils.INSTANCE.getSpotifyListeningActivity(presence) : null;
                 long maxSize = (spotifyListeningActivity == null || (party = spotifyListeningActivity.getParty()) == null) ? 0L : PresenceUtils.INSTANCE.getMaxSize(party);
                 Collection collectionValues = map.values();
-                m.checkNotNullExpressionValue(collectionValues, "collapsedUserMap.values");
-                List mutableList = u.toMutableList(collectionValues);
-                Iterator<Long> it = f.until(userMap.size(), Math.min(WidgetChatListAdapterItemSpotifyListenTogether.MAX_USERS_SHOWN, maxSize)).iterator();
+                Intrinsics3.checkNotNullExpressionValue(collectionValues, "collapsedUserMap.values");
+                List mutableList = _Collections.toMutableList(collectionValues);
+                Iterator<Long> it = _Ranges.until(userMap.size(), Math.min(WidgetChatListAdapterItemSpotifyListenTogether.MAX_USERS_SHOWN, maxSize)).iterator();
                 while (it.hasNext()) {
-                    mutableList.add(CollapsedUser.INSTANCE.createEmptyUser(((d0) it).nextLong() == 5 ? maxSize - WidgetChatListAdapterItemSpotifyListenTogether.MAX_USERS_SHOWN : 0L));
+                    mutableList.add(CollapsedUser.INSTANCE.createEmptyUser(((Iterators5) it).nextLong() == 5 ? maxSize - WidgetChatListAdapterItemSpotifyListenTogether.MAX_USERS_SHOWN : 0L));
                 }
                 return new Model(presence, mutableList, item, isMe);
             }
 
             public final Observable<Model> get(SpotifyListenTogetherEntry item) {
-                m.checkNotNullParameter(item, "item");
+                Intrinsics3.checkNotNullParameter(item, "item");
                 StoreStream.Companion companion = StoreStream.INSTANCE;
-                Observable observableI = Observable.i(companion.getPresences().observePresenceForUser(item.getUserId()), companion.getGameParty().observeUsersForPartyId(item.getActivity().getPartyId()), companion.getUsers().observeMeId(), new WidgetChatListAdapterItemSpotifyListenTogether$Model$Companion$get$1(item));
-                m.checkNotNullExpressionValue(observableI, "Observable\n             …m.userId)\n              }");
+                Observable observableI = Observable.i(companion.getPresences().observePresenceForUser(item.getUserId()), companion.getGameParty().observeUsersForPartyId(item.getActivity().getPartyId()), companion.getUsers().observeMeId(), new WidgetChatListAdapterItemSpotifyListenTogether2(item));
+                Intrinsics3.checkNotNullExpressionValue(observableI, "Observable\n             …m.userId)\n              }");
                 Observable<Model> observableR = ObservableExtensionsKt.computationLatest(observableI).r();
-                m.checkNotNullExpressionValue(observableR, "Observable\n             …  .distinctUntilChanged()");
+                Intrinsics3.checkNotNullExpressionValue(observableR, "Observable\n             …  .distinctUntilChanged()");
                 return observableR;
             }
 
@@ -193,8 +193,8 @@ public final class WidgetChatListAdapterItemSpotifyListenTogether extends Widget
         }
 
         public Model(Presence presence, List<CollapsedUser> list, SpotifyListenTogetherEntry spotifyListenTogetherEntry, boolean z2) {
-            m.checkNotNullParameter(list, "users");
-            m.checkNotNullParameter(spotifyListenTogetherEntry, "item");
+            Intrinsics3.checkNotNullParameter(list, "users");
+            Intrinsics3.checkNotNullParameter(spotifyListenTogetherEntry, "item");
             this.presence = presence;
             this.users = list;
             this.item = spotifyListenTogetherEntry;
@@ -223,8 +223,8 @@ public final class WidgetChatListAdapterItemSpotifyListenTogether extends Widget
         }
 
         public final Model copy(Presence presence, List<CollapsedUser> users, SpotifyListenTogetherEntry item, boolean isMe) {
-            m.checkNotNullParameter(users, "users");
-            m.checkNotNullParameter(item, "item");
+            Intrinsics3.checkNotNullParameter(users, "users");
+            Intrinsics3.checkNotNullParameter(item, "item");
             return new Model(presence, users, item, isMe);
         }
 
@@ -236,7 +236,7 @@ public final class WidgetChatListAdapterItemSpotifyListenTogether extends Widget
                 return false;
             }
             Model model = (Model) other;
-            return m.areEqual(this.presence, model.presence) && m.areEqual(this.users, model.users) && m.areEqual(this.item, model.item) && this.isMe == model.isMe;
+            return Intrinsics3.areEqual(this.presence, model.presence) && Intrinsics3.areEqual(this.users, model.users) && Intrinsics3.areEqual(this.item, model.item) && this.isMe == model.isMe;
         }
 
         /* JADX INFO: renamed from: component4, reason: from getter */
@@ -291,21 +291,21 @@ public final class WidgetChatListAdapterItemSpotifyListenTogether extends Widget
         }
 
         public String toString() {
-            StringBuilder sbU = a.U("Model(presence=");
+            StringBuilder sbU = outline.U("Model(presence=");
             sbU.append(this.presence);
             sbU.append(", users=");
             sbU.append(this.users);
             sbU.append(", item=");
             sbU.append(this.item);
             sbU.append(", isMe=");
-            return a.O(sbU, this.isMe, ")");
+            return outline.O(sbU, this.isMe, ")");
         }
     }
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public WidgetChatListAdapterItemSpotifyListenTogether(WidgetChatListAdapter widgetChatListAdapter) {
         super(R.layout.widget_chat_list_adapter_item_spotify_listen_together, widgetChatListAdapter);
-        m.checkNotNullParameter(widgetChatListAdapter, "adapter");
+        Intrinsics3.checkNotNullParameter(widgetChatListAdapter, "adapter");
         View view = this.itemView;
         int i = R.id.barrier;
         Barrier barrier = (Barrier) view.findViewById(R.id.barrier);
@@ -333,9 +333,9 @@ public final class WidgetChatListAdapterItemSpotifyListenTogether extends Widget
                                     TextView textView5 = (TextView) view.findViewById(R.id.item_listen_together_track);
                                     if (textView5 != null) {
                                         WidgetChatListAdapterItemSpotifyListenTogetherBinding widgetChatListAdapterItemSpotifyListenTogetherBinding = new WidgetChatListAdapterItemSpotifyListenTogetherBinding(constraintLayout, barrier, simpleDraweeView, textView, constraintLayout, textView2, textView3, recyclerView, textView4, textView5);
-                                        m.checkNotNullExpressionValue(widgetChatListAdapterItemSpotifyListenTogetherBinding, "WidgetChatListAdapterIte…herBinding.bind(itemView)");
+                                        Intrinsics3.checkNotNullExpressionValue(widgetChatListAdapterItemSpotifyListenTogetherBinding, "WidgetChatListAdapterIte…herBinding.bind(itemView)");
                                         this.binding = widgetChatListAdapterItemSpotifyListenTogetherBinding;
-                                        this.userAdapter = g.lazy(new WidgetChatListAdapterItemSpotifyListenTogether$userAdapter$2(this));
+                                        this.userAdapter = LazyJVM.lazy(new WidgetChatListAdapterItemSpotifyListenTogether3(this));
                                         return;
                                     }
                                 }
@@ -367,49 +367,49 @@ public final class WidgetChatListAdapterItemSpotifyListenTogether extends Widget
     private final void configureUI(Model model) {
         String largeImage;
         TextView textView = this.binding.e;
-        m.checkNotNullExpressionValue(textView, "binding.itemListenTogetherHeader");
-        textView.setText(b.h(a.I(this.binding.e, "binding.itemListenTogetherHeader", "binding.itemListenTogetherHeader.context"), R.string.invite_embed_invite_to_listen, new Object[]{getActivityName(a.I(this.binding.e, "binding.itemListenTogetherHeader", "binding.itemListenTogetherHeader.context"), model.getItem())}, null, 4));
+        Intrinsics3.checkNotNullExpressionValue(textView, "binding.itemListenTogetherHeader");
+        textView.setText(FormatUtils.h(outline.I(this.binding.e, "binding.itemListenTogetherHeader", "binding.itemListenTogetherHeader.context"), R.string.invite_embed_invite_to_listen, new Object[]{getActivityName(outline.I(this.binding.e, "binding.itemListenTogetherHeader", "binding.itemListenTogetherHeader.context"), model.getItem())}, null, 4));
         boolean zIsDeadInvite = isDeadInvite(model.getPresence(), model.getItem());
         Presence presence = model.getPresence();
         Activity spotifyListeningActivity = presence != null ? PresenceUtils.INSTANCE.getSpotifyListeningActivity(presence) : null;
         TextView textView2 = this.binding.g;
-        m.checkNotNullExpressionValue(textView2, "binding.itemListenTogetherSessionEnded");
+        Intrinsics3.checkNotNullExpressionValue(textView2, "binding.itemListenTogetherSessionEnded");
         textView2.setVisibility(zIsDeadInvite ? 0 : 8);
         RecyclerView recyclerView = this.binding.f;
-        m.checkNotNullExpressionValue(recyclerView, "binding.itemListenTogetherRecycler");
+        Intrinsics3.checkNotNullExpressionValue(recyclerView, "binding.itemListenTogetherRecycler");
         recyclerView.setVisibility(zIsDeadInvite ^ true ? 0 : 8);
         TextView textView3 = this.binding.h;
-        m.checkNotNullExpressionValue(textView3, "binding.itemListenTogetherTrack");
+        Intrinsics3.checkNotNullExpressionValue(textView3, "binding.itemListenTogetherTrack");
         textView3.setVisibility(zIsDeadInvite ^ true ? 0 : 8);
         TextView textView4 = this.binding.c;
-        m.checkNotNullExpressionValue(textView4, "binding.itemListenTogetherArtist");
+        Intrinsics3.checkNotNullExpressionValue(textView4, "binding.itemListenTogetherArtist");
         textView4.setVisibility(zIsDeadInvite ^ true ? 0 : 8);
         SimpleDraweeView simpleDraweeView = this.binding.f2331b;
-        m.checkNotNullExpressionValue(simpleDraweeView, "binding.itemListenTogetherAlbumImage");
+        Intrinsics3.checkNotNullExpressionValue(simpleDraweeView, "binding.itemListenTogetherAlbumImage");
         simpleDraweeView.setVisibility(zIsDeadInvite ^ true ? 0 : 8);
         ConstraintLayout constraintLayout = this.binding.d;
-        m.checkNotNullExpressionValue(constraintLayout, "binding.itemListenTogetherContainer");
+        Intrinsics3.checkNotNullExpressionValue(constraintLayout, "binding.itemListenTogetherContainer");
         constraintLayout.setSelected(true);
         if (zIsDeadInvite) {
             return;
         }
         getUserAdapter().setData(model.getUsers());
         TextView textView5 = this.binding.h;
-        m.checkNotNullExpressionValue(textView5, "binding.itemListenTogetherTrack");
+        Intrinsics3.checkNotNullExpressionValue(textView5, "binding.itemListenTogetherTrack");
         textView5.setText(spotifyListeningActivity != null ? spotifyListeningActivity.getDetails() : null);
         TextView textView6 = this.binding.c;
-        m.checkNotNullExpressionValue(textView6, "binding.itemListenTogetherArtist");
+        Intrinsics3.checkNotNullExpressionValue(textView6, "binding.itemListenTogetherArtist");
         Object[] objArr = new Object[1];
         objArr[0] = spotifyListeningActivity != null ? spotifyListeningActivity.getState() : null;
-        b.n(textView6, R.string.user_activity_listening_artists, objArr, null, 4);
+        FormatUtils.n(textView6, R.string.user_activity_listening_artists, objArr, null, 4);
         ActivityAssets assets = spotifyListeningActivity != null ? spotifyListeningActivity.getAssets() : null;
         if (assets != null && (largeImage = assets.getLargeImage()) != null) {
             SimpleDraweeView simpleDraweeView2 = this.binding.f2331b;
-            m.checkNotNullExpressionValue(simpleDraweeView2, "binding.itemListenTogetherAlbumImage");
+            Intrinsics3.checkNotNullExpressionValue(simpleDraweeView2, "binding.itemListenTogetherAlbumImage");
             MGImages.setImage$default(simpleDraweeView2, IconUtils.getAssetImage$default(IconUtils.INSTANCE, null, largeImage, 0, 4, null), 0, 0, false, null, null, 124, null);
         }
         SimpleDraweeView simpleDraweeView3 = this.binding.f2331b;
-        m.checkNotNullExpressionValue(simpleDraweeView3, "binding.itemListenTogetherAlbumImage");
+        Intrinsics3.checkNotNullExpressionValue(simpleDraweeView3, "binding.itemListenTogetherAlbumImage");
         simpleDraweeView3.setContentDescription(assets != null ? assets.getLargeText() : null);
         this.binding.h.setOnClickListener(new AnonymousClass2(spotifyListeningActivity));
         this.binding.f2331b.setOnClickListener(new AnonymousClass3(model, spotifyListeningActivity));
@@ -418,11 +418,11 @@ public final class WidgetChatListAdapterItemSpotifyListenTogether extends Widget
     private final String getActivityName(Context context, SpotifyListenTogetherEntry spotifyListenTogetherEntry) {
         String partyId = spotifyListenTogetherEntry.getActivity().getPartyId();
         Platform platform = Platform.SPOTIFY;
-        if (w.contains((CharSequence) partyId, (CharSequence) platform.getPlatformId(), true)) {
+        if (Strings4.contains((CharSequence) partyId, (CharSequence) platform.getPlatformId(), true)) {
             return platform.getProperName();
         }
         String string = context.getString(R.string.form_label_desktop_only);
-        m.checkNotNullExpressionValue(string, "context.getString(R.stri….form_label_desktop_only)");
+        Intrinsics3.checkNotNullExpressionValue(string, "context.getString(R.stri….form_label_desktop_only)");
         return string;
     }
 
@@ -450,7 +450,7 @@ public final class WidgetChatListAdapterItemSpotifyListenTogether extends Widget
     /* JADX WARN: Can't rename method to resolve collision */
     @Override // com.discord.widgets.chat.list.adapter.WidgetChatListItem
     public void onConfigure(int position, ChatListEntry data) {
-        m.checkNotNullParameter(data, "data");
+        Intrinsics3.checkNotNullParameter(data, "data");
         super.onConfigure(position, data);
         ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui(Model.INSTANCE.get((SpotifyListenTogetherEntry) data)), WidgetChatListAdapterItemSpotifyListenTogether.class, (Context) null, new AnonymousClass1(), (Function1) null, (Function0) null, (Function0) null, new AnonymousClass2(), 58, (Object) null);
     }

@@ -1,10 +1,10 @@
 package com.discord.widgets.guilds.join;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.models.domain.ModelAuditLogEntry;
 import com.discord.models.domain.ModelInvite;
 import com.discord.utilities.error.Error;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 import kotlin.Unit;
 import kotlin.coroutines.Continuation;
 import kotlin.jvm.functions.Function2;
@@ -23,12 +23,12 @@ public final /* data */ class InviteArgs extends CaptchaArgs {
     /* JADX WARN: Multi-variable type inference failed */
     public InviteArgs(ModelInvite modelInvite, Class<?> cls, String str, Function2<? super Error, ? super Continuation<? super Unit>, ? extends Object> function2, Function2<? super ModelInvite, ? super Continuation<? super Unit>, ? extends Object> function3, Function2<? super ModelInvite, ? super Continuation<? super Unit>, ? extends Object> function4) {
         super(null);
-        m.checkNotNullParameter(modelInvite, "invite");
-        m.checkNotNullParameter(cls, "javaClass");
-        m.checkNotNullParameter(str, ModelAuditLogEntry.CHANGE_KEY_LOCATION);
-        m.checkNotNullParameter(function2, "onInvitePostError");
-        m.checkNotNullParameter(function3, "onInvitePostSuccess");
-        m.checkNotNullParameter(function4, "onInviteFlowFinished");
+        Intrinsics3.checkNotNullParameter(modelInvite, "invite");
+        Intrinsics3.checkNotNullParameter(cls, "javaClass");
+        Intrinsics3.checkNotNullParameter(str, ModelAuditLogEntry.CHANGE_KEY_LOCATION);
+        Intrinsics3.checkNotNullParameter(function2, "onInvitePostError");
+        Intrinsics3.checkNotNullParameter(function3, "onInvitePostSuccess");
+        Intrinsics3.checkNotNullParameter(function4, "onInviteFlowFinished");
         this.invite = modelInvite;
         this.javaClass = cls;
         this.location = str;
@@ -81,12 +81,12 @@ public final /* data */ class InviteArgs extends CaptchaArgs {
     }
 
     public final InviteArgs copy(ModelInvite invite, Class<?> javaClass, String location, Function2<? super Error, ? super Continuation<? super Unit>, ? extends Object> onInvitePostError, Function2<? super ModelInvite, ? super Continuation<? super Unit>, ? extends Object> onInvitePostSuccess, Function2<? super ModelInvite, ? super Continuation<? super Unit>, ? extends Object> onInviteFlowFinished) {
-        m.checkNotNullParameter(invite, "invite");
-        m.checkNotNullParameter(javaClass, "javaClass");
-        m.checkNotNullParameter(location, ModelAuditLogEntry.CHANGE_KEY_LOCATION);
-        m.checkNotNullParameter(onInvitePostError, "onInvitePostError");
-        m.checkNotNullParameter(onInvitePostSuccess, "onInvitePostSuccess");
-        m.checkNotNullParameter(onInviteFlowFinished, "onInviteFlowFinished");
+        Intrinsics3.checkNotNullParameter(invite, "invite");
+        Intrinsics3.checkNotNullParameter(javaClass, "javaClass");
+        Intrinsics3.checkNotNullParameter(location, ModelAuditLogEntry.CHANGE_KEY_LOCATION);
+        Intrinsics3.checkNotNullParameter(onInvitePostError, "onInvitePostError");
+        Intrinsics3.checkNotNullParameter(onInvitePostSuccess, "onInvitePostSuccess");
+        Intrinsics3.checkNotNullParameter(onInviteFlowFinished, "onInviteFlowFinished");
         return new InviteArgs(invite, javaClass, location, onInvitePostError, onInvitePostSuccess, onInviteFlowFinished);
     }
 
@@ -98,7 +98,7 @@ public final /* data */ class InviteArgs extends CaptchaArgs {
             return false;
         }
         InviteArgs inviteArgs = (InviteArgs) other;
-        return m.areEqual(this.invite, inviteArgs.invite) && m.areEqual(this.javaClass, inviteArgs.javaClass) && m.areEqual(this.location, inviteArgs.location) && m.areEqual(this.onInvitePostError, inviteArgs.onInvitePostError) && m.areEqual(this.onInvitePostSuccess, inviteArgs.onInvitePostSuccess) && m.areEqual(this.onInviteFlowFinished, inviteArgs.onInviteFlowFinished);
+        return Intrinsics3.areEqual(this.invite, inviteArgs.invite) && Intrinsics3.areEqual(this.javaClass, inviteArgs.javaClass) && Intrinsics3.areEqual(this.location, inviteArgs.location) && Intrinsics3.areEqual(this.onInvitePostError, inviteArgs.onInvitePostError) && Intrinsics3.areEqual(this.onInvitePostSuccess, inviteArgs.onInvitePostSuccess) && Intrinsics3.areEqual(this.onInviteFlowFinished, inviteArgs.onInviteFlowFinished);
     }
 
     /* JADX INFO: renamed from: component1, reason: from getter */
@@ -151,7 +151,7 @@ public final /* data */ class InviteArgs extends CaptchaArgs {
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("InviteArgs(invite=");
+        StringBuilder sbU = outline.U("InviteArgs(invite=");
         sbU.append(this.invite);
         sbU.append(", javaClass=");
         sbU.append(this.javaClass);

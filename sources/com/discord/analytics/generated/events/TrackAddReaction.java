@@ -1,14 +1,14 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackAddReaction.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackAddReaction implements AnalyticsSchema, TrackBaseReceiver {
+public final /* data */ class TrackAddReaction implements AnalyticsSchema, TrackBase2 {
     private final Long channelId = null;
     private final Long channelType = null;
     private final Boolean emojiAnimated = null;
@@ -28,7 +28,7 @@ public final /* data */ class TrackAddReaction implements AnalyticsSchema, Track
             return false;
         }
         TrackAddReaction trackAddReaction = (TrackAddReaction) other;
-        return m.areEqual(this.guildId, trackAddReaction.guildId) && m.areEqual(this.channelId, trackAddReaction.channelId) && m.areEqual(this.channelType, trackAddReaction.channelType) && m.areEqual(this.messageId, trackAddReaction.messageId) && m.areEqual(this.emojiId, trackAddReaction.emojiId) && m.areEqual(this.emojiName, trackAddReaction.emojiName) && m.areEqual(this.emojiAnimated, trackAddReaction.emojiAnimated) && m.areEqual(this.uniqueReactionCount, trackAddReaction.uniqueReactionCount);
+        return Intrinsics3.areEqual(this.guildId, trackAddReaction.guildId) && Intrinsics3.areEqual(this.channelId, trackAddReaction.channelId) && Intrinsics3.areEqual(this.channelType, trackAddReaction.channelType) && Intrinsics3.areEqual(this.messageId, trackAddReaction.messageId) && Intrinsics3.areEqual(this.emojiId, trackAddReaction.emojiId) && Intrinsics3.areEqual(this.emojiName, trackAddReaction.emojiName) && Intrinsics3.areEqual(this.emojiAnimated, trackAddReaction.emojiAnimated) && Intrinsics3.areEqual(this.uniqueReactionCount, trackAddReaction.uniqueReactionCount);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -57,7 +57,7 @@ public final /* data */ class TrackAddReaction implements AnalyticsSchema, Track
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackAddReaction(guildId=");
+        StringBuilder sbU = outline.U("TrackAddReaction(guildId=");
         sbU.append(this.guildId);
         sbU.append(", channelId=");
         sbU.append(this.channelId);
@@ -72,6 +72,6 @@ public final /* data */ class TrackAddReaction implements AnalyticsSchema, Track
         sbU.append(", emojiAnimated=");
         sbU.append(this.emojiAnimated);
         sbU.append(", uniqueReactionCount=");
-        return a.G(sbU, this.uniqueReactionCount, ")");
+        return outline.G(sbU, this.uniqueReactionCount, ")");
     }
 }

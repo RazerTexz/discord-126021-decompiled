@@ -5,10 +5,10 @@ import com.discord.stores.StoreExperiments;
 import com.discord.stores.StoreGuilds;
 import com.discord.stores.StoreStream;
 import com.discord.stores.updates.ObservationDeck;
-import com.discord.stores.updates.ObservationDeckProvider;
-import d0.g;
-import d0.z.d.m;
-import d0.z.d.o;
+import com.discord.stores.updates.ObservationDeck4;
+import d0.LazyJVM;
+import d0.z.d.Intrinsics3;
+import d0.z.d.Lambda;
 import kotlin.Lazy;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.internal.DefaultConstructorMarker;
@@ -23,11 +23,11 @@ public final class GuildCommunicationDisabledGuildsFeatureFlag {
     private final StoreGuilds guildsStore;
     private final ObservationDeck observationDeck;
     private final StoreExperiments storeExperiments;
-    private static final Lazy INSTANCE$delegate = g.lazy(GuildCommunicationDisabledGuildsFeatureFlag$Companion$INSTANCE$2.INSTANCE);
+    private static final Lazy INSTANCE$delegate = LazyJVM.lazy(GuildCommunicationDisabledGuildsFeatureFlag2.INSTANCE);
 
     /* JADX INFO: renamed from: com.discord.widgets.guildcommunicationdisabled.start.GuildCommunicationDisabledGuildsFeatureFlag$observeCanGuildAccessCommunicationDisabled$1, reason: invalid class name */
     /* JADX INFO: compiled from: GuildCommunicationDisabledGuildsFeatureFlag.kt */
-    public final class AnonymousClass1 extends o implements Function0<Boolean> {
+    public final class AnonymousClass1 extends Lambda implements Function0<Boolean> {
         public final /* synthetic */ long $guildId;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -68,9 +68,9 @@ public final class GuildCommunicationDisabledGuildsFeatureFlag {
     }
 
     public GuildCommunicationDisabledGuildsFeatureFlag(StoreGuilds storeGuilds, StoreExperiments storeExperiments, ObservationDeck observationDeck) {
-        m.checkNotNullParameter(storeGuilds, "guildsStore");
-        m.checkNotNullParameter(storeExperiments, "storeExperiments");
-        m.checkNotNullParameter(observationDeck, "observationDeck");
+        Intrinsics3.checkNotNullParameter(storeGuilds, "guildsStore");
+        Intrinsics3.checkNotNullParameter(storeExperiments, "storeExperiments");
+        Intrinsics3.checkNotNullParameter(observationDeck, "observationDeck");
         this.guildsStore = storeGuilds;
         this.storeExperiments = storeExperiments;
         this.observationDeck = observationDeck;
@@ -92,11 +92,11 @@ public final class GuildCommunicationDisabledGuildsFeatureFlag {
 
     public final Observable<Boolean> observeCanGuildAccessCommunicationDisabled(long guildId) {
         Observable<Boolean> observableR = ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck.UpdateSource[]{this.guildsStore, this.storeExperiments}, false, null, null, new AnonymousClass1(guildId), 14, null).r();
-        m.checkNotNullExpressionValue(observableR, "observationDeck.connectR… }.distinctUntilChanged()");
+        Intrinsics3.checkNotNullExpressionValue(observableR, "observationDeck.connectR… }.distinctUntilChanged()");
         return observableR;
     }
 
     public /* synthetic */ GuildCommunicationDisabledGuildsFeatureFlag(StoreGuilds storeGuilds, StoreExperiments storeExperiments, ObservationDeck observationDeck, int i, DefaultConstructorMarker defaultConstructorMarker) {
-        this((i & 1) != 0 ? StoreStream.INSTANCE.getGuilds() : storeGuilds, (i & 2) != 0 ? StoreStream.INSTANCE.getExperiments() : storeExperiments, (i & 4) != 0 ? ObservationDeckProvider.get() : observationDeck);
+        this((i & 1) != 0 ? StoreStream.INSTANCE.getGuilds() : storeGuilds, (i & 2) != 0 ? StoreStream.INSTANCE.getExperiments() : storeExperiments, (i & 4) != 0 ? ObservationDeck4.get() : observationDeck);
     }
 }

@@ -8,9 +8,10 @@ import android.view.View;
 import android.widget.TextView;
 import androidx.core.app.NotificationCompat;
 import androidx.fragment.app.Fragment;
-import b.a.d.j;
-import b.a.k.b;
-import b.d.b.a.a;
+import b.a.d.AppScreen2;
+import b.a.d.o;
+import b.a.k.FormatUtils;
+import b.d.b.a.outline;
 import com.discord.R;
 import com.discord.app.AppFragment;
 import com.discord.databinding.WidgetTosBinding;
@@ -20,11 +21,11 @@ import com.discord.utilities.rest.RestAPI;
 import com.discord.utilities.rx.ObservableExtensionsKt;
 import com.discord.utilities.view.text.LinkifiedTextView;
 import com.discord.utilities.viewbinding.FragmentViewBindingDelegate;
-import com.discord.utilities.viewbinding.FragmentViewBindingDelegateKt;
+import com.discord.utilities.viewbinding.FragmentViewBindingDelegate3;
 import com.google.android.material.button.MaterialButton;
-import d0.g;
-import d0.z.d.m;
-import d0.z.d.o;
+import d0.LazyJVM;
+import d0.z.d.Intrinsics3;
+import d0.z.d.Lambda;
 import kotlin.Lazy;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
@@ -37,7 +38,7 @@ import rx.functions.Func0;
 /* JADX INFO: compiled from: WidgetTos.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetTos extends AppFragment {
-    public static final /* synthetic */ KProperty[] $$delegatedProperties = {a.d0(WidgetTos.class, "binding", "getBinding()Lcom/discord/databinding/WidgetTosBinding;", 0)};
+    public static final /* synthetic */ KProperty[] $$delegatedProperties = {outline.d0(WidgetTos.class, "binding", "getBinding()Lcom/discord/databinding/WidgetTosBinding;", 0)};
 
     /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
     public static final Companion INSTANCE = new Companion(null);
@@ -55,10 +56,10 @@ public final class WidgetTos extends AppFragment {
 
         /* JADX INFO: renamed from: com.discord.widgets.tos.WidgetTos$configureCommonTosModalUI$1$1, reason: invalid class name and collision with other inner class name */
         /* JADX INFO: compiled from: WidgetTos.kt */
-        public final class C04691 extends o implements Function1<Void, Unit> {
-            public static final C04691 INSTANCE = new C04691();
+        public final class C03491 extends Lambda implements Function1<Void, Unit> {
+            public static final C03491 INSTANCE = new C03491();
 
-            public C04691() {
+            public C03491() {
                 super(1);
             }
 
@@ -79,7 +80,7 @@ public final class WidgetTos extends AppFragment {
 
         @Override // android.view.View.OnClickListener
         public final void onClick(View view) {
-            ObservableExtensionsKt.ui$default(ObservableExtensionsKt.restSubscribeOn$default(RestAPI.INSTANCE.getApi().userAgreements(this.$userAgreementsParam), false, 1, null), WidgetTos.this, null, 2, null).k(b.a.d.o.a.g(WidgetTos.this.getContext(), C04691.INSTANCE, null));
+            ObservableExtensionsKt.ui$default(ObservableExtensionsKt.restSubscribeOn$default(RestAPI.INSTANCE.getApi().userAgreements(this.$userAgreementsParam), false, 1, null), WidgetTos.this, null, 2, null).k(o.a.g(WidgetTos.this.getContext(), C03491.INSTANCE, null));
             WidgetTos.this.requireActivity().finish();
         }
     }
@@ -102,7 +103,7 @@ public final class WidgetTos extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.tos.WidgetTos$isAcknowledgement$2, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetTos.kt */
-    public final class AnonymousClass2 extends o implements Function0<Boolean> {
+    public final class AnonymousClass2 extends Lambda implements Function0<Boolean> {
         public AnonymousClass2() {
             super(0);
         }
@@ -130,7 +131,7 @@ public final class WidgetTos extends AppFragment {
 
         /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
         public final void call2(MenuItem menuItem, Context context) {
-            m.checkNotNullExpressionValue(menuItem, "menuItem");
+            Intrinsics3.checkNotNullExpressionValue(menuItem, "menuItem");
             if (menuItem.getItemId() != R.id.menu_settings_log_out) {
                 return;
             }
@@ -144,10 +145,10 @@ public final class WidgetTos extends AppFragment {
         }
 
         public final void show(Context context, boolean isAck) {
-            m.checkNotNullParameter(context, "context");
+            Intrinsics3.checkNotNullParameter(context, "context");
             Intent intent = new Intent();
             intent.putExtra("intent_args_key", isAck);
-            j.d(context, WidgetTos.class, intent);
+            AppScreen2.d(context, WidgetTos.class, intent);
         }
 
         public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
@@ -157,57 +158,57 @@ public final class WidgetTos extends AppFragment {
 
     public WidgetTos() {
         super(R.layout.widget_tos);
-        this.binding = FragmentViewBindingDelegateKt.viewBinding$default(this, WidgetTos$binding$2.INSTANCE, null, 2, null);
-        this.isAcknowledgement = g.lazy(new AnonymousClass2());
+        this.binding = FragmentViewBindingDelegate3.viewBinding$default(this, WidgetTos2.INSTANCE, null, 2, null);
+        this.isAcknowledgement = LazyJVM.lazy(new AnonymousClass2());
     }
 
     private final void configureAcknowledgementUI() {
         configureCommonTosModalUI();
         WidgetTosBinding binding = getBinding();
         TextView textView = binding.h;
-        m.checkNotNullExpressionValue(textView, "alertTosTextDescriptionTop");
-        b.n(textView, R.string.terms_acknowledgement_description_1, new Object[]{DateUtils.formatDateTime(requireContext(), 1648454400000L, 4)}, null, 4);
+        Intrinsics3.checkNotNullExpressionValue(textView, "alertTosTextDescriptionTop");
+        FormatUtils.n(textView, R.string.terms_acknowledgement_description_1, new Object[]{DateUtils.formatDateTime(requireContext(), 1648454400000L, 4)}, null, 4);
         TextView textView2 = binding.g;
-        m.checkNotNullExpressionValue(textView2, "alertTosTextDescriptionBottom");
-        b.n(textView2, R.string.terms_acknowledgement_description_2, new Object[0], null, 4);
+        Intrinsics3.checkNotNullExpressionValue(textView2, "alertTosTextDescriptionBottom");
+        FormatUtils.n(textView2, R.string.terms_acknowledgement_description_2, new Object[0], null, 4);
     }
 
     private final void configureAgreementUI() {
         configureCommonTosModalUI();
         WidgetTosBinding binding = getBinding();
-        binding.f2674b.setOnClickListener(new WidgetTos$configureAgreementUI$$inlined$with$lambda$1(this));
+        binding.f2674b.setOnClickListener(new WidgetTos3(this));
         TextView textView = binding.h;
-        m.checkNotNullExpressionValue(textView, "alertTosTextDescriptionTop");
-        b.n(textView, R.string.terms_agreement_description_1, new Object[0], null, 4);
+        Intrinsics3.checkNotNullExpressionValue(textView, "alertTosTextDescriptionTop");
+        FormatUtils.n(textView, R.string.terms_agreement_description_1, new Object[0], null, 4);
         TextView textView2 = binding.g;
-        m.checkNotNullExpressionValue(textView2, "alertTosTextDescriptionBottom");
-        b.n(textView2, R.string.terms_agreement_description_2, new Object[0], null, 4);
+        Intrinsics3.checkNotNullExpressionValue(textView2, "alertTosTextDescriptionBottom");
+        FormatUtils.n(textView2, R.string.terms_agreement_description_2, new Object[0], null, 4);
         MaterialButton materialButton = binding.f2674b;
-        m.checkNotNullExpressionValue(materialButton, "alertTosAckContinue");
-        b.n(materialButton, R.string.got_it, new Object[0], null, 4);
+        Intrinsics3.checkNotNullExpressionValue(materialButton, "alertTosAckContinue");
+        FormatUtils.n(materialButton, R.string.got_it, new Object[0], null, 4);
     }
 
     private final void configureCommonTosModalUI() {
         MaterialButton materialButton = getBinding().f2674b;
-        m.checkNotNullExpressionValue(materialButton, "binding.alertTosAckContinue");
-        b.n(materialButton, R.string.got_it, new Object[0], null, 4);
+        Intrinsics3.checkNotNullExpressionValue(materialButton, "binding.alertTosAckContinue");
+        FormatUtils.n(materialButton, R.string.got_it, new Object[0], null, 4);
         getBinding().f2674b.setOnClickListener(new AnonymousClass1(isAcknowledgement() ? RestAPIParams.UserAgreements.INSTANCE.acknowledge() : RestAPIParams.UserAgreements.INSTANCE.agree()));
     }
 
     private final void configureCommonUI() {
         WidgetTosBinding binding = getBinding();
         LinkifiedTextView linkifiedTextView = binding.f;
-        m.checkNotNullExpressionValue(linkifiedTextView, "alertTosTermsOfService");
-        b.n(linkifiedTextView, R.string.terms_of_service, new Object[]{getString(R.string.terms_of_service_url)}, null, 4);
+        Intrinsics3.checkNotNullExpressionValue(linkifiedTextView, "alertTosTermsOfService");
+        FormatUtils.n(linkifiedTextView, R.string.terms_of_service, new Object[]{getString(R.string.terms_of_service_url)}, null, 4);
         LinkifiedTextView linkifiedTextView2 = binding.e;
-        m.checkNotNullExpressionValue(linkifiedTextView2, "alertTosPrivacyPolicy");
-        b.n(linkifiedTextView2, R.string.privacy_policy, new Object[]{getString(R.string.privacy_policy_url)}, null, 4);
+        Intrinsics3.checkNotNullExpressionValue(linkifiedTextView2, "alertTosPrivacyPolicy");
+        FormatUtils.n(linkifiedTextView2, R.string.privacy_policy, new Object[]{getString(R.string.privacy_policy_url)}, null, 4);
         LinkifiedTextView linkifiedTextView3 = binding.d;
-        m.checkNotNullExpressionValue(linkifiedTextView3, "alertTosCommunityGuidelines");
-        b.n(linkifiedTextView3, R.string.community_guidelines, new Object[]{getString(R.string.community_guidelines_url)}, null, 4);
+        Intrinsics3.checkNotNullExpressionValue(linkifiedTextView3, "alertTosCommunityGuidelines");
+        FormatUtils.n(linkifiedTextView3, R.string.community_guidelines, new Object[]{getString(R.string.community_guidelines_url)}, null, 4);
         LinkifiedTextView linkifiedTextView4 = binding.c;
-        m.checkNotNullExpressionValue(linkifiedTextView4, "alertTosBlogPost");
-        b.n(linkifiedTextView4, R.string.blog_post, new Object[]{getString(R.string.important_updates_url)}, null, 4);
+        Intrinsics3.checkNotNullExpressionValue(linkifiedTextView4, "alertTosBlogPost");
+        FormatUtils.n(linkifiedTextView4, R.string.blog_post, new Object[]{getString(R.string.important_updates_url)}, null, 4);
     }
 
     private final void configureUI() {
@@ -229,7 +230,7 @@ public final class WidgetTos extends AppFragment {
 
     @Override // com.discord.app.AppFragment
     public void onViewBound(View view) {
-        m.checkNotNullParameter(view, "view");
+        Intrinsics3.checkNotNullParameter(view, "view");
         super.onViewBound(view);
         AppFragment.setOnBackPressed$default(this, AnonymousClass1.INSTANCE, 0, 2, null);
         AppFragment.setActionBarOptionsMenu$default(this, R.menu.menu_settings_logout, AnonymousClass2.INSTANCE, null, 4, null);

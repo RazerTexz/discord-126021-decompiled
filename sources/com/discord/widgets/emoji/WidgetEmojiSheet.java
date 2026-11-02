@@ -14,10 +14,10 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentViewModelLazyKt;
 import androidx.transition.ChangeBounds;
 import androidx.transition.TransitionManager;
-import b.a.d.g0;
-import b.a.d.i0;
-import b.a.k.b;
-import b.d.b.a.a;
+import b.a.d.AppViewModelDelegates3;
+import b.a.d.AppViewModelDelegates5;
+import b.a.k.FormatUtils;
+import b.d.b.a.outline;
 import com.discord.R;
 import com.discord.api.guild.GuildFeature;
 import com.discord.app.AppBottomSheet;
@@ -27,7 +27,7 @@ import com.discord.models.domain.emoji.ModelEmojiCustom;
 import com.discord.models.guild.Guild;
 import com.discord.stores.StoreNotices;
 import com.discord.stores.StoreStream;
-import com.discord.utilities.KotlinExtensionsKt;
+import com.discord.utilities.KotlinExtensions;
 import com.discord.utilities.color.ColorCompat;
 import com.discord.utilities.dimen.DimenUtils;
 import com.discord.utilities.drawable.DrawableCompat;
@@ -38,14 +38,14 @@ import com.discord.utilities.rx.ObservableExtensionsKt;
 import com.discord.utilities.textprocessing.node.EmojiNode;
 import com.discord.utilities.view.extensions.ViewExtensions;
 import com.discord.utilities.viewbinding.FragmentViewBindingDelegate;
-import com.discord.utilities.viewbinding.FragmentViewBindingDelegateKt;
-import com.discord.widgets.chat.input.MentionUtilsKt;
+import com.discord.utilities.viewbinding.FragmentViewBindingDelegate3;
+import com.discord.widgets.chat.input.MentionUtils;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.google.android.material.button.MaterialButton;
-import d0.g;
-import d0.z.d.a0;
-import d0.z.d.m;
-import d0.z.d.o;
+import d0.LazyJVM;
+import d0.z.d.Intrinsics3;
+import d0.z.d.Lambda;
+import d0.z.d.Reflection2;
 import java.text.NumberFormat;
 import kotlin.Lazy;
 import kotlin.NoWhenBranchMatchedException;
@@ -60,7 +60,7 @@ import rx.subscriptions.CompositeSubscription;
 /* JADX INFO: compiled from: WidgetEmojiSheet.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetEmojiSheet extends AppBottomSheet {
-    public static final /* synthetic */ KProperty[] $$delegatedProperties = {a.d0(WidgetEmojiSheet.class, "binding", "getBinding()Lcom/discord/databinding/WidgetEmojiSheetBinding;", 0)};
+    public static final /* synthetic */ KProperty[] $$delegatedProperties = {outline.d0(WidgetEmojiSheet.class, "binding", "getBinding()Lcom/discord/databinding/WidgetEmojiSheetBinding;", 0)};
     private static final String EXTRA_EMOJI_ID_AND_TYPE = "EXTRA_EMOJI_ID_AND_TYPE";
     private static final int FLIPPER_INDEX_CONTENT = 0;
     private static final int FLIPPER_INDEX_LOADING = 1;
@@ -81,7 +81,7 @@ public final class WidgetEmojiSheet extends AppBottomSheet {
 
     /* JADX INFO: renamed from: com.discord.widgets.emoji.WidgetEmojiSheet$bindSubscriptions$1, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetEmojiSheet.kt */
-    public final class AnonymousClass1 extends o implements Function1<EmojiSheetViewModel.ViewState, Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function1<EmojiSheetViewModel.ViewState, Unit> {
         public AnonymousClass1() {
             super(1);
         }
@@ -95,8 +95,8 @@ public final class WidgetEmojiSheet extends AppBottomSheet {
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(EmojiSheetViewModel.ViewState viewState) {
             Unit unit;
-            m.checkNotNullParameter(viewState, "it");
-            if (m.areEqual(viewState, EmojiSheetViewModel.ViewState.Loading.INSTANCE)) {
+            Intrinsics3.checkNotNullParameter(viewState, "it");
+            if (Intrinsics3.areEqual(viewState, EmojiSheetViewModel.ViewState.Loading.INSTANCE)) {
                 WidgetEmojiSheet.access$showLoading(WidgetEmojiSheet.this);
                 unit = Unit.a;
             } else if (viewState instanceof EmojiSheetViewModel.ViewState.EmojiCustom) {
@@ -106,13 +106,13 @@ public final class WidgetEmojiSheet extends AppBottomSheet {
                 WidgetEmojiSheet.access$configureUnicodeEmoji(WidgetEmojiSheet.this, (EmojiSheetViewModel.ViewState.EmojiUnicode) viewState);
                 unit = Unit.a;
             } else {
-                if (!m.areEqual(viewState, EmojiSheetViewModel.ViewState.Invalid.INSTANCE) && !m.areEqual(viewState, EmojiSheetViewModel.ViewState.Dismiss.INSTANCE)) {
+                if (!Intrinsics3.areEqual(viewState, EmojiSheetViewModel.ViewState.Invalid.INSTANCE) && !Intrinsics3.areEqual(viewState, EmojiSheetViewModel.ViewState.Dismiss.INSTANCE)) {
                     throw new NoWhenBranchMatchedException();
                 }
                 WidgetEmojiSheet.this.dismiss();
                 unit = Unit.a;
             }
-            KotlinExtensionsKt.getExhaustive(unit);
+            KotlinExtensions.getExhaustive(unit);
         }
     }
 
@@ -122,20 +122,20 @@ public final class WidgetEmojiSheet extends AppBottomSheet {
         }
 
         public final void enqueueNotice(EmojiNode.EmojiIdAndType emojiIdAndType) {
-            m.checkNotNullParameter(emojiIdAndType, "emojiIdAndType");
+            Intrinsics3.checkNotNullParameter(emojiIdAndType, "emojiIdAndType");
             String noticeName = getNoticeName(emojiIdAndType);
-            StoreStream.INSTANCE.getNotices().requestToShow(new StoreNotices.Notice(noticeName, null, 0L, 0, false, null, 0L, false, 0L, new WidgetEmojiSheet$Companion$enqueueNotice$showEmojiSheetNotice$1(emojiIdAndType, noticeName), Opcodes.INVOKEVIRTUAL, null));
+            StoreStream.INSTANCE.getNotices().requestToShow(new StoreNotices.Notice(noticeName, null, 0L, 0, false, null, 0L, false, 0L, new WidgetEmojiSheet2(emojiIdAndType, noticeName), Opcodes.INVOKEVIRTUAL, null));
         }
 
         private final String getNoticeName(EmojiNode.EmojiIdAndType emojiIdAndType) {
             String str = "Emoji Sheet: " + emojiIdAndType.toString();
-            m.checkNotNullExpressionValue(str, "StringBuilder(\"Emoji She…)\n            .toString()");
+            Intrinsics3.checkNotNullExpressionValue(str, "StringBuilder(\"Emoji She…)\n            .toString()");
             return str;
         }
 
         public final void show(FragmentManager fragmentManager, EmojiNode.EmojiIdAndType emojiIdAndType) {
-            m.checkNotNullParameter(fragmentManager, "fragmentManager");
-            m.checkNotNullParameter(emojiIdAndType, "emojiIdAndType");
+            Intrinsics3.checkNotNullParameter(fragmentManager, "fragmentManager");
+            Intrinsics3.checkNotNullParameter(emojiIdAndType, "emojiIdAndType");
             WidgetEmojiSheet widgetEmojiSheet = new WidgetEmojiSheet();
             Bundle bundle = new Bundle();
             bundle.putSerializable(WidgetEmojiSheet.EXTRA_EMOJI_ID_AND_TYPE, emojiIdAndType);
@@ -150,13 +150,13 @@ public final class WidgetEmojiSheet extends AppBottomSheet {
 
     public WidgetEmojiSheet() {
         super(false, 1, null);
-        this.binding = FragmentViewBindingDelegateKt.viewBinding$default(this, WidgetEmojiSheet$binding$2.INSTANCE, null, 2, null);
+        this.binding = FragmentViewBindingDelegate3.viewBinding$default(this, WidgetEmojiSheet3.INSTANCE, null, 2, null);
         this.emojiSizePx = IconUtils.getMediaProxySize(DimenUtils.dpToPixels(48));
         this.imageChangeDetector = new MGImages.DistinctChangeDetector();
-        WidgetEmojiSheet$viewModel$2 widgetEmojiSheet$viewModel$2 = new WidgetEmojiSheet$viewModel$2(this);
-        g0 g0Var = new g0(this);
-        this.viewModel = FragmentViewModelLazyKt.createViewModelLazy(this, a0.getOrCreateKotlinClass(EmojiSheetViewModel.class), new WidgetEmojiSheet$appViewModels$$inlined$viewModels$1(g0Var), new i0(widgetEmojiSheet$viewModel$2));
-        this.emojiIdAndType = g.lazy(new WidgetEmojiSheet$emojiIdAndType$2(this));
+        WidgetEmojiSheet9 widgetEmojiSheet9 = new WidgetEmojiSheet9(this);
+        AppViewModelDelegates3 appViewModelDelegates3 = new AppViewModelDelegates3(this);
+        this.viewModel = FragmentViewModelLazyKt.createViewModelLazy(this, Reflection2.getOrCreateKotlinClass(EmojiSheetViewModel.class), new WidgetEmojiSheet$appViewModels$$inlined$viewModels$1(appViewModelDelegates3), new AppViewModelDelegates5(widgetEmojiSheet9));
+        this.emojiIdAndType = LazyJVM.lazy(new WidgetEmojiSheet8(this));
     }
 
     public static final /* synthetic */ void access$configureCustomEmoji(WidgetEmojiSheet widgetEmojiSheet, EmojiSheetViewModel.ViewState.EmojiCustom emojiCustom) {
@@ -185,7 +185,7 @@ public final class WidgetEmojiSheet extends AppBottomSheet {
 
     @Override // com.discord.app.AppBottomSheet
     public void bindSubscriptions(CompositeSubscription compositeSubscription) {
-        m.checkNotNullParameter(compositeSubscription, "compositeSubscription");
+        Intrinsics3.checkNotNullParameter(compositeSubscription, "compositeSubscription");
         ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeViewState(), this, null, 2, null), WidgetEmojiSheet.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass1(), 62, (Object) null);
     }
 
@@ -193,46 +193,46 @@ public final class WidgetEmojiSheet extends AppBottomSheet {
         WidgetEmojiSheetBinding binding = getBinding();
         if (guild == null) {
             FrameLayout frameLayout = binding.f2377b;
-            m.checkNotNullExpressionValue(frameLayout, "buttonContainer");
+            Intrinsics3.checkNotNullExpressionValue(frameLayout, "buttonContainer");
             frameLayout.setVisibility(8);
             return;
         }
         if (!isUserPremium) {
             FrameLayout frameLayout2 = binding.f2377b;
-            m.checkNotNullExpressionValue(frameLayout2, "buttonContainer");
+            Intrinsics3.checkNotNullExpressionValue(frameLayout2, "buttonContainer");
             frameLayout2.setVisibility(0);
             MaterialButton materialButton = binding.q;
-            m.checkNotNullExpressionValue(materialButton, "premiumBtn");
+            Intrinsics3.checkNotNullExpressionValue(materialButton, "premiumBtn");
             materialButton.setVisibility(0);
             MaterialButton materialButton2 = binding.o;
-            m.checkNotNullExpressionValue(materialButton2, "joinBtn");
+            Intrinsics3.checkNotNullExpressionValue(materialButton2, "joinBtn");
             materialButton2.setVisibility(8);
-            binding.q.setOnClickListener(new WidgetEmojiSheet$configureButtons$$inlined$with$lambda$1(this, guild, isUserPremium, isUserInGuild));
+            binding.q.setOnClickListener(new WidgetEmojiSheet4(this, guild, isUserPremium, isUserInGuild));
             return;
         }
         if (isUserInGuild) {
             FrameLayout frameLayout3 = binding.f2377b;
-            m.checkNotNullExpressionValue(frameLayout3, "buttonContainer");
+            Intrinsics3.checkNotNullExpressionValue(frameLayout3, "buttonContainer");
             frameLayout3.setVisibility(8);
             return;
         }
         FrameLayout frameLayout4 = binding.f2377b;
-        m.checkNotNullExpressionValue(frameLayout4, "buttonContainer");
+        Intrinsics3.checkNotNullExpressionValue(frameLayout4, "buttonContainer");
         frameLayout4.setVisibility(0);
         MaterialButton materialButton3 = binding.q;
-        m.checkNotNullExpressionValue(materialButton3, "premiumBtn");
+        Intrinsics3.checkNotNullExpressionValue(materialButton3, "premiumBtn");
         materialButton3.setVisibility(8);
         MaterialButton materialButton4 = binding.o;
-        m.checkNotNullExpressionValue(materialButton4, "joinBtn");
+        Intrinsics3.checkNotNullExpressionValue(materialButton4, "joinBtn");
         materialButton4.setVisibility(0);
-        binding.o.setOnClickListener(new WidgetEmojiSheet$configureButtons$$inlined$with$lambda$2(this, guild, isUserPremium, isUserInGuild));
+        binding.o.setOnClickListener(new WidgetEmojiSheet5(this, guild, isUserPremium, isUserInGuild));
     }
 
     private final void configureCustomEmoji(EmojiSheetViewModel.ViewState.EmojiCustom viewState) {
         WidgetEmojiSheetBinding binding = getBinding();
-        m.checkNotNullExpressionValue(binding, "binding");
+        Intrinsics3.checkNotNullExpressionValue(binding, "binding");
         AppViewFlipper appViewFlipper = binding.a;
-        m.checkNotNullExpressionValue(appViewFlipper, "binding.root");
+        Intrinsics3.checkNotNullExpressionValue(appViewFlipper, "binding.root");
         ViewParent parent = appViewFlipper.getParent();
         if (!(parent instanceof ViewGroup)) {
             parent = null;
@@ -255,32 +255,32 @@ public final class WidgetEmojiSheet extends AppBottomSheet {
         boolean zIsCurrentGuild = viewState.isCurrentGuild();
         WidgetEmojiSheetBinding binding2 = getBinding();
         SimpleDraweeView simpleDraweeView = binding2.d;
-        m.checkNotNullExpressionValue(simpleDraweeView, "emojiIv");
+        Intrinsics3.checkNotNullExpressionValue(simpleDraweeView, "emojiIv");
         MGImages.setImage$default(simpleDraweeView, ModelEmojiCustom.getImageUri(emojiCustom.getId(), emojiCustom.isAnimated(), this.emojiSizePx), 0, 0, false, null, this.imageChangeDetector, 60, null);
         TextView textView = binding2.p;
-        m.checkNotNullExpressionValue(textView, "nameTv");
-        textView.setText(MentionUtilsKt.EMOJIS_AND_STICKERS_CHAR + emojiCustom.getName() + MentionUtilsKt.EMOJIS_AND_STICKERS_CHAR);
+        Intrinsics3.checkNotNullExpressionValue(textView, "nameTv");
+        textView.setText(MentionUtils.EMOJIS_AND_STICKERS_CHAR + emojiCustom.getName() + MentionUtils.EMOJIS_AND_STICKERS_CHAR);
         TextView textView2 = binding2.c;
-        m.checkNotNullExpressionValue(textView2, "emojiInfoTv");
+        Intrinsics3.checkNotNullExpressionValue(textView2, "emojiInfoTv");
         textView2.setText(getString(getCustomEmojiInfoText(zIsCurrentGuild, zIsUserInGuild, zIsPublic, zIsUserPremium)));
         configureButtons(zIsUserPremium, zIsUserInGuild, known != null ? known.getGuild() : null);
         configureGuildSection(known != null ? known.getGuild() : null, zIsCurrentGuild, zIsPublic, known != null ? known.getApproximateOnline() : null);
         configureFavorite(viewState.getCanFavorite(), viewState.isFavorite());
         AppViewFlipper appViewFlipper2 = getBinding().e;
-        m.checkNotNullExpressionValue(appViewFlipper2, "binding.emojiSheetFlipper");
+        Intrinsics3.checkNotNullExpressionValue(appViewFlipper2, "binding.emojiSheetFlipper");
         appViewFlipper2.setDisplayedChild(0);
     }
 
     private final void configureFavorite(boolean canFavorite, boolean isFavorite) {
         FrameLayout frameLayout = getBinding().g;
-        m.checkNotNullExpressionValue(frameLayout, "binding.favoriteContainer");
+        Intrinsics3.checkNotNullExpressionValue(frameLayout, "binding.favoriteContainer");
         frameLayout.setVisibility(canFavorite ? 0 : 8);
         MaterialButton materialButton = getBinding().f;
         ViewExtensions.fadeBy(materialButton, !isFavorite, 200L);
-        materialButton.setOnClickListener(new WidgetEmojiSheet$configureFavorite$$inlined$apply$lambda$1(this, isFavorite));
+        materialButton.setOnClickListener(new WidgetEmojiSheet6(this, isFavorite));
         MaterialButton materialButton2 = getBinding().h;
         ViewExtensions.fadeBy(materialButton2, isFavorite, 200L);
-        materialButton2.setOnClickListener(new WidgetEmojiSheet$configureFavorite$$inlined$apply$lambda$2(this, isFavorite));
+        materialButton2.setOnClickListener(new WidgetEmojiSheet7(this, isFavorite));
     }
 
     private final void configureGuildSection(Guild guild, boolean isCurrent, boolean isPublic, Integer approximateOnline) {
@@ -288,25 +288,25 @@ public final class WidgetEmojiSheet extends AppBottomSheet {
         WidgetEmojiSheetBinding binding = getBinding();
         if (guild == null || isCurrent) {
             LinearLayout linearLayout = binding.k;
-            m.checkNotNullExpressionValue(linearLayout, "guildContainer");
+            Intrinsics3.checkNotNullExpressionValue(linearLayout, "guildContainer");
             linearLayout.setVisibility(8);
             return;
         }
         LinearLayout linearLayout2 = binding.k;
-        m.checkNotNullExpressionValue(linearLayout2, "guildContainer");
+        Intrinsics3.checkNotNullExpressionValue(linearLayout2, "guildContainer");
         linearLayout2.setVisibility(0);
         if (guild.hasIcon()) {
             SimpleDraweeView simpleDraweeView = binding.m;
-            m.checkNotNullExpressionValue(simpleDraweeView, "guildIv");
+            Intrinsics3.checkNotNullExpressionValue(simpleDraweeView, "guildIv");
             IconUtils.setIcon$default((ImageView) simpleDraweeView, guild, 0, (MGImages.ChangeDetector) this.imageChangeDetector, true, 4, (Object) null);
         } else {
             binding.j.setBackgroundResource(R.drawable.drawable_circle_black);
             int themedColor = ColorCompat.getThemedColor(requireContext(), R.attr.colorBackgroundSecondary);
             FrameLayout frameLayout = binding.j;
-            m.checkNotNullExpressionValue(frameLayout, "guildAvatarWrap");
+            Intrinsics3.checkNotNullExpressionValue(frameLayout, "guildAvatarWrap");
             frameLayout.setBackgroundTintList(ColorStateList.valueOf(themedColor));
             TextView textView = binding.i;
-            m.checkNotNullExpressionValue(textView, "guildAvatarText");
+            Intrinsics3.checkNotNullExpressionValue(textView, "guildAvatarText");
             textView.setText(guild.getShortName());
         }
         if (guild.getFeatures().contains(GuildFeature.PARTNERED)) {
@@ -315,45 +315,45 @@ public final class WidgetEmojiSheet extends AppBottomSheet {
             i = guild.getFeatures().contains(GuildFeature.VERIFIED) ? R.drawable.ic_verified_badge_banner : 0;
         }
         TextView textView2 = binding.n;
-        m.checkNotNullExpressionValue(textView2, "guildNameTv");
+        Intrinsics3.checkNotNullExpressionValue(textView2, "guildNameTv");
         DrawableCompat.setCompoundDrawablesCompat(textView2, i, 0, 0, 0);
         TextView textView3 = binding.n;
-        m.checkNotNullExpressionValue(textView3, "guildNameTv");
+        Intrinsics3.checkNotNullExpressionValue(textView3, "guildNameTv");
         textView3.setText(guild.getName());
         int i2 = isPublic ? R.string.emoji_popout_public_server : R.string.emoji_popout_private_server;
         String str = null;
-        CharSequence charSequenceK = b.k(this, i2, new Object[0], null, 4);
+        CharSequence charSequenceK = FormatUtils.k(this, i2, new Object[0], null, 4);
         if (approximateOnline != null) {
-            str = b.k(this, R.string.instant_invite_guild_members_online, new Object[]{NumberFormat.getNumberInstance(new LocaleManager().getPrimaryLocale(requireContext())).format(Integer.valueOf(approximateOnline.intValue()))}, null, 4).toString() + " • ";
+            str = FormatUtils.k(this, R.string.instant_invite_guild_members_online, new Object[]{NumberFormat.getNumberInstance(new LocaleManager().getPrimaryLocale(requireContext())).format(Integer.valueOf(approximateOnline.intValue()))}, null, 4).toString() + " • ";
         }
         if (str == null) {
             str = "";
         }
         TextView textView4 = binding.l;
-        m.checkNotNullExpressionValue(textView4, "guildInfoTv");
+        Intrinsics3.checkNotNullExpressionValue(textView4, "guildInfoTv");
         textView4.setText(str + charSequenceK);
     }
 
     private final void configureUnicodeEmoji(EmojiSheetViewModel.ViewState.EmojiUnicode viewState) {
         WidgetEmojiSheetBinding binding = getBinding();
         SimpleDraweeView simpleDraweeView = binding.d;
-        m.checkNotNullExpressionValue(simpleDraweeView, "emojiIv");
+        Intrinsics3.checkNotNullExpressionValue(simpleDraweeView, "emojiIv");
         MGImages.setImage$default(simpleDraweeView, viewState.getEmojiUnicode().getImageUri(true, this.emojiSizePx, requireContext()), 0, 0, false, null, this.imageChangeDetector, 60, null);
         TextView textView = binding.p;
-        m.checkNotNullExpressionValue(textView, "nameTv");
-        textView.setText(MentionUtilsKt.EMOJIS_AND_STICKERS_CHAR + viewState.getEmojiUnicode().getFirstName() + MentionUtilsKt.EMOJIS_AND_STICKERS_CHAR);
+        Intrinsics3.checkNotNullExpressionValue(textView, "nameTv");
+        textView.setText(MentionUtils.EMOJIS_AND_STICKERS_CHAR + viewState.getEmojiUnicode().getFirstName() + MentionUtils.EMOJIS_AND_STICKERS_CHAR);
         TextView textView2 = binding.c;
-        m.checkNotNullExpressionValue(textView2, "emojiInfoTv");
+        Intrinsics3.checkNotNullExpressionValue(textView2, "emojiInfoTv");
         textView2.setText(getString(R.string.emoji_popout_standard_emoji_description));
         FrameLayout frameLayout = binding.f2377b;
-        m.checkNotNullExpressionValue(frameLayout, "buttonContainer");
+        Intrinsics3.checkNotNullExpressionValue(frameLayout, "buttonContainer");
         frameLayout.setVisibility(8);
         LinearLayout linearLayout = binding.k;
-        m.checkNotNullExpressionValue(linearLayout, "guildContainer");
+        Intrinsics3.checkNotNullExpressionValue(linearLayout, "guildContainer");
         linearLayout.setVisibility(8);
         configureFavorite(viewState.getCanFavorite(), viewState.isFavorite());
         AppViewFlipper appViewFlipper = getBinding().e;
-        m.checkNotNullExpressionValue(appViewFlipper, "binding.emojiSheetFlipper");
+        Intrinsics3.checkNotNullExpressionValue(appViewFlipper, "binding.emojiSheetFlipper");
         appViewFlipper.setDisplayedChild(0);
     }
 
@@ -399,7 +399,7 @@ public final class WidgetEmojiSheet extends AppBottomSheet {
 
     private final void showLoading() {
         AppViewFlipper appViewFlipper = getBinding().e;
-        m.checkNotNullExpressionValue(appViewFlipper, "binding.emojiSheetFlipper");
+        Intrinsics3.checkNotNullExpressionValue(appViewFlipper, "binding.emojiSheetFlipper");
         appViewFlipper.setDisplayedChild(1);
     }
 }

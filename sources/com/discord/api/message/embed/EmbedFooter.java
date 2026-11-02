@@ -1,8 +1,8 @@
 package com.discord.api.message.embed;
 
 import androidx.core.app.NotificationCompat;
-import b.d.b.a.a;
-import d0.z.d.m;
+import b.d.b.a.outline;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: EmbedFooter.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -19,7 +19,7 @@ public final /* data */ class EmbedFooter {
             return false;
         }
         EmbedFooter embedFooter = (EmbedFooter) other;
-        return m.areEqual(this.text, embedFooter.text) && m.areEqual(this.iconUrl, embedFooter.iconUrl) && m.areEqual(this.proxyIconUrl, embedFooter.proxyIconUrl);
+        return Intrinsics3.areEqual(this.text, embedFooter.text) && Intrinsics3.areEqual(this.iconUrl, embedFooter.iconUrl) && Intrinsics3.areEqual(this.proxyIconUrl, embedFooter.proxyIconUrl);
     }
 
     /* JADX INFO: renamed from: a, reason: from getter */
@@ -42,11 +42,11 @@ public final /* data */ class EmbedFooter {
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("EmbedFooter(text=");
+        StringBuilder sbU = outline.U("EmbedFooter(text=");
         sbU.append(this.text);
         sbU.append(", iconUrl=");
         sbU.append(this.iconUrl);
         sbU.append(", proxyIconUrl=");
-        return a.J(sbU, this.proxyIconUrl, ")");
+        return outline.J(sbU, this.proxyIconUrl, ")");
     }
 }

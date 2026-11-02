@@ -1,22 +1,22 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.analytics.generated.traits.TrackChannel;
-import com.discord.analytics.generated.traits.TrackChannelReceiver;
+import com.discord.analytics.generated.traits.TrackChannel2;
 import com.discord.analytics.generated.traits.TrackGuild;
-import com.discord.analytics.generated.traits.TrackGuildReceiver;
+import com.discord.analytics.generated.traits.TrackGuild2;
 import com.discord.analytics.generated.traits.TrackGuildScheduledEvent;
-import com.discord.analytics.generated.traits.TrackGuildScheduledEventReceiver;
+import com.discord.analytics.generated.traits.TrackGuildScheduledEvent2;
 import com.discord.api.science.AnalyticsSchema;
 import com.discord.models.domain.ModelAuditLogEntry;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 import java.util.List;
 
 /* JADX INFO: compiled from: TrackGuildScheduledEventUpdated.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackGuildScheduledEventUpdated implements AnalyticsSchema, TrackBaseReceiver, TrackGuildReceiver, TrackChannelReceiver, TrackGuildScheduledEventReceiver {
+public final /* data */ class TrackGuildScheduledEventUpdated implements AnalyticsSchema, TrackBase2, TrackGuild2, TrackChannel2, TrackGuildScheduledEvent2 {
     private final CharSequence description = null;
     private final Long endTime = null;
     private final Long guildScheduledEventEntityType = null;
@@ -42,7 +42,7 @@ public final /* data */ class TrackGuildScheduledEventUpdated implements Analyti
     private final Long updaterId = null;
     private final transient String analyticsSchemaTypeName = "guild_scheduled_event_updated";
 
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    @Override // com.discord.analytics.generated.traits.TrackGuild2
     public void c(TrackGuild trackGuild) {
         this.trackGuild = trackGuild;
     }
@@ -55,7 +55,7 @@ public final /* data */ class TrackGuildScheduledEventUpdated implements Analyti
             return false;
         }
         TrackGuildScheduledEventUpdated trackGuildScheduledEventUpdated = (TrackGuildScheduledEventUpdated) other;
-        return m.areEqual(this.guildScheduledEventId, trackGuildScheduledEventUpdated.guildScheduledEventId) && m.areEqual(this.name, trackGuildScheduledEventUpdated.name) && m.areEqual(this.startTime, trackGuildScheduledEventUpdated.startTime) && m.areEqual(this.endTime, trackGuildScheduledEventUpdated.endTime) && m.areEqual(this.skuIds, trackGuildScheduledEventUpdated.skuIds) && m.areEqual(this.guildScheduledEventStatus, trackGuildScheduledEventUpdated.guildScheduledEventStatus) && m.areEqual(this.privacyLevel, trackGuildScheduledEventUpdated.privacyLevel) && m.areEqual(this.guildScheduledEventEntityType, trackGuildScheduledEventUpdated.guildScheduledEventEntityType) && m.areEqual(this.guildScheduledEventExternalLocation, trackGuildScheduledEventUpdated.guildScheduledEventExternalLocation) && m.areEqual(this.guildScheduledEventInterestedCount, trackGuildScheduledEventUpdated.guildScheduledEventInterestedCount) && m.areEqual(this.description, trackGuildScheduledEventUpdated.description) && m.areEqual(this.updaterId, trackGuildScheduledEventUpdated.updaterId) && m.areEqual(this.numParticipants, trackGuildScheduledEventUpdated.numParticipants) && m.areEqual(this.totalUniqueListeners, trackGuildScheduledEventUpdated.totalUniqueListeners) && m.areEqual(this.maxConcurrentListeners, trackGuildScheduledEventUpdated.maxConcurrentListeners) && m.areEqual(this.totalUniqueSpeakers, trackGuildScheduledEventUpdated.totalUniqueSpeakers) && m.areEqual(this.maxConcurrentSpeakers, trackGuildScheduledEventUpdated.maxConcurrentSpeakers) && m.areEqual(this.totalUniqueParticipants, trackGuildScheduledEventUpdated.totalUniqueParticipants) && m.areEqual(this.maxConcurrentParticipants, trackGuildScheduledEventUpdated.maxConcurrentParticipants);
+        return Intrinsics3.areEqual(this.guildScheduledEventId, trackGuildScheduledEventUpdated.guildScheduledEventId) && Intrinsics3.areEqual(this.name, trackGuildScheduledEventUpdated.name) && Intrinsics3.areEqual(this.startTime, trackGuildScheduledEventUpdated.startTime) && Intrinsics3.areEqual(this.endTime, trackGuildScheduledEventUpdated.endTime) && Intrinsics3.areEqual(this.skuIds, trackGuildScheduledEventUpdated.skuIds) && Intrinsics3.areEqual(this.guildScheduledEventStatus, trackGuildScheduledEventUpdated.guildScheduledEventStatus) && Intrinsics3.areEqual(this.privacyLevel, trackGuildScheduledEventUpdated.privacyLevel) && Intrinsics3.areEqual(this.guildScheduledEventEntityType, trackGuildScheduledEventUpdated.guildScheduledEventEntityType) && Intrinsics3.areEqual(this.guildScheduledEventExternalLocation, trackGuildScheduledEventUpdated.guildScheduledEventExternalLocation) && Intrinsics3.areEqual(this.guildScheduledEventInterestedCount, trackGuildScheduledEventUpdated.guildScheduledEventInterestedCount) && Intrinsics3.areEqual(this.description, trackGuildScheduledEventUpdated.description) && Intrinsics3.areEqual(this.updaterId, trackGuildScheduledEventUpdated.updaterId) && Intrinsics3.areEqual(this.numParticipants, trackGuildScheduledEventUpdated.numParticipants) && Intrinsics3.areEqual(this.totalUniqueListeners, trackGuildScheduledEventUpdated.totalUniqueListeners) && Intrinsics3.areEqual(this.maxConcurrentListeners, trackGuildScheduledEventUpdated.maxConcurrentListeners) && Intrinsics3.areEqual(this.totalUniqueSpeakers, trackGuildScheduledEventUpdated.totalUniqueSpeakers) && Intrinsics3.areEqual(this.maxConcurrentSpeakers, trackGuildScheduledEventUpdated.maxConcurrentSpeakers) && Intrinsics3.areEqual(this.totalUniqueParticipants, trackGuildScheduledEventUpdated.totalUniqueParticipants) && Intrinsics3.areEqual(this.maxConcurrentParticipants, trackGuildScheduledEventUpdated.maxConcurrentParticipants);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -64,7 +64,7 @@ public final /* data */ class TrackGuildScheduledEventUpdated implements Analyti
         return this.analyticsSchemaTypeName;
     }
 
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    @Override // com.discord.analytics.generated.traits.TrackGuild2
     /* JADX INFO: renamed from: a, reason: from getter */
     public TrackGuild getTrackGuild() {
         return this.trackGuild;
@@ -112,7 +112,7 @@ public final /* data */ class TrackGuildScheduledEventUpdated implements Analyti
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackGuildScheduledEventUpdated(guildScheduledEventId=");
+        StringBuilder sbU = outline.U("TrackGuildScheduledEventUpdated(guildScheduledEventId=");
         sbU.append(this.guildScheduledEventId);
         sbU.append(", name=");
         sbU.append(this.name);
@@ -149,6 +149,6 @@ public final /* data */ class TrackGuildScheduledEventUpdated implements Analyti
         sbU.append(", totalUniqueParticipants=");
         sbU.append(this.totalUniqueParticipants);
         sbU.append(", maxConcurrentParticipants=");
-        return a.G(sbU, this.maxConcurrentParticipants, ")");
+        return outline.G(sbU, this.maxConcurrentParticipants, ")");
     }
 }

@@ -1,22 +1,24 @@
 package b.i.a.c.t2;
 
+import b.i.a.c.f3.Util2;
+
 /* JADX INFO: compiled from: lambda */
 /* JADX INFO: loaded from: classes3.dex */
 public final /* synthetic */ class g implements Runnable {
-    public final /* synthetic */ r.a j;
+    public final /* synthetic */ AudioRendererEventListener2.a j;
     public final /* synthetic */ String k;
 
-    public /* synthetic */ g(r.a aVar, String str) {
+    public /* synthetic */ g(AudioRendererEventListener2.a aVar, String str) {
         this.j = aVar;
         this.k = str;
     }
 
     @Override // java.lang.Runnable
     public final void run() {
-        r.a aVar = this.j;
+        AudioRendererEventListener2.a aVar = this.j;
         String str = this.k;
-        r rVar = aVar.f1126b;
-        int i = b.i.a.c.f3.e0.a;
-        rVar.B(str);
+        AudioRendererEventListener2 audioRendererEventListener2 = aVar.f1126b;
+        int i = Util2.a;
+        audioRendererEventListener2.B(str);
     }
 }

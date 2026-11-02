@@ -1,8 +1,8 @@
 package com.discord.models.sticker.dto;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.models.store.dto.ModelStoreDirectoryLayout;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 import java.util.List;
 
 /* JADX INFO: compiled from: ModelStickerStoreDirectory.kt */
@@ -12,7 +12,7 @@ public final /* data */ class ModelStickerStoreDirectory {
     private final ModelStoreDirectoryLayout storeDirectoryLayout;
 
     public ModelStickerStoreDirectory(List<ModelStickerPack> list, ModelStoreDirectoryLayout modelStoreDirectoryLayout) {
-        m.checkNotNullParameter(list, "stickerPacks");
+        Intrinsics3.checkNotNullParameter(list, "stickerPacks");
         this.stickerPacks = list;
         this.storeDirectoryLayout = modelStoreDirectoryLayout;
     }
@@ -33,7 +33,7 @@ public final /* data */ class ModelStickerStoreDirectory {
     }
 
     public final ModelStickerStoreDirectory copy(List<ModelStickerPack> stickerPacks, ModelStoreDirectoryLayout storeDirectoryLayout) {
-        m.checkNotNullParameter(stickerPacks, "stickerPacks");
+        Intrinsics3.checkNotNullParameter(stickerPacks, "stickerPacks");
         return new ModelStickerStoreDirectory(stickerPacks, storeDirectoryLayout);
     }
 
@@ -45,7 +45,7 @@ public final /* data */ class ModelStickerStoreDirectory {
             return false;
         }
         ModelStickerStoreDirectory modelStickerStoreDirectory = (ModelStickerStoreDirectory) other;
-        return m.areEqual(this.stickerPacks, modelStickerStoreDirectory.stickerPacks) && m.areEqual(this.storeDirectoryLayout, modelStickerStoreDirectory.storeDirectoryLayout);
+        return Intrinsics3.areEqual(this.stickerPacks, modelStickerStoreDirectory.stickerPacks) && Intrinsics3.areEqual(this.storeDirectoryLayout, modelStickerStoreDirectory.storeDirectoryLayout);
     }
 
     public final List<ModelStickerPack> getStickerPacks() {
@@ -69,7 +69,7 @@ public final /* data */ class ModelStickerStoreDirectory {
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("ModelStickerStoreDirectory(stickerPacks=");
+        StringBuilder sbU = outline.U("ModelStickerStoreDirectory(stickerPacks=");
         sbU.append(this.stickerPacks);
         sbU.append(", storeDirectoryLayout=");
         sbU.append(this.storeDirectoryLayout);

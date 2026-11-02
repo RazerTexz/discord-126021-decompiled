@@ -4,7 +4,7 @@ import androidx.constraintlayout.solver.LinearSystem;
 import androidx.constraintlayout.solver.widgets.Chain;
 import androidx.constraintlayout.solver.widgets.ConstraintWidget;
 import androidx.constraintlayout.solver.widgets.ConstraintWidgetContainer;
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 
@@ -200,13 +200,13 @@ public class WidgetGroup {
         StringBuilder sb = new StringBuilder();
         sb.append(getOrientationString());
         sb.append(" [");
-        String strB = a.B(sb, this.f33id, "] <");
+        String strB = outline.B(sb, this.f33id, "] <");
         for (ConstraintWidget constraintWidget : this.widgets) {
-            StringBuilder sbX = a.X(strB, " ");
+            StringBuilder sbX = outline.X(strB, " ");
             sbX.append(constraintWidget.getDebugName());
             strB = sbX.toString();
         }
-        return a.w(strB, " >");
+        return outline.w(strB, " >");
     }
 
     public int measureWrap(LinearSystem linearSystem, int i) {

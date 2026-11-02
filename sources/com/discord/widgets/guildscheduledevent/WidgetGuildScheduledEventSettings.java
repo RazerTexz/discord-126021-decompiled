@@ -17,38 +17,39 @@ import androidx.core.app.NotificationCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentViewModelLazyKt;
-import b.a.d.f0;
-import b.a.d.g0;
-import b.a.d.i0;
-import b.a.d.j;
-import b.a.k.b;
-import b.d.b.a.a;
+import b.a.d.AppScreen2;
+import b.a.d.AppToast;
+import b.a.d.AppViewModelDelegates2;
+import b.a.d.AppViewModelDelegates3;
+import b.a.d.AppViewModelDelegates5;
+import b.a.k.FormatUtils;
+import b.d.b.a.outline;
 import com.discord.R;
 import com.discord.api.guildscheduledevent.GuildScheduledEvent;
 import com.discord.api.guildscheduledevent.GuildScheduledEventBroadcast;
 import com.discord.api.guildscheduledevent.GuildScheduledEventEntityType;
 import com.discord.app.AppFragment;
 import com.discord.databinding.WidgetGuildScheduledEventSettingsBinding;
-import com.discord.utilities.guildscheduledevent.GuildScheduledEventTiming;
 import com.discord.utilities.guildscheduledevent.GuildScheduledEventUtilities;
-import com.discord.utilities.guildscheduledevent.GuildScheduledEventUtilitiesKt;
+import com.discord.utilities.guildscheduledevent.GuildScheduledEventUtilities2;
+import com.discord.utilities.guildscheduledevent.GuildScheduledEventUtilities5;
 import com.discord.utilities.rx.ObservableExtensionsKt;
 import com.discord.utilities.time.ClockFactory;
 import com.discord.utilities.view.extensions.ViewExtensions;
 import com.discord.utilities.viewbinding.FragmentViewBindingDelegate;
-import com.discord.utilities.viewbinding.FragmentViewBindingDelegateKt;
+import com.discord.utilities.viewbinding.FragmentViewBindingDelegate3;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.checkbox.MaterialCheckBox;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
-import d0.g;
-import d0.o;
-import d0.z.d.a0;
-import d0.z.d.k;
-import d0.z.d.m;
+import d0.LazyJVM;
+import d0.Tuples;
+import d0.z.d.FunctionReferenceImpl;
+import d0.z.d.Intrinsics3;
+import d0.z.d.Reflection2;
 import java.util.Objects;
 import kotlin.Lazy;
-import kotlin.Pair;
+import kotlin.Tuples2;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
@@ -60,7 +61,7 @@ import rx.functions.Func2;
 /* JADX INFO: compiled from: WidgetGuildScheduledEventSettings.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetGuildScheduledEventSettings extends AppFragment {
-    public static final /* synthetic */ KProperty[] $$delegatedProperties = {a.d0(WidgetGuildScheduledEventSettings.class, "binding", "getBinding()Lcom/discord/databinding/WidgetGuildScheduledEventSettingsBinding;", 0)};
+    public static final /* synthetic */ KProperty[] $$delegatedProperties = {outline.d0(WidgetGuildScheduledEventSettings.class, "binding", "getBinding()Lcom/discord/databinding/WidgetGuildScheduledEventSettingsBinding;", 0)};
     private static final String EXTRA_ENTITY_TYPE = "EXTRA_ENTITY_TYPE";
     private static final String EXTRA_EXTERNAL_LOCATION = "EXTRA_EXTERNAL_LOCATION";
 
@@ -87,7 +88,7 @@ public final class WidgetGuildScheduledEventSettings extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.guildscheduledevent.WidgetGuildScheduledEventSettings$onResume$1, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetGuildScheduledEventSettings.kt */
-    public final /* synthetic */ class AnonymousClass1 extends k implements Function1<GuildScheduledEventSettingsViewModel.ViewState, Unit> {
+    public final /* synthetic */ class AnonymousClass1 extends FunctionReferenceImpl implements Function1<GuildScheduledEventSettingsViewModel.ViewState, Unit> {
         public AnonymousClass1(WidgetGuildScheduledEventSettings widgetGuildScheduledEventSettings) {
             super(1, widgetGuildScheduledEventSettings, WidgetGuildScheduledEventSettings.class, "configureUi", "configureUi(Lcom/discord/widgets/guildscheduledevent/GuildScheduledEventSettingsViewModel$ViewState;)V", 0);
         }
@@ -100,7 +101,7 @@ public final class WidgetGuildScheduledEventSettings extends AppFragment {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(GuildScheduledEventSettingsViewModel.ViewState viewState) {
-            m.checkNotNullParameter(viewState, "p1");
+            Intrinsics3.checkNotNullParameter(viewState, "p1");
             WidgetGuildScheduledEventSettings.access$configureUi((WidgetGuildScheduledEventSettings) this.receiver, viewState);
         }
     }
@@ -130,7 +131,7 @@ public final class WidgetGuildScheduledEventSettings extends AppFragment {
         public final void onClick(View view) {
             GuildScheduledEventSettingsViewModel guildScheduledEventSettingsViewModelAccess$getViewModel$p = WidgetGuildScheduledEventSettings.access$getViewModel$p(WidgetGuildScheduledEventSettings.this);
             MaterialCheckBox materialCheckBox = WidgetGuildScheduledEventSettings.access$getBinding$p(WidgetGuildScheduledEventSettings.this).p;
-            m.checkNotNullExpressionValue(materialCheckBox, "binding.guildScheduledEv…ettingsVisibilityCheckbox");
+            Intrinsics3.checkNotNullExpressionValue(materialCheckBox, "binding.guildScheduledEv…ettingsVisibilityCheckbox");
             guildScheduledEventSettingsViewModelAccess$getViewModel$p.toggleBroadcastToDirectoryChannel(!materialCheckBox.isChecked());
         }
     }
@@ -145,24 +146,24 @@ public final class WidgetGuildScheduledEventSettings extends AppFragment {
         public final void onClick(View view) {
             GuildScheduledEventSettingsViewModel guildScheduledEventSettingsViewModelAccess$getViewModel$p = WidgetGuildScheduledEventSettings.access$getViewModel$p(WidgetGuildScheduledEventSettings.this);
             MaterialCheckBox materialCheckBox = WidgetGuildScheduledEventSettings.access$getBinding$p(WidgetGuildScheduledEventSettings.this).p;
-            m.checkNotNullExpressionValue(materialCheckBox, "binding.guildScheduledEv…ettingsVisibilityCheckbox");
+            Intrinsics3.checkNotNullExpressionValue(materialCheckBox, "binding.guildScheduledEv…ettingsVisibilityCheckbox");
             guildScheduledEventSettingsViewModelAccess$getViewModel$p.toggleBroadcastToDirectoryChannel(materialCheckBox.isChecked());
         }
     }
 
     /* JADX INFO: renamed from: com.discord.widgets.guildscheduledevent.WidgetGuildScheduledEventSettings$onResume$2, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetGuildScheduledEventSettings.kt */
-    public final class AnonymousClass2<T1, T2, R> implements Func2<GuildScheduledEventSettingsViewModel.ViewState, GuildScheduledEventDirectoryAssociationState, Pair<? extends GuildScheduledEventSettingsViewModel.ViewState, ? extends GuildScheduledEventDirectoryAssociationState>> {
+    public final class AnonymousClass2<T1, T2, R> implements Func2<GuildScheduledEventSettingsViewModel.ViewState, GuildScheduledEventDirectoryAssociationViewModel2, Tuples2<? extends GuildScheduledEventSettingsViewModel.ViewState, ? extends GuildScheduledEventDirectoryAssociationViewModel2>> {
         public static final AnonymousClass2 INSTANCE = new AnonymousClass2();
 
         @Override // rx.functions.Func2
-        public /* bridge */ /* synthetic */ Pair<? extends GuildScheduledEventSettingsViewModel.ViewState, ? extends GuildScheduledEventDirectoryAssociationState> call(GuildScheduledEventSettingsViewModel.ViewState viewState, GuildScheduledEventDirectoryAssociationState guildScheduledEventDirectoryAssociationState) {
-            return call2(viewState, guildScheduledEventDirectoryAssociationState);
+        public /* bridge */ /* synthetic */ Tuples2<? extends GuildScheduledEventSettingsViewModel.ViewState, ? extends GuildScheduledEventDirectoryAssociationViewModel2> call(GuildScheduledEventSettingsViewModel.ViewState viewState, GuildScheduledEventDirectoryAssociationViewModel2 guildScheduledEventDirectoryAssociationViewModel2) {
+            return call2(viewState, guildScheduledEventDirectoryAssociationViewModel2);
         }
 
         /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
-        public final Pair<GuildScheduledEventSettingsViewModel.ViewState, GuildScheduledEventDirectoryAssociationState> call2(GuildScheduledEventSettingsViewModel.ViewState viewState, GuildScheduledEventDirectoryAssociationState guildScheduledEventDirectoryAssociationState) {
-            return o.to(viewState, guildScheduledEventDirectoryAssociationState);
+        public final Tuples2<GuildScheduledEventSettingsViewModel.ViewState, GuildScheduledEventDirectoryAssociationViewModel2> call2(GuildScheduledEventSettingsViewModel.ViewState viewState, GuildScheduledEventDirectoryAssociationViewModel2 guildScheduledEventDirectoryAssociationViewModel2) {
+            return Tuples.to(viewState, guildScheduledEventDirectoryAssociationViewModel2);
         }
     }
 
@@ -184,21 +185,21 @@ public final class WidgetGuildScheduledEventSettings extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.guildscheduledevent.WidgetGuildScheduledEventSettings$onResume$3, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetGuildScheduledEventSettings.kt */
-    public final /* synthetic */ class AnonymousClass3 extends k implements Function1<Pair<? extends GuildScheduledEventSettingsViewModel.ViewState, ? extends GuildScheduledEventDirectoryAssociationState>, Unit> {
+    public final /* synthetic */ class AnonymousClass3 extends FunctionReferenceImpl implements Function1<Tuples2<? extends GuildScheduledEventSettingsViewModel.ViewState, ? extends GuildScheduledEventDirectoryAssociationViewModel2>, Unit> {
         public AnonymousClass3(WidgetGuildScheduledEventSettings widgetGuildScheduledEventSettings) {
             super(1, widgetGuildScheduledEventSettings, WidgetGuildScheduledEventSettings.class, "configureVisibilitySettings", "configureVisibilitySettings(Lkotlin/Pair;)V", 0);
         }
 
         @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Pair<? extends GuildScheduledEventSettingsViewModel.ViewState, ? extends GuildScheduledEventDirectoryAssociationState> pair) {
-            invoke2((Pair<? extends GuildScheduledEventSettingsViewModel.ViewState, GuildScheduledEventDirectoryAssociationState>) pair);
+        public /* bridge */ /* synthetic */ Unit invoke(Tuples2<? extends GuildScheduledEventSettingsViewModel.ViewState, ? extends GuildScheduledEventDirectoryAssociationViewModel2> tuples2) {
+            invoke2((Tuples2<? extends GuildScheduledEventSettingsViewModel.ViewState, GuildScheduledEventDirectoryAssociationViewModel2>) tuples2);
             return Unit.a;
         }
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Pair<? extends GuildScheduledEventSettingsViewModel.ViewState, GuildScheduledEventDirectoryAssociationState> pair) {
-            m.checkNotNullParameter(pair, "p1");
-            WidgetGuildScheduledEventSettings.access$configureVisibilitySettings((WidgetGuildScheduledEventSettings) this.receiver, pair);
+        public final void invoke2(Tuples2<? extends GuildScheduledEventSettingsViewModel.ViewState, GuildScheduledEventDirectoryAssociationViewModel2> tuples2) {
+            Intrinsics3.checkNotNullParameter(tuples2, "p1");
+            WidgetGuildScheduledEventSettings.access$configureVisibilitySettings((WidgetGuildScheduledEventSettings) this.receiver, tuples2);
         }
     }
 
@@ -211,7 +212,7 @@ public final class WidgetGuildScheduledEventSettings extends AppFragment {
         @Override // android.view.View.OnClickListener
         public final void onClick(View view) {
             GuildScheduledEventModel eventModel;
-            GuildScheduledEventPickerTime startTime;
+            GuildScheduledEventPickerDateTime3 startTime;
             GuildScheduledEventSettingsViewModel.ViewState.Initialized initializedAccess$getCurrentViewState$p = WidgetGuildScheduledEventSettings.access$getCurrentViewState$p(WidgetGuildScheduledEventSettings.this);
             if (initializedAccess$getCurrentViewState$p == null || (eventModel = initializedAccess$getCurrentViewState$p.getEventModel()) == null || (startTime = eventModel.getStartTime()) == null) {
                 return;
@@ -229,14 +230,14 @@ public final class WidgetGuildScheduledEventSettings extends AppFragment {
         @Override // android.view.View.OnClickListener
         public final void onClick(View view) {
             GuildScheduledEventModel eventModel;
-            GuildScheduledEventPickerDate startDate;
+            GuildScheduledEventPickerDateTime2 startDate;
             GuildScheduledEventSettingsViewModel.ViewState.Initialized initializedAccess$getCurrentViewState$p = WidgetGuildScheduledEventSettings.access$getCurrentViewState$p(WidgetGuildScheduledEventSettings.this);
             if (initializedAccess$getCurrentViewState$p == null || (eventModel = initializedAccess$getCurrentViewState$p.getEventModel()) == null || (startDate = eventModel.getStartDate()) == null) {
                 return;
             }
             DatePickerDialog datePickerDialog = new DatePickerDialog(WidgetGuildScheduledEventSettings.this.requireContext(), new WidgetGuildScheduledEventSettings$onViewBound$6$$special$$inlined$let$lambda$1(this), startDate.getYear(), startDate.getMonth(), startDate.getDayOfMonth());
             DatePicker datePicker = datePickerDialog.getDatePicker();
-            m.checkNotNullExpressionValue(datePicker, "datePicker");
+            Intrinsics3.checkNotNullExpressionValue(datePicker, "datePicker");
             datePicker.setMinDate(ClockFactory.get().currentTimeMillis());
             datePickerDialog.show();
         }
@@ -255,12 +256,12 @@ public final class WidgetGuildScheduledEventSettings extends AppFragment {
             if (initializedAccess$getCurrentViewState$p == null || (eventModel = initializedAccess$getCurrentViewState$p.getEventModel()) == null) {
                 return;
             }
-            GuildScheduledEventPickerTime second = GuildScheduledEventPickerDateTime.INSTANCE.generateDefaultEndDateTime(eventModel.getStartDate(), eventModel.getStartTime()).getSecond();
+            GuildScheduledEventPickerDateTime3 second = GuildScheduledEventPickerDateTime.INSTANCE.generateDefaultEndDateTime(eventModel.getStartDate(), eventModel.getStartTime()).getSecond();
             Context contextRequireContext = WidgetGuildScheduledEventSettings.this.requireContext();
             WidgetGuildScheduledEventSettings$onViewBound$7$$special$$inlined$let$lambda$1 widgetGuildScheduledEventSettings$onViewBound$7$$special$$inlined$let$lambda$1 = new WidgetGuildScheduledEventSettings$onViewBound$7$$special$$inlined$let$lambda$1(this);
-            GuildScheduledEventPickerTime endTime = eventModel.getEndTime();
+            GuildScheduledEventPickerDateTime3 endTime = eventModel.getEndTime();
             int hourOfDay = endTime != null ? endTime.getHourOfDay() : second.getHourOfDay();
-            GuildScheduledEventPickerTime endTime2 = eventModel.getEndTime();
+            GuildScheduledEventPickerDateTime3 endTime2 = eventModel.getEndTime();
             new TimePickerDialog(contextRequireContext, widgetGuildScheduledEventSettings$onViewBound$7$$special$$inlined$let$lambda$1, hourOfDay, endTime2 != null ? endTime2.getMinute() : second.getMinute(), false).show();
         }
     }
@@ -278,17 +279,17 @@ public final class WidgetGuildScheduledEventSettings extends AppFragment {
             if (initializedAccess$getCurrentViewState$p == null || (eventModel = initializedAccess$getCurrentViewState$p.getEventModel()) == null) {
                 return;
             }
-            GuildScheduledEventPickerDate first = GuildScheduledEventPickerDateTime.INSTANCE.generateDefaultEndDateTime(eventModel.getStartDate(), eventModel.getStartTime()).getFirst();
+            GuildScheduledEventPickerDateTime2 first = GuildScheduledEventPickerDateTime.INSTANCE.generateDefaultEndDateTime(eventModel.getStartDate(), eventModel.getStartTime()).getFirst();
             Context contextRequireContext = WidgetGuildScheduledEventSettings.this.requireContext();
             WidgetGuildScheduledEventSettings$onViewBound$8$$special$$inlined$let$lambda$1 widgetGuildScheduledEventSettings$onViewBound$8$$special$$inlined$let$lambda$1 = new WidgetGuildScheduledEventSettings$onViewBound$8$$special$$inlined$let$lambda$1(this);
-            GuildScheduledEventPickerDate endDate = eventModel.getEndDate();
+            GuildScheduledEventPickerDateTime2 endDate = eventModel.getEndDate();
             int year = endDate != null ? endDate.getYear() : first.getYear();
-            GuildScheduledEventPickerDate endDate2 = eventModel.getEndDate();
+            GuildScheduledEventPickerDateTime2 endDate2 = eventModel.getEndDate();
             int month = endDate2 != null ? endDate2.getMonth() : first.getMonth();
-            GuildScheduledEventPickerDate endDate3 = eventModel.getEndDate();
+            GuildScheduledEventPickerDateTime2 endDate3 = eventModel.getEndDate();
             DatePickerDialog datePickerDialog = new DatePickerDialog(contextRequireContext, widgetGuildScheduledEventSettings$onViewBound$8$$special$$inlined$let$lambda$1, year, month, endDate3 != null ? endDate3.getDayOfMonth() : first.getDayOfMonth());
             DatePicker datePicker = datePickerDialog.getDatePicker();
-            m.checkNotNullExpressionValue(datePicker, "datePicker");
+            Intrinsics3.checkNotNullExpressionValue(datePicker, "datePicker");
             datePicker.setMinDate(Math.max(eventModel.getStartDate().toMillis(), ClockFactory.get().currentTimeMillis()));
             datePickerDialog.show();
         }
@@ -331,9 +332,9 @@ public final class WidgetGuildScheduledEventSettings extends AppFragment {
         }
 
         public final void launch(Context context, ActivityResultLauncher<Intent> launcher, long guildId, GuildScheduledEventEntityType entityType, Long channelId, String externalLocation, Long existingGuildScheduledEventId) {
-            m.checkNotNullParameter(context, "context");
-            m.checkNotNullParameter(launcher, "launcher");
-            m.checkNotNullParameter(entityType, "entityType");
+            Intrinsics3.checkNotNullParameter(context, "context");
+            Intrinsics3.checkNotNullParameter(launcher, "launcher");
+            Intrinsics3.checkNotNullParameter(entityType, "entityType");
             Intent intent = new Intent();
             intent.putExtra("com.discord.intent.extra.EXTRA_GUILD_ID", guildId);
             intent.putExtra(WidgetGuildScheduledEventSettings.EXTRA_ENTITY_TYPE, entityType);
@@ -346,15 +347,15 @@ public final class WidgetGuildScheduledEventSettings extends AppFragment {
             if (existingGuildScheduledEventId != null) {
                 intent.putExtra("com.discord.intent.extra.EXTRA_GUILD_SCHEDULED_EVENT_ID", existingGuildScheduledEventId.longValue());
             }
-            j.g.f(context, launcher, WidgetGuildScheduledEventSettings.class, intent);
+            AppScreen2.g.f(context, launcher, WidgetGuildScheduledEventSettings.class, intent);
         }
 
         public final ActivityResultLauncher<Intent> registerForResult(Fragment fragment, Function0<Unit> onFinished, Function0<Unit> onQuit) {
-            m.checkNotNullParameter(fragment, "fragment");
-            m.checkNotNullParameter(onFinished, "onFinished");
-            m.checkNotNullParameter(onQuit, "onQuit");
+            Intrinsics3.checkNotNullParameter(fragment, "fragment");
+            Intrinsics3.checkNotNullParameter(onFinished, "onFinished");
+            Intrinsics3.checkNotNullParameter(onQuit, "onQuit");
             ActivityResultLauncher<Intent> activityResultLauncherRegisterForActivityResult = fragment.registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new WidgetGuildScheduledEventSettings$Companion$registerForResult$1(onFinished, onQuit));
-            m.checkNotNullExpressionValue(activityResultLauncherRegisterForActivityResult, "fragment.registerForActi…  }\n          }\n        }");
+            Intrinsics3.checkNotNullExpressionValue(activityResultLauncherRegisterForActivityResult, "fragment.registerForActi…  }\n          }\n        }");
             return activityResultLauncherRegisterForActivityResult;
         }
 
@@ -379,13 +380,13 @@ public final class WidgetGuildScheduledEventSettings extends AppFragment {
 
     public WidgetGuildScheduledEventSettings() {
         super(R.layout.widget_guild_scheduled_event_settings);
-        this.binding = FragmentViewBindingDelegateKt.viewBinding$default(this, WidgetGuildScheduledEventSettings$binding$2.INSTANCE, null, 2, null);
-        this.guildId = g.lazy(new WidgetGuildScheduledEventSettings$guildId$2(this));
-        this.existingGuildScheduledEventId = g.lazy(new WidgetGuildScheduledEventSettings$existingGuildScheduledEventId$2(this));
-        this.hubViewModel = FragmentViewModelLazyKt.createViewModelLazy(this, a0.getOrCreateKotlinClass(GuildScheduledEventDirectoryAssociationViewModel.class), new WidgetGuildScheduledEventSettings$appActivityViewModels$$inlined$activityViewModels$1(this), new f0(new WidgetGuildScheduledEventSettings$hubViewModel$2(this)));
+        this.binding = FragmentViewBindingDelegate3.viewBinding$default(this, WidgetGuildScheduledEventSettings$binding$2.INSTANCE, null, 2, null);
+        this.guildId = LazyJVM.lazy(new WidgetGuildScheduledEventSettings$guildId$2(this));
+        this.existingGuildScheduledEventId = LazyJVM.lazy(new WidgetGuildScheduledEventSettings$existingGuildScheduledEventId$2(this));
+        this.hubViewModel = FragmentViewModelLazyKt.createViewModelLazy(this, Reflection2.getOrCreateKotlinClass(GuildScheduledEventDirectoryAssociationViewModel.class), new WidgetGuildScheduledEventSettings$appActivityViewModels$$inlined$activityViewModels$1(this), new AppViewModelDelegates2(new WidgetGuildScheduledEventSettings$hubViewModel$2(this)));
         WidgetGuildScheduledEventSettings$viewModel$2 widgetGuildScheduledEventSettings$viewModel$2 = new WidgetGuildScheduledEventSettings$viewModel$2(this);
-        g0 g0Var = new g0(this);
-        this.viewModel = FragmentViewModelLazyKt.createViewModelLazy(this, a0.getOrCreateKotlinClass(GuildScheduledEventSettingsViewModel.class), new WidgetGuildScheduledEventSettings$appViewModels$$inlined$viewModels$1(g0Var), new i0(widgetGuildScheduledEventSettings$viewModel$2));
+        AppViewModelDelegates3 appViewModelDelegates3 = new AppViewModelDelegates3(this);
+        this.viewModel = FragmentViewModelLazyKt.createViewModelLazy(this, Reflection2.getOrCreateKotlinClass(GuildScheduledEventSettingsViewModel.class), new WidgetGuildScheduledEventSettings$appViewModels$$inlined$viewModels$1(appViewModelDelegates3), new AppViewModelDelegates5(widgetGuildScheduledEventSettings$viewModel$2));
         this.previewLauncher = WidgetPreviewGuildScheduledEvent.INSTANCE.registerForResult(this, new WidgetGuildScheduledEventSettings$previewLauncher$1(this), new WidgetGuildScheduledEventSettings$previewLauncher$2(this));
     }
 
@@ -393,8 +394,8 @@ public final class WidgetGuildScheduledEventSettings extends AppFragment {
         widgetGuildScheduledEventSettings.configureUi(viewState);
     }
 
-    public static final /* synthetic */ void access$configureVisibilitySettings(WidgetGuildScheduledEventSettings widgetGuildScheduledEventSettings, Pair pair) {
-        widgetGuildScheduledEventSettings.configureVisibilitySettings(pair);
+    public static final /* synthetic */ void access$configureVisibilitySettings(WidgetGuildScheduledEventSettings widgetGuildScheduledEventSettings, Tuples2 tuples2) {
+        widgetGuildScheduledEventSettings.configureVisibilitySettings(tuples2);
     }
 
     public static final /* synthetic */ WidgetGuildScheduledEventSettingsBinding access$getBinding$p(WidgetGuildScheduledEventSettings widgetGuildScheduledEventSettings) {
@@ -433,33 +434,33 @@ public final class WidgetGuildScheduledEventSettings extends AppFragment {
         String dateTime;
         if (viewState.getEventModel().getEntityType() != GuildScheduledEventEntityType.EXTERNAL) {
             TextView textView = getBinding().d;
-            m.checkNotNullExpressionValue(textView, "binding.endDateHeader");
+            Intrinsics3.checkNotNullExpressionValue(textView, "binding.endDateHeader");
             textView.setVisibility(8);
             TextView textView2 = getBinding().g;
-            m.checkNotNullExpressionValue(textView2, "binding.endTimeHeader");
+            Intrinsics3.checkNotNullExpressionValue(textView2, "binding.endTimeHeader");
             textView2.setVisibility(8);
             TextInputLayout textInputLayout = getBinding().f;
-            m.checkNotNullExpressionValue(textInputLayout, "binding.endDateLayout");
+            Intrinsics3.checkNotNullExpressionValue(textInputLayout, "binding.endDateLayout");
             textInputLayout.setVisibility(8);
             TextInputLayout textInputLayout2 = getBinding().i;
-            m.checkNotNullExpressionValue(textInputLayout2, "binding.endTimeLayout");
+            Intrinsics3.checkNotNullExpressionValue(textInputLayout2, "binding.endTimeLayout");
             textInputLayout2.setVisibility(8);
             return;
         }
         TextView textView3 = getBinding().d;
-        m.checkNotNullExpressionValue(textView3, "binding.endDateHeader");
+        Intrinsics3.checkNotNullExpressionValue(textView3, "binding.endDateHeader");
         textView3.setVisibility(0);
         TextView textView4 = getBinding().g;
-        m.checkNotNullExpressionValue(textView4, "binding.endTimeHeader");
+        Intrinsics3.checkNotNullExpressionValue(textView4, "binding.endTimeHeader");
         textView4.setVisibility(0);
         TextInputLayout textInputLayout3 = getBinding().f;
-        m.checkNotNullExpressionValue(textInputLayout3, "binding.endDateLayout");
+        Intrinsics3.checkNotNullExpressionValue(textInputLayout3, "binding.endDateLayout");
         textInputLayout3.setVisibility(0);
         TextInputLayout textInputLayout4 = getBinding().i;
-        m.checkNotNullExpressionValue(textInputLayout4, "binding.endTimeLayout");
+        Intrinsics3.checkNotNullExpressionValue(textInputLayout4, "binding.endTimeLayout");
         textInputLayout4.setVisibility(0);
-        GuildScheduledEventPickerDate endDate = viewState.getEventModel().getEndDate();
-        GuildScheduledEventPickerTime endTime = viewState.getEventModel().getEndTime();
+        GuildScheduledEventPickerDateTime2 endDate = viewState.getEventModel().getEndDate();
+        GuildScheduledEventPickerDateTime3 endTime = viewState.getEventModel().getEndTime();
         String str = "";
         if (endDate == null || (dateTime = DateUtils.formatDateTime(getContext(), endDate.toMillis(), 524292)) == null) {
             dateTime = "";
@@ -467,7 +468,7 @@ public final class WidgetGuildScheduledEventSettings extends AppFragment {
         if (endTime != null) {
             GuildScheduledEventPickerDateTime guildScheduledEventPickerDateTime = GuildScheduledEventPickerDateTime.INSTANCE;
             if (endDate == null) {
-                endDate = GuildScheduledEventPickerDate.INSTANCE.now();
+                endDate = GuildScheduledEventPickerDateTime2.INSTANCE.now();
             }
             String dateTime2 = DateUtils.formatDateTime(getContext(), guildScheduledEventPickerDateTime.toMillis(endDate, endTime), 257);
             if (dateTime2 != null) {
@@ -481,7 +482,7 @@ public final class WidgetGuildScheduledEventSettings extends AppFragment {
     private final void configureStartDateTime(GuildScheduledEventSettingsViewModel.ViewState.Initialized viewState) {
         long millis = GuildScheduledEventPickerDateTime.INSTANCE.toMillis(viewState.getEventModel().getStartDate(), viewState.getEventModel().getStartTime());
         GuildScheduledEvent existingEvent = viewState.getExistingEvent();
-        boolean z2 = (existingEvent != null ? GuildScheduledEventUtilitiesKt.getEventTiming(existingEvent) : null) == GuildScheduledEventTiming.LIVE;
+        boolean z2 = (existingEvent != null ? GuildScheduledEventUtilities5.getEventTiming(existingEvent) : null) == GuildScheduledEventUtilities2.LIVE;
         TextInputEditText textInputEditText = getBinding().l;
         ViewExtensions.setEnabledAndAlpha$default(textInputEditText, !z2, 0.0f, 2, null);
         textInputEditText.setText(DateUtils.formatDateTime(textInputEditText.getContext(), millis, 524292));
@@ -505,22 +506,22 @@ public final class WidgetGuildScheduledEventSettings extends AppFragment {
         GuildScheduledEventModel eventModel = initialized.getEventModel();
         TextInputEditText textInputEditText = getBinding().o;
         Editable text = textInputEditText.getText();
-        if (!m.areEqual(text != null ? text.toString() : null, eventModel.getName())) {
+        if (!Intrinsics3.areEqual(text != null ? text.toString() : null, eventModel.getName())) {
             textInputEditText.setText(eventModel.getName());
         }
         TextInputEditText textInputEditText2 = getBinding().j;
         Editable text2 = textInputEditText2.getText();
-        if (!m.areEqual(text2 != null ? text2.toString() : null, eventModel.getDescription())) {
+        if (!Intrinsics3.areEqual(text2 != null ? text2.toString() : null, eventModel.getDescription())) {
             textInputEditText2.setText(eventModel.getDescription());
         }
         configureStartDateTime(initialized);
         configureEndDateTime(initialized);
         MaterialButton materialButton = getBinding().k;
-        m.checkNotNullExpressionValue(materialButton, "binding.guildScheduledEventSettingsNextButton");
+        Intrinsics3.checkNotNullExpressionValue(materialButton, "binding.guildScheduledEventSettingsNextButton");
         materialButton.setEnabled(getViewModel().isNextButtonEnabled());
     }
 
-    private final void configureVisibilitySettings(Pair<? extends GuildScheduledEventSettingsViewModel.ViewState, GuildScheduledEventDirectoryAssociationState> states) {
+    private final void configureVisibilitySettings(Tuples2<? extends GuildScheduledEventSettingsViewModel.ViewState, GuildScheduledEventDirectoryAssociationViewModel2> states) {
         GuildScheduledEventSettingsViewModel.ViewState viewStateComponent1 = states.component1();
         GuildScheduledEventBroadcast guildScheduledEventBroadcastInvoke = states.component2().getEnabledAsync().invoke();
         if (guildScheduledEventBroadcastInvoke == null || !(viewStateComponent1 instanceof GuildScheduledEventSettingsViewModel.ViewState.Initialized)) {
@@ -530,18 +531,18 @@ public final class WidgetGuildScheduledEventSettings extends AppFragment {
         GuildScheduledEventSettingsViewModel.ViewState.Initialized initialized = (GuildScheduledEventSettingsViewModel.ViewState.Initialized) viewStateComponent1;
         boolean zIsEventViewableByEveryone = GuildScheduledEventUtilities.INSTANCE.isEventViewableByEveryone(initialized.getEventModel().getChannelId());
         LinearLayout linearLayout = getBinding().q;
-        m.checkNotNullExpressionValue(linearLayout, "binding.guildScheduledEv…ttingsVisibilityContainer");
+        Intrinsics3.checkNotNullExpressionValue(linearLayout, "binding.guildScheduledEv…ttingsVisibilityContainer");
         linearLayout.setClickable(zIsEventViewableByEveryone);
         View view = getBinding().r;
-        m.checkNotNullExpressionValue(view, "binding.guildScheduledEv…sibilityContainerDisabled");
+        Intrinsics3.checkNotNullExpressionValue(view, "binding.guildScheduledEv…sibilityContainerDisabled");
         boolean zBooleanValue = false;
         view.setVisibility(zIsEventViewableByEveryone ^ true ? 0 : 8);
         MaterialCheckBox materialCheckBox = getBinding().p;
-        m.checkNotNullExpressionValue(materialCheckBox, "binding.guildScheduledEv…ettingsVisibilityCheckbox");
+        Intrinsics3.checkNotNullExpressionValue(materialCheckBox, "binding.guildScheduledEv…ettingsVisibilityCheckbox");
         materialCheckBox.setClickable(zIsEventViewableByEveryone);
         MaterialCheckBox materialCheckBox2 = getBinding().p;
-        m.checkNotNullExpressionValue(materialCheckBox2, "binding.guildScheduledEv…ettingsVisibilityCheckbox");
-        materialCheckBox2.setChecked(m.areEqual(initialized.getEventModel().getBroadcastToDirectoryChannels(), Boolean.TRUE));
+        Intrinsics3.checkNotNullExpressionValue(materialCheckBox2, "binding.guildScheduledEv…ettingsVisibilityCheckbox");
+        materialCheckBox2.setChecked(Intrinsics3.areEqual(initialized.getEventModel().getBroadcastToDirectoryChannels(), Boolean.TRUE));
         if (guildScheduledEventBroadcastInvoke.getCanBroadcast() && initialized.getEventModel().getBroadcastToDirectoryChannels() == null) {
             if (zIsEventViewableByEveryone) {
                 Boolean hasBroadcast = guildScheduledEventBroadcastInvoke.getHasBroadcast();
@@ -576,24 +577,24 @@ public final class WidgetGuildScheduledEventSettings extends AppFragment {
         super.onResume();
         ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeViewState(), this, null, 2, null), WidgetGuildScheduledEventSettings.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass1(this), 62, (Object) null);
         Observable observableJ = Observable.j(getViewModel().observeViewState(), getHubViewModel().observeViewState(), AnonymousClass2.INSTANCE);
-        m.checkNotNullExpressionValue(observableJ, "Observable.combineLatest…ttingsState to hubState }");
+        Intrinsics3.checkNotNullExpressionValue(observableJ, "Observable.combineLatest…ttingsState to hubState }");
         ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.bindToComponentLifecycle$default(ObservableExtensionsKt.ui(observableJ), this, null, 2, null), WidgetGuildScheduledEventSettings.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass3(this), 62, (Object) null);
     }
 
     @Override // com.discord.app.AppFragment
     public void onViewBound(View view) {
-        m.checkNotNullParameter(view, "view");
+        Intrinsics3.checkNotNullParameter(view, "view");
         super.onViewBound(view);
         TextView textView = getBinding().n;
-        m.checkNotNullExpressionValue(textView, "binding.guildScheduledEventSettingsStepText");
-        b.n(textView, R.string.guild_event_step_label, new Object[]{2, 3}, null, 4);
+        Intrinsics3.checkNotNullExpressionValue(textView, "binding.guildScheduledEventSettingsStepText");
+        FormatUtils.n(textView, R.string.guild_event_step_label, new Object[]{2, 3}, null, 4);
         getBinding().f2448b.setOnClickListener(new AnonymousClass1());
         getBinding().c.setOnClickListener(new AnonymousClass2());
         TextInputEditText textInputEditText = getBinding().o;
-        m.checkNotNullExpressionValue(textInputEditText, "binding.guildScheduledEventSettingsTopicInput");
+        Intrinsics3.checkNotNullExpressionValue(textInputEditText, "binding.guildScheduledEventSettingsTopicInput");
         textInputEditText.addTextChangedListener(new WidgetGuildScheduledEventSettings$onViewBound$$inlined$addTextChangedListener$1(this));
         TextInputEditText textInputEditText2 = getBinding().j;
-        m.checkNotNullExpressionValue(textInputEditText2, "binding.guildScheduledEv…tSettingsDescriptionInput");
+        Intrinsics3.checkNotNullExpressionValue(textInputEditText2, "binding.guildScheduledEv…tSettingsDescriptionInput");
         textInputEditText2.addTextChangedListener(new WidgetGuildScheduledEventSettings$onViewBound$$inlined$addTextChangedListener$2(this));
         getBinding().m.setOnClickListener(new AnonymousClass5());
         getBinding().l.setOnClickListener(new AnonymousClass6());
@@ -607,26 +608,26 @@ public final class WidgetGuildScheduledEventSettings extends AppFragment {
     private final void showDateErrorToast(GuildScheduledEventSettingsViewModel.DateError error) {
         int iOrdinal = error.ordinal();
         if (iOrdinal == 1) {
-            b.a.d.m.g(requireContext(), R.string.guild_event_past_start_date, 0, null, 12);
+            AppToast.g(requireContext(), R.string.guild_event_past_start_date, 0, null, 12);
         } else if (iOrdinal == 2) {
-            b.a.d.m.g(requireContext(), R.string.guild_event_past_end_date_1, 0, null, 12);
+            AppToast.g(requireContext(), R.string.guild_event_past_end_date_1, 0, null, 12);
         } else {
             if (iOrdinal != 3) {
                 return;
             }
-            b.a.d.m.g(requireContext(), R.string.guild_event_end_date_before_start_date, 0, null, 12);
+            AppToast.g(requireContext(), R.string.guild_event_end_date_before_start_date, 0, null, 12);
         }
     }
 
     private final void toggleVisibilityOptions(boolean show) {
         TextView textView = getBinding().t;
-        m.checkNotNullExpressionValue(textView, "binding.guildScheduledEv…tSettingsVisibilityHeader");
+        Intrinsics3.checkNotNullExpressionValue(textView, "binding.guildScheduledEv…tSettingsVisibilityHeader");
         textView.setVisibility(show ? 0 : 8);
         LinearLayout linearLayout = getBinding().q;
-        m.checkNotNullExpressionValue(linearLayout, "binding.guildScheduledEv…ttingsVisibilityContainer");
+        Intrinsics3.checkNotNullExpressionValue(linearLayout, "binding.guildScheduledEv…ttingsVisibilityContainer");
         linearLayout.setVisibility(show ? 0 : 8);
         TextView textView2 = getBinding().f2449s;
-        m.checkNotNullExpressionValue(textView2, "binding.guildScheduledEv…ingsVisibilityDescription");
+        Intrinsics3.checkNotNullExpressionValue(textView2, "binding.guildScheduledEv…ingsVisibilityDescription");
         textView2.setVisibility(show ? 0 : 8);
     }
 }

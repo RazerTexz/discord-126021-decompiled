@@ -1,14 +1,14 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackA11yRuntimeViolation.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackA11yRuntimeViolation implements AnalyticsSchema, TrackBaseReceiver {
+public final /* data */ class TrackA11yRuntimeViolation implements AnalyticsSchema, TrackBase2 {
     private final CharSequence hash = null;
     private final CharSequence message = null;
     private final CharSequence ruleId = null;
@@ -24,7 +24,7 @@ public final /* data */ class TrackA11yRuntimeViolation implements AnalyticsSche
             return false;
         }
         TrackA11yRuntimeViolation trackA11yRuntimeViolation = (TrackA11yRuntimeViolation) other;
-        return m.areEqual(this.ruleId, trackA11yRuntimeViolation.ruleId) && m.areEqual(this.trace, trackA11yRuntimeViolation.trace) && m.areEqual(this.message, trackA11yRuntimeViolation.message) && m.areEqual(this.hash, trackA11yRuntimeViolation.hash);
+        return Intrinsics3.areEqual(this.ruleId, trackA11yRuntimeViolation.ruleId) && Intrinsics3.areEqual(this.trace, trackA11yRuntimeViolation.trace) && Intrinsics3.areEqual(this.message, trackA11yRuntimeViolation.message) && Intrinsics3.areEqual(this.hash, trackA11yRuntimeViolation.hash);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -45,13 +45,13 @@ public final /* data */ class TrackA11yRuntimeViolation implements AnalyticsSche
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackA11yRuntimeViolation(ruleId=");
+        StringBuilder sbU = outline.U("TrackA11yRuntimeViolation(ruleId=");
         sbU.append(this.ruleId);
         sbU.append(", trace=");
         sbU.append(this.trace);
         sbU.append(", message=");
         sbU.append(this.message);
         sbU.append(", hash=");
-        return a.E(sbU, this.hash, ")");
+        return outline.E(sbU, this.hash, ")");
     }
 }

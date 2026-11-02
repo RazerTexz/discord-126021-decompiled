@@ -9,12 +9,12 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.viewbinding.ViewBinding;
-import b.a.i.a3;
-import b.a.i.a6;
-import b.a.i.b3;
-import b.a.i.f0;
-import b.a.i.s0;
-import b.a.i.z2;
+import b.a.i.LayoutAccountCreditsListBinding;
+import b.a.i.LayoutPremiumSettingsPaymentBinding;
+import b.a.i.ViewPremiumSettingsPerksBinding;
+import b.a.i.ViewPremiumSettingsTier1Binding;
+import b.a.i.ViewPremiumSettingsTier2Binding;
+import b.a.i.WidgetSettingsPremiumPriceChangeNoticeBinding;
 import com.discord.app.AppViewFlipper;
 import com.discord.views.ActiveSubscriptionView;
 import com.google.android.material.button.MaterialButton;
@@ -27,13 +27,13 @@ public final class WidgetSettingsPremiumBinding implements ViewBinding {
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final f0 f2633b;
+    public final LayoutAccountCreditsListBinding f2633b;
 
     @NonNull
-    public final s0 c;
+    public final LayoutPremiumSettingsPaymentBinding c;
 
     @NonNull
-    public final z2 d;
+    public final ViewPremiumSettingsPerksBinding d;
 
     @NonNull
     public final ActiveSubscriptionView e;
@@ -54,7 +54,7 @@ public final class WidgetSettingsPremiumBinding implements ViewBinding {
     public final TextView j;
 
     @NonNull
-    public final a6 k;
+    public final WidgetSettingsPremiumPriceChangeNoticeBinding k;
 
     @NonNull
     public final MaterialButton l;
@@ -82,23 +82,23 @@ public final class WidgetSettingsPremiumBinding implements ViewBinding {
     public final AppViewFlipper f2634s;
 
     @NonNull
-    public final a3 t;
+    public final ViewPremiumSettingsTier1Binding t;
 
     @NonNull
-    public final b3 u;
+    public final ViewPremiumSettingsTier2Binding u;
 
-    public WidgetSettingsPremiumBinding(@NonNull CoordinatorLayout coordinatorLayout, @NonNull f0 f0Var, @NonNull s0 s0Var, @NonNull z2 z2Var, @NonNull ActiveSubscriptionView activeSubscriptionView, @NonNull ActiveSubscriptionView activeSubscriptionView2, @NonNull LinearLayout linearLayout, @NonNull TextView textView, @NonNull TextView textView2, @NonNull TextView textView3, @NonNull a6 a6Var, @NonNull MaterialButton materialButton, @NonNull ScrollView scrollView, @NonNull Button button, @NonNull CardView cardView, @NonNull TextView textView4, @NonNull LinearLayout linearLayout2, @NonNull TextView textView5, @NonNull AppViewFlipper appViewFlipper, @NonNull a3 a3Var, @NonNull b3 b3Var) {
+    public WidgetSettingsPremiumBinding(@NonNull CoordinatorLayout coordinatorLayout, @NonNull LayoutAccountCreditsListBinding layoutAccountCreditsListBinding, @NonNull LayoutPremiumSettingsPaymentBinding layoutPremiumSettingsPaymentBinding, @NonNull ViewPremiumSettingsPerksBinding viewPremiumSettingsPerksBinding, @NonNull ActiveSubscriptionView activeSubscriptionView, @NonNull ActiveSubscriptionView activeSubscriptionView2, @NonNull LinearLayout linearLayout, @NonNull TextView textView, @NonNull TextView textView2, @NonNull TextView textView3, @NonNull WidgetSettingsPremiumPriceChangeNoticeBinding widgetSettingsPremiumPriceChangeNoticeBinding, @NonNull MaterialButton materialButton, @NonNull ScrollView scrollView, @NonNull Button button, @NonNull CardView cardView, @NonNull TextView textView4, @NonNull LinearLayout linearLayout2, @NonNull TextView textView5, @NonNull AppViewFlipper appViewFlipper, @NonNull ViewPremiumSettingsTier1Binding viewPremiumSettingsTier1Binding, @NonNull ViewPremiumSettingsTier2Binding viewPremiumSettingsTier2Binding) {
         this.a = coordinatorLayout;
-        this.f2633b = f0Var;
-        this.c = s0Var;
-        this.d = z2Var;
+        this.f2633b = layoutAccountCreditsListBinding;
+        this.c = layoutPremiumSettingsPaymentBinding;
+        this.d = viewPremiumSettingsPerksBinding;
         this.e = activeSubscriptionView;
         this.f = activeSubscriptionView2;
         this.g = linearLayout;
         this.h = textView;
         this.i = textView2;
         this.j = textView3;
-        this.k = a6Var;
+        this.k = widgetSettingsPremiumPriceChangeNoticeBinding;
         this.l = materialButton;
         this.m = scrollView;
         this.n = button;
@@ -107,8 +107,8 @@ public final class WidgetSettingsPremiumBinding implements ViewBinding {
         this.q = linearLayout2;
         this.r = textView5;
         this.f2634s = appViewFlipper;
-        this.t = a3Var;
-        this.u = b3Var;
+        this.t = viewPremiumSettingsTier1Binding;
+        this.u = viewPremiumSettingsTier2Binding;
     }
 
     @Override // androidx.viewbinding.ViewBinding

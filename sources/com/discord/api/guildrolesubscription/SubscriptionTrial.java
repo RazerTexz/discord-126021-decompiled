@@ -1,8 +1,8 @@
 package com.discord.api.guildrolesubscription;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.models.domain.ModelAuditLogEntry;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: SubscriptionTrial.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -20,7 +20,7 @@ public final /* data */ class SubscriptionTrial {
             return false;
         }
         SubscriptionTrial subscriptionTrial = (SubscriptionTrial) other;
-        return this.id == subscriptionTrial.id && m.areEqual(this.interval, subscriptionTrial.interval) && this.intervalCount == subscriptionTrial.intervalCount && this.skuId == subscriptionTrial.skuId;
+        return this.id == subscriptionTrial.id && Intrinsics3.areEqual(this.interval, subscriptionTrial.interval) && this.intervalCount == subscriptionTrial.intervalCount && this.skuId == subscriptionTrial.skuId;
     }
 
     /* JADX INFO: renamed from: a, reason: from getter */
@@ -43,13 +43,13 @@ public final /* data */ class SubscriptionTrial {
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("SubscriptionTrial(id=");
+        StringBuilder sbU = outline.U("SubscriptionTrial(id=");
         sbU.append(this.id);
         sbU.append(", interval=");
         sbU.append(this.interval);
         sbU.append(", intervalCount=");
         sbU.append(this.intervalCount);
         sbU.append(", skuId=");
-        return a.C(sbU, this.skuId, ")");
+        return outline.C(sbU, this.skuId, ")");
     }
 }

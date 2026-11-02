@@ -5,9 +5,11 @@ import android.content.Context;
 import android.content.Intent;
 import androidx.annotation.MainThread;
 import androidx.annotation.StringRes;
-import androidx.view.ViewModelKt;
-import b.a.d.d0;
-import b.d.b.a.a;
+import androidx.view.ViewModel3;
+import b.a.d.AppViewModel;
+import b.a.j.FloatingViewManager;
+import b.a.v.AcknowledgedTooltipsCache;
+import b.d.b.a.outline;
 import b.i.a.f.e.o.f;
 import com.discord.R;
 import com.discord.api.channel.Channel;
@@ -39,18 +41,19 @@ import com.discord.utilities.permissions.VideoPermissionsManager;
 import com.discord.utilities.rx.ObservableExtensionsKt;
 import com.discord.utilities.time.Clock;
 import com.discord.utilities.time.ClockFactory;
-import com.discord.utilities.voice.VoiceChannelJoinability;
+import com.discord.utilities.voice.VoiceChannelJoinabilityUtils2;
 import com.discord.utilities.voice.VoiceEngineServiceController;
 import com.discord.widgets.voice.fullscreen.ParticipantsListItemGenerator;
 import com.discord.widgets.voice.model.CallModel;
 import com.discord.widgets.voice.model.CameraState;
-import d0.l;
-import d0.t.u;
-import d0.w.h.c;
-import d0.w.i.a.e;
-import d0.w.i.a.k;
-import d0.z.d.m;
-import d0.z.d.o;
+import d0.Result3;
+import d0.t.CollectionsJVM;
+import d0.t._Collections;
+import d0.w.h.Intrinsics2;
+import d0.w.i.a.ContinuationImpl6;
+import d0.w.i.a.DebugMetadata;
+import d0.z.d.Intrinsics3;
+import d0.z.d.Lambda;
 import java.lang.ref.WeakReference;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
@@ -70,7 +73,7 @@ import rx.subjects.PublishSubject;
 
 /* JADX INFO: compiled from: WidgetVoiceBottomSheetViewModel.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final class WidgetVoiceBottomSheetViewModel extends d0<ViewState> {
+public final class WidgetVoiceBottomSheetViewModel extends AppViewModel<ViewState> {
 
     /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
     public static final Companion INSTANCE = new Companion(null);
@@ -100,7 +103,7 @@ public final class WidgetVoiceBottomSheetViewModel extends d0<ViewState> {
 
     /* JADX INFO: renamed from: com.discord.widgets.voice.sheet.WidgetVoiceBottomSheetViewModel$1, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetVoiceBottomSheetViewModel.kt */
-    public final class AnonymousClass1 extends o implements Function1<StoreState, Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function1<StoreState, Unit> {
         public AnonymousClass1() {
             super(1);
         }
@@ -113,15 +116,15 @@ public final class WidgetVoiceBottomSheetViewModel extends d0<ViewState> {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(StoreState storeState) {
-            m.checkNotNullParameter(storeState, "storeState");
+            Intrinsics3.checkNotNullParameter(storeState, "storeState");
             WidgetVoiceBottomSheetViewModel.access$handleStoreState(WidgetVoiceBottomSheetViewModel.this, storeState);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.widgets.voice.sheet.WidgetVoiceBottomSheetViewModel$tryConnectToVoice$1, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetVoiceBottomSheetViewModel.kt */
-    @e(c = "com.discord.widgets.voice.sheet.WidgetVoiceBottomSheetViewModel$tryConnectToVoice$1", f = "WidgetVoiceBottomSheetViewModel.kt", l = {Opcodes.IRETURN, 180}, m = "invokeSuspend")
-    public final class AnonymousClass1 extends k implements Function2<CoroutineScope, Continuation<? super Unit>, Object> {
+    @DebugMetadata(c = "com.discord.widgets.voice.sheet.WidgetVoiceBottomSheetViewModel$tryConnectToVoice$1", f = "WidgetVoiceBottomSheetViewModel.kt", l = {Opcodes.IRETURN, 180}, m = "invokeSuspend")
+    public final class AnonymousClass1 extends ContinuationImpl6 implements Function2<CoroutineScope, Continuation<? super Unit>, Object> {
         public final /* synthetic */ StoreMediaEngine $mediaEngine;
         public int label;
 
@@ -131,9 +134,9 @@ public final class WidgetVoiceBottomSheetViewModel extends d0<ViewState> {
             this.$mediaEngine = storeMediaEngine;
         }
 
-        @Override // d0.w.i.a.a
+        @Override // d0.w.i.a.ContinuationImpl
         public final Continuation<Unit> create(Object obj, Continuation<?> continuation) {
-            m.checkNotNullParameter(continuation, "completion");
+            Intrinsics3.checkNotNullParameter(continuation, "completion");
             return WidgetVoiceBottomSheetViewModel.this.new AnonymousClass1(this.$mediaEngine, continuation);
         }
 
@@ -143,22 +146,22 @@ public final class WidgetVoiceBottomSheetViewModel extends d0<ViewState> {
         }
 
         /* JADX WARN: Type inference incomplete: some casts might be missing */
-        @Override // d0.w.i.a.a
+        @Override // d0.w.i.a.ContinuationImpl
         public final Object invokeSuspend(Object obj) throws Throwable {
-            Object coroutine_suspended = c.getCOROUTINE_SUSPENDED();
+            Object coroutine_suspended = Intrinsics2.getCOROUTINE_SUSPENDED();
             int i = this.label;
             if (i != 0) {
                 if (i == 1) {
-                    l.throwOnFailure(obj);
+                    Result3.throwOnFailure(obj);
                 } else {
                     if (i != 2) {
                         throw new IllegalStateException("call to 'resume' before 'invoke' with coroutine");
                     }
-                    l.throwOnFailure(obj);
+                    Result3.throwOnFailure(obj);
                 }
                 return Unit.a;
             }
-            l.throwOnFailure(obj);
+            Result3.throwOnFailure(obj);
             StoreMediaEngine storeMediaEngine = this.$mediaEngine;
             this.label = 1;
             obj = storeMediaEngine.getDefaultVideoDeviceGUID(this);
@@ -190,8 +193,8 @@ public final class WidgetVoiceBottomSheetViewModel extends d0<ViewState> {
         }
 
         private final Observable<StoreState> observeStoreState(long channelId, StorePermissions permissionsStore, StoreChannels channelsStore) {
-            Observable observableY = channelsStore.observeChannel(channelId).Y(new WidgetVoiceBottomSheetViewModel$Companion$observeStoreState$1(channelId, permissionsStore));
-            m.checkNotNullExpressionValue(observableY, "channelsStore.observeCha…      }\n        }\n      }");
+            Observable observableY = channelsStore.observeChannel(channelId).Y(new WidgetVoiceBottomSheetViewModel2(channelId, permissionsStore));
+            Intrinsics3.checkNotNullExpressionValue(observableY, "channelsStore.observeCha…      }\n        }\n      }");
             return observableY;
         }
 
@@ -244,7 +247,7 @@ public final class WidgetVoiceBottomSheetViewModel extends d0<ViewState> {
             }
 
             public String toString() {
-                return a.B(a.U("AccessibilityAnnouncement(messageResId="), this.messageResId, ")");
+                return outline.B(outline.U("AccessibilityAnnouncement(messageResId="), this.messageResId, ")");
             }
         }
 
@@ -290,7 +293,7 @@ public final class WidgetVoiceBottomSheetViewModel extends d0<ViewState> {
                     return false;
                 }
                 EnqueueCallFeedbackSheet enqueueCallFeedbackSheet = (EnqueueCallFeedbackSheet) other;
-                return this.channelId == enqueueCallFeedbackSheet.channelId && m.areEqual(this.rtcConnectionId, enqueueCallFeedbackSheet.rtcConnectionId) && m.areEqual(this.mediaSessionId, enqueueCallFeedbackSheet.mediaSessionId) && this.callDuration == enqueueCallFeedbackSheet.callDuration && this.triggerRateDenominator == enqueueCallFeedbackSheet.triggerRateDenominator;
+                return this.channelId == enqueueCallFeedbackSheet.channelId && Intrinsics3.areEqual(this.rtcConnectionId, enqueueCallFeedbackSheet.rtcConnectionId) && Intrinsics3.areEqual(this.mediaSessionId, enqueueCallFeedbackSheet.mediaSessionId) && this.callDuration == enqueueCallFeedbackSheet.callDuration && this.triggerRateDenominator == enqueueCallFeedbackSheet.triggerRateDenominator;
             }
 
             /* JADX INFO: renamed from: component4, reason: from getter */
@@ -347,7 +350,7 @@ public final class WidgetVoiceBottomSheetViewModel extends d0<ViewState> {
             }
 
             public String toString() {
-                StringBuilder sbU = a.U("EnqueueCallFeedbackSheet(channelId=");
+                StringBuilder sbU = outline.U("EnqueueCallFeedbackSheet(channelId=");
                 sbU.append(this.channelId);
                 sbU.append(", rtcConnectionId=");
                 sbU.append(this.rtcConnectionId);
@@ -356,7 +359,7 @@ public final class WidgetVoiceBottomSheetViewModel extends d0<ViewState> {
                 sbU.append(", callDuration=");
                 sbU.append(this.callDuration);
                 sbU.append(", triggerRateDenominator=");
-                return a.B(sbU, this.triggerRateDenominator, ")");
+                return outline.B(sbU, this.triggerRateDenominator, ")");
             }
         }
 
@@ -410,7 +413,7 @@ public final class WidgetVoiceBottomSheetViewModel extends d0<ViewState> {
             }
 
             public String toString() {
-                return a.C(a.U("LaunchStageChannel(channelId="), this.channelId, ")");
+                return outline.C(outline.U("LaunchStageChannel(channelId="), this.channelId, ")");
             }
         }
 
@@ -447,7 +450,7 @@ public final class WidgetVoiceBottomSheetViewModel extends d0<ViewState> {
                     return false;
                 }
                 LaunchVideoCall launchVideoCall = (LaunchVideoCall) other;
-                return this.channelId == launchVideoCall.channelId && m.areEqual(this.autoTargetStreamKey, launchVideoCall.autoTargetStreamKey);
+                return this.channelId == launchVideoCall.channelId && Intrinsics3.areEqual(this.autoTargetStreamKey, launchVideoCall.autoTargetStreamKey);
             }
 
             /* JADX INFO: renamed from: component2, reason: from getter */
@@ -475,10 +478,10 @@ public final class WidgetVoiceBottomSheetViewModel extends d0<ViewState> {
             }
 
             public String toString() {
-                StringBuilder sbU = a.U("LaunchVideoCall(channelId=");
+                StringBuilder sbU = outline.U("LaunchVideoCall(channelId=");
                 sbU.append(this.channelId);
                 sbU.append(", autoTargetStreamKey=");
-                return a.J(sbU, this.autoTargetStreamKey, ")");
+                return outline.J(sbU, this.autoTargetStreamKey, ")");
             }
         }
 
@@ -532,7 +535,7 @@ public final class WidgetVoiceBottomSheetViewModel extends d0<ViewState> {
             }
 
             public String toString() {
-                return a.B(a.U("ShowCameraCapacityDialog(guildMaxVideoChannelUsers="), this.guildMaxVideoChannelUsers, ")");
+                return outline.B(outline.U("ShowCameraCapacityDialog(guildMaxVideoChannelUsers="), this.guildMaxVideoChannelUsers, ")");
             }
         }
 
@@ -543,7 +546,7 @@ public final class WidgetVoiceBottomSheetViewModel extends d0<ViewState> {
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
             public ShowEventEnd(GuildScheduledEvent guildScheduledEvent) {
                 super(null);
-                m.checkNotNullParameter(guildScheduledEvent, "guildScheduledEvent");
+                Intrinsics3.checkNotNullParameter(guildScheduledEvent, "guildScheduledEvent");
                 this.guildScheduledEvent = guildScheduledEvent;
             }
 
@@ -555,13 +558,13 @@ public final class WidgetVoiceBottomSheetViewModel extends d0<ViewState> {
             }
 
             public final ShowEventEnd copy(GuildScheduledEvent guildScheduledEvent) {
-                m.checkNotNullParameter(guildScheduledEvent, "guildScheduledEvent");
+                Intrinsics3.checkNotNullParameter(guildScheduledEvent, "guildScheduledEvent");
                 return new ShowEventEnd(guildScheduledEvent);
             }
 
             public boolean equals(Object other) {
                 if (this != other) {
-                    return (other instanceof ShowEventEnd) && m.areEqual(this.guildScheduledEvent, ((ShowEventEnd) other).guildScheduledEvent);
+                    return (other instanceof ShowEventEnd) && Intrinsics3.areEqual(this.guildScheduledEvent, ((ShowEventEnd) other).guildScheduledEvent);
                 }
                 return true;
             }
@@ -584,7 +587,7 @@ public final class WidgetVoiceBottomSheetViewModel extends d0<ViewState> {
             }
 
             public String toString() {
-                StringBuilder sbU = a.U("ShowEventEnd(guildScheduledEvent=");
+                StringBuilder sbU = outline.U("ShowEventEnd(guildScheduledEvent=");
                 sbU.append(this.guildScheduledEvent);
                 sbU.append(")");
                 return sbU.toString();
@@ -722,7 +725,7 @@ public final class WidgetVoiceBottomSheetViewModel extends d0<ViewState> {
             }
 
             public String toString() {
-                return a.B(a.U("ShowToast(toastResId="), this.toastResId, ")");
+                return outline.B(outline.U("ShowToast(toastResId="), this.toastResId, ")");
             }
         }
 
@@ -756,7 +759,7 @@ public final class WidgetVoiceBottomSheetViewModel extends d0<ViewState> {
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
             public Valid(CallModel callModel, Boolean bool, Long l, boolean z2) {
                 super(null);
-                m.checkNotNullParameter(callModel, "callModel");
+                Intrinsics3.checkNotNullParameter(callModel, "callModel");
                 this.callModel = callModel;
                 this.noiseCancellation = bool;
                 this.myPermissions = l;
@@ -780,7 +783,7 @@ public final class WidgetVoiceBottomSheetViewModel extends d0<ViewState> {
             }
 
             public final Valid copy(CallModel callModel, Boolean noiseCancellation, Long myPermissions, boolean textInVoiceEnabled) {
-                m.checkNotNullParameter(callModel, "callModel");
+                Intrinsics3.checkNotNullParameter(callModel, "callModel");
                 return new Valid(callModel, noiseCancellation, myPermissions, textInVoiceEnabled);
             }
 
@@ -792,7 +795,7 @@ public final class WidgetVoiceBottomSheetViewModel extends d0<ViewState> {
                     return false;
                 }
                 Valid valid = (Valid) other;
-                return m.areEqual(this.callModel, valid.callModel) && m.areEqual(this.noiseCancellation, valid.noiseCancellation) && m.areEqual(this.myPermissions, valid.myPermissions) && this.textInVoiceEnabled == valid.textInVoiceEnabled;
+                return Intrinsics3.areEqual(this.callModel, valid.callModel) && Intrinsics3.areEqual(this.noiseCancellation, valid.noiseCancellation) && Intrinsics3.areEqual(this.myPermissions, valid.myPermissions) && this.textInVoiceEnabled == valid.textInVoiceEnabled;
             }
 
             /* JADX INFO: renamed from: component1, reason: from getter */
@@ -852,14 +855,14 @@ public final class WidgetVoiceBottomSheetViewModel extends d0<ViewState> {
             }
 
             public String toString() {
-                StringBuilder sbU = a.U("Valid(callModel=");
+                StringBuilder sbU = outline.U("Valid(callModel=");
                 sbU.append(this.callModel);
                 sbU.append(", noiseCancellation=");
                 sbU.append(this.noiseCancellation);
                 sbU.append(", myPermissions=");
                 sbU.append(this.myPermissions);
                 sbU.append(", textInVoiceEnabled=");
-                return a.O(sbU, this.textInVoiceEnabled, ")");
+                return outline.O(sbU, this.textInVoiceEnabled, ")");
             }
         }
 
@@ -883,9 +886,9 @@ public final class WidgetVoiceBottomSheetViewModel extends d0<ViewState> {
         private final String title;
 
         public ViewState(String str, String str2, Channel channel, boolean z2, Boolean bool, boolean z3, WidgetVoiceBottomSheet.CenterContent centerContent, WidgetVoiceBottomSheet.BottomContent bottomContent) {
-            m.checkNotNullParameter(str, "title");
-            m.checkNotNullParameter(channel, "channel");
-            m.checkNotNullParameter(centerContent, "centerContent");
+            Intrinsics3.checkNotNullParameter(str, "title");
+            Intrinsics3.checkNotNullParameter(channel, "channel");
+            Intrinsics3.checkNotNullParameter(centerContent, "centerContent");
             this.title = str;
             this.subtitle = str2;
             this.channel = channel;
@@ -933,9 +936,9 @@ public final class WidgetVoiceBottomSheetViewModel extends d0<ViewState> {
         }
 
         public final ViewState copy(String title, String subtitle, Channel channel, boolean showInviteOption, Boolean isNoiseCancellationActive, boolean isDeafened, WidgetVoiceBottomSheet.CenterContent centerContent, WidgetVoiceBottomSheet.BottomContent bottomContent) {
-            m.checkNotNullParameter(title, "title");
-            m.checkNotNullParameter(channel, "channel");
-            m.checkNotNullParameter(centerContent, "centerContent");
+            Intrinsics3.checkNotNullParameter(title, "title");
+            Intrinsics3.checkNotNullParameter(channel, "channel");
+            Intrinsics3.checkNotNullParameter(centerContent, "centerContent");
             return new ViewState(title, subtitle, channel, showInviteOption, isNoiseCancellationActive, isDeafened, centerContent, bottomContent);
         }
 
@@ -947,7 +950,7 @@ public final class WidgetVoiceBottomSheetViewModel extends d0<ViewState> {
                 return false;
             }
             ViewState viewState = (ViewState) other;
-            return m.areEqual(getTitle(), viewState.getTitle()) && m.areEqual(getSubtitle(), viewState.getSubtitle()) && m.areEqual(getChannel(), viewState.getChannel()) && getShowInviteOption() == viewState.getShowInviteOption() && m.areEqual(getIsNoiseCancellationActive(), viewState.getIsNoiseCancellationActive()) && getIsDeafened() == viewState.getIsDeafened() && m.areEqual(getCenterContent(), viewState.getCenterContent()) && m.areEqual(getBottomContent(), viewState.getBottomContent());
+            return Intrinsics3.areEqual(getTitle(), viewState.getTitle()) && Intrinsics3.areEqual(getSubtitle(), viewState.getSubtitle()) && Intrinsics3.areEqual(getChannel(), viewState.getChannel()) && getShowInviteOption() == viewState.getShowInviteOption() && Intrinsics3.areEqual(getIsNoiseCancellationActive(), viewState.getIsNoiseCancellationActive()) && getIsDeafened() == viewState.getIsDeafened() && Intrinsics3.areEqual(getCenterContent(), viewState.getCenterContent()) && Intrinsics3.areEqual(getBottomContent(), viewState.getBottomContent());
         }
 
         @Override // com.discord.widgets.voice.sheet.WidgetVoiceBottomSheet.ViewState
@@ -1016,7 +1019,7 @@ public final class WidgetVoiceBottomSheetViewModel extends d0<ViewState> {
         }
 
         public String toString() {
-            StringBuilder sbU = a.U("ViewState(title=");
+            StringBuilder sbU = outline.U("ViewState(title=");
             sbU.append(getTitle());
             sbU.append(", subtitle=");
             sbU.append(getSubtitle());
@@ -1065,19 +1068,19 @@ public final class WidgetVoiceBottomSheetViewModel extends d0<ViewState> {
         Clock clock2 = (i & 8192) != 0 ? ClockFactory.get() : clock;
         if ((i & 16384) != 0) {
             AppLog appLog = AppLog.g;
-            m.checkNotNullParameter(appLog, "logger");
-            WeakReference<b.a.j.a> weakReference = b.a.j.a.b.a;
-            b.a.j.a aVar = weakReference != null ? weakReference.get() : null;
-            if (aVar == null) {
-                aVar = new b.a.j.a(appLog);
-                b.a.j.a.b.a = new WeakReference<>(aVar);
+            Intrinsics3.checkNotNullParameter(appLog, "logger");
+            WeakReference<FloatingViewManager> weakReference = FloatingViewManager.b.a;
+            FloatingViewManager floatingViewManager = weakReference != null ? weakReference.get() : null;
+            if (floatingViewManager == null) {
+                floatingViewManager = new FloatingViewManager(appLog);
+                FloatingViewManager.b.a = new WeakReference<>(floatingViewManager);
             }
-            TooltipManager.a aVar2 = TooltipManager.a.d;
-            m.checkNotNullParameter(aVar, "floatingViewManager");
+            TooltipManager.a aVar = TooltipManager.a.d;
+            Intrinsics3.checkNotNullParameter(floatingViewManager, "floatingViewManager");
             WeakReference<TooltipManager> weakReference2 = TooltipManager.a.a;
             TooltipManager tooltipManager4 = weakReference2 != null ? weakReference2.get() : null;
             if (tooltipManager4 == null) {
-                tooltipManager3 = new TooltipManager((b.a.v.a) TooltipManager.a.f2815b.getValue(), (Set) TooltipManager.a.c.getValue(), 0, aVar, 4);
+                tooltipManager3 = new TooltipManager((AcknowledgedTooltipsCache) TooltipManager.a.f2815b.getValue(), (Set) TooltipManager.a.c.getValue(), 0, floatingViewManager, 4);
                 TooltipManager.a.a = new WeakReference<>(tooltipManager3);
             } else {
                 tooltipManager3 = tooltipManager4;
@@ -1164,7 +1167,7 @@ public final class WidgetVoiceBottomSheetViewModel extends d0<ViewState> {
             }
             String str = encodedStreamKey;
             Map<Long, EmbeddedActivity> embeddedActivitiesForChannel = valid.getCallModel().getEmbeddedActivitiesForChannel();
-            List<CallParticipantsAdapter.ListItem> listCreateConnectedListItems = ParticipantsListItemGenerator.INSTANCE.createConnectedListItems(valid.getCallModel().getParticipants(), str, channel, valid.getCallModel(), u.toList(embeddedActivitiesForChannel.values()), valid.getCallModel().getApplications());
+            List<CallParticipantsAdapter.ListItem> listCreateConnectedListItems = ParticipantsListItemGenerator.INSTANCE.createConnectedListItems(valid.getCallModel().getParticipants(), str, channel, valid.getCallModel(), _Collections.toList(embeddedActivitiesForChannel.values()), valid.getCallModel().getApplications());
             Iterator<Long> it = embeddedActivitiesForChannel.keySet().iterator();
             while (it.hasNext()) {
                 this.applicationStore.fetchIfNonexisting(it.next().longValue());
@@ -1172,7 +1175,7 @@ public final class WidgetVoiceBottomSheetViewModel extends d0<ViewState> {
             WidgetVoiceBottomSheet.CenterContent listItems = ParticipantsListItemGenerator.INSTANCE.refreshStreams(listCreateConnectedListItems, this.fetchedPreviews, this.storeApplicationStreamPreviews) ? new WidgetVoiceBottomSheet.CenterContent.ListItems(listCreateConnectedListItems) : new WidgetVoiceBottomSheet.CenterContent.Empty(listCreateConnectedListItems);
             boolean zIsConnected = valid.getCallModel().isConnected();
             this.wasEverConnected = this.wasEverConnected || zIsConnected;
-            boolean z3 = valid.getCallModel().getVoiceChannelJoinability() != VoiceChannelJoinability.PERMISSIONS_MISSING;
+            boolean z3 = valid.getCallModel().getVoiceChannelJoinability() != VoiceChannelJoinabilityUtils2.PERMISSIONS_MISSING;
             Boolean bool = this.wasConnected;
             if (bool != null && !bool.booleanValue() && zIsConnected && valid.getCallModel().isSuppressed()) {
                 emitSuppressedDialogEvent();
@@ -1207,7 +1210,7 @@ public final class WidgetVoiceBottomSheetViewModel extends d0<ViewState> {
 
     public final Observable<Event> observeEvents() {
         PublishSubject<Event> publishSubject = this.eventSubject;
-        m.checkNotNullExpressionValue(publishSubject, "eventSubject");
+        Intrinsics3.checkNotNullExpressionValue(publishSubject, "eventSubject");
         return publishSubject;
     }
 
@@ -1378,14 +1381,14 @@ public final class WidgetVoiceBottomSheetViewModel extends d0<ViewState> {
 
     @MainThread
     public final void onStreamPreviewClicked(String streamKey) {
-        m.checkNotNullParameter(streamKey, "streamKey");
+        Intrinsics3.checkNotNullParameter(streamKey, "streamKey");
         StoreState storeState = this.mostRecentStoreState;
         if (!(storeState instanceof StoreState.Valid)) {
             storeState = null;
         }
         StoreState.Valid valid = (StoreState.Valid) storeState;
         if (valid != null) {
-            if (valid.getCallModel().getVoiceChannelJoinability() == VoiceChannelJoinability.GUILD_VIDEO_AT_CAPACITY) {
+            if (valid.getCallModel().getVoiceChannelJoinability() == VoiceChannelJoinabilityUtils2.GUILD_VIDEO_AT_CAPACITY) {
                 PublishSubject<Event> publishSubject = this.eventSubject;
                 publishSubject.k.onNext(Event.ShowGuildVideoAtCapacityDialog.INSTANCE);
             } else {
@@ -1398,16 +1401,16 @@ public final class WidgetVoiceBottomSheetViewModel extends d0<ViewState> {
 
     @MainThread
     public final void onToggleRingingPressed(StoreVoiceParticipants.VoiceUser voiceUser) {
-        m.checkNotNullParameter(voiceUser, "voiceUser");
+        Intrinsics3.checkNotNullParameter(voiceUser, "voiceUser");
         if (voiceUser.isRinging()) {
-            this.callsStore.stopRinging(this.channelId, d0.t.m.listOf(Long.valueOf(voiceUser.getUser().getId())));
+            this.callsStore.stopRinging(this.channelId, CollectionsJVM.listOf(Long.valueOf(voiceUser.getUser().getId())));
         } else {
-            this.callsStore.ring(this.channelId, d0.t.m.listOf(Long.valueOf(voiceUser.getUser().getId())));
+            this.callsStore.ring(this.channelId, CollectionsJVM.listOf(Long.valueOf(voiceUser.getUser().getId())));
         }
     }
 
     public final void startStream(Intent intent) {
-        m.checkNotNullParameter(intent, "intent");
+        Intrinsics3.checkNotNullParameter(intent, "intent");
         this.voiceEngineServiceController.startStream(intent);
     }
 
@@ -1419,7 +1422,7 @@ public final class WidgetVoiceBottomSheetViewModel extends d0<ViewState> {
         }
         StoreState.Valid valid = (StoreState.Valid) storeState;
         if (valid != null) {
-            if (valid.getCallModel().getVoiceChannelJoinability() == VoiceChannelJoinability.GUILD_VIDEO_AT_CAPACITY) {
+            if (valid.getCallModel().getVoiceChannelJoinability() == VoiceChannelJoinabilityUtils2.GUILD_VIDEO_AT_CAPACITY) {
                 this.eventSubject.k.onNext(Event.ShowGuildVideoAtCapacityDialog.INSTANCE);
                 return;
             }
@@ -1431,7 +1434,7 @@ public final class WidgetVoiceBottomSheetViewModel extends d0<ViewState> {
             } else if (!hasVideoPermission()) {
                 emitShowNoVideoPermissionDialogEvent();
             } else {
-                f.H0(ViewModelKt.getViewModelScope(this), null, null, new AnonymousClass1(StoreStream.INSTANCE.getMediaEngine(), null), 3, null);
+                f.H0(ViewModel3.getViewModelScope(this), null, null, new AnonymousClass1(StoreStream.INSTANCE.getMediaEngine(), null), 3, null);
             }
         }
     }
@@ -1439,22 +1442,22 @@ public final class WidgetVoiceBottomSheetViewModel extends d0<ViewState> {
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public WidgetVoiceBottomSheetViewModel(long j, boolean z2, StoreChannels storeChannels, StorePermissions storePermissions, StoreVoiceChannelSelected storeVoiceChannelSelected, StoreMediaSettings storeMediaSettings, StoreMediaEngine storeMediaEngine, StoreUserSettings storeUserSettings, StoreCalls storeCalls, StoreGuilds storeGuilds, VideoPermissionsManager videoPermissionsManager, StoreApplicationStreamPreviews storeApplicationStreamPreviews, VoiceEngineServiceController voiceEngineServiceController, Clock clock, TooltipManager tooltipManager, StoreEmbeddedActivities storeEmbeddedActivities, StoreApplication storeApplication, Observable<StoreState> observable) {
         super(null, 1, null);
-        m.checkNotNullParameter(storeChannels, "channelStore");
-        m.checkNotNullParameter(storePermissions, "permissionsStore");
-        m.checkNotNullParameter(storeVoiceChannelSelected, "selectedVoiceChannelStore");
-        m.checkNotNullParameter(storeMediaSettings, "mediaSettingsStore");
-        m.checkNotNullParameter(storeMediaEngine, "mediaEngineStore");
-        m.checkNotNullParameter(storeUserSettings, "userSettingsStore");
-        m.checkNotNullParameter(storeCalls, "callsStore");
-        m.checkNotNullParameter(storeGuilds, "guildsStore");
-        m.checkNotNullParameter(videoPermissionsManager, "videoPermissionsManager");
-        m.checkNotNullParameter(storeApplicationStreamPreviews, "storeApplicationStreamPreviews");
-        m.checkNotNullParameter(voiceEngineServiceController, "voiceEngineServiceController");
-        m.checkNotNullParameter(clock, "clock");
-        m.checkNotNullParameter(tooltipManager, "tooltipManager");
-        m.checkNotNullParameter(storeEmbeddedActivities, "embeddedActivitiesStore");
-        m.checkNotNullParameter(storeApplication, "applicationStore");
-        m.checkNotNullParameter(observable, "storeStateObservable");
+        Intrinsics3.checkNotNullParameter(storeChannels, "channelStore");
+        Intrinsics3.checkNotNullParameter(storePermissions, "permissionsStore");
+        Intrinsics3.checkNotNullParameter(storeVoiceChannelSelected, "selectedVoiceChannelStore");
+        Intrinsics3.checkNotNullParameter(storeMediaSettings, "mediaSettingsStore");
+        Intrinsics3.checkNotNullParameter(storeMediaEngine, "mediaEngineStore");
+        Intrinsics3.checkNotNullParameter(storeUserSettings, "userSettingsStore");
+        Intrinsics3.checkNotNullParameter(storeCalls, "callsStore");
+        Intrinsics3.checkNotNullParameter(storeGuilds, "guildsStore");
+        Intrinsics3.checkNotNullParameter(videoPermissionsManager, "videoPermissionsManager");
+        Intrinsics3.checkNotNullParameter(storeApplicationStreamPreviews, "storeApplicationStreamPreviews");
+        Intrinsics3.checkNotNullParameter(voiceEngineServiceController, "voiceEngineServiceController");
+        Intrinsics3.checkNotNullParameter(clock, "clock");
+        Intrinsics3.checkNotNullParameter(tooltipManager, "tooltipManager");
+        Intrinsics3.checkNotNullParameter(storeEmbeddedActivities, "embeddedActivitiesStore");
+        Intrinsics3.checkNotNullParameter(storeApplication, "applicationStore");
+        Intrinsics3.checkNotNullParameter(observable, "storeStateObservable");
         this.channelId = j;
         this.forwardToFullscreenIfVideoActivated = z2;
         this.channelStore = storeChannels;

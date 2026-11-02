@@ -8,15 +8,16 @@ import android.view.View;
 import android.widget.FrameLayout;
 import androidx.annotation.MainThread;
 import androidx.constraintlayout.solver.widgets.analyzer.BasicMeasure;
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.models.domain.ModelAuditLogEntry;
 import com.discord.utils.R;
-import d0.d0.f;
-import d0.t.c0;
-import d0.t.n;
-import d0.t.u;
-import d0.z.d.m;
-import d0.z.d.o;
+import d0.d0._Ranges;
+import d0.t.Collections2;
+import d0.t.Iterables2;
+import d0.t.Iterators4;
+import d0.t._Collections;
+import d0.z.d.Intrinsics3;
+import d0.z.d.Lambda;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -27,7 +28,7 @@ import java.util.Set;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function2;
 import kotlin.jvm.internal.DefaultConstructorMarker;
-import kotlin.ranges.IntRange;
+import kotlin.ranges.Ranges2;
 
 /* JADX INFO: compiled from: FrameGridLayout.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -43,7 +44,7 @@ public final class FrameGridLayout extends FrameLayout {
 
     /* JADX INFO: renamed from: com.discord.utilities.view.grid.FrameGridLayout$bindViews$1, reason: invalid class name */
     /* JADX INFO: compiled from: FrameGridLayout.kt */
-    public final class AnonymousClass1 extends o implements Function2<Data, View, Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function2<Data, View, Unit> {
         public AnonymousClass1() {
             super(2);
         }
@@ -57,7 +58,7 @@ public final class FrameGridLayout extends FrameLayout {
         /* JADX WARN: Multi-variable type inference failed */
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(Data data, View view) {
-            m.checkNotNullParameter(data, "$this$bindView");
+            Intrinsics3.checkNotNullParameter(data, "$this$bindView");
             boolean z2 = view instanceof DataView;
             Object obj = view;
             if (!z2) {
@@ -75,7 +76,7 @@ public final class FrameGridLayout extends FrameLayout {
 
     /* JADX INFO: renamed from: com.discord.utilities.view.grid.FrameGridLayout$onLayout$1, reason: invalid class name */
     /* JADX INFO: compiled from: FrameGridLayout.kt */
-    public final class AnonymousClass1 extends o implements Function2<View, PositionSpec, Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function2<View, PositionSpec, Unit> {
         public AnonymousClass1() {
             super(2);
         }
@@ -88,15 +89,15 @@ public final class FrameGridLayout extends FrameLayout {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(View view, PositionSpec positionSpec) {
-            m.checkNotNullParameter(view, "view");
-            m.checkNotNullParameter(positionSpec, "childBounds");
+            Intrinsics3.checkNotNullParameter(view, "view");
+            Intrinsics3.checkNotNullParameter(positionSpec, "childBounds");
             FrameGridLayout.access$layout(FrameGridLayout.this, view, positionSpec);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.utilities.view.grid.FrameGridLayout$onMeasure$1, reason: invalid class name */
     /* JADX INFO: compiled from: FrameGridLayout.kt */
-    public final class AnonymousClass1 extends o implements Function2<View, PositionSpec, Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function2<View, PositionSpec, Unit> {
         public AnonymousClass1() {
             super(2);
         }
@@ -109,8 +110,8 @@ public final class FrameGridLayout extends FrameLayout {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(View view, PositionSpec positionSpec) {
-            m.checkNotNullParameter(view, "view");
-            m.checkNotNullParameter(positionSpec, "childBounds");
+            Intrinsics3.checkNotNullParameter(view, "view");
+            Intrinsics3.checkNotNullParameter(positionSpec, "childBounds");
             FrameGridLayout.access$measure(FrameGridLayout.this, view, positionSpec);
         }
     }
@@ -122,8 +123,8 @@ public final class FrameGridLayout extends FrameLayout {
 
         /* JADX WARN: Multi-variable type inference failed */
         public Children(Map<String, ? extends View> map, List<? extends View> list) {
-            m.checkNotNullParameter(map, "boundChildren");
-            m.checkNotNullParameter(list, "unboundChildren");
+            Intrinsics3.checkNotNullParameter(map, "boundChildren");
+            Intrinsics3.checkNotNullParameter(list, "unboundChildren");
             this.boundChildren = map;
             this.unboundChildren = list;
         }
@@ -148,8 +149,8 @@ public final class FrameGridLayout extends FrameLayout {
         }
 
         public final Children copy(Map<String, ? extends View> boundChildren, List<? extends View> unboundChildren) {
-            m.checkNotNullParameter(boundChildren, "boundChildren");
-            m.checkNotNullParameter(unboundChildren, "unboundChildren");
+            Intrinsics3.checkNotNullParameter(boundChildren, "boundChildren");
+            Intrinsics3.checkNotNullParameter(unboundChildren, "unboundChildren");
             return new Children(boundChildren, unboundChildren);
         }
 
@@ -161,7 +162,7 @@ public final class FrameGridLayout extends FrameLayout {
                 return false;
             }
             Children children = (Children) other;
-            return m.areEqual(this.boundChildren, children.boundChildren) && m.areEqual(this.unboundChildren, children.unboundChildren);
+            return Intrinsics3.areEqual(this.boundChildren, children.boundChildren) && Intrinsics3.areEqual(this.unboundChildren, children.unboundChildren);
         }
 
         public final Map<String, View> getBoundChildren() {
@@ -180,10 +181,10 @@ public final class FrameGridLayout extends FrameLayout {
         }
 
         public String toString() {
-            StringBuilder sbU = a.U("Children(boundChildren=");
+            StringBuilder sbU = outline.U("Children(boundChildren=");
             sbU.append(this.boundChildren);
             sbU.append(", unboundChildren=");
-            return a.L(sbU, this.unboundChildren, ")");
+            return outline.L(sbU, this.unboundChildren, ")");
         }
     }
 
@@ -319,14 +320,14 @@ public final class FrameGridLayout extends FrameLayout {
         }
 
         public String toString() {
-            StringBuilder sbU = a.U("PositionSpec(left=");
+            StringBuilder sbU = outline.U("PositionSpec(left=");
             sbU.append(this.left);
             sbU.append(", top=");
             sbU.append(this.top);
             sbU.append(", right=");
             sbU.append(this.right);
             sbU.append(", bottom=");
-            return a.B(sbU, this.bottom, ")");
+            return outline.B(sbU, this.bottom, ")");
         }
     }
 
@@ -410,11 +411,11 @@ public final class FrameGridLayout extends FrameLayout {
 
     private final void addNecessaryViews() {
         if (this.dataset.size() > getChildCount()) {
-            Iterator<Integer> it = f.until(getChildCount(), this.dataset.size()).iterator();
+            Iterator<Integer> it = _Ranges.until(getChildCount(), this.dataset.size()).iterator();
             while (it.hasNext()) {
-                Data data = this.dataset.get(((c0) it).nextInt());
+                Data data = this.dataset.get(((Iterators4) it).nextInt());
                 Context context = getContext();
-                m.checkNotNullExpressionValue(context, "context");
+                Intrinsics3.checkNotNullExpressionValue(context, "context");
                 addView(data.createView(context));
             }
         }
@@ -444,7 +445,7 @@ public final class FrameGridLayout extends FrameLayout {
         for (Object obj3 : arrayList2) {
             int i2 = i + 1;
             if (i < 0) {
-                n.throwIndexOverflow();
+                Collections2.throwIndexOverflow();
             }
             anonymousClass1.invoke2((Data) obj3, children.getUnboundChildren().get(i));
             i = i2;
@@ -454,11 +455,11 @@ public final class FrameGridLayout extends FrameLayout {
     private final Children getChildren() {
         HashMap map = new HashMap();
         ArrayList arrayList = new ArrayList();
-        IntRange intRangeUntil = f.until(0, getChildCount());
-        ArrayList<KeyEvent.Callback> arrayList2 = new ArrayList(d0.t.o.collectionSizeOrDefault(intRangeUntil, 10));
-        Iterator<Integer> it = intRangeUntil.iterator();
+        Ranges2 ranges2Until = _Ranges.until(0, getChildCount());
+        ArrayList<KeyEvent.Callback> arrayList2 = new ArrayList(Iterables2.collectionSizeOrDefault(ranges2Until, 10));
+        Iterator<Integer> it = ranges2Until.iterator();
         while (it.hasNext()) {
-            arrayList2.add(getChildAt(((c0) it).nextInt()));
+            arrayList2.add(getChildAt(((Iterators4) it).nextInt()));
         }
         for (KeyEvent.Callback callback : arrayList2) {
             Objects.requireNonNull(callback, "null cannot be cast to non-null type com.discord.utilities.view.grid.FrameGridLayout.DataView");
@@ -495,19 +496,19 @@ public final class FrameGridLayout extends FrameLayout {
 
     private final void removeStaleViews() {
         List<? extends Data> list = this.dataset;
-        ArrayList arrayList = new ArrayList(d0.t.o.collectionSizeOrDefault(list, 10));
+        ArrayList arrayList = new ArrayList(Iterables2.collectionSizeOrDefault(list, 10));
         Iterator<T> it = list.iterator();
         while (it.hasNext()) {
             arrayList.add(((Data) it.next()).getCom.discord.models.domain.ModelAuditLogEntry.CHANGE_KEY_ID java.lang.String());
         }
-        Set set = u.toSet(arrayList);
-        Iterator<Integer> it2 = f.downTo(getChildCount() - 1, 0).iterator();
+        Set set = _Collections.toSet(arrayList);
+        Iterator<Integer> it2 = _Ranges.downTo(getChildCount() - 1, 0).iterator();
         while (it2.hasNext()) {
-            int iNextInt = ((c0) it2).nextInt();
+            int iNextInt = ((Iterators4) it2).nextInt();
             KeyEvent.Callback childAt = getChildAt(iNextInt);
             Objects.requireNonNull(childAt, "null cannot be cast to non-null type com.discord.utilities.view.grid.FrameGridLayout.DataView");
             DataView dataView = (DataView) childAt;
-            if (!u.contains(set, dataView.getDataId())) {
+            if (!_Collections.contains(set, dataView.getDataId())) {
                 dataView.onRemove();
                 removeViewAt(iNextInt);
             }
@@ -516,7 +517,7 @@ public final class FrameGridLayout extends FrameLayout {
 
     @MainThread
     public final void setData(List<? extends Data> data) {
-        m.checkNotNullParameter(data, "data");
+        Intrinsics3.checkNotNullParameter(data, "data");
         this.dataset = data;
         removeStaleViews();
         addNecessaryViews();
@@ -529,9 +530,9 @@ public final class FrameGridLayout extends FrameLayout {
     }
 
     private final void sizeChildViews(Function2<? super View, ? super PositionSpec, Unit> onSizeChildView) {
-        Iterator<Integer> it = f.until(0, getChildCount()).iterator();
+        Iterator<Integer> it = _Ranges.until(0, getChildCount()).iterator();
         while (it.hasNext()) {
-            KeyEvent.Callback childAt = getChildAt(((c0) it).nextInt());
+            KeyEvent.Callback childAt = getChildAt(((Iterators4) it).nextInt());
             Objects.requireNonNull(childAt, "null cannot be cast to non-null type com.discord.utilities.view.grid.FrameGridLayout.DataView");
             String dataId = ((DataView) childAt).getDataId();
             Iterator<? extends Data> it2 = this.dataset.iterator();
@@ -540,7 +541,7 @@ public final class FrameGridLayout extends FrameLayout {
                 if (!it2.hasNext()) {
                     i = -1;
                     break;
-                } else if (m.areEqual(it2.next().getCom.discord.models.domain.ModelAuditLogEntry.CHANGE_KEY_ID java.lang.String(), dataId)) {
+                } else if (Intrinsics3.areEqual(it2.next().getCom.discord.models.domain.ModelAuditLogEntry.CHANGE_KEY_ID java.lang.String(), dataId)) {
                     break;
                 } else {
                     i++;
@@ -555,11 +556,11 @@ public final class FrameGridLayout extends FrameLayout {
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public FrameGridLayout(Context context, AttributeSet attributeSet, int i) {
         super(context, attributeSet, i);
-        m.checkNotNullParameter(context, "context");
-        this.dataset = n.emptyList();
+        Intrinsics3.checkNotNullParameter(context, "context");
+        this.dataset = Collections2.emptyList();
         if (attributeSet != null) {
             TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes(attributeSet, R.b.FrameGridLayout, 0, 0);
-            m.checkNotNullExpressionValue(typedArrayObtainStyledAttributes, "context.obtainStyledAttr…le.FrameGridLayout, 0, 0)");
+            Intrinsics3.checkNotNullExpressionValue(typedArrayObtainStyledAttributes, "context.obtainStyledAttr…le.FrameGridLayout, 0, 0)");
             this.maxLinearViews = typedArrayObtainStyledAttributes.getInt(R.b.FrameGridLayout_fgl_max_linear_views, 3);
             typedArrayObtainStyledAttributes.recycle();
         } else {

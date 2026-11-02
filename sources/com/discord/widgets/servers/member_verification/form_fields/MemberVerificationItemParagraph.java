@@ -1,7 +1,7 @@
 package com.discord.widgets.servers.member_verification.form_fields;
 
-import b.d.b.a.a;
-import d0.z.d.m;
+import b.d.b.a.outline;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: MemberVerificationItemParagraph.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -39,7 +39,7 @@ public final /* data */ class MemberVerificationItemParagraph implements MemberV
             return false;
         }
         MemberVerificationItemParagraph memberVerificationItemParagraph = (MemberVerificationItemParagraph) other;
-        return this.fieldIndex == memberVerificationItemParagraph.fieldIndex && m.areEqual(this.response, memberVerificationItemParagraph.response);
+        return this.fieldIndex == memberVerificationItemParagraph.fieldIndex && Intrinsics3.areEqual(this.response, memberVerificationItemParagraph.response);
     }
 
     /* JADX INFO: renamed from: component1, reason: from getter */
@@ -77,9 +77,9 @@ public final /* data */ class MemberVerificationItemParagraph implements MemberV
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("MemberVerificationItemParagraph(fieldIndex=");
+        StringBuilder sbU = outline.U("MemberVerificationItemParagraph(fieldIndex=");
         sbU.append(this.fieldIndex);
         sbU.append(", response=");
-        return a.J(sbU, this.response, ")");
+        return outline.J(sbU, this.response, ")");
     }
 }

@@ -2,10 +2,10 @@ package com.discord.utilities.lazy.memberlist;
 
 import a0.a.a.b;
 import androidx.annotation.ColorInt;
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.models.domain.ModelAuditLogEntry;
 import com.discord.models.presence.Presence;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 import kotlin.jvm.internal.DefaultConstructorMarker;
 
 /* JADX INFO: compiled from: MemberListRow.kt */
@@ -31,7 +31,7 @@ public abstract class MemberListRow {
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
         public Member(long j, String str, boolean z2, Integer num, boolean z3, Presence presence, @ColorInt Integer num2, String str2, boolean z4, String str3, boolean z5, int i) {
             super(String.valueOf(j), null);
-            m.checkNotNullParameter(str, ModelAuditLogEntry.CHANGE_KEY_NAME);
+            Intrinsics3.checkNotNullParameter(str, ModelAuditLogEntry.CHANGE_KEY_NAME);
             this.userId = j;
             this.name = str;
             this.isBot = z2;
@@ -51,7 +51,7 @@ public abstract class MemberListRow {
         }
 
         public final Member copy(long userId, String name, boolean isBot, Integer tagText, boolean tagVerified, Presence presence, @ColorInt Integer color, String avatarUrl, boolean showOwnerIndicator, String premiumSince, boolean isApplicationStreaming, int userFlags) {
-            m.checkNotNullParameter(name, ModelAuditLogEntry.CHANGE_KEY_NAME);
+            Intrinsics3.checkNotNullParameter(name, ModelAuditLogEntry.CHANGE_KEY_NAME);
             return new Member(userId, name, isBot, tagText, tagVerified, presence, color, avatarUrl, showOwnerIndicator, premiumSince, isApplicationStreaming, userFlags);
         }
 
@@ -63,7 +63,7 @@ public abstract class MemberListRow {
                 return false;
             }
             Member member = (Member) other;
-            return this.userId == member.userId && m.areEqual(this.name, member.name) && this.isBot == member.isBot && m.areEqual(this.tagText, member.tagText) && this.tagVerified == member.tagVerified && m.areEqual(this.presence, member.presence) && m.areEqual(this.color, member.color) && m.areEqual(this.avatarUrl, member.avatarUrl) && this.showOwnerIndicator == member.showOwnerIndicator && m.areEqual(this.premiumSince, member.premiumSince) && this.isApplicationStreaming == member.isApplicationStreaming && this.userFlags == member.userFlags;
+            return this.userId == member.userId && Intrinsics3.areEqual(this.name, member.name) && this.isBot == member.isBot && Intrinsics3.areEqual(this.tagText, member.tagText) && this.tagVerified == member.tagVerified && Intrinsics3.areEqual(this.presence, member.presence) && Intrinsics3.areEqual(this.color, member.color) && Intrinsics3.areEqual(this.avatarUrl, member.avatarUrl) && this.showOwnerIndicator == member.showOwnerIndicator && Intrinsics3.areEqual(this.premiumSince, member.premiumSince) && this.isApplicationStreaming == member.isApplicationStreaming && this.userFlags == member.userFlags;
         }
 
         /* JADX INFO: renamed from: component8, reason: from getter */
@@ -226,7 +226,7 @@ public abstract class MemberListRow {
         }
 
         public String toString() {
-            StringBuilder sbU = a.U("Member(userId=");
+            StringBuilder sbU = outline.U("Member(userId=");
             sbU.append(this.userId);
             sbU.append(", name=");
             sbU.append(this.name);
@@ -249,7 +249,7 @@ public abstract class MemberListRow {
             sbU.append(", isApplicationStreaming=");
             sbU.append(this.isApplicationStreaming);
             sbU.append(", userFlags=");
-            return a.B(sbU, this.userFlags, ")");
+            return outline.B(sbU, this.userFlags, ")");
         }
     }
 
@@ -262,7 +262,7 @@ public abstract class MemberListRow {
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
         public RoleHeader(long j, String str, int i) {
             super(String.valueOf(j), null);
-            m.checkNotNullParameter(str, "roleName");
+            Intrinsics3.checkNotNullParameter(str, "roleName");
             this.roleId = j;
             this.roleName = str;
             this.memberCount = i;
@@ -282,7 +282,7 @@ public abstract class MemberListRow {
         }
 
         public final RoleHeader copy(long roleId, String roleName, int memberCount) {
-            m.checkNotNullParameter(roleName, "roleName");
+            Intrinsics3.checkNotNullParameter(roleName, "roleName");
             return new RoleHeader(roleId, roleName, memberCount);
         }
 
@@ -294,7 +294,7 @@ public abstract class MemberListRow {
                 return false;
             }
             RoleHeader roleHeader = (RoleHeader) other;
-            return this.roleId == roleHeader.roleId && m.areEqual(this.roleName, roleHeader.roleName) && this.memberCount == roleHeader.memberCount;
+            return this.roleId == roleHeader.roleId && Intrinsics3.areEqual(this.roleName, roleHeader.roleName) && this.memberCount == roleHeader.memberCount;
         }
 
         /* JADX INFO: renamed from: component3, reason: from getter */
@@ -331,12 +331,12 @@ public abstract class MemberListRow {
         }
 
         public String toString() {
-            StringBuilder sbU = a.U("RoleHeader(roleId=");
+            StringBuilder sbU = outline.U("RoleHeader(roleId=");
             sbU.append(this.roleId);
             sbU.append(", roleName=");
             sbU.append(this.roleName);
             sbU.append(", memberCount=");
-            return a.B(sbU, this.memberCount, ")");
+            return outline.B(sbU, this.memberCount, ")");
         }
     }
 
@@ -365,8 +365,8 @@ public abstract class MemberListRow {
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
         public StatusHeader(String str, Type type, int i) {
             super(str, null);
-            m.checkNotNullParameter(str, "rowId");
-            m.checkNotNullParameter(type, "type");
+            Intrinsics3.checkNotNullParameter(str, "rowId");
+            Intrinsics3.checkNotNullParameter(type, "type");
             this.rowId = str;
             this.type = type;
             this.memberCount = i;
@@ -390,8 +390,8 @@ public abstract class MemberListRow {
         }
 
         public final StatusHeader copy(String rowId, Type type, int memberCount) {
-            m.checkNotNullParameter(rowId, "rowId");
-            m.checkNotNullParameter(type, "type");
+            Intrinsics3.checkNotNullParameter(rowId, "rowId");
+            Intrinsics3.checkNotNullParameter(type, "type");
             return new StatusHeader(rowId, type, memberCount);
         }
 
@@ -403,7 +403,7 @@ public abstract class MemberListRow {
                 return false;
             }
             StatusHeader statusHeader = (StatusHeader) other;
-            return m.areEqual(getRowId(), statusHeader.getRowId()) && m.areEqual(this.type, statusHeader.type) && this.memberCount == statusHeader.memberCount;
+            return Intrinsics3.areEqual(getRowId(), statusHeader.getRowId()) && Intrinsics3.areEqual(this.type, statusHeader.type) && this.memberCount == statusHeader.memberCount;
         }
 
         /* JADX INFO: renamed from: component3, reason: from getter */
@@ -437,12 +437,12 @@ public abstract class MemberListRow {
         }
 
         public String toString() {
-            StringBuilder sbU = a.U("StatusHeader(rowId=");
+            StringBuilder sbU = outline.U("StatusHeader(rowId=");
             sbU.append(getRowId());
             sbU.append(", type=");
             sbU.append(this.type);
             sbU.append(", memberCount=");
-            return a.B(sbU, this.memberCount, ")");
+            return outline.B(sbU, this.memberCount, ")");
         }
     }
 

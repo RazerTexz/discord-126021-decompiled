@@ -8,7 +8,7 @@ import android.view.animation.AccelerateInterpolator;
 import android.view.animation.DecelerateInterpolator;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import b.d.b.a.a;
+import b.d.b.a.outline;
 
 /* JADX INFO: loaded from: classes3.dex */
 public class MotionTiming {
@@ -102,7 +102,7 @@ public class MotionTiming {
 
     @NonNull
     public String toString() {
-        StringBuilder sbQ = a.Q('\n');
+        StringBuilder sbQ = outline.Q('\n');
         sbQ.append(getClass().getName());
         sbQ.append('{');
         sbQ.append(Integer.toHexString(System.identityHashCode(this)));

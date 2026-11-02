@@ -6,11 +6,11 @@ import androidx.fragment.app.ViewKt;
 import com.discord.app.AppFragment;
 import com.discord.models.domain.ModelInvite;
 import com.discord.widgets.guilds.invite.InviteJoinHelper;
-import d0.l;
-import d0.w.h.c;
-import d0.w.i.a.e;
-import d0.w.i.a.k;
-import d0.z.d.m;
+import d0.Result3;
+import d0.w.h.Intrinsics2;
+import d0.w.i.a.ContinuationImpl6;
+import d0.w.i.a.DebugMetadata;
+import d0.z.d.Intrinsics3;
 import kotlin.Unit;
 import kotlin.coroutines.Continuation;
 import kotlin.jvm.functions.Function2;
@@ -23,17 +23,17 @@ public abstract class WidgetChatListAdapterItemInviteBase extends WidgetChatList
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemInviteBase$joinServerOrDM$1, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetChatListAdapterItemInviteBase.kt */
-    @e(c = "com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemInviteBase$joinServerOrDM$1", f = "WidgetChatListAdapterItemInviteBase.kt", l = {}, m = "invokeSuspend")
-    public final class AnonymousClass1 extends k implements Function2<ModelInvite, Continuation<? super Unit>, Object> {
+    @DebugMetadata(c = "com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemInviteBase$joinServerOrDM$1", f = "WidgetChatListAdapterItemInviteBase.kt", l = {}, m = "invokeSuspend")
+    public final class AnonymousClass1 extends ContinuationImpl6 implements Function2<ModelInvite, Continuation<? super Unit>, Object> {
         public int label;
 
         public AnonymousClass1(Continuation continuation) {
             super(2, continuation);
         }
 
-        @Override // d0.w.i.a.a
+        @Override // d0.w.i.a.ContinuationImpl
         public final Continuation<Unit> create(Object obj, Continuation<?> continuation) {
-            m.checkNotNullParameter(continuation, "completion");
+            Intrinsics3.checkNotNullParameter(continuation, "completion");
             return new AnonymousClass1(continuation);
         }
 
@@ -42,30 +42,30 @@ public abstract class WidgetChatListAdapterItemInviteBase extends WidgetChatList
             return ((AnonymousClass1) create(modelInvite, continuation)).invokeSuspend(Unit.a);
         }
 
-        @Override // d0.w.i.a.a
+        @Override // d0.w.i.a.ContinuationImpl
         public final Object invokeSuspend(Object obj) throws Throwable {
-            c.getCOROUTINE_SUSPENDED();
+            Intrinsics2.getCOROUTINE_SUSPENDED();
             if (this.label != 0) {
                 throw new IllegalStateException("call to 'resume' before 'invoke' with coroutine");
             }
-            l.throwOnFailure(obj);
+            Result3.throwOnFailure(obj);
             return Unit.a;
         }
     }
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemInviteBase$joinServerOrDM$2, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetChatListAdapterItemInviteBase.kt */
-    @e(c = "com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemInviteBase$joinServerOrDM$2", f = "WidgetChatListAdapterItemInviteBase.kt", l = {}, m = "invokeSuspend")
-    public final class AnonymousClass2 extends k implements Function2<ModelInvite, Continuation<? super Unit>, Object> {
+    @DebugMetadata(c = "com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemInviteBase$joinServerOrDM$2", f = "WidgetChatListAdapterItemInviteBase.kt", l = {}, m = "invokeSuspend")
+    public final class AnonymousClass2 extends ContinuationImpl6 implements Function2<ModelInvite, Continuation<? super Unit>, Object> {
         public int label;
 
         public AnonymousClass2(Continuation continuation) {
             super(2, continuation);
         }
 
-        @Override // d0.w.i.a.a
+        @Override // d0.w.i.a.ContinuationImpl
         public final Continuation<Unit> create(Object obj, Continuation<?> continuation) {
-            m.checkNotNullParameter(continuation, "completion");
+            Intrinsics3.checkNotNullParameter(continuation, "completion");
             return new AnonymousClass2(continuation);
         }
 
@@ -74,13 +74,13 @@ public abstract class WidgetChatListAdapterItemInviteBase extends WidgetChatList
             return ((AnonymousClass2) create(modelInvite, continuation)).invokeSuspend(Unit.a);
         }
 
-        @Override // d0.w.i.a.a
+        @Override // d0.w.i.a.ContinuationImpl
         public final Object invokeSuspend(Object obj) throws Throwable {
-            c.getCOROUTINE_SUSPENDED();
+            Intrinsics2.getCOROUTINE_SUSPENDED();
             if (this.label != 0) {
                 throw new IllegalStateException("call to 'resume' before 'invoke' with coroutine");
             }
-            l.throwOnFailure(obj);
+            Result3.throwOnFailure(obj);
             return Unit.a;
         }
     }
@@ -88,7 +88,7 @@ public abstract class WidgetChatListAdapterItemInviteBase extends WidgetChatList
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public WidgetChatListAdapterItemInviteBase(@LayoutRes int i, WidgetChatListAdapter widgetChatListAdapter) {
         super(i, widgetChatListAdapter);
-        m.checkNotNullParameter(widgetChatListAdapter, "adapter");
+        Intrinsics3.checkNotNullParameter(widgetChatListAdapter, "adapter");
     }
 
     /* JADX WARN: Multi-variable type inference failed */
@@ -106,13 +106,13 @@ public abstract class WidgetChatListAdapterItemInviteBase extends WidgetChatList
     }
 
     public final Job joinServerOrDM(Class<?> javaClass, ModelInvite invite, Function2<? super ModelInvite, ? super Continuation<? super Unit>, ? extends Object> onInvitePostSuccess, Function2<? super ModelInvite, ? super Continuation<? super Unit>, ? extends Object> onInviteFlowFinished) {
-        m.checkNotNullParameter(javaClass, "javaClass");
-        m.checkNotNullParameter(invite, "invite");
-        m.checkNotNullParameter(onInvitePostSuccess, "onInvitePostSuccess");
-        m.checkNotNullParameter(onInviteFlowFinished, "onInviteFlowFinished");
+        Intrinsics3.checkNotNullParameter(javaClass, "javaClass");
+        Intrinsics3.checkNotNullParameter(invite, "invite");
+        Intrinsics3.checkNotNullParameter(onInvitePostSuccess, "onInvitePostSuccess");
+        Intrinsics3.checkNotNullParameter(onInviteFlowFinished, "onInviteFlowFinished");
         InviteJoinHelper inviteJoinHelper = InviteJoinHelper.INSTANCE;
         View view = this.itemView;
-        m.checkNotNullExpressionValue(view, "itemView");
+        Intrinsics3.checkNotNullExpressionValue(view, "itemView");
         return InviteJoinHelper.joinViaInvite$default(inviteJoinHelper, invite, javaClass, (AppFragment) ViewKt.findFragment(view), "Invite Button Embed", null, onInvitePostSuccess, onInviteFlowFinished, null, Opcodes.D2F, null);
     }
 }

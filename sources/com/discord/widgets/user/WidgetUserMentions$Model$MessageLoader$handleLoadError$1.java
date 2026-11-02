@@ -1,19 +1,19 @@
 package com.discord.widgets.user;
 
-import d0.z.d.m;
-import d0.z.d.o;
+import d0.z.d.Intrinsics3;
+import d0.z.d.Lambda;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
 
 /* JADX INFO: compiled from: WidgetUserMentions.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final class WidgetUserMentions$Model$MessageLoader$handleLoadError$1 extends o implements Function0<Unit> {
+public final class WidgetUserMentions$Model$MessageLoader$handleLoadError$1 extends Lambda implements Function0<Unit> {
     public final /* synthetic */ WidgetUserMentions.Model.MessageLoader this$0;
 
     /* JADX INFO: renamed from: com.discord.widgets.user.WidgetUserMentions$Model$MessageLoader$handleLoadError$1$1, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetUserMentions.kt */
-    public final class AnonymousClass1 extends o implements Function1<WidgetUserMentions.Model.MessageLoader.LoadingState, WidgetUserMentions.Model.MessageLoader.LoadingState> {
+    public final class AnonymousClass1 extends Lambda implements Function1<WidgetUserMentions.Model.MessageLoader.LoadingState, WidgetUserMentions.Model.MessageLoader.LoadingState> {
         public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
 
         public AnonymousClass1() {
@@ -27,7 +27,7 @@ public final class WidgetUserMentions$Model$MessageLoader$handleLoadError$1 exte
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final WidgetUserMentions.Model.MessageLoader.LoadingState invoke2(WidgetUserMentions.Model.MessageLoader.LoadingState loadingState) {
-            m.checkNotNullParameter(loadingState, "it");
+            Intrinsics3.checkNotNullParameter(loadingState, "it");
             return WidgetUserMentions.Model.MessageLoader.LoadingState.copy$default(loadingState, false, false, null, 6, null);
         }
     }

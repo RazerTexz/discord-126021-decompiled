@@ -8,6 +8,6 @@ import rx.functions.Action1;
 public final class f implements Action1<Throwable> {
     @Override // rx.functions.Action1
     public void call(Throwable th) {
-        Objects.requireNonNull(o.a.b());
+        Objects.requireNonNull(RxJavaPlugins.a.b());
     }
 }

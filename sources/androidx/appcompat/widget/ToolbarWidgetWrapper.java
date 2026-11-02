@@ -24,7 +24,7 @@ import androidx.appcompat.view.menu.MenuPresenter;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.ViewPropertyAnimatorCompat;
 import androidx.core.view.ViewPropertyAnimatorListenerAdapter;
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.google.android.material.badge.BadgeDrawable;
 
 /* JADX INFO: loaded from: classes.dex */
@@ -431,7 +431,7 @@ public class ToolbarWidgetWrapper implements DecorToolbar {
                     this.mToolbar.addView(this.mSpinner, 0);
                 } else {
                     if (i != 2) {
-                        throw new IllegalArgumentException(a.q("Invalid navigation mode ", i));
+                        throw new IllegalArgumentException(outline.q("Invalid navigation mode ", i));
                     }
                     View view2 = this.mTabView;
                     if (view2 != null) {

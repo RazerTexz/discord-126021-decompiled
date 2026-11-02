@@ -1,6 +1,6 @@
 package com.discord.widgets.chat.list.model;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.api.channel.Channel;
 import com.discord.api.channel.ChannelUtils;
 import com.discord.models.guild.Guild;
@@ -12,7 +12,8 @@ import com.discord.utilities.rx.ObservableExtensionsKt;
 import com.discord.widgets.chat.list.entries.ChatListEntry;
 import com.discord.widgets.forums.ForumUtils;
 import com.discord.widgets.user.UserMutualGuildsManager;
-import d0.z.d.m;
+import d0.t.CollectionsJVM;
+import d0.z.d.Intrinsics3;
 import java.util.concurrent.TimeUnit;
 import kotlin.jvm.internal.DefaultConstructorMarker;
 import rx.Observable;
@@ -35,9 +36,9 @@ public final /* data */ class WidgetChatListModelTop {
         }
 
         public final Observable<WidgetChatListModelTop> get(Channel channel) {
-            m.checkNotNullParameter(channel, "channel");
-            Observable<WidgetChatListModelTop> observableR = StoreStream.INSTANCE.getMessagesLoader().getMessagesLoadedState(channel.getId()).Y(new WidgetChatListModelTop$Companion$get$1(channel)).r();
-            m.checkNotNullExpressionValue(observableR, "StoreStream\n          .g…  .distinctUntilChanged()");
+            Intrinsics3.checkNotNullParameter(channel, "channel");
+            Observable<WidgetChatListModelTop> observableR = StoreStream.INSTANCE.getMessagesLoader().getMessagesLoadedState(channel.getId()).Y(new WidgetChatListModelTop2(channel)).r();
+            Intrinsics3.checkNotNullExpressionValue(observableR, "StoreStream\n          .g…  .distinctUntilChanged()");
             return observableR;
         }
 
@@ -46,19 +47,19 @@ public final /* data */ class WidgetChatListModelTop {
             Observable<Guild> observableObserveGuild = companion.getGuilds().observeGuild(channel.getGuildId());
             Observable observableObserveMe$default = StoreUser.observeMe$default(companion.getUsers(), false, 1, null);
             Observable<Long> observableObservePermissionsForChannel = companion.getPermissions().observePermissionsForChannel(channel.getId());
-            Observable observableR = companion.getChannels().observeDefaultChannel(channel.getGuildId()).G(WidgetChatListModelTop$Companion$getWelcomeEntry$1.INSTANCE).r();
+            Observable observableR = companion.getChannels().observeDefaultChannel(channel.getGuildId()).G(WidgetChatListModelTop3.INSTANCE).r();
             Observable<GuildMember> observableObserveGuildMember = observeGuildMember(channel.getGuildId(), channel.getOwnerId());
             Observable<User> observableObserveUser = companion.getUsers().observeUser(channel.getOwnerId());
             UserMutualGuildsManager userMutualGuildsManager = new UserMutualGuildsManager(null, null, null, 7, null);
             User userA = ChannelUtils.a(channel);
-            Observable<ChatListEntry> observableC = Observable.c(observableObserveGuild, observableObserveMe$default, observableObservePermissionsForChannel, observableR, observableObserveGuildMember, observableObserveUser, userMutualGuildsManager.observeMutualGuilds(d0.t.m.listOf(Long.valueOf(userA != null ? userA.getId() : 0L))), companion.getChannels().observeChannel(channel.getParentId()), ForumUtils.observeCanAccessRedesignedForumChannels$default(ForumUtils.INSTANCE, channel.getGuildId(), null, null, 6, null), new WidgetChatListModelTop$Companion$getWelcomeEntry$2(channel));
-            m.checkNotNullExpressionValue(observableC, "Observable.combineLatest…      )\n        }\n      }");
+            Observable<ChatListEntry> observableC = Observable.c(observableObserveGuild, observableObserveMe$default, observableObservePermissionsForChannel, observableR, observableObserveGuildMember, observableObserveUser, userMutualGuildsManager.observeMutualGuilds(CollectionsJVM.listOf(Long.valueOf(userA != null ? userA.getId() : 0L))), companion.getChannels().observeChannel(channel.getParentId()), ForumUtils.observeCanAccessRedesignedForumChannels$default(ForumUtils.INSTANCE, channel.getGuildId(), null, null, 6, null), new WidgetChatListModelTop4(channel));
+            Intrinsics3.checkNotNullExpressionValue(observableC, "Observable.combineLatest…      )\n        }\n      }");
             return observableC;
         }
 
         private final Observable<GuildMember> observeGuildMember(long guildId, long userId) {
             Observable<GuildMember> observableObserveGuildMember = StoreStream.INSTANCE.getGuilds().observeGuildMember(guildId, userId);
-            m.checkNotNullExpressionValue(observableObserveGuildMember, "StoreStream.getGuilds().…ldMember(guildId, userId)");
+            Intrinsics3.checkNotNullExpressionValue(observableObserveGuildMember, "StoreStream.getGuilds().…ldMember(guildId, userId)");
             return ObservableExtensionsKt.computationLatest(ObservableExtensionsKt.leadingEdgeThrottle(observableObserveGuildMember, 1L, TimeUnit.SECONDS));
         }
 
@@ -68,7 +69,7 @@ public final /* data */ class WidgetChatListModelTop {
     }
 
     public WidgetChatListModelTop(ChatListEntry chatListEntry) {
-        m.checkNotNullParameter(chatListEntry, "item");
+        Intrinsics3.checkNotNullParameter(chatListEntry, "item");
         this.item = chatListEntry;
     }
 
@@ -80,13 +81,13 @@ public final /* data */ class WidgetChatListModelTop {
     }
 
     public final WidgetChatListModelTop copy(ChatListEntry item) {
-        m.checkNotNullParameter(item, "item");
+        Intrinsics3.checkNotNullParameter(item, "item");
         return new WidgetChatListModelTop(item);
     }
 
     public boolean equals(Object other) {
         if (this != other) {
-            return (other instanceof WidgetChatListModelTop) && m.areEqual(this.item, ((WidgetChatListModelTop) other).item);
+            return (other instanceof WidgetChatListModelTop) && Intrinsics3.areEqual(this.item, ((WidgetChatListModelTop) other).item);
         }
         return true;
     }
@@ -113,7 +114,7 @@ public final /* data */ class WidgetChatListModelTop {
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("WidgetChatListModelTop(item=");
+        StringBuilder sbU = outline.U("WidgetChatListModelTop(item=");
         sbU.append(this.item);
         sbU.append(")");
         return sbU.toString();

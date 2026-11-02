@@ -9,7 +9,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.core.util.ObjectsCompat;
-import b.d.b.a.a;
+import b.d.b.a.outline;
 
 /* JADX INFO: loaded from: classes.dex */
 public class MediaSessionManagerImplBase implements MediaSessionManager.MediaSessionManagerImpl {
@@ -105,7 +105,7 @@ public class MediaSessionManagerImplBase implements MediaSessionManager.MediaSes
             return isPermissionGranted(remoteUserInfoImpl, PERMISSION_STATUS_BAR_SERVICE) || isPermissionGranted(remoteUserInfoImpl, PERMISSION_MEDIA_CONTENT_CONTROL) || remoteUserInfoImpl.getUid() == 1000 || isEnabledNotificationListener(remoteUserInfoImpl);
         } catch (PackageManager.NameNotFoundException unused) {
             if (DEBUG) {
-                StringBuilder sbU = a.U("Package ");
+                StringBuilder sbU = outline.U("Package ");
                 sbU.append(remoteUserInfoImpl.getPackageName());
                 sbU.append(" doesn't exist");
                 Log.d("MediaSessionManager", sbU.toString());

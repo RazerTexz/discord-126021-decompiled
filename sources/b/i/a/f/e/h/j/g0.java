@@ -6,6 +6,7 @@ import android.os.Handler;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
+import b.c.a.a0.AnimatableValueParser;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.Scope;
 import java.util.Set;
@@ -14,7 +15,7 @@ import java.util.Set;
 /* JADX INFO: loaded from: classes3.dex */
 public final class g0 extends b.i.a.f.l.b.d implements b.i.a.f.e.h.c.a, b.i.a.f.e.h.c.b {
     public final Handler c;
-    public final b.i.a.f.e.h.a.C0112a<? extends b.i.a.f.l.f, b.i.a.f.l.a> d;
+    public final b.i.a.f.e.h.a.C0035a<? extends b.i.a.f.l.f, b.i.a.f.l.a> d;
     public Set<Scope> e;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
@@ -22,17 +23,17 @@ public final class g0 extends b.i.a.f.l.b.d implements b.i.a.f.e.h.c.a, b.i.a.f.
     public b.i.a.f.e.k.c f;
     public b.i.a.f.l.f g;
     public h0 h;
-    public static b.i.a.f.e.h.a.C0112a<? extends b.i.a.f.l.f, b.i.a.f.l.a> a = b.i.a.f.l.c.c;
+    public static b.i.a.f.e.h.a.C0035a<? extends b.i.a.f.l.f, b.i.a.f.l.a> a = b.i.a.f.l.c.c;
 
     @WorkerThread
     public g0(Context context, Handler handler, @NonNull b.i.a.f.e.k.c cVar) {
-        b.i.a.f.e.h.a.C0112a<? extends b.i.a.f.l.f, b.i.a.f.l.a> c0112a = a;
+        b.i.a.f.e.h.a.C0035a<? extends b.i.a.f.l.f, b.i.a.f.l.a> c0035a = a;
         this.f1364b = context;
         this.c = handler;
-        b.c.a.a0.d.z(cVar, "ClientSettings must not be null");
+        AnimatableValueParser.z(cVar, "ClientSettings must not be null");
         this.f = cVar;
         this.e = cVar.f1380b;
-        this.d = c0112a;
+        this.d = c0035a;
     }
 
     @Override // b.i.a.f.e.h.j.f

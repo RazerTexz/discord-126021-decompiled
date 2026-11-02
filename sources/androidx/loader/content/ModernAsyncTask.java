@@ -7,7 +7,7 @@ import android.os.Message;
 import android.os.Process;
 import android.util.Log;
 import androidx.annotation.RestrictTo;
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.Callable;
 import java.util.concurrent.CancellationException;
@@ -293,7 +293,7 @@ public abstract class ModernAsyncTask<Params, Progress, Result> {
 
         @Override // java.util.concurrent.ThreadFactory
         public Thread newThread(Runnable runnable) {
-            StringBuilder sbU = a.U("ModernAsyncTask #");
+            StringBuilder sbU = outline.U("ModernAsyncTask #");
             sbU.append(this.mCount.getAndIncrement());
             return new Thread(runnable, sbU.toString());
         }

@@ -9,8 +9,8 @@ import android.widget.TextView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import b.a.k.b;
-import b.d.b.a.a;
+import b.a.k.FormatUtils;
+import b.d.b.a.outline;
 import com.discord.R;
 import com.discord.databinding.StageAudienceBlockedBottomSheetHeaderItemBinding;
 import com.discord.databinding.StageAudienceBlockedBottomSheetItemBinding;
@@ -22,12 +22,12 @@ import com.discord.utilities.icon.IconUtils;
 import com.discord.utilities.mg_recycler.MGRecyclerAdapterSimple;
 import com.discord.utilities.mg_recycler.MGRecyclerDataPayload;
 import com.discord.utilities.mg_recycler.MGRecyclerViewHolder;
-import com.discord.utilities.resources.StringResourceUtilsKt;
+import com.discord.utilities.resources.StringResourceUtils;
 import com.discord.views.CutoutView;
-import com.discord.widgets.user.UserNameFormatterKt;
+import com.discord.widgets.user.UserNameFormatter;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.google.android.material.textview.MaterialTextView;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 import kotlin.jvm.internal.DefaultConstructorMarker;
 
 /* JADX INFO: compiled from: StageAudienceBlockedBottomSheetAdapter.kt */
@@ -43,7 +43,7 @@ public final class StageAudienceBlockedBottomSheetAdapter extends MGRecyclerAdap
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
         public HeaderViewHolder(StageAudienceBlockedBottomSheetAdapter stageAudienceBlockedBottomSheetAdapter) {
             super(R.layout.stage_audience_blocked_bottom_sheet_header_item, stageAudienceBlockedBottomSheetAdapter);
-            m.checkNotNullParameter(stageAudienceBlockedBottomSheetAdapter, "adapter");
+            Intrinsics3.checkNotNullParameter(stageAudienceBlockedBottomSheetAdapter, "adapter");
             View view = this.itemView;
             int i = R.id.description;
             MaterialTextView materialTextView = (MaterialTextView) view.findViewById(R.id.description);
@@ -52,7 +52,7 @@ public final class StageAudienceBlockedBottomSheetAdapter extends MGRecyclerAdap
                 MaterialTextView materialTextView2 = (MaterialTextView) view.findViewById(R.id.title);
                 if (materialTextView2 != null) {
                     StageAudienceBlockedBottomSheetHeaderItemBinding stageAudienceBlockedBottomSheetHeaderItemBinding = new StageAudienceBlockedBottomSheetHeaderItemBinding((ConstraintLayout) view, materialTextView, materialTextView2);
-                    m.checkNotNullExpressionValue(stageAudienceBlockedBottomSheetHeaderItemBinding, "StageAudienceBlockedBott…temBinding.bind(itemView)");
+                    Intrinsics3.checkNotNullExpressionValue(stageAudienceBlockedBottomSheetHeaderItemBinding, "StageAudienceBlockedBott…temBinding.bind(itemView)");
                     this.binding = stageAudienceBlockedBottomSheetHeaderItemBinding;
                     return;
                 }
@@ -67,16 +67,16 @@ public final class StageAudienceBlockedBottomSheetAdapter extends MGRecyclerAdap
 
         /* JADX INFO: renamed from: onConfigure, reason: avoid collision after fix types in other method */
         public void onConfigure2(int position, MGRecyclerDataPayload data) {
-            m.checkNotNullParameter(data, "data");
+            Intrinsics3.checkNotNullParameter(data, "data");
             super.onConfigure(position, data);
             if (data instanceof ListItem.Header) {
                 MaterialTextView materialTextView = this.binding.c;
-                m.checkNotNullExpressionValue(materialTextView, "binding.title");
+                Intrinsics3.checkNotNullExpressionValue(materialTextView, "binding.title");
                 ListItem.Header header = (ListItem.Header) data;
-                materialTextView.setText(b.h(a.x(this.itemView, "itemView", "itemView.context"), R.string.stage_blocked_users_title_plural, new Object[]{StringResourceUtilsKt.getI18nPluralString(a.x(this.itemView, "itemView", "itemView.context"), R.plurals.stage_blocked_users_title_plural_number, header.getNumBlockedUsers(), new Object[0])}, null, 4));
+                materialTextView.setText(FormatUtils.h(outline.x(this.itemView, "itemView", "itemView.context"), R.string.stage_blocked_users_title_plural, new Object[]{StringResourceUtils.getI18nPluralString(outline.x(this.itemView, "itemView", "itemView.context"), R.plurals.stage_blocked_users_title_plural_number, header.getNumBlockedUsers(), new Object[0])}, null, 4));
                 MaterialTextView materialTextView2 = this.binding.f2144b;
-                m.checkNotNullExpressionValue(materialTextView2, "binding.description");
-                materialTextView2.setText(b.h(a.x(this.itemView, "itemView", "itemView.context"), R.string.stage_blocked_users_body, new Object[]{StringResourceUtilsKt.getI18nPluralString(a.x(this.itemView, "itemView", "itemView.context"), R.plurals.stage_blocked_users_body_number, header.getNumBlockedUsers(), Integer.valueOf(header.getNumBlockedUsers()))}, null, 4));
+                Intrinsics3.checkNotNullExpressionValue(materialTextView2, "binding.description");
+                materialTextView2.setText(FormatUtils.h(outline.x(this.itemView, "itemView", "itemView.context"), R.string.stage_blocked_users_body, new Object[]{StringResourceUtils.getI18nPluralString(outline.x(this.itemView, "itemView", "itemView.context"), R.plurals.stage_blocked_users_body_number, header.getNumBlockedUsers(), Integer.valueOf(header.getNumBlockedUsers()))}, null, 4));
             }
         }
     }
@@ -138,7 +138,7 @@ public final class StageAudienceBlockedBottomSheetAdapter extends MGRecyclerAdap
             }
 
             public String toString() {
-                return a.B(a.U("Header(numBlockedUsers="), this.numBlockedUsers, ")");
+                return outline.B(outline.U("Header(numBlockedUsers="), this.numBlockedUsers, ")");
             }
         }
 
@@ -152,7 +152,7 @@ public final class StageAudienceBlockedBottomSheetAdapter extends MGRecyclerAdap
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
             public Participant(StoreVoiceParticipants.VoiceUser voiceUser, boolean z2) {
                 super(null);
-                m.checkNotNullParameter(voiceUser, "participant");
+                Intrinsics3.checkNotNullParameter(voiceUser, "participant");
                 this.participant = voiceUser;
                 this.isSpeaker = z2;
                 this.type = 1;
@@ -170,7 +170,7 @@ public final class StageAudienceBlockedBottomSheetAdapter extends MGRecyclerAdap
             }
 
             public final Participant copy(StoreVoiceParticipants.VoiceUser participant, boolean isSpeaker) {
-                m.checkNotNullParameter(participant, "participant");
+                Intrinsics3.checkNotNullParameter(participant, "participant");
                 return new Participant(participant, isSpeaker);
             }
 
@@ -182,7 +182,7 @@ public final class StageAudienceBlockedBottomSheetAdapter extends MGRecyclerAdap
                     return false;
                 }
                 Participant participant = (Participant) other;
-                return m.areEqual(this.participant, participant.participant) && this.isSpeaker == participant.isSpeaker;
+                return Intrinsics3.areEqual(this.participant, participant.participant) && this.isSpeaker == participant.isSpeaker;
             }
 
             /* JADX INFO: renamed from: component2, reason: from getter */
@@ -230,10 +230,10 @@ public final class StageAudienceBlockedBottomSheetAdapter extends MGRecyclerAdap
             }
 
             public String toString() {
-                StringBuilder sbU = a.U("Participant(participant=");
+                StringBuilder sbU = outline.U("Participant(participant=");
                 sbU.append(this.participant);
                 sbU.append(", isSpeaker=");
-                return a.O(sbU, this.isSpeaker, ")");
+                return outline.O(sbU, this.isSpeaker, ")");
             }
         }
 
@@ -252,7 +252,7 @@ public final class StageAudienceBlockedBottomSheetAdapter extends MGRecyclerAdap
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
         public ParticipantViewHolder(StageAudienceBlockedBottomSheetAdapter stageAudienceBlockedBottomSheetAdapter) {
             super(R.layout.stage_audience_blocked_bottom_sheet_item, stageAudienceBlockedBottomSheetAdapter);
-            m.checkNotNullParameter(stageAudienceBlockedBottomSheetAdapter, "adapter");
+            Intrinsics3.checkNotNullParameter(stageAudienceBlockedBottomSheetAdapter, "adapter");
             View view = this.itemView;
             ConstraintLayout constraintLayout = (ConstraintLayout) view;
             int i = R.id.stage_channel_blocked_member_icon;
@@ -277,7 +277,7 @@ public final class StageAudienceBlockedBottomSheetAdapter extends MGRecyclerAdap
                                     TextView textView3 = (TextView) view.findViewById(R.id.stage_channel_blocked_text_speaker);
                                     if (textView3 != null) {
                                         StageAudienceBlockedBottomSheetItemBinding stageAudienceBlockedBottomSheetItemBinding = new StageAudienceBlockedBottomSheetItemBinding((ConstraintLayout) view, constraintLayout, simpleDraweeView, cutoutView, textView, imageView, textView2, viewFindViewById, textView3);
-                                        m.checkNotNullExpressionValue(stageAudienceBlockedBottomSheetItemBinding, "StageAudienceBlockedBott…temBinding.bind(itemView)");
+                                        Intrinsics3.checkNotNullExpressionValue(stageAudienceBlockedBottomSheetItemBinding, "StageAudienceBlockedBott…temBinding.bind(itemView)");
                                         this.binding = stageAudienceBlockedBottomSheetItemBinding;
                                         return;
                                     }
@@ -297,7 +297,7 @@ public final class StageAudienceBlockedBottomSheetAdapter extends MGRecyclerAdap
 
         /* JADX INFO: renamed from: onConfigure, reason: avoid collision after fix types in other method */
         public void onConfigure2(int position, MGRecyclerDataPayload data) {
-            m.checkNotNullParameter(data, "data");
+            Intrinsics3.checkNotNullParameter(data, "data");
             super.onConfigure(position, data);
             if (data instanceof ListItem.Participant) {
                 ListItem.Participant participant = (ListItem.Participant) data;
@@ -308,22 +308,22 @@ public final class StageAudienceBlockedBottomSheetAdapter extends MGRecyclerAdap
                 imageView.setVisibility(participant.isSpeaker() ? 0 : 4);
                 imageView.setActivated(participant.isSpeaker());
                 View view = this.itemView;
-                m.checkNotNullExpressionValue(view, "itemView");
+                Intrinsics3.checkNotNullExpressionValue(view, "itemView");
                 Resources resources = view.getResources();
                 TextView textView = this.binding.f;
-                m.checkNotNullExpressionValue(textView, "binding.stageChannelBlockedTextSpeaker");
+                Intrinsics3.checkNotNullExpressionValue(textView, "binding.stageChannelBlockedTextSpeaker");
                 textView.setText(participant.isSpeaker() ? resources.getString(R.string.stage_speaker) : resources.getString(R.string.stage_audience));
                 TextView textView2 = this.binding.d;
                 User user = participant.getParticipant().getUser();
                 String nickname = participant.getParticipant().getNickname();
                 Context context = textView2.getContext();
-                m.checkNotNullExpressionValue(context, "context");
-                textView2.setText(UserNameFormatterKt.getSpannableForUserNameWithDiscrim(user, nickname, context, R.attr.colorHeaderPrimary, R.attr.font_primary_semibold, R.integer.uikit_textsize_large_sp, R.attr.colorTextMuted, R.attr.font_primary_normal, R.integer.uikit_textsize_medium_sp));
+                Intrinsics3.checkNotNullExpressionValue(context, "context");
+                textView2.setText(UserNameFormatter.getSpannableForUserNameWithDiscrim(user, nickname, context, R.attr.colorHeaderPrimary, R.attr.font_primary_semibold, R.integer.uikit_textsize_large_sp, R.attr.colorTextMuted, R.attr.font_primary_normal, R.integer.uikit_textsize_medium_sp));
                 SimpleDraweeView simpleDraweeView = this.binding.f2145b;
-                m.checkNotNullExpressionValue(simpleDraweeView, "binding.stageChannelBlockedMemberIcon");
+                Intrinsics3.checkNotNullExpressionValue(simpleDraweeView, "binding.stageChannelBlockedMemberIcon");
                 IconUtils.setIcon$default(simpleDraweeView, participant.getParticipant().getUser().getUsername(), Long.valueOf(participant.getParticipant().getUser().getId()), participant.getParticipant().getUser().getAvatar(), Integer.valueOf(R.dimen.avatar_size_large), 0, null, null, participant.getParticipant().getGuildMember(), 224, null);
                 SimpleDraweeView simpleDraweeView2 = this.binding.f2145b;
-                m.checkNotNullExpressionValue(simpleDraweeView2, "binding.stageChannelBlockedMemberIcon");
+                Intrinsics3.checkNotNullExpressionValue(simpleDraweeView2, "binding.stageChannelBlockedMemberIcon");
                 simpleDraweeView2.setAlpha(0.5f);
             }
         }
@@ -332,7 +332,7 @@ public final class StageAudienceBlockedBottomSheetAdapter extends MGRecyclerAdap
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public StageAudienceBlockedBottomSheetAdapter(RecyclerView recyclerView) {
         super(recyclerView, false, 2, null);
-        m.checkNotNullParameter(recyclerView, "recyclerView");
+        Intrinsics3.checkNotNullParameter(recyclerView, "recyclerView");
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(this);
     }
@@ -349,7 +349,7 @@ public final class StageAudienceBlockedBottomSheetAdapter extends MGRecyclerAdap
 
     @Override // androidx.recyclerview.widget.RecyclerView.Adapter
     public MGRecyclerViewHolder<?, MGRecyclerDataPayload> onCreateViewHolder(ViewGroup parent, int viewType) {
-        m.checkNotNullParameter(parent, "parent");
+        Intrinsics3.checkNotNullParameter(parent, "parent");
         if (viewType == 0) {
             return new HeaderViewHolder(this);
         }

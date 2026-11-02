@@ -2,6 +2,7 @@ package b.i.a.f.h.k;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import b.c.a.a0.AnimatableValueParser;
 import com.google.android.gms.internal.icing.zzk;
 import com.google.android.gms.internal.icing.zzt;
 
@@ -10,7 +11,7 @@ import com.google.android.gms.internal.icing.zzt;
 public final class o implements Parcelable.Creator<zzk> {
     @Override // android.os.Parcelable.Creator
     public final zzk createFromParcel(Parcel parcel) {
-        int iM2 = b.c.a.a0.d.m2(parcel);
+        int iM2 = AnimatableValueParser.m2(parcel);
         String strR = null;
         zzt zztVar = null;
         byte[] bArrN = null;
@@ -19,18 +20,18 @@ public final class o implements Parcelable.Creator<zzk> {
             int i = parcel.readInt();
             char c = (char) i;
             if (c == 1) {
-                strR = b.c.a.a0.d.R(parcel, i);
+                strR = AnimatableValueParser.R(parcel, i);
             } else if (c == 3) {
-                zztVar = (zzt) b.c.a.a0.d.Q(parcel, i, zzt.CREATOR);
+                zztVar = (zzt) AnimatableValueParser.Q(parcel, i, zzt.CREATOR);
             } else if (c == 4) {
-                iG1 = b.c.a.a0.d.G1(parcel, i);
+                iG1 = AnimatableValueParser.G1(parcel, i);
             } else if (c != 5) {
-                b.c.a.a0.d.d2(parcel, i);
+                AnimatableValueParser.d2(parcel, i);
             } else {
-                bArrN = b.c.a.a0.d.N(parcel, i);
+                bArrN = AnimatableValueParser.N(parcel, i);
             }
         }
-        b.c.a.a0.d.f0(parcel, iM2);
+        AnimatableValueParser.f0(parcel, iM2);
         return new zzk(strR, zztVar, iG1, bArrN);
     }
 

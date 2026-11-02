@@ -1,11 +1,11 @@
 package com.franmontiel.persistentcookiejar.persistence;
 
-import f0.n;
+import f0.Cookie;
 import java.util.Collection;
 
 /* JADX INFO: loaded from: classes3.dex */
 public interface CookiePersistor {
-    void a(Collection<n> collection);
+    void a(Collection<Cookie> collection);
 
-    void removeAll(Collection<n> collection);
+    void removeAll(Collection<Cookie> collection);
 }

@@ -1,7 +1,7 @@
 package com.discord.api.activity;
 
-import b.d.b.a.a;
-import d0.z.d.m;
+import b.d.b.a.outline;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: ActivityTimestamps.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -45,7 +45,7 @@ public final /* data */ class ActivityTimestamps {
             return false;
         }
         ActivityTimestamps activityTimestamps = (ActivityTimestamps) other;
-        return m.areEqual(this.start, activityTimestamps.start) && m.areEqual(this.end, activityTimestamps.end);
+        return Intrinsics3.areEqual(this.start, activityTimestamps.start) && Intrinsics3.areEqual(this.end, activityTimestamps.end);
     }
 
     public int hashCode() {
@@ -56,9 +56,9 @@ public final /* data */ class ActivityTimestamps {
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("ActivityTimestamps(start=");
+        StringBuilder sbU = outline.U("ActivityTimestamps(start=");
         sbU.append(this.start);
         sbU.append(", end=");
-        return a.J(sbU, this.end, ")");
+        return outline.J(sbU, this.end, ")");
     }
 }

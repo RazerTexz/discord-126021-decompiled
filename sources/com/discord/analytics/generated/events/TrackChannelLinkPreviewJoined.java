@@ -1,18 +1,18 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.analytics.generated.traits.TrackChannel;
-import com.discord.analytics.generated.traits.TrackChannelReceiver;
+import com.discord.analytics.generated.traits.TrackChannel2;
 import com.discord.analytics.generated.traits.TrackGuild;
-import com.discord.analytics.generated.traits.TrackGuildReceiver;
+import com.discord.analytics.generated.traits.TrackGuild2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackChannelLinkPreviewJoined.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackChannelLinkPreviewJoined implements AnalyticsSchema, TrackBaseReceiver, TrackGuildReceiver, TrackChannelReceiver {
+public final /* data */ class TrackChannelLinkPreviewJoined implements AnalyticsSchema, TrackBase2, TrackGuild2, TrackChannel2 {
     private final CharSequence authorId = null;
     private final CharSequence linkChannelId = null;
     private final Long linkChannelType = null;
@@ -23,7 +23,7 @@ public final /* data */ class TrackChannelLinkPreviewJoined implements Analytics
     private TrackGuild trackGuild;
     private final transient String analyticsSchemaTypeName = "channel_link_preview_joined";
 
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    @Override // com.discord.analytics.generated.traits.TrackGuild2
     public void c(TrackGuild trackGuild) {
         this.trackGuild = trackGuild;
     }
@@ -36,7 +36,7 @@ public final /* data */ class TrackChannelLinkPreviewJoined implements Analytics
             return false;
         }
         TrackChannelLinkPreviewJoined trackChannelLinkPreviewJoined = (TrackChannelLinkPreviewJoined) other;
-        return m.areEqual(this.authorId, trackChannelLinkPreviewJoined.authorId) && m.areEqual(this.linkGuildId, trackChannelLinkPreviewJoined.linkGuildId) && m.areEqual(this.linkChannelId, trackChannelLinkPreviewJoined.linkChannelId) && m.areEqual(this.linkMessageId, trackChannelLinkPreviewJoined.linkMessageId) && m.areEqual(this.linkChannelType, trackChannelLinkPreviewJoined.linkChannelType);
+        return Intrinsics3.areEqual(this.authorId, trackChannelLinkPreviewJoined.authorId) && Intrinsics3.areEqual(this.linkGuildId, trackChannelLinkPreviewJoined.linkGuildId) && Intrinsics3.areEqual(this.linkChannelId, trackChannelLinkPreviewJoined.linkChannelId) && Intrinsics3.areEqual(this.linkMessageId, trackChannelLinkPreviewJoined.linkMessageId) && Intrinsics3.areEqual(this.linkChannelType, trackChannelLinkPreviewJoined.linkChannelType);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -45,7 +45,7 @@ public final /* data */ class TrackChannelLinkPreviewJoined implements Analytics
         return this.analyticsSchemaTypeName;
     }
 
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    @Override // com.discord.analytics.generated.traits.TrackGuild2
     /* JADX INFO: renamed from: a, reason: from getter */
     public TrackGuild getTrackGuild() {
         return this.trackGuild;
@@ -65,7 +65,7 @@ public final /* data */ class TrackChannelLinkPreviewJoined implements Analytics
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackChannelLinkPreviewJoined(authorId=");
+        StringBuilder sbU = outline.U("TrackChannelLinkPreviewJoined(authorId=");
         sbU.append(this.authorId);
         sbU.append(", linkGuildId=");
         sbU.append(this.linkGuildId);
@@ -74,6 +74,6 @@ public final /* data */ class TrackChannelLinkPreviewJoined implements Analytics
         sbU.append(", linkMessageId=");
         sbU.append(this.linkMessageId);
         sbU.append(", linkChannelType=");
-        return a.G(sbU, this.linkChannelType, ")");
+        return outline.G(sbU, this.linkChannelType, ")");
     }
 }

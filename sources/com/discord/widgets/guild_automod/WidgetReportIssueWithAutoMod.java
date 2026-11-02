@@ -6,21 +6,21 @@ import android.view.View;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentViewModelLazyKt;
-import b.a.d.g0;
-import b.a.d.i0;
-import b.a.d.j;
-import b.d.b.a.a;
+import b.a.d.AppScreen2;
+import b.a.d.AppViewModelDelegates3;
+import b.a.d.AppViewModelDelegates5;
+import b.d.b.a.outline;
 import com.discord.R;
 import com.discord.app.AppFragment;
 import com.discord.databinding.WidgetReportIssueWithAutomodBinding;
 import com.discord.utilities.rx.ObservableExtensionsKt;
 import com.discord.utilities.viewbinding.FragmentViewBindingDelegate;
-import com.discord.utilities.viewbinding.FragmentViewBindingDelegateKt;
+import com.discord.utilities.viewbinding.FragmentViewBindingDelegate3;
 import com.discord.views.CheckedSetting;
-import d0.g;
-import d0.z.d.a0;
-import d0.z.d.m;
-import d0.z.d.o;
+import d0.LazyJVM;
+import d0.z.d.Intrinsics3;
+import d0.z.d.Lambda;
+import d0.z.d.Reflection2;
 import kotlin.Lazy;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
@@ -31,7 +31,7 @@ import kotlin.reflect.KProperty;
 /* JADX INFO: compiled from: WidgetReportIssueWithAutoMod.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetReportIssueWithAutoMod extends AppFragment {
-    public static final /* synthetic */ KProperty[] $$delegatedProperties = {a.d0(WidgetReportIssueWithAutoMod.class, "binding", "getBinding()Lcom/discord/databinding/WidgetReportIssueWithAutomodBinding;", 0)};
+    public static final /* synthetic */ KProperty[] $$delegatedProperties = {outline.d0(WidgetReportIssueWithAutoMod.class, "binding", "getBinding()Lcom/discord/databinding/WidgetReportIssueWithAutomodBinding;", 0)};
 
     /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
     public static final Companion INSTANCE = new Companion(null);
@@ -51,10 +51,10 @@ public final class WidgetReportIssueWithAutoMod extends AppFragment {
     /* JADX INFO: renamed from: com.discord.widgets.guild_automod.WidgetReportIssueWithAutoMod$configureOption$1, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetReportIssueWithAutoMod.kt */
     public final class AnonymousClass1 implements View.OnClickListener {
-        public final /* synthetic */ FeedbackType $settingValue;
+        public final /* synthetic */ ReportIssueWithAutoModViewModel2 $settingValue;
 
-        public AnonymousClass1(FeedbackType feedbackType) {
-            this.$settingValue = feedbackType;
+        public AnonymousClass1(ReportIssueWithAutoModViewModel2 reportIssueWithAutoModViewModel2) {
+            this.$settingValue = reportIssueWithAutoModViewModel2;
         }
 
         @Override // android.view.View.OnClickListener
@@ -80,7 +80,7 @@ public final class WidgetReportIssueWithAutoMod extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.guild_automod.WidgetReportIssueWithAutoMod$onResume$1, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetReportIssueWithAutoMod.kt */
-    public final class AnonymousClass1 extends o implements Function1<ReportIssueWithAutoModViewModel.ViewState, Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function1<ReportIssueWithAutoModViewModel.ViewState, Unit> {
         public AnonymousClass1() {
             super(1);
         }
@@ -93,7 +93,7 @@ public final class WidgetReportIssueWithAutoMod extends AppFragment {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(ReportIssueWithAutoModViewModel.ViewState viewState) {
-            m.checkNotNullParameter(viewState, "viewState");
+            Intrinsics3.checkNotNullParameter(viewState, "viewState");
             WidgetReportIssueWithAutoMod.this.configureUI(viewState);
         }
     }
@@ -104,7 +104,7 @@ public final class WidgetReportIssueWithAutoMod extends AppFragment {
 
         /* JADX INFO: renamed from: com.discord.widgets.guild_automod.WidgetReportIssueWithAutoMod$configureUI$2$1, reason: invalid class name */
         /* JADX INFO: compiled from: WidgetReportIssueWithAutoMod.kt */
-        public final class AnonymousClass1 extends o implements Function0<Unit> {
+        public final class AnonymousClass1 extends Lambda implements Function0<Unit> {
             public AnonymousClass1() {
                 super(0);
             }
@@ -139,11 +139,11 @@ public final class WidgetReportIssueWithAutoMod extends AppFragment {
         }
 
         public final void launch(Context context, long channelId, long messageId) {
-            m.checkNotNullParameter(context, "context");
+            Intrinsics3.checkNotNullParameter(context, "context");
             Intent intent = new Intent();
             intent.putExtra("com.discord.intent.extra.EXTRA_CHANNEL_ID", channelId);
             intent.putExtra("com.discord.intent.extra.EXTRA_MESSAGE_ID", messageId);
-            j.d(context, WidgetReportIssueWithAutoMod.class, intent);
+            AppScreen2.d(context, WidgetReportIssueWithAutoMod.class, intent);
         }
 
         public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
@@ -153,12 +153,12 @@ public final class WidgetReportIssueWithAutoMod extends AppFragment {
 
     public WidgetReportIssueWithAutoMod() {
         super(R.layout.widget_report_issue_with_automod);
-        this.binding = FragmentViewBindingDelegateKt.viewBinding$default(this, WidgetReportIssueWithAutoMod$binding$2.INSTANCE, null, 2, null);
-        this.channelId = g.lazy(new WidgetReportIssueWithAutoMod$channelId$2(this));
-        this.messageId = g.lazy(new WidgetReportIssueWithAutoMod$messageId$2(this));
-        WidgetReportIssueWithAutoMod$viewModel$2 widgetReportIssueWithAutoMod$viewModel$2 = new WidgetReportIssueWithAutoMod$viewModel$2(this);
-        g0 g0Var = new g0(this);
-        this.viewModel = FragmentViewModelLazyKt.createViewModelLazy(this, a0.getOrCreateKotlinClass(ReportIssueWithAutoModViewModel.class), new WidgetReportIssueWithAutoMod$appViewModels$$inlined$viewModels$1(g0Var), new i0(widgetReportIssueWithAutoMod$viewModel$2));
+        this.binding = FragmentViewBindingDelegate3.viewBinding$default(this, WidgetReportIssueWithAutoMod2.INSTANCE, null, 2, null);
+        this.channelId = LazyJVM.lazy(new WidgetReportIssueWithAutoMod3(this));
+        this.messageId = LazyJVM.lazy(new WidgetReportIssueWithAutoMod4(this));
+        WidgetReportIssueWithAutoMod5 widgetReportIssueWithAutoMod5 = new WidgetReportIssueWithAutoMod5(this);
+        AppViewModelDelegates3 appViewModelDelegates3 = new AppViewModelDelegates3(this);
+        this.viewModel = FragmentViewModelLazyKt.createViewModelLazy(this, Reflection2.getOrCreateKotlinClass(ReportIssueWithAutoModViewModel.class), new WidgetReportIssueWithAutoMod$appViewModels$$inlined$viewModels$1(appViewModelDelegates3), new AppViewModelDelegates5(widgetReportIssueWithAutoMod5));
     }
 
     public static final /* synthetic */ long access$getChannelId$p(WidgetReportIssueWithAutoMod widgetReportIssueWithAutoMod) {
@@ -173,23 +173,23 @@ public final class WidgetReportIssueWithAutoMod extends AppFragment {
         return widgetReportIssueWithAutoMod.getViewModel();
     }
 
-    private final void configureOption(ReportIssueWithAutoModViewModel.ViewState.Valid viewState, CheckedSetting setting, FeedbackType settingValue) {
-        setting.setChecked(m.areEqual(viewState.getSelectedOption(), settingValue.getValue()));
+    private final void configureOption(ReportIssueWithAutoModViewModel.ViewState.Valid viewState, CheckedSetting setting, ReportIssueWithAutoModViewModel2 settingValue) {
+        setting.setChecked(Intrinsics3.areEqual(viewState.getSelectedOption(), settingValue.getValue()));
         setting.e(new AnonymousClass1(settingValue));
     }
 
     public final void configureUI(ReportIssueWithAutoModViewModel.ViewState viewState) {
-        m.checkNotNullParameter(viewState, "viewState");
+        Intrinsics3.checkNotNullParameter(viewState, "viewState");
         getBinding().f2520b.setOnClickListener(new AnonymousClass1());
         getBinding().e.setOnClickListener(new AnonymousClass2());
         if (viewState instanceof ReportIssueWithAutoModViewModel.ViewState.Valid) {
             ReportIssueWithAutoModViewModel.ViewState.Valid valid = (ReportIssueWithAutoModViewModel.ViewState.Valid) viewState;
             CheckedSetting checkedSetting = getBinding().c;
-            m.checkNotNullExpressionValue(checkedSetting, "binding.option1");
-            configureOption(valid, checkedSetting, FeedbackType.ALLOWED);
+            Intrinsics3.checkNotNullExpressionValue(checkedSetting, "binding.option1");
+            configureOption(valid, checkedSetting, ReportIssueWithAutoModViewModel2.ALLOWED);
             CheckedSetting checkedSetting2 = getBinding().d;
-            m.checkNotNullExpressionValue(checkedSetting2, "binding.option2");
-            configureOption(valid, checkedSetting2, FeedbackType.BUG);
+            Intrinsics3.checkNotNullExpressionValue(checkedSetting2, "binding.option2");
+            configureOption(valid, checkedSetting2, ReportIssueWithAutoModViewModel2.BUG);
         }
     }
 

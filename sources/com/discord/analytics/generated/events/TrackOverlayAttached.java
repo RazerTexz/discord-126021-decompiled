@@ -1,14 +1,14 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackOverlayAttached.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackOverlayAttached implements AnalyticsSchema, TrackBaseReceiver {
+public final /* data */ class TrackOverlayAttached implements AnalyticsSchema, TrackBase2 {
     private final Long attachStatus = null;
     private final CharSequence overlaySession = null;
     private TrackBase trackBase;
@@ -22,7 +22,7 @@ public final /* data */ class TrackOverlayAttached implements AnalyticsSchema, T
             return false;
         }
         TrackOverlayAttached trackOverlayAttached = (TrackOverlayAttached) other;
-        return m.areEqual(this.attachStatus, trackOverlayAttached.attachStatus) && m.areEqual(this.overlaySession, trackOverlayAttached.overlaySession);
+        return Intrinsics3.areEqual(this.attachStatus, trackOverlayAttached.attachStatus) && Intrinsics3.areEqual(this.overlaySession, trackOverlayAttached.overlaySession);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -39,9 +39,9 @@ public final /* data */ class TrackOverlayAttached implements AnalyticsSchema, T
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackOverlayAttached(attachStatus=");
+        StringBuilder sbU = outline.U("TrackOverlayAttached(attachStatus=");
         sbU.append(this.attachStatus);
         sbU.append(", overlaySession=");
-        return a.E(sbU, this.overlaySession, ")");
+        return outline.E(sbU, this.overlaySession, ")");
     }
 }

@@ -1,21 +1,21 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackNuoNativeAppDownload.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackNuoNativeAppDownload implements AnalyticsSchema, TrackBaseReceiver {
+public final /* data */ class TrackNuoNativeAppDownload implements AnalyticsSchema, TrackBase2 {
     private final CharSequence platform = null;
     private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "nuo_native_app_download";
 
     public boolean equals(Object other) {
         if (this != other) {
-            return (other instanceof TrackNuoNativeAppDownload) && m.areEqual(this.platform, ((TrackNuoNativeAppDownload) other).platform);
+            return (other instanceof TrackNuoNativeAppDownload) && Intrinsics3.areEqual(this.platform, ((TrackNuoNativeAppDownload) other).platform);
         }
         return true;
     }
@@ -35,6 +35,6 @@ public final /* data */ class TrackNuoNativeAppDownload implements AnalyticsSche
     }
 
     public String toString() {
-        return a.E(a.U("TrackNuoNativeAppDownload(platform="), this.platform, ")");
+        return outline.E(outline.U("TrackNuoNativeAppDownload(platform="), this.platform, ")");
     }
 }

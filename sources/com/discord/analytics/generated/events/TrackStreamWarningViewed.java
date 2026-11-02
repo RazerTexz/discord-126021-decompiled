@@ -1,14 +1,14 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackStreamWarningViewed.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackStreamWarningViewed implements AnalyticsSchema, TrackBaseReceiver {
+public final /* data */ class TrackStreamWarningViewed implements AnalyticsSchema, TrackBase2 {
     private final Long applicationId = null;
     private final CharSequence applicationName = null;
     private final CharSequence guildRegion = null;
@@ -30,7 +30,7 @@ public final /* data */ class TrackStreamWarningViewed implements AnalyticsSchem
             return false;
         }
         TrackStreamWarningViewed trackStreamWarningViewed = (TrackStreamWarningViewed) other;
-        return m.areEqual(this.noticeType, trackStreamWarningViewed.noticeType) && m.areEqual(this.streamerUserId, trackStreamWarningViewed.streamerUserId) && m.areEqual(this.streamChannelId, trackStreamWarningViewed.streamChannelId) && m.areEqual(this.streamRegion, trackStreamWarningViewed.streamRegion) && m.areEqual(this.guildRegion, trackStreamWarningViewed.guildRegion) && m.areEqual(this.videoEnabled, trackStreamWarningViewed.videoEnabled) && m.areEqual(this.applicationName, trackStreamWarningViewed.applicationName) && m.areEqual(this.applicationId, trackStreamWarningViewed.applicationId) && m.areEqual(this.videoLayout, trackStreamWarningViewed.videoLayout) && m.areEqual(this.mediaSessionId, trackStreamWarningViewed.mediaSessionId);
+        return Intrinsics3.areEqual(this.noticeType, trackStreamWarningViewed.noticeType) && Intrinsics3.areEqual(this.streamerUserId, trackStreamWarningViewed.streamerUserId) && Intrinsics3.areEqual(this.streamChannelId, trackStreamWarningViewed.streamChannelId) && Intrinsics3.areEqual(this.streamRegion, trackStreamWarningViewed.streamRegion) && Intrinsics3.areEqual(this.guildRegion, trackStreamWarningViewed.guildRegion) && Intrinsics3.areEqual(this.videoEnabled, trackStreamWarningViewed.videoEnabled) && Intrinsics3.areEqual(this.applicationName, trackStreamWarningViewed.applicationName) && Intrinsics3.areEqual(this.applicationId, trackStreamWarningViewed.applicationId) && Intrinsics3.areEqual(this.videoLayout, trackStreamWarningViewed.videoLayout) && Intrinsics3.areEqual(this.mediaSessionId, trackStreamWarningViewed.mediaSessionId);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -63,7 +63,7 @@ public final /* data */ class TrackStreamWarningViewed implements AnalyticsSchem
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackStreamWarningViewed(noticeType=");
+        StringBuilder sbU = outline.U("TrackStreamWarningViewed(noticeType=");
         sbU.append(this.noticeType);
         sbU.append(", streamerUserId=");
         sbU.append(this.streamerUserId);
@@ -82,6 +82,6 @@ public final /* data */ class TrackStreamWarningViewed implements AnalyticsSchem
         sbU.append(", videoLayout=");
         sbU.append(this.videoLayout);
         sbU.append(", mediaSessionId=");
-        return a.E(sbU, this.mediaSessionId, ")");
+        return outline.E(sbU, this.mediaSessionId, ")");
     }
 }

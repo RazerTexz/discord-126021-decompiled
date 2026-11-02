@@ -6,7 +6,7 @@ public final class k {
     public static final b.i.a.f.e.h.a.g<g> a;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    public static final b.i.a.f.e.h.a.C0112a<g, b.i.a.f.e.h.a.d.c> f1432b;
+    public static final b.i.a.f.e.h.a.C0035a<g, b.i.a.f.e.h.a.d.c> f1432b;
     public static final b.i.a.f.e.h.a<b.i.a.f.e.h.a.d.c> c;
 
     static {

@@ -14,7 +14,7 @@ import android.os.Looper;
 import android.provider.Settings;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.adjust.sdk.scheduler.SingleThreadFutureScheduler;
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -147,7 +147,7 @@ public class Util {
         public String doInBackground2(Context... contextArr) {
             ILogger logger = AdjustFactory.getLogger();
             String strAccess$000 = Util.access$000(contextArr[0]);
-            logger.debug(a.w("GoogleAdId read ", strAccess$000), new Object[0]);
+            logger.debug(outline.w("GoogleAdId read ", strAccess$000), new Object[0]);
             return strAccess$000;
         }
 
@@ -172,7 +172,7 @@ public class Util {
     }
 
     public static String convertToHex(byte[] bArr) {
-        return formatString(a.B(a.U("%0"), bArr.length << 1, "x"), new BigInteger(1, bArr));
+        return formatString(outline.B(outline.U("%0"), bArr.length << 1, "x"), new BigInteger(1, bArr));
     }
 
     public static String createUuid() {
@@ -298,7 +298,7 @@ public class Util {
         } else {
             logger.debug("GoogleAdId being read in the background", new Object[0]);
             String googleAdId = getGoogleAdId(context);
-            logger.debug(a.w("GoogleAdId read ", googleAdId), new Object[0]);
+            logger.debug(outline.w("GoogleAdId read ", googleAdId), new Object[0]);
             onDeviceIdsRead.onGoogleAdIdRead(googleAdId);
         }
     }

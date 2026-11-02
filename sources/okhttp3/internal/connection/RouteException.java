@@ -1,6 +1,6 @@
 package okhttp3.internal.connection;
 
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 import java.io.IOException;
 
 /* JADX INFO: compiled from: RouteException.kt */
@@ -12,13 +12,13 @@ public final class RouteException extends RuntimeException {
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public RouteException(IOException iOException) {
         super(iOException);
-        m.checkParameterIsNotNull(iOException, "firstConnectException");
+        Intrinsics3.checkParameterIsNotNull(iOException, "firstConnectException");
         this.firstConnectException = iOException;
         this.lastConnectException = iOException;
     }
 
     public final void a(IOException e) {
-        m.checkParameterIsNotNull(e, "e");
+        Intrinsics3.checkParameterIsNotNull(e, "e");
         this.firstConnectException.addSuppressed(e);
         this.lastConnectException = e;
     }

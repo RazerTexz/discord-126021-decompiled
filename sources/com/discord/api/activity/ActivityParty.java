@@ -1,8 +1,8 @@
 package com.discord.api.activity;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.models.domain.ModelAuditLogEntry;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 import java.util.List;
 
 /* JADX INFO: compiled from: ActivityParty.kt */
@@ -28,7 +28,7 @@ public final /* data */ class ActivityParty {
             return false;
         }
         ActivityParty activityParty = (ActivityParty) other;
-        return m.areEqual(this.id, activityParty.id) && m.areEqual(this.size, activityParty.size);
+        return Intrinsics3.areEqual(this.id, activityParty.id) && Intrinsics3.areEqual(this.size, activityParty.size);
     }
 
     /* JADX INFO: renamed from: a, reason: from getter */
@@ -44,9 +44,9 @@ public final /* data */ class ActivityParty {
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("ActivityParty(id=");
+        StringBuilder sbU = outline.U("ActivityParty(id=");
         sbU.append(this.id);
         sbU.append(", size=");
-        return a.L(sbU, this.size, ")");
+        return outline.L(sbU, this.size, ")");
     }
 }

@@ -1,16 +1,19 @@
 package b.i.a.c;
 
+import b.i.a.c.f3.FlagSet;
+import b.i.a.c.f3.ListenerSet;
+
 /* JADX INFO: compiled from: lambda */
 /* JADX INFO: loaded from: classes3.dex */
-public final /* synthetic */ class u implements b.i.a.c.f3.p.b {
-    public final /* synthetic */ y1 a;
+public final /* synthetic */ class u implements ListenerSet.b {
+    public final /* synthetic */ Player2 a;
 
-    public /* synthetic */ u(y1 y1Var) {
-        this.a = y1Var;
+    public /* synthetic */ u(Player2 player2) {
+        this.a = player2;
     }
 
-    @Override // b.i.a.c.f3.p.b
-    public final void a(Object obj, b.i.a.c.f3.n nVar) {
-        ((y1.c) obj).E(this.a, new y1.d(nVar));
+    @Override // b.i.a.c.f3.ListenerSet.b
+    public final void a(Object obj, FlagSet flagSet) {
+        ((Player2.c) obj).E(this.a, new Player2.d(flagSet));
     }
 }

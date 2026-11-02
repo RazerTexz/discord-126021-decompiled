@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
-import b.a.k.b;
+import b.a.k.FormatUtils;
 import com.discord.R;
 import com.discord.databinding.ViewGiftOutboundPromoListItemBinding;
 import com.discord.models.domain.ModelAuditLogEntry;
@@ -18,7 +18,7 @@ import com.discord.utilities.view.recycler.SimpleItemCallback;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.card.MaterialCardView;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function1;
 
@@ -27,7 +27,7 @@ import kotlin.jvm.functions.Function1;
 public final class WidgetSettingsGiftingOutboundPromosAdapter extends ListAdapter<SettingsGiftingViewModel.OutboundPromoItem, OutboundPromoViewHolder> {
     private final Function1<SettingsGiftingViewModel.OutboundPromoItem, Unit> onButtonClick;
     private final Function1<SettingsGiftingViewModel.OutboundPromoItem, Unit> onMoreDetailsClick;
-    private static final SimpleItemCallback<SettingsGiftingViewModel.OutboundPromoItem> DIFF_CALLBACK = new SimpleItemCallback<>(WidgetSettingsGiftingOutboundPromosAdapter$Companion$DIFF_CALLBACK$1.INSTANCE);
+    private static final SimpleItemCallback<SettingsGiftingViewModel.OutboundPromoItem> DIFF_CALLBACK = new SimpleItemCallback<>(WidgetSettingsGiftingOutboundPromosAdapter2.INSTANCE);
 
     /* JADX INFO: compiled from: WidgetSettingsGiftingOutboundPromosAdapter.kt */
     public final class OutboundPromoViewHolder extends RecyclerView.ViewHolder {
@@ -40,9 +40,9 @@ public final class WidgetSettingsGiftingOutboundPromosAdapter extends ListAdapte
         /* JADX WARN: Multi-variable type inference failed */
         public OutboundPromoViewHolder(ViewGroup viewGroup, Function1<? super SettingsGiftingViewModel.OutboundPromoItem, Unit> function1, Function1<? super SettingsGiftingViewModel.OutboundPromoItem, Unit> function2) {
             super(LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.view_gift_outbound_promo_list_item, viewGroup, false));
-            m.checkNotNullParameter(viewGroup, "parent");
-            m.checkNotNullParameter(function1, "onMoreDetailsClick");
-            m.checkNotNullParameter(function2, "onButtonClick");
+            Intrinsics3.checkNotNullParameter(viewGroup, "parent");
+            Intrinsics3.checkNotNullParameter(function1, "onMoreDetailsClick");
+            Intrinsics3.checkNotNullParameter(function2, "onButtonClick");
             this.onMoreDetailsClick = function1;
             this.onButtonClick = function2;
             View view = this.itemView;
@@ -62,9 +62,9 @@ public final class WidgetSettingsGiftingOutboundPromosAdapter extends ListAdapte
                             TextView textView3 = (TextView) view.findViewById(R.id.giftPromoTitle);
                             if (textView3 != null) {
                                 ViewGiftOutboundPromoListItemBinding viewGiftOutboundPromoListItemBinding = new ViewGiftOutboundPromoListItemBinding((MaterialCardView) view, materialButton, textView, simpleDraweeView, textView2, textView3);
-                                textView2.setOnClickListener(new WidgetSettingsGiftingOutboundPromosAdapter$OutboundPromoViewHolder$$special$$inlined$also$lambda$1(this));
-                                materialButton.setOnClickListener(new WidgetSettingsGiftingOutboundPromosAdapter$OutboundPromoViewHolder$$special$$inlined$also$lambda$2(this));
-                                m.checkNotNullExpressionValue(viewGiftOutboundPromoListItemBinding, "ViewGiftOutboundPromoLis…nClick(boundItem) }\n    }");
+                                textView2.setOnClickListener(new WidgetSettingsGiftingOutboundPromosAdapter3(this));
+                                materialButton.setOnClickListener(new WidgetSettingsGiftingOutboundPromosAdapter4(this));
+                                Intrinsics3.checkNotNullExpressionValue(viewGiftOutboundPromoListItemBinding, "ViewGiftOutboundPromoLis…nClick(boundItem) }\n    }");
                                 this.binding = viewGiftOutboundPromoListItemBinding;
                                 return;
                             }
@@ -78,7 +78,7 @@ public final class WidgetSettingsGiftingOutboundPromosAdapter extends ListAdapte
         public static final /* synthetic */ SettingsGiftingViewModel.OutboundPromoItem access$getBoundItem$p(OutboundPromoViewHolder outboundPromoViewHolder) {
             SettingsGiftingViewModel.OutboundPromoItem outboundPromoItem = outboundPromoViewHolder.boundItem;
             if (outboundPromoItem == null) {
-                m.throwUninitializedPropertyAccessException("boundItem");
+                Intrinsics3.throwUninitializedPropertyAccessException("boundItem");
             }
             return outboundPromoItem;
         }
@@ -96,45 +96,45 @@ public final class WidgetSettingsGiftingOutboundPromosAdapter extends ListAdapte
         }
 
         public final void bindTo(SettingsGiftingViewModel.OutboundPromoItem item) {
-            m.checkNotNullParameter(item, "item");
+            Intrinsics3.checkNotNullParameter(item, "item");
             this.boundItem = item;
             SimpleDraweeView simpleDraweeView = this.binding.d;
-            m.checkNotNullExpressionValue(simpleDraweeView, "binding.giftPromoImage");
+            Intrinsics3.checkNotNullExpressionValue(simpleDraweeView, "binding.giftPromoImage");
             IconUtils.setIcon$default(simpleDraweeView, item.getImageUrl(), 0, (Function1) null, new MGImages.DistinctChangeDetector(), 12, (Object) null);
             TextView textView = this.binding.f;
-            m.checkNotNullExpressionValue(textView, "binding.giftPromoTitle");
+            Intrinsics3.checkNotNullExpressionValue(textView, "binding.giftPromoTitle");
             textView.setText(item.getTitle());
             ClaimStatus claimStatus = item.getClaimStatus();
             if (claimStatus instanceof ClaimStatus.Unclaimed) {
                 long dateTimeMillis = ((ClaimStatus.Unclaimed) item.getClaimStatus()).getClaimBy().getDateTimeMillis();
                 TimeUtils timeUtils = TimeUtils.INSTANCE;
                 View view = this.itemView;
-                m.checkNotNullExpressionValue(view, "itemView");
+                Intrinsics3.checkNotNullExpressionValue(view, "itemView");
                 Context context = view.getContext();
-                m.checkNotNullExpressionValue(context, "itemView.context");
+                Intrinsics3.checkNotNullExpressionValue(context, "itemView.context");
                 String strRenderUtcDate = timeUtils.renderUtcDate(dateTimeMillis, context, 1);
                 TextView textView2 = this.binding.c;
-                m.checkNotNullExpressionValue(textView2, "binding.giftPromoDescription");
-                b.n(textView2, R.string.mobile_outbound_promotion_card_unclaimed_body, new Object[]{strRenderUtcDate}, null, 4);
+                Intrinsics3.checkNotNullExpressionValue(textView2, "binding.giftPromoDescription");
+                FormatUtils.n(textView2, R.string.mobile_outbound_promotion_card_unclaimed_body, new Object[]{strRenderUtcDate}, null, 4);
                 MaterialButton materialButton = this.binding.f2187b;
-                m.checkNotNullExpressionValue(materialButton, "binding.giftPromoButton");
-                b.n(materialButton, R.string.promotion_card_action_claim, new Object[0], null, 4);
+                Intrinsics3.checkNotNullExpressionValue(materialButton, "binding.giftPromoButton");
+                FormatUtils.n(materialButton, R.string.promotion_card_action_claim, new Object[0], null, 4);
                 return;
             }
             if (claimStatus instanceof ClaimStatus.Claimed) {
                 long dateTimeMillis2 = ((ClaimStatus.Claimed) item.getClaimStatus()).getRedeemBy().getDateTimeMillis();
                 TimeUtils timeUtils2 = TimeUtils.INSTANCE;
                 View view2 = this.itemView;
-                m.checkNotNullExpressionValue(view2, "itemView");
+                Intrinsics3.checkNotNullExpressionValue(view2, "itemView");
                 Context context2 = view2.getContext();
-                m.checkNotNullExpressionValue(context2, "itemView.context");
+                Intrinsics3.checkNotNullExpressionValue(context2, "itemView.context");
                 String strRenderUtcDate2 = timeUtils2.renderUtcDate(dateTimeMillis2, context2, 1);
                 TextView textView3 = this.binding.c;
-                m.checkNotNullExpressionValue(textView3, "binding.giftPromoDescription");
-                b.n(textView3, R.string.mobile_outbound_promotion_card_claimed_body, new Object[]{strRenderUtcDate2}, null, 4);
+                Intrinsics3.checkNotNullExpressionValue(textView3, "binding.giftPromoDescription");
+                FormatUtils.n(textView3, R.string.mobile_outbound_promotion_card_claimed_body, new Object[]{strRenderUtcDate2}, null, 4);
                 MaterialButton materialButton2 = this.binding.f2187b;
-                m.checkNotNullExpressionValue(materialButton2, "binding.giftPromoButton");
-                b.n(materialButton2, R.string.outbound_promotion_see_code, new Object[0], null, 4);
+                Intrinsics3.checkNotNullExpressionValue(materialButton2, "binding.giftPromoButton");
+                FormatUtils.n(materialButton2, R.string.outbound_promotion_see_code, new Object[0], null, 4);
             }
         }
     }
@@ -143,8 +143,8 @@ public final class WidgetSettingsGiftingOutboundPromosAdapter extends ListAdapte
     /* JADX WARN: Multi-variable type inference failed */
     public WidgetSettingsGiftingOutboundPromosAdapter(Function1<? super SettingsGiftingViewModel.OutboundPromoItem, Unit> function1, Function1<? super SettingsGiftingViewModel.OutboundPromoItem, Unit> function2) {
         super(DIFF_CALLBACK);
-        m.checkNotNullParameter(function1, "onMoreDetailsClick");
-        m.checkNotNullParameter(function2, "onButtonClick");
+        Intrinsics3.checkNotNullParameter(function1, "onMoreDetailsClick");
+        Intrinsics3.checkNotNullParameter(function2, "onButtonClick");
         this.onMoreDetailsClick = function1;
         this.onButtonClick = function2;
     }
@@ -160,15 +160,15 @@ public final class WidgetSettingsGiftingOutboundPromosAdapter extends ListAdapte
     }
 
     public void onBindViewHolder(OutboundPromoViewHolder holder, int position) {
-        m.checkNotNullParameter(holder, "holder");
+        Intrinsics3.checkNotNullParameter(holder, "holder");
         SettingsGiftingViewModel.OutboundPromoItem item = getItem(position);
-        m.checkNotNullExpressionValue(item, "getItem(position)");
+        Intrinsics3.checkNotNullExpressionValue(item, "getItem(position)");
         holder.bindTo(item);
     }
 
     @Override // androidx.recyclerview.widget.RecyclerView.Adapter
     public OutboundPromoViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        m.checkNotNullParameter(parent, "parent");
+        Intrinsics3.checkNotNullParameter(parent, "parent");
         return new OutboundPromoViewHolder(parent, this.onMoreDetailsClick, this.onButtonClick);
     }
 }

@@ -1,14 +1,14 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackNotificationPermissionPrepromptAcked.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackNotificationPermissionPrepromptAcked implements AnalyticsSchema, TrackBaseReceiver {
+public final /* data */ class TrackNotificationPermissionPrepromptAcked implements AnalyticsSchema, TrackBase2 {
     private final CharSequence actionLocation = null;
     private final CharSequence actionType = null;
     private final Boolean permissionGranted = null;
@@ -23,7 +23,7 @@ public final /* data */ class TrackNotificationPermissionPrepromptAcked implemen
             return false;
         }
         TrackNotificationPermissionPrepromptAcked trackNotificationPermissionPrepromptAcked = (TrackNotificationPermissionPrepromptAcked) other;
-        return m.areEqual(this.actionType, trackNotificationPermissionPrepromptAcked.actionType) && m.areEqual(this.actionLocation, trackNotificationPermissionPrepromptAcked.actionLocation) && m.areEqual(this.permissionGranted, trackNotificationPermissionPrepromptAcked.permissionGranted);
+        return Intrinsics3.areEqual(this.actionType, trackNotificationPermissionPrepromptAcked.actionType) && Intrinsics3.areEqual(this.actionLocation, trackNotificationPermissionPrepromptAcked.actionLocation) && Intrinsics3.areEqual(this.permissionGranted, trackNotificationPermissionPrepromptAcked.permissionGranted);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -42,11 +42,11 @@ public final /* data */ class TrackNotificationPermissionPrepromptAcked implemen
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackNotificationPermissionPrepromptAcked(actionType=");
+        StringBuilder sbU = outline.U("TrackNotificationPermissionPrepromptAcked(actionType=");
         sbU.append(this.actionType);
         sbU.append(", actionLocation=");
         sbU.append(this.actionLocation);
         sbU.append(", permissionGranted=");
-        return a.D(sbU, this.permissionGranted, ")");
+        return outline.D(sbU, this.permissionGranted, ")");
     }
 }

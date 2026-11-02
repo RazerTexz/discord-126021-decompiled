@@ -1,5 +1,11 @@
 package b.i.c.m.d.k;
 
+import b.d.b.a.outline;
+import b.i.c.m.d.Logger3;
+import b.i.c.m.d.q.ReportManager;
+import b.i.c.m.d.q.c.NativeSessionReport;
+import b.i.c.m.d.q.c.Report2;
+import b.i.c.m.d.q.c.SessionReport;
 import com.google.android.gms.tasks.Task;
 import java.io.File;
 import java.util.Collections;
@@ -22,9 +28,9 @@ public class g0 implements Callable<Task<Void>> {
 
     @Override // java.util.concurrent.Callable
     public Task<Void> call() throws Exception {
-        b.i.c.m.d.q.a aVar = x.this.u;
-        Objects.requireNonNull(aVar);
-        b.i.c.m.d.b.a.b("Checking for crash reports...");
+        ReportManager reportManager = x.this.u;
+        Objects.requireNonNull(reportManager);
+        Logger3.a.b("Checking for crash reports...");
         File[] fileArrQ = x.this.q();
         File[] fileArrListFiles = x.this.m().listFiles();
         if (fileArrListFiles == null) {
@@ -33,40 +39,40 @@ public class g0 implements Callable<Task<Void>> {
         LinkedList linkedList = new LinkedList();
         if (fileArrQ != null) {
             for (File file : fileArrQ) {
-                b.i.c.m.d.b bVar = b.i.c.m.d.b.a;
-                StringBuilder sbU = b.d.b.a.a.U("Found crash report ");
+                Logger3 logger3 = Logger3.a;
+                StringBuilder sbU = outline.U("Found crash report ");
                 sbU.append(file.getPath());
-                bVar.b(sbU.toString());
-                linkedList.add(new b.i.c.m.d.q.c.d(file, Collections.emptyMap()));
+                logger3.b(sbU.toString());
+                linkedList.add(new SessionReport(file, Collections.emptyMap()));
             }
         }
         for (File file2 : fileArrListFiles) {
-            linkedList.add(new b.i.c.m.d.q.c.b(file2));
+            linkedList.add(new NativeSessionReport(file2));
         }
         if (linkedList.isEmpty()) {
-            b.i.c.m.d.b.a.b("No reports found.");
+            Logger3.a.b("No reports found.");
         }
         if (this.j.booleanValue()) {
-            b.i.c.m.d.b.a.b("Reports are being sent.");
+            Logger3.a.b("Reports are being sent.");
             boolean zBooleanValue = this.j.booleanValue();
-            q0 q0Var = x.this.j;
-            Objects.requireNonNull(q0Var);
+            DataCollectionArbiter dataCollectionArbiter = x.this.j;
+            Objects.requireNonNull(dataCollectionArbiter);
             if (!zBooleanValue) {
                 throw new IllegalStateException("An invalid data collection token was used.");
             }
-            q0Var.h.b(null);
+            dataCollectionArbiter.h.b(null);
             x.e eVar = this.k;
             Executor executor = x.this.m.a;
             return eVar.a.r(executor, new f0(this, linkedList, zBooleanValue, executor));
         }
-        b.i.c.m.d.b.a.b("Reports are being deleted.");
+        Logger3.a.b("Reports are being deleted.");
         for (File file3 : x.r(x.this.l(), m.a)) {
             file3.delete();
         }
         Objects.requireNonNull(x.this.u);
         Iterator it = linkedList.iterator();
         while (it.hasNext()) {
-            ((b.i.c.m.d.q.c.c) it.next()).remove();
+            ((Report2) it.next()).remove();
         }
         x.this.A.f1680b.b();
         x.this.E.b(null);

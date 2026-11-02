@@ -1,6 +1,7 @@
 package com.discord.models.domain;
 
 import b.a.m.a.a;
+import b.d.b.a.outline;
 import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
@@ -68,7 +69,7 @@ public class ModelMessageDelete implements Model {
     }
 
     public String toString() {
-        StringBuilder sbU = b.d.b.a.a.U("ModelMessageDelete(channelId=");
+        StringBuilder sbU = outline.U("ModelMessageDelete(channelId=");
         sbU.append(getChannelId());
         sbU.append(", messageIds=");
         sbU.append(getMessageIds());

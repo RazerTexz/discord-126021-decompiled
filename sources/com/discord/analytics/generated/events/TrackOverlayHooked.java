@@ -1,14 +1,14 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackOverlayHooked.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackOverlayHooked implements AnalyticsSchema, TrackBaseReceiver {
+public final /* data */ class TrackOverlayHooked implements AnalyticsSchema, TrackBase2 {
     private final CharSequence graphicsApi = null;
     private final CharSequence nonce = null;
     private TrackBase trackBase;
@@ -22,7 +22,7 @@ public final /* data */ class TrackOverlayHooked implements AnalyticsSchema, Tra
             return false;
         }
         TrackOverlayHooked trackOverlayHooked = (TrackOverlayHooked) other;
-        return m.areEqual(this.nonce, trackOverlayHooked.nonce) && m.areEqual(this.graphicsApi, trackOverlayHooked.graphicsApi);
+        return Intrinsics3.areEqual(this.nonce, trackOverlayHooked.nonce) && Intrinsics3.areEqual(this.graphicsApi, trackOverlayHooked.graphicsApi);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -39,9 +39,9 @@ public final /* data */ class TrackOverlayHooked implements AnalyticsSchema, Tra
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackOverlayHooked(nonce=");
+        StringBuilder sbU = outline.U("TrackOverlayHooked(nonce=");
         sbU.append(this.nonce);
         sbU.append(", graphicsApi=");
-        return a.E(sbU, this.graphicsApi, ")");
+        return outline.E(sbU, this.graphicsApi, ")");
     }
 }

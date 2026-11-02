@@ -1,14 +1,14 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackStageDiscoveryExited.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackStageDiscoveryExited implements AnalyticsSchema, TrackBaseReceiver {
+public final /* data */ class TrackStageDiscoveryExited implements AnalyticsSchema, TrackBase2 {
     private final Boolean hasScrolled = null;
     private final Long lastVisibleIndex = null;
     private final Long lastVisibleIndexAtLoad = null;
@@ -25,7 +25,7 @@ public final /* data */ class TrackStageDiscoveryExited implements AnalyticsSche
             return false;
         }
         TrackStageDiscoveryExited trackStageDiscoveryExited = (TrackStageDiscoveryExited) other;
-        return m.areEqual(this.loadId, trackStageDiscoveryExited.loadId) && m.areEqual(this.stageInstanceRecommendations, trackStageDiscoveryExited.stageInstanceRecommendations) && m.areEqual(this.lastVisibleIndexAtLoad, trackStageDiscoveryExited.lastVisibleIndexAtLoad) && m.areEqual(this.lastVisibleIndex, trackStageDiscoveryExited.lastVisibleIndex) && m.areEqual(this.hasScrolled, trackStageDiscoveryExited.hasScrolled);
+        return Intrinsics3.areEqual(this.loadId, trackStageDiscoveryExited.loadId) && Intrinsics3.areEqual(this.stageInstanceRecommendations, trackStageDiscoveryExited.stageInstanceRecommendations) && Intrinsics3.areEqual(this.lastVisibleIndexAtLoad, trackStageDiscoveryExited.lastVisibleIndexAtLoad) && Intrinsics3.areEqual(this.lastVisibleIndex, trackStageDiscoveryExited.lastVisibleIndex) && Intrinsics3.areEqual(this.hasScrolled, trackStageDiscoveryExited.hasScrolled);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -48,7 +48,7 @@ public final /* data */ class TrackStageDiscoveryExited implements AnalyticsSche
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackStageDiscoveryExited(loadId=");
+        StringBuilder sbU = outline.U("TrackStageDiscoveryExited(loadId=");
         sbU.append(this.loadId);
         sbU.append(", stageInstanceRecommendations=");
         sbU.append(this.stageInstanceRecommendations);
@@ -57,6 +57,6 @@ public final /* data */ class TrackStageDiscoveryExited implements AnalyticsSche
         sbU.append(", lastVisibleIndex=");
         sbU.append(this.lastVisibleIndex);
         sbU.append(", hasScrolled=");
-        return a.D(sbU, this.hasScrolled, ")");
+        return outline.D(sbU, this.hasScrolled, ")");
     }
 }

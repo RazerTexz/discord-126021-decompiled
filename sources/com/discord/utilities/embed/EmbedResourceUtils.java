@@ -3,6 +3,7 @@ package com.discord.utilities.embed;
 import android.content.Context;
 import android.content.res.Resources;
 import androidx.annotation.DrawableRes;
+import b.d.b.a.outline;
 import com.discord.R;
 import com.discord.api.message.attachment.MessageAttachment;
 import com.discord.api.message.attachment.MessageAttachmentType;
@@ -15,25 +16,26 @@ import com.discord.api.message.embed.MessageEmbed;
 import com.discord.embed.RenderableEmbedMedia;
 import com.discord.utilities.dimen.DimenUtils;
 import com.discord.utilities.display.DisplayUtils;
-import com.discord.utilities.string.StringUtilsKt;
-import d0.a0.a;
-import d0.g0.t;
-import d0.g0.w;
-import d0.o;
-import d0.t.n;
-import d0.t.u;
-import d0.z.d.m;
+import com.discord.utilities.string.StringUtils2;
+import d0.Tuples;
+import d0.a0.MathJVM;
+import d0.g0.Strings4;
+import d0.g0.StringsJVM;
+import d0.t.Collections2;
+import d0.t.CollectionsJVM;
+import d0.t._Collections;
+import d0.z.d.Intrinsics3;
 import java.util.List;
 import java.util.Locale;
 import kotlin.NoWhenBranchMatchedException;
-import kotlin.Pair;
+import kotlin.Tuples2;
 
 /* JADX INFO: compiled from: EmbedResourceUtils.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class EmbedResourceUtils {
     public static final String FILE_SCHEME = "res:///";
     public static final int MAX_IMAGE_SIZE = 1440;
-    private static final List<EmbedType> PLAYABLE_EMBED_TYPES = n.listOf((Object[]) new EmbedType[]{EmbedType.VIDEO, EmbedType.GIFV});
+    private static final List<EmbedType> PLAYABLE_EMBED_TYPES = Collections2.listOf((Object[]) new EmbedType[]{EmbedType.VIDEO, EmbedType.GIFV});
     public static final EmbedResourceUtils INSTANCE = new EmbedResourceUtils();
     private static final int MAX_IMAGE_VIEW_HEIGHT_PX = DimenUtils.dpToPixels(320);
 
@@ -92,16 +94,16 @@ public final class EmbedResourceUtils {
     private EmbedResourceUtils() {
     }
 
-    public static /* synthetic */ Pair calculateScaledSize$default(EmbedResourceUtils embedResourceUtils, int i, int i2, int i3, int i4, Resources resources, int i5, int i6, Object obj) {
+    public static /* synthetic */ Tuples2 calculateScaledSize$default(EmbedResourceUtils embedResourceUtils, int i, int i2, int i3, int i4, Resources resources, int i5, int i6, Object obj) {
         return embedResourceUtils.calculateScaledSize(i, i2, i3, i4, resources, (i6 & 32) != 0 ? 0 : i5);
     }
 
     /* JADX WARN: Code duplicated, block: B:29:0x0051 A[DONT_INVERT] */
     /* JADX WARN: Code duplicated, block: B:30:0x0053  */
     /* JADX WARN: Code duplicated, block: B:32:0x0058  */
-    public final Pair<Integer, Integer> calculateScaledSize(int actualWidth, int actualHeight, int maxWidth, int maxHeight, Resources resources, int minWidth) {
+    public final Tuples2<Integer, Integer> calculateScaledSize(int actualWidth, int actualHeight, int maxWidth, int maxHeight, Resources resources, int minWidth) {
         float f;
-        m.checkNotNullParameter(resources, "resources");
+        Intrinsics3.checkNotNullParameter(resources, "resources");
         float f2 = resources.getDisplayMetrics().density;
         float f3 = actualWidth;
         float f4 = f2 * f3;
@@ -112,7 +114,7 @@ public final class EmbedResourceUtils {
         float f7 = actualHeight > 0 ? f3 / f5 : 0.0f;
         if (!z2) {
             if (!z3) {
-                return o.to(Integer.valueOf(a.roundToInt(f4)), Integer.valueOf(a.roundToInt(f6)));
+                return Tuples.to(Integer.valueOf(MathJVM.roundToInt(f4)), Integer.valueOf(MathJVM.roundToInt(f6)));
             }
             float f8 = minWidth;
             float f9 = (f8 / f3) * f5;
@@ -122,7 +124,7 @@ public final class EmbedResourceUtils {
                 f8 *= f11;
                 f9 *= f11;
             }
-            return o.to(Integer.valueOf(a.roundToInt(f8)), Integer.valueOf(a.roundToInt(f9)));
+            return Tuples.to(Integer.valueOf(MathJVM.roundToInt(f8)), Integer.valueOf(MathJVM.roundToInt(f9)));
         }
         boolean z4 = actualWidth > actualHeight;
         float f12 = z4 ? maxWidth : maxHeight * f7;
@@ -146,23 +148,23 @@ public final class EmbedResourceUtils {
                 f12 = f;
             }
         }
-        return o.to(Integer.valueOf(a.roundToInt(f12)), Integer.valueOf(a.roundToInt(f13)));
+        return Tuples.to(Integer.valueOf(MathJVM.roundToInt(f12)), Integer.valueOf(MathJVM.roundToInt(f13)));
     }
 
     public final int computeMaximumImageWidthPx(Context context) {
-        m.checkNotNullParameter(context, "context");
+        Intrinsics3.checkNotNullParameter(context, "context");
         Resources resources = context.getResources();
         return Math.min(1440, DisplayUtils.getScreenSize(context).width() - (resources.getDimensionPixelSize(R.dimen.uikit_guideline_chat) + resources.getDimensionPixelSize(R.dimen.chat_cell_horizontal_spacing_total)));
     }
 
     private final RenderableEmbedMedia createFileRenderableMedia(String filename) {
-        StringBuilder sbU = b.d.b.a.a.U(FILE_SCHEME);
+        StringBuilder sbU = outline.U(FILE_SCHEME);
         sbU.append(getFileDrawable(filename));
         return new RenderableEmbedMedia(sbU.toString(), 30, 40);
     }
 
     public final RenderableEmbedMedia createRenderableEmbedMediaFromAttachment(MessageAttachment attachment) {
-        m.checkNotNullParameter(attachment, "attachment");
+        Intrinsics3.checkNotNullParameter(attachment, "attachment");
         int iOrdinal = attachment.e().ordinal();
         if (iOrdinal == 0 || iOrdinal == 1) {
             return new RenderableEmbedMedia(attachment.getProxyUrl(), attachment.getWidth(), attachment.getHeight());
@@ -175,7 +177,7 @@ public final class EmbedResourceUtils {
 
     public final String getExternalOpenUrl(MessageEmbed messageEmbed) {
         EmbedProvider provider;
-        m.checkNotNullParameter(messageEmbed, "$this$getExternalOpenUrl");
+        Intrinsics3.checkNotNullParameter(messageEmbed, "$this$getExternalOpenUrl");
         EmbedType type = messageEmbed.getType();
         if (type == null) {
             return null;
@@ -198,7 +200,7 @@ public final class EmbedResourceUtils {
     public final int getFileDrawable(String filename) {
         String strSubstringAfterLast;
         String str = "";
-        if (filename != null && (strSubstringAfterLast = w.substringAfterLast(filename, '.', "")) != null) {
+        if (filename != null && (strSubstringAfterLast = Strings4.substringAfterLast(filename, '.', "")) != null) {
             str = strSubstringAfterLast;
         }
         FileType fromExtension = FileType.INSTANCE.getFromExtension(str);
@@ -230,7 +232,7 @@ public final class EmbedResourceUtils {
         EmbedVideo video;
         String proxyUrl3;
         String proxyUrl4;
-        m.checkNotNullParameter(messageEmbed, "$this$getPreviewImage");
+        Intrinsics3.checkNotNullParameter(messageEmbed, "$this$getPreviewImage");
         EmbedType type = messageEmbed.getType();
         RenderableEmbedMedia renderableEmbedMedia = null;
         if (type != null) {
@@ -238,7 +240,7 @@ public final class EmbedResourceUtils {
             if (iOrdinal == 0 || iOrdinal == 1) {
                 thumbnail = messageEmbed.getThumbnail();
                 if (thumbnail != null) {
-                    m.checkNotNullParameter(thumbnail, "$this$asRenderableEmbedMedia");
+                    Intrinsics3.checkNotNullParameter(thumbnail, "$this$asRenderableEmbedMedia");
                     proxyUrl2 = thumbnail.getProxyUrl();
                     if (proxyUrl2 == null) {
                         proxyUrl2 = thumbnail.getUrl();
@@ -248,7 +250,7 @@ public final class EmbedResourceUtils {
             } else if (iOrdinal == 2) {
                 thumbnail2 = messageEmbed.getThumbnail();
                 if (thumbnail2 != null) {
-                    m.checkNotNullParameter(thumbnail2, "$this$asRenderableEmbedMedia");
+                    Intrinsics3.checkNotNullParameter(thumbnail2, "$this$asRenderableEmbedMedia");
                     proxyUrl4 = thumbnail2.getProxyUrl();
                     if (proxyUrl4 == null) {
                         proxyUrl4 = thumbnail2.getUrl();
@@ -257,7 +259,7 @@ public final class EmbedResourceUtils {
                 } else {
                     video = messageEmbed.getVideo();
                     if (video != null) {
-                        m.checkNotNullParameter(video, "$this$asRenderableEmbedMedia");
+                        Intrinsics3.checkNotNullParameter(video, "$this$asRenderableEmbedMedia");
                         proxyUrl3 = video.getProxyUrl();
                         if (proxyUrl3 == null) {
                             proxyUrl3 = video.getUrl();
@@ -268,7 +270,7 @@ public final class EmbedResourceUtils {
             } else if (iOrdinal == 3) {
                 thumbnail = messageEmbed.getThumbnail();
                 if (thumbnail != null) {
-                    m.checkNotNullParameter(thumbnail, "$this$asRenderableEmbedMedia");
+                    Intrinsics3.checkNotNullParameter(thumbnail, "$this$asRenderableEmbedMedia");
                     proxyUrl2 = thumbnail.getProxyUrl();
                     if (proxyUrl2 == null) {
                         proxyUrl2 = thumbnail.getUrl();
@@ -279,7 +281,7 @@ public final class EmbedResourceUtils {
                 if (iOrdinal != 7) {
                     image = messageEmbed.getImage();
                     if (image != null) {
-                        m.checkNotNullParameter(image, "$this$asRenderableEmbedMedia");
+                        Intrinsics3.checkNotNullParameter(image, "$this$asRenderableEmbedMedia");
                         proxyUrl = image.getProxyUrl();
                         if (proxyUrl == null) {
                             proxyUrl = image.getUrl();
@@ -289,7 +291,7 @@ public final class EmbedResourceUtils {
                 } else {
                     thumbnail2 = messageEmbed.getThumbnail();
                     if (thumbnail2 != null) {
-                        m.checkNotNullParameter(thumbnail2, "$this$asRenderableEmbedMedia");
+                        Intrinsics3.checkNotNullParameter(thumbnail2, "$this$asRenderableEmbedMedia");
                         proxyUrl4 = thumbnail2.getProxyUrl();
                         if (proxyUrl4 == null) {
                             proxyUrl4 = thumbnail2.getUrl();
@@ -298,7 +300,7 @@ public final class EmbedResourceUtils {
                     } else {
                         video = messageEmbed.getVideo();
                         if (video != null) {
-                            m.checkNotNullParameter(video, "$this$asRenderableEmbedMedia");
+                            Intrinsics3.checkNotNullParameter(video, "$this$asRenderableEmbedMedia");
                             proxyUrl3 = video.getProxyUrl();
                             if (proxyUrl3 == null) {
                                 proxyUrl3 = video.getUrl();
@@ -311,7 +313,7 @@ public final class EmbedResourceUtils {
         } else {
             image = messageEmbed.getImage();
             if (image != null) {
-                m.checkNotNullParameter(image, "$this$asRenderableEmbedMedia");
+                Intrinsics3.checkNotNullParameter(image, "$this$asRenderableEmbedMedia");
                 proxyUrl = image.getProxyUrl();
                 if (proxyUrl == null) {
                     proxyUrl = image.getUrl();
@@ -330,18 +332,18 @@ public final class EmbedResourceUtils {
     }
 
     public final List<String> getPreviewUrls(String originalUrl, int width, int height, boolean shouldAnimate) {
-        m.checkNotNullParameter(originalUrl, "originalUrl");
+        Intrinsics3.checkNotNullParameter(originalUrl, "originalUrl");
         String str = originalUrl + "?width=" + width + "&height=" + height;
-        if (shouldAnimate && (t.startsWith$default(originalUrl, FILE_SCHEME, false, 2, null) || t.endsWith$default(originalUrl, ".gif", false, 2, null))) {
-            return d0.t.m.listOf(str);
+        if (shouldAnimate && (StringsJVM.startsWith$default(originalUrl, FILE_SCHEME, false, 2, null) || StringsJVM.endsWith$default(originalUrl, ".gif", false, 2, null))) {
+            return CollectionsJVM.listOf(str);
         }
-        StringBuilder sbX = b.d.b.a.a.X(str, "&format=");
-        sbX.append(StringUtilsKt.getSTATIC_IMAGE_EXTENSION());
-        return n.listOf((Object[]) new String[]{sbX.toString(), str});
+        StringBuilder sbX = outline.X(str, "&format=");
+        sbX.append(StringUtils2.getSTATIC_IMAGE_EXTENSION());
+        return Collections2.listOf((Object[]) new String[]{sbX.toString(), str});
     }
 
     public final boolean isAnimated(MessageEmbed messageEmbed) {
-        m.checkNotNullParameter(messageEmbed, "$this$isAnimated");
+        Intrinsics3.checkNotNullParameter(messageEmbed, "$this$isAnimated");
         EmbedType type = messageEmbed.getType();
         RenderableEmbedMedia previewImage = getPreviewImage(messageEmbed);
         return isAnimated(type, previewImage != null ? previewImage.url : null);
@@ -349,7 +351,7 @@ public final class EmbedResourceUtils {
 
     public final boolean isInlineEmbed(MessageEmbed messageEmbed) {
         EmbedType type;
-        m.checkNotNullParameter(messageEmbed, "$this$isInlineEmbed");
+        Intrinsics3.checkNotNullParameter(messageEmbed, "$this$isInlineEmbed");
         if ((getPreviewImage(messageEmbed) == null && messageEmbed.getVideo() == null) || (type = messageEmbed.getType()) == null) {
             return false;
         }
@@ -365,13 +367,13 @@ public final class EmbedResourceUtils {
     }
 
     public final boolean isPlayable(MessageEmbed messageEmbed) {
-        m.checkNotNullParameter(messageEmbed, "$this$isPlayable");
-        return u.contains(PLAYABLE_EMBED_TYPES, messageEmbed.getType());
+        Intrinsics3.checkNotNullParameter(messageEmbed, "$this$isPlayable");
+        return _Collections.contains(PLAYABLE_EMBED_TYPES, messageEmbed.getType());
     }
 
     public final boolean isSimpleEmbed(MessageEmbed messageEmbed) {
         int iOrdinal;
-        m.checkNotNullParameter(messageEmbed, "$this$isSimpleEmbed");
+        Intrinsics3.checkNotNullParameter(messageEmbed, "$this$isSimpleEmbed");
         EmbedType type = messageEmbed.getType();
         if (type != null && ((iOrdinal = type.ordinal()) == 1 || iOrdinal == 7)) {
             return isInlineEmbed(messageEmbed);
@@ -393,10 +395,10 @@ public final class EmbedResourceUtils {
                 return false;
             }
             Locale locale = Locale.ROOT;
-            m.checkNotNullExpressionValue(locale, "Locale.ROOT");
+            Intrinsics3.checkNotNullExpressionValue(locale, "Locale.ROOT");
             String lowerCase = previewImageUri.toLowerCase(locale);
-            m.checkNotNullExpressionValue(lowerCase, "(this as java.lang.String).toLowerCase(locale)");
-            if (lowerCase == null || !w.contains$default((CharSequence) lowerCase, (CharSequence) ".gif", false, 2, (Object) null)) {
+            Intrinsics3.checkNotNullExpressionValue(lowerCase, "(this as java.lang.String).toLowerCase(locale)");
+            if (lowerCase == null || !Strings4.contains$default((CharSequence) lowerCase, (CharSequence) ".gif", false, 2, (Object) null)) {
                 return false;
             }
         }

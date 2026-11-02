@@ -14,15 +14,15 @@ import com.discord.models.guild.Guild;
 import com.discord.models.presence.Presence;
 import com.discord.models.user.CoreUser;
 import com.discord.stores.StoreStream;
-import com.discord.utilities.PermissionOverwriteUtilsKt;
-import com.discord.utilities.guilds.GuildUtilsKt;
+import com.discord.utilities.PermissionOverwriteUtils;
+import com.discord.utilities.guilds.GuildUtils;
 import com.discord.utilities.guilds.RoleUtils;
 import com.discord.utilities.permissions.PermissionUtils;
 import com.discord.utilities.user.UserUtils;
-import d0.t.n;
-import d0.t.o;
-import d0.t.u;
-import d0.z.d.m;
+import d0.t.Collections2;
+import d0.t.Iterables2;
+import d0.t._Collections;
+import d0.z.d.Intrinsics3;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Iterator;
@@ -35,33 +35,33 @@ public final class ChannelUtils {
     private static final long HQ_DIRECTORY_CHANNEL_ID = 883060064561299456L;
 
     public static final boolean A(Channel channel) {
-        m.checkNotNullParameter(channel, "$this$isPinned");
-        m.checkNotNullParameter(channel, "$this$hasFlag");
+        Intrinsics3.checkNotNullParameter(channel, "$this$isPinned");
+        Intrinsics3.checkNotNullParameter(channel, "$this$hasFlag");
         Long flags = channel.getFlags();
         return ((flags != null ? flags.longValue() : 0L) & 2) == 2;
     }
 
     public static final boolean B(Channel channel) {
-        m.checkNotNullParameter(channel, "$this$isPrivate");
+        Intrinsics3.checkNotNullParameter(channel, "$this$isPrivate");
         return channel.getType() == 1 || channel.getType() == 3;
     }
 
     public static final boolean C(Channel channel) {
-        m.checkNotNullParameter(channel, "$this$isPrivateThread");
+        Intrinsics3.checkNotNullParameter(channel, "$this$isPrivateThread");
         return channel.getType() == 12;
     }
 
     public static final boolean D(Channel channel) {
-        m.checkNotNullParameter(channel, "$this$isStageVoiceChannel");
+        Intrinsics3.checkNotNullParameter(channel, "$this$isStageVoiceChannel");
         return channel.getType() == 13;
     }
 
     public static final boolean E(Channel channel) {
         User user;
-        m.checkNotNullParameter(channel, "$this$isSystemDM");
+        Intrinsics3.checkNotNullParameter(channel, "$this$isSystemDM");
         if (channel.getType() == 1) {
             List<User> listZ = channel.z();
-            if (m.areEqual((listZ == null || (user = (User) u.firstOrNull((List) listZ)) == null) ? null : user.getSystem(), Boolean.TRUE)) {
+            if (Intrinsics3.areEqual((listZ == null || (user = (User) _Collections.firstOrNull((List) listZ)) == null) ? null : user.getSystem(), Boolean.TRUE)) {
                 return true;
             }
         }
@@ -69,32 +69,32 @@ public final class ChannelUtils {
     }
 
     public static final boolean F(Channel channel) {
-        m.checkNotNullParameter(channel, "$this$isTextChannel");
+        Intrinsics3.checkNotNullParameter(channel, "$this$isTextChannel");
         return B(channel) || v(channel);
     }
 
     public static final boolean G(Channel channel) {
-        m.checkNotNullParameter(channel, "$this$isTextOrVoiceChannel");
+        Intrinsics3.checkNotNullParameter(channel, "$this$isTextOrVoiceChannel");
         return F(channel) || J(channel);
     }
 
     public static final boolean H(Channel channel) {
-        m.checkNotNullParameter(channel, "$this$isThread");
+        Intrinsics3.checkNotNullParameter(channel, "$this$isThread");
         return channel.getType() == 10 || channel.getType() == 11 || channel.getType() == 12;
     }
 
     public static final boolean I(Channel channel) {
-        m.checkNotNullParameter(channel, "$this$isThreaded");
+        Intrinsics3.checkNotNullParameter(channel, "$this$isThreaded");
         return channel.getType() == 0 || channel.getType() == 5 || channel.getType() == 15;
     }
 
     public static final boolean J(Channel channel) {
-        m.checkNotNullParameter(channel, "$this$isVoiceChannel");
+        Intrinsics3.checkNotNullParameter(channel, "$this$isVoiceChannel");
         return channel.getType() == 2;
     }
 
     public static final boolean K(Channel channel) {
-        m.checkNotNullParameter(channel, "$this$shouldPlayJoinLeaveSounds");
+        Intrinsics3.checkNotNullParameter(channel, "$this$shouldPlayJoinLeaveSounds");
         return J(channel) || B(channel);
     }
 
@@ -102,15 +102,15 @@ public final class ChannelUtils {
         List<User> listZ;
         List<User> listZ2;
         User user;
-        m.checkNotNullParameter(channel, "$this$getDMRecipient");
-        if (!m(channel) || (listZ = channel.z()) == null || listZ.size() != 1 || (listZ2 = channel.z()) == null || (user = (User) u.first((List) listZ2)) == null) {
+        Intrinsics3.checkNotNullParameter(channel, "$this$getDMRecipient");
+        if (!m(channel) || (listZ = channel.z()) == null || listZ.size() != 1 || (listZ2 = channel.z()) == null || (user = (User) _Collections.first((List) listZ2)) == null) {
             return null;
         }
         return new CoreUser(user);
     }
 
     public static final Integer b(Channel channel) {
-        m.checkNotNullParameter(channel, "$this$getDeletedMessage");
+        Intrinsics3.checkNotNullParameter(channel, "$this$getDeletedMessage");
         if (k(channel)) {
             return Integer.valueOf(R.string.category_has_been_deleted);
         }
@@ -127,12 +127,12 @@ public final class ChannelUtils {
     /* JADX WARN: Code duplicated, block: B:23:? A[RETURN, SYNTHETIC] */
     public static final String c(Channel channel) {
         String name;
-        m.checkNotNullParameter(channel, "$this$getDisplayName");
+        Intrinsics3.checkNotNullParameter(channel, "$this$getDisplayName");
         if (B(channel)) {
             String name2 = channel.getName();
             if (name2 == null || name2.length() == 0) {
                 List<User> listZ = channel.z();
-                name = listZ != null ? u.joinToString$default(listZ, null, null, null, 0, null, ChannelUtils$getDisplayName$1.INSTANCE, 31, null) : null;
+                name = listZ != null ? _Collections.joinToString$default(listZ, null, null, null, 0, null, ChannelUtils2.INSTANCE, 31, null) : null;
                 if (name == null) {
                     return "";
                 }
@@ -152,18 +152,18 @@ public final class ChannelUtils {
     }
 
     public static final String d(Channel channel, Context context, boolean z2) {
-        m.checkNotNullParameter(channel, "$this$getDisplayNameOrDefault");
-        m.checkNotNullParameter(context, "context");
+        Intrinsics3.checkNotNullParameter(channel, "$this$getDisplayNameOrDefault");
+        Intrinsics3.checkNotNullParameter(context, "context");
         String strC = c(channel);
         if (u(channel) || i(channel)) {
             if (strC.length() == 0) {
                 String string = context.getString(R.string.invalid_text_channel);
-                m.checkNotNullExpressionValue(string, "context.getString(R.string.invalid_text_channel)");
+                Intrinsics3.checkNotNullExpressionValue(string, "context.getString(R.string.invalid_text_channel)");
                 return string;
             }
             if (z2) {
                 StringBuilder sb = new StringBuilder();
-                m.checkNotNullParameter(Channel.INSTANCE, "$this$DISPLAY_PREFIX_GUILD");
+                Intrinsics3.checkNotNullParameter(Channel.INSTANCE, "$this$DISPLAY_PREFIX_GUILD");
                 sb.append("#");
                 sb.append(strC);
                 return sb.toString();
@@ -171,24 +171,24 @@ public final class ChannelUtils {
         } else if (w(channel)) {
             if (strC.length() == 0) {
                 String string2 = context.getString(R.string.invalid_voice_channel);
-                m.checkNotNullExpressionValue(string2, "context.getString(R.string.invalid_voice_channel)");
+                Intrinsics3.checkNotNullExpressionValue(string2, "context.getString(R.string.invalid_voice_channel)");
                 return string2;
             }
         } else if (p(channel)) {
             if (strC.length() == 0) {
                 String string3 = context.getString(R.string.unnamed);
-                m.checkNotNullExpressionValue(string3, "context.getString(R.string.unnamed)");
+                Intrinsics3.checkNotNullExpressionValue(string3, "context.getString(R.string.unnamed)");
                 return string3;
             }
         } else if (m(channel)) {
             if (strC.length() == 0) {
                 String string4 = context.getString(R.string.direct_message);
-                m.checkNotNullExpressionValue(string4, "context.getString(R.string.direct_message)");
+                Intrinsics3.checkNotNullExpressionValue(string4, "context.getString(R.string.direct_message)");
                 return string4;
             }
             if (z2) {
                 StringBuilder sb2 = new StringBuilder();
-                m.checkNotNullParameter(Channel.INSTANCE, "$this$DISPLAY_PREFIX_DM");
+                Intrinsics3.checkNotNullParameter(Channel.INSTANCE, "$this$DISPLAY_PREFIX_DM");
                 sb2.append("@");
                 sb2.append(strC);
                 return sb2.toString();
@@ -205,7 +205,7 @@ public final class ChannelUtils {
     }
 
     public static final PermissionOverwrite f(Channel channel, long j) {
-        m.checkNotNullParameter(channel, "$this$getPermissionOverwriteForId");
+        Intrinsics3.checkNotNullParameter(channel, "$this$getPermissionOverwriteForId");
         List<PermissionOverwrite> listV = channel.v();
         Object obj = null;
         if (listV == null) {
@@ -221,12 +221,12 @@ public final class ChannelUtils {
     }
 
     public static final List<com.discord.models.user.User> g(Channel channel) {
-        m.checkNotNullParameter(channel, "$this$getRecipients");
+        Intrinsics3.checkNotNullParameter(channel, "$this$getRecipients");
         List<User> listZ = channel.z();
         if (listZ == null) {
-            return n.emptyList();
+            return Collections2.emptyList();
         }
-        ArrayList arrayList = new ArrayList(o.collectionSizeOrDefault(listZ, 10));
+        ArrayList arrayList = new ArrayList(Iterables2.collectionSizeOrDefault(listZ, 10));
         Iterator<T> it = listZ.iterator();
         while (it.hasNext()) {
             arrayList.add(new CoreUser((User) it.next()));
@@ -235,23 +235,23 @@ public final class ChannelUtils {
     }
 
     public static final Comparator<Channel> h(Channel.Companion companion) {
-        m.checkNotNullParameter(companion, "$this$getSortByNameAndType");
-        return new ChannelUtils$getSortByNameAndType$1(companion);
+        Intrinsics3.checkNotNullParameter(companion, "$this$getSortByNameAndType");
+        return new ChannelUtils4(companion);
     }
 
     public static final boolean i(Channel channel) {
-        m.checkNotNullParameter(channel, "$this$isAnnouncementChannel");
+        Intrinsics3.checkNotNullParameter(channel, "$this$isAnnouncementChannel");
         return channel.getType() == 5;
     }
 
     public static final boolean j(Channel channel) {
-        m.checkNotNullParameter(channel, "$this$isArchivedThread");
+        Intrinsics3.checkNotNullParameter(channel, "$this$isArchivedThread");
         ThreadMetadata threadMetadata = channel.getThreadMetadata();
         return threadMetadata != null && threadMetadata.getArchived();
     }
 
     public static final boolean k(Channel channel) {
-        m.checkNotNullParameter(channel, "$this$isCategory");
+        Intrinsics3.checkNotNullParameter(channel, "$this$isCategory");
         return channel.getType() == 4;
     }
 
@@ -260,33 +260,33 @@ public final class ChannelUtils {
     }
 
     public static final boolean m(Channel channel) {
-        m.checkNotNullParameter(channel, "$this$isDM");
+        Intrinsics3.checkNotNullParameter(channel, "$this$isDM");
         return channel.getType() == 1;
     }
 
     public static final boolean n(Channel channel, Presence presence) {
-        m.checkNotNullParameter(channel, "$this$isDMStatusVisible");
+        Intrinsics3.checkNotNullParameter(channel, "$this$isDMStatusVisible");
         com.discord.models.user.User userA = a(channel);
         return m(channel) && !E(channel) && (userA != null ? UserUtils.INSTANCE.isStatusVisible(userA, presence, true) : false);
     }
 
     public static final boolean o(Channel channel) {
-        m.checkNotNullParameter(channel, "$this$isDirectory");
+        Intrinsics3.checkNotNullParameter(channel, "$this$isDirectory");
         return channel.getType() == 14;
     }
 
     public static final boolean p(Channel channel) {
-        m.checkNotNullParameter(channel, "$this$isGroup");
+        Intrinsics3.checkNotNullParameter(channel, "$this$isGroup");
         return channel.getType() == 3;
     }
 
     public static final boolean q(Channel channel) {
-        m.checkNotNullParameter(channel, "$this$isGuildForumChannel");
+        Intrinsics3.checkNotNullParameter(channel, "$this$isGuildForumChannel");
         return channel.getType() == 15;
     }
 
     public static final boolean r(Channel channel, Channel channel2) {
-        m.checkNotNullParameter(channel, "$this$isGuildForumPost");
+        Intrinsics3.checkNotNullParameter(channel, "$this$isGuildForumPost");
         return channel2 != null && channel2.getType() == 15;
     }
 
@@ -296,19 +296,19 @@ public final class ChannelUtils {
 
     public static final boolean t(Channel channel, Guild guild, GuildRole guildRole, Map<Long, GuildRole> map) {
         Object next;
-        m.checkNotNullParameter(channel, "$this$isGuildRoleSubscriptionChannel");
+        Intrinsics3.checkNotNullParameter(channel, "$this$isGuildRoleSubscriptionChannel");
         if (guild != null && guild.hasFeature(GuildFeature.ROLE_SUBSCRIPTIONS_AVAILABLE_FOR_PURCHASE)) {
             List<PermissionOverwrite> listV = channel.v();
             if (listV == null) {
-                listV = n.emptyList();
+                listV = Collections2.emptyList();
             }
             for (PermissionOverwrite permissionOverwrite : listV) {
-                GuildRole guildRole2 = GuildUtilsKt.getGuildRole(Long.valueOf(permissionOverwrite.e()));
-                if (guildRole2 != null && RoleUtils.isSubscriptionRolePurchasableOrHasSubscribers(guildRole2) && PermissionOverwriteUtilsKt.grantsAccessTo(permissionOverwrite, channel)) {
+                GuildRole guildRole2 = GuildUtils.getGuildRole(Long.valueOf(permissionOverwrite.e()));
+                if (guildRole2 != null && RoleUtils.isSubscriptionRolePurchasableOrHasSubscribers(guildRole2) && PermissionOverwriteUtils.grantsAccessTo(permissionOverwrite, channel)) {
                     return true;
                 }
             }
-            boolean zIsFullyGatedGuildRoleSubscriptionGuild = GuildUtilsKt.isFullyGatedGuildRoleSubscriptionGuild(guild, guildRole);
+            boolean zIsFullyGatedGuildRoleSubscriptionGuild = GuildUtils.isFullyGatedGuildRoleSubscriptionGuild(guild, guildRole);
             Iterator<T> it = listV.iterator();
             do {
                 if (!it.hasNext()) {
@@ -318,7 +318,7 @@ public final class ChannelUtils {
                 next = it.next();
             } while (!(((PermissionOverwrite) next).e() == guild.getId()));
             PermissionOverwrite permissionOverwrite2 = (PermissionOverwrite) next;
-            boolean zDeniesAccessTo = permissionOverwrite2 != null ? PermissionOverwriteUtilsKt.deniesAccessTo(permissionOverwrite2, channel) : false;
+            boolean zDeniesAccessTo = permissionOverwrite2 != null ? PermissionOverwriteUtils.deniesAccessTo(permissionOverwrite2, channel) : false;
             if (map != null && !zDeniesAccessTo && zIsFullyGatedGuildRoleSubscriptionGuild) {
                 for (GuildRole guildRole3 : map.values()) {
                     if (RoleUtils.isSubscriptionRolePurchasableOrHasSubscribers(guildRole3) && PermissionUtils.INSTANCE.canRole(Permission.VIEW_CHANNEL, guildRole3, null)) {
@@ -331,32 +331,32 @@ public final class ChannelUtils {
     }
 
     public static final boolean u(Channel channel) {
-        m.checkNotNullParameter(channel, "$this$isGuildTextChannel");
+        Intrinsics3.checkNotNullParameter(channel, "$this$isGuildTextChannel");
         return channel.getType() == 0 || channel.getType() == 15;
     }
 
     public static final boolean v(Channel channel) {
-        m.checkNotNullParameter(channel, "$this$isGuildTextyChannel");
+        Intrinsics3.checkNotNullParameter(channel, "$this$isGuildTextyChannel");
         return l(channel.getType());
     }
 
     public static final boolean w(Channel channel) {
-        m.checkNotNullParameter(channel, "$this$isGuildVocalChannel");
+        Intrinsics3.checkNotNullParameter(channel, "$this$isGuildVocalChannel");
         return channel.getType() == 2 || channel.getType() == 13;
     }
 
     public static final boolean x(Channel channel) {
-        m.checkNotNullParameter(channel, "$this$isHQDirectoryChannel");
+        Intrinsics3.checkNotNullParameter(channel, "$this$isHQDirectoryChannel");
         return channel.getId() == HQ_DIRECTORY_CHANNEL_ID;
     }
 
     public static final boolean y(Channel channel) {
-        m.checkNotNullParameter(channel, "$this$isManaged");
+        Intrinsics3.checkNotNullParameter(channel, "$this$isManaged");
         return channel.getApplicationId() != 0;
     }
 
     public static final boolean z(Channel channel) {
-        m.checkNotNullParameter(channel, "$this$isMultiUserDM");
+        Intrinsics3.checkNotNullParameter(channel, "$this$isMultiUserDM");
         return channel.getType() == 3;
     }
 }

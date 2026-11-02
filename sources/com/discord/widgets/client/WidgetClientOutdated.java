@@ -5,15 +5,15 @@ import android.os.Bundle;
 import android.view.View;
 import androidx.core.app.NotificationCompat;
 import androidx.fragment.app.Fragment;
-import b.a.d.j;
-import b.d.b.a.a;
+import b.a.d.AppScreen2;
+import b.d.b.a.outline;
 import com.discord.R;
 import com.discord.app.AppFragment;
 import com.discord.databinding.WidgetClientOutdatedBinding;
 import com.discord.utilities.uri.UriHandler;
 import com.discord.utilities.viewbinding.FragmentViewBindingDelegate;
-import com.discord.utilities.viewbinding.FragmentViewBindingDelegateKt;
-import d0.z.d.m;
+import com.discord.utilities.viewbinding.FragmentViewBindingDelegate3;
+import d0.z.d.Intrinsics3;
 import kotlin.jvm.internal.DefaultConstructorMarker;
 import kotlin.reflect.KProperty;
 import rx.functions.Func0;
@@ -21,7 +21,7 @@ import rx.functions.Func0;
 /* JADX INFO: compiled from: WidgetClientOutdated.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetClientOutdated extends AppFragment {
-    public static final /* synthetic */ KProperty[] $$delegatedProperties = {a.d0(WidgetClientOutdated.class, "binding", "getBinding()Lcom/discord/databinding/WidgetClientOutdatedBinding;", 0)};
+    public static final /* synthetic */ KProperty[] $$delegatedProperties = {outline.d0(WidgetClientOutdated.class, "binding", "getBinding()Lcom/discord/databinding/WidgetClientOutdatedBinding;", 0)};
 
     /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
     public static final Companion INSTANCE = new Companion(null);
@@ -36,9 +36,9 @@ public final class WidgetClientOutdated extends AppFragment {
 
         @Override // android.view.View.OnClickListener
         public final void onClick(View view) {
-            m.checkNotNullExpressionValue(view, "v");
+            Intrinsics3.checkNotNullExpressionValue(view, "v");
             Context context = view.getContext();
-            m.checkNotNullExpressionValue(context, "v.context");
+            Intrinsics3.checkNotNullExpressionValue(context, "v.context");
             UriHandler.directToPlayStore$default(context, null, null, 6, null);
         }
     }
@@ -65,8 +65,8 @@ public final class WidgetClientOutdated extends AppFragment {
         }
 
         public final void launch(Context context) {
-            m.checkNotNullParameter(context, "context");
-            j.e(context, WidgetClientOutdated.class, null, 4);
+            Intrinsics3.checkNotNullParameter(context, "context");
+            AppScreen2.e(context, WidgetClientOutdated.class, null, 4);
         }
 
         public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
@@ -76,7 +76,7 @@ public final class WidgetClientOutdated extends AppFragment {
 
     public WidgetClientOutdated() {
         super(R.layout.widget_client_outdated);
-        this.binding = FragmentViewBindingDelegateKt.viewBinding$default(this, WidgetClientOutdated$binding$2.INSTANCE, null, 2, null);
+        this.binding = FragmentViewBindingDelegate3.viewBinding$default(this, WidgetClientOutdated2.INSTANCE, null, 2, null);
     }
 
     private final WidgetClientOutdatedBinding getBinding() {
@@ -85,7 +85,7 @@ public final class WidgetClientOutdated extends AppFragment {
 
     @Override // com.discord.app.AppFragment, androidx.fragment.app.Fragment
     public void onViewCreated(View view, Bundle savedInstanceState) {
-        m.checkNotNullParameter(view, "view");
+        Intrinsics3.checkNotNullParameter(view, "view");
         super.onViewCreated(view, savedInstanceState);
         getBinding().f2351b.setOnClickListener(AnonymousClass1.INSTANCE);
         AppFragment.setOnBackPressed$default(this, AnonymousClass2.INSTANCE, 0, 2, null);

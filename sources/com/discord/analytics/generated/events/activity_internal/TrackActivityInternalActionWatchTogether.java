@@ -1,16 +1,16 @@
 package com.discord.analytics.generated.events.activity_internal;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackActivityInternalMetadata;
-import com.discord.analytics.generated.traits.TrackActivityInternalMetadataReceiver;
+import com.discord.analytics.generated.traits.TrackActivityInternalMetadata2;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackActivityInternalActionWatchTogether.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackActivityInternalActionWatchTogether implements AnalyticsSchema, TrackBaseReceiver, TrackActivityInternalMetadataReceiver {
+public final /* data */ class TrackActivityInternalActionWatchTogether implements AnalyticsSchema, TrackBase2, TrackActivityInternalMetadata2 {
     private final CharSequence actionName = null;
     private final CharSequence hostType = null;
     private final Boolean isHost = null;
@@ -32,7 +32,7 @@ public final /* data */ class TrackActivityInternalActionWatchTogether implement
             return false;
         }
         TrackActivityInternalActionWatchTogether trackActivityInternalActionWatchTogether = (TrackActivityInternalActionWatchTogether) other;
-        return m.areEqual(this.actionName, trackActivityInternalActionWatchTogether.actionName) && m.areEqual(this.isHost, trackActivityInternalActionWatchTogether.isHost) && m.areEqual(this.remoteType, trackActivityInternalActionWatchTogether.remoteType) && m.areEqual(this.hostType, trackActivityInternalActionWatchTogether.hostType) && m.areEqual(this.searchType, trackActivityInternalActionWatchTogether.searchType) && m.areEqual(this.via, trackActivityInternalActionWatchTogether.via) && m.areEqual(this.orderCurrent, trackActivityInternalActionWatchTogether.orderCurrent) && m.areEqual(this.orderSelected, trackActivityInternalActionWatchTogether.orderSelected) && m.areEqual(this.trackingId, trackActivityInternalActionWatchTogether.trackingId);
+        return Intrinsics3.areEqual(this.actionName, trackActivityInternalActionWatchTogether.actionName) && Intrinsics3.areEqual(this.isHost, trackActivityInternalActionWatchTogether.isHost) && Intrinsics3.areEqual(this.remoteType, trackActivityInternalActionWatchTogether.remoteType) && Intrinsics3.areEqual(this.hostType, trackActivityInternalActionWatchTogether.hostType) && Intrinsics3.areEqual(this.searchType, trackActivityInternalActionWatchTogether.searchType) && Intrinsics3.areEqual(this.via, trackActivityInternalActionWatchTogether.via) && Intrinsics3.areEqual(this.orderCurrent, trackActivityInternalActionWatchTogether.orderCurrent) && Intrinsics3.areEqual(this.orderSelected, trackActivityInternalActionWatchTogether.orderSelected) && Intrinsics3.areEqual(this.trackingId, trackActivityInternalActionWatchTogether.trackingId);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -63,7 +63,7 @@ public final /* data */ class TrackActivityInternalActionWatchTogether implement
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackActivityInternalActionWatchTogether(actionName=");
+        StringBuilder sbU = outline.U("TrackActivityInternalActionWatchTogether(actionName=");
         sbU.append(this.actionName);
         sbU.append(", isHost=");
         sbU.append(this.isHost);
@@ -80,6 +80,6 @@ public final /* data */ class TrackActivityInternalActionWatchTogether implement
         sbU.append(", orderSelected=");
         sbU.append(this.orderSelected);
         sbU.append(", trackingId=");
-        return a.E(sbU, this.trackingId, ")");
+        return outline.E(sbU, this.trackingId, ")");
     }
 }

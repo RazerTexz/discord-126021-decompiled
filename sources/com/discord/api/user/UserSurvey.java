@@ -1,7 +1,7 @@
 package com.discord.api.user;
 
-import b.d.b.a.a;
-import d0.z.d.m;
+import b.d.b.a.outline;
+import d0.z.d.Intrinsics3;
 import java.util.List;
 
 /* JADX INFO: compiled from: UserSurvey.kt */
@@ -35,7 +35,7 @@ public final /* data */ class UserSurvey {
             return false;
         }
         UserSurvey userSurvey = (UserSurvey) other;
-        return m.areEqual(this.prompt, userSurvey.prompt) && m.areEqual(this.cta, userSurvey.cta) && m.areEqual(this.url, userSurvey.url) && m.areEqual(this.key, userSurvey.key) && m.areEqual(this.guild_requirements, userSurvey.guild_requirements) && m.areEqual(this.guild_size, userSurvey.guild_size) && m.areEqual(this.guild_permissions, userSurvey.guild_permissions);
+        return Intrinsics3.areEqual(this.prompt, userSurvey.prompt) && Intrinsics3.areEqual(this.cta, userSurvey.cta) && Intrinsics3.areEqual(this.url, userSurvey.url) && Intrinsics3.areEqual(this.key, userSurvey.key) && Intrinsics3.areEqual(this.guild_requirements, userSurvey.guild_requirements) && Intrinsics3.areEqual(this.guild_size, userSurvey.guild_size) && Intrinsics3.areEqual(this.guild_permissions, userSurvey.guild_permissions);
     }
 
     /* JADX INFO: renamed from: a, reason: from getter */
@@ -76,7 +76,7 @@ public final /* data */ class UserSurvey {
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("UserSurvey(prompt=");
+        StringBuilder sbU = outline.U("UserSurvey(prompt=");
         sbU.append(this.prompt);
         sbU.append(", cta=");
         sbU.append(this.cta);
@@ -89,6 +89,6 @@ public final /* data */ class UserSurvey {
         sbU.append(", guild_size=");
         sbU.append(this.guild_size);
         sbU.append(", guild_permissions=");
-        return a.L(sbU, this.guild_permissions, ")");
+        return outline.L(sbU, this.guild_permissions, ")");
     }
 }

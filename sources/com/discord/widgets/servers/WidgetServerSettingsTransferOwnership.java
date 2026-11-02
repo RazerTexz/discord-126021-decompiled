@@ -7,8 +7,8 @@ import android.widget.LinearLayout;
 import androidx.exifinterface.media.ExifInterface;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-import b.a.k.b;
-import b.d.b.a.a;
+import b.a.k.FormatUtils;
+import b.d.b.a.outline;
 import com.discord.R;
 import com.discord.app.AppDialog;
 import com.discord.databinding.WidgetGuildTransferOwnershipBinding;
@@ -21,13 +21,13 @@ import com.discord.utilities.rest.RestAPI;
 import com.discord.utilities.rx.ObservableExtensionsKt;
 import com.discord.utilities.view.extensions.ViewExtensions;
 import com.discord.utilities.viewbinding.FragmentViewBindingDelegate;
-import com.discord.utilities.viewbinding.FragmentViewBindingDelegateKt;
+import com.discord.utilities.viewbinding.FragmentViewBindingDelegate3;
 import com.discord.views.CheckedSetting;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputLayout;
-import d0.z.d.k;
-import d0.z.d.m;
-import d0.z.d.o;
+import d0.z.d.FunctionReferenceImpl;
+import d0.z.d.Intrinsics3;
+import d0.z.d.Lambda;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
@@ -38,7 +38,7 @@ import rx.Observable;
 /* JADX INFO: compiled from: WidgetServerSettingsTransferOwnership.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetServerSettingsTransferOwnership extends AppDialog {
-    public static final /* synthetic */ KProperty[] $$delegatedProperties = {a.d0(WidgetServerSettingsTransferOwnership.class, "binding", "getBinding()Lcom/discord/databinding/WidgetGuildTransferOwnershipBinding;", 0)};
+    public static final /* synthetic */ KProperty[] $$delegatedProperties = {outline.d0(WidgetServerSettingsTransferOwnership.class, "binding", "getBinding()Lcom/discord/databinding/WidgetGuildTransferOwnershipBinding;", 0)};
     private static final String ARG_GUILD_ID = "ARG_GUILD_ID";
     private static final String ARG_USER_ID = "ARG_USER_ID";
 
@@ -63,7 +63,7 @@ public final class WidgetServerSettingsTransferOwnership extends AppDialog {
 
     /* JADX INFO: renamed from: com.discord.widgets.servers.WidgetServerSettingsTransferOwnership$onViewBoundOrOnResume$1, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetServerSettingsTransferOwnership.kt */
-    public final /* synthetic */ class AnonymousClass1 extends k implements Function1<Model, Unit> {
+    public final /* synthetic */ class AnonymousClass1 extends FunctionReferenceImpl implements Function1<Model, Unit> {
         public AnonymousClass1(WidgetServerSettingsTransferOwnership widgetServerSettingsTransferOwnership) {
             super(1, widgetServerSettingsTransferOwnership, WidgetServerSettingsTransferOwnership.class, "configureUI", "configureUI(Lcom/discord/widgets/servers/WidgetServerSettingsTransferOwnership$Model;)V", 0);
         }
@@ -90,9 +90,9 @@ public final class WidgetServerSettingsTransferOwnership extends AppDialog {
         public final void onClick(View view) {
             WidgetServerSettingsTransferOwnership.access$getBinding$p(WidgetServerSettingsTransferOwnership.this).f2455b.toggle();
             MaterialButton materialButton = WidgetServerSettingsTransferOwnership.access$getBinding$p(WidgetServerSettingsTransferOwnership.this).d;
-            m.checkNotNullExpressionValue(materialButton, "binding.guildTransferOwnershipConfirm");
+            Intrinsics3.checkNotNullExpressionValue(materialButton, "binding.guildTransferOwnershipConfirm");
             CheckedSetting checkedSetting = WidgetServerSettingsTransferOwnership.access$getBinding$p(WidgetServerSettingsTransferOwnership.this).f2455b;
-            m.checkNotNullExpressionValue(checkedSetting, "binding.guildTransferOwnershipAcknowledgeCheck");
+            Intrinsics3.checkNotNullExpressionValue(checkedSetting, "binding.guildTransferOwnershipAcknowledgeCheck");
             materialButton.setEnabled(checkedSetting.isChecked());
         }
     }
@@ -104,7 +104,7 @@ public final class WidgetServerSettingsTransferOwnership extends AppDialog {
 
         /* JADX INFO: renamed from: com.discord.widgets.servers.WidgetServerSettingsTransferOwnership$configureUI$3$1, reason: invalid class name */
         /* JADX INFO: compiled from: WidgetServerSettingsTransferOwnership.kt */
-        public final class AnonymousClass1 extends o implements Function1<Void, Unit> {
+        public final class AnonymousClass1 extends Lambda implements Function1<Void, Unit> {
             public AnonymousClass1() {
                 super(1);
             }
@@ -129,7 +129,7 @@ public final class WidgetServerSettingsTransferOwnership extends AppDialog {
         public final void onClick(View view) {
             Observable observableUi$default = ObservableExtensionsKt.ui$default(ObservableExtensionsKt.restSubscribeOn$default(RestAPI.INSTANCE.getApi().transferGuildOwnership(this.$model.getGuild().getId(), new RestAPIParams.TransferGuildOwnership(this.$model.getUser().getId(), WidgetServerSettingsTransferOwnership.access$getMfaCode$p(WidgetServerSettingsTransferOwnership.this))), false, 1, null), WidgetServerSettingsTransferOwnership.this, null, 2, null);
             Class<?> cls = WidgetServerSettingsTransferOwnership.this.getClass();
-            m.checkNotNullExpressionValue(view, "view");
+            Intrinsics3.checkNotNullExpressionValue(view, "view");
             ObservableExtensionsKt.appSubscribe$default(observableUi$default, cls, view.getContext(), (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass1(), 60, (Object) null);
         }
     }
@@ -140,9 +140,9 @@ public final class WidgetServerSettingsTransferOwnership extends AppDialog {
         }
 
         public final void create(long guildId, long userId, FragmentManager fragmentManager) {
-            m.checkNotNullParameter(fragmentManager, "fragmentManager");
+            Intrinsics3.checkNotNullParameter(fragmentManager, "fragmentManager");
             WidgetServerSettingsTransferOwnership widgetServerSettingsTransferOwnership = new WidgetServerSettingsTransferOwnership();
-            Bundle bundleT = a.T(WidgetServerSettingsTransferOwnership.ARG_GUILD_ID, guildId);
+            Bundle bundleT = outline.T(WidgetServerSettingsTransferOwnership.ARG_GUILD_ID, guildId);
             bundleT.putLong(WidgetServerSettingsTransferOwnership.ARG_USER_ID, userId);
             widgetServerSettingsTransferOwnership.setArguments(bundleT);
             widgetServerSettingsTransferOwnership.show(fragmentManager, WidgetServerSettingsTransferOwnership.access$getTAG$cp());
@@ -170,8 +170,8 @@ public final class WidgetServerSettingsTransferOwnership extends AppDialog {
 
             public final Observable<Model> get(long guildId, long userId) {
                 StoreStream.Companion companion = StoreStream.INSTANCE;
-                Observable observableR = Observable.i(companion.getGuilds().observeGuild(guildId), companion.getUsers().observeUser(userId), StoreUser.observeMe$default(companion.getUsers(), false, 1, null), WidgetServerSettingsTransferOwnership$Model$Companion$get$1.INSTANCE).r();
-                m.checkNotNullExpressionValue(observableR, "Observable.combineLatest…  .distinctUntilChanged()");
+                Observable observableR = Observable.i(companion.getGuilds().observeGuild(guildId), companion.getUsers().observeUser(userId), StoreUser.observeMe$default(companion.getUsers(), false, 1, null), WidgetServerSettingsTransferOwnership2.INSTANCE).r();
+                Intrinsics3.checkNotNullExpressionValue(observableR, "Observable.combineLatest…  .distinctUntilChanged()");
                 return ObservableExtensionsKt.computationLatest(observableR);
             }
 
@@ -181,8 +181,8 @@ public final class WidgetServerSettingsTransferOwnership extends AppDialog {
         }
 
         public Model(User user, Guild guild, boolean z2, boolean z3) {
-            m.checkNotNullParameter(user, "user");
-            m.checkNotNullParameter(guild, "guild");
+            Intrinsics3.checkNotNullParameter(user, "user");
+            Intrinsics3.checkNotNullParameter(guild, "guild");
             this.user = user;
             this.guild = guild;
             this.isMfaEnabled = z2;
@@ -206,8 +206,8 @@ public final class WidgetServerSettingsTransferOwnership extends AppDialog {
         }
 
         public final Model copy(User user, Guild guild, boolean isMfaEnabled, boolean isGuildOwner) {
-            m.checkNotNullParameter(user, "user");
-            m.checkNotNullParameter(guild, "guild");
+            Intrinsics3.checkNotNullParameter(user, "user");
+            Intrinsics3.checkNotNullParameter(guild, "guild");
             return new Model(user, guild, isMfaEnabled, isGuildOwner);
         }
 
@@ -219,7 +219,7 @@ public final class WidgetServerSettingsTransferOwnership extends AppDialog {
                 return false;
             }
             Model model = (Model) other;
-            return m.areEqual(this.user, model.user) && m.areEqual(this.guild, model.guild) && this.isMfaEnabled == model.isMfaEnabled && this.isGuildOwner == model.isGuildOwner;
+            return Intrinsics3.areEqual(this.user, model.user) && Intrinsics3.areEqual(this.guild, model.guild) && this.isMfaEnabled == model.isMfaEnabled && this.isGuildOwner == model.isGuildOwner;
         }
 
         /* JADX INFO: renamed from: component2, reason: from getter */
@@ -283,20 +283,20 @@ public final class WidgetServerSettingsTransferOwnership extends AppDialog {
         }
 
         public String toString() {
-            StringBuilder sbU = a.U("Model(user=");
+            StringBuilder sbU = outline.U("Model(user=");
             sbU.append(this.user);
             sbU.append(", guild=");
             sbU.append(this.guild);
             sbU.append(", isMfaEnabled=");
             sbU.append(this.isMfaEnabled);
             sbU.append(", isGuildOwner=");
-            return a.O(sbU, this.isGuildOwner, ")");
+            return outline.O(sbU, this.isGuildOwner, ")");
         }
     }
 
     public WidgetServerSettingsTransferOwnership() {
         super(R.layout.widget_guild_transfer_ownership);
-        this.binding = FragmentViewBindingDelegateKt.viewBinding$default(this, WidgetServerSettingsTransferOwnership$binding$2.INSTANCE, null, 2, null);
+        this.binding = FragmentViewBindingDelegate3.viewBinding$default(this, WidgetServerSettingsTransferOwnership3.INSTANCE, null, 2, null);
     }
 
     public static final /* synthetic */ void access$configureUI(WidgetServerSettingsTransferOwnership widgetServerSettingsTransferOwnership, Model model) {
@@ -321,15 +321,15 @@ public final class WidgetServerSettingsTransferOwnership extends AppDialog {
             return;
         }
         LinearLayout linearLayout = getBinding().f;
-        m.checkNotNullExpressionValue(linearLayout, "binding.guildTransferOwnershipMfaWrap");
+        Intrinsics3.checkNotNullExpressionValue(linearLayout, "binding.guildTransferOwnershipMfaWrap");
         linearLayout.setVisibility(model.isMfaEnabled() ? 0 : 8);
         getBinding().c.setOnClickListener(new AnonymousClass1());
         MaterialButton materialButton = getBinding().d;
-        m.checkNotNullExpressionValue(materialButton, "binding.guildTransferOwnershipConfirm");
+        Intrinsics3.checkNotNullExpressionValue(materialButton, "binding.guildTransferOwnershipConfirm");
         CheckedSetting checkedSetting = getBinding().f2455b;
-        m.checkNotNullExpressionValue(checkedSetting, "binding.guildTransferOwnershipAcknowledgeCheck");
+        Intrinsics3.checkNotNullExpressionValue(checkedSetting, "binding.guildTransferOwnershipAcknowledgeCheck");
         materialButton.setEnabled(checkedSetting.isChecked());
-        getBinding().f2455b.setText(b.k(this, R.string.transfer_ownership_acknowledge, new Object[]{model.getUser().getUsername()}, null, 4));
+        getBinding().f2455b.setText(FormatUtils.k(this, R.string.transfer_ownership_acknowledge, new Object[]{model.getUser().getUsername()}, null, 4));
         getBinding().f2455b.e(new AnonymousClass2());
         getBinding().d.setOnClickListener(new AnonymousClass3(model));
     }
@@ -340,13 +340,13 @@ public final class WidgetServerSettingsTransferOwnership extends AppDialog {
 
     private final String getMfaCode() {
         TextInputLayout textInputLayout = getBinding().e;
-        m.checkNotNullExpressionValue(textInputLayout, "binding.guildTransferOwnershipMfaCode");
+        Intrinsics3.checkNotNullExpressionValue(textInputLayout, "binding.guildTransferOwnershipMfaCode");
         if (textInputLayout.getVisibility() == 0) {
             TextInputLayout textInputLayout2 = getBinding().e;
-            m.checkNotNullExpressionValue(textInputLayout2, "binding.guildTransferOwnershipMfaCode");
+            Intrinsics3.checkNotNullExpressionValue(textInputLayout2, "binding.guildTransferOwnershipMfaCode");
             if (!(ViewExtensions.getTextOrEmpty(textInputLayout2).length() == 0)) {
                 TextInputLayout textInputLayout3 = getBinding().e;
-                m.checkNotNullExpressionValue(textInputLayout3, "binding.guildTransferOwnershipMfaCode");
+                Intrinsics3.checkNotNullExpressionValue(textInputLayout3, "binding.guildTransferOwnershipMfaCode");
                 return ViewExtensions.getTextOrEmpty(textInputLayout3);
             }
         }

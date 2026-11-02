@@ -1,6 +1,6 @@
 package com.discord.utilities.permissions;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.api.channel.Channel;
 import com.discord.api.channel.ChannelUtils;
 import com.discord.api.permission.Permission;
@@ -11,12 +11,12 @@ import com.discord.api.stageinstance.StageInstancePrivacyLevel;
 import com.discord.models.domain.ModelAuditLogEntry;
 import com.discord.models.member.GuildMember;
 import com.discord.stores.StoreSlowMode;
-import com.discord.utilities.PermissionOverwriteUtilsKt;
-import com.discord.utilities.guildmember.GuildMemberUtilsKt;
+import com.discord.utilities.PermissionOverwriteUtils;
+import com.discord.utilities.guildmember.GuildMemberUtils;
 import com.discord.widgets.chat.list.NewThreadsPermissionsFeatureFlag;
-import d0.t.h0;
-import d0.t.n;
-import d0.z.d.m;
+import d0.t.Collections2;
+import d0.t.Maps6;
+import d0.z.d.Intrinsics3;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
@@ -119,15 +119,15 @@ public final class PermissionUtils {
     }
 
     public static final boolean canEveryone(long permission, Channel channel, Channel parentChannel, Map<Long, GuildRole> roles) {
-        m.checkNotNullParameter(channel, "channel");
-        m.checkNotNullParameter(roles, "roles");
+        Intrinsics3.checkNotNullParameter(channel, "channel");
+        Intrinsics3.checkNotNullParameter(roles, "roles");
         if (ChannelUtils.H(channel)) {
             if (parentChannel == null || ChannelUtils.C(channel)) {
                 return false;
             }
             return canEveryone(permission, parentChannel, null, roles);
         }
-        GuildRole guildRole = (GuildRole) a.c(channel, roles);
+        GuildRole guildRole = (GuildRole) outline.c(channel, roles);
         if (guildRole != null && (guildRole.getPermissions() & permission) != permission) {
             return false;
         }
@@ -137,7 +137,7 @@ public final class PermissionUtils {
         }
         Iterator<PermissionOverwrite> it = listV.iterator();
         while (it.hasNext()) {
-            if (PermissionOverwriteUtilsKt.denies(it.next(), permission)) {
+            if (PermissionOverwriteUtils.denies(it.next(), permission)) {
                 return false;
             }
         }
@@ -145,8 +145,8 @@ public final class PermissionUtils {
     }
 
     public final boolean canEveryoneRole(long permission, Channel channel, Map<Long, GuildRole> roles) {
-        m.checkNotNullParameter(channel, "channel");
-        m.checkNotNullParameter(roles, "roles");
+        Intrinsics3.checkNotNullParameter(channel, "channel");
+        Intrinsics3.checkNotNullParameter(roles, "roles");
         long guildId = channel.getGuildId();
         GuildRole guildRole = roles.get(Long.valueOf(guildId));
         return canRole(permission, guildRole, guildRole != null ? ChannelUtils.f(channel, guildId) : null);
@@ -185,26 +185,26 @@ public final class PermissionUtils {
 
     public static final long computePermissions(long userId, Channel channel, Channel parentChannel, long guildOwnerId, GuildMember member, Map<Long, GuildRole> guildRoles, Map<Long, StageInstance> stageInstances, boolean hasJoinedThread) {
         long jComputeNonThreadPermissions;
-        m.checkNotNullParameter(channel, "channel");
+        Intrinsics3.checkNotNullParameter(channel, "channel");
         if (ChannelUtils.H(channel)) {
             jComputeNonThreadPermissions = parentChannel == null ? 0L : computeThreadPermissions(userId, channel, parentChannel, guildOwnerId, member, guildRoles, hasJoinedThread);
         } else {
             long guildId = channel.getGuildId();
             List<PermissionOverwrite> listV = channel.v();
             if (listV == null) {
-                listV = n.emptyList();
+                listV = Collections2.emptyList();
             }
             jComputeNonThreadPermissions = computeNonThreadPermissions(userId, guildId, guildOwnerId, member, guildRoles, listV);
         }
         long j = 66560;
-        if (!GuildMemberUtilsKt.isLurker(member)) {
+        if (!GuildMemberUtils.isLurker(member)) {
             return (member == null || !member.isCommunicationDisabled()) ? jComputeNonThreadPermissions : jComputeNonThreadPermissions & 66560;
         }
-        Map<Long, StageInstance> mapEmptyMap = stageInstances != null ? stageInstances : h0.emptyMap();
-        m.checkNotNullParameter(channel, "$this$computeLurkerPermissionsAllowList");
-        m.checkNotNullParameter(mapEmptyMap, "stageInstances");
+        Map<Long, StageInstance> mapEmptyMap = stageInstances != null ? stageInstances : Maps6.emptyMap();
+        Intrinsics3.checkNotNullParameter(channel, "$this$computeLurkerPermissionsAllowList");
+        Intrinsics3.checkNotNullParameter(mapEmptyMap, "stageInstances");
         if (ChannelUtils.D(channel)) {
-            StageInstance stageInstance = (StageInstance) a.d(channel, mapEmptyMap);
+            StageInstance stageInstance = (StageInstance) outline.d(channel, mapEmptyMap);
             if ((stageInstance != null ? stageInstance.getPrivacyLevel() : null) == StageInstancePrivacyLevel.PUBLIC) {
                 j = Permission.AllowList.LURKER_STAGE_CHANNEL;
             }
@@ -213,12 +213,12 @@ public final class PermissionUtils {
     }
 
     public static final long computeThreadPermissions(long userId, Channel thread, Channel parentChannel, long guildOwnerId, GuildMember member, Map<Long, GuildRole> guildRoles, boolean hasJoined) {
-        m.checkNotNullParameter(thread, "thread");
-        m.checkNotNullParameter(parentChannel, "parentChannel");
+        Intrinsics3.checkNotNullParameter(thread, "thread");
+        Intrinsics3.checkNotNullParameter(parentChannel, "parentChannel");
         long guildId = parentChannel.getGuildId();
         List<PermissionOverwrite> listV = parentChannel.v();
         if (listV == null) {
-            listV = n.emptyList();
+            listV = Collections2.emptyList();
         }
         long jComputeNonThreadPermissions = computeNonThreadPermissions(userId, guildId, guildOwnerId, member, guildRoles, listV);
         if (NewThreadsPermissionsFeatureFlag.INSTANCE.getINSTANCE().isEnabled(thread.getGuildId())) {
@@ -241,19 +241,19 @@ public final class PermissionUtils {
     }
 
     public static final boolean hasAccess(Channel channel, Map<Long, Long> permissions) {
-        m.checkNotNullParameter(channel, "channel");
-        m.checkNotNullParameter(permissions, ModelAuditLogEntry.CHANGE_KEY_PERMISSIONS);
-        return INSTANCE.hasAccess(channel, (Long) a.d(channel, permissions));
+        Intrinsics3.checkNotNullParameter(channel, "channel");
+        Intrinsics3.checkNotNullParameter(permissions, ModelAuditLogEntry.CHANGE_KEY_PERMISSIONS);
+        return INSTANCE.hasAccess(channel, (Long) outline.d(channel, permissions));
     }
 
     public final boolean hasAccessWrite(Channel channel, Long computedPermission) {
-        m.checkNotNullParameter(channel, "channel");
+        Intrinsics3.checkNotNullParameter(channel, "channel");
         return ChannelUtils.B(channel) || can(3072L, computedPermission);
     }
 
     public final boolean hasBypassSlowmodePermissions(Long channelPermissions, StoreSlowMode.Type type) {
-        m.checkNotNullParameter(type, "type");
-        if (m.areEqual(type, StoreSlowMode.Type.MessageSend.INSTANCE)) {
+        Intrinsics3.checkNotNullParameter(type, "type");
+        if (Intrinsics3.areEqual(type, StoreSlowMode.Type.MessageSend.INSTANCE)) {
             return can(16L, channelPermissions) || can(Permission.MANAGE_MESSAGES, channelPermissions);
         }
         return can(Permission.MANAGE_THREADS, channelPermissions);
@@ -274,7 +274,7 @@ public final class PermissionUtils {
     }
 
     public final boolean hasAccess(Channel channel, Long computedPermission) {
-        m.checkNotNullParameter(channel, "channel");
+        Intrinsics3.checkNotNullParameter(channel, "channel");
         if (ChannelUtils.B(channel)) {
             return true;
         }

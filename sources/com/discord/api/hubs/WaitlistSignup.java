@@ -1,8 +1,8 @@
 package com.discord.api.hubs;
 
 import androidx.core.app.NotificationCompat;
-import b.d.b.a.a;
-import d0.z.d.m;
+import b.d.b.a.outline;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: WaitlistSignup.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -19,7 +19,7 @@ public final /* data */ class WaitlistSignup {
             return false;
         }
         WaitlistSignup waitlistSignup = (WaitlistSignup) other;
-        return m.areEqual(this.email, waitlistSignup.email) && m.areEqual(this.emailDomain, waitlistSignup.emailDomain) && m.areEqual(this.school, waitlistSignup.school);
+        return Intrinsics3.areEqual(this.email, waitlistSignup.email) && Intrinsics3.areEqual(this.emailDomain, waitlistSignup.emailDomain) && Intrinsics3.areEqual(this.school, waitlistSignup.school);
     }
 
     /* JADX INFO: renamed from: a, reason: from getter */
@@ -37,11 +37,11 @@ public final /* data */ class WaitlistSignup {
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("WaitlistSignup(email=");
+        StringBuilder sbU = outline.U("WaitlistSignup(email=");
         sbU.append(this.email);
         sbU.append(", emailDomain=");
         sbU.append(this.emailDomain);
         sbU.append(", school=");
-        return a.J(sbU, this.school, ")");
+        return outline.J(sbU, this.school, ")");
     }
 }

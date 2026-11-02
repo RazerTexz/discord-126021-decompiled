@@ -1,8 +1,8 @@
 package com.discord.api.creatormonetization;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.models.domain.ModelAuditLogEntry;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: CreatorMonetizationEnableRequest.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -25,7 +25,7 @@ public final /* data */ class CreatorMonetizationEnableRequest {
             return false;
         }
         CreatorMonetizationEnableRequest creatorMonetizationEnableRequest = (CreatorMonetizationEnableRequest) other;
-        return this.id == creatorMonetizationEnableRequest.id && m.areEqual(this.state, creatorMonetizationEnableRequest.state);
+        return this.id == creatorMonetizationEnableRequest.id && Intrinsics3.areEqual(this.state, creatorMonetizationEnableRequest.state);
     }
 
     /* JADX INFO: renamed from: a, reason: from getter */
@@ -46,7 +46,7 @@ public final /* data */ class CreatorMonetizationEnableRequest {
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("CreatorMonetizationEnableRequest(id=");
+        StringBuilder sbU = outline.U("CreatorMonetizationEnableRequest(id=");
         sbU.append(this.id);
         sbU.append(", state=");
         sbU.append(this.state);

@@ -1,6 +1,6 @@
 package com.esotericsoftware.kryo.io;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.esotericsoftware.kryo.KryoException;
 import com.esotericsoftware.kryo.util.UnsafeUtil;
 import java.io.IOException;
@@ -93,7 +93,7 @@ public class ByteBufferOutput extends Output {
         }
         if (i > this.maxCapacity) {
             this.niobuffer.order(this.byteOrder);
-            StringBuilder sbU = a.U("Buffer overflow. Max capacity: ");
+            StringBuilder sbU = outline.U("Buffer overflow. Max capacity: ");
             sbU.append(this.maxCapacity);
             sbU.append(", required: ");
             sbU.append(i);
@@ -108,7 +108,7 @@ public class ByteBufferOutput extends Output {
             int i3 = this.maxCapacity;
             if (i2 == i3) {
                 this.niobuffer.order(this.byteOrder);
-                StringBuilder sbU2 = a.U("Buffer overflow. Available: ");
+                StringBuilder sbU2 = outline.U("Buffer overflow. Available: ");
                 sbU2.append(this.capacity - this.position);
                 sbU2.append(", required: ");
                 sbU2.append(i);
@@ -742,7 +742,7 @@ public class ByteBufferOutput extends Output {
             throw new IllegalArgumentException("buffer cannot be null.");
         }
         if (i < -1) {
-            throw new IllegalArgumentException(a.q("maxBufferSize cannot be < -1: ", i));
+            throw new IllegalArgumentException(outline.q("maxBufferSize cannot be < -1: ", i));
         }
         this.niobuffer = byteBuffer;
         if (i == -1) {
@@ -837,7 +837,7 @@ public class ByteBufferOutput extends Output {
             byteBufferAllocateDirect.order(this.byteOrder);
             return;
         }
-        throw new IllegalArgumentException(a.q("maxBufferSize cannot be < -1: ", i2));
+        throw new IllegalArgumentException(outline.q("maxBufferSize cannot be < -1: ", i2));
     }
 
     @Override // com.esotericsoftware.kryo.io.Output, java.io.OutputStream

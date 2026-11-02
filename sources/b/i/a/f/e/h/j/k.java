@@ -4,6 +4,7 @@ import android.os.Looper;
 import android.os.Message;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import b.c.a.a0.AnimatableValueParser;
 
 /* JADX INFO: compiled from: com.google.android.gms:play-services-base@@17.3.0 */
 /* JADX INFO: loaded from: classes3.dex */
@@ -60,7 +61,7 @@ public final class k<L> {
 
         @Override // android.os.Handler
         public final void handleMessage(Message message) {
-            b.c.a.a0.d.l(message.what == 1);
+            AnimatableValueParser.l(message.what == 1);
             b bVar = (b) message.obj;
             L l = k.this.f1366b;
             if (l == null) {
@@ -78,14 +79,14 @@ public final class k<L> {
 
     public k(@NonNull Looper looper, @NonNull L l, @NonNull String str) {
         this.a = new c(looper);
-        b.c.a.a0.d.z(l, "Listener must not be null");
+        AnimatableValueParser.z(l, "Listener must not be null");
         this.f1366b = l;
-        b.c.a.a0.d.w(str);
+        AnimatableValueParser.w(str);
         this.c = new a<>(l, str);
     }
 
     public final void a(b<? super L> bVar) {
-        b.c.a.a0.d.z(bVar, "Notifier must not be null");
+        AnimatableValueParser.z(bVar, "Notifier must not be null");
         this.a.sendMessage(this.a.obtainMessage(1, bVar));
     }
 }

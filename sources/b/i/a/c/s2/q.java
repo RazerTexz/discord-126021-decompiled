@@ -1,24 +1,25 @@
 package b.i.a.c.s2;
 
-import b.i.a.c.o1;
+import b.i.a.c.MediaItem2;
+import b.i.a.c.f3.ListenerSet;
 
 /* JADX INFO: compiled from: lambda */
 /* JADX INFO: loaded from: classes3.dex */
-public final /* synthetic */ class q implements b.i.a.c.f3.p.a {
-    public final /* synthetic */ h1.a a;
+public final /* synthetic */ class q implements ListenerSet.a {
+    public final /* synthetic */ AnalyticsListener.a a;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    public final /* synthetic */ o1 f1098b;
+    public final /* synthetic */ MediaItem2 f1098b;
     public final /* synthetic */ int c;
 
-    public /* synthetic */ q(h1.a aVar, o1 o1Var, int i) {
+    public /* synthetic */ q(AnalyticsListener.a aVar, MediaItem2 mediaItem2, int i) {
         this.a = aVar;
-        this.f1098b = o1Var;
+        this.f1098b = mediaItem2;
         this.c = i;
     }
 
-    @Override // b.i.a.c.f3.p.a
+    @Override // b.i.a.c.f3.ListenerSet.a
     public final void invoke(Object obj) {
-        ((h1) obj).t();
+        ((AnalyticsListener) obj).t();
     }
 }

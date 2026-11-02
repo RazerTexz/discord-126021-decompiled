@@ -4,7 +4,7 @@ import android.annotation.SuppressLint;
 import androidx.annotation.NonNull;
 import androidx.annotation.RestrictTo;
 import androidx.view.LiveData;
-import b.i.b.d.a.a;
+import b.i.b.d.a.ListenableFuture8;
 
 /* JADX INFO: loaded from: classes.dex */
 public interface Operation {
@@ -71,7 +71,7 @@ public interface Operation {
     }
 
     @NonNull
-    a<State.SUCCESS> getResult();
+    ListenableFuture8<State.SUCCESS> getResult();
 
     @NonNull
     LiveData<State> getState();

@@ -1,6 +1,6 @@
 package org.webrtc;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import java.util.Map;
 
 /* JADX INFO: loaded from: classes3.dex */
@@ -27,7 +27,7 @@ public class RTCStatsReport {
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("{ timestampUs: ");
+        StringBuilder sbU = outline.U("{ timestampUs: ");
         sbU.append(this.timestampUs);
         sbU.append(", stats: [\n");
         boolean z2 = true;

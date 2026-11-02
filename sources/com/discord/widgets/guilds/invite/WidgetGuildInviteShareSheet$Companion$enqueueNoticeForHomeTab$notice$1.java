@@ -3,13 +3,13 @@ package com.discord.widgets.guilds.invite;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import com.discord.stores.StoreNotices;
-import d0.z.d.m;
-import d0.z.d.o;
+import d0.z.d.Intrinsics3;
+import d0.z.d.Lambda;
 import kotlin.jvm.functions.Function1;
 
 /* JADX INFO: compiled from: WidgetGuildInviteShareSheet.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class WidgetGuildInviteShareSheet$Companion$enqueueNoticeForHomeTab$notice$1 extends o implements Function1<FragmentActivity, Boolean> {
+public final class WidgetGuildInviteShareSheet$Companion$enqueueNoticeForHomeTab$notice$1 extends Lambda implements Function1<FragmentActivity, Boolean> {
     public final /* synthetic */ Long $channelId;
     public final /* synthetic */ long $guildId;
     public final /* synthetic */ String $noticeName;
@@ -33,10 +33,10 @@ public final class WidgetGuildInviteShareSheet$Companion$enqueueNoticeForHomeTab
 
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final boolean invoke2(FragmentActivity fragmentActivity) {
-        m.checkNotNullParameter(fragmentActivity, "fragmentActivity");
+        Intrinsics3.checkNotNullParameter(fragmentActivity, "fragmentActivity");
         WidgetGuildInviteShareSheet.Companion companion = WidgetGuildInviteShareSheet.INSTANCE;
         FragmentManager supportFragmentManager = fragmentActivity.getSupportFragmentManager();
-        m.checkNotNullExpressionValue(supportFragmentManager, "fragmentActivity.supportFragmentManager");
+        Intrinsics3.checkNotNullExpressionValue(supportFragmentManager, "fragmentActivity.supportFragmentManager");
         companion.show(supportFragmentManager, this.$channelId, this.$guildId, this.$source);
         StoreNotices.markSeen$default(this.$storeNotices, this.$noticeName, 0L, 2, null);
         return true;

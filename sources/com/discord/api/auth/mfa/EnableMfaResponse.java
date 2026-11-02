@@ -1,7 +1,7 @@
 package com.discord.api.auth.mfa;
 
-import b.d.b.a.a;
-import d0.z.d.m;
+import b.d.b.a.outline;
+import d0.z.d.Intrinsics3;
 import java.util.List;
 
 /* JADX INFO: compiled from: EnableMfaResponse.kt */
@@ -18,7 +18,7 @@ public final /* data */ class EnableMfaResponse {
             return false;
         }
         EnableMfaResponse enableMfaResponse = (EnableMfaResponse) other;
-        return m.areEqual(this.token, enableMfaResponse.token) && m.areEqual(this.backupCodes, enableMfaResponse.backupCodes);
+        return Intrinsics3.areEqual(this.token, enableMfaResponse.token) && Intrinsics3.areEqual(this.backupCodes, enableMfaResponse.backupCodes);
     }
 
     /* JADX INFO: renamed from: a, reason: from getter */
@@ -34,9 +34,9 @@ public final /* data */ class EnableMfaResponse {
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("EnableMfaResponse(token=");
+        StringBuilder sbU = outline.U("EnableMfaResponse(token=");
         sbU.append(this.token);
         sbU.append(", backupCodes=");
-        return a.L(sbU, this.backupCodes, ")");
+        return outline.L(sbU, this.backupCodes, ")");
     }
 }

@@ -12,7 +12,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.collection.ArrayMap;
 import androidx.core.content.res.TypedArrayUtils;
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import java.io.IOException;
 import java.lang.reflect.Constructor;
 import org.xmlpull.v1.XmlPullParser;
@@ -33,7 +33,7 @@ public class TransitionInflater {
         Class<? extends U> clsAsSubclass;
         String attributeValue = attributeSet.getAttributeValue(null, "class");
         if (attributeValue == null) {
-            throw new InflateException(a.w(str, " tag must have a 'class' attribute"));
+            throw new InflateException(outline.w(str, " tag must have a 'class' attribute"));
         }
         try {
             ArrayMap<String, Constructor<?>> arrayMap = CONSTRUCTORS;
@@ -101,7 +101,7 @@ public class TransitionInflater {
                         transition.setPathMotion((PathMotion) createCustom(attributeSet, PathMotion.class, "pathMotion"));
                     } else {
                         if (!"patternPathMotion".equals(name)) {
-                            StringBuilder sbU = a.U("Unknown scene name: ");
+                            StringBuilder sbU = outline.U("Unknown scene name: ");
                             sbU.append(xmlPullParser.getName());
                             throw new RuntimeException(sbU.toString());
                         }
@@ -144,7 +144,7 @@ public class TransitionInflater {
                     transitionManager = new TransitionManager();
                 } else {
                     if (!name.equals("transition") || transitionManager == null) {
-                        StringBuilder sbU = a.U("Unknown scene name: ");
+                        StringBuilder sbU = outline.U("Unknown scene name: ");
                         sbU.append(xmlPullParser.getName());
                         throw new RuntimeException(sbU.toString());
                     }
@@ -169,7 +169,7 @@ public class TransitionInflater {
             }
             if (next == 2) {
                 if (!xmlPullParser.getName().equals("target")) {
-                    StringBuilder sbU = a.U("Unknown scene name: ");
+                    StringBuilder sbU = outline.U("Unknown scene name: ");
                     sbU.append(xmlPullParser.getName());
                     throw new RuntimeException(sbU.toString());
                 }
@@ -196,7 +196,7 @@ public class TransitionInflater {
                                         transition.excludeTarget(Class.forName(namedString3), true);
                                     } catch (ClassNotFoundException e) {
                                         typedArrayObtainStyledAttributes.recycle();
-                                        throw new RuntimeException(a.w("Could not create ", namedString3), e);
+                                        throw new RuntimeException(outline.w("Could not create ", namedString3), e);
                                     }
                                 } else {
                                     String namedString4 = TypedArrayUtils.getNamedString(typedArrayObtainStyledAttributes, xmlPullParser, "targetClass", 0);
@@ -264,7 +264,7 @@ public class TransitionInflater {
         Scene sceneForLayout2 = namedResourceId3 >= 0 ? Scene.getSceneForLayout(viewGroup, namedResourceId3, this.mContext) : null;
         if (namedResourceId >= 0 && (transitionInflateTransition = inflateTransition(namedResourceId)) != null) {
             if (sceneForLayout2 == null) {
-                throw new RuntimeException(a.q("No toScene for transition ID ", namedResourceId));
+                throw new RuntimeException(outline.q("No toScene for transition ID ", namedResourceId));
             }
             if (sceneForLayout == null) {
                 transitionManager.setTransition(sceneForLayout2, transitionInflateTransition);

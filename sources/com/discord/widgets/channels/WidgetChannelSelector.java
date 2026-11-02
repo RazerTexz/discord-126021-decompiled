@@ -8,11 +8,11 @@ import android.widget.TextView;
 import androidx.annotation.LayoutRes;
 import androidx.exifinterface.media.ExifInterface;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentKt;
+import androidx.fragment.app.Fragment2;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
-import b.a.k.b;
-import b.d.b.a.a;
+import b.a.k.FormatUtils;
+import b.d.b.a.outline;
 import com.discord.R;
 import com.discord.api.channel.Channel;
 import com.discord.api.channel.ChannelUtils;
@@ -29,10 +29,10 @@ import com.discord.utilities.mg_recycler.MGRecyclerDataPayload;
 import com.discord.utilities.mg_recycler.MGRecyclerViewHolder;
 import com.discord.utilities.rx.ObservableExtensionsKt;
 import com.discord.utilities.viewbinding.FragmentViewBindingDelegate;
-import com.discord.utilities.viewbinding.FragmentViewBindingDelegateKt;
-import d0.g;
-import d0.z.d.m;
-import d0.z.d.o;
+import com.discord.utilities.viewbinding.FragmentViewBindingDelegate3;
+import d0.LazyJVM;
+import d0.z.d.Intrinsics3;
+import d0.z.d.Lambda;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
@@ -50,7 +50,7 @@ import rx.subscriptions.CompositeSubscription;
 /* JADX INFO: compiled from: WidgetChannelSelector.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetChannelSelector extends AppBottomSheet {
-    public static final /* synthetic */ KProperty[] $$delegatedProperties = {a.d0(WidgetChannelSelector.class, "binding", "getBinding()Lcom/discord/databinding/WidgetChannelSelectorBinding;", 0)};
+    public static final /* synthetic */ KProperty[] $$delegatedProperties = {outline.d0(WidgetChannelSelector.class, "binding", "getBinding()Lcom/discord/databinding/WidgetChannelSelectorBinding;", 0)};
     private static final String ARG_FILTER_FUNCTION = "INTENT_EXTRA_FILTER_FUNCTION";
     private static final String ARG_GUILD_ID = "INTENT_EXTRA_GUILD_ID";
     private static final String ARG_INCLUDE_NO_CHANNEL = "INTENT_EXTRA_INCLUDE_NO_CHANNEL";
@@ -82,13 +82,13 @@ public final class WidgetChannelSelector extends AppBottomSheet {
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
             public ItemChannel(@LayoutRes int i, Adapter adapter, int i2) {
                 super(i, adapter);
-                m.checkNotNullParameter(adapter, "adapter");
+                Intrinsics3.checkNotNullParameter(adapter, "adapter");
                 this.noChannelStringId = i2;
                 View view = this.itemView;
                 Objects.requireNonNull(view, "rootView");
                 TextView textView = (TextView) view;
                 WidgetChannelSelectorItemBinding widgetChannelSelectorItemBinding = new WidgetChannelSelectorItemBinding(textView, textView);
-                m.checkNotNullExpressionValue(widgetChannelSelectorItemBinding, "WidgetChannelSelectorItemBinding.bind(itemView)");
+                Intrinsics3.checkNotNullExpressionValue(widgetChannelSelectorItemBinding, "WidgetChannelSelectorItemBinding.bind(itemView)");
                 this.binding = widgetChannelSelectorItemBinding;
             }
 
@@ -109,22 +109,22 @@ public final class WidgetChannelSelector extends AppBottomSheet {
             public void onConfigure2(int position, Model.Item data) {
                 CharSequence charSequenceJ;
                 int i;
-                m.checkNotNullParameter(data, "data");
+                Intrinsics3.checkNotNullParameter(data, "data");
                 super.onConfigure(position, data);
-                this.binding.a.setOnClickListener(new WidgetChannelSelector$Adapter$ItemChannel$onConfigure$1(this, data));
+                this.binding.a.setOnClickListener(new WidgetChannelSelector2(this, data));
                 TextView textView = this.binding.f2268b;
-                m.checkNotNullExpressionValue(textView, "binding.itemName");
+                Intrinsics3.checkNotNullExpressionValue(textView, "binding.itemName");
                 Channel channel = data.getChannel();
                 if (channel != null) {
                     charSequenceJ = ChannelUtils.c(channel);
                 } else {
                     TextView textView2 = this.binding.f2268b;
-                    m.checkNotNullExpressionValue(textView2, "binding.itemName");
-                    charSequenceJ = b.j(textView2, this.noChannelStringId, new Object[0], null, 4);
+                    Intrinsics3.checkNotNullExpressionValue(textView2, "binding.itemName");
+                    charSequenceJ = FormatUtils.j(textView2, this.noChannelStringId, new Object[0], null, 4);
                 }
                 textView.setText(charSequenceJ);
                 View view = this.itemView;
-                m.checkNotNullExpressionValue(view, "itemView");
+                Intrinsics3.checkNotNullExpressionValue(view, "itemView");
                 Channel channel2 = data.getChannel();
                 Integer numValueOf = channel2 != null ? Integer.valueOf(channel2.getType()) : null;
                 if (numValueOf != null && numValueOf.intValue() == 2) {
@@ -136,7 +136,7 @@ public final class WidgetChannelSelector extends AppBottomSheet {
                 }
                 int themedDrawableRes$default = DrawableCompat.getThemedDrawableRes$default(view, i, 0, 2, (Object) null);
                 TextView textView3 = this.binding.f2268b;
-                m.checkNotNullExpressionValue(textView3, "binding.itemName");
+                Intrinsics3.checkNotNullExpressionValue(textView3, "binding.itemName");
                 DrawableCompat.setCompoundDrawablesCompat$default(textView3, themedDrawableRes$default, 0, 0, 0, 14, (Object) null);
             }
         }
@@ -144,8 +144,8 @@ public final class WidgetChannelSelector extends AppBottomSheet {
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
         public Adapter(RecyclerView recyclerView, WidgetChannelSelector widgetChannelSelector, int i) {
             super(recyclerView, false, 2, null);
-            m.checkNotNullParameter(recyclerView, "recycler");
-            m.checkNotNullParameter(widgetChannelSelector, "dialog");
+            Intrinsics3.checkNotNullParameter(recyclerView, "recycler");
+            Intrinsics3.checkNotNullParameter(widgetChannelSelector, "dialog");
             this.dialog = widgetChannelSelector;
             this.noChannelStringId = i;
         }
@@ -161,14 +161,14 @@ public final class WidgetChannelSelector extends AppBottomSheet {
 
         @Override // androidx.recyclerview.widget.RecyclerView.Adapter
         public ItemChannel onCreateViewHolder(ViewGroup parent, int viewType) {
-            m.checkNotNullParameter(parent, "parent");
+            Intrinsics3.checkNotNullParameter(parent, "parent");
             return new ItemChannel(R.layout.widget_channel_selector_item, this, this.noChannelStringId);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.widgets.channels.WidgetChannelSelector$bindSubscriptions$1, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetChannelSelector.kt */
-    public final class AnonymousClass1 extends o implements Function1<List<? extends Model.Item>, Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function1<List<? extends Model.Item>, Unit> {
         public AnonymousClass1() {
             super(1);
         }
@@ -181,7 +181,7 @@ public final class WidgetChannelSelector extends AppBottomSheet {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(List<Model.Item> list) {
-            m.checkNotNullParameter(list, "it");
+            Intrinsics3.checkNotNullParameter(list, "it");
             WidgetChannelSelector.access$getAdapter$p(WidgetChannelSelector.this).setData(list);
         }
     }
@@ -190,7 +190,7 @@ public final class WidgetChannelSelector extends AppBottomSheet {
     public final class BaseFilterFunction implements FilterFunction {
         @Override // com.discord.widgets.channels.WidgetChannelSelector.FilterFunction
         public boolean includeChannel(Channel channel) {
-            m.checkNotNullParameter(channel, "channel");
+            Intrinsics3.checkNotNullParameter(channel, "channel");
             return FilterFunction.DefaultImpls.includeChannel(this, channel);
         }
     }
@@ -205,8 +205,8 @@ public final class WidgetChannelSelector extends AppBottomSheet {
         }
 
         public final void launch(Fragment fragment, long guildId, String requestKey, boolean includeNoChannel, int noChannelStringId, FilterFunction filterFunction) {
-            m.checkNotNullParameter(fragment, "fragment");
-            m.checkNotNullParameter(requestKey, "requestKey");
+            Intrinsics3.checkNotNullParameter(fragment, "fragment");
+            Intrinsics3.checkNotNullParameter(requestKey, "requestKey");
             WidgetChannelSelector widgetChannelSelector = new WidgetChannelSelector();
             Bundle bundle = new Bundle();
             bundle.putString(WidgetChannelSelector.ARG_REQUEST_KEY, requestKey);
@@ -216,7 +216,7 @@ public final class WidgetChannelSelector extends AppBottomSheet {
             bundle.putSerializable(WidgetChannelSelector.ARG_FILTER_FUNCTION, filterFunction);
             widgetChannelSelector.setArguments(bundle);
             FragmentManager parentFragmentManager = fragment.getParentFragmentManager();
-            m.checkNotNullExpressionValue(parentFragmentManager, "fragment.parentFragmentManager");
+            Intrinsics3.checkNotNullExpressionValue(parentFragmentManager, "fragment.parentFragmentManager");
             widgetChannelSelector.show(parentFragmentManager, WidgetChannelSelector.class.getName());
         }
 
@@ -225,8 +225,8 @@ public final class WidgetChannelSelector extends AppBottomSheet {
         }
 
         public final void launchForInactiveStages(Fragment fragment, long guildId, String requestKey, boolean includeNoChannel, int noChannelStringId) {
-            m.checkNotNullParameter(fragment, "fragment");
-            m.checkNotNullParameter(requestKey, "requestKey");
+            Intrinsics3.checkNotNullParameter(fragment, "fragment");
+            Intrinsics3.checkNotNullParameter(requestKey, "requestKey");
             launch(fragment, guildId, requestKey, includeNoChannel, noChannelStringId, InactiveStageChannelFilterFunction.INSTANCE);
         }
 
@@ -235,8 +235,8 @@ public final class WidgetChannelSelector extends AppBottomSheet {
         }
 
         public final void launchForText(Fragment fragment, long guildId, String requestKey, boolean includeNoChannel, int noChannelStringId) {
-            m.checkNotNullParameter(fragment, "fragment");
-            m.checkNotNullParameter(requestKey, "requestKey");
+            Intrinsics3.checkNotNullParameter(fragment, "fragment");
+            Intrinsics3.checkNotNullParameter(requestKey, "requestKey");
             launch(fragment, guildId, requestKey, includeNoChannel, noChannelStringId, new TypeFilterFunction(0));
         }
 
@@ -245,8 +245,8 @@ public final class WidgetChannelSelector extends AppBottomSheet {
         }
 
         public final void launchForVocal(Fragment fragment, long guildId, String requestKey, boolean includeNoChannel, int noChannelStringId) {
-            m.checkNotNullParameter(fragment, "fragment");
-            m.checkNotNullParameter(requestKey, "requestKey");
+            Intrinsics3.checkNotNullParameter(fragment, "fragment");
+            Intrinsics3.checkNotNullParameter(requestKey, "requestKey");
             launch(fragment, guildId, requestKey, includeNoChannel, noChannelStringId, VocalChannelFilterFunction.INSTANCE);
         }
 
@@ -255,8 +255,8 @@ public final class WidgetChannelSelector extends AppBottomSheet {
         }
 
         public final void launchForVoice(Fragment fragment, long guildId, String requestKey, boolean includeNoChannel, int noChannelStringId) {
-            m.checkNotNullParameter(fragment, "fragment");
-            m.checkNotNullParameter(requestKey, "requestKey");
+            Intrinsics3.checkNotNullParameter(fragment, "fragment");
+            Intrinsics3.checkNotNullParameter(requestKey, "requestKey");
             launch(fragment, guildId, requestKey, includeNoChannel, noChannelStringId, new TypeFilterFunction(2));
         }
 
@@ -268,10 +268,10 @@ public final class WidgetChannelSelector extends AppBottomSheet {
         }
 
         public final void registerForResult(Fragment fragment, String requestKey, boolean allowNullChannel, Function2<? super Long, ? super String, Unit> onChannelSelected) {
-            m.checkNotNullParameter(fragment, "fragment");
-            m.checkNotNullParameter(requestKey, "requestKey");
-            m.checkNotNullParameter(onChannelSelected, "onChannelSelected");
-            FragmentKt.setFragmentResultListener(fragment, requestKey, new WidgetChannelSelector$Companion$registerForResult$1(requestKey, allowNullChannel, onChannelSelected));
+            Intrinsics3.checkNotNullParameter(fragment, "fragment");
+            Intrinsics3.checkNotNullParameter(requestKey, "requestKey");
+            Intrinsics3.checkNotNullParameter(onChannelSelected, "onChannelSelected");
+            Fragment2.setFragmentResultListener(fragment, requestKey, new WidgetChannelSelector3(requestKey, allowNullChannel, onChannelSelected));
         }
 
         public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
@@ -285,7 +285,7 @@ public final class WidgetChannelSelector extends AppBottomSheet {
         /* JADX INFO: compiled from: WidgetChannelSelector.kt */
         public final class DefaultImpls {
             public static boolean includeChannel(FilterFunction filterFunction, Channel channel) {
-                m.checkNotNullParameter(channel, "channel");
+                Intrinsics3.checkNotNullParameter(channel, "channel");
                 return true;
             }
         }
@@ -302,7 +302,7 @@ public final class WidgetChannelSelector extends AppBottomSheet {
 
         @Override // com.discord.widgets.channels.WidgetChannelSelector.FilterFunction
         public boolean includeChannel(Channel channel) {
-            m.checkNotNullParameter(channel, "channel");
+            Intrinsics3.checkNotNullParameter(channel, "channel");
             return ChannelUtils.D(channel) && StoreStream.INSTANCE.getStageInstances().getStageInstanceForChannel(channel.getId()) == null;
         }
     }
@@ -319,11 +319,11 @@ public final class WidgetChannelSelector extends AppBottomSheet {
             }
 
             public final Observable<List<Item>> get(long guildId, boolean includeNoChannel, FilterFunction filterFunction) {
-                m.checkNotNullParameter(filterFunction, "filterFunction");
-                Observable observableG = StoreChannels.observeChannelsForGuild$default(StoreStream.INSTANCE.getChannels(), guildId, null, 2, null).G(new WidgetChannelSelector$Model$Companion$get$1(filterFunction, includeNoChannel));
-                m.checkNotNullExpressionValue(observableG, "StoreStream.getChannels(… { Item(it) }\n          }");
+                Intrinsics3.checkNotNullParameter(filterFunction, "filterFunction");
+                Observable observableG = StoreChannels.observeChannelsForGuild$default(StoreStream.INSTANCE.getChannels(), guildId, null, 2, null).G(new WidgetChannelSelector4(filterFunction, includeNoChannel));
+                Intrinsics3.checkNotNullExpressionValue(observableG, "StoreStream.getChannels(… { Item(it) }\n          }");
                 Observable<List<Item>> observableR = ObservableExtensionsKt.computationLatest(observableG).r();
-                m.checkNotNullExpressionValue(observableR, "StoreStream.getChannels(…  .distinctUntilChanged()");
+                Intrinsics3.checkNotNullExpressionValue(observableR, "StoreStream.getChannels(…  .distinctUntilChanged()");
                 return observableR;
             }
 
@@ -339,7 +339,7 @@ public final class WidgetChannelSelector extends AppBottomSheet {
             private final int type;
 
             public Item(Channel channel, int i, String str) {
-                m.checkNotNullParameter(str, "key");
+                Intrinsics3.checkNotNullParameter(str, "key");
                 this.channel = channel;
                 this.type = i;
                 this.key = str;
@@ -367,7 +367,7 @@ public final class WidgetChannelSelector extends AppBottomSheet {
             }
 
             public final Item copy(Channel channel, int type, String key) {
-                m.checkNotNullParameter(key, "key");
+                Intrinsics3.checkNotNullParameter(key, "key");
                 return new Item(channel, type, key);
             }
 
@@ -379,7 +379,7 @@ public final class WidgetChannelSelector extends AppBottomSheet {
                     return false;
                 }
                 Item item = (Item) other;
-                return m.areEqual(this.channel, item.channel) && getType() == item.getType() && m.areEqual(getKey(), item.getKey());
+                return Intrinsics3.areEqual(this.channel, item.channel) && getType() == item.getType() && Intrinsics3.areEqual(getKey(), item.getKey());
             }
 
             /* JADX INFO: renamed from: component1, reason: from getter */
@@ -409,7 +409,7 @@ public final class WidgetChannelSelector extends AppBottomSheet {
             }
 
             public String toString() {
-                StringBuilder sbU = a.U("Item(channel=");
+                StringBuilder sbU = outline.U("Item(channel=");
                 sbU.append(this.channel);
                 sbU.append(", type=");
                 sbU.append(getType());
@@ -435,7 +435,7 @@ public final class WidgetChannelSelector extends AppBottomSheet {
         private final Set<Long> channelIds;
 
         public SetFilterFunction(Set<Long> set) {
-            m.checkNotNullParameter(set, "channelIds");
+            Intrinsics3.checkNotNullParameter(set, "channelIds");
             this.channelIds = set;
         }
 
@@ -452,13 +452,13 @@ public final class WidgetChannelSelector extends AppBottomSheet {
         }
 
         public final SetFilterFunction copy(Set<Long> channelIds) {
-            m.checkNotNullParameter(channelIds, "channelIds");
+            Intrinsics3.checkNotNullParameter(channelIds, "channelIds");
             return new SetFilterFunction(channelIds);
         }
 
         public boolean equals(Object other) {
             if (this != other) {
-                return (other instanceof SetFilterFunction) && m.areEqual(this.channelIds, ((SetFilterFunction) other).channelIds);
+                return (other instanceof SetFilterFunction) && Intrinsics3.areEqual(this.channelIds, ((SetFilterFunction) other).channelIds);
             }
             return true;
         }
@@ -473,12 +473,12 @@ public final class WidgetChannelSelector extends AppBottomSheet {
 
         @Override // com.discord.widgets.channels.WidgetChannelSelector.FilterFunction
         public boolean includeChannel(Channel channel) {
-            m.checkNotNullParameter(channel, "channel");
+            Intrinsics3.checkNotNullParameter(channel, "channel");
             return this.channelIds.contains(Long.valueOf(channel.getId()));
         }
 
         public String toString() {
-            return a.N(a.U("SetFilterFunction(channelIds="), this.channelIds, ")");
+            return outline.N(outline.U("SetFilterFunction(channelIds="), this.channelIds, ")");
         }
     }
 
@@ -519,12 +519,12 @@ public final class WidgetChannelSelector extends AppBottomSheet {
 
         @Override // com.discord.widgets.channels.WidgetChannelSelector.FilterFunction
         public boolean includeChannel(Channel channel) {
-            m.checkNotNullParameter(channel, "channel");
+            Intrinsics3.checkNotNullParameter(channel, "channel");
             return this.type == channel.getType();
         }
 
         public String toString() {
-            return a.B(a.U("TypeFilterFunction(type="), this.type, ")");
+            return outline.B(outline.U("TypeFilterFunction(type="), this.type, ")");
         }
     }
 
@@ -537,21 +537,21 @@ public final class WidgetChannelSelector extends AppBottomSheet {
 
         @Override // com.discord.widgets.channels.WidgetChannelSelector.FilterFunction
         public boolean includeChannel(Channel channel) {
-            m.checkNotNullParameter(channel, "channel");
+            Intrinsics3.checkNotNullParameter(channel, "channel");
             return ChannelUtils.w(channel);
         }
     }
 
     public WidgetChannelSelector() {
         super(false, 1, null);
-        this.binding = FragmentViewBindingDelegateKt.viewBinding$default(this, WidgetChannelSelector$binding$2.INSTANCE, null, 2, null);
-        this.requestCode = g.lazy(new WidgetChannelSelector$requestCode$2(this));
+        this.binding = FragmentViewBindingDelegate3.viewBinding$default(this, WidgetChannelSelector5.INSTANCE, null, 2, null);
+        this.requestCode = LazyJVM.lazy(new WidgetChannelSelector6(this));
     }
 
     public static final /* synthetic */ Adapter access$getAdapter$p(WidgetChannelSelector widgetChannelSelector) {
         Adapter adapter = widgetChannelSelector.adapter;
         if (adapter == null) {
-            m.throwUninitializedPropertyAccessException("adapter");
+            Intrinsics3.throwUninitializedPropertyAccessException("adapter");
         }
         return adapter;
     }
@@ -570,7 +570,7 @@ public final class WidgetChannelSelector extends AppBottomSheet {
 
     @Override // com.discord.app.AppBottomSheet
     public void bindSubscriptions(CompositeSubscription compositeSubscription) {
-        m.checkNotNullParameter(compositeSubscription, "compositeSubscription");
+        Intrinsics3.checkNotNullParameter(compositeSubscription, "compositeSubscription");
         super.bindSubscriptions(compositeSubscription);
         Model.Companion companion = Model.INSTANCE;
         long j = getArgumentsOrDefault().getLong("INTENT_EXTRA_GUILD_ID", -1L);
@@ -586,7 +586,7 @@ public final class WidgetChannelSelector extends AppBottomSheet {
         Observable<List<Model.Item>> observable = companion.get(j, z2, baseFilterFunction);
         Adapter adapter = this.adapter;
         if (adapter == null) {
-            m.throwUninitializedPropertyAccessException("adapter");
+            Intrinsics3.throwUninitializedPropertyAccessException("adapter");
         }
         ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui(observable, this, adapter), WidgetChannelSelector.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass1(), 62, (Object) null);
     }
@@ -609,17 +609,17 @@ public final class WidgetChannelSelector extends AppBottomSheet {
         Bundle bundle = new Bundle();
         bundle.putLong(RESULT_EXTRA_CHANNEL_ID, channel != null ? channel.getId() : -1L);
         bundle.putString(RESULT_EXTRA_CHANNEL_NAME, channel != null ? ChannelUtils.c(channel) : null);
-        FragmentKt.setFragmentResult(this, requestCode, bundle);
+        Fragment2.setFragmentResult(this, requestCode, bundle);
         dismiss();
     }
 
     @Override // com.discord.app.AppBottomSheet, androidx.fragment.app.Fragment
     public void onViewCreated(View view, Bundle savedInstanceState) {
-        m.checkNotNullParameter(view, "view");
+        Intrinsics3.checkNotNullParameter(view, "view");
         super.onViewCreated(view, savedInstanceState);
         MGRecyclerAdapter.Companion companion = MGRecyclerAdapter.INSTANCE;
         RecyclerView recyclerView = getBinding().f2267b;
-        m.checkNotNullExpressionValue(recyclerView, "binding.channelSelectorList");
+        Intrinsics3.checkNotNullExpressionValue(recyclerView, "binding.channelSelectorList");
         this.adapter = (Adapter) companion.configure(new Adapter(recyclerView, this, getArgumentsOrDefault().getInt(ARG_NO_CHANNEL_STRING_ID)));
     }
 }

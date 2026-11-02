@@ -9,14 +9,14 @@ import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.annotation.RestrictTo;
 import androidx.core.view.GravityCompat;
-import b.d.b.a.a;
-import b.i.a.g.l.l.h;
+import b.d.b.a.outline;
+import b.i.a.g.l.l.MaterialVisibility2;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
 /* JADX INFO: loaded from: classes3.dex */
 @RequiresApi(21)
-public final class MaterialSharedAxis extends h<VisibilityAnimatorProvider> {
+public final class MaterialSharedAxis extends MaterialVisibility2<VisibilityAnimatorProvider> {
     public static final int X = 0;
     public static final int Y = 1;
     public static final int Z = 2;
@@ -34,12 +34,12 @@ public final class MaterialSharedAxis extends h<VisibilityAnimatorProvider> {
         this.forward = z2;
     }
 
-    @Override // b.i.a.g.l.l.h
+    @Override // b.i.a.g.l.l.MaterialVisibility2
     public /* bridge */ /* synthetic */ void addAdditionalAnimatorProvider(@NonNull VisibilityAnimatorProvider visibilityAnimatorProvider) {
         super.addAdditionalAnimatorProvider(visibilityAnimatorProvider);
     }
 
-    @Override // b.i.a.g.l.l.h
+    @Override // b.i.a.g.l.l.MaterialVisibility2
     public /* bridge */ /* synthetic */ void clearAdditionalAnimatorProvider() {
         super.clearAdditionalAnimatorProvider();
     }
@@ -54,7 +54,7 @@ public final class MaterialSharedAxis extends h<VisibilityAnimatorProvider> {
         if (i == 2) {
             return new ScaleProvider(z2);
         }
-        throw new IllegalArgumentException(a.q("Invalid axis: ", i));
+        throw new IllegalArgumentException(outline.q("Invalid axis: ", i));
     }
 
     private static VisibilityAnimatorProvider createSecondaryAnimatorProvider() {
@@ -65,13 +65,13 @@ public final class MaterialSharedAxis extends h<VisibilityAnimatorProvider> {
         return this.axis;
     }
 
-    @Override // b.i.a.g.l.l.h
+    @Override // b.i.a.g.l.l.MaterialVisibility2
     @NonNull
     public /* bridge */ /* synthetic */ VisibilityAnimatorProvider getPrimaryAnimatorProvider() {
         return super.getPrimaryAnimatorProvider();
     }
 
-    @Override // b.i.a.g.l.l.h
+    @Override // b.i.a.g.l.l.MaterialVisibility2
     @Nullable
     public /* bridge */ /* synthetic */ VisibilityAnimatorProvider getSecondaryAnimatorProvider() {
         return super.getSecondaryAnimatorProvider();
@@ -81,22 +81,22 @@ public final class MaterialSharedAxis extends h<VisibilityAnimatorProvider> {
         return this.forward;
     }
 
-    @Override // b.i.a.g.l.l.h, android.transition.Visibility
+    @Override // b.i.a.g.l.l.MaterialVisibility2, android.transition.Visibility
     public /* bridge */ /* synthetic */ Animator onAppear(ViewGroup viewGroup, View view, TransitionValues transitionValues, TransitionValues transitionValues2) {
         return super.onAppear(viewGroup, view, transitionValues, transitionValues2);
     }
 
-    @Override // b.i.a.g.l.l.h, android.transition.Visibility
+    @Override // b.i.a.g.l.l.MaterialVisibility2, android.transition.Visibility
     public /* bridge */ /* synthetic */ Animator onDisappear(ViewGroup viewGroup, View view, TransitionValues transitionValues, TransitionValues transitionValues2) {
         return super.onDisappear(viewGroup, view, transitionValues, transitionValues2);
     }
 
-    @Override // b.i.a.g.l.l.h
+    @Override // b.i.a.g.l.l.MaterialVisibility2
     public /* bridge */ /* synthetic */ boolean removeAdditionalAnimatorProvider(@NonNull VisibilityAnimatorProvider visibilityAnimatorProvider) {
         return super.removeAdditionalAnimatorProvider(visibilityAnimatorProvider);
     }
 
-    @Override // b.i.a.g.l.l.h
+    @Override // b.i.a.g.l.l.MaterialVisibility2
     public /* bridge */ /* synthetic */ void setSecondaryAnimatorProvider(@Nullable VisibilityAnimatorProvider visibilityAnimatorProvider) {
         super.setSecondaryAnimatorProvider(visibilityAnimatorProvider);
     }

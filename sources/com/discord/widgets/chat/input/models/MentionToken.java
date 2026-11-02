@@ -1,9 +1,9 @@
 package com.discord.widgets.chat.input.models;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.widgets.chat.input.autocomplete.LeadingIdentifier;
-import d0.g0.t;
-import d0.z.d.m;
+import d0.g0.StringsJVM;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: MentionToken.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -15,13 +15,13 @@ public final /* data */ class MentionToken {
     private final String token;
 
     public MentionToken(LeadingIdentifier leadingIdentifier, String str, boolean z2, int i) {
-        m.checkNotNullParameter(leadingIdentifier, "leadingIdentifier");
-        m.checkNotNullParameter(str, "token");
+        Intrinsics3.checkNotNullParameter(leadingIdentifier, "leadingIdentifier");
+        Intrinsics3.checkNotNullParameter(str, "token");
         this.leadingIdentifier = leadingIdentifier;
         this.token = str;
         this.isAtStart = z2;
         this.startIndex = i;
-        this.formattedToken = t.replaceFirst$default(str, String.valueOf(leadingIdentifier.getIdentifier()), "", false, 4, null);
+        this.formattedToken = StringsJVM.replaceFirst$default(str, String.valueOf(leadingIdentifier.getIdentifier()), "", false, 4, null);
     }
 
     public static /* synthetic */ MentionToken copy$default(MentionToken mentionToken, LeadingIdentifier leadingIdentifier, String str, boolean z2, int i, int i2, Object obj) {
@@ -41,8 +41,8 @@ public final /* data */ class MentionToken {
     }
 
     public final MentionToken copy(LeadingIdentifier leadingIdentifier, String token, boolean isAtStart, int startIndex) {
-        m.checkNotNullParameter(leadingIdentifier, "leadingIdentifier");
-        m.checkNotNullParameter(token, "token");
+        Intrinsics3.checkNotNullParameter(leadingIdentifier, "leadingIdentifier");
+        Intrinsics3.checkNotNullParameter(token, "token");
         return new MentionToken(leadingIdentifier, token, isAtStart, startIndex);
     }
 
@@ -54,7 +54,7 @@ public final /* data */ class MentionToken {
             return false;
         }
         MentionToken mentionToken = (MentionToken) other;
-        return m.areEqual(this.leadingIdentifier, mentionToken.leadingIdentifier) && m.areEqual(this.token, mentionToken.token) && this.isAtStart == mentionToken.isAtStart && this.startIndex == mentionToken.startIndex;
+        return Intrinsics3.areEqual(this.leadingIdentifier, mentionToken.leadingIdentifier) && Intrinsics3.areEqual(this.token, mentionToken.token) && this.isAtStart == mentionToken.isAtStart && this.startIndex == mentionToken.startIndex;
     }
 
     public final String getFormattedToken() {
@@ -116,13 +116,13 @@ public final /* data */ class MentionToken {
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("MentionToken(leadingIdentifier=");
+        StringBuilder sbU = outline.U("MentionToken(leadingIdentifier=");
         sbU.append(this.leadingIdentifier);
         sbU.append(", token=");
         sbU.append(this.token);
         sbU.append(", isAtStart=");
         sbU.append(this.isAtStart);
         sbU.append(", startIndex=");
-        return a.B(sbU, this.startIndex, ")");
+        return outline.B(sbU, this.startIndex, ")");
     }
 }

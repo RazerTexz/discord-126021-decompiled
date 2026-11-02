@@ -1,9 +1,9 @@
 package com.discord.api.thread;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.api.channel.Channel;
 import com.discord.api.message.Message;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 import java.util.List;
 
 /* JADX INFO: compiled from: ThreadListing.kt */
@@ -30,7 +30,7 @@ public final /* data */ class ThreadListing {
             return false;
         }
         ThreadListing threadListing = (ThreadListing) other;
-        return m.areEqual(this.threads, threadListing.threads) && this.hasMore == threadListing.hasMore && m.areEqual(this.members, threadListing.members) && m.areEqual(this.firstMessages, threadListing.firstMessages);
+        return Intrinsics3.areEqual(this.threads, threadListing.threads) && this.hasMore == threadListing.hasMore && Intrinsics3.areEqual(this.members, threadListing.members) && Intrinsics3.areEqual(this.firstMessages, threadListing.firstMessages);
     }
 
     /* JADX INFO: renamed from: b, reason: from getter */
@@ -58,13 +58,13 @@ public final /* data */ class ThreadListing {
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("ThreadListing(threads=");
+        StringBuilder sbU = outline.U("ThreadListing(threads=");
         sbU.append(this.threads);
         sbU.append(", hasMore=");
         sbU.append(this.hasMore);
         sbU.append(", members=");
         sbU.append(this.members);
         sbU.append(", firstMessages=");
-        return a.L(sbU, this.firstMessages, ")");
+        return outline.L(sbU, this.firstMessages, ")");
     }
 }

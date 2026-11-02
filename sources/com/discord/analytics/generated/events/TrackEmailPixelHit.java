@@ -1,21 +1,21 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackEmailPixelHit.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackEmailPixelHit implements AnalyticsSchema, TrackBaseReceiver {
+public final /* data */ class TrackEmailPixelHit implements AnalyticsSchema, TrackBase2 {
     private TrackBase trackBase;
     private final CharSequence trackingPixelUuid = null;
     private final transient String analyticsSchemaTypeName = "email_pixel_hit";
 
     public boolean equals(Object other) {
         if (this != other) {
-            return (other instanceof TrackEmailPixelHit) && m.areEqual(this.trackingPixelUuid, ((TrackEmailPixelHit) other).trackingPixelUuid);
+            return (other instanceof TrackEmailPixelHit) && Intrinsics3.areEqual(this.trackingPixelUuid, ((TrackEmailPixelHit) other).trackingPixelUuid);
         }
         return true;
     }
@@ -35,6 +35,6 @@ public final /* data */ class TrackEmailPixelHit implements AnalyticsSchema, Tra
     }
 
     public String toString() {
-        return a.E(a.U("TrackEmailPixelHit(trackingPixelUuid="), this.trackingPixelUuid, ")");
+        return outline.E(outline.U("TrackEmailPixelHit(trackingPixelUuid="), this.trackingPixelUuid, ")");
     }
 }

@@ -1,6 +1,6 @@
 package androidx.constraintlayout.solver;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import java.util.Arrays;
 
 /* JADX INFO: loaded from: classes.dex */
@@ -125,7 +125,7 @@ public class SolverVariableValues implements ArrayRow.ArrayRowVariables {
                 int i2 = this.keys[i];
                 boolean z2 = false;
                 while (!z2) {
-                    StringBuilder sbX = a.X(string, " ");
+                    StringBuilder sbX = outline.X(string, " ");
                     sbX.append(this.variables[i2]);
                     string = sbX.toString();
                     int[] iArr = this.nextKeys;
@@ -408,26 +408,26 @@ public class SolverVariableValues implements ArrayRow.ArrayRowVariables {
             if (variable != null) {
                 String str = strW3 + variable + " = " + getVariableValue(i2) + " ";
                 int iIndexOf = indexOf(variable);
-                String strW4 = a.w(str, "[p: ");
+                String strW4 = outline.w(str, "[p: ");
                 if (this.previous[iIndexOf] != -1) {
-                    StringBuilder sbU = a.U(strW4);
+                    StringBuilder sbU = outline.U(strW4);
                     sbU.append(this.mCache.mIndexedVariables[this.variables[this.previous[iIndexOf]]]);
                     strW = sbU.toString();
                 } else {
-                    strW = a.w(strW4, "none");
+                    strW = outline.w(strW4, "none");
                 }
-                String strW5 = a.w(strW, ", n: ");
+                String strW5 = outline.w(strW, ", n: ");
                 if (this.next[iIndexOf] != -1) {
-                    StringBuilder sbU2 = a.U(strW5);
+                    StringBuilder sbU2 = outline.U(strW5);
                     sbU2.append(this.mCache.mIndexedVariables[this.variables[this.next[iIndexOf]]]);
                     strW2 = sbU2.toString();
                 } else {
-                    strW2 = a.w(strW5, "none");
+                    strW2 = outline.w(strW5, "none");
                 }
-                strW3 = a.w(strW2, "]");
+                strW3 = outline.w(strW2, "]");
             }
         }
-        return a.w(strW3, " }");
+        return outline.w(strW3, " }");
     }
 
     @Override // androidx.constraintlayout.solver.ArrayRow.ArrayRowVariables

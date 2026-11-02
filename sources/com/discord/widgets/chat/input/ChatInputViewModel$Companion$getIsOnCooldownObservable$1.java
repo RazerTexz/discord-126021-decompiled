@@ -1,14 +1,14 @@
 package com.discord.widgets.chat.input;
 
 import androidx.core.app.NotificationCompat;
-import j0.k.b;
+import j0.k.Func1;
 
 /* JADX INFO: compiled from: ChatInputViewModel.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class ChatInputViewModel$Companion$getIsOnCooldownObservable$1<T, R> implements b<Integer, Boolean> {
+public final class ChatInputViewModel$Companion$getIsOnCooldownObservable$1<T, R> implements Func1<Integer, Boolean> {
     public static final ChatInputViewModel$Companion$getIsOnCooldownObservable$1 INSTANCE = new ChatInputViewModel$Companion$getIsOnCooldownObservable$1();
 
-    @Override // j0.k.b
+    @Override // j0.k.Func1
     public /* bridge */ /* synthetic */ Boolean call(Integer num) {
         return call(num.intValue());
     }

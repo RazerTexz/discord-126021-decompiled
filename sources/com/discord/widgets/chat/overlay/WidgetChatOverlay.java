@@ -13,9 +13,10 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.app.NotificationCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentViewModelLazyKt;
-import b.a.d.f0;
-import b.a.i.x4;
-import b.d.b.a.a;
+import b.a.d.AppViewModelDelegates2;
+import b.a.i.WidgetChatInputStickerSuggestionsBinding;
+import b.a.k.FormatUtils;
+import b.d.b.a.outline;
 import com.discord.R;
 import com.discord.api.channel.Channel;
 import com.discord.api.channel.ChannelUtils;
@@ -29,19 +30,19 @@ import com.discord.utilities.search.SearchUtils;
 import com.discord.utilities.time.TimeUtils;
 import com.discord.utilities.view.extensions.ViewExtensions;
 import com.discord.utilities.viewbinding.FragmentViewBindingDelegate;
-import com.discord.utilities.viewbinding.FragmentViewBindingDelegateKt;
+import com.discord.utilities.viewbinding.FragmentViewBindingDelegate3;
 import com.discord.views.sticker.StickerView;
 import com.discord.views.typing.TypingDots;
 import com.discord.widgets.chat.input.AppFlexInputViewModel;
 import com.discord.widgets.chat.input.ChatInputViewModel;
 import com.lytefast.flexinput.viewmodel.FlexInputState;
-import d0.g0.t;
-import d0.t.n;
-import d0.t.u;
-import d0.z.d.a0;
-import d0.z.d.k;
-import d0.z.d.m;
-import d0.z.d.o;
+import d0.g0.StringsJVM;
+import d0.t.Collections2;
+import d0.t._Collections;
+import d0.z.d.FunctionReferenceImpl;
+import d0.z.d.Intrinsics3;
+import d0.z.d.Lambda;
+import d0.z.d.Reflection2;
 import java.util.List;
 import kotlin.Lazy;
 import kotlin.Unit;
@@ -55,7 +56,7 @@ import rx.functions.Func3;
 /* JADX INFO: compiled from: WidgetChatOverlay.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetChatOverlay extends AppFragment {
-    public static final /* synthetic */ KProperty[] $$delegatedProperties = {a.d0(WidgetChatOverlay.class, "binding", "getBinding()Lcom/discord/databinding/WidgetChatOverlayBinding;", 0)};
+    public static final /* synthetic */ KProperty[] $$delegatedProperties = {outline.d0(WidgetChatOverlay.class, "binding", "getBinding()Lcom/discord/databinding/WidgetChatOverlayBinding;", 0)};
 
     /* JADX INFO: renamed from: binding$delegate, reason: from kotlin metadata */
     private final FragmentViewBindingDelegate binding;
@@ -91,7 +92,7 @@ public final class WidgetChatOverlay extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.overlay.WidgetChatOverlay$onViewBoundOrOnResume$3, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetChatOverlay.kt */
-    public final class AnonymousClass3 extends o implements Function1<OldMessageModel, Unit> {
+    public final class AnonymousClass3 extends Lambda implements Function1<OldMessageModel, Unit> {
         public AnonymousClass3() {
             super(1);
         }
@@ -114,7 +115,7 @@ public final class WidgetChatOverlay extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.overlay.WidgetChatOverlay$onViewBoundOrOnResume$4, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetChatOverlay.kt */
-    public final class AnonymousClass4 extends o implements Function1<ChatTypingModel, Unit> {
+    public final class AnonymousClass4 extends Lambda implements Function1<ChatTypingModel, Unit> {
         public AnonymousClass4() {
             super(1);
         }
@@ -128,7 +129,7 @@ public final class WidgetChatOverlay extends AppFragment {
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(ChatTypingModel chatTypingModel) {
             TypingIndicatorViewHolder typingIndicatorViewHolderAccess$getTypingIndicatorViewHolder$p = WidgetChatOverlay.access$getTypingIndicatorViewHolder$p(WidgetChatOverlay.this);
-            m.checkNotNullExpressionValue(chatTypingModel, "it");
+            Intrinsics3.checkNotNullExpressionValue(chatTypingModel, "it");
             typingIndicatorViewHolderAccess$getTypingIndicatorViewHolder$p.configureUI(chatTypingModel);
         }
     }
@@ -150,16 +151,16 @@ public final class WidgetChatOverlay extends AppFragment {
                 resolvedSelectedChannel = null;
             }
             StoreChannelsSelected.ResolvedSelectedChannel.ThreadDraft threadDraft = (StoreChannelsSelected.ResolvedSelectedChannel.ThreadDraft) resolvedSelectedChannel;
-            m.checkNotNullExpressionValue(bool, "autocompleteVisible");
+            Intrinsics3.checkNotNullExpressionValue(bool, "autocompleteVisible");
             boolean zBooleanValue = bool.booleanValue();
-            m.checkNotNullExpressionValue(flexInputState, "flexInputState");
+            Intrinsics3.checkNotNullExpressionValue(flexInputState, "flexInputState");
             return new StickerAutocompleteState(zBooleanValue, flexInputState, (threadDraft == null || (parentChannel = threadDraft.getParentChannel()) == null || !ChannelUtils.q(parentChannel)) ? false : true);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.overlay.WidgetChatOverlay$onViewBoundOrOnResume$6, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetChatOverlay.kt */
-    public final /* synthetic */ class AnonymousClass6 extends k implements Function1<StickerAutocompleteState, Unit> {
+    public final /* synthetic */ class AnonymousClass6 extends FunctionReferenceImpl implements Function1<StickerAutocompleteState, Unit> {
         public AnonymousClass6(WidgetChatOverlay widgetChatOverlay) {
             super(1, widgetChatOverlay, WidgetChatOverlay.class, "configureStickerSuggestions", "configureStickerSuggestions(Lcom/discord/widgets/chat/overlay/WidgetChatOverlay$StickerAutocompleteState;)V", 0);
         }
@@ -172,7 +173,7 @@ public final class WidgetChatOverlay extends AppFragment {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(StickerAutocompleteState stickerAutocompleteState) {
-            m.checkNotNullParameter(stickerAutocompleteState, "p1");
+            Intrinsics3.checkNotNullParameter(stickerAutocompleteState, "p1");
             WidgetChatOverlay.access$configureStickerSuggestions((WidgetChatOverlay) this.receiver, stickerAutocompleteState);
         }
     }
@@ -191,8 +192,8 @@ public final class WidgetChatOverlay extends AppFragment {
             }
 
             public final Observable<OldMessageModel> get() {
-                Observable observableY = StoreStream.INSTANCE.getChannelsSelected().observeId().r().Y(WidgetChatOverlay$OldMessageModel$Companion$get$1.INSTANCE);
-                m.checkNotNullExpressionValue(observableY, "StoreStream\n            …          }\n            }");
+                Observable observableY = StoreStream.INSTANCE.getChannelsSelected().observeId().r().Y(WidgetChatOverlay2.INSTANCE);
+                Intrinsics3.checkNotNullExpressionValue(observableY, "StoreStream\n            …          }\n            }");
                 return observableY;
             }
 
@@ -265,10 +266,10 @@ public final class WidgetChatOverlay extends AppFragment {
         }
 
         public String toString() {
-            StringBuilder sbU = a.U("OldMessageModel(channelId=");
+            StringBuilder sbU = outline.U("OldMessageModel(channelId=");
             sbU.append(this.channelId);
             sbU.append(", isViewingOldMessages=");
-            return a.O(sbU, this.isViewingOldMessages, ")");
+            return outline.O(sbU, this.isViewingOldMessages, ")");
         }
     }
 
@@ -279,7 +280,7 @@ public final class WidgetChatOverlay extends AppFragment {
         private final boolean isForumPostDraftCreation;
 
         public StickerAutocompleteState(boolean z2, FlexInputState flexInputState, boolean z3) {
-            m.checkNotNullParameter(flexInputState, "flexInputState");
+            Intrinsics3.checkNotNullParameter(flexInputState, "flexInputState");
             this.autocompleteVisible = z2;
             this.flexInputState = flexInputState;
             this.isForumPostDraftCreation = z3;
@@ -299,7 +300,7 @@ public final class WidgetChatOverlay extends AppFragment {
         }
 
         public final StickerAutocompleteState copy(boolean autocompleteVisible, FlexInputState flexInputState, boolean isForumPostDraftCreation) {
-            m.checkNotNullParameter(flexInputState, "flexInputState");
+            Intrinsics3.checkNotNullParameter(flexInputState, "flexInputState");
             return new StickerAutocompleteState(autocompleteVisible, flexInputState, isForumPostDraftCreation);
         }
 
@@ -311,7 +312,7 @@ public final class WidgetChatOverlay extends AppFragment {
                 return false;
             }
             StickerAutocompleteState stickerAutocompleteState = (StickerAutocompleteState) other;
-            return this.autocompleteVisible == stickerAutocompleteState.autocompleteVisible && m.areEqual(this.flexInputState, stickerAutocompleteState.flexInputState) && this.isForumPostDraftCreation == stickerAutocompleteState.isForumPostDraftCreation;
+            return this.autocompleteVisible == stickerAutocompleteState.autocompleteVisible && Intrinsics3.areEqual(this.flexInputState, stickerAutocompleteState.flexInputState) && this.isForumPostDraftCreation == stickerAutocompleteState.isForumPostDraftCreation;
         }
 
         /* JADX INFO: renamed from: component1, reason: from getter */
@@ -363,12 +364,12 @@ public final class WidgetChatOverlay extends AppFragment {
         }
 
         public String toString() {
-            StringBuilder sbU = a.U("StickerAutocompleteState(autocompleteVisible=");
+            StringBuilder sbU = outline.U("StickerAutocompleteState(autocompleteVisible=");
             sbU.append(this.autocompleteVisible);
             sbU.append(", flexInputState=");
             sbU.append(this.flexInputState);
             sbU.append(", isForumPostDraftCreation=");
-            return a.O(sbU, this.isForumPostDraftCreation, ")");
+            return outline.O(sbU, this.isForumPostDraftCreation, ")");
         }
     }
 
@@ -377,7 +378,7 @@ public final class WidgetChatOverlay extends AppFragment {
         private final WidgetChatOverlayBinding binding;
 
         public TypingIndicatorViewHolder(WidgetChatOverlayBinding widgetChatOverlayBinding) {
-            m.checkNotNullParameter(widgetChatOverlayBinding, "binding");
+            Intrinsics3.checkNotNullParameter(widgetChatOverlayBinding, "binding");
             this.binding = widgetChatOverlayBinding;
         }
 
@@ -385,24 +386,24 @@ public final class WidgetChatOverlay extends AppFragment {
             if (model.getTypingUsers().isEmpty() && model.getChannelRateLimit() <= 0) {
                 this.binding.d.c();
                 RelativeLayout relativeLayout = this.binding.c;
-                m.checkNotNullExpressionValue(relativeLayout, "binding.chatOverlayTyping");
+                Intrinsics3.checkNotNullExpressionValue(relativeLayout, "binding.chatOverlayTyping");
                 relativeLayout.setVisibility(8);
                 return;
             }
             RelativeLayout relativeLayout2 = this.binding.c;
-            m.checkNotNullExpressionValue(relativeLayout2, "binding.chatOverlayTyping");
+            Intrinsics3.checkNotNullExpressionValue(relativeLayout2, "binding.chatOverlayTyping");
             relativeLayout2.setVisibility(0);
             ConstraintLayout constraintLayout = this.binding.a;
-            m.checkNotNullExpressionValue(constraintLayout, "binding.root");
+            Intrinsics3.checkNotNullExpressionValue(constraintLayout, "binding.root");
             Resources resources = constraintLayout.getResources();
-            m.checkNotNullExpressionValue(resources, "binding.root.resources");
+            Intrinsics3.checkNotNullExpressionValue(resources, "binding.root.resources");
             CharSequence typingString = getTypingString(resources, model.getTypingUsers());
-            CharSequence slowmodeText = getSlowmodeText(model.getCooldownSecs(), model.getChannelRateLimit(), !t.isBlank(typingString));
+            CharSequence slowmodeText = getSlowmodeText(model.getCooldownSecs(), model.getChannelRateLimit(), !StringsJVM.isBlank(typingString));
             TextView textView = this.binding.g;
-            m.checkNotNullExpressionValue(textView, "binding.chatTypingUsersTyping");
+            Intrinsics3.checkNotNullExpressionValue(textView, "binding.chatTypingUsersTyping");
             ViewExtensions.setTextAndVisibilityBy(textView, typingString);
             TypingDots typingDots = this.binding.d;
-            m.checkNotNullExpressionValue(typingDots, "binding.chatOverlayTypingDots");
+            Intrinsics3.checkNotNullExpressionValue(typingDots, "binding.chatOverlayTypingDots");
             typingDots.setVisibility(model.getTypingUsers().isEmpty() ^ true ? 0 : 8);
             TypingDots typingDots2 = this.binding.d;
             if (!model.getTypingUsers().isEmpty()) {
@@ -411,18 +412,18 @@ public final class WidgetChatOverlay extends AppFragment {
                 typingDots2.c();
             }
             TextView textView2 = this.binding.e;
-            m.checkNotNullExpressionValue(textView2, "binding.chatTypingUsersSlowmode");
+            Intrinsics3.checkNotNullExpressionValue(textView2, "binding.chatTypingUsersSlowmode");
             ViewExtensions.setTextAndVisibilityBy(textView2, slowmodeText);
             ImageView imageView = this.binding.f;
-            m.checkNotNullExpressionValue(imageView, "binding.chatTypingUsersSlowmodeIcon");
+            Intrinsics3.checkNotNullExpressionValue(imageView, "binding.chatTypingUsersSlowmodeIcon");
             imageView.setVisibility(model.getChannelRateLimit() > 0 ? 0 : 8);
         }
 
         public final void configureUI(ChatTypingModel model) {
-            m.checkNotNullParameter(model, "model");
+            Intrinsics3.checkNotNullParameter(model, "model");
             if (model instanceof ChatTypingModel.Hide) {
                 RelativeLayout relativeLayout = this.binding.c;
-                m.checkNotNullExpressionValue(relativeLayout, "binding.chatOverlayTyping");
+                Intrinsics3.checkNotNullExpressionValue(relativeLayout, "binding.chatOverlayTyping");
                 relativeLayout.setVisibility(8);
             } else if (model instanceof ChatTypingModel.Typing) {
                 configureTyping((ChatTypingModel.Typing) model);
@@ -437,9 +438,9 @@ public final class WidgetChatOverlay extends AppFragment {
                 return "";
             }
             ConstraintLayout constraintLayout = this.binding.a;
-            m.checkNotNullExpressionValue(constraintLayout, "binding.root");
+            Intrinsics3.checkNotNullExpressionValue(constraintLayout, "binding.root");
             String string = constraintLayout.getResources().getString(R.string.channel_slowmode_desc_short);
-            m.checkNotNullExpressionValue(string, "binding.root.resources.g…nnel_slowmode_desc_short)");
+            Intrinsics3.checkNotNullExpressionValue(string, "binding.root.resources.g…nnel_slowmode_desc_short)");
             return string;
         }
 
@@ -449,20 +450,20 @@ public final class WidgetChatOverlay extends AppFragment {
                 return "";
             }
             if (size == 1) {
-                return b.a.k.b.i(resources, R.string.one_user_typing, new Object[]{typingUsers.get(0)}, null, 4);
+                return FormatUtils.i(resources, R.string.one_user_typing, new Object[]{typingUsers.get(0)}, null, 4);
             }
             if (size != 2) {
-                return size != 3 ? b.a.k.b.i(resources, R.string.several_users_typing, new Object[0], null, 4) : b.a.k.b.i(resources, R.string.three_users_typing, new Object[]{typingUsers.get(0), typingUsers.get(1), typingUsers.get(2)}, null, 4);
+                return size != 3 ? FormatUtils.i(resources, R.string.several_users_typing, new Object[0], null, 4) : FormatUtils.i(resources, R.string.three_users_typing, new Object[]{typingUsers.get(0), typingUsers.get(1), typingUsers.get(2)}, null, 4);
             }
-            return b.a.k.b.i(resources, R.string.two_users_typing, new Object[]{typingUsers.get(0), typingUsers.get(1)}, null, 4);
+            return FormatUtils.i(resources, R.string.two_users_typing, new Object[]{typingUsers.get(0), typingUsers.get(1)}, null, 4);
         }
     }
 
     public WidgetChatOverlay() {
         super(R.layout.widget_chat_overlay);
-        this.binding = FragmentViewBindingDelegateKt.viewBinding$default(this, WidgetChatOverlay$binding$2.INSTANCE, null, 2, null);
-        this.flexInputViewModel = FragmentViewModelLazyKt.createViewModelLazy(this, a0.getOrCreateKotlinClass(AppFlexInputViewModel.class), new WidgetChatOverlay$appActivityViewModels$$inlined$activityViewModels$1(this), new f0(new WidgetChatOverlay$flexInputViewModel$2(this)));
-        this.chatInputViewModel = FragmentViewModelLazyKt.createViewModelLazy(this, a0.getOrCreateKotlinClass(ChatInputViewModel.class), new WidgetChatOverlay$appActivityViewModels$$inlined$activityViewModels$3(this), new f0(WidgetChatOverlay$chatInputViewModel$2.INSTANCE));
+        this.binding = FragmentViewBindingDelegate3.viewBinding$default(this, WidgetChatOverlay5.INSTANCE, null, 2, null);
+        this.flexInputViewModel = FragmentViewModelLazyKt.createViewModelLazy(this, Reflection2.getOrCreateKotlinClass(AppFlexInputViewModel.class), new WidgetChatOverlay$appActivityViewModels$$inlined$activityViewModels$1(this), new AppViewModelDelegates2(new WidgetChatOverlay8(this)));
+        this.chatInputViewModel = FragmentViewModelLazyKt.createViewModelLazy(this, Reflection2.getOrCreateKotlinClass(ChatInputViewModel.class), new WidgetChatOverlay$appActivityViewModels$$inlined$activityViewModels$3(this), new AppViewModelDelegates2(WidgetChatOverlay6.INSTANCE));
     }
 
     public static final /* synthetic */ void access$configureStickerSuggestions(WidgetChatOverlay widgetChatOverlay, StickerAutocompleteState stickerAutocompleteState) {
@@ -484,7 +485,7 @@ public final class WidgetChatOverlay extends AppFragment {
     public static final /* synthetic */ TypingIndicatorViewHolder access$getTypingIndicatorViewHolder$p(WidgetChatOverlay widgetChatOverlay) {
         TypingIndicatorViewHolder typingIndicatorViewHolder = widgetChatOverlay.typingIndicatorViewHolder;
         if (typingIndicatorViewHolder == null) {
-            m.throwUninitializedPropertyAccessException("typingIndicatorViewHolder");
+            Intrinsics3.throwUninitializedPropertyAccessException("typingIndicatorViewHolder");
         }
         return typingIndicatorViewHolder;
     }
@@ -498,42 +499,42 @@ public final class WidgetChatOverlay extends AppFragment {
         FlexInputState flexInputState = stickerAutocompleteState.getFlexInputState();
         boolean isForumPostDraftCreation = stickerAutocompleteState.getIsForumPostDraftCreation();
         if (!flexInputState.expressionSuggestionsEnabled || autocompleteVisible || isForumPostDraftCreation) {
-            x4 x4Var = getBinding().h;
-            m.checkNotNullExpressionValue(x4Var, "binding.stickersSuggestions");
-            LinearLayout linearLayout = x4Var.a;
-            m.checkNotNullExpressionValue(linearLayout, "binding.stickersSuggestions.root");
+            WidgetChatInputStickerSuggestionsBinding widgetChatInputStickerSuggestionsBinding = getBinding().h;
+            Intrinsics3.checkNotNullExpressionValue(widgetChatInputStickerSuggestionsBinding, "binding.stickersSuggestions");
+            LinearLayout linearLayout = widgetChatInputStickerSuggestionsBinding.a;
+            Intrinsics3.checkNotNullExpressionValue(linearLayout, "binding.stickersSuggestions.root");
             linearLayout.setVisibility(8);
             return;
         }
-        List listTake = u.take(getFlexInputViewModel().getMatchingStickers(flexInputState.inputText), 4);
+        List listTake = _Collections.take(getFlexInputViewModel().getMatchingStickers(flexInputState.inputText), 4);
         boolean z2 = SearchUtils.INSTANCE.getQueriesFromSearchText(flexInputState.inputText).size() == 1;
         if (listTake == null || listTake.isEmpty()) {
-            x4 x4Var2 = getBinding().h;
-            m.checkNotNullExpressionValue(x4Var2, "binding.stickersSuggestions");
-            LinearLayout linearLayout2 = x4Var2.a;
-            m.checkNotNullExpressionValue(linearLayout2, "binding.stickersSuggestions.root");
+            WidgetChatInputStickerSuggestionsBinding widgetChatInputStickerSuggestionsBinding2 = getBinding().h;
+            Intrinsics3.checkNotNullExpressionValue(widgetChatInputStickerSuggestionsBinding2, "binding.stickersSuggestions");
+            LinearLayout linearLayout2 = widgetChatInputStickerSuggestionsBinding2.a;
+            Intrinsics3.checkNotNullExpressionValue(linearLayout2, "binding.stickersSuggestions.root");
             linearLayout2.setVisibility(8);
             return;
         }
         StoreStream.INSTANCE.getExpressionSuggestions().trackExpressionSuggestionsDisplayed(flexInputState.inputText);
-        x4 x4Var3 = getBinding().h;
-        m.checkNotNullExpressionValue(x4Var3, "binding.stickersSuggestions");
-        LinearLayout linearLayout3 = x4Var3.a;
-        m.checkNotNullExpressionValue(linearLayout3, "binding.stickersSuggestions.root");
+        WidgetChatInputStickerSuggestionsBinding widgetChatInputStickerSuggestionsBinding3 = getBinding().h;
+        Intrinsics3.checkNotNullExpressionValue(widgetChatInputStickerSuggestionsBinding3, "binding.stickersSuggestions");
+        LinearLayout linearLayout3 = widgetChatInputStickerSuggestionsBinding3.a;
+        Intrinsics3.checkNotNullExpressionValue(linearLayout3, "binding.stickersSuggestions.root");
         linearLayout3.setVisibility(0);
         int i = 0;
-        for (Object obj : n.listOf((Object[]) new StickerView[]{getBinding().h.f230b, getBinding().h.c, getBinding().h.d, getBinding().h.e})) {
+        for (Object obj : Collections2.listOf((Object[]) new StickerView[]{getBinding().h.f230b, getBinding().h.c, getBinding().h.d, getBinding().h.e})) {
             int i2 = i + 1;
             if (i < 0) {
-                n.throwIndexOverflow();
+                Collections2.throwIndexOverflow();
             }
             StickerView stickerView = (StickerView) obj;
             Sticker sticker = i < listTake.size() ? (Sticker) listTake.get(i) : null;
-            m.checkNotNullExpressionValue(stickerView, "stickerView");
+            Intrinsics3.checkNotNullExpressionValue(stickerView, "stickerView");
             stickerView.setVisibility(sticker != null ? 0 : 8);
             if (sticker != null) {
                 StickerView.e(stickerView, sticker, null, 2);
-                stickerView.setOnClickListener(new WidgetChatOverlay$configureStickerSuggestions$$inlined$forEachIndexed$lambda$1(sticker, stickerView, sticker, this, listTake, z2));
+                stickerView.setOnClickListener(new WidgetChatOverlay7(sticker, stickerView, sticker, this, listTake, z2));
             }
             i = i2;
         }
@@ -555,26 +556,26 @@ public final class WidgetChatOverlay extends AppFragment {
     public void onViewBoundOrOnResume() {
         super.onViewBoundOrOnResume();
         WidgetChatOverlayBinding binding = getBinding();
-        m.checkNotNullExpressionValue(binding, "binding");
+        Intrinsics3.checkNotNullExpressionValue(binding, "binding");
         this.typingIndicatorViewHolder = new TypingIndicatorViewHolder(binding);
-        x4 x4Var = getBinding().h;
-        m.checkNotNullExpressionValue(x4Var, "binding.stickersSuggestions");
-        LinearLayout linearLayout = x4Var.a;
-        m.checkNotNullExpressionValue(linearLayout, "binding.stickersSuggestions.root");
+        WidgetChatInputStickerSuggestionsBinding widgetChatInputStickerSuggestionsBinding = getBinding().h;
+        Intrinsics3.checkNotNullExpressionValue(widgetChatInputStickerSuggestionsBinding, "binding.stickersSuggestions");
+        LinearLayout linearLayout = widgetChatInputStickerSuggestionsBinding.a;
+        Intrinsics3.checkNotNullExpressionValue(linearLayout, "binding.stickersSuggestions.root");
         Drawable background = linearLayout.getBackground();
-        m.checkNotNullExpressionValue(background, "binding.stickersSuggestions.root.background");
+        Intrinsics3.checkNotNullExpressionValue(background, "binding.stickersSuggestions.root.background");
         background.setAlpha(216);
         getBinding().h.f.setOnClickListener(AnonymousClass1.INSTANCE);
         getBinding().f2345b.setOnClickListener(AnonymousClass2.INSTANCE);
         Observable<OldMessageModel> observableR = OldMessageModel.INSTANCE.get().r();
-        m.checkNotNullExpressionValue(observableR, "OldMessageModel.get()\n  …  .distinctUntilChanged()");
+        Intrinsics3.checkNotNullExpressionValue(observableR, "OldMessageModel.get()\n  …  .distinctUntilChanged()");
         ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.computationLatest(observableR), this, null, 2, null), WidgetChatOverlay.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass3(), 62, (Object) null);
         Observable observableR2 = ObservableExtensionsKt.computationLatest(ChatTypingModel.INSTANCE.get()).r();
-        m.checkNotNullExpressionValue(observableR2, "ChatTypingModel\n        …  .distinctUntilChanged()");
+        Intrinsics3.checkNotNullExpressionValue(observableR2, "ChatTypingModel\n        …  .distinctUntilChanged()");
         ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(observableR2, this, null, 2, null), WidgetChatOverlay.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass4(), 62, (Object) null);
         StoreStream.Companion companion = StoreStream.INSTANCE;
         Observable observableI = Observable.i(companion.getAutocomplete().observeAutocompleteVisibility().r(), getFlexInputViewModel().observeState().r(), companion.getChannelsSelected().observeResolvedSelectedChannel(), AnonymousClass5.INSTANCE);
-        m.checkNotNullExpressionValue(observableI, "Observable.combineLatest…() == true,\n      )\n    }");
+        Intrinsics3.checkNotNullExpressionValue(observableI, "Observable.combineLatest…() == true,\n      )\n    }");
         ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(observableI, this, null, 2, null), WidgetChatOverlay.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass6(this), 62, (Object) null);
     }
 }

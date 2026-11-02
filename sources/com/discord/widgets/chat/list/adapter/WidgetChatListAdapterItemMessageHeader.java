@@ -9,7 +9,7 @@ import com.discord.databinding.WidgetChatListAdapterItemMessageHeaderBinding;
 import com.discord.models.domain.ModelAuditLogEntry;
 import com.discord.widgets.chat.list.entries.ChatListEntry;
 import com.discord.widgets.chat.list.entries.MessageHeaderEntry;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: WidgetChatListAdapterItemMessageHeader.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -19,7 +19,7 @@ public final class WidgetChatListAdapterItemMessageHeader extends WidgetChatList
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public WidgetChatListAdapterItemMessageHeader(WidgetChatListAdapter widgetChatListAdapter) {
         super(R.layout.widget_chat_list_adapter_item_message_header, widgetChatListAdapter);
-        m.checkNotNullParameter(widgetChatListAdapter, "adapter");
+        Intrinsics3.checkNotNullParameter(widgetChatListAdapter, "adapter");
         View view = this.itemView;
         int i = R.id.chat_list_item_message_header_channel;
         TextView textView = (TextView) view.findViewById(R.id.chat_list_item_message_header_channel);
@@ -34,7 +34,7 @@ public final class WidgetChatListAdapterItemMessageHeader extends WidgetChatList
                     Space space = (Space) view.findViewById(R.id.chat_list_item_message_header_spacer);
                     if (space != null) {
                         WidgetChatListAdapterItemMessageHeaderBinding widgetChatListAdapterItemMessageHeaderBinding = new WidgetChatListAdapterItemMessageHeaderBinding((RelativeLayout) view, textView, viewFindViewById, textView2, space);
-                        m.checkNotNullExpressionValue(widgetChatListAdapterItemMessageHeaderBinding, "WidgetChatListAdapterIte…derBinding.bind(itemView)");
+                        Intrinsics3.checkNotNullExpressionValue(widgetChatListAdapterItemMessageHeaderBinding, "WidgetChatListAdapterIte…derBinding.bind(itemView)");
                         this.binding = widgetChatListAdapterItemMessageHeaderBinding;
                         return;
                     }
@@ -52,22 +52,22 @@ public final class WidgetChatListAdapterItemMessageHeader extends WidgetChatList
     /* JADX WARN: Can't rename method to resolve collision */
     @Override // com.discord.widgets.chat.list.adapter.WidgetChatListItem
     public void onConfigure(int position, ChatListEntry data) {
-        m.checkNotNullParameter(data, "data");
+        Intrinsics3.checkNotNullParameter(data, "data");
         super.onConfigure(position, data);
         MessageHeaderEntry messageHeaderEntry = (MessageHeaderEntry) data;
         String strComponent2 = messageHeaderEntry.getText();
         String strComponent3 = messageHeaderEntry.getChannelName();
         View view = this.binding.c;
-        m.checkNotNullExpressionValue(view, "binding.chatListItemMessageHeaderDivider");
+        Intrinsics3.checkNotNullExpressionValue(view, "binding.chatListItemMessageHeaderDivider");
         view.setVisibility(position > 0 ? 0 : 8);
         Space space = this.binding.e;
-        m.checkNotNullExpressionValue(space, "binding.chatListItemMessageHeaderSpacer");
+        Intrinsics3.checkNotNullExpressionValue(space, "binding.chatListItemMessageHeaderSpacer");
         space.setVisibility(position <= 0 ? 0 : 8);
         TextView textView = this.binding.f2327b;
-        m.checkNotNullExpressionValue(textView, "binding.chatListItemMessageHeaderChannel");
+        Intrinsics3.checkNotNullExpressionValue(textView, "binding.chatListItemMessageHeaderChannel");
         textView.setText(strComponent3);
         TextView textView2 = this.binding.d;
-        m.checkNotNullExpressionValue(textView2, "binding.chatListItemMessageHeaderGuild");
+        Intrinsics3.checkNotNullExpressionValue(textView2, "binding.chatListItemMessageHeaderGuild");
         textView2.setText(strComponent2);
     }
 }

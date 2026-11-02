@@ -3,8 +3,8 @@ package com.discord.widgets.channels.list;
 import android.content.Context;
 import android.view.View;
 import com.discord.utilities.guilds.MemberVerificationUtils;
-import d0.z.d.m;
-import d0.z.d.o;
+import d0.z.d.Intrinsics3;
+import d0.z.d.Lambda;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 
@@ -16,7 +16,7 @@ public final class WidgetChannelsListAdapter$ItemGuildJoinRequest$onConfigure$1 
 
     /* JADX INFO: renamed from: com.discord.widgets.channels.list.WidgetChannelsListAdapter$ItemGuildJoinRequest$onConfigure$1$1, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetChannelsListAdapter.kt */
-    public final class AnonymousClass1 extends o implements Function0<Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function0<Unit> {
         public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
 
         public AnonymousClass1() {
@@ -43,7 +43,7 @@ public final class WidgetChannelsListAdapter$ItemGuildJoinRequest$onConfigure$1 
     public final void onClick(View view) {
         MemberVerificationUtils memberVerificationUtils = MemberVerificationUtils.INSTANCE;
         Context context = this.$context;
-        m.checkNotNullExpressionValue(context, "context");
+        Intrinsics3.checkNotNullExpressionValue(context, "context");
         MemberVerificationUtils.maybeShowVerificationGate$default(memberVerificationUtils, context, WidgetChannelsListAdapter.access$getFragmentManager$p(WidgetChannelsListAdapter.ItemGuildJoinRequest.access$getAdapter$p(this.this$0)), WidgetChannelsListAdapter.ItemGuildJoinRequest.access$getAdapter$p(this.this$0).getSelectedGuildId(), "Channel Notice", null, null, AnonymousClass1.INSTANCE, 48, null);
     }
 }

@@ -10,7 +10,8 @@ import androidx.appcompat.widget.AppCompatEditText;
 import androidx.core.view.inputmethod.EditorInfoCompat;
 import androidx.core.view.inputmethod.InputConnectionCompat;
 import androidx.core.view.inputmethod.InputContentInfoCompat;
-import d0.z.d.m;
+import b.b.a.i.FlexEditText2;
+import d0.z.d.Intrinsics3;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function1;
 import kotlin.jvm.functions.Function2;
@@ -43,7 +44,7 @@ public class FlexEditText extends AppCompatEditText {
                 }
             }
             Function1<InputContentInfoCompat, Unit> inputContentHandler = FlexEditText.this.getInputContentHandler();
-            m.checkNotNullExpressionValue(inputContentInfoCompat, "inputContentInfo");
+            Intrinsics3.checkNotNullExpressionValue(inputContentInfoCompat, "inputContentInfo");
             inputContentHandler.invoke(inputContentInfoCompat);
             return true;
         }
@@ -52,8 +53,8 @@ public class FlexEditText extends AppCompatEditText {
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public FlexEditText(Context context, AttributeSet attributeSet) {
         super(context, attributeSet);
-        m.checkNotNullParameter(context, "context");
-        this.inputContentHandler = new b.b.a.i.a(this);
+        Intrinsics3.checkNotNullParameter(context, "context");
+        this.inputContentHandler = new FlexEditText2(this);
     }
 
     public final Function1<InputContentInfoCompat, Unit> getInputContentHandler() {
@@ -70,7 +71,7 @@ public class FlexEditText extends AppCompatEditText {
 
     @Override // androidx.appcompat.widget.AppCompatEditText, android.widget.TextView, android.view.View
     public InputConnection onCreateInputConnection(EditorInfo editorInfo) {
-        m.checkNotNullParameter(editorInfo, "editorInfo");
+        Intrinsics3.checkNotNullParameter(editorInfo, "editorInfo");
         InputConnection inputConnectionOnCreateInputConnection = super.onCreateInputConnection(editorInfo);
         if (inputConnectionOnCreateInputConnection == null) {
             return null;
@@ -89,7 +90,7 @@ public class FlexEditText extends AppCompatEditText {
     }
 
     public final void setInputContentHandler(Function1<? super InputContentInfoCompat, Unit> function1) {
-        m.checkNotNullParameter(function1, "<set-?>");
+        Intrinsics3.checkNotNullParameter(function1, "<set-?>");
         this.inputContentHandler = function1;
     }
 

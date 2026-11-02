@@ -1,14 +1,14 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackUserPremiumGuildSubscriptionSlotCanceled.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackUserPremiumGuildSubscriptionSlotCanceled implements AnalyticsSchema, TrackBaseReceiver {
+public final /* data */ class TrackUserPremiumGuildSubscriptionSlotCanceled implements AnalyticsSchema, TrackBase2 {
     private final Long slotId = null;
     private final Long subscriptionId = null;
     private TrackBase trackBase;
@@ -22,7 +22,7 @@ public final /* data */ class TrackUserPremiumGuildSubscriptionSlotCanceled impl
             return false;
         }
         TrackUserPremiumGuildSubscriptionSlotCanceled trackUserPremiumGuildSubscriptionSlotCanceled = (TrackUserPremiumGuildSubscriptionSlotCanceled) other;
-        return m.areEqual(this.slotId, trackUserPremiumGuildSubscriptionSlotCanceled.slotId) && m.areEqual(this.subscriptionId, trackUserPremiumGuildSubscriptionSlotCanceled.subscriptionId);
+        return Intrinsics3.areEqual(this.slotId, trackUserPremiumGuildSubscriptionSlotCanceled.slotId) && Intrinsics3.areEqual(this.subscriptionId, trackUserPremiumGuildSubscriptionSlotCanceled.subscriptionId);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -39,9 +39,9 @@ public final /* data */ class TrackUserPremiumGuildSubscriptionSlotCanceled impl
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackUserPremiumGuildSubscriptionSlotCanceled(slotId=");
+        StringBuilder sbU = outline.U("TrackUserPremiumGuildSubscriptionSlotCanceled(slotId=");
         sbU.append(this.slotId);
         sbU.append(", subscriptionId=");
-        return a.G(sbU, this.subscriptionId, ")");
+        return outline.G(sbU, this.subscriptionId, ")");
     }
 }

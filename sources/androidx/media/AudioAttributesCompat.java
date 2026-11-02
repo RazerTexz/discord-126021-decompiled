@@ -7,7 +7,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
 import androidx.versionedparcelable.VersionedParcelable;
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
@@ -178,7 +178,7 @@ public class AudioAttributesCompat implements VersionedParcelable {
             case 15:
             default:
                 if (z2) {
-                    throw new IllegalArgumentException(a.r("Unknown usage value ", i2, " in audio attributes"));
+                    throw new IllegalArgumentException(outline.r("Unknown usage value ", i2, " in audio attributes"));
                 }
                 return 3;
         }
@@ -223,7 +223,7 @@ public class AudioAttributesCompat implements VersionedParcelable {
                 return "USAGE_GAME";
             case 15:
             default:
-                return a.q("unknown usage ", i);
+                return outline.q("unknown usage ", i);
             case 16:
                 return "USAGE_ASSISTANT";
         }

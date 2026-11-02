@@ -1,7 +1,7 @@
 package com.discord.utilities.logging;
 
 import com.discord.gateway.GatewaySocketLogger;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 import kotlin.jvm.internal.DefaultConstructorMarker;
 
 /* JADX INFO: compiled from: AppGatewaySocketLogger.kt */
@@ -38,16 +38,16 @@ public final class AppGatewaySocketLogger implements GatewaySocketLogger {
 
     @Override // com.discord.gateway.GatewaySocketLogger
     public void logInboundMessage(String rawMessage) {
-        m.checkNotNullParameter(rawMessage, "rawMessage");
+        Intrinsics3.checkNotNullParameter(rawMessage, "rawMessage");
     }
 
     @Override // com.discord.gateway.GatewaySocketLogger
     public void logMessageInflateFailed(Throwable throwable) {
-        m.checkNotNullParameter(throwable, "throwable");
+        Intrinsics3.checkNotNullParameter(throwable, "throwable");
     }
 
     @Override // com.discord.gateway.GatewaySocketLogger
     public void logOutboundMessage(String rawMessage) {
-        m.checkNotNullParameter(rawMessage, "rawMessage");
+        Intrinsics3.checkNotNullParameter(rawMessage, "rawMessage");
     }
 }

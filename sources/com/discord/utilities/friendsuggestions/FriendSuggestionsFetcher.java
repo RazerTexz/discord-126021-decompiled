@@ -7,8 +7,8 @@ import com.discord.stores.Dispatcher;
 import com.discord.utilities.analytics.Traits;
 import com.discord.utilities.error.Error;
 import com.discord.utilities.rx.ObservableExtensionsKt;
-import d0.z.d.m;
-import d0.z.d.o;
+import d0.z.d.Intrinsics3;
+import d0.z.d.Lambda;
 import java.util.List;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
@@ -26,7 +26,7 @@ public final class FriendSuggestionsFetcher {
 
     /* JADX INFO: renamed from: com.discord.utilities.friendsuggestions.FriendSuggestionsFetcher$maybeFetch$1, reason: invalid class name */
     /* JADX INFO: compiled from: FriendSuggestionsFetcher.kt */
-    public final class AnonymousClass1 extends o implements Function1<Subscription, Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function1<Subscription, Unit> {
         public AnonymousClass1() {
             super(1);
         }
@@ -39,18 +39,18 @@ public final class FriendSuggestionsFetcher {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(Subscription subscription) {
-            m.checkNotNullParameter(subscription, Traits.Payment.Type.SUBSCRIPTION);
+            Intrinsics3.checkNotNullParameter(subscription, Traits.Payment.Type.SUBSCRIPTION);
             FriendSuggestionsFetcher.access$setFetchSubscription$p(FriendSuggestionsFetcher.this, subscription);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.utilities.friendsuggestions.FriendSuggestionsFetcher$maybeFetch$2, reason: invalid class name */
     /* JADX INFO: compiled from: FriendSuggestionsFetcher.kt */
-    public final class AnonymousClass2 extends o implements Function1<List<? extends FriendSuggestion>, Unit> {
+    public final class AnonymousClass2 extends Lambda implements Function1<List<? extends FriendSuggestion>, Unit> {
 
         /* JADX INFO: renamed from: com.discord.utilities.friendsuggestions.FriendSuggestionsFetcher$maybeFetch$2$1, reason: invalid class name */
         /* JADX INFO: compiled from: FriendSuggestionsFetcher.kt */
-        public final class AnonymousClass1 extends o implements Function0<Unit> {
+        public final class AnonymousClass1 extends Lambda implements Function0<Unit> {
             public final /* synthetic */ List $response;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -83,18 +83,18 @@ public final class FriendSuggestionsFetcher {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(List<FriendSuggestion> list) {
-            m.checkNotNullParameter(list, "response");
+            Intrinsics3.checkNotNullParameter(list, "response");
             FriendSuggestionsFetcher.access$getDispatcher$p(FriendSuggestionsFetcher.this).schedule(new AnonymousClass1(list));
         }
     }
 
     /* JADX INFO: renamed from: com.discord.utilities.friendsuggestions.FriendSuggestionsFetcher$maybeFetch$3, reason: invalid class name */
     /* JADX INFO: compiled from: FriendSuggestionsFetcher.kt */
-    public final class AnonymousClass3 extends o implements Function1<Error, Unit> {
+    public final class AnonymousClass3 extends Lambda implements Function1<Error, Unit> {
 
         /* JADX INFO: renamed from: com.discord.utilities.friendsuggestions.FriendSuggestionsFetcher$maybeFetch$3$1, reason: invalid class name */
         /* JADX INFO: compiled from: FriendSuggestionsFetcher.kt */
-        public final class AnonymousClass1 extends o implements Function0<Unit> {
+        public final class AnonymousClass1 extends Lambda implements Function0<Unit> {
             public AnonymousClass1() {
                 super(0);
             }
@@ -123,17 +123,17 @@ public final class FriendSuggestionsFetcher {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(Error error) {
-            m.checkNotNullParameter(error, "it");
+            Intrinsics3.checkNotNullParameter(error, "it");
             FriendSuggestionsFetcher.access$getDispatcher$p(FriendSuggestionsFetcher.this).schedule(new AnonymousClass1());
         }
     }
 
     /* JADX WARN: Multi-variable type inference failed */
     public FriendSuggestionsFetcher(Dispatcher dispatcher, RestAPIInterface restAPIInterface, Function1<? super List<FriendSuggestion>, Unit> function1, Function0<Unit> function0) {
-        m.checkNotNullParameter(dispatcher, "dispatcher");
-        m.checkNotNullParameter(restAPIInterface, "restApi");
-        m.checkNotNullParameter(function1, "onFetchSuccess");
-        m.checkNotNullParameter(function0, "onFetchFailure");
+        Intrinsics3.checkNotNullParameter(dispatcher, "dispatcher");
+        Intrinsics3.checkNotNullParameter(restAPIInterface, "restApi");
+        Intrinsics3.checkNotNullParameter(function1, "onFetchSuccess");
+        Intrinsics3.checkNotNullParameter(function0, "onFetchFailure");
         this.dispatcher = dispatcher;
         this.restApi = restAPIInterface;
         this.onFetchSuccess = function1;

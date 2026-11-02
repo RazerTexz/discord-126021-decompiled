@@ -4,8 +4,8 @@ import com.google.gson.TypeAdapter;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonToken;
 import com.google.gson.stream.JsonWriter;
-import d0.y.b;
-import d0.z.d.m;
+import d0.y.Closeable;
+import d0.z.d.Intrinsics3;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Objects;
@@ -31,7 +31,7 @@ public final class ReportNodeBottomButtonTypeAdapter extends TypeAdapter<ReportN
     /* JADX WARN: Failed to restore switch over string. Please report as a decompilation issue */
     @Override // com.google.gson.TypeAdapter
     public ReportNodeBottomButton read(JsonReader jsonReader) throws IOException {
-        m.checkNotNullParameter(jsonReader, "reader");
+        Intrinsics3.checkNotNullParameter(jsonReader, "reader");
         if (jsonReader.N() == JsonToken.NULL) {
             jsonReader.U();
             return null;
@@ -46,7 +46,7 @@ public final class ReportNodeBottomButtonTypeAdapter extends TypeAdapter<ReportN
                 if (iHashCode != -880905839) {
                     if (iHashCode == 3575610 && strC.equals("type")) {
                         strJ = jsonReader.J();
-                        m.checkNotNullExpressionValue(strJ, "reader.nextString()");
+                        Intrinsics3.checkNotNullExpressionValue(strJ, "reader.nextString()");
                     }
                 } else if (strC.equals("target")) {
                     JsonToken jsonTokenN = jsonReader.N();
@@ -64,7 +64,7 @@ public final class ReportNodeBottomButtonTypeAdapter extends TypeAdapter<ReportN
                         jsonReader.U();
                         objJ = Unit.a;
                     }
-                    m.checkNotNullExpressionValue(objJ, "when (reader.peek()) {\n …der.skipValue()\n        }");
+                    Intrinsics3.checkNotNullExpressionValue(objJ, "when (reader.peek()) {\n …der.skipValue()\n        }");
                 }
             }
             jsonReader.U();
@@ -100,7 +100,7 @@ public final class ReportNodeBottomButtonTypeAdapter extends TypeAdapter<ReportN
     @Override // com.google.gson.TypeAdapter
     public void write(JsonWriter jsonWriter, ReportNodeBottomButton reportNodeBottomButton) throws IllegalAccessException, IOException, InvocationTargetException {
         ReportNodeBottomButton reportNodeBottomButton2 = reportNodeBottomButton;
-        m.checkNotNullParameter(jsonWriter, "out");
+        Intrinsics3.checkNotNullParameter(jsonWriter, "out");
         if (reportNodeBottomButton2 == null) {
             jsonWriter.s();
             return;
@@ -108,13 +108,13 @@ public final class ReportNodeBottomButtonTypeAdapter extends TypeAdapter<ReportN
         JsonWriter jsonWriterN = jsonWriter.c().n("type").H(reportNodeBottomButton2.getType()).n("target");
         try {
             JsonWriter jsonWriterD = reportNodeBottomButton2 instanceof ReportNodeBottomButton.Next ? jsonWriterN.D(Integer.valueOf(((ReportNodeBottomButton.Next) reportNodeBottomButton2).getTarget())) : jsonWriterN.s();
-            b.closeFinally(jsonWriterN, null);
+            Closeable.closeFinally(jsonWriterN, null);
             jsonWriterD.f();
         } catch (Throwable th) {
             try {
                 throw th;
             } catch (Throwable th2) {
-                b.closeFinally(jsonWriterN, th);
+                Closeable.closeFinally(jsonWriterN, th);
                 throw th2;
             }
         }

@@ -14,13 +14,14 @@ import androidx.annotation.LayoutRes;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
-import b.a.i.y3;
+import b.a.i.ViewStepsBinding;
+import b.d.b.a.outline;
 import com.discord.R;
 import com.discord.app.AppFragment;
 import com.discord.models.domain.ModelAuditLogEntry;
 import com.discord.views.LoadingButton;
 import com.google.android.material.button.MaterialButton;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 import java.util.List;
 import java.util.Objects;
 import kotlin.Unit;
@@ -34,7 +35,7 @@ public final class StepsView extends RelativeLayout {
     public static final /* synthetic */ int j = 0;
 
     /* JADX INFO: renamed from: k, reason: from kotlin metadata */
-    public final y3 binding;
+    public final ViewStepsBinding binding;
 
     /* JADX INFO: renamed from: l, reason: from kotlin metadata */
     public d pagerAdapter;
@@ -69,26 +70,26 @@ public final class StepsView extends RelativeLayout {
                     ((Function0) this.m).invoke();
                     return;
                 } else {
-                    m.checkNotNullExpressionValue(view, "it");
+                    Intrinsics3.checkNotNullExpressionValue(view, "it");
                     function1.invoke(view);
                     return;
                 }
             }
             Function1<View, Unit> function2 = ((b) ((List) this.m).get(this.k)).d;
             if (function2 != null) {
-                m.checkNotNullExpressionValue(view, "it");
+                Intrinsics3.checkNotNullExpressionValue(view, "it");
                 function2.invoke(view);
                 return;
             }
             ViewPager2 viewPager2 = ((StepsView) this.l).binding.i;
-            m.checkNotNullExpressionValue(viewPager2, "binding.stepsViewpager");
+            Intrinsics3.checkNotNullExpressionValue(viewPager2, "binding.stepsViewpager");
             int currentItem = viewPager2.getCurrentItem();
             d dVar = ((StepsView) this.l).pagerAdapter;
             if (dVar == null || currentItem != dVar.getItemCount() - 1) {
                 ViewPager2 viewPager3 = ((StepsView) this.l).binding.i;
-                m.checkNotNullExpressionValue(viewPager3, "binding.stepsViewpager");
+                Intrinsics3.checkNotNullExpressionValue(viewPager3, "binding.stepsViewpager");
                 ViewPager2 viewPager4 = ((StepsView) this.l).binding.i;
-                m.checkNotNullExpressionValue(viewPager4, "binding.stepsViewpager");
+                Intrinsics3.checkNotNullExpressionValue(viewPager4, "binding.stepsViewpager");
                 viewPager3.setCurrentItem(viewPager4.getCurrentItem() + 1);
             }
         }
@@ -110,16 +111,16 @@ public final class StepsView extends RelativeLayout {
 
         /* JADX INFO: renamed from: com.discord.views.steps.StepsView$b$b, reason: collision with other inner class name */
         /* JADX INFO: compiled from: StepsView.kt */
-        public final class C0355b extends b {
+        public final class C0235b extends b {
             public boolean equals(Object obj) {
                 if (this == obj) {
                     return true;
                 }
-                if (!(obj instanceof C0355b)) {
+                if (!(obj instanceof C0235b)) {
                     return false;
                 }
-                Objects.requireNonNull((C0355b) obj);
-                return m.areEqual((Object) null, (Object) null) && m.areEqual((Object) null, (Object) null) && m.areEqual((Object) null, (Object) null);
+                Objects.requireNonNull((C0235b) obj);
+                return Intrinsics3.areEqual((Object) null, (Object) null) && Intrinsics3.areEqual((Object) null, (Object) null) && Intrinsics3.areEqual((Object) null, (Object) null);
             }
 
             public int hashCode() {
@@ -159,7 +160,7 @@ public final class StepsView extends RelativeLayout {
                 boolean z5 = (i4 & 256) != 0 ? true : z2;
                 boolean z6 = (i4 & 512) != 0 ? true : z3;
                 boolean z7 = (i4 & 1024) == 0 ? z4 : true;
-                m.checkNotNullParameter(cls, "fragment");
+                Intrinsics3.checkNotNullParameter(cls, "fragment");
                 super(i5, i6, i7, function4, null, function5, z5, z6, z7, null);
                 this.j = cls;
                 this.k = i5;
@@ -182,7 +183,7 @@ public final class StepsView extends RelativeLayout {
                     return false;
                 }
                 a aVar = (a) obj;
-                return m.areEqual(this.j, aVar.j) && this.k == aVar.k && this.l == aVar.l && this.m == aVar.m && m.areEqual(this.n, aVar.n) && m.areEqual(this.o, aVar.o) && m.areEqual(this.p, aVar.p) && m.areEqual(this.q, aVar.q) && this.r == aVar.r && this.f2844s == aVar.f2844s && this.t == aVar.t;
+                return Intrinsics3.areEqual(this.j, aVar.j) && this.k == aVar.k && this.l == aVar.l && this.m == aVar.m && Intrinsics3.areEqual(this.n, aVar.n) && Intrinsics3.areEqual(this.o, aVar.o) && Intrinsics3.areEqual(this.p, aVar.p) && Intrinsics3.areEqual(this.q, aVar.q) && this.r == aVar.r && this.f2844s == aVar.f2844s && this.t == aVar.t;
             }
 
             /* JADX WARN: Multi-variable type inference failed */
@@ -226,7 +227,7 @@ public final class StepsView extends RelativeLayout {
             }
 
             public String toString() {
-                StringBuilder sbU = b.d.b.a.a.U("FragmentStep(fragment=");
+                StringBuilder sbU = outline.U("FragmentStep(fragment=");
                 sbU.append(this.j);
                 sbU.append(", nextText=");
                 sbU.append(this.k);
@@ -247,7 +248,7 @@ public final class StepsView extends RelativeLayout {
                 sbU.append(", canCancel=");
                 sbU.append(this.f2844s);
                 sbU.append(", allowScroll=");
-                return b.d.b.a.a.O(sbU, this.t, ")");
+                return outline.O(sbU, this.t, ")");
             }
         }
 
@@ -278,8 +279,8 @@ public final class StepsView extends RelativeLayout {
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
         public d(Fragment fragment, List<? extends b> list) {
             super(fragment);
-            m.checkNotNullParameter(fragment, "fragment");
-            m.checkNotNullParameter(list, "steps");
+            Intrinsics3.checkNotNullParameter(fragment, "fragment");
+            Intrinsics3.checkNotNullParameter(list, "steps");
             this.a = list;
         }
 
@@ -287,17 +288,17 @@ public final class StepsView extends RelativeLayout {
         public Fragment createFragment(int i) throws IllegalAccessException, InstantiationException {
             b bVar = this.a.get(i);
             if (!(bVar instanceof b.a)) {
-                if (!(bVar instanceof b.C0355b)) {
+                if (!(bVar instanceof b.C0235b)) {
                     return new Fragment();
                 }
-                Objects.requireNonNull((b.C0355b) bVar);
+                Objects.requireNonNull((b.C0235b) bVar);
                 return new c(0);
             }
             b.a aVar = (b.a) bVar;
             Fragment fragmentNewInstance = aVar.j.newInstance();
             Fragment fragment = fragmentNewInstance;
             fragment.setArguments(aVar.n);
-            m.checkNotNullExpressionValue(fragmentNewInstance, "currentStep.fragment.new…tep.arguments\n          }");
+            Intrinsics3.checkNotNullExpressionValue(fragmentNewInstance, "currentStep.fragment.new…tep.arguments\n          }");
             return fragment;
         }
 
@@ -360,20 +361,20 @@ public final class StepsView extends RelativeLayout {
         public final void onClick(View view) {
             Function1<View, Unit> function1 = ((b) this.k.get(this.l)).e;
             if (function1 != null) {
-                m.checkNotNullExpressionValue(view, "it");
+                Intrinsics3.checkNotNullExpressionValue(view, "it");
                 function1.invoke(view);
                 return;
             }
             ViewPager2 viewPager2 = StepsView.this.binding.i;
-            m.checkNotNullExpressionValue(viewPager2, "binding.stepsViewpager");
+            Intrinsics3.checkNotNullExpressionValue(viewPager2, "binding.stepsViewpager");
             if (viewPager2.getCurrentItem() == 0) {
                 this.m.invoke();
                 return;
             }
             ViewPager2 viewPager3 = StepsView.this.binding.i;
-            m.checkNotNullExpressionValue(viewPager3, "binding.stepsViewpager");
+            Intrinsics3.checkNotNullExpressionValue(viewPager3, "binding.stepsViewpager");
             ViewPager2 viewPager4 = StepsView.this.binding.i;
-            m.checkNotNullExpressionValue(viewPager4, "binding.stepsViewpager");
+            Intrinsics3.checkNotNullExpressionValue(viewPager4, "binding.stepsViewpager");
             viewPager3.setCurrentItem(viewPager4.getCurrentItem() - 1);
         }
     }
@@ -381,8 +382,8 @@ public final class StepsView extends RelativeLayout {
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public StepsView(Context context, AttributeSet attributeSet) {
         super(context, attributeSet, 0);
-        m.checkNotNullParameter(context, "context");
-        m.checkNotNullParameter(context, "context");
+        Intrinsics3.checkNotNullParameter(context, "context");
+        Intrinsics3.checkNotNullParameter(context, "context");
         View viewInflate = LayoutInflater.from(context).inflate(R.layout.view_steps, (ViewGroup) this, false);
         addView(viewInflate);
         int i = R.id.steps_button_container;
@@ -409,9 +410,9 @@ public final class StepsView extends RelativeLayout {
                                     i = R.id.steps_viewpager;
                                     ViewPager2 viewPager2 = (ViewPager2) viewInflate.findViewById(R.id.steps_viewpager);
                                     if (viewPager2 != null) {
-                                        y3 y3Var = new y3((RelativeLayout) viewInflate, linearLayout, textView, imageView, loadingButton, materialButton, stepsProgressIndicatorView, textView2, viewPager2);
-                                        m.checkNotNullExpressionValue(y3Var, "ViewStepsBinding.inflate…rom(context), this, true)");
-                                        this.binding = y3Var;
+                                        ViewStepsBinding viewStepsBinding = new ViewStepsBinding((RelativeLayout) viewInflate, linearLayout, textView, imageView, loadingButton, materialButton, stepsProgressIndicatorView, textView2, viewPager2);
+                                        Intrinsics3.checkNotNullExpressionValue(viewStepsBinding, "ViewStepsBinding.inflate…rom(context), this, true)");
+                                        this.binding = viewStepsBinding;
                                         setIsLoading(false);
                                         return;
                                     }
@@ -426,12 +427,12 @@ public final class StepsView extends RelativeLayout {
     }
 
     public final void a(d adapter, Function0<Unit> onClose, Function1<? super Integer, Unit> onPageSelected) {
-        m.checkNotNullParameter(adapter, "adapter");
-        m.checkNotNullParameter(onClose, "onClose");
-        m.checkNotNullParameter(onPageSelected, "onPageSelected");
+        Intrinsics3.checkNotNullParameter(adapter, "adapter");
+        Intrinsics3.checkNotNullParameter(onClose, "onClose");
+        Intrinsics3.checkNotNullParameter(onPageSelected, "onPageSelected");
         this.pagerAdapter = adapter;
         ViewPager2 viewPager2 = this.binding.i;
-        m.checkNotNullExpressionValue(viewPager2, "binding.stepsViewpager");
+        Intrinsics3.checkNotNullExpressionValue(viewPager2, "binding.stepsViewpager");
         viewPager2.setAdapter(this.pagerAdapter);
         ViewPager2.OnPageChangeCallback onPageChangeCallback = this.pagerAdapterChangeCallback;
         if (onPageChangeCallback != null) {
@@ -450,7 +451,7 @@ public final class StepsView extends RelativeLayout {
             d dVar = this.pagerAdapter;
             if (index < (dVar != null ? dVar.getItemCount() : 0)) {
                 ViewPager2 viewPager2 = this.binding.i;
-                m.checkNotNullExpressionValue(viewPager2, "binding.stepsViewpager");
+                Intrinsics3.checkNotNullExpressionValue(viewPager2, "binding.stepsViewpager");
                 viewPager2.setCurrentItem(index);
             }
         }
@@ -464,14 +465,14 @@ public final class StepsView extends RelativeLayout {
             return;
         }
         ViewPager2 viewPager2 = this.binding.i;
-        m.checkNotNullExpressionValue(viewPager2, "binding.stepsViewpager");
+        Intrinsics3.checkNotNullExpressionValue(viewPager2, "binding.stepsViewpager");
         viewPager2.setUserInputEnabled(list.get(position).i);
         TextView textView = this.binding.c;
-        m.checkNotNullExpressionValue(textView, "binding.stepsCancel");
+        Intrinsics3.checkNotNullExpressionValue(textView, "binding.stepsCancel");
         textView.setText(getContext().getString(list.get(position).f2843b));
         this.binding.e.setText(getContext().getString(list.get(position).c));
         MaterialButton materialButton = this.binding.f;
-        m.checkNotNullExpressionValue(materialButton, "binding.stepsNext");
+        Intrinsics3.checkNotNullExpressionValue(materialButton, "binding.stepsNext");
         materialButton.setText(getContext().getString(list.get(position).a));
         this.binding.f.setOnClickListener(new a(0, position, this, list));
         this.binding.c.setOnClickListener(new g(list, position, onClose));
@@ -480,24 +481,24 @@ public final class StepsView extends RelativeLayout {
         d dVar2 = this.pagerAdapter;
         boolean z3 = dVar2 != null && position == dVar2.getItemCount() - 1;
         MaterialButton materialButton2 = this.binding.f;
-        m.checkNotNullExpressionValue(materialButton2, "binding.stepsNext");
+        Intrinsics3.checkNotNullExpressionValue(materialButton2, "binding.stepsNext");
         materialButton2.setVisibility(!z3 && list.get(position).g ? 0 : 8);
         TextView textView2 = this.binding.c;
-        m.checkNotNullExpressionValue(textView2, "binding.stepsCancel");
+        Intrinsics3.checkNotNullExpressionValue(textView2, "binding.stepsCancel");
         textView2.setVisibility(!z3 && list.get(position).h ? 0 : 8);
         LoadingButton loadingButton = this.binding.e;
-        m.checkNotNullExpressionValue(loadingButton, "binding.stepsDone");
+        Intrinsics3.checkNotNullExpressionValue(loadingButton, "binding.stepsDone");
         loadingButton.setVisibility(z3 ? 0 : 8);
         LinearLayout linearLayout = this.binding.f236b;
-        m.checkNotNullExpressionValue(linearLayout, "binding.stepsButtonContainer");
+        Intrinsics3.checkNotNullExpressionValue(linearLayout, "binding.stepsButtonContainer");
         MaterialButton materialButton3 = this.binding.f;
-        m.checkNotNullExpressionValue(materialButton3, "binding.stepsNext");
+        Intrinsics3.checkNotNullExpressionValue(materialButton3, "binding.stepsNext");
         if (!(materialButton3.getVisibility() == 0)) {
             TextView textView3 = this.binding.c;
-            m.checkNotNullExpressionValue(textView3, "binding.stepsCancel");
+            Intrinsics3.checkNotNullExpressionValue(textView3, "binding.stepsCancel");
             if (!(textView3.getVisibility() == 0)) {
                 LoadingButton loadingButton2 = this.binding.e;
-                m.checkNotNullExpressionValue(loadingButton2, "binding.stepsDone");
+                Intrinsics3.checkNotNullExpressionValue(loadingButton2, "binding.stepsDone");
                 if (!(loadingButton2.getVisibility() == 0)) {
                     z2 = false;
                 }
@@ -508,7 +509,7 @@ public final class StepsView extends RelativeLayout {
 
     public final void setIsDoneButtonEnabled(boolean isEnabled) {
         LoadingButton loadingButton = this.binding.e;
-        m.checkNotNullExpressionValue(loadingButton, "binding.stepsDone");
+        Intrinsics3.checkNotNullExpressionValue(loadingButton, "binding.stepsDone");
         loadingButton.setEnabled(isEnabled);
     }
 
@@ -518,36 +519,36 @@ public final class StepsView extends RelativeLayout {
 
     public final void setIsNextButtonEnabled(boolean isEnabled) {
         MaterialButton materialButton = this.binding.f;
-        m.checkNotNullExpressionValue(materialButton, "binding.stepsNext");
+        Intrinsics3.checkNotNullExpressionValue(materialButton, "binding.stepsNext");
         materialButton.setEnabled(isEnabled);
     }
 
     public final void setIsTitleVisible(boolean isVisible) {
         TextView textView = this.binding.h;
-        m.checkNotNullExpressionValue(textView, "binding.stepsTitle");
+        Intrinsics3.checkNotNullExpressionValue(textView, "binding.stepsTitle");
         textView.setVisibility(isVisible ? 0 : 8);
         if (isVisible) {
             StepsProgressIndicatorView stepsProgressIndicatorView = this.binding.g;
-            m.checkNotNullExpressionValue(stepsProgressIndicatorView, "binding.stepsProgressIndicator");
+            Intrinsics3.checkNotNullExpressionValue(stepsProgressIndicatorView, "binding.stepsProgressIndicator");
             stepsProgressIndicatorView.setVisibility(8);
         }
     }
 
     public final void setStepProgressIndicatorVisible(boolean isVisible) {
         StepsProgressIndicatorView stepsProgressIndicatorView = this.binding.g;
-        m.checkNotNullExpressionValue(stepsProgressIndicatorView, "binding.stepsProgressIndicator");
+        Intrinsics3.checkNotNullExpressionValue(stepsProgressIndicatorView, "binding.stepsProgressIndicator");
         stepsProgressIndicatorView.setVisibility(isVisible ? 0 : 8);
         if (isVisible) {
             TextView textView = this.binding.h;
-            m.checkNotNullExpressionValue(textView, "binding.stepsTitle");
+            Intrinsics3.checkNotNullExpressionValue(textView, "binding.stepsTitle");
             textView.setVisibility(8);
         }
     }
 
     public final void setTitle(String title) {
-        m.checkNotNullParameter(title, "title");
+        Intrinsics3.checkNotNullParameter(title, "title");
         TextView textView = this.binding.h;
-        m.checkNotNullExpressionValue(textView, "binding.stepsTitle");
+        Intrinsics3.checkNotNullExpressionValue(textView, "binding.stepsTitle");
         textView.setText(title);
     }
 }

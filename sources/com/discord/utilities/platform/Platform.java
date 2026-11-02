@@ -2,12 +2,12 @@ package com.discord.utilities.platform;
 
 import androidx.annotation.AttrRes;
 import androidx.annotation.DrawableRes;
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.R;
 import com.discord.api.activity.ActivityPlatform;
 import com.discord.api.connectedaccounts.ConnectedAccount;
-import d0.g0.w;
-import d0.z.d.m;
+import d0.g0.Strings4;
+import d0.z.d.Intrinsics3;
 import java.util.Locale;
 import java.util.Objects;
 import kotlin.jvm.internal.DefaultConstructorMarker;
@@ -92,16 +92,16 @@ public enum Platform {
         }
 
         public final Platform from(String platformName) {
-            m.checkNotNullParameter(platformName, "platformName");
+            Intrinsics3.checkNotNullParameter(platformName, "platformName");
             try {
-                String string = w.trim(platformName).toString();
+                String string = Strings4.trim(platformName).toString();
                 Locale locale = Locale.ENGLISH;
-                m.checkNotNullExpressionValue(locale, "Locale.ENGLISH");
+                Intrinsics3.checkNotNullExpressionValue(locale, "Locale.ENGLISH");
                 if (string == null) {
                     throw new NullPointerException("null cannot be cast to non-null type java.lang.String");
                 }
                 String upperCase = string.toUpperCase(locale);
-                m.checkNotNullExpressionValue(upperCase, "(this as java.lang.String).toUpperCase(locale)");
+                Intrinsics3.checkNotNullExpressionValue(upperCase, "(this as java.lang.String).toUpperCase(locale)");
                 return Platform.valueOf(upperCase);
             } catch (Exception unused) {
                 return Platform.NONE;
@@ -109,7 +109,7 @@ public enum Platform {
         }
 
         public final Platform from(ConnectedAccount connectedAccount) {
-            m.checkNotNullParameter(connectedAccount, "connectedAccount");
+            Intrinsics3.checkNotNullParameter(connectedAccount, "connectedAccount");
             return from(connectedAccount.getType());
         }
     }
@@ -141,10 +141,10 @@ public enum Platform {
         this.enabled = z4;
         String strName = name();
         Locale locale = Locale.ENGLISH;
-        m.checkNotNullExpressionValue(locale, "Locale.ENGLISH");
+        Intrinsics3.checkNotNullExpressionValue(locale, "Locale.ENGLISH");
         Objects.requireNonNull(strName, "null cannot be cast to non-null type java.lang.String");
         String lowerCase = strName.toLowerCase(locale);
-        m.checkNotNullExpressionValue(lowerCase, "(this as java.lang.String).toLowerCase(locale)");
+        Intrinsics3.checkNotNullExpressionValue(lowerCase, "(this as java.lang.String).toLowerCase(locale)");
         this.platformId = lowerCase;
     }
 
@@ -181,38 +181,38 @@ public enum Platform {
     }
 
     public final String getProfileUrl(ConnectedAccount connectedAccount) {
-        m.checkNotNullParameter(connectedAccount, "connectedAccount");
+        Intrinsics3.checkNotNullParameter(connectedAccount, "connectedAccount");
         int iOrdinal = ordinal();
         if (iOrdinal == 2) {
-            StringBuilder sbU = a.U("https://github.com/");
+            StringBuilder sbU = outline.U("https://github.com/");
             sbU.append(connectedAccount.getName());
             return sbU.toString();
         }
         if (iOrdinal == 5) {
-            StringBuilder sbU2 = a.U("https://reddit.com/u/");
+            StringBuilder sbU2 = outline.U("https://reddit.com/u/");
             sbU2.append(connectedAccount.getName());
             return sbU2.toString();
         }
         if (iOrdinal == 13) {
-            StringBuilder sbU3 = a.U("https://youtube.com/channel/");
+            StringBuilder sbU3 = outline.U("https://youtube.com/channel/");
             sbU3.append(connectedAccount.getId());
             return sbU3.toString();
         }
         switch (iOrdinal) {
             case 8:
-                StringBuilder sbU4 = a.U("https://open.spotify.com/user/");
+                StringBuilder sbU4 = outline.U("https://open.spotify.com/user/");
                 sbU4.append(connectedAccount.getId());
                 return sbU4.toString();
             case 9:
-                StringBuilder sbU5 = a.U("https://steamcommunity.com/profiles/");
+                StringBuilder sbU5 = outline.U("https://steamcommunity.com/profiles/");
                 sbU5.append(connectedAccount.getId());
                 return sbU5.toString();
             case 10:
-                StringBuilder sbU6 = a.U("https://twitch.tv/");
+                StringBuilder sbU6 = outline.U("https://twitch.tv/");
                 sbU6.append(connectedAccount.getName());
                 return sbU6.toString();
             case 11:
-                StringBuilder sbU7 = a.U("https://www.twitter.com/");
+                StringBuilder sbU7 = outline.U("https://www.twitter.com/");
                 sbU7.append(connectedAccount.getName());
                 return sbU7.toString();
             default:

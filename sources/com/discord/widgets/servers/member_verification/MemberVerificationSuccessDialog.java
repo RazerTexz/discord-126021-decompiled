@@ -6,10 +6,10 @@ import android.view.View;
 import android.widget.TextView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentViewModelLazyKt;
-import b.a.d.g0;
-import b.a.d.i0;
-import b.a.k.b;
-import b.d.b.a.a;
+import b.a.d.AppViewModelDelegates3;
+import b.a.d.AppViewModelDelegates5;
+import b.a.k.FormatUtils;
+import b.d.b.a.outline;
 import com.discord.R;
 import com.discord.app.AppDialog;
 import com.discord.databinding.WidgetMemberVerificationSuccessBinding;
@@ -18,11 +18,12 @@ import com.discord.stores.StoreStream;
 import com.discord.utilities.channel.ChannelSelector;
 import com.discord.utilities.rx.ObservableExtensionsKt;
 import com.discord.utilities.viewbinding.FragmentViewBindingDelegate;
-import com.discord.utilities.viewbinding.FragmentViewBindingDelegateKt;
+import com.discord.utilities.viewbinding.FragmentViewBindingDelegate3;
 import com.discord.widgets.home.WidgetHome;
-import d0.z.d.a0;
-import d0.z.d.k;
-import d0.z.d.m;
+import d0.t.CollectionsJVM;
+import d0.z.d.FunctionReferenceImpl;
+import d0.z.d.Intrinsics3;
+import d0.z.d.Reflection2;
 import kotlin.Lazy;
 import kotlin.NoWhenBranchMatchedException;
 import kotlin.Unit;
@@ -35,7 +36,7 @@ import rx.Observable;
 /* JADX INFO: compiled from: MemberVerificationSuccessDialog.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class MemberVerificationSuccessDialog extends AppDialog {
-    public static final /* synthetic */ KProperty[] $$delegatedProperties = {a.d0(MemberVerificationSuccessDialog.class, "binding", "getBinding()Lcom/discord/databinding/WidgetMemberVerificationSuccessBinding;", 0)};
+    public static final /* synthetic */ KProperty[] $$delegatedProperties = {outline.d0(MemberVerificationSuccessDialog.class, "binding", "getBinding()Lcom/discord/databinding/WidgetMemberVerificationSuccessBinding;", 0)};
 
     /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
     public static final Companion INSTANCE = new Companion(null);
@@ -62,7 +63,7 @@ public final class MemberVerificationSuccessDialog extends AppDialog {
 
     /* JADX INFO: renamed from: com.discord.widgets.servers.member_verification.MemberVerificationSuccessDialog$onViewBoundOrOnResume$1, reason: invalid class name */
     /* JADX INFO: compiled from: MemberVerificationSuccessDialog.kt */
-    public final /* synthetic */ class AnonymousClass1 extends k implements Function1<MemberVerificationSuccessViewModel.ViewState, Unit> {
+    public final /* synthetic */ class AnonymousClass1 extends FunctionReferenceImpl implements Function1<MemberVerificationSuccessViewModel.ViewState, Unit> {
         public AnonymousClass1(MemberVerificationSuccessDialog memberVerificationSuccessDialog) {
             super(1, memberVerificationSuccessDialog, MemberVerificationSuccessDialog.class, "configureUI", "configureUI(Lcom/discord/widgets/servers/member_verification/MemberVerificationSuccessViewModel$ViewState;)V", 0);
         }
@@ -75,7 +76,7 @@ public final class MemberVerificationSuccessDialog extends AppDialog {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(MemberVerificationSuccessViewModel.ViewState viewState) {
-            m.checkNotNullParameter(viewState, "p1");
+            Intrinsics3.checkNotNullParameter(viewState, "p1");
             MemberVerificationSuccessDialog.access$configureUI((MemberVerificationSuccessDialog) this.receiver, viewState);
         }
     }
@@ -87,8 +88,8 @@ public final class MemberVerificationSuccessDialog extends AppDialog {
 
         public final void enqueue(long guildId) {
             StoreNotices notices = StoreStream.INSTANCE.getNotices();
-            String strT = a.t("GUILD_JOIN_REQUEST_SUCCESS_", guildId);
-            notices.requestToShow(new StoreNotices.Notice(strT, null, 0L, 0, false, d0.t.m.listOf(a0.getOrCreateKotlinClass(WidgetHome.class)), 0L, false, 0L, new MemberVerificationSuccessDialog$Companion$enqueue$memberVerificationSuccessDialogNotice$1(guildId, notices, strT), 150, null));
+            String strT = outline.t("GUILD_JOIN_REQUEST_SUCCESS_", guildId);
+            notices.requestToShow(new StoreNotices.Notice(strT, null, 0L, 0, false, CollectionsJVM.listOf(Reflection2.getOrCreateKotlinClass(WidgetHome.class)), 0L, false, 0L, new MemberVerificationSuccessDialog2(guildId, notices, strT), 150, null));
         }
 
         public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
@@ -98,10 +99,10 @@ public final class MemberVerificationSuccessDialog extends AppDialog {
 
     public MemberVerificationSuccessDialog() {
         super(R.layout.widget_member_verification_success);
-        this.binding = FragmentViewBindingDelegateKt.viewBinding$default(this, MemberVerificationSuccessDialog$binding$2.INSTANCE, null, 2, null);
-        MemberVerificationSuccessDialog$viewModel$2 memberVerificationSuccessDialog$viewModel$2 = new MemberVerificationSuccessDialog$viewModel$2(this);
-        g0 g0Var = new g0(this);
-        this.viewModel = FragmentViewModelLazyKt.createViewModelLazy(this, a0.getOrCreateKotlinClass(MemberVerificationSuccessViewModel.class), new MemberVerificationSuccessDialog$appViewModels$$inlined$viewModels$1(g0Var), new i0(memberVerificationSuccessDialog$viewModel$2));
+        this.binding = FragmentViewBindingDelegate3.viewBinding$default(this, MemberVerificationSuccessDialog3.INSTANCE, null, 2, null);
+        MemberVerificationSuccessDialog4 memberVerificationSuccessDialog4 = new MemberVerificationSuccessDialog4(this);
+        AppViewModelDelegates3 appViewModelDelegates3 = new AppViewModelDelegates3(this);
+        this.viewModel = FragmentViewModelLazyKt.createViewModelLazy(this, Reflection2.getOrCreateKotlinClass(MemberVerificationSuccessViewModel.class), new MemberVerificationSuccessDialog$appViewModels$$inlined$viewModels$1(appViewModelDelegates3), new AppViewModelDelegates5(memberVerificationSuccessDialog4));
     }
 
     public static final /* synthetic */ void access$configureUI(MemberVerificationSuccessDialog memberVerificationSuccessDialog, MemberVerificationSuccessViewModel.ViewState viewState) {
@@ -118,8 +119,8 @@ public final class MemberVerificationSuccessDialog extends AppDialog {
 
     private final void configureLoadedUI(MemberVerificationSuccessViewModel.ViewState.Loaded viewState) {
         TextView textView = getBinding().c;
-        m.checkNotNullExpressionValue(textView, "binding.memberVerificationGuildName");
-        textView.setText(b.k(this, R.string.lurker_mode_popout_success_header, new Object[]{viewState.getGuildName()}, null, 4));
+        Intrinsics3.checkNotNullExpressionValue(textView, "binding.memberVerificationGuildName");
+        textView.setText(FormatUtils.k(this, R.string.lurker_mode_popout_success_header, new Object[]{viewState.getGuildName()}, null, 4));
         getBinding().f2494b.setOnClickListener(new AnonymousClass1());
     }
 
@@ -146,7 +147,7 @@ public final class MemberVerificationSuccessDialog extends AppDialog {
     public void onViewBoundOrOnResume() {
         super.onViewBoundOrOnResume();
         Observable<MemberVerificationSuccessViewModel.ViewState> observableR = getViewModel().observeViewState().r();
-        m.checkNotNullExpressionValue(observableR, "viewModel\n        .obser…  .distinctUntilChanged()");
+        Intrinsics3.checkNotNullExpressionValue(observableR, "viewModel\n        .obser…  .distinctUntilChanged()");
         ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.bindToComponentLifecycle$default(observableR, this, null, 2, null), MemberVerificationSuccessDialog.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass1(this), 62, (Object) null);
     }
 }

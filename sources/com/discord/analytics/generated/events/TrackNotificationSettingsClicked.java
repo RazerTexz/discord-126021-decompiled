@@ -1,14 +1,14 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackNotificationSettingsClicked.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackNotificationSettingsClicked implements AnalyticsSchema, TrackBaseReceiver {
+public final /* data */ class TrackNotificationSettingsClicked implements AnalyticsSchema, TrackBase2 {
     private final Long currentStatus = null;
     private final CharSequence settingType = null;
     private TrackBase trackBase;
@@ -22,7 +22,7 @@ public final /* data */ class TrackNotificationSettingsClicked implements Analyt
             return false;
         }
         TrackNotificationSettingsClicked trackNotificationSettingsClicked = (TrackNotificationSettingsClicked) other;
-        return m.areEqual(this.settingType, trackNotificationSettingsClicked.settingType) && m.areEqual(this.currentStatus, trackNotificationSettingsClicked.currentStatus);
+        return Intrinsics3.areEqual(this.settingType, trackNotificationSettingsClicked.settingType) && Intrinsics3.areEqual(this.currentStatus, trackNotificationSettingsClicked.currentStatus);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -39,9 +39,9 @@ public final /* data */ class TrackNotificationSettingsClicked implements Analyt
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackNotificationSettingsClicked(settingType=");
+        StringBuilder sbU = outline.U("TrackNotificationSettingsClicked(settingType=");
         sbU.append(this.settingType);
         sbU.append(", currentStatus=");
-        return a.G(sbU, this.currentStatus, ")");
+        return outline.G(sbU, this.currentStatus, ")");
     }
 }

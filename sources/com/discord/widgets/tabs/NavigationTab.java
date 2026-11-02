@@ -1,6 +1,6 @@
 package com.discord.widgets.tabs;
 
-import com.discord.widgets.chat.AutocompleteTypes;
+import com.discord.widgets.chat.AutocompleteUtils2;
 
 /* JADX INFO: compiled from: NavigationTab.kt */
 /* JADX INFO: loaded from: classes.dex */

@@ -20,9 +20,12 @@ import androidx.core.content.ContextCompat;
 import androidx.exifinterface.media.ExifInterface;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-import b.a.d.j;
-import b.d.b.a.a;
-import b.k.a.a.f;
+import b.a.d.AppScreen2;
+import b.a.d.AppToast;
+import b.a.d.o;
+import b.a.k.FormatUtils;
+import b.d.b.a.outline;
+import b.k.a.a.ColorPickerDialogListener;
 import com.discord.R;
 import com.discord.api.permission.Permission;
 import com.discord.api.role.GuildRole;
@@ -41,15 +44,15 @@ import com.discord.utilities.rx.ObservableExtensionsKt;
 import com.discord.utilities.stateful.StatefulViews;
 import com.discord.utilities.view.extensions.ViewExtensions;
 import com.discord.utilities.viewbinding.FragmentViewBindingDelegate;
-import com.discord.utilities.viewbinding.FragmentViewBindingDelegateKt;
+import com.discord.utilities.viewbinding.FragmentViewBindingDelegate3;
 import com.discord.views.CheckedSetting;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputLayout;
 import com.jaredrummler.android.colorpicker.ColorPickerDialog;
-import d0.t.n;
-import d0.z.d.k;
-import d0.z.d.m;
-import d0.z.d.o;
+import d0.t.Collections2;
+import d0.z.d.FunctionReferenceImpl;
+import d0.z.d.Intrinsics3;
+import d0.z.d.Lambda;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.Map;
@@ -66,7 +69,7 @@ import rx.functions.Action2;
 /* JADX INFO: compiled from: WidgetServerSettingsEditRole.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetServerSettingsEditRole extends AppFragment {
-    public static final /* synthetic */ KProperty[] $$delegatedProperties = {a.d0(WidgetServerSettingsEditRole.class, "binding", "getBinding()Lcom/discord/databinding/WidgetEditRoleBinding;", 0)};
+    public static final /* synthetic */ KProperty[] $$delegatedProperties = {outline.d0(WidgetServerSettingsEditRole.class, "binding", "getBinding()Lcom/discord/databinding/WidgetEditRoleBinding;", 0)};
     private static final String DIALOG_TAG_COLOR_PICKER = "DIALOG_TAG_COLOR_PICKER";
 
     /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
@@ -90,13 +93,13 @@ public final class WidgetServerSettingsEditRole extends AppFragment {
         @Override // android.view.View.OnClickListener
         public final void onClick(View view) {
             TextInputLayout textInputLayout = WidgetServerSettingsEditRole.access$getBinding$p(WidgetServerSettingsEditRole.this).f2371b;
-            m.checkNotNullExpressionValue(textInputLayout, "binding.editRoleName");
+            Intrinsics3.checkNotNullExpressionValue(textInputLayout, "binding.editRoleName");
             String textOrEmpty = ViewExtensions.getTextOrEmpty(textInputLayout);
             int length = textOrEmpty.length() - 1;
             int i = 0;
             boolean z2 = false;
             while (i <= length) {
-                boolean z3 = m.compare(textOrEmpty.charAt(!z2 ? i : length), 32) <= 0;
+                boolean z3 = Intrinsics3.compare(textOrEmpty.charAt(!z2 ? i : length), 32) <= 0;
                 if (z2) {
                     if (!z3) {
                         break;
@@ -111,11 +114,11 @@ public final class WidgetServerSettingsEditRole extends AppFragment {
             }
             String string = textOrEmpty.subSequence(i, length + 1).toString();
             if (!(string.length() > 0)) {
-                b.a.d.m.i(WidgetServerSettingsEditRole.this, R.string.form_label_role_enter_name, 0, 4);
+                AppToast.i(WidgetServerSettingsEditRole.this, R.string.form_label_role_enter_name, 0, 4);
                 return;
             }
             TextInputLayout textInputLayout2 = WidgetServerSettingsEditRole.access$getBinding$p(WidgetServerSettingsEditRole.this).f2371b;
-            m.checkNotNullExpressionValue(textInputLayout2, "binding.editRoleName");
+            Intrinsics3.checkNotNullExpressionValue(textInputLayout2, "binding.editRoleName");
             textInputLayout2.setSelected(false);
             RestAPIParams.Role roleCreateWithRole = RestAPIParams.Role.INSTANCE.createWithRole(this.$data.getRole());
             roleCreateWithRole.setName(string);
@@ -146,35 +149,35 @@ public final class WidgetServerSettingsEditRole extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.servers.WidgetServerSettingsEditRole$launchColorPicker$1, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetServerSettingsEditRole.kt */
-    public final class AnonymousClass1 implements f {
+    public final class AnonymousClass1 implements ColorPickerDialogListener {
         public final /* synthetic */ Model $data;
 
         public AnonymousClass1(Model model) {
             this.$data = model;
         }
 
-        @Override // b.k.a.a.f
+        @Override // b.k.a.a.ColorPickerDialogListener
         public void onColorReset(int dialogId) {
             RestAPIParams.Role roleCreateWithRole = RestAPIParams.Role.INSTANCE.createWithRole(this.$data.getRole());
             roleCreateWithRole.setColor(0);
             WidgetServerSettingsEditRole.access$patchRole(WidgetServerSettingsEditRole.this, this.$data.getGuildId(), roleCreateWithRole);
         }
 
-        @Override // b.k.a.a.f
+        @Override // b.k.a.a.ColorPickerDialogListener
         public void onColorSelected(int dialogId, int selectedColor) {
             RestAPIParams.Role roleCreateWithRole = RestAPIParams.Role.INSTANCE.createWithRole(this.$data.getRole());
             roleCreateWithRole.setColor(Integer.valueOf(ColorCompat.INSTANCE.removeAlphaComponent(selectedColor)));
             WidgetServerSettingsEditRole.access$patchRole(WidgetServerSettingsEditRole.this, this.$data.getGuildId(), roleCreateWithRole);
         }
 
-        @Override // b.k.a.a.f
+        @Override // b.k.a.a.ColorPickerDialogListener
         public void onDialogDismissed(int dialogId) {
         }
     }
 
     /* JADX INFO: renamed from: com.discord.widgets.servers.WidgetServerSettingsEditRole$onViewBoundOrOnResume$1, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetServerSettingsEditRole.kt */
-    public final /* synthetic */ class AnonymousClass1 extends k implements Function1<Model, Unit> {
+    public final /* synthetic */ class AnonymousClass1 extends FunctionReferenceImpl implements Function1<Model, Unit> {
         public AnonymousClass1(WidgetServerSettingsEditRole widgetServerSettingsEditRole) {
             super(1, widgetServerSettingsEditRole, WidgetServerSettingsEditRole.class, "configureUI", "configureUI(Lcom/discord/widgets/servers/WidgetServerSettingsEditRole$Model;)V", 0);
         }
@@ -208,7 +211,7 @@ public final class WidgetServerSettingsEditRole extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.servers.WidgetServerSettingsEditRole$setupActionBar$1, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetServerSettingsEditRole.kt */
-    public final class AnonymousClass1 extends o implements Function2<String, Integer, SpannableStringBuilder> {
+    public final class AnonymousClass1 extends Lambda implements Function2<String, Integer, SpannableStringBuilder> {
         public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
 
         public AnonymousClass1() {
@@ -221,7 +224,7 @@ public final class WidgetServerSettingsEditRole extends AppFragment {
         }
 
         public final SpannableStringBuilder invoke(String str, @ColorInt int i) {
-            m.checkNotNullParameter(str, NotificationCompat.MessagingStyle.Message.KEY_TEXT);
+            Intrinsics3.checkNotNullParameter(str, NotificationCompat.MessagingStyle.Message.KEY_TEXT);
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(str);
             spannableStringBuilder.setSpan(new ForegroundColorSpan(i), 0, spannableStringBuilder.length(), 0);
             return spannableStringBuilder;
@@ -257,7 +260,7 @@ public final class WidgetServerSettingsEditRole extends AppFragment {
             WidgetServerSettingsEditRole.access$getBinding$p(WidgetServerSettingsEditRole.this).f2371b.clearFocus();
             RestAPIParams.Role roleCreateWithRole = RestAPIParams.Role.INSTANCE.createWithRole(this.$data.getRole());
             CheckedSetting checkedSetting = WidgetServerSettingsEditRole.access$getBinding$p(WidgetServerSettingsEditRole.this).q;
-            m.checkNotNullExpressionValue(checkedSetting, "binding.roleSettingsHoistCheckedsetting");
+            Intrinsics3.checkNotNullExpressionValue(checkedSetting, "binding.roleSettingsHoistCheckedsetting");
             roleCreateWithRole.setHoist(Boolean.valueOf(!checkedSetting.isChecked()));
             WidgetServerSettingsEditRole.access$patchRole(WidgetServerSettingsEditRole.this, this.$data.getGuildId(), roleCreateWithRole);
         }
@@ -270,8 +273,8 @@ public final class WidgetServerSettingsEditRole extends AppFragment {
 
         /* JADX INFO: renamed from: com.discord.widgets.servers.WidgetServerSettingsEditRole$setupMenu$1$1, reason: invalid class name and collision with other inner class name */
         /* JADX INFO: compiled from: WidgetServerSettingsEditRole.kt */
-        public final class C04291<T> implements Action1<Void> {
-            public C04291() {
+        public final class C03091<T> implements Action1<Void> {
+            public C03091() {
             }
 
             @Override // rx.functions.Action1
@@ -299,9 +302,9 @@ public final class WidgetServerSettingsEditRole extends AppFragment {
 
         /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
         public final void call2(MenuItem menuItem, Context context) {
-            m.checkNotNullParameter(menuItem, "menuItem");
+            Intrinsics3.checkNotNullParameter(menuItem, "menuItem");
             if (menuItem.getItemId() == R.id.menu_edit_role_delete) {
-                ObservableExtensionsKt.ui$default(ObservableExtensionsKt.restSubscribeOn$default(RestAPI.INSTANCE.getApi().deleteRole(this.$data.getGuildId(), this.$data.getRole().getId()), false, 1, null), WidgetServerSettingsEditRole.this, null, 2, null).k(b.a.d.o.j(new C04291(), WidgetServerSettingsEditRole.this.getContext(), null, 4));
+                ObservableExtensionsKt.ui$default(ObservableExtensionsKt.restSubscribeOn$default(RestAPI.INSTANCE.getApi().deleteRole(this.$data.getGuildId(), this.$data.getRole().getId()), false, 1, null), WidgetServerSettingsEditRole.this, null, 2, null).k(o.j(new C03091(), WidgetServerSettingsEditRole.this.getContext(), null, 4));
             }
         }
     }
@@ -318,7 +321,7 @@ public final class WidgetServerSettingsEditRole extends AppFragment {
         @Override // android.view.View.OnClickListener
         public final void onClick(View view) {
             WidgetServerSettingsEditRole widgetServerSettingsEditRole = WidgetServerSettingsEditRole.this;
-            b.a.d.m.j(widgetServerSettingsEditRole, WidgetServerSettingsEditRole.access$getLockMessage(widgetServerSettingsEditRole, this.$data, true), 0, 4);
+            AppToast.j(widgetServerSettingsEditRole, WidgetServerSettingsEditRole.access$getLockMessage(widgetServerSettingsEditRole, this.$data, true), 0, 4);
         }
     }
 
@@ -334,7 +337,7 @@ public final class WidgetServerSettingsEditRole extends AppFragment {
         @Override // android.view.View.OnClickListener
         public final void onClick(View view) {
             WidgetServerSettingsEditRole widgetServerSettingsEditRole = WidgetServerSettingsEditRole.this;
-            b.a.d.m.j(widgetServerSettingsEditRole, WidgetServerSettingsEditRole.access$getLockMessage(widgetServerSettingsEditRole, this.$data, true), 0, 4);
+            AppToast.j(widgetServerSettingsEditRole, WidgetServerSettingsEditRole.access$getLockMessage(widgetServerSettingsEditRole, this.$data, true), 0, 4);
         }
     }
 
@@ -352,7 +355,7 @@ public final class WidgetServerSettingsEditRole extends AppFragment {
             WidgetServerSettingsEditRole.access$getBinding$p(WidgetServerSettingsEditRole.this).f2371b.clearFocus();
             RestAPIParams.Role roleCreateWithRole = RestAPIParams.Role.INSTANCE.createWithRole(this.$data.getRole());
             CheckedSetting checkedSetting = WidgetServerSettingsEditRole.access$getBinding$p(WidgetServerSettingsEditRole.this).D;
-            m.checkNotNullExpressionValue(checkedSetting, "binding.roleSettingsMentionableCheckedsetting");
+            Intrinsics3.checkNotNullExpressionValue(checkedSetting, "binding.roleSettingsMentionableCheckedsetting");
             roleCreateWithRole.setMentionable(Boolean.valueOf(!checkedSetting.isChecked()));
             WidgetServerSettingsEditRole.access$patchRole(WidgetServerSettingsEditRole.this, this.$data.getGuildId(), roleCreateWithRole);
         }
@@ -364,11 +367,11 @@ public final class WidgetServerSettingsEditRole extends AppFragment {
         }
 
         public final void launch(long guildId, long roleId, Context context) {
-            m.checkNotNullParameter(context, "context");
+            Intrinsics3.checkNotNullParameter(context, "context");
             Intent intent = new Intent();
             intent.putExtra("INTENT_EXTRA_GUILD_ID", guildId);
             intent.putExtra(WidgetServerSettingsEditRole.INTENT_EXTRA_ROLE_ID, roleId);
-            j.d(context, WidgetServerSettingsEditRole.class, intent);
+            AppScreen2.d(context, WidgetServerSettingsEditRole.class, intent);
         }
 
         public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
@@ -440,8 +443,8 @@ public final class WidgetServerSettingsEditRole extends AppFragment {
             }
 
             public final Observable<Model> get(long guildId, long roleId) {
-                Observable<Model> observableR = StoreUser.observeMe$default(StoreStream.INSTANCE.getUsers(), false, 1, null).Y(new WidgetServerSettingsEditRole$Model$Companion$get$1(guildId, roleId)).r();
-                m.checkNotNullExpressionValue(observableR, "getUsers()\n            .…  .distinctUntilChanged()");
+                Observable<Model> observableR = StoreUser.observeMe$default(StoreStream.INSTANCE.getUsers(), false, 1, null).Y(new WidgetServerSettingsEditRole2(guildId, roleId)).r();
+                Intrinsics3.checkNotNullExpressionValue(observableR, "getUsers()\n            .…  .distinctUntilChanged()");
                 return observableR;
             }
 
@@ -461,7 +464,7 @@ public final class WidgetServerSettingsEditRole extends AppFragment {
         }
 
         public Model(boolean z2, long j, GuildRole guildRole, ManageStatus manageStatus, Long l, long j2, boolean z3, boolean z4, boolean z5) {
-            m.checkNotNullParameter(guildRole, "role");
+            Intrinsics3.checkNotNullParameter(guildRole, "role");
             this.owner = z2;
             this.guildId = j;
             this.role = guildRole;
@@ -483,7 +486,7 @@ public final class WidgetServerSettingsEditRole extends AppFragment {
         }
 
         public final Model copy(boolean owner, long guildId, GuildRole role, ManageStatus manageStatus, Long myPermissions, long myPermissionsFromOtherRoles, boolean isCommunityServer, boolean useNewThreadPermissions, boolean hasGuildCommunicationDisabledFeature) {
-            m.checkNotNullParameter(role, "role");
+            Intrinsics3.checkNotNullParameter(role, "role");
             return new Model(owner, guildId, role, manageStatus, myPermissions, myPermissionsFromOtherRoles, isCommunityServer, useNewThreadPermissions, hasGuildCommunicationDisabledFeature);
         }
 
@@ -495,7 +498,7 @@ public final class WidgetServerSettingsEditRole extends AppFragment {
                 return false;
             }
             Model model = (Model) other;
-            return this.owner == model.owner && this.guildId == model.guildId && m.areEqual(this.role, model.role) && m.areEqual(this.manageStatus, model.manageStatus) && m.areEqual(this.myPermissions, model.myPermissions) && this.myPermissionsFromOtherRoles == model.myPermissionsFromOtherRoles && this.isCommunityServer == model.isCommunityServer && this.useNewThreadPermissions == model.useNewThreadPermissions && this.hasGuildCommunicationDisabledFeature == model.hasGuildCommunicationDisabledFeature;
+            return this.owner == model.owner && this.guildId == model.guildId && Intrinsics3.areEqual(this.role, model.role) && Intrinsics3.areEqual(this.manageStatus, model.manageStatus) && Intrinsics3.areEqual(this.myPermissions, model.myPermissions) && this.myPermissionsFromOtherRoles == model.myPermissionsFromOtherRoles && this.isCommunityServer == model.isCommunityServer && this.useNewThreadPermissions == model.useNewThreadPermissions && this.hasGuildCommunicationDisabledFeature == model.hasGuildCommunicationDisabledFeature;
         }
 
         /* JADX INFO: renamed from: component2, reason: from getter */
@@ -633,7 +636,7 @@ public final class WidgetServerSettingsEditRole extends AppFragment {
         }
 
         public String toString() {
-            StringBuilder sbU = a.U("Model(owner=");
+            StringBuilder sbU = outline.U("Model(owner=");
             sbU.append(this.owner);
             sbU.append(", guildId=");
             sbU.append(this.guildId);
@@ -650,7 +653,7 @@ public final class WidgetServerSettingsEditRole extends AppFragment {
             sbU.append(", useNewThreadPermissions=");
             sbU.append(this.useNewThreadPermissions);
             sbU.append(", hasGuildCommunicationDisabledFeature=");
-            return a.O(sbU, this.hasGuildCommunicationDisabledFeature, ")");
+            return outline.O(sbU, this.hasGuildCommunicationDisabledFeature, ")");
         }
     }
 
@@ -676,7 +679,7 @@ public final class WidgetServerSettingsEditRole extends AppFragment {
 
     public WidgetServerSettingsEditRole() {
         super(R.layout.widget_edit_role);
-        this.binding = FragmentViewBindingDelegateKt.viewBinding$default(this, WidgetServerSettingsEditRole$binding$2.INSTANCE, null, 2, null);
+        this.binding = FragmentViewBindingDelegate3.viewBinding$default(this, WidgetServerSettingsEditRole3.INSTANCE, null, 2, null);
         this.state = new StatefulViews(R.id.edit_role_name);
     }
 
@@ -723,11 +726,11 @@ public final class WidgetServerSettingsEditRole extends AppFragment {
         }
         CheckedSetting.i(getBinding().M, getString(R.string.role_permissions_send_messages_description), false, 2);
         getBinding().N.setText(getString(R.string.interim_send_messages_in_threads));
-        getBinding().N.h(b.a.k.b.k(this, R.string.interim_role_permissions_send_messages_in_threads_description, new Object[0], null, 4), true);
+        getBinding().N.h(FormatUtils.k(this, R.string.interim_role_permissions_send_messages_in_threads_description, new Object[0], null, 4), true);
         getBinding().m.setText(getString(R.string.interim_create_public_threads));
-        getBinding().m.h(b.a.k.b.k(this, R.string.interim_role_permissions_create_public_threads_description, new Object[0], null, 4), true);
+        getBinding().m.h(FormatUtils.k(this, R.string.interim_role_permissions_create_public_threads_description, new Object[0], null, 4), true);
         getBinding().l.setText(getString(R.string.interim_create_private_threads));
-        getBinding().l.h(b.a.k.b.k(this, R.string.interim_role_permissions_create_private_threads_description, new Object[0], null, 4), true);
+        getBinding().l.h(FormatUtils.k(this, R.string.interim_role_permissions_create_private_threads_description, new Object[0], null, 4), true);
     }
 
     private final void enableSetting(CheckedSetting setting, Model data, long permission) {
@@ -743,7 +746,7 @@ public final class WidgetServerSettingsEditRole extends AppFragment {
         String string;
         if (everyoneLocked && data.isEveryoneRole()) {
             String string2 = getString(R.string.form_label_disabled_for_everyone);
-            m.checkNotNullExpressionValue(string2, "getString(R.string.form_…el_disabled_for_everyone)");
+            Intrinsics3.checkNotNullExpressionValue(string2, "getString(R.string.form_…el_disabled_for_everyone)");
             return string2;
         }
         Model.ManageStatus manageStatus = data.getManageStatus();
@@ -763,7 +766,7 @@ public final class WidgetServerSettingsEditRole extends AppFragment {
         } else {
             string = "";
         }
-        m.checkNotNullExpressionValue(string, "when (data.manageStatus)…s)\n      else -> \"\"\n    }");
+        Intrinsics3.checkNotNullExpressionValue(string, "when (data.manageStatus)…s)\n      else -> \"\"\n    }");
         return string;
     }
 
@@ -780,17 +783,17 @@ public final class WidgetServerSettingsEditRole extends AppFragment {
 
     @Override // com.discord.app.AppFragment
     public void onViewBound(View view) {
-        m.checkNotNullParameter(view, "view");
+        Intrinsics3.checkNotNullParameter(view, "view");
         super.onViewBound(view);
         setRetainInstance(true);
         this.state.setupUnsavedChangesConfirmation(this);
         StatefulViews statefulViews = this.state;
         FloatingActionButton floatingActionButton = getBinding().c;
         TextInputLayout textInputLayout = getBinding().f2371b;
-        m.checkNotNullExpressionValue(textInputLayout, "binding.editRoleName");
+        Intrinsics3.checkNotNullExpressionValue(textInputLayout, "binding.editRoleName");
         statefulViews.setupTextWatcherWithSaveAction(this, floatingActionButton, textInputLayout);
         FloatingActionButton floatingActionButton2 = getBinding().c;
-        m.checkNotNullExpressionValue(floatingActionButton2, "binding.editRoleSave");
+        Intrinsics3.checkNotNullExpressionValue(floatingActionButton2, "binding.editRoleSave");
         floatingActionButton2.setVisibility(8);
     }
 
@@ -799,7 +802,7 @@ public final class WidgetServerSettingsEditRole extends AppFragment {
         super.onViewBoundOrOnResume();
         ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.computationLatest(Model.INSTANCE.get(getMostRecentIntent().getLongExtra("INTENT_EXTRA_GUILD_ID", -1L), getMostRecentIntent().getLongExtra(INTENT_EXTRA_ROLE_ID, -1L))), this, null, 2, null), WidgetServerSettingsEditRole.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass1(this), 62, (Object) null);
         FragmentManager parentFragmentManager = getParentFragmentManager();
-        m.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
+        Intrinsics3.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
         Fragment fragmentFindFragmentByTag = parentFragmentManager.findFragmentByTag(DIALOG_TAG_COLOR_PICKER);
         if (fragmentFindFragmentByTag != null) {
             parentFragmentManager.beginTransaction().remove(fragmentFindFragmentByTag).commit();
@@ -807,35 +810,35 @@ public final class WidgetServerSettingsEditRole extends AppFragment {
     }
 
     private final void patchRole(long guildId, RestAPIParams.Role roleParams) {
-        ObservableExtensionsKt.ui$default(ObservableExtensionsKt.restSubscribeOn$default(RestAPI.INSTANCE.getApi().updateRole(guildId, roleParams.getId(), roleParams), false, 1, null), this, null, 2, null).k(b.a.d.o.j(AnonymousClass1.INSTANCE, getContext(), null, 4));
+        ObservableExtensionsKt.ui$default(ObservableExtensionsKt.restSubscribeOn$default(RestAPI.INSTANCE.getApi().updateRole(guildId, roleParams.getId(), roleParams), false, 1, null), this, null, 2, null).k(o.j(AnonymousClass1.INSTANCE, getContext(), null, 4));
     }
 
     private final void setRoleIcon(Model data) {
         if (data.getRole().getIcon() != null) {
             String icon = data.getRole().getIcon();
-            m.checkNotNull(icon);
+            Intrinsics3.checkNotNull(icon);
             if (icon.length() > 0) {
                 getBinding().J.setRole(data.getRole(), Long.valueOf(data.getGuildId()));
                 TextView textView = getBinding().L;
-                m.checkNotNullExpressionValue(textView, "binding.roleSettingsRoleIconHeader");
+                Intrinsics3.checkNotNullExpressionValue(textView, "binding.roleSettingsRoleIconHeader");
                 textView.setVisibility(0);
                 View view = getBinding().K;
-                m.checkNotNullExpressionValue(view, "binding.roleSettingsRoleIconDivider");
+                Intrinsics3.checkNotNullExpressionValue(view, "binding.roleSettingsRoleIconDivider");
                 view.setVisibility(0);
                 RelativeLayout relativeLayout = getBinding().r;
-                m.checkNotNullExpressionValue(relativeLayout, "binding.roleSettingsIconContainer");
+                Intrinsics3.checkNotNullExpressionValue(relativeLayout, "binding.roleSettingsIconContainer");
                 relativeLayout.setVisibility(0);
                 return;
             }
         }
         TextView textView2 = getBinding().L;
-        m.checkNotNullExpressionValue(textView2, "binding.roleSettingsRoleIconHeader");
+        Intrinsics3.checkNotNullExpressionValue(textView2, "binding.roleSettingsRoleIconHeader");
         textView2.setVisibility(8);
         View view2 = getBinding().K;
-        m.checkNotNullExpressionValue(view2, "binding.roleSettingsRoleIconDivider");
+        Intrinsics3.checkNotNullExpressionValue(view2, "binding.roleSettingsRoleIconDivider");
         view2.setVisibility(8);
         RelativeLayout relativeLayout2 = getBinding().r;
-        m.checkNotNullExpressionValue(relativeLayout2, "binding.roleSettingsIconContainer");
+        Intrinsics3.checkNotNullExpressionValue(relativeLayout2, "binding.roleSettingsIconContainer");
         relativeLayout2.setVisibility(8);
     }
 
@@ -859,7 +862,7 @@ public final class WidgetServerSettingsEditRole extends AppFragment {
             AnonymousClass1 anonymousClass1 = AnonymousClass1.INSTANCE;
             AppFragment.setActionBarDisplayHomeAsUpEnabled$default(this, false, 1, null);
             String string = getString(R.string.form_label_role_settings);
-            m.checkNotNullExpressionValue(string, "getString(R.string.form_label_role_settings)");
+            Intrinsics3.checkNotNullExpressionValue(string, "getString(R.string.form_label_role_settings)");
             setActionBarTitle(anonymousClass1.invoke(string, color));
             setActionBarSubtitle(anonymousClass1.invoke(data.getRole().getName(), color));
             toolbar.setBackgroundColor(roleColor);
@@ -876,34 +879,34 @@ public final class WidgetServerSettingsEditRole extends AppFragment {
 
     private final void setupColorSetting(Model data) {
         View view = getBinding().n;
-        m.checkNotNullExpressionValue(view, "binding.roleSettingsCurrentColorDisplay");
+        Intrinsics3.checkNotNullExpressionValue(view, "binding.roleSettingsCurrentColorDisplay");
         Drawable drawable = ContextCompat.getDrawable(view.getContext(), R.drawable.drawable_circle_white_1);
         if (drawable != null) {
             drawable.setColorFilter(new PorterDuffColorFilter(RoleUtils.getRoleColor$default(data.getRole(), requireContext(), null, 2, null), PorterDuff.Mode.SRC_ATOP));
             View view2 = getBinding().n;
-            m.checkNotNullExpressionValue(view2, "binding.roleSettingsCurrentColorDisplay");
+            Intrinsics3.checkNotNullExpressionValue(view2, "binding.roleSettingsCurrentColorDisplay");
             view2.setBackground(drawable);
         }
         if (!data.canManage() || data.isEveryoneRole()) {
             View view3 = getBinding().i;
-            m.checkNotNullExpressionValue(view3, "binding.roleSettingsColorDisabledOverlay");
+            Intrinsics3.checkNotNullExpressionValue(view3, "binding.roleSettingsColorDisabledOverlay");
             view3.setVisibility(0);
             getBinding().i.setOnClickListener(new AnonymousClass2(data));
             return;
         }
         getBinding().j.setOnClickListener(new AnonymousClass1(data));
         View view4 = getBinding().i;
-        m.checkNotNullExpressionValue(view4, "binding.roleSettingsColorDisabledOverlay");
+        Intrinsics3.checkNotNullExpressionValue(view4, "binding.roleSettingsColorDisabledOverlay");
         view4.setVisibility(8);
         getBinding().i.setOnClickListener(null);
     }
 
     private final void setupHoistAndMentionSettings(Model data) {
         CheckedSetting checkedSetting = getBinding().q;
-        m.checkNotNullExpressionValue(checkedSetting, "binding.roleSettingsHoistCheckedsetting");
+        Intrinsics3.checkNotNullExpressionValue(checkedSetting, "binding.roleSettingsHoistCheckedsetting");
         checkedSetting.setChecked(data.getRole().getHoist());
         CheckedSetting checkedSetting2 = getBinding().D;
-        m.checkNotNullExpressionValue(checkedSetting2, "binding.roleSettingsMentionableCheckedsetting");
+        Intrinsics3.checkNotNullExpressionValue(checkedSetting2, "binding.roleSettingsMentionableCheckedsetting");
         checkedSetting2.setChecked(data.getRole().getMentionable());
         if (data.canManage() && !data.isEveryoneRole()) {
             getBinding().q.e(new AnonymousClass1(data));
@@ -926,8 +929,8 @@ public final class WidgetServerSettingsEditRole extends AppFragment {
     /* JADX WARN: Code duplicated, block: B:54:0x0297  */
     private final void setupPermissionsSettings(Model data) {
         long j;
-        for (CheckedSetting checkedSetting : n.listOf((Object[]) new CheckedSetting[]{getBinding().e, getBinding().f, getBinding().g, getBinding().h, getBinding().k, getBinding().p, getBinding().f2372s, getBinding().t, getBinding().w, getBinding().A, getBinding().f2373x, getBinding().u, getBinding().f2374y, getBinding().f2375z, getBinding().E, getBinding().B, getBinding().C, getBinding().G, getBinding().H, getBinding().M, getBinding().N, getBinding().m, getBinding().l, getBinding().O, getBinding().P, getBinding().Q, getBinding().R, getBinding().d, getBinding().S, getBinding().U, getBinding().Y, getBinding().f2370a0, getBinding().X, getBinding().V, getBinding().W, getBinding().Z, getBinding().F, getBinding().T, getBinding().I, getBinding().v})) {
-            m.checkNotNullExpressionValue(checkedSetting, "setting");
+        for (CheckedSetting checkedSetting : Collections2.listOf((Object[]) new CheckedSetting[]{getBinding().e, getBinding().f, getBinding().g, getBinding().h, getBinding().k, getBinding().p, getBinding().f2372s, getBinding().t, getBinding().w, getBinding().A, getBinding().f2373x, getBinding().u, getBinding().f2374y, getBinding().f2375z, getBinding().E, getBinding().B, getBinding().C, getBinding().G, getBinding().H, getBinding().M, getBinding().N, getBinding().m, getBinding().l, getBinding().O, getBinding().P, getBinding().Q, getBinding().R, getBinding().d, getBinding().S, getBinding().U, getBinding().Y, getBinding().f2370a0, getBinding().X, getBinding().V, getBinding().W, getBinding().Z, getBinding().F, getBinding().T, getBinding().I, getBinding().v})) {
+            Intrinsics3.checkNotNullExpressionValue(checkedSetting, "setting");
             switch (checkedSetting.getId()) {
                 case R.id.role_settings_add_reactions /* 2131364965 */:
                     j = 64;
@@ -1091,26 +1094,26 @@ public final class WidgetServerSettingsEditRole extends AppFragment {
             checkedSetting.setVisibility(((j > Permission.VIEW_GUILD_ANALYTICS ? 1 : (j == Permission.VIEW_GUILD_ANALYTICS ? 0 : -1)) == 0 && !data.isCommunityServer()) ^ true ? 0 : 8);
         }
         CheckedSetting checkedSetting2 = getBinding().E;
-        m.checkNotNullExpressionValue(checkedSetting2, "binding.roleSettingsModerateMember");
+        Intrinsics3.checkNotNullExpressionValue(checkedSetting2, "binding.roleSettingsModerateMember");
         checkedSetting2.setVisibility(data.getHasGuildCommunicationDisabledFeature() ? 0 : 8);
     }
 
     private final void setupRoleName(Model data) {
         TextInputLayout textInputLayout = getBinding().f2371b;
-        m.checkNotNullExpressionValue(textInputLayout, "binding.editRoleName");
+        Intrinsics3.checkNotNullExpressionValue(textInputLayout, "binding.editRoleName");
         StatefulViews statefulViews = this.state;
         TextInputLayout textInputLayout2 = getBinding().f2371b;
-        m.checkNotNullExpressionValue(textInputLayout2, "binding.editRoleName");
+        Intrinsics3.checkNotNullExpressionValue(textInputLayout2, "binding.editRoleName");
         ViewExtensions.setText(textInputLayout, (CharSequence) statefulViews.get(textInputLayout2.getId(), data.getRole().getName()));
         if (!data.canManage() || data.isEveryoneRole()) {
             View view = getBinding().o;
-            m.checkNotNullExpressionValue(view, "binding.roleSettingsEditNameDisabledOverlay");
+            Intrinsics3.checkNotNullExpressionValue(view, "binding.roleSettingsEditNameDisabledOverlay");
             view.setVisibility(0);
             getBinding().o.setOnClickListener(new AnonymousClass1(data));
             return;
         }
         View view2 = getBinding().o;
-        m.checkNotNullExpressionValue(view2, "binding.roleSettingsEditNameDisabledOverlay");
+        Intrinsics3.checkNotNullExpressionValue(view2, "binding.roleSettingsEditNameDisabledOverlay");
         view2.setVisibility(8);
         getBinding().o.setOnClickListener(null);
     }

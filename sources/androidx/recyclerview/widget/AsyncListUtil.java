@@ -7,7 +7,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.UiThread;
 import androidx.annotation.WorkerThread;
-import b.d.b.a.a;
+import b.d.b.a.outline;
 
 /* JADX INFO: loaded from: classes.dex */
 public class AsyncListUtil<T> {
@@ -45,7 +45,7 @@ public class AsyncListUtil<T> {
             }
             TileList.Tile<T> tileAddOrReplace = AsyncListUtil.this.mTileList.addOrReplace(tile);
             if (tileAddOrReplace != null) {
-                StringBuilder sbU = a.U("duplicate tile @");
+                StringBuilder sbU = outline.U("duplicate tile @");
                 sbU.append(tileAddOrReplace.mStartPosition);
                 Log.e(AsyncListUtil.TAG, sbU.toString());
                 AsyncListUtil.this.mBackgroundProxy.recycleTile(tileAddOrReplace);
@@ -184,7 +184,7 @@ public class AsyncListUtil<T> {
     }
 
     public void log(String str, Object... objArr) {
-        StringBuilder sbU = a.U("[MAIN] ");
+        StringBuilder sbU = outline.U("[MAIN] ");
         sbU.append(String.format(str, objArr));
         Log.d(TAG, sbU.toString());
     }
@@ -313,7 +313,7 @@ public class AsyncListUtil<T> {
         }
 
         private void log(String str, Object... objArr) {
-            StringBuilder sbU = a.U("[BKGR] ");
+            StringBuilder sbU = outline.U("[BKGR] ");
             sbU.append(String.format(str, objArr));
             Log.d(AsyncListUtil.TAG, sbU.toString());
         }

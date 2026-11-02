@@ -1,7 +1,7 @@
 package org.webrtc;
 
 import androidx.annotation.Nullable;
-import h0.c.s0;
+import h0.c.VideoEncoderFactory2;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -21,12 +21,12 @@ public class SoftwareVideoEncoderFactory implements VideoEncoderFactory {
 
     @Override // org.webrtc.VideoEncoderFactory
     public /* synthetic */ VideoEncoderFactory.VideoEncoderSelector getEncoderSelector() {
-        return s0.a(this);
+        return VideoEncoderFactory2.a(this);
     }
 
     @Override // org.webrtc.VideoEncoderFactory
     public /* synthetic */ VideoCodecInfo[] getImplementations() {
-        return s0.b(this);
+        return VideoEncoderFactory2.b(this);
     }
 
     @Override // org.webrtc.VideoEncoderFactory

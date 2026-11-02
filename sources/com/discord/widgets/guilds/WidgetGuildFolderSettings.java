@@ -17,11 +17,12 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentViewModelLazyKt;
-import b.a.d.g0;
-import b.a.d.i0;
-import b.a.d.j;
-import b.d.b.a.a;
-import b.k.a.a.f;
+import b.a.d.AppScreen2;
+import b.a.d.AppToast;
+import b.a.d.AppViewModelDelegates3;
+import b.a.d.AppViewModelDelegates5;
+import b.d.b.a.outline;
+import b.k.a.a.ColorPickerDialogListener;
 import com.discord.R;
 import com.discord.app.AppFragment;
 import com.discord.databinding.WidgetGuildFolderSettingsBinding;
@@ -31,16 +32,16 @@ import com.discord.utilities.font.FontUtils;
 import com.discord.utilities.rx.ObservableExtensionsKt;
 import com.discord.utilities.view.extensions.ViewExtensions;
 import com.discord.utilities.viewbinding.FragmentViewBindingDelegate;
-import com.discord.utilities.viewbinding.FragmentViewBindingDelegateKt;
-import com.discord.widgets.chat.input.MentionUtilsKt;
+import com.discord.utilities.viewbinding.FragmentViewBindingDelegate3;
+import com.discord.widgets.chat.input.MentionUtils;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputLayout;
 import com.jaredrummler.android.colorpicker.ColorPickerDialog;
-import d0.z.d.a0;
-import d0.z.d.k;
-import d0.z.d.m;
-import d0.z.d.o;
-import f0.e0.c;
+import d0.z.d.FunctionReferenceImpl;
+import d0.z.d.Intrinsics3;
+import d0.z.d.Lambda;
+import d0.z.d.Reflection2;
+import f0.e0.Util7;
 import java.util.ArrayList;
 import java.util.Locale;
 import java.util.Objects;
@@ -55,7 +56,7 @@ import rx.Observable;
 /* JADX INFO: compiled from: WidgetGuildFolderSettings.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetGuildFolderSettings extends AppFragment {
-    public static final /* synthetic */ KProperty[] $$delegatedProperties = {a.d0(WidgetGuildFolderSettings.class, "binding", "getBinding()Lcom/discord/databinding/WidgetGuildFolderSettingsBinding;", 0)};
+    public static final /* synthetic */ KProperty[] $$delegatedProperties = {outline.d0(WidgetGuildFolderSettings.class, "binding", "getBinding()Lcom/discord/databinding/WidgetGuildFolderSettingsBinding;", 0)};
     private static final String DIALOG_TAG_COLOR_PICKER = "DIALOG_TAG_COLOR_PICKER";
 
     /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
@@ -69,7 +70,7 @@ public final class WidgetGuildFolderSettings extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.guilds.WidgetGuildFolderSettings$configureUI$1, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetGuildFolderSettings.kt */
-    public final class AnonymousClass1 extends o implements Function1<Editable, Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function1<Editable, Unit> {
         public AnonymousClass1() {
             super(1);
         }
@@ -82,35 +83,35 @@ public final class WidgetGuildFolderSettings extends AppFragment {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(Editable editable) {
-            m.checkNotNullParameter(editable, "editable");
+            Intrinsics3.checkNotNullParameter(editable, "editable");
             WidgetGuildFolderSettings.access$getViewModel$p(WidgetGuildFolderSettings.this).setName(editable.toString());
         }
     }
 
     /* JADX INFO: renamed from: com.discord.widgets.guilds.WidgetGuildFolderSettings$launchColorPicker$1, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetGuildFolderSettings.kt */
-    public final class AnonymousClass1 implements f {
+    public final class AnonymousClass1 implements ColorPickerDialogListener {
         public AnonymousClass1() {
         }
 
-        @Override // b.k.a.a.f
+        @Override // b.k.a.a.ColorPickerDialogListener
         public void onColorReset(int dialogId) {
             WidgetGuildFolderSettings.access$getViewModel$p(WidgetGuildFolderSettings.this).setColor(Integer.valueOf(WidgetGuildFolderSettings.access$argbColorToRGB(WidgetGuildFolderSettings.this, ColorCompat.getThemedColor(WidgetGuildFolderSettings.this.getContext(), R.attr.color_brand))));
         }
 
-        @Override // b.k.a.a.f
+        @Override // b.k.a.a.ColorPickerDialogListener
         public void onColorSelected(int dialogId, int selectedColor) {
             WidgetGuildFolderSettings.access$getViewModel$p(WidgetGuildFolderSettings.this).setColor(Integer.valueOf(WidgetGuildFolderSettings.access$argbColorToRGB(WidgetGuildFolderSettings.this, selectedColor)));
         }
 
-        @Override // b.k.a.a.f
+        @Override // b.k.a.a.ColorPickerDialogListener
         public void onDialogDismissed(int dialogId) {
         }
     }
 
     /* JADX INFO: renamed from: com.discord.widgets.guilds.WidgetGuildFolderSettings$onViewBoundOrOnResume$1, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetGuildFolderSettings.kt */
-    public final /* synthetic */ class AnonymousClass1 extends k implements Function1<WidgetGuildFolderSettingsViewModel.ViewState, Unit> {
+    public final /* synthetic */ class AnonymousClass1 extends FunctionReferenceImpl implements Function1<WidgetGuildFolderSettingsViewModel.ViewState, Unit> {
         public AnonymousClass1(WidgetGuildFolderSettings widgetGuildFolderSettings) {
             super(1, widgetGuildFolderSettings, WidgetGuildFolderSettings.class, "configureUI", "configureUI(Lcom/discord/widgets/guilds/WidgetGuildFolderSettingsViewModel$ViewState;)V", 0);
         }
@@ -123,7 +124,7 @@ public final class WidgetGuildFolderSettings extends AppFragment {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(WidgetGuildFolderSettingsViewModel.ViewState viewState) {
-            m.checkNotNullParameter(viewState, "p1");
+            Intrinsics3.checkNotNullParameter(viewState, "p1");
             WidgetGuildFolderSettings.access$configureUI((WidgetGuildFolderSettings) this.receiver, viewState);
         }
     }
@@ -145,7 +146,7 @@ public final class WidgetGuildFolderSettings extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.guilds.WidgetGuildFolderSettings$onViewBoundOrOnResume$2, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetGuildFolderSettings.kt */
-    public final /* synthetic */ class AnonymousClass2 extends k implements Function1<WidgetGuildFolderSettingsViewModel.Event, Unit> {
+    public final /* synthetic */ class AnonymousClass2 extends FunctionReferenceImpl implements Function1<WidgetGuildFolderSettingsViewModel.Event, Unit> {
         public AnonymousClass2(WidgetGuildFolderSettings widgetGuildFolderSettings) {
             super(1, widgetGuildFolderSettings, WidgetGuildFolderSettings.class, "handleEvent", "handleEvent(Lcom/discord/widgets/guilds/WidgetGuildFolderSettingsViewModel$Event;)V", 0);
         }
@@ -158,7 +159,7 @@ public final class WidgetGuildFolderSettings extends AppFragment {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(WidgetGuildFolderSettingsViewModel.Event event) {
-            m.checkNotNullParameter(event, "p1");
+            Intrinsics3.checkNotNullParameter(event, "p1");
             WidgetGuildFolderSettings.access$handleEvent((WidgetGuildFolderSettings) this.receiver, event);
         }
     }
@@ -181,8 +182,8 @@ public final class WidgetGuildFolderSettings extends AppFragment {
         }
 
         public final void create(Context context, long folderId) {
-            m.checkNotNullParameter(context, "context");
-            j.d(context, WidgetGuildFolderSettings.class, new Intent().putExtra("com.discord.intent.extra.EXTRA_GUILD_FOLDER_ID", folderId));
+            Intrinsics3.checkNotNullParameter(context, "context");
+            AppScreen2.d(context, WidgetGuildFolderSettings.class, new Intent().putExtra("com.discord.intent.extra.EXTRA_GUILD_FOLDER_ID", folderId));
         }
 
         public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
@@ -192,10 +193,10 @@ public final class WidgetGuildFolderSettings extends AppFragment {
 
     public WidgetGuildFolderSettings() {
         super(R.layout.widget_guild_folder_settings);
-        this.binding = FragmentViewBindingDelegateKt.viewBinding$default(this, WidgetGuildFolderSettings$binding$2.INSTANCE, null, 2, null);
-        WidgetGuildFolderSettings$viewModel$2 widgetGuildFolderSettings$viewModel$2 = new WidgetGuildFolderSettings$viewModel$2(this);
-        g0 g0Var = new g0(this);
-        this.viewModel = FragmentViewModelLazyKt.createViewModelLazy(this, a0.getOrCreateKotlinClass(WidgetGuildFolderSettingsViewModel.class), new WidgetGuildFolderSettings$appViewModels$$inlined$viewModels$1(g0Var), new i0(widgetGuildFolderSettings$viewModel$2));
+        this.binding = FragmentViewBindingDelegate3.viewBinding$default(this, WidgetGuildFolderSettings2.INSTANCE, null, 2, null);
+        WidgetGuildFolderSettings3 widgetGuildFolderSettings3 = new WidgetGuildFolderSettings3(this);
+        AppViewModelDelegates3 appViewModelDelegates3 = new AppViewModelDelegates3(this);
+        this.viewModel = FragmentViewModelLazyKt.createViewModelLazy(this, Reflection2.getOrCreateKotlinClass(WidgetGuildFolderSettingsViewModel.class), new WidgetGuildFolderSettings$appViewModels$$inlined$viewModels$1(appViewModelDelegates3), new AppViewModelDelegates5(widgetGuildFolderSettings3));
     }
 
     public static final /* synthetic */ int access$argbColorToRGB(WidgetGuildFolderSettings widgetGuildFolderSettings, int i) {
@@ -226,7 +227,7 @@ public final class WidgetGuildFolderSettings extends AppFragment {
         int themedColor;
         if (state instanceof WidgetGuildFolderSettingsViewModel.ViewState.Loaded) {
             View view = getBinding().e;
-            m.checkNotNullExpressionValue(view, "binding.guildFolderSettingsColorDisplay");
+            Intrinsics3.checkNotNullExpressionValue(view, "binding.guildFolderSettingsColorDisplay");
             Drawable drawable = ContextCompat.getDrawable(view.getContext(), R.drawable.drawable_circle_white_1);
             WidgetGuildFolderSettingsViewModel.ViewState.Loaded loaded = (WidgetGuildFolderSettingsViewModel.ViewState.Loaded) state;
             Integer numRgbColorToARGB = rgbColorToARGB(loaded.getFormState().getColor());
@@ -234,53 +235,53 @@ public final class WidgetGuildFolderSettings extends AppFragment {
                 themedColor = numRgbColorToARGB.intValue();
             } else {
                 View view2 = getBinding().e;
-                m.checkNotNullExpressionValue(view2, "binding.guildFolderSettingsColorDisplay");
+                Intrinsics3.checkNotNullExpressionValue(view2, "binding.guildFolderSettingsColorDisplay");
                 themedColor = ColorCompat.getThemedColor(view2, R.attr.color_brand);
             }
             if (drawable != null) {
                 drawable.setColorFilter(new PorterDuffColorFilter(themedColor, PorterDuff.Mode.SRC_ATOP));
                 View view3 = getBinding().e;
-                m.checkNotNullExpressionValue(view3, "binding.guildFolderSettingsColorDisplay");
+                Intrinsics3.checkNotNullExpressionValue(view3, "binding.guildFolderSettingsColorDisplay");
                 view3.setBackground(drawable);
             }
             TextInputLayout textInputLayout = getBinding().f2413b;
-            m.checkNotNullExpressionValue(textInputLayout, "binding.editGuildFolderName");
+            Intrinsics3.checkNotNullExpressionValue(textInputLayout, "binding.editGuildFolderName");
             ViewExtensions.addBindedTextWatcher(textInputLayout, this, new AnonymousClass1());
             TextInputLayout textInputLayout2 = getBinding().f2413b;
-            m.checkNotNullExpressionValue(textInputLayout2, "binding.editGuildFolderName");
+            Intrinsics3.checkNotNullExpressionValue(textInputLayout2, "binding.editGuildFolderName");
             String textOrEmpty = ViewExtensions.getTextOrEmpty(textInputLayout2);
-            if (!m.areEqual(loaded.getFormState().getName(), textOrEmpty)) {
+            if (!Intrinsics3.areEqual(loaded.getFormState().getName(), textOrEmpty)) {
                 TextInputLayout textInputLayout3 = getBinding().f2413b;
-                m.checkNotNullExpressionValue(textInputLayout3, "binding.editGuildFolderName");
+                Intrinsics3.checkNotNullExpressionValue(textInputLayout3, "binding.editGuildFolderName");
                 ViewExtensions.setText(textInputLayout3, loaded.getFormState().getName());
                 if (textOrEmpty.length() == 0) {
                     TextInputLayout textInputLayout4 = getBinding().f2413b;
-                    m.checkNotNullExpressionValue(textInputLayout4, "binding.editGuildFolderName");
+                    Intrinsics3.checkNotNullExpressionValue(textInputLayout4, "binding.editGuildFolderName");
                     EditText editText = textInputLayout4.getEditText();
                     Editable text = editText != null ? editText.getText() : null;
                     TextInputLayout textInputLayout5 = getBinding().f2413b;
-                    m.checkNotNullExpressionValue(textInputLayout5, "binding.editGuildFolderName");
+                    Intrinsics3.checkNotNullExpressionValue(textInputLayout5, "binding.editGuildFolderName");
                     Selection.setSelection(text, ViewExtensions.getTextOrEmpty(textInputLayout5).length());
                 }
             }
             TextView textView = getBinding().c;
-            m.checkNotNullExpressionValue(textView, "binding.guildFolderColorName");
+            Intrinsics3.checkNotNullExpressionValue(textView, "binding.guildFolderColorName");
             StringBuilder sb = new StringBuilder();
-            sb.append(MentionUtilsKt.CHANNELS_CHAR);
-            String strX = c.x(themedColor);
+            sb.append(MentionUtils.CHANNELS_CHAR);
+            String strX = Util7.x(themedColor);
             Objects.requireNonNull(strX, "null cannot be cast to non-null type java.lang.String");
             String strSubstring = strX.substring(2);
-            m.checkNotNullExpressionValue(strSubstring, "(this as java.lang.String).substring(startIndex)");
+            Intrinsics3.checkNotNullExpressionValue(strSubstring, "(this as java.lang.String).substring(startIndex)");
             Locale locale = Locale.ROOT;
-            m.checkNotNullExpressionValue(locale, "Locale.ROOT");
+            Intrinsics3.checkNotNullExpressionValue(locale, "Locale.ROOT");
             Objects.requireNonNull(strSubstring, "null cannot be cast to non-null type java.lang.String");
             String upperCase = strSubstring.toUpperCase(locale);
-            m.checkNotNullExpressionValue(upperCase, "(this as java.lang.String).toUpperCase(locale)");
+            Intrinsics3.checkNotNullExpressionValue(upperCase, "(this as java.lang.String).toUpperCase(locale)");
             sb.append(upperCase);
             textView.setText(sb.toString());
             getBinding().d.setOnClickListener(new AnonymousClass2(state));
             FloatingActionButton floatingActionButton = getBinding().f;
-            m.checkNotNullExpressionValue(floatingActionButton, "binding.guildFolderSettingsSave");
+            Intrinsics3.checkNotNullExpressionValue(floatingActionButton, "binding.guildFolderSettingsSave");
             floatingActionButton.setVisibility(loaded.getShowSave() ? 0 : 8);
             getBinding().f.setOnClickListener(new AnonymousClass3());
         }
@@ -293,7 +294,7 @@ public final class WidgetGuildFolderSettings extends AppFragment {
     @ColorInt
     private final int[] getColorsToDisplay(@ColorInt int currentColor) {
         int[] intArray = getResources().getIntArray(R.array.color_picker_palette);
-        m.checkNotNullExpressionValue(intArray, "resources.getIntArray(R.…ray.color_picker_palette)");
+        Intrinsics3.checkNotNullExpressionValue(intArray, "resources.getIntArray(R.…ray.color_picker_palette)");
         ArrayList arrayList = new ArrayList();
         boolean z2 = false;
         for (int i : intArray) {
@@ -320,10 +321,10 @@ public final class WidgetGuildFolderSettings extends AppFragment {
     private final void handleEvent(WidgetGuildFolderSettingsViewModel.Event event) {
         if (!(event instanceof WidgetGuildFolderSettingsViewModel.Event.UpdateFolderSettingsSuccess)) {
             if (event instanceof WidgetGuildFolderSettingsViewModel.Event.UpdateFolderSettingsFailure) {
-                b.a.d.m.g(getContext(), ((WidgetGuildFolderSettingsViewModel.Event.UpdateFolderSettingsFailure) event).getFailureMessageStringRes(), 0, null, 12);
+                AppToast.g(getContext(), ((WidgetGuildFolderSettingsViewModel.Event.UpdateFolderSettingsFailure) event).getFailureMessageStringRes(), 0, null, 12);
             }
         } else {
-            b.a.d.m.i(this, ((WidgetGuildFolderSettingsViewModel.Event.UpdateFolderSettingsSuccess) event).getSuccessMessageStringRes(), 0, 4);
+            AppToast.i(this, ((WidgetGuildFolderSettingsViewModel.Event.UpdateFolderSettingsSuccess) event).getSuccessMessageStringRes(), 0, 4);
             AppFragment.hideKeyboard$default(this, null, 1, null);
             FragmentActivity activity = getActivity();
             if (activity != null) {
@@ -366,7 +367,7 @@ public final class WidgetGuildFolderSettings extends AppFragment {
 
     @Override // com.discord.app.AppFragment
     public void onViewBound(View view) {
-        m.checkNotNullParameter(view, "view");
+        Intrinsics3.checkNotNullParameter(view, "view");
         super.onViewBound(view);
         AppFragment.setActionBarDisplayHomeAsUpEnabled$default(this, false, 1, null);
         setActionBarTitle(R.string.server_folder_settings);
@@ -376,11 +377,11 @@ public final class WidgetGuildFolderSettings extends AppFragment {
     public void onViewBoundOrOnResume() {
         super.onViewBoundOrOnResume();
         Observable observableR = ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeViewState(), this, null, 2, null).r();
-        m.checkNotNullExpressionValue(observableR, "viewModel.observeViewSta…  .distinctUntilChanged()");
+        Intrinsics3.checkNotNullExpressionValue(observableR, "viewModel.observeViewSta…  .distinctUntilChanged()");
         ObservableExtensionsKt.appSubscribe$default(observableR, WidgetGuildFolderSettings.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass1(this), 62, (Object) null);
         ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeEvents(), this, null, 2, null), WidgetGuildFolderSettings.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass2(this), 62, (Object) null);
         FragmentManager parentFragmentManager = getParentFragmentManager();
-        m.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
+        Intrinsics3.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
         Fragment fragmentFindFragmentByTag = parentFragmentManager.findFragmentByTag(DIALOG_TAG_COLOR_PICKER);
         if (fragmentFindFragmentByTag != null) {
             parentFragmentManager.beginTransaction().remove(fragmentFindFragmentByTag).commit();

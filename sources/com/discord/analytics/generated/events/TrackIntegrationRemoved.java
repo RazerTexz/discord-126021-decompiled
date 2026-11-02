@@ -1,16 +1,16 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.api.science.AnalyticsSchema;
 import com.discord.models.domain.ModelAuditLogEntry;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 import java.util.List;
 
 /* JADX INFO: compiled from: TrackIntegrationRemoved.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackIntegrationRemoved implements AnalyticsSchema, TrackBaseReceiver {
+public final /* data */ class TrackIntegrationRemoved implements AnalyticsSchema, TrackBase2 {
     private final Long applicationId = null;
     private final Long guildId = null;
     private final Long id = null;
@@ -26,7 +26,7 @@ public final /* data */ class TrackIntegrationRemoved implements AnalyticsSchema
             return false;
         }
         TrackIntegrationRemoved trackIntegrationRemoved = (TrackIntegrationRemoved) other;
-        return m.areEqual(this.id, trackIntegrationRemoved.id) && m.areEqual(this.guildId, trackIntegrationRemoved.guildId) && m.areEqual(this.applicationId, trackIntegrationRemoved.applicationId) && m.areEqual(this.scopes, trackIntegrationRemoved.scopes);
+        return Intrinsics3.areEqual(this.id, trackIntegrationRemoved.id) && Intrinsics3.areEqual(this.guildId, trackIntegrationRemoved.guildId) && Intrinsics3.areEqual(this.applicationId, trackIntegrationRemoved.applicationId) && Intrinsics3.areEqual(this.scopes, trackIntegrationRemoved.scopes);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -47,13 +47,13 @@ public final /* data */ class TrackIntegrationRemoved implements AnalyticsSchema
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackIntegrationRemoved(id=");
+        StringBuilder sbU = outline.U("TrackIntegrationRemoved(id=");
         sbU.append(this.id);
         sbU.append(", guildId=");
         sbU.append(this.guildId);
         sbU.append(", applicationId=");
         sbU.append(this.applicationId);
         sbU.append(", scopes=");
-        return a.L(sbU, this.scopes, ")");
+        return outline.L(sbU, this.scopes, ")");
     }
 }

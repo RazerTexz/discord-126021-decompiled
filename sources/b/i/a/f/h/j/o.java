@@ -4,8 +4,9 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.text.TextUtils;
+import b.c.a.a0.AnimatableValueParser;
 import com.adjust.sdk.Constants;
-import com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemGuildWelcomeKt;
+import com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemGuildWelcome2;
 import java.io.Closeable;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -102,7 +103,7 @@ public final class o extends e implements Closeable {
     }
 
     public final List<j0> T(long j) {
-        b.c.a.a0.d.l(j >= 0);
+        AnimatableValueParser.l(j >= 0);
         b.i.a.f.b.f.b();
         N();
         Cursor cursorQuery = null;
@@ -143,7 +144,7 @@ public final class o extends e implements Closeable {
         C("Deleting stale hits (if any)");
         SQLiteDatabase sQLiteDatabaseO = O();
         Objects.requireNonNull((b.i.a.f.e.o.c) this.j.d);
-        int iDelete = sQLiteDatabaseO.delete("hits2", "hit_time < ?", new String[]{Long.toString(System.currentTimeMillis() - WidgetChatListAdapterItemGuildWelcomeKt.OLD_GUILD_AGE_THRESHOLD)});
+        int iDelete = sQLiteDatabaseO.delete("hits2", "hit_time < ?", new String[]{Long.toString(System.currentTimeMillis() - WidgetChatListAdapterItemGuildWelcome2.OLD_GUILD_AGE_THRESHOLD)});
         b("Deleted stale hits, count", Integer.valueOf(iDelete));
         return iDelete;
     }

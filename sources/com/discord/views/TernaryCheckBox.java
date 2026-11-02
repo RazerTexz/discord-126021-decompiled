@@ -11,10 +11,12 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import androidx.core.app.NotificationCompat;
-import b.a.d.m;
-import b.a.i.a4;
+import b.a.d.AppToast;
+import b.a.i.ViewTernaryCheckboxBinding;
+import b.a.k.FormatUtils;
 import com.discord.R;
 import com.discord.utilities.view.text.LinkifiedTextView;
+import d0.z.d.Intrinsics3;
 import kotlin.jvm.internal.DefaultConstructorMarker;
 
 /* JADX INFO: compiled from: TernaryCheckBox.kt */
@@ -25,7 +27,7 @@ public final class TernaryCheckBox extends RelativeLayout {
     public static final Companion INSTANCE = new Companion(null);
 
     /* JADX INFO: renamed from: k, reason: from kotlin metadata */
-    public final a4 binding;
+    public final ViewTernaryCheckboxBinding binding;
 
     /* JADX INFO: renamed from: l, reason: from kotlin metadata */
     public String labelText;
@@ -61,7 +63,7 @@ public final class TernaryCheckBox extends RelativeLayout {
 
         @Override // android.view.View.OnClickListener
         public final void onClick(View view) {
-            m.h(TernaryCheckBox.this.getContext(), this.k, 0, null, 12);
+            AppToast.h(TernaryCheckBox.this.getContext(), this.k, 0, null, 12);
         }
     }
 
@@ -75,14 +77,14 @@ public final class TernaryCheckBox extends RelativeLayout {
 
         @Override // android.view.View.OnClickListener
         public final void onClick(View view) {
-            m.h(TernaryCheckBox.this.getContext(), this.k, 0, null, 12);
+            AppToast.h(TernaryCheckBox.this.getContext(), this.k, 0, null, 12);
         }
     }
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public TernaryCheckBox(Context context, AttributeSet attributeSet) {
         super(context, attributeSet);
-        d0.z.d.m.checkNotNullParameter(context, "context");
+        Intrinsics3.checkNotNullParameter(context, "context");
         View viewInflate = LayoutInflater.from(getContext()).inflate(R.layout.view_ternary_checkbox, (ViewGroup) this, false);
         addView(viewInflate);
         int i = R.id.checkable_off_container;
@@ -112,30 +114,30 @@ public final class TernaryCheckBox extends RelativeLayout {
                                         i = R.id.ternary_check_on;
                                         CheckableImageView checkableImageView3 = (CheckableImageView) viewInflate.findViewById(R.id.ternary_check_on);
                                         if (checkableImageView3 != null) {
-                                            a4 a4Var = new a4((LinearLayout) viewInflate, frameLayout, linearLayout, viewFindViewById, viewFindViewById2, textView, linkifiedTextView, checkableImageView, checkableImageView2, checkableImageView3);
-                                            d0.z.d.m.checkNotNullExpressionValue(a4Var, "ViewTernaryCheckboxBindi…rom(context), this, true)");
-                                            this.binding = a4Var;
+                                            ViewTernaryCheckboxBinding viewTernaryCheckboxBinding = new ViewTernaryCheckboxBinding((LinearLayout) viewInflate, frameLayout, linearLayout, viewFindViewById, viewFindViewById2, textView, linkifiedTextView, checkableImageView, checkableImageView2, checkableImageView3);
+                                            Intrinsics3.checkNotNullExpressionValue(viewTernaryCheckboxBinding, "ViewTernaryCheckboxBindi…rom(context), this, true)");
+                                            this.binding = viewTernaryCheckboxBinding;
                                             this.switchStatus = -1;
                                             if (attributeSet != null) {
                                                 TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes(attributeSet, R.a.TernaryCheckBox, 0, 0);
-                                                d0.z.d.m.checkNotNullExpressionValue(typedArrayObtainStyledAttributes, "context.obtainStyledAttr…le.TernaryCheckBox, 0, 0)");
+                                                Intrinsics3.checkNotNullExpressionValue(typedArrayObtainStyledAttributes, "context.obtainStyledAttr…le.TernaryCheckBox, 0, 0)");
                                                 try {
                                                     this.labelText = typedArrayObtainStyledAttributes.getString(0);
                                                     String string = typedArrayObtainStyledAttributes.getString(1);
-                                                    this.subtextText = string != null ? b.a.k.b.l(string, new Object[0], null, 2) : null;
+                                                    this.subtextText = string != null ? FormatUtils.l(string, new Object[0], null, 2) : null;
                                                     typedArrayObtainStyledAttributes.recycle();
                                                 } catch (Throwable th) {
                                                     typedArrayObtainStyledAttributes.recycle();
                                                     throw th;
                                                 }
                                             }
-                                            d0.z.d.m.checkNotNullExpressionValue(textView, "binding.settingLabel");
+                                            Intrinsics3.checkNotNullExpressionValue(textView, "binding.settingLabel");
                                             textView.setVisibility(this.labelText != null ? 0 : 8);
-                                            d0.z.d.m.checkNotNullExpressionValue(textView, "binding.settingLabel");
+                                            Intrinsics3.checkNotNullExpressionValue(textView, "binding.settingLabel");
                                             textView.setText(this.labelText);
-                                            d0.z.d.m.checkNotNullExpressionValue(linkifiedTextView, "binding.settingSubtext");
+                                            Intrinsics3.checkNotNullExpressionValue(linkifiedTextView, "binding.settingSubtext");
                                             linkifiedTextView.setVisibility(this.subtextText != null ? 0 : 8);
-                                            d0.z.d.m.checkNotNullExpressionValue(linkifiedTextView, "binding.settingSubtext");
+                                            Intrinsics3.checkNotNullExpressionValue(linkifiedTextView, "binding.settingSubtext");
                                             linkifiedTextView.setText(this.subtextText);
                                             checkableImageView3.setOnClickListener(new defpackage.c(0, this));
                                             checkableImageView2.setOnClickListener(new defpackage.c(1, this));
@@ -163,13 +165,13 @@ public final class TernaryCheckBox extends RelativeLayout {
 
     public final void c() {
         CheckableImageView checkableImageView = this.binding.h;
-        d0.z.d.m.checkNotNullExpressionValue(checkableImageView, "binding.ternaryCheckOff");
+        Intrinsics3.checkNotNullExpressionValue(checkableImageView, "binding.ternaryCheckOff");
         checkableImageView.setEnabled(true);
         View view = this.binding.c;
-        d0.z.d.m.checkNotNullExpressionValue(view, "binding.offDisabledOverlay");
+        Intrinsics3.checkNotNullExpressionValue(view, "binding.offDisabledOverlay");
         view.setVisibility(8);
         View view2 = this.binding.d;
-        d0.z.d.m.checkNotNullExpressionValue(view2, "binding.settingDisabledOverlay");
+        Intrinsics3.checkNotNullExpressionValue(view2, "binding.settingDisabledOverlay");
         view2.setVisibility(8);
     }
 
@@ -195,33 +197,33 @@ public final class TernaryCheckBox extends RelativeLayout {
 
     private final void setDisabled(String message) {
         FrameLayout frameLayout = this.binding.f77b;
-        d0.z.d.m.checkNotNullExpressionValue(frameLayout, "binding.checkableOffContainer");
+        Intrinsics3.checkNotNullExpressionValue(frameLayout, "binding.checkableOffContainer");
         frameLayout.setEnabled(true);
         View view = this.binding.c;
-        d0.z.d.m.checkNotNullExpressionValue(view, "binding.offDisabledOverlay");
+        Intrinsics3.checkNotNullExpressionValue(view, "binding.offDisabledOverlay");
         view.setVisibility(8);
         this.binding.d.setOnClickListener(new c(message));
         View view2 = this.binding.d;
-        d0.z.d.m.checkNotNullExpressionValue(view2, "binding.settingDisabledOverlay");
+        Intrinsics3.checkNotNullExpressionValue(view2, "binding.settingDisabledOverlay");
         view2.setVisibility(0);
     }
 
     public final void setLabel(CharSequence text) {
         TextView textView = this.binding.e;
-        d0.z.d.m.checkNotNullExpressionValue(textView, "binding.settingLabel");
+        Intrinsics3.checkNotNullExpressionValue(textView, "binding.settingLabel");
         textView.setText(text);
     }
 
     private final void setOffDisabled(String message) {
         CheckableImageView checkableImageView = this.binding.h;
-        d0.z.d.m.checkNotNullExpressionValue(checkableImageView, "binding.ternaryCheckOff");
+        Intrinsics3.checkNotNullExpressionValue(checkableImageView, "binding.ternaryCheckOff");
         checkableImageView.setEnabled(false);
         View view = this.binding.d;
-        d0.z.d.m.checkNotNullExpressionValue(view, "binding.settingDisabledOverlay");
+        Intrinsics3.checkNotNullExpressionValue(view, "binding.settingDisabledOverlay");
         view.setVisibility(8);
         this.binding.c.setOnClickListener(new d(message));
         View view2 = this.binding.c;
-        d0.z.d.m.checkNotNullExpressionValue(view2, "binding.offDisabledOverlay");
+        Intrinsics3.checkNotNullExpressionValue(view2, "binding.offDisabledOverlay");
         view2.setVisibility(0);
     }
 
@@ -231,20 +233,20 @@ public final class TernaryCheckBox extends RelativeLayout {
 
     public final void setSubtext(CharSequence text) {
         LinkifiedTextView linkifiedTextView = this.binding.f;
-        d0.z.d.m.checkNotNullExpressionValue(linkifiedTextView, "binding.settingSubtext");
+        Intrinsics3.checkNotNullExpressionValue(linkifiedTextView, "binding.settingSubtext");
         linkifiedTextView.setText(text);
     }
 
     private final void setSwitchStatus(int i) {
         this.switchStatus = i;
         CheckableImageView checkableImageView = this.binding.i;
-        d0.z.d.m.checkNotNullExpressionValue(checkableImageView, "binding.ternaryCheckOn");
+        Intrinsics3.checkNotNullExpressionValue(checkableImageView, "binding.ternaryCheckOn");
         checkableImageView.setChecked(i == 1);
         CheckableImageView checkableImageView2 = this.binding.h;
-        d0.z.d.m.checkNotNullExpressionValue(checkableImageView2, "binding.ternaryCheckOff");
+        Intrinsics3.checkNotNullExpressionValue(checkableImageView2, "binding.ternaryCheckOff");
         checkableImageView2.setChecked(i == -1);
         CheckableImageView checkableImageView3 = this.binding.g;
-        d0.z.d.m.checkNotNullExpressionValue(checkableImageView3, "binding.ternaryCheckNeutral");
+        Intrinsics3.checkNotNullExpressionValue(checkableImageView3, "binding.ternaryCheckNeutral");
         checkableImageView3.setChecked(i == 0);
         b bVar = this.onSwitchStatusChangedListener;
         if (bVar != null) {
@@ -254,13 +256,13 @@ public final class TernaryCheckBox extends RelativeLayout {
 
     public final void setDisabled(int messageRes) {
         String string = getContext().getString(messageRes);
-        d0.z.d.m.checkNotNullExpressionValue(string, "context.getString(messageRes)");
+        Intrinsics3.checkNotNullExpressionValue(string, "context.getString(messageRes)");
         setDisabled(string);
     }
 
     public final void setOffDisabled(int messageRes) {
         String string = getContext().getString(messageRes);
-        d0.z.d.m.checkNotNullExpressionValue(string, "context.getString(messageRes)");
+        Intrinsics3.checkNotNullExpressionValue(string, "context.getString(messageRes)");
         setOffDisabled(string);
     }
 }

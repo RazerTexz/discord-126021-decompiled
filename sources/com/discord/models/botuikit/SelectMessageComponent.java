@@ -1,32 +1,32 @@
 package com.discord.models.botuikit;
 
-import b.d.b.a.a;
-import com.discord.api.botuikit.ComponentType;
-import com.discord.api.botuikit.SelectItem;
-import d0.z.d.m;
+import b.d.b.a.outline;
+import com.discord.api.botuikit.Component6;
+import com.discord.api.botuikit.SelectComponent2;
+import d0.z.d.Intrinsics3;
 import java.util.List;
 
 /* JADX INFO: compiled from: SelectMessageComponent.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class SelectMessageComponent extends ActionMessageComponent {
+public final /* data */ class SelectMessageComponent extends MessageComponent2 {
     private final String customId;
     private final boolean emojiAnimationsEnabled;
     private final int index;
     private final int maxValues;
     private final int minValues;
-    private final List<SelectItem> options;
+    private final List<SelectComponent2> options;
     private final String placeholder;
-    private final List<SelectItem> selectedOptions;
+    private final List<SelectComponent2> selectedOptions;
     private final ActionInteractionComponentState stateInteraction;
-    private final ComponentType type;
+    private final Component6 type;
 
-    public SelectMessageComponent(ComponentType componentType, int i, ActionInteractionComponentState actionInteractionComponentState, String str, String str2, int i2, int i3, List<SelectItem> list, List<SelectItem> list2, boolean z2) {
-        m.checkNotNullParameter(componentType, "type");
-        m.checkNotNullParameter(actionInteractionComponentState, "stateInteraction");
-        m.checkNotNullParameter(str, "customId");
-        m.checkNotNullParameter(list, "options");
-        m.checkNotNullParameter(list2, "selectedOptions");
-        this.type = componentType;
+    public SelectMessageComponent(Component6 component6, int i, ActionInteractionComponentState actionInteractionComponentState, String str, String str2, int i2, int i3, List<SelectComponent2> list, List<SelectComponent2> list2, boolean z2) {
+        Intrinsics3.checkNotNullParameter(component6, "type");
+        Intrinsics3.checkNotNullParameter(actionInteractionComponentState, "stateInteraction");
+        Intrinsics3.checkNotNullParameter(str, "customId");
+        Intrinsics3.checkNotNullParameter(list, "options");
+        Intrinsics3.checkNotNullParameter(list2, "selectedOptions");
+        this.type = component6;
         this.index = i;
         this.stateInteraction = actionInteractionComponentState;
         this.customId = str;
@@ -38,7 +38,7 @@ public final /* data */ class SelectMessageComponent extends ActionMessageCompon
         this.emojiAnimationsEnabled = z2;
     }
 
-    public final ComponentType component1() {
+    public final Component6 component1() {
         return getType();
     }
 
@@ -50,25 +50,25 @@ public final /* data */ class SelectMessageComponent extends ActionMessageCompon
         return getStateInteraction();
     }
 
-    public final List<SelectItem> component8() {
+    public final List<SelectComponent2> component8() {
         return this.options;
     }
 
-    public final List<SelectItem> component9() {
+    public final List<SelectComponent2> component9() {
         return this.selectedOptions;
     }
 
     /* JADX WARN: Multi-variable type inference failed */
-    public static /* synthetic */ SelectMessageComponent copy$default(SelectMessageComponent selectMessageComponent, ComponentType componentType, int i, ActionInteractionComponentState actionInteractionComponentState, String str, String str2, int i2, int i3, List list, List list2, boolean z2, int i4, Object obj) {
-        return selectMessageComponent.copy((i4 & 1) != 0 ? selectMessageComponent.getType() : componentType, (i4 & 2) != 0 ? selectMessageComponent.getIndex() : i, (i4 & 4) != 0 ? selectMessageComponent.getStateInteraction() : actionInteractionComponentState, (i4 & 8) != 0 ? selectMessageComponent.customId : str, (i4 & 16) != 0 ? selectMessageComponent.placeholder : str2, (i4 & 32) != 0 ? selectMessageComponent.minValues : i2, (i4 & 64) != 0 ? selectMessageComponent.maxValues : i3, (i4 & 128) != 0 ? selectMessageComponent.options : list, (i4 & 256) != 0 ? selectMessageComponent.selectedOptions : list2, (i4 & 512) != 0 ? selectMessageComponent.emojiAnimationsEnabled : z2);
+    public static /* synthetic */ SelectMessageComponent copy$default(SelectMessageComponent selectMessageComponent, Component6 component6, int i, ActionInteractionComponentState actionInteractionComponentState, String str, String str2, int i2, int i3, List list, List list2, boolean z2, int i4, Object obj) {
+        return selectMessageComponent.copy((i4 & 1) != 0 ? selectMessageComponent.getType() : component6, (i4 & 2) != 0 ? selectMessageComponent.getIndex() : i, (i4 & 4) != 0 ? selectMessageComponent.getStateInteraction() : actionInteractionComponentState, (i4 & 8) != 0 ? selectMessageComponent.customId : str, (i4 & 16) != 0 ? selectMessageComponent.placeholder : str2, (i4 & 32) != 0 ? selectMessageComponent.minValues : i2, (i4 & 64) != 0 ? selectMessageComponent.maxValues : i3, (i4 & 128) != 0 ? selectMessageComponent.options : list, (i4 & 256) != 0 ? selectMessageComponent.selectedOptions : list2, (i4 & 512) != 0 ? selectMessageComponent.emojiAnimationsEnabled : z2);
     }
 
-    public final SelectMessageComponent copy(ComponentType type, int index, ActionInteractionComponentState stateInteraction, String customId, String placeholder, int minValues, int maxValues, List<SelectItem> options, List<SelectItem> selectedOptions, boolean emojiAnimationsEnabled) {
-        m.checkNotNullParameter(type, "type");
-        m.checkNotNullParameter(stateInteraction, "stateInteraction");
-        m.checkNotNullParameter(customId, "customId");
-        m.checkNotNullParameter(options, "options");
-        m.checkNotNullParameter(selectedOptions, "selectedOptions");
+    public final SelectMessageComponent copy(Component6 type, int index, ActionInteractionComponentState stateInteraction, String customId, String placeholder, int minValues, int maxValues, List<SelectComponent2> options, List<SelectComponent2> selectedOptions, boolean emojiAnimationsEnabled) {
+        Intrinsics3.checkNotNullParameter(type, "type");
+        Intrinsics3.checkNotNullParameter(stateInteraction, "stateInteraction");
+        Intrinsics3.checkNotNullParameter(customId, "customId");
+        Intrinsics3.checkNotNullParameter(options, "options");
+        Intrinsics3.checkNotNullParameter(selectedOptions, "selectedOptions");
         return new SelectMessageComponent(type, index, stateInteraction, customId, placeholder, minValues, maxValues, options, selectedOptions, emojiAnimationsEnabled);
     }
 
@@ -80,7 +80,7 @@ public final /* data */ class SelectMessageComponent extends ActionMessageCompon
             return false;
         }
         SelectMessageComponent selectMessageComponent = (SelectMessageComponent) other;
-        return m.areEqual(getType(), selectMessageComponent.getType()) && getIndex() == selectMessageComponent.getIndex() && m.areEqual(getStateInteraction(), selectMessageComponent.getStateInteraction()) && m.areEqual(this.customId, selectMessageComponent.customId) && m.areEqual(this.placeholder, selectMessageComponent.placeholder) && this.minValues == selectMessageComponent.minValues && this.maxValues == selectMessageComponent.maxValues && m.areEqual(this.options, selectMessageComponent.options) && m.areEqual(this.selectedOptions, selectMessageComponent.selectedOptions) && this.emojiAnimationsEnabled == selectMessageComponent.emojiAnimationsEnabled;
+        return Intrinsics3.areEqual(getType(), selectMessageComponent.getType()) && getIndex() == selectMessageComponent.getIndex() && Intrinsics3.areEqual(getStateInteraction(), selectMessageComponent.getStateInteraction()) && Intrinsics3.areEqual(this.customId, selectMessageComponent.customId) && Intrinsics3.areEqual(this.placeholder, selectMessageComponent.placeholder) && this.minValues == selectMessageComponent.minValues && this.maxValues == selectMessageComponent.maxValues && Intrinsics3.areEqual(this.options, selectMessageComponent.options) && Intrinsics3.areEqual(this.selectedOptions, selectMessageComponent.selectedOptions) && this.emojiAnimationsEnabled == selectMessageComponent.emojiAnimationsEnabled;
     }
 
     /* JADX INFO: renamed from: component4, reason: from getter */
@@ -124,7 +124,7 @@ public final /* data */ class SelectMessageComponent extends ActionMessageCompon
         return this.minValues;
     }
 
-    public final List<SelectItem> getOptions() {
+    public final List<SelectComponent2> getOptions() {
         return this.options;
     }
 
@@ -137,17 +137,17 @@ public final /* data */ class SelectMessageComponent extends ActionMessageCompon
         return this.placeholder;
     }
 
-    public final List<SelectItem> getSelectedOptions() {
+    public final List<SelectComponent2> getSelectedOptions() {
         return this.selectedOptions;
     }
 
-    @Override // com.discord.models.botuikit.ActionMessageComponent
+    @Override // com.discord.models.botuikit.MessageComponent2
     public ActionInteractionComponentState getStateInteraction() {
         return this.stateInteraction;
     }
 
     @Override // com.discord.models.botuikit.MessageComponent
-    public ComponentType getType() {
+    public Component6 getType() {
         return this.type;
     }
 
@@ -157,7 +157,7 @@ public final /* data */ class SelectMessageComponent extends ActionMessageCompon
     /* JADX WARN: Type inference failed for: r0v27 */
     /* JADX WARN: Type inference failed for: r2v17, types: [int] */
     public int hashCode() {
-        ComponentType type = getType();
+        Component6 type = getType();
         int index = (getIndex() + ((type != null ? type.hashCode() : 0) * 31)) * 31;
         ActionInteractionComponentState stateInteraction = getStateInteraction();
         int iHashCode = (index + (stateInteraction != null ? stateInteraction.hashCode() : 0)) * 31;
@@ -165,9 +165,9 @@ public final /* data */ class SelectMessageComponent extends ActionMessageCompon
         int iHashCode2 = (iHashCode + (str != null ? str.hashCode() : 0)) * 31;
         String str2 = this.placeholder;
         int iHashCode3 = (((((iHashCode2 + (str2 != null ? str2.hashCode() : 0)) * 31) + this.minValues) * 31) + this.maxValues) * 31;
-        List<SelectItem> list = this.options;
+        List<SelectComponent2> list = this.options;
         int iHashCode4 = (iHashCode3 + (list != null ? list.hashCode() : 0)) * 31;
-        List<SelectItem> list2 = this.selectedOptions;
+        List<SelectComponent2> list2 = this.selectedOptions;
         int iHashCode5 = (iHashCode4 + (list2 != null ? list2.hashCode() : 0)) * 31;
         boolean z2 = this.emojiAnimationsEnabled;
         ?? r0 = z2;
@@ -178,7 +178,7 @@ public final /* data */ class SelectMessageComponent extends ActionMessageCompon
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("SelectMessageComponent(type=");
+        StringBuilder sbU = outline.U("SelectMessageComponent(type=");
         sbU.append(getType());
         sbU.append(", index=");
         sbU.append(getIndex());
@@ -197,6 +197,6 @@ public final /* data */ class SelectMessageComponent extends ActionMessageCompon
         sbU.append(", selectedOptions=");
         sbU.append(this.selectedOptions);
         sbU.append(", emojiAnimationsEnabled=");
-        return a.O(sbU, this.emojiAnimationsEnabled, ")");
+        return outline.O(sbU, this.emojiAnimationsEnabled, ")");
     }
 }

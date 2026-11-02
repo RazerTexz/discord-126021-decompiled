@@ -1,7 +1,7 @@
 package org.webrtc;
 
 import androidx.annotation.Nullable;
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -214,7 +214,7 @@ public class PeerConnection {
             sb.append("] [");
             sb.append(this.tlsAlpnProtocols);
             sb.append("] [");
-            return a.L(sb, this.tlsEllipticCurves, "]");
+            return outline.L(sb, this.tlsEllipticCurves, "]");
         }
 
         @Deprecated

@@ -1,14 +1,14 @@
 package com.discord.widgets.user.search;
 
 import android.annotation.SuppressLint;
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.api.channel.Channel;
 import com.discord.api.channel.ChannelUtils;
 import com.discord.models.guild.Guild;
 import com.discord.models.user.User;
 import com.discord.utilities.search.SearchUtils;
-import d0.z.d.m;
-import d0.z.d.o;
+import d0.z.d.Intrinsics3;
+import d0.z.d.Lambda;
 import java.util.Locale;
 import java.util.Objects;
 import kotlin.jvm.functions.Function0;
@@ -16,14 +16,14 @@ import kotlin.jvm.functions.Function2;
 
 /* JADX INFO: compiled from: WidgetGlobalSearchModel.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final class WidgetGlobalSearchModel$Companion$create$4 extends o implements Function2<Channel, String, WidgetGlobalSearchModel.ItemDataPayload> {
+public final class WidgetGlobalSearchModel$Companion$create$4 extends Lambda implements Function2<Channel, String, WidgetGlobalSearchModel.ItemDataPayload> {
     public final /* synthetic */ WidgetGlobalSearchModel.ChannelContext $channelContext;
     public final /* synthetic */ WidgetGlobalSearchModel.SearchContext $searchContext;
     public final /* synthetic */ WidgetGlobalSearchModel$Companion$create$2 $toItemUser$2;
 
     /* JADX INFO: renamed from: com.discord.widgets.user.search.WidgetGlobalSearchModel$Companion$create$4$1, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetGlobalSearchModel.kt */
-    public final class AnonymousClass1 extends o implements Function0<WidgetGlobalSearchModel.MatchedResult> {
+    public final class AnonymousClass1 extends Lambda implements Function0<WidgetGlobalSearchModel.MatchedResult> {
         public final /* synthetic */ String $channelFilter;
         public final /* synthetic */ Channel $this_toItemChannel;
 
@@ -44,7 +44,7 @@ public final class WidgetGlobalSearchModel$Companion$create$4 extends o implemen
         @SuppressLint({"DefaultLocale"})
         public final WidgetGlobalSearchModel.MatchedResult invoke() {
             String name;
-            Guild guild = (Guild) a.c(this.$this_toItemChannel, WidgetGlobalSearchModel$Companion$create$4.this.$channelContext.getGuilds());
+            Guild guild = (Guild) outline.c(this.$this_toItemChannel, WidgetGlobalSearchModel$Companion$create$4.this.$channelContext.getGuilds());
             if (guild == null || (name = guild.getName()) == null) {
                 name = "";
             }
@@ -53,15 +53,15 @@ public final class WidgetGlobalSearchModel$Companion$create$4 extends o implemen
             SearchUtils searchUtils = SearchUtils.INSTANCE;
             String str = this.$channelFilter;
             Locale locale = Locale.ROOT;
-            m.checkNotNullExpressionValue(locale, "Locale.ROOT");
+            Intrinsics3.checkNotNullExpressionValue(locale, "Locale.ROOT");
             Objects.requireNonNull(str, "null cannot be cast to non-null type java.lang.String");
             String lowerCase = str.toLowerCase(locale);
-            m.checkNotNullExpressionValue(lowerCase, "(this as java.lang.String).toLowerCase(locale)");
+            Intrinsics3.checkNotNullExpressionValue(lowerCase, "(this as java.lang.String).toLowerCase(locale)");
             String str2 = ChannelUtils.c(this.$this_toItemChannel) + ' ' + strC + ' ' + name;
-            m.checkNotNullExpressionValue(locale, "Locale.ROOT");
+            Intrinsics3.checkNotNullExpressionValue(locale, "Locale.ROOT");
             Objects.requireNonNull(str2, "null cannot be cast to non-null type java.lang.String");
             String lowerCase2 = str2.toLowerCase(locale);
-            m.checkNotNullExpressionValue(lowerCase2, "(this as java.lang.String).toLowerCase(locale)");
+            Intrinsics3.checkNotNullExpressionValue(lowerCase2, "(this as java.lang.String).toLowerCase(locale)");
             if (searchUtils.fuzzyMatch(lowerCase, lowerCase2)) {
                 return new WidgetGlobalSearchModel.MatchedResult(ChannelUtils.c(this.$this_toItemChannel), -1, this.$channelFilter.length());
             }
@@ -84,8 +84,8 @@ public final class WidgetGlobalSearchModel$Companion$create$4 extends o implemen
 
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final WidgetGlobalSearchModel.ItemDataPayload invoke2(Channel channel, String str) {
-        m.checkNotNullParameter(channel, "$this$toItemChannel");
-        m.checkNotNullParameter(str, "channelFilter");
+        Intrinsics3.checkNotNullParameter(channel, "$this$toItemChannel");
+        Intrinsics3.checkNotNullParameter(str, "channelFilter");
         AnonymousClass1 anonymousClass1 = new AnonymousClass1(channel, str);
         if (channel.getType() == 1) {
             User userA = ChannelUtils.a(channel);
@@ -103,8 +103,8 @@ public final class WidgetGlobalSearchModel$Companion$create$4 extends o implemen
             return null;
         }
         Channel channel2 = this.$channelContext.getChannels().get(Long.valueOf(channel.getParentId()));
-        Guild guild = (Guild) a.c(channel, this.$channelContext.getGuilds());
-        Integer num = (Integer) a.d(channel, this.$searchContext.getMentionCounts());
+        Guild guild = (Guild) outline.c(channel, this.$channelContext.getGuilds());
+        Integer num = (Integer) outline.d(channel, this.$searchContext.getMentionCounts());
         return new WidgetGlobalSearchModel.ItemChannel(matchedResult2, channel, channel2, guild, num != null ? num.intValue() : 0, this.$channelContext.getUnreadChannelIds().contains(Long.valueOf(channel.getId())));
     }
 }

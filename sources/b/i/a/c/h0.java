@@ -1,42 +1,45 @@
 package b.i.a.c;
 
 import android.os.Bundle;
+import b.i.a.c.f3.BundleableUtil;
+import b.i.a.c.f3.Util2;
+import b.i.a.c.g3.ColorInfo;
 import com.google.android.exoplayer2.drm.DrmInitData;
 import com.google.android.exoplayer2.metadata.Metadata;
 import java.util.ArrayList;
 
 /* JADX INFO: compiled from: lambda */
 /* JADX INFO: loaded from: classes3.dex */
-public final /* synthetic */ class h0 implements w0.a {
+public final /* synthetic */ class h0 implements Bundleable.a {
     public static final /* synthetic */ h0 a = new h0();
 
-    @Override // b.i.a.c.w0.a
-    public final w0 a(Bundle bundle) {
-        j1 j1Var = j1.j;
-        j1.b bVar = new j1.b();
+    @Override // b.i.a.c.Bundleable.a
+    public final Bundleable a(Bundle bundle) {
+        Format2 format2 = Format2.j;
+        Format2.b bVar = new Format2.b();
         if (bundle != null) {
-            ClassLoader classLoader = b.i.a.c.f3.f.class.getClassLoader();
-            int i = b.i.a.c.f3.e0.a;
+            ClassLoader classLoader = BundleableUtil.class.getClassLoader();
+            int i = Util2.a;
             bundle.setClassLoader(classLoader);
         }
         int i2 = 0;
-        String string = bundle.getString(j1.d(0));
-        j1 j1Var2 = j1.j;
-        bVar.a = (String) j1.b(string, j1Var2.l);
-        bVar.f1021b = (String) j1.b(bundle.getString(j1.d(1)), j1Var2.m);
-        bVar.c = (String) j1.b(bundle.getString(j1.d(2)), j1Var2.n);
-        bVar.d = bundle.getInt(j1.d(3), j1Var2.o);
-        bVar.e = bundle.getInt(j1.d(4), j1Var2.p);
-        bVar.f = bundle.getInt(j1.d(5), j1Var2.q);
-        bVar.g = bundle.getInt(j1.d(6), j1Var2.r);
-        bVar.h = (String) j1.b(bundle.getString(j1.d(7)), j1Var2.t);
-        bVar.i = (Metadata) j1.b((Metadata) bundle.getParcelable(j1.d(8)), j1Var2.u);
-        bVar.j = (String) j1.b(bundle.getString(j1.d(9)), j1Var2.v);
-        bVar.k = (String) j1.b(bundle.getString(j1.d(10)), j1Var2.w);
-        bVar.l = bundle.getInt(j1.d(11), j1Var2.f1018x);
+        String string = bundle.getString(Format2.d(0));
+        Format2 format3 = Format2.j;
+        bVar.a = (String) Format2.b(string, format3.l);
+        bVar.f1021b = (String) Format2.b(bundle.getString(Format2.d(1)), format3.m);
+        bVar.c = (String) Format2.b(bundle.getString(Format2.d(2)), format3.n);
+        bVar.d = bundle.getInt(Format2.d(3), format3.o);
+        bVar.e = bundle.getInt(Format2.d(4), format3.p);
+        bVar.f = bundle.getInt(Format2.d(5), format3.q);
+        bVar.g = bundle.getInt(Format2.d(6), format3.r);
+        bVar.h = (String) Format2.b(bundle.getString(Format2.d(7)), format3.t);
+        bVar.i = (Metadata) Format2.b((Metadata) bundle.getParcelable(Format2.d(8)), format3.u);
+        bVar.j = (String) Format2.b(bundle.getString(Format2.d(9)), format3.v);
+        bVar.k = (String) Format2.b(bundle.getString(Format2.d(10)), format3.w);
+        bVar.l = bundle.getInt(Format2.d(11), format3.f1018x);
         ArrayList arrayList = new ArrayList();
         while (true) {
-            String strD = j1.d(12);
+            String strD = Format2.d(12);
             String string2 = Integer.toString(i2, 36);
             StringBuilder sb = new StringBuilder(String.valueOf(string2).length() + String.valueOf(strD).length() + 1);
             sb.append(strD);
@@ -45,26 +48,26 @@ public final /* synthetic */ class h0 implements w0.a {
             byte[] byteArray = bundle.getByteArray(sb.toString());
             if (byteArray == null) {
                 bVar.m = arrayList;
-                bVar.n = (DrmInitData) bundle.getParcelable(j1.d(13));
-                String strD2 = j1.d(14);
-                j1 j1Var3 = j1.j;
-                bVar.o = bundle.getLong(strD2, j1Var3.A);
-                bVar.p = bundle.getInt(j1.d(15), j1Var3.B);
-                bVar.q = bundle.getInt(j1.d(16), j1Var3.C);
-                bVar.r = bundle.getFloat(j1.d(17), j1Var3.D);
-                bVar.f1022s = bundle.getInt(j1.d(18), j1Var3.E);
-                bVar.t = bundle.getFloat(j1.d(19), j1Var3.F);
-                bVar.u = bundle.getByteArray(j1.d(20));
-                bVar.v = bundle.getInt(j1.d(21), j1Var3.H);
-                int i3 = b.i.a.c.g3.n.j;
-                bVar.w = (b.i.a.c.g3.n) b.i.a.c.f3.f.c(b.i.a.c.g3.a.a, bundle.getBundle(j1.d(22)));
-                bVar.f1023x = bundle.getInt(j1.d(23), j1Var3.J);
-                bVar.f1024y = bundle.getInt(j1.d(24), j1Var3.K);
-                bVar.f1025z = bundle.getInt(j1.d(25), j1Var3.L);
-                bVar.A = bundle.getInt(j1.d(26), j1Var3.M);
-                bVar.B = bundle.getInt(j1.d(27), j1Var3.N);
-                bVar.C = bundle.getInt(j1.d(28), j1Var3.O);
-                bVar.D = bundle.getInt(j1.d(29), j1Var3.P);
+                bVar.n = (DrmInitData) bundle.getParcelable(Format2.d(13));
+                String strD2 = Format2.d(14);
+                Format2 format4 = Format2.j;
+                bVar.o = bundle.getLong(strD2, format4.A);
+                bVar.p = bundle.getInt(Format2.d(15), format4.B);
+                bVar.q = bundle.getInt(Format2.d(16), format4.C);
+                bVar.r = bundle.getFloat(Format2.d(17), format4.D);
+                bVar.f1022s = bundle.getInt(Format2.d(18), format4.E);
+                bVar.t = bundle.getFloat(Format2.d(19), format4.F);
+                bVar.u = bundle.getByteArray(Format2.d(20));
+                bVar.v = bundle.getInt(Format2.d(21), format4.H);
+                int i3 = ColorInfo.j;
+                bVar.w = (ColorInfo) BundleableUtil.c(b.i.a.c.g3.a.a, bundle.getBundle(Format2.d(22)));
+                bVar.f1023x = bundle.getInt(Format2.d(23), format4.J);
+                bVar.f1024y = bundle.getInt(Format2.d(24), format4.K);
+                bVar.f1025z = bundle.getInt(Format2.d(25), format4.L);
+                bVar.A = bundle.getInt(Format2.d(26), format4.M);
+                bVar.B = bundle.getInt(Format2.d(27), format4.N);
+                bVar.C = bundle.getInt(Format2.d(28), format4.O);
+                bVar.D = bundle.getInt(Format2.d(29), format4.P);
                 return bVar.a();
             }
             arrayList.add(byteArray);

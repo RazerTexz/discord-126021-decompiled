@@ -1,14 +1,14 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackOnboardingValuePropsViewed.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackOnboardingValuePropsViewed implements AnalyticsSchema, TrackBaseReceiver {
+public final /* data */ class TrackOnboardingValuePropsViewed implements AnalyticsSchema, TrackBase2 {
     private final Long bucket = null;
     private final Long propsViewed = null;
     private final Boolean skip = null;
@@ -23,7 +23,7 @@ public final /* data */ class TrackOnboardingValuePropsViewed implements Analyti
             return false;
         }
         TrackOnboardingValuePropsViewed trackOnboardingValuePropsViewed = (TrackOnboardingValuePropsViewed) other;
-        return m.areEqual(this.skip, trackOnboardingValuePropsViewed.skip) && m.areEqual(this.propsViewed, trackOnboardingValuePropsViewed.propsViewed) && m.areEqual(this.bucket, trackOnboardingValuePropsViewed.bucket);
+        return Intrinsics3.areEqual(this.skip, trackOnboardingValuePropsViewed.skip) && Intrinsics3.areEqual(this.propsViewed, trackOnboardingValuePropsViewed.propsViewed) && Intrinsics3.areEqual(this.bucket, trackOnboardingValuePropsViewed.bucket);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -42,11 +42,11 @@ public final /* data */ class TrackOnboardingValuePropsViewed implements Analyti
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackOnboardingValuePropsViewed(skip=");
+        StringBuilder sbU = outline.U("TrackOnboardingValuePropsViewed(skip=");
         sbU.append(this.skip);
         sbU.append(", propsViewed=");
         sbU.append(this.propsViewed);
         sbU.append(", bucket=");
-        return a.G(sbU, this.bucket, ")");
+        return outline.G(sbU, this.bucket, ")");
     }
 }

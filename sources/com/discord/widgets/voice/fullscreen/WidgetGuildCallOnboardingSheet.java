@@ -6,25 +6,26 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentViewModelLazyKt;
 import androidx.preference.PreferenceManager;
-import b.a.d.g0;
-import b.a.d.i0;
-import b.a.y.g;
-import b.c.a.a0.d;
-import b.d.b.a.a;
+import b.a.a.GuildVideoAtCapacityDialog;
+import b.a.d.AppViewModelDelegates3;
+import b.a.d.AppViewModelDelegates5;
+import b.a.y.JoinVoiceChannelButton2;
+import b.c.a.a0.AnimatableValueParser;
+import b.d.b.a.outline;
 import com.discord.R;
 import com.discord.app.AppBottomSheet;
 import com.discord.app.AppTransitionActivity;
 import com.discord.databinding.WidgetGuildCallOnboardingBinding;
 import com.discord.utilities.rx.ObservableExtensionsKt;
 import com.discord.utilities.viewbinding.FragmentViewBindingDelegate;
-import com.discord.utilities.viewbinding.FragmentViewBindingDelegateKt;
-import com.discord.utilities.voice.VoiceChannelJoinability;
+import com.discord.utilities.viewbinding.FragmentViewBindingDelegate3;
+import com.discord.utilities.voice.VoiceChannelJoinabilityUtils2;
 import com.discord.views.JoinVoiceChannelButton;
 import com.discord.widgets.chat.list.TextInVoiceFeatureFlag;
 import com.discord.widgets.voice.sheet.WidgetVoiceBottomSheet;
-import d0.z.d.a0;
-import d0.z.d.m;
-import d0.z.d.o;
+import d0.z.d.Intrinsics3;
+import d0.z.d.Lambda;
+import d0.z.d.Reflection2;
 import java.util.Objects;
 import kotlin.Lazy;
 import kotlin.Unit;
@@ -36,7 +37,7 @@ import kotlin.reflect.KProperty;
 /* JADX INFO: compiled from: WidgetGuildCallOnboardingSheet.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetGuildCallOnboardingSheet extends AppBottomSheet {
-    public static final /* synthetic */ KProperty[] $$delegatedProperties = {a.d0(WidgetGuildCallOnboardingSheet.class, "binding", "getBinding()Lcom/discord/databinding/WidgetGuildCallOnboardingBinding;", 0)};
+    public static final /* synthetic */ KProperty[] $$delegatedProperties = {outline.d0(WidgetGuildCallOnboardingSheet.class, "binding", "getBinding()Lcom/discord/databinding/WidgetGuildCallOnboardingBinding;", 0)};
 
     /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
     public static final Companion INSTANCE = new Companion(null);
@@ -49,12 +50,12 @@ public final class WidgetGuildCallOnboardingSheet extends AppBottomSheet {
 
     /* JADX INFO: renamed from: com.discord.widgets.voice.fullscreen.WidgetGuildCallOnboardingSheet$configureUI$1, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetGuildCallOnboardingSheet.kt */
-    public final class AnonymousClass1 extends o implements Function0<Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function0<Unit> {
 
         /* JADX INFO: renamed from: com.discord.widgets.voice.fullscreen.WidgetGuildCallOnboardingSheet$configureUI$1$1, reason: invalid class name and collision with other inner class name */
         /* JADX INFO: compiled from: WidgetGuildCallOnboardingSheet.kt */
-        public final class C04851 extends o implements Function0<Unit> {
-            public C04851() {
+        public final class C03651 extends Lambda implements Function0<Unit> {
+            public C03651() {
                 super(0);
             }
 
@@ -68,7 +69,7 @@ public final class WidgetGuildCallOnboardingSheet extends AppBottomSheet {
             public final void invoke2() {
                 Companion companion = WidgetGuildCallOnboardingSheet.INSTANCE;
                 Context contextRequireContext = WidgetGuildCallOnboardingSheet.this.requireContext();
-                m.checkNotNullExpressionValue(contextRequireContext, "requireContext()");
+                Intrinsics3.checkNotNullExpressionValue(contextRequireContext, "requireContext()");
                 companion.markSeenUserVoiceChannelOnboarding(contextRequireContext);
                 WidgetGuildCallOnboardingSheet.access$getViewModel$p(WidgetGuildCallOnboardingSheet.this).onConnectPressed();
             }
@@ -86,13 +87,13 @@ public final class WidgetGuildCallOnboardingSheet extends AppBottomSheet {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2() {
-            d.S1(WidgetGuildCallOnboardingSheet.this, null, new C04851(), 1, null);
+            AnimatableValueParser.S1(WidgetGuildCallOnboardingSheet.this, null, new C03651(), 1, null);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.widgets.voice.fullscreen.WidgetGuildCallOnboardingSheet$onResume$1, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetGuildCallOnboardingSheet.kt */
-    public final class AnonymousClass1 extends o implements Function1<WidgetGuildCallOnboardingSheetViewModel.ViewState, Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function1<WidgetGuildCallOnboardingSheetViewModel.ViewState, Unit> {
         public AnonymousClass1() {
             super(1);
         }
@@ -105,14 +106,14 @@ public final class WidgetGuildCallOnboardingSheet extends AppBottomSheet {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(WidgetGuildCallOnboardingSheetViewModel.ViewState viewState) {
-            m.checkNotNullParameter(viewState, "viewState");
+            Intrinsics3.checkNotNullParameter(viewState, "viewState");
             WidgetGuildCallOnboardingSheet.access$configureUI(WidgetGuildCallOnboardingSheet.this, viewState);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.widgets.voice.fullscreen.WidgetGuildCallOnboardingSheet$onResume$2, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetGuildCallOnboardingSheet.kt */
-    public final class AnonymousClass2 extends o implements Function1<WidgetGuildCallOnboardingSheetViewModel.Event, Unit> {
+    public final class AnonymousClass2 extends Lambda implements Function1<WidgetGuildCallOnboardingSheetViewModel.Event, Unit> {
         public AnonymousClass2() {
             super(1);
         }
@@ -125,7 +126,7 @@ public final class WidgetGuildCallOnboardingSheet extends AppBottomSheet {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(WidgetGuildCallOnboardingSheetViewModel.Event event) {
-            m.checkNotNullParameter(event, "event");
+            Intrinsics3.checkNotNullParameter(event, "event");
             WidgetGuildCallOnboardingSheet.access$handleEvent(WidgetGuildCallOnboardingSheet.this, event);
         }
     }
@@ -136,17 +137,17 @@ public final class WidgetGuildCallOnboardingSheet extends AppBottomSheet {
         }
 
         public final boolean hasUserSeenVoiceChannelOnboarding(Context context) {
-            m.checkNotNullParameter(context, "context");
+            Intrinsics3.checkNotNullParameter(context, "context");
             return PreferenceManager.getDefaultSharedPreferences(context).getBoolean("CACHE_KEY_VOICE_CHANNEL_ONBOARDED", false);
         }
 
         public final void markSeenUserVoiceChannelOnboarding(Context context) {
-            m.checkNotNullParameter(context, "context");
+            Intrinsics3.checkNotNullParameter(context, "context");
             PreferenceManager.getDefaultSharedPreferences(context).edit().putBoolean("CACHE_KEY_VOICE_CHANNEL_ONBOARDED", true).apply();
         }
 
         public final void show(FragmentManager fragmentManager, long channelId) {
-            m.checkNotNullParameter(fragmentManager, "fragmentManager");
+            Intrinsics3.checkNotNullParameter(fragmentManager, "fragmentManager");
             WidgetGuildCallOnboardingSheet widgetGuildCallOnboardingSheet = new WidgetGuildCallOnboardingSheet();
             Bundle bundle = new Bundle();
             bundle.putLong("com.discord.intent.extra.EXTRA_CHANNEL_ID", channelId);
@@ -161,10 +162,10 @@ public final class WidgetGuildCallOnboardingSheet extends AppBottomSheet {
 
     public WidgetGuildCallOnboardingSheet() {
         super(false, 1, null);
-        this.binding = FragmentViewBindingDelegateKt.viewBinding$default(this, WidgetGuildCallOnboardingSheet$binding$2.INSTANCE, null, 2, null);
-        WidgetGuildCallOnboardingSheet$viewModel$2 widgetGuildCallOnboardingSheet$viewModel$2 = new WidgetGuildCallOnboardingSheet$viewModel$2(this);
-        g0 g0Var = new g0(this);
-        this.viewModel = FragmentViewModelLazyKt.createViewModelLazy(this, a0.getOrCreateKotlinClass(WidgetGuildCallOnboardingSheetViewModel.class), new WidgetGuildCallOnboardingSheet$appViewModels$$inlined$viewModels$1(g0Var), new i0(widgetGuildCallOnboardingSheet$viewModel$2));
+        this.binding = FragmentViewBindingDelegate3.viewBinding$default(this, WidgetGuildCallOnboardingSheet2.INSTANCE, null, 2, null);
+        WidgetGuildCallOnboardingSheet3 widgetGuildCallOnboardingSheet3 = new WidgetGuildCallOnboardingSheet3(this);
+        AppViewModelDelegates3 appViewModelDelegates3 = new AppViewModelDelegates3(this);
+        this.viewModel = FragmentViewModelLazyKt.createViewModelLazy(this, Reflection2.getOrCreateKotlinClass(WidgetGuildCallOnboardingSheetViewModel.class), new WidgetGuildCallOnboardingSheet$appViewModels$$inlined$viewModels$1(appViewModelDelegates3), new AppViewModelDelegates5(widgetGuildCallOnboardingSheet3));
     }
 
     public static final /* synthetic */ void access$configureUI(WidgetGuildCallOnboardingSheet widgetGuildCallOnboardingSheet, WidgetGuildCallOnboardingSheetViewModel.ViewState viewState) {
@@ -196,11 +197,11 @@ public final class WidgetGuildCallOnboardingSheet extends AppBottomSheet {
     private final void configureUI(WidgetGuildCallOnboardingSheetViewModel.ViewState viewState) {
         if (viewState instanceof WidgetGuildCallOnboardingSheetViewModel.ViewState.Loaded) {
             JoinVoiceChannelButton joinVoiceChannelButton = getBinding().f2409b;
-            VoiceChannelJoinability joinability = ((WidgetGuildCallOnboardingSheetViewModel.ViewState.Loaded) viewState).getJoinability();
+            VoiceChannelJoinabilityUtils2 joinability = ((WidgetGuildCallOnboardingSheetViewModel.ViewState.Loaded) viewState).getJoinability();
             AnonymousClass1 anonymousClass1 = new AnonymousClass1();
             Objects.requireNonNull(joinVoiceChannelButton);
-            m.checkNotNullParameter(joinability, "joinability");
-            m.checkNotNullParameter(anonymousClass1, "joinVoiceClickListener");
+            Intrinsics3.checkNotNullParameter(joinability, "joinability");
+            Intrinsics3.checkNotNullParameter(anonymousClass1, "joinVoiceClickListener");
             int iOrdinal = joinability.ordinal();
             if (iOrdinal != 0) {
                 if (iOrdinal == 1) {
@@ -223,7 +224,7 @@ public final class WidgetGuildCallOnboardingSheet extends AppBottomSheet {
                 }
             }
             joinVoiceChannelButton.setText(R.string.connect_to_voice);
-            joinVoiceChannelButton.setOnClickListener(new g(anonymousClass1));
+            joinVoiceChannelButton.setOnClickListener(new JoinVoiceChannelButton2(anonymousClass1));
         }
     }
 
@@ -241,10 +242,10 @@ public final class WidgetGuildCallOnboardingSheet extends AppBottomSheet {
     }
 
     private final void handleEvent(WidgetGuildCallOnboardingSheetViewModel.Event event) {
-        if (m.areEqual(event, WidgetGuildCallOnboardingSheetViewModel.Event.ShowGuildVideoCapacityDialog.INSTANCE)) {
-            b.a.a.m.Companion companion = b.a.a.m.INSTANCE;
+        if (Intrinsics3.areEqual(event, WidgetGuildCallOnboardingSheetViewModel.Event.ShowGuildVideoCapacityDialog.INSTANCE)) {
+            GuildVideoAtCapacityDialog.Companion companion = GuildVideoAtCapacityDialog.INSTANCE;
             FragmentManager parentFragmentManager = getParentFragmentManager();
-            m.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
+            Intrinsics3.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
             companion.a(parentFragmentManager);
             dismiss();
             return;
@@ -254,12 +255,12 @@ public final class WidgetGuildCallOnboardingSheet extends AppBottomSheet {
             if (TextInVoiceFeatureFlag.INSTANCE.getINSTANCE().isEnabled(launchGuildCallScreen.getGuildId())) {
                 WidgetCallPreviewFullscreen.Companion companion2 = WidgetCallPreviewFullscreen.INSTANCE;
                 Context contextRequireContext = requireContext();
-                m.checkNotNullExpressionValue(contextRequireContext, "requireContext()");
+                Intrinsics3.checkNotNullExpressionValue(contextRequireContext, "requireContext()");
                 companion2.launch(contextRequireContext, launchGuildCallScreen.getChannelId(), AppTransitionActivity.Transition.TYPE_SLIDE_VERTICAL_WITH_FADE);
             } else {
                 WidgetVoiceBottomSheet.Companion companion3 = WidgetVoiceBottomSheet.INSTANCE;
                 FragmentManager parentFragmentManager2 = getParentFragmentManager();
-                m.checkNotNullExpressionValue(parentFragmentManager2, "parentFragmentManager");
+                Intrinsics3.checkNotNullExpressionValue(parentFragmentManager2, "parentFragmentManager");
                 companion3.show(parentFragmentManager2, launchGuildCallScreen.getChannelId(), true, WidgetVoiceBottomSheet.FeatureContext.HOME);
             }
             dismiss();

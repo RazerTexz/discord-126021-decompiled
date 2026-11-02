@@ -1,17 +1,17 @@
 package com.discord.stores;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.api.channel.Channel;
 import com.discord.api.channel.ChannelUtils;
 import com.discord.api.message.MessageReference;
 import com.discord.models.domain.ModelMessageDelete;
 import com.discord.models.message.Message;
 import com.discord.stores.updates.ObservationDeck;
-import com.discord.stores.updates.ObservationDeckProvider;
+import com.discord.stores.updates.ObservationDeck4;
 import com.discord.utilities.collections.SnowflakePartitionMap;
-import d0.t.h0;
-import d0.z.d.m;
-import d0.z.d.o;
+import d0.t.Maps6;
+import d0.z.d.Intrinsics3;
+import d0.z.d.Lambda;
 import java.util.Map;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
@@ -28,7 +28,7 @@ public final class StorePendingReplies extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StorePendingReplies$observePendingReply$1, reason: invalid class name */
     /* JADX INFO: compiled from: StorePendingReplies.kt */
-    public final class AnonymousClass1 extends o implements Function0<PendingReply> {
+    public final class AnonymousClass1 extends Lambda implements Function0<PendingReply> {
         public final /* synthetic */ long $channelId;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -51,7 +51,7 @@ public final class StorePendingReplies extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StorePendingReplies$onCreatePendingReply$1, reason: invalid class name */
     /* JADX INFO: compiled from: StorePendingReplies.kt */
-    public final class AnonymousClass1 extends o implements Function0<Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function0<Unit> {
         public final /* synthetic */ Channel $channel;
         public final /* synthetic */ Message $message;
         public final /* synthetic */ boolean $shouldMention;
@@ -81,7 +81,7 @@ public final class StorePendingReplies extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StorePendingReplies$onDeletePendingReply$1, reason: invalid class name */
     /* JADX INFO: compiled from: StorePendingReplies.kt */
-    public final class AnonymousClass1 extends o implements Function0<Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function0<Unit> {
         public final /* synthetic */ long $channelId;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -105,7 +105,7 @@ public final class StorePendingReplies extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StorePendingReplies$onSetPendingReplyShouldMention$1, reason: invalid class name */
     /* JADX INFO: compiled from: StorePendingReplies.kt */
-    public final class AnonymousClass1 extends o implements Function0<Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function0<Unit> {
         public final /* synthetic */ long $channelId;
         public final /* synthetic */ boolean $shouldMention;
 
@@ -140,8 +140,8 @@ public final class StorePendingReplies extends StoreV2 {
         private final boolean showMentionToggle;
 
         public PendingReply(MessageReference messageReference, Message message, boolean z2, boolean z3) {
-            m.checkNotNullParameter(messageReference, "messageReference");
-            m.checkNotNullParameter(message, "originalMessage");
+            Intrinsics3.checkNotNullParameter(messageReference, "messageReference");
+            Intrinsics3.checkNotNullParameter(message, "originalMessage");
             this.messageReference = messageReference;
             this.originalMessage = message;
             this.shouldMention = z2;
@@ -165,8 +165,8 @@ public final class StorePendingReplies extends StoreV2 {
         }
 
         public final PendingReply copy(MessageReference messageReference, Message originalMessage, boolean shouldMention, boolean showMentionToggle) {
-            m.checkNotNullParameter(messageReference, "messageReference");
-            m.checkNotNullParameter(originalMessage, "originalMessage");
+            Intrinsics3.checkNotNullParameter(messageReference, "messageReference");
+            Intrinsics3.checkNotNullParameter(originalMessage, "originalMessage");
             return new PendingReply(messageReference, originalMessage, shouldMention, showMentionToggle);
         }
 
@@ -178,7 +178,7 @@ public final class StorePendingReplies extends StoreV2 {
                 return false;
             }
             PendingReply pendingReply = (PendingReply) other;
-            return m.areEqual(this.messageReference, pendingReply.messageReference) && m.areEqual(this.originalMessage, pendingReply.originalMessage) && this.shouldMention == pendingReply.shouldMention && this.showMentionToggle == pendingReply.showMentionToggle;
+            return Intrinsics3.areEqual(this.messageReference, pendingReply.messageReference) && Intrinsics3.areEqual(this.originalMessage, pendingReply.originalMessage) && this.shouldMention == pendingReply.shouldMention && this.showMentionToggle == pendingReply.showMentionToggle;
         }
 
         /* JADX INFO: renamed from: component1, reason: from getter */
@@ -246,19 +246,19 @@ public final class StorePendingReplies extends StoreV2 {
         }
 
         public String toString() {
-            StringBuilder sbU = a.U("PendingReply(messageReference=");
+            StringBuilder sbU = outline.U("PendingReply(messageReference=");
             sbU.append(this.messageReference);
             sbU.append(", originalMessage=");
             sbU.append(this.originalMessage);
             sbU.append(", shouldMention=");
             sbU.append(this.shouldMention);
             sbU.append(", showMentionToggle=");
-            return a.O(sbU, this.showMentionToggle, ")");
+            return outline.O(sbU, this.showMentionToggle, ")");
         }
     }
 
     public /* synthetic */ StorePendingReplies(Dispatcher dispatcher, ObservationDeck observationDeck, int i, DefaultConstructorMarker defaultConstructorMarker) {
-        this(dispatcher, (i & 2) != 0 ? ObservationDeckProvider.get() : observationDeck);
+        this(dispatcher, (i & 2) != 0 ? ObservationDeck4.get() : observationDeck);
     }
 
     public static final /* synthetic */ SnowflakePartitionMap.CopiablePartitionMap access$getPendingReplies$p(StorePendingReplies storePendingReplies) {
@@ -269,9 +269,9 @@ public final class StorePendingReplies extends StoreV2 {
         return this.pendingRepliesSnapshot.get(Long.valueOf(channelId));
     }
 
-    @StoreThread
+    @Store3
     public final void handleMessageDelete(ModelMessageDelete messageDeleteBulk) {
-        m.checkNotNullParameter(messageDeleteBulk, "messageDeleteBulk");
+        Intrinsics3.checkNotNullParameter(messageDeleteBulk, "messageDeleteBulk");
         PendingReply pendingReply = this.pendingReplies.get(Long.valueOf(messageDeleteBulk.getChannelId()));
         if (pendingReply == null || !messageDeleteBulk.getMessageIds().contains(pendingReply.getMessageReference().getMessageId())) {
             return;
@@ -280,7 +280,7 @@ public final class StorePendingReplies extends StoreV2 {
         markChanged();
     }
 
-    @StoreThread
+    @Store3
     public final void handlePreLogout() {
         this.pendingReplies.clear();
         markChanged();
@@ -301,8 +301,8 @@ public final class StorePendingReplies extends StoreV2 {
     }
 
     public final void onCreatePendingReply(Channel channel, Message message, boolean shouldMention, boolean showMentionToggle) {
-        m.checkNotNullParameter(channel, "channel");
-        m.checkNotNullParameter(message, "message");
+        Intrinsics3.checkNotNullParameter(channel, "channel");
+        Intrinsics3.checkNotNullParameter(message, "message");
         this.dispatcher.schedule(new AnonymousClass1(channel, message, shouldMention, showMentionToggle));
     }
 
@@ -315,17 +315,17 @@ public final class StorePendingReplies extends StoreV2 {
     }
 
     @Override // com.discord.stores.StoreV2
-    @StoreThread
+    @Store3
     public void snapshotData() {
         this.pendingRepliesSnapshot = this.pendingReplies.fastCopy();
     }
 
     public StorePendingReplies(Dispatcher dispatcher, ObservationDeck observationDeck) {
-        m.checkNotNullParameter(dispatcher, "dispatcher");
-        m.checkNotNullParameter(observationDeck, "observationDeck");
+        Intrinsics3.checkNotNullParameter(dispatcher, "dispatcher");
+        Intrinsics3.checkNotNullParameter(observationDeck, "observationDeck");
         this.dispatcher = dispatcher;
         this.observationDeck = observationDeck;
         this.pendingReplies = new SnowflakePartitionMap.CopiablePartitionMap<>(0, 1, null);
-        this.pendingRepliesSnapshot = h0.emptyMap();
+        this.pendingRepliesSnapshot = Maps6.emptyMap();
     }
 }

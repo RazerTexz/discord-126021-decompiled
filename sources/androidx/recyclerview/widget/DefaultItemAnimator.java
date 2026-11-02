@@ -8,7 +8,7 @@ import android.view.View;
 import android.view.ViewPropertyAnimator;
 import androidx.annotation.NonNull;
 import androidx.core.view.ViewCompat;
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -626,7 +626,7 @@ public class DefaultItemAnimator extends SimpleItemAnimator {
         }
 
         public String toString() {
-            StringBuilder sbU = a.U("ChangeInfo{oldHolder=");
+            StringBuilder sbU = outline.U("ChangeInfo{oldHolder=");
             sbU.append(this.oldHolder);
             sbU.append(", newHolder=");
             sbU.append(this.newHolder);
@@ -637,7 +637,7 @@ public class DefaultItemAnimator extends SimpleItemAnimator {
             sbU.append(", toX=");
             sbU.append(this.toX);
             sbU.append(", toY=");
-            return a.A(sbU, this.toY, '}');
+            return outline.A(sbU, this.toY, '}');
         }
 
         public ChangeInfo(RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder viewHolder2, int i, int i2, int i3, int i4) {

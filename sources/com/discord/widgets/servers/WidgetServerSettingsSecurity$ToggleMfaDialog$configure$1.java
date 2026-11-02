@@ -6,8 +6,8 @@ import com.discord.utilities.rest.RestAPI;
 import com.discord.utilities.rx.ObservableExtensionsKt;
 import com.discord.utilities.view.extensions.ViewExtensions;
 import com.google.android.material.textfield.TextInputLayout;
-import d0.z.d.m;
-import d0.z.d.o;
+import d0.z.d.Intrinsics3;
+import d0.z.d.Lambda;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
@@ -21,7 +21,7 @@ public final class WidgetServerSettingsSecurity$ToggleMfaDialog$configure$1 impl
 
     /* JADX INFO: renamed from: com.discord.widgets.servers.WidgetServerSettingsSecurity$ToggleMfaDialog$configure$1$1, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetServerSettingsSecurity.kt */
-    public final class AnonymousClass1 extends o implements Function1<Void, Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function1<Void, Unit> {
         public AnonymousClass1() {
             super(1);
         }
@@ -48,7 +48,7 @@ public final class WidgetServerSettingsSecurity$ToggleMfaDialog$configure$1 impl
     public final void onClick(View view) {
         int i = !this.$mfaEnabled ? 1 : 0;
         TextInputLayout textInputLayout = WidgetServerSettingsSecurity.ToggleMfaDialog.access$getBinding$p(this.this$0).d;
-        m.checkNotNullExpressionValue(textInputLayout, "binding.serverSettingsSecurityServerMfaCode");
+        Intrinsics3.checkNotNullExpressionValue(textInputLayout, "binding.serverSettingsSecurityServerMfaCode");
         ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.restSubscribeOn$default(RestAPI.INSTANCE.getApi().setMfaLevel(this.$guildId, new RestAPIParams.GuildMFA(i, ViewExtensions.getTextOrEmpty(textInputLayout))), false, 1, null), this.this$0, null, 2, null), this.this$0.getClass(), this.this$0.getContext(), (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass1(), 60, (Object) null);
     }
 }

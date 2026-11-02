@@ -7,21 +7,21 @@ import java.util.Objects;
 /* JADX INFO: compiled from: lambda */
 /* JADX INFO: loaded from: classes3.dex */
 public final /* synthetic */ class o implements MediaDrm.OnEventListener {
-    public final /* synthetic */ c0 a;
+    public final /* synthetic */ FrameworkMediaDrm a;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    public final /* synthetic */ a0.b f1154b;
+    public final /* synthetic */ ExoMediaDrm.b f1154b;
 
-    public /* synthetic */ o(c0 c0Var, a0.b bVar) {
-        this.a = c0Var;
+    public /* synthetic */ o(FrameworkMediaDrm frameworkMediaDrm, ExoMediaDrm.b bVar) {
+        this.a = frameworkMediaDrm;
         this.f1154b = bVar;
     }
 
     @Override // android.media.MediaDrm.OnEventListener
     public final void onEvent(MediaDrm mediaDrm, byte[] bArr, int i, int i2, byte[] bArr2) {
-        c0 c0Var = this.a;
-        a0.b bVar = this.f1154b;
-        Objects.requireNonNull(c0Var);
+        FrameworkMediaDrm frameworkMediaDrm = this.a;
+        ExoMediaDrm.b bVar = this.f1154b;
+        Objects.requireNonNull(frameworkMediaDrm);
         DefaultDrmSessionManager.c cVar = DefaultDrmSessionManager.this.f2931x;
         Objects.requireNonNull(cVar);
         cVar.obtainMessage(i, bArr).sendToTarget();

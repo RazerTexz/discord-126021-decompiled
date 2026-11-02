@@ -1,16 +1,16 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.analytics.generated.traits.TrackLocationMetadata;
-import com.discord.analytics.generated.traits.TrackLocationMetadataReceiver;
+import com.discord.analytics.generated.traits.TrackLocationMetadata2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackExpressionPickerCategorySelected.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackExpressionPickerCategorySelected implements AnalyticsSchema, TrackBaseReceiver, TrackLocationMetadataReceiver {
+public final /* data */ class TrackExpressionPickerCategorySelected implements AnalyticsSchema, TrackBase2, TrackLocationMetadata2 {
     private final Long guildId = null;
     private final Long stickerPackId = null;
     private final CharSequence tab = null;
@@ -26,7 +26,7 @@ public final /* data */ class TrackExpressionPickerCategorySelected implements A
             return false;
         }
         TrackExpressionPickerCategorySelected trackExpressionPickerCategorySelected = (TrackExpressionPickerCategorySelected) other;
-        return m.areEqual(this.tab, trackExpressionPickerCategorySelected.tab) && m.areEqual(this.guildId, trackExpressionPickerCategorySelected.guildId) && m.areEqual(this.stickerPackId, trackExpressionPickerCategorySelected.stickerPackId);
+        return Intrinsics3.areEqual(this.tab, trackExpressionPickerCategorySelected.tab) && Intrinsics3.areEqual(this.guildId, trackExpressionPickerCategorySelected.guildId) && Intrinsics3.areEqual(this.stickerPackId, trackExpressionPickerCategorySelected.stickerPackId);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -45,11 +45,11 @@ public final /* data */ class TrackExpressionPickerCategorySelected implements A
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackExpressionPickerCategorySelected(tab=");
+        StringBuilder sbU = outline.U("TrackExpressionPickerCategorySelected(tab=");
         sbU.append(this.tab);
         sbU.append(", guildId=");
         sbU.append(this.guildId);
         sbU.append(", stickerPackId=");
-        return a.G(sbU, this.stickerPackId, ")");
+        return outline.G(sbU, this.stickerPackId, ")");
     }
 }

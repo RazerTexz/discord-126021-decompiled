@@ -1,23 +1,23 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.analytics.generated.traits.TrackGuild;
-import com.discord.analytics.generated.traits.TrackGuildReceiver;
+import com.discord.analytics.generated.traits.TrackGuild2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackRoleSubscriptionListingPublishedV3.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackRoleSubscriptionListingPublishedV3 implements AnalyticsSchema, TrackBaseReceiver, TrackGuildReceiver {
+public final /* data */ class TrackRoleSubscriptionListingPublishedV3 implements AnalyticsSchema, TrackBase2, TrackGuild2 {
     private final Long roleSubscriptionGroupListingId = null;
     private final Long roleSubscriptionListingId = null;
     private TrackBase trackBase;
     private TrackGuild trackGuild;
     private final transient String analyticsSchemaTypeName = "role_subscription_listing_published_v3";
 
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    @Override // com.discord.analytics.generated.traits.TrackGuild2
     public void c(TrackGuild trackGuild) {
         this.trackGuild = trackGuild;
     }
@@ -30,7 +30,7 @@ public final /* data */ class TrackRoleSubscriptionListingPublishedV3 implements
             return false;
         }
         TrackRoleSubscriptionListingPublishedV3 trackRoleSubscriptionListingPublishedV3 = (TrackRoleSubscriptionListingPublishedV3) other;
-        return m.areEqual(this.roleSubscriptionListingId, trackRoleSubscriptionListingPublishedV3.roleSubscriptionListingId) && m.areEqual(this.roleSubscriptionGroupListingId, trackRoleSubscriptionListingPublishedV3.roleSubscriptionGroupListingId);
+        return Intrinsics3.areEqual(this.roleSubscriptionListingId, trackRoleSubscriptionListingPublishedV3.roleSubscriptionListingId) && Intrinsics3.areEqual(this.roleSubscriptionGroupListingId, trackRoleSubscriptionListingPublishedV3.roleSubscriptionGroupListingId);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -39,7 +39,7 @@ public final /* data */ class TrackRoleSubscriptionListingPublishedV3 implements
         return this.analyticsSchemaTypeName;
     }
 
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    @Override // com.discord.analytics.generated.traits.TrackGuild2
     /* JADX INFO: renamed from: a, reason: from getter */
     public TrackGuild getTrackGuild() {
         return this.trackGuild;
@@ -53,9 +53,9 @@ public final /* data */ class TrackRoleSubscriptionListingPublishedV3 implements
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackRoleSubscriptionListingPublishedV3(roleSubscriptionListingId=");
+        StringBuilder sbU = outline.U("TrackRoleSubscriptionListingPublishedV3(roleSubscriptionListingId=");
         sbU.append(this.roleSubscriptionListingId);
         sbU.append(", roleSubscriptionGroupListingId=");
-        return a.G(sbU, this.roleSubscriptionGroupListingId, ")");
+        return outline.G(sbU, this.roleSubscriptionGroupListingId, ")");
     }
 }

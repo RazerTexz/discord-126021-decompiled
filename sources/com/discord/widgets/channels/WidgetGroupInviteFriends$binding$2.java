@@ -10,13 +10,13 @@ import com.discord.app.AppViewFlipper;
 import com.discord.chips_view.ChipsView;
 import com.discord.databinding.WidgetGroupInviteFriendsBinding;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import d0.z.d.k;
-import d0.z.d.m;
+import d0.z.d.FunctionReferenceImpl;
+import d0.z.d.Intrinsics3;
 import kotlin.jvm.functions.Function1;
 
 /* JADX INFO: compiled from: WidgetGroupInviteFriends.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final /* synthetic */ class WidgetGroupInviteFriends$binding$2 extends k implements Function1<View, WidgetGroupInviteFriendsBinding> {
+public final /* synthetic */ class WidgetGroupInviteFriends$binding$2 extends FunctionReferenceImpl implements Function1<View, WidgetGroupInviteFriendsBinding> {
     public static final WidgetGroupInviteFriends$binding$2 INSTANCE = new WidgetGroupInviteFriends$binding$2();
 
     public WidgetGroupInviteFriends$binding$2() {
@@ -30,7 +30,7 @@ public final /* synthetic */ class WidgetGroupInviteFriends$binding$2 extends k 
 
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final WidgetGroupInviteFriendsBinding invoke2(View view) {
-        m.checkNotNullParameter(view, "p1");
+        Intrinsics3.checkNotNullParameter(view, "p1");
         int i = R.id.group_invite_friends_chips;
         ChipsView chipsView = (ChipsView) view.findViewById(R.id.group_invite_friends_chips);
         if (chipsView != null) {

@@ -1,14 +1,14 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackSubscriptionPlanUpdated.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackSubscriptionPlanUpdated implements AnalyticsSchema, TrackBaseReceiver {
+public final /* data */ class TrackSubscriptionPlanUpdated implements AnalyticsSchema, TrackBase2 {
     private final Long createdAt = null;
     private final Long currentPeriodEnd = null;
     private final Long currentPeriodStart = null;
@@ -34,7 +34,7 @@ public final /* data */ class TrackSubscriptionPlanUpdated implements AnalyticsS
             return false;
         }
         TrackSubscriptionPlanUpdated trackSubscriptionPlanUpdated = (TrackSubscriptionPlanUpdated) other;
-        return m.areEqual(this.subscriptionId, trackSubscriptionPlanUpdated.subscriptionId) && m.areEqual(this.subscriptionType, trackSubscriptionPlanUpdated.subscriptionType) && m.areEqual(this.paymentGatewayPlanId, trackSubscriptionPlanUpdated.paymentGatewayPlanId) && m.areEqual(this.planId, trackSubscriptionPlanUpdated.planId) && m.areEqual(this.paymentGateway, trackSubscriptionPlanUpdated.paymentGateway) && m.areEqual(this.createdAt, trackSubscriptionPlanUpdated.createdAt) && m.areEqual(this.currentPeriodStart, trackSubscriptionPlanUpdated.currentPeriodStart) && m.areEqual(this.currentPeriodEnd, trackSubscriptionPlanUpdated.currentPeriodEnd) && m.areEqual(this.previousSubscriptionId, trackSubscriptionPlanUpdated.previousSubscriptionId) && m.areEqual(this.previousSubscriptionType, trackSubscriptionPlanUpdated.previousSubscriptionType) && m.areEqual(this.previousPaymentGatewayPlanId, trackSubscriptionPlanUpdated.previousPaymentGatewayPlanId) && m.areEqual(this.previousPlanId, trackSubscriptionPlanUpdated.previousPlanId) && m.areEqual(this.previousCurrentPeriodStart, trackSubscriptionPlanUpdated.previousCurrentPeriodStart) && m.areEqual(this.previousCurrentPeriodEnd, trackSubscriptionPlanUpdated.previousCurrentPeriodEnd);
+        return Intrinsics3.areEqual(this.subscriptionId, trackSubscriptionPlanUpdated.subscriptionId) && Intrinsics3.areEqual(this.subscriptionType, trackSubscriptionPlanUpdated.subscriptionType) && Intrinsics3.areEqual(this.paymentGatewayPlanId, trackSubscriptionPlanUpdated.paymentGatewayPlanId) && Intrinsics3.areEqual(this.planId, trackSubscriptionPlanUpdated.planId) && Intrinsics3.areEqual(this.paymentGateway, trackSubscriptionPlanUpdated.paymentGateway) && Intrinsics3.areEqual(this.createdAt, trackSubscriptionPlanUpdated.createdAt) && Intrinsics3.areEqual(this.currentPeriodStart, trackSubscriptionPlanUpdated.currentPeriodStart) && Intrinsics3.areEqual(this.currentPeriodEnd, trackSubscriptionPlanUpdated.currentPeriodEnd) && Intrinsics3.areEqual(this.previousSubscriptionId, trackSubscriptionPlanUpdated.previousSubscriptionId) && Intrinsics3.areEqual(this.previousSubscriptionType, trackSubscriptionPlanUpdated.previousSubscriptionType) && Intrinsics3.areEqual(this.previousPaymentGatewayPlanId, trackSubscriptionPlanUpdated.previousPaymentGatewayPlanId) && Intrinsics3.areEqual(this.previousPlanId, trackSubscriptionPlanUpdated.previousPlanId) && Intrinsics3.areEqual(this.previousCurrentPeriodStart, trackSubscriptionPlanUpdated.previousCurrentPeriodStart) && Intrinsics3.areEqual(this.previousCurrentPeriodEnd, trackSubscriptionPlanUpdated.previousCurrentPeriodEnd);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -75,7 +75,7 @@ public final /* data */ class TrackSubscriptionPlanUpdated implements AnalyticsS
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackSubscriptionPlanUpdated(subscriptionId=");
+        StringBuilder sbU = outline.U("TrackSubscriptionPlanUpdated(subscriptionId=");
         sbU.append(this.subscriptionId);
         sbU.append(", subscriptionType=");
         sbU.append(this.subscriptionType);
@@ -102,6 +102,6 @@ public final /* data */ class TrackSubscriptionPlanUpdated implements AnalyticsS
         sbU.append(", previousCurrentPeriodStart=");
         sbU.append(this.previousCurrentPeriodStart);
         sbU.append(", previousCurrentPeriodEnd=");
-        return a.G(sbU, this.previousCurrentPeriodEnd, ")");
+        return outline.G(sbU, this.previousCurrentPeriodEnd, ")");
     }
 }

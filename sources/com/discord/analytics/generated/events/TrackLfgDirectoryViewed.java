@@ -1,14 +1,14 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackLfgDirectoryViewed.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackLfgDirectoryViewed implements AnalyticsSchema, TrackBaseReceiver {
+public final /* data */ class TrackLfgDirectoryViewed implements AnalyticsSchema, TrackBase2 {
     private final Long channelId = null;
     private final Long guildId = null;
     private final Long numGroupsFull = null;
@@ -25,7 +25,7 @@ public final /* data */ class TrackLfgDirectoryViewed implements AnalyticsSchema
             return false;
         }
         TrackLfgDirectoryViewed trackLfgDirectoryViewed = (TrackLfgDirectoryViewed) other;
-        return m.areEqual(this.channelId, trackLfgDirectoryViewed.channelId) && m.areEqual(this.guildId, trackLfgDirectoryViewed.guildId) && m.areEqual(this.numGroupsTotal, trackLfgDirectoryViewed.numGroupsTotal) && m.areEqual(this.numGroupsOpen, trackLfgDirectoryViewed.numGroupsOpen) && m.areEqual(this.numGroupsFull, trackLfgDirectoryViewed.numGroupsFull);
+        return Intrinsics3.areEqual(this.channelId, trackLfgDirectoryViewed.channelId) && Intrinsics3.areEqual(this.guildId, trackLfgDirectoryViewed.guildId) && Intrinsics3.areEqual(this.numGroupsTotal, trackLfgDirectoryViewed.numGroupsTotal) && Intrinsics3.areEqual(this.numGroupsOpen, trackLfgDirectoryViewed.numGroupsOpen) && Intrinsics3.areEqual(this.numGroupsFull, trackLfgDirectoryViewed.numGroupsFull);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -48,7 +48,7 @@ public final /* data */ class TrackLfgDirectoryViewed implements AnalyticsSchema
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackLfgDirectoryViewed(channelId=");
+        StringBuilder sbU = outline.U("TrackLfgDirectoryViewed(channelId=");
         sbU.append(this.channelId);
         sbU.append(", guildId=");
         sbU.append(this.guildId);
@@ -57,6 +57,6 @@ public final /* data */ class TrackLfgDirectoryViewed implements AnalyticsSchema
         sbU.append(", numGroupsOpen=");
         sbU.append(this.numGroupsOpen);
         sbU.append(", numGroupsFull=");
-        return a.G(sbU, this.numGroupsFull, ")");
+        return outline.G(sbU, this.numGroupsFull, ")");
     }
 }

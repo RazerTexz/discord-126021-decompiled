@@ -1,14 +1,16 @@
 package com.esotericsoftware.kryo;
 
+import b.d.b.a.outline;
+import b.e.a.Log;
 import com.esotericsoftware.kryo.util.Util;
-import h0.b.a.a;
+import h0.b.a.ObjectInstantiator;
 
 /* JADX INFO: loaded from: classes.dex */
 public class Registration {
 
     /* JADX INFO: renamed from: id, reason: collision with root package name */
     private final int f2880id;
-    private a instantiator;
+    private ObjectInstantiator instantiator;
     private Serializer serializer;
     private final Class type;
 
@@ -28,7 +30,7 @@ public class Registration {
         return this.f2880id;
     }
 
-    public a getInstantiator() {
+    public ObjectInstantiator getInstantiator() {
         return this.instantiator;
     }
 
@@ -40,11 +42,11 @@ public class Registration {
         return this.type;
     }
 
-    public void setInstantiator(a aVar) {
-        if (aVar == null) {
+    public void setInstantiator(ObjectInstantiator objectInstantiator) {
+        if (objectInstantiator == null) {
             throw new IllegalArgumentException("instantiator cannot be null.");
         }
-        this.instantiator = aVar;
+        this.instantiator = objectInstantiator;
     }
 
     public void setSerializer(Serializer serializer) {
@@ -52,11 +54,11 @@ public class Registration {
             throw new IllegalArgumentException("serializer cannot be null.");
         }
         this.serializer = serializer;
-        b.e.a.a.C0064a c0064a = b.e.a.a.a;
+        Log.a aVar = Log.a;
     }
 
     public String toString() {
-        StringBuilder sbU = b.d.b.a.a.U("[");
+        StringBuilder sbU = outline.U("[");
         sbU.append(this.f2880id);
         sbU.append(", ");
         sbU.append(Util.className(this.type));

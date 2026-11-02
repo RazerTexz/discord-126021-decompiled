@@ -1,14 +1,14 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackGameSpectated.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackGameSpectated implements AnalyticsSchema, TrackBaseReceiver {
+public final /* data */ class TrackGameSpectated implements AnalyticsSchema, TrackBase2 {
     private final Long applicationId = null;
     private final CharSequence partyId = null;
     private final CharSequence source = null;
@@ -23,7 +23,7 @@ public final /* data */ class TrackGameSpectated implements AnalyticsSchema, Tra
             return false;
         }
         TrackGameSpectated trackGameSpectated = (TrackGameSpectated) other;
-        return m.areEqual(this.source, trackGameSpectated.source) && m.areEqual(this.applicationId, trackGameSpectated.applicationId) && m.areEqual(this.partyId, trackGameSpectated.partyId);
+        return Intrinsics3.areEqual(this.source, trackGameSpectated.source) && Intrinsics3.areEqual(this.applicationId, trackGameSpectated.applicationId) && Intrinsics3.areEqual(this.partyId, trackGameSpectated.partyId);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -42,11 +42,11 @@ public final /* data */ class TrackGameSpectated implements AnalyticsSchema, Tra
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackGameSpectated(source=");
+        StringBuilder sbU = outline.U("TrackGameSpectated(source=");
         sbU.append(this.source);
         sbU.append(", applicationId=");
         sbU.append(this.applicationId);
         sbU.append(", partyId=");
-        return a.E(sbU, this.partyId, ")");
+        return outline.E(sbU, this.partyId, ")");
     }
 }

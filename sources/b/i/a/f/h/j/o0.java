@@ -5,6 +5,8 @@ import android.net.NetworkInfo;
 import android.os.Build;
 import android.text.TextUtils;
 import android.util.Log;
+import b.c.a.a0.AnimatableValueParser;
+import b.d.b.a.outline;
 import com.adjust.sdk.Constants;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -161,8 +163,8 @@ public final class o0 extends e {
             Objects.requireNonNull((b.i.a.f.e.o.c) this.j.d);
             S(sb, "qt", String.valueOf(System.currentTimeMillis() - j0Var.d));
             if (z2) {
-                b.c.a.a0.d.w("_s");
-                b.c.a.a0.d.o(true, "Short param name required");
+                AnimatableValueParser.w("_s");
+                AnimatableValueParser.o(true, "Short param name required");
                 String str = j0Var.a.get("_s");
                 if (str == null) {
                     str = "0";
@@ -397,11 +399,11 @@ public final class o0 extends e {
                             if (j0Var.f) {
                                 String strD = z.d();
                                 String strF = z.f();
-                                strL = b.d.b.a.a.l(strR.length() + b.d.b.a.a.b(strF, b.d.b.a.a.b(strD, 1)), strD, strF, "?", strR);
+                                strL = outline.l(strR.length() + outline.b(strF, outline.b(strD, 1)), strD, strF, "?", strR);
                             } else {
                                 String strE = z.e();
                                 String strF2 = z.f();
-                                strL = b.d.b.a.a.l(strR.length() + b.d.b.a.a.b(strF2, b.d.b.a.a.b(strE, 1)), strE, strF2, "?", strR);
+                                strL = outline.l(strR.length() + outline.b(strF2, outline.b(strE, 1)), strE, strF2, "?", strR);
                             }
                             try {
                                 url2 = new URL(strL);
@@ -517,7 +519,7 @@ public final class o0 extends e {
                 }
                 return arrayList;
             }
-            b.c.a.a0.d.l(!list.isEmpty());
+            AnimatableValueParser.l(!list.isEmpty());
             a(2, "Uploading batched hits. compression, count", Boolean.valueOf(z3), Integer.valueOf(list.size()), null);
             byteArrayOutputStream = new ByteArrayOutputStream();
             arrayList2 = new ArrayList();
@@ -732,11 +734,11 @@ public final class o0 extends e {
                         if (j0Var.f) {
                             String strD2 = z.d();
                             String strF3 = z.f();
-                            strL = b.d.b.a.a.l(strR.length() + b.d.b.a.a.b(strF3, b.d.b.a.a.b(strD2, 1)), strD2, strF3, "?", strR);
+                            strL = outline.l(strR.length() + outline.b(strF3, outline.b(strD2, 1)), strD2, strF3, "?", strR);
                         } else {
                             String strE2 = z.e();
                             String strF4 = z.f();
-                            strL = b.d.b.a.a.l(strR.length() + b.d.b.a.a.b(strF4, b.d.b.a.a.b(strE2, 1)), strE2, strF4, "?", strR);
+                            strL = outline.l(strR.length() + outline.b(strF4, outline.b(strE2, 1)), strE2, strF4, "?", strR);
                         }
                         url2 = new URL(strL);
                         if (url2 == null) {
@@ -818,7 +820,7 @@ public final class o0 extends e {
             }
             return arrayList;
         }
-        b.c.a.a0.d.l(!list.isEmpty());
+        AnimatableValueParser.l(!list.isEmpty());
         a(2, "Uploading batched hits. compression, count", Boolean.valueOf(z3), Integer.valueOf(list.size()), null);
         byteArrayOutputStream = new ByteArrayOutputStream();
         arrayList2 = new ArrayList();

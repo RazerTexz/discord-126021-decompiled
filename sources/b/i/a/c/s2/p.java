@@ -1,23 +1,25 @@
 package b.i.a.c.s2;
 
+import b.i.a.c.f3.ListenerSet;
+
 /* JADX INFO: compiled from: lambda */
 /* JADX INFO: loaded from: classes3.dex */
 public final /* synthetic */ class p implements Runnable {
-    public final /* synthetic */ g1 j;
+    public final /* synthetic */ AnalyticsCollector j;
 
-    public /* synthetic */ p(g1 g1Var) {
-        this.j = g1Var;
+    public /* synthetic */ p(AnalyticsCollector analyticsCollector) {
+        this.j = analyticsCollector;
     }
 
     @Override // java.lang.Runnable
     public final void run() {
-        g1 g1Var = this.j;
-        h1.a aVarK0 = g1Var.k0();
+        AnalyticsCollector analyticsCollector = this.j;
+        AnalyticsListener.a aVarK0 = analyticsCollector.k0();
         x0 x0Var = new x0(aVarK0);
-        g1Var.n.put(1036, aVarK0);
-        b.i.a.c.f3.p<h1> pVar = g1Var.o;
-        pVar.b(1036, x0Var);
-        pVar.a();
-        g1Var.o.c();
+        analyticsCollector.n.put(1036, aVarK0);
+        ListenerSet<AnalyticsListener> listenerSet = analyticsCollector.o;
+        listenerSet.b(1036, x0Var);
+        listenerSet.a();
+        analyticsCollector.o.c();
     }
 }

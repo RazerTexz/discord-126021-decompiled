@@ -6,6 +6,8 @@ import android.util.Log;
 import android.util.Pair;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import b.c.a.a0.AnimatableValueParser;
+import b.d.b.a.outline;
 import b.i.a.f.e.h.d;
 import b.i.a.f.e.h.f;
 import b.i.a.f.e.h.h;
@@ -56,7 +58,7 @@ public abstract class BasePendingResult<R extends h> extends d<R> {
             int i = message.what;
             if (i != 1) {
                 if (i != 2) {
-                    Log.wtf("BasePendingResult", b.d.b.a.a.g(45, "Don't know how to handle message: ", i), new Exception());
+                    Log.wtf("BasePendingResult", outline.g(45, "Don't know how to handle message: ", i), new Exception());
                     return;
                 } else {
                     ((BasePendingResult) message.obj).e(Status.m);
@@ -103,7 +105,7 @@ public abstract class BasePendingResult<R extends h> extends d<R> {
 
     @Override // b.i.a.f.e.h.d
     public final void c(d.a aVar) {
-        b.c.a.a0.d.o(true, "Callback cannot be null.");
+        AnimatableValueParser.o(true, "Callback cannot be null.");
         synchronized (this.f3004b) {
             if (f()) {
                 aVar.a(this.h);
@@ -138,11 +140,11 @@ public abstract class BasePendingResult<R extends h> extends d<R> {
             }
             f();
             boolean z2 = true;
-            b.c.a.a0.d.G(!f(), "Results have already been set");
+            AnimatableValueParser.G(!f(), "Results have already been set");
             if (this.i) {
                 z2 = false;
             }
-            b.c.a.a0.d.G(z2, "Result has already been consumed");
+            AnimatableValueParser.G(z2, "Result has already been consumed");
             i(r);
         }
     }
@@ -182,8 +184,8 @@ public abstract class BasePendingResult<R extends h> extends d<R> {
     public final R j() {
         R r;
         synchronized (this.f3004b) {
-            b.c.a.a0.d.G(!this.i, "Result has already been consumed.");
-            b.c.a.a0.d.G(f(), "Result is not ready.");
+            AnimatableValueParser.G(!this.i, "Result has already been consumed.");
+            AnimatableValueParser.G(f(), "Result is not ready.");
             r = this.g;
             this.g = null;
             this.i = true;

@@ -1,6 +1,6 @@
 package com.discord.stores;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.api.channel.Channel;
 import com.discord.api.channel.ChannelUtils;
 import com.discord.api.permission.Permission;
@@ -13,22 +13,23 @@ import com.discord.models.guild.UserGuildMember;
 import com.discord.models.member.GuildMember;
 import com.discord.models.user.User;
 import com.discord.stores.updates.ObservationDeck;
-import com.discord.stores.updates.ObservationDeckProvider;
+import com.discord.stores.updates.ObservationDeck4;
 import com.discord.utilities.permissions.PermissionUtils;
 import com.discord.widgets.stage.StageChannelNotifications;
 import com.discord.widgets.stage.StageRoles;
 import com.discord.widgets.stage.model.StageChannel;
-import d0.d0.f;
+import d0.d0._Ranges;
+import d0.f0._Sequences2;
 import d0.f0.n;
-import d0.f0.q;
-import d0.t.g0;
-import d0.t.h0;
-import d0.t.n0;
-import d0.t.o0;
-import d0.t.r;
-import d0.t.u;
-import d0.z.d.m;
-import d0.z.d.o;
+import d0.t.Iterables2;
+import d0.t.Maps6;
+import d0.t.MapsJVM;
+import d0.t.MutableCollections;
+import d0.t.Sets5;
+import d0.t._Collections;
+import d0.t._Sets;
+import d0.z.d.Intrinsics3;
+import d0.z.d.Lambda;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -58,11 +59,11 @@ public final class StoreStageChannels extends StoreV2 {
     private Map<Long, ? extends Map<Long, StageRoles>> stageRolesByChannelSnapshot;
     private final StoreUser userStore;
     private final StoreVoiceStates voiceStatesStore;
-    private static final StoreStageChannels$Companion$EventStateUpdateSource$1 EventStateUpdateSource = new StoreStageChannels$Companion$EventStateUpdateSource$1();
+    private static final StoreStageChannels3 EventStateUpdateSource = new StoreStageChannels3();
 
     /* JADX INFO: renamed from: com.discord.stores.StoreStageChannels$observeGuildStageChannels$1, reason: invalid class name */
     /* JADX INFO: compiled from: StoreStageChannels.kt */
-    public final class AnonymousClass1 extends o implements Function0<Map<Long, ? extends StageChannel>> {
+    public final class AnonymousClass1 extends Lambda implements Function0<Map<Long, ? extends StageChannel>> {
         public final /* synthetic */ long $guildId;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -86,7 +87,7 @@ public final class StoreStageChannels extends StoreV2 {
             Map<Long, User> users = StoreStageChannels.access$getUserStore$p(StoreStageChannels.this).getUsers();
             Map<Long, VoiceState> mapEmptyMap = StoreStageChannels.access$getVoiceStatesStore$p(StoreStageChannels.this).get().get(Long.valueOf(this.$guildId));
             if (mapEmptyMap == null) {
-                mapEmptyMap = h0.emptyMap();
+                mapEmptyMap = Maps6.emptyMap();
             }
             return storeStageChannels.getStageChannelsInGuild(j, channelsForGuild, id2, users, mapEmptyMap);
         }
@@ -94,7 +95,7 @@ public final class StoreStageChannels extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreStageChannels$observeMyRequestToSpeakState$1, reason: invalid class name */
     /* JADX INFO: compiled from: StoreStageChannels.kt */
-    public final class AnonymousClass1 extends o implements Function0<StageRequestToSpeakState> {
+    public final class AnonymousClass1 extends Lambda implements Function0<StageRequestToSpeakState> {
         public final /* synthetic */ long $channelId;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -116,14 +117,14 @@ public final class StoreStageChannels extends StoreV2 {
             if (channel == null) {
                 return StageRequestToSpeakState.NONE;
             }
-            StageChannelRoleContext stageChannelRoleContextRoleContext$default = StoreStageChannels.roleContext$default(StoreStageChannels.this, channel, null, null, null, 14, null);
-            return (stageChannelRoleContextRoleContext$default == null || (requestToSpeakState = stageChannelRoleContextRoleContext$default.getRequestToSpeakState(StoreStageChannels.access$getUserStore$p(StoreStageChannels.this).getMeSnapshot().getId())) == null) ? StageRequestToSpeakState.NONE : requestToSpeakState;
+            StoreStageChannels2 storeStageChannels2RoleContext$default = StoreStageChannels.roleContext$default(StoreStageChannels.this, channel, null, null, null, 14, null);
+            return (storeStageChannels2RoleContext$default == null || (requestToSpeakState = storeStageChannels2RoleContext$default.getRequestToSpeakState(StoreStageChannels.access$getUserStore$p(StoreStageChannels.this).getMeSnapshot().getId())) == null) ? StageRequestToSpeakState.NONE : requestToSpeakState;
         }
     }
 
     /* JADX INFO: renamed from: com.discord.stores.StoreStageChannels$observeMyRoles$1, reason: invalid class name */
     /* JADX INFO: compiled from: StoreStageChannels.kt */
-    public final class AnonymousClass1 extends o implements Function0<StageRoles> {
+    public final class AnonymousClass1 extends Lambda implements Function0<StageRoles> {
         public final /* synthetic */ long $channelId;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -150,7 +151,7 @@ public final class StoreStageChannels extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreStageChannels$observeRoles$1, reason: invalid class name */
     /* JADX INFO: compiled from: StoreStageChannels.kt */
-    public final class AnonymousClass1 extends o implements Function0<Map<Long, ? extends Map<Long, ? extends StageRoles>>> {
+    public final class AnonymousClass1 extends Lambda implements Function0<Map<Long, ? extends Map<Long, ? extends StageRoles>>> {
         public AnonymousClass1() {
             super(0);
         }
@@ -169,12 +170,12 @@ public final class StoreStageChannels extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreStageChannels$observeStageChannels$1, reason: invalid class name */
     /* JADX INFO: compiled from: StoreStageChannels.kt */
-    public final class AnonymousClass1 extends o implements Function0<Map<Long, ? extends StageChannel>> {
+    public final class AnonymousClass1 extends Lambda implements Function0<Map<Long, ? extends StageChannel>> {
 
         /* JADX INFO: renamed from: com.discord.stores.StoreStageChannels$observeStageChannels$1$1, reason: invalid class name and collision with other inner class name */
         /* JADX INFO: compiled from: StoreStageChannels.kt */
-        public final class C02931 extends o implements Function1<Long, Map<Long, ? extends StageChannel>> {
-            public C02931() {
+        public final class C01731 extends Lambda implements Function1<Long, Map<Long, ? extends StageChannel>> {
+            public C01731() {
                 super(1);
             }
 
@@ -201,24 +202,24 @@ public final class StoreStageChannels extends StoreV2 {
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final Map<Long, ? extends StageChannel> invoke2() {
             Object obj;
-            Iterator it = q.map(u.asSequence(StoreStageChannels.access$getGuildsStore$p(StoreStageChannels.this).getGuilds().keySet()), new C02931()).iterator();
+            Iterator it = _Sequences2.map(_Collections.asSequence(StoreStageChannels.access$getGuildsStore$p(StoreStageChannels.this).getGuilds().keySet()), new C01731()).iterator();
             if (it.hasNext()) {
                 Object next = it.next();
                 while (it.hasNext()) {
-                    next = h0.plus((Map) next, (Map) it.next());
+                    next = Maps6.plus((Map) next, (Map) it.next());
                 }
                 obj = next;
             } else {
                 obj = null;
             }
             Map<Long, ? extends StageChannel> map = (Map) obj;
-            return map != null ? map : h0.emptyMap();
+            return map != null ? map : Maps6.emptyMap();
         }
     }
 
     /* JADX INFO: renamed from: com.discord.stores.StoreStageChannels$observeStageRolesByChannel$1, reason: invalid class name */
     /* JADX INFO: compiled from: StoreStageChannels.kt */
-    public final class AnonymousClass1 extends o implements Function0<Map<Long, ? extends StageRoles>> {
+    public final class AnonymousClass1 extends Lambda implements Function0<Map<Long, ? extends StageRoles>> {
         public final /* synthetic */ long $channelId;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -241,7 +242,7 @@ public final class StoreStageChannels extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreStageChannels$observeUserRequestToSpeakState$1, reason: invalid class name */
     /* JADX INFO: compiled from: StoreStageChannels.kt */
-    public final class AnonymousClass1 extends o implements Function0<StageRequestToSpeakState> {
+    public final class AnonymousClass1 extends Lambda implements Function0<StageRequestToSpeakState> {
         public final /* synthetic */ long $channelId;
         public final /* synthetic */ long $userId;
 
@@ -265,14 +266,14 @@ public final class StoreStageChannels extends StoreV2 {
             if (channel == null) {
                 return StageRequestToSpeakState.NONE;
             }
-            StageChannelRoleContext stageChannelRoleContextRoleContext$default = StoreStageChannels.roleContext$default(StoreStageChannels.this, channel, null, null, null, 14, null);
-            return (stageChannelRoleContextRoleContext$default == null || (requestToSpeakState = stageChannelRoleContextRoleContext$default.getRequestToSpeakState(this.$userId)) == null) ? StageRequestToSpeakState.NONE : requestToSpeakState;
+            StoreStageChannels2 storeStageChannels2RoleContext$default = StoreStageChannels.roleContext$default(StoreStageChannels.this, channel, null, null, null, 14, null);
+            return (storeStageChannels2RoleContext$default == null || (requestToSpeakState = storeStageChannels2RoleContext$default.getRequestToSpeakState(this.$userId)) == null) ? StageRequestToSpeakState.NONE : requestToSpeakState;
         }
     }
 
     /* JADX INFO: renamed from: com.discord.stores.StoreStageChannels$observeUserRoles$1, reason: invalid class name */
     /* JADX INFO: compiled from: StoreStageChannels.kt */
-    public final class AnonymousClass1 extends o implements Function0<StageRoles> {
+    public final class AnonymousClass1 extends Lambda implements Function0<StageRoles> {
         public final /* synthetic */ long $channelId;
         public final /* synthetic */ long $userId;
 
@@ -301,7 +302,7 @@ public final class StoreStageChannels extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreStageChannels$stageChannelIdsInGuildForDispatch$1, reason: invalid class name */
     /* JADX INFO: compiled from: StoreStageChannels.kt */
-    public final class AnonymousClass1 extends o implements Function1<Channel, Long> {
+    public final class AnonymousClass1 extends Lambda implements Function1<Channel, Long> {
         public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
 
         public AnonymousClass1() {
@@ -315,7 +316,7 @@ public final class StoreStageChannels extends StoreV2 {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final Long invoke2(Channel channel) {
-            m.checkNotNullParameter(channel, "channel");
+            Intrinsics3.checkNotNullParameter(channel, "channel");
             Long lValueOf = Long.valueOf(channel.getId());
             lValueOf.longValue();
             if (ChannelUtils.D(channel)) {
@@ -334,7 +335,7 @@ public final class StoreStageChannels extends StoreV2 {
         }
 
         public StageEventActivationState(Set<Long> set) {
-            m.checkNotNullParameter(set, "moderators");
+            Intrinsics3.checkNotNullParameter(set, "moderators");
             this.moderators = set;
         }
 
@@ -351,13 +352,13 @@ public final class StoreStageChannels extends StoreV2 {
         }
 
         public final StageEventActivationState copy(Set<Long> moderators) {
-            m.checkNotNullParameter(moderators, "moderators");
+            Intrinsics3.checkNotNullParameter(moderators, "moderators");
             return new StageEventActivationState(moderators);
         }
 
         public boolean equals(Object other) {
             if (this != other) {
-                return (other instanceof StageEventActivationState) && m.areEqual(this.moderators, ((StageEventActivationState) other).moderators);
+                return (other instanceof StageEventActivationState) && Intrinsics3.areEqual(this.moderators, ((StageEventActivationState) other).moderators);
             }
             return true;
         }
@@ -375,16 +376,16 @@ public final class StoreStageChannels extends StoreV2 {
         }
 
         public String toString() {
-            return a.N(a.U("StageEventActivationState(moderators="), this.moderators, ")");
+            return outline.N(outline.U("StageEventActivationState(moderators="), this.moderators, ")");
         }
 
         public /* synthetic */ StageEventActivationState(Set set, int i, DefaultConstructorMarker defaultConstructorMarker) {
-            this((i & 1) != 0 ? n0.emptySet() : set);
+            this((i & 1) != 0 ? Sets5.emptySet() : set);
         }
     }
 
     public /* synthetic */ StoreStageChannels(StoreUser storeUser, StoreGuilds storeGuilds, StoreChannels storeChannels, StoreVoiceStates storeVoiceStates, StorePermissions storePermissions, StoreStageInstances storeStageInstances, ObservationDeck observationDeck, int i, DefaultConstructorMarker defaultConstructorMarker) {
-        this(storeUser, storeGuilds, storeChannels, storeVoiceStates, storePermissions, storeStageInstances, (i & 64) != 0 ? ObservationDeckProvider.get() : observationDeck);
+        this(storeUser, storeGuilds, storeChannels, storeVoiceStates, storePermissions, storeStageInstances, (i & 64) != 0 ? ObservationDeck4.get() : observationDeck);
     }
 
     public static final /* synthetic */ StoreChannels access$getChannelsStore$p(StoreStageChannels storeStageChannels) {
@@ -420,7 +421,7 @@ public final class StoreStageChannels extends StoreV2 {
     }
 
     private final Guild getGuild(Channel channel) {
-        return (Guild) a.c(channel, this.guildsStore.getGuilds());
+        return (Guild) outline.c(channel, this.guildsStore.getGuilds());
     }
 
     public static /* synthetic */ int getOtherModeratorsCountInChannel$default(StoreStageChannels storeStageChannels, Channel channel, long j, int i, Object obj) {
@@ -432,9 +433,9 @@ public final class StoreStageChannels extends StoreV2 {
 
     public final int getOtherModeratorsCountInChannel(Channel channel, long myId) {
         StageEventActivationState stageEventActivationState;
-        m.checkNotNullParameter(channel, "channel");
-        Map map = (Map) a.c(channel, this.stageEventStates);
-        if (map == null || (stageEventActivationState = (StageEventActivationState) a.d(channel, map)) == null) {
+        Intrinsics3.checkNotNullParameter(channel, "channel");
+        Map map = (Map) outline.c(channel, this.stageEventStates);
+        if (map == null || (stageEventActivationState = (StageEventActivationState) outline.d(channel, map)) == null) {
             return 0;
         }
         int size = stageEventActivationState.getModerators().size();
@@ -442,8 +443,8 @@ public final class StoreStageChannels extends StoreV2 {
     }
 
     private final Map<Long, GuildRole> getRolesMap(Guild guild) {
-        Map<Long, GuildRole> map = (Map) a.e(guild, this.guildsStore.getRoles());
-        return map != null ? map : h0.emptyMap();
+        Map<Long, GuildRole> map = (Map) outline.e(guild, this.guildsStore.getRoles());
+        return map != null ? map : Maps6.emptyMap();
     }
 
     /* JADX WARN: Multi-variable type inference failed */
@@ -455,7 +456,7 @@ public final class StoreStageChannels extends StoreV2 {
         if ((i & 16) != 0) {
             Map<Long, VoiceState> mapEmptyMap = storeStageChannels.voiceStatesStore.get().get(Long.valueOf(j));
             if (mapEmptyMap == null) {
-                mapEmptyMap = h0.emptyMap();
+                mapEmptyMap = Maps6.emptyMap();
             }
             map4 = mapEmptyMap;
         } else {
@@ -466,9 +467,9 @@ public final class StoreStageChannels extends StoreV2 {
 
     public final Map<Long, StageChannel> getStageChannelsInGuild(long guildId, Map<Long, Channel> channelsInGuild, long myId, Map<Long, ? extends User> users, Map<Long, VoiceState> voiceStates) {
         Map<Long, ? extends User> map = users;
-        m.checkNotNullParameter(channelsInGuild, "channelsInGuild");
-        m.checkNotNullParameter(map, "users");
-        m.checkNotNullParameter(voiceStates, "voiceStates");
+        Intrinsics3.checkNotNullParameter(channelsInGuild, "channelsInGuild");
+        Intrinsics3.checkNotNullParameter(map, "users");
+        Intrinsics3.checkNotNullParameter(voiceStates, "voiceStates");
         Collection<Channel> collectionValues = channelsInGuild.values();
         ArrayList arrayList = new ArrayList();
         for (Object obj : collectionValues) {
@@ -477,13 +478,13 @@ public final class StoreStageChannels extends StoreV2 {
             }
         }
         int i = 10;
-        ArrayList arrayList2 = new ArrayList(d0.t.o.collectionSizeOrDefault(arrayList, 10));
+        ArrayList arrayList2 = new ArrayList(Iterables2.collectionSizeOrDefault(arrayList, 10));
         Iterator it = arrayList.iterator();
         while (it.hasNext()) {
             Channel channel = (Channel) it.next();
-            Map mapEmptyMap = (Map) a.d(channel, this.stageRolesByChannelSnapshot);
+            Map mapEmptyMap = (Map) outline.d(channel, this.stageRolesByChannelSnapshot);
             if (mapEmptyMap == null) {
-                mapEmptyMap = h0.emptyMap();
+                mapEmptyMap = Maps6.emptyMap();
             }
             Set setKeySet = mapEmptyMap.keySet();
             ArrayList arrayList3 = new ArrayList();
@@ -501,14 +502,14 @@ public final class StoreStageChannels extends StoreV2 {
                     arrayList4.add(obj2);
                 }
             }
-            ArrayList arrayList5 = new ArrayList(d0.t.o.collectionSizeOrDefault(arrayList4, 10));
+            ArrayList arrayList5 = new ArrayList(Iterables2.collectionSizeOrDefault(arrayList4, 10));
             Iterator it3 = arrayList4.iterator();
             while (it3.hasNext()) {
                 arrayList5.add(Long.valueOf(((User) it3.next()).getId()));
             }
-            Set set = u.toSet(arrayList5);
+            Set set = _Collections.toSet(arrayList5);
             int size = arrayList3.size() - set.size();
-            Long l = (Long) a.d(channel, this.permissionsStore.getPermissionsByChannel());
+            Long l = (Long) outline.d(channel, this.permissionsStore.getPermissionsByChannel());
             boolean z2 = PermissionUtils.can(Permission.CONNECT, l) && PermissionUtils.can(Permission.VIEW_CHANNEL, l);
             Map<Long, GuildMember> map2 = this.guildsStore.getMembers().get(Long.valueOf(guildId));
             ArrayList<User> arrayList6 = new ArrayList();
@@ -517,9 +518,9 @@ public final class StoreStageChannels extends StoreV2 {
                     arrayList6.add(obj3);
                 }
             }
-            ArrayList arrayList7 = new ArrayList(d0.t.o.collectionSizeOrDefault(arrayList6, 10));
+            ArrayList arrayList7 = new ArrayList(Iterables2.collectionSizeOrDefault(arrayList6, 10));
             for (User user2 : arrayList6) {
-                arrayList7.add(new UserGuildMember(user2, map2 != null ? (GuildMember) a.f(user2, map2) : null));
+                arrayList7.add(new UserGuildMember(user2, map2 != null ? (GuildMember) outline.f(user2, map2) : null));
             }
             ArrayList arrayList8 = arrayList2;
             Iterator it4 = it;
@@ -534,22 +535,22 @@ public final class StoreStageChannels extends StoreV2 {
             it = it4;
         }
         ArrayList arrayList9 = arrayList2;
-        LinkedHashMap linkedHashMap = new LinkedHashMap(f.coerceAtLeast(g0.mapCapacity(d0.t.o.collectionSizeOrDefault(arrayList9, i)), 16));
+        LinkedHashMap linkedHashMap = new LinkedHashMap(_Ranges.coerceAtLeast(MapsJVM.mapCapacity(Iterables2.collectionSizeOrDefault(arrayList9, i)), 16));
         for (Object obj4 : arrayList9) {
             linkedHashMap.put(Long.valueOf(((StageChannel) obj4).getChannel().getId()), obj4);
         }
         return linkedHashMap;
     }
 
-    @StoreThread
+    @Store3
     public final void handleChannelDelete(Channel channel) {
-        m.checkNotNullParameter(channel, "channel");
+        Intrinsics3.checkNotNullParameter(channel, "channel");
         if (ChannelUtils.D(channel)) {
             if (this.stageRolesByChannel.remove(Long.valueOf(channel.getId())) != null) {
                 this.dirtyChannelIds.add(Long.valueOf(channel.getId()));
                 markChanged();
             }
-            Map map = (Map) a.c(channel, this.stageEventStates);
+            Map map = (Map) outline.c(channel, this.stageEventStates);
             if (map == null || ((StageEventActivationState) map.remove(Long.valueOf(channel.getId()))) == null) {
                 return;
             }
@@ -557,16 +558,16 @@ public final class StoreStageChannels extends StoreV2 {
         }
     }
 
-    @StoreThread
+    @Store3
     public final void handleConnectionOpen() {
         this.stageRolesByChannel.clear();
         this.stageEventStates.clear();
     }
 
-    @StoreThread
+    @Store3
     public final void handleGuildMemberAdd(com.discord.api.guildmember.GuildMember member) {
         StageRoles stageRoles;
-        m.checkNotNullParameter(member, "member");
+        Intrinsics3.checkNotNullParameter(member, "member");
         User user = this.userStore.getUsersInternal$app_productionGoogleRelease().get(Long.valueOf(member.getUser().getId()));
         if (user == null || !user.getIsBot()) {
             Iterator<Long> it = stageChannelIdsInGuildForDispatch(member.getGuildId()).iterator();
@@ -590,7 +591,7 @@ public final class StoreStageChannels extends StoreV2 {
         }
     }
 
-    @StoreThread
+    @Store3
     public final void handleGuildMemberRemove(long guildId, long userId) {
         StageRoles stageRoles;
         Channel channel;
@@ -609,9 +610,9 @@ public final class StoreStageChannels extends StoreV2 {
         }
     }
 
-    @StoreThread
+    @Store3
     public final void handleGuildRemove(com.discord.api.guild.Guild guild) {
-        m.checkNotNullParameter(guild, "guild");
+        Intrinsics3.checkNotNullParameter(guild, "guild");
         if (this.stageEventStates.remove(Long.valueOf(guild.getId())) != null) {
             markStageEventDirty();
         }
@@ -624,19 +625,19 @@ public final class StoreStageChannels extends StoreV2 {
             }
         }
         if (!linkedHashSet.isEmpty()) {
-            r.addAll(this.dirtyChannelIds, linkedHashSet);
+            MutableCollections.addAll(this.dirtyChannelIds, linkedHashSet);
             markChanged();
         }
     }
 
-    @StoreThread
+    @Store3
     public final void handleGuildRoleCreateOrUpdate(long guildId) {
         Iterator<Long> it = stageChannelIdsInGuildForDispatch(guildId).iterator();
         while (it.hasNext()) {
             long jLongValue = it.next().longValue();
             Map<Long, StageRoles> map = this.stageRolesByChannel.get(Long.valueOf(jLongValue));
             if (map != null) {
-                Iterator it2 = u.toList(map.keySet()).iterator();
+                Iterator it2 = _Collections.toList(map.keySet()).iterator();
                 while (it2.hasNext()) {
                     handleVoiceStatesUpdated(guildId, jLongValue, ((Number) it2.next()).longValue());
                 }
@@ -645,7 +646,7 @@ public final class StoreStageChannels extends StoreV2 {
     }
 
     /* JADX WARN: Code duplicated, block: B:26:0x0097  */
-    @StoreThread
+    @Store3
     public final void handleVoiceStatesUpdated(long guildId, long fromChannelId, long userId) {
         boolean z2;
         Long channelId;
@@ -697,19 +698,19 @@ public final class StoreStageChannels extends StoreV2 {
     /* JADX INFO: renamed from: handleUserJoinedStageOrGainedRole-oRmTEFA, reason: not valid java name */
     private final void m11handleUserJoinedStageOrGainedRoleoRmTEFA(Channel channel, long userId, int roles) {
         if (StageRoles.m32isModeratorimpl(roles) || StageRoles.m33isSpeakerimpl(roles)) {
-            Map<Long, StageEventActivationState> linkedHashMap = (Map) a.c(channel, this.stageEventStates);
+            Map<Long, StageEventActivationState> linkedHashMap = (Map) outline.c(channel, this.stageEventStates);
             if (linkedHashMap == null) {
                 linkedHashMap = new LinkedHashMap<>();
                 this.stageEventStates.put(Long.valueOf(channel.getGuildId()), linkedHashMap);
             }
-            StageEventActivationState stageEventActivationState = (StageEventActivationState) a.d(channel, linkedHashMap);
+            StageEventActivationState stageEventActivationState = (StageEventActivationState) outline.d(channel, linkedHashMap);
             if (stageEventActivationState == null) {
                 stageEventActivationState = new StageEventActivationState(null, 1, null);
                 linkedHashMap.put(Long.valueOf(channel.getId()), stageEventActivationState);
             }
             boolean z2 = StageRoles.m32isModeratorimpl(roles) && !stageEventActivationState.getModerators().contains(Long.valueOf(userId));
             if (z2) {
-                linkedHashMap.put(Long.valueOf(channel.getId()), stageEventActivationState.copy(z2 ? o0.plus(stageEventActivationState.getModerators(), Long.valueOf(userId)) : stageEventActivationState.getModerators()));
+                linkedHashMap.put(Long.valueOf(channel.getId()), stageEventActivationState.copy(z2 ? _Sets.plus(stageEventActivationState.getModerators(), Long.valueOf(userId)) : stageEventActivationState.getModerators()));
                 markStageEventDirty();
             }
         }
@@ -719,12 +720,12 @@ public final class StoreStageChannels extends StoreV2 {
     private final void m12handleUserLeftStageOrLostRolesGM3QuyE(Channel channel, long userId, int oldRoles, int newRoles) {
         Map map;
         StageEventActivationState stageEventActivationState;
-        if ((!StageRoles.m32isModeratorimpl(oldRoles) && !StageRoles.m33isSpeakerimpl(oldRoles)) || (map = (Map) a.c(channel, this.stageEventStates)) == null || (stageEventActivationState = (StageEventActivationState) a.d(channel, map)) == null) {
+        if ((!StageRoles.m32isModeratorimpl(oldRoles) && !StageRoles.m33isSpeakerimpl(oldRoles)) || (map = (Map) outline.c(channel, this.stageEventStates)) == null || (stageEventActivationState = (StageEventActivationState) outline.d(channel, map)) == null) {
             return;
         }
         boolean z2 = !StageRoles.m32isModeratorimpl(newRoles) && StageRoles.m32isModeratorimpl(oldRoles) && stageEventActivationState.getModerators().contains(Long.valueOf(userId));
         if (z2) {
-            map.put(Long.valueOf(channel.getId()), stageEventActivationState.copy(z2 ? o0.minus(stageEventActivationState.getModerators(), Long.valueOf(userId)) : stageEventActivationState.getModerators()));
+            map.put(Long.valueOf(channel.getId()), stageEventActivationState.copy(z2 ? _Sets.minus(stageEventActivationState.getModerators(), Long.valueOf(userId)) : stageEventActivationState.getModerators()));
             markStageEventDirty();
         }
     }
@@ -789,11 +790,11 @@ public final class StoreStageChannels extends StoreV2 {
 
     /* JADX INFO: renamed from: computeUserRolesInDispatch-t27eFtU, reason: not valid java name */
     private final int m9computeUserRolesInDispatcht27eFtU(long userId, Channel channel, Map<Long, VoiceState> voiceStates, Map<Long, GuildRole> roles) {
-        Guild guild = (Guild) a.c(channel, this.guildsStore.getGuildsInternal$app_productionGoogleRelease());
+        Guild guild = (Guild) outline.c(channel, this.guildsStore.getGuildsInternal$app_productionGoogleRelease());
         if (guild == null) {
             return StageRoles.INSTANCE.m37getAUDIENCE1LxfuJo();
         }
-        Map map = (Map) a.c(channel, this.guildsStore.getGuildMembersComputedInternal$app_productionGoogleRelease());
+        Map map = (Map) outline.c(channel, this.guildsStore.getGuildMembersComputedInternal$app_productionGoogleRelease());
         if (map == null) {
             return StageRoles.INSTANCE.m37getAUDIENCE1LxfuJo();
         }
@@ -802,16 +803,16 @@ public final class StoreStageChannels extends StoreV2 {
             return StageRoles.INSTANCE.m37getAUDIENCE1LxfuJo();
         }
         if (roles == null) {
-            roles = (Map) a.c(channel, this.guildsStore.getGuildRolesInternal$app_productionGoogleRelease());
+            roles = (Map) outline.c(channel, this.guildsStore.getGuildRolesInternal$app_productionGoogleRelease());
         }
         if (voiceStates == null) {
-            voiceStates = (Map) a.c(channel, this.voiceStatesStore.getInternal$app_productionGoogleRelease());
+            voiceStates = (Map) outline.c(channel, this.voiceStatesStore.getInternal$app_productionGoogleRelease());
         }
         if (voiceStates == null) {
             return StageRoles.INSTANCE.m37getAUDIENCE1LxfuJo();
         }
-        StageChannelRoleContext stageChannelRoleContextRoleContext = roleContext(channel, guild, voiceStates, roles);
-        return stageChannelRoleContextRoleContext != null ? stageChannelRoleContextRoleContext.m7getRoleK6mKVE(userId, guildMember) : StageRoles.INSTANCE.m37getAUDIENCE1LxfuJo();
+        StoreStageChannels2 storeStageChannels2RoleContext = roleContext(channel, guild, voiceStates, roles);
+        return storeStageChannels2RoleContext != null ? storeStageChannels2RoleContext.m7getRoleK6mKVE(userId, guildMember) : StageRoles.INSTANCE.m37getAUDIENCE1LxfuJo();
     }
 
     private final void markStageEventDirty() {
@@ -820,7 +821,7 @@ public final class StoreStageChannels extends StoreV2 {
 
     public final Observable<Map<Long, StageChannel>> observeGuildStageChannels(long guildId) {
         Observable<Map<Long, StageChannel>> observableR = ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck.UpdateSource[]{this, this.channelsStore, this.userStore, this.voiceStatesStore, this.stageInstancesStore}, false, null, null, new AnonymousClass1(guildId), 14, null).r();
-        m.checkNotNullExpressionValue(observableR, "observationDeck.connectR… }.distinctUntilChanged()");
+        Intrinsics3.checkNotNullExpressionValue(observableR, "observationDeck.connectR… }.distinctUntilChanged()");
         return observableR;
     }
 
@@ -838,7 +839,7 @@ public final class StoreStageChannels extends StoreV2 {
 
     public final Observable<Map<Long, StageChannel>> observeStageChannels() {
         Observable<Map<Long, StageChannel>> observableR = ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck.UpdateSource[]{this, this.channelsStore, this.guildsStore, this.userStore, this.voiceStatesStore, this.stageInstancesStore}, false, null, null, new AnonymousClass1(), 14, null).r();
-        m.checkNotNullExpressionValue(observableR, "observationDeck.connectR… }.distinctUntilChanged()");
+        Intrinsics3.checkNotNullExpressionValue(observableR, "observationDeck.connectR… }.distinctUntilChanged()");
         return observableR;
     }
 
@@ -855,7 +856,7 @@ public final class StoreStageChannels extends StoreV2 {
     }
 
     /* JADX WARN: Multi-variable type inference failed */
-    public static /* synthetic */ StageChannelRoleContext roleContext$default(StoreStageChannels storeStageChannels, Channel channel, Guild guild, Map map, Map map2, int i, Object obj) {
+    public static /* synthetic */ StoreStageChannels2 roleContext$default(StoreStageChannels storeStageChannels, Channel channel, Guild guild, Map map, Map map2, int i, Object obj) {
         if ((i & 2) != 0) {
             guild = null;
         }
@@ -868,7 +869,7 @@ public final class StoreStageChannels extends StoreV2 {
         return storeStageChannels.roleContext(channel, guild, map, map2);
     }
 
-    private final StageChannelRoleContext roleContext(Channel channel, Guild guild, Map<Long, VoiceState> voiceStates, Map<Long, GuildRole> roles) {
+    private final StoreStageChannels2 roleContext(Channel channel, Guild guild, Map<Long, VoiceState> voiceStates, Map<Long, GuildRole> roles) {
         if (guild == null) {
             guild = getGuild(channel);
         }
@@ -881,11 +882,11 @@ public final class StoreStageChannels extends StoreV2 {
         if (roles == null) {
             roles = getRolesMap(guild);
         }
-        return new StageChannelRoleContext(guild, channel, roles, voiceStates);
+        return new StoreStageChannels2(guild, channel, roles, voiceStates);
     }
 
     @Override // com.discord.stores.StoreV2
-    @StoreThread
+    @Store3
     public void snapshotData() {
         Map<Long, Map<Long, StageRoles>> map = this.stageRolesByChannel;
         Map<Long, ? extends Map<Long, StageRoles>> map2 = this.stageRolesByChannelSnapshot;
@@ -916,17 +917,17 @@ public final class StoreStageChannels extends StoreV2 {
         Sequence sequenceAsSequence;
         Sequence<Long> sequenceMapNotNull;
         Map<Long, Channel> channelsForGuildInternal$app_productionGoogleRelease = this.channelsStore.getChannelsForGuildInternal$app_productionGoogleRelease(guildId);
-        return (channelsForGuildInternal$app_productionGoogleRelease == null || (collectionValues = channelsForGuildInternal$app_productionGoogleRelease.values()) == null || (sequenceAsSequence = u.asSequence(collectionValues)) == null || (sequenceMapNotNull = q.mapNotNull(sequenceAsSequence, AnonymousClass1.INSTANCE)) == null) ? n.emptySequence() : sequenceMapNotNull;
+        return (channelsForGuildInternal$app_productionGoogleRelease == null || (collectionValues = channelsForGuildInternal$app_productionGoogleRelease.values()) == null || (sequenceAsSequence = _Collections.asSequence(collectionValues)) == null || (sequenceMapNotNull = _Sequences2.mapNotNull(sequenceAsSequence, AnonymousClass1.INSTANCE)) == null) ? n.emptySequence() : sequenceMapNotNull;
     }
 
     public StoreStageChannels(StoreUser storeUser, StoreGuilds storeGuilds, StoreChannels storeChannels, StoreVoiceStates storeVoiceStates, StorePermissions storePermissions, StoreStageInstances storeStageInstances, ObservationDeck observationDeck) {
-        m.checkNotNullParameter(storeUser, "userStore");
-        m.checkNotNullParameter(storeGuilds, "guildsStore");
-        m.checkNotNullParameter(storeChannels, "channelsStore");
-        m.checkNotNullParameter(storeVoiceStates, "voiceStatesStore");
-        m.checkNotNullParameter(storePermissions, "permissionsStore");
-        m.checkNotNullParameter(storeStageInstances, "stageInstancesStore");
-        m.checkNotNullParameter(observationDeck, "observationDeck");
+        Intrinsics3.checkNotNullParameter(storeUser, "userStore");
+        Intrinsics3.checkNotNullParameter(storeGuilds, "guildsStore");
+        Intrinsics3.checkNotNullParameter(storeChannels, "channelsStore");
+        Intrinsics3.checkNotNullParameter(storeVoiceStates, "voiceStatesStore");
+        Intrinsics3.checkNotNullParameter(storePermissions, "permissionsStore");
+        Intrinsics3.checkNotNullParameter(storeStageInstances, "stageInstancesStore");
+        Intrinsics3.checkNotNullParameter(observationDeck, "observationDeck");
         this.userStore = storeUser;
         this.guildsStore = storeGuilds;
         this.channelsStore = storeChannels;

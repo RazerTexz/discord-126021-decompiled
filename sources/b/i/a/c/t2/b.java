@@ -1,27 +1,29 @@
 package b.i.a.c.t2;
 
+import b.i.a.c.f3.Util2;
+import b.i.a.c.v2.DecoderCounters;
 import java.util.Objects;
 
 /* JADX INFO: compiled from: lambda */
 /* JADX INFO: loaded from: classes3.dex */
 public final /* synthetic */ class b implements Runnable {
-    public final /* synthetic */ r.a j;
-    public final /* synthetic */ b.i.a.c.v2.e k;
+    public final /* synthetic */ AudioRendererEventListener2.a j;
+    public final /* synthetic */ DecoderCounters k;
 
-    public /* synthetic */ b(r.a aVar, b.i.a.c.v2.e eVar) {
+    public /* synthetic */ b(AudioRendererEventListener2.a aVar, DecoderCounters decoderCounters) {
         this.j = aVar;
-        this.k = eVar;
+        this.k = decoderCounters;
     }
 
     @Override // java.lang.Runnable
     public final void run() {
-        r.a aVar = this.j;
-        b.i.a.c.v2.e eVar = this.k;
+        AudioRendererEventListener2.a aVar = this.j;
+        DecoderCounters decoderCounters = this.k;
         Objects.requireNonNull(aVar);
-        synchronized (eVar) {
+        synchronized (decoderCounters) {
         }
-        r rVar = aVar.f1126b;
-        int i = b.i.a.c.f3.e0.a;
-        rVar.k(eVar);
+        AudioRendererEventListener2 audioRendererEventListener2 = aVar.f1126b;
+        int i = Util2.a;
+        audioRendererEventListener2.k(decoderCounters);
     }
 }

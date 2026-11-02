@@ -1,8 +1,8 @@
 package com.discord.widgets.channels.permissions;
 
 import android.content.Context;
-import b.a.d.d0;
-import b.d.b.a.a;
+import b.a.d.AppViewModel;
+import b.d.b.a.outline;
 import com.discord.api.channel.Channel;
 import com.discord.api.permission.PermissionOverwrite;
 import com.discord.restapi.RestAPIParams;
@@ -10,9 +10,9 @@ import com.discord.stores.StoreChannels;
 import com.discord.stores.StoreStream;
 import com.discord.utilities.rest.RestAPI;
 import com.discord.utilities.rx.ObservableExtensionsKt;
-import d0.t.n;
-import d0.z.d.m;
-import d0.z.d.o;
+import d0.t.Collections2;
+import d0.z.d.Intrinsics3;
+import d0.z.d.Lambda;
 import java.util.Iterator;
 import java.util.List;
 import kotlin.NoWhenBranchMatchedException;
@@ -23,14 +23,14 @@ import kotlin.jvm.internal.DefaultConstructorMarker;
 
 /* JADX INFO: compiled from: ConfirmRemovePermissionDialogViewModel.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class ConfirmRemovePermissionDialogViewModel extends d0<ViewState> {
+public final class ConfirmRemovePermissionDialogViewModel extends AppViewModel<ViewState> {
     private final long channelId;
     private final StoreChannels channelStore;
     private final PermissionOwner permissionOwner;
 
     /* JADX INFO: renamed from: com.discord.widgets.channels.permissions.ConfirmRemovePermissionDialogViewModel$submit$1, reason: invalid class name */
     /* JADX INFO: compiled from: ConfirmRemovePermissionDialogViewModel.kt */
-    public final class AnonymousClass1 extends o implements Function1<Void, Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function1<Void, Unit> {
         public AnonymousClass1() {
             super(1);
         }
@@ -104,7 +104,7 @@ public final class ConfirmRemovePermissionDialogViewModel extends d0<ViewState> 
             }
 
             public String toString() {
-                return a.O(a.U("Default(isSubmitting="), this.isSubmitting, ")");
+                return outline.O(outline.U("Default(isSubmitting="), this.isSubmitting, ")");
             }
         }
 
@@ -131,7 +131,7 @@ public final class ConfirmRemovePermissionDialogViewModel extends d0<ViewState> 
         PermissionOverwrite permissionOverwrite;
         Channel channel = this.channelStore.getChannel(this.channelId);
         if (channel == null || (listEmptyList = channel.v()) == null) {
-            listEmptyList = n.emptyList();
+            listEmptyList = Collections2.emptyList();
         }
         PermissionOwner permissionOwner = this.permissionOwner;
         if (permissionOwner instanceof PermissionOwner.Role) {
@@ -175,8 +175,8 @@ public final class ConfirmRemovePermissionDialogViewModel extends d0<ViewState> 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public ConfirmRemovePermissionDialogViewModel(PermissionOwner permissionOwner, long j, StoreChannels storeChannels) {
         super(new ViewState.Default(false));
-        m.checkNotNullParameter(permissionOwner, "permissionOwner");
-        m.checkNotNullParameter(storeChannels, "channelStore");
+        Intrinsics3.checkNotNullParameter(permissionOwner, "permissionOwner");
+        Intrinsics3.checkNotNullParameter(storeChannels, "channelStore");
         this.permissionOwner = permissionOwner;
         this.channelId = j;
         this.channelStore = storeChannels;

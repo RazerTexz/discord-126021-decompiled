@@ -17,7 +17,8 @@ import androidx.constraintlayout.widget.Barrier;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.app.NotificationCompat;
 import androidx.recyclerview.widget.RecyclerView;
-import b.f.j.q.a;
+import b.d.b.a.outline;
+import b.f.j.q.BasePostprocessor;
 import com.discord.R;
 import com.discord.api.activity.Activity;
 import com.discord.api.activity.ActivityEmoji;
@@ -31,7 +32,7 @@ import com.discord.models.presence.Presence;
 import com.discord.models.user.User;
 import com.discord.utilities.analytics.Traits;
 import com.discord.utilities.color.ColorCompat;
-import com.discord.utilities.colors.RepresentativeColorsKt;
+import com.discord.utilities.colors.RepresentativeColors2;
 import com.discord.utilities.icon.IconUtils;
 import com.discord.utilities.images.MGImages;
 import com.discord.utilities.logging.Logger;
@@ -46,14 +47,14 @@ import com.discord.views.UsernameView;
 import com.discord.views.user.UserAvatarPresenceView;
 import com.discord.widgets.channels.UserAkaView;
 import com.discord.widgets.user.Badge;
-import com.discord.widgets.user.UserNameFormatterKt;
+import com.discord.widgets.user.UserNameFormatter;
 import com.facebook.drawee.span.DraweeSpanStringBuilder;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.facebook.imagepipeline.request.ImageRequestBuilder;
-import d0.g0.t;
-import d0.z.d.m;
-import d0.z.d.o;
-import j0.k.b;
+import d0.g0.StringsJVM;
+import d0.z.d.Intrinsics3;
+import d0.z.d.Lambda;
+import j0.k.Func1;
 import java.util.Objects;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
@@ -83,17 +84,17 @@ public final class UserProfileHeaderView extends ConstraintLayout {
 
     /* JADX INFO: renamed from: com.discord.widgets.user.profile.UserProfileHeaderView$configureBanner$1, reason: invalid class name */
     /* JADX INFO: compiled from: UserProfileHeaderView.kt */
-    public final class AnonymousClass1 extends o implements Function1<ImageRequestBuilder, Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function1<ImageRequestBuilder, Unit> {
         public final /* synthetic */ Ref$BooleanRef $bannerColorUpdatedFromViewState;
         public final /* synthetic */ UserProfileHeaderViewModel.ViewState.Loaded $viewState;
 
         /* JADX INFO: renamed from: com.discord.widgets.user.profile.UserProfileHeaderView$configureBanner$1$1, reason: invalid class name and collision with other inner class name */
         /* JADX INFO: compiled from: UserProfileHeaderView.kt */
-        public final class C04721 extends a {
-            public C04721() {
+        public final class C03521 extends BasePostprocessor {
+            public C03521() {
             }
 
-            @Override // b.f.j.q.a
+            @Override // b.f.j.q.BasePostprocessor
             public void process(Bitmap bitmap) {
                 if (bitmap != null) {
                     AnonymousClass1 anonymousClass1 = AnonymousClass1.this;
@@ -120,8 +121,8 @@ public final class UserProfileHeaderView extends ConstraintLayout {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(ImageRequestBuilder imageRequestBuilder) {
-            m.checkNotNullParameter(imageRequestBuilder, "imageRequestBuilder");
-            imageRequestBuilder.l = new C04721();
+            Intrinsics3.checkNotNullParameter(imageRequestBuilder, "imageRequestBuilder");
+            imageRequestBuilder.l = new C03521();
         }
     }
 
@@ -151,14 +152,14 @@ public final class UserProfileHeaderView extends ConstraintLayout {
 
         @Override // com.discord.utilities.textprocessing.node.EmojiNode.RenderContext
         public void onEmojiClicked(EmojiNode.EmojiIdAndType emojiIdAndType) {
-            m.checkNotNullParameter(emojiIdAndType, "emojiIdAndType");
+            Intrinsics3.checkNotNullParameter(emojiIdAndType, "emojiIdAndType");
             EmojiNode.RenderContext.DefaultImpls.onEmojiClicked(this, emojiIdAndType);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.widgets.user.profile.UserProfileHeaderView$notifyAvatarColorListenerAsync$1, reason: invalid class name */
     /* JADX INFO: compiled from: UserProfileHeaderView.kt */
-    public final class AnonymousClass1 extends o implements Function1<Subscription, Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function1<Subscription, Unit> {
         public AnonymousClass1() {
             super(1);
         }
@@ -171,17 +172,17 @@ public final class UserProfileHeaderView extends ConstraintLayout {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(Subscription subscription) {
-            m.checkNotNullParameter(subscription, Traits.Payment.Type.SUBSCRIPTION);
+            Intrinsics3.checkNotNullParameter(subscription, Traits.Payment.Type.SUBSCRIPTION);
             UserProfileHeaderView.access$setSyncAvatarRepresentativeColorSubscription$p(UserProfileHeaderView.this, subscription);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.widgets.user.profile.UserProfileHeaderView$observeRepresentativeColor$1, reason: invalid class name */
     /* JADX INFO: compiled from: UserProfileHeaderView.kt */
-    public final class AnonymousClass1<T, R> implements b<Integer, Boolean> {
+    public final class AnonymousClass1<T, R> implements Func1<Integer, Boolean> {
         public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
 
-        @Override // j0.k.b
+        @Override // j0.k.Func1
         public /* bridge */ /* synthetic */ Boolean call(Integer num) {
             return call2(num);
         }
@@ -194,7 +195,7 @@ public final class UserProfileHeaderView extends ConstraintLayout {
 
     /* JADX INFO: renamed from: com.discord.widgets.user.profile.UserProfileHeaderView$updateBannerBackgroundColorAsync$1, reason: invalid class name */
     /* JADX INFO: compiled from: UserProfileHeaderView.kt */
-    public final class AnonymousClass1 extends o implements Function1<Subscription, Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function1<Subscription, Unit> {
         public AnonymousClass1() {
             super(1);
         }
@@ -207,14 +208,14 @@ public final class UserProfileHeaderView extends ConstraintLayout {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(Subscription subscription) {
-            m.checkNotNullParameter(subscription, Traits.Payment.Type.SUBSCRIPTION);
+            Intrinsics3.checkNotNullParameter(subscription, Traits.Payment.Type.SUBSCRIPTION);
             UserProfileHeaderView.access$setSetBannerBackgroundColorSubscription$p(UserProfileHeaderView.this, subscription);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.widgets.user.profile.UserProfileHeaderView$updateViewState$1, reason: invalid class name */
     /* JADX INFO: compiled from: UserProfileHeaderView.kt */
-    public final class AnonymousClass1 extends o implements Function2<Bitmap, String, Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function2<Bitmap, String, Unit> {
         public final /* synthetic */ UserProfileHeaderViewModel.ViewState.Loaded $viewState;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -231,12 +232,12 @@ public final class UserProfileHeaderView extends ConstraintLayout {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(Bitmap bitmap, String str) {
-            m.checkNotNullParameter(bitmap, "bitmap");
+            Intrinsics3.checkNotNullParameter(bitmap, "bitmap");
             GuildMember guildMember = this.$viewState.getGuildMember();
             if (guildMember == null || !guildMember.hasAvatar()) {
-                RepresentativeColorsKt.getUserRepresentativeColors().handleBitmap(this.$viewState.getAvatarColorId(), bitmap, str);
+                RepresentativeColors2.getUserRepresentativeColors().handleBitmap(this.$viewState.getAvatarColorId(), bitmap, str);
             } else {
-                RepresentativeColorsKt.getGuildMemberRepresentativeColors().handleBitmap(this.$viewState.getGuildMemberColorId(), bitmap, str);
+                RepresentativeColors2.getGuildMemberRepresentativeColors().handleBitmap(this.$viewState.getGuildMemberColorId(), bitmap, str);
             }
         }
     }
@@ -255,7 +256,7 @@ public final class UserProfileHeaderView extends ConstraintLayout {
 
     /* JADX INFO: renamed from: com.discord.widgets.user.profile.UserProfileHeaderView$notifyAvatarColorListenerAsync$2, reason: invalid class name */
     /* JADX INFO: compiled from: UserProfileHeaderView.kt */
-    public final class AnonymousClass2 extends o implements Function1<Integer, Unit> {
+    public final class AnonymousClass2 extends Lambda implements Function1<Integer, Unit> {
         public AnonymousClass2() {
             super(1);
         }
@@ -276,7 +277,7 @@ public final class UserProfileHeaderView extends ConstraintLayout {
 
     /* JADX INFO: renamed from: com.discord.widgets.user.profile.UserProfileHeaderView$updateBannerBackgroundColorAsync$2, reason: invalid class name */
     /* JADX INFO: compiled from: UserProfileHeaderView.kt */
-    public final class AnonymousClass2 extends o implements Function1<Integer, Unit> {
+    public final class AnonymousClass2 extends Lambda implements Function1<Integer, Unit> {
         public AnonymousClass2() {
             super(1);
         }
@@ -344,10 +345,10 @@ public final class UserProfileHeaderView extends ConstraintLayout {
 
         /* JADX WARN: Illegal instructions before constructor call */
         public BadgeViewHolder(UserProfileHeaderView userProfileHeaderView, UserProfileHeaderBadgeBinding userProfileHeaderBadgeBinding) {
-            m.checkNotNullParameter(userProfileHeaderBadgeBinding, "binding");
+            Intrinsics3.checkNotNullParameter(userProfileHeaderBadgeBinding, "binding");
             this.this$0 = userProfileHeaderView;
             ImageView imageView = userProfileHeaderBadgeBinding.a;
-            m.checkNotNullExpressionValue(imageView, "binding.root");
+            Intrinsics3.checkNotNullExpressionValue(imageView, "binding.root");
             super(imageView);
             this.binding = userProfileHeaderBadgeBinding;
         }
@@ -359,16 +360,16 @@ public final class UserProfileHeaderView extends ConstraintLayout {
 
         /* JADX INFO: renamed from: bind, reason: avoid collision after fix types in other method */
         public void bind2(Badge data) {
-            m.checkNotNullParameter(data, "data");
+            Intrinsics3.checkNotNullParameter(data, "data");
             this.binding.f2165b.setImageResource(data.getIcon());
             ImageView imageView = this.binding.f2165b;
-            m.checkNotNullExpressionValue(imageView, "binding.userSheetBadgeImage");
+            Intrinsics3.checkNotNullExpressionValue(imageView, "binding.userSheetBadgeImage");
             CharSequence text = data.getText();
             if (text == null) {
                 text = data.getTooltip();
             }
             imageView.setContentDescription(text);
-            this.binding.f2165b.setOnClickListener(new UserProfileHeaderView$BadgeViewHolder$bind$1(this, data));
+            this.binding.f2165b.setOnClickListener(new UserProfileHeaderView2(this, data));
         }
     }
 
@@ -378,12 +379,12 @@ public final class UserProfileHeaderView extends ConstraintLayout {
         }
 
         public final void bind(UserProfileHeaderView userProfileHeaderView, AppComponent appComponent, Observable<UserProfileHeaderViewModel.ViewState> observable) {
-            m.checkNotNullParameter(userProfileHeaderView, "$this$bind");
-            m.checkNotNullParameter(appComponent, "appComponent");
-            m.checkNotNullParameter(observable, "observable");
+            Intrinsics3.checkNotNullParameter(userProfileHeaderView, "$this$bind");
+            Intrinsics3.checkNotNullParameter(appComponent, "appComponent");
+            Intrinsics3.checkNotNullParameter(observable, "observable");
             Observable<R> observableG = observable.y(UserProfileHeaderView$Companion$bind$$inlined$filterIs$1.INSTANCE).G(UserProfileHeaderView$Companion$bind$$inlined$filterIs$2.INSTANCE);
-            m.checkNotNullExpressionValue(observableG, "filter { it is T }.map { it as T }");
-            ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.bindToComponentLifecycle$default(observableG, appComponent, null, 2, null), appComponent.getClass(), (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new UserProfileHeaderView$Companion$bind$1(userProfileHeaderView), 62, (Object) null);
+            Intrinsics3.checkNotNullExpressionValue(observableG, "filter { it is T }.map { it as T }");
+            ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.bindToComponentLifecycle$default(observableG, appComponent, null, 2, null), appComponent.getClass(), (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new UserProfileHeaderView3(userProfileHeaderView), 62, (Object) null);
         }
 
         public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
@@ -394,8 +395,8 @@ public final class UserProfileHeaderView extends ConstraintLayout {
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public UserProfileHeaderView(Context context, AttributeSet attributeSet) {
         super(context, attributeSet);
-        m.checkNotNullParameter(context, "context");
-        m.checkNotNullParameter(attributeSet, "attrs");
+        Intrinsics3.checkNotNullParameter(context, "context");
+        Intrinsics3.checkNotNullParameter(attributeSet, "attrs");
         View viewInflate = LayoutInflater.from(context).inflate(R.layout.user_profile_header_view, (ViewGroup) this, false);
         addView(viewInflate);
         int i = R.id.avatar_edit;
@@ -436,22 +437,22 @@ public final class UserProfileHeaderView extends ConstraintLayout {
                                                     if (simpleDraweeSpanTextView2 != null) {
                                                         ConstraintLayout constraintLayout = (ConstraintLayout) viewInflate;
                                                         UserProfileHeaderViewBinding userProfileHeaderViewBinding = new UserProfileHeaderViewBinding(constraintLayout, cardView, simpleDraweeView, cardView2, imageView, userAvatarPresenceView, barrier, userAkaView, recyclerView, simpleDraweeSpanTextView, linearLayout, usernameView, simpleDraweeSpanTextView2, constraintLayout);
-                                                        m.checkNotNullExpressionValue(userProfileHeaderViewBinding, "UserProfileHeaderViewBin…rom(context), this, true)");
+                                                        Intrinsics3.checkNotNullExpressionValue(userProfileHeaderViewBinding, "UserProfileHeaderViewBin…rom(context), this, true)");
                                                         this.binding = userProfileHeaderViewBinding;
                                                         this.bannerChangeDetector = new MGImages.DistinctChangeDetector();
-                                                        this.onBadgeClick = UserProfileHeaderView$onBadgeClick$1.INSTANCE;
-                                                        this.onAvatarEdit = UserProfileHeaderView$onAvatarEdit$1.INSTANCE;
-                                                        this.onBannerPress = UserProfileHeaderView$onBannerPress$1.INSTANCE;
-                                                        this.onAvatarRepresentativeColorUpdated = UserProfileHeaderView$onAvatarRepresentativeColorUpdated$1.INSTANCE;
+                                                        this.onBadgeClick = UserProfileHeaderView6.INSTANCE;
+                                                        this.onAvatarEdit = UserProfileHeaderView4.INSTANCE;
+                                                        this.onBannerPress = UserProfileHeaderView7.INSTANCE;
+                                                        this.onAvatarRepresentativeColorUpdated = UserProfileHeaderView5.INSTANCE;
                                                         RightToLeftGridLayoutManager rightToLeftGridLayoutManager = new RightToLeftGridLayoutManager(context, 3, 1, true);
-                                                        m.checkNotNullExpressionValue(recyclerView, "binding.userProfileHeaderBadgesRecycler");
+                                                        Intrinsics3.checkNotNullExpressionValue(recyclerView, "binding.userProfileHeaderBadgesRecycler");
                                                         recyclerView.setLayoutManager(rightToLeftGridLayoutManager);
                                                         SimpleRecyclerAdapter<Badge, BadgeViewHolder> simpleRecyclerAdapter = new SimpleRecyclerAdapter<>(null, new AnonymousClass1(), 1, null);
                                                         this.badgesAdapter = simpleRecyclerAdapter;
-                                                        m.checkNotNullExpressionValue(recyclerView, "binding.userProfileHeaderBadgesRecycler");
+                                                        Intrinsics3.checkNotNullExpressionValue(recyclerView, "binding.userProfileHeaderBadgesRecycler");
                                                         recyclerView.setAdapter(simpleRecyclerAdapter);
                                                         TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes(attributeSet, R.a.UserProfileHeaderView);
-                                                        m.checkNotNullExpressionValue(typedArrayObtainStyledAttributes, "context.obtainStyledAttr…le.UserProfileHeaderView)");
+                                                        Intrinsics3.checkNotNullExpressionValue(typedArrayObtainStyledAttributes, "context.obtainStyledAttr…le.UserProfileHeaderView)");
                                                         this.userProfileHeaderBackgroundColor = typedArrayObtainStyledAttributes.getColor(0, ColorCompat.getThemedColor(this, R.attr.primary_700));
                                                         typedArrayObtainStyledAttributes.recycle();
                                                         return;
@@ -500,7 +501,7 @@ public final class UserProfileHeaderView extends ConstraintLayout {
 
     private final void configureAka(UserProfileHeaderViewModel.ViewState.Loaded viewState) {
         UserAkaView userAkaView = this.binding.g;
-        m.checkNotNullExpressionValue(userAkaView, "binding.userAka");
+        Intrinsics3.checkNotNullExpressionValue(userAkaView, "binding.userAka");
         userAkaView.setVisibility(viewState.getShowAkas() ? 0 : 8);
         this.binding.g.configure(viewState.getGuildMembersForAka());
     }
@@ -514,12 +515,12 @@ public final class UserProfileHeaderView extends ConstraintLayout {
             banner = viewState.getBanner();
         }
         Resources resources = getResources();
-        m.checkNotNullExpressionValue(resources, "resources");
+        Intrinsics3.checkNotNullExpressionValue(resources, "resources");
         int i = resources.getDisplayMetrics().widthPixels;
         Resources resources2 = getResources();
-        m.checkNotNullExpressionValue(resources2, "resources");
+        Intrinsics3.checkNotNullExpressionValue(resources2, "resources");
         int iMax = Math.max(i, resources2.getDisplayMetrics().heightPixels);
-        if (banner == null || !t.startsWith$default(banner, "data:", false, 2, null)) {
+        if (banner == null || !StringsJVM.startsWith$default(banner, "data:", false, 2, null)) {
             GuildMember guildMember2 = viewState.getGuildMember();
             if (guildMember2 == null || !guildMember2.hasBanner()) {
                 forUserBanner = IconUtils.INSTANCE.getForUserBanner(viewState.getUser().getId(), banner, Integer.valueOf(iMax), viewState.getShouldAnimateBanner());
@@ -532,10 +533,10 @@ public final class UserProfileHeaderView extends ConstraintLayout {
         } else {
             str = banner;
         }
-        boolean z2 = !(str == null || t.isBlank(str));
-        boolean z3 = (banner != null && IconUtils.INSTANCE.isDataUrlForGif(banner)) || (banner != null && !t.startsWith$default(banner, "data:", false, 2, null) && IconUtils.INSTANCE.isImageHashAnimated(banner));
+        boolean z2 = !(str == null || StringsJVM.isBlank(str));
+        boolean z3 = (banner != null && IconUtils.INSTANCE.isDataUrlForGif(banner)) || (banner != null && !StringsJVM.startsWith$default(banner, "data:", false, 2, null) && IconUtils.INSTANCE.isImageHashAnimated(banner));
         SimpleDraweeView simpleDraweeView = this.binding.c;
-        m.checkNotNullExpressionValue(simpleDraweeView, "binding.banner");
+        Intrinsics3.checkNotNullExpressionValue(simpleDraweeView, "binding.banner");
         simpleDraweeView.setAspectRatio(!z2 ? 5.0f : 2.5f);
         Ref$BooleanRef ref$BooleanRef = new Ref$BooleanRef();
         ref$BooleanRef.element = false;
@@ -547,12 +548,12 @@ public final class UserProfileHeaderView extends ConstraintLayout {
             this.binding.c.setBackgroundColor(this.userProfileHeaderBackgroundColor);
         }
         SimpleDraweeView simpleDraweeView2 = this.binding.c;
-        m.checkNotNullExpressionValue(simpleDraweeView2, "binding.banner");
+        Intrinsics3.checkNotNullExpressionValue(simpleDraweeView2, "binding.banner");
         MGImages.setImage$default(simpleDraweeView2, str, 0, 0, false, new AnonymousClass1(ref$BooleanRef, viewState), this.bannerChangeDetector, 28, null);
         this.binding.c.setOnClickListener(new AnonymousClass2());
         this.binding.d.setOnClickListener(new AnonymousClass3());
         ImageView imageView = this.binding.e;
-        m.checkNotNullExpressionValue(imageView, "binding.gifTag");
+        Intrinsics3.checkNotNullExpressionValue(imageView, "binding.gifTag");
         imageView.setVisibility(viewState.getShouldShowGIFTag() ? 0 : 8);
     }
 
@@ -571,13 +572,13 @@ public final class UserProfileHeaderView extends ConstraintLayout {
         if (viewState.getShowSmallAvatar()) {
             int dimension = (int) getResources().getDimension(R.dimen.avatar_size_profile_small);
             Context context = getContext();
-            m.checkNotNullExpressionValue(context, "context");
-            DraweeSpanStringBuilderExtensionsKt.setAvatar$default(draweeSpanStringBuilder, context, IconUtils.getForUser(viewState.getUser(), false, Integer.valueOf(dimension)), false, Integer.valueOf(dimension), Integer.valueOf(this.userProfileHeaderBackgroundColor), null, 32, null);
+            Intrinsics3.checkNotNullExpressionValue(context, "context");
+            DraweeSpanStringBuilderExtensions.setAvatar$default(draweeSpanStringBuilder, context, IconUtils.getForUser(viewState.getUser(), false, Integer.valueOf(dimension)), false, Integer.valueOf(dimension), Integer.valueOf(this.userProfileHeaderBackgroundColor), null, 32, null);
         }
         CharSequence secondaryNameTextForUser = getSecondaryNameTextForUser(user, guildMember);
-        boolean z2 = ((secondaryNameTextForUser == null || t.isBlank(secondaryNameTextForUser)) || viewState.getShowAkas()) ? false : true;
+        boolean z2 = ((secondaryNameTextForUser == null || StringsJVM.isBlank(secondaryNameTextForUser)) || viewState.getShowAkas()) ? false : true;
         SimpleDraweeSpanTextView simpleDraweeSpanTextView = this.binding.k;
-        m.checkNotNullExpressionValue(simpleDraweeSpanTextView, "binding.userProfileHeaderSecondaryName");
+        Intrinsics3.checkNotNullExpressionValue(simpleDraweeSpanTextView, "binding.userProfileHeaderSecondaryName");
         simpleDraweeSpanTextView.setVisibility(z2 ? 0 : 8);
         if (z2) {
             draweeSpanStringBuilder.append(secondaryNameTextForUser);
@@ -631,8 +632,8 @@ public final class UserProfileHeaderView extends ConstraintLayout {
     private final SpannableStringBuilder getPrimaryNameTextForUser(User user, GuildMember guildMember) {
         String nick = guildMember != null ? guildMember.getNick() : null;
         Context context = getContext();
-        m.checkNotNullExpressionValue(context, "context");
-        return UserNameFormatterKt.getSpannableForUserNameWithDiscrim(user, nick, context, R.attr.colorHeaderPrimary, R.attr.font_display_bold, R.integer.uikit_textsize_xxlarge_sp, R.attr.colorHeaderSecondary, R.attr.font_primary_semibold, R.integer.uikit_textsize_xxlarge_sp);
+        Intrinsics3.checkNotNullExpressionValue(context, "context");
+        return UserNameFormatter.getSpannableForUserNameWithDiscrim(user, nick, context, R.attr.colorHeaderPrimary, R.attr.font_display_bold, R.integer.uikit_textsize_xxlarge_sp, R.attr.colorHeaderSecondary, R.attr.font_primary_semibold, R.integer.uikit_textsize_xxlarge_sp);
     }
 
     private final CharSequence getSecondaryNameTextForUser(User user, GuildMember guildMember) {
@@ -652,8 +653,8 @@ public final class UserProfileHeaderView extends ConstraintLayout {
 
     private final Observable<Integer> observeRepresentativeColor(UserProfileHeaderViewModel.ViewState.Loaded viewState) {
         GuildMember guildMember = viewState.getGuildMember();
-        Observable<Integer> observableB0 = ObservableExtensionsKt.ui((guildMember == null || !guildMember.hasAvatar()) ? RepresentativeColorsKt.getUserRepresentativeColors().observeRepresentativeColor(viewState.getAvatarColorId()) : RepresentativeColorsKt.getGuildMemberRepresentativeColors().observeRepresentativeColor(viewState.getGuildMemberColorId())).a0(new ViewDetachedFromWindowObservable(this).observe()).b0(AnonymousClass1.INSTANCE);
-        m.checkNotNullExpressionValue(observableB0, "representativeColorObser….takeUntil { it != null }");
+        Observable<Integer> observableB0 = ObservableExtensionsKt.ui((guildMember == null || !guildMember.hasAvatar()) ? RepresentativeColors2.getUserRepresentativeColors().observeRepresentativeColor(viewState.getAvatarColorId()) : RepresentativeColors2.getGuildMemberRepresentativeColors().observeRepresentativeColor(viewState.getGuildMemberColorId())).a0(new ViewDetachedFromWindowObservable(this).observe()).b0(AnonymousClass1.INSTANCE);
+        Intrinsics3.checkNotNullExpressionValue(observableB0, "representativeColorObser….takeUntil { it != null }");
         return observableB0;
     }
 
@@ -673,22 +674,22 @@ public final class UserProfileHeaderView extends ConstraintLayout {
     }
 
     public final void setOnAvatarEdit(Function0<Unit> function0) {
-        m.checkNotNullParameter(function0, "<set-?>");
+        Intrinsics3.checkNotNullParameter(function0, "<set-?>");
         this.onAvatarEdit = function0;
     }
 
     public final void setOnAvatarRepresentativeColorUpdated(Function1<? super Integer, Unit> function1) {
-        m.checkNotNullParameter(function1, "<set-?>");
+        Intrinsics3.checkNotNullParameter(function1, "<set-?>");
         this.onAvatarRepresentativeColorUpdated = function1;
     }
 
     public final void setOnBadgeClick(Function1<? super Badge, Unit> function1) {
-        m.checkNotNullParameter(function1, "<set-?>");
+        Intrinsics3.checkNotNullParameter(function1, "<set-?>");
         this.onBadgeClick = function1;
     }
 
     public final void setOnBannerPress(Function0<Unit> function0) {
-        m.checkNotNullParameter(function0, "<set-?>");
+        Intrinsics3.checkNotNullParameter(function0, "<set-?>");
         this.onBannerPress = function0;
     }
 
@@ -702,13 +703,13 @@ public final class UserProfileHeaderView extends ConstraintLayout {
 
     public final void updateBannerColor(UserProfileHeaderViewModel.ViewState.Loaded viewState) {
         Integer numValueOf;
-        m.checkNotNullParameter(viewState, "viewState");
+        Intrinsics3.checkNotNullParameter(viewState, "viewState");
         String bannerColorHex = viewState.getBannerColorHex();
         if (bannerColorHex != null) {
             try {
                 numValueOf = Integer.valueOf(Color.parseColor(bannerColorHex));
             } catch (IllegalArgumentException e) {
-                Logger.e$default(AppLog.g, b.d.b.a.a.w("failed to parse banner color string: ", bannerColorHex), e, null, 4, null);
+                Logger.e$default(AppLog.g, outline.w("failed to parse banner color string: ", bannerColorHex), e, null, 4, null);
                 numValueOf = null;
             }
         } else {
@@ -723,7 +724,7 @@ public final class UserProfileHeaderView extends ConstraintLayout {
     }
 
     public final void updateViewState(UserProfileHeaderViewModel.ViewState.Loaded viewState) {
-        m.checkNotNullParameter(viewState, "viewState");
+        Intrinsics3.checkNotNullParameter(viewState, "viewState");
         this.binding.f.setOnAvatarBitmapLoadedListener(new AnonymousClass1(viewState));
         this.binding.f.setOnClickListener(new AnonymousClass2(viewState));
         this.binding.f2166b.setOnClickListener(new AnonymousClass3(viewState));
@@ -738,7 +739,7 @@ public final class UserProfileHeaderView extends ConstraintLayout {
         boolean zIsMeUserPremium = viewState.isMeUserPremium();
         boolean zIsMeUserVerified = viewState.isMeUserVerified();
         Context context = getContext();
-        m.checkNotNullExpressionValue(context, "context");
+        Intrinsics3.checkNotNullExpressionValue(context, "context");
         this.badgesAdapter.setData(companion.getBadgesForUser(user, userProfile, zIsMeUserPremium, zIsMeUserVerified, context));
         Presence presence = viewState.getPresence();
         Activity customStatusActivity = presence != null ? PresenceUtils.INSTANCE.getCustomStatusActivity(presence) : null;
@@ -746,32 +747,32 @@ public final class UserProfileHeaderView extends ConstraintLayout {
             this.binding.i.setDraweeSpanStringBuilder(getCustomStatusDraweeSpanStringBuilder(customStatusActivity, viewState.getAllowAnimatedEmojis()));
         }
         SimpleDraweeSpanTextView simpleDraweeSpanTextView = this.binding.i;
-        m.checkNotNullExpressionValue(simpleDraweeSpanTextView, "binding.userProfileHeaderCustomStatus");
+        Intrinsics3.checkNotNullExpressionValue(simpleDraweeSpanTextView, "binding.userProfileHeaderCustomStatus");
         simpleDraweeSpanTextView.setVisibility(customStatusActivity != null ? 0 : 8);
         CardView cardView = this.binding.f2166b;
-        m.checkNotNullExpressionValue(cardView, "binding.avatarEdit");
+        Intrinsics3.checkNotNullExpressionValue(cardView, "binding.avatarEdit");
         cardView.setVisibility(viewState.getEditable() ? 0 : 8);
         CardView cardView2 = this.binding.d;
-        m.checkNotNullExpressionValue(cardView2, "binding.bannerEdit");
+        Intrinsics3.checkNotNullExpressionValue(cardView2, "binding.bannerEdit");
         cardView2.setVisibility(viewState.getEditable() ? 0 : 8);
     }
 
     /* JADX INFO: renamed from: com.discord.widgets.user.profile.UserProfileHeaderView$1, reason: invalid class name */
     /* JADX INFO: compiled from: UserProfileHeaderView.kt */
-    public final class AnonymousClass1 extends o implements Function2<LayoutInflater, ViewGroup, BadgeViewHolder> {
+    public final class AnonymousClass1 extends Lambda implements Function2<LayoutInflater, ViewGroup, BadgeViewHolder> {
         public AnonymousClass1() {
             super(2);
         }
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final BadgeViewHolder invoke2(LayoutInflater layoutInflater, ViewGroup viewGroup) {
-            m.checkNotNullParameter(layoutInflater, "inflater");
-            m.checkNotNullParameter(viewGroup, "parent");
+            Intrinsics3.checkNotNullParameter(layoutInflater, "inflater");
+            Intrinsics3.checkNotNullParameter(viewGroup, "parent");
             View viewInflate = layoutInflater.inflate(R.layout.user_profile_header_badge, viewGroup, false);
             Objects.requireNonNull(viewInflate, "rootView");
             ImageView imageView = (ImageView) viewInflate;
             UserProfileHeaderBadgeBinding userProfileHeaderBadgeBinding = new UserProfileHeaderBadgeBinding(imageView, imageView);
-            m.checkNotNullExpressionValue(userProfileHeaderBadgeBinding, "UserProfileHeaderBadgeBi…(inflater, parent, false)");
+            Intrinsics3.checkNotNullExpressionValue(userProfileHeaderBadgeBinding, "UserProfileHeaderBadgeBi…(inflater, parent, false)");
             return new BadgeViewHolder(UserProfileHeaderView.this, userProfileHeaderBadgeBinding);
         }
 

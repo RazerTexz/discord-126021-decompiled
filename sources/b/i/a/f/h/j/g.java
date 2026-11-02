@@ -3,6 +3,8 @@ package b.i.a.f.h.j;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.SystemClock;
+import b.c.a.a0.AnimatableValueParser;
+import b.d.b.a.outline;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
@@ -27,7 +29,7 @@ public class g {
 
     public g(i iVar) {
         Context context = iVar.a;
-        b.c.a.a0.d.z(context, "Application context can't be null");
+        AnimatableValueParser.z(context, "Application context can't be null");
         Context context2 = iVar.f1419b;
         Objects.requireNonNull(context2, "null reference");
         this.f1417b = context;
@@ -40,7 +42,7 @@ public class g {
         this.f = m0Var;
         m0 m0VarC = c();
         String str = f.a;
-        m0VarC.a(4, b.d.b.a.a.k(b.d.b.a.a.b(str, Opcodes.I2F), "Google Analytics ", str, " is starting up. To enable debug logging on a device run:\n  adb shell setprop log.tag.GAv4 DEBUG\n  adb logcat -s GAv4"), null, null, null);
+        m0VarC.a(4, outline.k(outline.b(str, Opcodes.I2F), "Google Analytics ", str, " is starting up. To enable debug logging on a device run:\n  adb shell setprop log.tag.GAv4 DEBUG\n  adb logcat -s GAv4"), null, null, null);
         p0 p0Var = new p0(this);
         p0Var.J();
         this.k = p0Var;
@@ -78,14 +80,14 @@ public class g {
         a1Var2.N();
         r rVar = aVar.l;
         rVar.N();
-        b.c.a.a0.d.G(!rVar.l, "Analytics backend already started");
+        AnimatableValueParser.G(!rVar.l, "Analytics backend already started");
         rVar.l = true;
         rVar.q().a(new u(rVar));
     }
 
     public static void a(e eVar) {
-        b.c.a.a0.d.z(eVar, "Analytics service not created/initialized");
-        b.c.a.a0.d.o(eVar.I(), "Analytics service not initialized");
+        AnimatableValueParser.z(eVar, "Analytics service not created/initialized");
+        AnimatableValueParser.o(eVar.I(), "Analytics service not initialized");
     }
 
     public static g b(Context context) {

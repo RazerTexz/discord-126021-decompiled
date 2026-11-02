@@ -1,12 +1,12 @@
 package com.discord.widgets.chat.list.entries;
 
 import androidx.core.app.NotificationCompat;
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.api.channel.Channel;
 import com.discord.api.channel.ChannelUtils;
 import com.discord.models.guild.Guild;
 import com.discord.models.message.Message;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: MessageHeaderEntry.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -18,7 +18,7 @@ public final /* data */ class MessageHeaderEntry extends ChatListEntry {
     private final int type;
 
     public MessageHeaderEntry(Message message, String str, String str2) {
-        m.checkNotNullParameter(message, "message");
+        Intrinsics3.checkNotNullParameter(message, "message");
         this.message = message;
         this.text = str;
         this.channelName = str2;
@@ -40,7 +40,7 @@ public final /* data */ class MessageHeaderEntry extends ChatListEntry {
     }
 
     public final MessageHeaderEntry copy(Message message, String text, String channelName) {
-        m.checkNotNullParameter(message, "message");
+        Intrinsics3.checkNotNullParameter(message, "message");
         return new MessageHeaderEntry(message, text, channelName);
     }
 
@@ -52,7 +52,7 @@ public final /* data */ class MessageHeaderEntry extends ChatListEntry {
             return false;
         }
         MessageHeaderEntry messageHeaderEntry = (MessageHeaderEntry) other;
-        return m.areEqual(this.message, messageHeaderEntry.message) && m.areEqual(this.text, messageHeaderEntry.text) && m.areEqual(this.channelName, messageHeaderEntry.channelName);
+        return Intrinsics3.areEqual(this.message, messageHeaderEntry.message) && Intrinsics3.areEqual(this.text, messageHeaderEntry.text) && Intrinsics3.areEqual(this.channelName, messageHeaderEntry.channelName);
     }
 
     /* JADX INFO: renamed from: component3, reason: from getter */
@@ -102,17 +102,17 @@ public final /* data */ class MessageHeaderEntry extends ChatListEntry {
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("MessageHeaderEntry(message=");
+        StringBuilder sbU = outline.U("MessageHeaderEntry(message=");
         sbU.append(this.message);
         sbU.append(", text=");
         sbU.append(this.text);
         sbU.append(", channelName=");
-        return a.J(sbU, this.channelName, ")");
+        return outline.J(sbU, this.channelName, ")");
     }
 
     /* JADX WARN: 'this' call moved to the top of the method (can break code semantics) */
     public MessageHeaderEntry(Message message, Channel channel, Guild guild) {
         this(message, guild != null ? guild.getName() : null, channel != null ? ChannelUtils.c(channel) : null);
-        m.checkNotNullParameter(message, "message");
+        Intrinsics3.checkNotNullParameter(message, "message");
     }
 }

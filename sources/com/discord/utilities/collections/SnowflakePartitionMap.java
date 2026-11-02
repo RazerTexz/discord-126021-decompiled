@@ -1,10 +1,10 @@
 package com.discord.utilities.collections;
 
 import androidx.exifinterface.media.ExifInterface;
-import d0.d0.f;
-import d0.t.c0;
-import d0.t.o;
-import d0.z.d.m;
+import d0.d0._Ranges;
+import d0.t.Iterables2;
+import d0.t.Iterators4;
+import d0.z.d.Intrinsics3;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -12,13 +12,13 @@ import java.util.List;
 import java.util.Map;
 import kotlin.jvm.functions.Function1;
 import kotlin.jvm.internal.DefaultConstructorMarker;
-import kotlin.ranges.IntRange;
+import kotlin.ranges.Ranges2;
 
 /* JADX INFO: compiled from: SnowflakePartitionMap.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class SnowflakePartitionMap<V> extends ShallowPartitionMap<Long, V> {
     private static final int PARTITION_SIZE = 256;
-    private static final Function1<Long, Integer> PARTITION_SNOWFLAKE_ID_STRATEGY = SnowflakePartitionMap$Companion$PARTITION_SNOWFLAKE_ID_STRATEGY$1.INSTANCE;
+    private static final Function1<Long, Integer> PARTITION_SNOWFLAKE_ID_STRATEGY = SnowflakePartitionMap2.INSTANCE;
 
     /* JADX INFO: compiled from: SnowflakePartitionMap.kt */
     public final class CopiablePartitionMap<V> extends ShallowPartitionMap.CopiablePartitionMap<Long, V> {
@@ -102,7 +102,7 @@ public final class SnowflakePartitionMap<V> extends ShallowPartitionMap<Long, V>
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public SnowflakePartitionMap(List<? extends Map<Long, V>> list) {
         super(list, PARTITION_SNOWFLAKE_ID_STRATEGY);
-        m.checkNotNullParameter(list, "partitions");
+        Intrinsics3.checkNotNullParameter(list, "partitions");
     }
 
     public static final /* synthetic */ Function1 access$getPARTITION_SNOWFLAKE_ID_STRATEGY$cp() {
@@ -127,11 +127,11 @@ public final class SnowflakePartitionMap<V> extends ShallowPartitionMap<Long, V>
     }
 
     public SnowflakePartitionMap(int i) {
-        IntRange intRangeUntil = f.until(0, i);
-        ArrayList arrayList = new ArrayList(o.collectionSizeOrDefault(intRangeUntil, 10));
-        Iterator<Integer> it = intRangeUntil.iterator();
+        Ranges2 ranges2Until = _Ranges.until(0, i);
+        ArrayList arrayList = new ArrayList(Iterables2.collectionSizeOrDefault(ranges2Until, 10));
+        Iterator<Integer> it = ranges2Until.iterator();
         while (it.hasNext()) {
-            ((c0) it).nextInt();
+            ((Iterators4) it).nextInt();
             arrayList.add(new HashMap());
         }
         this(arrayList);

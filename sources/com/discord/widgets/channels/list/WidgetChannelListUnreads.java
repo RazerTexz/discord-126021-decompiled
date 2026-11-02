@@ -10,24 +10,25 @@ import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.exifinterface.media.ExifInterface;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import b.i.a.f.e.o.f;
 import com.discord.R;
 import com.discord.databinding.WidgetChannelsListUnreadsBinding;
 import com.discord.utilities.accessibility.AccessibilityUtils;
 import com.discord.utilities.drawable.DrawableCompat;
 import com.discord.utilities.view.extensions.ViewExtensions;
-import com.discord.utilities.view.layoutparams.LayoutParamsExtensionsKt;
-import com.discord.utilities.views.ViewCoroutineScopeKt;
+import com.discord.utilities.view.layoutparams.LayoutParamsExtensions;
+import com.discord.utilities.views.ViewCoroutineScope;
 import com.google.android.material.appbar.AppBarLayout;
-import d0.g;
-import d0.l;
-import d0.t.n;
-import d0.t.u;
-import d0.w.h.c;
-import d0.w.i.a.e;
-import d0.w.i.a.k;
-import d0.z.d.m;
+import d0.LazyJVM;
+import d0.Result3;
+import d0.d0._Ranges;
+import d0.t.Collections2;
+import d0.t._Collections;
+import d0.w.h.Intrinsics2;
+import d0.w.i.a.ContinuationImpl6;
+import d0.w.i.a.DebugMetadata;
+import d0.z.d.Intrinsics3;
 import java.util.Collection;
 import java.util.List;
 import kotlin.Lazy;
@@ -36,8 +37,8 @@ import kotlin.coroutines.Continuation;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function2;
 import kotlin.jvm.internal.DefaultConstructorMarker;
-import kotlin.ranges.IntProgression;
-import kotlin.ranges.IntRange;
+import kotlin.ranges.Progressions2;
+import kotlin.ranges.Ranges2;
 import kotlinx.coroutines.CoroutineScope;
 
 /* JADX INFO: compiled from: WidgetChannelListUnreads.kt */
@@ -71,7 +72,7 @@ public final class WidgetChannelListUnreads {
 
         @Override // androidx.recyclerview.widget.RecyclerView.OnScrollListener
         public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
-            m.checkNotNullParameter(recyclerView, "recyclerView");
+            Intrinsics3.checkNotNullParameter(recyclerView, "recyclerView");
             super.onScrollStateChanged(recyclerView, newState);
             if (newState == 0 || newState == 2) {
                 WidgetChannelListUnreads.access$handleVisibleRangeUpdate(WidgetChannelListUnreads.this);
@@ -80,7 +81,7 @@ public final class WidgetChannelListUnreads {
 
         @Override // androidx.recyclerview.widget.RecyclerView.OnScrollListener
         public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-            m.checkNotNullParameter(recyclerView, "recyclerView");
+            Intrinsics3.checkNotNullParameter(recyclerView, "recyclerView");
             super.onScrolled(recyclerView, dx, dy);
             if (AccessibilityUtils.INSTANCE.isReducedMotionEnabled()) {
                 WidgetChannelListUnreads.access$handleVisibleRangeUpdate(WidgetChannelListUnreads.this);
@@ -107,17 +108,17 @@ public final class WidgetChannelListUnreads {
 
     /* JADX INFO: renamed from: com.discord.widgets.channels.list.WidgetChannelListUnreads$onDatasetChanged$1, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetChannelListUnreads.kt */
-    @e(c = "com.discord.widgets.channels.list.WidgetChannelListUnreads$onDatasetChanged$1", f = "WidgetChannelListUnreads.kt", l = {74}, m = "invokeSuspend")
-    public final class AnonymousClass1 extends k implements Function2<CoroutineScope, Continuation<? super Unit>, Object> {
+    @DebugMetadata(c = "com.discord.widgets.channels.list.WidgetChannelListUnreads$onDatasetChanged$1", f = "WidgetChannelListUnreads.kt", l = {74}, m = "invokeSuspend")
+    public final class AnonymousClass1 extends ContinuationImpl6 implements Function2<CoroutineScope, Continuation<? super Unit>, Object> {
         public int label;
 
         public AnonymousClass1(Continuation continuation) {
             super(2, continuation);
         }
 
-        @Override // d0.w.i.a.a
+        @Override // d0.w.i.a.ContinuationImpl
         public final Continuation<Unit> create(Object obj, Continuation<?> continuation) {
-            m.checkNotNullParameter(continuation, "completion");
+            Intrinsics3.checkNotNullParameter(continuation, "completion");
             return WidgetChannelListUnreads.this.new AnonymousClass1(continuation);
         }
 
@@ -126,12 +127,12 @@ public final class WidgetChannelListUnreads {
             return ((AnonymousClass1) create(coroutineScope, continuation)).invokeSuspend(Unit.a);
         }
 
-        @Override // d0.w.i.a.a
+        @Override // d0.w.i.a.ContinuationImpl
         public final Object invokeSuspend(Object obj) throws Throwable {
-            Object coroutine_suspended = c.getCOROUTINE_SUSPENDED();
+            Object coroutine_suspended = Intrinsics2.getCOROUTINE_SUSPENDED();
             int i = this.label;
             if (i == 0) {
-                l.throwOnFailure(obj);
+                Result3.throwOnFailure(obj);
                 this.label = 1;
                 if (f.P(50L, this) == coroutine_suspended) {
                     return coroutine_suspended;
@@ -140,7 +141,7 @@ public final class WidgetChannelListUnreads {
                 if (i != 1) {
                     throw new IllegalStateException("call to 'resume' before 'invoke' with coroutine");
                 }
-                l.throwOnFailure(obj);
+                Result3.throwOnFailure(obj);
             }
             WidgetChannelListUnreads.access$handleVisibleRangeUpdate(WidgetChannelListUnreads.this);
             return Unit.a;
@@ -173,11 +174,11 @@ public final class WidgetChannelListUnreads {
             private Companion() {
             }
 
-            private final Indicator findIndicator(List<? extends Object> list, IntProgression intProgression, boolean z2, boolean z3) {
+            private final Indicator findIndicator(List<? extends Object> list, Progressions2 progressions2, boolean z2, boolean z3) {
                 int i;
-                int first = intProgression.getFirst();
-                int last = intProgression.getLast();
-                int step = intProgression.getStep();
+                int first = progressions2.getFirst();
+                int last = progressions2.getLast();
+                int step = progressions2.getStep();
                 if (step < 0 ? first < last : first > last) {
                     i = -1;
                 } else {
@@ -207,18 +208,18 @@ public final class WidgetChannelListUnreads {
                 return null;
             }
 
-            public static /* synthetic */ Model get$default(Companion companion, IntRange intRange, List list, boolean z2, int i, Object obj) {
+            public static /* synthetic */ Model get$default(Companion companion, Ranges2 ranges2, List list, boolean z2, int i, Object obj) {
                 if ((i & 4) != 0) {
                     z2 = true;
                 }
-                return companion.get(intRange, list, z2);
+                return companion.get(ranges2, list, z2);
             }
 
             /* JADX WARN: Code duplicated, block: B:7:0x0017  */
-            public final Model get(IntRange visibleRange, List<? extends Object> items, boolean unreadsEnabled) {
+            public final Model get(Ranges2 visibleRange, List<? extends Object> items, boolean unreadsEnabled) {
                 boolean z2;
-                m.checkNotNullParameter(visibleRange, "visibleRange");
-                m.checkNotNullParameter(items, "items");
+                Intrinsics3.checkNotNullParameter(visibleRange, "visibleRange");
+                Intrinsics3.checkNotNullParameter(items, "items");
                 if (unreadsEnabled) {
                     try {
                         if (hasUnread(items, visibleRange)) {
@@ -232,11 +233,11 @@ public final class WidgetChannelListUnreads {
                 } else {
                     z2 = false;
                 }
-                return new Model(findIndicator(items, d0.d0.f.until(0, visibleRange.getFirst()), z2, unreadsEnabled), findIndicator(items, d0.d0.f.downTo(n.getLastIndex(items), visibleRange.getLast() + 1), z2, unreadsEnabled));
+                return new Model(findIndicator(items, _Ranges.until(0, visibleRange.getFirst()), z2, unreadsEnabled), findIndicator(items, _Ranges.downTo(Collections2.getLastIndex(items), visibleRange.getLast() + 1), z2, unreadsEnabled));
             }
 
-            private final boolean hasUnread(List<? extends Object> list, IntRange intRange) {
-                List listSlice = u.slice(list, intRange);
+            private final boolean hasUnread(List<? extends Object> list, Ranges2 ranges2) {
+                List listSlice = _Collections.slice(list, ranges2);
                 if (!(listSlice instanceof Collection) || !listSlice.isEmpty()) {
                     for (Object obj : listSlice) {
                         if (!(obj instanceof UnreadItem)) {
@@ -314,10 +315,10 @@ public final class WidgetChannelListUnreads {
             }
 
             public String toString() {
-                StringBuilder sbU = a.U("Indicator(type=");
+                StringBuilder sbU = outline.U("Indicator(type=");
                 sbU.append(this.type);
                 sbU.append(", index=");
-                return a.B(sbU, this.index, ")");
+                return outline.B(sbU, this.index, ")");
             }
         }
 
@@ -352,7 +353,7 @@ public final class WidgetChannelListUnreads {
                 return false;
             }
             Model model = (Model) other;
-            return m.areEqual(this.topIndicator, model.topIndicator) && m.areEqual(this.bottomIndicator, model.bottomIndicator);
+            return Intrinsics3.areEqual(this.topIndicator, model.topIndicator) && Intrinsics3.areEqual(this.bottomIndicator, model.bottomIndicator);
         }
 
         /* JADX INFO: renamed from: component2, reason: from getter */
@@ -381,7 +382,7 @@ public final class WidgetChannelListUnreads {
         }
 
         public String toString() {
-            StringBuilder sbU = a.U("Model(topIndicator=");
+            StringBuilder sbU = outline.U("Model(topIndicator=");
             sbU.append(this.topIndicator);
             sbU.append(", bottomIndicator=");
             sbU.append(this.bottomIndicator);
@@ -402,9 +403,9 @@ public final class WidgetChannelListUnreads {
     }
 
     public WidgetChannelListUnreads(ViewStub viewStub, RecyclerView recyclerView, AppBarLayout appBarLayout, Function0<Integer> function0, int i, int i2, boolean z2) {
-        m.checkNotNullParameter(viewStub, "unreadsStub");
-        m.checkNotNullParameter(recyclerView, "recycler");
-        m.checkNotNullParameter(function0, "getItemCount");
+        Intrinsics3.checkNotNullParameter(viewStub, "unreadsStub");
+        Intrinsics3.checkNotNullParameter(recyclerView, "recycler");
+        Intrinsics3.checkNotNullParameter(function0, "getItemCount");
         this.unreadsStub = viewStub;
         this.recycler = recyclerView;
         this.appBarLayout = appBarLayout;
@@ -412,8 +413,8 @@ public final class WidgetChannelListUnreads {
         this.mentionResId = i;
         this.unreadsResId = i2;
         this.unreadsEnabled = z2;
-        this.binding = g.lazy(new WidgetChannelListUnreads$binding$2(this));
-        this.data = n.emptyList();
+        this.binding = LazyJVM.lazy(new WidgetChannelListUnreads2(this));
+        this.data = Collections2.emptyList();
         recyclerView.addOnScrollListener(new AnonymousClass1());
     }
 
@@ -473,7 +474,7 @@ public final class WidgetChannelListUnreads {
         }
         LinearLayoutManager linearLayoutManager = (LinearLayoutManager) layoutManager;
         if (linearLayoutManager != null) {
-            Model model = Model.INSTANCE.get(new IntRange(linearLayoutManager.findFirstVisibleItemPosition(), linearLayoutManager.findLastVisibleItemPosition()), this.data, this.unreadsEnabled);
+            Model model = Model.INSTANCE.get(new Ranges2(linearLayoutManager.findFirstVisibleItemPosition(), linearLayoutManager.findLastVisibleItemPosition()), this.data, this.unreadsEnabled);
             Model.Indicator topIndicator = model.getTopIndicator();
             if (topIndicator == null) {
                 topIndicator = model.getBottomIndicator();
@@ -494,10 +495,10 @@ public final class WidgetChannelListUnreads {
         getBinding().c.setBackgroundResource(getIcon(indicator));
         getBinding().f2300b.setText(getText(indicator));
         TextView textView = getBinding().f2300b;
-        m.checkNotNullExpressionValue(textView, "binding.channelsListUnreads");
+        Intrinsics3.checkNotNullExpressionValue(textView, "binding.channelsListUnreads");
         DrawableCompat.setCompoundDrawablesCompat$default(textView, 0, 0, indicatorUpwards ? R.drawable.ic_arrow_upward_white_16dp : R.drawable.ic_arrow_downward_white_16dp, 0, 11, (Object) null);
         FrameLayout frameLayout = getBinding().a;
-        m.checkNotNullExpressionValue(frameLayout, "it");
+        Intrinsics3.checkNotNullExpressionValue(frameLayout, "it");
         ViewGroup.LayoutParams layoutParams = frameLayout.getLayoutParams();
         if (!(layoutParams instanceof ViewGroup.MarginLayoutParams)) {
             layoutParams = null;
@@ -505,7 +506,7 @@ public final class WidgetChannelListUnreads {
         ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) layoutParams;
         if (marginLayoutParams instanceof RelativeLayout.LayoutParams) {
             RelativeLayout.LayoutParams layoutParams2 = (RelativeLayout.LayoutParams) marginLayoutParams;
-            LayoutParamsExtensionsKt.removeRuleCompat(layoutParams2, indicatorUpwards ? 8 : 6);
+            LayoutParamsExtensions.removeRuleCompat(layoutParams2, indicatorUpwards ? 8 : 6);
             layoutParams2.addRule(indicatorUpwards ? 6 : 8, this.recycler.getId());
         } else {
             if (!(marginLayoutParams instanceof CoordinatorLayout.LayoutParams)) {
@@ -516,17 +517,17 @@ public final class WidgetChannelListUnreads {
             layoutParams3.gravity = indicatorUpwards ? 80 : 48;
         }
         FrameLayout frameLayout2 = getBinding().a;
-        m.checkNotNullExpressionValue(frameLayout2, "binding.root");
+        Intrinsics3.checkNotNullExpressionValue(frameLayout2, "binding.root");
         frameLayout2.setLayoutParams(marginLayoutParams);
         FrameLayout frameLayout3 = getBinding().a;
-        m.checkNotNullExpressionValue(frameLayout3, "binding.root");
+        Intrinsics3.checkNotNullExpressionValue(frameLayout3, "binding.root");
         frameLayout3.setImportantForAccessibility(4);
     }
 
     public final void onDatasetChanged(List<? extends Object> data) {
-        m.checkNotNullParameter(data, "data");
+        Intrinsics3.checkNotNullParameter(data, "data");
         this.data = data;
-        CoroutineScope coroutineScope = ViewCoroutineScopeKt.getCoroutineScope(this.recycler);
+        CoroutineScope coroutineScope = ViewCoroutineScope.getCoroutineScope(this.recycler);
         if (coroutineScope != null) {
             f.H0(coroutineScope, null, null, new AnonymousClass1(null), 3, null);
         }

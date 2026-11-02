@@ -1,8 +1,8 @@
 package com.discord.models.authentication;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.api.auth.RequiredAction;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 import java.util.Set;
 import kotlin.jvm.internal.DefaultConstructorMarker;
 
@@ -21,7 +21,7 @@ public final /* data */ class AuthState {
         }
 
         public final AuthState from(String token, Set<? extends RequiredAction> requiredActions) {
-            m.checkNotNullParameter(requiredActions, "requiredActions");
+            Intrinsics3.checkNotNullParameter(requiredActions, "requiredActions");
             if (token != null) {
                 return new AuthState(token, requiredActions);
             }
@@ -43,8 +43,8 @@ public final /* data */ class AuthState {
 
     /* JADX WARN: Multi-variable type inference failed */
     public AuthState(String str, Set<? extends RequiredAction> set) {
-        m.checkNotNullParameter(str, "token");
-        m.checkNotNullParameter(set, "requiredActions");
+        Intrinsics3.checkNotNullParameter(str, "token");
+        Intrinsics3.checkNotNullParameter(set, "requiredActions");
         this.token = str;
         this.requiredActions = set;
     }
@@ -65,8 +65,8 @@ public final /* data */ class AuthState {
     }
 
     public final AuthState copy(String token, Set<? extends RequiredAction> requiredActions) {
-        m.checkNotNullParameter(token, "token");
-        m.checkNotNullParameter(requiredActions, "requiredActions");
+        Intrinsics3.checkNotNullParameter(token, "token");
+        Intrinsics3.checkNotNullParameter(requiredActions, "requiredActions");
         return new AuthState(token, requiredActions);
     }
 
@@ -78,7 +78,7 @@ public final /* data */ class AuthState {
             return false;
         }
         AuthState authState = (AuthState) other;
-        return m.areEqual(this.token, authState.token) && m.areEqual(this.requiredActions, authState.requiredActions);
+        return Intrinsics3.areEqual(this.token, authState.token) && Intrinsics3.areEqual(this.requiredActions, authState.requiredActions);
     }
 
     public final Set<RequiredAction> getRequiredActions() {
@@ -102,9 +102,9 @@ public final /* data */ class AuthState {
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("AuthState(token=");
+        StringBuilder sbU = outline.U("AuthState(token=");
         sbU.append(this.token);
         sbU.append(", requiredActions=");
-        return a.N(sbU, this.requiredActions, ")");
+        return outline.N(sbU, this.requiredActions, ")");
     }
 }

@@ -1,7 +1,7 @@
 package com.discord.api.message.embed;
 
-import b.d.b.a.a;
-import d0.z.d.m;
+import b.d.b.a.outline;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: EmbedThumbnail.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -19,7 +19,7 @@ public final /* data */ class EmbedThumbnail {
             return false;
         }
         EmbedThumbnail embedThumbnail = (EmbedThumbnail) other;
-        return m.areEqual(this.url, embedThumbnail.url) && m.areEqual(this.proxyUrl, embedThumbnail.proxyUrl) && m.areEqual(this.height, embedThumbnail.height) && m.areEqual(this.width, embedThumbnail.width);
+        return Intrinsics3.areEqual(this.url, embedThumbnail.url) && Intrinsics3.areEqual(this.proxyUrl, embedThumbnail.proxyUrl) && Intrinsics3.areEqual(this.height, embedThumbnail.height) && Intrinsics3.areEqual(this.width, embedThumbnail.width);
     }
 
     /* JADX INFO: renamed from: a, reason: from getter */
@@ -54,13 +54,13 @@ public final /* data */ class EmbedThumbnail {
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("EmbedThumbnail(url=");
+        StringBuilder sbU = outline.U("EmbedThumbnail(url=");
         sbU.append(this.url);
         sbU.append(", proxyUrl=");
         sbU.append(this.proxyUrl);
         sbU.append(", height=");
         sbU.append(this.height);
         sbU.append(", width=");
-        return a.F(sbU, this.width, ")");
+        return outline.F(sbU, this.width, ")");
     }
 }

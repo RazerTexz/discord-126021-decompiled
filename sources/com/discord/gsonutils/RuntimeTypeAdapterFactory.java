@@ -1,9 +1,9 @@
 package com.discord.gsonutils;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import b.i.a.f.e.o.f;
-import b.i.d.k;
-import b.i.d.o;
+import b.i.d.JsonPrimitive;
+import b.i.d.TypeAdapterFactory2;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -21,7 +21,7 @@ import java.util.Map;
 import java.util.NoSuchElementException;
 
 /* JADX INFO: loaded from: classes.dex */
-public final class RuntimeTypeAdapterFactory<T> implements o {
+public final class RuntimeTypeAdapterFactory<T> implements TypeAdapterFactory2 {
     public final Class<?> j;
     public final String k;
     public final boolean n;
@@ -55,7 +55,7 @@ public final class RuntimeTypeAdapterFactory<T> implements o {
                 jsonElementRemove = jsonElementS0.d().a.remove(RuntimeTypeAdapterFactory.this.k);
             }
             if (jsonElementRemove == null) {
-                StringBuilder sbU = a.U("cannot deserialize ");
+                StringBuilder sbU = outline.U("cannot deserialize ");
                 sbU.append(RuntimeTypeAdapterFactory.this.j);
                 sbU.append(" because it does not define a field named ");
                 sbU.append(RuntimeTypeAdapterFactory.this.k);
@@ -69,7 +69,7 @@ public final class RuntimeTypeAdapterFactory<T> implements o {
             if (typeAdapter != null) {
                 return (R) typeAdapter.fromJsonTree(jsonElementS0);
             }
-            StringBuilder sbU2 = a.U("cannot deserialize ");
+            StringBuilder sbU2 = outline.U("cannot deserialize ");
             sbU2.append(RuntimeTypeAdapterFactory.this.j);
             sbU2.append(" subtype named ");
             sbU2.append(strG);
@@ -84,7 +84,7 @@ public final class RuntimeTypeAdapterFactory<T> implements o {
             String str = RuntimeTypeAdapterFactory.this.m.get(cls);
             TypeAdapter typeAdapter = (TypeAdapter) this.c.get(cls);
             if (typeAdapter == null) {
-                throw new JsonParseException(a.o(cls, a.U("cannot serialize "), "; did you forget to register a subtype?"));
+                throw new JsonParseException(outline.o(cls, outline.U("cannot serialize "), "; did you forget to register a subtype?"));
             }
             JsonObject jsonObjectD = typeAdapter.toJsonTree(r).d();
             if (RuntimeTypeAdapterFactory.this.n) {
@@ -93,12 +93,12 @@ public final class RuntimeTypeAdapterFactory<T> implements o {
             }
             JsonObject jsonObject = new JsonObject();
             if (jsonObjectD.a.c(RuntimeTypeAdapterFactory.this.k) != null) {
-                StringBuilder sbU = a.U("cannot serialize ");
-                a.k0(cls, sbU, " because it already defines a field named ");
+                StringBuilder sbU = outline.U("cannot serialize ");
+                outline.k0(cls, sbU, " because it already defines a field named ");
                 sbU.append(RuntimeTypeAdapterFactory.this.k);
                 throw new JsonParseException(sbU.toString());
             }
-            jsonObject.a.put(RuntimeTypeAdapterFactory.this.k, new k(str));
+            jsonObject.a.put(RuntimeTypeAdapterFactory.this.k, new JsonPrimitive(str));
             LinkedTreeMap linkedTreeMap = LinkedTreeMap.this;
             LinkedTreeMap.e eVar = linkedTreeMap.header.m;
             int i = linkedTreeMap.modCount;
@@ -132,7 +132,7 @@ public final class RuntimeTypeAdapterFactory<T> implements o {
         this.o = cls2;
     }
 
-    @Override // b.i.d.o
+    @Override // b.i.d.TypeAdapterFactory2
     public <R> TypeAdapter<R> create(Gson gson, TypeToken<R> typeToken) {
         if (typeToken.getRawType() != this.j) {
             return null;

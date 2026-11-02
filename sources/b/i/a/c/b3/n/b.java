@@ -1,11 +1,13 @@
 package b.i.a.c.b3.n;
 
+import b.i.a.c.v2.DecoderOutputBuffer;
+
 /* JADX INFO: compiled from: lambda */
 /* JADX INFO: loaded from: classes3.dex */
-public final /* synthetic */ class b implements b.i.a.c.v2.f.a {
-    public final /* synthetic */ e a;
+public final /* synthetic */ class b implements DecoderOutputBuffer.a {
+    public final /* synthetic */ CeaDecoder a;
 
-    public /* synthetic */ b(e eVar) {
-        this.a = eVar;
+    public /* synthetic */ b(CeaDecoder ceaDecoder) {
+        this.a = ceaDecoder;
     }
 }

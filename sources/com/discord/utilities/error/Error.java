@@ -10,11 +10,12 @@ import androidx.annotation.StringRes;
 import androidx.annotation.VisibleForTesting;
 import b.a.x.a.a;
 import b.a.x.a.b;
+import b.d.b.a.outline;
 import com.discord.R;
 import com.discord.models.domain.Model;
 import com.discord.models.domain.ModelAuditLogEntry;
 import com.discord.utilities.captcha.CaptchaHelper;
-import com.discord.utilities.guildautomod.AutoModBlockFailure;
+import com.discord.utilities.guildautomod.AutoModUtils2;
 import com.discord.utilities.images.MGImagesBitmap;
 import com.discord.utilities.rest.RestAPIAbortMessages;
 import java.io.IOException;
@@ -307,7 +308,7 @@ public class Error {
         }
 
         public String toString() {
-            StringBuilder sbU = b.d.b.a.a.U("Error.Response(code=");
+            StringBuilder sbU = outline.U("Error.Response(code=");
             sbU.append(getCode());
             sbU.append(", retryAfter=");
             sbU.append(this.retryAfter);
@@ -391,10 +392,10 @@ public class Error {
         }
 
         public String toString() {
-            StringBuilder sbU = b.d.b.a.a.U("Error.SkemaErrorItem(code=");
+            StringBuilder sbU = outline.U("Error.SkemaErrorItem(code=");
             sbU.append(this.code);
             sbU.append(", message=");
-            return b.d.b.a.a.J(sbU, this.message, ")");
+            return outline.J(sbU, this.message, ")");
         }
 
         public /* synthetic */ SkemaErrorItem(AnonymousClass1 anonymousClass1) {
@@ -542,7 +543,7 @@ public class Error {
             } else if (th instanceof MGImagesBitmap.ImageNotFoundException) {
                 type = Type.IMAGE_NOT_FOUND;
             } else {
-                type = th instanceof AutoModBlockFailure ? Type.AUTOMOD_MESSAGE_BLOCKED : Type.OTHER;
+                type = th instanceof AutoModUtils2 ? Type.AUTOMOD_MESSAGE_BLOCKED : Type.OTHER;
             }
             type2 = type;
             response = null;
@@ -686,7 +687,7 @@ public class Error {
             try {
                 action1.call(errorCreate);
             } catch (Exception e) {
-                StringBuilder sbX = b.d.b.a.a.X(str, " / ");
+                StringBuilder sbX = outline.X(str, " / ");
                 sbX.append(errorCreate.toString());
                 onUnhandledError.call(str, new Exception(sbX.toString(), e), null);
                 return;
@@ -762,7 +763,7 @@ public class Error {
     }
 
     public String toString() {
-        StringBuilder sbU = b.d.b.a.a.U("Error(showErrorToasts=");
+        StringBuilder sbU = outline.U("Error(showErrorToasts=");
         sbU.append(this.showErrorToasts);
         sbU.append(", shouldLog=");
         sbU.append(this.shouldLog);
@@ -844,10 +845,10 @@ public class Error {
         }
 
         public String toString() {
-            StringBuilder sbU = b.d.b.a.a.U("Error.SkemaError(errors=");
+            StringBuilder sbU = outline.U("Error.SkemaError(errors=");
             sbU.append(this.errors);
             sbU.append(", subErrors=");
-            return b.d.b.a.a.M(sbU, this.subErrors, ")");
+            return outline.M(sbU, this.subErrors, ")");
         }
 
         public /* synthetic */ SkemaError(AnonymousClass1 anonymousClass1) {

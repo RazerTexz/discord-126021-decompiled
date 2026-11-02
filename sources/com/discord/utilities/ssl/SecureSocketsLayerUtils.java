@@ -1,8 +1,8 @@
 package com.discord.utilities.ssl;
 
 import android.content.res.AssetManager;
-import d0.y.b;
-import d0.z.d.m;
+import d0.y.Closeable;
+import d0.z.d.Intrinsics3;
 import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.InvocationTargetException;
@@ -50,7 +50,7 @@ public final class SecureSocketsLayerUtils {
         }
         context$default.init(null, trustManagers, null);
         SSLSocketFactory socketFactory = context$default.getSocketFactory();
-        m.checkNotNullExpressionValue(socketFactory, "sslContext.socketFactory");
+        Intrinsics3.checkNotNullExpressionValue(socketFactory, "sslContext.socketFactory");
         return socketFactory;
     }
 
@@ -64,7 +64,7 @@ public final class SecureSocketsLayerUtils {
     private final SSLContext getContext(String protocol) throws NoSuchAlgorithmException {
         try {
             SSLContext sSLContext = SSLContext.getInstance(protocol);
-            m.checkNotNullExpressionValue(sSLContext, "SSLContext.getInstance(protocol)");
+            Intrinsics3.checkNotNullExpressionValue(sSLContext, "SSLContext.getInstance(protocol)");
             return sSLContext;
         } catch (NoSuchAlgorithmException e) {
             throw e;
@@ -72,8 +72,8 @@ public final class SecureSocketsLayerUtils {
     }
 
     public static final TrustManagerFactory getTrustManagerFactory(AssetManager assetManager, String certificatePath) throws IllegalAccessException, NoSuchAlgorithmException, IOException, InvocationTargetException {
-        m.checkNotNullParameter(assetManager, "assetManager");
-        m.checkNotNullParameter(certificatePath, "certificatePath");
+        Intrinsics3.checkNotNullParameter(assetManager, "assetManager");
+        Intrinsics3.checkNotNullParameter(certificatePath, "certificatePath");
         TrustManagerFactory trustManagerFactory = TrustManagerFactory.getInstance(TrustManagerFactory.getDefaultAlgorithm());
         InputStream inputStreamOpen = assetManager.open(certificatePath);
         try {
@@ -85,14 +85,14 @@ public final class SecureSocketsLayerUtils {
             keyStore.load(null);
             keyStore.setCertificateEntry("caCert", (X509Certificate) certificateGenerateCertificate);
             trustManagerFactory.init(keyStore);
-            m.checkNotNullExpressionValue(trustManagerFactory, "tmf");
-            b.closeFinally(inputStreamOpen, null);
+            Intrinsics3.checkNotNullExpressionValue(trustManagerFactory, "tmf");
+            Closeable.closeFinally(inputStreamOpen, null);
             return trustManagerFactory;
         } catch (Throwable th) {
             try {
                 throw th;
             } catch (Throwable th2) {
-                b.closeFinally(inputStreamOpen, th);
+                Closeable.closeFinally(inputStreamOpen, th);
                 throw th2;
             }
         }

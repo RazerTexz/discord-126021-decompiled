@@ -1,8 +1,8 @@
 package com.discord.widgets.channels.list.items;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.api.channel.Channel;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: ChannelListItemStageAudienceCount.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -12,7 +12,7 @@ public final /* data */ class ChannelListItemStageAudienceCount implements Chann
     private final int type;
 
     public ChannelListItemStageAudienceCount(Channel channel, int i) {
-        m.checkNotNullParameter(channel, "channel");
+        Intrinsics3.checkNotNullParameter(channel, "channel");
         this.channel = channel;
         this.audienceSize = i;
         this.type = 16;
@@ -29,7 +29,7 @@ public final /* data */ class ChannelListItemStageAudienceCount implements Chann
     }
 
     public final ChannelListItemStageAudienceCount copy(Channel channel, int audienceSize) {
-        m.checkNotNullParameter(channel, "channel");
+        Intrinsics3.checkNotNullParameter(channel, "channel");
         return new ChannelListItemStageAudienceCount(channel, audienceSize);
     }
 
@@ -41,7 +41,7 @@ public final /* data */ class ChannelListItemStageAudienceCount implements Chann
             return false;
         }
         ChannelListItemStageAudienceCount channelListItemStageAudienceCount = (ChannelListItemStageAudienceCount) other;
-        return m.areEqual(this.channel, channelListItemStageAudienceCount.channel) && this.audienceSize == channelListItemStageAudienceCount.audienceSize;
+        return Intrinsics3.areEqual(this.channel, channelListItemStageAudienceCount.channel) && this.audienceSize == channelListItemStageAudienceCount.audienceSize;
     }
 
     /* JADX INFO: renamed from: component2, reason: from getter */
@@ -78,9 +78,9 @@ public final /* data */ class ChannelListItemStageAudienceCount implements Chann
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("ChannelListItemStageAudienceCount(channel=");
+        StringBuilder sbU = outline.U("ChannelListItemStageAudienceCount(channel=");
         sbU.append(this.channel);
         sbU.append(", audienceSize=");
-        return a.B(sbU, this.audienceSize, ")");
+        return outline.B(sbU, this.audienceSize, ")");
     }
 }

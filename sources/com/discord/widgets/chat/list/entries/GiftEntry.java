@@ -1,8 +1,8 @@
 package com.discord.widgets.chat.list.entries;
 
 import a0.a.a.b;
-import b.d.b.a.a;
-import d0.z.d.m;
+import b.d.b.a.outline;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: GiftEntry.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -15,7 +15,7 @@ public final /* data */ class GiftEntry extends ChatListEntry {
     private final long userId;
 
     public GiftEntry(long j, long j2, long j3, String str) {
-        m.checkNotNullParameter(str, "giftCode");
+        Intrinsics3.checkNotNullParameter(str, "giftCode");
         this.userId = j;
         this.messageId = j2;
         this.channelId = j3;
@@ -29,7 +29,7 @@ public final /* data */ class GiftEntry extends ChatListEntry {
     }
 
     public final GiftEntry copy(long userId, long messageId, long channelId, String giftCode) {
-        m.checkNotNullParameter(giftCode, "giftCode");
+        Intrinsics3.checkNotNullParameter(giftCode, "giftCode");
         return new GiftEntry(userId, messageId, channelId, giftCode);
     }
 
@@ -41,7 +41,7 @@ public final /* data */ class GiftEntry extends ChatListEntry {
             return false;
         }
         GiftEntry giftEntry = (GiftEntry) other;
-        return this.userId == giftEntry.userId && this.messageId == giftEntry.messageId && this.channelId == giftEntry.channelId && m.areEqual(this.giftCode, giftEntry.giftCode);
+        return this.userId == giftEntry.userId && this.messageId == giftEntry.messageId && this.channelId == giftEntry.channelId && Intrinsics3.areEqual(this.giftCode, giftEntry.giftCode);
     }
 
     /* JADX INFO: renamed from: component3, reason: from getter */
@@ -97,13 +97,13 @@ public final /* data */ class GiftEntry extends ChatListEntry {
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("GiftEntry(userId=");
+        StringBuilder sbU = outline.U("GiftEntry(userId=");
         sbU.append(this.userId);
         sbU.append(", messageId=");
         sbU.append(this.messageId);
         sbU.append(", channelId=");
         sbU.append(this.channelId);
         sbU.append(", giftCode=");
-        return a.J(sbU, this.giftCode, ")");
+        return outline.J(sbU, this.giftCode, ")");
     }
 }

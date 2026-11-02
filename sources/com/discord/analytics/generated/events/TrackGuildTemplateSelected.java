@@ -1,16 +1,16 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.analytics.generated.traits.TrackLocationMetadata;
-import com.discord.analytics.generated.traits.TrackLocationMetadataReceiver;
+import com.discord.analytics.generated.traits.TrackLocationMetadata2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackGuildTemplateSelected.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackGuildTemplateSelected implements AnalyticsSchema, TrackBaseReceiver, TrackLocationMetadataReceiver {
+public final /* data */ class TrackGuildTemplateSelected implements AnalyticsSchema, TrackBase2, TrackLocationMetadata2 {
     private final CharSequence templateCode = null;
     private final CharSequence templateName = null;
     private TrackBase trackBase;
@@ -25,7 +25,7 @@ public final /* data */ class TrackGuildTemplateSelected implements AnalyticsSch
             return false;
         }
         TrackGuildTemplateSelected trackGuildTemplateSelected = (TrackGuildTemplateSelected) other;
-        return m.areEqual(this.templateName, trackGuildTemplateSelected.templateName) && m.areEqual(this.templateCode, trackGuildTemplateSelected.templateCode);
+        return Intrinsics3.areEqual(this.templateName, trackGuildTemplateSelected.templateName) && Intrinsics3.areEqual(this.templateCode, trackGuildTemplateSelected.templateCode);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -42,9 +42,9 @@ public final /* data */ class TrackGuildTemplateSelected implements AnalyticsSch
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackGuildTemplateSelected(templateName=");
+        StringBuilder sbU = outline.U("TrackGuildTemplateSelected(templateName=");
         sbU.append(this.templateName);
         sbU.append(", templateCode=");
-        return a.E(sbU, this.templateCode, ")");
+        return outline.E(sbU, this.templateCode, ")");
     }
 }

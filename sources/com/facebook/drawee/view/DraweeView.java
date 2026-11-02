@@ -12,10 +12,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import androidx.constraintlayout.solver.widgets.analyzer.BasicMeasure;
-import b.c.a.a0.d;
-import b.f.d.d.i;
-import b.f.g.b.c;
-import b.f.j.r.b;
+import b.c.a.a0.AnimatableValueParser;
+import b.f.d.d.Objects2;
+import b.f.g.b.DraweeEventTracker;
+import b.f.j.r.FrescoSystrace;
 import com.facebook.drawee.interfaces.DraweeController;
 import com.facebook.drawee.interfaces.DraweeHierarchy;
 import java.util.Objects;
@@ -40,14 +40,14 @@ public class DraweeView<DH extends DraweeHierarchy> extends ImageView {
 
     public void doAttach() {
         DraweeHolder<DH> draweeHolder = this.mDraweeHolder;
-        draweeHolder.f.a(c.a.ON_HOLDER_ATTACH);
+        draweeHolder.f.a(DraweeEventTracker.a.ON_HOLDER_ATTACH);
         draweeHolder.f2893b = true;
         draweeHolder.b();
     }
 
     public void doDetach() {
         DraweeHolder<DH> draweeHolder = this.mDraweeHolder;
-        draweeHolder.f.a(c.a.ON_HOLDER_DETACH);
+        draweeHolder.f.a(DraweeEventTracker.a.ON_HOLDER_DETACH);
         draweeHolder.f2893b = false;
         draweeHolder.b();
     }
@@ -80,7 +80,7 @@ public class DraweeView<DH extends DraweeHierarchy> extends ImageView {
 
     private void init(Context context) {
         try {
-            b.b();
+            FrescoSystrace.b();
             if (this.mInitialised) {
                 return;
             }
@@ -97,7 +97,7 @@ public class DraweeView<DH extends DraweeHierarchy> extends ImageView {
             }
             this.mLegacyVisibilityHandlingEnabled = z2;
         } finally {
-            b.b();
+            FrescoSystrace.b();
         }
     }
 
@@ -248,10 +248,10 @@ public class DraweeView<DH extends DraweeHierarchy> extends ImageView {
 
     @Override // android.view.View
     public String toString() {
-        i iVarH2 = d.h2(this);
+        Objects2 objects2H2 = AnimatableValueParser.h2(this);
         DraweeHolder<DH> draweeHolder = this.mDraweeHolder;
-        iVarH2.c("holder", draweeHolder != null ? draweeHolder.toString() : "<no holder set>");
-        return iVarH2.toString();
+        objects2H2.c("holder", draweeHolder != null ? draweeHolder.toString() : "<no holder set>");
+        return objects2H2.toString();
     }
 
     public DraweeView(Context context, AttributeSet attributeSet) {

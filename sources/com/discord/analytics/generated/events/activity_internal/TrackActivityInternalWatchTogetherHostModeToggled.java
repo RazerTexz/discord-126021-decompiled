@@ -1,16 +1,16 @@
 package com.discord.analytics.generated.events.activity_internal;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackActivityInternalMetadata;
-import com.discord.analytics.generated.traits.TrackActivityInternalMetadataReceiver;
+import com.discord.analytics.generated.traits.TrackActivityInternalMetadata2;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackActivityInternalWatchTogetherHostModeToggled.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackActivityInternalWatchTogetherHostModeToggled implements AnalyticsSchema, TrackBaseReceiver, TrackActivityInternalMetadataReceiver {
+public final /* data */ class TrackActivityInternalWatchTogetherHostModeToggled implements AnalyticsSchema, TrackBase2, TrackActivityInternalMetadata2 {
     private final Boolean isHost = null;
     private final Boolean isHostMode = null;
     private TrackActivityInternalMetadata trackActivityInternalMetadata;
@@ -25,7 +25,7 @@ public final /* data */ class TrackActivityInternalWatchTogetherHostModeToggled 
             return false;
         }
         TrackActivityInternalWatchTogetherHostModeToggled trackActivityInternalWatchTogetherHostModeToggled = (TrackActivityInternalWatchTogetherHostModeToggled) other;
-        return m.areEqual(this.isHost, trackActivityInternalWatchTogetherHostModeToggled.isHost) && m.areEqual(this.isHostMode, trackActivityInternalWatchTogetherHostModeToggled.isHostMode);
+        return Intrinsics3.areEqual(this.isHost, trackActivityInternalWatchTogetherHostModeToggled.isHost) && Intrinsics3.areEqual(this.isHostMode, trackActivityInternalWatchTogetherHostModeToggled.isHostMode);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -42,9 +42,9 @@ public final /* data */ class TrackActivityInternalWatchTogetherHostModeToggled 
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackActivityInternalWatchTogetherHostModeToggled(isHost=");
+        StringBuilder sbU = outline.U("TrackActivityInternalWatchTogetherHostModeToggled(isHost=");
         sbU.append(this.isHost);
         sbU.append(", isHostMode=");
-        return a.D(sbU, this.isHostMode, ")");
+        return outline.D(sbU, this.isHostMode, ")");
     }
 }

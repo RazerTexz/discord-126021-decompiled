@@ -2,7 +2,7 @@ package com.discord.widgets.settings;
 
 import android.view.View;
 import com.discord.widgets.media.WidgetQRScanner;
-import d0.z.d.o;
+import d0.z.d.Lambda;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 
@@ -13,7 +13,7 @@ public final class WidgetSettings$onViewBound$$inlined$with$lambda$3 implements 
 
     /* JADX INFO: renamed from: com.discord.widgets.settings.WidgetSettings$onViewBound$$inlined$with$lambda$3$1, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetSettings.kt */
-    public final class AnonymousClass1 extends o implements Function0<Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function0<Unit> {
         public AnonymousClass1() {
             super(0);
         }

@@ -13,7 +13,8 @@ import android.view.LayoutInflater;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
-import b.d.b.a.a;
+import b.a.k.FormatUtils;
+import b.d.b.a.outline;
 import com.discord.R;
 import com.discord.api.channel.Channel;
 import com.discord.api.channel.ChannelUtils;
@@ -40,12 +41,12 @@ import com.discord.utilities.textprocessing.MessageRenderContext;
 import com.discord.utilities.time.ClockFactory;
 import com.discord.utilities.time.TimeUtils;
 import com.discord.utilities.view.text.SimpleDraweeSpanTextView;
-import com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemGuildWelcomeKt;
+import com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemGuildWelcome2;
 import com.facebook.drawee.span.DraweeSpanStringBuilder;
 import com.facebook.drawee.view.SimpleDraweeView;
-import d0.g0.t;
-import d0.z.d.m;
-import d0.z.d.o;
+import d0.g0.StringsJVM;
+import d0.z.d.Intrinsics3;
+import d0.z.d.Lambda;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -62,14 +63,14 @@ public final class ThreadBrowserThreadView extends FrameLayout {
 
     /* JADX INFO: renamed from: com.discord.widgets.channels.threads.browser.ThreadBrowserThreadView$setThreadData$1, reason: invalid class name */
     /* JADX INFO: compiled from: ThreadBrowserThreadView.kt */
-    public final class AnonymousClass1 extends o implements Function1<RenderContext, Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function1<RenderContext, Unit> {
         public final /* synthetic */ GuildMember $creatorMember;
         public final /* synthetic */ String $creatorName;
 
         /* JADX INFO: renamed from: com.discord.widgets.channels.threads.browser.ThreadBrowserThreadView$setThreadData$1$1, reason: invalid class name and collision with other inner class name */
         /* JADX INFO: compiled from: ThreadBrowserThreadView.kt */
-        public final class C03711 extends o implements Function1<Hook, Unit> {
-            public C03711() {
+        public final class C02511 extends Lambda implements Function1<Hook, Unit> {
+            public C02511() {
                 super(1);
             }
 
@@ -81,7 +82,7 @@ public final class ThreadBrowserThreadView extends FrameLayout {
 
             /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
             public final void invoke2(Hook hook) {
-                m.checkNotNullParameter(hook, "$receiver");
+                Intrinsics3.checkNotNullParameter(hook, "$receiver");
                 AnonymousClass1 anonymousClass1 = AnonymousClass1.this;
                 hook.replacementText = anonymousClass1.$creatorName;
                 hook.styles.addAll(ThreadBrowserThreadView.access$getMemberCharacterStyles(ThreadBrowserThreadView.this, anonymousClass1.$creatorMember));
@@ -103,8 +104,8 @@ public final class ThreadBrowserThreadView extends FrameLayout {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(RenderContext renderContext) {
-            m.checkNotNullParameter(renderContext, "$receiver");
-            renderContext.a("authorHook", new C03711());
+            Intrinsics3.checkNotNullParameter(renderContext, "$receiver");
+            renderContext.a("authorHook", new C02511());
         }
     }
 
@@ -128,10 +129,10 @@ public final class ThreadBrowserThreadView extends FrameLayout {
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
             public ActiveThread(Channel channel, User user, Message message, long j, Map<Long, GuildMember> map, Map<Long, GuildRole> map2, Map<Long, String> map3, boolean z2) {
                 super(channel, user, map, null);
-                m.checkNotNullParameter(channel, "channel");
-                m.checkNotNullParameter(map, "guildMembers");
-                m.checkNotNullParameter(map2, "guildRoles");
-                m.checkNotNullParameter(map3, "channelNames");
+                Intrinsics3.checkNotNullParameter(channel, "channel");
+                Intrinsics3.checkNotNullParameter(map, "guildMembers");
+                Intrinsics3.checkNotNullParameter(map2, "guildRoles");
+                Intrinsics3.checkNotNullParameter(map3, "channelNames");
                 this.channel = channel;
                 this.owner = user;
                 this.message = message;
@@ -168,10 +169,10 @@ public final class ThreadBrowserThreadView extends FrameLayout {
             }
 
             public final ActiveThread copy(Channel channel, User owner, Message message, long myUserId, Map<Long, GuildMember> guildMembers, Map<Long, GuildRole> guildRoles, Map<Long, String> channelNames, boolean isMessageBlocked) {
-                m.checkNotNullParameter(channel, "channel");
-                m.checkNotNullParameter(guildMembers, "guildMembers");
-                m.checkNotNullParameter(guildRoles, "guildRoles");
-                m.checkNotNullParameter(channelNames, "channelNames");
+                Intrinsics3.checkNotNullParameter(channel, "channel");
+                Intrinsics3.checkNotNullParameter(guildMembers, "guildMembers");
+                Intrinsics3.checkNotNullParameter(guildRoles, "guildRoles");
+                Intrinsics3.checkNotNullParameter(channelNames, "channelNames");
                 return new ActiveThread(channel, owner, message, myUserId, guildMembers, guildRoles, channelNames, isMessageBlocked);
             }
 
@@ -183,7 +184,7 @@ public final class ThreadBrowserThreadView extends FrameLayout {
                     return false;
                 }
                 ActiveThread activeThread = (ActiveThread) other;
-                return m.areEqual(getChannel(), activeThread.getChannel()) && m.areEqual(getOwner(), activeThread.getOwner()) && m.areEqual(this.message, activeThread.message) && this.myUserId == activeThread.myUserId && m.areEqual(getGuildMembers(), activeThread.getGuildMembers()) && m.areEqual(this.guildRoles, activeThread.guildRoles) && m.areEqual(this.channelNames, activeThread.channelNames) && this.isMessageBlocked == activeThread.isMessageBlocked;
+                return Intrinsics3.areEqual(getChannel(), activeThread.getChannel()) && Intrinsics3.areEqual(getOwner(), activeThread.getOwner()) && Intrinsics3.areEqual(this.message, activeThread.message) && this.myUserId == activeThread.myUserId && Intrinsics3.areEqual(getGuildMembers(), activeThread.getGuildMembers()) && Intrinsics3.areEqual(this.guildRoles, activeThread.guildRoles) && Intrinsics3.areEqual(this.channelNames, activeThread.channelNames) && this.isMessageBlocked == activeThread.isMessageBlocked;
             }
 
             @Override // com.discord.widgets.channels.threads.browser.ThreadBrowserThreadView.ThreadData
@@ -263,7 +264,7 @@ public final class ThreadBrowserThreadView extends FrameLayout {
             }
 
             public String toString() {
-                StringBuilder sbU = a.U("ActiveThread(channel=");
+                StringBuilder sbU = outline.U("ActiveThread(channel=");
                 sbU.append(getChannel());
                 sbU.append(", owner=");
                 sbU.append(getOwner());
@@ -278,7 +279,7 @@ public final class ThreadBrowserThreadView extends FrameLayout {
                 sbU.append(", channelNames=");
                 sbU.append(this.channelNames);
                 sbU.append(", isMessageBlocked=");
-                return a.O(sbU, this.isMessageBlocked, ")");
+                return outline.O(sbU, this.isMessageBlocked, ")");
             }
         }
 
@@ -292,9 +293,9 @@ public final class ThreadBrowserThreadView extends FrameLayout {
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
             public ArchivedThread(Channel channel, Map<Long, GuildMember> map, User user, TimestampMode timestampMode) {
                 super(channel, user, map, null);
-                m.checkNotNullParameter(channel, "channel");
-                m.checkNotNullParameter(map, "guildMembers");
-                m.checkNotNullParameter(timestampMode, "timestampMode");
+                Intrinsics3.checkNotNullParameter(channel, "channel");
+                Intrinsics3.checkNotNullParameter(map, "guildMembers");
+                Intrinsics3.checkNotNullParameter(timestampMode, "timestampMode");
                 this.channel = channel;
                 this.guildMembers = map;
                 this.owner = user;
@@ -331,9 +332,9 @@ public final class ThreadBrowserThreadView extends FrameLayout {
             }
 
             public final ArchivedThread copy(Channel channel, Map<Long, GuildMember> guildMembers, User owner, TimestampMode timestampMode) {
-                m.checkNotNullParameter(channel, "channel");
-                m.checkNotNullParameter(guildMembers, "guildMembers");
-                m.checkNotNullParameter(timestampMode, "timestampMode");
+                Intrinsics3.checkNotNullParameter(channel, "channel");
+                Intrinsics3.checkNotNullParameter(guildMembers, "guildMembers");
+                Intrinsics3.checkNotNullParameter(timestampMode, "timestampMode");
                 return new ArchivedThread(channel, guildMembers, owner, timestampMode);
             }
 
@@ -345,7 +346,7 @@ public final class ThreadBrowserThreadView extends FrameLayout {
                     return false;
                 }
                 ArchivedThread archivedThread = (ArchivedThread) other;
-                return m.areEqual(getChannel(), archivedThread.getChannel()) && m.areEqual(getGuildMembers(), archivedThread.getGuildMembers()) && m.areEqual(getOwner(), archivedThread.getOwner()) && m.areEqual(this.timestampMode, archivedThread.timestampMode);
+                return Intrinsics3.areEqual(getChannel(), archivedThread.getChannel()) && Intrinsics3.areEqual(getGuildMembers(), archivedThread.getGuildMembers()) && Intrinsics3.areEqual(getOwner(), archivedThread.getOwner()) && Intrinsics3.areEqual(this.timestampMode, archivedThread.timestampMode);
             }
 
             @Override // com.discord.widgets.channels.threads.browser.ThreadBrowserThreadView.ThreadData
@@ -384,7 +385,7 @@ public final class ThreadBrowserThreadView extends FrameLayout {
             }
 
             public String toString() {
-                StringBuilder sbU = a.U("ArchivedThread(channel=");
+                StringBuilder sbU = outline.U("ArchivedThread(channel=");
                 sbU.append(getChannel());
                 sbU.append(", guildMembers=");
                 sbU.append(getGuildMembers());
@@ -474,14 +475,14 @@ public final class ThreadBrowserThreadView extends FrameLayout {
         String content = message != null ? message.getContent() : null;
         if (message == null || content == null) {
             TextView textView = this.binding.g;
-            m.checkNotNullExpressionValue(textView, "binding.threadTimestampSeparator");
+            Intrinsics3.checkNotNullExpressionValue(textView, "binding.threadTimestampSeparator");
             textView.setVisibility(8);
             TextView textView2 = this.binding.f;
-            m.checkNotNullExpressionValue(textView2, "binding.threadTimestamp");
+            Intrinsics3.checkNotNullExpressionValue(textView2, "binding.threadTimestamp");
             textView2.setVisibility(8);
             if (threadData.getOwner() == null) {
                 SimpleDraweeSpanTextView simpleDraweeSpanTextView = this.binding.d;
-                m.checkNotNullExpressionValue(simpleDraweeSpanTextView, "binding.threadMessage");
+                Intrinsics3.checkNotNullExpressionValue(simpleDraweeSpanTextView, "binding.threadMessage");
                 simpleDraweeSpanTextView.setText(getContext().getString(R.string.thread_browser_no_recent_messages));
                 configureAvatar$default(this, null, null, 2, null);
                 return;
@@ -489,10 +490,10 @@ public final class ThreadBrowserThreadView extends FrameLayout {
             return;
         }
         Context context = getContext();
-        m.checkNotNullExpressionValue(context, "context");
+        Intrinsics3.checkNotNullExpressionValue(context, "context");
         MessageRenderContext messageRenderContext = new MessageRenderContext(context, threadData.getMyUserId(), true, MessageUtils.getNickOrUsernames$default(message, threadData.getChannel(), threadData.getGuildMembers(), null, 8, null), threadData.getChannelNames(), threadData.getGuildRoles(), 0, null, null, ColorCompat.getThemedColor(getContext(), R.attr.theme_chat_spoiler_inapp_bg), 0, null, null, null, 15808, null);
         com.discord.api.user.User author = threadData.getMessage().getAuthor();
-        m.checkNotNull(author);
+        Intrinsics3.checkNotNull(author);
         CoreUser coreUser = new CoreUser(author);
         if (threadData.isMessageBlocked()) {
             string = getContext().getString(R.string.reply_quote_message_blocked);
@@ -502,13 +503,13 @@ public final class ThreadBrowserThreadView extends FrameLayout {
             string = (message.hasAttachments() || message.hasEmbeds()) ? getContext().getString(R.string.reply_quote_no_text_content_mobile) : null;
         }
         if (string == null) {
-            if (!t.isBlank(content)) {
+            if (!StringsJVM.isBlank(content)) {
                 draweeSpanStringBuilderRender = AstRenderer.render(Parser.parse$default(DiscordParser.createParser$default(false, true, false, false, false, 28, null), content, MessageParseState.INSTANCE.getInitialState(), null, 4, null), messageRenderContext);
             }
             if (draweeSpanStringBuilderRender != null) {
                 GuildMember guildMember = threadData.getGuildMembers().get(Long.valueOf(coreUser.getId()));
                 nickOrUsername$default = GuildMember.Companion.getNickOrUsername$default(GuildMember.INSTANCE, coreUser, guildMember, threadData.getChannel(), null, 8, null);
-                draweeSpanStringBuilderRender.insert(0, (CharSequence) new SpannableStringBuilder(a.w(nickOrUsername$default, ": ")));
+                draweeSpanStringBuilderRender.insert(0, (CharSequence) new SpannableStringBuilder(outline.w(nickOrUsername$default, ": ")));
                 it = getMemberCharacterStyles(guildMember).iterator();
                 while (it.hasNext()) {
                     draweeSpanStringBuilderRender.setSpan((CharacterStyle) it.next(), 0, nickOrUsername$default.length(), 33);
@@ -516,14 +517,14 @@ public final class ThreadBrowserThreadView extends FrameLayout {
                 this.binding.d.setDraweeSpanStringBuilder(draweeSpanStringBuilderRender);
             }
             TextView textView3 = this.binding.g;
-            m.checkNotNullExpressionValue(textView3, "binding.threadTimestampSeparator");
+            Intrinsics3.checkNotNullExpressionValue(textView3, "binding.threadTimestampSeparator");
             textView3.setVisibility(0);
             TextView textView4 = this.binding.f;
-            m.checkNotNullExpressionValue(textView4, r14);
+            Intrinsics3.checkNotNullExpressionValue(textView4, r14);
             textView4.setVisibility(0);
             configureAvatar(coreUser, threadData.getGuildMembers().get(Long.valueOf(coreUser.getId())));
             TextView textView5 = this.binding.f;
-            m.checkNotNullExpressionValue(textView5, "binding.threadTimestamp");
+            Intrinsics3.checkNotNullExpressionValue(textView5, "binding.threadTimestamp");
             textView5.setText(formatActivityTimestamp((message.getId() >>> 22) + SnowflakeUtils.DISCORD_EPOCH));
         }
         draweeSpanStringBuilder = new DraweeSpanStringBuilder();
@@ -533,7 +534,7 @@ public final class ThreadBrowserThreadView extends FrameLayout {
         if (draweeSpanStringBuilderRender != null) {
             GuildMember guildMember2 = threadData.getGuildMembers().get(Long.valueOf(coreUser.getId()));
             nickOrUsername$default = GuildMember.Companion.getNickOrUsername$default(GuildMember.INSTANCE, coreUser, guildMember2, threadData.getChannel(), null, 8, null);
-            draweeSpanStringBuilderRender.insert(0, (CharSequence) new SpannableStringBuilder(a.w(nickOrUsername$default, ": ")));
+            draweeSpanStringBuilderRender.insert(0, (CharSequence) new SpannableStringBuilder(outline.w(nickOrUsername$default, ": ")));
             it = getMemberCharacterStyles(guildMember2).iterator();
             while (it.hasNext()) {
                 draweeSpanStringBuilderRender.setSpan((CharacterStyle) it.next(), 0, nickOrUsername$default.length(), 33);
@@ -541,14 +542,14 @@ public final class ThreadBrowserThreadView extends FrameLayout {
             this.binding.d.setDraweeSpanStringBuilder(draweeSpanStringBuilderRender);
         }
         TextView textView6 = this.binding.g;
-        m.checkNotNullExpressionValue(textView6, "binding.threadTimestampSeparator");
+        Intrinsics3.checkNotNullExpressionValue(textView6, "binding.threadTimestampSeparator");
         textView6.setVisibility(0);
         TextView textView7 = this.binding.f;
-        m.checkNotNullExpressionValue(textView7, r14);
+        Intrinsics3.checkNotNullExpressionValue(textView7, r14);
         textView7.setVisibility(0);
         configureAvatar(coreUser, threadData.getGuildMembers().get(Long.valueOf(coreUser.getId())));
         TextView textView8 = this.binding.f;
-        m.checkNotNullExpressionValue(textView8, "binding.threadTimestamp");
+        Intrinsics3.checkNotNullExpressionValue(textView8, "binding.threadTimestamp");
         textView8.setText(formatActivityTimestamp((message.getId() >>> 22) + SnowflakeUtils.DISCORD_EPOCH));
     }
 
@@ -576,10 +577,10 @@ public final class ThreadBrowserThreadView extends FrameLayout {
                 i = R.string.thread_browser_creation_time;
             }
             TextView textView = this.binding.f;
-            m.checkNotNullExpressionValue(textView, "binding.threadTimestamp");
+            Intrinsics3.checkNotNullExpressionValue(textView, "binding.threadTimestamp");
             Context context = getContext();
-            m.checkNotNullExpressionValue(context, "context");
-            textView.setText(b.a.k.b.h(context, i, new Object[]{formatDateTimestamp(uTCDate)}, null, 4));
+            Intrinsics3.checkNotNullExpressionValue(context, "context");
+            textView.setText(FormatUtils.h(context, i, new Object[]{formatDateTimestamp(uTCDate)}, null, 4));
             User owner = threadData.getOwner();
             Map<Long, GuildMember> guildMembers = threadData.getGuildMembers();
             User owner2 = threadData.getOwner();
@@ -597,21 +598,21 @@ public final class ThreadBrowserThreadView extends FrameLayout {
     private final void configureAvatar(User user, GuildMember guildMember) {
         if (user == null) {
             ImageView imageView = this.binding.c;
-            m.checkNotNullExpressionValue(imageView, "binding.threadIcon");
+            Intrinsics3.checkNotNullExpressionValue(imageView, "binding.threadIcon");
             imageView.setVisibility(0);
             SimpleDraweeView simpleDraweeView = this.binding.f2161b;
-            m.checkNotNullExpressionValue(simpleDraweeView, "binding.threadAvatar");
+            Intrinsics3.checkNotNullExpressionValue(simpleDraweeView, "binding.threadAvatar");
             simpleDraweeView.setVisibility(8);
             return;
         }
         ImageView imageView2 = this.binding.c;
-        m.checkNotNullExpressionValue(imageView2, "binding.threadIcon");
+        Intrinsics3.checkNotNullExpressionValue(imageView2, "binding.threadIcon");
         imageView2.setVisibility(8);
         SimpleDraweeView simpleDraweeView2 = this.binding.f2161b;
-        m.checkNotNullExpressionValue(simpleDraweeView2, "binding.threadAvatar");
+        Intrinsics3.checkNotNullExpressionValue(simpleDraweeView2, "binding.threadAvatar");
         simpleDraweeView2.setVisibility(0);
         SimpleDraweeView simpleDraweeView3 = this.binding.f2161b;
-        m.checkNotNullExpressionValue(simpleDraweeView3, "binding.threadAvatar");
+        Intrinsics3.checkNotNullExpressionValue(simpleDraweeView3, "binding.threadAvatar");
         IconUtils.setIcon$default(simpleDraweeView3, user, R.dimen.avatar_size_small, null, null, guildMember, 24, null);
     }
 
@@ -619,26 +620,26 @@ public final class ThreadBrowserThreadView extends FrameLayout {
         long jCurrentTimeMillis = ClockFactory.get().currentTimeMillis() - timestamp;
         if (jCurrentTimeMillis < 60000) {
             Context context = getContext();
-            m.checkNotNullExpressionValue(context, "context");
-            return b.a.k.b.h(context, R.string.thread_browser_timestamp_minutes, new Object[]{1}, null, 4);
+            Intrinsics3.checkNotNullExpressionValue(context, "context");
+            return FormatUtils.h(context, R.string.thread_browser_timestamp_minutes, new Object[]{1}, null, 4);
         }
         if (jCurrentTimeMillis < 3600000) {
             Context context2 = getContext();
-            m.checkNotNullExpressionValue(context2, "context");
-            return b.a.k.b.h(context2, R.string.thread_browser_timestamp_minutes, new Object[]{Long.valueOf(jCurrentTimeMillis / 60000)}, null, 4);
+            Intrinsics3.checkNotNullExpressionValue(context2, "context");
+            return FormatUtils.h(context2, R.string.thread_browser_timestamp_minutes, new Object[]{Long.valueOf(jCurrentTimeMillis / 60000)}, null, 4);
         }
         if (jCurrentTimeMillis < 86400000) {
             Context context3 = getContext();
-            m.checkNotNullExpressionValue(context3, "context");
-            return b.a.k.b.h(context3, R.string.thread_browser_timestamp_hours, new Object[]{Long.valueOf(jCurrentTimeMillis / 3600000)}, null, 4);
+            Intrinsics3.checkNotNullExpressionValue(context3, "context");
+            return FormatUtils.h(context3, R.string.thread_browser_timestamp_hours, new Object[]{Long.valueOf(jCurrentTimeMillis / 3600000)}, null, 4);
         }
-        if (jCurrentTimeMillis < WidgetChatListAdapterItemGuildWelcomeKt.OLD_GUILD_AGE_THRESHOLD) {
+        if (jCurrentTimeMillis < WidgetChatListAdapterItemGuildWelcome2.OLD_GUILD_AGE_THRESHOLD) {
             Context context4 = getContext();
-            m.checkNotNullExpressionValue(context4, "context");
-            return b.a.k.b.h(context4, R.string.thread_browser_timestamp_days, new Object[]{Long.valueOf(jCurrentTimeMillis / 86400000)}, null, 4);
+            Intrinsics3.checkNotNullExpressionValue(context4, "context");
+            return FormatUtils.h(context4, R.string.thread_browser_timestamp_days, new Object[]{Long.valueOf(jCurrentTimeMillis / 86400000)}, null, 4);
         }
         String string = getContext().getString(R.string.thread_browser_timestamp_more_than_month);
-        m.checkNotNullExpressionValue(string, "context.getString(R.stri…imestamp_more_than_month)");
+        Intrinsics3.checkNotNullExpressionValue(string, "context.getString(R.stri…imestamp_more_than_month)");
         return string;
     }
 
@@ -646,21 +647,21 @@ public final class ThreadBrowserThreadView extends FrameLayout {
         long jCurrentTimeMillis = ClockFactory.get().currentTimeMillis() - timestamp;
         if (jCurrentTimeMillis < 60000) {
             Context context = getContext();
-            m.checkNotNullExpressionValue(context, "context");
-            return b.a.k.b.h(context, R.string.thread_browser_timestamp_minutes, new Object[]{1}, null, 4);
+            Intrinsics3.checkNotNullExpressionValue(context, "context");
+            return FormatUtils.h(context, R.string.thread_browser_timestamp_minutes, new Object[]{1}, null, 4);
         }
         if (jCurrentTimeMillis < 3600000) {
             Context context2 = getContext();
-            m.checkNotNullExpressionValue(context2, "context");
-            return b.a.k.b.h(context2, R.string.thread_browser_timestamp_minutes, new Object[]{Long.valueOf(jCurrentTimeMillis / 60000)}, null, 4);
+            Intrinsics3.checkNotNullExpressionValue(context2, "context");
+            return FormatUtils.h(context2, R.string.thread_browser_timestamp_minutes, new Object[]{Long.valueOf(jCurrentTimeMillis / 60000)}, null, 4);
         }
         if (jCurrentTimeMillis < 86400000) {
             Context context3 = getContext();
-            m.checkNotNullExpressionValue(context3, "context");
-            return b.a.k.b.h(context3, R.string.thread_browser_timestamp_hours, new Object[]{Long.valueOf(jCurrentTimeMillis / 3600000)}, null, 4);
+            Intrinsics3.checkNotNullExpressionValue(context3, "context");
+            return FormatUtils.h(context3, R.string.thread_browser_timestamp_hours, new Object[]{Long.valueOf(jCurrentTimeMillis / 3600000)}, null, 4);
         }
         String dateTime = DateUtils.formatDateTime(getContext(), timestamp, 131076);
-        m.checkNotNullExpressionValue(dateTime, "DateUtils.formatDateTime…teUtils.FORMAT_SHOW_YEAR)");
+        Intrinsics3.checkNotNullExpressionValue(dateTime, "DateUtils.formatDateTime…teUtils.FORMAT_SHOW_YEAR)");
         return dateTime;
     }
 
@@ -668,7 +669,7 @@ public final class ThreadBrowserThreadView extends FrameLayout {
         ArrayList arrayList = new ArrayList();
         FontUtils fontUtils = FontUtils.INSTANCE;
         Context context = getContext();
-        m.checkNotNullExpressionValue(context, "context");
+        Intrinsics3.checkNotNullExpressionValue(context, "context");
         Typeface themedFont = fontUtils.getThemedFont(context, R.attr.font_primary_semibold);
         if (themedFont != null) {
             arrayList.add(new TypefaceSpanCompat(themedFont));
@@ -680,22 +681,22 @@ public final class ThreadBrowserThreadView extends FrameLayout {
     }
 
     public final void setThreadData(ThreadData threadData) {
-        m.checkNotNullParameter(threadData, "threadData");
+        Intrinsics3.checkNotNullParameter(threadData, "threadData");
         TextView textView = this.binding.e;
-        m.checkNotNullExpressionValue(textView, "binding.threadName");
+        Intrinsics3.checkNotNullExpressionValue(textView, "binding.threadName");
         Channel channel = threadData.getChannel();
         Context context = getContext();
-        m.checkNotNullExpressionValue(context, "context");
+        Intrinsics3.checkNotNullExpressionValue(context, "context");
         textView.setText(ChannelUtils.d(channel, context, false));
         User owner = threadData.getOwner();
         if (owner == null) {
             owner = new CoreUser(threadData.getChannel().getOwnerId(), null, null, null, false, false, 0, null, 0, 0, null, null, 4094, null);
         }
-        GuildMember guildMember = (GuildMember) a.f(owner, threadData.getGuildMembers());
+        GuildMember guildMember = (GuildMember) outline.f(owner, threadData.getGuildMembers());
         String nickOrUsername$default = GuildMember.Companion.getNickOrUsername$default(GuildMember.INSTANCE, owner, guildMember, threadData.getChannel(), null, 8, null);
         SimpleDraweeSpanTextView simpleDraweeSpanTextView = this.binding.d;
-        m.checkNotNullExpressionValue(simpleDraweeSpanTextView, "binding.threadMessage");
-        b.a.k.b.m(simpleDraweeSpanTextView, R.string.thread_browser_started_by, new Object[0], new AnonymousClass1(nickOrUsername$default, guildMember));
+        Intrinsics3.checkNotNullExpressionValue(simpleDraweeSpanTextView, "binding.threadMessage");
+        FormatUtils.m(simpleDraweeSpanTextView, R.string.thread_browser_started_by, new Object[0], new AnonymousClass1(nickOrUsername$default, guildMember));
         if (threadData instanceof ThreadData.ActiveThread) {
             configureActiveThreadUI((ThreadData.ActiveThread) threadData);
         } else if (threadData instanceof ThreadData.ArchivedThread) {
@@ -706,7 +707,7 @@ public final class ThreadBrowserThreadView extends FrameLayout {
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public ThreadBrowserThreadView(Context context, AttributeSet attributeSet, int i) {
         super(context, attributeSet, i);
-        m.checkNotNullParameter(context, "context");
+        Intrinsics3.checkNotNullParameter(context, "context");
         LayoutInflater.from(context).inflate(R.layout.thread_browser_thread_view, this);
         int i2 = R.id.thread_avatar;
         SimpleDraweeView simpleDraweeView = (SimpleDraweeView) findViewById(R.id.thread_avatar);
@@ -730,7 +731,7 @@ public final class ThreadBrowserThreadView extends FrameLayout {
                                 TextView textView3 = (TextView) findViewById(R.id.thread_timestamp_separator);
                                 if (textView3 != null) {
                                     ThreadBrowserThreadViewBinding threadBrowserThreadViewBinding = new ThreadBrowserThreadViewBinding(this, simpleDraweeView, imageView, frameLayout, simpleDraweeSpanTextView, textView, textView2, textView3);
-                                    m.checkNotNullExpressionValue(threadBrowserThreadViewBinding, "ThreadBrowserThreadViewB…ater.from(context), this)");
+                                    Intrinsics3.checkNotNullExpressionValue(threadBrowserThreadViewBinding, "ThreadBrowserThreadViewB…ater.from(context), this)");
                                     this.binding = threadBrowserThreadViewBinding;
                                     return;
                                 }

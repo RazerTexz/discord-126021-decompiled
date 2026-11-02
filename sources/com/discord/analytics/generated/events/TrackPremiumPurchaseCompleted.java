@@ -1,14 +1,14 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackPremiumPurchaseCompleted.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackPremiumPurchaseCompleted implements AnalyticsSchema, TrackBaseReceiver {
+public final /* data */ class TrackPremiumPurchaseCompleted implements AnalyticsSchema, TrackBase2 {
     private final CharSequence errorCode = null;
     private final CharSequence paymentGateway = null;
     private final CharSequence plan = null;
@@ -24,7 +24,7 @@ public final /* data */ class TrackPremiumPurchaseCompleted implements Analytics
             return false;
         }
         TrackPremiumPurchaseCompleted trackPremiumPurchaseCompleted = (TrackPremiumPurchaseCompleted) other;
-        return m.areEqual(this.success, trackPremiumPurchaseCompleted.success) && m.areEqual(this.errorCode, trackPremiumPurchaseCompleted.errorCode) && m.areEqual(this.plan, trackPremiumPurchaseCompleted.plan) && m.areEqual(this.paymentGateway, trackPremiumPurchaseCompleted.paymentGateway);
+        return Intrinsics3.areEqual(this.success, trackPremiumPurchaseCompleted.success) && Intrinsics3.areEqual(this.errorCode, trackPremiumPurchaseCompleted.errorCode) && Intrinsics3.areEqual(this.plan, trackPremiumPurchaseCompleted.plan) && Intrinsics3.areEqual(this.paymentGateway, trackPremiumPurchaseCompleted.paymentGateway);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -45,13 +45,13 @@ public final /* data */ class TrackPremiumPurchaseCompleted implements Analytics
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackPremiumPurchaseCompleted(success=");
+        StringBuilder sbU = outline.U("TrackPremiumPurchaseCompleted(success=");
         sbU.append(this.success);
         sbU.append(", errorCode=");
         sbU.append(this.errorCode);
         sbU.append(", plan=");
         sbU.append(this.plan);
         sbU.append(", paymentGateway=");
-        return a.E(sbU, this.paymentGateway, ")");
+        return outline.E(sbU, this.paymentGateway, ")");
     }
 }

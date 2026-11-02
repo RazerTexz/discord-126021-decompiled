@@ -2,19 +2,19 @@ package com.discord.widgets.voice.sheet;
 
 import androidx.annotation.MainThread;
 import androidx.annotation.StringRes;
-import b.a.d.d0;
-import b.d.b.a.a;
+import b.a.d.AppViewModel;
+import b.d.b.a.outline;
 import com.discord.R;
 import com.discord.stores.StoreMediaSettings;
 import com.discord.stores.StoreStream;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 import kotlin.jvm.internal.DefaultConstructorMarker;
 import rx.Observable;
 import rx.subjects.PublishSubject;
 
 /* JADX INFO: compiled from: WidgetNoiseCancellationBottomSheetViewModel.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final class WidgetNoiseCancellationBottomSheetViewModel extends d0<ViewState> {
+public final class WidgetNoiseCancellationBottomSheetViewModel extends AppViewModel<ViewState> {
     private final PublishSubject<Event> eventSubject;
     private final StoreMediaSettings mediaSettingsStore;
 
@@ -62,7 +62,7 @@ public final class WidgetNoiseCancellationBottomSheetViewModel extends d0<ViewSt
             }
 
             public String toString() {
-                return a.B(a.U("ShowToast(toastResId="), this.toastResId, ")");
+                return outline.B(outline.U("ShowToast(toastResId="), this.toastResId, ")");
             }
         }
 
@@ -90,7 +90,7 @@ public final class WidgetNoiseCancellationBottomSheetViewModel extends d0<ViewSt
 
     public final Observable<Event> observeEvents() {
         PublishSubject<Event> publishSubject = this.eventSubject;
-        m.checkNotNullExpressionValue(publishSubject, "eventSubject");
+        Intrinsics3.checkNotNullExpressionValue(publishSubject, "eventSubject");
         return publishSubject;
     }
 
@@ -104,7 +104,7 @@ public final class WidgetNoiseCancellationBottomSheetViewModel extends d0<ViewSt
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public WidgetNoiseCancellationBottomSheetViewModel(StoreMediaSettings storeMediaSettings) {
         super(null, 1, null);
-        m.checkNotNullParameter(storeMediaSettings, "mediaSettingsStore");
+        Intrinsics3.checkNotNullParameter(storeMediaSettings, "mediaSettingsStore");
         this.mediaSettingsStore = storeMediaSettings;
         this.eventSubject = PublishSubject.k0();
     }

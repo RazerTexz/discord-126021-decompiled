@@ -1,7 +1,7 @@
 package com.discord.analytics.generated.traits;
 
-import b.d.b.a.a;
-import d0.z.d.m;
+import b.d.b.a.outline;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackPriceMetadata.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -18,7 +18,7 @@ public final /* data */ class TrackPriceMetadata {
             return false;
         }
         TrackPriceMetadata trackPriceMetadata = (TrackPriceMetadata) other;
-        return m.areEqual(this.price, trackPriceMetadata.price) && m.areEqual(this.regularPrice, trackPriceMetadata.regularPrice) && m.areEqual(this.currency, trackPriceMetadata.currency);
+        return Intrinsics3.areEqual(this.price, trackPriceMetadata.price) && Intrinsics3.areEqual(this.regularPrice, trackPriceMetadata.regularPrice) && Intrinsics3.areEqual(this.currency, trackPriceMetadata.currency);
     }
 
     public int hashCode() {
@@ -31,11 +31,11 @@ public final /* data */ class TrackPriceMetadata {
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackPriceMetadata(price=");
+        StringBuilder sbU = outline.U("TrackPriceMetadata(price=");
         sbU.append(this.price);
         sbU.append(", regularPrice=");
         sbU.append(this.regularPrice);
         sbU.append(", currency=");
-        return a.E(sbU, this.currency, ")");
+        return outline.E(sbU, this.currency, ")");
     }
 }

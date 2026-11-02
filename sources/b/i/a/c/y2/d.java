@@ -3,33 +3,33 @@ package b.i.a.c.y2;
 /* JADX INFO: compiled from: lambda */
 /* JADX INFO: loaded from: classes3.dex */
 public final /* synthetic */ class d implements Runnable {
-    public final /* synthetic */ o j;
+    public final /* synthetic */ AsynchronousMediaCodecCallback j;
     public final /* synthetic */ Runnable k;
 
-    public /* synthetic */ d(o oVar, Runnable runnable) {
-        this.j = oVar;
+    public /* synthetic */ d(AsynchronousMediaCodecCallback asynchronousMediaCodecCallback, Runnable runnable) {
+        this.j = asynchronousMediaCodecCallback;
         this.k = runnable;
     }
 
     @Override // java.lang.Runnable
     public final void run() {
-        o oVar = this.j;
+        AsynchronousMediaCodecCallback asynchronousMediaCodecCallback = this.j;
         Runnable runnable = this.k;
-        synchronized (oVar.a) {
-            if (!oVar.l) {
-                long j = oVar.k - 1;
-                oVar.k = j;
+        synchronized (asynchronousMediaCodecCallback.a) {
+            if (!asynchronousMediaCodecCallback.l) {
+                long j = asynchronousMediaCodecCallback.k - 1;
+                asynchronousMediaCodecCallback.k = j;
                 if (j <= 0) {
                     if (j < 0) {
-                        oVar.c(new IllegalStateException());
+                        asynchronousMediaCodecCallback.c(new IllegalStateException());
                     } else {
-                        oVar.a();
+                        asynchronousMediaCodecCallback.a();
                         try {
                             runnable.run();
                         } catch (IllegalStateException e) {
-                            oVar.c(e);
+                            asynchronousMediaCodecCallback.c(e);
                         } catch (Exception e2) {
-                            oVar.c(new IllegalStateException(e2));
+                            asynchronousMediaCodecCallback.c(new IllegalStateException(e2));
                         }
                     }
                 }

@@ -1,16 +1,16 @@
 package com.discord.analytics.generated.events.activity_internal;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackActivityInternalMetadata;
-import com.discord.analytics.generated.traits.TrackActivityInternalMetadataReceiver;
+import com.discord.analytics.generated.traits.TrackActivityInternalMetadata2;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackActivityInternalPurchaseStepCompleted.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackActivityInternalPurchaseStepCompleted implements AnalyticsSchema, TrackBaseReceiver, TrackActivityInternalMetadataReceiver {
+public final /* data */ class TrackActivityInternalPurchaseStepCompleted implements AnalyticsSchema, TrackBase2, TrackActivityInternalMetadata2 {
     private final Long activityDurationMs = null;
     private final CharSequence nextStep = null;
     private final CharSequence purchaseName = null;
@@ -30,7 +30,7 @@ public final /* data */ class TrackActivityInternalPurchaseStepCompleted impleme
             return false;
         }
         TrackActivityInternalPurchaseStepCompleted trackActivityInternalPurchaseStepCompleted = (TrackActivityInternalPurchaseStepCompleted) other;
-        return m.areEqual(this.step, trackActivityInternalPurchaseStepCompleted.step) && m.areEqual(this.nextStep, trackActivityInternalPurchaseStepCompleted.nextStep) && m.areEqual(this.purchaseType, trackActivityInternalPurchaseStepCompleted.purchaseType) && m.areEqual(this.purchaseName, trackActivityInternalPurchaseStepCompleted.purchaseName) && m.areEqual(this.skuId, trackActivityInternalPurchaseStepCompleted.skuId) && m.areEqual(this.activityDurationMs, trackActivityInternalPurchaseStepCompleted.activityDurationMs) && m.areEqual(this.success, trackActivityInternalPurchaseStepCompleted.success);
+        return Intrinsics3.areEqual(this.step, trackActivityInternalPurchaseStepCompleted.step) && Intrinsics3.areEqual(this.nextStep, trackActivityInternalPurchaseStepCompleted.nextStep) && Intrinsics3.areEqual(this.purchaseType, trackActivityInternalPurchaseStepCompleted.purchaseType) && Intrinsics3.areEqual(this.purchaseName, trackActivityInternalPurchaseStepCompleted.purchaseName) && Intrinsics3.areEqual(this.skuId, trackActivityInternalPurchaseStepCompleted.skuId) && Intrinsics3.areEqual(this.activityDurationMs, trackActivityInternalPurchaseStepCompleted.activityDurationMs) && Intrinsics3.areEqual(this.success, trackActivityInternalPurchaseStepCompleted.success);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -57,7 +57,7 @@ public final /* data */ class TrackActivityInternalPurchaseStepCompleted impleme
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackActivityInternalPurchaseStepCompleted(step=");
+        StringBuilder sbU = outline.U("TrackActivityInternalPurchaseStepCompleted(step=");
         sbU.append(this.step);
         sbU.append(", nextStep=");
         sbU.append(this.nextStep);
@@ -70,6 +70,6 @@ public final /* data */ class TrackActivityInternalPurchaseStepCompleted impleme
         sbU.append(", activityDurationMs=");
         sbU.append(this.activityDurationMs);
         sbU.append(", success=");
-        return a.D(sbU, this.success, ")");
+        return outline.D(sbU, this.success, ")");
     }
 }

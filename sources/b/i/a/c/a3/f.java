@@ -3,21 +3,21 @@ package b.i.a.c.a3;
 /* JADX INFO: compiled from: lambda */
 /* JADX INFO: loaded from: classes3.dex */
 public final /* synthetic */ class f implements Runnable {
-    public final /* synthetic */ b0.a j;
-    public final /* synthetic */ b0 k;
-    public final /* synthetic */ t l;
-    public final /* synthetic */ w m;
+    public final /* synthetic */ MediaSourceEventListener.a j;
+    public final /* synthetic */ MediaSourceEventListener k;
+    public final /* synthetic */ LoadEventInfo l;
+    public final /* synthetic */ MediaLoadData m;
 
-    public /* synthetic */ f(b0.a aVar, b0 b0Var, t tVar, w wVar) {
+    public /* synthetic */ f(MediaSourceEventListener.a aVar, MediaSourceEventListener mediaSourceEventListener, LoadEventInfo loadEventInfo, MediaLoadData mediaLoadData) {
         this.j = aVar;
-        this.k = b0Var;
-        this.l = tVar;
-        this.m = wVar;
+        this.k = mediaSourceEventListener;
+        this.l = loadEventInfo;
+        this.m = mediaLoadData;
     }
 
     @Override // java.lang.Runnable
     public final void run() {
-        b0.a aVar = this.j;
+        MediaSourceEventListener.a aVar = this.j;
         this.k.q(aVar.a, aVar.f807b, this.l, this.m);
     }
 }

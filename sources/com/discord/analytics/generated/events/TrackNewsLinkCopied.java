@@ -1,16 +1,16 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.analytics.generated.traits.TrackLocationMetadata;
-import com.discord.analytics.generated.traits.TrackLocationMetadataReceiver;
+import com.discord.analytics.generated.traits.TrackLocationMetadata2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackNewsLinkCopied.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackNewsLinkCopied implements AnalyticsSchema, TrackBaseReceiver, TrackLocationMetadataReceiver {
+public final /* data */ class TrackNewsLinkCopied implements AnalyticsSchema, TrackBase2, TrackLocationMetadata2 {
     private final Long applicationId = null;
     private final CharSequence applicationName = null;
     private final Long newsId = null;
@@ -27,7 +27,7 @@ public final /* data */ class TrackNewsLinkCopied implements AnalyticsSchema, Tr
             return false;
         }
         TrackNewsLinkCopied trackNewsLinkCopied = (TrackNewsLinkCopied) other;
-        return m.areEqual(this.newsUrl, trackNewsLinkCopied.newsUrl) && m.areEqual(this.newsId, trackNewsLinkCopied.newsId) && m.areEqual(this.applicationId, trackNewsLinkCopied.applicationId) && m.areEqual(this.applicationName, trackNewsLinkCopied.applicationName);
+        return Intrinsics3.areEqual(this.newsUrl, trackNewsLinkCopied.newsUrl) && Intrinsics3.areEqual(this.newsId, trackNewsLinkCopied.newsId) && Intrinsics3.areEqual(this.applicationId, trackNewsLinkCopied.applicationId) && Intrinsics3.areEqual(this.applicationName, trackNewsLinkCopied.applicationName);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -48,13 +48,13 @@ public final /* data */ class TrackNewsLinkCopied implements AnalyticsSchema, Tr
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackNewsLinkCopied(newsUrl=");
+        StringBuilder sbU = outline.U("TrackNewsLinkCopied(newsUrl=");
         sbU.append(this.newsUrl);
         sbU.append(", newsId=");
         sbU.append(this.newsId);
         sbU.append(", applicationId=");
         sbU.append(this.applicationId);
         sbU.append(", applicationName=");
-        return a.E(sbU, this.applicationName, ")");
+        return outline.E(sbU, this.applicationName, ")");
     }
 }

@@ -1,7 +1,7 @@
 package com.discord.models.domain;
 
-import b.d.b.a.a;
-import d0.z.d.m;
+import b.d.b.a.outline;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: ModelChannelFollowerStatsDto.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -60,7 +60,7 @@ public final /* data */ class ModelChannelFollowerStatsDto {
             return false;
         }
         ModelChannelFollowerStatsDto modelChannelFollowerStatsDto = (ModelChannelFollowerStatsDto) other;
-        return m.areEqual(this.guildsFollowing, modelChannelFollowerStatsDto.guildsFollowing) && m.areEqual(this.channelsFollowing, modelChannelFollowerStatsDto.channelsFollowing) && m.areEqual(this.guildMembers, modelChannelFollowerStatsDto.guildMembers) && m.areEqual(this.usersSeenEver, modelChannelFollowerStatsDto.usersSeenEver) && m.areEqual(this.subscribersGainedSinceLastPost, modelChannelFollowerStatsDto.subscribersGainedSinceLastPost) && m.areEqual(this.subscribersLostSinceLastPost, modelChannelFollowerStatsDto.subscribersLostSinceLastPost);
+        return Intrinsics3.areEqual(this.guildsFollowing, modelChannelFollowerStatsDto.guildsFollowing) && Intrinsics3.areEqual(this.channelsFollowing, modelChannelFollowerStatsDto.channelsFollowing) && Intrinsics3.areEqual(this.guildMembers, modelChannelFollowerStatsDto.guildMembers) && Intrinsics3.areEqual(this.usersSeenEver, modelChannelFollowerStatsDto.usersSeenEver) && Intrinsics3.areEqual(this.subscribersGainedSinceLastPost, modelChannelFollowerStatsDto.subscribersGainedSinceLastPost) && Intrinsics3.areEqual(this.subscribersLostSinceLastPost, modelChannelFollowerStatsDto.subscribersLostSinceLastPost);
     }
 
     /* JADX INFO: renamed from: component2, reason: from getter */
@@ -133,7 +133,7 @@ public final /* data */ class ModelChannelFollowerStatsDto {
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("ModelChannelFollowerStatsDto(guildsFollowing=");
+        StringBuilder sbU = outline.U("ModelChannelFollowerStatsDto(guildsFollowing=");
         sbU.append(this.guildsFollowing);
         sbU.append(", channelsFollowing=");
         sbU.append(this.channelsFollowing);
@@ -144,6 +144,6 @@ public final /* data */ class ModelChannelFollowerStatsDto {
         sbU.append(", subscribersGainedSinceLastPost=");
         sbU.append(this.subscribersGainedSinceLastPost);
         sbU.append(", subscribersLostSinceLastPost=");
-        return a.F(sbU, this.subscribersLostSinceLastPost, ")");
+        return outline.F(sbU, this.subscribersLostSinceLastPost, ")");
     }
 }

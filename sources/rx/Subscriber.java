@@ -1,12 +1,12 @@
 package rx;
 
 import androidx.recyclerview.widget.RecyclerView;
-import b.d.b.a.a;
-import j0.g;
+import b.d.b.a.outline;
+import j0.Observer2;
 import rx.internal.util.SubscriptionList;
 
 /* JADX INFO: loaded from: classes3.dex */
-public abstract class Subscriber<T> implements g<T>, Subscription {
+public abstract class Subscriber<T> implements Observer2<T>, Subscription {
     private static final long NOT_SET = Long.MIN_VALUE;
     private Producer producer;
     private long requested;
@@ -45,7 +45,7 @@ public abstract class Subscriber<T> implements g<T>, Subscription {
 
     public final void request(long j) {
         if (j < 0) {
-            throw new IllegalArgumentException(a.t("number requested cannot be negative: ", j));
+            throw new IllegalArgumentException(outline.t("number requested cannot be negative: ", j));
         }
         synchronized (this) {
             Producer producer = this.producer;

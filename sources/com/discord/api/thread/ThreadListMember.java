@@ -1,9 +1,9 @@
 package com.discord.api.thread;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.api.guildmember.GuildMember;
 import com.discord.api.presence.Presence;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: ThreadListMember.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -20,7 +20,7 @@ public final /* data */ class ThreadListMember {
             return false;
         }
         ThreadListMember threadListMember = (ThreadListMember) other;
-        return this.userId == threadListMember.userId && m.areEqual(this.member, threadListMember.member) && m.areEqual(this.presence, threadListMember.presence);
+        return this.userId == threadListMember.userId && Intrinsics3.areEqual(this.member, threadListMember.member) && Intrinsics3.areEqual(this.presence, threadListMember.presence);
     }
 
     /* JADX INFO: renamed from: a, reason: from getter */
@@ -48,7 +48,7 @@ public final /* data */ class ThreadListMember {
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("ThreadListMember(userId=");
+        StringBuilder sbU = outline.U("ThreadListMember(userId=");
         sbU.append(this.userId);
         sbU.append(", member=");
         sbU.append(this.member);

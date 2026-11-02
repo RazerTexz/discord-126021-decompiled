@@ -1,15 +1,15 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 import java.util.List;
 
 /* JADX INFO: compiled from: TrackStageDiscoveryLoaded.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackStageDiscoveryLoaded implements AnalyticsSchema, TrackBaseReceiver {
+public final /* data */ class TrackStageDiscoveryLoaded implements AnalyticsSchema, TrackBase2 {
     private final List<Long> indexes = null;
     private final Long lastVisibleIndexAtLoad = null;
     private final CharSequence loadId = null;
@@ -28,7 +28,7 @@ public final /* data */ class TrackStageDiscoveryLoaded implements AnalyticsSche
             return false;
         }
         TrackStageDiscoveryLoaded trackStageDiscoveryLoaded = (TrackStageDiscoveryLoaded) other;
-        return m.areEqual(this.loadId, trackStageDiscoveryLoaded.loadId) && m.areEqual(this.stageInstanceRecommendations, trackStageDiscoveryLoaded.stageInstanceRecommendations) && m.areEqual(this.lastVisibleIndexAtLoad, trackStageDiscoveryLoaded.lastVisibleIndexAtLoad) && m.areEqual(this.indexes, trackStageDiscoveryLoaded.indexes) && m.areEqual(this.stageInstanceIds, trackStageDiscoveryLoaded.stageInstanceIds) && m.areEqual(this.recommendationSources, trackStageDiscoveryLoaded.recommendationSources) && m.areEqual(this.recommendationScores, trackStageDiscoveryLoaded.recommendationScores);
+        return Intrinsics3.areEqual(this.loadId, trackStageDiscoveryLoaded.loadId) && Intrinsics3.areEqual(this.stageInstanceRecommendations, trackStageDiscoveryLoaded.stageInstanceRecommendations) && Intrinsics3.areEqual(this.lastVisibleIndexAtLoad, trackStageDiscoveryLoaded.lastVisibleIndexAtLoad) && Intrinsics3.areEqual(this.indexes, trackStageDiscoveryLoaded.indexes) && Intrinsics3.areEqual(this.stageInstanceIds, trackStageDiscoveryLoaded.stageInstanceIds) && Intrinsics3.areEqual(this.recommendationSources, trackStageDiscoveryLoaded.recommendationSources) && Intrinsics3.areEqual(this.recommendationScores, trackStageDiscoveryLoaded.recommendationScores);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -55,7 +55,7 @@ public final /* data */ class TrackStageDiscoveryLoaded implements AnalyticsSche
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackStageDiscoveryLoaded(loadId=");
+        StringBuilder sbU = outline.U("TrackStageDiscoveryLoaded(loadId=");
         sbU.append(this.loadId);
         sbU.append(", stageInstanceRecommendations=");
         sbU.append(this.stageInstanceRecommendations);
@@ -68,6 +68,6 @@ public final /* data */ class TrackStageDiscoveryLoaded implements AnalyticsSche
         sbU.append(", recommendationSources=");
         sbU.append(this.recommendationSources);
         sbU.append(", recommendationScores=");
-        return a.L(sbU, this.recommendationScores, ")");
+        return outline.L(sbU, this.recommendationScores, ")");
     }
 }

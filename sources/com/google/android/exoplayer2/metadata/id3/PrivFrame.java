@@ -3,7 +3,8 @@ package com.google.android.exoplayer2.metadata.id3;
 import android.os.Parcel;
 import android.os.Parcelable;
 import androidx.annotation.Nullable;
-import b.i.a.c.f3.e0;
+import b.d.b.a.outline;
+import b.i.a.c.f3.Util2;
 import java.util.Arrays;
 
 /* JADX INFO: loaded from: classes3.dex */
@@ -38,7 +39,7 @@ public final class PrivFrame extends Id3Frame {
             return false;
         }
         PrivFrame privFrame = (PrivFrame) obj;
-        return e0.a(this.k, privFrame.k) && Arrays.equals(this.l, privFrame.l);
+        return Util2.a(this.k, privFrame.k) && Arrays.equals(this.l, privFrame.l);
     }
 
     public int hashCode() {
@@ -50,7 +51,7 @@ public final class PrivFrame extends Id3Frame {
     public String toString() {
         String str = this.j;
         String str2 = this.k;
-        return b.d.b.a.a.k(b.d.b.a.a.b(str2, b.d.b.a.a.b(str, 8)), str, ": owner=", str2);
+        return outline.k(outline.b(str2, outline.b(str, 8)), str, ": owner=", str2);
     }
 
     @Override // android.os.Parcelable
@@ -62,7 +63,7 @@ public final class PrivFrame extends Id3Frame {
     public PrivFrame(Parcel parcel) {
         super("PRIV");
         String string = parcel.readString();
-        int i = e0.a;
+        int i = Util2.a;
         this.k = string;
         this.l = parcel.createByteArray();
     }

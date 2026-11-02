@@ -17,7 +17,8 @@ import androidx.annotation.RequiresApi;
 import androidx.annotation.RestrictTo;
 import androidx.core.os.BuildCompat;
 import androidx.versionedparcelable.VersionedParcelable;
-import x.a.b.b.a.b;
+import b.d.b.a.outline;
+import x.a.b.b.a.IMediaSession;
 
 /* JADX INFO: loaded from: classes.dex */
 public class MediaSessionCompat {
@@ -78,10 +79,10 @@ public class MediaSessionCompat {
         }
 
         public String toString() {
-            StringBuilder sbU = b.d.b.a.a.U("MediaSession.QueueItem {Description=");
+            StringBuilder sbU = outline.U("MediaSession.QueueItem {Description=");
             sbU.append(this.j);
             sbU.append(", Id=");
-            return b.d.b.a.a.C(sbU, this.k, " }");
+            return outline.C(sbU, this.k, " }");
         }
 
         @Override // android.os.Parcelable
@@ -134,7 +135,7 @@ public class MediaSessionCompat {
         public final Object k;
 
         @GuardedBy("mLock")
-        public b l;
+        public IMediaSession l;
 
         @GuardedBy("mLock")
         public VersionedParcelable m;
@@ -159,23 +160,23 @@ public class MediaSessionCompat {
         }
 
         @RestrictTo({RestrictTo.Scope.LIBRARY})
-        public static Token a(Object obj, b bVar) {
+        public static Token a(Object obj, IMediaSession iMediaSession) {
             if (obj == null) {
                 return null;
             }
             if (obj instanceof MediaSession.Token) {
-                return new Token(obj, bVar);
+                return new Token(obj, iMediaSession);
             }
             throw new IllegalArgumentException("token is not a valid MediaSession.Token object");
         }
 
         @RestrictTo({RestrictTo.Scope.LIBRARY})
-        public b b() {
-            b bVar;
+        public IMediaSession b() {
+            IMediaSession iMediaSession;
             synchronized (this.j) {
-                bVar = this.l;
+                iMediaSession = this.l;
             }
-            return bVar;
+            return iMediaSession;
         }
 
         @Override // android.os.Parcelable
@@ -215,10 +216,10 @@ public class MediaSessionCompat {
             parcel.writeParcelable((Parcelable) this.k, i);
         }
 
-        public Token(Object obj, b bVar) {
+        public Token(Object obj, IMediaSession iMediaSession) {
             this.j = new Object();
             this.k = obj;
-            this.l = bVar;
+            this.l = iMediaSession;
         }
     }
 

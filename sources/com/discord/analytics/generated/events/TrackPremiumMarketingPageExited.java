@@ -1,15 +1,15 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 import java.util.List;
 
 /* JADX INFO: compiled from: TrackPremiumMarketingPageExited.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackPremiumMarketingPageExited implements AnalyticsSchema, TrackBaseReceiver {
+public final /* data */ class TrackPremiumMarketingPageExited implements AnalyticsSchema, TrackBase2 {
     private final List<Long> applicationIdsViewed = null;
     private final Long durationMs = null;
     private final CharSequence loadId = null;
@@ -25,7 +25,7 @@ public final /* data */ class TrackPremiumMarketingPageExited implements Analyti
             return false;
         }
         TrackPremiumMarketingPageExited trackPremiumMarketingPageExited = (TrackPremiumMarketingPageExited) other;
-        return m.areEqual(this.loadId, trackPremiumMarketingPageExited.loadId) && m.areEqual(this.applicationIdsViewed, trackPremiumMarketingPageExited.applicationIdsViewed) && m.areEqual(this.skuIdsViewed, trackPremiumMarketingPageExited.skuIdsViewed) && m.areEqual(this.durationMs, trackPremiumMarketingPageExited.durationMs);
+        return Intrinsics3.areEqual(this.loadId, trackPremiumMarketingPageExited.loadId) && Intrinsics3.areEqual(this.applicationIdsViewed, trackPremiumMarketingPageExited.applicationIdsViewed) && Intrinsics3.areEqual(this.skuIdsViewed, trackPremiumMarketingPageExited.skuIdsViewed) && Intrinsics3.areEqual(this.durationMs, trackPremiumMarketingPageExited.durationMs);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -46,13 +46,13 @@ public final /* data */ class TrackPremiumMarketingPageExited implements Analyti
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackPremiumMarketingPageExited(loadId=");
+        StringBuilder sbU = outline.U("TrackPremiumMarketingPageExited(loadId=");
         sbU.append(this.loadId);
         sbU.append(", applicationIdsViewed=");
         sbU.append(this.applicationIdsViewed);
         sbU.append(", skuIdsViewed=");
         sbU.append(this.skuIdsViewed);
         sbU.append(", durationMs=");
-        return a.G(sbU, this.durationMs, ")");
+        return outline.G(sbU, this.durationMs, ")");
     }
 }

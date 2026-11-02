@@ -25,7 +25,7 @@ import androidx.work.impl.utils.WorkForegroundUpdater;
 import androidx.work.impl.utils.WorkProgressUpdater;
 import androidx.work.impl.utils.futures.SettableFuture;
 import androidx.work.impl.utils.taskexecutor.TaskExecutor;
-import b.i.b.d.a.a;
+import b.i.b.d.a.ListenableFuture8;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -62,7 +62,7 @@ public class WorkerWrapper implements Runnable {
     public SettableFuture<Boolean> mFuture = SettableFuture.create();
 
     @Nullable
-    public a<ListenableWorker.Result> mInnerFuture = null;
+    public ListenableFuture8<ListenableWorker.Result> mInnerFuture = null;
 
     /* JADX INFO: renamed from: androidx.work.impl.WorkerWrapper$1, reason: invalid class name */
     public class AnonymousClass1 implements Runnable {
@@ -159,7 +159,7 @@ public class WorkerWrapper implements Runnable {
     }
 
     @NonNull
-    public a<Boolean> getFuture() {
+    public ListenableFuture8<Boolean> getFuture() {
         return this.mFuture;
     }
 
@@ -192,9 +192,9 @@ public class WorkerWrapper implements Runnable {
         boolean zIsDone;
         this.mInterrupted = true;
         tryCheckForInterruptionAndResolve();
-        a<ListenableWorker.Result> aVar = this.mInnerFuture;
-        if (aVar != null) {
-            zIsDone = aVar.isDone();
+        ListenableFuture8<ListenableWorker.Result> listenableFuture8 = this.mInnerFuture;
+        if (listenableFuture8 != null) {
+            zIsDone = listenableFuture8.isDone();
             this.mInnerFuture.cancel(true);
         } else {
             zIsDone = false;

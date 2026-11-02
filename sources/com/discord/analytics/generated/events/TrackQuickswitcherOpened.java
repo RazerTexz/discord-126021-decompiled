@@ -1,14 +1,14 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackQuickswitcherOpened.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackQuickswitcherOpened implements AnalyticsSchema, TrackBaseReceiver {
+public final /* data */ class TrackQuickswitcherOpened implements AnalyticsSchema, TrackBase2 {
     private final Long currentChannelId = null;
     private final Long currentChannelType = null;
     private final Long currentGuildId = null;
@@ -24,7 +24,7 @@ public final /* data */ class TrackQuickswitcherOpened implements AnalyticsSchem
             return false;
         }
         TrackQuickswitcherOpened trackQuickswitcherOpened = (TrackQuickswitcherOpened) other;
-        return m.areEqual(this.source, trackQuickswitcherOpened.source) && m.areEqual(this.currentGuildId, trackQuickswitcherOpened.currentGuildId) && m.areEqual(this.currentChannelId, trackQuickswitcherOpened.currentChannelId) && m.areEqual(this.currentChannelType, trackQuickswitcherOpened.currentChannelType);
+        return Intrinsics3.areEqual(this.source, trackQuickswitcherOpened.source) && Intrinsics3.areEqual(this.currentGuildId, trackQuickswitcherOpened.currentGuildId) && Intrinsics3.areEqual(this.currentChannelId, trackQuickswitcherOpened.currentChannelId) && Intrinsics3.areEqual(this.currentChannelType, trackQuickswitcherOpened.currentChannelType);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -45,13 +45,13 @@ public final /* data */ class TrackQuickswitcherOpened implements AnalyticsSchem
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackQuickswitcherOpened(source=");
+        StringBuilder sbU = outline.U("TrackQuickswitcherOpened(source=");
         sbU.append(this.source);
         sbU.append(", currentGuildId=");
         sbU.append(this.currentGuildId);
         sbU.append(", currentChannelId=");
         sbU.append(this.currentChannelId);
         sbU.append(", currentChannelType=");
-        return a.G(sbU, this.currentChannelType, ")");
+        return outline.G(sbU, this.currentChannelType, ")");
     }
 }

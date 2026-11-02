@@ -1,24 +1,27 @@
 package b.i.a.c.s2;
 
+import b.i.a.c.f3.ListenerSet;
+import b.i.a.c.g3.VideoSize;
+
 /* JADX INFO: compiled from: lambda */
 /* JADX INFO: loaded from: classes3.dex */
-public final /* synthetic */ class m0 implements b.i.a.c.f3.p.a {
-    public final /* synthetic */ h1.a a;
+public final /* synthetic */ class m0 implements ListenerSet.a {
+    public final /* synthetic */ AnalyticsListener.a a;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    public final /* synthetic */ b.i.a.c.g3.y f1094b;
+    public final /* synthetic */ VideoSize f1094b;
 
-    public /* synthetic */ m0(h1.a aVar, b.i.a.c.g3.y yVar) {
+    public /* synthetic */ m0(AnalyticsListener.a aVar, VideoSize videoSize) {
         this.a = aVar;
-        this.f1094b = yVar;
+        this.f1094b = videoSize;
     }
 
-    @Override // b.i.a.c.f3.p.a
+    @Override // b.i.a.c.f3.ListenerSet.a
     public final void invoke(Object obj) {
-        b.i.a.c.g3.y yVar = this.f1094b;
-        h1 h1Var = (h1) obj;
-        h1Var.n0();
-        int i = yVar.k;
-        h1Var.r();
+        VideoSize videoSize = this.f1094b;
+        AnalyticsListener analyticsListener = (AnalyticsListener) obj;
+        analyticsListener.n0();
+        int i = videoSize.k;
+        analyticsListener.r();
     }
 }

@@ -9,23 +9,23 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import b.a.i.x2;
+import b.a.i.ViewPremiumGuildProgressBinding;
 import com.discord.R;
 import com.discord.utilities.drawable.DrawableCompat;
 import com.discord.utilities.premium.GuildBoostUtils;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: GuildBoostProgressView.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class GuildBoostProgressView extends FrameLayout {
 
     /* JADX INFO: renamed from: j, reason: from kotlin metadata */
-    public final x2 binding;
+    public final ViewPremiumGuildProgressBinding binding;
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public GuildBoostProgressView(Context context, AttributeSet attributeSet) {
         super(context, attributeSet);
-        m.checkNotNullParameter(context, "context");
+        Intrinsics3.checkNotNullParameter(context, "context");
         View viewInflate = LayoutInflater.from(getContext()).inflate(R.layout.view_premium_guild_progress, (ViewGroup) this, false);
         addView(viewInflate);
         int i = R.id.progress_gem_icon;
@@ -37,9 +37,9 @@ public final class GuildBoostProgressView extends FrameLayout {
                 i = R.id.progress_progress;
                 ProgressBar progressBar = (ProgressBar) viewInflate.findViewById(R.id.progress_progress);
                 if (progressBar != null) {
-                    x2 x2Var = new x2((FrameLayout) viewInflate, imageView, textView, progressBar);
-                    m.checkNotNullExpressionValue(x2Var, "ViewPremiumGuildProgress…rom(context), this, true)");
-                    this.binding = x2Var;
+                    ViewPremiumGuildProgressBinding viewPremiumGuildProgressBinding = new ViewPremiumGuildProgressBinding((FrameLayout) viewInflate, imageView, textView, progressBar);
+                    Intrinsics3.checkNotNullExpressionValue(viewPremiumGuildProgressBinding, "ViewPremiumGuildProgress…rom(context), this, true)");
+                    this.binding = viewPremiumGuildProgressBinding;
                     return;
                 }
             }
@@ -53,7 +53,7 @@ public final class GuildBoostProgressView extends FrameLayout {
         int themedDrawableRes$default = 0;
         if (premiumTier == 0) {
             Context context = getContext();
-            m.checkNotNullExpressionValue(context, "context");
+            Intrinsics3.checkNotNullExpressionValue(context, "context");
             themedDrawableRes$default = DrawableCompat.getThemedDrawableRes$default(context, R.attr.boosted_guild_tier_0, 0, 2, (Object) null);
         } else if (premiumTier == 1) {
             themedDrawableRes$default = R.drawable.ic_boosted_guild_tier_1;
@@ -64,7 +64,7 @@ public final class GuildBoostProgressView extends FrameLayout {
         }
         imageView.setImageResource(themedDrawableRes$default);
         TextView textView = this.binding.c;
-        m.checkNotNullExpressionValue(textView, "binding.progressLevelText");
+        Intrinsics3.checkNotNullExpressionValue(textView, "binding.progressLevelText");
         if (premiumTier == 0) {
             string = getContext().getString(R.string.premium_guild_header_badge_no_tier);
         } else if (premiumTier == 1) {
@@ -76,7 +76,7 @@ public final class GuildBoostProgressView extends FrameLayout {
         }
         textView.setText(string);
         ProgressBar progressBar = this.binding.d;
-        m.checkNotNullExpressionValue(progressBar, "binding.progressProgress");
+        Intrinsics3.checkNotNullExpressionValue(progressBar, "binding.progressProgress");
         progressBar.setProgress(GuildBoostUtils.calculatePercentToNextTier$default(GuildBoostUtils.INSTANCE, guildId, premiumTier, premiumSubscriptionCount, null, null, 24, null));
     }
 }

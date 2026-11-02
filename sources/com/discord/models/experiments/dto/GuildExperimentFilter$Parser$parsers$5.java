@@ -1,13 +1,13 @@
 package com.discord.models.experiments.dto;
 
 import com.discord.models.domain.Model;
-import d0.z.d.k;
-import d0.z.d.m;
+import d0.z.d.FunctionReferenceImpl;
+import d0.z.d.Intrinsics3;
 import kotlin.jvm.functions.Function1;
 
 /* JADX INFO: compiled from: GuildExperimentFilter.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* synthetic */ class GuildExperimentFilter$Parser$parsers$5 extends k implements Function1<Model.JsonReader, GuildExperimentFilter.GuildHubTypesFeatureFilter> {
+public final /* synthetic */ class GuildExperimentFilter$Parser$parsers$5 extends FunctionReferenceImpl implements Function1<Model.JsonReader, GuildExperimentFilter.GuildHubTypesFeatureFilter> {
     public GuildExperimentFilter$Parser$parsers$5(GuildExperimentFilter.Parser parser) {
         super(1, parser, GuildExperimentFilter.Parser.class, "parseGuildHubTypesFeatureFilter", "parseGuildHubTypesFeatureFilter(Lcom/discord/models/domain/Model$JsonReader;)Lcom/discord/models/experiments/dto/GuildExperimentFilter$GuildHubTypesFeatureFilter;", 0);
     }
@@ -19,7 +19,7 @@ public final /* synthetic */ class GuildExperimentFilter$Parser$parsers$5 extend
 
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final GuildExperimentFilter.GuildHubTypesFeatureFilter invoke2(Model.JsonReader jsonReader) {
-        m.checkNotNullParameter(jsonReader, "p1");
+        Intrinsics3.checkNotNullParameter(jsonReader, "p1");
         return GuildExperimentFilter.Parser.access$parseGuildHubTypesFeatureFilter((GuildExperimentFilter.Parser) this.receiver, jsonReader);
     }
 }

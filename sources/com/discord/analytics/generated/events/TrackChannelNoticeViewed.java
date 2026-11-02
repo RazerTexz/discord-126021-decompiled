@@ -1,32 +1,32 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.analytics.generated.traits.TrackChannel;
-import com.discord.analytics.generated.traits.TrackChannelReceiver;
+import com.discord.analytics.generated.traits.TrackChannel2;
 import com.discord.analytics.generated.traits.TrackGuild;
-import com.discord.analytics.generated.traits.TrackGuildReceiver;
+import com.discord.analytics.generated.traits.TrackGuild2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackChannelNoticeViewed.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackChannelNoticeViewed implements AnalyticsSchema, TrackBaseReceiver, TrackGuildReceiver, TrackChannelReceiver {
+public final /* data */ class TrackChannelNoticeViewed implements AnalyticsSchema, TrackBase2, TrackGuild2, TrackChannel2 {
     private final CharSequence noticeType = null;
     private TrackBase trackBase;
     private TrackChannel trackChannel;
     private TrackGuild trackGuild;
     private final transient String analyticsSchemaTypeName = "channel_notice_viewed";
 
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    @Override // com.discord.analytics.generated.traits.TrackGuild2
     public void c(TrackGuild trackGuild) {
         this.trackGuild = trackGuild;
     }
 
     public boolean equals(Object other) {
         if (this != other) {
-            return (other instanceof TrackChannelNoticeViewed) && m.areEqual(this.noticeType, ((TrackChannelNoticeViewed) other).noticeType);
+            return (other instanceof TrackChannelNoticeViewed) && Intrinsics3.areEqual(this.noticeType, ((TrackChannelNoticeViewed) other).noticeType);
         }
         return true;
     }
@@ -37,7 +37,7 @@ public final /* data */ class TrackChannelNoticeViewed implements AnalyticsSchem
         return this.analyticsSchemaTypeName;
     }
 
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    @Override // com.discord.analytics.generated.traits.TrackGuild2
     /* JADX INFO: renamed from: a, reason: from getter */
     public TrackGuild getTrackGuild() {
         return this.trackGuild;
@@ -52,6 +52,6 @@ public final /* data */ class TrackChannelNoticeViewed implements AnalyticsSchem
     }
 
     public String toString() {
-        return a.E(a.U("TrackChannelNoticeViewed(noticeType="), this.noticeType, ")");
+        return outline.E(outline.U("TrackChannelNoticeViewed(noticeType="), this.noticeType, ")");
     }
 }

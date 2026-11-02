@@ -2,7 +2,7 @@ package androidx.constraintlayout.solver.widgets;
 
 import androidx.constraintlayout.solver.LinearSystem;
 import androidx.constraintlayout.solver.SolverVariable;
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import java.util.HashMap;
 
 /* JADX INFO: loaded from: classes.dex */
@@ -251,20 +251,20 @@ public class Barrier extends HelperWidget {
 
     @Override // androidx.constraintlayout.solver.widgets.ConstraintWidget
     public String toString() {
-        StringBuilder sbU = a.U("[Barrier] ");
+        StringBuilder sbU = outline.U("[Barrier] ");
         sbU.append(getDebugName());
         sbU.append(" {");
         String string = sbU.toString();
         for (int i = 0; i < this.mWidgetsCount; i++) {
             ConstraintWidget constraintWidget = this.mWidgets[i];
             if (i > 0) {
-                string = a.w(string, ", ");
+                string = outline.w(string, ", ");
             }
-            StringBuilder sbU2 = a.U(string);
+            StringBuilder sbU2 = outline.U(string);
             sbU2.append(constraintWidget.getDebugName());
             string = sbU2.toString();
         }
-        return a.w(string, "}");
+        return outline.w(string, "}");
     }
 
     public Barrier(String str) {

@@ -1,14 +1,14 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackNotifyStreamSettingUpdate.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackNotifyStreamSettingUpdate implements AnalyticsSchema, TrackBaseReceiver {
+public final /* data */ class TrackNotifyStreamSettingUpdate implements AnalyticsSchema, TrackBase2 {
     private final Boolean prechecked = null;
     private TrackBase trackBase;
     private final Boolean value = null;
@@ -22,7 +22,7 @@ public final /* data */ class TrackNotifyStreamSettingUpdate implements Analytic
             return false;
         }
         TrackNotifyStreamSettingUpdate trackNotifyStreamSettingUpdate = (TrackNotifyStreamSettingUpdate) other;
-        return m.areEqual(this.value, trackNotifyStreamSettingUpdate.value) && m.areEqual(this.prechecked, trackNotifyStreamSettingUpdate.prechecked);
+        return Intrinsics3.areEqual(this.value, trackNotifyStreamSettingUpdate.value) && Intrinsics3.areEqual(this.prechecked, trackNotifyStreamSettingUpdate.prechecked);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -39,9 +39,9 @@ public final /* data */ class TrackNotifyStreamSettingUpdate implements Analytic
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackNotifyStreamSettingUpdate(value=");
+        StringBuilder sbU = outline.U("TrackNotifyStreamSettingUpdate(value=");
         sbU.append(this.value);
         sbU.append(", prechecked=");
-        return a.D(sbU, this.prechecked, ")");
+        return outline.D(sbU, this.prechecked, ")");
     }
 }

@@ -1,7 +1,7 @@
 package com.discord.api.voice.server;
 
-import b.d.b.a.a;
-import d0.z.d.m;
+import b.d.b.a.outline;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: VoiceServer.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -19,7 +19,7 @@ public final /* data */ class VoiceServer {
             return false;
         }
         VoiceServer voiceServer = (VoiceServer) other;
-        return m.areEqual(this.guildId, voiceServer.guildId) && m.areEqual(this.channelId, voiceServer.channelId) && m.areEqual(this.endpoint, voiceServer.endpoint) && m.areEqual(this.token, voiceServer.token);
+        return Intrinsics3.areEqual(this.guildId, voiceServer.guildId) && Intrinsics3.areEqual(this.channelId, voiceServer.channelId) && Intrinsics3.areEqual(this.endpoint, voiceServer.endpoint) && Intrinsics3.areEqual(this.token, voiceServer.token);
     }
 
     /* JADX INFO: renamed from: a, reason: from getter */
@@ -54,13 +54,13 @@ public final /* data */ class VoiceServer {
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("VoiceServer(guildId=");
+        StringBuilder sbU = outline.U("VoiceServer(guildId=");
         sbU.append(this.guildId);
         sbU.append(", channelId=");
         sbU.append(this.channelId);
         sbU.append(", endpoint=");
         sbU.append(this.endpoint);
         sbU.append(", token=");
-        return a.J(sbU, this.token, ")");
+        return outline.J(sbU, this.token, ")");
     }
 }

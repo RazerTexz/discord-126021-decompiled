@@ -13,10 +13,10 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentViewModelLazyKt;
 import androidx.recyclerview.widget.RecyclerView;
-import b.a.d.g0;
-import b.a.d.i0;
-import b.a.k.b;
-import b.i.c.m.d.k.h;
+import b.a.d.AppViewModelDelegates3;
+import b.a.d.AppViewModelDelegates5;
+import b.a.k.FormatUtils;
+import b.i.c.m.d.k.CommonUtils;
 import com.discord.R;
 import com.discord.api.sticker.Sticker;
 import com.discord.app.AppFragment;
@@ -35,25 +35,27 @@ import com.discord.utilities.textprocessing.SimpleRoundedBackgroundSpan;
 import com.discord.widgets.chat.MessageContent;
 import com.discord.widgets.chat.MessageManager;
 import com.discord.widgets.chat.input.AppFlexInputViewModel;
-import com.discord.widgets.chat.input.ChatInputApplicationsAdapter;
 import com.discord.widgets.chat.input.WidgetChatInputAutocompleteStickerAdapter;
+import com.discord.widgets.chat.input.WidgetChatInputCategoriesAdapter2;
 import com.discord.widgets.chat.input.WidgetChatInputEditText;
 import com.discord.widgets.chat.input.applicationcommands.SelectedApplicationCommandAdapter;
 import com.discord.widgets.chat.input.attachments.AttachmentBottomSheet;
 import com.discord.widgets.chat.input.autocomplete.adapter.ChatInputAutocompleteAdapter;
 import com.discord.widgets.chat.input.models.ApplicationCommandData;
-import com.lytefast.flexinput.FlexInputAttachmentListener;
+import com.lytefast.flexinput.FlexInputListener2;
 import com.lytefast.flexinput.fragment.FlexInputFragment;
 import com.lytefast.flexinput.model.Attachment;
 import com.lytefast.flexinput.widget.FlexEditText;
-import d0.g0.t;
-import d0.t.c0;
-import d0.t.n;
-import d0.t.u;
-import d0.z.d.a0;
-import d0.z.d.k;
-import d0.z.d.m;
-import d0.z.d.o;
+import d0.g0.StringsJVM;
+import d0.t.Collections2;
+import d0.t.CollectionsJVM;
+import d0.t.Iterables2;
+import d0.t.Iterators4;
+import d0.t._Collections;
+import d0.z.d.FunctionReferenceImpl;
+import d0.z.d.Intrinsics3;
+import d0.z.d.Lambda;
+import d0.z.d.Reflection2;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -65,7 +67,7 @@ import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
 import kotlin.jvm.functions.Function2;
 import kotlin.jvm.internal.DefaultConstructorMarker;
-import kotlin.ranges.IntRange;
+import kotlin.ranges.Ranges2;
 import rx.Observable;
 
 /* JADX INFO: compiled from: InputAutocomplete.kt */
@@ -74,7 +76,7 @@ public final class InputAutocomplete {
     private final ChatInputAutocompleteAdapter autocompleteAdapter;
     private final TextView autocompleteHeader;
     private final RecyclerView autocompleteRecyclerView;
-    private final ChatInputApplicationsAdapter categoriesAdapter;
+    private final WidgetChatInputCategoriesAdapter2 categoriesAdapter;
     private final Long channel;
     private final RecyclerView commandBrowserAppsRecyclerView;
     private boolean commandBrowserOpen;
@@ -95,20 +97,20 @@ public final class InputAutocomplete {
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.input.autocomplete.InputAutocomplete$1, reason: invalid class name */
     /* JADX INFO: compiled from: InputAutocomplete.kt */
-    public final class AnonymousClass1 implements FlexInputAttachmentListener {
+    public final class AnonymousClass1 implements FlexInputListener2 {
         public AnonymousClass1() {
         }
 
-        @Override // com.lytefast.flexinput.FlexInputAttachmentListener
+        @Override // com.lytefast.flexinput.FlexInputListener2
         public void onAttachmentSelected(Attachment<?> attachment) {
-            m.checkNotNullParameter(attachment, "attachment");
+            Intrinsics3.checkNotNullParameter(attachment, "attachment");
             InputAutocomplete.access$getViewModel$p(InputAutocomplete.this).setAttachment(attachment);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.input.autocomplete.InputAutocomplete$configureAutocompleteBrowser$1, reason: invalid class name */
     /* JADX INFO: compiled from: InputAutocomplete.kt */
-    public final class AnonymousClass1 extends o implements Function2<Integer, Integer, Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function2<Integer, Integer, Unit> {
         public AnonymousClass1() {
             super(2);
         }
@@ -122,11 +124,11 @@ public final class InputAutocomplete {
         public final void invoke(int i, int i2) {
             int iMin = Math.min(i2, InputAutocomplete.access$getAutocompleteAdapter$p(InputAutocomplete.this).getPageSize() - 1);
             if (i >= 0 && iMin >= i) {
-                IntRange intRange = new IntRange(i, iMin);
-                ArrayList arrayList = new ArrayList(d0.t.o.collectionSizeOrDefault(intRange, 10));
-                Iterator<Integer> it = intRange.iterator();
+                Ranges2 ranges2 = new Ranges2(i, iMin);
+                ArrayList arrayList = new ArrayList(Iterables2.collectionSizeOrDefault(ranges2, 10));
+                Iterator<Integer> it = ranges2.iterator();
                 while (it.hasNext()) {
-                    arrayList.add(InputAutocomplete.access$getAutocompleteAdapter$p(InputAutocomplete.this).getItem(((c0) it).nextInt()));
+                    arrayList.add(InputAutocomplete.access$getAutocompleteAdapter$p(InputAutocomplete.this).getItem(((Iterators4) it).nextInt()));
                 }
                 InputAutocomplete.access$getViewModel$p(InputAutocomplete.this).checkEmojiAutocompleteUpsellViewed(arrayList);
             }
@@ -135,7 +137,7 @@ public final class InputAutocomplete {
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.input.autocomplete.InputAutocomplete$configureCommandBrowser$1, reason: invalid class name */
     /* JADX INFO: compiled from: InputAutocomplete.kt */
-    public final class AnonymousClass1 extends o implements Function2<Integer, Integer, Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function2<Integer, Integer, Unit> {
         public AnonymousClass1() {
             super(2);
         }
@@ -162,13 +164,13 @@ public final class InputAutocomplete {
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.input.autocomplete.InputAutocomplete$handleEvent$1, reason: invalid class name */
     /* JADX INFO: compiled from: InputAutocomplete.kt */
-    public final class AnonymousClass1 extends o implements Function0<Unit> {
-        public final /* synthetic */ Event $event;
+    public final class AnonymousClass1 extends Lambda implements Function0<Unit> {
+        public final /* synthetic */ AutocompleteViewModel5 $event;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public AnonymousClass1(Event event) {
+        public AnonymousClass1(AutocompleteViewModel5 autocompleteViewModel5) {
             super(0);
-            this.$event = event;
+            this.$event = autocompleteViewModel5;
         }
 
         @Override // kotlin.jvm.functions.Function0
@@ -179,27 +181,27 @@ public final class InputAutocomplete {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2() {
-            InputAutocomplete.access$getViewModel$p(InputAutocomplete.this).onAttachmentRemoved(((Event.PreviewAttachment) this.$event).getAttachment());
+            InputAutocomplete.access$getViewModel$p(InputAutocomplete.this).onAttachmentRemoved(((AutocompleteViewModel5.PreviewAttachment) this.$event).getAttachment());
         }
     }
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.input.autocomplete.InputAutocomplete$onViewBoundOrOnResume$1, reason: invalid class name */
     /* JADX INFO: compiled from: InputAutocomplete.kt */
-    public final /* synthetic */ class AnonymousClass1 extends k implements Function1<ViewState, Unit> {
+    public final /* synthetic */ class AnonymousClass1 extends FunctionReferenceImpl implements Function1<AutocompleteViewModel7, Unit> {
         public AnonymousClass1(InputAutocomplete inputAutocomplete) {
             super(1, inputAutocomplete, InputAutocomplete.class, "configureUI", "configureUI(Lcom/discord/widgets/chat/input/autocomplete/ViewState;)V", 0);
         }
 
         @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(ViewState viewState) {
-            invoke2(viewState);
+        public /* bridge */ /* synthetic */ Unit invoke(AutocompleteViewModel7 autocompleteViewModel7) {
+            invoke2(autocompleteViewModel7);
             return Unit.a;
         }
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(ViewState viewState) {
-            m.checkNotNullParameter(viewState, "p1");
-            InputAutocomplete.access$configureUI((InputAutocomplete) this.receiver, viewState);
+        public final void invoke2(AutocompleteViewModel7 autocompleteViewModel7) {
+            Intrinsics3.checkNotNullParameter(autocompleteViewModel7, "p1");
+            InputAutocomplete.access$configureUI((InputAutocomplete) this.receiver, autocompleteViewModel7);
         }
     }
 
@@ -215,7 +217,7 @@ public final class InputAutocomplete {
 
         @Override // android.text.TextWatcher
         public void afterTextChanged(Editable s2) {
-            m.checkNotNullParameter(s2, "s");
+            Intrinsics3.checkNotNullParameter(s2, "s");
             InputAutocomplete.access$applyEditTextAction(InputAutocomplete.this, InputAutocomplete.access$getViewModel$p(InputAutocomplete.this).onInputTextChanged(s2, this.start, this.before, this.count));
         }
 
@@ -257,13 +259,13 @@ public final class InputAutocomplete {
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.input.autocomplete.InputAutocomplete$handleEvent$2, reason: invalid class name */
     /* JADX INFO: compiled from: InputAutocomplete.kt */
-    public final class AnonymousClass2 extends o implements Function1<Boolean, Unit> {
-        public final /* synthetic */ Event $event;
+    public final class AnonymousClass2 extends Lambda implements Function1<Boolean, Unit> {
+        public final /* synthetic */ AutocompleteViewModel5 $event;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public AnonymousClass2(Event event) {
+        public AnonymousClass2(AutocompleteViewModel5 autocompleteViewModel5) {
             super(1);
-            this.$event = event;
+            this.$event = autocompleteViewModel5;
         }
 
         @Override // kotlin.jvm.functions.Function1
@@ -273,13 +275,13 @@ public final class InputAutocomplete {
         }
 
         public final void invoke(boolean z2) {
-            ((Event.PreviewAttachment) this.$event).getAttachment().setSpoiler(z2);
+            ((AutocompleteViewModel5.PreviewAttachment) this.$event).getAttachment().setSpoiler(z2);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.input.autocomplete.InputAutocomplete$onViewBoundOrOnResume$2, reason: invalid class name */
     /* JADX INFO: compiled from: InputAutocomplete.kt */
-    public final class AnonymousClass2 extends o implements Function1<InputEditTextAction, Unit> {
+    public final class AnonymousClass2 extends Lambda implements Function1<InputEditTextAction, Unit> {
         public AnonymousClass2() {
             super(1);
         }
@@ -293,14 +295,14 @@ public final class InputAutocomplete {
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(InputEditTextAction inputEditTextAction) {
             InputAutocomplete inputAutocomplete = InputAutocomplete.this;
-            m.checkNotNullExpressionValue(inputEditTextAction, "it");
+            Intrinsics3.checkNotNullExpressionValue(inputEditTextAction, "it");
             InputAutocomplete.access$applyEditTextAction(inputAutocomplete, inputEditTextAction);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.input.autocomplete.InputAutocomplete$3, reason: invalid class name */
     /* JADX INFO: compiled from: InputAutocomplete.kt */
-    public final class AnonymousClass3 extends o implements Function2<Integer, Integer, Unit> {
+    public final class AnonymousClass3 extends Lambda implements Function2<Integer, Integer, Unit> {
         public AnonymousClass3() {
             super(2);
         }
@@ -318,7 +320,7 @@ public final class InputAutocomplete {
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.input.autocomplete.InputAutocomplete$handleEvent$3, reason: invalid class name */
     /* JADX INFO: compiled from: InputAutocomplete.kt */
-    public final class AnonymousClass3 extends o implements Function0<Unit> {
+    public final class AnonymousClass3 extends Lambda implements Function0<Unit> {
         public AnonymousClass3() {
             super(0);
         }
@@ -337,27 +339,27 @@ public final class InputAutocomplete {
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.input.autocomplete.InputAutocomplete$onViewBoundOrOnResume$3, reason: invalid class name */
     /* JADX INFO: compiled from: InputAutocomplete.kt */
-    public final /* synthetic */ class AnonymousClass3 extends k implements Function1<Event, Unit> {
+    public final /* synthetic */ class AnonymousClass3 extends FunctionReferenceImpl implements Function1<AutocompleteViewModel5, Unit> {
         public AnonymousClass3(InputAutocomplete inputAutocomplete) {
             super(1, inputAutocomplete, InputAutocomplete.class, "handleEvent", "handleEvent(Lcom/discord/widgets/chat/input/autocomplete/Event;)V", 0);
         }
 
         @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Event event) {
-            invoke2(event);
+        public /* bridge */ /* synthetic */ Unit invoke(AutocompleteViewModel5 autocompleteViewModel5) {
+            invoke2(autocompleteViewModel5);
             return Unit.a;
         }
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Event event) {
-            m.checkNotNullParameter(event, "p1");
-            InputAutocomplete.access$handleEvent((InputAutocomplete) this.receiver, event);
+        public final void invoke2(AutocompleteViewModel5 autocompleteViewModel5) {
+            Intrinsics3.checkNotNullParameter(autocompleteViewModel5, "p1");
+            InputAutocomplete.access$handleEvent((InputAutocomplete) this.receiver, autocompleteViewModel5);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.input.autocomplete.InputAutocomplete$4, reason: invalid class name */
     /* JADX INFO: compiled from: InputAutocomplete.kt */
-    public final class AnonymousClass4 extends o implements Function1<Application, Unit> {
+    public final class AnonymousClass4 extends Lambda implements Function1<Application, Unit> {
         public AnonymousClass4() {
             super(1);
         }
@@ -370,7 +372,7 @@ public final class InputAutocomplete {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(Application application) {
-            m.checkNotNullParameter(application, "it");
+            Intrinsics3.checkNotNullParameter(application, "it");
             InputAutocomplete.access$getViewModel$p(InputAutocomplete.this).selectCommandBrowserApplication(application);
             InputAutocomplete.access$getCategoriesAdapter$p(InputAutocomplete.this).selectApplication(application.getId());
         }
@@ -378,7 +380,7 @@ public final class InputAutocomplete {
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.input.autocomplete.InputAutocomplete$5, reason: invalid class name */
     /* JADX INFO: compiled from: InputAutocomplete.kt */
-    public final class AnonymousClass5 extends o implements Function1<Autocompletable, Unit> {
+    public final class AnonymousClass5 extends Lambda implements Function1<Autocompletable, Unit> {
         public AnonymousClass5() {
             super(1);
         }
@@ -391,14 +393,14 @@ public final class InputAutocomplete {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(Autocompletable autocompletable) {
-            m.checkNotNullParameter(autocompletable, "it");
+            Intrinsics3.checkNotNullParameter(autocompletable, "it");
             InputAutocomplete.access$getViewModel$p(InputAutocomplete.this).selectAutocompleteItem(autocompletable);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.input.autocomplete.InputAutocomplete$6, reason: invalid class name */
     /* JADX INFO: compiled from: InputAutocomplete.kt */
-    public final class AnonymousClass6 extends o implements Function1<Sticker, Unit> {
+    public final class AnonymousClass6 extends Lambda implements Function1<Sticker, Unit> {
         public AnonymousClass6() {
             super(1);
         }
@@ -411,17 +413,17 @@ public final class InputAutocomplete {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(Sticker sticker) {
-            m.checkNotNullParameter(sticker, "sticker");
+            Intrinsics3.checkNotNullParameter(sticker, "sticker");
             InputAutocomplete.access$getViewModel$p(InputAutocomplete.this).selectStickerItem(sticker);
             Context context = InputAutocomplete.access$getEditText$p(InputAutocomplete.this).getContext();
-            m.checkNotNullExpressionValue(context, "editText.context");
-            MessageManager.sendMessage$default(new MessageManager(context, null, null, null, null, null, null, null, null, 510, null), null, null, null, null, d0.t.m.listOf(sticker), false, null, null, null, 495, null);
+            Intrinsics3.checkNotNullExpressionValue(context, "editText.context");
+            MessageManager.sendMessage$default(new MessageManager(context, null, null, null, null, null, null, null, null, 510, null), null, null, null, null, CollectionsJVM.listOf(sticker), false, null, null, null, 495, null);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.input.autocomplete.InputAutocomplete$7, reason: invalid class name */
     /* JADX INFO: compiled from: InputAutocomplete.kt */
-    public final class AnonymousClass7 extends o implements Function1<ApplicationCommandOption, Unit> {
+    public final class AnonymousClass7 extends Lambda implements Function1<ApplicationCommandOption, Unit> {
         public AnonymousClass7() {
             super(1);
         }
@@ -434,23 +436,23 @@ public final class InputAutocomplete {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(ApplicationCommandOption applicationCommandOption) {
-            m.checkNotNullParameter(applicationCommandOption, "it");
+            Intrinsics3.checkNotNullParameter(applicationCommandOption, "it");
             InputAutocomplete.access$getViewModel$p(InputAutocomplete.this).selectCommandOption(applicationCommandOption);
         }
     }
 
     public InputAutocomplete(AppFragment appFragment, FlexInputFragment flexInputFragment, AppFlexInputViewModel appFlexInputViewModel, FlexEditText flexEditText, Long l, TextView textView, RecyclerView recyclerView, RecyclerView recyclerView2, View view, RecyclerView recyclerView3, TextView textView2, WidgetChatInputApplicationCommandsBinding widgetChatInputApplicationCommandsBinding) {
-        m.checkNotNullParameter(appFragment, "fragment");
-        m.checkNotNullParameter(flexInputFragment, "flexInputFragment");
-        m.checkNotNullParameter(appFlexInputViewModel, "flexInputViewModel");
-        m.checkNotNullParameter(flexEditText, "editText");
-        m.checkNotNullParameter(textView, "autocompleteHeader");
-        m.checkNotNullParameter(recyclerView, "autocompleteRecyclerView");
-        m.checkNotNullParameter(recyclerView2, "commandBrowserAppsRecyclerView");
-        m.checkNotNullParameter(view, "stickersContainer");
-        m.checkNotNullParameter(recyclerView3, "stickersRecyclerView");
-        m.checkNotNullParameter(textView2, "stickerHeader");
-        m.checkNotNullParameter(widgetChatInputApplicationCommandsBinding, "selectedApplicationCommandUiBinding");
+        Intrinsics3.checkNotNullParameter(appFragment, "fragment");
+        Intrinsics3.checkNotNullParameter(flexInputFragment, "flexInputFragment");
+        Intrinsics3.checkNotNullParameter(appFlexInputViewModel, "flexInputViewModel");
+        Intrinsics3.checkNotNullParameter(flexEditText, "editText");
+        Intrinsics3.checkNotNullParameter(textView, "autocompleteHeader");
+        Intrinsics3.checkNotNullParameter(recyclerView, "autocompleteRecyclerView");
+        Intrinsics3.checkNotNullParameter(recyclerView2, "commandBrowserAppsRecyclerView");
+        Intrinsics3.checkNotNullParameter(view, "stickersContainer");
+        Intrinsics3.checkNotNullParameter(recyclerView3, "stickersRecyclerView");
+        Intrinsics3.checkNotNullParameter(textView2, "stickerHeader");
+        Intrinsics3.checkNotNullParameter(widgetChatInputApplicationCommandsBinding, "selectedApplicationCommandUiBinding");
         this.fragment = appFragment;
         this.flexInputFragment = flexInputFragment;
         this.flexInputViewModel = appFlexInputViewModel;
@@ -465,17 +467,17 @@ public final class InputAutocomplete {
         this.selectedApplicationCommandUiBinding = widgetChatInputApplicationCommandsBinding;
         ChatInputAutocompleteAdapter chatInputAutocompleteAdapter = new ChatInputAutocompleteAdapter();
         this.autocompleteAdapter = chatInputAutocompleteAdapter;
-        InputAutocomplete$viewModel$2 inputAutocomplete$viewModel$2 = new InputAutocomplete$viewModel$2(this);
-        g0 g0Var = new g0(appFragment);
-        this.viewModel = FragmentViewModelLazyKt.createViewModelLazy(appFragment, a0.getOrCreateKotlinClass(AutocompleteViewModel.class), new InputAutocomplete$appViewModels$$inlined$viewModels$1(g0Var), new i0(inputAutocomplete$viewModel$2));
+        InputAutocomplete2 inputAutocomplete2 = new InputAutocomplete2(this);
+        AppViewModelDelegates3 appViewModelDelegates3 = new AppViewModelDelegates3(appFragment);
+        this.viewModel = FragmentViewModelLazyKt.createViewModelLazy(appFragment, Reflection2.getOrCreateKotlinClass(AutocompleteViewModel.class), new InputAutocomplete$appViewModels$$inlined$viewModels$1(appViewModelDelegates3), new AppViewModelDelegates5(inputAutocomplete2));
         appFlexInputViewModel.setAttachmentSelectedListener(new AnonymousClass1());
         flexEditText.addTextChangedListener(new AnonymousClass2());
         flexEditText.setOnSelectionChangedListener(new AnonymousClass3());
-        ChatInputApplicationsAdapter chatInputApplicationsAdapter = new ChatInputApplicationsAdapter();
-        this.categoriesAdapter = chatInputApplicationsAdapter;
-        chatInputApplicationsAdapter.setOnClickApplication(new AnonymousClass4());
-        RecyclerView.LayoutManager selfHealingLinearLayoutManager = new SelfHealingLinearLayoutManager(recyclerView2, chatInputApplicationsAdapter, 0, false, 8, null);
-        recyclerView2.setAdapter(chatInputApplicationsAdapter);
+        WidgetChatInputCategoriesAdapter2 widgetChatInputCategoriesAdapter2 = new WidgetChatInputCategoriesAdapter2();
+        this.categoriesAdapter = widgetChatInputCategoriesAdapter2;
+        widgetChatInputCategoriesAdapter2.setOnClickApplication(new AnonymousClass4());
+        RecyclerView.LayoutManager selfHealingLinearLayoutManager = new SelfHealingLinearLayoutManager(recyclerView2, widgetChatInputCategoriesAdapter2, 0, false, 8, null);
+        recyclerView2.setAdapter(widgetChatInputCategoriesAdapter2);
         recyclerView2.setLayoutManager(selfHealingLinearLayoutManager);
         recyclerView2.setItemAnimator(null);
         chatInputAutocompleteAdapter.setOnItemSelected(new AnonymousClass5());
@@ -487,7 +489,7 @@ public final class InputAutocomplete {
         recyclerView3.setLayoutManager(new SelfHealingLinearLayoutManager(recyclerView3, widgetChatInputAutocompleteStickerAdapter, 0, false, 8, null));
         recyclerView3.setAdapter(widgetChatInputAutocompleteStickerAdapter);
         RecyclerView recyclerView4 = widgetChatInputApplicationCommandsBinding.c;
-        m.checkNotNullExpressionValue(recyclerView4, "selectedApplicationComma…plicationCommandsRecycler");
+        Intrinsics3.checkNotNullExpressionValue(recyclerView4, "selectedApplicationComma…plicationCommandsRecycler");
         SelectedApplicationCommandAdapter selectedApplicationCommandAdapter = new SelectedApplicationCommandAdapter(recyclerView4, new AnonymousClass7());
         this.selectedApplicationCommandAdapter = selectedApplicationCommandAdapter;
         selectedApplicationCommandAdapter.getRecycler().setLayoutManager(new SelfHealingLinearLayoutManager(selectedApplicationCommandAdapter.getRecycler(), selectedApplicationCommandAdapter, 0, false, 8, null));
@@ -499,15 +501,15 @@ public final class InputAutocomplete {
         inputAutocomplete.applyEditTextAction(inputEditTextAction);
     }
 
-    public static final /* synthetic */ void access$configureUI(InputAutocomplete inputAutocomplete, ViewState viewState) {
-        inputAutocomplete.configureUI(viewState);
+    public static final /* synthetic */ void access$configureUI(InputAutocomplete inputAutocomplete, AutocompleteViewModel7 autocompleteViewModel7) {
+        inputAutocomplete.configureUI(autocompleteViewModel7);
     }
 
     public static final /* synthetic */ ChatInputAutocompleteAdapter access$getAutocompleteAdapter$p(InputAutocomplete inputAutocomplete) {
         return inputAutocomplete.autocompleteAdapter;
     }
 
-    public static final /* synthetic */ ChatInputApplicationsAdapter access$getCategoriesAdapter$p(InputAutocomplete inputAutocomplete) {
+    public static final /* synthetic */ WidgetChatInputCategoriesAdapter2 access$getCategoriesAdapter$p(InputAutocomplete inputAutocomplete) {
         return inputAutocomplete.categoriesAdapter;
     }
 
@@ -539,29 +541,29 @@ public final class InputAutocomplete {
         return inputAutocomplete.getViewModel();
     }
 
-    public static final /* synthetic */ void access$handleEvent(InputAutocomplete inputAutocomplete, Event event) {
-        inputAutocomplete.handleEvent(event);
+    public static final /* synthetic */ void access$handleEvent(InputAutocomplete inputAutocomplete, AutocompleteViewModel5 autocompleteViewModel5) {
+        inputAutocomplete.handleEvent(autocompleteViewModel5);
     }
 
     private final void applyEditTextAction(InputEditTextAction action) {
-        if (!m.areEqual(this.editText.getEditableText().toString(), action.getAssumedInput().toString())) {
+        if (!Intrinsics3.areEqual(this.editText.getEditableText().toString(), action.getAssumedInput().toString())) {
             return;
         }
         if (action instanceof InputEditTextAction.ClearSpans) {
             Editable editableText = this.editText.getEditableText();
-            m.checkNotNullExpressionValue(editableText, "editText.editableText");
+            Intrinsics3.checkNotNullExpressionValue(editableText, "editText.editableText");
             removeSpans$default(this, editableText, null, 2, null);
             Editable editableText2 = this.editText.getEditableText();
-            m.checkNotNullExpressionValue(editableText2, "editText.editableText");
+            Intrinsics3.checkNotNullExpressionValue(editableText2, "editText.editableText");
             removePillSpans(editableText2);
             return;
         }
         if (action instanceof InputEditTextAction.ReplaceCharacterStyleSpans) {
             Editable editableText3 = this.editText.getEditableText();
-            m.checkNotNullExpressionValue(editableText3, "editText.editableText");
+            Intrinsics3.checkNotNullExpressionValue(editableText3, "editText.editableText");
             removeSpans$default(this, editableText3, null, 2, null);
-            for (Map.Entry<IntRange, List<CharacterStyle>> entry : ((InputEditTextAction.ReplaceCharacterStyleSpans) action).getSpans().entrySet()) {
-                IntRange key = entry.getKey();
+            for (Map.Entry<Ranges2, List<CharacterStyle>> entry : ((InputEditTextAction.ReplaceCharacterStyleSpans) action).getSpans().entrySet()) {
+                Ranges2 key = entry.getKey();
                 Iterator<T> it = entry.getValue().iterator();
                 while (it.hasNext()) {
                     this.editText.getEditableText().setSpan((CharacterStyle) it.next(), key.getFirst(), key.getLast(), 33);
@@ -598,10 +600,10 @@ public final class InputAutocomplete {
             }
         }
         Editable editableText4 = this.editText.getEditableText();
-        m.checkNotNullExpressionValue(editableText4, "editText.editableText");
+        Intrinsics3.checkNotNullExpressionValue(editableText4, "editText.editableText");
         removePillSpans(editableText4);
-        for (Map.Entry<IntRange, List<CharacterStyle>> entry2 : ((InputEditTextAction.ReplacePillSpans) action).getSpans().entrySet()) {
-            IntRange key2 = entry2.getKey();
+        for (Map.Entry<Ranges2, List<CharacterStyle>> entry2 : ((InputEditTextAction.ReplacePillSpans) action).getSpans().entrySet()) {
+            Ranges2 key2 = entry2.getKey();
             Iterator<T> it2 = entry2.getValue().iterator();
             while (it2.hasNext()) {
                 this.editText.getEditableText().setSpan((CharacterStyle) it2.next(), key2.getFirst(), key2.getLast(), 33);
@@ -609,22 +611,22 @@ public final class InputAutocomplete {
         }
     }
 
-    private final void configureAutocomplete(AutocompleteViewState autocompleteViewState) {
-        if (autocompleteViewState instanceof AutocompleteViewState.Autocomplete) {
-            configureAutocompleteBrowser((AutocompleteViewState.Autocomplete) autocompleteViewState);
-        } else if (autocompleteViewState instanceof AutocompleteViewState.CommandBrowser) {
-            configureCommandBrowser((AutocompleteViewState.CommandBrowser) autocompleteViewState);
-        } else if (m.areEqual(autocompleteViewState, AutocompleteViewState.Hidden.INSTANCE)) {
+    private final void configureAutocomplete(AutocompleteViewModel4 autocompleteViewState) {
+        if (autocompleteViewState instanceof AutocompleteViewModel4.Autocomplete) {
+            configureAutocompleteBrowser((AutocompleteViewModel4.Autocomplete) autocompleteViewState);
+        } else if (autocompleteViewState instanceof AutocompleteViewModel4.CommandBrowser) {
+            configureCommandBrowser((AutocompleteViewModel4.CommandBrowser) autocompleteViewState);
+        } else if (Intrinsics3.areEqual(autocompleteViewState, AutocompleteViewModel4.Hidden.INSTANCE)) {
             hideAutocomplete();
         }
-        if (!(autocompleteViewState instanceof AutocompleteViewState.CommandBrowser)) {
+        if (!(autocompleteViewState instanceof AutocompleteViewModel4.CommandBrowser)) {
             this.commandBrowserOpen = false;
         }
-        StoreStream.INSTANCE.getAutocomplete().setAutocompleteVisible(!(autocompleteViewState instanceof AutocompleteViewState.Hidden));
+        StoreStream.INSTANCE.getAutocomplete().setAutocompleteVisible(!(autocompleteViewState instanceof AutocompleteViewModel4.Hidden));
     }
 
     /* JADX WARN: Code duplicated, block: B:41:0x00e6  */
-    private final void configureAutocompleteBrowser(AutocompleteViewState.Autocomplete autocomplete) {
+    private final void configureAutocompleteBrowser(AutocompleteViewModel4.Autocomplete autocomplete) {
         List<Autocompletable> autocompletables;
         boolean z2 = !autocomplete.getStickers().isEmpty();
         if (!(this.autocompleteRecyclerView.getVisibility() == 0)) {
@@ -633,31 +635,31 @@ public final class InputAutocomplete {
         if (this.commandBrowserAppsRecyclerView.getVisibility() == 0) {
             this.commandBrowserAppsRecyclerView.setVisibility(8);
         }
-        if (t.startsWith$default(autocomplete.getToken(), String.valueOf(LeadingIdentifier.EMOJI_AND_STICKERS.getIdentifier()), false, 2, null) && (!autocomplete.getAutocompletables().isEmpty())) {
+        if (StringsJVM.startsWith$default(autocomplete.getToken(), String.valueOf(LeadingIdentifier.EMOJI_AND_STICKERS.getIdentifier()), false, 2, null) && (!autocomplete.getAutocompletables().isEmpty())) {
             this.autocompleteHeader.setVisibility(0);
             TextView textView = this.autocompleteHeader;
-            textView.setText(b.j(textView, R.string.emoji_matching, new Object[]{autocomplete.getToken()}, null, 4));
+            textView.setText(FormatUtils.j(textView, R.string.emoji_matching, new Object[]{autocomplete.getToken()}, null, 4));
         } else {
             this.autocompleteHeader.setVisibility(8);
         }
         this.autocompleteHeader.setTextColor(ColorCompat.getThemedColor(this.autocompleteHeader, R.attr.colorTextNormal));
         if (autocomplete.isAutocomplete()) {
-            this.autocompleteHeader.setVisibility(t.isBlank(autocomplete.getToken()) ^ true ? 0 : 8);
+            this.autocompleteHeader.setVisibility(StringsJVM.isBlank(autocomplete.getToken()) ^ true ? 0 : 8);
             if (autocomplete.isError()) {
                 TextView textView2 = this.autocompleteHeader;
-                textView2.setText(b.j(textView2, R.string.application_command_autocomplete_failed, new Object[0], null, 4));
+                textView2.setText(FormatUtils.j(textView2, R.string.application_command_autocomplete_failed, new Object[0], null, 4));
                 this.autocompleteHeader.setTextColor(ColorCompat.getThemedColor(this.autocompleteHeader, R.attr.colorTextDanger));
             } else if (autocomplete.isLoading()) {
                 TextView textView3 = this.autocompleteHeader;
-                textView3.setText(b.j(textView3, R.string.options_matching, new Object[]{autocomplete.getToken()}, null, 4));
+                textView3.setText(FormatUtils.j(textView3, R.string.options_matching, new Object[]{autocomplete.getToken()}, null, 4));
             } else {
                 List<Autocompletable> autocompletables2 = autocomplete.getAutocompletables();
                 if (autocompletables2 == null || autocompletables2.isEmpty()) {
                     TextView textView4 = this.autocompleteHeader;
-                    textView4.setText(b.j(textView4, R.string.application_command_autocomplete_no_options, new Object[0], null, 4));
+                    textView4.setText(FormatUtils.j(textView4, R.string.application_command_autocomplete_no_options, new Object[0], null, 4));
                 } else {
                     TextView textView5 = this.autocompleteHeader;
-                    textView5.setText(b.j(textView5, R.string.options_matching, new Object[]{autocomplete.getToken()}, null, 4));
+                    textView5.setText(FormatUtils.j(textView5, R.string.options_matching, new Object[]{autocomplete.getToken()}, null, 4));
                 }
             }
         }
@@ -676,12 +678,12 @@ public final class InputAutocomplete {
         this.stickersContainer.setVisibility(z2 ? 0 : 8);
         if (z2) {
             TextView textView6 = this.stickerHeader;
-            textView6.setText(b.j(textView6, R.string.stickers_matching, new Object[]{t.replace$default(autocomplete.getToken(), String.valueOf(LeadingIdentifier.EMOJI_AND_STICKERS.getIdentifier()), "", false, 4, (Object) null)}, null, 4));
+            textView6.setText(FormatUtils.j(textView6, R.string.stickers_matching, new Object[]{StringsJVM.replace$default(autocomplete.getToken(), String.valueOf(LeadingIdentifier.EMOJI_AND_STICKERS.getIdentifier()), "", false, 4, (Object) null)}, null, 4));
             this.stickersAdapter.setData(autocomplete.getStickers());
         }
     }
 
-    private final void configureCommandBrowser(AutocompleteViewState.CommandBrowser browser) {
+    private final void configureCommandBrowser(AutocompleteViewModel4.CommandBrowser browser) {
         this.autocompleteHeader.setVisibility(8);
         this.stickersContainer.setVisibility(8);
         List<Autocompletable> flattenCommandsModel = browser.getDiscoverCommands().getFlattenCommandsModel();
@@ -708,7 +710,7 @@ public final class InputAutocomplete {
             RecyclerView recyclerView = this.autocompleteRecyclerView;
             int childAdapterPosition = recyclerView.getChildAdapterPosition(recyclerView.getChildAt(0));
             View childAt = this.autocompleteRecyclerView.getChildAt(0);
-            m.checkNotNullExpressionValue(childAt, "autocompleteRecyclerView.getChildAt(0)");
+            Intrinsics3.checkNotNullExpressionValue(childAt, "autocompleteRecyclerView.getChildAt(0)");
             this.autocompleteAdapter.scrollToPosition((flattenCommandsModel.size() - this.autocompleteAdapter.getPageSize()) + childAdapterPosition, childAt.getTop(), false);
         }
         if ((!flattenCommandsModel.isEmpty()) && this.autocompleteAdapter.getPageSize() == 4 && (this.autocompleteAdapter.getItem(0) instanceof ApplicationCommandLoadingPlaceholder) && (this.autocompleteAdapter.getItem(3) instanceof ApplicationCommandLoadingPlaceholder) && (flattenCommandsModel.get(0) instanceof ApplicationCommandLoadingPlaceholder)) {
@@ -717,7 +719,7 @@ public final class InputAutocomplete {
         ChatInputAutocompleteAdapter chatInputAutocompleteAdapter = this.autocompleteAdapter;
         if (browser.getDiscoverCommands().getLoadState() instanceof LoadState.Loading) {
             flattenCommandsModel = new ArrayList<>();
-            int iCount = u.count(new IntRange(1, 4));
+            int iCount = _Collections.count(new Ranges2(1, 4));
             for (int i = 0; i < iCount; i++) {
                 flattenCommandsModel.add(new ApplicationCommandLoadingPlaceholder(null, 1, null));
             }
@@ -725,15 +727,15 @@ public final class InputAutocomplete {
         chatInputAutocompleteAdapter.setData(flattenCommandsModel, false, browser.getDiscoverCommands().getLoadState() instanceof LoadState.Loading);
     }
 
-    private final void configureSelectedCommand(SelectedCommandViewState selectedCommandViewState) {
-        if (m.areEqual(selectedCommandViewState, SelectedCommandViewState.Hidden.INSTANCE)) {
+    private final void configureSelectedCommand(AutocompleteViewModel6 selectedCommandViewState) {
+        if (Intrinsics3.areEqual(selectedCommandViewState, AutocompleteViewModel6.Hidden.INSTANCE)) {
             hideSelectedCommand();
-        } else if (selectedCommandViewState instanceof SelectedCommandViewState.SelectedCommand) {
-            configureSelectedCommand((SelectedCommandViewState.SelectedCommand) selectedCommandViewState);
+        } else if (selectedCommandViewState instanceof AutocompleteViewModel6.SelectedCommand) {
+            configureSelectedCommand((AutocompleteViewModel6.SelectedCommand) selectedCommandViewState);
         }
     }
 
-    private final void configureUI(ViewState viewState) {
+    private final void configureUI(AutocompleteViewModel7 viewState) {
         configureAutocomplete(viewState.getAutocompleteViewState());
         configureSelectedCommand(viewState.getSelectedCommandViewState());
     }
@@ -776,7 +778,7 @@ public final class InputAutocomplete {
         int i = 0;
         boolean z2 = false;
         while (i <= length) {
-            boolean z3 = m.compare(stringSafe2.charAt(!z2 ? i : length), 32) <= 0;
+            boolean z3 = Intrinsics3.compare(stringSafe2.charAt(!z2 ? i : length), 32) <= 0;
             if (z2) {
                 if (!z3) {
                     break;
@@ -789,7 +791,7 @@ public final class InputAutocomplete {
             }
         }
         String string = stringSafe2.subSequence(i, length + 1).toString();
-        return !TextUtils.isEmpty(string) ? getViewModel().replaceAutocompletableDataWithServerValues(stringSafe) : new MessageContent(string, n.emptyList());
+        return !TextUtils.isEmpty(string) ? getViewModel().replaceAutocompletableDataWithServerValues(stringSafe) : new MessageContent(string, Collections2.emptyList());
     }
 
     public final Function1<ApplicationCommandOption, Unit> getOnPerformCommandAutocomplete() {
@@ -801,9 +803,9 @@ public final class InputAutocomplete {
     }
 
     /* JADX WARN: Multi-variable type inference failed */
-    private final void handleEvent(Event event) {
-        if (event instanceof Event.ScrollAutocompletablesToApplication) {
-            Event.ScrollAutocompletablesToApplication scrollAutocompletablesToApplication = (Event.ScrollAutocompletablesToApplication) event;
+    private final void handleEvent(AutocompleteViewModel5 event) {
+        if (event instanceof AutocompleteViewModel5.ScrollAutocompletablesToApplication) {
+            AutocompleteViewModel5.ScrollAutocompletablesToApplication scrollAutocompletablesToApplication = (AutocompleteViewModel5.ScrollAutocompletablesToApplication) event;
             ChatInputAutocompleteAdapter.scrollToPosition$default(this.autocompleteAdapter, scrollAutocompletablesToApplication.getTargetPosition(), 0, false, 6, null);
             this.categoriesAdapter.selectApplication(scrollAutocompletablesToApplication.getApplicationId());
             if (this.categoriesAdapter.getPositionOfApplication(scrollAutocompletablesToApplication.getApplicationId()) != -1) {
@@ -812,24 +814,24 @@ public final class InputAutocomplete {
             }
             return;
         }
-        if (event instanceof Event.RequestAutocompleteData) {
+        if (event instanceof AutocompleteViewModel5.RequestAutocompleteData) {
             Function1<? super ApplicationCommandOption, Unit> function1 = this.onPerformCommandAutocomplete;
             if (function1 != null) {
-                function1.invoke(((Event.RequestAutocompleteData) event).getOption());
+                function1.invoke(((AutocompleteViewModel5.RequestAutocompleteData) event).getOption());
                 return;
             }
             return;
         }
-        if (event instanceof Event.PickAttachment) {
+        if (event instanceof AutocompleteViewModel5.PickAttachment) {
             this.flexInputViewModel.onGalleryButtonClicked();
             return;
         }
-        if (event instanceof Event.PreviewAttachment) {
-            h.r(this.flexInputFragment.requireContext(), this.flexInputFragment.l());
+        if (event instanceof AutocompleteViewModel5.PreviewAttachment) {
+            CommonUtils.r(this.flexInputFragment.requireContext(), this.flexInputFragment.l());
             AttachmentBottomSheet.Companion companion = AttachmentBottomSheet.INSTANCE;
             FragmentManager childFragmentManager = this.flexInputFragment.getChildFragmentManager();
-            m.checkNotNullExpressionValue(childFragmentManager, "flexInputFragment.childFragmentManager");
-            Attachment<?> attachment = ((Event.PreviewAttachment) event).getAttachment();
+            Intrinsics3.checkNotNullExpressionValue(childFragmentManager, "flexInputFragment.childFragmentManager");
+            Attachment<?> attachment = ((AutocompleteViewModel5.PreviewAttachment) event).getAttachment();
             Objects.requireNonNull(attachment, "null cannot be cast to non-null type com.lytefast.flexinput.model.Attachment<kotlin.Any>");
             companion.show(childFragmentManager, attachment, new AnonymousClass1(event), new AnonymousClass2(event), new AnonymousClass3());
         }
@@ -846,7 +848,7 @@ public final class InputAutocomplete {
         this.flexInputViewModel.setModeSingleSelect(false);
         this.flexInputViewModel.setAttachmentViewEnabled(true);
         ConstraintLayout constraintLayout = this.selectedApplicationCommandUiBinding.a;
-        m.checkNotNullExpressionValue(constraintLayout, "selectedApplicationCommandUiBinding.root");
+        Intrinsics3.checkNotNullExpressionValue(constraintLayout, "selectedApplicationCommandUiBinding.root");
         constraintLayout.setVisibility(8);
     }
 
@@ -856,11 +858,11 @@ public final class InputAutocomplete {
 
     public final void onViewBoundOrOnResume() {
         this.autocompleteAdapter.configureSubscriptions(this.fragment);
-        Observable<ViewState> observableR = getViewModel().observeViewState().r();
-        m.checkNotNullExpressionValue(observableR, "viewModel.observeViewSta…  .distinctUntilChanged()");
+        Observable<AutocompleteViewModel7> observableR = getViewModel().observeViewState().r();
+        Intrinsics3.checkNotNullExpressionValue(observableR, "viewModel.observeViewSta…  .distinctUntilChanged()");
         ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(observableR, this.fragment, null, 2, null), InputAutocomplete.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass1(this), 62, (Object) null);
         Observable<InputEditTextAction> observableR2 = getViewModel().observeEditTextActions().r();
-        m.checkNotNullExpressionValue(observableR2, "viewModel.observeEditTex…  .distinctUntilChanged()");
+        Intrinsics3.checkNotNullExpressionValue(observableR2, "viewModel.observeEditTex…  .distinctUntilChanged()");
         ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(observableR2, this.fragment, null, 2, null), InputAutocomplete.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass2(), 62, (Object) null);
         ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(getViewModel().observeEvents(), this.fragment, null, 2, null), InputAutocomplete.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass3(this), 62, (Object) null);
     }
@@ -873,14 +875,14 @@ public final class InputAutocomplete {
         }
     }
 
-    public static /* synthetic */ void removeSpans$default(InputAutocomplete inputAutocomplete, Spannable spannable, IntRange intRange, int i, Object obj) {
+    public static /* synthetic */ void removeSpans$default(InputAutocomplete inputAutocomplete, Spannable spannable, Ranges2 ranges2, int i, Object obj) {
         if ((i & 2) != 0) {
-            intRange = new IntRange(0, spannable.length());
+            ranges2 = new Ranges2(0, spannable.length());
         }
-        inputAutocomplete.removeSpans(spannable, intRange);
+        inputAutocomplete.removeSpans(spannable, ranges2);
     }
 
-    private final void removeSpans(Spannable spannable, IntRange spanRange) {
+    private final void removeSpans(Spannable spannable, Ranges2 spanRange) {
         for (Object obj : spannable.getSpans(spanRange.getFirst(), spanRange.getLast(), Object.class)) {
             if ((obj instanceof CharacterStyle) && !(obj instanceof SimpleRoundedBackgroundSpan)) {
                 spannable.removeSpan(obj);
@@ -892,11 +894,11 @@ public final class InputAutocomplete {
         this.onPerformCommandAutocomplete = function1;
     }
 
-    private final void configureSelectedCommand(SelectedCommandViewState.SelectedCommand viewState) {
+    private final void configureSelectedCommand(AutocompleteViewModel6.SelectedCommand viewState) {
         this.flexInputViewModel.setModeSingleSelect(true);
         this.flexInputViewModel.setAttachmentViewEnabled(false);
         ConstraintLayout constraintLayout = this.selectedApplicationCommandUiBinding.a;
-        m.checkNotNullExpressionValue(constraintLayout, "selectedApplicationCommandUiBinding.root");
+        Intrinsics3.checkNotNullExpressionValue(constraintLayout, "selectedApplicationCommandUiBinding.root");
         constraintLayout.setVisibility(0);
         this.selectedApplicationCommandAdapter.clear();
         this.selectedApplicationCommandAdapter.setApplicationCommand(viewState.getSelectedCommand(), viewState.getSelectedApplication());
@@ -904,30 +906,30 @@ public final class InputAutocomplete {
         if (selectedCommandOption != null) {
             if (viewState.getSelectedCommandOptionErrors().contains(selectedCommandOption)) {
                 TextView textView = this.selectedApplicationCommandUiBinding.f2301b;
-                m.checkNotNullExpressionValue(textView, "selectedApplicationComma…CommandsOptionDescription");
+                Intrinsics3.checkNotNullExpressionValue(textView, "selectedApplicationComma…CommandsOptionDescription");
                 Resources resources = this.editText.getResources();
-                m.checkNotNullExpressionValue(resources, "editText.resources");
+                Intrinsics3.checkNotNullExpressionValue(resources, "editText.resources");
                 textView.setText(StoreApplicationCommandsKt.getErrorText(selectedCommandOption, resources));
                 WidgetChatInputApplicationCommandsBinding widgetChatInputApplicationCommandsBinding = this.selectedApplicationCommandUiBinding;
                 TextView textView2 = widgetChatInputApplicationCommandsBinding.f2301b;
                 ConstraintLayout constraintLayout2 = widgetChatInputApplicationCommandsBinding.a;
-                m.checkNotNullExpressionValue(constraintLayout2, "selectedApplicationCommandUiBinding.root");
+                Intrinsics3.checkNotNullExpressionValue(constraintLayout2, "selectedApplicationCommandUiBinding.root");
                 textView2.setTextColor(ColorCompat.getColor(constraintLayout2.getContext(), R.color.status_red_500));
             } else {
                 TextView textView3 = this.selectedApplicationCommandUiBinding.f2301b;
-                m.checkNotNullExpressionValue(textView3, "selectedApplicationComma…CommandsOptionDescription");
+                Intrinsics3.checkNotNullExpressionValue(textView3, "selectedApplicationComma…CommandsOptionDescription");
                 Resources resources2 = this.editText.getResources();
-                m.checkNotNullExpressionValue(resources2, "editText.resources");
+                Intrinsics3.checkNotNullExpressionValue(resources2, "editText.resources");
                 textView3.setText(StoreApplicationCommandsKt.getDescriptionText(selectedCommandOption, resources2));
                 this.selectedApplicationCommandUiBinding.f2301b.setTextColor(ColorCompat.getThemedColor(this.editText.getContext(), R.attr.colorTextNormal));
             }
             this.selectedApplicationCommandAdapter.highlightOption(selectedCommandOption);
         } else {
             TextView textView4 = this.selectedApplicationCommandUiBinding.f2301b;
-            m.checkNotNullExpressionValue(textView4, "selectedApplicationComma…CommandsOptionDescription");
+            Intrinsics3.checkNotNullExpressionValue(textView4, "selectedApplicationComma…CommandsOptionDescription");
             ApplicationCommand selectedCommand = viewState.getSelectedCommand();
             Resources resources3 = this.editText.getResources();
-            m.checkNotNullExpressionValue(resources3, "editText.resources");
+            Intrinsics3.checkNotNullExpressionValue(resources3, "editText.resources");
             textView4.setText(StoreApplicationCommandsKt.getDescriptionText(selectedCommand, resources3));
             this.selectedApplicationCommandUiBinding.f2301b.setTextColor(ColorCompat.getThemedColor(this.editText.getContext(), R.attr.colorTextNormal));
             this.selectedApplicationCommandAdapter.clearParamOptionHighlight();

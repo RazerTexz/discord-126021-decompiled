@@ -40,7 +40,9 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.core.view.accessibility.AccessibilityNodeInfoCompat;
 import androidx.core.view.accessibility.AccessibilityViewCommand;
 import androidx.customview.view.AbsSavedState;
-import b.i.a.g.a.e;
+import b.i.a.g.a.HeaderBehavior;
+import b.i.a.g.a.HeaderScrollingViewBehavior;
+import b.i.a.g.a.ViewUtilsLollipop;
 import com.google.android.material.R;
 import com.google.android.material.animation.AnimationUtils;
 import com.google.android.material.internal.ThemeEnforcement;
@@ -90,7 +92,7 @@ public class AppBarLayout extends LinearLayout implements CoordinatorLayout.Atta
     private int totalScrollRange;
     private static final int DEF_STYLE_RES = R.style.Widget_Design_AppBarLayout;
 
-    public class BaseBehavior<T extends AppBarLayout> extends b.i.a.g.a.a<T> {
+    public class BaseBehavior<T extends AppBarLayout> extends HeaderBehavior<T> {
         private static final int INVALID_POSITION = -1;
         private static final int MAX_OFFSET_ANIMATION_DURATION = 600;
 
@@ -280,7 +282,7 @@ public class AppBarLayout extends LinearLayout implements CoordinatorLayout.Atta
             this.offsetAnimator.start();
         }
 
-        @Override // b.i.a.g.a.a
+        @Override // b.i.a.g.a.HeaderBehavior
         public /* bridge */ /* synthetic */ boolean canDragView(View view) {
             return canDragView((AppBarLayout) view);
         }
@@ -337,17 +339,17 @@ public class AppBarLayout extends LinearLayout implements CoordinatorLayout.Atta
             return -1;
         }
 
-        @Override // b.i.a.g.a.a
+        @Override // b.i.a.g.a.HeaderBehavior
         public /* bridge */ /* synthetic */ int getMaxDragOffset(@NonNull View view) {
             return getMaxDragOffset((AppBarLayout) view);
         }
 
-        @Override // b.i.a.g.a.a
+        @Override // b.i.a.g.a.HeaderBehavior
         public /* bridge */ /* synthetic */ int getScrollRangeForDragFling(@NonNull View view) {
             return getScrollRangeForDragFling((AppBarLayout) view);
         }
 
-        @Override // b.i.a.g.a.a
+        @Override // b.i.a.g.a.HeaderBehavior
         public int getTopBottomOffsetForScrollingSibling() {
             return getTopAndBottomOffset() + this.offsetDelta;
         }
@@ -390,12 +392,12 @@ public class AppBarLayout extends LinearLayout implements CoordinatorLayout.Atta
             return valueAnimator != null && valueAnimator.isRunning();
         }
 
-        @Override // b.i.a.g.a.a
+        @Override // b.i.a.g.a.HeaderBehavior
         public /* bridge */ /* synthetic */ void onFlingFinished(@NonNull CoordinatorLayout coordinatorLayout, @NonNull View view) {
             onFlingFinished(coordinatorLayout, (AppBarLayout) view);
         }
 
-        @Override // b.i.a.g.a.c, androidx.coordinatorlayout.widget.CoordinatorLayout.Behavior
+        @Override // b.i.a.g.a.ViewOffsetBehavior, androidx.coordinatorlayout.widget.CoordinatorLayout.Behavior
         public /* bridge */ /* synthetic */ boolean onLayoutChild(@NonNull CoordinatorLayout coordinatorLayout, @NonNull View view, int i) {
             return onLayoutChild(coordinatorLayout, (AppBarLayout) view, i);
         }
@@ -439,7 +441,7 @@ public class AppBarLayout extends LinearLayout implements CoordinatorLayout.Atta
             this.onDragCallback = baseDragCallback;
         }
 
-        @Override // b.i.a.g.a.a
+        @Override // b.i.a.g.a.HeaderBehavior
         public /* bridge */ /* synthetic */ int setHeaderTopBottomOffset(@NonNull CoordinatorLayout coordinatorLayout, @NonNull View view, int i, int i2, int i3) {
             return setHeaderTopBottomOffset(coordinatorLayout, (AppBarLayout) view, i, i2, i3);
         }
@@ -721,22 +723,22 @@ public class AppBarLayout extends LinearLayout implements CoordinatorLayout.Atta
         public Behavior() {
         }
 
-        @Override // b.i.a.g.a.c
+        @Override // b.i.a.g.a.ViewOffsetBehavior
         public /* bridge */ /* synthetic */ int getLeftAndRightOffset() {
             return super.getLeftAndRightOffset();
         }
 
-        @Override // b.i.a.g.a.c
+        @Override // b.i.a.g.a.ViewOffsetBehavior
         public /* bridge */ /* synthetic */ int getTopAndBottomOffset() {
             return super.getTopAndBottomOffset();
         }
 
-        @Override // b.i.a.g.a.c
+        @Override // b.i.a.g.a.ViewOffsetBehavior
         public /* bridge */ /* synthetic */ boolean isHorizontalOffsetEnabled() {
             return super.isHorizontalOffsetEnabled();
         }
 
-        @Override // b.i.a.g.a.c
+        @Override // b.i.a.g.a.ViewOffsetBehavior
         public /* bridge */ /* synthetic */ boolean isVerticalOffsetEnabled() {
             return super.isVerticalOffsetEnabled();
         }
@@ -786,22 +788,22 @@ public class AppBarLayout extends LinearLayout implements CoordinatorLayout.Atta
             super.setDragCallback(baseDragCallback);
         }
 
-        @Override // b.i.a.g.a.c
+        @Override // b.i.a.g.a.ViewOffsetBehavior
         public /* bridge */ /* synthetic */ void setHorizontalOffsetEnabled(boolean z2) {
             super.setHorizontalOffsetEnabled(z2);
         }
 
-        @Override // b.i.a.g.a.c
+        @Override // b.i.a.g.a.ViewOffsetBehavior
         public /* bridge */ /* synthetic */ boolean setLeftAndRightOffset(int i) {
             return super.setLeftAndRightOffset(i);
         }
 
-        @Override // b.i.a.g.a.c
+        @Override // b.i.a.g.a.ViewOffsetBehavior
         public /* bridge */ /* synthetic */ boolean setTopAndBottomOffset(int i) {
             return super.setTopAndBottomOffset(i);
         }
 
-        @Override // b.i.a.g.a.c
+        @Override // b.i.a.g.a.ViewOffsetBehavior
         public /* bridge */ /* synthetic */ void setVerticalOffsetEnabled(boolean z2) {
             super.setVerticalOffsetEnabled(z2);
         }
@@ -816,11 +818,11 @@ public class AppBarLayout extends LinearLayout implements CoordinatorLayout.Atta
         void onOffsetChanged(AppBarLayout appBarLayout, int i);
     }
 
-    public class ScrollingViewBehavior extends b.i.a.g.a.b {
+    public class ScrollingViewBehavior extends HeaderScrollingViewBehavior {
         public ScrollingViewBehavior() {
         }
 
-        @Override // b.i.a.g.a.b
+        @Override // b.i.a.g.a.HeaderScrollingViewBehavior
         @Nullable
         public /* bridge */ /* synthetic */ View findFirstDependency(@NonNull List list) {
             return findFirstDependency((List<View>) list);
@@ -834,12 +836,12 @@ public class AppBarLayout extends LinearLayout implements CoordinatorLayout.Atta
             return 0;
         }
 
-        @Override // b.i.a.g.a.c
+        @Override // b.i.a.g.a.ViewOffsetBehavior
         public /* bridge */ /* synthetic */ int getLeftAndRightOffset() {
             return super.getLeftAndRightOffset();
         }
 
-        @Override // b.i.a.g.a.b
+        @Override // b.i.a.g.a.HeaderScrollingViewBehavior
         public float getOverlapRatioForOffset(View view) {
             int i;
             if (view instanceof AppBarLayout) {
@@ -854,22 +856,22 @@ public class AppBarLayout extends LinearLayout implements CoordinatorLayout.Atta
             return 0.0f;
         }
 
-        @Override // b.i.a.g.a.b
+        @Override // b.i.a.g.a.HeaderScrollingViewBehavior
         public int getScrollRange(View view) {
             return view instanceof AppBarLayout ? ((AppBarLayout) view).getTotalScrollRange() : super.getScrollRange(view);
         }
 
-        @Override // b.i.a.g.a.c
+        @Override // b.i.a.g.a.ViewOffsetBehavior
         public /* bridge */ /* synthetic */ int getTopAndBottomOffset() {
             return super.getTopAndBottomOffset();
         }
 
-        @Override // b.i.a.g.a.c
+        @Override // b.i.a.g.a.ViewOffsetBehavior
         public /* bridge */ /* synthetic */ boolean isHorizontalOffsetEnabled() {
             return super.isHorizontalOffsetEnabled();
         }
 
-        @Override // b.i.a.g.a.c
+        @Override // b.i.a.g.a.ViewOffsetBehavior
         public /* bridge */ /* synthetic */ boolean isVerticalOffsetEnabled() {
             return super.isVerticalOffsetEnabled();
         }
@@ -901,12 +903,12 @@ public class AppBarLayout extends LinearLayout implements CoordinatorLayout.Atta
             }
         }
 
-        @Override // b.i.a.g.a.c, androidx.coordinatorlayout.widget.CoordinatorLayout.Behavior
+        @Override // b.i.a.g.a.ViewOffsetBehavior, androidx.coordinatorlayout.widget.CoordinatorLayout.Behavior
         public /* bridge */ /* synthetic */ boolean onLayoutChild(@NonNull CoordinatorLayout coordinatorLayout, @NonNull View view, int i) {
             return super.onLayoutChild(coordinatorLayout, view, i);
         }
 
-        @Override // b.i.a.g.a.b, androidx.coordinatorlayout.widget.CoordinatorLayout.Behavior
+        @Override // b.i.a.g.a.HeaderScrollingViewBehavior, androidx.coordinatorlayout.widget.CoordinatorLayout.Behavior
         public /* bridge */ /* synthetic */ boolean onMeasureChild(@NonNull CoordinatorLayout coordinatorLayout, @NonNull View view, int i, int i2, int i3, int i4) {
             return super.onMeasureChild(coordinatorLayout, view, i, i2, i3, i4);
         }
@@ -926,22 +928,22 @@ public class AppBarLayout extends LinearLayout implements CoordinatorLayout.Atta
             return false;
         }
 
-        @Override // b.i.a.g.a.c
+        @Override // b.i.a.g.a.ViewOffsetBehavior
         public /* bridge */ /* synthetic */ void setHorizontalOffsetEnabled(boolean z2) {
             super.setHorizontalOffsetEnabled(z2);
         }
 
-        @Override // b.i.a.g.a.c
+        @Override // b.i.a.g.a.ViewOffsetBehavior
         public /* bridge */ /* synthetic */ boolean setLeftAndRightOffset(int i) {
             return super.setLeftAndRightOffset(i);
         }
 
-        @Override // b.i.a.g.a.c
+        @Override // b.i.a.g.a.ViewOffsetBehavior
         public /* bridge */ /* synthetic */ boolean setTopAndBottomOffset(int i) {
             return super.setTopAndBottomOffset(i);
         }
 
-        @Override // b.i.a.g.a.c
+        @Override // b.i.a.g.a.ViewOffsetBehavior
         public /* bridge */ /* synthetic */ void setVerticalOffsetEnabled(boolean z2) {
             super.setVerticalOffsetEnabled(z2);
         }
@@ -962,7 +964,7 @@ public class AppBarLayout extends LinearLayout implements CoordinatorLayout.Atta
             typedArrayObtainStyledAttributes.recycle();
         }
 
-        @Override // b.i.a.g.a.b
+        @Override // b.i.a.g.a.HeaderScrollingViewBehavior
         @Nullable
         public AppBarLayout findFirstDependency(@NonNull List<View> list) {
             int size = list.size();
@@ -1471,7 +1473,7 @@ public class AppBarLayout extends LinearLayout implements CoordinatorLayout.Atta
 
     @Deprecated
     public void setTargetElevation(float f) {
-        e.a(this, f);
+        ViewUtilsLollipop.a(this, f);
     }
 
     @Override // android.view.View
@@ -1562,7 +1564,7 @@ public class AppBarLayout extends LinearLayout implements CoordinatorLayout.Atta
         int i3 = Build.VERSION.SDK_INT;
         setOutlineProvider(ViewOutlineProvider.BOUNDS);
         Context context3 = getContext();
-        TypedArray typedArrayObtainStyledAttributes = ThemeEnforcement.obtainStyledAttributes(context3, attributeSet, e.a, i, i2, new int[0]);
+        TypedArray typedArrayObtainStyledAttributes = ThemeEnforcement.obtainStyledAttributes(context3, attributeSet, ViewUtilsLollipop.a, i, i2, new int[0]);
         try {
             if (typedArrayObtainStyledAttributes.hasValue(0)) {
                 setStateListAnimator(AnimatorInflater.loadStateListAnimator(context3, typedArrayObtainStyledAttributes.getResourceId(0, 0)));
@@ -1583,7 +1585,7 @@ public class AppBarLayout extends LinearLayout implements CoordinatorLayout.Atta
             }
             int i5 = R.styleable.AppBarLayout_elevation;
             if (typedArrayObtainStyledAttributes2.hasValue(i5)) {
-                e.a(this, typedArrayObtainStyledAttributes2.getDimensionPixelSize(i5, 0));
+                ViewUtilsLollipop.a(this, typedArrayObtainStyledAttributes2.getDimensionPixelSize(i5, 0));
             }
             if (i3 >= 26) {
                 int i6 = R.styleable.AppBarLayout_android_keyboardNavigationCluster;

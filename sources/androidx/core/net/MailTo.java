@@ -4,7 +4,7 @@ import android.net.Uri;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.util.Preconditions;
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
@@ -88,7 +88,7 @@ public final class MailTo {
         }
         String to = mailTo.getTo();
         if (to != null) {
-            strDecode = a.y(strDecode, ", ", to);
+            strDecode = outline.y(strDecode, ", ", to);
         }
         mailTo.mHeaders.put(TO, strDecode);
         return mailTo;

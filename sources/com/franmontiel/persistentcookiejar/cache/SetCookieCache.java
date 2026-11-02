@@ -1,6 +1,6 @@
 package com.franmontiel.persistentcookiejar.cache;
 
-import f0.n;
+import f0.Cookie;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
@@ -11,7 +11,7 @@ import java.util.Set;
 public class SetCookieCache implements CookieCache {
     public Set<IdentifiableCookie> j = new HashSet();
 
-    public class SetCookieCacheIterator implements Iterator<n> {
+    public class SetCookieCacheIterator implements Iterator<Cookie> {
         public Iterator<IdentifiableCookie> j;
 
         public SetCookieCacheIterator(SetCookieCache setCookieCache) {
@@ -24,7 +24,7 @@ public class SetCookieCache implements CookieCache {
         }
 
         @Override // java.util.Iterator
-        public n next() {
+        public Cookie next() {
             return this.j.next().a;
         }
 
@@ -35,9 +35,9 @@ public class SetCookieCache implements CookieCache {
     }
 
     @Override // com.franmontiel.persistentcookiejar.cache.CookieCache
-    public void addAll(Collection<n> collection) {
+    public void addAll(Collection<Cookie> collection) {
         ArrayList<IdentifiableCookie> arrayList = new ArrayList(collection.size());
-        Iterator<n> it = collection.iterator();
+        Iterator<Cookie> it = collection.iterator();
         while (it.hasNext()) {
             arrayList.add(new IdentifiableCookie(it.next()));
         }
@@ -48,7 +48,7 @@ public class SetCookieCache implements CookieCache {
     }
 
     @Override // java.lang.Iterable
-    public Iterator<n> iterator() {
+    public Iterator<Cookie> iterator() {
         return new SetCookieCacheIterator(this);
     }
 }

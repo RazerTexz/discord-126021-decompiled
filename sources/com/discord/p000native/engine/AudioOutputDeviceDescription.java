@@ -1,8 +1,8 @@
 package com.discord.p000native.engine;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.models.domain.ModelAuditLogEntry;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: AudioOutputDeviceDescription.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -11,8 +11,8 @@ public final /* data */ class AudioOutputDeviceDescription {
     private final String name;
 
     public AudioOutputDeviceDescription(String str, String str2) {
-        m.checkNotNullParameter(str, ModelAuditLogEntry.CHANGE_KEY_NAME);
-        m.checkNotNullParameter(str2, "guid");
+        Intrinsics3.checkNotNullParameter(str, ModelAuditLogEntry.CHANGE_KEY_NAME);
+        Intrinsics3.checkNotNullParameter(str2, "guid");
         this.name = str;
         this.guid = str2;
     }
@@ -28,8 +28,8 @@ public final /* data */ class AudioOutputDeviceDescription {
     }
 
     public final AudioOutputDeviceDescription copy(String name, String guid) {
-        m.checkNotNullParameter(name, ModelAuditLogEntry.CHANGE_KEY_NAME);
-        m.checkNotNullParameter(guid, "guid");
+        Intrinsics3.checkNotNullParameter(name, ModelAuditLogEntry.CHANGE_KEY_NAME);
+        Intrinsics3.checkNotNullParameter(guid, "guid");
         return new AudioOutputDeviceDescription(name, guid);
     }
 
@@ -41,7 +41,7 @@ public final /* data */ class AudioOutputDeviceDescription {
             return false;
         }
         AudioOutputDeviceDescription audioOutputDeviceDescription = (AudioOutputDeviceDescription) other;
-        return m.areEqual(this.name, audioOutputDeviceDescription.name) && m.areEqual(this.guid, audioOutputDeviceDescription.guid);
+        return Intrinsics3.areEqual(this.name, audioOutputDeviceDescription.name) && Intrinsics3.areEqual(this.guid, audioOutputDeviceDescription.guid);
     }
 
     /* JADX INFO: renamed from: component2, reason: from getter */
@@ -70,9 +70,9 @@ public final /* data */ class AudioOutputDeviceDescription {
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("AudioOutputDeviceDescription(name=");
+        StringBuilder sbU = outline.U("AudioOutputDeviceDescription(name=");
         sbU.append(this.name);
         sbU.append(", guid=");
-        return a.J(sbU, this.guid, ")");
+        return outline.J(sbU, this.guid, ")");
     }
 }

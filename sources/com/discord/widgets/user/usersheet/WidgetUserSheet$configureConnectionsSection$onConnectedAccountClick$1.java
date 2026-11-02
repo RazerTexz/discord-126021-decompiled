@@ -2,16 +2,16 @@ package com.discord.widgets.user.usersheet;
 
 import android.os.Bundle;
 import androidx.fragment.app.FragmentManager;
-import b.a.a.i;
-import d0.z.d.m;
-import d0.z.d.o;
+import b.a.a.ConnectedAccountActionsDialog;
+import d0.z.d.Intrinsics3;
+import d0.z.d.Lambda;
 import java.util.Objects;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function3;
 
 /* JADX INFO: compiled from: WidgetUserSheet.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final class WidgetUserSheet$configureConnectionsSection$onConnectedAccountClick$1 extends o implements Function3<String, Integer, String, Unit> {
+public final class WidgetUserSheet$configureConnectionsSection$onConnectedAccountClick$1 extends Lambda implements Function3<String, Integer, String, Unit> {
     public final /* synthetic */ WidgetUserSheet this$0;
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -27,19 +27,19 @@ public final class WidgetUserSheet$configureConnectionsSection$onConnectedAccoun
     }
 
     public final void invoke(String str, int i, String str2) {
-        m.checkNotNullParameter(str, "username");
-        i.Companion companion = i.INSTANCE;
+        Intrinsics3.checkNotNullParameter(str, "username");
+        ConnectedAccountActionsDialog.Companion companion = ConnectedAccountActionsDialog.INSTANCE;
         FragmentManager parentFragmentManager = this.this$0.getParentFragmentManager();
-        m.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
+        Intrinsics3.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
         Objects.requireNonNull(companion);
-        m.checkNotNullParameter(parentFragmentManager, "fragmentManager");
-        m.checkNotNullParameter(str, "username");
-        i iVar = new i();
+        Intrinsics3.checkNotNullParameter(parentFragmentManager, "fragmentManager");
+        Intrinsics3.checkNotNullParameter(str, "username");
+        ConnectedAccountActionsDialog connectedAccountActionsDialog = new ConnectedAccountActionsDialog();
         Bundle bundle = new Bundle();
         bundle.putString("ARG_USERNAME", str);
         bundle.putInt("ARG_THEMED_PLATFORM_IMAGE_RES", i);
         bundle.putString("ARG_PROFILE_URL", str2);
-        iVar.setArguments(bundle);
-        iVar.show(parentFragmentManager, i.class.getName());
+        connectedAccountActionsDialog.setArguments(bundle);
+        connectedAccountActionsDialog.show(parentFragmentManager, ConnectedAccountActionsDialog.class.getName());
     }
 }

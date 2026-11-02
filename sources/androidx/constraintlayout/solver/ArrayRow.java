@@ -1,6 +1,6 @@
 package androidx.constraintlayout.solver;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import java.util.ArrayList;
 
 /* JADX INFO: loaded from: classes.dex */
@@ -385,13 +385,13 @@ public class ArrayRow implements LinearSystem.Row {
         if (this.variable == null) {
             string = "0";
         } else {
-            StringBuilder sbU = a.U("");
+            StringBuilder sbU = outline.U("");
             sbU.append(this.variable);
             string = sbU.toString();
         }
-        String strW = a.w(string, " = ");
+        String strW = outline.w(string, " = ");
         if (this.constantValue != 0.0f) {
-            StringBuilder sbU2 = a.U(strW);
+            StringBuilder sbU2 = outline.U(strW);
             sbU2.append(this.constantValue);
             strW = sbU2.toString();
             z2 = true;
@@ -407,21 +407,21 @@ public class ArrayRow implements LinearSystem.Row {
                     String string2 = variable.toString();
                     if (z2) {
                         if (variableValue > 0.0f) {
-                            strW = a.w(strW, " + ");
+                            strW = outline.w(strW, " + ");
                         } else {
-                            strW = a.w(strW, " - ");
+                            strW = outline.w(strW, " - ");
                             variableValue *= -1.0f;
                         }
                     } else if (variableValue < 0.0f) {
-                        strW = a.w(strW, "- ");
+                        strW = outline.w(strW, "- ");
                         variableValue *= -1.0f;
                     }
-                    strW = variableValue == 1.0f ? a.w(strW, string2) : strW + variableValue + " " + string2;
+                    strW = variableValue == 1.0f ? outline.w(strW, string2) : strW + variableValue + " " + string2;
                     z2 = true;
                 }
             }
         }
-        return !z2 ? a.w(strW, "0.0") : strW;
+        return !z2 ? outline.w(strW, "0.0") : strW;
     }
 
     public String toString() {

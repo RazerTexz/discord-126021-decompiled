@@ -4,7 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import b.a.m.a.i;
 import b.a.m.a.j;
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.api.voice.state.VoiceState;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -61,7 +61,7 @@ public class ModelCall implements Model {
         }
 
         public String toString() {
-            StringBuilder sbU = a.U("ModelCall.Ringable(ringable=");
+            StringBuilder sbU = outline.U("ModelCall.Ringable(ringable=");
             sbU.append(isRingable());
             sbU.append(")");
             return sbU.toString();
@@ -167,7 +167,7 @@ public class ModelCall implements Model {
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("ModelCall(channelId=");
+        StringBuilder sbU = outline.U("ModelCall(channelId=");
         sbU.append(getChannelId());
         sbU.append(", messageId=");
         sbU.append(getMessageId());

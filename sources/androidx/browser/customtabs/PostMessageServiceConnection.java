@@ -11,8 +11,8 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
-import x.a.a.a;
-import x.a.a.c;
+import x.a.a.ICustomTabsCallback;
+import x.a.a.IPostMessageService;
 
 /* JADX INFO: loaded from: classes.dex */
 public abstract class PostMessageServiceConnection implements PostMessageBackend, ServiceConnection {
@@ -23,8 +23,8 @@ public abstract class PostMessageServiceConnection implements PostMessageBackend
     private String mPackageName;
 
     @Nullable
-    private c mService;
-    private final a mSessionBinder;
+    private IPostMessageService mService;
+    private final ICustomTabsCallback mSessionBinder;
     private final Object mLock = new Object();
 
     public PostMessageServiceConnection(@NonNull CustomTabsSessionToken customTabsSessionToken) {
@@ -32,7 +32,7 @@ public abstract class PostMessageServiceConnection implements PostMessageBackend
         if (callbackBinder == null) {
             throw new IllegalArgumentException("Provided session must have binder.");
         }
-        this.mSessionBinder = a.AbstractBinderC0650a.asInterface(callbackBinder);
+        this.mSessionBinder = ICustomTabsCallback.a.asInterface(callbackBinder);
     }
 
     public boolean bindSessionToPostMessageService(@NonNull Context context, @NonNull String str) {
@@ -108,7 +108,7 @@ public abstract class PostMessageServiceConnection implements PostMessageBackend
 
     @Override // android.content.ServiceConnection
     public final void onServiceConnected(@NonNull ComponentName componentName, @NonNull IBinder iBinder) {
-        this.mService = c.a.asInterface(iBinder);
+        this.mService = IPostMessageService.a.asInterface(iBinder);
         onPostMessageServiceConnected();
     }
 

@@ -1,11 +1,11 @@
 package com.discord.widgets.chat.list.entries;
 
 import a0.a.a.b;
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.api.channel.Channel;
 import com.discord.models.guild.Guild;
 import com.discord.stores.StoreThreadDraft;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: ThreadDraftFormEntry.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -23,8 +23,8 @@ public final /* data */ class ThreadDraftFormEntry extends ChatListEntry {
     private final int type;
 
     public ThreadDraftFormEntry(Channel channel, Long l, long j, Guild guild, Integer num, StoreThreadDraft.ThreadDraftState threadDraftState, boolean z2, boolean z3, boolean z4) {
-        m.checkNotNullParameter(channel, "parentChannel");
-        m.checkNotNullParameter(threadDraftState, "threadDraftState");
+        Intrinsics3.checkNotNullParameter(channel, "parentChannel");
+        Intrinsics3.checkNotNullParameter(threadDraftState, "threadDraftState");
         this.parentChannel = channel;
         this.parentMessageId = l;
         this.guildId = j;
@@ -35,7 +35,7 @@ public final /* data */ class ThreadDraftFormEntry extends ChatListEntry {
         this.canSeePrivateThreadOption = z3;
         this.canCreatePublicThread = z4;
         this.type = 37;
-        StringBuilder sbU = a.U("37");
+        StringBuilder sbU = outline.U("37");
         sbU.append(channel.getId());
         sbU.append(l);
         this.key = sbU.toString();
@@ -46,8 +46,8 @@ public final /* data */ class ThreadDraftFormEntry extends ChatListEntry {
     }
 
     public final ThreadDraftFormEntry copy(Channel parentChannel, Long parentMessageId, long guildId, Guild guild, Integer defaultAutoArchiveDuration, StoreThreadDraft.ThreadDraftState threadDraftState, boolean canCreatePrivateThread, boolean canSeePrivateThreadOption, boolean canCreatePublicThread) {
-        m.checkNotNullParameter(parentChannel, "parentChannel");
-        m.checkNotNullParameter(threadDraftState, "threadDraftState");
+        Intrinsics3.checkNotNullParameter(parentChannel, "parentChannel");
+        Intrinsics3.checkNotNullParameter(threadDraftState, "threadDraftState");
         return new ThreadDraftFormEntry(parentChannel, parentMessageId, guildId, guild, defaultAutoArchiveDuration, threadDraftState, canCreatePrivateThread, canSeePrivateThreadOption, canCreatePublicThread);
     }
 
@@ -59,7 +59,7 @@ public final /* data */ class ThreadDraftFormEntry extends ChatListEntry {
             return false;
         }
         ThreadDraftFormEntry threadDraftFormEntry = (ThreadDraftFormEntry) other;
-        return m.areEqual(this.parentChannel, threadDraftFormEntry.parentChannel) && m.areEqual(this.parentMessageId, threadDraftFormEntry.parentMessageId) && this.guildId == threadDraftFormEntry.guildId && m.areEqual(this.guild, threadDraftFormEntry.guild) && m.areEqual(this.defaultAutoArchiveDuration, threadDraftFormEntry.defaultAutoArchiveDuration) && m.areEqual(this.threadDraftState, threadDraftFormEntry.threadDraftState) && this.canCreatePrivateThread == threadDraftFormEntry.canCreatePrivateThread && this.canSeePrivateThreadOption == threadDraftFormEntry.canSeePrivateThreadOption && this.canCreatePublicThread == threadDraftFormEntry.canCreatePublicThread;
+        return Intrinsics3.areEqual(this.parentChannel, threadDraftFormEntry.parentChannel) && Intrinsics3.areEqual(this.parentMessageId, threadDraftFormEntry.parentMessageId) && this.guildId == threadDraftFormEntry.guildId && Intrinsics3.areEqual(this.guild, threadDraftFormEntry.guild) && Intrinsics3.areEqual(this.defaultAutoArchiveDuration, threadDraftFormEntry.defaultAutoArchiveDuration) && Intrinsics3.areEqual(this.threadDraftState, threadDraftFormEntry.threadDraftState) && this.canCreatePrivateThread == threadDraftFormEntry.canCreatePrivateThread && this.canSeePrivateThreadOption == threadDraftFormEntry.canSeePrivateThreadOption && this.canCreatePublicThread == threadDraftFormEntry.canCreatePublicThread;
     }
 
     /* JADX INFO: renamed from: component7, reason: from getter */
@@ -194,7 +194,7 @@ public final /* data */ class ThreadDraftFormEntry extends ChatListEntry {
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("ThreadDraftFormEntry(parentChannel=");
+        StringBuilder sbU = outline.U("ThreadDraftFormEntry(parentChannel=");
         sbU.append(this.parentChannel);
         sbU.append(", parentMessageId=");
         sbU.append(this.parentMessageId);
@@ -211,6 +211,6 @@ public final /* data */ class ThreadDraftFormEntry extends ChatListEntry {
         sbU.append(", canSeePrivateThreadOption=");
         sbU.append(this.canSeePrivateThreadOption);
         sbU.append(", canCreatePublicThread=");
-        return a.O(sbU, this.canCreatePublicThread, ")");
+        return outline.O(sbU, this.canCreatePublicThread, ")");
     }
 }

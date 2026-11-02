@@ -1,8 +1,8 @@
 package com.discord.api.connectedaccounts;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.models.domain.ModelAuditLogEntry;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: ConnectedAccountIntegration.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -20,7 +20,7 @@ public final /* data */ class ConnectedAccountIntegration {
             return false;
         }
         ConnectedAccountIntegration connectedAccountIntegration = (ConnectedAccountIntegration) other;
-        return m.areEqual(this.id, connectedAccountIntegration.id) && m.areEqual(this.type, connectedAccountIntegration.type) && m.areEqual(this.account, connectedAccountIntegration.account) && m.areEqual(this.guild, connectedAccountIntegration.guild);
+        return Intrinsics3.areEqual(this.id, connectedAccountIntegration.id) && Intrinsics3.areEqual(this.type, connectedAccountIntegration.type) && Intrinsics3.areEqual(this.account, connectedAccountIntegration.account) && Intrinsics3.areEqual(this.guild, connectedAccountIntegration.guild);
     }
 
     /* JADX INFO: renamed from: a, reason: from getter */
@@ -55,7 +55,7 @@ public final /* data */ class ConnectedAccountIntegration {
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("ConnectedAccountIntegration(id=");
+        StringBuilder sbU = outline.U("ConnectedAccountIntegration(id=");
         sbU.append(this.id);
         sbU.append(", type=");
         sbU.append(this.type);

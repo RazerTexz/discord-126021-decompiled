@@ -1,6 +1,8 @@
 package b.i.c.m.d.k;
 
 import android.util.Log;
+import b.i.c.m.d.Logger3;
+import b.i.c.m.d.o.CrashlyticsReportPersistence7;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -11,12 +13,12 @@ import java.util.concurrent.Callable;
 /* JADX INFO: compiled from: CrashlyticsController.java */
 /* JADX INFO: loaded from: classes3.dex */
 public class p implements Callable<Void> {
-    public final /* synthetic */ f1 j;
+    public final /* synthetic */ UserMetadata j;
     public final /* synthetic */ x k;
 
-    public p(x xVar, f1 f1Var) {
+    public p(x xVar, UserMetadata userMetadata) {
         this.k = xVar;
-        this.j = f1Var;
+        this.j = userMetadata;
     }
 
     @Override // java.util.concurrent.Callable
@@ -25,45 +27,45 @@ public class p implements Callable<Void> {
         String strI = this.k.i();
         BufferedWriter bufferedWriter2 = null;
         if (strI == null) {
-            b.i.c.m.d.b.a.b("Tried to cache user data while no session was open.");
+            Logger3.a.b("Tried to cache user data while no session was open.");
         } else {
-            d1 d1Var = this.k.A;
+            SessionReportingCoordinator3 sessionReportingCoordinator3 = this.k.A;
             String strReplaceAll = strI.replaceAll("-", "");
-            String str = d1Var.e.a;
+            String str = sessionReportingCoordinator3.e.a;
             if (str == null) {
-                b.i.c.m.d.b.a.b("Could not persist user ID; no user ID available");
+                Logger3.a.b("Could not persist user ID; no user ID available");
             } else {
                 try {
-                    b.i.c.m.d.o.g.l(new File(d1Var.f1680b.h(strReplaceAll), "user"), str);
+                    CrashlyticsReportPersistence7.l(new File(sessionReportingCoordinator3.f1680b.h(strReplaceAll), "user"), str);
                 } catch (IOException e) {
-                    b.i.c.m.d.b.a.c("Could not persist user ID for session " + strReplaceAll, e);
+                    Logger3.a.c("Could not persist user ID for session " + strReplaceAll, e);
                 }
             }
-            z0 z0Var = new z0(this.k.l());
-            f1 f1Var = this.j;
-            File fileB = z0Var.b(strI);
+            MetaDataStore2 metaDataStore2 = new MetaDataStore2(this.k.l());
+            UserMetadata userMetadata = this.j;
+            File fileB = metaDataStore2.b(strI);
             try {
-                String string = new y0(f1Var).toString();
-                bufferedWriter = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(fileB), z0.a));
+                String string = new MetaDataStore(userMetadata).toString();
+                bufferedWriter = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(fileB), MetaDataStore2.a));
                 try {
                     bufferedWriter.write(string);
                     bufferedWriter.flush();
                 } catch (Exception e2) {
                     e = e2;
                     try {
-                        if (b.i.c.m.d.b.a.a(6)) {
+                        if (Logger3.a.a(6)) {
                             Log.e("FirebaseCrashlytics", "Error serializing user metadata.", e);
                         }
                     } catch (Throwable th) {
                         th = th;
                         bufferedWriter2 = bufferedWriter;
                         bufferedWriter = bufferedWriter2;
-                        h.c(bufferedWriter, "Failed to close user metadata file.");
+                        CommonUtils.c(bufferedWriter, "Failed to close user metadata file.");
                         throw th;
                     }
                 } catch (Throwable th2) {
                     th = th2;
-                    h.c(bufferedWriter, "Failed to close user metadata file.");
+                    CommonUtils.c(bufferedWriter, "Failed to close user metadata file.");
                     throw th;
                 }
             } catch (Exception e3) {
@@ -72,10 +74,10 @@ public class p implements Callable<Void> {
             } catch (Throwable th3) {
                 th = th3;
                 bufferedWriter = bufferedWriter2;
-                h.c(bufferedWriter, "Failed to close user metadata file.");
+                CommonUtils.c(bufferedWriter, "Failed to close user metadata file.");
                 throw th;
             }
-            h.c(bufferedWriter, "Failed to close user metadata file.");
+            CommonUtils.c(bufferedWriter, "Failed to close user metadata file.");
         }
         return null;
     }

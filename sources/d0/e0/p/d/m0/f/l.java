@@ -1,5 +1,14 @@
 package d0.e0.p.d.m0.f;
 
+import d0.e0.p.d.m0.i.AbstractMessageLite;
+import d0.e0.p.d.m0.i.AbstractParser;
+import d0.e0.p.d.m0.i.ByteString3;
+import d0.e0.p.d.m0.i.CodedInputStream;
+import d0.e0.p.d.m0.i.ExtensionRegistryLite;
+import d0.e0.p.d.m0.i.GeneratedMessageLite;
+import d0.e0.p.d.m0.i.MessageLite;
+import d0.e0.p.d.m0.i.MessageLiteOrBuilder;
+import d0.e0.p.d.m0.i.Parser2;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -11,7 +20,7 @@ import kotlin.reflect.jvm.internal.impl.protobuf.UninitializedMessageException;
 
 /* JADX INFO: compiled from: ProtoBuf.java */
 /* JADX INFO: loaded from: classes3.dex */
-public final class l extends d0.e0.p.d.m0.i.g.d<l> implements d0.e0.p.d.m0.i.o {
+public final class l extends GeneratedMessageLite.d<l> implements MessageLiteOrBuilder {
     private int bitField0_;
     private List<i> function_;
     public static final l j;
@@ -20,25 +29,25 @@ public final class l extends d0.e0.p.d.m0.i.g.d<l> implements d0.e0.p.d.m0.i.o {
     private List<n> property_;
     private List<r> typeAlias_;
     private t typeTable_;
-    private final d0.e0.p.d.m0.i.c unknownFields;
+    private final ByteString3 unknownFields;
     private w versionRequirementTable_;
-    public static d0.e0.p.d.m0.i.p<l> k = new a();
+    public static Parser2<l> k = new a();
 
     /* JADX INFO: compiled from: ProtoBuf.java */
-    public final class a extends d0.e0.p.d.m0.i.b<l> {
-        @Override // d0.e0.p.d.m0.i.p
-        public /* bridge */ /* synthetic */ Object parsePartialFrom(d0.e0.p.d.m0.i.d dVar, d0.e0.p.d.m0.i.e eVar) throws InvalidProtocolBufferException {
-            return parsePartialFrom(dVar, eVar);
+    public final class a extends AbstractParser<l> {
+        @Override // d0.e0.p.d.m0.i.Parser2
+        public /* bridge */ /* synthetic */ Object parsePartialFrom(CodedInputStream codedInputStream, ExtensionRegistryLite extensionRegistryLite) throws InvalidProtocolBufferException {
+            return parsePartialFrom(codedInputStream, extensionRegistryLite);
         }
 
-        @Override // d0.e0.p.d.m0.i.p
-        public l parsePartialFrom(d0.e0.p.d.m0.i.d dVar, d0.e0.p.d.m0.i.e eVar) throws InvalidProtocolBufferException {
-            return new l(dVar, eVar, null);
+        @Override // d0.e0.p.d.m0.i.Parser2
+        public l parsePartialFrom(CodedInputStream codedInputStream, ExtensionRegistryLite extensionRegistryLite) throws InvalidProtocolBufferException {
+            return new l(codedInputStream, extensionRegistryLite, null);
         }
     }
 
     /* JADX INFO: compiled from: ProtoBuf.java */
-    public final class b extends d0.e0.p.d.m0.i.g.c<l, b> implements d0.e0.p.d.m0.i.o {
+    public final class b extends GeneratedMessageLite.c<l, b> implements MessageLiteOrBuilder {
         public int m;
         public List<i> n = Collections.emptyList();
         public List<n> o = Collections.emptyList();
@@ -46,8 +55,8 @@ public final class l extends d0.e0.p.d.m0.i.g.d<l> implements d0.e0.p.d.m0.i.o {
         public t q = t.getDefaultInstance();
         public w r = w.getDefaultInstance();
 
-        @Override // d0.e0.p.d.m0.i.n.a
-        public /* bridge */ /* synthetic */ d0.e0.p.d.m0.i.n build() {
+        @Override // d0.e0.p.d.m0.i.MessageLite.a
+        public /* bridge */ /* synthetic */ MessageLite build() {
             return build();
         }
 
@@ -79,9 +88,9 @@ public final class l extends d0.e0.p.d.m0.i.g.d<l> implements d0.e0.p.d.m0.i.o {
             return lVar;
         }
 
-        @Override // d0.e0.p.d.m0.i.a.AbstractC0556a, d0.e0.p.d.m0.i.n.a
-        public /* bridge */ /* synthetic */ d0.e0.p.d.m0.i.a.AbstractC0556a mergeFrom(d0.e0.p.d.m0.i.d dVar, d0.e0.p.d.m0.i.e eVar) throws IOException {
-            return mergeFrom(dVar, eVar);
+        @Override // d0.e0.p.d.m0.i.AbstractMessageLite.a, d0.e0.p.d.m0.i.MessageLite.a
+        public /* bridge */ /* synthetic */ AbstractMessageLite.a mergeFrom(CodedInputStream codedInputStream, ExtensionRegistryLite extensionRegistryLite) throws IOException {
+            return mergeFrom(codedInputStream, extensionRegistryLite);
         }
 
         public b mergeTypeTable(t tVar) {
@@ -104,13 +113,13 @@ public final class l extends d0.e0.p.d.m0.i.g.d<l> implements d0.e0.p.d.m0.i.o {
             return this;
         }
 
-        @Override // d0.e0.p.d.m0.i.g.b
+        @Override // d0.e0.p.d.m0.i.GeneratedMessageLite.b
         /* JADX INFO: renamed from: clone */
         public /* bridge */ /* synthetic */ Object mo88clone() throws CloneNotSupportedException {
             return clone();
         }
 
-        @Override // d0.e0.p.d.m0.i.n.a
+        @Override // d0.e0.p.d.m0.i.MessageLite.a
         public l build() {
             l lVarBuildPartial = buildPartial();
             if (lVarBuildPartial.isInitialized()) {
@@ -119,24 +128,24 @@ public final class l extends d0.e0.p.d.m0.i.g.d<l> implements d0.e0.p.d.m0.i.o {
             throw new UninitializedMessageException(lVarBuildPartial);
         }
 
-        @Override // d0.e0.p.d.m0.i.g.b
-        public /* bridge */ /* synthetic */ d0.e0.p.d.m0.i.g.b clone() {
+        @Override // d0.e0.p.d.m0.i.GeneratedMessageLite.b
+        public /* bridge */ /* synthetic */ GeneratedMessageLite.b clone() {
             return clone();
         }
 
-        @Override // d0.e0.p.d.m0.i.g.b
-        public /* bridge */ /* synthetic */ d0.e0.p.d.m0.i.g.b mergeFrom(d0.e0.p.d.m0.i.g gVar) {
-            return mergeFrom((l) gVar);
+        @Override // d0.e0.p.d.m0.i.GeneratedMessageLite.b
+        public /* bridge */ /* synthetic */ GeneratedMessageLite.b mergeFrom(GeneratedMessageLite generatedMessageLite) {
+            return mergeFrom((l) generatedMessageLite);
         }
 
-        @Override // d0.e0.p.d.m0.i.g.b
+        @Override // d0.e0.p.d.m0.i.GeneratedMessageLite.b
         public b clone() {
             return new b().mergeFrom(buildPartial());
         }
 
-        @Override // d0.e0.p.d.m0.i.a.AbstractC0556a, d0.e0.p.d.m0.i.n.a
-        public /* bridge */ /* synthetic */ d0.e0.p.d.m0.i.n.a mergeFrom(d0.e0.p.d.m0.i.d dVar, d0.e0.p.d.m0.i.e eVar) throws IOException {
-            return mergeFrom(dVar, eVar);
+        @Override // d0.e0.p.d.m0.i.AbstractMessageLite.a, d0.e0.p.d.m0.i.MessageLite.a
+        public /* bridge */ /* synthetic */ MessageLite.a mergeFrom(CodedInputStream codedInputStream, ExtensionRegistryLite extensionRegistryLite) throws IOException {
+            return mergeFrom(codedInputStream, extensionRegistryLite);
         }
 
         public b mergeFrom(l lVar) {
@@ -191,12 +200,12 @@ public final class l extends d0.e0.p.d.m0.i.g.d<l> implements d0.e0.p.d.m0.i.o {
         }
 
         /* JADX WARN: Code duplicated, block: B:15:0x001d  */
-        @Override // d0.e0.p.d.m0.i.a.AbstractC0556a, d0.e0.p.d.m0.i.n.a
-        public b mergeFrom(d0.e0.p.d.m0.i.d dVar, d0.e0.p.d.m0.i.e eVar) throws Throwable {
+        @Override // d0.e0.p.d.m0.i.AbstractMessageLite.a, d0.e0.p.d.m0.i.MessageLite.a
+        public b mergeFrom(CodedInputStream codedInputStream, ExtensionRegistryLite extensionRegistryLite) throws Throwable {
             l lVar = null;
             try {
                 try {
-                    l partialFrom = l.k.parsePartialFrom(dVar, eVar);
+                    l partialFrom = l.k.parsePartialFrom(codedInputStream, extensionRegistryLite);
                     if (partialFrom != null) {
                         mergeFrom(partialFrom);
                     }
@@ -230,7 +239,7 @@ public final class l extends d0.e0.p.d.m0.i.g.d<l> implements d0.e0.p.d.m0.i.o {
         lVar.r();
     }
 
-    public l(d0.e0.p.d.m0.i.g.c cVar, d0.e0.p.d.m0.f.a aVar) {
+    public l(GeneratedMessageLite.c cVar, d0.e0.p.d.m0.f.a aVar) {
         super(cVar);
         this.memoizedIsInitialized = (byte) -1;
         this.memoizedSerializedSize = -1;
@@ -241,8 +250,8 @@ public final class l extends d0.e0.p.d.m0.i.g.d<l> implements d0.e0.p.d.m0.i.o {
         return j;
     }
 
-    @Override // d0.e0.p.d.m0.i.o
-    public /* bridge */ /* synthetic */ d0.e0.p.d.m0.i.n getDefaultInstanceForType() {
+    @Override // d0.e0.p.d.m0.i.MessageLiteOrBuilder
+    public /* bridge */ /* synthetic */ MessageLite getDefaultInstanceForType() {
         return getDefaultInstanceForType();
     }
 
@@ -270,7 +279,7 @@ public final class l extends d0.e0.p.d.m0.i.g.d<l> implements d0.e0.p.d.m0.i.o {
         return this.property_;
     }
 
-    @Override // d0.e0.p.d.m0.i.n
+    @Override // d0.e0.p.d.m0.i.MessageLite
     public int getSerializedSize() {
         int i = this.memoizedSerializedSize;
         if (i != -1) {
@@ -334,7 +343,7 @@ public final class l extends d0.e0.p.d.m0.i.g.d<l> implements d0.e0.p.d.m0.i.o {
         return list;
     }
 
-    @Override // d0.e0.p.d.m0.i.o
+    @Override // d0.e0.p.d.m0.i.MessageLiteOrBuilder
     public final boolean isInitialized() {
         byte b2 = this.memoizedIsInitialized;
         if (b2 == 1) {
@@ -400,8 +409,8 @@ public final class l extends d0.e0.p.d.m0.i.g.d<l> implements d0.e0.p.d.m0.i.o {
         return newBuilder().mergeFrom(lVar);
     }
 
-    @Override // d0.e0.p.d.m0.i.n
-    public /* bridge */ /* synthetic */ d0.e0.p.d.m0.i.n.a newBuilderForType() {
+    @Override // d0.e0.p.d.m0.i.MessageLite
+    public /* bridge */ /* synthetic */ MessageLite.a newBuilderForType() {
         return newBuilderForType();
     }
 
@@ -415,11 +424,11 @@ public final class l extends d0.e0.p.d.m0.i.g.d<l> implements d0.e0.p.d.m0.i.o {
         return i;
     }
 
-    public static l parseFrom(InputStream inputStream, d0.e0.p.d.m0.i.e eVar) throws IOException {
-        return (l) ((d0.e0.p.d.m0.i.b) k).m90parseFrom(inputStream, eVar);
+    public static l parseFrom(InputStream inputStream, ExtensionRegistryLite extensionRegistryLite) throws IOException {
+        return (l) ((AbstractParser) k).m90parseFrom(inputStream, extensionRegistryLite);
     }
 
-    public static /* synthetic */ d0.e0.p.d.m0.i.c q(l lVar) {
+    public static /* synthetic */ ByteString3 q(l lVar) {
         return lVar.unknownFields;
     }
 
@@ -431,15 +440,15 @@ public final class l extends d0.e0.p.d.m0.i.g.d<l> implements d0.e0.p.d.m0.i.o {
         this.versionRequirementTable_ = w.getDefaultInstance();
     }
 
-    @Override // d0.e0.p.d.m0.i.n
-    public /* bridge */ /* synthetic */ d0.e0.p.d.m0.i.n.a toBuilder() {
+    @Override // d0.e0.p.d.m0.i.MessageLite
+    public /* bridge */ /* synthetic */ MessageLite.a toBuilder() {
         return toBuilder();
     }
 
-    @Override // d0.e0.p.d.m0.i.n
+    @Override // d0.e0.p.d.m0.i.MessageLite
     public void writeTo(CodedOutputStream codedOutputStream) throws IOException {
         getSerializedSize();
-        d0.e0.p.d.m0.i.g.d<MessageType>.a aVarE = e();
+        GeneratedMessageLite.d<MessageType>.a aVarE = e();
         for (int i = 0; i < this.function_.size(); i++) {
             codedOutputStream.writeMessage(3, this.function_.get(i));
         }
@@ -459,7 +468,7 @@ public final class l extends d0.e0.p.d.m0.i.g.d<l> implements d0.e0.p.d.m0.i.o {
         codedOutputStream.writeRawBytes(this.unknownFields);
     }
 
-    @Override // d0.e0.p.d.m0.i.o
+    @Override // d0.e0.p.d.m0.i.MessageLiteOrBuilder
     public l getDefaultInstanceForType() {
         return j;
     }
@@ -468,12 +477,12 @@ public final class l extends d0.e0.p.d.m0.i.g.d<l> implements d0.e0.p.d.m0.i.o {
         return new b();
     }
 
-    @Override // d0.e0.p.d.m0.i.n
+    @Override // d0.e0.p.d.m0.i.MessageLite
     public b newBuilderForType() {
         return newBuilder();
     }
 
-    @Override // d0.e0.p.d.m0.i.n
+    @Override // d0.e0.p.d.m0.i.MessageLite
     public b toBuilder() {
         return newBuilder(this);
     }
@@ -481,14 +490,14 @@ public final class l extends d0.e0.p.d.m0.i.g.d<l> implements d0.e0.p.d.m0.i.o {
     public l() {
         this.memoizedIsInitialized = (byte) -1;
         this.memoizedSerializedSize = -1;
-        this.unknownFields = d0.e0.p.d.m0.i.c.j;
+        this.unknownFields = ByteString3.j;
     }
 
-    public l(d0.e0.p.d.m0.i.d dVar, d0.e0.p.d.m0.i.e eVar, d0.e0.p.d.m0.f.a aVar) throws InvalidProtocolBufferException {
+    public l(CodedInputStream codedInputStream, ExtensionRegistryLite extensionRegistryLite, d0.e0.p.d.m0.f.a aVar) throws InvalidProtocolBufferException {
         this.memoizedIsInitialized = (byte) -1;
         this.memoizedSerializedSize = -1;
         r();
-        d0.e0.p.d.m0.i.c.b bVarNewOutput = d0.e0.p.d.m0.i.c.newOutput();
+        ByteString3.b bVarNewOutput = ByteString3.newOutput();
         CodedOutputStream codedOutputStreamNewInstance = CodedOutputStream.newInstance(bVarNewOutput, 1);
         boolean z2 = false;
         int i = 0;
@@ -496,24 +505,24 @@ public final class l extends d0.e0.p.d.m0.i.g.d<l> implements d0.e0.p.d.m0.i.o {
             try {
                 try {
                     try {
-                        int tag = dVar.readTag();
+                        int tag = codedInputStream.readTag();
                         if (tag != 0) {
                             if (tag == 26) {
                                 if ((i & 1) != 1) {
                                     this.function_ = new ArrayList();
                                     i |= 1;
                                 }
-                                this.function_.add((i) dVar.readMessage(i.k, eVar));
+                                this.function_.add((i) codedInputStream.readMessage(i.k, extensionRegistryLite));
                             } else if (tag == 34) {
                                 if ((i & 2) != 2) {
                                     this.property_ = new ArrayList();
                                     i |= 2;
                                 }
-                                this.property_.add((n) dVar.readMessage(n.k, eVar));
+                                this.property_.add((n) codedInputStream.readMessage(n.k, extensionRegistryLite));
                             } else if (tag != 42) {
                                 if (tag == 242) {
                                     t.b builder = (this.bitField0_ & 1) == 1 ? this.typeTable_.toBuilder() : null;
-                                    t tVar = (t) dVar.readMessage(t.k, eVar);
+                                    t tVar = (t) codedInputStream.readMessage(t.k, extensionRegistryLite);
                                     this.typeTable_ = tVar;
                                     if (builder != null) {
                                         builder.mergeFrom(tVar);
@@ -521,11 +530,11 @@ public final class l extends d0.e0.p.d.m0.i.g.d<l> implements d0.e0.p.d.m0.i.o {
                                     }
                                     this.bitField0_ |= 1;
                                 } else if (tag != 258) {
-                                    if (!f(dVar, codedOutputStreamNewInstance, eVar, tag)) {
+                                    if (!f(codedInputStream, codedOutputStreamNewInstance, extensionRegistryLite, tag)) {
                                     }
                                 } else {
                                     w.b builder2 = (this.bitField0_ & 2) == 2 ? this.versionRequirementTable_.toBuilder() : null;
-                                    w wVar = (w) dVar.readMessage(w.k, eVar);
+                                    w wVar = (w) codedInputStream.readMessage(w.k, extensionRegistryLite);
                                     this.versionRequirementTable_ = wVar;
                                     if (builder2 != null) {
                                         builder2.mergeFrom(wVar);
@@ -538,7 +547,7 @@ public final class l extends d0.e0.p.d.m0.i.g.d<l> implements d0.e0.p.d.m0.i.o {
                                     this.typeAlias_ = new ArrayList();
                                     i |= 4;
                                 }
-                                this.typeAlias_.add((r) dVar.readMessage(r.k, eVar));
+                                this.typeAlias_.add((r) codedInputStream.readMessage(r.k, extensionRegistryLite));
                             }
                         }
                         z2 = true;

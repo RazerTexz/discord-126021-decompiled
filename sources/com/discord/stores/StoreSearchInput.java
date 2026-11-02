@@ -8,8 +8,8 @@ import com.discord.utilities.rx.ObservableExtensionsKt;
 import com.discord.utilities.search.query.FilterType;
 import com.discord.utilities.search.query.node.QueryNode;
 import com.discord.utilities.search.query.node.answer.ChannelNode;
-import com.discord.utilities.search.query.node.answer.HasAnswerOption;
 import com.discord.utilities.search.query.node.answer.HasNode;
+import com.discord.utilities.search.query.node.answer.HasNode2;
 import com.discord.utilities.search.query.node.answer.UserNode;
 import com.discord.utilities.search.query.node.content.ContentNode;
 import com.discord.utilities.search.query.node.filter.FilterNode;
@@ -17,13 +17,14 @@ import com.discord.utilities.search.query.parsing.QueryParser;
 import com.discord.utilities.search.strings.SearchStringProvider;
 import com.discord.utilities.search.suggestion.entries.ChannelSuggestion;
 import com.discord.utilities.search.suggestion.entries.UserSuggestion;
-import d0.t.n;
-import d0.t.u;
-import d0.z.d.k;
-import d0.z.d.m;
-import d0.z.d.o;
-import j0.k.b;
-import j0.p.a;
+import d0.t.Collections2;
+import d0.t.CollectionsJVM;
+import d0.t._Collections;
+import d0.z.d.FunctionReferenceImpl;
+import d0.z.d.Intrinsics3;
+import d0.z.d.Lambda;
+import j0.k.Func1;
+import j0.p.Schedulers2;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
@@ -53,17 +54,17 @@ public final class StoreSearchInput {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreSearchInput$1, reason: invalid class name */
     /* JADX INFO: compiled from: StoreSearchInput.kt */
-    public final class AnonymousClass1<T, R> implements b<List<? extends QueryNode>, Boolean> {
+    public final class AnonymousClass1<T, R> implements Func1<List<? extends QueryNode>, Boolean> {
         public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
 
-        @Override // j0.k.b
+        @Override // j0.k.Func1
         public /* bridge */ /* synthetic */ Boolean call(List<? extends QueryNode> list) {
             return call2(list);
         }
 
         /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
         public final Boolean call2(List<? extends QueryNode> list) {
-            m.checkNotNullExpressionValue(list, "it");
+            Intrinsics3.checkNotNullExpressionValue(list, "it");
             boolean z2 = true;
             if ((list instanceof Collection) && list.isEmpty()) {
                 z2 = false;
@@ -81,14 +82,14 @@ public final class StoreSearchInput {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreSearchInput$init$1, reason: invalid class name */
     /* JADX INFO: compiled from: StoreSearchInput.kt */
-    public final class AnonymousClass1<T, R> implements b<String, List<QueryNode>> {
+    public final class AnonymousClass1<T, R> implements Func1<String, List<QueryNode>> {
         public final /* synthetic */ QueryParser $queryParser;
 
         public AnonymousClass1(QueryParser queryParser) {
             this.$queryParser = queryParser;
         }
 
-        @Override // j0.k.b
+        @Override // j0.k.Func1
         public /* bridge */ /* synthetic */ List<QueryNode> call(String str) {
             return call2(str);
         }
@@ -96,14 +97,14 @@ public final class StoreSearchInput {
         /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
         public final List<QueryNode> call2(String str) {
             QueryParser queryParser = this.$queryParser;
-            m.checkNotNullExpressionValue(str, "it");
+            Intrinsics3.checkNotNullExpressionValue(str, "it");
             return Parser.parse$default(queryParser, str, null, null, 4, null);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.stores.StoreSearchInput$2, reason: invalid class name */
     /* JADX INFO: compiled from: StoreSearchInput.kt */
-    public final class AnonymousClass2 extends o implements Function1<Boolean, Unit> {
+    public final class AnonymousClass2 extends Lambda implements Function1<Boolean, Unit> {
         public AnonymousClass2() {
             super(1);
         }
@@ -123,7 +124,7 @@ public final class StoreSearchInput {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreSearchInput$init$2, reason: invalid class name */
     /* JADX INFO: compiled from: StoreSearchInput.kt */
-    public final /* synthetic */ class AnonymousClass2 extends k implements Function1<Subscription, Unit> {
+    public final /* synthetic */ class AnonymousClass2 extends FunctionReferenceImpl implements Function1<Subscription, Unit> {
         public AnonymousClass2(StoreSearchInput storeSearchInput) {
             super(1, storeSearchInput, StoreSearchInput.class, "handleInputSubscription", "handleInputSubscription(Lrx/Subscription;)V", 0);
         }
@@ -142,7 +143,7 @@ public final class StoreSearchInput {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreSearchInput$init$3, reason: invalid class name */
     /* JADX INFO: compiled from: StoreSearchInput.kt */
-    public final /* synthetic */ class AnonymousClass3 extends k implements Function1<List<? extends QueryNode>, Unit> {
+    public final /* synthetic */ class AnonymousClass3 extends FunctionReferenceImpl implements Function1<List<? extends QueryNode>, Unit> {
         public AnonymousClass3(SerializedSubject serializedSubject) {
             super(1, serializedSubject, SerializedSubject.class, "onNext", "onNext(Ljava/lang/Object;)V", 0);
         }
@@ -184,10 +185,10 @@ public final class StoreSearchInput {
         this.forcedInputSubject = publishSubjectK0;
         this.isInputValid = serializedSubject2;
         this.currentParsedInput = serializedSubject;
-        m.checkNotNullExpressionValue(publishSubjectK0, "forcedInputSubject");
+        Intrinsics3.checkNotNullExpressionValue(publishSubjectK0, "forcedInputSubject");
         this.forcedInput = publishSubjectK0;
-        Observable observableX = ObservableExtensionsKt.leadingEdgeThrottle(serializedSubject, 50L, TimeUnit.MILLISECONDS).G(AnonymousClass1.INSTANCE).X(a.a());
-        m.checkNotNullExpressionValue(observableX, "astSubject\n        .lead…Schedulers.computation())");
+        Observable observableX = ObservableExtensionsKt.leadingEdgeThrottle(serializedSubject, 50L, TimeUnit.MILLISECONDS).G(AnonymousClass1.INSTANCE).X(Schedulers2.a());
+        Intrinsics3.checkNotNullExpressionValue(observableX, "astSubject\n        .lead…Schedulers.computation())");
         ObservableExtensionsKt.appSubscribe$default(observableX, (Context) null, "validateSearchInput", (Function1) null, new AnonymousClass2(), (Function1) null, (Function0) null, (Function0) null, 117, (Object) null);
     }
 
@@ -208,7 +209,7 @@ public final class StoreSearchInput {
         if (query.size() <= 1) {
             return 0;
         }
-        int lastIndex = n.getLastIndex(query);
+        int lastIndex = Collections2.getLastIndex(query);
         QueryNode queryNode = query.get(lastIndex);
         int i = lastIndex - 1;
         QueryNode queryNode2 = query.get(i);
@@ -238,9 +239,9 @@ public final class StoreSearchInput {
     }
 
     public final void init(SearchStringProvider searchStringProvider) {
-        m.checkNotNullParameter(searchStringProvider, "searchStringProvider");
-        Observable observableX = ObservableExtensionsKt.leadingEdgeThrottle(this.inputSubject, 100L, TimeUnit.MILLISECONDS).r().G(new AnonymousClass1(new QueryParser(searchStringProvider))).X(a.a());
-        m.checkNotNullExpressionValue(observableX, "inputSubject\n        .le…Schedulers.computation())");
+        Intrinsics3.checkNotNullParameter(searchStringProvider, "searchStringProvider");
+        Observable observableX = ObservableExtensionsKt.leadingEdgeThrottle(this.inputSubject, 100L, TimeUnit.MILLISECONDS).r().G(new AnonymousClass1(new QueryParser(searchStringProvider))).X(Schedulers2.a());
+        Intrinsics3.checkNotNullExpressionValue(observableX, "inputSubject\n        .le…Schedulers.computation())");
         ObservableExtensionsKt.appSubscribe$default(observableX, StoreSearchInput.class, (Context) null, new AnonymousClass2(this), (Function1) null, (Function0) null, (Function0) null, new AnonymousClass3(this.astSubject), 58, (Object) null);
     }
 
@@ -251,9 +252,9 @@ public final class StoreSearchInput {
     public final void onFilterClicked(FilterType filterType, SearchStringProvider searchStringProvider, List<QueryNode> query) {
         FilterNode filterNode;
         int lastIndex;
-        m.checkNotNullParameter(filterType, "filterType");
-        m.checkNotNullParameter(searchStringProvider, "searchStringProvider");
-        m.checkNotNullParameter(query, "query");
+        Intrinsics3.checkNotNullParameter(filterType, "filterType");
+        Intrinsics3.checkNotNullParameter(searchStringProvider, "searchStringProvider");
+        Intrinsics3.checkNotNullParameter(query, "query");
         ArrayList arrayList = new ArrayList(query);
         int iOrdinal = filterType.ordinal();
         if (iOrdinal == 0) {
@@ -271,42 +272,42 @@ public final class StoreSearchInput {
         if (arrayList.isEmpty()) {
             lastIndex = 0;
         } else {
-            lastIndex = ((QueryNode) u.last((List) arrayList)) instanceof ContentNode ? n.getLastIndex(query) : query.size();
+            lastIndex = ((QueryNode) _Collections.last((List) arrayList)) instanceof ContentNode ? Collections2.getLastIndex(query) : query.size();
         }
-        replaceAndPublish(lastIndex, d0.t.m.listOf(filterNode), query);
+        replaceAndPublish(lastIndex, CollectionsJVM.listOf(filterNode), query);
     }
 
     public final void onFromUserClicked(UserSuggestion userSuggestion, CharSequence fromFilterString, List<QueryNode> query) {
-        m.checkNotNullParameter(userSuggestion, "userSuggestion");
-        m.checkNotNullParameter(fromFilterString, "fromFilterString");
-        m.checkNotNullParameter(query, "query");
-        replaceAndPublish(getAnswerReplacementStart(query), n.listOf((Object[]) new QueryNode[]{new FilterNode(FilterType.FROM, fromFilterString), new UserNode(userSuggestion.getUserName(), userSuggestion.getDiscriminator())}), query);
+        Intrinsics3.checkNotNullParameter(userSuggestion, "userSuggestion");
+        Intrinsics3.checkNotNullParameter(fromFilterString, "fromFilterString");
+        Intrinsics3.checkNotNullParameter(query, "query");
+        replaceAndPublish(getAnswerReplacementStart(query), Collections2.listOf((Object[]) new QueryNode[]{new FilterNode(FilterType.FROM, fromFilterString), new UserNode(userSuggestion.getUserName(), userSuggestion.getDiscriminator())}), query);
     }
 
-    public final void onHasClicked(HasAnswerOption hasAnswerOption, CharSequence hasFilterString, CharSequence hasAnswerString, List<QueryNode> query) {
-        m.checkNotNullParameter(hasAnswerOption, "hasAnswerOption");
-        m.checkNotNullParameter(hasFilterString, "hasFilterString");
-        m.checkNotNullParameter(hasAnswerString, "hasAnswerString");
-        m.checkNotNullParameter(query, "query");
-        replaceAndPublish(getAnswerReplacementStart(query), n.listOf((Object[]) new QueryNode[]{new FilterNode(FilterType.HAS, hasFilterString), new HasNode(hasAnswerOption, hasAnswerString)}), query);
+    public final void onHasClicked(HasNode2 hasAnswerOption, CharSequence hasFilterString, CharSequence hasAnswerString, List<QueryNode> query) {
+        Intrinsics3.checkNotNullParameter(hasAnswerOption, "hasAnswerOption");
+        Intrinsics3.checkNotNullParameter(hasFilterString, "hasFilterString");
+        Intrinsics3.checkNotNullParameter(hasAnswerString, "hasAnswerString");
+        Intrinsics3.checkNotNullParameter(query, "query");
+        replaceAndPublish(getAnswerReplacementStart(query), Collections2.listOf((Object[]) new QueryNode[]{new FilterNode(FilterType.HAS, hasFilterString), new HasNode(hasAnswerOption, hasAnswerString)}), query);
     }
 
     public final void onInChannelClicked(ChannelSuggestion channelSuggestion, CharSequence inFilterString, List<QueryNode> query) {
-        m.checkNotNullParameter(channelSuggestion, "channelSuggestion");
-        m.checkNotNullParameter(inFilterString, "inFilterString");
-        m.checkNotNullParameter(query, "query");
-        replaceAndPublish(getAnswerReplacementStart(query), n.listOf((Object[]) new QueryNode[]{new FilterNode(FilterType.IN, inFilterString), new ChannelNode(channelSuggestion.getChannelName())}), query);
+        Intrinsics3.checkNotNullParameter(channelSuggestion, "channelSuggestion");
+        Intrinsics3.checkNotNullParameter(inFilterString, "inFilterString");
+        Intrinsics3.checkNotNullParameter(query, "query");
+        replaceAndPublish(getAnswerReplacementStart(query), Collections2.listOf((Object[]) new QueryNode[]{new FilterNode(FilterType.IN, inFilterString), new ChannelNode(channelSuggestion.getChannelName())}), query);
     }
 
     public final void onMentionsUserClicked(UserSuggestion userSuggestion, CharSequence mentionsFilterString, List<QueryNode> query) {
-        m.checkNotNullParameter(userSuggestion, "userSuggestion");
-        m.checkNotNullParameter(mentionsFilterString, "mentionsFilterString");
-        m.checkNotNullParameter(query, "query");
-        replaceAndPublish(getAnswerReplacementStart(query), n.listOf((Object[]) new QueryNode[]{new FilterNode(FilterType.MENTIONS, mentionsFilterString), new UserNode(userSuggestion.getUserName(), userSuggestion.getDiscriminator())}), query);
+        Intrinsics3.checkNotNullParameter(userSuggestion, "userSuggestion");
+        Intrinsics3.checkNotNullParameter(mentionsFilterString, "mentionsFilterString");
+        Intrinsics3.checkNotNullParameter(query, "query");
+        replaceAndPublish(getAnswerReplacementStart(query), Collections2.listOf((Object[]) new QueryNode[]{new FilterNode(FilterType.MENTIONS, mentionsFilterString), new UserNode(userSuggestion.getUserName(), userSuggestion.getDiscriminator())}), query);
     }
 
     public final void onQueryClicked(List<? extends QueryNode> query) {
-        m.checkNotNullParameter(query, "query");
+        Intrinsics3.checkNotNullParameter(query, "query");
         this.forcedInputSubject.k.onNext(query);
     }
 
@@ -320,7 +321,7 @@ public final class StoreSearchInput {
     }
 
     public final void updateInput(String input) {
-        m.checkNotNullParameter(input, "input");
+        Intrinsics3.checkNotNullParameter(input, "input");
         this.inputSubject.k.onNext(input);
     }
 }

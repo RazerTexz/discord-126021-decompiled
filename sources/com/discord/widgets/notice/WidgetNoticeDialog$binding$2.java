@@ -7,13 +7,13 @@ import com.discord.R;
 import com.discord.databinding.WidgetNoticeDialogBinding;
 import com.discord.utilities.view.text.LinkifiedTextView;
 import com.google.android.material.button.MaterialButton;
-import d0.z.d.k;
-import d0.z.d.m;
+import d0.z.d.FunctionReferenceImpl;
+import d0.z.d.Intrinsics3;
 import kotlin.jvm.functions.Function1;
 
 /* JADX INFO: compiled from: WidgetNoticeDialog.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final /* synthetic */ class WidgetNoticeDialog$binding$2 extends k implements Function1<View, WidgetNoticeDialogBinding> {
+public final /* synthetic */ class WidgetNoticeDialog$binding$2 extends FunctionReferenceImpl implements Function1<View, WidgetNoticeDialogBinding> {
     public static final WidgetNoticeDialog$binding$2 INSTANCE = new WidgetNoticeDialog$binding$2();
 
     public WidgetNoticeDialog$binding$2() {
@@ -27,7 +27,7 @@ public final /* synthetic */ class WidgetNoticeDialog$binding$2 extends k implem
 
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final WidgetNoticeDialogBinding invoke2(View view) {
-        m.checkNotNullParameter(view, "p1");
+        Intrinsics3.checkNotNullParameter(view, "p1");
         int i = R.id.notice_body_container;
         LinearLayout linearLayout = (LinearLayout) view.findViewById(R.id.notice_body_container);
         if (linearLayout != null) {

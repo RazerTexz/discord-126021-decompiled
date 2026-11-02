@@ -9,13 +9,14 @@ import android.os.Build;
 import android.os.Bundle;
 import androidx.collection.ArrayMap;
 import androidx.core.app.FrameMetricsAggregator;
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import b.i.a.f.n.c;
+import b.i.c.FirebaseApp2;
 import b.i.c.w.i;
 import com.discord.app.AppLog;
 import com.discord.models.domain.ModelAuditLogEntry;
 import com.discord.utilities.analytics.AnalyticsTracker;
-import com.discord.utilities.collections.CollectionExtensionsKt;
+import com.discord.utilities.collections.CollectionExtensions;
 import com.discord.utilities.logging.Logger;
 import com.discord.utilities.persister.Persister;
 import com.discord.utilities.rest.RestAPI;
@@ -23,14 +24,15 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
-import d0.t.h0;
-import d0.z.d.m;
-import d0.z.d.o;
+import d0.Tuples;
+import d0.t.Maps6;
+import d0.z.d.Intrinsics3;
+import d0.z.d.Lambda;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
-import kotlin.Pair;
+import kotlin.Tuples2;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
@@ -56,12 +58,12 @@ public final class NotificationClient {
     private static String token;
     public static final NotificationClient INSTANCE = new NotificationClient();
     private static final Persister<SettingsV2> settings = new Persister<>("NOTIFICATION_CLIENT_SETTINGS_V3", new SettingsV2(false, false, false, false, false, false, null, null, null, FrameMetricsAggregator.EVERY_DURATION, null));
-    private static Function1<? super String, Unit> tokenCallback = NotificationClient$tokenCallback$1.INSTANCE;
+    private static Function1<? super String, Unit> tokenCallback = NotificationClient2.INSTANCE;
     private static boolean isBackgrounded = true;
 
     /* JADX INFO: renamed from: com.discord.utilities.fcm.NotificationClient$init$1, reason: invalid class name */
     /* JADX INFO: compiled from: NotificationClient.kt */
-    public final class AnonymousClass1 extends o implements Function0<String> {
+    public final class AnonymousClass1 extends Lambda implements Function0<String> {
         public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
 
         public AnonymousClass1() {
@@ -82,7 +84,7 @@ public final class NotificationClient {
 
     /* JADX INFO: renamed from: com.discord.utilities.fcm.NotificationClient$init$2, reason: invalid class name */
     /* JADX INFO: compiled from: NotificationClient.kt */
-    public final class AnonymousClass2 extends o implements Function0<String> {
+    public final class AnonymousClass2 extends Lambda implements Function0<String> {
         public static final AnonymousClass2 INSTANCE = new AnonymousClass2();
 
         public AnonymousClass2() {
@@ -108,7 +110,7 @@ public final class NotificationClient {
 
         @Override // b.i.a.f.n.c
         public final void onComplete(Task<String> task) {
-            m.checkNotNullExpressionValue(task, "task");
+            Intrinsics3.checkNotNullExpressionValue(task, "task");
             if (task.p()) {
                 NotificationClient.INSTANCE.onNewToken(task.l());
             } else {
@@ -121,7 +123,7 @@ public final class NotificationClient {
     public final class FCMMessagingService extends FirebaseMessagingService {
         @Override // com.google.firebase.messaging.FirebaseMessagingService
         public void onMessageReceived(RemoteMessage remoteMessage) {
-            m.checkNotNullParameter(remoteMessage, "remoteMessage");
+            Intrinsics3.checkNotNullParameter(remoteMessage, "remoteMessage");
             super.onMessageReceived(remoteMessage);
             if (remoteMessage.k == null) {
                 Bundle bundle = remoteMessage.j;
@@ -138,7 +140,7 @@ public final class NotificationClient {
                 remoteMessage.k = arrayMap;
             }
             Map<String, String> map = remoteMessage.k;
-            m.checkNotNullExpressionValue(map, "remoteMessage.data");
+            Intrinsics3.checkNotNullExpressionValue(map, "remoteMessage.data");
             AppLog.i("Got notification: " + map);
             NotificationData notificationData = new NotificationData(map);
             SettingsV2 settings$app_productionGoogleRelease = NotificationClient.INSTANCE.getSettings$app_productionGoogleRelease();
@@ -155,24 +157,24 @@ public final class NotificationClient {
                 return;
             }
             if (!notificationData.isValid() || !settings$app_productionGoogleRelease.getIsAuthed()) {
-                if (m.areEqual(notificationData.getType(), NotificationData.TYPE_MESSAGE_CREATE)) {
-                    Logger.e$default(AppLog.g, "Not showing invalid notification", null, h0.mapOf(d0.o.to("messageId", String.valueOf(notificationData.getMessageId())), d0.o.to("channelId", String.valueOf(notificationData.getChannelId())), d0.o.to("isAuthed", String.valueOf(settings$app_productionGoogleRelease.getIsAuthed())), d0.o.to("type", notificationData.getType())), 2, null);
+                if (Intrinsics3.areEqual(notificationData.getType(), NotificationData.TYPE_MESSAGE_CREATE)) {
+                    Logger.e$default(AppLog.g, "Not showing invalid notification", null, Maps6.mapOf(Tuples.to("messageId", String.valueOf(notificationData.getMessageId())), Tuples.to("channelId", String.valueOf(notificationData.getChannelId())), Tuples.to("isAuthed", String.valueOf(settings$app_productionGoogleRelease.getIsAuthed())), Tuples.to("type", notificationData.getType())), 2, null);
                     return;
                 }
                 return;
             }
-            if (m.areEqual(notificationData.getTrackingType(), NotificationClient.IGNORED_NOTIFICATION_TYPE)) {
-                Pair[] pairArr = new Pair[5];
+            if (Intrinsics3.areEqual(notificationData.getTrackingType(), NotificationClient.IGNORED_NOTIFICATION_TYPE)) {
+                Tuples2[] tuples2Arr = new Tuples2[5];
                 String trackingType = notificationData.getTrackingType();
                 if (trackingType == null) {
                     trackingType = notificationData.getType();
                 }
-                pairArr[0] = d0.o.to("notif_type", trackingType);
-                pairArr[1] = d0.o.to("notif_user_id", Long.valueOf(notificationData.getUserId()));
-                pairArr[2] = d0.o.to("message_id", Long.valueOf(notificationData.getMessageId()));
-                pairArr[3] = d0.o.to(ModelAuditLogEntry.CHANGE_KEY_GUILD_ID, Long.valueOf(notificationData.getGuildId()));
-                pairArr[4] = d0.o.to("notification_id", notificationData.getNotificationId());
-                AnalyticsTracker.INSTANCE.appNotificationDropped(CollectionExtensionsKt.filterNonNullValues(h0.mapOf(pairArr)));
+                tuples2Arr[0] = Tuples.to("notif_type", trackingType);
+                tuples2Arr[1] = Tuples.to("notif_user_id", Long.valueOf(notificationData.getUserId()));
+                tuples2Arr[2] = Tuples.to("message_id", Long.valueOf(notificationData.getMessageId()));
+                tuples2Arr[3] = Tuples.to(ModelAuditLogEntry.CHANGE_KEY_GUILD_ID, Long.valueOf(notificationData.getGuildId()));
+                tuples2Arr[4] = Tuples.to("notification_id", notificationData.getNotificationId());
+                AnalyticsTracker.INSTANCE.appNotificationDropped(CollectionExtensions.filterNonNullValues(Maps6.mapOf(tuples2Arr)));
                 return;
             }
             if (notificationData.getChannelId() != -1) {
@@ -190,7 +192,7 @@ public final class NotificationClient {
 
         @Override // com.google.firebase.messaging.FirebaseMessagingService
         public void onNewToken(String token) {
-            m.checkNotNullParameter(token, "token");
+            Intrinsics3.checkNotNullParameter(token, "token");
             NotificationClient.INSTANCE.onNewToken(token);
         }
     }
@@ -243,7 +245,7 @@ public final class NotificationClient {
     @TargetApi(26)
     public final void init(Application application) {
         FirebaseMessaging firebaseMessaging;
-        m.checkNotNullParameter(application, "application");
+        Intrinsics3.checkNotNullParameter(application, "application");
         context = application;
         if (isOsLevelNotificationEnabled()) {
             NotificationRenderer.INSTANCE.initNotificationChannels(application);
@@ -252,10 +254,10 @@ public final class NotificationClient {
         RestAPI.AppHeadersProvider.localeProvider = AnonymousClass2.INSTANCE;
         try {
             synchronized (FirebaseMessaging.class) {
-                firebaseMessaging = FirebaseMessaging.getInstance(b.i.c.c.b());
+                firebaseMessaging = FirebaseMessaging.getInstance(FirebaseApp2.b());
             }
-            m.checkNotNullExpressionValue(firebaseMessaging, "FirebaseMessaging.getInstance()");
-            m.checkNotNullExpressionValue(firebaseMessaging.d.f().h(i.a).b(AnonymousClass3.INSTANCE), "FirebaseMessaging.getIns…eption)\n        }\n      }");
+            Intrinsics3.checkNotNullExpressionValue(firebaseMessaging, "FirebaseMessaging.getInstance()");
+            Intrinsics3.checkNotNullExpressionValue(firebaseMessaging.d.f().h(i.a).b(AnonymousClass3.INSTANCE), "FirebaseMessaging.getIns…eption)\n        }\n      }");
         } catch (IllegalStateException e) {
             AppLog.g.w("FCM service start error", e);
         }
@@ -280,13 +282,13 @@ public final class NotificationClient {
     }
 
     public final synchronized void setRegistrationIdReceived(Function1<? super String, Unit> onDeviceRegistrationIdReceived) {
-        m.checkNotNullParameter(onDeviceRegistrationIdReceived, "onDeviceRegistrationIdReceived");
+        Intrinsics3.checkNotNullParameter(onDeviceRegistrationIdReceived, "onDeviceRegistrationIdReceived");
         tokenCallback = onDeviceRegistrationIdReceived;
         onDeviceRegistrationIdReceived.invoke(token);
     }
 
     public final synchronized void updateSettings$app_productionGoogleRelease(SettingsV2 settings2, boolean isBackgrounded2) {
-        m.checkNotNullParameter(settings2, "settings");
+        Intrinsics3.checkNotNullParameter(settings2, "settings");
         settings.set(settings2, isBackgrounded2);
         isBackgrounded = isBackgrounded2;
     }
@@ -309,8 +311,8 @@ public final class NotificationClient {
         }
 
         public SettingsV2(boolean z2, boolean z3, boolean z4, boolean z5, boolean z6, boolean z7, String str, String str2, Set<Long> set) {
-            m.checkNotNullParameter(str2, "locale");
-            m.checkNotNullParameter(set, "sendBlockedChannels");
+            Intrinsics3.checkNotNullParameter(str2, "locale");
+            Intrinsics3.checkNotNullParameter(set, "sendBlockedChannels");
             this.isEnabled = z2;
             this.isEnabledInApp = z3;
             this.isWake = z4;
@@ -333,8 +335,8 @@ public final class NotificationClient {
         }
 
         public final SettingsV2 copy(boolean isEnabled, boolean isEnabledInApp, boolean isWake, boolean isDisableBlink, boolean isDisableSound, boolean isDisableVibrate, String token, String locale, Set<Long> sendBlockedChannels) {
-            m.checkNotNullParameter(locale, "locale");
-            m.checkNotNullParameter(sendBlockedChannels, "sendBlockedChannels");
+            Intrinsics3.checkNotNullParameter(locale, "locale");
+            Intrinsics3.checkNotNullParameter(sendBlockedChannels, "sendBlockedChannels");
             return new SettingsV2(isEnabled, isEnabledInApp, isWake, isDisableBlink, isDisableSound, isDisableVibrate, token, locale, sendBlockedChannels);
         }
 
@@ -346,7 +348,7 @@ public final class NotificationClient {
                 return false;
             }
             SettingsV2 settingsV2 = (SettingsV2) other;
-            return this.isEnabled == settingsV2.isEnabled && this.isEnabledInApp == settingsV2.isEnabledInApp && this.isWake == settingsV2.isWake && this.isDisableBlink == settingsV2.isDisableBlink && this.isDisableSound == settingsV2.isDisableSound && this.isDisableVibrate == settingsV2.isDisableVibrate && m.areEqual(this.token, settingsV2.token) && m.areEqual(this.locale, settingsV2.locale) && m.areEqual(this.sendBlockedChannels, settingsV2.sendBlockedChannels);
+            return this.isEnabled == settingsV2.isEnabled && this.isEnabledInApp == settingsV2.isEnabledInApp && this.isWake == settingsV2.isWake && this.isDisableBlink == settingsV2.isDisableBlink && this.isDisableSound == settingsV2.isDisableSound && this.isDisableVibrate == settingsV2.isDisableVibrate && Intrinsics3.areEqual(this.token, settingsV2.token) && Intrinsics3.areEqual(this.locale, settingsV2.locale) && Intrinsics3.areEqual(this.sendBlockedChannels, settingsV2.sendBlockedChannels);
         }
 
         /* JADX INFO: renamed from: isAuthed, reason: from getter */
@@ -496,7 +498,7 @@ public final class NotificationClient {
         }
 
         public String toString() {
-            StringBuilder sbU = a.U("SettingsV2(isEnabled=");
+            StringBuilder sbU = outline.U("SettingsV2(isEnabled=");
             sbU.append(this.isEnabled);
             sbU.append(", isEnabledInApp=");
             sbU.append(this.isEnabledInApp);
@@ -513,7 +515,7 @@ public final class NotificationClient {
             sbU.append(", locale=");
             sbU.append(this.locale);
             sbU.append(", sendBlockedChannels=");
-            return a.N(sbU, this.sendBlockedChannels, ")");
+            return outline.N(sbU, this.sendBlockedChannels, ")");
         }
 
         public /* synthetic */ SettingsV2(boolean z2, boolean z3, boolean z4, boolean z5, boolean z6, boolean z7, String str, String str2, Set set, int i, DefaultConstructorMarker defaultConstructorMarker) {

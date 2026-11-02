@@ -3,8 +3,8 @@ package com.discord.widgets.settings;
 import android.content.Context;
 import androidx.annotation.MainThread;
 import androidx.core.app.FrameMetricsAggregator;
-import b.a.d.d0;
-import b.d.b.a.a;
+import b.a.d.AppViewModel;
+import b.d.b.a.outline;
 import com.discord.models.domain.ModelSubscription;
 import com.discord.models.presence.Presence;
 import com.discord.models.user.MeUser;
@@ -17,12 +17,12 @@ import com.discord.stores.StoreSubscriptions;
 import com.discord.stores.StoreUser;
 import com.discord.stores.StoreUserPresence;
 import com.discord.stores.updates.ObservationDeck;
-import com.discord.stores.updates.ObservationDeckProvider;
+import com.discord.stores.updates.ObservationDeck4;
 import com.discord.utilities.handoff.MobileWebHandoff;
 import com.discord.utilities.rx.ObservableExtensionsKt;
-import d0.t.n;
-import d0.z.d.m;
-import d0.z.d.o;
+import d0.t.Collections2;
+import d0.z.d.Intrinsics3;
+import d0.z.d.Lambda;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
@@ -34,7 +34,7 @@ import rx.Observable;
 
 /* JADX INFO: compiled from: SettingsViewModel.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class SettingsViewModel extends d0<ViewState> {
+public final class SettingsViewModel extends AppViewModel<ViewState> {
 
     /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
     public static final Companion INSTANCE = new Companion(null);
@@ -43,7 +43,7 @@ public final class SettingsViewModel extends d0<ViewState> {
 
     /* JADX INFO: renamed from: com.discord.widgets.settings.SettingsViewModel$1, reason: invalid class name */
     /* JADX INFO: compiled from: SettingsViewModel.kt */
-    public final class AnonymousClass1 extends o implements Function1<StoreState, Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function1<StoreState, Unit> {
         public AnonymousClass1() {
             super(1);
         }
@@ -57,7 +57,7 @@ public final class SettingsViewModel extends d0<ViewState> {
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(StoreState storeState) {
             SettingsViewModel settingsViewModel = SettingsViewModel.this;
-            m.checkNotNullExpressionValue(storeState, "storeState");
+            Intrinsics3.checkNotNullExpressionValue(storeState, "storeState");
             SettingsViewModel.access$handleStoreState(settingsViewModel, storeState);
         }
     }
@@ -80,7 +80,7 @@ public final class SettingsViewModel extends d0<ViewState> {
         }
 
         private final Observable<StoreState> observeStoreState(StoreUser userStore, StoreGuilds guildsStore, StoreUserPresence userPresenceStore, StoreOutboundPromotions outboundPromotionsStore, StoreNotificationUpsells notificationUpsellsStore, StoreExperiments experimentsStore, StoreSubscriptions subscriptionsStore, ObservationDeck observationDeck) {
-            return ObservationDeck.connectRx$default(observationDeck, new ObservationDeck.UpdateSource[]{userStore, guildsStore, userPresenceStore, outboundPromotionsStore, notificationUpsellsStore, subscriptionsStore}, false, null, null, new SettingsViewModel$Companion$observeStoreState$1(subscriptionsStore, userStore, guildsStore, userPresenceStore, outboundPromotionsStore, notificationUpsellsStore, experimentsStore), 14, null);
+            return ObservationDeck.connectRx$default(observationDeck, new ObservationDeck.UpdateSource[]{userStore, guildsStore, userPresenceStore, outboundPromotionsStore, notificationUpsellsStore, subscriptionsStore}, false, null, null, new SettingsViewModel2(subscriptionsStore, userStore, guildsStore, userPresenceStore, outboundPromotionsStore, notificationUpsellsStore, experimentsStore), 14, null);
         }
 
         public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
@@ -99,8 +99,8 @@ public final class SettingsViewModel extends d0<ViewState> {
         private final List<ModelSubscription> subscriptions;
 
         public StoreState(MeUser meUser, boolean z2, Presence presence, int i, boolean z3, boolean z4, List<ModelSubscription> list) {
-            m.checkNotNullParameter(meUser, "meUser");
-            m.checkNotNullParameter(presence, "presence");
+            Intrinsics3.checkNotNullParameter(meUser, "meUser");
+            Intrinsics3.checkNotNullParameter(presence, "presence");
             this.meUser = meUser;
             this.isStaffOrAlpha = z2;
             this.presence = presence;
@@ -146,8 +146,8 @@ public final class SettingsViewModel extends d0<ViewState> {
         }
 
         public final StoreState copy(MeUser meUser, boolean isStaffOrAlpha, Presence presence, int promoCount, boolean pushNotificationUpsellDismissed, boolean isEligibleForMobileWebSubscriptions, List<ModelSubscription> subscriptions) {
-            m.checkNotNullParameter(meUser, "meUser");
-            m.checkNotNullParameter(presence, "presence");
+            Intrinsics3.checkNotNullParameter(meUser, "meUser");
+            Intrinsics3.checkNotNullParameter(presence, "presence");
             return new StoreState(meUser, isStaffOrAlpha, presence, promoCount, pushNotificationUpsellDismissed, isEligibleForMobileWebSubscriptions, subscriptions);
         }
 
@@ -159,7 +159,7 @@ public final class SettingsViewModel extends d0<ViewState> {
                 return false;
             }
             StoreState storeState = (StoreState) other;
-            return m.areEqual(this.meUser, storeState.meUser) && this.isStaffOrAlpha == storeState.isStaffOrAlpha && m.areEqual(this.presence, storeState.presence) && this.promoCount == storeState.promoCount && this.pushNotificationUpsellDismissed == storeState.pushNotificationUpsellDismissed && this.isEligibleForMobileWebSubscriptions == storeState.isEligibleForMobileWebSubscriptions && m.areEqual(this.subscriptions, storeState.subscriptions);
+            return Intrinsics3.areEqual(this.meUser, storeState.meUser) && this.isStaffOrAlpha == storeState.isStaffOrAlpha && Intrinsics3.areEqual(this.presence, storeState.presence) && this.promoCount == storeState.promoCount && this.pushNotificationUpsellDismissed == storeState.pushNotificationUpsellDismissed && this.isEligibleForMobileWebSubscriptions == storeState.isEligibleForMobileWebSubscriptions && Intrinsics3.areEqual(this.subscriptions, storeState.subscriptions);
         }
 
         /* JADX INFO: renamed from: component6, reason: from getter */
@@ -255,7 +255,7 @@ public final class SettingsViewModel extends d0<ViewState> {
         }
 
         public String toString() {
-            StringBuilder sbU = a.U("StoreState(meUser=");
+            StringBuilder sbU = outline.U("StoreState(meUser=");
             sbU.append(this.meUser);
             sbU.append(", isStaffOrAlpha=");
             sbU.append(this.isStaffOrAlpha);
@@ -268,7 +268,7 @@ public final class SettingsViewModel extends d0<ViewState> {
             sbU.append(", isEligibleForMobileWebSubscriptions=");
             sbU.append(this.isEligibleForMobileWebSubscriptions);
             sbU.append(", subscriptions=");
-            return a.L(sbU, this.subscriptions, ")");
+            return outline.L(sbU, this.subscriptions, ")");
         }
     }
 
@@ -287,8 +287,8 @@ public final class SettingsViewModel extends d0<ViewState> {
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
             public Loaded(MeUser meUser, boolean z2, Presence presence, int i, boolean z3, boolean z4) {
                 super(null);
-                m.checkNotNullParameter(meUser, "meUser");
-                m.checkNotNullParameter(presence, "presence");
+                Intrinsics3.checkNotNullParameter(meUser, "meUser");
+                Intrinsics3.checkNotNullParameter(presence, "presence");
                 this.meUser = meUser;
                 this.isStaffOrAlpha = z2;
                 this.presence = presence;
@@ -324,8 +324,8 @@ public final class SettingsViewModel extends d0<ViewState> {
             }
 
             public final Loaded copy(MeUser meUser, boolean isStaffOrAlpha, Presence presence, int promoCount, boolean pushNotificationUpsellDismissed, boolean showRoleSubscriptionsButton) {
-                m.checkNotNullParameter(meUser, "meUser");
-                m.checkNotNullParameter(presence, "presence");
+                Intrinsics3.checkNotNullParameter(meUser, "meUser");
+                Intrinsics3.checkNotNullParameter(presence, "presence");
                 return new Loaded(meUser, isStaffOrAlpha, presence, promoCount, pushNotificationUpsellDismissed, showRoleSubscriptionsButton);
             }
 
@@ -337,7 +337,7 @@ public final class SettingsViewModel extends d0<ViewState> {
                     return false;
                 }
                 Loaded loaded = (Loaded) other;
-                return m.areEqual(this.meUser, loaded.meUser) && this.isStaffOrAlpha == loaded.isStaffOrAlpha && m.areEqual(this.presence, loaded.presence) && this.promoCount == loaded.promoCount && this.pushNotificationUpsellDismissed == loaded.pushNotificationUpsellDismissed && this.showRoleSubscriptionsButton == loaded.showRoleSubscriptionsButton;
+                return Intrinsics3.areEqual(this.meUser, loaded.meUser) && this.isStaffOrAlpha == loaded.isStaffOrAlpha && Intrinsics3.areEqual(this.presence, loaded.presence) && this.promoCount == loaded.promoCount && this.pushNotificationUpsellDismissed == loaded.pushNotificationUpsellDismissed && this.showRoleSubscriptionsButton == loaded.showRoleSubscriptionsButton;
             }
 
             /* JADX INFO: renamed from: component2, reason: from getter */
@@ -429,7 +429,7 @@ public final class SettingsViewModel extends d0<ViewState> {
             }
 
             public String toString() {
-                StringBuilder sbU = a.U("Loaded(meUser=");
+                StringBuilder sbU = outline.U("Loaded(meUser=");
                 sbU.append(this.meUser);
                 sbU.append(", isStaffOrAlpha=");
                 sbU.append(this.isStaffOrAlpha);
@@ -440,7 +440,7 @@ public final class SettingsViewModel extends d0<ViewState> {
                 sbU.append(", pushNotificationUpsellDismissed=");
                 sbU.append(this.pushNotificationUpsellDismissed);
                 sbU.append(", showRoleSubscriptionsButton=");
-                return a.O(sbU, this.showRoleSubscriptionsButton, ")");
+                return outline.O(sbU, this.showRoleSubscriptionsButton, ")");
             }
         }
 
@@ -474,7 +474,7 @@ public final class SettingsViewModel extends d0<ViewState> {
         StoreSubscriptions subscriptions = (i & 16) != 0 ? StoreStream.INSTANCE.getSubscriptions() : storeSubscriptions;
         StoreUser users = (i & 32) != 0 ? StoreStream.INSTANCE.getUsers() : storeUser;
         StoreUserPresence presences = (i & 64) != 0 ? StoreStream.INSTANCE.getPresences() : storeUserPresence;
-        ObservationDeck observationDeck2 = (i & 128) != 0 ? ObservationDeckProvider.get() : observationDeck;
+        ObservationDeck observationDeck2 = (i & 128) != 0 ? ObservationDeck4.get() : observationDeck;
         this(experiments, guilds, notificationUpsells, outboundPromotions, subscriptions, users, presences, observationDeck2, (i & 256) != 0 ? Companion.access$observeStoreState(INSTANCE, users, guilds, presences, outboundPromotions, notificationUpsells, experiments, subscriptions, observationDeck2) : observable);
     }
 
@@ -490,7 +490,7 @@ public final class SettingsViewModel extends d0<ViewState> {
         if (storeState.isEligibleForMobileWebSubscriptions()) {
             List<ModelSubscription> subscriptions = storeState.getSubscriptions();
             if (subscriptions == null) {
-                subscriptions = n.emptyList();
+                subscriptions = Collections2.emptyList();
             }
             if (!(subscriptions instanceof Collection) || !subscriptions.isEmpty()) {
                 Iterator<T> it = subscriptions.iterator();
@@ -520,7 +520,7 @@ public final class SettingsViewModel extends d0<ViewState> {
     }
 
     public final void openRoleSubscriptionsManagement(Context context) {
-        m.checkNotNullParameter(context, "context");
+        Intrinsics3.checkNotNullParameter(context, "context");
         MobileWebHandoff.tryLaunchRedirectTo$default(new MobileWebHandoff(context, null, null, null, 14, null), MANAGE_SUBSCRIPTIONS_URL, false, false, 6, null);
     }
 
@@ -534,18 +534,18 @@ public final class SettingsViewModel extends d0<ViewState> {
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public SettingsViewModel(StoreExperiments storeExperiments, StoreGuilds storeGuilds, StoreNotificationUpsells storeNotificationUpsells, StoreOutboundPromotions storeOutboundPromotions, StoreSubscriptions storeSubscriptions, StoreUser storeUser, StoreUserPresence storeUserPresence, ObservationDeck observationDeck, Observable<StoreState> observable) {
         super(ViewState.Uninitialized.INSTANCE);
-        m.checkNotNullParameter(storeExperiments, "experimentsStore");
-        m.checkNotNullParameter(storeGuilds, "guildsStore");
-        m.checkNotNullParameter(storeNotificationUpsells, "notificationUpsellsStore");
-        m.checkNotNullParameter(storeOutboundPromotions, "outboundPromotionsStore");
-        m.checkNotNullParameter(storeSubscriptions, "subscriptionsStore");
-        m.checkNotNullParameter(storeUser, "userStore");
-        m.checkNotNullParameter(storeUserPresence, "userPresenceStore");
-        m.checkNotNullParameter(observationDeck, "observationDeck");
-        m.checkNotNullParameter(observable, "storeStateObservable");
+        Intrinsics3.checkNotNullParameter(storeExperiments, "experimentsStore");
+        Intrinsics3.checkNotNullParameter(storeGuilds, "guildsStore");
+        Intrinsics3.checkNotNullParameter(storeNotificationUpsells, "notificationUpsellsStore");
+        Intrinsics3.checkNotNullParameter(storeOutboundPromotions, "outboundPromotionsStore");
+        Intrinsics3.checkNotNullParameter(storeSubscriptions, "subscriptionsStore");
+        Intrinsics3.checkNotNullParameter(storeUser, "userStore");
+        Intrinsics3.checkNotNullParameter(storeUserPresence, "userPresenceStore");
+        Intrinsics3.checkNotNullParameter(observationDeck, "observationDeck");
+        Intrinsics3.checkNotNullParameter(observable, "storeStateObservable");
         this.subscriptionsStore = storeSubscriptions;
         Observable<StoreState> observableR = observable.r();
-        m.checkNotNullExpressionValue(observableR, "storeStateObservable\n   …  .distinctUntilChanged()");
+        Intrinsics3.checkNotNullExpressionValue(observableR, "storeStateObservable\n   …  .distinctUntilChanged()");
         ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.computationLatest(observableR), this, null, 2, null), SettingsViewModel.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass1(), 62, (Object) null);
     }
 }

@@ -1,55 +1,60 @@
 package com.facebook.animated.webp;
 
 import android.graphics.Bitmap;
-import b.f.d.d.c;
-import b.f.j.a.a.d;
-import b.f.j.d.b;
+import b.c.a.a0.AnimatableValueParser;
+import b.f.d.d.DoNotStrip;
+import b.f.j.a.a.AnimatedDrawableFrameInfo;
+import b.f.j.a.a.AnimatedImage;
+import b.f.j.a.a.AnimatedImageFrame;
+import b.f.j.a.b.AnimatedImageDecoder;
+import b.f.j.d.ImageDecodeOptions;
+import b.f.j.m.StaticWebpNativeLoader;
 import java.nio.ByteBuffer;
 
 /* JADX INFO: loaded from: classes.dex */
-@c
-public class WebPImage implements b.f.j.a.a.c, b.f.j.a.b.c {
+@DoNotStrip
+public class WebPImage implements AnimatedImage, AnimatedImageDecoder {
 
-    @c
+    @DoNotStrip
     private long mNativeContext;
     public Bitmap.Config a = null;
 
-    @c
+    @DoNotStrip
     public WebPImage() {
     }
 
-    @Override // b.f.j.a.a.c
+    @Override // b.f.j.a.a.AnimatedImage
     public int a() {
         return nativeGetFrameCount();
     }
 
-    @Override // b.f.j.a.a.c
+    @Override // b.f.j.a.a.AnimatedImage
     public int b() {
         return nativeGetLoopCount();
     }
 
-    @Override // b.f.j.a.b.c
-    public b.f.j.a.a.c c(ByteBuffer byteBuffer, b bVar) {
-        b.f.j.m.b.a();
+    @Override // b.f.j.a.b.AnimatedImageDecoder
+    public AnimatedImage c(ByteBuffer byteBuffer, ImageDecodeOptions imageDecodeOptions) {
+        StaticWebpNativeLoader.a();
         byteBuffer.rewind();
         WebPImage webPImageNativeCreateFromDirectByteBuffer = nativeCreateFromDirectByteBuffer(byteBuffer);
-        if (bVar != null) {
-            webPImageNativeCreateFromDirectByteBuffer.a = bVar.e;
+        if (imageDecodeOptions != null) {
+            webPImageNativeCreateFromDirectByteBuffer.a = imageDecodeOptions.e;
         }
         return webPImageNativeCreateFromDirectByteBuffer;
     }
 
-    @Override // b.f.j.a.a.c
+    @Override // b.f.j.a.a.AnimatedImage
     public Bitmap.Config d() {
         return this.a;
     }
 
-    @Override // b.f.j.a.a.c
-    public d e(int i) {
+    @Override // b.f.j.a.a.AnimatedImage
+    public AnimatedImageFrame e(int i) {
         return nativeGetFrame(i);
     }
 
-    @Override // b.f.j.a.a.c
+    @Override // b.f.j.a.a.AnimatedImage
     public boolean f() {
         return true;
     }
@@ -58,43 +63,43 @@ public class WebPImage implements b.f.j.a.a.c, b.f.j.a.b.c {
         nativeFinalize();
     }
 
-    @Override // b.f.j.a.a.c
-    public b.f.j.a.a.b g(int i) {
+    @Override // b.f.j.a.a.AnimatedImage
+    public AnimatedDrawableFrameInfo g(int i) {
         WebPFrame webPFrameNativeGetFrame = nativeGetFrame(i);
         try {
-            return new b.f.j.a.a.b(i, webPFrameNativeGetFrame.b(), webPFrameNativeGetFrame.c(), webPFrameNativeGetFrame.getWidth(), webPFrameNativeGetFrame.getHeight(), webPFrameNativeGetFrame.d() ? 1 : 2, webPFrameNativeGetFrame.e() ? 2 : 1);
+            return new AnimatedDrawableFrameInfo(i, webPFrameNativeGetFrame.b(), webPFrameNativeGetFrame.c(), webPFrameNativeGetFrame.getWidth(), webPFrameNativeGetFrame.getHeight(), webPFrameNativeGetFrame.d() ? 1 : 2, webPFrameNativeGetFrame.e() ? 2 : 1);
         } finally {
             webPFrameNativeGetFrame.dispose();
         }
     }
 
-    @Override // b.f.j.a.a.c
+    @Override // b.f.j.a.a.AnimatedImage
     public int getHeight() {
         return nativeGetHeight();
     }
 
-    @Override // b.f.j.a.a.c
+    @Override // b.f.j.a.a.AnimatedImage
     public int getWidth() {
         return nativeGetWidth();
     }
 
-    @Override // b.f.j.a.b.c
-    public b.f.j.a.a.c h(long j, int i, b bVar) {
-        b.f.j.m.b.a();
-        b.c.a.a0.d.i(Boolean.valueOf(j != 0));
+    @Override // b.f.j.a.b.AnimatedImageDecoder
+    public AnimatedImage h(long j, int i, ImageDecodeOptions imageDecodeOptions) {
+        StaticWebpNativeLoader.a();
+        AnimatableValueParser.i(Boolean.valueOf(j != 0));
         WebPImage webPImageNativeCreateFromNativeMemory = nativeCreateFromNativeMemory(j, i);
-        if (bVar != null) {
-            webPImageNativeCreateFromNativeMemory.a = bVar.e;
+        if (imageDecodeOptions != null) {
+            webPImageNativeCreateFromNativeMemory.a = imageDecodeOptions.e;
         }
         return webPImageNativeCreateFromNativeMemory;
     }
 
-    @Override // b.f.j.a.a.c
+    @Override // b.f.j.a.a.AnimatedImage
     public int[] i() {
         return nativeGetFrameDurations();
     }
 
-    @Override // b.f.j.a.a.c
+    @Override // b.f.j.a.a.AnimatedImage
     public int j() {
         return nativeGetSizeInBytes();
     }
@@ -123,7 +128,7 @@ public class WebPImage implements b.f.j.a.a.c, b.f.j.a.b.c {
 
     private native int nativeGetWidth();
 
-    @c
+    @DoNotStrip
     public WebPImage(long j) {
         this.mNativeContext = j;
     }

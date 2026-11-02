@@ -3,7 +3,7 @@ package com.google.android.material.datepicker;
 import android.os.Parcel;
 import android.os.Parcelable;
 import androidx.annotation.NonNull;
-import b.i.a.g.d.l;
+import b.i.a.g.d.UtcDates;
 import java.util.Arrays;
 
 /* JADX INFO: loaded from: classes3.dex */
@@ -57,7 +57,7 @@ public class DateValidatorPointBackward implements CalendarConstraints.DateValid
 
     @NonNull
     public static DateValidatorPointBackward now() {
-        return before(l.h().getTimeInMillis());
+        return before(UtcDates.h().getTimeInMillis());
     }
 
     @Override // android.os.Parcelable

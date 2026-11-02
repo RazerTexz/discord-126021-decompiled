@@ -8,13 +8,13 @@ import android.view.LayoutInflater;
 import android.widget.LinearLayout;
 import android.widget.TextSwitcher;
 import android.widget.TextView;
-import b.a.i.i1;
+import b.a.i.ReactionViewBinding;
 import com.discord.R;
 import com.discord.api.message.reaction.MessageReaction;
 import com.discord.models.domain.ModelAuditLogEntry;
 import com.discord.utilities.textprocessing.node.EmojiNode;
 import com.discord.utilities.view.text.SimpleDraweeSpanTextView;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: ReactionView.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -36,7 +36,7 @@ public final class ReactionView extends LinearLayout {
     public ColorStateList meTextColor;
 
     /* JADX INFO: renamed from: o, reason: from kotlin metadata */
-    public final i1 binding;
+    public final ReactionViewBinding binding;
 
     public ReactionView(Context context, AttributeSet attributeSet) {
         this(context, attributeSet, 0, 4);
@@ -46,7 +46,7 @@ public final class ReactionView extends LinearLayout {
     public ReactionView(Context context, AttributeSet attributeSet, int i, int i2) {
         attributeSet = (i2 & 2) != 0 ? null : attributeSet;
         i = (i2 & 4) != 0 ? 0 : i;
-        m.checkNotNullParameter(context, "context");
+        Intrinsics3.checkNotNullParameter(context, "context");
         super(context, attributeSet, i);
         LayoutInflater.from(context).inflate(R.layout.reaction_view, this);
         int i3 = R.id.counter_text_1;
@@ -61,15 +61,15 @@ public final class ReactionView extends LinearLayout {
                     i3 = R.id.emoji_text_view;
                     SimpleDraweeSpanTextView simpleDraweeSpanTextView = (SimpleDraweeSpanTextView) findViewById(R.id.emoji_text_view);
                     if (simpleDraweeSpanTextView != null) {
-                        i1 i1Var = new i1(this, textView, textView2, textSwitcher, simpleDraweeSpanTextView);
-                        m.checkNotNullExpressionValue(i1Var, "ReactionViewBinding.infl…ater.from(context), this)");
-                        this.binding = i1Var;
+                        ReactionViewBinding reactionViewBinding = new ReactionViewBinding(this, textView, textView2, textSwitcher, simpleDraweeSpanTextView);
+                        Intrinsics3.checkNotNullExpressionValue(reactionViewBinding, "ReactionViewBinding.infl…ater.from(context), this)");
+                        this.binding = reactionViewBinding;
                         int[] iArr = R.a.ReactionView;
-                        m.checkNotNullExpressionValue(iArr, "R.styleable.ReactionView");
+                        Intrinsics3.checkNotNullExpressionValue(iArr, "R.styleable.ReactionView");
                         Context context2 = getContext();
-                        m.checkNotNullExpressionValue(context2, "context");
+                        Intrinsics3.checkNotNullExpressionValue(context2, "context");
                         TypedArray typedArrayObtainStyledAttributes = context2.obtainStyledAttributes(attributeSet, iArr);
-                        m.checkNotNullExpressionValue(typedArrayObtainStyledAttributes, "obtainStyledAttributes(attrs, styleable)");
+                        Intrinsics3.checkNotNullExpressionValue(typedArrayObtainStyledAttributes, "obtainStyledAttributes(attrs, styleable)");
                         this.meTextColor = typedArrayObtainStyledAttributes.getColorStateList(0);
                         this.textColor = typedArrayObtainStyledAttributes.getColorStateList(1);
                         typedArrayObtainStyledAttributes.recycle();
@@ -82,34 +82,34 @@ public final class ReactionView extends LinearLayout {
     }
 
     public final void a(MessageReaction reaction, long messageId, boolean animateEmojis) {
-        m.checkNotNullParameter(reaction, "reaction");
+        Intrinsics3.checkNotNullParameter(reaction, "reaction");
         Long l = this.curMessageId;
         boolean z2 = l == null || l == null || l.longValue() != messageId;
         MessageReaction messageReaction = this.reaction;
         int count = reaction.getCount();
-        i1 i1Var = this.binding;
+        ReactionViewBinding reactionViewBinding = this.binding;
         int i = this.curCount;
         if (count != i) {
             if (z2) {
-                i1Var.d.setCurrentText(String.valueOf(count));
+                reactionViewBinding.d.setCurrentText(String.valueOf(count));
             } else {
                 if (count > i) {
-                    TextSwitcher textSwitcher = i1Var.d;
+                    TextSwitcher textSwitcher = reactionViewBinding.d;
                     textSwitcher.setInAnimation(textSwitcher.getContext(), R.anim.anim_slide_in_up);
                     textSwitcher.setOutAnimation(textSwitcher.getContext(), R.anim.anim_slide_out_up);
                 } else {
-                    TextSwitcher textSwitcher2 = i1Var.d;
+                    TextSwitcher textSwitcher2 = reactionViewBinding.d;
                     textSwitcher2.setInAnimation(textSwitcher2.getContext(), R.anim.anim_slide_in_down);
                     textSwitcher2.setOutAnimation(textSwitcher2.getContext(), R.anim.anim_slide_out_down);
                 }
-                i1Var.d.setText(String.valueOf(count));
+                reactionViewBinding.d.setText(String.valueOf(count));
             }
             this.curCount = count;
         }
-        if (messageReaction == null || (!m.areEqual(reaction.getEmoji(), messageReaction.getEmoji()))) {
+        if (messageReaction == null || (!Intrinsics3.areEqual(reaction.getEmoji(), messageReaction.getEmoji()))) {
             EmojiNode.Companion companion = EmojiNode.INSTANCE;
             SimpleDraweeSpanTextView simpleDraweeSpanTextView = this.binding.e;
-            m.checkNotNullExpressionValue(simpleDraweeSpanTextView, "binding.emojiTextView");
+            Intrinsics3.checkNotNullExpressionValue(simpleDraweeSpanTextView, "binding.emojiTextView");
             EmojiNode.Companion.renderEmoji$default(companion, simpleDraweeSpanTextView, reaction.getEmoji(), animateEmojis, 0, 4, null);
         }
         setIsMe(reaction.getMe());
@@ -126,15 +126,15 @@ public final class ReactionView extends LinearLayout {
         setActivated(isMe);
         setSelected(isMe);
         TextView textView = this.binding.f132b;
-        m.checkNotNullExpressionValue(textView, "binding.counterText1");
+        Intrinsics3.checkNotNullExpressionValue(textView, "binding.counterText1");
         textView.setActivated(isMe);
         TextView textView2 = this.binding.c;
-        m.checkNotNullExpressionValue(textView2, "binding.counterText2");
+        Intrinsics3.checkNotNullExpressionValue(textView2, "binding.counterText2");
         textView2.setActivated(isMe);
     }
 
     public final void setMeTextColor(ColorStateList color) {
-        m.checkNotNullParameter(color, ModelAuditLogEntry.CHANGE_KEY_COLOR);
+        Intrinsics3.checkNotNullParameter(color, ModelAuditLogEntry.CHANGE_KEY_COLOR);
         this.meTextColor = color;
     }
 

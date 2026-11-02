@@ -1,6 +1,6 @@
 package com.esotericsoftware.kryo.serializers;
 
-import b.e.a.a;
+import b.e.a.Log;
 import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryo.Registration;
 import com.esotericsoftware.kryo.Serializer;
@@ -396,7 +396,7 @@ public class DefaultArraySerializers {
 
         @Override // com.esotericsoftware.kryo.Serializer
         public void setGenerics(Kryo kryo, Class[] clsArr) {
-            a.C0064a c0064a = a.a;
+            Log.a aVar = Log.a;
             this.generics = clsArr;
         }
 

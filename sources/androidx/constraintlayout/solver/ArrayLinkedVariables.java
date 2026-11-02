@@ -1,6 +1,6 @@
 package androidx.constraintlayout.solver;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import java.util.Arrays;
 
 /* JADX INFO: loaded from: classes.dex */
@@ -467,10 +467,10 @@ public class ArrayLinkedVariables implements ArrayRow.ArrayRowVariables {
         int i = this.mHead;
         String string = "";
         for (int i2 = 0; i != -1 && i2 < this.currentSize; i2++) {
-            StringBuilder sbU = a.U(a.w(string, " -> "));
+            StringBuilder sbU = outline.U(outline.w(string, " -> "));
             sbU.append(this.mArrayValues[i]);
             sbU.append(" : ");
-            StringBuilder sbU2 = a.U(sbU.toString());
+            StringBuilder sbU2 = outline.U(sbU.toString());
             sbU2.append(this.mCache.mIndexedVariables[this.mArrayIndices[i]]);
             string = sbU2.toString();
             i = this.mArrayNextIndices[i];

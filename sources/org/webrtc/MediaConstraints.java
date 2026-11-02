@@ -1,7 +1,7 @@
 package org.webrtc;
 
 import androidx.annotation.Nullable;
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -72,7 +72,7 @@ public class MediaConstraints {
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("mandatory: ");
+        StringBuilder sbU = outline.U("mandatory: ");
         sbU.append(stringifyKeyValuePairList(this.mandatory));
         sbU.append(", optional: ");
         sbU.append(stringifyKeyValuePairList(this.optional));

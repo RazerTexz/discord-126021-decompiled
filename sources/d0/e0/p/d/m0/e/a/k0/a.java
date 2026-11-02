@@ -1,5 +1,7 @@
 package d0.e0.p.d.m0.e.a.k0;
 
+import d0.e0.p.d.m0.g.ClassId;
+import d0.z.d.Intrinsics3;
 import java.util.Collection;
 
 /* JADX INFO: compiled from: javaElements.kt */
@@ -8,21 +10,21 @@ public interface a extends l {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.e.a.k0.a$a, reason: collision with other inner class name */
     /* JADX INFO: compiled from: javaElements.kt */
-    public final class C0527a {
+    public final class C0385a {
         public static boolean isFreshlySupportedTypeUseAnnotation(a aVar) {
-            d0.z.d.m.checkNotNullParameter(aVar, "this");
+            Intrinsics3.checkNotNullParameter(aVar, "this");
             return false;
         }
 
         public static boolean isIdeExternalAnnotation(a aVar) {
-            d0.z.d.m.checkNotNullParameter(aVar, "this");
+            Intrinsics3.checkNotNullParameter(aVar, "this");
             return false;
         }
     }
 
-    Collection<b> getArguments();
+    Collection<annotationArguments> getArguments();
 
-    d0.e0.p.d.m0.g.a getClassId();
+    ClassId getClassId();
 
     boolean isFreshlySupportedTypeUseAnnotation();
 

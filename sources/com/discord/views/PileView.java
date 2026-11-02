@@ -11,8 +11,8 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 import androidx.annotation.ColorInt;
-import b.a.i.c1;
-import b.a.i.v2;
+import b.a.i.PileItemOverflowViewBinding;
+import b.a.i.ViewPileItemBinding;
 import com.discord.R;
 import com.discord.utilities.dimen.DimenUtils;
 import com.discord.utilities.icon.IconUtils;
@@ -21,10 +21,10 @@ import com.facebook.drawee.generic.GenericDraweeHierarchy;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.google.android.material.shape.MaterialShapeDrawable;
 import com.google.android.material.shape.ShapeAppearanceModel;
-import d0.t.n;
-import d0.t.u;
-import d0.z.d.m;
-import d0.z.d.o;
+import d0.t.Collections2;
+import d0.t._Collections;
+import d0.z.d.Intrinsics3;
+import d0.z.d.Lambda;
 import java.util.Collection;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
@@ -76,7 +76,7 @@ public final class PileView extends FrameLayout {
     public int overflowBackgroundColor;
 
     /* JADX INFO: compiled from: kotlin-style lambda group */
-    public final class a extends o implements Function1<Integer, String> {
+    public final class a extends Lambda implements Function1<Integer, String> {
         public static final a j = new a(0);
         public static final a k = new a(1);
         public static final a l = new a(2);
@@ -108,7 +108,7 @@ public final class PileView extends FrameLayout {
     }
 
     /* JADX INFO: compiled from: kotlin-style lambda group */
-    public final class b extends o implements Function0<String> {
+    public final class b extends Lambda implements Function0<String> {
         public static final b j = new b(0);
         public static final b k = new b(1);
         public static final b l = new b(2);
@@ -139,7 +139,7 @@ public final class PileView extends FrameLayout {
 
         /* JADX WARN: Multi-variable type inference failed */
         public c(Function1<? super Integer, String> function1, Function0<String> function0) {
-            m.checkNotNullParameter(function1, "getImageURI");
+            Intrinsics3.checkNotNullParameter(function1, "getImageURI");
             this.a = function1;
             this.f2835b = function0;
         }
@@ -148,7 +148,7 @@ public final class PileView extends FrameLayout {
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public PileView(Context context, AttributeSet attributeSet) {
         super(context, attributeSet);
-        m.checkNotNullParameter(context, "context");
+        Intrinsics3.checkNotNullParameter(context, "context");
         this.maxItems = 3;
         this.doRoundItem = true;
         this.doRoundBg = true;
@@ -156,11 +156,11 @@ public final class PileView extends FrameLayout {
         this.cutoutThicknessPx = DimenUtils.dpToPixels(2);
         this.overflowTextSizePx = DimenUtils.dpToPixels(14);
         int[] iArr = R.a.PileView;
-        m.checkNotNullExpressionValue(iArr, "R.styleable.PileView");
+        Intrinsics3.checkNotNullExpressionValue(iArr, "R.styleable.PileView");
         Context context2 = getContext();
-        m.checkNotNullExpressionValue(context2, "context");
+        Intrinsics3.checkNotNullExpressionValue(context2, "context");
         TypedArray typedArrayObtainStyledAttributes = context2.obtainStyledAttributes(attributeSet, iArr);
-        m.checkNotNullExpressionValue(typedArrayObtainStyledAttributes, "obtainStyledAttributes(attrs, styleable)");
+        Intrinsics3.checkNotNullExpressionValue(typedArrayObtainStyledAttributes, "obtainStyledAttributes(attrs, styleable)");
         this.maxItems = typedArrayObtainStyledAttributes.getInt(6, this.maxItems);
         this.itemSizePx = typedArrayObtainStyledAttributes.getDimensionPixelSize(4, this.itemSizePx);
         this.itemBackgroundColor = typedArrayObtainStyledAttributes.getColor(0, this.itemBackgroundColor);
@@ -179,22 +179,22 @@ public final class PileView extends FrameLayout {
         int i3 = this.cutoutThicknessPx;
         this.cutoutStyle = new CutoutView.a.b(i + i3, i2 + i3);
         if (isInEditMode()) {
-            setItems(n.listOf((Object[]) new c[]{new c(a.j, b.j), new c(a.k, b.k), new c(a.l, b.l)}));
+            setItems(Collections2.listOf((Object[]) new c[]{new c(a.j, b.j), new c(a.k, b.k), new c(a.l, b.l)}));
         }
     }
 
     public final void setItems(Collection<c> items) {
-        m.checkNotNullParameter(items, "items");
+        Intrinsics3.checkNotNullParameter(items, "items");
         removeAllViews();
         boolean z2 = false;
         int size = items.size() > this.maxItems ? (items.size() - this.maxItems) + 1 : 0;
         int size2 = size > 0 ? this.maxItems - 1 : items.size();
         int i = size2 - 1;
         int i2 = 0;
-        for (Object obj : u.take(items, size2)) {
+        for (Object obj : _Collections.take(items, size2)) {
             int i3 = i2 + 1;
             if (i2 < 0) {
-                n.throwIndexOverflow();
+                Collections2.throwIndexOverflow();
             }
             c cVar = (c) obj;
             int i4 = this.itemSizePx * i2;
@@ -209,33 +209,33 @@ public final class PileView extends FrameLayout {
                     TextView textView = (TextView) viewInflate.findViewById(R.id.pileItemInitials);
                     if (textView != null) {
                         CutoutView cutoutView = (CutoutView) viewInflate;
-                        m.checkNotNullExpressionValue(new v2(cutoutView, simpleDraweeView, simpleDraweeView2, textView), "ViewPileItemBinding.infl…om(context), this, false)");
+                        Intrinsics3.checkNotNullExpressionValue(new ViewPileItemBinding(cutoutView, simpleDraweeView, simpleDraweeView2, textView), "ViewPileItemBinding.infl…om(context), this, false)");
                         cutoutView.setId(FrameLayout.generateViewId());
                         int i7 = this.itemSizePx;
                         FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(i7, i7);
                         layoutParams.setMarginStart(i4 - i5);
                         cutoutView.setLayoutParams(layoutParams);
-                        m.checkNotNullExpressionValue(cutoutView, "itemBinding.root");
+                        Intrinsics3.checkNotNullExpressionValue(cutoutView, "itemBinding.root");
                         addView(cutoutView, cutoutView.getLayoutParams());
-                        m.checkNotNullExpressionValue(simpleDraweeView2, "itemBinding.pileItemImage");
+                        Intrinsics3.checkNotNullExpressionValue(simpleDraweeView2, "itemBinding.pileItemImage");
                         int i8 = this.itemPaddingPx;
                         simpleDraweeView2.setPadding(i8, i8, i8, i8);
                         if (!this.doRoundItem) {
-                            m.checkNotNullExpressionValue(simpleDraweeView2, "itemBinding.pileItemImage");
+                            Intrinsics3.checkNotNullExpressionValue(simpleDraweeView2, "itemBinding.pileItemImage");
                             GenericDraweeHierarchy hierarchy = simpleDraweeView2.getHierarchy();
-                            m.checkNotNullExpressionValue(hierarchy, "itemBinding.pileItemImage.hierarchy");
+                            Intrinsics3.checkNotNullExpressionValue(hierarchy, "itemBinding.pileItemImage.hierarchy");
                             hierarchy.s(null);
                         }
                         if (!this.doRoundBg) {
-                            m.checkNotNullExpressionValue(simpleDraweeView, "itemBinding.pileItemBg");
+                            Intrinsics3.checkNotNullExpressionValue(simpleDraweeView, "itemBinding.pileItemBg");
                             GenericDraweeHierarchy hierarchy2 = simpleDraweeView.getHierarchy();
-                            m.checkNotNullExpressionValue(hierarchy2, "itemBinding.pileItemBg.hierarchy");
+                            Intrinsics3.checkNotNullExpressionValue(hierarchy2, "itemBinding.pileItemBg.hierarchy");
                             hierarchy2.s(null);
                         }
                         if (this.itemBackgroundColor != 0) {
-                            m.checkNotNullExpressionValue(simpleDraweeView, "itemBinding.pileItemBg");
+                            Intrinsics3.checkNotNullExpressionValue(simpleDraweeView, "itemBinding.pileItemBg");
                             simpleDraweeView.getHierarchy().o(1, new ColorDrawable(this.itemBackgroundColor));
-                            m.checkNotNullExpressionValue(simpleDraweeView, "itemBinding.pileItemBg");
+                            Intrinsics3.checkNotNullExpressionValue(simpleDraweeView, "itemBinding.pileItemBg");
                             simpleDraweeView.setVisibility(0);
                         }
                         if (i2 != i || size > 0) {
@@ -244,18 +244,18 @@ public final class PileView extends FrameLayout {
                         String strInvoke = cVar.a.invoke(Integer.valueOf(IconUtils.getMediaProxySize(this.itemSizePx)));
                         Function0<String> function0 = cVar.f2835b;
                         String strInvoke2 = function0 != null ? function0.invoke() : null;
-                        m.checkNotNullExpressionValue(textView, "itemBinding.pileItemInitials");
+                        Intrinsics3.checkNotNullExpressionValue(textView, "itemBinding.pileItemInitials");
                         textView.setVisibility(strInvoke == null ? 0 : 8);
-                        m.checkNotNullExpressionValue(textView, "itemBinding.pileItemInitials");
+                        Intrinsics3.checkNotNullExpressionValue(textView, "itemBinding.pileItemInitials");
                         textView.setText(strInvoke2);
                         int i9 = this.itemTextColor;
                         if (i9 != 0) {
                             textView.setTextColor(i9);
                         }
-                        m.checkNotNullExpressionValue(simpleDraweeView2, "itemBinding.pileItemImage");
+                        Intrinsics3.checkNotNullExpressionValue(simpleDraweeView2, "itemBinding.pileItemImage");
                         simpleDraweeView2.setVisibility(strInvoke != null ? 0 : 8);
                         if (strInvoke != null) {
-                            m.checkNotNullExpressionValue(simpleDraweeView2, "itemBinding.pileItemImage");
+                            Intrinsics3.checkNotNullExpressionValue(simpleDraweeView2, "itemBinding.pileItemImage");
                             MGImages.setImage$default(simpleDraweeView2, strInvoke, 0, 0, true, null, null, 108, null);
                         }
                         i2 = i3;
@@ -277,17 +277,17 @@ public final class PileView extends FrameLayout {
                 throw new NullPointerException("Missing required view with ID: ".concat(viewInflate2.getResources().getResourceName(R.id.pile_item_text)));
             }
             CutoutView cutoutView2 = (CutoutView) viewInflate2;
-            m.checkNotNullExpressionValue(new c1(cutoutView2, textView2), "PileItemOverflowViewBind…om(context), this, false)");
+            Intrinsics3.checkNotNullExpressionValue(new PileItemOverflowViewBinding(cutoutView2, textView2), "PileItemOverflowViewBind…om(context), this, false)");
             cutoutView2.setId(FrameLayout.generateViewId());
             FrameLayout.LayoutParams layoutParams2 = new FrameLayout.LayoutParams(-2, this.itemSizePx);
             layoutParams2.setMarginStart(i11 - i12);
             cutoutView2.setLayoutParams(layoutParams2);
-            m.checkNotNullExpressionValue(textView2, "overflowItemBinding.pileItemText");
+            Intrinsics3.checkNotNullExpressionValue(textView2, "overflowItemBinding.pileItemText");
             textView2.setText("" + '+' + size);
             textView2.setTextSize(0, (float) this.overflowTextSizePx);
-            m.checkNotNullExpressionValue(cutoutView2, "overflowItemBinding.root");
+            Intrinsics3.checkNotNullExpressionValue(cutoutView2, "overflowItemBinding.root");
             addView(cutoutView2, cutoutView2.getLayoutParams());
-            m.checkNotNullExpressionValue(textView2, "overflowItemBinding.pileItemText");
+            Intrinsics3.checkNotNullExpressionValue(textView2, "overflowItemBinding.pileItemText");
             MaterialShapeDrawable materialShapeDrawable = new MaterialShapeDrawable(new ShapeAppearanceModel.Builder().setAllCornerSizes(ShapeAppearanceModel.PILL).build());
             int i13 = this.overflowBackgroundColor;
             if (i13 == 0) {

@@ -12,12 +12,13 @@ import android.os.Process;
 import android.os.RemoteException;
 import android.util.Log;
 import androidx.core.app.NotificationCompat;
-import b.d.b.a.a;
+import b.d.b.a.outline;
+import b.m.a.AndroidClockFactory;
 import com.discord.models.domain.ModelAuditLogEntry;
 import com.discord.utilities.logging.Logger;
 import com.discord.utilities.logging.LoggingProvider;
 import com.discord.utilities.time.NtpClock;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 import kotlin.jvm.internal.DefaultConstructorMarker;
 
 /* JADX INFO: compiled from: RemoteIntentService.kt */
@@ -41,7 +42,7 @@ public abstract class RemoteIntentService extends IntentService {
         }
 
         private final String messageToString(Message msg) {
-            StringBuilder sbU = a.U("Message(what=");
+            StringBuilder sbU = outline.U("Message(what=");
             sbU.append(msg.what);
             sbU.append(", arg1=");
             sbU.append(msg.arg1);
@@ -56,11 +57,11 @@ public abstract class RemoteIntentService extends IntentService {
         }
 
         public final void startRemoteServiceWithCallback(Context context, Class<?> serviceClass, IpcCallback callback) {
-            m.checkNotNullParameter(context, "context");
-            m.checkNotNullParameter(serviceClass, "serviceClass");
-            m.checkNotNullParameter(callback, "callback");
+            Intrinsics3.checkNotNullParameter(context, "context");
+            Intrinsics3.checkNotNullParameter(serviceClass, "serviceClass");
+            Intrinsics3.checkNotNullParameter(callback, "callback");
             Logger logger = LoggingProvider.INSTANCE.get();
-            StringBuilder sbU = a.U("Starting service in remote process: ");
+            StringBuilder sbU = outline.U("Starting service in remote process: ");
             sbU.append(serviceClass.getSimpleName());
             sbU.append(", app pid=");
             sbU.append(Process.myPid());
@@ -83,10 +84,10 @@ public abstract class RemoteIntentService extends IntentService {
         private final String name;
 
         public IpcCallback(String str, Looper looper) {
-            m.checkNotNullParameter(str, ModelAuditLogEntry.CHANGE_KEY_NAME);
-            m.checkNotNullParameter(looper, "callbackLooper");
+            Intrinsics3.checkNotNullParameter(str, ModelAuditLogEntry.CHANGE_KEY_NAME);
+            Intrinsics3.checkNotNullParameter(looper, "callbackLooper");
             this.name = str;
-            this.handler = new Handler(looper, new RemoteIntentService$IpcCallback$handler$1(this));
+            this.handler = new Handler(looper, new RemoteIntentService2(this));
         }
 
         public static final /* synthetic */ String access$getName$p(IpcCallback ipcCallback) {
@@ -105,7 +106,7 @@ public abstract class RemoteIntentService extends IntentService {
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public RemoteIntentService(String str) {
         super(str);
-        m.checkNotNullParameter(str, ModelAuditLogEntry.CHANGE_KEY_NAME);
+        Intrinsics3.checkNotNullParameter(str, ModelAuditLogEntry.CHANGE_KEY_NAME);
         this.name = str;
     }
 
@@ -114,7 +115,7 @@ public abstract class RemoteIntentService extends IntentService {
     @Override // android.app.IntentService, android.app.Service
     public final void onCreate() {
         super.onCreate();
-        StringBuilder sbQ = a.Q('[');
+        StringBuilder sbQ = outline.Q('[');
         sbQ.append(this.name);
         sbQ.append("] created, remote pid=");
         sbQ.append(Process.myPid());
@@ -123,7 +124,7 @@ public abstract class RemoteIntentService extends IntentService {
 
     @Override // android.app.IntentService, android.app.Service
     public final void onDestroy() {
-        StringBuilder sbQ = a.Q('[');
+        StringBuilder sbQ = outline.Q('[');
         sbQ.append(this.name);
         sbQ.append("] destroyed");
         Log.d(TAG, sbQ.toString());
@@ -132,32 +133,32 @@ public abstract class RemoteIntentService extends IntentService {
 
     @Override // android.app.IntentService
     public final void onHandleIntent(Intent intent) throws RemoteException {
-        StringBuilder sbQ = a.Q('[');
+        StringBuilder sbQ = outline.Q('[');
         sbQ.append(this.name);
         sbQ.append("] onHandleIntent() start, pid=");
         sbQ.append(Process.myPid());
         Log.d(TAG, sbQ.toString());
         if (intent == null) {
-            StringBuilder sbQ2 = a.Q('[');
+            StringBuilder sbQ2 = outline.Q('[');
             sbQ2.append(this.name);
             sbQ2.append("] null intent");
             Log.d(TAG, sbQ2.toString());
             return;
         }
-        NtpClock ntpClock = new NtpClock(b.m.a.a.a(this, null, null, 0L, 0L, 0L, 62));
+        NtpClock ntpClock = new NtpClock(AndroidClockFactory.a(this, null, null, 0L, 0L, 0L, 62));
         long jCurrentTimeMillis = ntpClock.currentTimeMillis();
         try {
             th = doWork(intent);
         } catch (Throwable th) {
             th = th;
-            StringBuilder sbQ3 = a.Q('[');
+            StringBuilder sbQ3 = outline.Q('[');
             sbQ3.append(this.name);
             sbQ3.append("] doWork returned error: ");
             sbQ3.append(th);
             Log.e(TAG, sbQ3.toString());
         }
         long jCurrentTimeMillis2 = ntpClock.currentTimeMillis() - jCurrentTimeMillis;
-        StringBuilder sbQ4 = a.Q('[');
+        StringBuilder sbQ4 = outline.Q('[');
         sbQ4.append(this.name);
         sbQ4.append("] doWork finished: ");
         sbQ4.append(jCurrentTimeMillis2);
@@ -172,7 +173,7 @@ public abstract class RemoteIntentService extends IntentService {
             messenger.send(messageObtain);
             return;
         }
-        StringBuilder sbQ5 = a.Q('[');
+        StringBuilder sbQ5 = outline.Q('[');
         sbQ5.append(this.name);
         sbQ5.append("] reply-to Messenger not set by caller");
         Log.e(TAG, sbQ5.toString());

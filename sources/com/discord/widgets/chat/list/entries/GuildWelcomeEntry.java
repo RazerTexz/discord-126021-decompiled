@@ -1,8 +1,8 @@
 package com.discord.widgets.chat.list.entries;
 
 import a0.a.a.b;
-import b.d.b.a.a;
-import d0.z.d.m;
+import b.d.b.a.outline;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: GuildWelcomeEntry.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -16,7 +16,7 @@ public final /* data */ class GuildWelcomeEntry extends ChatListEntry {
     private final int type;
 
     public GuildWelcomeEntry(boolean z2, boolean z3, boolean z4, long j, String str) {
-        m.checkNotNullParameter(str, "guildName");
+        Intrinsics3.checkNotNullParameter(str, "guildName");
         this.isOwner = z2;
         this.guildHasIcon = z3;
         this.canInvite = z4;
@@ -49,7 +49,7 @@ public final /* data */ class GuildWelcomeEntry extends ChatListEntry {
     }
 
     public final GuildWelcomeEntry copy(boolean isOwner, boolean guildHasIcon, boolean canInvite, long guildId, String guildName) {
-        m.checkNotNullParameter(guildName, "guildName");
+        Intrinsics3.checkNotNullParameter(guildName, "guildName");
         return new GuildWelcomeEntry(isOwner, guildHasIcon, canInvite, guildId, guildName);
     }
 
@@ -61,7 +61,7 @@ public final /* data */ class GuildWelcomeEntry extends ChatListEntry {
             return false;
         }
         GuildWelcomeEntry guildWelcomeEntry = (GuildWelcomeEntry) other;
-        return this.isOwner == guildWelcomeEntry.isOwner && this.guildHasIcon == guildWelcomeEntry.guildHasIcon && this.canInvite == guildWelcomeEntry.canInvite && this.guildId == guildWelcomeEntry.guildId && m.areEqual(this.guildName, guildWelcomeEntry.guildName);
+        return this.isOwner == guildWelcomeEntry.isOwner && this.guildHasIcon == guildWelcomeEntry.guildHasIcon && this.canInvite == guildWelcomeEntry.canInvite && this.guildId == guildWelcomeEntry.guildId && Intrinsics3.areEqual(this.guildName, guildWelcomeEntry.guildName);
     }
 
     /* JADX INFO: renamed from: component3, reason: from getter */
@@ -151,7 +151,7 @@ public final /* data */ class GuildWelcomeEntry extends ChatListEntry {
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("GuildWelcomeEntry(isOwner=");
+        StringBuilder sbU = outline.U("GuildWelcomeEntry(isOwner=");
         sbU.append(this.isOwner);
         sbU.append(", guildHasIcon=");
         sbU.append(this.guildHasIcon);
@@ -160,6 +160,6 @@ public final /* data */ class GuildWelcomeEntry extends ChatListEntry {
         sbU.append(", guildId=");
         sbU.append(this.guildId);
         sbU.append(", guildName=");
-        return a.J(sbU, this.guildName, ")");
+        return outline.J(sbU, this.guildName, ")");
     }
 }

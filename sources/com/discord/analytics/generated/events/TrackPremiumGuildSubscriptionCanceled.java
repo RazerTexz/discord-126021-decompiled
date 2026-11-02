@@ -1,14 +1,14 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackPremiumGuildSubscriptionCanceled.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackPremiumGuildSubscriptionCanceled implements AnalyticsSchema, TrackBaseReceiver {
+public final /* data */ class TrackPremiumGuildSubscriptionCanceled implements AnalyticsSchema, TrackBase2 {
     private final Long guildId = null;
     private final Long premiumGuildSubscriptionId = null;
     private final Long slotId = null;
@@ -24,7 +24,7 @@ public final /* data */ class TrackPremiumGuildSubscriptionCanceled implements A
             return false;
         }
         TrackPremiumGuildSubscriptionCanceled trackPremiumGuildSubscriptionCanceled = (TrackPremiumGuildSubscriptionCanceled) other;
-        return m.areEqual(this.guildId, trackPremiumGuildSubscriptionCanceled.guildId) && m.areEqual(this.premiumGuildSubscriptionId, trackPremiumGuildSubscriptionCanceled.premiumGuildSubscriptionId) && m.areEqual(this.subscriptionCanceledReason, trackPremiumGuildSubscriptionCanceled.subscriptionCanceledReason) && m.areEqual(this.slotId, trackPremiumGuildSubscriptionCanceled.slotId);
+        return Intrinsics3.areEqual(this.guildId, trackPremiumGuildSubscriptionCanceled.guildId) && Intrinsics3.areEqual(this.premiumGuildSubscriptionId, trackPremiumGuildSubscriptionCanceled.premiumGuildSubscriptionId) && Intrinsics3.areEqual(this.subscriptionCanceledReason, trackPremiumGuildSubscriptionCanceled.subscriptionCanceledReason) && Intrinsics3.areEqual(this.slotId, trackPremiumGuildSubscriptionCanceled.slotId);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -45,13 +45,13 @@ public final /* data */ class TrackPremiumGuildSubscriptionCanceled implements A
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackPremiumGuildSubscriptionCanceled(guildId=");
+        StringBuilder sbU = outline.U("TrackPremiumGuildSubscriptionCanceled(guildId=");
         sbU.append(this.guildId);
         sbU.append(", premiumGuildSubscriptionId=");
         sbU.append(this.premiumGuildSubscriptionId);
         sbU.append(", subscriptionCanceledReason=");
         sbU.append(this.subscriptionCanceledReason);
         sbU.append(", slotId=");
-        return a.G(sbU, this.slotId, ")");
+        return outline.G(sbU, this.slotId, ")");
     }
 }

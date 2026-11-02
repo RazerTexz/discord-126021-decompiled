@@ -3,12 +3,14 @@ package com.facebook.imagepipeline.platform;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.MemoryFile;
-import b.c.a.a0.d;
-import b.f.d.d.c;
-import b.f.d.d.m;
-import b.f.d.g.h;
-import b.f.d.j.a;
-import b.f.d.m.b;
+import b.c.a.a0.AnimatableValueParser;
+import b.f.d.d.Closeables;
+import b.f.d.d.DoNotStrip;
+import b.f.d.d.Throwables;
+import b.f.d.g.PooledByteBufferInputStream;
+import b.f.d.j.LimitedInputStream;
+import b.f.d.m.WebpBitmapFactory;
+import b.f.d.m.WebpSupportStatus;
 import com.facebook.common.memory.PooledByteBuffer;
 import com.facebook.common.references.CloseableReference;
 import com.facebook.imagepipeline.nativecode.DalvikPurgeableDecoder;
@@ -19,12 +21,12 @@ import java.lang.reflect.Method;
 import java.util.Objects;
 
 /* JADX INFO: loaded from: classes3.dex */
-@c
+@DoNotStrip
 public class GingerbreadPurgeableDecoder extends DalvikPurgeableDecoder {
     public static Method c;
-    public final b d = b.f.d.m.c.c();
+    public final WebpBitmapFactory d = WebpSupportStatus.c();
 
-    @c
+    @DoNotStrip
     public GingerbreadPurgeableDecoder() {
     }
 
@@ -40,21 +42,21 @@ public class GingerbreadPurgeableDecoder extends DalvikPurgeableDecoder {
 
     public static MemoryFile g(CloseableReference<PooledByteBuffer> closeableReference, int i, byte[] bArr) throws Throwable {
         OutputStream outputStream;
-        a aVar;
-        h hVar = null;
+        LimitedInputStream limitedInputStream;
+        PooledByteBufferInputStream pooledByteBufferInputStream = null;
         OutputStream outputStream2 = null;
         MemoryFile memoryFile = new MemoryFile(null, (bArr == null ? 0 : bArr.length) + i);
         memoryFile.allowPurging(false);
         try {
-            h hVar2 = new h(closeableReference.u());
+            PooledByteBufferInputStream pooledByteBufferInputStream2 = new PooledByteBufferInputStream(closeableReference.u());
             try {
-                aVar = new a(hVar2, i);
+                limitedInputStream = new LimitedInputStream(pooledByteBufferInputStream2, i);
                 try {
                     outputStream2 = memoryFile.getOutputStream();
                     Objects.requireNonNull(outputStream2);
                     byte[] bArr2 = new byte[4096];
                     while (true) {
-                        int i2 = aVar.read(bArr2);
+                        int i2 = limitedInputStream.read(bArr2);
                         if (i2 == -1) {
                             break;
                         }
@@ -64,32 +66,32 @@ public class GingerbreadPurgeableDecoder extends DalvikPurgeableDecoder {
                         memoryFile.writeBytes(bArr, 0, i, bArr.length);
                     }
                     closeableReference.close();
-                    b.f.d.d.a.b(hVar2);
-                    b.f.d.d.a.b(aVar);
-                    b.f.d.d.a.a(outputStream2, true);
+                    Closeables.b(pooledByteBufferInputStream2);
+                    Closeables.b(limitedInputStream);
+                    Closeables.a(outputStream2, true);
                     return memoryFile;
                 } catch (Throwable th) {
                     th = th;
                     outputStream = outputStream2;
-                    hVar = hVar2;
+                    pooledByteBufferInputStream = pooledByteBufferInputStream2;
                     Class<CloseableReference> cls = CloseableReference.j;
                     if (closeableReference != null) {
                         closeableReference.close();
                     }
-                    b.f.d.d.a.b(hVar);
-                    b.f.d.d.a.b(aVar);
-                    b.f.d.d.a.a(outputStream, true);
+                    Closeables.b(pooledByteBufferInputStream);
+                    Closeables.b(limitedInputStream);
+                    Closeables.a(outputStream, true);
                     throw th;
                 }
             } catch (Throwable th2) {
                 th = th2;
                 outputStream = null;
-                aVar = null;
+                limitedInputStream = null;
             }
         } catch (Throwable th3) {
             th = th3;
             outputStream = null;
-            aVar = null;
+            limitedInputStream = null;
         }
     }
 
@@ -100,12 +102,12 @@ public class GingerbreadPurgeableDecoder extends DalvikPurgeableDecoder {
             MemoryFile memoryFileG = g(closeableReference, i, bArr);
             try {
                 FileDescriptor fileDescriptorJ = j(memoryFileG);
-                b bVar = this.d;
-                if (bVar == null) {
+                WebpBitmapFactory webpBitmapFactory = this.d;
+                if (webpBitmapFactory == null) {
                     throw new IllegalStateException("WebpBitmapFactory is null");
                 }
-                Bitmap bitmapA = bVar.a(fileDescriptorJ, null, options);
-                d.y(bitmapA, "BitmapFactory returned null");
+                Bitmap bitmapA = webpBitmapFactory.a(fileDescriptorJ, null, options);
+                AnimatableValueParser.y(bitmapA, "BitmapFactory returned null");
                 Bitmap bitmap = bitmapA;
                 memoryFileG.close();
                 return bitmap;
@@ -113,7 +115,7 @@ public class GingerbreadPurgeableDecoder extends DalvikPurgeableDecoder {
                 e = e;
                 memoryFile = memoryFileG;
                 try {
-                    m.a(e);
+                    Throwables.a(e);
                     throw new RuntimeException(e);
                 } catch (Throwable th) {
                     th = th;
@@ -142,7 +144,7 @@ public class GingerbreadPurgeableDecoder extends DalvikPurgeableDecoder {
             try {
                 c = MemoryFile.class.getDeclaredMethod("getFileDescriptor", new Class[0]);
             } catch (Exception e) {
-                m.a(e);
+                Throwables.a(e);
                 throw new RuntimeException(e);
             }
         }
@@ -155,7 +157,7 @@ public class GingerbreadPurgeableDecoder extends DalvikPurgeableDecoder {
             Objects.requireNonNull(objInvoke);
             return (FileDescriptor) objInvoke;
         } catch (Exception e) {
-            m.a(e);
+            Throwables.a(e);
             throw new RuntimeException(e);
         }
     }

@@ -1,7 +1,7 @@
 package com.discord.api.report;
 
-import b.d.b.a.a;
-import d0.z.d.m;
+import b.d.b.a.outline;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: InAppReportsMenu.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -11,7 +11,7 @@ public final /* data */ class NodeResult {
     private final ReportNode node;
 
     public NodeResult(ReportNode reportNode, ReportNodeChild reportNodeChild, NodeElementResult nodeElementResult) {
-        m.checkNotNullParameter(reportNode, "node");
+        Intrinsics3.checkNotNullParameter(reportNode, "node");
         this.node = reportNode;
         this.destination = reportNodeChild;
         this.elementResult = nodeElementResult;
@@ -25,7 +25,7 @@ public final /* data */ class NodeResult {
             return false;
         }
         NodeResult nodeResult = (NodeResult) other;
-        return m.areEqual(this.node, nodeResult.node) && m.areEqual(this.destination, nodeResult.destination) && m.areEqual(this.elementResult, nodeResult.elementResult);
+        return Intrinsics3.areEqual(this.node, nodeResult.node) && Intrinsics3.areEqual(this.destination, nodeResult.destination) && Intrinsics3.areEqual(this.elementResult, nodeResult.elementResult);
     }
 
     /* JADX INFO: renamed from: a, reason: from getter */
@@ -53,7 +53,7 @@ public final /* data */ class NodeResult {
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("NodeResult(node=");
+        StringBuilder sbU = outline.U("NodeResult(node=");
         sbU.append(this.node);
         sbU.append(", destination=");
         sbU.append(this.destination);

@@ -1,12 +1,12 @@
 package kotlinx.coroutines.internal;
 
 import java.util.List;
-import s.a.l1;
+import s.a.MainCoroutineDispatcher;
 
 /* JADX INFO: compiled from: MainDispatcherFactory.kt */
 /* JADX INFO: loaded from: classes3.dex */
 public interface MainDispatcherFactory {
-    l1 createDispatcher(List<? extends MainDispatcherFactory> list);
+    MainCoroutineDispatcher createDispatcher(List<? extends MainDispatcherFactory> list);
 
     int getLoadPriority();
 

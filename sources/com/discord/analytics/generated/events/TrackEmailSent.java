@@ -1,17 +1,17 @@
 package com.discord.analytics.generated.events;
 
 import androidx.core.app.NotificationCompat;
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.analytics.generated.traits.TrackEmail;
-import com.discord.analytics.generated.traits.TrackEmailReceiver;
+import com.discord.analytics.generated.traits.TrackEmail2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackEmailSent.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackEmailSent implements AnalyticsSchema, TrackBaseReceiver, TrackEmailReceiver {
+public final /* data */ class TrackEmailSent implements AnalyticsSchema, TrackBase2, TrackEmail2 {
     private final Float clickProbability = null;
     private final CharSequence email = null;
     private final CharSequence emailDomain = null;
@@ -32,7 +32,7 @@ public final /* data */ class TrackEmailSent implements AnalyticsSchema, TrackBa
             return false;
         }
         TrackEmailSent trackEmailSent = (TrackEmailSent) other;
-        return m.areEqual(this.email, trackEmailSent.email) && m.areEqual(this.emailDomain, trackEmailSent.emailDomain) && m.areEqual(this.mmNumGuildsMissed, trackEmailSent.mmNumGuildsMissed) && m.areEqual(this.mmNumChannelsMissed, trackEmailSent.mmNumChannelsMissed) && m.areEqual(this.mmNumDmsMissed, trackEmailSent.mmNumDmsMissed) && m.areEqual(this.mmNumMessagesMissed, trackEmailSent.mmNumMessagesMissed) && m.areEqual(this.userLastActive, trackEmailSent.userLastActive) && m.areEqual(this.clickProbability, trackEmailSent.clickProbability);
+        return Intrinsics3.areEqual(this.email, trackEmailSent.email) && Intrinsics3.areEqual(this.emailDomain, trackEmailSent.emailDomain) && Intrinsics3.areEqual(this.mmNumGuildsMissed, trackEmailSent.mmNumGuildsMissed) && Intrinsics3.areEqual(this.mmNumChannelsMissed, trackEmailSent.mmNumChannelsMissed) && Intrinsics3.areEqual(this.mmNumDmsMissed, trackEmailSent.mmNumDmsMissed) && Intrinsics3.areEqual(this.mmNumMessagesMissed, trackEmailSent.mmNumMessagesMissed) && Intrinsics3.areEqual(this.userLastActive, trackEmailSent.userLastActive) && Intrinsics3.areEqual(this.clickProbability, trackEmailSent.clickProbability);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -61,7 +61,7 @@ public final /* data */ class TrackEmailSent implements AnalyticsSchema, TrackBa
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackEmailSent(email=");
+        StringBuilder sbU = outline.U("TrackEmailSent(email=");
         sbU.append(this.email);
         sbU.append(", emailDomain=");
         sbU.append(this.emailDomain);

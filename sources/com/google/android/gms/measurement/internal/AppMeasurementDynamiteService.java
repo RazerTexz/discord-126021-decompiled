@@ -6,8 +6,9 @@ import android.os.Bundle;
 import android.os.RemoteException;
 import androidx.annotation.GuardedBy;
 import androidx.collection.ArrayMap;
-import b.c.a.a0.d;
+import b.c.a.a0.AnimatableValueParser;
 import b.i.a.f.h.l.c;
+import b.i.a.f.h.l.d;
 import b.i.a.f.h.l.dc;
 import b.i.a.f.h.l.fc;
 import b.i.a.f.h.l.t8;
@@ -160,7 +161,7 @@ public class AppMeasurementDynamiteService extends dc {
     public void getMaxUserProperties(String str, fc fcVar) throws RemoteException {
         g();
         this.a.s();
-        d.w(str);
+        AnimatableValueParser.w(str);
         this.a.t().J(fcVar, 25);
     }
 
@@ -254,7 +255,7 @@ public class AppMeasurementDynamiteService extends dc {
     @Override // b.i.a.f.h.l.ec
     public void logEventAndBundle(String str, String str2, Bundle bundle, fc fcVar, long j) throws RemoteException {
         g();
-        d.w(str2);
+        AnimatableValueParser.w(str2);
         (bundle != null ? new Bundle(bundle) : new Bundle()).putString("_o", "app");
         this.a.f().v(new y7(this, fcVar, new zzaq(str2, new zzap(bundle), "app", j), str));
     }
@@ -465,7 +466,7 @@ public class AppMeasurementDynamiteService extends dc {
     }
 
     @Override // b.i.a.f.h.l.ec
-    public void setInstanceIdProvider(b.i.a.f.h.l.d dVar) throws RemoteException {
+    public void setInstanceIdProvider(d dVar) throws RemoteException {
         g();
     }
 

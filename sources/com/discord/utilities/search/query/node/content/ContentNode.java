@@ -3,9 +3,9 @@ package com.discord.utilities.search.query.node.content;
 import android.content.Context;
 import android.text.SpannableStringBuilder;
 import androidx.core.app.NotificationCompat;
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.utilities.search.query.node.QueryNode;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: ContentNode.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -13,7 +13,7 @@ public final /* data */ class ContentNode extends QueryNode {
     private final CharSequence content;
 
     public ContentNode(CharSequence charSequence) {
-        m.checkNotNullParameter(charSequence, "content");
+        Intrinsics3.checkNotNullParameter(charSequence, "content");
         this.content = charSequence;
     }
 
@@ -25,13 +25,13 @@ public final /* data */ class ContentNode extends QueryNode {
     }
 
     public final ContentNode copy(CharSequence content) {
-        m.checkNotNullParameter(content, "content");
+        Intrinsics3.checkNotNullParameter(content, "content");
         return new ContentNode(content);
     }
 
     public boolean equals(Object other) {
         if (this != other) {
-            return (other instanceof ContentNode) && m.areEqual(this.content, ((ContentNode) other).content);
+            return (other instanceof ContentNode) && Intrinsics3.areEqual(this.content, ((ContentNode) other).content);
         }
         return true;
     }
@@ -64,14 +64,14 @@ public final /* data */ class ContentNode extends QueryNode {
     }
 
     public String toString() {
-        return a.E(a.U("ContentNode(content="), this.content, ")");
+        return outline.E(outline.U("ContentNode(content="), this.content, ")");
     }
 
     /* JADX WARN: 'this' call moved to the top of the method (can break code semantics) */
     public ContentNode(ContentNode contentNode, ContentNode contentNode2) {
         this("" + contentNode.content + ' ' + contentNode2.content);
-        m.checkNotNullParameter(contentNode, "node1");
-        m.checkNotNullParameter(contentNode2, "node2");
+        Intrinsics3.checkNotNullParameter(contentNode, "node1");
+        Intrinsics3.checkNotNullParameter(contentNode2, "node2");
     }
 
     @Override // com.discord.utilities.search.query.node.QueryNode
@@ -81,8 +81,8 @@ public final /* data */ class ContentNode extends QueryNode {
 
     /* JADX INFO: renamed from: render, reason: avoid collision after fix types in other method */
     public void render2(SpannableStringBuilder builder, Context renderContext) {
-        m.checkNotNullParameter(builder, "builder");
-        m.checkNotNullParameter(renderContext, "renderContext");
+        Intrinsics3.checkNotNullParameter(builder, "builder");
+        Intrinsics3.checkNotNullParameter(renderContext, "renderContext");
         builder.append(this.content).append(' ');
     }
 }

@@ -1,16 +1,16 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.analytics.generated.traits.TrackMarketingSite;
-import com.discord.analytics.generated.traits.TrackMarketingSiteReceiver;
+import com.discord.analytics.generated.traits.TrackMarketingSite2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackMainNavigationMenu.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackMainNavigationMenu implements AnalyticsSchema, TrackBaseReceiver, TrackMarketingSiteReceiver {
+public final /* data */ class TrackMainNavigationMenu implements AnalyticsSchema, TrackBase2, TrackMarketingSite2 {
     private final Boolean googleanalytics = null;
     private final CharSequence linkclicked = null;
     private final CharSequence pageName = null;
@@ -27,7 +27,7 @@ public final /* data */ class TrackMainNavigationMenu implements AnalyticsSchema
             return false;
         }
         TrackMainNavigationMenu trackMainNavigationMenu = (TrackMainNavigationMenu) other;
-        return m.areEqual(this.linkclicked, trackMainNavigationMenu.linkclicked) && m.areEqual(this.googleanalytics, trackMainNavigationMenu.googleanalytics) && m.areEqual(this.pageName, trackMainNavigationMenu.pageName) && m.areEqual(this.staticExperimentUuid, trackMainNavigationMenu.staticExperimentUuid);
+        return Intrinsics3.areEqual(this.linkclicked, trackMainNavigationMenu.linkclicked) && Intrinsics3.areEqual(this.googleanalytics, trackMainNavigationMenu.googleanalytics) && Intrinsics3.areEqual(this.pageName, trackMainNavigationMenu.pageName) && Intrinsics3.areEqual(this.staticExperimentUuid, trackMainNavigationMenu.staticExperimentUuid);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -48,13 +48,13 @@ public final /* data */ class TrackMainNavigationMenu implements AnalyticsSchema
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackMainNavigationMenu(linkclicked=");
+        StringBuilder sbU = outline.U("TrackMainNavigationMenu(linkclicked=");
         sbU.append(this.linkclicked);
         sbU.append(", googleanalytics=");
         sbU.append(this.googleanalytics);
         sbU.append(", pageName=");
         sbU.append(this.pageName);
         sbU.append(", staticExperimentUuid=");
-        return a.E(sbU, this.staticExperimentUuid, ")");
+        return outline.E(sbU, this.staticExperimentUuid, ")");
     }
 }

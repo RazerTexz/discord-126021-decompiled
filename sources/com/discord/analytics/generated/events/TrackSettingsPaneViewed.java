@@ -1,24 +1,24 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.analytics.generated.traits.TrackChannel;
-import com.discord.analytics.generated.traits.TrackChannelReceiver;
+import com.discord.analytics.generated.traits.TrackChannel2;
 import com.discord.analytics.generated.traits.TrackGuild;
-import com.discord.analytics.generated.traits.TrackGuildReceiver;
+import com.discord.analytics.generated.traits.TrackGuild2;
 import com.discord.analytics.generated.traits.TrackLocationMetadata;
-import com.discord.analytics.generated.traits.TrackLocationMetadataReceiver;
+import com.discord.analytics.generated.traits.TrackLocationMetadata2;
 import com.discord.analytics.generated.traits.TrackOverlayClientMetadata;
-import com.discord.analytics.generated.traits.TrackOverlayClientMetadataReceiver;
+import com.discord.analytics.generated.traits.TrackOverlayClientMetadata2;
 import com.discord.analytics.generated.traits.TrackSourceMetadata;
-import com.discord.analytics.generated.traits.TrackSourceMetadataReceiver;
+import com.discord.analytics.generated.traits.TrackSourceMetadata2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackSettingsPaneViewed.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackSettingsPaneViewed implements AnalyticsSchema, TrackBaseReceiver, TrackGuildReceiver, TrackChannelReceiver, TrackLocationMetadataReceiver, TrackOverlayClientMetadataReceiver, TrackSourceMetadataReceiver {
+public final /* data */ class TrackSettingsPaneViewed implements AnalyticsSchema, TrackBase2, TrackGuild2, TrackChannel2, TrackLocationMetadata2, TrackOverlayClientMetadata2, TrackSourceMetadata2 {
     private final CharSequence destinationPane = null;
     private final CharSequence originPane = null;
     private final Boolean previewEnabled = null;
@@ -31,7 +31,7 @@ public final /* data */ class TrackSettingsPaneViewed implements AnalyticsSchema
     private TrackSourceMetadata trackSourceMetadata;
     private final transient String analyticsSchemaTypeName = "settings_pane_viewed";
 
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    @Override // com.discord.analytics.generated.traits.TrackGuild2
     public void c(TrackGuild trackGuild) {
         this.trackGuild = trackGuild;
     }
@@ -44,7 +44,7 @@ public final /* data */ class TrackSettingsPaneViewed implements AnalyticsSchema
             return false;
         }
         TrackSettingsPaneViewed trackSettingsPaneViewed = (TrackSettingsPaneViewed) other;
-        return m.areEqual(this.settingsType, trackSettingsPaneViewed.settingsType) && m.areEqual(this.originPane, trackSettingsPaneViewed.originPane) && m.areEqual(this.destinationPane, trackSettingsPaneViewed.destinationPane) && m.areEqual(this.previewEnabled, trackSettingsPaneViewed.previewEnabled);
+        return Intrinsics3.areEqual(this.settingsType, trackSettingsPaneViewed.settingsType) && Intrinsics3.areEqual(this.originPane, trackSettingsPaneViewed.originPane) && Intrinsics3.areEqual(this.destinationPane, trackSettingsPaneViewed.destinationPane) && Intrinsics3.areEqual(this.previewEnabled, trackSettingsPaneViewed.previewEnabled);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -53,7 +53,7 @@ public final /* data */ class TrackSettingsPaneViewed implements AnalyticsSchema
         return this.analyticsSchemaTypeName;
     }
 
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    @Override // com.discord.analytics.generated.traits.TrackGuild2
     /* JADX INFO: renamed from: a, reason: from getter */
     public TrackGuild getTrackGuild() {
         return this.trackGuild;
@@ -71,13 +71,13 @@ public final /* data */ class TrackSettingsPaneViewed implements AnalyticsSchema
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackSettingsPaneViewed(settingsType=");
+        StringBuilder sbU = outline.U("TrackSettingsPaneViewed(settingsType=");
         sbU.append(this.settingsType);
         sbU.append(", originPane=");
         sbU.append(this.originPane);
         sbU.append(", destinationPane=");
         sbU.append(this.destinationPane);
         sbU.append(", previewEnabled=");
-        return a.D(sbU, this.previewEnabled, ")");
+        return outline.D(sbU, this.previewEnabled, ")");
     }
 }

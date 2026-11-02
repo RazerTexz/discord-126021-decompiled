@@ -1,7 +1,7 @@
 package com.discord.utilities.logging;
 
 import android.util.Log;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 import java.util.Map;
 
 /* JADX INFO: compiled from: Logger.kt */
@@ -10,7 +10,7 @@ public class Logger {
     private final String defaultTag;
 
     public Logger(String str) {
-        m.checkNotNullParameter(str, "defaultTag");
+        Intrinsics3.checkNotNullParameter(str, "defaultTag");
         this.defaultTag = str;
     }
 
@@ -25,7 +25,7 @@ public class Logger {
     }
 
     public void d(String message, Throwable throwable) {
-        m.checkNotNullParameter(message, "message");
+        Intrinsics3.checkNotNullParameter(message, "message");
         d(this.defaultTag, message, throwable);
     }
 
@@ -44,7 +44,7 @@ public class Logger {
     }
 
     public void e(String message, Throwable throwable, Map<String, String> metadata) {
-        m.checkNotNullParameter(message, "message");
+        Intrinsics3.checkNotNullParameter(message, "message");
         e(this.defaultTag, message, throwable, metadata);
     }
 
@@ -67,13 +67,13 @@ public class Logger {
     }
 
     public void i(String message, Throwable throwable) {
-        m.checkNotNullParameter(message, "message");
+        Intrinsics3.checkNotNullParameter(message, "message");
         i(this.defaultTag, message, throwable);
     }
 
     public void recordBreadcrumb(String message, String category) {
-        m.checkNotNullParameter(message, "message");
-        m.checkNotNullParameter(category, "category");
+        Intrinsics3.checkNotNullParameter(message, "message");
+        Intrinsics3.checkNotNullParameter(category, "category");
     }
 
     public static /* synthetic */ void v$default(Logger logger, String str, Throwable th, int i, Object obj) {
@@ -87,7 +87,7 @@ public class Logger {
     }
 
     public void v(String message, Throwable throwable) {
-        m.checkNotNullParameter(message, "message");
+        Intrinsics3.checkNotNullParameter(message, "message");
         v(this.defaultTag, message, throwable);
     }
 
@@ -102,13 +102,13 @@ public class Logger {
     }
 
     public void w(String message, Throwable throwable) {
-        m.checkNotNullParameter(message, "message");
+        Intrinsics3.checkNotNullParameter(message, "message");
         w(this.defaultTag, message, throwable);
     }
 
     public void d(String tag, String message, Throwable throwable) {
-        m.checkNotNullParameter(tag, "tag");
-        m.checkNotNullParameter(message, "message");
+        Intrinsics3.checkNotNullParameter(tag, "tag");
+        Intrinsics3.checkNotNullParameter(message, "message");
         if (throwable != null) {
             Log.d(tag, message, throwable);
         } else {
@@ -117,8 +117,8 @@ public class Logger {
     }
 
     public void e(String tag, String message, Throwable throwable, Map<String, String> metadata) {
-        m.checkNotNullParameter(tag, "tag");
-        m.checkNotNullParameter(message, "message");
+        Intrinsics3.checkNotNullParameter(tag, "tag");
+        Intrinsics3.checkNotNullParameter(message, "message");
         if (throwable != null) {
             Log.e(tag, message, throwable);
         } else {
@@ -127,8 +127,8 @@ public class Logger {
     }
 
     public void i(String tag, String message, Throwable throwable) {
-        m.checkNotNullParameter(tag, "tag");
-        m.checkNotNullParameter(message, "message");
+        Intrinsics3.checkNotNullParameter(tag, "tag");
+        Intrinsics3.checkNotNullParameter(message, "message");
         if (throwable != null) {
             Log.i(tag, message, throwable);
         } else {
@@ -137,8 +137,8 @@ public class Logger {
     }
 
     public void v(String tag, String message, Throwable throwable) {
-        m.checkNotNullParameter(tag, "tag");
-        m.checkNotNullParameter(message, "message");
+        Intrinsics3.checkNotNullParameter(tag, "tag");
+        Intrinsics3.checkNotNullParameter(message, "message");
         if (throwable != null) {
             Log.v(tag, message, throwable);
         } else {
@@ -147,8 +147,8 @@ public class Logger {
     }
 
     public void w(String tag, String message, Throwable throwable) {
-        m.checkNotNullParameter(tag, "tag");
-        m.checkNotNullParameter(message, "message");
+        Intrinsics3.checkNotNullParameter(tag, "tag");
+        Intrinsics3.checkNotNullParameter(message, "message");
         if (throwable != null) {
             Log.w(tag, message, throwable);
         } else {

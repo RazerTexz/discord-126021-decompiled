@@ -11,7 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import androidx.constraintlayout.widget.R;
 import androidx.core.widget.NestedScrollView;
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import org.xmlpull.v1.XmlPullParser;
 
 /* JADX INFO: loaded from: classes.dex */
@@ -386,7 +386,7 @@ public class TouchResponse {
         if (i != -1) {
             viewFindViewById = this.mMotionLayout.findViewById(i);
             if (viewFindViewById == null) {
-                StringBuilder sbU = a.U("cannot find TouchAnchorId @id/");
+                StringBuilder sbU = outline.U("cannot find TouchAnchorId @id/");
                 sbU.append(Debug.getName(this.mMotionLayout.getContext(), this.mTouchAnchorId));
                 Log.e(TAG, sbU.toString());
             }

@@ -1,7 +1,7 @@
 package d0.e0.p.d.m0.o;
 
-import d0.e0.p.d.m0.c.x;
-import d0.z.d.m;
+import d0.e0.p.d.m0.c.FunctionDescriptor;
+import d0.z.d.Intrinsics3;
 import kotlin.jvm.internal.DefaultConstructorMarker;
 
 /* JADX INFO: compiled from: modifierChecks.kt */
@@ -20,9 +20,9 @@ public abstract class f implements d0.e0.p.d.m0.o.b {
         }
 
         @Override // d0.e0.p.d.m0.o.b
-        public boolean check(x xVar) {
-            m.checkNotNullParameter(xVar, "functionDescriptor");
-            return xVar.getDispatchReceiverParameter() != null;
+        public boolean check(FunctionDescriptor functionDescriptor) {
+            Intrinsics3.checkNotNullParameter(functionDescriptor, "functionDescriptor");
+            return functionDescriptor.getDispatchReceiverParameter() != null;
         }
     }
 
@@ -37,9 +37,9 @@ public abstract class f implements d0.e0.p.d.m0.o.b {
         }
 
         @Override // d0.e0.p.d.m0.o.b
-        public boolean check(x xVar) {
-            m.checkNotNullParameter(xVar, "functionDescriptor");
-            return (xVar.getDispatchReceiverParameter() == null && xVar.getExtensionReceiverParameter() == null) ? false : true;
+        public boolean check(FunctionDescriptor functionDescriptor) {
+            Intrinsics3.checkNotNullParameter(functionDescriptor, "functionDescriptor");
+            return (functionDescriptor.getDispatchReceiverParameter() == null && functionDescriptor.getExtensionReceiverParameter() == null) ? false : true;
         }
     }
 
@@ -53,7 +53,7 @@ public abstract class f implements d0.e0.p.d.m0.o.b {
     }
 
     @Override // d0.e0.p.d.m0.o.b
-    public String invoke(x xVar) {
-        return d0.e0.p.d.m0.o.b.a.invoke(this, xVar);
+    public String invoke(FunctionDescriptor functionDescriptor) {
+        return d0.e0.p.d.m0.o.b.a.invoke(this, functionDescriptor);
     }
 }

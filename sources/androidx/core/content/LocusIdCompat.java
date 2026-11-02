@@ -6,7 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.core.util.Preconditions;
-import b.d.b.a.a;
+import b.d.b.a.outline;
 
 /* JADX INFO: loaded from: classes.dex */
 public final class LocusIdCompat {
@@ -83,6 +83,6 @@ public final class LocusIdCompat {
 
     @NonNull
     public String toString() {
-        return a.J(a.U("LocusIdCompat["), getSanitizedId(), "]");
+        return outline.J(outline.U("LocusIdCompat["), getSanitizedId(), "]");
     }
 }

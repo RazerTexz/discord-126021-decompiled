@@ -1,8 +1,8 @@
 package com.discord.widgets.servers.guild_role_subscription.model;
 
-import b.d.b.a.a;
-import d0.t.n;
-import d0.z.d.m;
+import b.d.b.a.outline;
+import d0.t.Collections2;
+import d0.z.d.Intrinsics3;
 import java.util.List;
 import kotlin.jvm.internal.DefaultConstructorMarker;
 
@@ -14,8 +14,8 @@ public final /* data */ class TotalEarningMetrics {
     private final List<TotalPayoutsForPeriod> previousPeriods;
 
     public TotalEarningMetrics(CurrentMonthEarningMetrics currentMonthEarningMetrics, TotalPayoutsForPeriod totalPayoutsForPeriod, List<TotalPayoutsForPeriod> list) {
-        m.checkNotNullParameter(currentMonthEarningMetrics, "currentMonthEarningMetrics");
-        m.checkNotNullParameter(list, "previousPeriods");
+        Intrinsics3.checkNotNullParameter(currentMonthEarningMetrics, "currentMonthEarningMetrics");
+        Intrinsics3.checkNotNullParameter(list, "previousPeriods");
         this.currentMonthEarningMetrics = currentMonthEarningMetrics;
         this.currentPeriod = totalPayoutsForPeriod;
         this.previousPeriods = list;
@@ -40,8 +40,8 @@ public final /* data */ class TotalEarningMetrics {
     }
 
     public final TotalEarningMetrics copy(CurrentMonthEarningMetrics currentMonthEarningMetrics, TotalPayoutsForPeriod currentPeriod, List<TotalPayoutsForPeriod> previousPeriods) {
-        m.checkNotNullParameter(currentMonthEarningMetrics, "currentMonthEarningMetrics");
-        m.checkNotNullParameter(previousPeriods, "previousPeriods");
+        Intrinsics3.checkNotNullParameter(currentMonthEarningMetrics, "currentMonthEarningMetrics");
+        Intrinsics3.checkNotNullParameter(previousPeriods, "previousPeriods");
         return new TotalEarningMetrics(currentMonthEarningMetrics, currentPeriod, previousPeriods);
     }
 
@@ -53,7 +53,7 @@ public final /* data */ class TotalEarningMetrics {
             return false;
         }
         TotalEarningMetrics totalEarningMetrics = (TotalEarningMetrics) other;
-        return m.areEqual(this.currentMonthEarningMetrics, totalEarningMetrics.currentMonthEarningMetrics) && m.areEqual(this.currentPeriod, totalEarningMetrics.currentPeriod) && m.areEqual(this.previousPeriods, totalEarningMetrics.previousPeriods);
+        return Intrinsics3.areEqual(this.currentMonthEarningMetrics, totalEarningMetrics.currentMonthEarningMetrics) && Intrinsics3.areEqual(this.currentPeriod, totalEarningMetrics.currentPeriod) && Intrinsics3.areEqual(this.previousPeriods, totalEarningMetrics.previousPeriods);
     }
 
     /* JADX INFO: renamed from: component1, reason: from getter */
@@ -88,15 +88,15 @@ public final /* data */ class TotalEarningMetrics {
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TotalEarningMetrics(currentMonthEarningMetrics=");
+        StringBuilder sbU = outline.U("TotalEarningMetrics(currentMonthEarningMetrics=");
         sbU.append(this.currentMonthEarningMetrics);
         sbU.append(", currentPeriod=");
         sbU.append(this.currentPeriod);
         sbU.append(", previousPeriods=");
-        return a.L(sbU, this.previousPeriods, ")");
+        return outline.L(sbU, this.previousPeriods, ")");
     }
 
     public /* synthetic */ TotalEarningMetrics(CurrentMonthEarningMetrics currentMonthEarningMetrics, TotalPayoutsForPeriod totalPayoutsForPeriod, List list, int i, DefaultConstructorMarker defaultConstructorMarker) {
-        this(currentMonthEarningMetrics, totalPayoutsForPeriod, (i & 4) != 0 ? n.emptyList() : list);
+        this(currentMonthEarningMetrics, totalPayoutsForPeriod, (i & 4) != 0 ? Collections2.emptyList() : list);
     }
 }

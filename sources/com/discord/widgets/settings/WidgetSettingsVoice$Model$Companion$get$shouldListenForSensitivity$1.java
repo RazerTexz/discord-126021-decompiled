@@ -1,7 +1,7 @@
 package com.discord.widgets.settings;
 
 import androidx.core.app.NotificationCompat;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 import rx.functions.Func2;
 
 /* JADX INFO: compiled from: WidgetSettingsVoice.kt */
@@ -18,11 +18,11 @@ public final class WidgetSettingsVoice$Model$Companion$get$shouldListenForSensit
     /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
     public final Boolean call2(Boolean bool, Boolean bool2) {
         boolean z2;
-        m.checkNotNullExpressionValue(bool, "userRequestedListenForSensitivity");
+        Intrinsics3.checkNotNullExpressionValue(bool, "userRequestedListenForSensitivity");
         if (bool.booleanValue()) {
             z2 = true;
         } else {
-            m.checkNotNullExpressionValue(bool2, "isNativeEngineInitialized");
+            Intrinsics3.checkNotNullExpressionValue(bool2, "isNativeEngineInitialized");
             if (bool2.booleanValue()) {
                 z2 = true;
             } else {

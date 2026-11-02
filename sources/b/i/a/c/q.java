@@ -1,21 +1,24 @@
 package b.i.a.c;
 
+import b.i.a.c.c3.TrackSelectionArray;
+import b.i.a.c.f3.ListenerSet;
+
 /* JADX INFO: compiled from: lambda */
 /* JADX INFO: loaded from: classes3.dex */
-public final /* synthetic */ class q implements b.i.a.c.f3.p.a {
-    public final /* synthetic */ w1 a;
+public final /* synthetic */ class q implements ListenerSet.a {
+    public final /* synthetic */ PlaybackInfo a;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    public final /* synthetic */ b.i.a.c.c3.n f1055b;
+    public final /* synthetic */ TrackSelectionArray f1055b;
 
-    public /* synthetic */ q(w1 w1Var, b.i.a.c.c3.n nVar) {
-        this.a = w1Var;
-        this.f1055b = nVar;
+    public /* synthetic */ q(PlaybackInfo playbackInfo, TrackSelectionArray trackSelectionArray) {
+        this.a = playbackInfo;
+        this.f1055b = trackSelectionArray;
     }
 
-    @Override // b.i.a.c.f3.p.a
+    @Override // b.i.a.c.f3.ListenerSet.a
     public final void invoke(Object obj) {
-        w1 w1Var = this.a;
-        ((y1.c) obj).Y(w1Var.i, this.f1055b);
+        PlaybackInfo playbackInfo = this.a;
+        ((Player2.c) obj).Y(playbackInfo.i, this.f1055b);
     }
 }

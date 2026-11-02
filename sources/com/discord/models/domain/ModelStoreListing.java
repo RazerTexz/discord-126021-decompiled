@@ -1,7 +1,7 @@
 package com.discord.models.domain;
 
-import b.d.b.a.a;
-import d0.z.d.m;
+import b.d.b.a.outline;
+import d0.z.d.Intrinsics3;
 import java.io.IOException;
 import kotlin.jvm.internal.Ref$ObjectRef;
 
@@ -27,20 +27,20 @@ public final /* data */ class ModelStoreListing {
         /* JADX WARN: Multi-variable type inference failed */
         @Override // com.discord.models.domain.Model.Parser
         public ModelStoreListing parse(Model.JsonReader reader) throws IOException {
-            Ref$ObjectRef ref$ObjectRefC0 = a.c0(reader, "reader");
+            Ref$ObjectRef ref$ObjectRefC0 = outline.c0(reader, "reader");
             ref$ObjectRefC0.element = null;
             Ref$ObjectRef ref$ObjectRef = new Ref$ObjectRef();
             ref$ObjectRef.element = null;
-            reader.nextObject(new ModelStoreListing$Parser$parse$1(ref$ObjectRefC0, reader, ref$ObjectRef));
+            reader.nextObject(new ModelStoreListing2(ref$ObjectRefC0, reader, ref$ObjectRef));
             ModelSku modelSku = (ModelSku) ref$ObjectRefC0.element;
-            m.checkNotNull(modelSku);
+            Intrinsics3.checkNotNull(modelSku);
             Long l = (Long) ref$ObjectRef.element;
             return new ModelStoreListing(modelSku, l != null ? l.longValue() : 0L);
         }
     }
 
     public ModelStoreListing(ModelSku modelSku, long j) {
-        m.checkNotNullParameter(modelSku, "sku");
+        Intrinsics3.checkNotNullParameter(modelSku, "sku");
         this.sku = modelSku;
         this.id = j;
     }
@@ -56,7 +56,7 @@ public final /* data */ class ModelStoreListing {
     }
 
     public final ModelStoreListing copy(ModelSku sku, long id2) {
-        m.checkNotNullParameter(sku, "sku");
+        Intrinsics3.checkNotNullParameter(sku, "sku");
         return new ModelStoreListing(sku, id2);
     }
 
@@ -68,7 +68,7 @@ public final /* data */ class ModelStoreListing {
             return false;
         }
         ModelStoreListing modelStoreListing = (ModelStoreListing) other;
-        return m.areEqual(this.sku, modelStoreListing.sku) && this.id == modelStoreListing.id;
+        return Intrinsics3.areEqual(this.sku, modelStoreListing.sku) && this.id == modelStoreListing.id;
     }
 
     /* JADX INFO: renamed from: component2, reason: from getter */
@@ -97,9 +97,9 @@ public final /* data */ class ModelStoreListing {
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("ModelStoreListing(sku=");
+        StringBuilder sbU = outline.U("ModelStoreListing(sku=");
         sbU.append(this.sku);
         sbU.append(", id=");
-        return a.C(sbU, this.id, ")");
+        return outline.C(sbU, this.id, ")");
     }
 }

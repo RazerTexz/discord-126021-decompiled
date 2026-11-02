@@ -1,14 +1,14 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackApplicationClosed.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackApplicationClosed implements AnalyticsSchema, TrackBaseReceiver {
+public final /* data */ class TrackApplicationClosed implements AnalyticsSchema, TrackBase2 {
     private final Long activityDurationS = null;
     private final Long applicationId = null;
     private final CharSequence distributor = null;
@@ -25,7 +25,7 @@ public final /* data */ class TrackApplicationClosed implements AnalyticsSchema,
             return false;
         }
         TrackApplicationClosed trackApplicationClosed = (TrackApplicationClosed) other;
-        return m.areEqual(this.applicationId, trackApplicationClosed.applicationId) && m.areEqual(this.activityDurationS, trackApplicationClosed.activityDurationS) && m.areEqual(this.totalDurationS, trackApplicationClosed.totalDurationS) && m.areEqual(this.totalDiscordSkuDurationS, trackApplicationClosed.totalDiscordSkuDurationS) && m.areEqual(this.distributor, trackApplicationClosed.distributor);
+        return Intrinsics3.areEqual(this.applicationId, trackApplicationClosed.applicationId) && Intrinsics3.areEqual(this.activityDurationS, trackApplicationClosed.activityDurationS) && Intrinsics3.areEqual(this.totalDurationS, trackApplicationClosed.totalDurationS) && Intrinsics3.areEqual(this.totalDiscordSkuDurationS, trackApplicationClosed.totalDiscordSkuDurationS) && Intrinsics3.areEqual(this.distributor, trackApplicationClosed.distributor);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -48,7 +48,7 @@ public final /* data */ class TrackApplicationClosed implements AnalyticsSchema,
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackApplicationClosed(applicationId=");
+        StringBuilder sbU = outline.U("TrackApplicationClosed(applicationId=");
         sbU.append(this.applicationId);
         sbU.append(", activityDurationS=");
         sbU.append(this.activityDurationS);
@@ -57,6 +57,6 @@ public final /* data */ class TrackApplicationClosed implements AnalyticsSchema,
         sbU.append(", totalDiscordSkuDurationS=");
         sbU.append(this.totalDiscordSkuDurationS);
         sbU.append(", distributor=");
-        return a.E(sbU, this.distributor, ")");
+        return outline.E(sbU, this.distributor, ")");
     }
 }

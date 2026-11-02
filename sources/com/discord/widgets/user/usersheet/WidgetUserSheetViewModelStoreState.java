@@ -1,7 +1,7 @@
 package com.discord.widgets.user.usersheet;
 
 import androidx.core.app.NotificationCompat;
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.api.channel.Channel;
 import com.discord.api.channel.ChannelUtils;
 import com.discord.api.role.GuildRole;
@@ -27,19 +27,21 @@ import com.discord.stores.StoreUserRelationships;
 import com.discord.stores.StoreVoiceChannelSelected;
 import com.discord.stores.StoreVoiceStates;
 import com.discord.utilities.rx.LeadingEdgeThrottle;
-import com.discord.utilities.rx.ObservableCombineLatestOverloadsKt;
+import com.discord.utilities.rx.ObservableCombineLatestOverloads2;
 import com.discord.utilities.streams.StreamContext;
 import com.discord.utilities.streams.StreamContextService;
 import com.discord.widgets.guildcommunicationdisabled.start.GuildCommunicationDisabledGuildsFeatureFlag;
 import com.discord.widgets.stage.StageRoles;
 import com.discord.widgets.user.presence.ModelRichPresence;
-import d0.t.h0;
-import d0.t.n;
-import d0.z.d.k;
-import d0.z.d.m;
-import d0.z.d.o;
-import j0.k.b;
-import j0.l.a.r;
+import d0.t.Collections2;
+import d0.t.Maps6;
+import d0.z.d.FunctionReferenceImpl;
+import d0.z.d.Intrinsics3;
+import d0.z.d.Lambda;
+import j0.k.Func1;
+import j0.l.a.OnSubscribeLift;
+import j0.l.e.ScalarSynchronousObservable;
+import j0.p.Schedulers2;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 import kotlin.jvm.functions.Function16;
@@ -55,7 +57,7 @@ public final class WidgetUserSheetViewModelStoreState {
 
     /* JADX INFO: renamed from: com.discord.widgets.user.usersheet.WidgetUserSheetViewModelStoreState$observeStoreState$2, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetUserSheetViewModelStoreState.kt */
-    public final /* synthetic */ class AnonymousClass2 extends k implements Function4<User, MeUser, Channel, Channel, BootstrapData> {
+    public final /* synthetic */ class AnonymousClass2 extends FunctionReferenceImpl implements Function4<User, MeUser, Channel, Channel, BootstrapData> {
         public static final AnonymousClass2 INSTANCE = new AnonymousClass2();
 
         public AnonymousClass2() {
@@ -69,14 +71,14 @@ public final class WidgetUserSheetViewModelStoreState {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final BootstrapData invoke2(User user, MeUser meUser, Channel channel, Channel channel2) {
-            m.checkNotNullParameter(meUser, "p2");
+            Intrinsics3.checkNotNullParameter(meUser, "p2");
             return new BootstrapData(user, meUser, channel, channel2);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.widgets.user.usersheet.WidgetUserSheetViewModelStoreState$observeStoreState$3, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetUserSheetViewModelStoreState.kt */
-    public final class AnonymousClass3<T, R> implements b<BootstrapData, Observable<? extends WidgetUserSheetViewModel.StoreState>> {
+    public final class AnonymousClass3<T, R> implements Func1<BootstrapData, Observable<? extends WidgetUserSheetViewModel.StoreState>> {
         public final /* synthetic */ Long $guildId;
         public final /* synthetic */ StoreGuilds $storeGuilds;
         public final /* synthetic */ StoreMediaSettings $storeMediaSettings;
@@ -91,14 +93,14 @@ public final class WidgetUserSheetViewModelStoreState {
 
         /* JADX INFO: renamed from: com.discord.widgets.user.usersheet.WidgetUserSheetViewModelStoreState$observeStoreState$3$1, reason: invalid class name */
         /* JADX INFO: compiled from: WidgetUserSheetViewModelStoreState.kt */
-        public final class AnonymousClass1<T, R> implements b {
+        public final class AnonymousClass1<T, R> implements Func1 {
             public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
 
             public final Void call(Long l) {
                 return null;
             }
 
-            @Override // j0.k.b
+            @Override // j0.k.Func1
             public /* bridge */ /* synthetic */ Object call(Object obj) {
                 return call((Long) obj);
             }
@@ -106,7 +108,7 @@ public final class WidgetUserSheetViewModelStoreState {
 
         /* JADX INFO: renamed from: com.discord.widgets.user.usersheet.WidgetUserSheetViewModelStoreState$observeStoreState$3$2, reason: invalid class name */
         /* JADX INFO: compiled from: WidgetUserSheetViewModelStoreState.kt */
-        public final class AnonymousClass2 extends o implements Function16<Map<Long, ? extends GuildMember>, Map<Long, ? extends GuildRole>, Map<Long, ? extends VoiceState>, Map<Long, ? extends VoiceState>, StoreMediaSettings.VoiceConfiguration, ModelRichPresence, Guild, Long, StreamContext, UserProfile, Integer, StoreUserNotes.UserNoteState, StageRoles, StageRequestToSpeakState, StageRoles, Boolean, WidgetUserSheetViewModel.StoreState> {
+        public final class AnonymousClass2 extends Lambda implements Function16<Map<Long, ? extends GuildMember>, Map<Long, ? extends GuildRole>, Map<Long, ? extends VoiceState>, Map<Long, ? extends VoiceState>, StoreMediaSettings.VoiceConfiguration, ModelRichPresence, Guild, Long, StreamContext, UserProfile, Integer, StoreUserNotes.UserNoteState, StageRoles, StageRequestToSpeakState, StageRoles, Boolean, WidgetUserSheetViewModel.StoreState> {
             public final /* synthetic */ Channel $channel;
             public final /* synthetic */ MeUser $me;
             public final /* synthetic */ Channel $selectedVoiceChannel;
@@ -127,19 +129,19 @@ public final class WidgetUserSheetViewModelStoreState {
             }
 
             public final WidgetUserSheetViewModel.StoreState invoke(Map<Long, GuildMember> map, Map<Long, GuildRole> map2, Map<Long, VoiceState> map3, Map<Long, VoiceState> map4, StoreMediaSettings.VoiceConfiguration voiceConfiguration, ModelRichPresence modelRichPresence, Guild guild, Long l, StreamContext streamContext, UserProfile userProfile, Integer num, StoreUserNotes.UserNoteState userNoteState, StageRoles stageRoles, StageRequestToSpeakState stageRequestToSpeakState, StageRoles stageRoles2, boolean z2) {
-                m.checkNotNullParameter(map, "computedMembers");
-                m.checkNotNullParameter(map2, "guildRoles");
-                m.checkNotNullParameter(map3, "mySelectedVoiceChannelVoiceStates");
-                m.checkNotNullParameter(map4, "currentChannelVoiceStates");
-                m.checkNotNullParameter(voiceConfiguration, "voiceConfig");
-                m.checkNotNullParameter(userProfile, "userProfile");
-                m.checkNotNullParameter(userNoteState, "userNote");
-                m.checkNotNullParameter(stageRequestToSpeakState, "userRequestToSpeakState");
-                Boolean bool = (Boolean) a.f(this.$user, voiceConfiguration.getMutedUsers());
+                Intrinsics3.checkNotNullParameter(map, "computedMembers");
+                Intrinsics3.checkNotNullParameter(map2, "guildRoles");
+                Intrinsics3.checkNotNullParameter(map3, "mySelectedVoiceChannelVoiceStates");
+                Intrinsics3.checkNotNullParameter(map4, "currentChannelVoiceStates");
+                Intrinsics3.checkNotNullParameter(voiceConfiguration, "voiceConfig");
+                Intrinsics3.checkNotNullParameter(userProfile, "userProfile");
+                Intrinsics3.checkNotNullParameter(userNoteState, "userNote");
+                Intrinsics3.checkNotNullParameter(stageRequestToSpeakState, "userRequestToSpeakState");
+                Boolean bool = (Boolean) outline.f(this.$user, voiceConfiguration.getMutedUsers());
                 boolean zBooleanValue = bool != null ? bool.booleanValue() : false;
                 boolean zIsSelfMuted = voiceConfiguration.isSelfMuted();
                 boolean zIsSelfDeafened = voiceConfiguration.isSelfDeafened();
-                Float f = (Float) a.f(this.$user, voiceConfiguration.getUserOutputVolumes());
+                Float f = (Float) outline.f(this.$user, voiceConfiguration.getUserOutputVolumes());
                 float fFloatValue = f != null ? f.floatValue() : 100.0f;
                 User user = this.$user;
                 MeUser meUser = this.$me;
@@ -163,7 +165,7 @@ public final class WidgetUserSheetViewModelStoreState {
             this.$storeUserNotes = storeUserNotes;
         }
 
-        @Override // j0.k.b
+        @Override // j0.k.Func1
         public /* bridge */ /* synthetic */ Observable<? extends WidgetUserSheetViewModel.StoreState> call(BootstrapData bootstrapData) {
             return call2(bootstrapData);
         }
@@ -181,18 +183,18 @@ public final class WidgetUserSheetViewModelStoreState {
         /* JADX WARN: Code duplicated, block: B:66:0x0179  */
         /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
         public final Observable<? extends WidgetUserSheetViewModel.StoreState> call2(BootstrapData bootstrapData) {
-            Observable<Map<Long, GuildMember>> kVar;
-            Observable<Map<Long, GuildRole>> kVar2;
-            Observable<Guild> kVar3;
+            Observable<Map<Long, GuildMember>> scalarSynchronousObservable;
+            Observable<Map<Long, GuildRole>> scalarSynchronousObservable2;
+            Observable<Guild> scalarSynchronousObservable3;
             Observable<Map<Long, GuildMember>> observable;
-            Observable<Long> kVar4;
+            Observable<Long> scalarSynchronousObservable4;
             MeUser meUser;
             Channel channel;
-            Observable<StageRoles> kVar5;
+            Observable<StageRoles> scalarSynchronousObservable5;
             MeUser meUser2;
-            Observable<StageRequestToSpeakState> kVar6;
-            Observable<StageRoles> kVar7;
-            Observable<Boolean> kVar8;
+            Observable<StageRequestToSpeakState> scalarSynchronousObservable6;
+            Observable<StageRoles> scalarSynchronousObservable7;
+            Observable<Boolean> scalarSynchronousObservable8;
             Observable<Map<Long, VoiceState>> observableObserve;
             Observable<Map<Long, VoiceState>> observableObserve2;
             User user = bootstrapData.getUser();
@@ -208,330 +210,330 @@ public final class WidgetUserSheetViewModelStoreState {
             }
             if (lValueOf != null) {
                 lValueOf.longValue();
-                Observable<Map<Long, GuildMember>> observableObserveComputed = this.$storeGuilds.observeComputed(lValueOf.longValue(), n.listOf((Object[]) new Long[]{Long.valueOf(user.getId()), Long.valueOf(me2.getId())}));
+                Observable<Map<Long, GuildMember>> observableObserveComputed = this.$storeGuilds.observeComputed(lValueOf.longValue(), Collections2.listOf((Object[]) new Long[]{Long.valueOf(user.getId()), Long.valueOf(me2.getId())}));
                 if (observableObserveComputed != null) {
-                    kVar = observableObserveComputed;
+                    scalarSynchronousObservable = observableObserveComputed;
                 } else {
-                    kVar = new j0.l.e.k(h0.emptyMap());
+                    scalarSynchronousObservable = new ScalarSynchronousObservable(Maps6.emptyMap());
                 }
             } else {
-                kVar = new j0.l.e.k(h0.emptyMap());
+                scalarSynchronousObservable = new ScalarSynchronousObservable(Maps6.emptyMap());
             }
             if (lValueOf != null) {
                 lValueOf.longValue();
                 Observable<Map<Long, GuildRole>> observableObserveRoles = this.$storeGuilds.observeRoles(lValueOf.longValue());
                 if (observableObserveRoles != null) {
-                    kVar2 = observableObserveRoles;
+                    scalarSynchronousObservable2 = observableObserveRoles;
                 } else {
-                    kVar2 = new j0.l.e.k(h0.emptyMap());
+                    scalarSynchronousObservable2 = new ScalarSynchronousObservable(Maps6.emptyMap());
                 }
             } else {
-                kVar2 = new j0.l.e.k(h0.emptyMap());
+                scalarSynchronousObservable2 = new ScalarSynchronousObservable(Maps6.emptyMap());
             }
-            Observable<Map<Long, VoiceState>> kVar9 = (selectedVoiceChannel == null || (observableObserve2 = this.$storeVoiceStates.observe(selectedVoiceChannel.getGuildId(), selectedVoiceChannel.getId())) == null) ? new j0.l.e.k(h0.emptyMap()) : observableObserve2;
-            Observable<Map<Long, VoiceState>> kVar10 = (channel2 == null || (observableObserve = this.$storeVoiceStates.observe(channel2.getGuildId(), channel2.getId())) == null) ? new j0.l.e.k(h0.emptyMap()) : observableObserve;
+            Observable<Map<Long, VoiceState>> scalarSynchronousObservable9 = (selectedVoiceChannel == null || (observableObserve2 = this.$storeVoiceStates.observe(selectedVoiceChannel.getGuildId(), selectedVoiceChannel.getId())) == null) ? new ScalarSynchronousObservable(Maps6.emptyMap()) : observableObserve2;
+            Observable<Map<Long, VoiceState>> scalarSynchronousObservable10 = (channel2 == null || (observableObserve = this.$storeVoiceStates.observe(channel2.getGuildId(), channel2.getId())) == null) ? new ScalarSynchronousObservable(Maps6.emptyMap()) : observableObserve;
             Observable<ModelRichPresence> observable2 = ModelRichPresence.INSTANCE.get(user.getId(), this.$storeUserPresence);
             if (lValueOf != null) {
                 lValueOf.longValue();
-                kVar3 = this.$storeGuilds.observeGuild(lValueOf.longValue());
-                if (kVar3 == null) {
-                    kVar3 = new j0.l.e.k<>(null);
+                scalarSynchronousObservable3 = this.$storeGuilds.observeGuild(lValueOf.longValue());
+                if (scalarSynchronousObservable3 == null) {
+                    scalarSynchronousObservable3 = new ScalarSynchronousObservable<>(null);
                 }
             } else {
-                kVar3 = new j0.l.e.k<>(null);
+                scalarSynchronousObservable3 = new ScalarSynchronousObservable<>(null);
             }
             if (channel2 != null) {
-                observable = kVar;
-                kVar4 = this.$storePermissions.observePermissionsForChannel(channel2.getId());
-                if (kVar4 == null) {
+                observable = scalarSynchronousObservable;
+                scalarSynchronousObservable4 = this.$storePermissions.observePermissionsForChannel(channel2.getId());
+                if (scalarSynchronousObservable4 == null) {
                 }
                 Observable<StreamContext> forUser = this.$streamContextService.getForUser(user.getId(), true);
                 if (selectedVoiceChannel != null) {
                     meUser = me2;
                     channel = channel2;
-                    kVar5 = this.$storeStageChannels.observeUserRoles(user.getId(), selectedVoiceChannel.getId());
-                    if (kVar5 == null) {
+                    scalarSynchronousObservable5 = this.$storeStageChannels.observeUserRoles(user.getId(), selectedVoiceChannel.getId());
+                    if (scalarSynchronousObservable5 == null) {
                     }
                     if (selectedVoiceChannel != null) {
                         meUser2 = meUser;
-                        kVar6 = this.$storeStageChannels.observeUserRequestToSpeakState(user.getId(), selectedVoiceChannel.getId());
-                        if (kVar6 == null) {
+                        scalarSynchronousObservable6 = this.$storeStageChannels.observeUserRequestToSpeakState(user.getId(), selectedVoiceChannel.getId());
+                        if (scalarSynchronousObservable6 == null) {
                         }
-                        if (selectedVoiceChannel != null || (kVar7 = this.$storeStageChannels.observeMyRoles(selectedVoiceChannel.getId())) == null) {
-                            kVar7 = new j0.l.e.k<>(null);
+                        if (selectedVoiceChannel != null || (scalarSynchronousObservable7 = this.$storeStageChannels.observeMyRoles(selectedVoiceChannel.getId())) == null) {
+                            scalarSynchronousObservable7 = new ScalarSynchronousObservable<>(null);
                         }
                         if (lValueOf != null) {
                             lValueOf.longValue();
-                            kVar8 = GuildCommunicationDisabledGuildsFeatureFlag.INSTANCE.getINSTANCE().observeCanGuildAccessCommunicationDisabled(lValueOf.longValue());
-                            if (kVar8 == null) {
-                                kVar8 = new j0.l.e.k(Boolean.FALSE);
+                            scalarSynchronousObservable8 = GuildCommunicationDisabledGuildsFeatureFlag.INSTANCE.getINSTANCE().observeCanGuildAccessCommunicationDisabled(lValueOf.longValue());
+                            if (scalarSynchronousObservable8 == null) {
+                                scalarSynchronousObservable8 = new ScalarSynchronousObservable(Boolean.FALSE);
                             }
                         } else {
-                            kVar8 = new j0.l.e.k(Boolean.FALSE);
+                            scalarSynchronousObservable8 = new ScalarSynchronousObservable(Boolean.FALSE);
                         }
-                        m.checkNotNullExpressionValue(observable, "computedMembersObservable");
-                        m.checkNotNullExpressionValue(kVar2, "guildRolesObservable");
-                        m.checkNotNullExpressionValue(kVar9, "mySelectedVoiceChannelVoiceStatesObservable");
-                        m.checkNotNullExpressionValue(kVar10, "currentChannelVoiceStatesObservable");
+                        Intrinsics3.checkNotNullExpressionValue(observable, "computedMembersObservable");
+                        Intrinsics3.checkNotNullExpressionValue(scalarSynchronousObservable2, "guildRolesObservable");
+                        Intrinsics3.checkNotNullExpressionValue(scalarSynchronousObservable9, "mySelectedVoiceChannelVoiceStatesObservable");
+                        Intrinsics3.checkNotNullExpressionValue(scalarSynchronousObservable10, "currentChannelVoiceStatesObservable");
                         Observable<StoreMediaSettings.VoiceConfiguration> voiceConfig = this.$storeMediaSettings.getVoiceConfig();
-                        m.checkNotNullExpressionValue(kVar3, "guildsObservable");
-                        m.checkNotNullExpressionValue(kVar4, "permissionsObservable");
+                        Intrinsics3.checkNotNullExpressionValue(scalarSynchronousObservable3, "guildsObservable");
+                        Intrinsics3.checkNotNullExpressionValue(scalarSynchronousObservable4, "permissionsObservable");
                         Observable<UserProfile> observableObserveUserProfile = this.$storeUserProfile.observeUserProfile(user.getId());
                         Observable<Integer> observableObserve3 = this.$storeUserRelationships.observe(user.getId());
                         Observable<StoreUserNotes.UserNoteState> observableObserveUserNote = this.$storeUserNotes.observeUserNote(user.getId());
-                        m.checkNotNullExpressionValue(kVar5, "userStageRolesObservable");
-                        m.checkNotNullExpressionValue(kVar6, "userStageRequestToSpeakStateObservable");
-                        m.checkNotNullExpressionValue(kVar7, "myStageRolesObservable");
-                        m.checkNotNullExpressionValue(kVar8, "canDisableCommunicationObservable");
-                        return ObservableCombineLatestOverloadsKt.combineLatest(observable, kVar2, kVar9, kVar10, voiceConfig, observable2, kVar3, kVar4, forUser, observableObserveUserProfile, observableObserve3, observableObserveUserNote, kVar5, kVar6, kVar7, kVar8, new AnonymousClass2(user, meUser2, channel, selectedVoiceChannel));
+                        Intrinsics3.checkNotNullExpressionValue(scalarSynchronousObservable5, "userStageRolesObservable");
+                        Intrinsics3.checkNotNullExpressionValue(scalarSynchronousObservable6, "userStageRequestToSpeakStateObservable");
+                        Intrinsics3.checkNotNullExpressionValue(scalarSynchronousObservable7, "myStageRolesObservable");
+                        Intrinsics3.checkNotNullExpressionValue(scalarSynchronousObservable8, "canDisableCommunicationObservable");
+                        return ObservableCombineLatestOverloads2.combineLatest(observable, scalarSynchronousObservable2, scalarSynchronousObservable9, scalarSynchronousObservable10, voiceConfig, observable2, scalarSynchronousObservable3, scalarSynchronousObservable4, forUser, observableObserveUserProfile, observableObserve3, observableObserveUserNote, scalarSynchronousObservable5, scalarSynchronousObservable6, scalarSynchronousObservable7, scalarSynchronousObservable8, new AnonymousClass2(user, meUser2, channel, selectedVoiceChannel));
                     }
                     meUser2 = meUser;
-                    kVar6 = new j0.l.e.k(StageRequestToSpeakState.NONE);
+                    scalarSynchronousObservable6 = new ScalarSynchronousObservable(StageRequestToSpeakState.NONE);
                     if (selectedVoiceChannel != null) {
-                        kVar7 = new j0.l.e.k<>(null);
+                        scalarSynchronousObservable7 = new ScalarSynchronousObservable<>(null);
                     } else {
-                        kVar7 = new j0.l.e.k<>(null);
+                        scalarSynchronousObservable7 = new ScalarSynchronousObservable<>(null);
                     }
                     if (lValueOf != null) {
                         lValueOf.longValue();
-                        kVar8 = GuildCommunicationDisabledGuildsFeatureFlag.INSTANCE.getINSTANCE().observeCanGuildAccessCommunicationDisabled(lValueOf.longValue());
-                        if (kVar8 == null) {
-                            kVar8 = new j0.l.e.k(Boolean.FALSE);
+                        scalarSynchronousObservable8 = GuildCommunicationDisabledGuildsFeatureFlag.INSTANCE.getINSTANCE().observeCanGuildAccessCommunicationDisabled(lValueOf.longValue());
+                        if (scalarSynchronousObservable8 == null) {
+                            scalarSynchronousObservable8 = new ScalarSynchronousObservable(Boolean.FALSE);
                         }
                     } else {
-                        kVar8 = new j0.l.e.k(Boolean.FALSE);
+                        scalarSynchronousObservable8 = new ScalarSynchronousObservable(Boolean.FALSE);
                     }
-                    m.checkNotNullExpressionValue(observable, "computedMembersObservable");
-                    m.checkNotNullExpressionValue(kVar2, "guildRolesObservable");
-                    m.checkNotNullExpressionValue(kVar9, "mySelectedVoiceChannelVoiceStatesObservable");
-                    m.checkNotNullExpressionValue(kVar10, "currentChannelVoiceStatesObservable");
+                    Intrinsics3.checkNotNullExpressionValue(observable, "computedMembersObservable");
+                    Intrinsics3.checkNotNullExpressionValue(scalarSynchronousObservable2, "guildRolesObservable");
+                    Intrinsics3.checkNotNullExpressionValue(scalarSynchronousObservable9, "mySelectedVoiceChannelVoiceStatesObservable");
+                    Intrinsics3.checkNotNullExpressionValue(scalarSynchronousObservable10, "currentChannelVoiceStatesObservable");
                     Observable<StoreMediaSettings.VoiceConfiguration> voiceConfig2 = this.$storeMediaSettings.getVoiceConfig();
-                    m.checkNotNullExpressionValue(kVar3, "guildsObservable");
-                    m.checkNotNullExpressionValue(kVar4, "permissionsObservable");
+                    Intrinsics3.checkNotNullExpressionValue(scalarSynchronousObservable3, "guildsObservable");
+                    Intrinsics3.checkNotNullExpressionValue(scalarSynchronousObservable4, "permissionsObservable");
                     Observable<UserProfile> observableObserveUserProfile2 = this.$storeUserProfile.observeUserProfile(user.getId());
                     Observable<Integer> observableObserve4 = this.$storeUserRelationships.observe(user.getId());
                     Observable<StoreUserNotes.UserNoteState> observableObserveUserNote2 = this.$storeUserNotes.observeUserNote(user.getId());
-                    m.checkNotNullExpressionValue(kVar5, "userStageRolesObservable");
-                    m.checkNotNullExpressionValue(kVar6, "userStageRequestToSpeakStateObservable");
-                    m.checkNotNullExpressionValue(kVar7, "myStageRolesObservable");
-                    m.checkNotNullExpressionValue(kVar8, "canDisableCommunicationObservable");
-                    return ObservableCombineLatestOverloadsKt.combineLatest(observable, kVar2, kVar9, kVar10, voiceConfig2, observable2, kVar3, kVar4, forUser, observableObserveUserProfile2, observableObserve4, observableObserveUserNote2, kVar5, kVar6, kVar7, kVar8, new AnonymousClass2(user, meUser2, channel, selectedVoiceChannel));
+                    Intrinsics3.checkNotNullExpressionValue(scalarSynchronousObservable5, "userStageRolesObservable");
+                    Intrinsics3.checkNotNullExpressionValue(scalarSynchronousObservable6, "userStageRequestToSpeakStateObservable");
+                    Intrinsics3.checkNotNullExpressionValue(scalarSynchronousObservable7, "myStageRolesObservable");
+                    Intrinsics3.checkNotNullExpressionValue(scalarSynchronousObservable8, "canDisableCommunicationObservable");
+                    return ObservableCombineLatestOverloads2.combineLatest(observable, scalarSynchronousObservable2, scalarSynchronousObservable9, scalarSynchronousObservable10, voiceConfig2, observable2, scalarSynchronousObservable3, scalarSynchronousObservable4, forUser, observableObserveUserProfile2, observableObserve4, observableObserveUserNote2, scalarSynchronousObservable5, scalarSynchronousObservable6, scalarSynchronousObservable7, scalarSynchronousObservable8, new AnonymousClass2(user, meUser2, channel, selectedVoiceChannel));
                 }
                 meUser = me2;
                 channel = channel2;
-                kVar5 = new j0.l.e.k<>(null);
+                scalarSynchronousObservable5 = new ScalarSynchronousObservable<>(null);
                 if (selectedVoiceChannel != null) {
                     meUser2 = meUser;
-                    kVar6 = this.$storeStageChannels.observeUserRequestToSpeakState(user.getId(), selectedVoiceChannel.getId());
-                    if (kVar6 == null) {
+                    scalarSynchronousObservable6 = this.$storeStageChannels.observeUserRequestToSpeakState(user.getId(), selectedVoiceChannel.getId());
+                    if (scalarSynchronousObservable6 == null) {
                     }
                     if (selectedVoiceChannel != null) {
-                        kVar7 = new j0.l.e.k<>(null);
+                        scalarSynchronousObservable7 = new ScalarSynchronousObservable<>(null);
                     } else {
-                        kVar7 = new j0.l.e.k<>(null);
+                        scalarSynchronousObservable7 = new ScalarSynchronousObservable<>(null);
                     }
                     if (lValueOf != null) {
                         lValueOf.longValue();
-                        kVar8 = GuildCommunicationDisabledGuildsFeatureFlag.INSTANCE.getINSTANCE().observeCanGuildAccessCommunicationDisabled(lValueOf.longValue());
-                        if (kVar8 == null) {
-                            kVar8 = new j0.l.e.k(Boolean.FALSE);
+                        scalarSynchronousObservable8 = GuildCommunicationDisabledGuildsFeatureFlag.INSTANCE.getINSTANCE().observeCanGuildAccessCommunicationDisabled(lValueOf.longValue());
+                        if (scalarSynchronousObservable8 == null) {
+                            scalarSynchronousObservable8 = new ScalarSynchronousObservable(Boolean.FALSE);
                         }
                     } else {
-                        kVar8 = new j0.l.e.k(Boolean.FALSE);
+                        scalarSynchronousObservable8 = new ScalarSynchronousObservable(Boolean.FALSE);
                     }
-                    m.checkNotNullExpressionValue(observable, "computedMembersObservable");
-                    m.checkNotNullExpressionValue(kVar2, "guildRolesObservable");
-                    m.checkNotNullExpressionValue(kVar9, "mySelectedVoiceChannelVoiceStatesObservable");
-                    m.checkNotNullExpressionValue(kVar10, "currentChannelVoiceStatesObservable");
+                    Intrinsics3.checkNotNullExpressionValue(observable, "computedMembersObservable");
+                    Intrinsics3.checkNotNullExpressionValue(scalarSynchronousObservable2, "guildRolesObservable");
+                    Intrinsics3.checkNotNullExpressionValue(scalarSynchronousObservable9, "mySelectedVoiceChannelVoiceStatesObservable");
+                    Intrinsics3.checkNotNullExpressionValue(scalarSynchronousObservable10, "currentChannelVoiceStatesObservable");
                     Observable<StoreMediaSettings.VoiceConfiguration> voiceConfig3 = this.$storeMediaSettings.getVoiceConfig();
-                    m.checkNotNullExpressionValue(kVar3, "guildsObservable");
-                    m.checkNotNullExpressionValue(kVar4, "permissionsObservable");
+                    Intrinsics3.checkNotNullExpressionValue(scalarSynchronousObservable3, "guildsObservable");
+                    Intrinsics3.checkNotNullExpressionValue(scalarSynchronousObservable4, "permissionsObservable");
                     Observable<UserProfile> observableObserveUserProfile3 = this.$storeUserProfile.observeUserProfile(user.getId());
                     Observable<Integer> observableObserve5 = this.$storeUserRelationships.observe(user.getId());
                     Observable<StoreUserNotes.UserNoteState> observableObserveUserNote3 = this.$storeUserNotes.observeUserNote(user.getId());
-                    m.checkNotNullExpressionValue(kVar5, "userStageRolesObservable");
-                    m.checkNotNullExpressionValue(kVar6, "userStageRequestToSpeakStateObservable");
-                    m.checkNotNullExpressionValue(kVar7, "myStageRolesObservable");
-                    m.checkNotNullExpressionValue(kVar8, "canDisableCommunicationObservable");
-                    return ObservableCombineLatestOverloadsKt.combineLatest(observable, kVar2, kVar9, kVar10, voiceConfig3, observable2, kVar3, kVar4, forUser, observableObserveUserProfile3, observableObserve5, observableObserveUserNote3, kVar5, kVar6, kVar7, kVar8, new AnonymousClass2(user, meUser2, channel, selectedVoiceChannel));
+                    Intrinsics3.checkNotNullExpressionValue(scalarSynchronousObservable5, "userStageRolesObservable");
+                    Intrinsics3.checkNotNullExpressionValue(scalarSynchronousObservable6, "userStageRequestToSpeakStateObservable");
+                    Intrinsics3.checkNotNullExpressionValue(scalarSynchronousObservable7, "myStageRolesObservable");
+                    Intrinsics3.checkNotNullExpressionValue(scalarSynchronousObservable8, "canDisableCommunicationObservable");
+                    return ObservableCombineLatestOverloads2.combineLatest(observable, scalarSynchronousObservable2, scalarSynchronousObservable9, scalarSynchronousObservable10, voiceConfig3, observable2, scalarSynchronousObservable3, scalarSynchronousObservable4, forUser, observableObserveUserProfile3, observableObserve5, observableObserveUserNote3, scalarSynchronousObservable5, scalarSynchronousObservable6, scalarSynchronousObservable7, scalarSynchronousObservable8, new AnonymousClass2(user, meUser2, channel, selectedVoiceChannel));
                 }
                 meUser2 = meUser;
-                kVar6 = new j0.l.e.k(StageRequestToSpeakState.NONE);
+                scalarSynchronousObservable6 = new ScalarSynchronousObservable(StageRequestToSpeakState.NONE);
                 if (selectedVoiceChannel != null) {
-                    kVar7 = new j0.l.e.k<>(null);
+                    scalarSynchronousObservable7 = new ScalarSynchronousObservable<>(null);
                 } else {
-                    kVar7 = new j0.l.e.k<>(null);
+                    scalarSynchronousObservable7 = new ScalarSynchronousObservable<>(null);
                 }
                 if (lValueOf != null) {
                     lValueOf.longValue();
-                    kVar8 = GuildCommunicationDisabledGuildsFeatureFlag.INSTANCE.getINSTANCE().observeCanGuildAccessCommunicationDisabled(lValueOf.longValue());
-                    if (kVar8 == null) {
-                        kVar8 = new j0.l.e.k(Boolean.FALSE);
+                    scalarSynchronousObservable8 = GuildCommunicationDisabledGuildsFeatureFlag.INSTANCE.getINSTANCE().observeCanGuildAccessCommunicationDisabled(lValueOf.longValue());
+                    if (scalarSynchronousObservable8 == null) {
+                        scalarSynchronousObservable8 = new ScalarSynchronousObservable(Boolean.FALSE);
                     }
                 } else {
-                    kVar8 = new j0.l.e.k(Boolean.FALSE);
+                    scalarSynchronousObservable8 = new ScalarSynchronousObservable(Boolean.FALSE);
                 }
-                m.checkNotNullExpressionValue(observable, "computedMembersObservable");
-                m.checkNotNullExpressionValue(kVar2, "guildRolesObservable");
-                m.checkNotNullExpressionValue(kVar9, "mySelectedVoiceChannelVoiceStatesObservable");
-                m.checkNotNullExpressionValue(kVar10, "currentChannelVoiceStatesObservable");
+                Intrinsics3.checkNotNullExpressionValue(observable, "computedMembersObservable");
+                Intrinsics3.checkNotNullExpressionValue(scalarSynchronousObservable2, "guildRolesObservable");
+                Intrinsics3.checkNotNullExpressionValue(scalarSynchronousObservable9, "mySelectedVoiceChannelVoiceStatesObservable");
+                Intrinsics3.checkNotNullExpressionValue(scalarSynchronousObservable10, "currentChannelVoiceStatesObservable");
                 Observable<StoreMediaSettings.VoiceConfiguration> voiceConfig4 = this.$storeMediaSettings.getVoiceConfig();
-                m.checkNotNullExpressionValue(kVar3, "guildsObservable");
-                m.checkNotNullExpressionValue(kVar4, "permissionsObservable");
+                Intrinsics3.checkNotNullExpressionValue(scalarSynchronousObservable3, "guildsObservable");
+                Intrinsics3.checkNotNullExpressionValue(scalarSynchronousObservable4, "permissionsObservable");
                 Observable<UserProfile> observableObserveUserProfile4 = this.$storeUserProfile.observeUserProfile(user.getId());
                 Observable<Integer> observableObserve6 = this.$storeUserRelationships.observe(user.getId());
                 Observable<StoreUserNotes.UserNoteState> observableObserveUserNote4 = this.$storeUserNotes.observeUserNote(user.getId());
-                m.checkNotNullExpressionValue(kVar5, "userStageRolesObservable");
-                m.checkNotNullExpressionValue(kVar6, "userStageRequestToSpeakStateObservable");
-                m.checkNotNullExpressionValue(kVar7, "myStageRolesObservable");
-                m.checkNotNullExpressionValue(kVar8, "canDisableCommunicationObservable");
-                return ObservableCombineLatestOverloadsKt.combineLatest(observable, kVar2, kVar9, kVar10, voiceConfig4, observable2, kVar3, kVar4, forUser, observableObserveUserProfile4, observableObserve6, observableObserveUserNote4, kVar5, kVar6, kVar7, kVar8, new AnonymousClass2(user, meUser2, channel, selectedVoiceChannel));
+                Intrinsics3.checkNotNullExpressionValue(scalarSynchronousObservable5, "userStageRolesObservable");
+                Intrinsics3.checkNotNullExpressionValue(scalarSynchronousObservable6, "userStageRequestToSpeakStateObservable");
+                Intrinsics3.checkNotNullExpressionValue(scalarSynchronousObservable7, "myStageRolesObservable");
+                Intrinsics3.checkNotNullExpressionValue(scalarSynchronousObservable8, "canDisableCommunicationObservable");
+                return ObservableCombineLatestOverloads2.combineLatest(observable, scalarSynchronousObservable2, scalarSynchronousObservable9, scalarSynchronousObservable10, voiceConfig4, observable2, scalarSynchronousObservable3, scalarSynchronousObservable4, forUser, observableObserveUserProfile4, observableObserve6, observableObserveUserNote4, scalarSynchronousObservable5, scalarSynchronousObservable6, scalarSynchronousObservable7, scalarSynchronousObservable8, new AnonymousClass2(user, meUser2, channel, selectedVoiceChannel));
             }
-            observable = kVar;
-            kVar4 = new j0.l.e.k<>(null);
+            observable = scalarSynchronousObservable;
+            scalarSynchronousObservable4 = new ScalarSynchronousObservable<>(null);
             Observable<StreamContext> forUser2 = this.$streamContextService.getForUser(user.getId(), true);
             if (selectedVoiceChannel != null) {
                 meUser = me2;
                 channel = channel2;
-                kVar5 = this.$storeStageChannels.observeUserRoles(user.getId(), selectedVoiceChannel.getId());
-                if (kVar5 == null) {
+                scalarSynchronousObservable5 = this.$storeStageChannels.observeUserRoles(user.getId(), selectedVoiceChannel.getId());
+                if (scalarSynchronousObservable5 == null) {
                 }
                 if (selectedVoiceChannel != null) {
                     meUser2 = meUser;
-                    kVar6 = this.$storeStageChannels.observeUserRequestToSpeakState(user.getId(), selectedVoiceChannel.getId());
-                    if (kVar6 == null) {
+                    scalarSynchronousObservable6 = this.$storeStageChannels.observeUserRequestToSpeakState(user.getId(), selectedVoiceChannel.getId());
+                    if (scalarSynchronousObservable6 == null) {
                     }
                     if (selectedVoiceChannel != null) {
-                        kVar7 = new j0.l.e.k<>(null);
+                        scalarSynchronousObservable7 = new ScalarSynchronousObservable<>(null);
                     } else {
-                        kVar7 = new j0.l.e.k<>(null);
+                        scalarSynchronousObservable7 = new ScalarSynchronousObservable<>(null);
                     }
                     if (lValueOf != null) {
                         lValueOf.longValue();
-                        kVar8 = GuildCommunicationDisabledGuildsFeatureFlag.INSTANCE.getINSTANCE().observeCanGuildAccessCommunicationDisabled(lValueOf.longValue());
-                        if (kVar8 == null) {
-                            kVar8 = new j0.l.e.k(Boolean.FALSE);
+                        scalarSynchronousObservable8 = GuildCommunicationDisabledGuildsFeatureFlag.INSTANCE.getINSTANCE().observeCanGuildAccessCommunicationDisabled(lValueOf.longValue());
+                        if (scalarSynchronousObservable8 == null) {
+                            scalarSynchronousObservable8 = new ScalarSynchronousObservable(Boolean.FALSE);
                         }
                     } else {
-                        kVar8 = new j0.l.e.k(Boolean.FALSE);
+                        scalarSynchronousObservable8 = new ScalarSynchronousObservable(Boolean.FALSE);
                     }
-                    m.checkNotNullExpressionValue(observable, "computedMembersObservable");
-                    m.checkNotNullExpressionValue(kVar2, "guildRolesObservable");
-                    m.checkNotNullExpressionValue(kVar9, "mySelectedVoiceChannelVoiceStatesObservable");
-                    m.checkNotNullExpressionValue(kVar10, "currentChannelVoiceStatesObservable");
+                    Intrinsics3.checkNotNullExpressionValue(observable, "computedMembersObservable");
+                    Intrinsics3.checkNotNullExpressionValue(scalarSynchronousObservable2, "guildRolesObservable");
+                    Intrinsics3.checkNotNullExpressionValue(scalarSynchronousObservable9, "mySelectedVoiceChannelVoiceStatesObservable");
+                    Intrinsics3.checkNotNullExpressionValue(scalarSynchronousObservable10, "currentChannelVoiceStatesObservable");
                     Observable<StoreMediaSettings.VoiceConfiguration> voiceConfig5 = this.$storeMediaSettings.getVoiceConfig();
-                    m.checkNotNullExpressionValue(kVar3, "guildsObservable");
-                    m.checkNotNullExpressionValue(kVar4, "permissionsObservable");
+                    Intrinsics3.checkNotNullExpressionValue(scalarSynchronousObservable3, "guildsObservable");
+                    Intrinsics3.checkNotNullExpressionValue(scalarSynchronousObservable4, "permissionsObservable");
                     Observable<UserProfile> observableObserveUserProfile5 = this.$storeUserProfile.observeUserProfile(user.getId());
                     Observable<Integer> observableObserve7 = this.$storeUserRelationships.observe(user.getId());
                     Observable<StoreUserNotes.UserNoteState> observableObserveUserNote5 = this.$storeUserNotes.observeUserNote(user.getId());
-                    m.checkNotNullExpressionValue(kVar5, "userStageRolesObservable");
-                    m.checkNotNullExpressionValue(kVar6, "userStageRequestToSpeakStateObservable");
-                    m.checkNotNullExpressionValue(kVar7, "myStageRolesObservable");
-                    m.checkNotNullExpressionValue(kVar8, "canDisableCommunicationObservable");
-                    return ObservableCombineLatestOverloadsKt.combineLatest(observable, kVar2, kVar9, kVar10, voiceConfig5, observable2, kVar3, kVar4, forUser2, observableObserveUserProfile5, observableObserve7, observableObserveUserNote5, kVar5, kVar6, kVar7, kVar8, new AnonymousClass2(user, meUser2, channel, selectedVoiceChannel));
+                    Intrinsics3.checkNotNullExpressionValue(scalarSynchronousObservable5, "userStageRolesObservable");
+                    Intrinsics3.checkNotNullExpressionValue(scalarSynchronousObservable6, "userStageRequestToSpeakStateObservable");
+                    Intrinsics3.checkNotNullExpressionValue(scalarSynchronousObservable7, "myStageRolesObservable");
+                    Intrinsics3.checkNotNullExpressionValue(scalarSynchronousObservable8, "canDisableCommunicationObservable");
+                    return ObservableCombineLatestOverloads2.combineLatest(observable, scalarSynchronousObservable2, scalarSynchronousObservable9, scalarSynchronousObservable10, voiceConfig5, observable2, scalarSynchronousObservable3, scalarSynchronousObservable4, forUser2, observableObserveUserProfile5, observableObserve7, observableObserveUserNote5, scalarSynchronousObservable5, scalarSynchronousObservable6, scalarSynchronousObservable7, scalarSynchronousObservable8, new AnonymousClass2(user, meUser2, channel, selectedVoiceChannel));
                 }
                 meUser2 = meUser;
-                kVar6 = new j0.l.e.k(StageRequestToSpeakState.NONE);
+                scalarSynchronousObservable6 = new ScalarSynchronousObservable(StageRequestToSpeakState.NONE);
                 if (selectedVoiceChannel != null) {
-                    kVar7 = new j0.l.e.k<>(null);
+                    scalarSynchronousObservable7 = new ScalarSynchronousObservable<>(null);
                 } else {
-                    kVar7 = new j0.l.e.k<>(null);
+                    scalarSynchronousObservable7 = new ScalarSynchronousObservable<>(null);
                 }
                 if (lValueOf != null) {
                     lValueOf.longValue();
-                    kVar8 = GuildCommunicationDisabledGuildsFeatureFlag.INSTANCE.getINSTANCE().observeCanGuildAccessCommunicationDisabled(lValueOf.longValue());
-                    if (kVar8 == null) {
-                        kVar8 = new j0.l.e.k(Boolean.FALSE);
+                    scalarSynchronousObservable8 = GuildCommunicationDisabledGuildsFeatureFlag.INSTANCE.getINSTANCE().observeCanGuildAccessCommunicationDisabled(lValueOf.longValue());
+                    if (scalarSynchronousObservable8 == null) {
+                        scalarSynchronousObservable8 = new ScalarSynchronousObservable(Boolean.FALSE);
                     }
                 } else {
-                    kVar8 = new j0.l.e.k(Boolean.FALSE);
+                    scalarSynchronousObservable8 = new ScalarSynchronousObservable(Boolean.FALSE);
                 }
-                m.checkNotNullExpressionValue(observable, "computedMembersObservable");
-                m.checkNotNullExpressionValue(kVar2, "guildRolesObservable");
-                m.checkNotNullExpressionValue(kVar9, "mySelectedVoiceChannelVoiceStatesObservable");
-                m.checkNotNullExpressionValue(kVar10, "currentChannelVoiceStatesObservable");
+                Intrinsics3.checkNotNullExpressionValue(observable, "computedMembersObservable");
+                Intrinsics3.checkNotNullExpressionValue(scalarSynchronousObservable2, "guildRolesObservable");
+                Intrinsics3.checkNotNullExpressionValue(scalarSynchronousObservable9, "mySelectedVoiceChannelVoiceStatesObservable");
+                Intrinsics3.checkNotNullExpressionValue(scalarSynchronousObservable10, "currentChannelVoiceStatesObservable");
                 Observable<StoreMediaSettings.VoiceConfiguration> voiceConfig6 = this.$storeMediaSettings.getVoiceConfig();
-                m.checkNotNullExpressionValue(kVar3, "guildsObservable");
-                m.checkNotNullExpressionValue(kVar4, "permissionsObservable");
+                Intrinsics3.checkNotNullExpressionValue(scalarSynchronousObservable3, "guildsObservable");
+                Intrinsics3.checkNotNullExpressionValue(scalarSynchronousObservable4, "permissionsObservable");
                 Observable<UserProfile> observableObserveUserProfile6 = this.$storeUserProfile.observeUserProfile(user.getId());
                 Observable<Integer> observableObserve8 = this.$storeUserRelationships.observe(user.getId());
                 Observable<StoreUserNotes.UserNoteState> observableObserveUserNote6 = this.$storeUserNotes.observeUserNote(user.getId());
-                m.checkNotNullExpressionValue(kVar5, "userStageRolesObservable");
-                m.checkNotNullExpressionValue(kVar6, "userStageRequestToSpeakStateObservable");
-                m.checkNotNullExpressionValue(kVar7, "myStageRolesObservable");
-                m.checkNotNullExpressionValue(kVar8, "canDisableCommunicationObservable");
-                return ObservableCombineLatestOverloadsKt.combineLatest(observable, kVar2, kVar9, kVar10, voiceConfig6, observable2, kVar3, kVar4, forUser2, observableObserveUserProfile6, observableObserve8, observableObserveUserNote6, kVar5, kVar6, kVar7, kVar8, new AnonymousClass2(user, meUser2, channel, selectedVoiceChannel));
+                Intrinsics3.checkNotNullExpressionValue(scalarSynchronousObservable5, "userStageRolesObservable");
+                Intrinsics3.checkNotNullExpressionValue(scalarSynchronousObservable6, "userStageRequestToSpeakStateObservable");
+                Intrinsics3.checkNotNullExpressionValue(scalarSynchronousObservable7, "myStageRolesObservable");
+                Intrinsics3.checkNotNullExpressionValue(scalarSynchronousObservable8, "canDisableCommunicationObservable");
+                return ObservableCombineLatestOverloads2.combineLatest(observable, scalarSynchronousObservable2, scalarSynchronousObservable9, scalarSynchronousObservable10, voiceConfig6, observable2, scalarSynchronousObservable3, scalarSynchronousObservable4, forUser2, observableObserveUserProfile6, observableObserve8, observableObserveUserNote6, scalarSynchronousObservable5, scalarSynchronousObservable6, scalarSynchronousObservable7, scalarSynchronousObservable8, new AnonymousClass2(user, meUser2, channel, selectedVoiceChannel));
             }
             meUser = me2;
             channel = channel2;
-            kVar5 = new j0.l.e.k<>(null);
+            scalarSynchronousObservable5 = new ScalarSynchronousObservable<>(null);
             if (selectedVoiceChannel != null) {
                 meUser2 = meUser;
-                kVar6 = this.$storeStageChannels.observeUserRequestToSpeakState(user.getId(), selectedVoiceChannel.getId());
-                if (kVar6 == null) {
+                scalarSynchronousObservable6 = this.$storeStageChannels.observeUserRequestToSpeakState(user.getId(), selectedVoiceChannel.getId());
+                if (scalarSynchronousObservable6 == null) {
                 }
                 if (selectedVoiceChannel != null) {
-                    kVar7 = new j0.l.e.k<>(null);
+                    scalarSynchronousObservable7 = new ScalarSynchronousObservable<>(null);
                 } else {
-                    kVar7 = new j0.l.e.k<>(null);
+                    scalarSynchronousObservable7 = new ScalarSynchronousObservable<>(null);
                 }
                 if (lValueOf != null) {
                     lValueOf.longValue();
-                    kVar8 = GuildCommunicationDisabledGuildsFeatureFlag.INSTANCE.getINSTANCE().observeCanGuildAccessCommunicationDisabled(lValueOf.longValue());
-                    if (kVar8 == null) {
-                        kVar8 = new j0.l.e.k(Boolean.FALSE);
+                    scalarSynchronousObservable8 = GuildCommunicationDisabledGuildsFeatureFlag.INSTANCE.getINSTANCE().observeCanGuildAccessCommunicationDisabled(lValueOf.longValue());
+                    if (scalarSynchronousObservable8 == null) {
+                        scalarSynchronousObservable8 = new ScalarSynchronousObservable(Boolean.FALSE);
                     }
                 } else {
-                    kVar8 = new j0.l.e.k(Boolean.FALSE);
+                    scalarSynchronousObservable8 = new ScalarSynchronousObservable(Boolean.FALSE);
                 }
-                m.checkNotNullExpressionValue(observable, "computedMembersObservable");
-                m.checkNotNullExpressionValue(kVar2, "guildRolesObservable");
-                m.checkNotNullExpressionValue(kVar9, "mySelectedVoiceChannelVoiceStatesObservable");
-                m.checkNotNullExpressionValue(kVar10, "currentChannelVoiceStatesObservable");
+                Intrinsics3.checkNotNullExpressionValue(observable, "computedMembersObservable");
+                Intrinsics3.checkNotNullExpressionValue(scalarSynchronousObservable2, "guildRolesObservable");
+                Intrinsics3.checkNotNullExpressionValue(scalarSynchronousObservable9, "mySelectedVoiceChannelVoiceStatesObservable");
+                Intrinsics3.checkNotNullExpressionValue(scalarSynchronousObservable10, "currentChannelVoiceStatesObservable");
                 Observable<StoreMediaSettings.VoiceConfiguration> voiceConfig7 = this.$storeMediaSettings.getVoiceConfig();
-                m.checkNotNullExpressionValue(kVar3, "guildsObservable");
-                m.checkNotNullExpressionValue(kVar4, "permissionsObservable");
+                Intrinsics3.checkNotNullExpressionValue(scalarSynchronousObservable3, "guildsObservable");
+                Intrinsics3.checkNotNullExpressionValue(scalarSynchronousObservable4, "permissionsObservable");
                 Observable<UserProfile> observableObserveUserProfile7 = this.$storeUserProfile.observeUserProfile(user.getId());
                 Observable<Integer> observableObserve9 = this.$storeUserRelationships.observe(user.getId());
                 Observable<StoreUserNotes.UserNoteState> observableObserveUserNote7 = this.$storeUserNotes.observeUserNote(user.getId());
-                m.checkNotNullExpressionValue(kVar5, "userStageRolesObservable");
-                m.checkNotNullExpressionValue(kVar6, "userStageRequestToSpeakStateObservable");
-                m.checkNotNullExpressionValue(kVar7, "myStageRolesObservable");
-                m.checkNotNullExpressionValue(kVar8, "canDisableCommunicationObservable");
-                return ObservableCombineLatestOverloadsKt.combineLatest(observable, kVar2, kVar9, kVar10, voiceConfig7, observable2, kVar3, kVar4, forUser2, observableObserveUserProfile7, observableObserve9, observableObserveUserNote7, kVar5, kVar6, kVar7, kVar8, new AnonymousClass2(user, meUser2, channel, selectedVoiceChannel));
+                Intrinsics3.checkNotNullExpressionValue(scalarSynchronousObservable5, "userStageRolesObservable");
+                Intrinsics3.checkNotNullExpressionValue(scalarSynchronousObservable6, "userStageRequestToSpeakStateObservable");
+                Intrinsics3.checkNotNullExpressionValue(scalarSynchronousObservable7, "myStageRolesObservable");
+                Intrinsics3.checkNotNullExpressionValue(scalarSynchronousObservable8, "canDisableCommunicationObservable");
+                return ObservableCombineLatestOverloads2.combineLatest(observable, scalarSynchronousObservable2, scalarSynchronousObservable9, scalarSynchronousObservable10, voiceConfig7, observable2, scalarSynchronousObservable3, scalarSynchronousObservable4, forUser2, observableObserveUserProfile7, observableObserve9, observableObserveUserNote7, scalarSynchronousObservable5, scalarSynchronousObservable6, scalarSynchronousObservable7, scalarSynchronousObservable8, new AnonymousClass2(user, meUser2, channel, selectedVoiceChannel));
             }
             meUser2 = meUser;
-            kVar6 = new j0.l.e.k(StageRequestToSpeakState.NONE);
+            scalarSynchronousObservable6 = new ScalarSynchronousObservable(StageRequestToSpeakState.NONE);
             if (selectedVoiceChannel != null) {
-                kVar7 = new j0.l.e.k<>(null);
+                scalarSynchronousObservable7 = new ScalarSynchronousObservable<>(null);
             } else {
-                kVar7 = new j0.l.e.k<>(null);
+                scalarSynchronousObservable7 = new ScalarSynchronousObservable<>(null);
             }
             if (lValueOf != null) {
                 lValueOf.longValue();
-                kVar8 = GuildCommunicationDisabledGuildsFeatureFlag.INSTANCE.getINSTANCE().observeCanGuildAccessCommunicationDisabled(lValueOf.longValue());
-                if (kVar8 == null) {
-                    kVar8 = new j0.l.e.k(Boolean.FALSE);
+                scalarSynchronousObservable8 = GuildCommunicationDisabledGuildsFeatureFlag.INSTANCE.getINSTANCE().observeCanGuildAccessCommunicationDisabled(lValueOf.longValue());
+                if (scalarSynchronousObservable8 == null) {
+                    scalarSynchronousObservable8 = new ScalarSynchronousObservable(Boolean.FALSE);
                 }
             } else {
-                kVar8 = new j0.l.e.k(Boolean.FALSE);
+                scalarSynchronousObservable8 = new ScalarSynchronousObservable(Boolean.FALSE);
             }
-            m.checkNotNullExpressionValue(observable, "computedMembersObservable");
-            m.checkNotNullExpressionValue(kVar2, "guildRolesObservable");
-            m.checkNotNullExpressionValue(kVar9, "mySelectedVoiceChannelVoiceStatesObservable");
-            m.checkNotNullExpressionValue(kVar10, "currentChannelVoiceStatesObservable");
+            Intrinsics3.checkNotNullExpressionValue(observable, "computedMembersObservable");
+            Intrinsics3.checkNotNullExpressionValue(scalarSynchronousObservable2, "guildRolesObservable");
+            Intrinsics3.checkNotNullExpressionValue(scalarSynchronousObservable9, "mySelectedVoiceChannelVoiceStatesObservable");
+            Intrinsics3.checkNotNullExpressionValue(scalarSynchronousObservable10, "currentChannelVoiceStatesObservable");
             Observable<StoreMediaSettings.VoiceConfiguration> voiceConfig8 = this.$storeMediaSettings.getVoiceConfig();
-            m.checkNotNullExpressionValue(kVar3, "guildsObservable");
-            m.checkNotNullExpressionValue(kVar4, "permissionsObservable");
+            Intrinsics3.checkNotNullExpressionValue(scalarSynchronousObservable3, "guildsObservable");
+            Intrinsics3.checkNotNullExpressionValue(scalarSynchronousObservable4, "permissionsObservable");
             Observable<UserProfile> observableObserveUserProfile8 = this.$storeUserProfile.observeUserProfile(user.getId());
             Observable<Integer> observableObserve10 = this.$storeUserRelationships.observe(user.getId());
             Observable<StoreUserNotes.UserNoteState> observableObserveUserNote8 = this.$storeUserNotes.observeUserNote(user.getId());
-            m.checkNotNullExpressionValue(kVar5, "userStageRolesObservable");
-            m.checkNotNullExpressionValue(kVar6, "userStageRequestToSpeakStateObservable");
-            m.checkNotNullExpressionValue(kVar7, "myStageRolesObservable");
-            m.checkNotNullExpressionValue(kVar8, "canDisableCommunicationObservable");
-            return ObservableCombineLatestOverloadsKt.combineLatest(observable, kVar2, kVar9, kVar10, voiceConfig8, observable2, kVar3, kVar4, forUser2, observableObserveUserProfile8, observableObserve10, observableObserveUserNote8, kVar5, kVar6, kVar7, kVar8, new AnonymousClass2(user, meUser2, channel, selectedVoiceChannel));
+            Intrinsics3.checkNotNullExpressionValue(scalarSynchronousObservable5, "userStageRolesObservable");
+            Intrinsics3.checkNotNullExpressionValue(scalarSynchronousObservable6, "userStageRequestToSpeakStateObservable");
+            Intrinsics3.checkNotNullExpressionValue(scalarSynchronousObservable7, "myStageRolesObservable");
+            Intrinsics3.checkNotNullExpressionValue(scalarSynchronousObservable8, "canDisableCommunicationObservable");
+            return ObservableCombineLatestOverloads2.combineLatest(observable, scalarSynchronousObservable2, scalarSynchronousObservable9, scalarSynchronousObservable10, voiceConfig8, observable2, scalarSynchronousObservable3, scalarSynchronousObservable4, forUser2, observableObserveUserProfile8, observableObserve10, observableObserveUserNote8, scalarSynchronousObservable5, scalarSynchronousObservable6, scalarSynchronousObservable7, scalarSynchronousObservable8, new AnonymousClass2(user, meUser2, channel, selectedVoiceChannel));
         }
     }
 
@@ -543,7 +545,7 @@ public final class WidgetUserSheetViewModelStoreState {
         private final User user;
 
         public BootstrapData(User user, MeUser meUser, Channel channel, Channel channel2) {
-            m.checkNotNullParameter(meUser, "me");
+            Intrinsics3.checkNotNullParameter(meUser, "me");
             this.user = user;
             this.me = meUser;
             this.channel = channel;
@@ -567,7 +569,7 @@ public final class WidgetUserSheetViewModelStoreState {
         }
 
         public final BootstrapData copy(User user, MeUser me2, Channel channel, Channel selectedVoiceChannel) {
-            m.checkNotNullParameter(me2, "me");
+            Intrinsics3.checkNotNullParameter(me2, "me");
             return new BootstrapData(user, me2, channel, selectedVoiceChannel);
         }
 
@@ -579,7 +581,7 @@ public final class WidgetUserSheetViewModelStoreState {
                 return false;
             }
             BootstrapData bootstrapData = (BootstrapData) other;
-            return m.areEqual(this.user, bootstrapData.user) && m.areEqual(this.me, bootstrapData.me) && m.areEqual(this.channel, bootstrapData.channel) && m.areEqual(this.selectedVoiceChannel, bootstrapData.selectedVoiceChannel);
+            return Intrinsics3.areEqual(this.user, bootstrapData.user) && Intrinsics3.areEqual(this.me, bootstrapData.me) && Intrinsics3.areEqual(this.channel, bootstrapData.channel) && Intrinsics3.areEqual(this.selectedVoiceChannel, bootstrapData.selectedVoiceChannel);
         }
 
         /* JADX INFO: renamed from: component3, reason: from getter */
@@ -630,7 +632,7 @@ public final class WidgetUserSheetViewModelStoreState {
         }
 
         public String toString() {
-            StringBuilder sbU = a.U("BootstrapData(user=");
+            StringBuilder sbU = outline.U("BootstrapData(user=");
             sbU.append(this.user);
             sbU.append(", me=");
             sbU.append(this.me);
@@ -662,8 +664,8 @@ public final class WidgetUserSheetViewModelStoreState {
         StoreStageChannels stageChannels = (i & 16384) != 0 ? StoreStream.INSTANCE.getStageChannels() : storeStageChannels;
         StreamContextService streamContextService2 = (32768 & i) != 0 ? new StreamContextService(null, null, null, null, null, null, null, null, 255, null) : streamContextService;
         if ((i & 65536) != 0) {
-            Scheduler schedulerA = j0.p.a.a();
-            m.checkNotNullExpressionValue(schedulerA, "Schedulers.computation()");
+            Scheduler schedulerA = Schedulers2.a();
+            Intrinsics3.checkNotNullExpressionValue(schedulerA, "Schedulers.computation()");
             scheduler2 = schedulerA;
         } else {
             scheduler2 = scheduler;
@@ -672,34 +674,34 @@ public final class WidgetUserSheetViewModelStoreState {
     }
 
     public final Observable<WidgetUserSheetViewModel.StoreState> observeStoreState(long userId, Long channelId, Long guildId, StoreUser storeUser, StoreChannels storeChannels, StoreVoiceChannelSelected storeVoiceChannelSelected, StoreUserProfile storeUserProfile, StoreUserRelationships storeUserRelationships, StoreVoiceStates storeVoiceStates, StoreGuilds storeGuilds, StoreMediaSettings storeMediaSettings, StoreUserPresence storeUserPresence, StorePermissions storePermissions, StoreUserNotes storeUserNotes, StoreStageChannels storeStageChannels, StreamContextService streamContextService, Scheduler storeStateRxScheduler) {
-        Observable<Channel> kVar;
-        m.checkNotNullParameter(storeUser, "storeUser");
-        m.checkNotNullParameter(storeChannels, "storeChannels");
-        m.checkNotNullParameter(storeVoiceChannelSelected, "storeVoiceChannelSelected");
-        m.checkNotNullParameter(storeUserProfile, "storeUserProfile");
-        m.checkNotNullParameter(storeUserRelationships, "storeUserRelationships");
-        m.checkNotNullParameter(storeVoiceStates, "storeVoiceStates");
-        m.checkNotNullParameter(storeGuilds, "storeGuilds");
-        m.checkNotNullParameter(storeMediaSettings, "storeMediaSettings");
-        m.checkNotNullParameter(storeUserPresence, "storeUserPresence");
-        m.checkNotNullParameter(storePermissions, "storePermissions");
-        m.checkNotNullParameter(storeUserNotes, "storeUserNotes");
-        m.checkNotNullParameter(storeStageChannels, "storeStageChannels");
-        m.checkNotNullParameter(streamContextService, "streamContextService");
-        m.checkNotNullParameter(storeStateRxScheduler, "storeStateRxScheduler");
+        Observable<Channel> scalarSynchronousObservable;
+        Intrinsics3.checkNotNullParameter(storeUser, "storeUser");
+        Intrinsics3.checkNotNullParameter(storeChannels, "storeChannels");
+        Intrinsics3.checkNotNullParameter(storeVoiceChannelSelected, "storeVoiceChannelSelected");
+        Intrinsics3.checkNotNullParameter(storeUserProfile, "storeUserProfile");
+        Intrinsics3.checkNotNullParameter(storeUserRelationships, "storeUserRelationships");
+        Intrinsics3.checkNotNullParameter(storeVoiceStates, "storeVoiceStates");
+        Intrinsics3.checkNotNullParameter(storeGuilds, "storeGuilds");
+        Intrinsics3.checkNotNullParameter(storeMediaSettings, "storeMediaSettings");
+        Intrinsics3.checkNotNullParameter(storeUserPresence, "storeUserPresence");
+        Intrinsics3.checkNotNullParameter(storePermissions, "storePermissions");
+        Intrinsics3.checkNotNullParameter(storeUserNotes, "storeUserNotes");
+        Intrinsics3.checkNotNullParameter(storeStageChannels, "storeStageChannels");
+        Intrinsics3.checkNotNullParameter(streamContextService, "streamContextService");
+        Intrinsics3.checkNotNullParameter(storeStateRxScheduler, "storeStateRxScheduler");
         Observable<User> observableObserveUser = storeUser.observeUser(userId);
         Observable observableObserveMe$default = StoreUser.observeMe$default(storeUser, false, 1, null);
-        if (channelId == null || (kVar = storeChannels.observeChannel(channelId.longValue())) == null) {
-            kVar = new j0.l.e.k<>(null);
+        if (channelId == null || (scalarSynchronousObservable = storeChannels.observeChannel(channelId.longValue())) == null) {
+            scalarSynchronousObservable = new ScalarSynchronousObservable<>(null);
         }
         Observable<Channel> observableObserveSelectedChannel = storeVoiceChannelSelected.observeSelectedChannel();
         AnonymousClass2 anonymousClass2 = AnonymousClass2.INSTANCE;
-        Object widgetUserSheetViewModelStoreState$sam$rx_functions_Func4$0 = anonymousClass2;
+        Object widgetUserSheetViewModelStoreState2 = anonymousClass2;
         if (anonymousClass2 != null) {
-            widgetUserSheetViewModelStoreState$sam$rx_functions_Func4$0 = new WidgetUserSheetViewModelStoreState$sam$rx_functions_Func4$0(anonymousClass2);
+            widgetUserSheetViewModelStoreState2 = new WidgetUserSheetViewModelStoreState2(anonymousClass2);
         }
-        Observable<WidgetUserSheetViewModel.StoreState> observableR = Observable.h0(new r(Observable.h(observableObserveUser, observableObserveMe$default, kVar, observableObserveSelectedChannel, (Func4) widgetUserSheetViewModelStoreState$sam$rx_functions_Func4$0).Y(new AnonymousClass3(guildId, storeGuilds, storeVoiceStates, storeUserPresence, storePermissions, streamContextService, storeStageChannels, storeMediaSettings, storeUserProfile, storeUserRelationships, storeUserNotes)).j, new LeadingEdgeThrottle(250L, TimeUnit.MILLISECONDS, storeStateRxScheduler))).r();
-        m.checkNotNullExpressionValue(observableR, "Observable\n          .co…  .distinctUntilChanged()");
+        Observable<WidgetUserSheetViewModel.StoreState> observableR = Observable.h0(new OnSubscribeLift(Observable.h(observableObserveUser, observableObserveMe$default, scalarSynchronousObservable, observableObserveSelectedChannel, (Func4) widgetUserSheetViewModelStoreState2).Y(new AnonymousClass3(guildId, storeGuilds, storeVoiceStates, storeUserPresence, storePermissions, streamContextService, storeStageChannels, storeMediaSettings, storeUserProfile, storeUserRelationships, storeUserNotes)).j, new LeadingEdgeThrottle(250L, TimeUnit.MILLISECONDS, storeStateRxScheduler))).r();
+        Intrinsics3.checkNotNullExpressionValue(observableR, "Observable\n          .co…  .distinctUntilChanged()");
         return observableR;
     }
 }

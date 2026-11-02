@@ -13,7 +13,7 @@ import androidx.annotation.FloatRange;
 import androidx.annotation.RestrictTo;
 import androidx.appcompat.R;
 import androidx.core.graphics.drawable.DrawableCompat;
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
@@ -165,7 +165,7 @@ public class DrawerArrowDrawable extends Drawable {
     }
 
     private static float lerp(float f, float f2, float f3) {
-        return a.a(f2, f, f3, f);
+        return outline.a(f2, f, f3, f);
     }
 
     @Override // android.graphics.drawable.Drawable

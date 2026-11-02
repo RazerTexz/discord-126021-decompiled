@@ -1,9 +1,9 @@
 package com.discord.widgets.chat.list.entries;
 
 import a0.a.a.b;
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.models.domain.ModelInvite;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: StageInviteEntry.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -17,8 +17,8 @@ public final /* data */ class StageInviteEntry extends ChatListEntry {
     private final long userId;
 
     public StageInviteEntry(long j, long j2, String str, ModelInvite modelInvite, long j3) {
-        m.checkNotNullParameter(str, "inviteCode");
-        m.checkNotNullParameter(modelInvite, "invite");
+        Intrinsics3.checkNotNullParameter(str, "inviteCode");
+        Intrinsics3.checkNotNullParameter(modelInvite, "invite");
         this.userId = j;
         this.messageId = j2;
         this.inviteCode = str;
@@ -33,8 +33,8 @@ public final /* data */ class StageInviteEntry extends ChatListEntry {
     }
 
     public final StageInviteEntry copy(long userId, long messageId, String inviteCode, ModelInvite invite, long guildId) {
-        m.checkNotNullParameter(inviteCode, "inviteCode");
-        m.checkNotNullParameter(invite, "invite");
+        Intrinsics3.checkNotNullParameter(inviteCode, "inviteCode");
+        Intrinsics3.checkNotNullParameter(invite, "invite");
         return new StageInviteEntry(userId, messageId, inviteCode, invite, guildId);
     }
 
@@ -46,7 +46,7 @@ public final /* data */ class StageInviteEntry extends ChatListEntry {
             return false;
         }
         StageInviteEntry stageInviteEntry = (StageInviteEntry) other;
-        return this.userId == stageInviteEntry.userId && this.messageId == stageInviteEntry.messageId && m.areEqual(this.inviteCode, stageInviteEntry.inviteCode) && m.areEqual(this.invite, stageInviteEntry.invite) && this.guildId == stageInviteEntry.guildId;
+        return this.userId == stageInviteEntry.userId && this.messageId == stageInviteEntry.messageId && Intrinsics3.areEqual(this.inviteCode, stageInviteEntry.inviteCode) && Intrinsics3.areEqual(this.invite, stageInviteEntry.invite) && this.guildId == stageInviteEntry.guildId;
     }
 
     /* JADX INFO: renamed from: component5, reason: from getter */
@@ -113,7 +113,7 @@ public final /* data */ class StageInviteEntry extends ChatListEntry {
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("StageInviteEntry(userId=");
+        StringBuilder sbU = outline.U("StageInviteEntry(userId=");
         sbU.append(this.userId);
         sbU.append(", messageId=");
         sbU.append(this.messageId);
@@ -122,6 +122,6 @@ public final /* data */ class StageInviteEntry extends ChatListEntry {
         sbU.append(", invite=");
         sbU.append(this.invite);
         sbU.append(", guildId=");
-        return a.C(sbU, this.guildId, ")");
+        return outline.C(sbU, this.guildId, ")");
     }
 }

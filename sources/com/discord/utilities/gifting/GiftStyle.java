@@ -4,8 +4,8 @@ import androidx.annotation.RawRes;
 import com.discord.R;
 import com.discord.models.domain.ModelAuditLogEntry;
 import com.discord.models.domain.ModelGift;
-import d0.g;
-import d0.z.d.m;
+import d0.LazyJVM;
+import d0.z.d.Intrinsics3;
 import kotlin.Lazy;
 import kotlin.jvm.internal.DefaultConstructorMarker;
 
@@ -22,7 +22,7 @@ public enum GiftStyle {
     private final int animRes;
     private final int id;
     private final int staticRes;
-    private static final Lazy values$delegate = g.lazy(GiftStyle$Companion$values$2.INSTANCE);
+    private static final Lazy values$delegate = LazyJVM.lazy(GiftStyle2.INSTANCE);
 
     /* JADX INFO: compiled from: GiftStyle.kt */
     public final class Companion {
@@ -30,7 +30,7 @@ public enum GiftStyle {
         }
 
         public final GiftStyle from(ModelGift gift) {
-            m.checkNotNullParameter(gift, "gift");
+            Intrinsics3.checkNotNullParameter(gift, "gift");
             for (GiftStyle giftStyle : getValues()) {
                 int id2 = giftStyle.getId();
                 Integer giftStyle2 = gift.getGiftStyle();

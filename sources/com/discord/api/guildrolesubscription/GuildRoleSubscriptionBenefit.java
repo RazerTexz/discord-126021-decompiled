@@ -1,8 +1,8 @@
 package com.discord.api.guildrolesubscription;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.models.domain.ModelAuditLogEntry;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: GuildRoleSubscriptionBenefit.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -15,8 +15,8 @@ public final /* data */ class GuildRoleSubscriptionBenefit {
     private final GuildRoleSubscriptionBenefitType refType;
 
     public GuildRoleSubscriptionBenefit(Long l, String str, String str2, GuildRoleSubscriptionBenefitType guildRoleSubscriptionBenefitType, String str3, Long l2) {
-        m.checkNotNullParameter(str2, ModelAuditLogEntry.CHANGE_KEY_NAME);
-        m.checkNotNullParameter(guildRoleSubscriptionBenefitType, "refType");
+        Intrinsics3.checkNotNullParameter(str2, ModelAuditLogEntry.CHANGE_KEY_NAME);
+        Intrinsics3.checkNotNullParameter(guildRoleSubscriptionBenefitType, "refType");
         this.emojiId = l;
         this.emojiName = str;
         this.name = str2;
@@ -33,7 +33,7 @@ public final /* data */ class GuildRoleSubscriptionBenefit {
             return false;
         }
         GuildRoleSubscriptionBenefit guildRoleSubscriptionBenefit = (GuildRoleSubscriptionBenefit) other;
-        return m.areEqual(this.emojiId, guildRoleSubscriptionBenefit.emojiId) && m.areEqual(this.emojiName, guildRoleSubscriptionBenefit.emojiName) && m.areEqual(this.name, guildRoleSubscriptionBenefit.name) && m.areEqual(this.refType, guildRoleSubscriptionBenefit.refType) && m.areEqual(this.description, guildRoleSubscriptionBenefit.description) && m.areEqual(this.refId, guildRoleSubscriptionBenefit.refId);
+        return Intrinsics3.areEqual(this.emojiId, guildRoleSubscriptionBenefit.emojiId) && Intrinsics3.areEqual(this.emojiName, guildRoleSubscriptionBenefit.emojiName) && Intrinsics3.areEqual(this.name, guildRoleSubscriptionBenefit.name) && Intrinsics3.areEqual(this.refType, guildRoleSubscriptionBenefit.refType) && Intrinsics3.areEqual(this.description, guildRoleSubscriptionBenefit.description) && Intrinsics3.areEqual(this.refId, guildRoleSubscriptionBenefit.refId);
     }
 
     /* JADX INFO: renamed from: a, reason: from getter */
@@ -82,7 +82,7 @@ public final /* data */ class GuildRoleSubscriptionBenefit {
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("GuildRoleSubscriptionBenefit(emojiId=");
+        StringBuilder sbU = outline.U("GuildRoleSubscriptionBenefit(emojiId=");
         sbU.append(this.emojiId);
         sbU.append(", emojiName=");
         sbU.append(this.emojiName);
@@ -93,6 +93,6 @@ public final /* data */ class GuildRoleSubscriptionBenefit {
         sbU.append(", description=");
         sbU.append(this.description);
         sbU.append(", refId=");
-        return a.G(sbU, this.refId, ")");
+        return outline.G(sbU, this.refId, ")");
     }
 }

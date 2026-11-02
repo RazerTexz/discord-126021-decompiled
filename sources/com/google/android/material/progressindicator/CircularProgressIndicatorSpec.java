@@ -8,7 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.Px;
 import androidx.annotation.StyleRes;
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.google.android.material.R;
 import com.google.android.material.internal.ThemeEnforcement;
 import com.google.android.material.resources.MaterialResources;
@@ -32,10 +32,10 @@ public final class CircularProgressIndicatorSpec extends BaseProgressIndicatorSp
         if (this.indicatorSize >= this.trackThickness * 2) {
             return;
         }
-        StringBuilder sbU = a.U("The indicatorSize (");
+        StringBuilder sbU = outline.U("The indicatorSize (");
         sbU.append(this.indicatorSize);
         sbU.append(" px) cannot be less than twice of the trackThickness (");
-        throw new IllegalArgumentException(a.B(sbU, this.trackThickness, " px)."));
+        throw new IllegalArgumentException(outline.B(sbU, this.trackThickness, " px)."));
     }
 
     public CircularProgressIndicatorSpec(@NonNull Context context, @Nullable AttributeSet attributeSet, @AttrRes int i) {

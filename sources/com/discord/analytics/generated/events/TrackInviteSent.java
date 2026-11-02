@@ -1,20 +1,20 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.analytics.generated.traits.TrackChannel;
-import com.discord.analytics.generated.traits.TrackChannelReceiver;
+import com.discord.analytics.generated.traits.TrackChannel2;
 import com.discord.analytics.generated.traits.TrackGuild;
-import com.discord.analytics.generated.traits.TrackGuildReceiver;
+import com.discord.analytics.generated.traits.TrackGuild2;
 import com.discord.analytics.generated.traits.TrackLocationMetadata;
-import com.discord.analytics.generated.traits.TrackLocationMetadataReceiver;
+import com.discord.analytics.generated.traits.TrackLocationMetadata2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackInviteSent.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackInviteSent implements AnalyticsSchema, TrackBaseReceiver, TrackGuildReceiver, TrackChannelReceiver, TrackLocationMetadataReceiver {
+public final /* data */ class TrackInviteSent implements AnalyticsSchema, TrackBase2, TrackGuild2, TrackChannel2, TrackLocationMetadata2 {
     private final Long applicationId = null;
     private final Long destinationUserId = null;
     private final Long inviteChannelId = null;
@@ -38,7 +38,7 @@ public final /* data */ class TrackInviteSent implements AnalyticsSchema, TrackB
     private TrackLocationMetadata trackLocationMetadata;
     private final transient String analyticsSchemaTypeName = "invite_sent";
 
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    @Override // com.discord.analytics.generated.traits.TrackGuild2
     public void c(TrackGuild trackGuild) {
         this.trackGuild = trackGuild;
     }
@@ -51,7 +51,7 @@ public final /* data */ class TrackInviteSent implements AnalyticsSchema, TrackB
             return false;
         }
         TrackInviteSent trackInviteSent = (TrackInviteSent) other;
-        return m.areEqual(this.inviteType, trackInviteSent.inviteType) && m.areEqual(this.inviteCode, trackInviteSent.inviteCode) && m.areEqual(this.messageId, trackInviteSent.messageId) && m.areEqual(this.inviteGuildId, trackInviteSent.inviteGuildId) && m.areEqual(this.inviteChannelId, trackInviteSent.inviteChannelId) && m.areEqual(this.inviteChannelType, trackInviteSent.inviteChannelType) && m.areEqual(this.inviteInviterId, trackInviteSent.inviteInviterId) && m.areEqual(this.applicationId, trackInviteSent.applicationId) && m.areEqual(this.destinationUserId, trackInviteSent.destinationUserId) && m.areEqual(this.isSuggested, trackInviteSent.isSuggested) && m.areEqual(this.rowNum, trackInviteSent.rowNum) && m.areEqual(this.numTotal, trackInviteSent.numTotal) && m.areEqual(this.numAffinityConnections, trackInviteSent.numAffinityConnections) && m.areEqual(this.isFiltered, trackInviteSent.isFiltered) && m.areEqual(this.numSelected, trackInviteSent.numSelected) && m.areEqual(this.sendType, trackInviteSent.sendType) && m.areEqual(this.inviteGuildScheduledEventId, trackInviteSent.inviteGuildScheduledEventId);
+        return Intrinsics3.areEqual(this.inviteType, trackInviteSent.inviteType) && Intrinsics3.areEqual(this.inviteCode, trackInviteSent.inviteCode) && Intrinsics3.areEqual(this.messageId, trackInviteSent.messageId) && Intrinsics3.areEqual(this.inviteGuildId, trackInviteSent.inviteGuildId) && Intrinsics3.areEqual(this.inviteChannelId, trackInviteSent.inviteChannelId) && Intrinsics3.areEqual(this.inviteChannelType, trackInviteSent.inviteChannelType) && Intrinsics3.areEqual(this.inviteInviterId, trackInviteSent.inviteInviterId) && Intrinsics3.areEqual(this.applicationId, trackInviteSent.applicationId) && Intrinsics3.areEqual(this.destinationUserId, trackInviteSent.destinationUserId) && Intrinsics3.areEqual(this.isSuggested, trackInviteSent.isSuggested) && Intrinsics3.areEqual(this.rowNum, trackInviteSent.rowNum) && Intrinsics3.areEqual(this.numTotal, trackInviteSent.numTotal) && Intrinsics3.areEqual(this.numAffinityConnections, trackInviteSent.numAffinityConnections) && Intrinsics3.areEqual(this.isFiltered, trackInviteSent.isFiltered) && Intrinsics3.areEqual(this.numSelected, trackInviteSent.numSelected) && Intrinsics3.areEqual(this.sendType, trackInviteSent.sendType) && Intrinsics3.areEqual(this.inviteGuildScheduledEventId, trackInviteSent.inviteGuildScheduledEventId);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -60,7 +60,7 @@ public final /* data */ class TrackInviteSent implements AnalyticsSchema, TrackB
         return this.analyticsSchemaTypeName;
     }
 
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    @Override // com.discord.analytics.generated.traits.TrackGuild2
     /* JADX INFO: renamed from: a, reason: from getter */
     public TrackGuild getTrackGuild() {
         return this.trackGuild;
@@ -104,7 +104,7 @@ public final /* data */ class TrackInviteSent implements AnalyticsSchema, TrackB
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackInviteSent(inviteType=");
+        StringBuilder sbU = outline.U("TrackInviteSent(inviteType=");
         sbU.append(this.inviteType);
         sbU.append(", inviteCode=");
         sbU.append(this.inviteCode);
@@ -137,6 +137,6 @@ public final /* data */ class TrackInviteSent implements AnalyticsSchema, TrackB
         sbU.append(", sendType=");
         sbU.append(this.sendType);
         sbU.append(", inviteGuildScheduledEventId=");
-        return a.G(sbU, this.inviteGuildScheduledEventId, ")");
+        return outline.G(sbU, this.inviteGuildScheduledEventId, ")");
     }
 }

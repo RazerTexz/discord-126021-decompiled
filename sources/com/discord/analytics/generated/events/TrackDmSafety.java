@@ -1,16 +1,16 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.analytics.generated.traits.TrackChannel;
-import com.discord.analytics.generated.traits.TrackChannelReceiver;
+import com.discord.analytics.generated.traits.TrackChannel2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackDmSafety.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackDmSafety implements AnalyticsSchema, TrackBaseReceiver, TrackChannelReceiver {
+public final /* data */ class TrackDmSafety implements AnalyticsSchema, TrackBase2, TrackChannel2 {
     private final Long messageId = null;
     private final CharSequence response = null;
     private final CharSequence safetyPrompt = null;
@@ -26,7 +26,7 @@ public final /* data */ class TrackDmSafety implements AnalyticsSchema, TrackBas
             return false;
         }
         TrackDmSafety trackDmSafety = (TrackDmSafety) other;
-        return m.areEqual(this.safetyPrompt, trackDmSafety.safetyPrompt) && m.areEqual(this.response, trackDmSafety.response) && m.areEqual(this.messageId, trackDmSafety.messageId);
+        return Intrinsics3.areEqual(this.safetyPrompt, trackDmSafety.safetyPrompt) && Intrinsics3.areEqual(this.response, trackDmSafety.response) && Intrinsics3.areEqual(this.messageId, trackDmSafety.messageId);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -45,11 +45,11 @@ public final /* data */ class TrackDmSafety implements AnalyticsSchema, TrackBas
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackDmSafety(safetyPrompt=");
+        StringBuilder sbU = outline.U("TrackDmSafety(safetyPrompt=");
         sbU.append(this.safetyPrompt);
         sbU.append(", response=");
         sbU.append(this.response);
         sbU.append(", messageId=");
-        return a.G(sbU, this.messageId, ")");
+        return outline.G(sbU, this.messageId, ")");
     }
 }

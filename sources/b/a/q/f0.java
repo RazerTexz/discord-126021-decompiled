@@ -1,5 +1,6 @@
 package b.a.q;
 
+import d0.z.d.Intrinsics3;
 import kotlin.jvm.functions.Function0;
 
 /* JADX INFO: compiled from: RtcConnection.kt */
@@ -13,6 +14,6 @@ public final class f0 implements Runnable {
 
     @Override // java.lang.Runnable
     public final /* synthetic */ void run() {
-        d0.z.d.m.checkNotNullExpressionValue(this.j.invoke(), "invoke(...)");
+        Intrinsics3.checkNotNullExpressionValue(this.j.invoke(), "invoke(...)");
     }
 }

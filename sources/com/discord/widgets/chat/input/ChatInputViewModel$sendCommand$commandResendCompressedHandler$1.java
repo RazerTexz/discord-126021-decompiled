@@ -5,8 +5,8 @@ import com.discord.utilities.rest.SendUtils;
 import com.discord.widgets.chat.MessageManager;
 import com.discord.widgets.chat.input.models.ApplicationCommandData;
 import com.lytefast.flexinput.model.Attachment;
-import d0.z.d.m;
-import d0.z.d.o;
+import d0.z.d.Intrinsics3;
+import d0.z.d.Lambda;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
@@ -19,7 +19,7 @@ import kotlin.jvm.functions.Function1;
 
 /* JADX INFO: compiled from: ChatInputViewModel.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class ChatInputViewModel$sendCommand$commandResendCompressedHandler$1 extends o implements Function0<Unit> {
+public final class ChatInputViewModel$sendCommand$commandResendCompressedHandler$1 extends Lambda implements Function0<Unit> {
     public final /* synthetic */ ApplicationCommandData $applicationCommandData;
     public final /* synthetic */ Map $attachments;
     public final /* synthetic */ ChatInputViewModel.AttachmentContext $attachmentsContext;
@@ -30,7 +30,7 @@ public final class ChatInputViewModel$sendCommand$commandResendCompressedHandler
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.input.ChatInputViewModel$sendCommand$commandResendCompressedHandler$1$1, reason: invalid class name */
     /* JADX INFO: compiled from: ChatInputViewModel.kt */
-    public final class AnonymousClass1 extends o implements Function1<List<? extends Attachment<?>>, Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function1<List<? extends Attachment<?>>, Unit> {
         public AnonymousClass1() {
             super(1);
         }
@@ -44,7 +44,7 @@ public final class ChatInputViewModel$sendCommand$commandResendCompressedHandler
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(List<? extends Attachment<?>> list) {
             Object next;
-            m.checkNotNullParameter(list, "compressedAttachments");
+            Intrinsics3.checkNotNullParameter(list, "compressedAttachments");
             LinkedHashMap linkedHashMap = new LinkedHashMap();
             for (Object obj : list) {
                 Unit unit = Unit.a;

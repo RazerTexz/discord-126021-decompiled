@@ -1,18 +1,18 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.analytics.generated.traits.TrackChannel;
-import com.discord.analytics.generated.traits.TrackChannelReceiver;
+import com.discord.analytics.generated.traits.TrackChannel2;
 import com.discord.analytics.generated.traits.TrackGuild;
-import com.discord.analytics.generated.traits.TrackGuildReceiver;
+import com.discord.analytics.generated.traits.TrackGuild2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackFailedMessageResolved.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackFailedMessageResolved implements AnalyticsSchema, TrackBaseReceiver, TrackGuildReceiver, TrackChannelReceiver {
+public final /* data */ class TrackFailedMessageResolved implements AnalyticsSchema, TrackBase2, TrackGuild2, TrackChannel2 {
     private final Boolean hasImage = null;
     private final Boolean hasVideo = null;
     private final Long initialAttemptTs = null;
@@ -27,7 +27,7 @@ public final /* data */ class TrackFailedMessageResolved implements AnalyticsSch
     private TrackGuild trackGuild;
     private final transient String analyticsSchemaTypeName = "failed_message_resolved";
 
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    @Override // com.discord.analytics.generated.traits.TrackGuild2
     public void c(TrackGuild trackGuild) {
         this.trackGuild = trackGuild;
     }
@@ -40,7 +40,7 @@ public final /* data */ class TrackFailedMessageResolved implements AnalyticsSch
             return false;
         }
         TrackFailedMessageResolved trackFailedMessageResolved = (TrackFailedMessageResolved) other;
-        return m.areEqual(this.numAttachments, trackFailedMessageResolved.numAttachments) && m.areEqual(this.maxAttachmentSize, trackFailedMessageResolved.maxAttachmentSize) && m.areEqual(this.totalAttachmentSize, trackFailedMessageResolved.totalAttachmentSize) && m.areEqual(this.hasImage, trackFailedMessageResolved.hasImage) && m.areEqual(this.hasVideo, trackFailedMessageResolved.hasVideo) && m.areEqual(this.resolutionType, trackFailedMessageResolved.resolutionType) && m.areEqual(this.initialAttemptTs, trackFailedMessageResolved.initialAttemptTs) && m.areEqual(this.numRetries, trackFailedMessageResolved.numRetries) && m.areEqual(this.previewEnabled, trackFailedMessageResolved.previewEnabled);
+        return Intrinsics3.areEqual(this.numAttachments, trackFailedMessageResolved.numAttachments) && Intrinsics3.areEqual(this.maxAttachmentSize, trackFailedMessageResolved.maxAttachmentSize) && Intrinsics3.areEqual(this.totalAttachmentSize, trackFailedMessageResolved.totalAttachmentSize) && Intrinsics3.areEqual(this.hasImage, trackFailedMessageResolved.hasImage) && Intrinsics3.areEqual(this.hasVideo, trackFailedMessageResolved.hasVideo) && Intrinsics3.areEqual(this.resolutionType, trackFailedMessageResolved.resolutionType) && Intrinsics3.areEqual(this.initialAttemptTs, trackFailedMessageResolved.initialAttemptTs) && Intrinsics3.areEqual(this.numRetries, trackFailedMessageResolved.numRetries) && Intrinsics3.areEqual(this.previewEnabled, trackFailedMessageResolved.previewEnabled);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -49,7 +49,7 @@ public final /* data */ class TrackFailedMessageResolved implements AnalyticsSch
         return this.analyticsSchemaTypeName;
     }
 
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    @Override // com.discord.analytics.generated.traits.TrackGuild2
     /* JADX INFO: renamed from: a, reason: from getter */
     public TrackGuild getTrackGuild() {
         return this.trackGuild;
@@ -77,7 +77,7 @@ public final /* data */ class TrackFailedMessageResolved implements AnalyticsSch
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackFailedMessageResolved(numAttachments=");
+        StringBuilder sbU = outline.U("TrackFailedMessageResolved(numAttachments=");
         sbU.append(this.numAttachments);
         sbU.append(", maxAttachmentSize=");
         sbU.append(this.maxAttachmentSize);
@@ -94,6 +94,6 @@ public final /* data */ class TrackFailedMessageResolved implements AnalyticsSch
         sbU.append(", numRetries=");
         sbU.append(this.numRetries);
         sbU.append(", previewEnabled=");
-        return a.D(sbU, this.previewEnabled, ")");
+        return outline.D(sbU, this.previewEnabled, ")");
     }
 }

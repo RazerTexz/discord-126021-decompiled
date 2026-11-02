@@ -1,6 +1,6 @@
 package com.discord.models.domain;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import java.io.IOException;
 
 /* JADX INFO: loaded from: classes.dex */
@@ -46,7 +46,7 @@ public class ModelGateway implements Model {
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("ModelGateway(url=");
+        StringBuilder sbU = outline.U("ModelGateway(url=");
         sbU.append(getUrl());
         sbU.append(")");
         return sbU.toString();

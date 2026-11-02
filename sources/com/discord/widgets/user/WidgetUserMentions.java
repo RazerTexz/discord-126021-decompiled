@@ -1,5 +1,6 @@
 package com.discord.widgets.user;
 
+import a0.a.a.b;
 import android.content.Context;
 import android.net.Uri;
 import android.view.MenuItem;
@@ -7,16 +8,17 @@ import android.view.View;
 import androidx.annotation.MainThread;
 import androidx.appcompat.widget.ActivityChooserModel;
 import androidx.core.app.NotificationCompat;
-import androidx.core.os.BundleKt;
+import androidx.core.os.Bundle2;
 import androidx.exifinterface.media.ExifInterface;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentViewModelLazyKt;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import b.a.d.g0;
-import b.a.d.i0;
-import b.d.b.a.a;
+import b.a.d.AppViewModelDelegates3;
+import b.a.d.AppViewModelDelegates5;
+import b.a.k.FormatUtils;
+import b.d.b.a.outline;
 import b.i.a.f.e.o.f;
 import com.discord.R;
 import com.discord.api.activity.Activity;
@@ -34,20 +36,20 @@ import com.discord.databinding.WidgetUserMentionsFilterBinding;
 import com.discord.models.guild.Guild;
 import com.discord.models.message.Message;
 import com.discord.restapi.RestAPIParams;
-import com.discord.stores.SelectedChannelAnalyticsLocation;
+import com.discord.stores.StoreChannelsSelected3;
 import com.discord.stores.StoreChat;
 import com.discord.stores.StoreNavigation;
 import com.discord.stores.StoreStream;
 import com.discord.stores.StoreTabsNavigation;
 import com.discord.utilities.channel.ChannelSelector;
-import com.discord.utilities.fragment.FragmentExtensionsKt;
+import com.discord.utilities.fragment.FragmentExtensions;
 import com.discord.utilities.mg_recycler.MGRecyclerAdapter;
 import com.discord.utilities.rest.RestAPI;
 import com.discord.utilities.rx.LeadingEdgeThrottle;
 import com.discord.utilities.rx.ObservableExtensionsKt;
 import com.discord.utilities.viewbinding.FragmentViewBindingDelegate;
-import com.discord.utilities.viewbinding.FragmentViewBindingDelegateKt;
-import com.discord.utilities.views.ViewCoroutineScopeKt;
+import com.discord.utilities.viewbinding.FragmentViewBindingDelegate3;
+import com.discord.utilities.views.ViewCoroutineScope;
 import com.discord.views.CheckedSetting;
 import com.discord.widgets.chat.list.ThreadSpineItemDecoration;
 import com.discord.widgets.chat.list.adapter.WidgetChatListAdapter;
@@ -57,15 +59,17 @@ import com.discord.widgets.tabs.NavigationTab;
 import com.discord.widgets.tabs.OnTabSelectedListener;
 import com.discord.widgets.tabs.WidgetTabsHost;
 import com.discord.widgets.user.search.WidgetGlobalSearchDismissModel;
-import d0.g0.t;
-import d0.t.n;
-import d0.t.u;
-import d0.z.d.a0;
-import d0.z.d.k;
-import d0.z.d.m;
-import d0.z.d.o;
-import j0.k.b;
-import j0.l.a.r;
+import d0.Tuples;
+import d0.g0.StringsJVM;
+import d0.t.Collections2;
+import d0.t._Collections;
+import d0.z.d.FunctionReferenceImpl;
+import d0.z.d.Intrinsics3;
+import d0.z.d.Lambda;
+import d0.z.d.Reflection2;
+import j0.k.Func1;
+import j0.l.a.OnSubscribeLift;
+import j0.p.Schedulers2;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
@@ -88,7 +92,7 @@ import rx.subjects.BehaviorSubject;
 /* JADX INFO: compiled from: WidgetUserMentions.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetUserMentions extends AppFragment implements OnTabSelectedListener {
-    public static final /* synthetic */ KProperty[] $$delegatedProperties = {a.d0(WidgetUserMentions.class, "binding", "getBinding()Lcom/discord/databinding/WidgetUserMentionsBinding;", 0)};
+    public static final /* synthetic */ KProperty[] $$delegatedProperties = {outline.d0(WidgetUserMentions.class, "binding", "getBinding()Lcom/discord/databinding/WidgetUserMentionsBinding;", 0)};
     private static final String EXTRA_IS_EMBEDDED = "EXTRA_HIDE_TITLE";
 
     /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
@@ -116,8 +120,8 @@ public final class WidgetUserMentions extends AppFragment implements OnTabSelect
 
         /* JADX INFO: renamed from: com.discord.widgets.user.WidgetUserMentions$configureToolbar$1$1, reason: invalid class name and collision with other inner class name */
         /* JADX INFO: compiled from: WidgetUserMentions.kt */
-        public final class C04701 extends o implements Function1<Model.MessageLoader.Filters, Unit> {
-            public C04701() {
+        public final class C03501 extends Lambda implements Function1<Model.MessageLoader.Filters, Unit> {
+            public C03501() {
                 super(1);
             }
 
@@ -129,7 +133,7 @@ public final class WidgetUserMentions extends AppFragment implements OnTabSelect
 
             /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
             public final void invoke2(Model.MessageLoader.Filters filters) {
-                m.checkNotNullParameter(filters, "filters");
+                Intrinsics3.checkNotNullParameter(filters, "filters");
                 WidgetUserMentions.access$getMentionsLoader$p(WidgetUserMentions.this).setFilters(filters);
             }
         }
@@ -145,23 +149,23 @@ public final class WidgetUserMentions extends AppFragment implements OnTabSelect
 
         /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
         public final void call2(MenuItem menuItem, Context context) {
-            m.checkNotNullExpressionValue(menuItem, "menuItem");
+            Intrinsics3.checkNotNullExpressionValue(menuItem, "menuItem");
             if (menuItem.getItemId() == R.id.menu_user_mentions_filter) {
                 WidgetUserMentionFilter.Companion companion = WidgetUserMentionFilter.INSTANCE;
                 FragmentManager parentFragmentManager = WidgetUserMentions.this.getParentFragmentManager();
-                m.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
-                companion.show(parentFragmentManager, this.$guildName, WidgetUserMentions.access$getMentionsLoader$p(WidgetUserMentions.this).getFilters(), new C04701());
+                Intrinsics3.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
+                companion.show(parentFragmentManager, this.$guildName, WidgetUserMentions.access$getMentionsLoader$p(WidgetUserMentions.this).getFilters(), new C03501());
             }
         }
     }
 
     /* JADX INFO: renamed from: com.discord.widgets.user.WidgetUserMentions$observeModel$1, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetUserMentions.kt */
-    public final class AnonymousClass1<T, R> implements b<NavigationTab, Observable<? extends Model>> {
+    public final class AnonymousClass1<T, R> implements Func1<NavigationTab, Observable<? extends Model>> {
         public AnonymousClass1() {
         }
 
-        @Override // j0.k.b
+        @Override // j0.k.Func1
         public /* bridge */ /* synthetic */ Observable<? extends Model> call(NavigationTab navigationTab) {
             return call2(navigationTab);
         }
@@ -173,7 +177,7 @@ public final class WidgetUserMentions extends AppFragment implements OnTabSelect
             }
             Model.Companion companion = Model.INSTANCE;
             Model.MessageLoader messageLoaderAccess$getMentionsLoader$p = WidgetUserMentions.access$getMentionsLoader$p(WidgetUserMentions.this);
-            m.checkNotNullExpressionValue(navigationTab, "selectedTab");
+            Intrinsics3.checkNotNullExpressionValue(navigationTab, "selectedTab");
             return companion.get(messageLoaderAccess$getMentionsLoader$p, navigationTab).Z(1);
         }
     }
@@ -192,7 +196,7 @@ public final class WidgetUserMentions extends AppFragment implements OnTabSelect
 
     /* JADX INFO: renamed from: com.discord.widgets.user.WidgetUserMentions$onViewBoundOrOnResume$1, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetUserMentions.kt */
-    public final class AnonymousClass1 extends o implements Function1<Model, Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function1<Model, Unit> {
         public AnonymousClass1() {
             super(1);
         }
@@ -205,14 +209,14 @@ public final class WidgetUserMentions extends AppFragment implements OnTabSelect
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(Model model) {
-            m.checkNotNullParameter(model, "it");
+            Intrinsics3.checkNotNullParameter(model, "it");
             WidgetUserMentions.access$configureUI(WidgetUserMentions.this, model);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.widgets.user.WidgetUserMentions$onViewBound$2, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetUserMentions.kt */
-    public final /* synthetic */ class AnonymousClass2 extends k implements Function1<StoreChat.InteractionState, Unit> {
+    public final /* synthetic */ class AnonymousClass2 extends FunctionReferenceImpl implements Function1<StoreChat.InteractionState, Unit> {
         public AnonymousClass2(Model.MessageLoader messageLoader) {
             super(1, messageLoader, Model.MessageLoader.class, "setInteractionState", "setInteractionState(Lcom/discord/stores/StoreChat$InteractionState;)V", 0);
         }
@@ -225,7 +229,7 @@ public final class WidgetUserMentions extends AppFragment implements OnTabSelect
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(StoreChat.InteractionState interactionState) {
-            m.checkNotNullParameter(interactionState, "p1");
+            Intrinsics3.checkNotNullParameter(interactionState, "p1");
             ((Model.MessageLoader) this.receiver).setInteractionState(interactionState);
         }
     }
@@ -244,7 +248,7 @@ public final class WidgetUserMentions extends AppFragment implements OnTabSelect
 
         public final WidgetUserMentions create(boolean isEmbedded) {
             WidgetUserMentions widgetUserMentions = new WidgetUserMentions();
-            widgetUserMentions.setArguments(BundleKt.bundleOf(d0.o.to(WidgetUserMentions.EXTRA_IS_EMBEDDED, Boolean.valueOf(isEmbedded))));
+            widgetUserMentions.setArguments(Bundle2.bundleOf(Tuples.to(WidgetUserMentions.EXTRA_IS_EMBEDDED, Boolean.valueOf(isEmbedded))));
             return widgetUserMentions;
         }
 
@@ -279,11 +283,11 @@ public final class WidgetUserMentions extends AppFragment implements OnTabSelect
 
             /* JADX WARN: Multi-variable type inference failed */
             public final Observable<Model> get(MessageLoader messageLoader, NavigationTab selectedTab) {
-                m.checkNotNullParameter(messageLoader, "messageLoader");
-                m.checkNotNullParameter(selectedTab, "selectedTab");
+                Intrinsics3.checkNotNullParameter(messageLoader, "messageLoader");
+                Intrinsics3.checkNotNullParameter(selectedTab, "selectedTab");
                 Observable<R> observableY = messageLoader.getMentionsLoadingStateSubject().Y(new WidgetUserMentions$Model$Companion$get$1(selectedTab));
-                Observable<Model> observableR = Observable.h0(new r(observableY.j, new LeadingEdgeThrottle(300L, TimeUnit.MILLISECONDS, j0.p.a.a()))).r();
-                m.checkNotNullExpressionValue(observableR, "messageLoader\n          …  .distinctUntilChanged()");
+                Observable<Model> observableR = Observable.h0(new OnSubscribeLift(observableY.j, new LeadingEdgeThrottle(300L, TimeUnit.MILLISECONDS, Schedulers2.a()))).r();
+                Intrinsics3.checkNotNullExpressionValue(observableR, "messageLoader\n          …  .distinctUntilChanged()");
                 return observableR;
             }
 
@@ -293,10 +297,10 @@ public final class WidgetUserMentions extends AppFragment implements OnTabSelect
         }
 
         public Model(long j, long j2, Guild guild, long j3, Map<Long, String> map, long j4, List<ChatListEntry> list, Set<Long> set, long j5, boolean z2, boolean z3, String str, NavigationTab navigationTab) {
-            m.checkNotNullParameter(map, "channelNames");
-            m.checkNotNullParameter(list, "list");
-            m.checkNotNullParameter(set, "myRoleIds");
-            m.checkNotNullParameter(navigationTab, "selectedTab");
+            Intrinsics3.checkNotNullParameter(map, "channelNames");
+            Intrinsics3.checkNotNullParameter(list, "list");
+            Intrinsics3.checkNotNullParameter(set, "myRoleIds");
+            Intrinsics3.checkNotNullParameter(navigationTab, "selectedTab");
             this.userId = j;
             this.channelId = j2;
             this.guild = guild;
@@ -358,10 +362,10 @@ public final class WidgetUserMentions extends AppFragment implements OnTabSelect
         }
 
         public final Model copy(long userId, long channelId, Guild guild, long guildId, Map<Long, String> channelNames, long oldestMessageId, List<ChatListEntry> list, Set<Long> myRoleIds, long newMessagesMarkerMessageId, boolean isSpoilerClickAllowed, boolean animateEmojis, String guildName, NavigationTab selectedTab) {
-            m.checkNotNullParameter(channelNames, "channelNames");
-            m.checkNotNullParameter(list, "list");
-            m.checkNotNullParameter(myRoleIds, "myRoleIds");
-            m.checkNotNullParameter(selectedTab, "selectedTab");
+            Intrinsics3.checkNotNullParameter(channelNames, "channelNames");
+            Intrinsics3.checkNotNullParameter(list, "list");
+            Intrinsics3.checkNotNullParameter(myRoleIds, "myRoleIds");
+            Intrinsics3.checkNotNullParameter(selectedTab, "selectedTab");
             return new Model(userId, channelId, guild, guildId, channelNames, oldestMessageId, list, myRoleIds, newMessagesMarkerMessageId, isSpoilerClickAllowed, animateEmojis, guildName, selectedTab);
         }
 
@@ -373,7 +377,7 @@ public final class WidgetUserMentions extends AppFragment implements OnTabSelect
                 return false;
             }
             Model model = (Model) other;
-            return getUserId() == model.getUserId() && getChannelId() == model.getChannelId() && m.areEqual(getGuild(), model.getGuild()) && getGuildId() == model.getGuildId() && m.areEqual(getChannelNames(), model.getChannelNames()) && getOldestMessageId() == model.getOldestMessageId() && m.areEqual(getList(), model.getList()) && m.areEqual(getMyRoleIds(), model.getMyRoleIds()) && getNewMessagesMarkerMessageId() == model.getNewMessagesMarkerMessageId() && getIsSpoilerClickAllowed() == model.getIsSpoilerClickAllowed() && this.animateEmojis == model.animateEmojis && m.areEqual(this.guildName, model.guildName) && m.areEqual(this.selectedTab, model.selectedTab);
+            return getUserId() == model.getUserId() && getChannelId() == model.getChannelId() && Intrinsics3.areEqual(getGuild(), model.getGuild()) && getGuildId() == model.getGuildId() && Intrinsics3.areEqual(getChannelNames(), model.getChannelNames()) && getOldestMessageId() == model.getOldestMessageId() && Intrinsics3.areEqual(getList(), model.getList()) && Intrinsics3.areEqual(getMyRoleIds(), model.getMyRoleIds()) && getNewMessagesMarkerMessageId() == model.getNewMessagesMarkerMessageId() && getIsSpoilerClickAllowed() == model.getIsSpoilerClickAllowed() && this.animateEmojis == model.animateEmojis && Intrinsics3.areEqual(this.guildName, model.guildName) && Intrinsics3.areEqual(this.selectedTab, model.selectedTab);
         }
 
         /* JADX INFO: renamed from: component11, reason: from getter */
@@ -463,15 +467,15 @@ public final class WidgetUserMentions extends AppFragment implements OnTabSelect
         /* JADX WARN: Type inference failed for: r3v4, types: [int] */
         /* JADX WARN: Type inference failed for: r3v5 */
         public int hashCode() {
-            int iA = (a0.a.a.b.a(getChannelId()) + (a0.a.a.b.a(getUserId()) * 31)) * 31;
+            int iA = (b.a(getChannelId()) + (b.a(getUserId()) * 31)) * 31;
             Guild guild = getGuild();
-            int iA2 = (a0.a.a.b.a(getGuildId()) + ((iA + (guild != null ? guild.hashCode() : 0)) * 31)) * 31;
+            int iA2 = (b.a(getGuildId()) + ((iA + (guild != null ? guild.hashCode() : 0)) * 31)) * 31;
             Map<Long, String> channelNames = getChannelNames();
-            int iA3 = (a0.a.a.b.a(getOldestMessageId()) + ((iA2 + (channelNames != null ? channelNames.hashCode() : 0)) * 31)) * 31;
+            int iA3 = (b.a(getOldestMessageId()) + ((iA2 + (channelNames != null ? channelNames.hashCode() : 0)) * 31)) * 31;
             List<ChatListEntry> list = getList();
             int iHashCode = (iA3 + (list != null ? list.hashCode() : 0)) * 31;
             Set<Long> myRoleIds = getMyRoleIds();
-            int iA4 = (a0.a.a.b.a(getNewMessagesMarkerMessageId()) + ((iHashCode + (myRoleIds != null ? myRoleIds.hashCode() : 0)) * 31)) * 31;
+            int iA4 = (b.a(getNewMessagesMarkerMessageId()) + ((iHashCode + (myRoleIds != null ? myRoleIds.hashCode() : 0)) * 31)) * 31;
             boolean isSpoilerClickAllowed = getIsSpoilerClickAllowed();
             ?? r1 = isSpoilerClickAllowed;
             if (isSpoilerClickAllowed) {
@@ -487,7 +491,7 @@ public final class WidgetUserMentions extends AppFragment implements OnTabSelect
         }
 
         public String toString() {
-            StringBuilder sbU = a.U("Model(userId=");
+            StringBuilder sbU = outline.U("Model(userId=");
             sbU.append(getUserId());
             sbU.append(", channelId=");
             sbU.append(getChannelId());
@@ -634,7 +638,7 @@ public final class WidgetUserMentions extends AppFragment implements OnTabSelect
                 /* JADX WARN: Type inference failed for: r2v1, types: [int] */
                 /* JADX WARN: Type inference failed for: r2v2 */
                 public int hashCode() {
-                    int iA = a0.a.a.b.a(this.guildId) * 31;
+                    int iA = b.a(this.guildId) * 31;
                     boolean z2 = this.allGuilds;
                     ?? r1 = z2;
                     if (z2) {
@@ -652,14 +656,14 @@ public final class WidgetUserMentions extends AppFragment implements OnTabSelect
                 }
 
                 public String toString() {
-                    StringBuilder sbU = a.U("Filters(guildId=");
+                    StringBuilder sbU = outline.U("Filters(guildId=");
                     sbU.append(this.guildId);
                     sbU.append(", allGuilds=");
                     sbU.append(this.allGuilds);
                     sbU.append(", includeEveryone=");
                     sbU.append(this.includeEveryone);
                     sbU.append(", includeRoles=");
-                    return a.O(sbU, this.includeRoles, ")");
+                    return outline.O(sbU, this.includeRoles, ")");
                 }
 
                 public /* synthetic */ Filters(long j, boolean z2, boolean z3, boolean z4, int i, DefaultConstructorMarker defaultConstructorMarker) {
@@ -678,7 +682,7 @@ public final class WidgetUserMentions extends AppFragment implements OnTabSelect
                 }
 
                 public LoadingState(boolean z2, boolean z3, List<Message> list) {
-                    m.checkNotNullParameter(list, "mentions");
+                    Intrinsics3.checkNotNullParameter(list, "mentions");
                     this.isLoading = z2;
                     this.isAllLoaded = z3;
                     this.mentions = list;
@@ -703,7 +707,7 @@ public final class WidgetUserMentions extends AppFragment implements OnTabSelect
                 }
 
                 public final LoadingState copy(boolean isLoading, boolean isAllLoaded, List<Message> mentions) {
-                    m.checkNotNullParameter(mentions, "mentions");
+                    Intrinsics3.checkNotNullParameter(mentions, "mentions");
                     return new LoadingState(isLoading, isAllLoaded, mentions);
                 }
 
@@ -715,7 +719,7 @@ public final class WidgetUserMentions extends AppFragment implements OnTabSelect
                         return false;
                     }
                     LoadingState loadingState = (LoadingState) other;
-                    return this.isLoading == loadingState.isLoading && this.isAllLoaded == loadingState.isAllLoaded && m.areEqual(this.mentions, loadingState.mentions);
+                    return this.isLoading == loadingState.isLoading && this.isAllLoaded == loadingState.isAllLoaded && Intrinsics3.areEqual(this.mentions, loadingState.mentions);
                 }
 
                 /* JADX INFO: renamed from: component2, reason: from getter */
@@ -762,23 +766,23 @@ public final class WidgetUserMentions extends AppFragment implements OnTabSelect
                 }
 
                 public String toString() {
-                    StringBuilder sbU = a.U("LoadingState(isLoading=");
+                    StringBuilder sbU = outline.U("LoadingState(isLoading=");
                     sbU.append(this.isLoading);
                     sbU.append(", isAllLoaded=");
                     sbU.append(this.isAllLoaded);
                     sbU.append(", mentions=");
-                    return a.L(sbU, this.mentions, ")");
+                    return outline.L(sbU, this.mentions, ")");
                 }
 
                 public /* synthetic */ LoadingState(boolean z2, boolean z3, List list, int i, DefaultConstructorMarker defaultConstructorMarker) {
-                    this((i & 1) != 0 ? false : z2, (i & 2) != 0 ? false : z3, (i & 4) != 0 ? n.emptyList() : list);
+                    this((i & 1) != 0 ? false : z2, (i & 2) != 0 ? false : z3, (i & 4) != 0 ? Collections2.emptyList() : list);
                 }
             }
 
             public MessageLoader(long j) {
                 this.retryDelayMs = j;
                 BehaviorSubject<LoadingState> behaviorSubjectL0 = BehaviorSubject.l0(this.mentionsLoadingState);
-                m.checkNotNullExpressionValue(behaviorSubjectL0, "BehaviorSubject.create(mentionsLoadingState)");
+                Intrinsics3.checkNotNullExpressionValue(behaviorSubjectL0, "BehaviorSubject.create(mentionsLoadingState)");
                 this.mentionsLoadingStateSubject = behaviorSubjectL0;
             }
 
@@ -822,7 +826,7 @@ public final class WidgetUserMentions extends AppFragment implements OnTabSelect
             @MainThread
             private final void handleLoaded(List<Message> messages) {
                 boolean z2 = messages.isEmpty() || messages.size() < this.mentionLimit;
-                Message message = (Message) u.lastOrNull((List) messages);
+                Message message = (Message) _Collections.lastOrNull((List) messages);
                 this.loadBeforeMessageId = message != null ? Long.valueOf(message.getId()) : null;
                 this.mentions.addAll(messages);
                 setMentionsLoadingState(LoadingState.copy$default(this.mentionsLoadingState, false, false, new ArrayList(this.mentions), 3, null));
@@ -836,14 +840,14 @@ public final class WidgetUserMentions extends AppFragment implements OnTabSelect
                 }
                 this.retryAction = retryAction;
                 Observable<Long> observableD0 = Observable.d0(this.retryDelayMs, TimeUnit.MILLISECONDS);
-                m.checkNotNullExpressionValue(observableD0, "Observable.timer(retryDe…s, TimeUnit.MILLISECONDS)");
+                Intrinsics3.checkNotNullExpressionValue(observableD0, "Observable.timer(retryDe…s, TimeUnit.MILLISECONDS)");
                 ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui(observableD0), MessageLoader.class, (Context) null, new WidgetUserMentions$Model$MessageLoader$retry$1(this), (Function1) null, (Function0) null, (Function0) null, new WidgetUserMentions$Model$MessageLoader$retry$2(retryAction), 58, (Object) null);
             }
 
             @MainThread
             public final void setFilters(Filters filters) {
-                m.checkNotNullParameter(filters, "value");
-                if (!m.areEqual(this.filters, filters)) {
+                Intrinsics3.checkNotNullParameter(filters, "value");
+                if (!Intrinsics3.areEqual(this.filters, filters)) {
                     this.filters = filters;
                     Subscription subscription = this.loadSubscription;
                     if (subscription != null) {
@@ -857,7 +861,7 @@ public final class WidgetUserMentions extends AppFragment implements OnTabSelect
 
             @MainThread
             public final void setInteractionState(StoreChat.InteractionState interactionState) {
-                m.checkNotNullParameter(interactionState, "interactionState");
+                Intrinsics3.checkNotNullParameter(interactionState, "interactionState");
                 this.interactionState = interactionState;
                 tryLoad$default(this, null, 1, null);
             }
@@ -869,7 +873,7 @@ public final class WidgetUserMentions extends AppFragment implements OnTabSelect
             }
 
             private final void setMentionsLoadingState(LoadingState loadingState) {
-                if (m.areEqual(this.mentionsLoadingState, loadingState)) {
+                if (Intrinsics3.areEqual(this.mentionsLoadingState, loadingState)) {
                     return;
                 }
                 this.mentionsLoadingState = loadingState;
@@ -887,14 +891,14 @@ public final class WidgetUserMentions extends AppFragment implements OnTabSelect
             @MainThread
             public final void tryLoad(Function1<? super LoadingState, LoadingState> loadingStateUpdater) {
                 StoreChat.InteractionState interactionState;
-                m.checkNotNullParameter(loadingStateUpdater, "loadingStateUpdater");
+                Intrinsics3.checkNotNullParameter(loadingStateUpdater, "loadingStateUpdater");
                 setMentionsLoadingState(loadingStateUpdater.invoke(this.mentionsLoadingState));
                 if (this.mentionsLoadingState.isLoading() || this.mentionsLoadingState.isAllLoaded() || (interactionState = this.interactionState) == null || !interactionState.isAtTopIgnoringTouch() || !this.isFocused) {
                     return;
                 }
                 setMentionsLoadingState(LoadingState.copy$default(this.mentionsLoadingState, true, false, null, 6, null));
                 Observable observableG = ObservableExtensionsKt.ui(ObservableExtensionsKt.restSubscribeOn$default(RestAPI.INSTANCE.getApi().getMentions(this.mentionLimit, this.filters.getIncludeRoles(), this.filters.getIncludeEveryone(), Long.valueOf(this.filters.getAllGuilds() ? 0L : this.filters.getGuildId()), this.loadBeforeMessageId), false, 1, null)).G(WidgetUserMentions$Model$MessageLoader$tryLoad$2.INSTANCE);
-                m.checkNotNullExpressionValue(observableG, "RestAPI\n            .api…messages.map(::Message) }");
+                Intrinsics3.checkNotNullExpressionValue(observableG, "RestAPI\n            .api…messages.map(::Message) }");
                 ObservableExtensionsKt.appSubscribe$default(observableG, MessageLoader.class, (Context) null, new WidgetUserMentions$Model$MessageLoader$tryLoad$5(this), new WidgetUserMentions$Model$MessageLoader$tryLoad$3(this), (Function0) null, (Function0) null, new WidgetUserMentions$Model$MessageLoader$tryLoad$4(this), 50, (Object) null);
             }
         }
@@ -912,8 +916,8 @@ public final class WidgetUserMentions extends AppFragment implements OnTabSelect
 
         /* JADX WARN: Multi-variable type inference failed */
         public UserMentionsAdapterEventHandler(boolean z2, ChannelSelector channelSelector, Function1<? super StoreChat.InteractionState, Unit> function1) {
-            m.checkNotNullParameter(channelSelector, "channelSelector");
-            m.checkNotNullParameter(function1, "interactionStateUpdated");
+            Intrinsics3.checkNotNullParameter(channelSelector, "channelSelector");
+            Intrinsics3.checkNotNullParameter(function1, "interactionStateUpdated");
             this.isEmbedded = z2;
             this.channelSelector = channelSelector;
             this.interactionStateUpdated = function1;
@@ -927,13 +931,13 @@ public final class WidgetUserMentions extends AppFragment implements OnTabSelect
 
         @Override // com.discord.widgets.chat.list.adapter.WidgetChatListAdapter.EventHandler
         public void onBotUiComponentClicked(long j, Long l, long j2, long j3, Long l2, int i, RestAPIParams.ComponentInteractionData componentInteractionData) {
-            m.checkNotNullParameter(componentInteractionData, "componentSendData");
+            Intrinsics3.checkNotNullParameter(componentInteractionData, "componentSendData");
             WidgetChatListAdapter.EventHandler.DefaultImpls.onBotUiComponentClicked(this, j, l, j2, j3, l2, i, componentInteractionData);
         }
 
         @Override // com.discord.widgets.chat.list.adapter.WidgetChatListAdapter.EventHandler
         public void onCallMessageClicked(long voiceChannelId, WidgetChatListAdapterItemCallMessage.CallStatus callStatus) {
-            m.checkNotNullParameter(callStatus, "callStatus");
+            Intrinsics3.checkNotNullParameter(callStatus, "callStatus");
         }
 
         @Override // com.discord.widgets.chat.list.adapter.WidgetChatListAdapter.EventHandler
@@ -943,19 +947,19 @@ public final class WidgetUserMentions extends AppFragment implements OnTabSelect
 
         @Override // com.discord.widgets.chat.list.adapter.WidgetChatListAdapter.EventHandler
         public void onDismissClicked(Message message) {
-            m.checkNotNullParameter(message, "message");
+            Intrinsics3.checkNotNullParameter(message, "message");
             WidgetChatListAdapter.EventHandler.DefaultImpls.onDismissClicked(this, message);
         }
 
         @Override // com.discord.widgets.chat.list.adapter.WidgetChatListAdapter.EventHandler
         public void onDismissLocalMessageClicked(Message message) {
-            m.checkNotNullParameter(message, "message");
+            Intrinsics3.checkNotNullParameter(message, "message");
             WidgetChatListAdapter.EventHandler.DefaultImpls.onDismissLocalMessageClicked(this, message);
         }
 
         @Override // com.discord.widgets.chat.list.adapter.WidgetChatListAdapter.EventHandler
         public void onInteractionStateUpdated(StoreChat.InteractionState interactionState) {
-            m.checkNotNullParameter(interactionState, "interactionState");
+            Intrinsics3.checkNotNullParameter(interactionState, "interactionState");
             this.interactionStateUpdated.invoke(interactionState);
         }
 
@@ -965,38 +969,38 @@ public final class WidgetUserMentions extends AppFragment implements OnTabSelect
 
         @Override // com.discord.widgets.chat.list.adapter.WidgetChatListAdapter.EventHandler
         public void onMessageAuthorAvatarClicked(Message message, long guildId) {
-            m.checkNotNullParameter(message, "message");
+            Intrinsics3.checkNotNullParameter(message, "message");
             jumpToMessage(message);
         }
 
         @Override // com.discord.widgets.chat.list.adapter.WidgetChatListAdapter.EventHandler
         public void onMessageAuthorLongClicked(Message message, Long guildId) {
-            m.checkNotNullParameter(message, "message");
+            Intrinsics3.checkNotNullParameter(message, "message");
             jumpToMessage(message);
         }
 
         @Override // com.discord.widgets.chat.list.adapter.WidgetChatListAdapter.EventHandler
         public void onMessageAuthorNameClicked(Message message, long guildId) {
-            m.checkNotNullParameter(message, "message");
+            Intrinsics3.checkNotNullParameter(message, "message");
             jumpToMessage(message);
         }
 
         @Override // com.discord.widgets.chat.list.adapter.WidgetChatListAdapter.EventHandler
         public void onMessageBlockedGroupClicked(Message message) {
-            m.checkNotNullParameter(message, "message");
+            Intrinsics3.checkNotNullParameter(message, "message");
             jumpToMessage(message);
         }
 
         @Override // com.discord.widgets.chat.list.adapter.WidgetChatListAdapter.EventHandler
         public void onMessageClicked(Message message, boolean isThreadStarterMessage) {
-            m.checkNotNullParameter(message, "message");
+            Intrinsics3.checkNotNullParameter(message, "message");
             jumpToMessage(message);
         }
 
         @Override // com.discord.widgets.chat.list.adapter.WidgetChatListAdapter.EventHandler
         public void onMessageLongClicked(Message message, CharSequence formattedMessage, boolean isThreadStarterMessage) {
-            m.checkNotNullParameter(message, "message");
-            m.checkNotNullParameter(formattedMessage, "formattedMessage");
+            Intrinsics3.checkNotNullParameter(message, "message");
+            Intrinsics3.checkNotNullParameter(formattedMessage, "formattedMessage");
             jumpToMessage(message);
         }
 
@@ -1006,7 +1010,7 @@ public final class WidgetUserMentions extends AppFragment implements OnTabSelect
 
         @Override // com.discord.widgets.chat.list.adapter.WidgetChatListAdapter.EventHandler
         public void onOpenPinsClicked(Message message) {
-            m.checkNotNullParameter(message, "message");
+            Intrinsics3.checkNotNullParameter(message, "message");
         }
 
         @Override // com.discord.widgets.chat.list.adapter.WidgetChatListAdapter.EventHandler
@@ -1015,25 +1019,25 @@ public final class WidgetUserMentions extends AppFragment implements OnTabSelect
 
         @Override // com.discord.widgets.chat.list.adapter.WidgetChatListAdapter.EventHandler
         public boolean onQuickDownloadClicked(Uri uri, String fileName) {
-            m.checkNotNullParameter(uri, NotificationCompat.MessagingStyle.Message.KEY_DATA_URI);
-            m.checkNotNullParameter(fileName, "fileName");
+            Intrinsics3.checkNotNullParameter(uri, NotificationCompat.MessagingStyle.Message.KEY_DATA_URI);
+            Intrinsics3.checkNotNullParameter(fileName, "fileName");
             return false;
         }
 
         @Override // com.discord.widgets.chat.list.adapter.WidgetChatListAdapter.EventHandler
         public void onReactionClicked(long guildId, long myUserId, long channelId, long messageId, MessageReaction reaction, boolean canAddReactions) {
-            m.checkNotNullParameter(reaction, "reaction");
+            Intrinsics3.checkNotNullParameter(reaction, "reaction");
         }
 
         @Override // com.discord.widgets.chat.list.adapter.WidgetChatListAdapter.EventHandler
         public void onReactionLongClicked(long guildId, long channelId, long messageId, MessageReaction reaction) {
-            m.checkNotNullParameter(reaction, "reaction");
+            Intrinsics3.checkNotNullParameter(reaction, "reaction");
         }
 
         @Override // com.discord.widgets.chat.list.adapter.WidgetChatListAdapter.EventHandler
         public void onReportIssueWithAutoMod(Context context, Message message) {
-            m.checkNotNullParameter(context, "context");
-            m.checkNotNullParameter(message, "message");
+            Intrinsics3.checkNotNullParameter(context, "context");
+            Intrinsics3.checkNotNullParameter(message, "message");
             WidgetChatListAdapter.EventHandler.DefaultImpls.onReportIssueWithAutoMod(this, context, message);
         }
 
@@ -1044,57 +1048,57 @@ public final class WidgetUserMentions extends AppFragment implements OnTabSelect
 
         @Override // com.discord.widgets.chat.list.adapter.WidgetChatListAdapter.EventHandler
         public void onSendGreetMessageClicked(long j, int i, Sticker sticker) {
-            m.checkNotNullParameter(sticker, "sticker");
+            Intrinsics3.checkNotNullParameter(sticker, "sticker");
             WidgetChatListAdapter.EventHandler.DefaultImpls.onSendGreetMessageClicked(this, j, i, sticker);
         }
 
         @Override // com.discord.widgets.chat.list.adapter.WidgetChatListAdapter.EventHandler
         public void onShareButtonClick(GuildScheduledEvent guildScheduledEvent, WeakReference<Context> weakReference, WeakReference<AppFragment> weakReference2) {
-            m.checkNotNullParameter(guildScheduledEvent, "guildEvent");
-            m.checkNotNullParameter(weakReference, "weakContext");
-            m.checkNotNullParameter(weakReference2, "weakFragment");
+            Intrinsics3.checkNotNullParameter(guildScheduledEvent, "guildEvent");
+            Intrinsics3.checkNotNullParameter(weakReference, "weakContext");
+            Intrinsics3.checkNotNullParameter(weakReference2, "weakFragment");
             WidgetChatListAdapter.EventHandler.DefaultImpls.onShareButtonClick(this, guildScheduledEvent, weakReference, weakReference2);
         }
 
         @Override // com.discord.widgets.chat.list.adapter.WidgetChatListAdapter.EventHandler
         public void onStickerClicked(Message message, BaseSticker sticker) {
-            m.checkNotNullParameter(message, "message");
-            m.checkNotNullParameter(sticker, "sticker");
+            Intrinsics3.checkNotNullParameter(message, "message");
+            Intrinsics3.checkNotNullParameter(sticker, "sticker");
             StoreStream.INSTANCE.getMessagesLoader().jumpToMessage(message.getChannelId(), message.getId());
         }
 
         @Override // com.discord.widgets.chat.list.adapter.WidgetChatListAdapter.EventHandler
         public void onSystemMessageCtaClicked(Message message, Channel channel, BaseSticker baseSticker) {
-            m.checkNotNullParameter(message, "message");
-            m.checkNotNullParameter(channel, "channel");
-            m.checkNotNullParameter(baseSticker, "sticker");
+            Intrinsics3.checkNotNullParameter(message, "message");
+            Intrinsics3.checkNotNullParameter(channel, "channel");
+            Intrinsics3.checkNotNullParameter(baseSticker, "sticker");
             WidgetChatListAdapter.EventHandler.DefaultImpls.onSystemMessageCtaClicked(this, message, channel, baseSticker);
         }
 
         @Override // com.discord.widgets.chat.list.adapter.WidgetChatListAdapter.EventHandler
         public void onThreadClicked(Channel channel) {
-            m.checkNotNullParameter(channel, "channel");
-            ChannelSelector.selectChannel$default(this.channelSelector, channel, null, SelectedChannelAnalyticsLocation.EMBED, 2, null);
+            Intrinsics3.checkNotNullParameter(channel, "channel");
+            ChannelSelector.selectChannel$default(this.channelSelector, channel, null, StoreChannelsSelected3.EMBED, 2, null);
             StoreStream.INSTANCE.getTabsNavigation().selectHomeTab(StoreNavigation.PanelAction.CLOSE, this.isEmbedded);
         }
 
         @Override // com.discord.widgets.chat.list.adapter.WidgetChatListAdapter.EventHandler
         public void onThreadLongClicked(Channel channel) {
-            m.checkNotNullParameter(channel, "channel");
+            Intrinsics3.checkNotNullParameter(channel, "channel");
             WidgetChatListAdapter.EventHandler.DefaultImpls.onThreadLongClicked(this, channel);
         }
 
         @Override // com.discord.widgets.chat.list.adapter.WidgetChatListAdapter.EventHandler
         public void onUrlLongClicked(String str) {
-            m.checkNotNullParameter(str, "url");
+            Intrinsics3.checkNotNullParameter(str, "url");
             WidgetChatListAdapter.EventHandler.DefaultImpls.onUrlLongClicked(this, str);
         }
 
         @Override // com.discord.widgets.chat.list.adapter.WidgetChatListAdapter.EventHandler
         public void onUserActivityAction(long authorId, long channelId, long messageId, MessageActivityType actionType, Activity activity, Application application) {
-            m.checkNotNullParameter(actionType, "actionType");
-            m.checkNotNullParameter(activity, ActivityChooserModel.ATTRIBUTE_ACTIVITY);
-            m.checkNotNullParameter(application, "application");
+            Intrinsics3.checkNotNullParameter(actionType, "actionType");
+            Intrinsics3.checkNotNullParameter(activity, ActivityChooserModel.ATTRIBUTE_ACTIVITY);
+            Intrinsics3.checkNotNullParameter(application, "application");
         }
 
         @Override // com.discord.widgets.chat.list.adapter.WidgetChatListAdapter.EventHandler
@@ -1105,7 +1109,7 @@ public final class WidgetUserMentions extends AppFragment implements OnTabSelect
 
     /* JADX INFO: compiled from: WidgetUserMentions.kt */
     public final class WidgetUserMentionFilter extends AppBottomSheet {
-        public static final /* synthetic */ KProperty[] $$delegatedProperties = {a.d0(WidgetUserMentionFilter.class, "binding", "getBinding()Lcom/discord/databinding/WidgetUserMentionsFilterBinding;", 0)};
+        public static final /* synthetic */ KProperty[] $$delegatedProperties = {outline.d0(WidgetUserMentionFilter.class, "binding", "getBinding()Lcom/discord/databinding/WidgetUserMentionsFilterBinding;", 0)};
 
         /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
         public static final Companion INSTANCE = new Companion(null);
@@ -1122,9 +1126,9 @@ public final class WidgetUserMentions extends AppFragment implements OnTabSelect
             }
 
             public final WidgetUserMentionFilter show(FragmentManager fragmentManager, String guildName, Model.MessageLoader.Filters filters, Function1<? super Model.MessageLoader.Filters, Unit> onFiltersUpdated) {
-                m.checkNotNullParameter(fragmentManager, "fragmentManager");
-                m.checkNotNullParameter(filters, "filters");
-                m.checkNotNullParameter(onFiltersUpdated, "onFiltersUpdated");
+                Intrinsics3.checkNotNullParameter(fragmentManager, "fragmentManager");
+                Intrinsics3.checkNotNullParameter(filters, "filters");
+                Intrinsics3.checkNotNullParameter(onFiltersUpdated, "onFiltersUpdated");
                 WidgetUserMentionFilter widgetUserMentionFilter = new WidgetUserMentionFilter();
                 WidgetUserMentionFilter.access$setOnFiltersUpdated$p(widgetUserMentionFilter, onFiltersUpdated);
                 WidgetUserMentionFilter.access$setFilters$p(widgetUserMentionFilter, filters);
@@ -1140,7 +1144,7 @@ public final class WidgetUserMentions extends AppFragment implements OnTabSelect
 
         public WidgetUserMentionFilter() {
             super(false, 1, null);
-            this.binding = FragmentViewBindingDelegateKt.viewBinding$default(this, WidgetUserMentions$WidgetUserMentionFilter$binding$2.INSTANCE, null, 2, null);
+            this.binding = FragmentViewBindingDelegate3.viewBinding$default(this, WidgetUserMentions$WidgetUserMentionFilter$binding$2.INSTANCE, null, 2, null);
         }
 
         public static final /* synthetic */ Job access$delayedDismiss(WidgetUserMentionFilter widgetUserMentionFilter) {
@@ -1154,7 +1158,7 @@ public final class WidgetUserMentions extends AppFragment implements OnTabSelect
         public static final /* synthetic */ Model.MessageLoader.Filters access$getFilters$p(WidgetUserMentionFilter widgetUserMentionFilter) {
             Model.MessageLoader.Filters filters = widgetUserMentionFilter.filters;
             if (filters == null) {
-                m.throwUninitializedPropertyAccessException("filters");
+                Intrinsics3.throwUninitializedPropertyAccessException("filters");
             }
             return filters;
         }
@@ -1166,7 +1170,7 @@ public final class WidgetUserMentions extends AppFragment implements OnTabSelect
         public static final /* synthetic */ Function1 access$getOnFiltersUpdated$p(WidgetUserMentionFilter widgetUserMentionFilter) {
             Function1<? super Model.MessageLoader.Filters, Unit> function1 = widgetUserMentionFilter.onFiltersUpdated;
             if (function1 == null) {
-                m.throwUninitializedPropertyAccessException("onFiltersUpdated");
+                Intrinsics3.throwUninitializedPropertyAccessException("onFiltersUpdated");
             }
             return function1;
         }
@@ -1190,7 +1194,7 @@ public final class WidgetUserMentions extends AppFragment implements OnTabSelect
         private final Job delayedDismiss() {
             CoroutineScope coroutineScope;
             View view = getView();
-            if (view == null || (coroutineScope = ViewCoroutineScopeKt.getCoroutineScope(view)) == null) {
+            if (view == null || (coroutineScope = ViewCoroutineScope.getCoroutineScope(view)) == null) {
                 return null;
             }
             return f.H0(coroutineScope, null, null, new WidgetUserMentions$WidgetUserMentionFilter$delayedDismiss$1(this, null), 3, null);
@@ -1215,39 +1219,39 @@ public final class WidgetUserMentions extends AppFragment implements OnTabSelect
         public void onResume() {
             super.onResume();
             CheckedSetting checkedSetting = getBinding().d;
-            m.checkNotNullExpressionValue(checkedSetting, "binding.userMentionsFilterThisServer");
+            Intrinsics3.checkNotNullExpressionValue(checkedSetting, "binding.userMentionsFilterThisServer");
             Model.MessageLoader.Filters filters = this.filters;
             if (filters == null) {
-                m.throwUninitializedPropertyAccessException("filters");
+                Intrinsics3.throwUninitializedPropertyAccessException("filters");
             }
             checkedSetting.setChecked(!filters.getAllGuilds());
             String str = this.guildName;
-            if (str == null || t.isBlank(str)) {
+            if (str == null || StringsJVM.isBlank(str)) {
                 CheckedSetting checkedSetting2 = getBinding().d;
-                m.checkNotNullExpressionValue(checkedSetting2, "binding.userMentionsFilterThisServer");
+                Intrinsics3.checkNotNullExpressionValue(checkedSetting2, "binding.userMentionsFilterThisServer");
                 checkedSetting2.setVisibility(8);
             } else {
                 CheckedSetting checkedSetting3 = getBinding().d;
-                m.checkNotNullExpressionValue(checkedSetting3, "binding.userMentionsFilterThisServer");
+                Intrinsics3.checkNotNullExpressionValue(checkedSetting3, "binding.userMentionsFilterThisServer");
                 checkedSetting3.setVisibility(0);
                 CheckedSetting checkedSetting4 = getBinding().d;
                 Context context = getContext();
-                checkedSetting4.setText(context != null ? b.a.k.b.h(context, R.string.this_server_named, new Object[]{this.guildName}, null, 4) : null);
+                checkedSetting4.setText(context != null ? FormatUtils.h(context, R.string.this_server_named, new Object[]{this.guildName}, null, 4) : null);
                 getBinding().d.setOnCheckedListener(new WidgetUserMentions$WidgetUserMentionFilter$onResume$1(this));
             }
             CheckedSetting checkedSetting5 = getBinding().f2683b;
-            m.checkNotNullExpressionValue(checkedSetting5, "binding.userMentionsFilterIncludeEveryone");
+            Intrinsics3.checkNotNullExpressionValue(checkedSetting5, "binding.userMentionsFilterIncludeEveryone");
             Model.MessageLoader.Filters filters2 = this.filters;
             if (filters2 == null) {
-                m.throwUninitializedPropertyAccessException("filters");
+                Intrinsics3.throwUninitializedPropertyAccessException("filters");
             }
             checkedSetting5.setChecked(filters2.getIncludeEveryone());
             getBinding().f2683b.setOnCheckedListener(new WidgetUserMentions$WidgetUserMentionFilter$onResume$2(this));
             CheckedSetting checkedSetting6 = getBinding().c;
-            m.checkNotNullExpressionValue(checkedSetting6, "binding.userMentionsFilterIncludeRoles");
+            Intrinsics3.checkNotNullExpressionValue(checkedSetting6, "binding.userMentionsFilterIncludeRoles");
             Model.MessageLoader.Filters filters3 = this.filters;
             if (filters3 == null) {
-                m.throwUninitializedPropertyAccessException("filters");
+                Intrinsics3.throwUninitializedPropertyAccessException("filters");
             }
             checkedSetting6.setChecked(filters3.getIncludeRoles());
             getBinding().c.setOnCheckedListener(new WidgetUserMentions$WidgetUserMentionFilter$onResume$3(this));
@@ -1257,7 +1261,7 @@ public final class WidgetUserMentions extends AppFragment implements OnTabSelect
             this.filters = filters;
             Function1<? super Model.MessageLoader.Filters, Unit> function1 = this.onFiltersUpdated;
             if (function1 == null) {
-                m.throwUninitializedPropertyAccessException("onFiltersUpdated");
+                Intrinsics3.throwUninitializedPropertyAccessException("onFiltersUpdated");
             }
             function1.invoke(filters);
         }
@@ -1265,14 +1269,14 @@ public final class WidgetUserMentions extends AppFragment implements OnTabSelect
 
     public WidgetUserMentions() {
         super(R.layout.widget_user_mentions);
-        this.isEmbedded = FragmentExtensionsKt.booleanExtra$default(this, EXTRA_IS_EMBEDDED, false, 2, null);
-        this.binding = FragmentViewBindingDelegateKt.viewBinding$default(this, WidgetUserMentions$binding$2.INSTANCE, null, 2, null);
+        this.isEmbedded = FragmentExtensions.booleanExtra$default(this, EXTRA_IS_EMBEDDED, false, 2, null);
+        this.binding = FragmentViewBindingDelegate3.viewBinding$default(this, WidgetUserMentions$binding$2.INSTANCE, null, 2, null);
         this.mentionsLoader = new Model.MessageLoader(1000L);
         this.storeTabsNavigation = StoreStream.INSTANCE.getTabsNavigation();
-        this.dismissViewModel = FragmentViewModelLazyKt.createViewModelLazy(this, a0.getOrCreateKotlinClass(WidgetGlobalSearchDismissModel.class), new WidgetUserMentions$$special$$inlined$activityViewModels$1(this), new WidgetUserMentions$$special$$inlined$activityViewModels$2(this));
+        this.dismissViewModel = FragmentViewModelLazyKt.createViewModelLazy(this, Reflection2.getOrCreateKotlinClass(WidgetGlobalSearchDismissModel.class), new WidgetUserMentions$$special$$inlined$activityViewModels$1(this), new WidgetUserMentions$$special$$inlined$activityViewModels$2(this));
         WidgetUserMentions$viewModel$2 widgetUserMentions$viewModel$2 = WidgetUserMentions$viewModel$2.INSTANCE;
-        g0 g0Var = new g0(this);
-        this.viewModel = FragmentViewModelLazyKt.createViewModelLazy(this, a0.getOrCreateKotlinClass(WidgetUserMentionsViewModel.class), new WidgetUserMentions$appViewModels$$inlined$viewModels$1(g0Var), new i0(widgetUserMentions$viewModel$2));
+        AppViewModelDelegates3 appViewModelDelegates3 = new AppViewModelDelegates3(this);
+        this.viewModel = FragmentViewModelLazyKt.createViewModelLazy(this, Reflection2.getOrCreateKotlinClass(WidgetUserMentionsViewModel.class), new WidgetUserMentions$appViewModels$$inlined$viewModels$1(appViewModelDelegates3), new AppViewModelDelegates5(widgetUserMentions$viewModel$2));
     }
 
     public static final /* synthetic */ void access$configureUI(WidgetUserMentions widgetUserMentions, Model model) {
@@ -1319,9 +1323,9 @@ public final class WidgetUserMentions extends AppFragment implements OnTabSelect
 
     private final WidgetChatListAdapter createAdapter(Function1<? super StoreChat.InteractionState, Unit> onInteractionStateUpdated) {
         RecyclerView recyclerView = getBinding().c;
-        m.checkNotNullExpressionValue(recyclerView, "binding.userMentionsList");
+        Intrinsics3.checkNotNullExpressionValue(recyclerView, "binding.userMentionsList");
         FragmentManager parentFragmentManager = getParentFragmentManager();
-        m.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
+        Intrinsics3.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
         WidgetChatListAdapter widgetChatListAdapter = new WidgetChatListAdapter(recyclerView, this, parentFragmentManager, new UserMentionsAdapterEventHandler(isEmbedded(), ChannelSelector.INSTANCE.getInstance(), onInteractionStateUpdated), null, null, 48, null);
         addThreadSpineItemDecoration(widgetChatListAdapter);
         return widgetChatListAdapter;
@@ -1352,7 +1356,7 @@ public final class WidgetUserMentions extends AppFragment implements OnTabSelect
             return Model.INSTANCE.get(this.mentionsLoader, NavigationTab.MENTIONS);
         }
         Observable observableY = StoreStream.INSTANCE.getTabsNavigation().observeSelectedTab().Y(new AnonymousClass1());
-        m.checkNotNullExpressionValue(observableY, "StoreStream.getTabsNavig…          }\n            }");
+        Intrinsics3.checkNotNullExpressionValue(observableY, "StoreStream.getTabsNavig…          }\n            }");
         return observableY;
     }
 
@@ -1386,7 +1390,7 @@ public final class WidgetUserMentions extends AppFragment implements OnTabSelect
     @Override // com.discord.app.AppFragment
     public void onViewBound(View view) {
         LinearLayoutManager layoutManager;
-        m.checkNotNullParameter(view, "view");
+        Intrinsics3.checkNotNullParameter(view, "view");
         super.onViewBound(view);
         if (isEmbedded()) {
             onTabSelected();

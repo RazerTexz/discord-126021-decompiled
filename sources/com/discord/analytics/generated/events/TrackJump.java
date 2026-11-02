@@ -1,18 +1,18 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.analytics.generated.traits.TrackChannel;
-import com.discord.analytics.generated.traits.TrackChannelReceiver;
+import com.discord.analytics.generated.traits.TrackChannel2;
 import com.discord.analytics.generated.traits.TrackGuild;
-import com.discord.analytics.generated.traits.TrackGuildReceiver;
+import com.discord.analytics.generated.traits.TrackGuild2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackJump.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackJump implements AnalyticsSchema, TrackBaseReceiver, TrackGuildReceiver, TrackChannelReceiver {
+public final /* data */ class TrackJump implements AnalyticsSchema, TrackBase2, TrackGuild2, TrackChannel2 {
     private final CharSequence context = null;
     private final Long messageId = null;
     private final CharSequence searchId = null;
@@ -21,7 +21,7 @@ public final /* data */ class TrackJump implements AnalyticsSchema, TrackBaseRec
     private TrackGuild trackGuild;
     private final transient String analyticsSchemaTypeName = "jump";
 
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    @Override // com.discord.analytics.generated.traits.TrackGuild2
     public void c(TrackGuild trackGuild) {
         this.trackGuild = trackGuild;
     }
@@ -34,7 +34,7 @@ public final /* data */ class TrackJump implements AnalyticsSchema, TrackBaseRec
             return false;
         }
         TrackJump trackJump = (TrackJump) other;
-        return m.areEqual(this.context, trackJump.context) && m.areEqual(this.messageId, trackJump.messageId) && m.areEqual(this.searchId, trackJump.searchId);
+        return Intrinsics3.areEqual(this.context, trackJump.context) && Intrinsics3.areEqual(this.messageId, trackJump.messageId) && Intrinsics3.areEqual(this.searchId, trackJump.searchId);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -43,7 +43,7 @@ public final /* data */ class TrackJump implements AnalyticsSchema, TrackBaseRec
         return this.analyticsSchemaTypeName;
     }
 
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    @Override // com.discord.analytics.generated.traits.TrackGuild2
     /* JADX INFO: renamed from: a, reason: from getter */
     public TrackGuild getTrackGuild() {
         return this.trackGuild;
@@ -59,11 +59,11 @@ public final /* data */ class TrackJump implements AnalyticsSchema, TrackBaseRec
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackJump(context=");
+        StringBuilder sbU = outline.U("TrackJump(context=");
         sbU.append(this.context);
         sbU.append(", messageId=");
         sbU.append(this.messageId);
         sbU.append(", searchId=");
-        return a.E(sbU, this.searchId, ")");
+        return outline.E(sbU, this.searchId, ")");
     }
 }

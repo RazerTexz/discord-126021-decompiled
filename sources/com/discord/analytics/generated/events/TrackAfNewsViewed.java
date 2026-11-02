@@ -1,18 +1,18 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackAfCard;
-import com.discord.analytics.generated.traits.TrackAfCardReceiver;
+import com.discord.analytics.generated.traits.TrackAfCard2;
 import com.discord.analytics.generated.traits.TrackAfGame;
-import com.discord.analytics.generated.traits.TrackAfGameReceiver;
+import com.discord.analytics.generated.traits.TrackAfGame2;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackAfNewsViewed.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackAfNewsViewed implements AnalyticsSchema, TrackBaseReceiver, TrackAfCardReceiver, TrackAfGameReceiver {
+public final /* data */ class TrackAfNewsViewed implements AnalyticsSchema, TrackBase2, TrackAfCard2, TrackAfGame2 {
     private final Long newsIndex = null;
     private final CharSequence newsUrl = null;
     private TrackAfCard trackAfCard;
@@ -28,7 +28,7 @@ public final /* data */ class TrackAfNewsViewed implements AnalyticsSchema, Trac
             return false;
         }
         TrackAfNewsViewed trackAfNewsViewed = (TrackAfNewsViewed) other;
-        return m.areEqual(this.newsUrl, trackAfNewsViewed.newsUrl) && m.areEqual(this.newsIndex, trackAfNewsViewed.newsIndex);
+        return Intrinsics3.areEqual(this.newsUrl, trackAfNewsViewed.newsUrl) && Intrinsics3.areEqual(this.newsIndex, trackAfNewsViewed.newsIndex);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -45,9 +45,9 @@ public final /* data */ class TrackAfNewsViewed implements AnalyticsSchema, Trac
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackAfNewsViewed(newsUrl=");
+        StringBuilder sbU = outline.U("TrackAfNewsViewed(newsUrl=");
         sbU.append(this.newsUrl);
         sbU.append(", newsIndex=");
-        return a.G(sbU, this.newsIndex, ")");
+        return outline.G(sbU, this.newsIndex, ")");
     }
 }

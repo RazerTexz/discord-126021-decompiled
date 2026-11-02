@@ -3,6 +3,7 @@ package b.b.a.a;
 import android.view.View;
 import com.lytefast.flexinput.fragment.FlexInputFragment;
 import com.lytefast.flexinput.viewmodel.FlexInputViewModel;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: FlexInputFragment.kt */
 /* JADX INFO: loaded from: classes3.dex */
@@ -19,7 +20,7 @@ public final class i implements View.OnLongClickListener {
         if (flexInputViewModel == null) {
             return false;
         }
-        d0.z.d.m.checkNotNullExpressionValue(view, "it");
+        Intrinsics3.checkNotNullExpressionValue(view, "it");
         return flexInputViewModel.onToolTipButtonLongPressed(view);
     }
 }

@@ -1,8 +1,8 @@
 package com.discord.api.thread;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.models.domain.ModelAuditLogEntry;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: ThreadMetadata.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -20,7 +20,7 @@ public final /* data */ class ThreadMetadata {
             return false;
         }
         ThreadMetadata threadMetadata = (ThreadMetadata) other;
-        return this.archived == threadMetadata.archived && m.areEqual(this.archiveTimestamp, threadMetadata.archiveTimestamp) && this.autoArchiveDuration == threadMetadata.autoArchiveDuration && this.locked == threadMetadata.locked;
+        return this.archived == threadMetadata.archived && Intrinsics3.areEqual(this.archiveTimestamp, threadMetadata.archiveTimestamp) && this.autoArchiveDuration == threadMetadata.autoArchiveDuration && this.locked == threadMetadata.locked;
     }
 
     /* JADX INFO: renamed from: a, reason: from getter */
@@ -65,13 +65,13 @@ public final /* data */ class ThreadMetadata {
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("ThreadMetadata(archived=");
+        StringBuilder sbU = outline.U("ThreadMetadata(archived=");
         sbU.append(this.archived);
         sbU.append(", archiveTimestamp=");
         sbU.append(this.archiveTimestamp);
         sbU.append(", autoArchiveDuration=");
         sbU.append(this.autoArchiveDuration);
         sbU.append(", locked=");
-        return a.O(sbU, this.locked, ")");
+        return outline.O(sbU, this.locked, ")");
     }
 }

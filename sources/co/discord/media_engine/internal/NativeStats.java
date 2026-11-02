@@ -1,8 +1,8 @@
 package co.discord.media_engine.internal;
 
 import androidx.core.app.NotificationCompat;
-import b.d.b.a.a;
-import d0.z.d.m;
+import b.d.b.a.outline;
+import d0.z.d.Intrinsics3;
 import java.util.Arrays;
 
 /* JADX INFO: compiled from: NativeStatistics.kt */
@@ -48,7 +48,7 @@ public final /* data */ class NativeStats {
             return false;
         }
         NativeStats nativeStats = (NativeStats) other;
-        return m.areEqual(this.transport, nativeStats.transport) && m.areEqual(this.outbound, nativeStats.outbound) && m.areEqual(this.screenshare, nativeStats.screenshare) && m.areEqual(this.inbound, nativeStats.inbound);
+        return Intrinsics3.areEqual(this.transport, nativeStats.transport) && Intrinsics3.areEqual(this.outbound, nativeStats.outbound) && Intrinsics3.areEqual(this.screenshare, nativeStats.screenshare) && Intrinsics3.areEqual(this.inbound, nativeStats.inbound);
     }
 
     /* JADX INFO: renamed from: component4, reason: from getter */
@@ -99,7 +99,7 @@ public final /* data */ class NativeStats {
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("NativeStats(transport=");
+        StringBuilder sbU = outline.U("NativeStats(transport=");
         sbU.append(this.transport);
         sbU.append(", outbound=");
         sbU.append(this.outbound);

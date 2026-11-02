@@ -1,6 +1,6 @@
 package com.esotericsoftware.kryo.serializers;
 
-import b.e.a.a;
+import b.e.a.Log;
 import com.esotericsoftware.kryo.Kryo;
 import java.lang.reflect.Array;
 import java.lang.reflect.Field;
@@ -64,12 +64,12 @@ public final class FieldSerializerGenericsUtil {
         if (typeParameters == null || typeParameters.length <= 0) {
             return null;
         }
-        a.C0064a c0064a = a.a;
+        Log.a aVar = Log.a;
         HashMap map = new HashMap();
         int i3 = 0;
         for (TypeVariable typeVariable : typeParameters) {
             String name = typeVariable.getName();
-            a.C0064a c0064a2 = a.a;
+            Log.a aVar2 = Log.a;
             Class<?> typeVarConcreteClass = getTypeVarConcreteClass(clsArr, i3, name);
             if (typeVarConcreteClass != null) {
                 map.put(name, typeVarConcreteClass);
@@ -92,7 +92,7 @@ public final class FieldSerializerGenericsUtil {
             }
             clsArr[0] = concreteClass2;
             Class[] clsArr2 = {clsArr[0]};
-            a.C0064a c0064a = a.a;
+            Log.a aVar = Log.a;
             return clsArr2;
         }
         if (!(type instanceof ParameterizedType)) {
@@ -100,7 +100,7 @@ public final class FieldSerializerGenericsUtil {
                 return null;
             }
             Class[] clsArrComputeFieldGenerics = computeFieldGenerics(((GenericArrayType) type).getGenericComponentType(), field, new Class[]{clsArr[0]});
-            a.C0064a c0064a2 = a.a;
+            Log.a aVar2 = Log.a;
             return clsArrComputeFieldGenerics;
         }
         Type[] actualTypeArguments = ((ParameterizedType) type).getActualTypeArguments();
@@ -132,7 +132,7 @@ public final class FieldSerializerGenericsUtil {
                 clsArr3[i] = null;
             }
         }
-        a.C0064a c0064a3 = a.a;
+        Log.a aVar3 = Log.a;
         return clsArr3;
     }
 
@@ -146,14 +146,14 @@ public final class FieldSerializerGenericsUtil {
         if (!(type instanceof ParameterizedType)) {
             return null;
         }
-        a.C0064a c0064a = a.a;
+        Log.a aVar = Log.a;
         Type[] actualTypeArguments = ((ParameterizedType) type).getActualTypeArguments();
         Class[] clsArr = new Class[actualTypeArguments.length];
         int length = actualTypeArguments.length;
         int i = 0;
         for (int i2 = 0; i2 < length; i2++) {
             Type type2 = actualTypeArguments[i2];
-            a.C0064a c0064a2 = a.a;
+            Log.a aVar2 = Log.a;
             clsArr[i2] = Object.class;
             if (type2 instanceof Class) {
                 clsArr[i2] = (Class) type2;
@@ -194,7 +194,7 @@ public final class FieldSerializerGenericsUtil {
         if (clsArr != null && clsArr.length > i) {
             return clsArr[i];
         }
-        a.C0064a c0064a = a.a;
+        Log.a aVar = Log.a;
         GenericsResolver genericsResolver = this.kryo.getGenericsResolver();
         if (genericsResolver.isSet()) {
             return genericsResolver.getConcreteClass(str);
@@ -203,7 +203,7 @@ public final class FieldSerializerGenericsUtil {
     }
 
     public FieldSerializer.CachedField newCachedFieldOfGenericType(Field field, int i, Class[] clsArr, Type type) {
-        a.C0064a c0064a = a.a;
+        Log.a aVar = Log.a;
         buildGenericsScope(clsArr[0], getGenerics(type, this.kryo));
         if (clsArr[0] == Object.class && (type instanceof TypeVariable) && this.serializer.getGenericsScope() != null) {
             TypeVariable typeVariable = (TypeVariable) type;

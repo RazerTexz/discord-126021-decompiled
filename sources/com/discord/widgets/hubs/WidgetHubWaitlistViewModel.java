@@ -1,27 +1,27 @@
 package com.discord.widgets.hubs;
 
 import androidx.core.app.NotificationCompat;
-import b.a.d.d0;
+import b.a.d.AppViewModel;
 import com.discord.api.hubs.WaitlistSignup;
 import com.discord.restapi.RestAPIParams;
 import com.discord.stores.utilities.RestCallState;
-import com.discord.stores.utilities.RestCallStateKt;
+import com.discord.stores.utilities.RestCallState5;
 import com.discord.utilities.rest.RestAPI;
-import d0.z.d.m;
-import d0.z.d.o;
+import d0.z.d.Intrinsics3;
+import d0.z.d.Lambda;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function1;
 import kotlin.jvm.internal.DefaultConstructorMarker;
 
 /* JADX INFO: compiled from: WidgetHubWaitlistViewModel.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class WidgetHubWaitlistViewModel extends d0<HubWaitlistState> {
+public final class WidgetHubWaitlistViewModel extends AppViewModel<WidgetHubWaitlistViewModel3> {
     private final String email;
     private final RestAPI restAPI;
 
     /* JADX INFO: renamed from: com.discord.widgets.hubs.WidgetHubWaitlistViewModel$joinWaitlist$1, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetHubWaitlistViewModel.kt */
-    public final class AnonymousClass1 extends o implements Function1<RestCallState<? extends WaitlistSignup>, Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function1<RestCallState<? extends WaitlistSignup>, Unit> {
         public AnonymousClass1() {
             super(1);
         }
@@ -34,10 +34,10 @@ public final class WidgetHubWaitlistViewModel extends d0<HubWaitlistState> {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(RestCallState<WaitlistSignup> restCallState) {
-            m.checkNotNullParameter(restCallState, "async");
-            HubWaitlistState hubWaitlistStateAccess$getViewState$p = WidgetHubWaitlistViewModel.access$getViewState$p(WidgetHubWaitlistViewModel.this);
-            if (hubWaitlistStateAccess$getViewState$p != null) {
-                WidgetHubWaitlistViewModel.access$updateViewState(WidgetHubWaitlistViewModel.this, hubWaitlistStateAccess$getViewState$p.copy(restCallState));
+            Intrinsics3.checkNotNullParameter(restCallState, "async");
+            WidgetHubWaitlistViewModel3 widgetHubWaitlistViewModel3Access$getViewState$p = WidgetHubWaitlistViewModel.access$getViewState$p(WidgetHubWaitlistViewModel.this);
+            if (widgetHubWaitlistViewModel3Access$getViewState$p != null) {
+                WidgetHubWaitlistViewModel.access$updateViewState(WidgetHubWaitlistViewModel.this, widgetHubWaitlistViewModel3Access$getViewState$p.copy(restCallState));
             }
         }
     }
@@ -46,12 +46,12 @@ public final class WidgetHubWaitlistViewModel extends d0<HubWaitlistState> {
         this(str, (i & 2) != 0 ? RestAPI.INSTANCE.getApi() : restAPI);
     }
 
-    public static final /* synthetic */ HubWaitlistState access$getViewState$p(WidgetHubWaitlistViewModel widgetHubWaitlistViewModel) {
+    public static final /* synthetic */ WidgetHubWaitlistViewModel3 access$getViewState$p(WidgetHubWaitlistViewModel widgetHubWaitlistViewModel) {
         return widgetHubWaitlistViewModel.getViewState();
     }
 
-    public static final /* synthetic */ void access$updateViewState(WidgetHubWaitlistViewModel widgetHubWaitlistViewModel, HubWaitlistState hubWaitlistState) {
-        widgetHubWaitlistViewModel.updateViewState(hubWaitlistState);
+    public static final /* synthetic */ void access$updateViewState(WidgetHubWaitlistViewModel widgetHubWaitlistViewModel, WidgetHubWaitlistViewModel3 widgetHubWaitlistViewModel3) {
+        widgetHubWaitlistViewModel.updateViewState(widgetHubWaitlistViewModel3);
     }
 
     public final String getEmail() {
@@ -63,15 +63,15 @@ public final class WidgetHubWaitlistViewModel extends d0<HubWaitlistState> {
     }
 
     public final void joinWaitlist(String school) {
-        m.checkNotNullParameter(school, "school");
-        RestCallStateKt.executeRequest(this.restAPI.joinHubWaitlist(new RestAPIParams.HubWaitlist(this.email, school)), new AnonymousClass1());
+        Intrinsics3.checkNotNullParameter(school, "school");
+        RestCallState5.executeRequest(this.restAPI.joinHubWaitlist(new RestAPIParams.HubWaitlist(this.email, school)), new AnonymousClass1());
     }
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public WidgetHubWaitlistViewModel(String str, RestAPI restAPI) {
-        super(new HubWaitlistState(null, 1, null));
-        m.checkNotNullParameter(str, NotificationCompat.CATEGORY_EMAIL);
-        m.checkNotNullParameter(restAPI, "restAPI");
+        super(new WidgetHubWaitlistViewModel3(null, 1, null));
+        Intrinsics3.checkNotNullParameter(str, NotificationCompat.CATEGORY_EMAIL);
+        Intrinsics3.checkNotNullParameter(restAPI, "restAPI");
         this.email = str;
         this.restAPI = restAPI;
     }

@@ -3,9 +3,9 @@ package com.discord.utilities.rx;
 import androidx.core.app.NotificationCompat;
 import androidx.exifinterface.media.ExifInterface;
 import b.i.a.f.e.o.f;
-import d0.z.d.m;
-import j0.l.a.r;
-import j0.p.a;
+import d0.z.d.Intrinsics3;
+import j0.l.a.OnSubscribeLift;
+import j0.p.Schedulers2;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -38,18 +38,18 @@ public final class OperatorBufferedDelay<T> implements Observable.b<List<? exten
             }
             TimeUnit timeUnit2 = timeUnit;
             if ((i2 & 8) != 0) {
-                scheduler = a.a();
-                m.checkNotNullExpressionValue(scheduler, "Schedulers.computation()");
+                scheduler = Schedulers2.a();
+                Intrinsics3.checkNotNullExpressionValue(scheduler, "Schedulers.computation()");
             }
             return companion.bufferedDelay(observable, j, timeUnit2, i, scheduler);
         }
 
         public final <T> Observable<List<T>> bufferedDelay(Observable<T> observable, long j, TimeUnit timeUnit, int i, Scheduler scheduler) {
-            m.checkNotNullParameter(observable, "$this$bufferedDelay");
-            m.checkNotNullParameter(timeUnit, "timeUnit");
-            m.checkNotNullParameter(scheduler, "scheduler");
-            Observable<List<T>> observableH0 = Observable.h0(new r(observable.j, new OperatorBufferedDelay(j, timeUnit, i, scheduler)));
-            m.checkNotNullExpressionValue(observableH0, "this.lift(OperatorBuffer…meUnit, size, scheduler))");
+            Intrinsics3.checkNotNullParameter(observable, "$this$bufferedDelay");
+            Intrinsics3.checkNotNullParameter(timeUnit, "timeUnit");
+            Intrinsics3.checkNotNullParameter(scheduler, "scheduler");
+            Observable<List<T>> observableH0 = Observable.h0(new OnSubscribeLift(observable.j, new OperatorBufferedDelay(j, timeUnit, i, scheduler)));
+            Intrinsics3.checkNotNullExpressionValue(observableH0, "this.lift(OperatorBuffer…meUnit, size, scheduler))");
             return observableH0;
         }
 
@@ -67,8 +67,8 @@ public final class OperatorBufferedDelay<T> implements Observable.b<List<? exten
         public final /* synthetic */ OperatorBufferedDelay this$0;
 
         public ExactSubscriber(OperatorBufferedDelay operatorBufferedDelay, Subscriber<List<T>> subscriber, Scheduler.Worker worker) {
-            m.checkNotNullParameter(subscriber, "child");
-            m.checkNotNullParameter(worker, "inner");
+            Intrinsics3.checkNotNullParameter(subscriber, "child");
+            Intrinsics3.checkNotNullParameter(worker, "inner");
             this.this$0 = operatorBufferedDelay;
             this.child = subscriber;
             this.inner = worker;
@@ -97,7 +97,7 @@ public final class OperatorBufferedDelay<T> implements Observable.b<List<? exten
             return this.inner;
         }
 
-        @Override // j0.g
+        @Override // j0.Observer2
         public void onCompleted() {
             this.inner.unsubscribe();
             tryEmit(null);
@@ -105,14 +105,14 @@ public final class OperatorBufferedDelay<T> implements Observable.b<List<? exten
             unsubscribe();
         }
 
-        @Override // j0.g
+        @Override // j0.Observer2
         public void onError(Throwable e) {
             tryEmit(null);
             this.child.onError(e);
             unsubscribe();
         }
 
-        @Override // j0.g
+        @Override // j0.Observer2
         public void onNext(T t) {
             synchronized (this) {
                 List<T> list = this.buffer;
@@ -120,7 +120,7 @@ public final class OperatorBufferedDelay<T> implements Observable.b<List<? exten
                     list.add(t);
                     if (list.size() < this.this$0.getSize()) {
                         if (this.ongoingBufferTimer == null) {
-                            this.ongoingBufferTimer = this.inner.b(new OperatorBufferedDelay$ExactSubscriber$onNext$$inlined$synchronized$lambda$1(this, t), this.this$0.getTimeSpan(), this.this$0.getTimeUnit());
+                            this.ongoingBufferTimer = this.inner.b(new OperatorBufferedDelay2(this, t), this.this$0.getTimeSpan(), this.this$0.getTimeUnit());
                         }
                     } else {
                         cancelBufferTimer();
@@ -167,15 +167,15 @@ public final class OperatorBufferedDelay<T> implements Observable.b<List<? exten
     }
 
     public OperatorBufferedDelay(long j, TimeUnit timeUnit, int i, Scheduler scheduler) {
-        m.checkNotNullParameter(timeUnit, "timeUnit");
-        m.checkNotNullParameter(scheduler, "scheduler");
+        Intrinsics3.checkNotNullParameter(timeUnit, "timeUnit");
+        Intrinsics3.checkNotNullParameter(scheduler, "scheduler");
         this.timeSpan = j;
         this.timeUnit = timeUnit;
         this.size = i;
         this.scheduler = scheduler;
     }
 
-    @Override // j0.k.b
+    @Override // j0.k.Func1
     public /* bridge */ /* synthetic */ Object call(Object obj) {
         return call((Subscriber) obj);
     }
@@ -201,10 +201,10 @@ public final class OperatorBufferedDelay<T> implements Observable.b<List<? exten
     }
 
     public Subscriber<? super T> call(Subscriber<? super List<? extends T>> childSubscriber) {
-        m.checkNotNullParameter(childSubscriber, "childSubscriber");
+        Intrinsics3.checkNotNullParameter(childSubscriber, "childSubscriber");
         Scheduler.Worker workerA = this.scheduler.a();
         SerializedSubscriber serializedSubscriber = new SerializedSubscriber(childSubscriber);
-        m.checkNotNullExpressionValue(workerA, "inner");
+        Intrinsics3.checkNotNullExpressionValue(workerA, "inner");
         ExactSubscriber exactSubscriber = new ExactSubscriber(this, serializedSubscriber, workerA);
         exactSubscriber.add(workerA);
         childSubscriber.add(exactSubscriber);

@@ -6,13 +6,13 @@ import com.discord.stores.StorePermissions;
 import com.discord.stores.StoreStageInstances;
 import com.discord.stores.StoreStream;
 import com.discord.stores.updates.ObservationDeck;
-import com.discord.stores.updates.ObservationDeckProvider;
+import com.discord.stores.updates.ObservationDeck4;
 import com.discord.utilities.permissions.PermissionUtils;
-import d0.f0.q;
-import d0.t.i0;
-import d0.t.n;
-import d0.z.d.m;
-import d0.z.d.o;
+import d0.f0._Sequences2;
+import d0.t.Collections2;
+import d0.t._Maps;
+import d0.z.d.Intrinsics3;
+import d0.z.d.Lambda;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.Map;
@@ -28,7 +28,7 @@ public final class GuildIdsWithVisibleStageInstanceModel {
 
     /* JADX INFO: renamed from: com.discord.widgets.stage.GuildIdsWithVisibleStageInstanceModel$compute$1, reason: invalid class name */
     /* JADX INFO: compiled from: GuildIdsWithVisibleStageInstanceModel.kt */
-    public final class AnonymousClass1 extends o implements Function1<Map.Entry<? extends Long, ? extends Map<Long, ? extends StageInstance>>, Boolean> {
+    public final class AnonymousClass1 extends Lambda implements Function1<Map.Entry<? extends Long, ? extends Map<Long, ? extends StageInstance>>, Boolean> {
         public final /* synthetic */ Map $permissionsByChannel;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -45,7 +45,7 @@ public final class GuildIdsWithVisibleStageInstanceModel {
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final boolean invoke2(Map.Entry<Long, ? extends Map<Long, StageInstance>> entry) {
             int i;
-            m.checkNotNullParameter(entry, "<name for destructuring parameter 0>");
+            Intrinsics3.checkNotNullParameter(entry, "<name for destructuring parameter 0>");
             entry.getKey().longValue();
             Set<Long> setKeySet = entry.getValue().keySet();
             if ((setKeySet instanceof Collection) && setKeySet.isEmpty()) {
@@ -55,7 +55,7 @@ public final class GuildIdsWithVisibleStageInstanceModel {
                 i = 0;
                 while (it.hasNext()) {
                     if (PermissionUtils.can(Permission.VIEW_CHANNEL, (Long) this.$permissionsByChannel.get(Long.valueOf(((Number) it.next()).longValue()))) && (i = i + 1) < 0) {
-                        n.throwCountOverflow();
+                        Collections2.throwCountOverflow();
                     }
                 }
             }
@@ -65,7 +65,7 @@ public final class GuildIdsWithVisibleStageInstanceModel {
 
     /* JADX INFO: renamed from: com.discord.widgets.stage.GuildIdsWithVisibleStageInstanceModel$observe$1, reason: invalid class name */
     /* JADX INFO: compiled from: GuildIdsWithVisibleStageInstanceModel.kt */
-    public final class AnonymousClass1 extends o implements Function0<Set<? extends Long>> {
+    public final class AnonymousClass1 extends Lambda implements Function0<Set<? extends Long>> {
         public final /* synthetic */ StorePermissions $storePermissions;
         public final /* synthetic */ StoreStageInstances $storeStageInstances;
 
@@ -90,7 +90,7 @@ public final class GuildIdsWithVisibleStageInstanceModel {
 
     /* JADX INFO: renamed from: com.discord.widgets.stage.GuildIdsWithVisibleStageInstanceModel$compute$2, reason: invalid class name */
     /* JADX INFO: compiled from: GuildIdsWithVisibleStageInstanceModel.kt */
-    public final class AnonymousClass2 extends o implements Function1<Map.Entry<? extends Long, ? extends Map<Long, ? extends StageInstance>>, Long> {
+    public final class AnonymousClass2 extends Lambda implements Function1<Map.Entry<? extends Long, ? extends Map<Long, ? extends StageInstance>>, Long> {
         public static final AnonymousClass2 INSTANCE = new AnonymousClass2();
 
         public AnonymousClass2() {
@@ -104,7 +104,7 @@ public final class GuildIdsWithVisibleStageInstanceModel {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final long invoke2(Map.Entry<Long, ? extends Map<Long, StageInstance>> entry) {
-            m.checkNotNullParameter(entry, "entry");
+            Intrinsics3.checkNotNullParameter(entry, "entry");
             return entry.getKey().longValue();
         }
     }
@@ -113,9 +113,9 @@ public final class GuildIdsWithVisibleStageInstanceModel {
     }
 
     public final Set<Long> compute(Map<Long, ? extends Map<Long, StageInstance>> instancesByGuild, Map<Long, Long> permissionsByChannel) {
-        m.checkNotNullParameter(instancesByGuild, "instancesByGuild");
-        m.checkNotNullParameter(permissionsByChannel, "permissionsByChannel");
-        return q.toSet(q.map(q.filter(i0.asSequence(instancesByGuild), new AnonymousClass1(permissionsByChannel)), AnonymousClass2.INSTANCE));
+        Intrinsics3.checkNotNullParameter(instancesByGuild, "instancesByGuild");
+        Intrinsics3.checkNotNullParameter(permissionsByChannel, "permissionsByChannel");
+        return _Sequences2.toSet(_Sequences2.map(_Sequences2.filter(_Maps.asSequence(instancesByGuild), new AnonymousClass1(permissionsByChannel)), AnonymousClass2.INSTANCE));
     }
 
     public static /* synthetic */ Observable observe$default(GuildIdsWithVisibleStageInstanceModel guildIdsWithVisibleStageInstanceModel, StoreStageInstances storeStageInstances, StorePermissions storePermissions, ObservationDeck observationDeck, int i, Object obj) {
@@ -126,15 +126,15 @@ public final class GuildIdsWithVisibleStageInstanceModel {
             storePermissions = StoreStream.INSTANCE.getPermissions();
         }
         if ((i & 4) != 0) {
-            observationDeck = ObservationDeckProvider.get();
+            observationDeck = ObservationDeck4.get();
         }
         return guildIdsWithVisibleStageInstanceModel.observe(storeStageInstances, storePermissions, observationDeck);
     }
 
     public final Observable<Set<Long>> observe(StoreStageInstances storeStageInstances, StorePermissions storePermissions, ObservationDeck observationDeck) {
-        m.checkNotNullParameter(storeStageInstances, "storeStageInstances");
-        m.checkNotNullParameter(storePermissions, "storePermissions");
-        m.checkNotNullParameter(observationDeck, "observationDeck");
+        Intrinsics3.checkNotNullParameter(storeStageInstances, "storeStageInstances");
+        Intrinsics3.checkNotNullParameter(storePermissions, "storePermissions");
+        Intrinsics3.checkNotNullParameter(observationDeck, "observationDeck");
         return ObservationDeck.connectRx$default(observationDeck, new ObservationDeck.UpdateSource[]{storeStageInstances, storePermissions}, false, null, null, new AnonymousClass1(storeStageInstances, storePermissions), 14, null);
     }
 }

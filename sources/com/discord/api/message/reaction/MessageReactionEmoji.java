@@ -1,8 +1,8 @@
 package com.discord.api.message.reaction;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.models.domain.ModelAuditLogEntry;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: MessageReactionEmoji.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -23,7 +23,7 @@ public final /* data */ class MessageReactionEmoji {
             return str;
         }
         String str2 = this.name;
-        m.checkNotNull(str2);
+        Intrinsics3.checkNotNull(str2);
         return str2;
     }
 
@@ -39,7 +39,7 @@ public final /* data */ class MessageReactionEmoji {
             return false;
         }
         MessageReactionEmoji messageReactionEmoji = (MessageReactionEmoji) other;
-        return m.areEqual(this.id, messageReactionEmoji.id) && m.areEqual(this.name, messageReactionEmoji.name) && this.animated == messageReactionEmoji.animated;
+        return Intrinsics3.areEqual(this.id, messageReactionEmoji.id) && Intrinsics3.areEqual(this.name, messageReactionEmoji.name) && this.animated == messageReactionEmoji.animated;
     }
 
     /* JADX INFO: renamed from: a, reason: from getter */
@@ -76,11 +76,11 @@ public final /* data */ class MessageReactionEmoji {
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("MessageReactionEmoji(id=");
+        StringBuilder sbU = outline.U("MessageReactionEmoji(id=");
         sbU.append(this.id);
         sbU.append(", name=");
         sbU.append(this.name);
         sbU.append(", animated=");
-        return a.O(sbU, this.animated, ")");
+        return outline.O(sbU, this.animated, ")");
     }
 }

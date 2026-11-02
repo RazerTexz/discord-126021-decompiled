@@ -8,12 +8,13 @@ import android.text.SpannableStringBuilder;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import androidx.annotation.MainThread;
-import androidx.core.os.BundleKt;
+import androidx.core.os.Bundle2;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentViewModelLazyKt;
 import androidx.recyclerview.widget.RecyclerView;
-import b.d.b.a.a;
+import b.a.a.SelectorDialog;
+import b.d.b.a.outline;
 import com.discord.R;
 import com.discord.api.channel.Channel;
 import com.discord.api.channel.ChannelUtils;
@@ -34,28 +35,30 @@ import com.discord.utilities.mg_recycler.MGRecyclerAdapter;
 import com.discord.utilities.rx.ObservableExtensionsKt;
 import com.discord.utilities.view.extensions.ViewExtensions;
 import com.discord.utilities.viewbinding.FragmentViewBindingDelegate;
-import com.discord.utilities.viewbinding.FragmentViewBindingDelegateKt;
+import com.discord.utilities.viewbinding.FragmentViewBindingDelegate3;
 import com.discord.widgets.channels.list.WidgetChannelsListItemChannelActions;
-import com.discord.widgets.chat.input.MentionUtilsKt;
+import com.discord.widgets.chat.input.MentionUtils;
 import com.discord.widgets.friends.WidgetFriendsAdd;
 import com.discord.widgets.guilds.join.WidgetGuildJoin;
 import com.discord.widgets.guilds.profile.WidgetGuildProfileSheet;
 import com.discord.widgets.tabs.NavigationTab;
 import com.discord.widgets.user.usersheet.WidgetUserSheet;
 import com.google.android.material.textfield.TextInputLayout;
-import d0.g0.t;
-import d0.g0.w;
-import d0.g0.y;
-import d0.t.n;
-import d0.z.d.a0;
-import d0.z.d.k;
-import d0.z.d.m;
-import d0.z.d.o;
+import d0.Tuples;
+import d0.g0.Strings4;
+import d0.g0.StringsJVM;
+import d0.g0._Strings;
+import d0.t.Collections2;
+import d0.z.d.FunctionReferenceImpl;
+import d0.z.d.Intrinsics3;
+import d0.z.d.Lambda;
+import d0.z.d.Reflection2;
+import j0.l.e.ScalarSynchronousObservable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import kotlin.Lazy;
-import kotlin.Pair;
+import kotlin.Tuples2;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
@@ -69,7 +72,7 @@ import rx.subjects.BehaviorSubject;
 /* JADX INFO: compiled from: WidgetGlobalSearch.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetGlobalSearch extends AppFragment {
-    public static final /* synthetic */ KProperty[] $$delegatedProperties = {a.d0(WidgetGlobalSearch.class, "binding", "getBinding()Lcom/discord/databinding/WidgetGlobalSearchBinding;", 0)};
+    public static final /* synthetic */ KProperty[] $$delegatedProperties = {outline.d0(WidgetGlobalSearch.class, "binding", "getBinding()Lcom/discord/databinding/WidgetGlobalSearchBinding;", 0)};
     public static final String EXTRA_SEARCH_TEXT = "EXTRA_SEARCH_TEXT";
     private static final int INDEX_EMPTY = 1;
     private static final int INDEX_RESULTS = 0;
@@ -91,7 +94,7 @@ public final class WidgetGlobalSearch extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.user.search.WidgetGlobalSearch$configureUI$1, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetGlobalSearch.kt */
-    public final class AnonymousClass1 extends o implements Function3<Integer, Integer, WidgetGlobalSearchGuildsModel.Item, Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function3<Integer, Integer, WidgetGlobalSearchGuildsModel.Item, Unit> {
         public AnonymousClass1() {
             super(3);
         }
@@ -103,11 +106,11 @@ public final class WidgetGlobalSearch extends AppFragment {
         }
 
         public final void invoke(int i, int i2, WidgetGlobalSearchGuildsModel.Item item) {
-            m.checkNotNullParameter(item, "data");
+            Intrinsics3.checkNotNullParameter(item, "data");
             if (i == 2) {
                 WidgetChannelsListItemChannelActions.Companion companion = WidgetChannelsListItemChannelActions.INSTANCE;
                 FragmentManager parentFragmentManager = WidgetGlobalSearch.this.getParentFragmentManager();
-                m.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
+                Intrinsics3.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
                 companion.show(parentFragmentManager, item.getId());
                 return;
             }
@@ -116,7 +119,7 @@ public final class WidgetGlobalSearch extends AppFragment {
             }
             WidgetGuildProfileSheet.Companion companion2 = WidgetGuildProfileSheet.INSTANCE;
             FragmentManager parentFragmentManager2 = WidgetGlobalSearch.this.getParentFragmentManager();
-            m.checkNotNullExpressionValue(parentFragmentManager2, "parentFragmentManager");
+            Intrinsics3.checkNotNullExpressionValue(parentFragmentManager2, "parentFragmentManager");
             Guild guild = item.getGuild();
             WidgetGuildProfileSheet.Companion.show$default(companion2, parentFragmentManager2, false, guild != null ? guild.getId() : 0L, 0L, false, 24, null);
         }
@@ -124,7 +127,7 @@ public final class WidgetGlobalSearch extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.user.search.WidgetGlobalSearch$onViewBound$1, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetGlobalSearch.kt */
-    public final class AnonymousClass1 extends o implements Function1<Editable, Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function1<Editable, Unit> {
         public AnonymousClass1() {
             super(1);
         }
@@ -137,14 +140,14 @@ public final class WidgetGlobalSearch extends AppFragment {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(Editable editable) {
-            m.checkNotNullParameter(editable, "editable");
+            Intrinsics3.checkNotNullParameter(editable, "editable");
             WidgetGlobalSearch.access$getFilterPublisher$p(WidgetGlobalSearch.this).onNext(editable.toString());
         }
     }
 
     /* JADX INFO: renamed from: com.discord.widgets.user.search.WidgetGlobalSearch$onViewBoundOrOnResume$1, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetGlobalSearch.kt */
-    public final /* synthetic */ class AnonymousClass1 extends k implements Function1<WidgetGlobalSearchModel, Unit> {
+    public final /* synthetic */ class AnonymousClass1 extends FunctionReferenceImpl implements Function1<WidgetGlobalSearchModel, Unit> {
         public AnonymousClass1(WidgetGlobalSearch widgetGlobalSearch) {
             super(1, widgetGlobalSearch, WidgetGlobalSearch.class, "configureUI", "configureUI(Lcom/discord/widgets/user/search/WidgetGlobalSearchModel;)V", 0);
         }
@@ -157,14 +160,14 @@ public final class WidgetGlobalSearch extends AppFragment {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(WidgetGlobalSearchModel widgetGlobalSearchModel) {
-            m.checkNotNullParameter(widgetGlobalSearchModel, "p1");
+            Intrinsics3.checkNotNullParameter(widgetGlobalSearchModel, "p1");
             WidgetGlobalSearch.access$configureUI((WidgetGlobalSearch) this.receiver, widgetGlobalSearchModel);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.widgets.user.search.WidgetGlobalSearch$showFilterPickerDialog$1, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetGlobalSearch.kt */
-    public final class AnonymousClass1 extends o implements Function1<Integer, Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function1<Integer, Unit> {
         public AnonymousClass1() {
             super(1);
         }
@@ -182,7 +185,7 @@ public final class WidgetGlobalSearch extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.user.search.WidgetGlobalSearch$configureUI$2, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetGlobalSearch.kt */
-    public final class AnonymousClass2 extends o implements Function3<Integer, Integer, WidgetGlobalSearchGuildsModel.Item, Unit> {
+    public final class AnonymousClass2 extends Lambda implements Function3<Integer, Integer, WidgetGlobalSearchGuildsModel.Item, Unit> {
         public final /* synthetic */ WidgetGlobalSearchModel $model;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -198,7 +201,7 @@ public final class WidgetGlobalSearch extends AppFragment {
         }
 
         public final void invoke(int i, int i2, WidgetGlobalSearchGuildsModel.Item item) {
-            m.checkNotNullParameter(item, "selected");
+            Intrinsics3.checkNotNullParameter(item, "selected");
             if (i == 2) {
                 ChannelSelector.selectChannel$default(ChannelSelector.INSTANCE.getInstance(), 0L, item.getId(), null, null, 12, null);
             } else if (i == 3) {
@@ -240,7 +243,7 @@ public final class WidgetGlobalSearch extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.user.search.WidgetGlobalSearch$onViewBound$5, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetGlobalSearch.kt */
-    public final class AnonymousClass5 extends o implements Function1<Unit, Unit> {
+    public final class AnonymousClass5 extends Lambda implements Function1<Unit, Unit> {
         public AnonymousClass5() {
             super(1);
         }
@@ -266,10 +269,10 @@ public final class WidgetGlobalSearch extends AppFragment {
         @Override // android.view.View.OnClickListener
         public final void onClick(View view) {
             WidgetFriendsAdd.Companion companion = WidgetFriendsAdd.INSTANCE;
-            Context contextX = a.x(view, "it", "it.context");
+            Context contextX = outline.x(view, "it", "it.context");
             TextInputLayout textInputLayout = WidgetGlobalSearch.access$getBinding$p(WidgetGlobalSearch.this).c;
-            m.checkNotNullExpressionValue(textInputLayout, "binding.globalSearchBar");
-            companion.show(contextX, w.trimStart(ViewExtensions.getTextOrEmpty(textInputLayout), MentionUtilsKt.MENTIONS_CHAR, MentionUtilsKt.CHANNELS_CHAR, '*'), "QuickSwitcher");
+            Intrinsics3.checkNotNullExpressionValue(textInputLayout, "binding.globalSearchBar");
+            companion.show(contextX, Strings4.trimStart(ViewExtensions.getTextOrEmpty(textInputLayout), MentionUtils.MENTIONS_CHAR, MentionUtils.CHANNELS_CHAR, '*'), "QuickSwitcher");
             WidgetGlobalSearch.onSelected$default(WidgetGlobalSearch.this, NavigationTab.FRIENDS, null, 2, null);
         }
     }
@@ -283,9 +286,9 @@ public final class WidgetGlobalSearch extends AppFragment {
         @Override // android.view.View.OnClickListener
         public final void onClick(View view) {
             WidgetGuildJoin.Companion companion = WidgetGuildJoin.INSTANCE;
-            m.checkNotNullExpressionValue(view, "it");
+            Intrinsics3.checkNotNullExpressionValue(view, "it");
             Context context = view.getContext();
-            m.checkNotNullExpressionValue(context, "it.context");
+            Intrinsics3.checkNotNullExpressionValue(context, "it.context");
             companion.show(context, "QuickSwitcher");
             WidgetGlobalSearch.access$onSelected(WidgetGlobalSearch.this, NavigationTab.HOME, StoreNavigation.PanelAction.OPEN);
         }
@@ -296,7 +299,7 @@ public final class WidgetGlobalSearch extends AppFragment {
         private Companion() {
         }
 
-        public static final /* synthetic */ Pair[] access$getFILTER_OPTIONS_LIST$p(Companion companion) {
+        public static final /* synthetic */ Tuples2[] access$getFILTER_OPTIONS_LIST$p(Companion companion) {
             return companion.getFILTER_OPTIONS_LIST();
         }
 
@@ -313,12 +316,12 @@ public final class WidgetGlobalSearch extends AppFragment {
 
         public final WidgetGlobalSearch create(String searchText) {
             WidgetGlobalSearch widgetGlobalSearch = new WidgetGlobalSearch();
-            widgetGlobalSearch.setArguments(BundleKt.bundleOf(d0.o.to(WidgetGlobalSearch.EXTRA_SEARCH_TEXT, searchText)));
+            widgetGlobalSearch.setArguments(Bundle2.bundleOf(Tuples.to(WidgetGlobalSearch.EXTRA_SEARCH_TEXT, searchText)));
             return widgetGlobalSearch;
         }
 
-        private final Pair<Integer, Character>[] getFILTER_OPTIONS_LIST() {
-            return new Pair[]{d0.o.to(Integer.valueOf(R.string.users), Character.valueOf(MentionUtilsKt.MENTIONS_CHAR)), d0.o.to(Integer.valueOf(R.string.text_channels), Character.valueOf(MentionUtilsKt.CHANNELS_CHAR)), d0.o.to(Integer.valueOf(R.string.voice_channels), '!'), d0.o.to(Integer.valueOf(R.string.servers), '*')};
+        private final Tuples2<Integer, Character>[] getFILTER_OPTIONS_LIST() {
+            return new Tuples2[]{Tuples.to(Integer.valueOf(R.string.users), Character.valueOf(MentionUtils.MENTIONS_CHAR)), Tuples.to(Integer.valueOf(R.string.text_channels), Character.valueOf(MentionUtils.CHANNELS_CHAR)), Tuples.to(Integer.valueOf(R.string.voice_channels), '!'), Tuples.to(Integer.valueOf(R.string.servers), '*')};
         }
 
         private final WidgetGlobalSearchModel.ItemDataPayload toWidgetGlobalSearchModelItem(WidgetGlobalSearchGuildsModel.Item item) {
@@ -328,7 +331,7 @@ public final class WidgetGlobalSearch extends AppFragment {
                 return new WidgetGlobalSearchModel.ItemGuild(WidgetGlobalSearchModel.INSTANCE.getEMPTY_MATCH_RESULT(), item.getGuild(), channel, 0, false, 24, null);
             }
             if (userA != null) {
-                return new WidgetGlobalSearchModel.ItemUser(WidgetGlobalSearchModel.INSTANCE.getEMPTY_MATCH_RESULT(), userA, n.emptyList(), false, null, channel, 0, false, Opcodes.CHECKCAST, null);
+                return new WidgetGlobalSearchModel.ItemUser(WidgetGlobalSearchModel.INSTANCE.getEMPTY_MATCH_RESULT(), userA, Collections2.emptyList(), false, null, channel, 0, false, Opcodes.CHECKCAST, null);
             }
             if (channel == null || !ChannelUtils.z(channel)) {
                 return null;
@@ -343,8 +346,8 @@ public final class WidgetGlobalSearch extends AppFragment {
 
     public WidgetGlobalSearch() {
         super(R.layout.widget_global_search);
-        this.dismissViewModel = FragmentViewModelLazyKt.createViewModelLazy(this, a0.getOrCreateKotlinClass(WidgetGlobalSearchDismissModel.class), new WidgetGlobalSearch$$special$$inlined$activityViewModels$1(this), new WidgetGlobalSearch$$special$$inlined$activityViewModels$2(this));
-        this.binding = FragmentViewBindingDelegateKt.viewBinding$default(this, WidgetGlobalSearch$binding$2.INSTANCE, null, 2, null);
+        this.dismissViewModel = FragmentViewModelLazyKt.createViewModelLazy(this, Reflection2.getOrCreateKotlinClass(WidgetGlobalSearchDismissModel.class), new WidgetGlobalSearch$$special$$inlined$activityViewModels$1(this), new WidgetGlobalSearch$$special$$inlined$activityViewModels$2(this));
+        this.binding = FragmentViewBindingDelegate3.viewBinding$default(this, WidgetGlobalSearch2.INSTANCE, null, 2, null);
         this.storeTabsNavigation = StoreStream.INSTANCE.getTabsNavigation();
         this.filterPublisher = BehaviorSubject.l0("");
     }
@@ -397,36 +400,36 @@ public final class WidgetGlobalSearch extends AppFragment {
     private final void configureUI(WidgetGlobalSearchModel model) {
         WidgetGlobalSearchGuildsAdapter widgetGlobalSearchGuildsAdapter = this.guildsAdapter;
         if (widgetGlobalSearchGuildsAdapter == null) {
-            m.throwUninitializedPropertyAccessException("guildsAdapter");
+            Intrinsics3.throwUninitializedPropertyAccessException("guildsAdapter");
         }
         List<WidgetGlobalSearchGuildsModel.Item> guildsList = model.getGuildsList();
         if (guildsList == null) {
-            guildsList = n.emptyList();
+            guildsList = Collections2.emptyList();
         }
         widgetGlobalSearchGuildsAdapter.setData(guildsList);
         WidgetGlobalSearchGuildsAdapter widgetGlobalSearchGuildsAdapter2 = this.guildsAdapter;
         if (widgetGlobalSearchGuildsAdapter2 == null) {
-            m.throwUninitializedPropertyAccessException("guildsAdapter");
+            Intrinsics3.throwUninitializedPropertyAccessException("guildsAdapter");
         }
         widgetGlobalSearchGuildsAdapter2.setOnLongClickListener(new AnonymousClass1());
         WidgetGlobalSearchGuildsAdapter widgetGlobalSearchGuildsAdapter3 = this.guildsAdapter;
         if (widgetGlobalSearchGuildsAdapter3 == null) {
-            m.throwUninitializedPropertyAccessException("guildsAdapter");
+            Intrinsics3.throwUninitializedPropertyAccessException("guildsAdapter");
         }
         widgetGlobalSearchGuildsAdapter3.setOnClickListener(new AnonymousClass2(model));
         RecyclerView recyclerView = getBinding().e;
-        m.checkNotNullExpressionValue(recyclerView, "binding.globalSearchGuildList");
+        Intrinsics3.checkNotNullExpressionValue(recyclerView, "binding.globalSearchGuildList");
         List<WidgetGlobalSearchGuildsModel.Item> guildsList2 = model.getGuildsList();
         recyclerView.setVisibility(guildsList2 != null && !guildsList2.isEmpty() ? 0 : 8);
         WidgetGlobalSearchAdapter widgetGlobalSearchAdapter = this.resultsAdapter;
         if (widgetGlobalSearchAdapter == null) {
-            m.throwUninitializedPropertyAccessException("resultsAdapter");
+            Intrinsics3.throwUninitializedPropertyAccessException("resultsAdapter");
         }
-        widgetGlobalSearchAdapter.setOnUpdated(new WidgetGlobalSearch$configureUI$$inlined$apply$lambda$1(this, model));
+        widgetGlobalSearchAdapter.setOnUpdated(new WidgetGlobalSearch3(this, model));
         widgetGlobalSearchAdapter.setData(model.getData());
-        widgetGlobalSearchAdapter.setOnSelectedListener(new WidgetGlobalSearch$configureUI$$inlined$apply$lambda$2(this, model));
+        widgetGlobalSearchAdapter.setOnSelectedListener(new WidgetGlobalSearch4(this, model));
         AppViewFlipper appViewFlipper = getBinding().h;
-        m.checkNotNullExpressionValue(appViewFlipper, "binding.globalSearchViewFlipper");
+        Intrinsics3.checkNotNullExpressionValue(appViewFlipper, "binding.globalSearchViewFlipper");
         appViewFlipper.setDisplayedChild(getViewIndex(model));
     }
 
@@ -452,7 +455,7 @@ public final class WidgetGlobalSearch extends AppFragment {
         if (!widgetGlobalSearchModel.getData().isEmpty()) {
             return 0;
         }
-        return t.isBlank(widgetGlobalSearchModel.getFilter()) ^ true ? 2 : 1;
+        return StringsJVM.isBlank(widgetGlobalSearchModel.getFilter()) ^ true ? 2 : 1;
     }
 
     private final void handleOnSelected(WidgetGlobalSearchModel widgetGlobalSearchModel, View view, int i, WidgetGlobalSearchModel.ItemDataPayload itemDataPayload, boolean z2) {
@@ -461,12 +464,12 @@ public final class WidgetGlobalSearch extends AppFragment {
                 WidgetUserSheet.Companion companion = WidgetUserSheet.INSTANCE;
                 long id2 = ((WidgetGlobalSearchModel.ItemUser) itemDataPayload).getUser().getId();
                 FragmentManager parentFragmentManager = getParentFragmentManager();
-                m.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
+                Intrinsics3.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
                 WidgetUserSheet.Companion.show$default(companion, id2, null, parentFragmentManager, null, null, null, null, 122, null);
             } else {
                 ChannelSelector companion2 = ChannelSelector.INSTANCE.getInstance();
                 Context context = view.getContext();
-                m.checkNotNullExpressionValue(context, "view.context");
+                Intrinsics3.checkNotNullExpressionValue(context, "view.context");
                 companion2.findAndSetDirectMessage(context, ((WidgetGlobalSearchModel.ItemUser) itemDataPayload).getUser().getId());
             }
         } else if (itemDataPayload instanceof WidgetGlobalSearchModel.ItemChannel) {
@@ -507,37 +510,37 @@ public final class WidgetGlobalSearch extends AppFragment {
     @Override // com.discord.app.AppFragment
     public void onViewBound(View view) {
         String string;
-        m.checkNotNullParameter(view, "view");
+        Intrinsics3.checkNotNullParameter(view, "view");
         super.onViewBound(view);
         MGRecyclerAdapter.Companion companion = MGRecyclerAdapter.INSTANCE;
         RecyclerView recyclerView = getBinding().g;
-        m.checkNotNullExpressionValue(recyclerView, "binding.globalSearchRecycler");
+        Intrinsics3.checkNotNullExpressionValue(recyclerView, "binding.globalSearchRecycler");
         this.resultsAdapter = (WidgetGlobalSearchAdapter) companion.configure(new WidgetGlobalSearchAdapter(recyclerView));
         RecyclerView recyclerView2 = getBinding().e;
-        m.checkNotNullExpressionValue(recyclerView2, "binding.globalSearchGuildList");
+        Intrinsics3.checkNotNullExpressionValue(recyclerView2, "binding.globalSearchGuildList");
         this.guildsAdapter = (WidgetGlobalSearchGuildsAdapter) companion.configure(new WidgetGlobalSearchGuildsAdapter(recyclerView2, ColorCompat.getThemedColor(view, R.attr.primary_630)));
         TextInputLayout textInputLayout = getBinding().c;
-        m.checkNotNullExpressionValue(textInputLayout, "binding.globalSearchBar");
+        Intrinsics3.checkNotNullExpressionValue(textInputLayout, "binding.globalSearchBar");
         ViewExtensions.addBindedTextWatcher(textInputLayout, this, new AnonymousClass1());
         Bundle arguments = getArguments();
         if (arguments != null && (string = arguments.getString(EXTRA_SEARCH_TEXT)) != null) {
             TextInputLayout textInputLayout2 = getBinding().c;
-            m.checkNotNullExpressionValue(textInputLayout2, "binding.globalSearchBar");
+            Intrinsics3.checkNotNullExpressionValue(textInputLayout2, "binding.globalSearchBar");
             ViewExtensions.setText(textInputLayout2, string);
             TextInputLayout textInputLayout3 = getBinding().c;
-            m.checkNotNullExpressionValue(textInputLayout3, "binding.globalSearchBar");
+            Intrinsics3.checkNotNullExpressionValue(textInputLayout3, "binding.globalSearchBar");
             ViewExtensions.setSelectionEnd(textInputLayout3);
         }
         getBinding().c.setEndIconOnClickListener(new AnonymousClass3());
         getBinding().c.setStartIconOnClickListener(new AnonymousClass4());
-        j0.l.e.k kVar = new j0.l.e.k(Unit.a);
-        m.checkNotNullExpressionValue(kVar, "Observable.just(Unit)");
-        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(kVar, this, null, 2, null), WidgetGlobalSearch.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass5(), 62, (Object) null);
+        ScalarSynchronousObservable scalarSynchronousObservable = new ScalarSynchronousObservable(Unit.a);
+        Intrinsics3.checkNotNullExpressionValue(scalarSynchronousObservable, "Observable.just(Unit)");
+        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(scalarSynchronousObservable, this, null, 2, null), WidgetGlobalSearch.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass5(), 62, (Object) null);
         getBinding().f2403b.setOnClickListener(new AnonymousClass6());
         getBinding().f.setOnClickListener(new AnonymousClass7());
         if (AccessibilityUtils.INSTANCE.isReducedMotionEnabled()) {
             RecyclerView recyclerView3 = getBinding().g;
-            m.checkNotNullExpressionValue(recyclerView3, "binding.globalSearchRecycler");
+            Intrinsics3.checkNotNullExpressionValue(recyclerView3, "binding.globalSearchRecycler");
             recyclerView3.setItemAnimator(null);
         }
     }
@@ -547,15 +550,15 @@ public final class WidgetGlobalSearch extends AppFragment {
         super.onViewBoundOrOnResume();
         WidgetGlobalSearchModel.Companion companion = WidgetGlobalSearchModel.INSTANCE;
         BehaviorSubject<String> behaviorSubject = this.filterPublisher;
-        m.checkNotNullExpressionValue(behaviorSubject, "filterPublisher");
+        Intrinsics3.checkNotNullExpressionValue(behaviorSubject, "filterPublisher");
         Observable<WidgetGlobalSearchModel> forNav = companion.getForNav(behaviorSubject);
         WidgetGlobalSearchAdapter widgetGlobalSearchAdapter = this.resultsAdapter;
         if (widgetGlobalSearchAdapter == null) {
-            m.throwUninitializedPropertyAccessException("resultsAdapter");
+            Intrinsics3.throwUninitializedPropertyAccessException("resultsAdapter");
         }
         ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui(forNav, this, widgetGlobalSearchAdapter), WidgetGlobalSearch.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass1(this), 62, (Object) null);
         BehaviorSubject<String> behaviorSubject2 = this.filterPublisher;
-        m.checkNotNullExpressionValue(behaviorSubject2, "filterPublisher");
+        Intrinsics3.checkNotNullExpressionValue(behaviorSubject2, "filterPublisher");
         StoreGuilds.Actions.requestMembers(this, behaviorSubject2, false);
     }
 
@@ -564,39 +567,39 @@ public final class WidgetGlobalSearch extends AppFragment {
     private final void setSearchPrefix(String prefix) {
         CharSequence charSequenceReplace;
         TextInputLayout textInputLayout = getBinding().c;
-        m.checkNotNullExpressionValue(textInputLayout, "binding.globalSearchBar");
+        Intrinsics3.checkNotNullExpressionValue(textInputLayout, "binding.globalSearchBar");
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(ViewExtensions.getTextOrEmpty(textInputLayout));
         if (spannableStringBuilder.length() == 0) {
             charSequenceReplace = prefix + ((Object) spannableStringBuilder);
         } else {
-            char cFirst = y.first(spannableStringBuilder);
+            char cFirst = _Strings.first(spannableStringBuilder);
             if (cFirst == '!' || cFirst == '#' || cFirst == '*' || cFirst == '@') {
                 charSequenceReplace = spannableStringBuilder.replace(0, 1, (CharSequence) prefix);
             } else {
                 charSequenceReplace = prefix + ((Object) spannableStringBuilder);
             }
         }
-        m.checkNotNullExpressionValue(charSequenceReplace, "newQuery");
-        if (!t.isBlank(charSequenceReplace)) {
+        Intrinsics3.checkNotNullExpressionValue(charSequenceReplace, "newQuery");
+        if (!StringsJVM.isBlank(charSequenceReplace)) {
             TextInputLayout textInputLayout2 = getBinding().c;
             ViewExtensions.setText(textInputLayout2, charSequenceReplace);
-            textInputLayout2.post(new WidgetGlobalSearch$setSearchPrefix$1$1(textInputLayout2));
+            textInputLayout2.post(new WidgetGlobalSearch5(textInputLayout2));
         }
     }
 
     private final void showFilterPickerDialog() {
-        Pair[] pairArrAccess$getFILTER_OPTIONS_LIST$p = Companion.access$getFILTER_OPTIONS_LIST$p(INSTANCE);
-        ArrayList arrayList = new ArrayList(pairArrAccess$getFILTER_OPTIONS_LIST$p.length);
-        for (Pair pair : pairArrAccess$getFILTER_OPTIONS_LIST$p) {
-            arrayList.add(getString(((Number) pair.component1()).intValue()));
+        Tuples2[] tuples2ArrAccess$getFILTER_OPTIONS_LIST$p = Companion.access$getFILTER_OPTIONS_LIST$p(INSTANCE);
+        ArrayList arrayList = new ArrayList(tuples2ArrAccess$getFILTER_OPTIONS_LIST$p.length);
+        for (Tuples2 tuples2 : tuples2ArrAccess$getFILTER_OPTIONS_LIST$p) {
+            arrayList.add(getString(((Number) tuples2.component1()).intValue()));
         }
         Object[] array = arrayList.toArray(new String[0]);
         Objects.requireNonNull(array, "null cannot be cast to non-null type kotlin.Array<T>");
-        b.a.a.n.Companion companion = b.a.a.n.INSTANCE;
+        SelectorDialog.Companion companion = SelectorDialog.INSTANCE;
         FragmentManager parentFragmentManager = getParentFragmentManager();
-        m.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
+        Intrinsics3.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
         String string = getString(R.string.filter_options);
-        m.checkNotNullExpressionValue(string, "getString(R.string.filter_options)");
+        Intrinsics3.checkNotNullExpressionValue(string, "getString(R.string.filter_options)");
         companion.a(parentFragmentManager, string, (String[]) array, new AnonymousClass1());
     }
 }

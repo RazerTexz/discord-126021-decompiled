@@ -1,22 +1,26 @@
 package b.i.a.c.s2;
 
+import b.i.a.c.a3.LoadEventInfo;
+import b.i.a.c.a3.MediaLoadData;
+import b.i.a.c.f3.ListenerSet;
+
 /* JADX INFO: compiled from: lambda */
 /* JADX INFO: loaded from: classes3.dex */
-public final /* synthetic */ class k0 implements b.i.a.c.f3.p.a {
-    public final /* synthetic */ h1.a a;
+public final /* synthetic */ class k0 implements ListenerSet.a {
+    public final /* synthetic */ AnalyticsListener.a a;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    public final /* synthetic */ b.i.a.c.a3.t f1090b;
-    public final /* synthetic */ b.i.a.c.a3.w c;
+    public final /* synthetic */ LoadEventInfo f1090b;
+    public final /* synthetic */ MediaLoadData c;
 
-    public /* synthetic */ k0(h1.a aVar, b.i.a.c.a3.t tVar, b.i.a.c.a3.w wVar) {
+    public /* synthetic */ k0(AnalyticsListener.a aVar, LoadEventInfo loadEventInfo, MediaLoadData mediaLoadData) {
         this.a = aVar;
-        this.f1090b = tVar;
-        this.c = wVar;
+        this.f1090b = loadEventInfo;
+        this.c = mediaLoadData;
     }
 
-    @Override // b.i.a.c.f3.p.a
+    @Override // b.i.a.c.f3.ListenerSet.a
     public final void invoke(Object obj) {
-        ((h1) obj).R();
+        ((AnalyticsListener) obj).R();
     }
 }

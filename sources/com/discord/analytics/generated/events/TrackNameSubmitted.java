@@ -1,14 +1,14 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackNameSubmitted.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackNameSubmitted implements AnalyticsSchema, TrackBaseReceiver {
+public final /* data */ class TrackNameSubmitted implements AnalyticsSchema, TrackBase2 {
     private final Long numChars = null;
     private final Long numWords = null;
     private TrackBase trackBase;
@@ -22,7 +22,7 @@ public final /* data */ class TrackNameSubmitted implements AnalyticsSchema, Tra
             return false;
         }
         TrackNameSubmitted trackNameSubmitted = (TrackNameSubmitted) other;
-        return m.areEqual(this.numWords, trackNameSubmitted.numWords) && m.areEqual(this.numChars, trackNameSubmitted.numChars);
+        return Intrinsics3.areEqual(this.numWords, trackNameSubmitted.numWords) && Intrinsics3.areEqual(this.numChars, trackNameSubmitted.numChars);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -39,9 +39,9 @@ public final /* data */ class TrackNameSubmitted implements AnalyticsSchema, Tra
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackNameSubmitted(numWords=");
+        StringBuilder sbU = outline.U("TrackNameSubmitted(numWords=");
         sbU.append(this.numWords);
         sbU.append(", numChars=");
-        return a.G(sbU, this.numChars, ")");
+        return outline.G(sbU, this.numChars, ")");
     }
 }

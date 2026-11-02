@@ -1,7 +1,7 @@
 package com.discord.models.experiments.domain;
 
-import b.d.b.a.a;
-import d0.z.d.m;
+import b.d.b.a.outline;
+import d0.z.d.Intrinsics3;
 import kotlin.jvm.internal.DefaultConstructorMarker;
 
 /* JADX INFO: compiled from: ExperimentContext.kt */
@@ -46,7 +46,7 @@ public final /* data */ class ExperimentContext {
             return false;
         }
         ExperimentContext experimentContext = (ExperimentContext) other;
-        return this.shouldTrigger == experimentContext.shouldTrigger && m.areEqual(this.guildId, experimentContext.guildId) && m.areEqual(this.channelId, experimentContext.channelId);
+        return this.shouldTrigger == experimentContext.shouldTrigger && Intrinsics3.areEqual(this.guildId, experimentContext.guildId) && Intrinsics3.areEqual(this.channelId, experimentContext.channelId);
     }
 
     /* JADX INFO: renamed from: component3, reason: from getter */
@@ -94,12 +94,12 @@ public final /* data */ class ExperimentContext {
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("ExperimentContext(shouldTrigger=");
+        StringBuilder sbU = outline.U("ExperimentContext(shouldTrigger=");
         sbU.append(this.shouldTrigger);
         sbU.append(", guildId=");
         sbU.append(this.guildId);
         sbU.append(", channelId=");
-        return a.G(sbU, this.channelId, ")");
+        return outline.G(sbU, this.channelId, ")");
     }
 
     public /* synthetic */ ExperimentContext(boolean z2, Long l, Long l2, int i, DefaultConstructorMarker defaultConstructorMarker) {

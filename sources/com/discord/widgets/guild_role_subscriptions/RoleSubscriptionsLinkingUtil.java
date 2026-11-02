@@ -3,13 +3,14 @@ package com.discord.widgets.guild_role_subscriptions;
 import android.content.Context;
 import android.net.Uri;
 import androidx.core.app.NotificationCompat;
+import b.a.d.AppToast;
 import com.discord.R;
 import com.discord.stores.StoreStream;
 import com.discord.utilities.handoff.MobileWebHandoff;
 import com.discord.utilities.intent.StaticChannelRoutes;
-import com.discord.widgets.chat.input.MentionUtilsKt;
+import com.discord.widgets.chat.input.MentionUtils;
 import com.discord.widgets.guild_role_subscriptions.entrypoint.WidgetGuildRoleSubscriptionEntryPoint;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 import kotlin.NoWhenBranchMatchedException;
 
 /* JADX INFO: compiled from: RoleSubscriptionsLinkingUtil.kt */
@@ -61,11 +62,11 @@ public final class RoleSubscriptionsLinkingUtil {
     }
 
     public final HandoffResult handoffToGuildRoleSubscriptions(Context context, long guildId) {
-        m.checkNotNullParameter(context, "context");
+        Intrinsics3.checkNotNullParameter(context, "context");
         int iOrdinal = getHandoffEligibility(guildId).ordinal();
         if (iOrdinal != 0) {
             if (iOrdinal == 1 || iOrdinal == 2) {
-                b.a.d.m.g(context, R.string.inaccessible_channel_link_title, 0, null, 12);
+                AppToast.g(context, R.string.inaccessible_channel_link_title, 0, null, 12);
                 return HandoffResult.INELIGIBLE;
             }
             if (iOrdinal != 3) {
@@ -74,7 +75,7 @@ public final class RoleSubscriptionsLinkingUtil {
             WidgetGuildRoleSubscriptionEntryPoint.INSTANCE.launch(context, guildId, "Role Subscriptions Tab");
             return HandoffResult.INELIGIBLE;
         }
-        boolean zPerformHandoff = performHandoff(context, "/channels/" + guildId + MentionUtilsKt.SLASH_CHAR + StaticChannelRoutes.ROLE_SUBSCRIPTIONS.getRoute());
+        boolean zPerformHandoff = performHandoff(context, "/channels/" + guildId + MentionUtils.SLASH_CHAR + StaticChannelRoutes.ROLE_SUBSCRIPTIONS.getRoute());
         if (zPerformHandoff) {
             return HandoffResult.SUCCESS;
         }
@@ -89,8 +90,8 @@ public final class RoleSubscriptionsLinkingUtil {
     }
 
     public final boolean tryPerformHandoff(Context context, Uri uri) {
-        m.checkNotNullParameter(context, "context");
-        m.checkNotNullParameter(uri, NotificationCompat.MessagingStyle.Message.KEY_DATA_URI);
+        Intrinsics3.checkNotNullParameter(context, "context");
+        Intrinsics3.checkNotNullParameter(uri, NotificationCompat.MessagingStyle.Message.KEY_DATA_URI);
         StaticChannelRoutes.WithGuild withGuildExtractStaticRoute = StaticChannelRoutes.INSTANCE.extractStaticRoute(uri);
         if (withGuildExtractStaticRoute != null) {
             return withGuildExtractStaticRoute.getRoute() == StaticChannelRoutes.ROLE_SUBSCRIPTIONS && handoffToGuildRoleSubscriptions(context, withGuildExtractStaticRoute.getGuildId()) != HandoffResult.FAILURE;

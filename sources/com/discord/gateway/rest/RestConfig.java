@@ -1,9 +1,9 @@
 package com.discord.gateway.rest;
 
-import b.d.b.a.a;
-import com.discord.restapi.RequiredHeadersInterceptor;
-import d0.t.n;
-import d0.z.d.m;
+import b.d.b.a.outline;
+import com.discord.restapi.RestInterceptors2;
+import d0.t.Collections2;
+import d0.z.d.Intrinsics3;
 import java.util.List;
 import kotlin.jvm.internal.DefaultConstructorMarker;
 import okhttp3.Interceptor;
@@ -12,14 +12,14 @@ import okhttp3.Interceptor;
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class RestConfig {
     private final String baseUrl;
-    private final RequiredHeadersInterceptor.HeadersProvider headersProvider;
+    private final RestInterceptors2.HeadersProvider headersProvider;
     private final List<Interceptor> optionalInterceptors;
 
     /* JADX WARN: Multi-variable type inference failed */
-    public RestConfig(String str, RequiredHeadersInterceptor.HeadersProvider headersProvider, List<? extends Interceptor> list) {
-        m.checkNotNullParameter(str, "baseUrl");
-        m.checkNotNullParameter(headersProvider, "headersProvider");
-        m.checkNotNullParameter(list, "optionalInterceptors");
+    public RestConfig(String str, RestInterceptors2.HeadersProvider headersProvider, List<? extends Interceptor> list) {
+        Intrinsics3.checkNotNullParameter(str, "baseUrl");
+        Intrinsics3.checkNotNullParameter(headersProvider, "headersProvider");
+        Intrinsics3.checkNotNullParameter(list, "optionalInterceptors");
         this.baseUrl = str;
         this.headersProvider = headersProvider;
         this.optionalInterceptors = list;
@@ -30,7 +30,7 @@ public final /* data */ class RestConfig {
     }
 
     /* JADX WARN: Multi-variable type inference failed */
-    public static /* synthetic */ RestConfig copy$default(RestConfig restConfig, String str, RequiredHeadersInterceptor.HeadersProvider headersProvider, List list, int i, Object obj) {
+    public static /* synthetic */ RestConfig copy$default(RestConfig restConfig, String str, RestInterceptors2.HeadersProvider headersProvider, List list, int i, Object obj) {
         if ((i & 1) != 0) {
             str = restConfig.baseUrl;
         }
@@ -43,10 +43,10 @@ public final /* data */ class RestConfig {
         return restConfig.copy(str, headersProvider, list);
     }
 
-    public final RestConfig copy(String baseUrl, RequiredHeadersInterceptor.HeadersProvider headersProvider, List<? extends Interceptor> optionalInterceptors) {
-        m.checkNotNullParameter(baseUrl, "baseUrl");
-        m.checkNotNullParameter(headersProvider, "headersProvider");
-        m.checkNotNullParameter(optionalInterceptors, "optionalInterceptors");
+    public final RestConfig copy(String baseUrl, RestInterceptors2.HeadersProvider headersProvider, List<? extends Interceptor> optionalInterceptors) {
+        Intrinsics3.checkNotNullParameter(baseUrl, "baseUrl");
+        Intrinsics3.checkNotNullParameter(headersProvider, "headersProvider");
+        Intrinsics3.checkNotNullParameter(optionalInterceptors, "optionalInterceptors");
         return new RestConfig(baseUrl, headersProvider, optionalInterceptors);
     }
 
@@ -58,7 +58,7 @@ public final /* data */ class RestConfig {
             return false;
         }
         RestConfig restConfig = (RestConfig) other;
-        return m.areEqual(this.baseUrl, restConfig.baseUrl) && m.areEqual(this.headersProvider, restConfig.headersProvider) && m.areEqual(this.optionalInterceptors, restConfig.optionalInterceptors);
+        return Intrinsics3.areEqual(this.baseUrl, restConfig.baseUrl) && Intrinsics3.areEqual(this.headersProvider, restConfig.headersProvider) && Intrinsics3.areEqual(this.optionalInterceptors, restConfig.optionalInterceptors);
     }
 
     /* JADX INFO: renamed from: component1, reason: from getter */
@@ -71,11 +71,11 @@ public final /* data */ class RestConfig {
     }
 
     /* JADX INFO: renamed from: component2, reason: from getter */
-    public final RequiredHeadersInterceptor.HeadersProvider getHeadersProvider() {
+    public final RestInterceptors2.HeadersProvider getHeadersProvider() {
         return this.headersProvider;
     }
 
-    public final RequiredHeadersInterceptor.HeadersProvider getHeadersProvider() {
+    public final RestInterceptors2.HeadersProvider getHeadersProvider() {
         return this.headersProvider;
     }
 
@@ -86,22 +86,22 @@ public final /* data */ class RestConfig {
     public int hashCode() {
         String str = this.baseUrl;
         int iHashCode = (str != null ? str.hashCode() : 0) * 31;
-        RequiredHeadersInterceptor.HeadersProvider headersProvider = this.headersProvider;
+        RestInterceptors2.HeadersProvider headersProvider = this.headersProvider;
         int iHashCode2 = (iHashCode + (headersProvider != null ? headersProvider.hashCode() : 0)) * 31;
         List<Interceptor> list = this.optionalInterceptors;
         return iHashCode2 + (list != null ? list.hashCode() : 0);
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("RestConfig(baseUrl=");
+        StringBuilder sbU = outline.U("RestConfig(baseUrl=");
         sbU.append(this.baseUrl);
         sbU.append(", headersProvider=");
         sbU.append(this.headersProvider);
         sbU.append(", optionalInterceptors=");
-        return a.L(sbU, this.optionalInterceptors, ")");
+        return outline.L(sbU, this.optionalInterceptors, ")");
     }
 
-    public /* synthetic */ RestConfig(String str, RequiredHeadersInterceptor.HeadersProvider headersProvider, List list, int i, DefaultConstructorMarker defaultConstructorMarker) {
-        this(str, headersProvider, (i & 4) != 0 ? n.emptyList() : list);
+    public /* synthetic */ RestConfig(String str, RestInterceptors2.HeadersProvider headersProvider, List list, int i, DefaultConstructorMarker defaultConstructorMarker) {
+        this(str, headersProvider, (i & 4) != 0 ? Collections2.emptyList() : list);
     }
 }

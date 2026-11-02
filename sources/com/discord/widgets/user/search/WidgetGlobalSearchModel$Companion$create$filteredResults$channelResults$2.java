@@ -1,17 +1,17 @@
 package com.discord.widgets.user.search;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.api.channel.Channel;
 import com.discord.api.channel.ChannelUtils;
 import com.discord.models.user.User;
-import d0.z.d.m;
-import d0.z.d.o;
+import d0.z.d.Intrinsics3;
+import d0.z.d.Lambda;
 import java.util.HashSet;
 import kotlin.jvm.functions.Function1;
 
 /* JADX INFO: compiled from: WidgetGlobalSearchModel.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final class WidgetGlobalSearchModel$Companion$create$filteredResults$channelResults$2 extends o implements Function1<Channel, WidgetGlobalSearchModel.ItemDataPayload> {
+public final class WidgetGlobalSearchModel$Companion$create$filteredResults$channelResults$2 extends Lambda implements Function1<Channel, WidgetGlobalSearchModel.ItemDataPayload> {
     public final /* synthetic */ String $sanitizedFilter;
     public final /* synthetic */ HashSet $seenUsersIds;
     public final /* synthetic */ WidgetGlobalSearchModel$Companion$create$4 $toItemChannel$4;
@@ -35,12 +35,12 @@ public final class WidgetGlobalSearchModel$Companion$create$filteredResults$chan
 
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final WidgetGlobalSearchModel.ItemDataPayload invoke2(Channel channel) {
-        m.checkNotNullParameter(channel, "channel");
+        Intrinsics3.checkNotNullParameter(channel, "channel");
         User userA = ChannelUtils.a(channel);
         if (userA != null) {
             this.$seenUsersIds.add(Long.valueOf(userA.getId()));
             WidgetGlobalSearchModel$Companion$create$2 widgetGlobalSearchModel$Companion$create$2 = this.$toItemUser$2;
-            User user = (User) a.f(userA, this.$usersContext.getUsers());
+            User user = (User) outline.f(userA, this.$usersContext.getUsers());
             if (user != null) {
                 userA = user;
             }

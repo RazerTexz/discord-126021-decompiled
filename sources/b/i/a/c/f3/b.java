@@ -7,10 +7,10 @@ import java.util.Iterator;
 /* JADX INFO: compiled from: lambda */
 /* JADX INFO: loaded from: classes3.dex */
 public final /* synthetic */ class b implements Handler.Callback {
-    public final /* synthetic */ p j;
+    public final /* synthetic */ ListenerSet j;
 
-    public /* synthetic */ b(p pVar) {
-        this.j = pVar;
+    public /* synthetic */ b(ListenerSet listenerSet) {
+        this.j = listenerSet;
     }
 
     /* JADX WARN: Type inference fix 'apply assigned field type' failed
@@ -25,18 +25,18 @@ public final /* synthetic */ class b implements Handler.Callback {
      */
     @Override // android.os.Handler.Callback
     public final boolean handleMessage(Message message) {
-        p pVar = this.j;
-        Iterator it = pVar.d.iterator();
+        ListenerSet listenerSet = this.j;
+        Iterator it = listenerSet.d.iterator();
         while (it.hasNext()) {
-            p.c cVar = (p.c) it.next();
-            p.b<T> bVar = pVar.c;
+            ListenerSet.c cVar = (ListenerSet.c) it.next();
+            ListenerSet.b<T> bVar = listenerSet.c;
             if (!cVar.d && cVar.c) {
-                n nVarB = cVar.f974b.b();
-                cVar.f974b = new n.b();
+                FlagSet flagSetB = cVar.f974b.b();
+                cVar.f974b = new FlagSet.b();
                 cVar.c = false;
-                bVar.a(cVar.a, nVarB);
+                bVar.a(cVar.a, flagSetB);
             }
-            if (pVar.f973b.e(0)) {
+            if (listenerSet.f973b.e(0)) {
                 return true;
             }
         }

@@ -1,8 +1,8 @@
 package com.discord.utilities;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.api.channel.Channel;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: ShareUtils.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -12,7 +12,7 @@ public final /* data */ class ChannelShortcutInfo {
     private final int rank;
 
     public ChannelShortcutInfo(Channel channel, int i, boolean z2) {
-        m.checkNotNullParameter(channel, "channel");
+        Intrinsics3.checkNotNullParameter(channel, "channel");
         this.channel = channel;
         this.rank = i;
         this.isPinnedOnly = z2;
@@ -32,7 +32,7 @@ public final /* data */ class ChannelShortcutInfo {
     }
 
     public final ChannelShortcutInfo copy(Channel channel, int rank, boolean isPinnedOnly) {
-        m.checkNotNullParameter(channel, "channel");
+        Intrinsics3.checkNotNullParameter(channel, "channel");
         return new ChannelShortcutInfo(channel, rank, isPinnedOnly);
     }
 
@@ -44,7 +44,7 @@ public final /* data */ class ChannelShortcutInfo {
             return false;
         }
         ChannelShortcutInfo channelShortcutInfo = (ChannelShortcutInfo) other;
-        return m.areEqual(this.channel, channelShortcutInfo.channel) && this.rank == channelShortcutInfo.rank && this.isPinnedOnly == channelShortcutInfo.isPinnedOnly;
+        return Intrinsics3.areEqual(this.channel, channelShortcutInfo.channel) && this.rank == channelShortcutInfo.rank && this.isPinnedOnly == channelShortcutInfo.isPinnedOnly;
     }
 
     /* JADX INFO: renamed from: component1, reason: from getter */
@@ -91,11 +91,11 @@ public final /* data */ class ChannelShortcutInfo {
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("ChannelShortcutInfo(channel=");
+        StringBuilder sbU = outline.U("ChannelShortcutInfo(channel=");
         sbU.append(this.channel);
         sbU.append(", rank=");
         sbU.append(this.rank);
         sbU.append(", isPinnedOnly=");
-        return a.O(sbU, this.isPinnedOnly, ")");
+        return outline.O(sbU, this.isPinnedOnly, ")");
     }
 }

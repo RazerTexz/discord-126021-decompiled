@@ -1,10 +1,10 @@
 package com.discord.widgets.channels.list.items;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.api.channel.Channel;
 import com.discord.models.presence.Presence;
 import com.discord.widgets.channels.list.WidgetChannelListUnreads;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: ChannelListItemPrivate.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -19,7 +19,7 @@ public final /* data */ class ChannelListItemPrivate implements ChannelListItem,
     private final int type;
 
     public ChannelListItemPrivate(Channel channel, Presence presence, boolean z2, int i, boolean z3, boolean z4) {
-        m.checkNotNullParameter(channel, "channel");
+        Intrinsics3.checkNotNullParameter(channel, "channel");
         this.channel = channel;
         this.presence = presence;
         this.selected = z2;
@@ -61,7 +61,7 @@ public final /* data */ class ChannelListItemPrivate implements ChannelListItem,
     }
 
     public final ChannelListItemPrivate copy(Channel channel, Presence presence, boolean selected, int mentionCount, boolean isApplicationStreaming, boolean muted) {
-        m.checkNotNullParameter(channel, "channel");
+        Intrinsics3.checkNotNullParameter(channel, "channel");
         return new ChannelListItemPrivate(channel, presence, selected, mentionCount, isApplicationStreaming, muted);
     }
 
@@ -73,7 +73,7 @@ public final /* data */ class ChannelListItemPrivate implements ChannelListItem,
             return false;
         }
         ChannelListItemPrivate channelListItemPrivate = (ChannelListItemPrivate) other;
-        return m.areEqual(this.channel, channelListItemPrivate.channel) && m.areEqual(this.presence, channelListItemPrivate.presence) && this.selected == channelListItemPrivate.selected && getMentionCount() == channelListItemPrivate.getMentionCount() && this.isApplicationStreaming == channelListItemPrivate.isApplicationStreaming && this.muted == channelListItemPrivate.muted;
+        return Intrinsics3.areEqual(this.channel, channelListItemPrivate.channel) && Intrinsics3.areEqual(this.presence, channelListItemPrivate.presence) && this.selected == channelListItemPrivate.selected && getMentionCount() == channelListItemPrivate.getMentionCount() && this.isApplicationStreaming == channelListItemPrivate.isApplicationStreaming && this.muted == channelListItemPrivate.muted;
     }
 
     /* JADX INFO: renamed from: component1, reason: from getter */
@@ -176,7 +176,7 @@ public final /* data */ class ChannelListItemPrivate implements ChannelListItem,
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("ChannelListItemPrivate(channel=");
+        StringBuilder sbU = outline.U("ChannelListItemPrivate(channel=");
         sbU.append(this.channel);
         sbU.append(", presence=");
         sbU.append(this.presence);
@@ -187,6 +187,6 @@ public final /* data */ class ChannelListItemPrivate implements ChannelListItem,
         sbU.append(", isApplicationStreaming=");
         sbU.append(this.isApplicationStreaming);
         sbU.append(", muted=");
-        return a.O(sbU, this.muted, ")");
+        return outline.O(sbU, this.muted, ")");
     }
 }

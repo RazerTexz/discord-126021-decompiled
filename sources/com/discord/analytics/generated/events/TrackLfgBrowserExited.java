@@ -1,14 +1,14 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackLfgBrowserExited.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackLfgBrowserExited implements AnalyticsSchema, TrackBaseReceiver {
+public final /* data */ class TrackLfgBrowserExited implements AnalyticsSchema, TrackBase2 {
     private final Long duration = null;
     private final Long numGroups = null;
     private TrackBase trackBase;
@@ -22,7 +22,7 @@ public final /* data */ class TrackLfgBrowserExited implements AnalyticsSchema, 
             return false;
         }
         TrackLfgBrowserExited trackLfgBrowserExited = (TrackLfgBrowserExited) other;
-        return m.areEqual(this.duration, trackLfgBrowserExited.duration) && m.areEqual(this.numGroups, trackLfgBrowserExited.numGroups);
+        return Intrinsics3.areEqual(this.duration, trackLfgBrowserExited.duration) && Intrinsics3.areEqual(this.numGroups, trackLfgBrowserExited.numGroups);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -39,9 +39,9 @@ public final /* data */ class TrackLfgBrowserExited implements AnalyticsSchema, 
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackLfgBrowserExited(duration=");
+        StringBuilder sbU = outline.U("TrackLfgBrowserExited(duration=");
         sbU.append(this.duration);
         sbU.append(", numGroups=");
-        return a.G(sbU, this.numGroups, ")");
+        return outline.G(sbU, this.numGroups, ")");
     }
 }

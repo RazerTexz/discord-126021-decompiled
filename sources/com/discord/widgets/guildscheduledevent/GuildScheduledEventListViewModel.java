@@ -2,8 +2,9 @@ package com.discord.widgets.guildscheduledevent;
 
 import android.content.Context;
 import androidx.fragment.app.Fragment;
-import b.a.d.d0;
-import b.d.b.a.a;
+import b.a.d.AppToast;
+import b.a.d.AppViewModel;
+import b.d.b.a.outline;
 import com.discord.api.channel.Channel;
 import com.discord.api.guildscheduledevent.GuildScheduledEvent;
 import com.discord.api.permission.Permission;
@@ -16,15 +17,16 @@ import com.discord.stores.StoreStream;
 import com.discord.stores.StoreUser;
 import com.discord.stores.StoreVoiceChannelSelected;
 import com.discord.stores.updates.ObservationDeck;
-import com.discord.stores.updates.ObservationDeckProvider;
+import com.discord.stores.updates.ObservationDeck4;
 import com.discord.utilities.analytics.AnalyticsTracker;
 import com.discord.utilities.channel.ChannelInviteLaunchUtils;
 import com.discord.utilities.guildscheduledevent.GuildScheduledEventUtilities;
 import com.discord.utilities.permissions.PermissionUtils;
 import com.discord.utilities.rx.ObservableExtensionsKt;
-import d0.z.d.k;
-import d0.z.d.m;
-import d0.z.d.o;
+import d0.t.Iterables2;
+import d0.z.d.FunctionReferenceImpl;
+import d0.z.d.Intrinsics3;
+import d0.z.d.Lambda;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
@@ -38,7 +40,7 @@ import rx.Observable;
 
 /* JADX INFO: compiled from: GuildScheduledEventListViewModel.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class GuildScheduledEventListViewModel extends d0<ViewState> {
+public final class GuildScheduledEventListViewModel extends AppViewModel<ViewState> {
 
     /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
     public static final Companion INSTANCE = new Companion(null);
@@ -53,7 +55,7 @@ public final class GuildScheduledEventListViewModel extends d0<ViewState> {
 
     /* JADX INFO: renamed from: com.discord.widgets.guildscheduledevent.GuildScheduledEventListViewModel$1, reason: invalid class name */
     /* JADX INFO: compiled from: GuildScheduledEventListViewModel.kt */
-    public final /* synthetic */ class AnonymousClass1 extends k implements Function1<StoreState, Unit> {
+    public final /* synthetic */ class AnonymousClass1 extends FunctionReferenceImpl implements Function1<StoreState, Unit> {
         public AnonymousClass1(GuildScheduledEventListViewModel guildScheduledEventListViewModel) {
             super(1, guildScheduledEventListViewModel, GuildScheduledEventListViewModel.class, "handleStoreState", "handleStoreState(Lcom/discord/widgets/guildscheduledevent/GuildScheduledEventListViewModel$StoreState;)V", 0);
         }
@@ -66,14 +68,14 @@ public final class GuildScheduledEventListViewModel extends d0<ViewState> {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(StoreState storeState) {
-            m.checkNotNullParameter(storeState, "p1");
+            Intrinsics3.checkNotNullParameter(storeState, "p1");
             GuildScheduledEventListViewModel.access$handleStoreState((GuildScheduledEventListViewModel) this.receiver, storeState);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.widgets.guildscheduledevent.GuildScheduledEventListViewModel$onShareClicked$1, reason: invalid class name */
     /* JADX INFO: compiled from: GuildScheduledEventListViewModel.kt */
-    public final class AnonymousClass1 extends o implements Function1<Channel, Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function1<Channel, Unit> {
         public final /* synthetic */ Channel $channel;
         public final /* synthetic */ long $guildEventId;
         public final /* synthetic */ WeakReference $weakFragment;
@@ -97,7 +99,7 @@ public final class GuildScheduledEventListViewModel extends d0<ViewState> {
             Fragment fragment = (Fragment) this.$weakFragment.get();
             if (fragment != null) {
                 ChannelInviteLaunchUtils channelInviteLaunchUtils = ChannelInviteLaunchUtils.INSTANCE;
-                m.checkNotNullExpressionValue(fragment, "fragment");
+                Intrinsics3.checkNotNullExpressionValue(fragment, "fragment");
                 Channel channel2 = this.$channel;
                 ChannelInviteLaunchUtils.inviteToChannel$default(channelInviteLaunchUtils, fragment, channel2 != null ? channel2 : channel, GuildScheduledEventUtilities.ANALYTICS_SOURCE, Long.valueOf(this.$guildEventId), null, 16, null);
             }
@@ -114,7 +116,7 @@ public final class GuildScheduledEventListViewModel extends d0<ViewState> {
         }
 
         private final Observable<StoreState> observeStores(long guildId, Long channelId, StoreGuildScheduledEvents guildScheduledEventsStore, StoreChannels channelStore, StorePermissions permissionsStore, StoreGuilds guildStore, StoreVoiceChannelSelected voiceChannelSelectedStore, StoreUser userStore) {
-            return ObservationDeck.connectRx$default(ObservationDeckProvider.get(), new ObservationDeck.UpdateSource[]{guildScheduledEventsStore, channelStore, permissionsStore, guildStore, voiceChannelSelectedStore, userStore}, false, null, null, new GuildScheduledEventListViewModel$Companion$observeStores$1(channelStore, guildId, guildScheduledEventsStore, channelId, userStore, guildStore, permissionsStore, voiceChannelSelectedStore), 14, null);
+            return ObservationDeck.connectRx$default(ObservationDeck4.get(), new ObservationDeck.UpdateSource[]{guildScheduledEventsStore, channelStore, permissionsStore, guildStore, voiceChannelSelectedStore, userStore}, false, null, null, new GuildScheduledEventListViewModel2(channelStore, guildId, guildScheduledEventsStore, channelId, userStore, guildStore, permissionsStore, voiceChannelSelectedStore), 14, null);
         }
 
         public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
@@ -133,11 +135,11 @@ public final class GuildScheduledEventListViewModel extends d0<ViewState> {
         private final Set<Long> userGuildScheduledEventIds;
 
         public StoreState(List<GuildScheduledEvent> list, Set<Long> set, Map<Long, Channel> map, Map<Long, UserGuildMember> map2, boolean z2, Long l, Map<Long, Long> map3) {
-            m.checkNotNullParameter(list, "guildScheduledEvents");
-            m.checkNotNullParameter(set, "userGuildScheduledEventIds");
-            m.checkNotNullParameter(map, "guildChannels");
-            m.checkNotNullParameter(map2, "creators");
-            m.checkNotNullParameter(map3, "channelPermissions");
+            Intrinsics3.checkNotNullParameter(list, "guildScheduledEvents");
+            Intrinsics3.checkNotNullParameter(set, "userGuildScheduledEventIds");
+            Intrinsics3.checkNotNullParameter(map, "guildChannels");
+            Intrinsics3.checkNotNullParameter(map2, "creators");
+            Intrinsics3.checkNotNullParameter(map3, "channelPermissions");
             this.guildScheduledEvents = list;
             this.userGuildScheduledEventIds = set;
             this.guildChannels = map;
@@ -199,11 +201,11 @@ public final class GuildScheduledEventListViewModel extends d0<ViewState> {
         }
 
         public final StoreState copy(List<GuildScheduledEvent> guildScheduledEvents, Set<Long> userGuildScheduledEventIds, Map<Long, Channel> guildChannels, Map<Long, UserGuildMember> creators, boolean canCreateEvents, Long selectedVoiceChannelId, Map<Long, Long> channelPermissions) {
-            m.checkNotNullParameter(guildScheduledEvents, "guildScheduledEvents");
-            m.checkNotNullParameter(userGuildScheduledEventIds, "userGuildScheduledEventIds");
-            m.checkNotNullParameter(guildChannels, "guildChannels");
-            m.checkNotNullParameter(creators, "creators");
-            m.checkNotNullParameter(channelPermissions, "channelPermissions");
+            Intrinsics3.checkNotNullParameter(guildScheduledEvents, "guildScheduledEvents");
+            Intrinsics3.checkNotNullParameter(userGuildScheduledEventIds, "userGuildScheduledEventIds");
+            Intrinsics3.checkNotNullParameter(guildChannels, "guildChannels");
+            Intrinsics3.checkNotNullParameter(creators, "creators");
+            Intrinsics3.checkNotNullParameter(channelPermissions, "channelPermissions");
             return new StoreState(guildScheduledEvents, userGuildScheduledEventIds, guildChannels, creators, canCreateEvents, selectedVoiceChannelId, channelPermissions);
         }
 
@@ -215,7 +217,7 @@ public final class GuildScheduledEventListViewModel extends d0<ViewState> {
                 return false;
             }
             StoreState storeState = (StoreState) other;
-            return m.areEqual(this.guildScheduledEvents, storeState.guildScheduledEvents) && m.areEqual(this.userGuildScheduledEventIds, storeState.userGuildScheduledEventIds) && m.areEqual(this.guildChannels, storeState.guildChannels) && m.areEqual(this.creators, storeState.creators) && this.canCreateEvents == storeState.canCreateEvents && m.areEqual(this.selectedVoiceChannelId, storeState.selectedVoiceChannelId) && m.areEqual(this.channelPermissions, storeState.channelPermissions);
+            return Intrinsics3.areEqual(this.guildScheduledEvents, storeState.guildScheduledEvents) && Intrinsics3.areEqual(this.userGuildScheduledEventIds, storeState.userGuildScheduledEventIds) && Intrinsics3.areEqual(this.guildChannels, storeState.guildChannels) && Intrinsics3.areEqual(this.creators, storeState.creators) && this.canCreateEvents == storeState.canCreateEvents && Intrinsics3.areEqual(this.selectedVoiceChannelId, storeState.selectedVoiceChannelId) && Intrinsics3.areEqual(this.channelPermissions, storeState.channelPermissions);
         }
 
         /* JADX INFO: renamed from: component5, reason: from getter */
@@ -282,7 +284,7 @@ public final class GuildScheduledEventListViewModel extends d0<ViewState> {
         }
 
         public String toString() {
-            StringBuilder sbU = a.U("StoreState(guildScheduledEvents=");
+            StringBuilder sbU = outline.U("StoreState(guildScheduledEvents=");
             sbU.append(this.guildScheduledEvents);
             sbU.append(", userGuildScheduledEventIds=");
             sbU.append(this.userGuildScheduledEventIds);
@@ -295,7 +297,7 @@ public final class GuildScheduledEventListViewModel extends d0<ViewState> {
             sbU.append(", selectedVoiceChannelId=");
             sbU.append(this.selectedVoiceChannelId);
             sbU.append(", channelPermissions=");
-            return a.M(sbU, this.channelPermissions, ")");
+            return outline.M(sbU, this.channelPermissions, ")");
         }
     }
 
@@ -319,7 +321,7 @@ public final class GuildScheduledEventListViewModel extends d0<ViewState> {
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
             public Loaded(List<GuildScheduledEventListItem.Event> list, boolean z2) {
                 super(null);
-                m.checkNotNullParameter(list, "guildScheduledEvents");
+                Intrinsics3.checkNotNullParameter(list, "guildScheduledEvents");
                 this.guildScheduledEvents = list;
                 this.canCreateEvents = z2;
             }
@@ -340,7 +342,7 @@ public final class GuildScheduledEventListViewModel extends d0<ViewState> {
             }
 
             public final Loaded copy(List<GuildScheduledEventListItem.Event> guildScheduledEvents, boolean canCreateEvents) {
-                m.checkNotNullParameter(guildScheduledEvents, "guildScheduledEvents");
+                Intrinsics3.checkNotNullParameter(guildScheduledEvents, "guildScheduledEvents");
                 return new Loaded(guildScheduledEvents, canCreateEvents);
             }
 
@@ -352,7 +354,7 @@ public final class GuildScheduledEventListViewModel extends d0<ViewState> {
                     return false;
                 }
                 Loaded loaded = (Loaded) other;
-                return m.areEqual(this.guildScheduledEvents, loaded.guildScheduledEvents) && this.canCreateEvents == loaded.canCreateEvents;
+                return Intrinsics3.areEqual(this.guildScheduledEvents, loaded.guildScheduledEvents) && this.canCreateEvents == loaded.canCreateEvents;
             }
 
             /* JADX INFO: renamed from: component2, reason: from getter */
@@ -385,10 +387,10 @@ public final class GuildScheduledEventListViewModel extends d0<ViewState> {
             }
 
             public String toString() {
-                StringBuilder sbU = a.U("Loaded(guildScheduledEvents=");
+                StringBuilder sbU = outline.U("Loaded(guildScheduledEvents=");
                 sbU.append(this.guildScheduledEvents);
                 sbU.append(", canCreateEvents=");
-                return a.O(sbU, this.canCreateEvents, ")");
+                return outline.O(sbU, this.canCreateEvents, ")");
             }
         }
 
@@ -421,7 +423,7 @@ public final class GuildScheduledEventListViewModel extends d0<ViewState> {
             AnalyticsTracker.INSTANCE.openGuildScheduledEventSheet(this.guildId, storeState.getGuildScheduledEvents().size());
         }
         List<GuildScheduledEvent> guildScheduledEvents = storeState.getGuildScheduledEvents();
-        ArrayList arrayList = new ArrayList(d0.t.o.collectionSizeOrDefault(guildScheduledEvents, 10));
+        ArrayList arrayList = new ArrayList(Iterables2.collectionSizeOrDefault(guildScheduledEvents, 10));
         for (GuildScheduledEvent guildScheduledEvent : guildScheduledEvents) {
             Long channelId = guildScheduledEvent.getChannelId();
             Channel channel = channelId != null ? storeState.getGuildChannels().get(Long.valueOf(channelId.longValue())) : null;
@@ -447,9 +449,9 @@ public final class GuildScheduledEventListViewModel extends d0<ViewState> {
 
     public final void onShareClicked(GuildScheduledEvent guildScheduledEvent, WeakReference<Context> weakContext, WeakReference<Fragment> weakFragment) {
         Channel channel;
-        m.checkNotNullParameter(guildScheduledEvent, "guildScheduledEvent");
-        m.checkNotNullParameter(weakContext, "weakContext");
-        m.checkNotNullParameter(weakFragment, "weakFragment");
+        Intrinsics3.checkNotNullParameter(guildScheduledEvent, "guildScheduledEvent");
+        Intrinsics3.checkNotNullParameter(weakContext, "weakContext");
+        Intrinsics3.checkNotNullParameter(weakFragment, "weakFragment");
         long guildId = guildScheduledEvent.getGuildId();
         long id2 = guildScheduledEvent.getId();
         Long channelId = guildScheduledEvent.getChannelId();
@@ -461,33 +463,33 @@ public final class GuildScheduledEventListViewModel extends d0<ViewState> {
         }
         if (zCanShareEvent$default) {
             Observable<Channel> observableZ = StoreStream.INSTANCE.getChannels().observeDefaultChannel(guildId).z();
-            m.checkNotNullExpressionValue(observableZ, "StoreStream.getChannels(…ildId)\n          .first()");
+            Intrinsics3.checkNotNullExpressionValue(observableZ, "StoreStream.getChannels(…ildId)\n          .first()");
             ObservableExtensionsKt.appSubscribe$default(observableZ, GuildScheduledEventListViewModel.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass1(weakFragment, channel, id2), 62, (Object) null);
         } else {
             Context context = weakContext.get();
             if (context != null) {
                 CharSequence eventDetailsUrl = GuildScheduledEventUrlUtils.INSTANCE.getEventDetailsUrl(guildId, id2);
-                m.checkNotNullExpressionValue(context, "context");
-                b.a.d.m.c(context, eventDetailsUrl, 0, 4);
+                Intrinsics3.checkNotNullExpressionValue(context, "context");
+                AppToast.c(context, eventDetailsUrl, 0, 4);
             }
         }
     }
 
     public final void toggleRsvp(GuildScheduledEvent guildScheduledEvent) {
-        m.checkNotNullParameter(guildScheduledEvent, "guildScheduledEvent");
+        Intrinsics3.checkNotNullParameter(guildScheduledEvent, "guildScheduledEvent");
         this.guildScheduledEventsStore.toggleMeRsvpForEvent(guildScheduledEvent);
     }
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public GuildScheduledEventListViewModel(long j, Long l, StoreGuildScheduledEvents storeGuildScheduledEvents, StoreChannels storeChannels, StorePermissions storePermissions, StoreGuilds storeGuilds, StoreVoiceChannelSelected storeVoiceChannelSelected, StoreUser storeUser, Observable<StoreState> observable) {
         super(ViewState.Initial.INSTANCE);
-        m.checkNotNullParameter(storeGuildScheduledEvents, "guildScheduledEventsStore");
-        m.checkNotNullParameter(storeChannels, "channelsStore");
-        m.checkNotNullParameter(storePermissions, "permissionsStore");
-        m.checkNotNullParameter(storeGuilds, "guildsStore");
-        m.checkNotNullParameter(storeVoiceChannelSelected, "voiceChannelSelectedStore");
-        m.checkNotNullParameter(storeUser, "userStore");
-        m.checkNotNullParameter(observable, "storeStateObservable");
+        Intrinsics3.checkNotNullParameter(storeGuildScheduledEvents, "guildScheduledEventsStore");
+        Intrinsics3.checkNotNullParameter(storeChannels, "channelsStore");
+        Intrinsics3.checkNotNullParameter(storePermissions, "permissionsStore");
+        Intrinsics3.checkNotNullParameter(storeGuilds, "guildsStore");
+        Intrinsics3.checkNotNullParameter(storeVoiceChannelSelected, "voiceChannelSelectedStore");
+        Intrinsics3.checkNotNullParameter(storeUser, "userStore");
+        Intrinsics3.checkNotNullParameter(observable, "storeStateObservable");
         this.guildId = j;
         this.channelId = l;
         this.guildScheduledEventsStore = storeGuildScheduledEvents;

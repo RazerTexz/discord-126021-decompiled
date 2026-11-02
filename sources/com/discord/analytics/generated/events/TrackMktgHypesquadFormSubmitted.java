@@ -1,16 +1,16 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.analytics.generated.traits.TrackMarketingSite;
-import com.discord.analytics.generated.traits.TrackMarketingSiteReceiver;
+import com.discord.analytics.generated.traits.TrackMarketingSite2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackMktgHypesquadFormSubmitted.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackMktgHypesquadFormSubmitted implements AnalyticsSchema, TrackBaseReceiver, TrackMarketingSiteReceiver {
+public final /* data */ class TrackMktgHypesquadFormSubmitted implements AnalyticsSchema, TrackBase2, TrackMarketingSite2 {
     private final CharSequence referredByCode = null;
     private TrackBase trackBase;
     private TrackMarketingSite trackMarketingSite;
@@ -18,7 +18,7 @@ public final /* data */ class TrackMktgHypesquadFormSubmitted implements Analyti
 
     public boolean equals(Object other) {
         if (this != other) {
-            return (other instanceof TrackMktgHypesquadFormSubmitted) && m.areEqual(this.referredByCode, ((TrackMktgHypesquadFormSubmitted) other).referredByCode);
+            return (other instanceof TrackMktgHypesquadFormSubmitted) && Intrinsics3.areEqual(this.referredByCode, ((TrackMktgHypesquadFormSubmitted) other).referredByCode);
         }
         return true;
     }
@@ -38,6 +38,6 @@ public final /* data */ class TrackMktgHypesquadFormSubmitted implements Analyti
     }
 
     public String toString() {
-        return a.E(a.U("TrackMktgHypesquadFormSubmitted(referredByCode="), this.referredByCode, ")");
+        return outline.E(outline.U("TrackMktgHypesquadFormSubmitted(referredByCode="), this.referredByCode, ")");
     }
 }

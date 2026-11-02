@@ -3,19 +3,19 @@ package com.discord.gateway;
 import android.content.Context;
 import androidx.core.app.NotificationCompat;
 import androidx.recyclerview.widget.RecyclerView;
-import b.d.b.a.a;
-import b.i.d.c;
-import b.i.d.e;
+import b.d.b.a.outline;
+import b.i.d.FieldNamingPolicy;
+import b.i.d.GsonBuilder;
 import com.discord.api.activity.Activity;
 import com.discord.api.activity.ActivityType;
-import com.discord.api.activity.ActivityTypeTypeAdapter;
+import com.discord.api.activity.ActivityType2;
 import com.discord.api.channel.Channel;
 import com.discord.api.guild.Guild;
 import com.discord.api.presence.ClientStatus;
 import com.discord.gateway.io.Incoming;
-import com.discord.gateway.io.IncomingParser;
+import com.discord.gateway.io.Incoming2;
 import com.discord.gateway.io.Outgoing;
-import com.discord.gateway.io.OutgoingPayload;
+import com.discord.gateway.io.Outgoing2;
 import com.discord.gateway.opcodes.Opcode;
 import com.discord.gateway.rest.RestClient;
 import com.discord.gateway.rest.RestConfig;
@@ -24,7 +24,7 @@ import com.discord.models.domain.ModelAuditLogEntry;
 import com.discord.models.domain.ModelPayload;
 import com.discord.utilities.analytics.Traits;
 import com.discord.utilities.collections.ListenerCollection;
-import com.discord.utilities.collections.ListenerCollectionSubject;
+import com.discord.utilities.collections.ListenerCollection2;
 import com.discord.utilities.logging.Logger;
 import com.discord.utilities.networking.Backoff;
 import com.discord.utilities.networking.NetworkMonitor;
@@ -33,19 +33,22 @@ import com.discord.utilities.time.ClockFactory;
 import com.discord.utilities.websocket.WebSocket;
 import com.google.gson.Gson;
 import com.google.gson.stream.JsonReader;
-import d0.g0.t;
-import d0.t.h0;
-import d0.t.n;
-import d0.t.n0;
-import d0.t.u;
-import d0.z.d.e0;
-import d0.z.d.k;
-import d0.z.d.m;
-import d0.z.d.o;
-import j0.k.b;
-import j0.l.a.r;
-import j0.l.a.v1;
-import j0.l.a.w1;
+import d0.Tuples;
+import d0.g0.StringsJVM;
+import d0.t.Collections2;
+import d0.t.Maps6;
+import d0.t.Sets5;
+import d0.t._Collections;
+import d0.z.d.FunctionReferenceImpl;
+import d0.z.d.Intrinsics3;
+import d0.z.d.Lambda;
+import d0.z.d.TypeIntrinsics;
+import j0.k.Func1;
+import j0.l.a.OnSubscribeLift;
+import j0.l.a.OperatorSkipWhile2;
+import j0.l.a.OperatorSkipWhile3;
+import j0.l.e.ScalarSynchronousObservable;
+import j0.p.Schedulers2;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
@@ -60,7 +63,7 @@ import java.util.Set;
 import java.util.concurrent.TimeUnit;
 import javax.net.ssl.SSLSocketFactory;
 import kotlin.NoWhenBranchMatchedException;
-import kotlin.Pair;
+import kotlin.Tuples2;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
@@ -125,7 +128,7 @@ public final class GatewaySocket {
     private final Function0<IdentifyData> identifyDataProvider;
     private final Map<String, Object> identifyProperties;
     private long identifyStartTime;
-    private final ListenerCollectionSubject<Listener> listenerSubject;
+    private final ListenerCollection2<Listener> listenerSubject;
     private final ListenerCollection<Listener> listeners;
     private final Logger logger;
     private boolean nextReconnectIsImmediate;
@@ -140,7 +143,7 @@ public final class GatewaySocket {
 
     /* JADX INFO: renamed from: com.discord.gateway.GatewaySocket$1, reason: invalid class name */
     /* JADX INFO: compiled from: GatewaySocket.kt */
-    public final class AnonymousClass1 extends o implements Function1<String, Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function1<String, Unit> {
         public AnonymousClass1() {
             super(1);
         }
@@ -153,14 +156,14 @@ public final class GatewaySocket {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(String str) {
-            m.checkNotNullParameter(str, "message");
+            Intrinsics3.checkNotNullParameter(str, "message");
             Companion.log$default(GatewaySocket.INSTANCE, GatewaySocket.access$getLogger$p(GatewaySocket.this), str, false, 2, null);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.gateway.GatewaySocket$callConnect$1, reason: invalid class name */
     /* JADX INFO: compiled from: GatewaySocket.kt */
-    public final class AnonymousClass1 extends o implements Function0<Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function0<Unit> {
         public final /* synthetic */ long $channelId;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -179,26 +182,26 @@ public final class GatewaySocket {
         public final void invoke2() {
             Companion companion = GatewaySocket.INSTANCE;
             Logger loggerAccess$getLogger$p = GatewaySocket.access$getLogger$p(GatewaySocket.this);
-            StringBuilder sbU = a.U("Sending call connect sync on channel id: ");
+            StringBuilder sbU = outline.U("Sending call connect sync on channel id: ");
             sbU.append(this.$channelId);
             sbU.append('.');
             Companion.log$default(companion, loggerAccess$getLogger$p, sbU.toString(), false, 2, null);
-            GatewaySocket.send$default(GatewaySocket.this, new Outgoing(Opcode.CALL_CONNECT, new OutgoingPayload.CallConnect(this.$channelId)), false, null, 6, null);
+            GatewaySocket.send$default(GatewaySocket.this, new Outgoing(Opcode.CALL_CONNECT, new Outgoing2.CallConnect(this.$channelId)), false, null, 6, null);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.gateway.GatewaySocket$close$1, reason: invalid class name */
     /* JADX INFO: compiled from: GatewaySocket.kt */
-    public final class AnonymousClass1 extends o implements Function0<Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function0<Unit> {
         public final /* synthetic */ boolean $clean;
 
         /* JADX INFO: renamed from: com.discord.gateway.GatewaySocket$close$1$1, reason: invalid class name and collision with other inner class name */
         /* JADX INFO: compiled from: GatewaySocket.kt */
-        public final class C01851 extends o implements Function1<WebSocket, Unit> {
+        public final class C00651 extends Lambda implements Function1<WebSocket, Unit> {
             public final /* synthetic */ int $code;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-            public C01851(int i) {
+            public C00651(int i) {
                 super(1);
                 this.$code = i;
             }
@@ -235,7 +238,7 @@ public final class GatewaySocket {
                 return;
             }
             int i = this.$clean ? 1000 : 4000;
-            GatewaySocket.access$cleanup(GatewaySocket.this, new C01851(i));
+            GatewaySocket.access$cleanup(GatewaySocket.this, new C00651(i));
             GatewaySocket.access$setConnectionState$p(GatewaySocket.this, 0);
             GatewaySocket.access$reset(GatewaySocket.this, this.$clean, i, "Disconnect requested by client");
         }
@@ -243,7 +246,7 @@ public final class GatewaySocket {
 
     /* JADX INFO: renamed from: com.discord.gateway.GatewaySocket$connect$1, reason: invalid class name */
     /* JADX INFO: compiled from: GatewaySocket.kt */
-    public final class AnonymousClass1 extends o implements Function0<Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function0<Unit> {
         public AnonymousClass1() {
             super(0);
         }
@@ -265,7 +268,7 @@ public final class GatewaySocket {
 
     /* JADX INFO: renamed from: com.discord.gateway.GatewaySocket$discover$1, reason: invalid class name */
     /* JADX INFO: compiled from: GatewaySocket.kt */
-    public final class AnonymousClass1 extends o implements Function1<Listener, Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function1<Listener, Unit> {
         public AnonymousClass1() {
             super(1);
         }
@@ -278,21 +281,21 @@ public final class GatewaySocket {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(Listener listener) {
-            m.checkNotNullParameter(listener, "it");
+            Intrinsics3.checkNotNullParameter(listener, "it");
             listener.onConnecting(GatewaySocket.this);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.gateway.GatewaySocket$expeditedHeartbeat$1, reason: invalid class name */
     /* JADX INFO: compiled from: GatewaySocket.kt */
-    public final class AnonymousClass1 extends o implements Function0<Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function0<Unit> {
         public final /* synthetic */ String $reason;
         public final /* synthetic */ boolean $shouldResetBackoff;
         public final /* synthetic */ long $timeout;
 
         /* JADX INFO: renamed from: com.discord.gateway.GatewaySocket$expeditedHeartbeat$1$2, reason: invalid class name */
         /* JADX INFO: compiled from: GatewaySocket.kt */
-        public final class AnonymousClass2 extends o implements Function0<Unit> {
+        public final class AnonymousClass2 extends Lambda implements Function0<Unit> {
             public AnonymousClass2() {
                 super(0);
             }
@@ -314,8 +317,8 @@ public final class GatewaySocket {
 
         /* JADX INFO: renamed from: com.discord.gateway.GatewaySocket$expeditedHeartbeat$1$1, reason: invalid class name and collision with other inner class name */
         /* JADX INFO: compiled from: GatewaySocket.kt */
-        public final class C01861 extends o implements Function1<String, Unit> {
-            public C01861() {
+        public final class C00661 extends Lambda implements Function1<String, Unit> {
+            public C00661() {
                 super(1);
             }
 
@@ -327,7 +330,7 @@ public final class GatewaySocket {
 
             /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
             public final void invoke2(String str) {
-                m.checkNotNullParameter(str, ModelAuditLogEntry.CHANGE_KEY_REASON);
+                Intrinsics3.checkNotNullParameter(str, ModelAuditLogEntry.CHANGE_KEY_REASON);
                 Companion.log$default(GatewaySocket.INSTANCE, GatewaySocket.access$getLogger$p(GatewaySocket.this), "Connection backoff reset " + str + '.', false, 2, null);
                 GatewaySocket.access$getGatewayBackoff$p(GatewaySocket.this).succeed();
                 GatewaySocket.access$setNextReconnectIsImmediate$p(GatewaySocket.this, true);
@@ -353,14 +356,14 @@ public final class GatewaySocket {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2() {
-            String strH = this.$reason != null ? a.H(a.U("with reason '"), this.$reason, '\'') : "";
-            C01861 c01861 = new C01861();
+            String strH = this.$reason != null ? outline.H(outline.U("with reason '"), this.$reason, '\'') : "";
+            C00661 c00661 = new C00661();
             if (GatewaySocket.access$getWebSocket$p(GatewaySocket.this) == null) {
                 if (this.$shouldResetBackoff) {
-                    c01861.invoke2(strH);
+                    c00661.invoke2(strH);
                     return;
                 } else {
-                    Companion.log$default(GatewaySocket.INSTANCE, GatewaySocket.access$getLogger$p(GatewaySocket.this), a.y("Expedited heartbeat requested ", strH, ", but disconnected and no reset backoff."), false, 2, null);
+                    Companion.log$default(GatewaySocket.INSTANCE, GatewaySocket.access$getLogger$p(GatewaySocket.this), outline.y("Expedited heartbeat requested ", strH, ", but disconnected and no reset backoff."), false, 2, null);
                     return;
                 }
             }
@@ -374,7 +377,7 @@ public final class GatewaySocket {
 
     /* JADX INFO: renamed from: com.discord.gateway.GatewaySocket$handleClose$1, reason: invalid class name */
     /* JADX INFO: compiled from: GatewaySocket.kt */
-    public final class AnonymousClass1 extends o implements Function1<WebSocket, Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function1<WebSocket, Unit> {
         public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
 
         public AnonymousClass1() {
@@ -394,7 +397,7 @@ public final class GatewaySocket {
 
     /* JADX INFO: renamed from: com.discord.gateway.GatewaySocket$handleHeartbeatAck$1, reason: invalid class name */
     /* JADX INFO: compiled from: GatewaySocket.kt */
-    public final class AnonymousClass1 extends o implements Function0<Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function0<Unit> {
         public AnonymousClass1() {
             super(0);
         }
@@ -413,7 +416,7 @@ public final class GatewaySocket {
 
     /* JADX INFO: renamed from: com.discord.gateway.GatewaySocket$handleHeartbeatTimeout$1, reason: invalid class name */
     /* JADX INFO: compiled from: GatewaySocket.kt */
-    public final class AnonymousClass1 extends o implements Function1<WebSocket, Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function1<WebSocket, Unit> {
         public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
 
         public AnonymousClass1() {
@@ -436,7 +439,7 @@ public final class GatewaySocket {
 
     /* JADX INFO: renamed from: com.discord.gateway.GatewaySocket$handleHello$1, reason: invalid class name */
     /* JADX INFO: compiled from: GatewaySocket.kt */
-    public final class AnonymousClass1 extends o implements Function1<Listener, Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function1<Listener, Unit> {
         public AnonymousClass1() {
             super(1);
         }
@@ -449,14 +452,14 @@ public final class GatewaySocket {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(Listener listener) {
-            m.checkNotNullParameter(listener, "it");
+            Intrinsics3.checkNotNullParameter(listener, "it");
             listener.onHello(GatewaySocket.this);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.gateway.GatewaySocket$handleReconnect$1, reason: invalid class name */
     /* JADX INFO: compiled from: GatewaySocket.kt */
-    public final class AnonymousClass1 extends o implements Function1<WebSocket, Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function1<WebSocket, Unit> {
         public final /* synthetic */ String $reason;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -481,7 +484,7 @@ public final class GatewaySocket {
 
     /* JADX INFO: renamed from: com.discord.gateway.GatewaySocket$handleWebSocketClose$1, reason: invalid class name */
     /* JADX INFO: compiled from: GatewaySocket.kt */
-    public final class AnonymousClass1 extends o implements Function1<Listener, Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function1<Listener, Unit> {
         public AnonymousClass1() {
             super(1);
         }
@@ -494,14 +497,14 @@ public final class GatewaySocket {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(Listener listener) {
-            m.checkNotNullParameter(listener, "it");
+            Intrinsics3.checkNotNullParameter(listener, "it");
             listener.onDisconnected(GatewaySocket.this);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.gateway.GatewaySocket$handleWebSocketOpened$1, reason: invalid class name */
     /* JADX INFO: compiled from: GatewaySocket.kt */
-    public final class AnonymousClass1 extends o implements Function1<Listener, Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function1<Listener, Unit> {
         public AnonymousClass1() {
             super(1);
         }
@@ -514,14 +517,14 @@ public final class GatewaySocket {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(Listener listener) {
-            m.checkNotNullParameter(listener, "it");
+            Intrinsics3.checkNotNullParameter(listener, "it");
             listener.onConnected(GatewaySocket.this);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.gateway.GatewaySocket$presenceUpdate$1, reason: invalid class name */
     /* JADX INFO: compiled from: GatewaySocket.kt */
-    public final class AnonymousClass1 extends o implements Function0<Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function0<Unit> {
         public final /* synthetic */ List $activities;
         public final /* synthetic */ Boolean $afk;
         public final /* synthetic */ Long $since;
@@ -529,10 +532,10 @@ public final class GatewaySocket {
 
         /* JADX INFO: renamed from: com.discord.gateway.GatewaySocket$presenceUpdate$1$1, reason: invalid class name and collision with other inner class name */
         /* JADX INFO: compiled from: GatewaySocket.kt */
-        public final class C01871 extends o implements Function1<Activity, CharSequence> {
-            public static final C01871 INSTANCE = new C01871();
+        public final class C00671 extends Lambda implements Function1<Activity, CharSequence> {
+            public static final C00671 INSTANCE = new C00671();
 
-            public C01871() {
+            public C00671() {
                 super(1);
             }
 
@@ -543,7 +546,7 @@ public final class GatewaySocket {
 
             /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
             public final CharSequence invoke2(Activity activity) {
-                m.checkNotNullParameter(activity, "it");
+                Intrinsics3.checkNotNullParameter(activity, "it");
                 return activity.getName();
             }
         }
@@ -568,34 +571,34 @@ public final class GatewaySocket {
             String strName;
             Companion companion = GatewaySocket.INSTANCE;
             Logger loggerAccess$getLogger$p = GatewaySocket.access$getLogger$p(GatewaySocket.this);
-            StringBuilder sbU = a.U("Sending self presence update: ");
+            StringBuilder sbU = outline.U("Sending self presence update: ");
             sbU.append(this.$status);
             sbU.append(' ');
             List list = this.$activities;
             String lowerCase = null;
-            sbU.append(list != null ? u.joinToString$default(list, null, null, null, 0, null, C01871.INSTANCE, 31, null) : null);
+            sbU.append(list != null ? _Collections.joinToString$default(list, null, null, null, 0, null, C00671.INSTANCE, 31, null) : null);
             Companion.log$default(companion, loggerAccess$getLogger$p, sbU.toString(), false, 2, null);
             GatewaySocket gatewaySocket = GatewaySocket.this;
             Opcode opcode = Opcode.PRESENCE_UPDATE;
             ClientStatus clientStatus = this.$status;
             if (clientStatus != null && (strName = clientStatus.name()) != null) {
                 Locale locale = Locale.ROOT;
-                m.checkNotNullExpressionValue(locale, "Locale.ROOT");
+                Intrinsics3.checkNotNullExpressionValue(locale, "Locale.ROOT");
                 lowerCase = strName.toLowerCase(locale);
-                m.checkNotNullExpressionValue(lowerCase, "(this as java.lang.String).toLowerCase(locale)");
+                Intrinsics3.checkNotNullExpressionValue(lowerCase, "(this as java.lang.String).toLowerCase(locale)");
             }
             Long l = this.$since;
             List listEmptyList = this.$activities;
             if (listEmptyList == null) {
-                listEmptyList = n.emptyList();
+                listEmptyList = Collections2.emptyList();
             }
-            GatewaySocket.send$default(gatewaySocket, new Outgoing(opcode, new OutgoingPayload.PresenceUpdate(lowerCase, l, listEmptyList, this.$afk)), false, null, 6, null);
+            GatewaySocket.send$default(gatewaySocket, new Outgoing(opcode, new Outgoing2.PresenceUpdate(lowerCase, l, listEmptyList, this.$afk)), false, null, 6, null);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.gateway.GatewaySocket$requestGuildMembers$1, reason: invalid class name */
     /* JADX INFO: compiled from: GatewaySocket.kt */
-    public final class AnonymousClass1 extends o implements Function0<Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function0<Unit> {
         public final /* synthetic */ List $guildIds;
         public final /* synthetic */ Integer $limit;
         public final /* synthetic */ String $query;
@@ -618,19 +621,19 @@ public final class GatewaySocket {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2() {
-            OutgoingPayload.GuildMembersRequest guildMembersRequest = new OutgoingPayload.GuildMembersRequest(this.$guildIds, this.$query, this.$userIds, this.$limit, false, 16, null);
+            Outgoing2.GuildMembersRequest guildMembersRequest = new Outgoing2.GuildMembersRequest(this.$guildIds, this.$query, this.$userIds, this.$limit, false, 16, null);
             Companion.log$default(GatewaySocket.INSTANCE, GatewaySocket.access$getLogger$p(GatewaySocket.this), "Sending guild member request: " + guildMembersRequest, false, 2, null);
             GatewaySocket gatewaySocket = GatewaySocket.this;
             Outgoing outgoing = new Outgoing(Opcode.REQUEST_GUILD_MEMBERS, guildMembersRequest);
             Gson gsonAccess$getGsonOmitNulls$cp = GatewaySocket.access$getGsonOmitNulls$cp();
-            m.checkNotNullExpressionValue(gsonAccess$getGsonOmitNulls$cp, "gsonOmitNulls");
+            Intrinsics3.checkNotNullExpressionValue(gsonAccess$getGsonOmitNulls$cp, "gsonOmitNulls");
             GatewaySocket.send$default(gatewaySocket, outgoing, false, gsonAccess$getGsonOmitNulls$cp, 2, null);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.gateway.GatewaySocket$resetOnError$1, reason: invalid class name */
     /* JADX INFO: compiled from: GatewaySocket.kt */
-    public final class AnonymousClass1 extends o implements Function0<Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function0<Unit> {
         public AnonymousClass1() {
             super(0);
         }
@@ -666,7 +669,7 @@ public final class GatewaySocket {
 
     /* JADX INFO: renamed from: com.discord.gateway.GatewaySocket$simulateReconnectForTesting$1, reason: invalid class name */
     /* JADX INFO: compiled from: GatewaySocket.kt */
-    public final class AnonymousClass1 extends o implements Function0<Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function0<Unit> {
         public AnonymousClass1() {
             super(0);
         }
@@ -685,7 +688,7 @@ public final class GatewaySocket {
 
     /* JADX INFO: renamed from: com.discord.gateway.GatewaySocket$startHeartbeater$1, reason: invalid class name */
     /* JADX INFO: compiled from: GatewaySocket.kt */
-    public final class AnonymousClass1 extends o implements Function0<Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function0<Unit> {
         public AnonymousClass1() {
             super(0);
         }
@@ -713,7 +716,7 @@ public final class GatewaySocket {
 
     /* JADX INFO: renamed from: com.discord.gateway.GatewaySocket$streamDelete$1, reason: invalid class name */
     /* JADX INFO: compiled from: GatewaySocket.kt */
-    public final class AnonymousClass1 extends o implements Function0<Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function0<Unit> {
         public final /* synthetic */ String $streamKey;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -732,16 +735,16 @@ public final class GatewaySocket {
         public final void invoke2() {
             Companion companion = GatewaySocket.INSTANCE;
             Logger loggerAccess$getLogger$p = GatewaySocket.access$getLogger$p(GatewaySocket.this);
-            StringBuilder sbU = a.U("Sending STREAM_DELETE: ");
+            StringBuilder sbU = outline.U("Sending STREAM_DELETE: ");
             sbU.append(this.$streamKey);
             Companion.log$default(companion, loggerAccess$getLogger$p, sbU.toString(), false, 2, null);
-            GatewaySocket.send$default(GatewaySocket.this, new Outgoing(Opcode.STREAM_DELETE, new OutgoingPayload.DeleteStream(this.$streamKey)), false, null, 6, null);
+            GatewaySocket.send$default(GatewaySocket.this, new Outgoing(Opcode.STREAM_DELETE, new Outgoing2.DeleteStream(this.$streamKey)), false, null, 6, null);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.gateway.GatewaySocket$streamPing$1, reason: invalid class name */
     /* JADX INFO: compiled from: GatewaySocket.kt */
-    public final class AnonymousClass1 extends o implements Function0<Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function0<Unit> {
         public final /* synthetic */ String $streamKey;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -760,16 +763,16 @@ public final class GatewaySocket {
         public final void invoke2() {
             Companion companion = GatewaySocket.INSTANCE;
             Logger loggerAccess$getLogger$p = GatewaySocket.access$getLogger$p(GatewaySocket.this);
-            StringBuilder sbU = a.U("Sending OPCODE_STREAM_PING: ");
+            StringBuilder sbU = outline.U("Sending OPCODE_STREAM_PING: ");
             sbU.append(this.$streamKey);
             Companion.log$default(companion, loggerAccess$getLogger$p, sbU.toString(), false, 2, null);
-            GatewaySocket.send$default(GatewaySocket.this, new Outgoing(Opcode.OPCODE_STREAM_PING, new OutgoingPayload.StreamPing(this.$streamKey)), false, null, 6, null);
+            GatewaySocket.send$default(GatewaySocket.this, new Outgoing(Opcode.OPCODE_STREAM_PING, new Outgoing2.StreamPing(this.$streamKey)), false, null, 6, null);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.gateway.GatewaySocket$streamWatch$1, reason: invalid class name */
     /* JADX INFO: compiled from: GatewaySocket.kt */
-    public final class AnonymousClass1 extends o implements Function0<Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function0<Unit> {
         public final /* synthetic */ String $streamKey;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -788,16 +791,16 @@ public final class GatewaySocket {
         public final void invoke2() {
             Companion companion = GatewaySocket.INSTANCE;
             Logger loggerAccess$getLogger$p = GatewaySocket.access$getLogger$p(GatewaySocket.this);
-            StringBuilder sbU = a.U("Sending STREAM_WATCH: ");
+            StringBuilder sbU = outline.U("Sending STREAM_WATCH: ");
             sbU.append(this.$streamKey);
             Companion.log$default(companion, loggerAccess$getLogger$p, sbU.toString(), false, 2, null);
-            GatewaySocket.send$default(GatewaySocket.this, new Outgoing(Opcode.STREAM_WATCH, new OutgoingPayload.WatchStream(this.$streamKey)), false, null, 6, null);
+            GatewaySocket.send$default(GatewaySocket.this, new Outgoing(Opcode.STREAM_WATCH, new Outgoing2.WatchStream(this.$streamKey)), false, null, 6, null);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.gateway.GatewaySocket$voiceServerPing$1, reason: invalid class name */
     /* JADX INFO: compiled from: GatewaySocket.kt */
-    public final class AnonymousClass1 extends o implements Function0<Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function0<Unit> {
         public AnonymousClass1() {
             super(0);
         }
@@ -817,7 +820,7 @@ public final class GatewaySocket {
 
     /* JADX INFO: renamed from: com.discord.gateway.GatewaySocket$voiceStateUpdate$1, reason: invalid class name */
     /* JADX INFO: compiled from: GatewaySocket.kt */
-    public final class AnonymousClass1 extends o implements Function0<Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function0<Unit> {
         public final /* synthetic */ Long $channelId;
         public final /* synthetic */ Long $guildId;
         public final /* synthetic */ String $preferredRegion;
@@ -848,7 +851,7 @@ public final class GatewaySocket {
         public final void invoke2() {
             Companion companion = GatewaySocket.INSTANCE;
             Logger loggerAccess$getLogger$p = GatewaySocket.access$getLogger$p(GatewaySocket.this);
-            StringBuilder sbU = a.U("Sending voice state update for guild [");
+            StringBuilder sbU = outline.U("Sending voice state update for guild [");
             sbU.append(this.$guildId);
             sbU.append("] and channel [");
             sbU.append(this.$channelId);
@@ -860,16 +863,16 @@ public final class GatewaySocket {
             sbU.append(", preferredRegion: ");
             sbU.append(this.$preferredRegion);
             Companion.log$default(companion, loggerAccess$getLogger$p, sbU.toString(), false, 2, null);
-            GatewaySocket.send$default(GatewaySocket.this, new Outgoing(Opcode.VOICE_STATE_UPDATE, this.$shouldIncludePreferredRegion ? new OutgoingPayload.VoiceStateUpdate(this.$guildId, this.$channelId, this.$selfMute, this.$selfDeaf, this.$selfVideo, this.$preferredRegion) : new OutgoingPayload.VoiceStateUpdateNoPreferredRegion(this.$guildId, this.$channelId, this.$selfMute, this.$selfDeaf, this.$selfVideo)), false, null, 6, null);
+            GatewaySocket.send$default(GatewaySocket.this, new Outgoing(Opcode.VOICE_STATE_UPDATE, this.$shouldIncludePreferredRegion ? new Outgoing2.VoiceStateUpdate(this.$guildId, this.$channelId, this.$selfMute, this.$selfDeaf, this.$selfVideo, this.$preferredRegion) : new Outgoing2.VoiceStateUpdateNoPreferredRegion(this.$guildId, this.$channelId, this.$selfMute, this.$selfDeaf, this.$selfVideo)), false, null, 6, null);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.gateway.GatewaySocket$2, reason: invalid class name */
     /* JADX INFO: compiled from: GatewaySocket.kt */
-    public final class AnonymousClass2<T, R> implements b<Boolean, Boolean> {
+    public final class AnonymousClass2<T, R> implements Func1<Boolean, Boolean> {
         public static final AnonymousClass2 INSTANCE = new AnonymousClass2();
 
-        @Override // j0.k.b
+        @Override // j0.k.Func1
         public /* bridge */ /* synthetic */ Boolean call(Boolean bool) {
             return call2(bool);
         }
@@ -882,7 +885,7 @@ public final class GatewaySocket {
 
     /* JADX INFO: renamed from: com.discord.gateway.GatewaySocket$connect$2, reason: invalid class name */
     /* JADX INFO: compiled from: GatewaySocket.kt */
-    public final class AnonymousClass2 extends o implements Function1<WebSocket, Unit> {
+    public final class AnonymousClass2 extends Lambda implements Function1<WebSocket, Unit> {
         public static final AnonymousClass2 INSTANCE = new AnonymousClass2();
 
         public AnonymousClass2() {
@@ -905,7 +908,7 @@ public final class GatewaySocket {
 
     /* JADX INFO: renamed from: com.discord.gateway.GatewaySocket$discover$2, reason: invalid class name */
     /* JADX INFO: compiled from: GatewaySocket.kt */
-    public final class AnonymousClass2 extends o implements Function1<String, Unit> {
+    public final class AnonymousClass2 extends Lambda implements Function1<String, Unit> {
         public AnonymousClass2() {
             super(1);
         }
@@ -919,7 +922,7 @@ public final class GatewaySocket {
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(String str) {
             String str2;
-            m.checkNotNullParameter(str, "gatewayUrl");
+            Intrinsics3.checkNotNullParameter(str, "gatewayUrl");
             GatewaySocket gatewaySocket = GatewaySocket.this;
             Function1 function1Access$getGatewayUrlTransform$p = GatewaySocket.access$getGatewayUrlTransform$p(gatewaySocket);
             if (function1Access$getGatewayUrlTransform$p != null && (str2 = (String) function1Access$getGatewayUrlTransform$p.invoke(str)) != null) {
@@ -958,14 +961,14 @@ public final class GatewaySocket {
         /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
         public final void call2(Boolean bool) {
             GatewaySocket gatewaySocket = GatewaySocket.this;
-            m.checkNotNullExpressionValue(bool, "isConnected");
+            Intrinsics3.checkNotNullExpressionValue(bool, "isConnected");
             GatewaySocket.access$handleDeviceConnectivityChange(gatewaySocket, bool.booleanValue());
         }
     }
 
     /* JADX INFO: renamed from: com.discord.gateway.GatewaySocket$connect$3, reason: invalid class name */
     /* JADX INFO: compiled from: GatewaySocket.kt */
-    public final class AnonymousClass3 extends o implements Function0<Unit> {
+    public final class AnonymousClass3 extends Lambda implements Function0<Unit> {
         public AnonymousClass3() {
             super(0);
         }
@@ -979,7 +982,7 @@ public final class GatewaySocket {
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2() {
             GatewaySocket gatewaySocket = GatewaySocket.this;
-            StringBuilder sbU = a.U("Connection timed out after ");
+            StringBuilder sbU = outline.U("Connection timed out after ");
             sbU.append(Companion.getDelay$default(GatewaySocket.INSTANCE, GatewaySocket.access$getConnectionStartTime$p(GatewaySocket.this), null, 2, null));
             sbU.append("ms, did not receive hello in time.");
             GatewaySocket.access$handleClose(gatewaySocket, false, 0, sbU.toString());
@@ -988,7 +991,7 @@ public final class GatewaySocket {
 
     /* JADX INFO: renamed from: com.discord.gateway.GatewaySocket$discover$3, reason: invalid class name */
     /* JADX INFO: compiled from: GatewaySocket.kt */
-    public final class AnonymousClass3 extends o implements Function1<Throwable, Unit> {
+    public final class AnonymousClass3 extends Lambda implements Function1<Throwable, Unit> {
         public AnonymousClass3() {
             super(1);
         }
@@ -1001,7 +1004,7 @@ public final class GatewaySocket {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(Throwable th) {
-            m.checkNotNullParameter(th, "it");
+            Intrinsics3.checkNotNullParameter(th, "it");
             GatewaySocket.access$discoveryFailed(GatewaySocket.this);
         }
     }
@@ -1020,7 +1023,7 @@ public final class GatewaySocket {
         /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
         public final void call2(Throwable th) {
             Logger loggerAccess$getLogger$p = GatewaySocket.access$getLogger$p(GatewaySocket.this);
-            StringBuilder sbU = a.U("failed to handle connectivity change in ");
+            StringBuilder sbU = outline.U("failed to handle connectivity change in ");
             sbU.append(GatewaySocket.this.getClass().getSimpleName());
             Logger.e$default(loggerAccess$getLogger$p, sbU.toString(), th, null, 4, null);
         }
@@ -1028,7 +1031,7 @@ public final class GatewaySocket {
 
     /* JADX INFO: renamed from: com.discord.gateway.GatewaySocket$connect$4, reason: invalid class name */
     /* JADX INFO: compiled from: GatewaySocket.kt */
-    public final /* synthetic */ class AnonymousClass4 extends k implements Function3<String, Exception, Map<String, ? extends String>, Unit> {
+    public final /* synthetic */ class AnonymousClass4 extends FunctionReferenceImpl implements Function3<String, Exception, Map<String, ? extends String>, Unit> {
         public AnonymousClass4(GatewaySocket gatewaySocket) {
             super(3, gatewaySocket, GatewaySocket.class, "logError", "logError(Ljava/lang/String;Ljava/lang/Exception;Ljava/util/Map;)V", 0);
         }
@@ -1041,8 +1044,8 @@ public final class GatewaySocket {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(String str, Exception exc, Map<String, String> map) {
-            m.checkNotNullParameter(str, "p1");
-            m.checkNotNullParameter(exc, "p2");
+            Intrinsics3.checkNotNullParameter(str, "p1");
+            Intrinsics3.checkNotNullParameter(exc, "p2");
             GatewaySocket.access$logError((GatewaySocket) this.receiver, str, exc, map);
         }
     }
@@ -1075,7 +1078,7 @@ public final class GatewaySocket {
         }
 
         private final void log(Logger logger, String str, boolean z2) {
-            Logger.v$default(logger, a.w("[GatewaySocket] ", str), null, 2, null);
+            Logger.v$default(logger, outline.w("[GatewaySocket] ", str), null, 2, null);
             if (z2) {
                 logger.recordBreadcrumb("Gateway [" + str + ']', "log");
             }
@@ -1090,37 +1093,37 @@ public final class GatewaySocket {
     public abstract class DefaultListener implements Listener {
         @Override // com.discord.gateway.GatewaySocket.Listener
         public void onConnected(GatewaySocket gatewaySocket) {
-            m.checkNotNullParameter(gatewaySocket, "gatewaySocket");
+            Intrinsics3.checkNotNullParameter(gatewaySocket, "gatewaySocket");
         }
 
         @Override // com.discord.gateway.GatewaySocket.Listener
         public void onConnecting(GatewaySocket gatewaySocket) {
-            m.checkNotNullParameter(gatewaySocket, "gatewaySocket");
+            Intrinsics3.checkNotNullParameter(gatewaySocket, "gatewaySocket");
         }
 
         @Override // com.discord.gateway.GatewaySocket.Listener
         public void onDisconnected(GatewaySocket gatewaySocket) {
-            m.checkNotNullParameter(gatewaySocket, "gatewaySocket");
+            Intrinsics3.checkNotNullParameter(gatewaySocket, "gatewaySocket");
         }
 
         @Override // com.discord.gateway.GatewaySocket.Listener
         public void onHello(GatewaySocket gatewaySocket) {
-            m.checkNotNullParameter(gatewaySocket, "gatewaySocket");
+            Intrinsics3.checkNotNullParameter(gatewaySocket, "gatewaySocket");
         }
     }
 
     /* JADX INFO: compiled from: GatewaySocket.kt */
     public final class IdentifyData {
-        private final OutgoingPayload.IdentifyClientState clientState;
+        private final Outgoing2.IdentifyClientState clientState;
         private final String token;
 
-        public IdentifyData(String str, OutgoingPayload.IdentifyClientState identifyClientState) {
-            m.checkNotNullParameter(str, "token");
+        public IdentifyData(String str, Outgoing2.IdentifyClientState identifyClientState) {
+            Intrinsics3.checkNotNullParameter(str, "token");
             this.token = str;
             this.clientState = identifyClientState;
         }
 
-        public final OutgoingPayload.IdentifyClientState getClientState() {
+        public final Outgoing2.IdentifyClientState getClientState() {
             return this.clientState;
         }
 
@@ -1146,7 +1149,7 @@ public final class GatewaySocket {
         private final InputStreamReader source;
 
         public SizeRecordingInputStreamReader(InputStreamReader inputStreamReader, int i) {
-            m.checkNotNullParameter(inputStreamReader, "source");
+            Intrinsics3.checkNotNullParameter(inputStreamReader, "source");
             this.source = inputStreamReader;
             this.size = i;
         }
@@ -1166,7 +1169,7 @@ public final class GatewaySocket {
 
         @Override // java.io.Reader
         public int read(char[] buffer, int offset, int len) throws IOException {
-            m.checkNotNullParameter(buffer, "buffer");
+            Intrinsics3.checkNotNullParameter(buffer, "buffer");
             int i = this.source.read(buffer, offset, len);
             if (i != -1) {
                 this.size += i;
@@ -1189,7 +1192,7 @@ public final class GatewaySocket {
         private Subscription subscription;
 
         public Timer(Scheduler scheduler) {
-            m.checkNotNullParameter(scheduler, "scheduler");
+            Intrinsics3.checkNotNullParameter(scheduler, "scheduler");
             this.scheduler = scheduler;
         }
 
@@ -1219,14 +1222,14 @@ public final class GatewaySocket {
         }
 
         public final void postInterval(Function0<Unit> callback, long delayMillis) {
-            m.checkNotNullParameter(callback, "callback");
+            Intrinsics3.checkNotNullParameter(callback, "callback");
             cancel();
-            this.subscription = Observable.F(delayMillis, delayMillis, TimeUnit.MILLISECONDS, j0.p.a.a()).J(this.scheduler).W(new GatewaySocket$Timer$postInterval$1(callback), GatewaySocket$Timer$postInterval$2.INSTANCE);
+            this.subscription = Observable.F(delayMillis, delayMillis, TimeUnit.MILLISECONDS, Schedulers2.a()).J(this.scheduler).W(new GatewaySocket$Timer$postInterval$1(callback), GatewaySocket$Timer$postInterval$2.INSTANCE);
         }
 
         @Override // com.discord.utilities.networking.Backoff.Scheduler
         public void schedule(Function0<Unit> action, long delayMs) {
-            m.checkNotNullParameter(action, "action");
+            Intrinsics3.checkNotNullParameter(action, "action");
             cancel();
             this.subscription = Observable.d0(delayMs, TimeUnit.MILLISECONDS).J(this.scheduler).W(new GatewaySocket$Timer$schedule$1(this, action), GatewaySocket$Timer$schedule$2.INSTANCE);
         }
@@ -1268,31 +1271,31 @@ public final class GatewaySocket {
     }
 
     static {
-        e eVar = new e();
-        eVar.g = true;
-        c cVar = c.m;
-        eVar.c = cVar;
-        eVar.b(ActivityType.class, new ActivityTypeTypeAdapter());
-        gsonIncludeNulls = eVar.a();
-        e eVar2 = new e();
-        eVar2.c = cVar;
-        gsonOmitNulls = eVar2.a();
-        EXPECTED_NULL_DATA_EVENTS = n0.setOf((Object[]) new String[]{"USER_SUBSCRIPTIONS_UPDATE", "USER_PAYMENT_SOURCES_UPDATE"});
+        GsonBuilder gsonBuilder = new GsonBuilder();
+        gsonBuilder.g = true;
+        FieldNamingPolicy fieldNamingPolicy = FieldNamingPolicy.m;
+        gsonBuilder.c = fieldNamingPolicy;
+        gsonBuilder.b(ActivityType.class, new ActivityType2());
+        gsonIncludeNulls = gsonBuilder.a();
+        GsonBuilder gsonBuilder2 = new GsonBuilder();
+        gsonBuilder2.c = fieldNamingPolicy;
+        gsonOmitNulls = gsonBuilder2.a();
+        EXPECTED_NULL_DATA_EVENTS = Sets5.setOf((Object[]) new String[]{"USER_SUBSCRIPTIONS_UPDATE", "USER_PAYMENT_SOURCES_UPDATE"});
         clock = ClockFactory.get();
     }
 
     /* JADX WARN: Multi-variable type inference failed */
     public GatewaySocket(Function0<IdentifyData> function0, Function1<? super Map<String, ? extends Object>, Unit> function1, GatewayEventHandler gatewayEventHandler, Scheduler scheduler, Logger logger, NetworkMonitor networkMonitor, RestConfig restConfig, Context context, Function1<? super String, String> function2, SSLSocketFactory sSLSocketFactory, Map<String, ? extends Object> map, GatewaySocketLogger gatewaySocketLogger) {
-        m.checkNotNullParameter(function0, "identifyDataProvider");
-        m.checkNotNullParameter(function1, "trackReadyPayload");
-        m.checkNotNullParameter(gatewayEventHandler, "eventHandler");
-        m.checkNotNullParameter(scheduler, "scheduler");
-        m.checkNotNullParameter(logger, "logger");
-        m.checkNotNullParameter(networkMonitor, "networkMonitor");
-        m.checkNotNullParameter(restConfig, "restConfig");
-        m.checkNotNullParameter(context, "context");
-        m.checkNotNullParameter(map, "identifyProperties");
-        m.checkNotNullParameter(gatewaySocketLogger, "gatewaySocketLogger");
+        Intrinsics3.checkNotNullParameter(function0, "identifyDataProvider");
+        Intrinsics3.checkNotNullParameter(function1, "trackReadyPayload");
+        Intrinsics3.checkNotNullParameter(gatewayEventHandler, "eventHandler");
+        Intrinsics3.checkNotNullParameter(scheduler, "scheduler");
+        Intrinsics3.checkNotNullParameter(logger, "logger");
+        Intrinsics3.checkNotNullParameter(networkMonitor, "networkMonitor");
+        Intrinsics3.checkNotNullParameter(restConfig, "restConfig");
+        Intrinsics3.checkNotNullParameter(context, "context");
+        Intrinsics3.checkNotNullParameter(map, "identifyProperties");
+        Intrinsics3.checkNotNullParameter(gatewaySocketLogger, "gatewaySocketLogger");
         this.identifyDataProvider = function0;
         this.trackReadyPayload = function1;
         this.eventHandler = gatewayEventHandler;
@@ -1309,14 +1312,14 @@ public final class GatewaySocket {
         this.heartbeater = new Timer(scheduler);
         this.heartbeatAck = true;
         this.helloTimeout = new Timer(scheduler);
-        ListenerCollectionSubject<Listener> listenerCollectionSubject = new ListenerCollectionSubject<>();
-        this.listenerSubject = listenerCollectionSubject;
-        this.listeners = listenerCollectionSubject;
+        ListenerCollection2<Listener> listenerCollection2 = new ListenerCollection2<>();
+        this.listenerSubject = listenerCollection2;
+        this.listeners = listenerCollection2;
         RestClient restClient = RestClient.INSTANCE;
         restClient.init(restConfig, context);
         this.gatewayDiscovery = new GatewayDiscovery(context, scheduler, backoff, new AnonymousClass1(), restClient.getGateway());
         Observable<Boolean> observableJ = networkMonitor.observeIsConnected().J(scheduler);
-        Observable.h0(new r(observableJ.j, new w1(new v1(AnonymousClass2.INSTANCE)))).W(new AnonymousClass3(), new AnonymousClass4());
+        Observable.h0(new OnSubscribeLift(observableJ.j, new OperatorSkipWhile3(new OperatorSkipWhile2(AnonymousClass2.INSTANCE)))).W(new AnonymousClass3(), new AnonymousClass4());
     }
 
     public static final /* synthetic */ void access$cleanup(GatewaySocket gatewaySocket, Function1 function1) {
@@ -1517,7 +1520,7 @@ public final class GatewaySocket {
         this.identifyStartTime = clock.currentTimeMillis();
         this.token = identifyDataInvoke.getToken();
         Companion.log$default(INSTANCE, this.logger, "Sending identify.", false, 2, null);
-        send$default(this, new Outgoing(Opcode.IDENTIFY, new OutgoingPayload.Identify(identifyDataInvoke.getToken(), 100, true, CLIENT_CAPABILITIES, this.identifyProperties, identifyDataInvoke.getClientState())), false, null, 4, null);
+        send$default(this, new Outgoing(Opcode.IDENTIFY, new Outgoing2.Identify(identifyDataInvoke.getToken(), 100, true, CLIENT_CAPABILITIES, this.identifyProperties, identifyDataInvoke.getClientState())), false, null, 4, null);
     }
 
     private final void doResume() {
@@ -1525,15 +1528,15 @@ public final class GatewaySocket {
         this.replayedEvents = 0;
         Companion companion = INSTANCE;
         Logger logger = this.logger;
-        StringBuilder sbU = a.U("Resuming session ");
+        StringBuilder sbU = outline.U("Resuming session ");
         String str = this.sessionId;
         if (str == null) {
             str = "";
         }
         sbU.append(str);
         sbU.append(" at sequence: ");
-        Companion.log$default(companion, logger, a.A(sbU, this.seq, '.'), false, 2, null);
-        send$default(this, new Outgoing(Opcode.RESUME, new OutgoingPayload.Resume(this.token, this.sessionId, this.seq)), false, null, 4, null);
+        Companion.log$default(companion, logger, outline.A(sbU, this.seq, '.'), false, 2, null);
+        send$default(this, new Outgoing(Opcode.RESUME, new Outgoing2.Resume(this.token, this.sessionId, this.seq)), false, null, 4, null);
     }
 
     private final void doResumeOrIdentify() {
@@ -1542,9 +1545,9 @@ public final class GatewaySocket {
         float f = this.heartbeatAckTimeMostRecent == 0 ? 0.0f : (delay$default / 1000.0f) / 60.0f;
         if (this.sessionId != null && delay$default <= ((long) HEARTBEAT_MAX_RESUME_THRESHOLD)) {
             Logger logger = this.logger;
-            StringBuilder sbU = a.U("Attempting to resume after elapsed duration of ");
+            StringBuilder sbU = outline.U("Attempting to resume after elapsed duration of ");
             String str = String.format("%.2f", Arrays.copyOf(new Object[]{Float.valueOf(f)}, 1));
-            m.checkNotNullExpressionValue(str, "java.lang.String.format(this, *args)");
+            Intrinsics3.checkNotNullExpressionValue(str, "java.lang.String.format(this, *args)");
             sbU.append(str);
             sbU.append(" minutes.");
             Companion.log$default(companion, logger, sbU.toString(), false, 2, null);
@@ -1569,12 +1572,12 @@ public final class GatewaySocket {
         schedule(new AnonymousClass1(reason, timeout, shouldResetBackoff));
     }
 
-    private final void flattenTraces(Object trace, ArrayList<Pair<String, Integer>> result) {
+    private final void flattenTraces(Object trace, ArrayList<Tuples2<String, Integer>> result) {
         if (trace == null) {
             return;
         }
         try {
-            if (!e0.isMutableList(trace)) {
+            if (!TypeIntrinsics.isMutableList(trace)) {
                 return;
             }
             int i = 0;
@@ -1591,7 +1594,7 @@ public final class GatewaySocket {
                 }
                 String str = (String) obj;
                 Object obj3 = ((List) trace).get(i2);
-                if (!e0.isMutableMap(obj3)) {
+                if (!TypeIntrinsics.isMutableMap(obj3)) {
                     obj3 = null;
                 }
                 Map map = (Map) obj3;
@@ -1605,7 +1608,7 @@ public final class GatewaySocket {
                         number = (Number) obj2;
                     }
                     if (number != null) {
-                        result.add(new Pair<>(str, Integer.valueOf(number.intValue() / 1000)));
+                        result.add(new Tuples2<>(str, Integer.valueOf(number.intValue() / 1000)));
                     }
                     flattenTraces(map.get("calls"), result);
                 }
@@ -1618,7 +1621,7 @@ public final class GatewaySocket {
     private final String getConnectionPath(ModelPayload.Hello hello) {
         String strJoinToString$default;
         List<String> trace = hello.getTrace();
-        return (trace == null || (strJoinToString$default = u.joinToString$default(trace, " -> ", null, null, 0, null, null, 62, null)) == null) ? "???" : strJoinToString$default;
+        return (trace == null || (strJoinToString$default = _Collections.joinToString$default(trace, " -> ", null, null, 0, null, null, 62, null)) == null) ? "???" : strJoinToString$default;
     }
 
     public final ListenerCollection<Listener> getListeners() {
@@ -1640,9 +1643,9 @@ public final class GatewaySocket {
         sb.append(", with code: ");
         sb.append(code);
         sb.append(", for reason: '");
-        String strJ = a.J(sb, reason, "'.");
+        String strJ = outline.J(sb, reason, "'.");
         if (this.nextReconnectIsImmediate) {
-            Companion.log$default(INSTANCE, this.logger, a.w(strJ, " Retrying immediately."), false, 2, null);
+            Companion.log$default(INSTANCE, this.logger, outline.w(strJ, " Retrying immediately."), false, 2, null);
             discover();
             return;
         }
@@ -1689,20 +1692,20 @@ public final class GatewaySocket {
         if (this.connectionState == 4) {
             this.replayedEvents++;
         }
-        if (m.areEqual(type, "READY") || m.areEqual(type, "RESUMED")) {
+        if (Intrinsics3.areEqual(type, "READY") || Intrinsics3.areEqual(type, "RESUMED")) {
             if (type != null) {
                 int iHashCode = type.hashCode();
                 if (iHashCode != 77848963) {
                     if (iHashCode == 1815529911 && type.equals("RESUMED")) {
                         StringBuilder sb = new StringBuilder();
-                        StringBuilder sbU = a.U("Resumed session, took ");
+                        StringBuilder sbU = outline.U("Resumed session, took ");
                         Companion companion = INSTANCE;
                         sbU.append(Companion.getDelay$default(companion, this.connectionStartTime, null, 2, null));
                         sbU.append("ms, ");
                         sb.append(sbU.toString());
                         sb.append("replayed " + this.replayedEvents + " events, new seq: " + this.seq + '.');
                         String string = sb.toString();
-                        m.checkNotNullExpressionValue(string, "StringBuilder()\n        …              .toString()");
+                        Intrinsics3.checkNotNullExpressionValue(string, "StringBuilder()\n        …              .toString()");
                         Companion.log$default(companion, this.logger, string, false, 2, null);
                         this.replayedEvents = 0;
                     }
@@ -1716,10 +1719,10 @@ public final class GatewaySocket {
                     trackReadyPayload(modelPayload, compressedByteSize, uncompressedByteSize, unpackDurationMs);
                     Companion companion2 = INSTANCE;
                     Logger logger = this.logger;
-                    StringBuilder sbU2 = a.U("Ready with session id: ");
+                    StringBuilder sbU2 = outline.U("Ready with session id: ");
                     sbU2.append(this.sessionId);
                     sbU2.append(", took ");
-                    Companion.log$default(companion2, logger, a.C(sbU2, Companion.getDelay$default(companion2, this.connectionStartTime, null, 2, null), "ms"), false, 2, null);
+                    Companion.log$default(companion2, logger, outline.C(sbU2, Companion.getDelay$default(companion2, this.connectionStartTime, null, 2, null), "ms"), false, 2, null);
                 }
             }
             this.gatewayBackoff.succeed();
@@ -1731,10 +1734,10 @@ public final class GatewaySocket {
             this.eventHandler.handleDispatch(type, data);
             return;
         }
-        if (u.contains(EXPECTED_NULL_DATA_EVENTS, type)) {
+        if (_Collections.contains(EXPECTED_NULL_DATA_EVENTS, type)) {
             this.eventHandler.handleDispatch(type, Unit.a);
-        } else if ((!m.areEqual(type, "READY")) && (!m.areEqual(type, "RESUMED"))) {
-            Logger.w$default(this.logger, a.y("handleDispatch() ", type, " is unhandled!"), null, 2, null);
+        } else if ((!Intrinsics3.areEqual(type, "READY")) && (!Intrinsics3.areEqual(type, "RESUMED"))) {
+            Logger.w$default(this.logger, outline.y("handleDispatch() ", type, " is unhandled!"), null, 2, null);
         }
     }
 
@@ -1762,17 +1765,17 @@ public final class GatewaySocket {
         this.heartbeatInterval = data.getHeartbeatInterval();
         Companion companion = INSTANCE;
         Logger logger = this.logger;
-        StringBuilder sbU = a.U("Hello via ");
+        StringBuilder sbU = outline.U("Hello via ");
         sbU.append(getConnectionPath(data));
         sbU.append(", at interval ");
         sbU.append(this.heartbeatInterval);
         sbU.append(" took ");
-        Companion.log$default(companion, logger, a.C(sbU, Companion.getDelay$default(companion, this.connectionStartTime, null, 2, null), "ms."), false, 2, null);
+        Companion.log$default(companion, logger, outline.C(sbU, Companion.getDelay$default(companion, this.connectionStartTime, null, 2, null), "ms."), false, 2, null);
         startHeartbeater();
     }
 
     private final void handleInvalidSession(boolean canResume) {
-        Companion.log$default(INSTANCE, this.logger, a.J(a.U("Invalid session, is "), canResume ? "" : "not", " resumable."), false, 2, null);
+        Companion.log$default(INSTANCE, this.logger, outline.J(outline.U("Invalid session, is "), canResume ? "" : "not", " resumable."), false, 2, null);
         if (canResume) {
             doResumeOrIdentify();
             return;
@@ -1819,7 +1822,7 @@ public final class GatewaySocket {
     private final void handleWebSocketMessage(InputStreamReader reader, int compressedByteSize) {
         long jCurrentTimeMillis = clock.currentTimeMillis();
         SizeRecordingInputStreamReader sizeRecordingInputStreamReader = new SizeRecordingInputStreamReader(reader, 0, 2, null);
-        Incoming incomingBuild = ((IncomingParser) new Model.JsonReader(new JsonReader(sizeRecordingInputStreamReader)).parse(new IncomingParser(new GatewaySocket$handleWebSocketMessage$incomingParser$1(this)))).build();
+        Incoming incomingBuild = ((Incoming2) new Model.JsonReader(new JsonReader(sizeRecordingInputStreamReader)).parse(new Incoming2(new GatewaySocket$handleWebSocketMessage$incomingParser$1(this)))).build();
         Integer seq = incomingBuild.getSeq();
         Companion companion = INSTANCE;
         long delay$default = Companion.getDelay$default(companion, jCurrentTimeMillis, null, 2, null);
@@ -1854,7 +1857,7 @@ public final class GatewaySocket {
                 break;
             default:
                 Logger logger = this.logger;
-                StringBuilder sbU = a.U("Unhandled op code ");
+                StringBuilder sbU = outline.U("Unhandled op code ");
                 sbU.append(incomingBuild.getOpcode());
                 sbU.append('.');
                 Companion.log$default(companion, logger, sbU.toString(), false, 2, null);
@@ -1864,7 +1867,7 @@ public final class GatewaySocket {
 
     private final void handleWebSocketOpened(String gatewayUrl) {
         Companion companion = INSTANCE;
-        Companion.log$default(companion, this.logger, a.C(a.Y("Connected to ", gatewayUrl, " in "), Companion.getDelay$default(companion, this.connectionStartTime, null, 2, null), "ms."), false, 2, null);
+        Companion.log$default(companion, this.logger, outline.C(outline.Y("Connected to ", gatewayUrl, " in "), Companion.getDelay$default(companion, this.connectionStartTime, null, 2, null), "ms."), false, 2, null);
         this.listenerSubject.notify(new AnonymousClass1());
         doResumeOrIdentify();
     }
@@ -1881,7 +1884,7 @@ public final class GatewaySocket {
     private final void logError(String message, Exception exception, Map<String, String> metadata) {
         Logger logger = this.logger;
         if (metadata == null) {
-            metadata = h0.emptyMap();
+            metadata = Maps6.emptyMap();
         }
         logger.e(message, exception, metadata);
     }
@@ -1904,19 +1907,19 @@ public final class GatewaySocket {
         schedule(new AnonymousClass1(status, activities, since, afk));
     }
 
-    public final void requestApplicationCommands(OutgoingPayload.ApplicationCommandRequest request) {
-        m.checkNotNullParameter(request, "request");
+    public final void requestApplicationCommands(Outgoing2.ApplicationCommandRequest request) {
+        Intrinsics3.checkNotNullParameter(request, "request");
         Outgoing outgoing = new Outgoing(Opcode.REQUEST_GUILD_APPLICATION_COMMANDS, request);
         Gson gson = gsonOmitNulls;
-        m.checkNotNullExpressionValue(gson, "gsonOmitNulls");
+        Intrinsics3.checkNotNullExpressionValue(gson, "gsonOmitNulls");
         send$default(this, outgoing, false, gson, 2, null);
     }
 
-    public final void requestForumUnreads(OutgoingPayload.ForumUnreadsRequest request) {
-        m.checkNotNullParameter(request, "request");
+    public final void requestForumUnreads(Outgoing2.ForumUnreadsRequest request) {
+        Intrinsics3.checkNotNullParameter(request, "request");
         Outgoing outgoing = new Outgoing(Opcode.REQUEST_FORUM_UNREADS, request);
         Gson gson = gsonOmitNulls;
-        m.checkNotNullExpressionValue(gson, "gsonOmitNulls");
+        Intrinsics3.checkNotNullExpressionValue(gson, "gsonOmitNulls");
         send$default(this, outgoing, false, gson, 2, null);
     }
 
@@ -1947,7 +1950,7 @@ public final class GatewaySocket {
     }
 
     public final void requestGuildMembers(List<Long> guildIds, String query, List<Long> userIds, Integer limit) {
-        m.checkNotNullParameter(guildIds, "guildIds");
+        Intrinsics3.checkNotNullParameter(guildIds, "guildIds");
         schedule(new AnonymousClass1(guildIds, query, userIds, limit));
     }
 
@@ -1967,7 +1970,7 @@ public final class GatewaySocket {
     }
 
     private final void schedule(Function0<Unit> callback) {
-        new j0.l.e.k(callback).X(this.scheduler).W(AnonymousClass1.INSTANCE, AnonymousClass2.INSTANCE);
+        new ScalarSynchronousObservable(callback).X(this.scheduler).W(AnonymousClass1.INSTANCE, AnonymousClass2.INSTANCE);
     }
 
     public static /* synthetic */ void send$default(GatewaySocket gatewaySocket, Outgoing outgoing, boolean z2, Gson gson, int i, Object obj) {
@@ -1976,7 +1979,7 @@ public final class GatewaySocket {
         }
         if ((i & 4) != 0) {
             gson = gsonIncludeNulls;
-            m.checkNotNullExpressionValue(gson, "gsonIncludeNulls");
+            Intrinsics3.checkNotNullExpressionValue(gson, "gsonIncludeNulls");
         }
         gatewaySocket.send(outgoing, z2, gson);
     }
@@ -1985,7 +1988,7 @@ public final class GatewaySocket {
         if (checkSessionEstablished && !isSessionEstablished()) {
             Companion companion = INSTANCE;
             Logger logger = this.logger;
-            StringBuilder sbU = a.U("Attempted to send while not being in a connected state, opcode: ");
+            StringBuilder sbU = outline.U("Attempted to send while not being in a connected state, opcode: ");
             sbU.append(data.getOp());
             sbU.append('.');
             Companion.log$default(companion, logger, sbU.toString(), false, 2, null);
@@ -1995,14 +1998,14 @@ public final class GatewaySocket {
         if (webSocket != null) {
             String strM = gson.m(data);
             GatewaySocketLogger gatewaySocketLogger = this.gatewaySocketLogger;
-            m.checkNotNullExpressionValue(strM, GATEWAY_ENCODING);
+            Intrinsics3.checkNotNullExpressionValue(strM, GATEWAY_ENCODING);
             gatewaySocketLogger.logOutboundMessage(strM);
             webSocket.message(strM);
             return;
         }
         Companion companion2 = INSTANCE;
         Logger logger2 = this.logger;
-        StringBuilder sbU2 = a.U("Attempted to send without a web socket that exists, opcode: ");
+        StringBuilder sbU2 = outline.U("Attempted to send without a web socket that exists, opcode: ");
         sbU2.append(data.getOp());
         sbU2.append('.');
         Companion.log$default(companion2, logger2, sbU2.toString(), false, 2, null);
@@ -2024,23 +2027,23 @@ public final class GatewaySocket {
     }
 
     public final void streamCreate(String streamType, long channelId, Long guildId, String preferredRegion) {
-        m.checkNotNullParameter(streamType, "streamType");
+        Intrinsics3.checkNotNullParameter(streamType, "streamType");
         Companion.log$default(INSTANCE, this.logger, "Sending STREAM_CREATE: " + channelId + ' ' + guildId, false, 2, null);
-        send$default(this, new Outgoing(Opcode.STREAM_CREATE, new OutgoingPayload.CreateStream(streamType, channelId, guildId, preferredRegion)), false, null, 6, null);
+        send$default(this, new Outgoing(Opcode.STREAM_CREATE, new Outgoing2.CreateStream(streamType, channelId, guildId, preferredRegion)), false, null, 6, null);
     }
 
     public final void streamDelete(String streamKey) {
-        m.checkNotNullParameter(streamKey, "streamKey");
+        Intrinsics3.checkNotNullParameter(streamKey, "streamKey");
         schedule(new AnonymousClass1(streamKey));
     }
 
     public final void streamPing(String streamKey) {
-        m.checkNotNullParameter(streamKey, "streamKey");
+        Intrinsics3.checkNotNullParameter(streamKey, "streamKey");
         schedule(new AnonymousClass1(streamKey));
     }
 
     public final void streamWatch(String streamKey) {
-        m.checkNotNullParameter(streamKey, "streamKey");
+        Intrinsics3.checkNotNullParameter(streamKey, "streamKey");
         schedule(new AnonymousClass1(streamKey));
     }
 
@@ -2063,13 +2066,13 @@ public final class GatewaySocket {
                 }
             }
         }
-        ArrayList<Pair<String, Integer>> arrayList = new ArrayList<>();
+        ArrayList<Tuples2<String, Integer>> arrayList = new ArrayList<>();
         flattenTraces(payload.getTrace(), arrayList);
         if (arrayList.size() > 0) {
-            Pair<String, Integer> pair = arrayList.get(0);
-            String strComponent1 = pair.component1();
-            iIntValue = pair.component2().intValue();
-            if (!t.startsWith$default(strComponent1, "gateway-", false, 2, null)) {
+            Tuples2<String, Integer> tuples2 = arrayList.get(0);
+            String strComponent1 = tuples2.component1();
+            iIntValue = tuples2.component2().intValue();
+            if (!StringsJVM.startsWith$default(strComponent1, "gateway-", false, 2, null)) {
                 iIntValue = 0;
             }
         } else {
@@ -2077,30 +2080,30 @@ public final class GatewaySocket {
         }
         int i3 = 0;
         int i4 = 0;
-        for (Pair<String, Integer> pair2 : arrayList) {
-            String strComponent2 = pair2.component1();
-            int iIntValue2 = pair2.component2().intValue();
-            if (m.areEqual(strComponent2, "start_session")) {
+        for (Tuples2<String, Integer> tuples3 : arrayList) {
+            String strComponent2 = tuples3.component1();
+            int iIntValue2 = tuples3.component2().intValue();
+            if (Intrinsics3.areEqual(strComponent2, "start_session")) {
                 i3 = iIntValue2;
-            } else if (m.areEqual(strComponent2, "guilds_connect")) {
+            } else if (Intrinsics3.areEqual(strComponent2, "guilds_connect")) {
                 i4 = iIntValue2;
             }
         }
         Function1<Map<String, ? extends Object>, Unit> function1 = this.trackReadyPayload;
         Companion companion = INSTANCE;
-        function1.invoke(h0.mapOf(d0.o.to("duration_ms_since_connection_start", Long.valueOf(Companion.getDelay$default(companion, this.connectionStartTime, null, 2, null))), d0.o.to("duration_ms_since_identify_start", Long.valueOf(Companion.getDelay$default(companion, this.identifyStartTime, null, 2, null))), d0.o.to("identify_total_server_duration_ms", Integer.valueOf(iIntValue)), d0.o.to("identify_api_duration_ms", Integer.valueOf(i3)), d0.o.to("identify_guilds_duration_ms", Integer.valueOf(i4)), d0.o.to("compressed_byte_size", Integer.valueOf(compressedByteSize)), d0.o.to("uncompressed_byte_size", Integer.valueOf(uncompressedByteSize)), d0.o.to("compression_algorithm", "zlib"), d0.o.to("packing_algorithm", GATEWAY_ENCODING), d0.o.to("unpack_duration_ms", Long.valueOf(unpackDurationMs)), d0.o.to("is_reconnect", Boolean.valueOf(this.hasConnectedOnce)), d0.o.to("is_fast_connect", Boolean.FALSE), d0.o.to("num_guilds", Integer.valueOf(size)), d0.o.to("num_guild_channels", Integer.valueOf(i)), d0.o.to("num_guild_category_channels", Integer.valueOf(i2))));
+        function1.invoke(Maps6.mapOf(Tuples.to("duration_ms_since_connection_start", Long.valueOf(Companion.getDelay$default(companion, this.connectionStartTime, null, 2, null))), Tuples.to("duration_ms_since_identify_start", Long.valueOf(Companion.getDelay$default(companion, this.identifyStartTime, null, 2, null))), Tuples.to("identify_total_server_duration_ms", Integer.valueOf(iIntValue)), Tuples.to("identify_api_duration_ms", Integer.valueOf(i3)), Tuples.to("identify_guilds_duration_ms", Integer.valueOf(i4)), Tuples.to("compressed_byte_size", Integer.valueOf(compressedByteSize)), Tuples.to("uncompressed_byte_size", Integer.valueOf(uncompressedByteSize)), Tuples.to("compression_algorithm", "zlib"), Tuples.to("packing_algorithm", GATEWAY_ENCODING), Tuples.to("unpack_duration_ms", Long.valueOf(unpackDurationMs)), Tuples.to("is_reconnect", Boolean.valueOf(this.hasConnectedOnce)), Tuples.to("is_fast_connect", Boolean.FALSE), Tuples.to("num_guilds", Integer.valueOf(size)), Tuples.to("num_guild_channels", Integer.valueOf(i)), Tuples.to("num_guild_category_channels", Integer.valueOf(i2))));
     }
 
-    public final void updateGuildSubscriptions(long guildId, OutgoingPayload.GuildSubscriptions guildSubscriptions) {
-        m.checkNotNullParameter(guildSubscriptions, "guildSubscriptions");
+    public final void updateGuildSubscriptions(long guildId, Outgoing2.GuildSubscriptions guildSubscriptions) {
+        Intrinsics3.checkNotNullParameter(guildSubscriptions, "guildSubscriptions");
         Companion.log$default(INSTANCE, this.logger, "sending guild subscriptions: " + guildId + " -- " + guildSubscriptions, false, 2, null);
         Opcode opcode = Opcode.GUILD_SUBSCRIPTIONS;
         Boolean typing = guildSubscriptions.getTyping();
         Boolean activities = guildSubscriptions.getActivities();
         List<Long> members = guildSubscriptions.getMembers();
-        Outgoing outgoing = new Outgoing(opcode, new OutgoingPayload.GuildSubscriptionsUpdate(guildId, typing, activities, members != null ? u.toList(members) : null, guildSubscriptions.getChannels(), guildSubscriptions.getThreads(), guildSubscriptions.getThreadMemberLists()));
+        Outgoing outgoing = new Outgoing(opcode, new Outgoing2.GuildSubscriptionsUpdate(guildId, typing, activities, members != null ? _Collections.toList(members) : null, guildSubscriptions.getChannels(), guildSubscriptions.getThreads(), guildSubscriptions.getThreadMemberLists()));
         Gson gson = gsonOmitNulls;
-        m.checkNotNullExpressionValue(gson, "gsonOmitNulls");
+        Intrinsics3.checkNotNullExpressionValue(gson, "gsonOmitNulls");
         send$default(this, outgoing, false, gson, 2, null);
     }
 
@@ -2118,7 +2121,7 @@ public final class GatewaySocket {
             return;
         }
         this.connectionState = 2;
-        Companion.log$default(INSTANCE, this.logger, a.y("Connect to: ", gatewayUrl, ", encoding: json, version 9."), false, 2, null);
+        Companion.log$default(INSTANCE, this.logger, outline.y("Connect to: ", gatewayUrl, ", encoding: json, version 9."), false, 2, null);
         cleanup(AnonymousClass2.INSTANCE);
         this.connectionStartTime = clock.currentTimeMillis();
         this.helloTimeout.schedule(new AnonymousClass3(), HELLO_TIMEOUT);
@@ -2142,6 +2145,6 @@ public final class GatewaySocket {
     }
 
     public /* synthetic */ GatewaySocket(Function0 function0, Function1 function1, GatewayEventHandler gatewayEventHandler, Scheduler scheduler, Logger logger, NetworkMonitor networkMonitor, RestConfig restConfig, Context context, Function1 function2, SSLSocketFactory sSLSocketFactory, Map map, GatewaySocketLogger gatewaySocketLogger, int i, DefaultConstructorMarker defaultConstructorMarker) {
-        this(function0, function1, gatewayEventHandler, scheduler, logger, networkMonitor, restConfig, context, (i & 256) != 0 ? null : function2, (i & 512) != 0 ? null : sSLSocketFactory, (i & 1024) != 0 ? h0.emptyMap() : map, gatewaySocketLogger);
+        this(function0, function1, gatewayEventHandler, scheduler, logger, networkMonitor, restConfig, context, (i & 256) != 0 ? null : function2, (i & 512) != 0 ? null : sSLSocketFactory, (i & 1024) != 0 ? Maps6.emptyMap() : map, gatewaySocketLogger);
     }
 }

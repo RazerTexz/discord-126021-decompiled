@@ -2,9 +2,9 @@ package com.discord.stores;
 
 import com.discord.api.channel.Channel;
 import com.discord.utilities.time.Clock;
-import d0.z.d.m;
-import j0.l.a.c0;
-import j0.l.e.k;
+import d0.z.d.Intrinsics3;
+import j0.l.a.OnSubscribeRefCount3;
+import j0.l.e.ScalarSynchronousObservable;
 import java.util.HashMap;
 import kotlin.jvm.internal.DefaultConstructorMarker;
 import rx.Observable;
@@ -66,8 +66,8 @@ public final class StoreSlowMode extends Store {
     }
 
     public StoreSlowMode(Clock clock, StoreStream storeStream) {
-        m.checkNotNullParameter(clock, "clock");
-        m.checkNotNullParameter(storeStream, "stream");
+        Intrinsics3.checkNotNullParameter(clock, "clock");
+        Intrinsics3.checkNotNullParameter(storeStream, "stream");
         this.clock = clock;
         this.stream = storeStream;
         HashMap<Long, Long> map = new HashMap<>();
@@ -98,44 +98,44 @@ public final class StoreSlowMode extends Store {
 
     private final synchronized Observable<Integer> getChannelCooldownObservable(long channelId, Type type) {
         Type.MessageSend messageSend = Type.MessageSend.INSTANCE;
-        Observable<Integer> observable = m.areEqual(type, messageSend) ? this.channelMessageSendCooldownObservables.get(Long.valueOf(channelId)) : this.channelThreadCreateCooldownObservables.get(Long.valueOf(channelId));
+        Observable<Integer> observable = Intrinsics3.areEqual(type, messageSend) ? this.channelMessageSendCooldownObservables.get(Long.valueOf(channelId)) : this.channelThreadCreateCooldownObservables.get(Long.valueOf(channelId));
         if (observable != null) {
             return observable;
         }
-        Observable<Integer> observableH0 = Observable.h0(new c0(this.stream.getPermissions().observePermissionsForChannel(channelId).G(new StoreSlowMode$getChannelCooldownObservable$newObservable$1(type)).r().Y(new StoreSlowMode$getChannelCooldownObservable$newObservable$2(this, type, channelId)).G(StoreSlowMode$getChannelCooldownObservable$newObservable$3.INSTANCE).w(new StoreSlowMode$getChannelCooldownObservable$newObservable$4(this, channelId, type)).N(1)));
-        if (m.areEqual(type, messageSend)) {
+        Observable<Integer> observableH0 = Observable.h0(new OnSubscribeRefCount3(this.stream.getPermissions().observePermissionsForChannel(channelId).G(new StoreSlowMode2(type)).r().Y(new StoreSlowMode3(this, type, channelId)).G(StoreSlowMode4.INSTANCE).w(new StoreSlowMode5(this, channelId, type)).N(1)));
+        if (Intrinsics3.areEqual(type, messageSend)) {
             HashMap<Long, Observable<Integer>> map = this.channelMessageSendCooldownObservables;
             Long lValueOf = Long.valueOf(channelId);
-            m.checkNotNullExpressionValue(observableH0, "newObservable");
+            Intrinsics3.checkNotNullExpressionValue(observableH0, "newObservable");
             map.put(lValueOf, observableH0);
         } else {
             HashMap<Long, Observable<Integer>> map2 = this.channelThreadCreateCooldownObservables;
             Long lValueOf2 = Long.valueOf(channelId);
-            m.checkNotNullExpressionValue(observableH0, "newObservable");
+            Intrinsics3.checkNotNullExpressionValue(observableH0, "newObservable");
             map2.put(lValueOf2, observableH0);
         }
         return observableH0;
     }
 
     public final Observable<Integer> observeCooldownSecs(Long channelId, Type type) {
-        m.checkNotNullParameter(type, "type");
+        Intrinsics3.checkNotNullParameter(type, "type");
         if (channelId != null) {
             return getChannelCooldownObservable(channelId.longValue(), type);
         }
-        k kVar = new k(0);
-        m.checkNotNullExpressionValue(kVar, "Observable.just(0)");
-        return kVar;
+        ScalarSynchronousObservable scalarSynchronousObservable = new ScalarSynchronousObservable(0);
+        Intrinsics3.checkNotNullExpressionValue(scalarSynchronousObservable, "Observable.just(0)");
+        return scalarSynchronousObservable;
     }
 
-    @StoreThread
+    @Store3
     public final void onCooldown(long channelId, long cooldownMs, Type type) {
-        m.checkNotNullParameter(type, "type");
+        Intrinsics3.checkNotNullParameter(type, "type");
         onCooldownInternal(channelId, cooldownMs + 1000, type);
     }
 
-    @StoreThread
+    @Store3
     private final void onCooldownInternal(long channelId, long cooldownMs, Type type) {
-        if (m.areEqual(type, Type.MessageSend.INSTANCE)) {
+        if (Intrinsics3.areEqual(type, Type.MessageSend.INSTANCE)) {
             this.messageSendNextSendTimes.put(Long.valueOf(channelId), Long.valueOf(this.clock.currentTimeMillis() + cooldownMs));
             this.messageSendNextSendTimesSubject.onNext(new HashMap<>(this.messageSendNextSendTimes));
         } else {
@@ -144,7 +144,7 @@ public final class StoreSlowMode extends Store {
         }
     }
 
-    @StoreThread
+    @Store3
     public final void onMessageSent(long channelId) {
         Channel channelFindChannelByIdInternal$app_productionGoogleRelease = this.stream.getChannels().findChannelByIdInternal$app_productionGoogleRelease(channelId);
         int rateLimitPerUser = channelFindChannelByIdInternal$app_productionGoogleRelease != null ? channelFindChannelByIdInternal$app_productionGoogleRelease.getRateLimitPerUser() : 0;
@@ -153,7 +153,7 @@ public final class StoreSlowMode extends Store {
         }
     }
 
-    @StoreThread
+    @Store3
     public final void onThreadCreated(long parentChannelId) {
         Channel channelFindChannelByIdInternal$app_productionGoogleRelease = this.stream.getChannels().findChannelByIdInternal$app_productionGoogleRelease(parentChannelId);
         int rateLimitPerUser = channelFindChannelByIdInternal$app_productionGoogleRelease != null ? channelFindChannelByIdInternal$app_productionGoogleRelease.getRateLimitPerUser() : 0;
@@ -163,6 +163,6 @@ public final class StoreSlowMode extends Store {
     }
 
     private final synchronized Observable<Integer> removeChannelCooldownObservable(long channelId, Type type) {
-        return m.areEqual(type, Type.MessageSend.INSTANCE) ? this.channelMessageSendCooldownObservables.remove(Long.valueOf(channelId)) : this.channelThreadCreateCooldownObservables.remove(Long.valueOf(channelId));
+        return Intrinsics3.areEqual(type, Type.MessageSend.INSTANCE) ? this.channelMessageSendCooldownObservables.remove(Long.valueOf(channelId)) : this.channelThreadCreateCooldownObservables.remove(Long.valueOf(channelId));
     }
 }

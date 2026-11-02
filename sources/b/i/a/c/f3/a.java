@@ -1,5 +1,6 @@
 package b.i.a.c.f3;
 
+import b.c.a.a0.AnimatableValueParser;
 import java.util.concurrent.CopyOnWriteArraySet;
 
 /* JADX INFO: compiled from: lambda */
@@ -7,9 +8,9 @@ import java.util.concurrent.CopyOnWriteArraySet;
 public final /* synthetic */ class a implements Runnable {
     public final /* synthetic */ CopyOnWriteArraySet j;
     public final /* synthetic */ int k;
-    public final /* synthetic */ p.a l;
+    public final /* synthetic */ ListenerSet.a l;
 
-    public /* synthetic */ a(CopyOnWriteArraySet copyOnWriteArraySet, int i, p.a aVar) {
+    public /* synthetic */ a(CopyOnWriteArraySet copyOnWriteArraySet, int i, ListenerSet.a aVar) {
         this.j = copyOnWriteArraySet;
         this.k = i;
         this.l = aVar;
@@ -17,14 +18,14 @@ public final /* synthetic */ class a implements Runnable {
 
     @Override // java.lang.Runnable
     public final void run() {
-        CopyOnWriteArraySet<p.c> copyOnWriteArraySet = this.j;
+        CopyOnWriteArraySet<ListenerSet.c> copyOnWriteArraySet = this.j;
         int i = this.k;
-        p.a aVar = this.l;
-        for (p.c cVar : copyOnWriteArraySet) {
+        ListenerSet.a aVar = this.l;
+        for (ListenerSet.c cVar : copyOnWriteArraySet) {
             if (!cVar.d) {
                 if (i != -1) {
-                    n.b bVar = cVar.f974b;
-                    b.c.a.a0.d.D(!bVar.f972b);
+                    FlagSet.b bVar = cVar.f974b;
+                    AnimatableValueParser.D(!bVar.f972b);
                     bVar.a.append(i, true);
                 }
                 cVar.c = true;

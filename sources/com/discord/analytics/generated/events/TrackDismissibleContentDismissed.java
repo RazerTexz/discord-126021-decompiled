@@ -1,14 +1,14 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackDismissibleContentDismissed.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackDismissibleContentDismissed implements AnalyticsSchema, TrackBaseReceiver {
+public final /* data */ class TrackDismissibleContentDismissed implements AnalyticsSchema, TrackBase2 {
     private final CharSequence action;
     private final transient String analyticsSchemaTypeName;
     private final Boolean bypassFatigue;
@@ -42,7 +42,7 @@ public final /* data */ class TrackDismissibleContentDismissed implements Analyt
             return false;
         }
         TrackDismissibleContentDismissed trackDismissibleContentDismissed = (TrackDismissibleContentDismissed) other;
-        return m.areEqual(this.type, trackDismissibleContentDismissed.type) && m.areEqual(this.action, trackDismissibleContentDismissed.action) && m.areEqual(this.contentCount, trackDismissibleContentDismissed.contentCount) && m.areEqual(this.groupName, trackDismissibleContentDismissed.groupName) && m.areEqual(this.bypassFatigue, trackDismissibleContentDismissed.bypassFatigue);
+        return Intrinsics3.areEqual(this.type, trackDismissibleContentDismissed.type) && Intrinsics3.areEqual(this.action, trackDismissibleContentDismissed.action) && Intrinsics3.areEqual(this.contentCount, trackDismissibleContentDismissed.contentCount) && Intrinsics3.areEqual(this.groupName, trackDismissibleContentDismissed.groupName) && Intrinsics3.areEqual(this.bypassFatigue, trackDismissibleContentDismissed.bypassFatigue);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -65,7 +65,7 @@ public final /* data */ class TrackDismissibleContentDismissed implements Analyt
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackDismissibleContentDismissed(type=");
+        StringBuilder sbU = outline.U("TrackDismissibleContentDismissed(type=");
         sbU.append(this.type);
         sbU.append(", action=");
         sbU.append(this.action);
@@ -74,6 +74,6 @@ public final /* data */ class TrackDismissibleContentDismissed implements Analyt
         sbU.append(", groupName=");
         sbU.append(this.groupName);
         sbU.append(", bypassFatigue=");
-        return a.D(sbU, this.bypassFatigue, ")");
+        return outline.D(sbU, this.bypassFatigue, ")");
     }
 }

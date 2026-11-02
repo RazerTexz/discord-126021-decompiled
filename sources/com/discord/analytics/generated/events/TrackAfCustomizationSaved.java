@@ -1,14 +1,14 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackAfCustomizationSaved.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackAfCustomizationSaved implements AnalyticsSchema, TrackBaseReceiver {
+public final /* data */ class TrackAfCustomizationSaved implements AnalyticsSchema, TrackBase2 {
     private final Long addedMemberCount = null;
     private final CharSequence loadId = null;
     private final Long removedMemberCount = null;
@@ -26,7 +26,7 @@ public final /* data */ class TrackAfCustomizationSaved implements AnalyticsSche
             return false;
         }
         TrackAfCustomizationSaved trackAfCustomizationSaved = (TrackAfCustomizationSaved) other;
-        return m.areEqual(this.loadId, trackAfCustomizationSaved.loadId) && m.areEqual(this.addedMemberCount, trackAfCustomizationSaved.addedMemberCount) && m.areEqual(this.removedMemberCount, trackAfCustomizationSaved.removedMemberCount) && m.areEqual(this.selectedFriendCount, trackAfCustomizationSaved.selectedFriendCount) && m.areEqual(this.selectedTotalCount, trackAfCustomizationSaved.selectedTotalCount) && m.areEqual(this.selectedSuggestedCount, trackAfCustomizationSaved.selectedSuggestedCount);
+        return Intrinsics3.areEqual(this.loadId, trackAfCustomizationSaved.loadId) && Intrinsics3.areEqual(this.addedMemberCount, trackAfCustomizationSaved.addedMemberCount) && Intrinsics3.areEqual(this.removedMemberCount, trackAfCustomizationSaved.removedMemberCount) && Intrinsics3.areEqual(this.selectedFriendCount, trackAfCustomizationSaved.selectedFriendCount) && Intrinsics3.areEqual(this.selectedTotalCount, trackAfCustomizationSaved.selectedTotalCount) && Intrinsics3.areEqual(this.selectedSuggestedCount, trackAfCustomizationSaved.selectedSuggestedCount);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -51,7 +51,7 @@ public final /* data */ class TrackAfCustomizationSaved implements AnalyticsSche
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackAfCustomizationSaved(loadId=");
+        StringBuilder sbU = outline.U("TrackAfCustomizationSaved(loadId=");
         sbU.append(this.loadId);
         sbU.append(", addedMemberCount=");
         sbU.append(this.addedMemberCount);
@@ -62,6 +62,6 @@ public final /* data */ class TrackAfCustomizationSaved implements AnalyticsSche
         sbU.append(", selectedTotalCount=");
         sbU.append(this.selectedTotalCount);
         sbU.append(", selectedSuggestedCount=");
-        return a.G(sbU, this.selectedSuggestedCount, ")");
+        return outline.G(sbU, this.selectedSuggestedCount, ")");
     }
 }

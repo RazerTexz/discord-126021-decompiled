@@ -1,14 +1,14 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackNetworkingPeerMetrics.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackNetworkingPeerMetrics implements AnalyticsSchema, TrackBaseReceiver {
+public final /* data */ class TrackNetworkingPeerMetrics implements AnalyticsSchema, TrackBase2 {
     private final Long applicationId = null;
     private final Long intervalNs = null;
     private final Long peerId = null;
@@ -31,7 +31,7 @@ public final /* data */ class TrackNetworkingPeerMetrics implements AnalyticsSch
             return false;
         }
         TrackNetworkingPeerMetrics trackNetworkingPeerMetrics = (TrackNetworkingPeerMetrics) other;
-        return m.areEqual(this.applicationId, trackNetworkingPeerMetrics.applicationId) && m.areEqual(this.peerId, trackNetworkingPeerMetrics.peerId) && m.areEqual(this.intervalNs, trackNetworkingPeerMetrics.intervalNs) && m.areEqual(this.pingsSent, trackNetworkingPeerMetrics.pingsSent) && m.areEqual(this.pingsReceived, trackNetworkingPeerMetrics.pingsReceived) && m.areEqual(this.pongsSent, trackNetworkingPeerMetrics.pongsSent) && m.areEqual(this.pongsReceived, trackNetworkingPeerMetrics.pongsReceived) && m.areEqual(this.pingRttAvg, trackNetworkingPeerMetrics.pingRttAvg) && m.areEqual(this.pingRttMax, trackNetworkingPeerMetrics.pingRttMax) && m.areEqual(this.pingRttP95, trackNetworkingPeerMetrics.pingRttP95) && m.areEqual(this.pingRttStddev, trackNetworkingPeerMetrics.pingRttStddev);
+        return Intrinsics3.areEqual(this.applicationId, trackNetworkingPeerMetrics.applicationId) && Intrinsics3.areEqual(this.peerId, trackNetworkingPeerMetrics.peerId) && Intrinsics3.areEqual(this.intervalNs, trackNetworkingPeerMetrics.intervalNs) && Intrinsics3.areEqual(this.pingsSent, trackNetworkingPeerMetrics.pingsSent) && Intrinsics3.areEqual(this.pingsReceived, trackNetworkingPeerMetrics.pingsReceived) && Intrinsics3.areEqual(this.pongsSent, trackNetworkingPeerMetrics.pongsSent) && Intrinsics3.areEqual(this.pongsReceived, trackNetworkingPeerMetrics.pongsReceived) && Intrinsics3.areEqual(this.pingRttAvg, trackNetworkingPeerMetrics.pingRttAvg) && Intrinsics3.areEqual(this.pingRttMax, trackNetworkingPeerMetrics.pingRttMax) && Intrinsics3.areEqual(this.pingRttP95, trackNetworkingPeerMetrics.pingRttP95) && Intrinsics3.areEqual(this.pingRttStddev, trackNetworkingPeerMetrics.pingRttStddev);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -66,7 +66,7 @@ public final /* data */ class TrackNetworkingPeerMetrics implements AnalyticsSch
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackNetworkingPeerMetrics(applicationId=");
+        StringBuilder sbU = outline.U("TrackNetworkingPeerMetrics(applicationId=");
         sbU.append(this.applicationId);
         sbU.append(", peerId=");
         sbU.append(this.peerId);
@@ -87,6 +87,6 @@ public final /* data */ class TrackNetworkingPeerMetrics implements AnalyticsSch
         sbU.append(", pingRttP95=");
         sbU.append(this.pingRttP95);
         sbU.append(", pingRttStddev=");
-        return a.G(sbU, this.pingRttStddev, ")");
+        return outline.G(sbU, this.pingRttStddev, ")");
     }
 }

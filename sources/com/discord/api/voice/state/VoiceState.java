@@ -1,10 +1,10 @@
 package com.discord.api.voice.state;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.api.guildmember.GuildMember;
 import com.discord.api.utcdatetime.UtcDateTime;
 import com.discord.models.domain.ModelAuditLogEntry;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: VoiceState.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -31,7 +31,7 @@ public final /* data */ class VoiceState {
             return false;
         }
         VoiceState voiceState = (VoiceState) other;
-        return this.userId == voiceState.userId && this.suppress == voiceState.suppress && m.areEqual(this.sessionId, voiceState.sessionId) && this.selfMute == voiceState.selfMute && this.selfDeaf == voiceState.selfDeaf && this.selfVideo == voiceState.selfVideo && this.selfStream == voiceState.selfStream && this.mute == voiceState.mute && this.guildId == voiceState.guildId && this.deaf == voiceState.deaf && m.areEqual(this.member, voiceState.member) && m.areEqual(this.requestToSpeakTimestamp, voiceState.requestToSpeakTimestamp) && m.areEqual(this.channelId, voiceState.channelId);
+        return this.userId == voiceState.userId && this.suppress == voiceState.suppress && Intrinsics3.areEqual(this.sessionId, voiceState.sessionId) && this.selfMute == voiceState.selfMute && this.selfDeaf == voiceState.selfDeaf && this.selfVideo == voiceState.selfVideo && this.selfStream == voiceState.selfStream && this.mute == voiceState.mute && this.guildId == voiceState.guildId && this.deaf == voiceState.deaf && Intrinsics3.areEqual(this.member, voiceState.member) && Intrinsics3.areEqual(this.requestToSpeakTimestamp, voiceState.requestToSpeakTimestamp) && Intrinsics3.areEqual(this.channelId, voiceState.channelId);
     }
 
     /* JADX INFO: renamed from: a, reason: from getter */
@@ -176,7 +176,7 @@ public final /* data */ class VoiceState {
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("VoiceState(userId=");
+        StringBuilder sbU = outline.U("VoiceState(userId=");
         sbU.append(this.userId);
         sbU.append(", suppress=");
         sbU.append(this.suppress);
@@ -201,6 +201,6 @@ public final /* data */ class VoiceState {
         sbU.append(", requestToSpeakTimestamp=");
         sbU.append(this.requestToSpeakTimestamp);
         sbU.append(", channelId=");
-        return a.G(sbU, this.channelId, ")");
+        return outline.G(sbU, this.channelId, ")");
     }
 }

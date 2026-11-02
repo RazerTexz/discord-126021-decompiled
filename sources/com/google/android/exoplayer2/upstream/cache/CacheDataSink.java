@@ -3,11 +3,11 @@ package com.google.android.exoplayer2.upstream.cache;
 import android.util.Log;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
-import b.c.a.a0.d;
-import b.i.a.c.e3.b0.p;
-import b.i.a.c.e3.j;
-import b.i.a.c.e3.n;
-import b.i.a.c.f3.e0;
+import b.c.a.a0.AnimatableValueParser;
+import b.i.a.c.e3.DataSink;
+import b.i.a.c.e3.DataSpec;
+import b.i.a.c.e3.b0.ReusableBufferedOutputStream;
+import b.i.a.c.f3.Util2;
 import com.discord.api.permission.Permission;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -16,7 +16,7 @@ import java.io.OutputStream;
 import java.util.Objects;
 
 /* JADX INFO: loaded from: classes3.dex */
-public final class CacheDataSink implements j {
+public final class CacheDataSink implements DataSink {
     public final Cache a;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
@@ -24,7 +24,7 @@ public final class CacheDataSink implements j {
     public final int c;
 
     @Nullable
-    public n d;
+    public DataSpec d;
     public long e;
 
     @Nullable
@@ -34,7 +34,7 @@ public final class CacheDataSink implements j {
     public OutputStream g;
     public long h;
     public long i;
-    public p j;
+    public ReusableBufferedOutputStream j;
 
     public final class CacheDataSinkException extends Cache.CacheException {
         public CacheDataSinkException(IOException iOException) {
@@ -43,7 +43,7 @@ public final class CacheDataSink implements j {
     }
 
     public CacheDataSink(Cache cache, long j) {
-        d.E(j > 0 || j == -1, "fragmentSize must be positive or C.LENGTH_UNSET.");
+        AnimatableValueParser.E(j > 0 || j == -1, "fragmentSize must be positive or C.LENGTH_UNSET.");
         if (j != -1 && j < Permission.SPEAK) {
             Log.w("CacheDataSink", "fragmentSize is below the minimum recommended value of 2097152. This may cause poor cache performance.");
         }
@@ -53,18 +53,18 @@ public final class CacheDataSink implements j {
         this.c = 20480;
     }
 
-    @Override // b.i.a.c.e3.j
-    public void a(n nVar) throws CacheDataSinkException {
-        Objects.requireNonNull(nVar.h);
-        if (nVar.g == -1 && nVar.c(2)) {
+    @Override // b.i.a.c.e3.DataSink
+    public void a(DataSpec dataSpec) throws CacheDataSinkException {
+        Objects.requireNonNull(dataSpec.h);
+        if (dataSpec.g == -1 && dataSpec.c(2)) {
             this.d = null;
             return;
         }
-        this.d = nVar;
-        this.e = nVar.c(4) ? this.f2981b : RecyclerView.FOREVER_NS;
+        this.d = dataSpec;
+        this.e = dataSpec.c(4) ? this.f2981b : RecyclerView.FOREVER_NS;
         this.i = 0L;
         try {
-            c(nVar);
+            c(dataSpec);
         } catch (IOException e) {
             throw new CacheDataSinkException(e);
         }
@@ -78,7 +78,7 @@ public final class CacheDataSink implements j {
         try {
             outputStream.flush();
             OutputStream outputStream2 = this.g;
-            int i = e0.a;
+            int i = Util2.a;
             if (outputStream2 != null) {
                 try {
                     outputStream2.close();
@@ -91,7 +91,7 @@ public final class CacheDataSink implements j {
             this.a.g(file, this.h);
         } catch (Throwable th) {
             OutputStream outputStream3 = this.g;
-            int i2 = e0.a;
+            int i2 = Util2.a;
             if (outputStream3 != null) {
                 try {
                     outputStream3.close();
@@ -106,20 +106,20 @@ public final class CacheDataSink implements j {
         }
     }
 
-    public final void c(n nVar) throws IOException {
-        long j = nVar.g;
+    public final void c(DataSpec dataSpec) throws IOException {
+        long j = dataSpec.g;
         long jMin = j != -1 ? Math.min(j - this.i, this.e) : -1L;
         Cache cache = this.a;
-        String str = nVar.h;
-        int i = e0.a;
-        this.f = cache.a(str, nVar.f + this.i, jMin);
+        String str = dataSpec.h;
+        int i = Util2.a;
+        this.f = cache.a(str, dataSpec.f + this.i, jMin);
         FileOutputStream fileOutputStream = new FileOutputStream(this.f);
         if (this.c > 0) {
-            p pVar = this.j;
-            if (pVar == null) {
-                this.j = new p(fileOutputStream, this.c);
+            ReusableBufferedOutputStream reusableBufferedOutputStream = this.j;
+            if (reusableBufferedOutputStream == null) {
+                this.j = new ReusableBufferedOutputStream(fileOutputStream, this.c);
             } else {
-                pVar.a(fileOutputStream);
+                reusableBufferedOutputStream.a(fileOutputStream);
             }
             this.g = this.j;
         } else {
@@ -128,7 +128,7 @@ public final class CacheDataSink implements j {
         this.h = 0L;
     }
 
-    @Override // b.i.a.c.e3.j
+    @Override // b.i.a.c.e3.DataSink
     public void close() throws CacheDataSinkException {
         if (this.d == null) {
             return;
@@ -140,10 +140,10 @@ public final class CacheDataSink implements j {
         }
     }
 
-    @Override // b.i.a.c.e3.j
+    @Override // b.i.a.c.e3.DataSink
     public void write(byte[] bArr, int i, int i2) throws CacheDataSinkException {
-        n nVar = this.d;
-        if (nVar == null) {
+        DataSpec dataSpec = this.d;
+        if (dataSpec == null) {
             return;
         }
         int i3 = 0;
@@ -151,11 +151,11 @@ public final class CacheDataSink implements j {
             try {
                 if (this.h == this.e) {
                     b();
-                    c(nVar);
+                    c(dataSpec);
                 }
                 int iMin = (int) Math.min(i2 - i3, this.e - this.h);
                 OutputStream outputStream = this.g;
-                int i4 = e0.a;
+                int i4 = Util2.a;
                 outputStream.write(bArr, i + i3, iMin);
                 i3 += iMin;
                 long j = iMin;

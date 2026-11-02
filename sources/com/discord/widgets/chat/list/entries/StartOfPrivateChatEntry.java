@@ -1,9 +1,9 @@
 package com.discord.widgets.chat.list.entries;
 
 import a0.a.a.b;
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.models.guild.Guild;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 import java.util.List;
 
 /* JADX INFO: compiled from: StartOfPrivateChatEntry.kt */
@@ -19,8 +19,8 @@ public final /* data */ class StartOfPrivateChatEntry extends ChatListEntry {
     private final int type;
 
     public StartOfPrivateChatEntry(long j, String str, int i, String str2, boolean z2, List<Guild> list) {
-        m.checkNotNullParameter(str, "channelName");
-        m.checkNotNullParameter(list, "mutualGuilds");
+        Intrinsics3.checkNotNullParameter(str, "channelName");
+        Intrinsics3.checkNotNullParameter(list, "mutualGuilds");
         this.channelId = j;
         this.channelName = str;
         this.channelType = i;
@@ -41,8 +41,8 @@ public final /* data */ class StartOfPrivateChatEntry extends ChatListEntry {
     }
 
     public final StartOfPrivateChatEntry copy(long channelId, String channelName, int channelType, String channelIcon, boolean isSystemDM, List<Guild> mutualGuilds) {
-        m.checkNotNullParameter(channelName, "channelName");
-        m.checkNotNullParameter(mutualGuilds, "mutualGuilds");
+        Intrinsics3.checkNotNullParameter(channelName, "channelName");
+        Intrinsics3.checkNotNullParameter(mutualGuilds, "mutualGuilds");
         return new StartOfPrivateChatEntry(channelId, channelName, channelType, channelIcon, isSystemDM, mutualGuilds);
     }
 
@@ -54,7 +54,7 @@ public final /* data */ class StartOfPrivateChatEntry extends ChatListEntry {
             return false;
         }
         StartOfPrivateChatEntry startOfPrivateChatEntry = (StartOfPrivateChatEntry) other;
-        return this.channelId == startOfPrivateChatEntry.channelId && m.areEqual(this.channelName, startOfPrivateChatEntry.channelName) && this.channelType == startOfPrivateChatEntry.channelType && m.areEqual(this.channelIcon, startOfPrivateChatEntry.channelIcon) && this.isSystemDM == startOfPrivateChatEntry.isSystemDM && m.areEqual(this.mutualGuilds, startOfPrivateChatEntry.mutualGuilds);
+        return this.channelId == startOfPrivateChatEntry.channelId && Intrinsics3.areEqual(this.channelName, startOfPrivateChatEntry.channelName) && this.channelType == startOfPrivateChatEntry.channelType && Intrinsics3.areEqual(this.channelIcon, startOfPrivateChatEntry.channelIcon) && this.isSystemDM == startOfPrivateChatEntry.isSystemDM && Intrinsics3.areEqual(this.mutualGuilds, startOfPrivateChatEntry.mutualGuilds);
     }
 
     /* JADX INFO: renamed from: component4, reason: from getter */
@@ -138,7 +138,7 @@ public final /* data */ class StartOfPrivateChatEntry extends ChatListEntry {
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("StartOfPrivateChatEntry(channelId=");
+        StringBuilder sbU = outline.U("StartOfPrivateChatEntry(channelId=");
         sbU.append(this.channelId);
         sbU.append(", channelName=");
         sbU.append(this.channelName);
@@ -149,6 +149,6 @@ public final /* data */ class StartOfPrivateChatEntry extends ChatListEntry {
         sbU.append(", isSystemDM=");
         sbU.append(this.isSystemDM);
         sbU.append(", mutualGuilds=");
-        return a.L(sbU, this.mutualGuilds, ")");
+        return outline.L(sbU, this.mutualGuilds, ")");
     }
 }

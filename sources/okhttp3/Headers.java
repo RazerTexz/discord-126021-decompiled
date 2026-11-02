@@ -1,25 +1,27 @@
 package okhttp3;
 
 import com.discord.models.domain.ModelAuditLogEntry;
-import d0.d0.f;
-import d0.g0.t;
-import d0.g0.w;
-import d0.o;
-import d0.t.r;
-import d0.z.d.m;
-import f0.e0.c;
+import d0.Tuples;
+import d0.d0._Ranges;
+import d0.g0.Strings4;
+import d0.g0.StringsJVM;
+import d0.t.MutableCollections;
+import d0.z.d.ArrayIterator4;
+import d0.z.d.Intrinsics3;
+import d0.z.d.g0.KMarkers;
+import f0.e0.Util7;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
-import kotlin.Pair;
+import kotlin.Tuples2;
 import kotlin.TypeCastException;
 import kotlin.jvm.internal.DefaultConstructorMarker;
-import kotlin.ranges.IntProgression;
+import kotlin.ranges.Progressions2;
 
 /* JADX INFO: compiled from: Headers.kt */
 /* JADX INFO: loaded from: classes3.dex */
-public final class Headers implements Iterable<Pair<? extends String, ? extends String>>, d0.z.d.g0.a {
+public final class Headers implements Iterable<Tuples2<? extends String, ? extends String>>, KMarkers {
 
     /* JADX INFO: renamed from: j, reason: from kotlin metadata */
     public static final Companion INSTANCE = new Companion(null);
@@ -41,7 +43,7 @@ public final class Headers implements Iterable<Pair<? extends String, ? extends 
             for (int i = 0; i < length; i++) {
                 char cCharAt = str.charAt(i);
                 if (!('!' <= cCharAt && '~' >= cCharAt)) {
-                    throw new IllegalArgumentException(c.j("Unexpected char %#04x at %d in header name: %s", Integer.valueOf(cCharAt), Integer.valueOf(i), str).toString());
+                    throw new IllegalArgumentException(Util7.j("Unexpected char %#04x at %d in header name: %s", Integer.valueOf(cCharAt), Integer.valueOf(i), str).toString());
                 }
             }
         }
@@ -51,13 +53,13 @@ public final class Headers implements Iterable<Pair<? extends String, ? extends 
             for (int i = 0; i < length; i++) {
                 char cCharAt = str.charAt(i);
                 if (!(cCharAt == '\t' || (' ' <= cCharAt && '~' >= cCharAt))) {
-                    throw new IllegalArgumentException(c.j("Unexpected char %#04x at %d in %s value: %s", Integer.valueOf(cCharAt), Integer.valueOf(i), str2, str).toString());
+                    throw new IllegalArgumentException(Util7.j("Unexpected char %#04x at %d in %s value: %s", Integer.valueOf(cCharAt), Integer.valueOf(i), str2, str).toString());
                 }
             }
         }
 
         public final Headers c(String... strArr) throws CloneNotSupportedException {
-            m.checkParameterIsNotNull(strArr, "namesAndValues");
+            Intrinsics3.checkParameterIsNotNull(strArr, "namesAndValues");
             if (!(strArr.length % 2 == 0)) {
                 throw new IllegalArgumentException("Expected alternating header names and values".toString());
             }
@@ -75,12 +77,12 @@ public final class Headers implements Iterable<Pair<? extends String, ? extends 
                 if (str == null) {
                     throw new TypeCastException("null cannot be cast to non-null type kotlin.CharSequence");
                 }
-                strArr2[i] = w.trim(str).toString();
+                strArr2[i] = Strings4.trim(str).toString();
             }
-            IntProgression intProgressionStep = f.step(f.until(0, strArr2.length), 2);
-            int first = intProgressionStep.getFirst();
-            int last = intProgressionStep.getLast();
-            int step = intProgressionStep.getStep();
+            Progressions2 progressions2Step = _Ranges.step(_Ranges.until(0, strArr2.length), 2);
+            int first = progressions2Step.getFirst();
+            int last = progressions2Step.getLast();
+            int step = progressions2Step.getStep();
             if (step < 0 ? first >= last : first <= last) {
                 while (true) {
                     String str2 = strArr2[first];
@@ -102,14 +104,14 @@ public final class Headers implements Iterable<Pair<? extends String, ? extends 
     }
 
     public final String c(String name) {
-        m.checkParameterIsNotNull(name, ModelAuditLogEntry.CHANGE_KEY_NAME);
+        Intrinsics3.checkParameterIsNotNull(name, ModelAuditLogEntry.CHANGE_KEY_NAME);
         String[] strArr = this.namesAndValues;
-        IntProgression intProgressionStep = f.step(f.downTo(strArr.length - 2, 0), 2);
-        int first = intProgressionStep.getFirst();
-        int last = intProgressionStep.getLast();
-        int step = intProgressionStep.getStep();
+        Progressions2 progressions2Step = _Ranges.step(_Ranges.downTo(strArr.length - 2, 0), 2);
+        int first = progressions2Step.getFirst();
+        int last = progressions2Step.getLast();
+        int step = progressions2Step.getStep();
         if (step < 0 ? first >= last : first <= last) {
-            while (!t.equals(name, strArr[first], true)) {
+            while (!StringsJVM.equals(name, strArr[first], true)) {
                 if (first != last) {
                     first += step;
                 }
@@ -125,7 +127,7 @@ public final class Headers implements Iterable<Pair<? extends String, ? extends 
 
     public final a e() {
         a aVar = new a();
-        r.addAll(aVar.a, this.namesAndValues);
+        MutableCollections.addAll(aVar.a, this.namesAndValues);
         return aVar;
     }
 
@@ -142,13 +144,13 @@ public final class Headers implements Iterable<Pair<? extends String, ? extends 
     }
 
     @Override // java.lang.Iterable
-    public Iterator<Pair<? extends String, ? extends String>> iterator() {
+    public Iterator<Tuples2<? extends String, ? extends String>> iterator() {
         int size = size();
-        Pair[] pairArr = new Pair[size];
+        Tuples2[] tuples2Arr = new Tuples2[size];
         for (int i = 0; i < size; i++) {
-            pairArr[i] = o.to(d(i), g(i));
+            tuples2Arr[i] = Tuples.to(d(i), g(i));
         }
-        return d0.z.d.c.iterator(pairArr);
+        return ArrayIterator4.iterator(tuples2Arr);
     }
 
     public final int size() {
@@ -165,7 +167,7 @@ public final class Headers implements Iterable<Pair<? extends String, ? extends 
             sb.append("\n");
         }
         String string = sb.toString();
-        m.checkExpressionValueIsNotNull(string, "StringBuilder().apply(builderAction).toString()");
+        Intrinsics3.checkExpressionValueIsNotNull(string, "StringBuilder().apply(builderAction).toString()");
         return string;
     }
 
@@ -174,8 +176,8 @@ public final class Headers implements Iterable<Pair<? extends String, ? extends 
         public final List<String> a = new ArrayList(20);
 
         public final a a(String str, String str2) {
-            m.checkParameterIsNotNull(str, ModelAuditLogEntry.CHANGE_KEY_NAME);
-            m.checkParameterIsNotNull(str2, "value");
+            Intrinsics3.checkParameterIsNotNull(str, ModelAuditLogEntry.CHANGE_KEY_NAME);
+            Intrinsics3.checkParameterIsNotNull(str2, "value");
             Companion companion = Headers.INSTANCE;
             companion.a(str);
             companion.b(str2, str);
@@ -184,10 +186,10 @@ public final class Headers implements Iterable<Pair<? extends String, ? extends 
         }
 
         public final a b(String str, String str2) {
-            m.checkParameterIsNotNull(str, ModelAuditLogEntry.CHANGE_KEY_NAME);
-            m.checkParameterIsNotNull(str2, "value");
+            Intrinsics3.checkParameterIsNotNull(str, ModelAuditLogEntry.CHANGE_KEY_NAME);
+            Intrinsics3.checkParameterIsNotNull(str2, "value");
             this.a.add(str);
-            this.a.add(w.trim(str2).toString());
+            this.a.add(Strings4.trim(str2).toString());
             return this;
         }
 
@@ -200,10 +202,10 @@ public final class Headers implements Iterable<Pair<? extends String, ? extends 
         }
 
         public final a d(String str) {
-            m.checkParameterIsNotNull(str, ModelAuditLogEntry.CHANGE_KEY_NAME);
+            Intrinsics3.checkParameterIsNotNull(str, ModelAuditLogEntry.CHANGE_KEY_NAME);
             int i = 0;
             while (i < this.a.size()) {
-                if (t.equals(str, this.a.get(i), true)) {
+                if (StringsJVM.equals(str, this.a.get(i), true)) {
                     this.a.remove(i);
                     this.a.remove(i);
                     i -= 2;

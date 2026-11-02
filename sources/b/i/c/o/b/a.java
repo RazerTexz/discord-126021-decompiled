@@ -4,6 +4,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Parcel;
 import android.os.Parcelable;
+import b.c.a.a0.AnimatableValueParser;
 import com.google.firebase.dynamiclinks.internal.DynamicLinkData;
 
 /* JADX INFO: compiled from: com.google.firebase:firebase-dynamic-links@@19.1.1 */
@@ -11,7 +12,7 @@ import com.google.firebase.dynamiclinks.internal.DynamicLinkData;
 public final class a implements Parcelable.Creator<DynamicLinkData> {
     @Override // android.os.Parcelable.Creator
     public final DynamicLinkData createFromParcel(Parcel parcel) {
-        int iM2 = b.c.a.a0.d.m2(parcel);
+        int iM2 = AnimatableValueParser.m2(parcel);
         String strR = null;
         String strR2 = null;
         Bundle bundleM = null;
@@ -22,29 +23,29 @@ public final class a implements Parcelable.Creator<DynamicLinkData> {
             int i = parcel.readInt();
             switch ((char) i) {
                 case 1:
-                    strR = b.c.a.a0.d.R(parcel, i);
+                    strR = AnimatableValueParser.R(parcel, i);
                     break;
                 case 2:
-                    strR2 = b.c.a.a0.d.R(parcel, i);
+                    strR2 = AnimatableValueParser.R(parcel, i);
                     break;
                 case 3:
-                    iG1 = b.c.a.a0.d.G1(parcel, i);
+                    iG1 = AnimatableValueParser.G1(parcel, i);
                     break;
                 case 4:
-                    jH1 = b.c.a.a0.d.H1(parcel, i);
+                    jH1 = AnimatableValueParser.H1(parcel, i);
                     break;
                 case 5:
-                    bundleM = b.c.a.a0.d.M(parcel, i);
+                    bundleM = AnimatableValueParser.M(parcel, i);
                     break;
                 case 6:
-                    uri = (Uri) b.c.a.a0.d.Q(parcel, i, Uri.CREATOR);
+                    uri = (Uri) AnimatableValueParser.Q(parcel, i, Uri.CREATOR);
                     break;
                 default:
-                    b.c.a.a0.d.d2(parcel, i);
+                    AnimatableValueParser.d2(parcel, i);
                     break;
             }
         }
-        b.c.a.a0.d.f0(parcel, iM2);
+        AnimatableValueParser.f0(parcel, iM2);
         return new DynamicLinkData(strR, strR2, iG1, jH1, bundleM, uri);
     }
 

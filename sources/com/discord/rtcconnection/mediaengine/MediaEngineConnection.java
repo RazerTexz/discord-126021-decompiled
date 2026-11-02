@@ -1,11 +1,13 @@
 package com.discord.rtcconnection.mediaengine;
 
 import android.content.Intent;
+import b.a.q.m0.Codec2;
+import b.d.b.a.outline;
 import co.discord.media_engine.Stats;
 import co.discord.media_engine.StreamParameters;
 import com.discord.models.domain.ModelAuditLogEntry;
 import com.discord.rtcconnection.KrispOveruseDetector;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 import java.util.List;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function1;
@@ -51,7 +53,7 @@ public interface MediaEngineConnection {
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
         public FailedConnectionException(String str, FailureType failureType) {
             super(str);
-            m.checkNotNullParameter(failureType, "type");
+            Intrinsics3.checkNotNullParameter(failureType, "type");
             this.type = failureType;
         }
 
@@ -106,8 +108,8 @@ public interface MediaEngineConnection {
         }
 
         public TransportInfo(String str, int i, Protocol protocol) {
-            m.checkNotNullParameter(str, "address");
-            m.checkNotNullParameter(protocol, "protocol");
+            Intrinsics3.checkNotNullParameter(str, "address");
+            Intrinsics3.checkNotNullParameter(protocol, "protocol");
             this.address = str;
             this.port = i;
             this.protocol = protocol;
@@ -121,7 +123,7 @@ public interface MediaEngineConnection {
                 return false;
             }
             TransportInfo transportInfo = (TransportInfo) other;
-            return m.areEqual(this.address, transportInfo.address) && this.port == transportInfo.port && m.areEqual(this.protocol, transportInfo.protocol);
+            return Intrinsics3.areEqual(this.address, transportInfo.address) && this.port == transportInfo.port && Intrinsics3.areEqual(this.protocol, transportInfo.protocol);
         }
 
         public int hashCode() {
@@ -132,7 +134,7 @@ public interface MediaEngineConnection {
         }
 
         public String toString() {
-            StringBuilder sbU = b.d.b.a.a.U("TransportInfo(address=");
+            StringBuilder sbU = outline.U("TransportInfo(address=");
             sbU.append(this.address);
             sbU.append(", port=");
             sbU.append(this.port);
@@ -152,16 +154,16 @@ public interface MediaEngineConnection {
     /* JADX INFO: compiled from: MediaEngineConnection.kt */
     public abstract class a implements d {
         @Override // com.discord.rtcconnection.mediaengine.MediaEngineConnection.d
-        public void onConnected(MediaEngineConnection mediaEngineConnection, TransportInfo transportInfo, List<b.a.q.m0.a> list) {
-            m.checkNotNullParameter(mediaEngineConnection, "connection");
-            m.checkNotNullParameter(transportInfo, "transportInfo");
-            m.checkNotNullParameter(list, "supportedVideoCodecs");
+        public void onConnected(MediaEngineConnection mediaEngineConnection, TransportInfo transportInfo, List<Codec2> list) {
+            Intrinsics3.checkNotNullParameter(mediaEngineConnection, "connection");
+            Intrinsics3.checkNotNullParameter(transportInfo, "transportInfo");
+            Intrinsics3.checkNotNullParameter(list, "supportedVideoCodecs");
         }
 
         @Override // com.discord.rtcconnection.mediaengine.MediaEngineConnection.d
         public void onConnectionStateChange(MediaEngineConnection mediaEngineConnection, ConnectionState connectionState) {
-            m.checkNotNullParameter(mediaEngineConnection, "connection");
-            m.checkNotNullParameter(connectionState, "connectionState");
+            Intrinsics3.checkNotNullParameter(mediaEngineConnection, "connection");
+            Intrinsics3.checkNotNullParameter(connectionState, "connectionState");
         }
 
         @Override // com.discord.rtcconnection.mediaengine.MediaEngineConnection.d
@@ -169,14 +171,14 @@ public interface MediaEngineConnection {
 
         @Override // com.discord.rtcconnection.mediaengine.MediaEngineConnection.d
         public void onError(MediaEngineConnection mediaEngineConnection, FailedConnectionException failedConnectionException) {
-            m.checkNotNullParameter(mediaEngineConnection, "connection");
-            m.checkNotNullParameter(failedConnectionException, "exception");
+            Intrinsics3.checkNotNullParameter(mediaEngineConnection, "connection");
+            Intrinsics3.checkNotNullParameter(failedConnectionException, "exception");
         }
 
         @Override // com.discord.rtcconnection.mediaengine.MediaEngineConnection.d
         public void onKrispStatus(MediaEngineConnection mediaEngineConnection, KrispOveruseDetector.Status status) {
-            m.checkNotNullParameter(mediaEngineConnection, "connection");
-            m.checkNotNullParameter(status, "status");
+            Intrinsics3.checkNotNullParameter(mediaEngineConnection, "connection");
+            Intrinsics3.checkNotNullParameter(status, "status");
         }
 
         @Override // com.discord.rtcconnection.mediaengine.MediaEngineConnection.d
@@ -204,7 +206,7 @@ public interface MediaEngineConnection {
 
         @Override // com.discord.rtcconnection.mediaengine.MediaEngineConnection.d
         public void onVideo(long j, Integer num, int i, int i2, int i3, StreamParameters[] streamParametersArr) {
-            m.checkNotNullParameter(streamParametersArr, "streams");
+            Intrinsics3.checkNotNullParameter(streamParametersArr, "streams");
         }
     }
 
@@ -244,7 +246,7 @@ public interface MediaEngineConnection {
         }
 
         public String toString() {
-            StringBuilder sbU = b.d.b.a.a.U("EncodingQuality(minBitrate=");
+            StringBuilder sbU = outline.U("EncodingQuality(minBitrate=");
             sbU.append(this.a);
             sbU.append(", maxBitrate=");
             sbU.append(this.f2799b);
@@ -255,7 +257,7 @@ public interface MediaEngineConnection {
             sbU.append(", mutedFramerate=");
             sbU.append(this.e);
             sbU.append(", framerate=");
-            return b.d.b.a.a.B(sbU, this.f, ")");
+            return outline.B(sbU, this.f, ")");
         }
     }
 
@@ -316,7 +318,7 @@ public interface MediaEngineConnection {
         }
 
         public String toString() {
-            StringBuilder sbU = b.d.b.a.a.U("InputModeOptions(vadThreshold=");
+            StringBuilder sbU = outline.U("InputModeOptions(vadThreshold=");
             sbU.append(this.a);
             sbU.append(", vadLeadingFrames=");
             sbU.append(this.f2800b);
@@ -327,7 +329,7 @@ public interface MediaEngineConnection {
             sbU.append(", vadUseKrisp=");
             sbU.append(this.e);
             sbU.append(", pttReleaseDelayMs=");
-            return b.d.b.a.a.B(sbU, this.f, ")");
+            return outline.B(sbU, this.f, ")");
         }
 
         public c(int i, int i2, int i3, boolean z2, boolean z3, int i4, int i5) {
@@ -348,7 +350,7 @@ public interface MediaEngineConnection {
 
     /* JADX INFO: compiled from: MediaEngineConnection.kt */
     public interface d {
-        void onConnected(MediaEngineConnection mediaEngineConnection, TransportInfo transportInfo, List<b.a.q.m0.a> list);
+        void onConnected(MediaEngineConnection mediaEngineConnection, TransportInfo transportInfo, List<Codec2> list);
 
         void onConnectionStateChange(MediaEngineConnection mediaEngineConnection, ConnectionState connectionState);
 

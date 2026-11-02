@@ -28,7 +28,7 @@ import androidx.appcompat.widget.AppCompatToggleButton;
 import androidx.appcompat.widget.TintContextWrapper;
 import androidx.collection.SimpleArrayMap;
 import androidx.core.view.ViewCompat;
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -85,12 +85,12 @@ public class AppCompatViewInflater {
             if (id2 == -1) {
                 string = "";
             } else {
-                StringBuilder sbU = a.U(" with id '");
+                StringBuilder sbU = outline.U(" with id '");
                 sbU.append(this.mHostView.getContext().getResources().getResourceEntryName(id2));
                 sbU.append("'");
                 string = sbU.toString();
             }
-            StringBuilder sbU2 = a.U("Could not find method ");
+            StringBuilder sbU2 = outline.U("Could not find method ");
             sbU2.append(this.mMethodName);
             sbU2.append("(View) in a parent or ancestor Context for android:onClick attribute defined on view ");
             sbU2.append(this.mHostView.getClass());

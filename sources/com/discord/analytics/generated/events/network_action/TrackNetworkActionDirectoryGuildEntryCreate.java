@@ -1,18 +1,18 @@
 package com.discord.analytics.generated.events.network_action;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.analytics.generated.traits.TrackLocationMetadata;
-import com.discord.analytics.generated.traits.TrackLocationMetadataReceiver;
+import com.discord.analytics.generated.traits.TrackLocationMetadata2;
 import com.discord.analytics.generated.traits.TrackNetworkMetadata;
-import com.discord.analytics.generated.traits.TrackNetworkMetadataReceiver;
+import com.discord.analytics.generated.traits.TrackNetworkMetadata2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackNetworkActionDirectoryGuildEntryCreate.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackNetworkActionDirectoryGuildEntryCreate implements AnalyticsSchema, TrackBaseReceiver, TrackLocationMetadataReceiver, TrackNetworkMetadataReceiver {
+public final /* data */ class TrackNetworkActionDirectoryGuildEntryCreate implements AnalyticsSchema, TrackBase2, TrackLocationMetadata2, TrackNetworkMetadata2 {
     private final transient String analyticsSchemaTypeName;
     private final Long directoryChannelId;
     private final Long guildId;
@@ -28,7 +28,7 @@ public final /* data */ class TrackNetworkActionDirectoryGuildEntryCreate implem
         this.analyticsSchemaTypeName = "network_action_directory_guild_entry_create";
     }
 
-    @Override // com.discord.analytics.generated.traits.TrackNetworkMetadataReceiver
+    @Override // com.discord.analytics.generated.traits.TrackNetworkMetadata2
     public void b(TrackNetworkMetadata trackNetworkMetadata) {
         this.trackNetworkMetadata = trackNetworkMetadata;
     }
@@ -41,7 +41,7 @@ public final /* data */ class TrackNetworkActionDirectoryGuildEntryCreate implem
             return false;
         }
         TrackNetworkActionDirectoryGuildEntryCreate trackNetworkActionDirectoryGuildEntryCreate = (TrackNetworkActionDirectoryGuildEntryCreate) other;
-        return m.areEqual(this.directoryChannelId, trackNetworkActionDirectoryGuildEntryCreate.directoryChannelId) && m.areEqual(this.guildId, trackNetworkActionDirectoryGuildEntryCreate.guildId) && m.areEqual(this.primaryCategoryId, trackNetworkActionDirectoryGuildEntryCreate.primaryCategoryId);
+        return Intrinsics3.areEqual(this.directoryChannelId, trackNetworkActionDirectoryGuildEntryCreate.directoryChannelId) && Intrinsics3.areEqual(this.guildId, trackNetworkActionDirectoryGuildEntryCreate.guildId) && Intrinsics3.areEqual(this.primaryCategoryId, trackNetworkActionDirectoryGuildEntryCreate.primaryCategoryId);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -60,12 +60,12 @@ public final /* data */ class TrackNetworkActionDirectoryGuildEntryCreate implem
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackNetworkActionDirectoryGuildEntryCreate(directoryChannelId=");
+        StringBuilder sbU = outline.U("TrackNetworkActionDirectoryGuildEntryCreate(directoryChannelId=");
         sbU.append(this.directoryChannelId);
         sbU.append(", guildId=");
         sbU.append(this.guildId);
         sbU.append(", primaryCategoryId=");
-        return a.G(sbU, this.primaryCategoryId, ")");
+        return outline.G(sbU, this.primaryCategoryId, ")");
     }
 
     public TrackNetworkActionDirectoryGuildEntryCreate(Long l, Long l2, Long l3) {

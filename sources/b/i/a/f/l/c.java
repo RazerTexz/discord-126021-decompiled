@@ -1,6 +1,7 @@
 package b.i.a.f.l;
 
 import androidx.core.app.NotificationCompat;
+import b.c.a.a0.AnimatableValueParser;
 import com.google.android.gms.common.api.Scope;
 
 /* JADX INFO: compiled from: com.google.android.gms:play-services-base@@17.3.0 */
@@ -10,8 +11,8 @@ public final class c {
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
     public static final b.i.a.f.e.h.a.g<b.i.a.f.l.b.a> f1590b;
-    public static final b.i.a.f.e.h.a.C0112a<b.i.a.f.l.b.a, a> c;
-    public static final b.i.a.f.e.h.a.C0112a<b.i.a.f.l.b.a, g> d;
+    public static final b.i.a.f.e.h.a.C0035a<b.i.a.f.l.b.a, a> c;
+    public static final b.i.a.f.e.h.a.C0035a<b.i.a.f.l.b.a, g> d;
 
     static {
         b.i.a.f.e.h.a.g<b.i.a.f.l.b.a> gVar = new b.i.a.f.e.h.a.g<>();
@@ -24,9 +25,9 @@ public final class c {
         d = dVar;
         new Scope("profile");
         new Scope(NotificationCompat.CATEGORY_EMAIL);
-        b.c.a.a0.d.z(eVar, "Cannot construct an Api with a null ClientBuilder");
-        b.c.a.a0.d.z(gVar, "Cannot construct an Api with a null ClientKey");
-        b.c.a.a0.d.z(dVar, "Cannot construct an Api with a null ClientBuilder");
-        b.c.a.a0.d.z(gVar2, "Cannot construct an Api with a null ClientKey");
+        AnimatableValueParser.z(eVar, "Cannot construct an Api with a null ClientBuilder");
+        AnimatableValueParser.z(gVar, "Cannot construct an Api with a null ClientKey");
+        AnimatableValueParser.z(dVar, "Cannot construct an Api with a null ClientBuilder");
+        AnimatableValueParser.z(gVar2, "Cannot construct an Api with a null ClientKey");
     }
 }

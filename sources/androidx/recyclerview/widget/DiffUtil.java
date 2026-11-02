@@ -3,7 +3,7 @@ package androidx.recyclerview.widget;
 import androidx.annotation.IntRange;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -137,7 +137,7 @@ public class DiffUtil {
 
         public int convertNewPositionToOld(@IntRange(from = 0) int i) {
             if (i < 0 || i >= this.mNewListSize) {
-                StringBuilder sbV = a.V("Index out of bounds - passed position = ", i, ", new list size = ");
+                StringBuilder sbV = outline.V("Index out of bounds - passed position = ", i, ", new list size = ");
                 sbV.append(this.mNewListSize);
                 throw new IndexOutOfBoundsException(sbV.toString());
             }
@@ -150,7 +150,7 @@ public class DiffUtil {
 
         public int convertOldPositionToNew(@IntRange(from = 0) int i) {
             if (i < 0 || i >= this.mOldListSize) {
-                StringBuilder sbV = a.V("Index out of bounds - passed position = ", i, ", old list size = ");
+                StringBuilder sbV = outline.V("Index out of bounds - passed position = ", i, ", old list size = ");
                 sbV.append(this.mOldListSize);
                 throw new IndexOutOfBoundsException(sbV.toString());
             }

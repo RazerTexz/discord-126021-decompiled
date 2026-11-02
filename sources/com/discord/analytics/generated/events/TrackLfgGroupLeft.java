@@ -1,18 +1,18 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.analytics.generated.traits.TrackChannel;
-import com.discord.analytics.generated.traits.TrackChannelReceiver;
+import com.discord.analytics.generated.traits.TrackChannel2;
 import com.discord.analytics.generated.traits.TrackLfgGroup;
-import com.discord.analytics.generated.traits.TrackLfgGroupReceiver;
+import com.discord.analytics.generated.traits.TrackLfgGroup2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackLfgGroupLeft.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackLfgGroupLeft implements AnalyticsSchema, TrackBaseReceiver, TrackChannelReceiver, TrackLfgGroupReceiver {
+public final /* data */ class TrackLfgGroupLeft implements AnalyticsSchema, TrackBase2, TrackChannel2, TrackLfgGroup2 {
     private final CharSequence leaveType = null;
     private TrackBase trackBase;
     private TrackChannel trackChannel;
@@ -21,7 +21,7 @@ public final /* data */ class TrackLfgGroupLeft implements AnalyticsSchema, Trac
 
     public boolean equals(Object other) {
         if (this != other) {
-            return (other instanceof TrackLfgGroupLeft) && m.areEqual(this.leaveType, ((TrackLfgGroupLeft) other).leaveType);
+            return (other instanceof TrackLfgGroupLeft) && Intrinsics3.areEqual(this.leaveType, ((TrackLfgGroupLeft) other).leaveType);
         }
         return true;
     }
@@ -41,6 +41,6 @@ public final /* data */ class TrackLfgGroupLeft implements AnalyticsSchema, Trac
     }
 
     public String toString() {
-        return a.E(a.U("TrackLfgGroupLeft(leaveType="), this.leaveType, ")");
+        return outline.E(outline.U("TrackLfgGroupLeft(leaveType="), this.leaveType, ")");
     }
 }

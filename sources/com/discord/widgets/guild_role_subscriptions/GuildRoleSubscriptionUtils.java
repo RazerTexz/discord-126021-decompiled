@@ -11,11 +11,11 @@ import com.discord.stores.StoreGuildRoleSubscriptions;
 import com.discord.utilities.rest.RestAPI;
 import com.discord.utilities.rx.ObservableExtensionsKt;
 import com.discord.widgets.guild_role_subscriptions.tier.model.Benefit;
-import d0.t.o;
-import d0.t.u;
-import d0.z.d.m;
-import j0.k.b;
-import j0.l.e.k;
+import d0.t.Iterables2;
+import d0.t._Collections;
+import d0.z.d.Intrinsics3;
+import j0.k.Func1;
+import j0.l.e.ScalarSynchronousObservable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
@@ -30,7 +30,7 @@ public final class GuildRoleSubscriptionUtils {
 
     /* JADX INFO: renamed from: com.discord.widgets.guild_role_subscriptions.GuildRoleSubscriptionUtils$createGuildRoleSubscriptionGroupListing$1, reason: invalid class name */
     /* JADX INFO: compiled from: GuildRoleSubscriptionUtils.kt */
-    public final class AnonymousClass1<T, R> implements b<GuildRoleSubscriptionGroupListing, Observable<? extends GuildRoleSubscriptionTierListing>> {
+    public final class AnonymousClass1<T, R> implements Func1<GuildRoleSubscriptionGroupListing, Observable<? extends GuildRoleSubscriptionTierListing>> {
         public final /* synthetic */ boolean $canAccessAllChannels;
         public final /* synthetic */ List $channelBenefits;
         public final /* synthetic */ long $guildId;
@@ -59,7 +59,7 @@ public final class GuildRoleSubscriptionUtils {
             this.$intangibleBenefits = list2;
         }
 
-        @Override // j0.k.b
+        @Override // j0.k.Func1
         public /* bridge */ /* synthetic */ Observable<? extends GuildRoleSubscriptionTierListing> call(GuildRoleSubscriptionGroupListing guildRoleSubscriptionGroupListing) {
             return call2(guildRoleSubscriptionGroupListing);
         }
@@ -68,7 +68,7 @@ public final class GuildRoleSubscriptionUtils {
         public final Observable<? extends GuildRoleSubscriptionTierListing> call2(GuildRoleSubscriptionGroupListing guildRoleSubscriptionGroupListing) {
             StoreGuildRoleSubscriptions storeGuildRoleSubscriptions = this.$storeGuildRoleSubscriptions;
             long j = this.$guildId;
-            m.checkNotNullExpressionValue(guildRoleSubscriptionGroupListing, "subscriptionGroupListing");
+            Intrinsics3.checkNotNullExpressionValue(guildRoleSubscriptionGroupListing, "subscriptionGroupListing");
             storeGuildRoleSubscriptions.handleGuildRoleSubscriptionGroupUpdate(j, guildRoleSubscriptionGroupListing);
             return GuildRoleSubscriptionUtils.INSTANCE.createGuildRoleSubscriptionTierListing(this.$restApi, this.$storeGuildRoleSubscriptions, this.$guildId, guildRoleSubscriptionGroupListing.getId(), this.$tierName, this.$tierDescription, this.$priceTier, this.$tierImage, this.$memberColor, this.$memberBadge, this.$canAccessAllChannels, this.$channelBenefits, this.$intangibleBenefits);
         }
@@ -76,7 +76,7 @@ public final class GuildRoleSubscriptionUtils {
 
     /* JADX INFO: renamed from: com.discord.widgets.guild_role_subscriptions.GuildRoleSubscriptionUtils$createGuildRoleSubscriptionTierListing$1, reason: invalid class name */
     /* JADX INFO: compiled from: GuildRoleSubscriptionUtils.kt */
-    public final class AnonymousClass1<T, R> implements b<GuildRoleSubscriptionTierListing, Observable<? extends GuildRoleSubscriptionTierListing>> {
+    public final class AnonymousClass1<T, R> implements Func1<GuildRoleSubscriptionTierListing, Observable<? extends GuildRoleSubscriptionTierListing>> {
         public final /* synthetic */ long $guildId;
         public final /* synthetic */ int $memberColor;
         public final /* synthetic */ String $memberIcon;
@@ -89,7 +89,7 @@ public final class GuildRoleSubscriptionUtils {
             this.$memberIcon = str;
         }
 
-        @Override // j0.k.b
+        @Override // j0.k.Func1
         public /* bridge */ /* synthetic */ Observable<? extends GuildRoleSubscriptionTierListing> call(GuildRoleSubscriptionTierListing guildRoleSubscriptionTierListing) {
             return call2(guildRoleSubscriptionTierListing);
         }
@@ -101,7 +101,7 @@ public final class GuildRoleSubscriptionUtils {
             long j = this.$guildId;
             Integer numValueOf = Integer.valueOf(this.$memberColor);
             String str = this.$memberIcon;
-            m.checkNotNullExpressionValue(guildRoleSubscriptionTierListing, "guildRoleSubscriptionTierListing");
+            Intrinsics3.checkNotNullExpressionValue(guildRoleSubscriptionTierListing, "guildRoleSubscriptionTierListing");
             return GuildRoleSubscriptionUtils.access$updateGuildRoleSubscriptionDesign(guildRoleSubscriptionUtils, restAPI, j, numValueOf, str, guildRoleSubscriptionTierListing);
         }
     }
@@ -134,14 +134,14 @@ public final class GuildRoleSubscriptionUtils {
 
     /* JADX INFO: renamed from: com.discord.widgets.guild_role_subscriptions.GuildRoleSubscriptionUtils$updateGuildRoleSubscriptionDesign$1, reason: invalid class name */
     /* JADX INFO: compiled from: GuildRoleSubscriptionUtils.kt */
-    public final class AnonymousClass1<T, R> implements b<Void, GuildRoleSubscriptionTierListing> {
+    public final class AnonymousClass1<T, R> implements Func1<Void, GuildRoleSubscriptionTierListing> {
         public final /* synthetic */ GuildRoleSubscriptionTierListing $guildRoleSubscriptionTierListing;
 
         public AnonymousClass1(GuildRoleSubscriptionTierListing guildRoleSubscriptionTierListing) {
             this.$guildRoleSubscriptionTierListing = guildRoleSubscriptionTierListing;
         }
 
-        @Override // j0.k.b
+        @Override // j0.k.Func1
         public /* bridge */ /* synthetic */ GuildRoleSubscriptionTierListing call(Void r1) {
             return call2(r1);
         }
@@ -172,7 +172,7 @@ public final class GuildRoleSubscriptionUtils {
         public final void call2(GuildRoleSubscriptionGroupListing guildRoleSubscriptionGroupListing) {
             StoreGuildRoleSubscriptions storeGuildRoleSubscriptions = this.$storeGuildRoleSubscriptions;
             long j = this.$guildId;
-            m.checkNotNullExpressionValue(guildRoleSubscriptionGroupListing, "groupListing");
+            Intrinsics3.checkNotNullExpressionValue(guildRoleSubscriptionGroupListing, "groupListing");
             storeGuildRoleSubscriptions.handleGuildRoleSubscriptionGroupUpdate(j, guildRoleSubscriptionGroupListing);
         }
     }
@@ -200,7 +200,7 @@ public final class GuildRoleSubscriptionUtils {
             StoreGuildRoleSubscriptions storeGuildRoleSubscriptions = this.$storeGuildRoleSubscriptions;
             long j = this.$guildId;
             long id2 = this.$guildRoleSubscriptionTierListing.getId();
-            m.checkNotNullExpressionValue(guildRoleSubscriptionTierFreeTrial, "it");
+            Intrinsics3.checkNotNullExpressionValue(guildRoleSubscriptionTierFreeTrial, "it");
             storeGuildRoleSubscriptions.handleGuildRoleSubscriptionTierTrialUpdate(j, id2, guildRoleSubscriptionTierFreeTrial);
         }
     }
@@ -228,14 +228,14 @@ public final class GuildRoleSubscriptionUtils {
             StoreGuildRoleSubscriptions storeGuildRoleSubscriptions = this.$storeGuildRoleSubscriptions;
             long j = this.$guildId;
             long j2 = this.$groupListingId;
-            m.checkNotNullExpressionValue(guildRoleSubscriptionTierListing, "tierListing");
+            Intrinsics3.checkNotNullExpressionValue(guildRoleSubscriptionTierListing, "tierListing");
             storeGuildRoleSubscriptions.handleGuildRoleSubscriptionTierListingCreate(j, j2, guildRoleSubscriptionTierListing);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.widgets.guild_role_subscriptions.GuildRoleSubscriptionUtils$updateGuildRoleSubscriptionTierListing$2, reason: invalid class name */
     /* JADX INFO: compiled from: GuildRoleSubscriptionUtils.kt */
-    public final class AnonymousClass2<T, R> implements b<GuildRoleSubscriptionTierListing, Observable<? extends GuildRoleSubscriptionTierListing>> {
+    public final class AnonymousClass2<T, R> implements Func1<GuildRoleSubscriptionTierListing, Observable<? extends GuildRoleSubscriptionTierListing>> {
         public final /* synthetic */ long $guildId;
         public final /* synthetic */ Integer $memberColor;
         public final /* synthetic */ String $memberIcon;
@@ -248,7 +248,7 @@ public final class GuildRoleSubscriptionUtils {
             this.$memberIcon = str;
         }
 
-        @Override // j0.k.b
+        @Override // j0.k.Func1
         public /* bridge */ /* synthetic */ Observable<? extends GuildRoleSubscriptionTierListing> call(GuildRoleSubscriptionTierListing guildRoleSubscriptionTierListing) {
             return call2(guildRoleSubscriptionTierListing);
         }
@@ -260,21 +260,21 @@ public final class GuildRoleSubscriptionUtils {
             long j = this.$guildId;
             Integer num = this.$memberColor;
             String str = this.$memberIcon;
-            m.checkNotNullExpressionValue(guildRoleSubscriptionTierListing, "guildRoleSubscriptionTierListing");
+            Intrinsics3.checkNotNullExpressionValue(guildRoleSubscriptionTierListing, "guildRoleSubscriptionTierListing");
             return GuildRoleSubscriptionUtils.access$updateGuildRoleSubscriptionDesign(guildRoleSubscriptionUtils, restAPI, j, num, str, guildRoleSubscriptionTierListing);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.widgets.guild_role_subscriptions.GuildRoleSubscriptionUtils$updateGuildRoleSubscriptionTrial$2, reason: invalid class name */
     /* JADX INFO: compiled from: GuildRoleSubscriptionUtils.kt */
-    public final class AnonymousClass2<T, R> implements b<GuildRoleSubscriptionTierFreeTrial, GuildRoleSubscriptionTierListing> {
+    public final class AnonymousClass2<T, R> implements Func1<GuildRoleSubscriptionTierFreeTrial, GuildRoleSubscriptionTierListing> {
         public final /* synthetic */ GuildRoleSubscriptionTierListing $guildRoleSubscriptionTierListing;
 
         public AnonymousClass2(GuildRoleSubscriptionTierListing guildRoleSubscriptionTierListing) {
             this.$guildRoleSubscriptionTierListing = guildRoleSubscriptionTierListing;
         }
 
-        @Override // j0.k.b
+        @Override // j0.k.Func1
         public /* bridge */ /* synthetic */ GuildRoleSubscriptionTierListing call(GuildRoleSubscriptionTierFreeTrial guildRoleSubscriptionTierFreeTrial) {
             return call2(guildRoleSubscriptionTierFreeTrial);
         }
@@ -287,7 +287,7 @@ public final class GuildRoleSubscriptionUtils {
 
     /* JADX INFO: renamed from: com.discord.widgets.guild_role_subscriptions.GuildRoleSubscriptionUtils$updateGuildRoleSubscriptionTierListing$3, reason: invalid class name */
     /* JADX INFO: compiled from: GuildRoleSubscriptionUtils.kt */
-    public final class AnonymousClass3<T, R> implements b<GuildRoleSubscriptionTierListing, Observable<? extends GuildRoleSubscriptionTierListing>> {
+    public final class AnonymousClass3<T, R> implements Func1<GuildRoleSubscriptionTierListing, Observable<? extends GuildRoleSubscriptionTierListing>> {
         public final /* synthetic */ NullSerializable $activeTrialUserLimit;
         public final /* synthetic */ long $guildId;
         public final /* synthetic */ RestAPI $restApi;
@@ -302,7 +302,7 @@ public final class GuildRoleSubscriptionUtils {
             this.$activeTrialUserLimit = nullSerializable2;
         }
 
-        @Override // j0.k.b
+        @Override // j0.k.Func1
         public /* bridge */ /* synthetic */ Observable<? extends GuildRoleSubscriptionTierListing> call(GuildRoleSubscriptionTierListing guildRoleSubscriptionTierListing) {
             return call2(guildRoleSubscriptionTierListing);
         }
@@ -313,7 +313,7 @@ public final class GuildRoleSubscriptionUtils {
             RestAPI restAPI = this.$restApi;
             StoreGuildRoleSubscriptions storeGuildRoleSubscriptions = this.$storeGuildRoleSubscriptions;
             long j = this.$guildId;
-            m.checkNotNullExpressionValue(guildRoleSubscriptionTierListing, "guildRoleSubscriptionTierListing");
+            Intrinsics3.checkNotNullExpressionValue(guildRoleSubscriptionTierListing, "guildRoleSubscriptionTierListing");
             return GuildRoleSubscriptionUtils.access$updateGuildRoleSubscriptionTrial(guildRoleSubscriptionUtils, restAPI, storeGuildRoleSubscriptions, j, guildRoleSubscriptionTierListing, this.$trialInterval, this.$activeTrialUserLimit);
         }
     }
@@ -338,7 +338,7 @@ public final class GuildRoleSubscriptionUtils {
         public final void call2(GuildRoleSubscriptionTierListing guildRoleSubscriptionTierListing) {
             StoreGuildRoleSubscriptions storeGuildRoleSubscriptions = this.$storeGuildRoleSubscriptions;
             long j = this.$guildId;
-            m.checkNotNullExpressionValue(guildRoleSubscriptionTierListing, "it");
+            Intrinsics3.checkNotNullExpressionValue(guildRoleSubscriptionTierListing, "it");
             storeGuildRoleSubscriptions.handleGuildRoleSubscriptionTierListingUpdate(j, guildRoleSubscriptionTierListing);
         }
     }
@@ -359,13 +359,13 @@ public final class GuildRoleSubscriptionUtils {
     }
 
     public final Observable<GuildRoleSubscriptionTierListing> createGuildRoleSubscriptionGroupListing(RestAPI restApi, StoreGuildRoleSubscriptions storeGuildRoleSubscriptions, long guildId, String coverImage, String planDescription, Boolean isFullServerGating, String tierName, String tierDescription, int priceTier, String tierImage, int memberColor, String memberBadge, boolean canAccessAllChannels, List<? extends Benefit> channelBenefits, List<? extends Benefit> intangibleBenefits) {
-        m.checkNotNullParameter(restApi, "restApi");
-        m.checkNotNullParameter(storeGuildRoleSubscriptions, "storeGuildRoleSubscriptions");
-        m.checkNotNullParameter(tierName, "tierName");
-        m.checkNotNullParameter(channelBenefits, "channelBenefits");
-        m.checkNotNullParameter(intangibleBenefits, "intangibleBenefits");
+        Intrinsics3.checkNotNullParameter(restApi, "restApi");
+        Intrinsics3.checkNotNullParameter(storeGuildRoleSubscriptions, "storeGuildRoleSubscriptions");
+        Intrinsics3.checkNotNullParameter(tierName, "tierName");
+        Intrinsics3.checkNotNullParameter(channelBenefits, "channelBenefits");
+        Intrinsics3.checkNotNullParameter(intangibleBenefits, "intangibleBenefits");
         Observable<R> observableA = restApi.createGuildRoleSubscriptionGroupListing(guildId, new RestAPIParams.CreateGuildRoleSubscriptionGroupListing(coverImage, planDescription, isFullServerGating)).A(new AnonymousClass1(storeGuildRoleSubscriptions, guildId, restApi, tierName, tierDescription, priceTier, tierImage, memberColor, memberBadge, canAccessAllChannels, channelBenefits, intangibleBenefits));
-        m.checkNotNullExpressionValue(observableA, "restApi\n        .createG…ts,\n          )\n        }");
+        Intrinsics3.checkNotNullExpressionValue(observableA, "restApi\n        .createG…ts,\n          )\n        }");
         return ObservableExtensionsKt.restSubscribeOn$default(observableA, false, 1, null);
     }
 
@@ -374,29 +374,29 @@ public final class GuildRoleSubscriptionUtils {
     }
 
     public final Observable<GuildRoleSubscriptionTierListing> createGuildRoleSubscriptionTierListing(RestAPI restApi, StoreGuildRoleSubscriptions storeGuildRoleSubscriptions, long guildId, long groupListingId, String tierName, String tierDescription, int priceTier, String tierImage, int memberColor, String memberIcon, boolean canAccessAllChannels, List<? extends Benefit> channelBenefits, List<? extends Benefit> intangibleBenefits) {
-        m.checkNotNullParameter(restApi, "restApi");
-        m.checkNotNullParameter(storeGuildRoleSubscriptions, "storeGuildRoleSubscriptions");
-        m.checkNotNullParameter(tierName, "tierName");
-        m.checkNotNullParameter(channelBenefits, "channelBenefits");
-        m.checkNotNullParameter(intangibleBenefits, "intangibleBenefits");
-        List listPlus = u.plus((Collection) channelBenefits, (Iterable) intangibleBenefits);
-        ArrayList arrayList = new ArrayList(o.collectionSizeOrDefault(listPlus, 10));
+        Intrinsics3.checkNotNullParameter(restApi, "restApi");
+        Intrinsics3.checkNotNullParameter(storeGuildRoleSubscriptions, "storeGuildRoleSubscriptions");
+        Intrinsics3.checkNotNullParameter(tierName, "tierName");
+        Intrinsics3.checkNotNullParameter(channelBenefits, "channelBenefits");
+        Intrinsics3.checkNotNullParameter(intangibleBenefits, "intangibleBenefits");
+        List listPlus = _Collections.plus((Collection) channelBenefits, (Iterable) intangibleBenefits);
+        ArrayList arrayList = new ArrayList(Iterables2.collectionSizeOrDefault(listPlus, 10));
         Iterator it = listPlus.iterator();
         while (it.hasNext()) {
             arrayList.add(((Benefit) it.next()).toGuildRoleSubscriptionBenefit());
         }
         Observable<R> observableA = restApi.createGuildRoleSubscriptionTier(guildId, groupListingId, new RestAPIParams.CreateGuildRoleSubscriptionTierListing(tierName, tierImage, tierDescription, arrayList, priceTier, canAccessAllChannels)).A(new AnonymousClass1(restApi, guildId, memberColor, memberIcon));
-        m.checkNotNullExpressionValue(observableA, "restApi\n        .createG…ng,\n          )\n        }");
+        Intrinsics3.checkNotNullExpressionValue(observableA, "restApi\n        .createG…ng,\n          )\n        }");
         Observable<GuildRoleSubscriptionTierListing> observableU = ObservableExtensionsKt.restSubscribeOn$default(observableA, false, 1, null).u(new AnonymousClass2(storeGuildRoleSubscriptions, guildId, groupListingId));
-        m.checkNotNullExpressionValue(observableU, "restApi\n        .createG…ing\n          )\n        }");
+        Intrinsics3.checkNotNullExpressionValue(observableU, "restApi\n        .createG…ing\n          )\n        }");
         return observableU;
     }
 
     public final Observable<Void> deleteGuildRoleSubscriptionTierListing(RestAPI restApi, StoreGuildRoleSubscriptions storeGuildRoleSubscriptions, long guildId, long groupListingId, long tierListingId) {
-        m.checkNotNullParameter(restApi, "restApi");
-        m.checkNotNullParameter(storeGuildRoleSubscriptions, "storeGuildRoleSubscriptions");
+        Intrinsics3.checkNotNullParameter(restApi, "restApi");
+        Intrinsics3.checkNotNullParameter(storeGuildRoleSubscriptions, "storeGuildRoleSubscriptions");
         Observable<Void> observableU = ObservableExtensionsKt.restSubscribeOn$default(restApi.deleteGuildRoleSubscriptionTierListing(guildId, groupListingId, tierListingId), false, 1, null).u(new AnonymousClass1(storeGuildRoleSubscriptions, guildId, groupListingId, tierListingId));
-        m.checkNotNullExpressionValue(observableU, "restApi\n        .deleteG…Id,\n          )\n        }");
+        Intrinsics3.checkNotNullExpressionValue(observableU, "restApi\n        .deleteG…Id,\n          )\n        }");
         return observableU;
     }
 
@@ -406,15 +406,15 @@ public final class GuildRoleSubscriptionUtils {
 
     private final Observable<GuildRoleSubscriptionTierListing> updateGuildRoleSubscriptionDesign(RestAPI restApi, long guildId, Integer memberColor, String memberIcon, GuildRoleSubscriptionTierListing guildRoleSubscriptionTierListing) {
         Observable observableG = restApi.updateRole(guildId, guildRoleSubscriptionTierListing.getRoleId(), new RestAPIParams.Role(null, null, null, memberColor, null, null, guildRoleSubscriptionTierListing.getRoleId(), memberIcon, 55, null)).G(new AnonymousClass1(guildRoleSubscriptionTierListing));
-        m.checkNotNullExpressionValue(observableG, "restApi\n          .updat…onTierListing\n          }");
+        Intrinsics3.checkNotNullExpressionValue(observableG, "restApi\n          .updat…onTierListing\n          }");
         return observableG;
     }
 
     public final Observable<GuildRoleSubscriptionGroupListing> updateGuildRoleSubscriptionGroupListing(RestAPI restApi, StoreGuildRoleSubscriptions storeGuildRoleSubscriptions, long guildId, long groupListingId, String coverImage, String planDescription, Boolean isFullServerGating) {
-        m.checkNotNullParameter(restApi, "restApi");
-        m.checkNotNullParameter(storeGuildRoleSubscriptions, "storeGuildRoleSubscriptions");
+        Intrinsics3.checkNotNullParameter(restApi, "restApi");
+        Intrinsics3.checkNotNullParameter(storeGuildRoleSubscriptions, "storeGuildRoleSubscriptions");
         Observable<GuildRoleSubscriptionGroupListing> observableU = ObservableExtensionsKt.restSubscribeOn$default(restApi.updateGuildRoleSubscriptionGroupListing(guildId, groupListingId, new RestAPIParams.UpdateGuildRoleSubscriptionGroupListing(coverImage, planDescription, isFullServerGating)), false, 1, null).u(new AnonymousClass1(storeGuildRoleSubscriptions, guildId));
-        m.checkNotNullExpressionValue(observableU, "restApi\n        .updateG…, groupListing)\n        }");
+        Intrinsics3.checkNotNullExpressionValue(observableU, "restApi\n        .updateG…, groupListing)\n        }");
         return observableU;
     }
 
@@ -426,15 +426,15 @@ public final class GuildRoleSubscriptionUtils {
     public final Observable<GuildRoleSubscriptionTierListing> updateGuildRoleSubscriptionTierListing(RestAPI restApi, StoreGuildRoleSubscriptions storeGuildRoleSubscriptions, long guildId, long groupListingId, long tierListingId, String tierName, String tierDescription, String tierImage, Integer priceTier, Integer memberColor, String memberIcon, Boolean canAccessAllChannels, List<? extends Benefit> channelBenefits, List<? extends Benefit> intangibleBenefits, Boolean published, NullSerializable<SubscriptionTrialInterval> trialInterval, NullSerializable<Integer> activeTrialUserLimit) {
         List<? extends Benefit> listPlus;
         ArrayList arrayList;
-        m.checkNotNullParameter(restApi, "restApi");
-        m.checkNotNullParameter(storeGuildRoleSubscriptions, "storeGuildRoleSubscriptions");
+        Intrinsics3.checkNotNullParameter(restApi, "restApi");
+        Intrinsics3.checkNotNullParameter(storeGuildRoleSubscriptions, "storeGuildRoleSubscriptions");
         if (channelBenefits == null || intangibleBenefits == null) {
             listPlus = channelBenefits != null ? channelBenefits : intangibleBenefits;
         } else {
-            listPlus = u.plus((Collection) channelBenefits, (Iterable) intangibleBenefits);
+            listPlus = _Collections.plus((Collection) channelBenefits, (Iterable) intangibleBenefits);
         }
         if (listPlus != null) {
-            ArrayList arrayList2 = new ArrayList(o.collectionSizeOrDefault(listPlus, 10));
+            ArrayList arrayList2 = new ArrayList(Iterables2.collectionSizeOrDefault(listPlus, 10));
             Iterator<T> it = listPlus.iterator();
             while (it.hasNext()) {
                 arrayList2.add(((Benefit) it.next()).toGuildRoleSubscriptionBenefit());
@@ -444,9 +444,9 @@ public final class GuildRoleSubscriptionUtils {
             arrayList = null;
         }
         Observable observableA = restApi.updateGuildRoleSubscriptionTierListing(guildId, groupListingId, tierListingId, new RestAPIParams.UpdateGuildRoleSubscriptionTierListing(tierName, tierImage, tierDescription, priceTier, arrayList, published, canAccessAllChannels)).A(new AnonymousClass2(restApi, guildId, memberColor, memberIcon)).A(new AnonymousClass3(restApi, storeGuildRoleSubscriptions, guildId, trialInterval, activeTrialUserLimit));
-        m.checkNotNullExpressionValue(observableA, "restApi\n        .updateG…it,\n          )\n        }");
+        Intrinsics3.checkNotNullExpressionValue(observableA, "restApi\n        .updateG…it,\n          )\n        }");
         Observable<GuildRoleSubscriptionTierListing> observableU = ObservableExtensionsKt.restSubscribeOn$default(observableA, false, 1, null).u(new AnonymousClass4(storeGuildRoleSubscriptions, guildId));
-        m.checkNotNullExpressionValue(observableU, "restApi\n        .updateG…te(guildId, it)\n        }");
+        Intrinsics3.checkNotNullExpressionValue(observableU, "restApi\n        .updateG…te(guildId, it)\n        }");
         return observableU;
     }
 
@@ -457,12 +457,12 @@ public final class GuildRoleSubscriptionUtils {
 
     private final Observable<GuildRoleSubscriptionTierListing> updateGuildRoleSubscriptionTrial(RestAPI restApi, StoreGuildRoleSubscriptions storeGuildRoleSubscriptions, long guildId, GuildRoleSubscriptionTierListing guildRoleSubscriptionTierListing, NullSerializable<SubscriptionTrialInterval> trialInterval, NullSerializable<Integer> activeTrialUserLimit) {
         if (trialInterval == null && activeTrialUserLimit == null) {
-            k kVar = new k(guildRoleSubscriptionTierListing);
-            m.checkNotNullExpressionValue(kVar, "Observable.just(guildRoleSubscriptionTierListing)");
-            return kVar;
+            ScalarSynchronousObservable scalarSynchronousObservable = new ScalarSynchronousObservable(guildRoleSubscriptionTierListing);
+            Intrinsics3.checkNotNullExpressionValue(scalarSynchronousObservable, "Observable.just(guildRoleSubscriptionTierListing)");
+            return scalarSynchronousObservable;
         }
         Observable observableG = restApi.updateGuildRoleSubscriptionTierFreeTrial(guildId, guildRoleSubscriptionTierListing.getId(), new RestAPIParams.UpdateGuildRoleSubscriptionTierFreeTrial(trialInterval, activeTrialUserLimit)).u(new AnonymousClass1(storeGuildRoleSubscriptions, guildId, guildRoleSubscriptionTierListing)).G(new AnonymousClass2(guildRoleSubscriptionTierListing));
-        m.checkNotNullExpressionValue(observableG, "restApi\n          .updat…SubscriptionTierListing }");
+        Intrinsics3.checkNotNullExpressionValue(observableG, "restApi\n          .updat…SubscriptionTierListing }");
         return observableG;
     }
 }

@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteException;
 import android.text.TextUtils;
 import androidx.annotation.WorkerThread;
 import androidx.collection.ArrayMap;
+import b.c.a.a0.AnimatableValueParser;
 import com.google.android.gms.internal.measurement.zzij;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -76,11 +77,11 @@ public final class p4 extends i9 implements e {
         byte[] blob;
         n();
         b();
-        b.c.a.a0.d.w(str);
+        AnimatableValueParser.w(str);
         if (this.g.get(str) == null) {
             g gVarQ = q();
             Objects.requireNonNull(gVarQ);
-            b.c.a.a0.d.w(str);
+            AnimatableValueParser.w(str);
             gVarQ.b();
             gVarQ.n();
             Cursor cursor2 = null;
@@ -161,7 +162,7 @@ public final class p4 extends i9 implements e {
     public final b.i.a.f.h.l.u0 s(String str) throws Throwable {
         n();
         b();
-        b.c.a.a0.d.w(str);
+        AnimatableValueParser.w(str);
         E(str);
         return this.g.get(str);
     }
@@ -244,7 +245,7 @@ public final class p4 extends i9 implements e {
         boolean z4;
         n();
         b();
-        b.c.a.a0.d.w(str);
+        AnimatableValueParser.w(str);
         b.i.a.f.h.l.u0.a aVarT = t(str, bArr).t();
         v(str, aVarT);
         this.g.put(str, (b.i.a.f.h.l.u0) ((b.i.a.f.h.l.u4) aVarT.p()));
@@ -354,20 +355,20 @@ public final class p4 extends i9 implements e {
         String str13 = str5;
         gVarQ.n();
         gVarQ.b();
-        b.c.a.a0.d.w(str);
+        AnimatableValueParser.w(str);
         SQLiteDatabase sQLiteDatabaseT = gVarQ.t();
         sQLiteDatabaseT.beginTransaction();
         try {
             gVarQ.n();
             gVarQ.b();
-            b.c.a.a0.d.w(str);
+            AnimatableValueParser.w(str);
             SQLiteDatabase sQLiteDatabaseT2 = gVarQ.t();
             sQLiteDatabaseT2.delete("property_filters", "app_id=?", new String[]{str});
             sQLiteDatabaseT2.delete("event_filters", "app_id=?", new String[]{str});
             for (b.i.a.f.h.l.k0 k0Var : arrayList) {
                 gVarQ.n();
                 gVarQ.b();
-                b.c.a.a0.d.w(str);
+                AnimatableValueParser.w(str);
                 str13 = str13;
                 Objects.requireNonNull(k0Var, str13);
                 if (k0Var.x()) {
@@ -403,7 +404,7 @@ public final class p4 extends i9 implements e {
                                     } else {
                                         gVarQ.n();
                                         gVarQ.b();
-                                        b.c.a.a0.d.w(str);
+                                        AnimatableValueParser.w(str);
                                         SQLiteDatabase sQLiteDatabaseT3 = gVarQ.t();
                                         str3 = str12;
                                         sQLiteDatabaseT3.delete("property_filters", str3, new String[]{str, String.valueOf(iY)});
@@ -443,7 +444,7 @@ public final class p4 extends i9 implements e {
                 bArrD = bArr;
             }
             g gVarQ2 = q();
-            b.c.a.a0.d.w(str);
+            AnimatableValueParser.w(str);
             gVarQ2.b();
             gVarQ2.n();
             ContentValues contentValues = new ContentValues();

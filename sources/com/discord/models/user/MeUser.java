@@ -2,14 +2,14 @@ package com.discord.models.user;
 
 import a0.a.a.b;
 import androidx.core.app.NotificationCompat;
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.api.premium.PremiumTier;
 import com.discord.api.user.NsfwAllowance;
 import com.discord.api.user.Phone;
 import com.discord.models.domain.ModelAuditLogEntry;
 import com.discord.nullserializable.NullSerializable;
-import d0.g0.s;
-import d0.z.d.m;
+import d0.g0.StringNumberConversions;
+import d0.z.d.Intrinsics3;
 import java.util.Objects;
 import kotlin.NoWhenBranchMatchedException;
 import kotlin.jvm.internal.DefaultConstructorMarker;
@@ -67,8 +67,8 @@ public final /* data */ class MeUser implements User {
             String str2;
             NullSerializable<String> nullSerializableC;
             String strA;
-            m.checkNotNullParameter(oldUser, "oldUser");
-            m.checkNotNullParameter(newUser, "newUser");
+            Intrinsics3.checkNotNullParameter(oldUser, "oldUser");
+            Intrinsics3.checkNotNullParameter(newUser, "newUser");
             long id2 = newUser.getId();
             String username = newUser.getUsername();
             NullSerializable<String> nullSerializableA = newUser.a();
@@ -97,7 +97,7 @@ public final /* data */ class MeUser implements User {
             boolean zBooleanValue = bot != null ? bot.booleanValue() : oldUser.getIsBot();
             Boolean system = newUser.getSystem();
             boolean zBooleanValue2 = system != null ? system.booleanValue() : oldUser.getIsSystemUser();
-            Integer intOrNull = s.toIntOrNull(newUser.getDiscriminator());
+            Integer intOrNull = StringNumberConversions.toIntOrNull(newUser.getDiscriminator());
             int iIntValue = intOrNull != null ? intOrNull.intValue() : oldUser.getDiscriminator();
             PremiumTier premiumType = newUser.getPremiumType();
             if (premiumType == null) {
@@ -121,7 +121,7 @@ public final /* data */ class MeUser implements User {
             int iIntValue3 = publicFlags != null ? publicFlags.intValue() : oldUser.getPublicFlags();
             Phone phone = newUser.getPhone();
             if (!(phone instanceof Phone.PhoneNumber)) {
-                if (m.areEqual(phone, Phone.NoPhoneNumber.INSTANCE)) {
+                if (Intrinsics3.areEqual(phone, Phone.NoPhoneNumber.INSTANCE)) {
                     str = null;
                 } else {
                     if (phone != null) {
@@ -218,9 +218,9 @@ public final /* data */ class MeUser implements User {
     }
 
     public MeUser(long j, String str, String str2, String str3, boolean z2, boolean z3, int i, PremiumTier premiumTier, String str4, boolean z4, boolean z5, String str5, int i2, int i3, String str6, NsfwAllowance nsfwAllowance, String str7, String str8) {
-        m.checkNotNullParameter(str, "username");
-        m.checkNotNullParameter(premiumTier, "premiumTier");
-        m.checkNotNullParameter(nsfwAllowance, "nsfwAllowance");
+        Intrinsics3.checkNotNullParameter(str, "username");
+        Intrinsics3.checkNotNullParameter(premiumTier, "premiumTier");
+        Intrinsics3.checkNotNullParameter(nsfwAllowance, "nsfwAllowance");
         this.id = j;
         this.username = str;
         this.avatar = str2;
@@ -295,9 +295,9 @@ public final /* data */ class MeUser implements User {
     }
 
     public final MeUser copy(long id2, String username, String avatar, String banner, boolean isBot, boolean isSystemUser, int discriminator, PremiumTier premiumTier, String email, boolean mfaEnabled, boolean isVerified, String token, int flags, int publicFlags, String phoneNumber, NsfwAllowance nsfwAllowance, String bio, String bannerColor) {
-        m.checkNotNullParameter(username, "username");
-        m.checkNotNullParameter(premiumTier, "premiumTier");
-        m.checkNotNullParameter(nsfwAllowance, "nsfwAllowance");
+        Intrinsics3.checkNotNullParameter(username, "username");
+        Intrinsics3.checkNotNullParameter(premiumTier, "premiumTier");
+        Intrinsics3.checkNotNullParameter(nsfwAllowance, "nsfwAllowance");
         return new MeUser(id2, username, avatar, banner, isBot, isSystemUser, discriminator, premiumTier, email, mfaEnabled, isVerified, token, flags, publicFlags, phoneNumber, nsfwAllowance, bio, bannerColor);
     }
 
@@ -309,7 +309,7 @@ public final /* data */ class MeUser implements User {
             return false;
         }
         MeUser meUser = (MeUser) other;
-        return getId() == meUser.getId() && m.areEqual(getUsername(), meUser.getUsername()) && m.areEqual(getAvatar(), meUser.getAvatar()) && m.areEqual(getBanner(), meUser.getBanner()) && getIsBot() == meUser.getIsBot() && getIsSystemUser() == meUser.getIsSystemUser() && getDiscriminator() == meUser.getDiscriminator() && m.areEqual(getPremiumTier(), meUser.getPremiumTier()) && m.areEqual(this.email, meUser.email) && this.mfaEnabled == meUser.mfaEnabled && this.isVerified == meUser.isVerified && m.areEqual(this.token, meUser.token) && getFlags() == meUser.getFlags() && getPublicFlags() == meUser.getPublicFlags() && m.areEqual(this.phoneNumber, meUser.phoneNumber) && m.areEqual(this.nsfwAllowance, meUser.nsfwAllowance) && m.areEqual(getBio(), meUser.getBio()) && m.areEqual(getBannerColor(), meUser.getBannerColor());
+        return getId() == meUser.getId() && Intrinsics3.areEqual(getUsername(), meUser.getUsername()) && Intrinsics3.areEqual(getAvatar(), meUser.getAvatar()) && Intrinsics3.areEqual(getBanner(), meUser.getBanner()) && getIsBot() == meUser.getIsBot() && getIsSystemUser() == meUser.getIsSystemUser() && getDiscriminator() == meUser.getDiscriminator() && Intrinsics3.areEqual(getPremiumTier(), meUser.getPremiumTier()) && Intrinsics3.areEqual(this.email, meUser.email) && this.mfaEnabled == meUser.mfaEnabled && this.isVerified == meUser.isVerified && Intrinsics3.areEqual(this.token, meUser.token) && getFlags() == meUser.getFlags() && getPublicFlags() == meUser.getPublicFlags() && Intrinsics3.areEqual(this.phoneNumber, meUser.phoneNumber) && Intrinsics3.areEqual(this.nsfwAllowance, meUser.nsfwAllowance) && Intrinsics3.areEqual(getBio(), meUser.getBio()) && Intrinsics3.areEqual(getBannerColor(), meUser.getBannerColor());
     }
 
     @Override // com.discord.models.user.User
@@ -485,7 +485,7 @@ public final /* data */ class MeUser implements User {
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("MeUser(id=");
+        StringBuilder sbU = outline.U("MeUser(id=");
         sbU.append(getId());
         sbU.append(", username=");
         sbU.append(getUsername());
@@ -532,7 +532,7 @@ public final /* data */ class MeUser implements User {
     /* JADX WARN: Illegal instructions before constructor call */
     public MeUser(com.discord.api.user.User user) {
         String number;
-        m.checkNotNullParameter(user, "user");
+        Intrinsics3.checkNotNullParameter(user, "user");
         long id2 = user.getId();
         String username = user.getUsername();
         NullSerializable<String> nullSerializableA = user.a();
@@ -543,7 +543,7 @@ public final /* data */ class MeUser implements User {
         boolean zBooleanValue = bot != null ? bot.booleanValue() : false;
         Boolean system = user.getSystem();
         boolean zBooleanValue2 = system != null ? system.booleanValue() : false;
-        Integer intOrNull = s.toIntOrNull(user.getDiscriminator());
+        Integer intOrNull = StringNumberConversions.toIntOrNull(user.getDiscriminator());
         int iIntValue = intOrNull != null ? intOrNull.intValue() : 0;
         PremiumTier premiumType = user.getPremiumType();
         premiumType = premiumType == null ? PremiumTier.NONE : premiumType;
@@ -563,7 +563,7 @@ public final /* data */ class MeUser implements User {
             Objects.requireNonNull(phone2, "null cannot be cast to non-null type com.discord.api.user.Phone.PhoneNumber");
             number = ((Phone.PhoneNumber) phone2).getNumber();
         } else {
-            if (!m.areEqual(phone, Phone.NoPhoneNumber.INSTANCE) && phone != null) {
+            if (!Intrinsics3.areEqual(phone, Phone.NoPhoneNumber.INSTANCE) && phone != null) {
                 throw new NoWhenBranchMatchedException();
             }
             number = null;

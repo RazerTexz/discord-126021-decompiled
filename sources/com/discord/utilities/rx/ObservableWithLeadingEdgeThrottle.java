@@ -1,6 +1,6 @@
 package com.discord.utilities.rx;
 
-import j0.k.b;
+import j0.k.Func1;
 import j0.k.c;
 import j0.k.d;
 import j0.k.e;
@@ -9,8 +9,8 @@ import j0.k.g;
 import j0.k.h;
 import j0.k.i;
 import j0.k.j;
-import j0.l.a.r;
-import j0.p.a;
+import j0.l.a.OnSubscribeLift;
+import j0.p.Schedulers2;
 import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -39,14 +39,14 @@ public class ObservableWithLeadingEdgeThrottle {
     }
 
     /* JADX INFO: renamed from: com.discord.utilities.rx.ObservableWithLeadingEdgeThrottle$2, reason: invalid class name */
-    public final class AnonymousClass2 implements b {
+    public final class AnonymousClass2 implements Func1 {
         public final /* synthetic */ FuncN val$combineFunction;
 
         public AnonymousClass2(FuncN funcN) {
             this.val$combineFunction = funcN;
         }
 
-        @Override // j0.k.b
+        @Override // j0.k.Func1
         public Object call(Object obj) {
             return this.val$combineFunction.call((Object[]) obj);
         }
@@ -118,10 +118,10 @@ public class ObservableWithLeadingEdgeThrottle {
 
     private static <T, R> Observable<R> combineLatest(List<? extends Observable<? extends T>> list, FuncN<? extends R> funcN, long j, TimeUnit timeUnit, Scheduler scheduler) {
         Observable observableB = Observable.b(list, IDENTITY_FUNC_N);
-        return Observable.h0(new r(observableB.j, new LeadingEdgeThrottle(j, timeUnit, scheduler))).G(new AnonymousClass2(funcN));
+        return Observable.h0(new OnSubscribeLift(observableB.j, new LeadingEdgeThrottle(j, timeUnit, scheduler))).G(new AnonymousClass2(funcN));
     }
 
     private static <T, R> Observable<R> combineLatest(List<? extends Observable<? extends T>> list, FuncN<? extends R> funcN, long j, TimeUnit timeUnit) {
-        return combineLatest(list, funcN, j, timeUnit, a.a());
+        return combineLatest(list, funcN, j, timeUnit, Schedulers2.a());
     }
 }

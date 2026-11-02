@@ -1,16 +1,16 @@
 package com.discord.api.hubs;
 
-import b.d.b.a.a;
-import d0.z.d.m;
+import b.d.b.a.outline;
+import d0.z.d.Intrinsics3;
 import java.util.List;
 
 /* JADX INFO: compiled from: EmailVerification.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class EmailVerification {
-    private final List<GuildInfo> guildsInfo;
+    private final List<EmailVerification3> guildsInfo;
     private final boolean hasMatchingGuild;
 
-    public final List<GuildInfo> a() {
+    public final List<EmailVerification3> a() {
         return this.guildsInfo;
     }
 
@@ -22,7 +22,7 @@ public final /* data */ class EmailVerification {
             return false;
         }
         EmailVerification emailVerification = (EmailVerification) other;
-        return m.areEqual(this.guildsInfo, emailVerification.guildsInfo) && this.hasMatchingGuild == emailVerification.hasMatchingGuild;
+        return Intrinsics3.areEqual(this.guildsInfo, emailVerification.guildsInfo) && this.hasMatchingGuild == emailVerification.hasMatchingGuild;
     }
 
     /* JADX INFO: renamed from: b, reason: from getter */
@@ -36,7 +36,7 @@ public final /* data */ class EmailVerification {
     /* JADX WARN: Type inference failed for: r1v2 */
     /* JADX WARN: Type inference failed for: r1v3 */
     public int hashCode() {
-        List<GuildInfo> list = this.guildsInfo;
+        List<EmailVerification3> list = this.guildsInfo;
         int iHashCode = (list != null ? list.hashCode() : 0) * 31;
         boolean z2 = this.hasMatchingGuild;
         ?? r1 = z2;
@@ -47,9 +47,9 @@ public final /* data */ class EmailVerification {
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("EmailVerification(guildsInfo=");
+        StringBuilder sbU = outline.U("EmailVerification(guildsInfo=");
         sbU.append(this.guildsInfo);
         sbU.append(", hasMatchingGuild=");
-        return a.O(sbU, this.hasMatchingGuild, ")");
+        return outline.O(sbU, this.hasMatchingGuild, ")");
     }
 }

@@ -1,14 +1,14 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackActivityReportDontShow.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackActivityReportDontShow implements AnalyticsSchema, TrackBaseReceiver {
+public final /* data */ class TrackActivityReportDontShow implements AnalyticsSchema, TrackBase2 {
     private final Long applicationId = null;
     private final CharSequence rating = null;
     private TrackBase trackBase;
@@ -22,7 +22,7 @@ public final /* data */ class TrackActivityReportDontShow implements AnalyticsSc
             return false;
         }
         TrackActivityReportDontShow trackActivityReportDontShow = (TrackActivityReportDontShow) other;
-        return m.areEqual(this.applicationId, trackActivityReportDontShow.applicationId) && m.areEqual(this.rating, trackActivityReportDontShow.rating);
+        return Intrinsics3.areEqual(this.applicationId, trackActivityReportDontShow.applicationId) && Intrinsics3.areEqual(this.rating, trackActivityReportDontShow.rating);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -39,9 +39,9 @@ public final /* data */ class TrackActivityReportDontShow implements AnalyticsSc
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackActivityReportDontShow(applicationId=");
+        StringBuilder sbU = outline.U("TrackActivityReportDontShow(applicationId=");
         sbU.append(this.applicationId);
         sbU.append(", rating=");
-        return a.E(sbU, this.rating, ")");
+        return outline.E(sbU, this.rating, ")");
     }
 }

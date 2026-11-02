@@ -2,6 +2,10 @@ package b.i.a.b.j.t.i;
 
 import android.database.Cursor;
 import android.util.Base64;
+import b.i.a.b.Encoding2;
+import b.i.a.b.j.AutoValue_TransportContext;
+import b.i.a.b.j.TransportContext;
+import b.i.a.b.j.w.PriorityMapping;
 import java.util.ArrayList;
 
 /* JADX INFO: compiled from: SQLiteEventStore.java */
@@ -12,16 +16,16 @@ public final /* synthetic */ class p implements t.b {
     @Override // b.i.a.b.j.t.i.t.b
     public Object apply(Object obj) {
         Cursor cursor = (Cursor) obj;
-        b.i.a.b.b bVar = t.j;
+        Encoding2 encoding2 = t.j;
         ArrayList arrayList = new ArrayList();
         while (cursor.moveToNext()) {
-            b.i.a.b.j.i.a aVarA = b.i.a.b.j.i.a();
+            TransportContext.a aVarA = TransportContext.a();
             aVarA.b(cursor.getString(1));
-            aVarA.c(b.i.a.b.j.w.a.b(cursor.getInt(2)));
+            aVarA.c(PriorityMapping.b(cursor.getInt(2)));
             String string = cursor.getString(3);
-            b.i.a.b.j.b.C0087b c0087b = (b.i.a.b.j.b.C0087b) aVarA;
-            c0087b.f764b = string == null ? null : Base64.decode(string, 0);
-            arrayList.add(c0087b.a());
+            AutoValue_TransportContext.b bVar = (AutoValue_TransportContext.b) aVarA;
+            bVar.f764b = string == null ? null : Base64.decode(string, 0);
+            arrayList.add(bVar.a());
         }
         return arrayList;
     }

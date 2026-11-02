@@ -1,14 +1,14 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackSubscriptionAccountHoldRecovered.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackSubscriptionAccountHoldRecovered implements AnalyticsSchema, TrackBaseReceiver {
+public final /* data */ class TrackSubscriptionAccountHoldRecovered implements AnalyticsSchema, TrackBase2 {
     private final Long createdAt = null;
     private final Long currentPeriodEnd = null;
     private final Long currentPeriodStart = null;
@@ -28,7 +28,7 @@ public final /* data */ class TrackSubscriptionAccountHoldRecovered implements A
             return false;
         }
         TrackSubscriptionAccountHoldRecovered trackSubscriptionAccountHoldRecovered = (TrackSubscriptionAccountHoldRecovered) other;
-        return m.areEqual(this.subscriptionId, trackSubscriptionAccountHoldRecovered.subscriptionId) && m.areEqual(this.subscriptionType, trackSubscriptionAccountHoldRecovered.subscriptionType) && m.areEqual(this.paymentGatewayPlanId, trackSubscriptionAccountHoldRecovered.paymentGatewayPlanId) && m.areEqual(this.planId, trackSubscriptionAccountHoldRecovered.planId) && m.areEqual(this.paymentGateway, trackSubscriptionAccountHoldRecovered.paymentGateway) && m.areEqual(this.createdAt, trackSubscriptionAccountHoldRecovered.createdAt) && m.areEqual(this.currentPeriodStart, trackSubscriptionAccountHoldRecovered.currentPeriodStart) && m.areEqual(this.currentPeriodEnd, trackSubscriptionAccountHoldRecovered.currentPeriodEnd);
+        return Intrinsics3.areEqual(this.subscriptionId, trackSubscriptionAccountHoldRecovered.subscriptionId) && Intrinsics3.areEqual(this.subscriptionType, trackSubscriptionAccountHoldRecovered.subscriptionType) && Intrinsics3.areEqual(this.paymentGatewayPlanId, trackSubscriptionAccountHoldRecovered.paymentGatewayPlanId) && Intrinsics3.areEqual(this.planId, trackSubscriptionAccountHoldRecovered.planId) && Intrinsics3.areEqual(this.paymentGateway, trackSubscriptionAccountHoldRecovered.paymentGateway) && Intrinsics3.areEqual(this.createdAt, trackSubscriptionAccountHoldRecovered.createdAt) && Intrinsics3.areEqual(this.currentPeriodStart, trackSubscriptionAccountHoldRecovered.currentPeriodStart) && Intrinsics3.areEqual(this.currentPeriodEnd, trackSubscriptionAccountHoldRecovered.currentPeriodEnd);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -57,7 +57,7 @@ public final /* data */ class TrackSubscriptionAccountHoldRecovered implements A
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackSubscriptionAccountHoldRecovered(subscriptionId=");
+        StringBuilder sbU = outline.U("TrackSubscriptionAccountHoldRecovered(subscriptionId=");
         sbU.append(this.subscriptionId);
         sbU.append(", subscriptionType=");
         sbU.append(this.subscriptionType);
@@ -72,6 +72,6 @@ public final /* data */ class TrackSubscriptionAccountHoldRecovered implements A
         sbU.append(", currentPeriodStart=");
         sbU.append(this.currentPeriodStart);
         sbU.append(", currentPeriodEnd=");
-        return a.G(sbU, this.currentPeriodEnd, ")");
+        return outline.G(sbU, this.currentPeriodEnd, ")");
     }
 }

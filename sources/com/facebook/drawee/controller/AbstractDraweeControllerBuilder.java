@@ -2,10 +2,16 @@ package com.facebook.drawee.controller;
 
 import android.content.Context;
 import android.graphics.drawable.Animatable;
-import b.c.a.a0.d;
-import b.f.e.e;
-import b.f.e.g;
-import b.f.g.c.c;
+import b.c.a.a0.AnimatableValueParser;
+import b.f.e.DataSources;
+import b.f.e.FirstAvailableDataSourceSupplier;
+import b.f.g.b.RetryManager;
+import b.f.g.c.AbstractDraweeControllerBuilder2;
+import b.f.g.c.BaseControllerListener;
+import b.f.g.g.GestureDetector;
+import b.f.h.b.a.ControllerListener2;
+import b.f.h.b.a.ForwardingControllerListener2;
+import b.f.j.r.FrescoSystrace;
 import com.facebook.common.internal.Supplier;
 import com.facebook.datasource.DataSource;
 import com.facebook.drawee.controller.AbstractDraweeControllerBuilder;
@@ -19,7 +25,7 @@ import java.util.concurrent.atomic.AtomicLong;
 public abstract class AbstractDraweeControllerBuilder<BUILDER extends AbstractDraweeControllerBuilder<BUILDER, REQUEST, IMAGE, INFO>, REQUEST, IMAGE, INFO> {
     public final Context d;
     public final Set<ControllerListener> e;
-    public final Set<b.f.h.b.a.b> f;
+    public final Set<ControllerListener2> f;
     public static final ControllerListener<Object> a = new a();
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
@@ -34,8 +40,8 @@ public abstract class AbstractDraweeControllerBuilder<BUILDER extends AbstractDr
     public boolean m = false;
     public DraweeController n = null;
 
-    public final class a extends c<Object> {
-        @Override // b.f.g.c.c, com.facebook.drawee.controller.ControllerListener
+    public final class a extends BaseControllerListener<Object> {
+        @Override // b.f.g.c.BaseControllerListener, com.facebook.drawee.controller.ControllerListener
         public void onFinalImageSet(String str, Object obj, Animatable animatable) {
             if (animatable != null) {
                 animatable.start();
@@ -49,32 +55,32 @@ public abstract class AbstractDraweeControllerBuilder<BUILDER extends AbstractDr
         BITMAP_MEMORY_CACHE
     }
 
-    public AbstractDraweeControllerBuilder(Context context, Set<ControllerListener> set, Set<b.f.h.b.a.b> set2) {
+    public AbstractDraweeControllerBuilder(Context context, Set<ControllerListener> set, Set<ControllerListener2> set2) {
         this.d = context;
         this.e = set;
         this.f = set2;
     }
 
     public AbstractDraweeController a() {
-        d.C(this.i == null || this.h == null, "Cannot specify both ImageRequest and FirstAvailableImageRequests!");
-        d.C(true, "Cannot specify DataSourceSupplier with other ImageRequests! Use one or the other.");
+        AnimatableValueParser.C(this.i == null || this.h == null, "Cannot specify both ImageRequest and FirstAvailableImageRequests!");
+        AnimatableValueParser.C(true, "Cannot specify DataSourceSupplier with other ImageRequests! Use one or the other.");
         if (this.h == null) {
             REQUEST[] requestArr = this.i;
         }
-        b.f.j.r.b.b();
+        FrescoSystrace.b();
         AbstractDraweeController abstractDraweeControllerD = d();
         abstractDraweeControllerD.r = false;
         abstractDraweeControllerD.f2886s = null;
         boolean z2 = this.l;
         if (z2) {
             if (abstractDraweeControllerD.g == null) {
-                abstractDraweeControllerD.g = new b.f.g.b.d();
+                abstractDraweeControllerD.g = new RetryManager();
             }
             abstractDraweeControllerD.g.a = z2;
             if (abstractDraweeControllerD.h == null) {
-                b.f.g.g.a aVar = new b.f.g.g.a(this.d);
-                abstractDraweeControllerD.h = aVar;
-                aVar.a = abstractDraweeControllerD;
+                GestureDetector gestureDetector = new GestureDetector(this.d);
+                abstractDraweeControllerD.h = gestureDetector;
+                gestureDetector.a = abstractDraweeControllerD;
             }
         }
         Set<ControllerListener> set = this.e;
@@ -84,12 +90,12 @@ public abstract class AbstractDraweeControllerBuilder<BUILDER extends AbstractDr
                 abstractDraweeControllerD.f(it.next());
             }
         }
-        Set<b.f.h.b.a.b> set2 = this.f;
+        Set<ControllerListener2> set2 = this.f;
         if (set2 != null) {
-            for (b.f.h.b.a.b<INFO> bVar : set2) {
-                b.f.h.b.a.c<INFO> cVar = abstractDraweeControllerD.j;
-                synchronized (cVar) {
-                    cVar.j.add(bVar);
+            for (ControllerListener2<INFO> controllerListener2 : set2) {
+                ForwardingControllerListener2<INFO> forwardingControllerListener2 = abstractDraweeControllerD.j;
+                synchronized (forwardingControllerListener2) {
+                    forwardingControllerListener2.j.add(controllerListener2);
                 }
             }
         }
@@ -100,23 +106,23 @@ public abstract class AbstractDraweeControllerBuilder<BUILDER extends AbstractDr
         if (this.m) {
             abstractDraweeControllerD.f(a);
         }
-        b.f.j.r.b.b();
+        FrescoSystrace.b();
         return abstractDraweeControllerD;
     }
 
     public abstract DataSource<IMAGE> b(DraweeController draweeController, String str, REQUEST request, Object obj, b bVar);
 
     public Supplier<DataSource<IMAGE>> c(DraweeController draweeController, String str, REQUEST request) {
-        return new b.f.g.c.b(this, draweeController, str, request, this.g, b.FULL_FETCH);
+        return new AbstractDraweeControllerBuilder2(this, draweeController, str, request, this.g, b.FULL_FETCH);
     }
 
     public abstract AbstractDraweeController d();
 
     public Supplier<DataSource<IMAGE>> e(DraweeController draweeController, String str) {
-        Supplier<DataSource<IMAGE>> gVar;
+        Supplier<DataSource<IMAGE>> firstAvailableDataSourceSupplier;
         REQUEST request = this.h;
         if (request != null) {
-            gVar = c(draweeController, str, request);
+            firstAvailableDataSourceSupplier = c(draweeController, str, request);
         } else {
             REQUEST[] requestArr = this.i;
             if (requestArr != null) {
@@ -124,17 +130,17 @@ public abstract class AbstractDraweeControllerBuilder<BUILDER extends AbstractDr
                 ArrayList arrayList = new ArrayList(requestArr.length * 2);
                 if (z2) {
                     for (REQUEST request2 : requestArr) {
-                        arrayList.add(new b.f.g.c.b(this, draweeController, str, request2, this.g, b.BITMAP_MEMORY_CACHE));
+                        arrayList.add(new AbstractDraweeControllerBuilder2(this, draweeController, str, request2, this.g, b.BITMAP_MEMORY_CACHE));
                     }
                 }
                 for (REQUEST request3 : requestArr) {
                     arrayList.add(c(draweeController, str, request3));
                 }
-                gVar = new g<>(arrayList);
+                firstAvailableDataSourceSupplier = new FirstAvailableDataSourceSupplier<>(arrayList);
             } else {
-                gVar = null;
+                firstAvailableDataSourceSupplier = null;
             }
         }
-        return gVar == null ? new e(f2888b) : gVar;
+        return firstAvailableDataSourceSupplier == null ? new DataSources(f2888b) : firstAvailableDataSourceSupplier;
     }
 }

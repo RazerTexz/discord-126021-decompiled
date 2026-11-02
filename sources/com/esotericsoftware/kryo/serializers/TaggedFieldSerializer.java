@@ -1,6 +1,7 @@
 package com.esotericsoftware.kryo.serializers;
 
-import b.e.a.a;
+import b.d.b.a.outline;
+import b.e.a.Log;
 import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryo.KryoException;
 import com.esotericsoftware.kryo.io.Input;
@@ -54,7 +55,7 @@ public class TaggedFieldSerializer<T> extends FieldSerializer<T> {
         int length = fields.length;
         for (int i = 0; i < length; i++) {
             if (fields[i].getField().getAnnotation(Tag.class) == null) {
-                a.C0064a c0064a = a.a;
+                Log.a aVar = Log.a;
                 super.removeField(fields[i]);
             }
         }
@@ -124,7 +125,7 @@ public class TaggedFieldSerializer<T> extends FieldSerializer<T> {
             }
             if (cachedField == null) {
                 if (!isSkipUnknownTags()) {
-                    StringBuilder sbV = b.d.b.a.a.V("Unknown field tag: ", varInt2, " (");
+                    StringBuilder sbV = outline.V("Unknown field tag: ", varInt2, " (");
                     sbV.append(getType().getName());
                     sbV.append(")");
                     throw new KryoException(sbV.toString());
@@ -133,7 +134,7 @@ public class TaggedFieldSerializer<T> extends FieldSerializer<T> {
                     inputChunked = new InputChunked(input, 1024);
                 }
                 inputChunked.nextChunks();
-                a.C0064a c0064a = a.a;
+                Log.a aVar = Log.a;
             } else if (z2) {
                 if (inputChunked == null) {
                     inputChunked = new InputChunked(input, 1024);

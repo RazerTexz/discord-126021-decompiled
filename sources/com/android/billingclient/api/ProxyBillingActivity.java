@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.os.ResultReceiver;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import b.d.b.a.outline;
 import b.i.a.f.h.n.a;
 
 /* JADX INFO: compiled from: com.android.billingclient:billing@@4.0.0 */
@@ -30,10 +31,10 @@ public class ProxyBillingActivity extends Activity {
         if (i == 100) {
             int i3 = a.c(intent, "ProxyBillingActivity").a;
             if (i2 != -1) {
-                a.f("ProxyBillingActivity", b.d.b.a.a.h(85, "Activity finished with resultCode ", i2, " and billing's responseCode: ", i3));
+                a.f("ProxyBillingActivity", outline.h(85, "Activity finished with resultCode ", i2, " and billing's responseCode: ", i3));
             } else if (i3 != 0) {
                 i2 = -1;
-                a.f("ProxyBillingActivity", b.d.b.a.a.h(85, "Activity finished with resultCode ", i2, " and billing's responseCode: ", i3));
+                a.f("ProxyBillingActivity", outline.h(85, "Activity finished with resultCode ", i2, " and billing's responseCode: ", i3));
             } else {
                 i3 = 0;
             }

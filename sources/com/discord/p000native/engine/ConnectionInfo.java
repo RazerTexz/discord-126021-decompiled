@@ -1,7 +1,7 @@
 package com.discord.p000native.engine;
 
-import b.d.b.a.a;
-import d0.z.d.m;
+import b.d.b.a.outline;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: ConnectionInfo.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -12,8 +12,8 @@ public final /* data */ class ConnectionInfo {
     private final String protocol;
 
     public ConnectionInfo(boolean z2, String str, String str2, int i) {
-        m.checkNotNullParameter(str, "protocol");
-        m.checkNotNullParameter(str2, "localAddress");
+        Intrinsics3.checkNotNullParameter(str, "protocol");
+        Intrinsics3.checkNotNullParameter(str2, "localAddress");
         this.isConnected = z2;
         this.protocol = str;
         this.localAddress = str2;
@@ -37,8 +37,8 @@ public final /* data */ class ConnectionInfo {
     }
 
     public final ConnectionInfo copy(boolean isConnected, String protocol, String localAddress, int localPort) {
-        m.checkNotNullParameter(protocol, "protocol");
-        m.checkNotNullParameter(localAddress, "localAddress");
+        Intrinsics3.checkNotNullParameter(protocol, "protocol");
+        Intrinsics3.checkNotNullParameter(localAddress, "localAddress");
         return new ConnectionInfo(isConnected, protocol, localAddress, localPort);
     }
 
@@ -50,7 +50,7 @@ public final /* data */ class ConnectionInfo {
             return false;
         }
         ConnectionInfo connectionInfo = (ConnectionInfo) other;
-        return this.isConnected == connectionInfo.isConnected && m.areEqual(this.protocol, connectionInfo.protocol) && m.areEqual(this.localAddress, connectionInfo.localAddress) && this.localPort == connectionInfo.localPort;
+        return this.isConnected == connectionInfo.isConnected && Intrinsics3.areEqual(this.protocol, connectionInfo.protocol) && Intrinsics3.areEqual(this.localAddress, connectionInfo.localAddress) && this.localPort == connectionInfo.localPort;
     }
 
     /* JADX INFO: renamed from: component1, reason: from getter */
@@ -107,13 +107,13 @@ public final /* data */ class ConnectionInfo {
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("ConnectionInfo(isConnected=");
+        StringBuilder sbU = outline.U("ConnectionInfo(isConnected=");
         sbU.append(this.isConnected);
         sbU.append(", protocol=");
         sbU.append(this.protocol);
         sbU.append(", localAddress=");
         sbU.append(this.localAddress);
         sbU.append(", localPort=");
-        return a.B(sbU, this.localPort, ")");
+        return outline.B(sbU, this.localPort, ")");
     }
 }

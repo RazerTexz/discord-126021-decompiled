@@ -14,7 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
 import androidx.core.content.res.TypedArrayUtils;
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -327,7 +327,7 @@ public class TransitionSet extends Transition {
             this.mPlayTogether = true;
         } else {
             if (i != 1) {
-                throw new AndroidRuntimeException(a.q("Invalid parameter for TransitionSet ordering: ", i));
+                throw new AndroidRuntimeException(outline.q("Invalid parameter for TransitionSet ordering: ", i));
             }
             this.mPlayTogether = false;
         }
@@ -379,7 +379,7 @@ public class TransitionSet extends Transition {
     public String toString(String str) {
         String string = super.toString(str);
         for (int i = 0; i < this.mTransitions.size(); i++) {
-            StringBuilder sbX = a.X(string, "\n");
+            StringBuilder sbX = outline.X(string, "\n");
             sbX.append(this.mTransitions.get(i).toString(str + "  "));
             string = sbX.toString();
         }

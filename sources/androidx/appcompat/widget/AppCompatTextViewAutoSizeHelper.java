@@ -23,7 +23,7 @@ import androidx.annotation.RestrictTo;
 import androidx.annotation.VisibleForTesting;
 import androidx.appcompat.R;
 import androidx.core.view.ViewCompat;
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -374,7 +374,7 @@ public class AppCompatTextViewAutoSizeHelper {
                 }
                 this.mAutoSizeTextSizesInPx = cleanupAutoSizePresetSizes(iArrCopyOf);
                 if (!setupAutoSizeUniformPresetSizesConfiguration()) {
-                    StringBuilder sbU = a.U("None of the preset sizes is valid: ");
+                    StringBuilder sbU = outline.U("None of the preset sizes is valid: ");
                     sbU.append(Arrays.toString(iArr));
                     throw new IllegalArgumentException(sbU.toString());
                 }
@@ -395,7 +395,7 @@ public class AppCompatTextViewAutoSizeHelper {
                 return;
             }
             if (i != 1) {
-                throw new IllegalArgumentException(a.q("Unknown auto-size text type: ", i));
+                throw new IllegalArgumentException(outline.q("Unknown auto-size text type: ", i));
             }
             DisplayMetrics displayMetrics = this.mContext.getResources().getDisplayMetrics();
             validateAndSetAutoSizeTextTypeUniformConfiguration(TypedValue.applyDimension(2, 12.0f, displayMetrics), TypedValue.applyDimension(2, 112.0f, displayMetrics), 1.0f);

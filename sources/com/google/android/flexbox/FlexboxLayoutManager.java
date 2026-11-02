@@ -14,11 +14,15 @@ import androidx.core.view.ViewCompat;
 import androidx.recyclerview.widget.LinearSmoothScroller;
 import androidx.recyclerview.widget.OrientationHelper;
 import androidx.recyclerview.widget.RecyclerView;
+import b.d.b.a.outline;
+import b.i.a.e.FlexContainer;
+import b.i.a.e.FlexLine;
+import b.i.a.e.FlexboxHelper;
 import java.util.ArrayList;
 import java.util.List;
 
 /* JADX INFO: loaded from: classes3.dex */
-public class FlexboxLayoutManager extends RecyclerView.LayoutManager implements b.i.a.e.a, RecyclerView.SmoothScroller.ScrollVectorProvider {
+public class FlexboxLayoutManager extends RecyclerView.LayoutManager implements FlexContainer, RecyclerView.SmoothScroller.ScrollVectorProvider {
     public final Context E;
     public View F;
 
@@ -40,8 +44,8 @@ public class FlexboxLayoutManager extends RecyclerView.LayoutManager implements 
     public OrientationHelper w;
     public static final Rect j = new Rect();
     public int n = -1;
-    public List<b.i.a.e.b> q = new ArrayList();
-    public final b.i.a.e.c r = new b.i.a.e.c(this);
+    public List<FlexLine> q = new ArrayList();
+    public final FlexboxHelper r = new FlexboxHelper(this);
     public b v = new b(null);
 
     /* JADX INFO: renamed from: z, reason: collision with root package name */
@@ -51,7 +55,7 @@ public class FlexboxLayoutManager extends RecyclerView.LayoutManager implements 
     public int C = Integer.MIN_VALUE;
     public SparseArray<View> D = new SparseArray<>();
     public int G = -1;
-    public b.i.a.e.c.b H = new b.i.a.e.c.b();
+    public FlexboxHelper.b H = new FlexboxHelper.b();
 
     public class LayoutParams extends RecyclerView.LayoutParams implements FlexItem {
         public float j;
@@ -263,10 +267,10 @@ public class FlexboxLayoutManager extends RecyclerView.LayoutManager implements 
         }
 
         public String toString() {
-            StringBuilder sbU = b.d.b.a.a.U("SavedState{mAnchorPosition=");
+            StringBuilder sbU = outline.U("SavedState{mAnchorPosition=");
             sbU.append(this.j);
             sbU.append(", mAnchorOffset=");
-            return b.d.b.a.a.A(sbU, this.k, '}');
+            return outline.A(sbU, this.k, '}');
         }
 
         @Override // android.os.Parcelable
@@ -348,32 +352,32 @@ public class FlexboxLayoutManager extends RecyclerView.LayoutManager implements 
         int size = this.q.size();
         int i2 = bVar.f2991b;
         if (size > i2) {
-            b.i.a.e.b bVar2 = this.q.get(i2);
+            FlexLine flexLine = this.q.get(i2);
             c cVar2 = this.u;
             cVar2.c--;
-            cVar2.d -= bVar2.h;
+            cVar2.d -= flexLine.h;
         }
     }
 
-    @Override // b.i.a.e.a
-    public void a(View view, int i, int i2, b.i.a.e.b bVar) {
+    @Override // b.i.a.e.FlexContainer
+    public void a(View view, int i, int i2, FlexLine flexLine) {
         calculateItemDecorationsForChild(view, j);
         if (i()) {
             int rightDecorationWidth = getRightDecorationWidth(view) + getLeftDecorationWidth(view);
-            bVar.e += rightDecorationWidth;
-            bVar.f += rightDecorationWidth;
+            flexLine.e += rightDecorationWidth;
+            flexLine.f += rightDecorationWidth;
             return;
         }
         int bottomDecorationHeight = getBottomDecorationHeight(view) + getTopDecorationHeight(view);
-        bVar.e += bottomDecorationHeight;
-        bVar.f += bottomDecorationHeight;
+        flexLine.e += bottomDecorationHeight;
+        flexLine.f += bottomDecorationHeight;
     }
 
-    @Override // b.i.a.e.a
-    public void b(b.i.a.e.b bVar) {
+    @Override // b.i.a.e.FlexContainer
+    public void b(FlexLine flexLine) {
     }
 
-    @Override // b.i.a.e.a
+    @Override // b.i.a.e.FlexContainer
     public View c(int i) {
         return f(i);
     }
@@ -498,17 +502,17 @@ public class FlexboxLayoutManager extends RecyclerView.LayoutManager implements 
         return computeScrollRange(state);
     }
 
-    @Override // b.i.a.e.a
+    @Override // b.i.a.e.FlexContainer
     public int d(int i, int i2, int i3) {
         return RecyclerView.LayoutManager.getChildMeasureSpec(getWidth(), getWidthMode(), i2, i3, canScrollHorizontally());
     }
 
-    @Override // b.i.a.e.a
+    @Override // b.i.a.e.FlexContainer
     public void e(int i, View view) {
         this.D.put(i, view);
     }
 
-    @Override // b.i.a.e.a
+    @Override // b.i.a.e.FlexContainer
     public View f(int i) {
         View view = this.D.get(i);
         return view != null ? view : this.f2987s.getViewForPosition(i);
@@ -570,7 +574,7 @@ public class FlexboxLayoutManager extends RecyclerView.LayoutManager implements 
         return iT - startAfterPadding;
     }
 
-    @Override // b.i.a.e.a
+    @Override // b.i.a.e.FlexContainer
     public int g(View view, int i, int i2) {
         int topDecorationHeight;
         int bottomDecorationHeight;
@@ -594,37 +598,37 @@ public class FlexboxLayoutManager extends RecyclerView.LayoutManager implements 
         return new LayoutParams(context, attributeSet);
     }
 
-    @Override // b.i.a.e.a
+    @Override // b.i.a.e.FlexContainer
     public int getAlignContent() {
         return 5;
     }
 
-    @Override // b.i.a.e.a
+    @Override // b.i.a.e.FlexContainer
     public int getAlignItems() {
         return this.m;
     }
 
-    @Override // b.i.a.e.a
+    @Override // b.i.a.e.FlexContainer
     public int getFlexDirection() {
         return this.k;
     }
 
-    @Override // b.i.a.e.a
+    @Override // b.i.a.e.FlexContainer
     public int getFlexItemCount() {
         return this.t.getItemCount();
     }
 
-    @Override // b.i.a.e.a
-    public List<b.i.a.e.b> getFlexLinesInternal() {
+    @Override // b.i.a.e.FlexContainer
+    public List<FlexLine> getFlexLinesInternal() {
         return this.q;
     }
 
-    @Override // b.i.a.e.a
+    @Override // b.i.a.e.FlexContainer
     public int getFlexWrap() {
         return this.l;
     }
 
-    @Override // b.i.a.e.a
+    @Override // b.i.a.e.FlexContainer
     public int getLargestMainSize() {
         if (this.q.size() == 0) {
             return 0;
@@ -637,12 +641,12 @@ public class FlexboxLayoutManager extends RecyclerView.LayoutManager implements 
         return iMax;
     }
 
-    @Override // b.i.a.e.a
+    @Override // b.i.a.e.FlexContainer
     public int getMaxLine() {
         return this.n;
     }
 
-    @Override // b.i.a.e.a
+    @Override // b.i.a.e.FlexContainer
     public int getSumOfCrossSize() {
         int size = this.q.size();
         int i = 0;
@@ -652,12 +656,12 @@ public class FlexboxLayoutManager extends RecyclerView.LayoutManager implements 
         return i;
     }
 
-    @Override // b.i.a.e.a
+    @Override // b.i.a.e.FlexContainer
     public int h(int i, int i2, int i3) {
         return RecyclerView.LayoutManager.getChildMeasureSpec(getHeight(), getHeightMode(), i2, i3, canScrollVertically());
     }
 
-    @Override // b.i.a.e.a
+    @Override // b.i.a.e.FlexContainer
     public boolean i() {
         int i = this.k;
         return i == 0 || i == 1;
@@ -678,7 +682,7 @@ public class FlexboxLayoutManager extends RecyclerView.LayoutManager implements 
         return true;
     }
 
-    @Override // b.i.a.e.a
+    @Override // b.i.a.e.FlexContainer
     public int j(View view) {
         int leftDecorationWidth;
         int rightDecorationWidth;
@@ -748,20 +752,20 @@ public class FlexboxLayoutManager extends RecyclerView.LayoutManager implements 
             if (i13 <= 0 && !this.u.f2992b) {
                 break;
             }
-            List<b.i.a.e.b> list = this.q;
+            List<FlexLine> list = this.q;
             int i15 = cVar.d;
             if (!(i15 >= 0 && i15 < state.getItemCount() && (i9 = cVar.c) >= 0 && i9 < list.size())) {
                 break;
             }
-            b.i.a.e.b bVar = this.q.get(cVar.c);
-            cVar.d = bVar.o;
+            FlexLine flexLine = this.q.get(cVar.c);
+            cVar.d = flexLine.o;
             if (i()) {
                 int paddingLeft = getPaddingLeft();
                 int paddingRight = getPaddingRight();
                 int width = getWidth();
                 int i16 = cVar.e;
                 if (cVar.i == -1) {
-                    i16 -= bVar.g;
+                    i16 -= flexLine.g;
                 }
                 int i17 = cVar.d;
                 float f = width - paddingRight;
@@ -771,7 +775,7 @@ public class FlexboxLayoutManager extends RecyclerView.LayoutManager implements 
                 float fMax = Math.max(0.0f, 0.0f);
                 int i18 = i17;
                 int i19 = 0;
-                for (int i20 = bVar.h; i18 < i17 + i20; i20 = i20) {
+                for (int i20 = flexLine.h; i18 < i17 + i20; i20 = i20) {
                     View viewF = f(i18);
                     if (viewF == null) {
                         i18 = i18;
@@ -785,10 +789,10 @@ public class FlexboxLayoutManager extends RecyclerView.LayoutManager implements 
                             i19++;
                         }
                         int i21 = i19;
-                        b.i.a.e.c cVar2 = this.r;
-                        long j2 = cVar2.d[i18];
+                        FlexboxHelper flexboxHelper = this.r;
+                        long j2 = flexboxHelper.d[i18];
                         int i22 = (int) j2;
-                        int iM = cVar2.m(j2);
+                        int iM = flexboxHelper.m(j2);
                         LayoutParams layoutParams = (LayoutParams) viewF.getLayoutParams();
                         if (shouldMeasureChild(viewF, i22, iM, layoutParams)) {
                             viewF.measure(i22, iM);
@@ -797,9 +801,9 @@ public class FlexboxLayoutManager extends RecyclerView.LayoutManager implements 
                         float rightDecorationWidth = leftDecorationWidth - (getRightDecorationWidth(viewF) + ((ViewGroup.MarginLayoutParams) layoutParams).rightMargin);
                         int topDecorationHeight = getTopDecorationHeight(viewF) + i16;
                         if (this.o) {
-                            this.r.u(viewF, bVar, Math.round(rightDecorationWidth) - viewF.getMeasuredWidth(), topDecorationHeight, Math.round(rightDecorationWidth), viewF.getMeasuredHeight() + topDecorationHeight);
+                            this.r.u(viewF, flexLine, Math.round(rightDecorationWidth) - viewF.getMeasuredWidth(), topDecorationHeight, Math.round(rightDecorationWidth), viewF.getMeasuredHeight() + topDecorationHeight);
                         } else {
-                            this.r.u(viewF, bVar, Math.round(leftDecorationWidth2), topDecorationHeight, viewF.getMeasuredWidth() + Math.round(leftDecorationWidth2), viewF.getMeasuredHeight() + topDecorationHeight);
+                            this.r.u(viewF, flexLine, Math.round(leftDecorationWidth2), topDecorationHeight, viewF.getMeasuredWidth() + Math.round(leftDecorationWidth2), viewF.getMeasuredHeight() + topDecorationHeight);
                         }
                         float rightDecorationWidth2 = getRightDecorationWidth(viewF) + viewF.getMeasuredWidth() + ((ViewGroup.MarginLayoutParams) layoutParams).rightMargin + fMax + leftDecorationWidth2;
                         leftDecorationWidth = rightDecorationWidth - ((getLeftDecorationWidth(viewF) + (viewF.getMeasuredWidth() + ((ViewGroup.MarginLayoutParams) layoutParams).leftMargin)) + fMax);
@@ -812,7 +816,7 @@ public class FlexboxLayoutManager extends RecyclerView.LayoutManager implements 
                 }
                 i = i12;
                 cVar.c += this.u.i;
-                i5 = bVar.g;
+                i5 = flexLine.g;
                 i3 = i13;
                 i4 = i14;
             } else {
@@ -822,7 +826,7 @@ public class FlexboxLayoutManager extends RecyclerView.LayoutManager implements 
                 int height = getHeight();
                 int i23 = cVar.e;
                 if (cVar.i == -1) {
-                    int i24 = bVar.g;
+                    int i24 = flexLine.g;
                     int i25 = i23 - i24;
                     i2 = i23 + i24;
                     i23 = i25;
@@ -835,7 +839,7 @@ public class FlexboxLayoutManager extends RecyclerView.LayoutManager implements 
                 float f6 = paddingTop - f5;
                 float topDecorationHeight2 = f4 - f5;
                 float fMax2 = Math.max(0.0f, 0.0f);
-                int i27 = bVar.h;
+                int i27 = flexLine.h;
                 int i28 = i26;
                 int i29 = 0;
                 while (i28 < i26 + i27) {
@@ -846,11 +850,11 @@ public class FlexboxLayoutManager extends RecyclerView.LayoutManager implements 
                         i8 = i26;
                     } else {
                         int i30 = i27;
-                        b.i.a.e.c cVar3 = this.r;
+                        FlexboxHelper flexboxHelper2 = this.r;
                         int i31 = i26;
-                        long j3 = cVar3.d[i28];
+                        long j3 = flexboxHelper2.d[i28];
                         int i32 = (int) j3;
-                        int iM2 = cVar3.m(j3);
+                        int iM2 = flexboxHelper2.m(j3);
                         LayoutParams layoutParams2 = (LayoutParams) viewF2.getLayoutParams();
                         if (shouldMeasureChild(viewF2, i32, iM2, layoutParams2)) {
                             viewF2.measure(i32, iM2);
@@ -874,20 +878,20 @@ public class FlexboxLayoutManager extends RecyclerView.LayoutManager implements 
                             i7 = i30;
                             i8 = i31;
                             if (this.p) {
-                                this.r.v(viewF2, bVar, z2, leftDecorationWidth3, Math.round(bottomDecorationHeight) - viewF2.getMeasuredHeight(), viewF2.getMeasuredWidth() + leftDecorationWidth3, Math.round(bottomDecorationHeight));
+                                this.r.v(viewF2, flexLine, z2, leftDecorationWidth3, Math.round(bottomDecorationHeight) - viewF2.getMeasuredHeight(), viewF2.getMeasuredWidth() + leftDecorationWidth3, Math.round(bottomDecorationHeight));
                             } else {
-                                this.r.v(viewF2, bVar, z2, leftDecorationWidth3, Math.round(topDecorationHeight3), viewF2.getMeasuredWidth() + leftDecorationWidth3, viewF2.getMeasuredHeight() + Math.round(topDecorationHeight3));
+                                this.r.v(viewF2, flexLine, z2, leftDecorationWidth3, Math.round(topDecorationHeight3), viewF2.getMeasuredWidth() + leftDecorationWidth3, viewF2.getMeasuredHeight() + Math.round(topDecorationHeight3));
                             }
                         } else if (this.p) {
                             i6 = i28;
                             i7 = i30;
                             i8 = i31;
-                            this.r.v(viewF2, bVar, z2, rightDecorationWidth3 - viewF2.getMeasuredWidth(), Math.round(bottomDecorationHeight) - viewF2.getMeasuredHeight(), rightDecorationWidth3, Math.round(bottomDecorationHeight));
+                            this.r.v(viewF2, flexLine, z2, rightDecorationWidth3 - viewF2.getMeasuredWidth(), Math.round(bottomDecorationHeight) - viewF2.getMeasuredHeight(), rightDecorationWidth3, Math.round(bottomDecorationHeight));
                         } else {
                             i6 = i28;
                             i7 = i30;
                             i8 = i31;
-                            this.r.v(viewF2, bVar, z2, rightDecorationWidth3 - viewF2.getMeasuredWidth(), Math.round(topDecorationHeight3), rightDecorationWidth3, viewF2.getMeasuredHeight() + Math.round(topDecorationHeight3));
+                            this.r.v(viewF2, flexLine, z2, rightDecorationWidth3 - viewF2.getMeasuredWidth(), Math.round(topDecorationHeight3), rightDecorationWidth3, viewF2.getMeasuredHeight() + Math.round(topDecorationHeight3));
                         }
                         float bottomDecorationHeight2 = getBottomDecorationHeight(viewF2) + viewF2.getMeasuredHeight() + ((ViewGroup.MarginLayoutParams) layoutParams2).topMargin + fMax2 + topDecorationHeight3;
                         topDecorationHeight2 = bottomDecorationHeight - ((getTopDecorationHeight(viewF2) + (viewF2.getMeasuredHeight() + ((ViewGroup.MarginLayoutParams) layoutParams2).bottomMargin)) + fMax2);
@@ -903,15 +907,15 @@ public class FlexboxLayoutManager extends RecyclerView.LayoutManager implements 
                 i3 = i13;
                 i4 = i14;
                 cVar.c += this.u.i;
-                i5 = bVar.g;
+                i5 = flexLine.g;
             }
             i14 = i4 + i5;
             if (zI || !this.o) {
-                cVar.e = (bVar.g * cVar.i) + cVar.e;
+                cVar.e = (flexLine.g * cVar.i) + cVar.e;
             } else {
-                cVar.e -= bVar.g * cVar.i;
+                cVar.e -= flexLine.g * cVar.i;
             }
-            i13 = i3 - bVar.g;
+            i13 = i3 - flexLine.g;
             i12 = i;
         }
         int i34 = i12;
@@ -943,9 +947,9 @@ public class FlexboxLayoutManager extends RecyclerView.LayoutManager implements 
     }
 
     /* JADX WARN: Code duplicated, block: B:17:0x003b  */
-    public final View o(View view, b.i.a.e.b bVar) {
+    public final View o(View view, FlexLine flexLine) {
         boolean zI = i();
-        int i = bVar.h;
+        int i = flexLine.h;
         for (int i2 = 1; i2 < i; i2++) {
             View childAt = getChildAt(i2);
             if (childAt != null && childAt.getVisibility() != 8) {
@@ -1354,9 +1358,9 @@ public class FlexboxLayoutManager extends RecyclerView.LayoutManager implements 
     }
 
     /* JADX WARN: Code duplicated, block: B:17:0x0047  */
-    public final View q(View view, b.i.a.e.b bVar) {
+    public final View q(View view, FlexLine flexLine) {
         boolean zI = i();
-        int childCount = (getChildCount() - bVar.h) - 1;
+        int childCount = (getChildCount() - flexLine.h) - 1;
         for (int childCount2 = getChildCount() - 2; childCount2 > childCount; childCount2--) {
             View childAt = getChildAt(childCount2);
             if (childAt != null && childAt.getVisibility() != 8) {
@@ -1470,8 +1474,8 @@ public class FlexboxLayoutManager extends RecyclerView.LayoutManager implements 
         return iU;
     }
 
-    @Override // b.i.a.e.a
-    public void setFlexLines(List<b.i.a.e.b> list) {
+    @Override // b.i.a.e.FlexContainer
+    public void setFlexLines(List<FlexLine> list) {
         this.q = list;
     }
 
@@ -1640,20 +1644,20 @@ public class FlexboxLayoutManager extends RecyclerView.LayoutManager implements 
                     if (i2 == -1) {
                         return;
                     }
-                    b.i.a.e.b bVar = this.q.get(i2);
+                    FlexLine flexLine = this.q.get(i2);
                     for (int i3 = 0; i3 < childCount; i3++) {
                         View childAt = getChildAt(i3);
                         int i4 = cVar.f;
                         if (!(i() || !this.o ? this.w.getDecoratedEnd(childAt) <= i4 : this.w.getEnd() - this.w.getDecoratedStart(childAt) <= i4)) {
                             break;
                         }
-                        if (bVar.p == getPosition(childAt)) {
+                        if (flexLine.p == getPosition(childAt)) {
                             if (i2 >= this.q.size() - 1) {
                                 i = i3;
                                 break;
                             } else {
                                 i2 += cVar.i;
-                                bVar = this.q.get(i2);
+                                flexLine = this.q.get(i2);
                                 i = i3;
                             }
                         }
@@ -1679,20 +1683,20 @@ public class FlexboxLayoutManager extends RecyclerView.LayoutManager implements 
             if (i6 == -1) {
                 return;
             }
-            b.i.a.e.b bVar2 = this.q.get(i6);
+            FlexLine flexLine2 = this.q.get(i6);
             for (int i7 = i5; i7 >= 0; i7--) {
                 View childAt2 = getChildAt(i7);
                 int i8 = cVar.f;
                 if (!(i() || !this.o ? this.w.getDecoratedStart(childAt2) >= this.w.getEnd() - i8 : this.w.getDecoratedEnd(childAt2) <= i8)) {
                     break;
                 }
-                if (bVar2.o == getPosition(childAt2)) {
+                if (flexLine2.o == getPosition(childAt2)) {
                     if (i6 <= 0) {
                         childCount2 = i7;
                         break;
                     } else {
                         i6 += cVar.i;
-                        bVar2 = this.q.get(i6);
+                        flexLine2 = this.q.get(i6);
                         childCount2 = i7;
                     }
                 }
@@ -1766,10 +1770,10 @@ public class FlexboxLayoutManager extends RecyclerView.LayoutManager implements 
         if (!z2 || this.q.size() <= 1 || (i = bVar.f2991b) < 0 || i >= this.q.size() - 1) {
             return;
         }
-        b.i.a.e.b bVar2 = this.q.get(bVar.f2991b);
+        FlexLine flexLine = this.q.get(bVar.f2991b);
         c cVar2 = this.u;
         cVar2.c++;
-        cVar2.d += bVar2.h;
+        cVar2.d += flexLine.h;
     }
 
     public class b {
@@ -1824,7 +1828,7 @@ public class FlexboxLayoutManager extends RecyclerView.LayoutManager implements 
         }
 
         public String toString() {
-            StringBuilder sbU = b.d.b.a.a.U("AnchorInfo{mPosition=");
+            StringBuilder sbU = outline.U("AnchorInfo{mPosition=");
             sbU.append(this.a);
             sbU.append(", mFlexLinePosition=");
             sbU.append(this.f2991b);
@@ -1861,7 +1865,7 @@ public class FlexboxLayoutManager extends RecyclerView.LayoutManager implements 
         }
 
         public String toString() {
-            StringBuilder sbU = b.d.b.a.a.U("LayoutState{mAvailable=");
+            StringBuilder sbU = outline.U("LayoutState{mAvailable=");
             sbU.append(this.a);
             sbU.append(", mFlexLinePosition=");
             sbU.append(this.c);
@@ -1876,7 +1880,7 @@ public class FlexboxLayoutManager extends RecyclerView.LayoutManager implements 
             sbU.append(", mItemDirection=");
             sbU.append(this.h);
             sbU.append(", mLayoutDirection=");
-            return b.d.b.a.a.A(sbU, this.i, '}');
+            return outline.A(sbU, this.i, '}');
         }
     }
 

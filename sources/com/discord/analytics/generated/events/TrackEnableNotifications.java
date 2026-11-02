@@ -1,14 +1,14 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackEnableNotifications.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackEnableNotifications implements AnalyticsSchema, TrackBaseReceiver {
+public final /* data */ class TrackEnableNotifications implements AnalyticsSchema, TrackBase2 {
     private final Boolean enabled = null;
     private final CharSequence source = null;
     private TrackBase trackBase;
@@ -22,7 +22,7 @@ public final /* data */ class TrackEnableNotifications implements AnalyticsSchem
             return false;
         }
         TrackEnableNotifications trackEnableNotifications = (TrackEnableNotifications) other;
-        return m.areEqual(this.enabled, trackEnableNotifications.enabled) && m.areEqual(this.source, trackEnableNotifications.source);
+        return Intrinsics3.areEqual(this.enabled, trackEnableNotifications.enabled) && Intrinsics3.areEqual(this.source, trackEnableNotifications.source);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -39,9 +39,9 @@ public final /* data */ class TrackEnableNotifications implements AnalyticsSchem
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackEnableNotifications(enabled=");
+        StringBuilder sbU = outline.U("TrackEnableNotifications(enabled=");
         sbU.append(this.enabled);
         sbU.append(", source=");
-        return a.E(sbU, this.source, ")");
+        return outline.E(sbU, this.source, ")");
     }
 }

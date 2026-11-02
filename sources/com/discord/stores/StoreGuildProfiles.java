@@ -1,14 +1,14 @@
 package com.discord.stores;
 
 import android.content.Context;
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.api.guild.preview.GuildPreview;
 import com.discord.stores.updates.ObservationDeck;
 import com.discord.utilities.error.Error;
 import com.discord.utilities.rest.RestAPI;
 import com.discord.utilities.rx.ObservableExtensionsKt;
-import d0.z.d.m;
-import d0.z.d.o;
+import d0.z.d.Intrinsics3;
+import d0.z.d.Lambda;
 import java.util.HashMap;
 import java.util.Map;
 import kotlin.Unit;
@@ -26,17 +26,17 @@ public final class StoreGuildProfiles extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreGuildProfiles$fetchGuildProfile$1, reason: invalid class name */
     /* JADX INFO: compiled from: StoreGuildProfiles.kt */
-    public final class AnonymousClass1 extends o implements Function0<Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function0<Unit> {
         public final /* synthetic */ long $guildId;
 
         /* JADX INFO: renamed from: com.discord.stores.StoreGuildProfiles$fetchGuildProfile$1$2, reason: invalid class name */
         /* JADX INFO: compiled from: StoreGuildProfiles.kt */
-        public final class AnonymousClass2 extends o implements Function1<Error, Unit> {
+        public final class AnonymousClass2 extends Lambda implements Function1<Error, Unit> {
 
             /* JADX INFO: renamed from: com.discord.stores.StoreGuildProfiles$fetchGuildProfile$1$2$1, reason: invalid class name and collision with other inner class name */
             /* JADX INFO: compiled from: StoreGuildProfiles.kt */
-            public final class C02461 extends o implements Function0<Unit> {
-                public C02461() {
+            public final class C01261 extends Lambda implements Function0<Unit> {
+                public C01261() {
                     super(0);
                 }
 
@@ -65,22 +65,22 @@ public final class StoreGuildProfiles extends StoreV2 {
 
             /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
             public final void invoke2(Error error) {
-                m.checkNotNullParameter(error, "it");
-                StoreGuildProfiles.access$getDispatcher$p(StoreGuildProfiles.this).schedule(new C02461());
+                Intrinsics3.checkNotNullParameter(error, "it");
+                StoreGuildProfiles.access$getDispatcher$p(StoreGuildProfiles.this).schedule(new C01261());
             }
         }
 
         /* JADX INFO: renamed from: com.discord.stores.StoreGuildProfiles$fetchGuildProfile$1$1, reason: invalid class name and collision with other inner class name */
         /* JADX INFO: compiled from: StoreGuildProfiles.kt */
-        public final class C02441 extends o implements Function1<GuildPreview, Unit> {
+        public final class C01241 extends Lambda implements Function1<GuildPreview, Unit> {
 
             /* JADX INFO: renamed from: com.discord.stores.StoreGuildProfiles$fetchGuildProfile$1$1$1, reason: invalid class name and collision with other inner class name */
             /* JADX INFO: compiled from: StoreGuildProfiles.kt */
-            public final class C02451 extends o implements Function0<Unit> {
+            public final class C01251 extends Lambda implements Function0<Unit> {
                 public final /* synthetic */ GuildPreview $guildPreview;
 
                 /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-                public C02451(GuildPreview guildPreview) {
+                public C01251(GuildPreview guildPreview) {
                     super(0);
                     this.$guildPreview = guildPreview;
                 }
@@ -97,7 +97,7 @@ public final class StoreGuildProfiles extends StoreV2 {
                 }
             }
 
-            public C02441() {
+            public C01241() {
                 super(1);
             }
 
@@ -109,8 +109,8 @@ public final class StoreGuildProfiles extends StoreV2 {
 
             /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
             public final void invoke2(GuildPreview guildPreview) {
-                m.checkNotNullParameter(guildPreview, "guildPreview");
-                StoreGuildProfiles.access$getDispatcher$p(StoreGuildProfiles.this).schedule(new C02451(guildPreview));
+                Intrinsics3.checkNotNullParameter(guildPreview, "guildPreview");
+                StoreGuildProfiles.access$getDispatcher$p(StoreGuildProfiles.this).schedule(new C01251(guildPreview));
             }
         }
 
@@ -133,13 +133,13 @@ public final class StoreGuildProfiles extends StoreV2 {
                 return;
             }
             StoreGuildProfiles.access$handleGuildProfileFetchStart(StoreGuildProfiles.this, this.$guildId);
-            ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.restSubscribeOn$default(RestAPI.INSTANCE.getApi().getGuildPreview(this.$guildId), false, 1, null), StoreGuildProfiles.this.getClass(), (Context) null, (Function1) null, new AnonymousClass2(), (Function0) null, (Function0) null, new C02441(), 54, (Object) null);
+            ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.restSubscribeOn$default(RestAPI.INSTANCE.getApi().getGuildPreview(this.$guildId), false, 1, null), StoreGuildProfiles.this.getClass(), (Context) null, (Function1) null, new AnonymousClass2(), (Function0) null, (Function0) null, new C01241(), 54, (Object) null);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.stores.StoreGuildProfiles$observeGuildProfile$1, reason: invalid class name */
     /* JADX INFO: compiled from: StoreGuildProfiles.kt */
-    public final class AnonymousClass1 extends o implements Function0<Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function0<Unit> {
         public final /* synthetic */ long $guildId;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -162,7 +162,7 @@ public final class StoreGuildProfiles extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreGuildProfiles$observeGuildProfile$2, reason: invalid class name */
     /* JADX INFO: compiled from: StoreGuildProfiles.kt */
-    public final class AnonymousClass2 extends o implements Function0<GuildProfileData> {
+    public final class AnonymousClass2 extends Lambda implements Function0<GuildProfileData> {
         public final /* synthetic */ long $guildId;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -196,7 +196,7 @@ public final class StoreGuildProfiles extends StoreV2 {
         private final FetchStates fetchState;
 
         public GuildProfileData(FetchStates fetchStates, GuildPreview guildPreview) {
-            m.checkNotNullParameter(fetchStates, "fetchState");
+            Intrinsics3.checkNotNullParameter(fetchStates, "fetchState");
             this.fetchState = fetchStates;
             this.data = guildPreview;
         }
@@ -212,7 +212,7 @@ public final class StoreGuildProfiles extends StoreV2 {
         }
 
         public final GuildProfileData copy(FetchStates fetchState, GuildPreview data) {
-            m.checkNotNullParameter(fetchState, "fetchState");
+            Intrinsics3.checkNotNullParameter(fetchState, "fetchState");
             return new GuildProfileData(fetchState, data);
         }
 
@@ -224,7 +224,7 @@ public final class StoreGuildProfiles extends StoreV2 {
                 return false;
             }
             GuildProfileData guildProfileData = (GuildProfileData) other;
-            return m.areEqual(this.fetchState, guildProfileData.fetchState) && m.areEqual(this.data, guildProfileData.data);
+            return Intrinsics3.areEqual(this.fetchState, guildProfileData.fetchState) && Intrinsics3.areEqual(this.data, guildProfileData.data);
         }
 
         /* JADX INFO: renamed from: component2, reason: from getter */
@@ -253,7 +253,7 @@ public final class StoreGuildProfiles extends StoreV2 {
         }
 
         public String toString() {
-            StringBuilder sbU = a.U("GuildProfileData(fetchState=");
+            StringBuilder sbU = outline.U("GuildProfileData(fetchState=");
             sbU.append(this.fetchState);
             sbU.append(", data=");
             sbU.append(this.data);
@@ -263,8 +263,8 @@ public final class StoreGuildProfiles extends StoreV2 {
     }
 
     public StoreGuildProfiles(Dispatcher dispatcher, ObservationDeck observationDeck) {
-        m.checkNotNullParameter(dispatcher, "dispatcher");
-        m.checkNotNullParameter(observationDeck, "observationDeck");
+        Intrinsics3.checkNotNullParameter(dispatcher, "dispatcher");
+        Intrinsics3.checkNotNullParameter(observationDeck, "observationDeck");
         this.dispatcher = dispatcher;
         this.observationDeck = observationDeck;
         this.guildProfilesState = new HashMap();
@@ -303,12 +303,12 @@ public final class StoreGuildProfiles extends StoreV2 {
         storeGuildProfiles.guildProfilesStateSnapshot = map;
     }
 
-    @StoreThread
+    @Store3
     private final void fetchGuildProfile(long guildId) {
         this.dispatcher.schedule(new AnonymousClass1(guildId));
     }
 
-    @StoreThread
+    @Store3
     private final void fetchIfNonexisting(long guildId) {
         GuildProfileData guildProfileData = this.guildProfilesState.get(Long.valueOf(guildId));
         if (guildProfileData == null || guildProfileData.getFetchState() == FetchStates.FAILED) {
@@ -316,19 +316,19 @@ public final class StoreGuildProfiles extends StoreV2 {
         }
     }
 
-    @StoreThread
+    @Store3
     private final void handleGuildProfileFetchFailed(long guildId) {
         this.guildProfilesState.put(Long.valueOf(guildId), new GuildProfileData(FetchStates.FAILED, null));
         markChanged();
     }
 
-    @StoreThread
+    @Store3
     private final void handleGuildProfileFetchStart(long guildId) {
         this.guildProfilesState.put(Long.valueOf(guildId), new GuildProfileData(FetchStates.FETCHING, null));
         markChanged();
     }
 
-    @StoreThread
+    @Store3
     private final void handleGuildProfileFetchSuccess(GuildPreview guildPreview) {
         this.guildProfilesState.put(Long.valueOf(guildPreview.getId()), new GuildProfileData(FetchStates.SUCCEEDED, guildPreview));
         markChanged();
@@ -337,12 +337,12 @@ public final class StoreGuildProfiles extends StoreV2 {
     public final Observable<GuildProfileData> observeGuildProfile(long guildId) {
         this.dispatcher.schedule(new AnonymousClass1(guildId));
         Observable<GuildProfileData> observableR = ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck.UpdateSource[]{this}, false, null, null, new AnonymousClass2(guildId), 14, null).r();
-        m.checkNotNullExpressionValue(observableR, "observationDeck\n        …  .distinctUntilChanged()");
+        Intrinsics3.checkNotNullExpressionValue(observableR, "observationDeck\n        …  .distinctUntilChanged()");
         return observableR;
     }
 
     @Override // com.discord.stores.StoreV2
-    @StoreThread
+    @Store3
     public void snapshotData() {
         this.guildProfilesStateSnapshot = new HashMap(this.guildProfilesState);
     }

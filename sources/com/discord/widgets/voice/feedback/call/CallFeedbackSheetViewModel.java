@@ -5,8 +5,8 @@ import android.content.Context;
 import android.os.Parcel;
 import android.os.Parcelable;
 import androidx.annotation.VisibleForTesting;
-import b.a.d.d0;
-import b.d.b.a.a;
+import b.a.d.AppViewModel;
+import b.d.b.a.outline;
 import com.discord.R;
 import com.discord.stores.StoreAnalytics;
 import com.discord.stores.StoreExperiments;
@@ -16,11 +16,13 @@ import com.discord.widgets.feedback.FeedbackSheetViewModel;
 import com.discord.widgets.voice.feedback.FeedbackIssue;
 import com.discord.widgets.voice.feedback.FeedbackRating;
 import com.discord.widgets.voice.feedback.PendingFeedback;
-import d0.t.h0;
-import d0.t.n;
-import d0.t.u;
-import d0.z.d.m;
-import d0.z.d.o;
+import d0.Tuples;
+import d0.t.Collections2;
+import d0.t.CollectionsJVM;
+import d0.t.Maps6;
+import d0.t._Collections;
+import d0.z.d.Intrinsics3;
+import d0.z.d.Lambda;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
@@ -34,7 +36,7 @@ import rx.subjects.PublishSubject;
 
 /* JADX INFO: compiled from: CallFeedbackSheetViewModel.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final class CallFeedbackSheetViewModel extends d0<FeedbackSheetViewModel.ViewState> implements FeedbackSheetViewModel {
+public final class CallFeedbackSheetViewModel extends AppViewModel<FeedbackSheetViewModel.ViewState> implements FeedbackSheetViewModel {
 
     /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
     public static final Companion INSTANCE = new Companion(null);
@@ -51,7 +53,7 @@ public final class CallFeedbackSheetViewModel extends d0<FeedbackSheetViewModel.
 
     /* JADX INFO: renamed from: com.discord.widgets.voice.feedback.call.CallFeedbackSheetViewModel$1, reason: invalid class name */
     /* JADX INFO: compiled from: CallFeedbackSheetViewModel.kt */
-    public final class AnonymousClass1 extends o implements Function1<StoreState, Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function1<StoreState, Unit> {
         public AnonymousClass1() {
             super(1);
         }
@@ -64,7 +66,7 @@ public final class CallFeedbackSheetViewModel extends d0<FeedbackSheetViewModel.
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(StoreState storeState) {
-            m.checkNotNullParameter(storeState, "storeState");
+            Intrinsics3.checkNotNullParameter(storeState, "storeState");
             CallFeedbackSheetViewModel.access$setMostRecentStoreState$p(CallFeedbackSheetViewModel.this, storeState);
         }
     }
@@ -91,8 +93,8 @@ public final class CallFeedbackSheetViewModel extends d0<FeedbackSheetViewModel.
         }
 
         private final Observable<StoreState> observeStoreState(StoreExperiments storeExperiments) {
-            Observable observableG = storeExperiments.observeUserExperiment("2020-08_feedback_modal_helpdesk_link", true).G(CallFeedbackSheetViewModel$Companion$observeStoreState$1.INSTANCE);
-            m.checkNotNullExpressionValue(observableG, "storeExperiments\n       …            )\n          }");
+            Observable observableG = storeExperiments.observeUserExperiment("2020-08_feedback_modal_helpdesk_link", true).G(CallFeedbackSheetViewModel2.INSTANCE);
+            Intrinsics3.checkNotNullExpressionValue(observableG, "storeExperiments\n       …            )\n          }");
             return observableG;
         }
 
@@ -134,7 +136,7 @@ public final class CallFeedbackSheetViewModel extends d0<FeedbackSheetViewModel.
             /* JADX WARN: Can't rename method to resolve collision */
             @Override // android.os.Parcelable.Creator
             public Config createFromParcel(Parcel parcel) {
-                m.checkNotNullParameter(parcel, "parcel");
+                Intrinsics3.checkNotNullParameter(parcel, "parcel");
                 return new Config(parcel);
             }
 
@@ -188,7 +190,7 @@ public final class CallFeedbackSheetViewModel extends d0<FeedbackSheetViewModel.
                 return false;
             }
             Config config = (Config) other;
-            return this.channelId == config.channelId && m.areEqual(this.rtcConnectionId, config.rtcConnectionId) && m.areEqual(this.mediaSessionId, config.mediaSessionId) && m.areEqual(this.callDurationMs, config.callDurationMs);
+            return this.channelId == config.channelId && Intrinsics3.areEqual(this.rtcConnectionId, config.rtcConnectionId) && Intrinsics3.areEqual(this.mediaSessionId, config.mediaSessionId) && Intrinsics3.areEqual(this.callDurationMs, config.callDurationMs);
         }
 
         /* JADX INFO: renamed from: component4, reason: from getter */
@@ -238,19 +240,19 @@ public final class CallFeedbackSheetViewModel extends d0<FeedbackSheetViewModel.
         }
 
         public String toString() {
-            StringBuilder sbU = a.U("Config(channelId=");
+            StringBuilder sbU = outline.U("Config(channelId=");
             sbU.append(this.channelId);
             sbU.append(", rtcConnectionId=");
             sbU.append(this.rtcConnectionId);
             sbU.append(", mediaSessionId=");
             sbU.append(this.mediaSessionId);
             sbU.append(", callDurationMs=");
-            return a.G(sbU, this.callDurationMs, ")");
+            return outline.G(sbU, this.callDurationMs, ")");
         }
 
         @Override // android.os.Parcelable
         public void writeToParcel(Parcel parcel, int flags) {
-            m.checkNotNullParameter(parcel, "parcel");
+            Intrinsics3.checkNotNullParameter(parcel, "parcel");
             parcel.writeLong(this.channelId);
             parcel.writeString(this.rtcConnectionId);
             parcel.writeString(this.mediaSessionId);
@@ -259,7 +261,7 @@ public final class CallFeedbackSheetViewModel extends d0<FeedbackSheetViewModel.
 
         /* JADX WARN: Illegal instructions before constructor call */
         public Config(Parcel parcel) {
-            m.checkNotNullParameter(parcel, "parcel");
+            Intrinsics3.checkNotNullParameter(parcel, "parcel");
             long j = parcel.readLong();
             String string = parcel.readString();
             String string2 = parcel.readString();
@@ -312,7 +314,7 @@ public final class CallFeedbackSheetViewModel extends d0<FeedbackSheetViewModel.
         }
 
         public String toString() {
-            return a.O(a.U("StoreState(shouldShowCxLinkForIssueDetails="), this.shouldShowCxLinkForIssueDetails, ")");
+            return outline.O(outline.U("StoreState(shouldShowCxLinkForIssueDetails="), this.shouldShowCxLinkForIssueDetails, ")");
         }
     }
 
@@ -348,8 +350,8 @@ public final class CallFeedbackSheetViewModel extends d0<FeedbackSheetViewModel.
         FeedbackIssue feedbackIssue7 = FeedbackIssue.BACKGROUND_NOISE_TOO_LOUD;
         FeedbackIssue feedbackIssue8 = FeedbackIssue.SPEAKERPHONE_ISSUE;
         FeedbackIssue feedbackIssue9 = FeedbackIssue.HEADSET_OR_BLUETOOTH_ISSUE;
-        ISSUES_UI_OPTIONS = n.listOf((Object[]) new FeedbackIssue[]{feedbackIssue, feedbackIssue2, feedbackIssue3, feedbackIssue4, feedbackIssue5, feedbackIssue6, feedbackIssue7, feedbackIssue8, feedbackIssue9});
-        REASON_CODES = h0.mapOf(d0.o.to(FeedbackIssue.OTHER, 1), d0.o.to(feedbackIssue, 2), d0.o.to(feedbackIssue2, 3), d0.o.to(feedbackIssue3, 4), d0.o.to(feedbackIssue4, 5), d0.o.to(feedbackIssue5, 6), d0.o.to(feedbackIssue6, 7), d0.o.to(feedbackIssue7, 8), d0.o.to(feedbackIssue8, 9), d0.o.to(feedbackIssue9, 10));
+        ISSUES_UI_OPTIONS = Collections2.listOf((Object[]) new FeedbackIssue[]{feedbackIssue, feedbackIssue2, feedbackIssue3, feedbackIssue4, feedbackIssue5, feedbackIssue6, feedbackIssue7, feedbackIssue8, feedbackIssue9});
+        REASON_CODES = Maps6.mapOf(Tuples.to(FeedbackIssue.OTHER, 1), Tuples.to(feedbackIssue, 2), Tuples.to(feedbackIssue2, 3), Tuples.to(feedbackIssue3, 4), Tuples.to(feedbackIssue4, 5), Tuples.to(feedbackIssue5, 6), Tuples.to(feedbackIssue6, 7), Tuples.to(feedbackIssue7, 8), Tuples.to(feedbackIssue8, 9), Tuples.to(feedbackIssue9, 10));
     }
 
     /* JADX WARN: Illegal instructions before constructor call */
@@ -387,11 +389,11 @@ public final class CallFeedbackSheetViewModel extends d0<FeedbackSheetViewModel.
     @Override // com.discord.widgets.feedback.FeedbackSheetViewModel
     public Observable<FeedbackSheetViewModel.Event> observeEvents() {
         PublishSubject<FeedbackSheetViewModel.Event> publishSubject = this.eventSubject;
-        m.checkNotNullExpressionValue(publishSubject, "eventSubject");
+        Intrinsics3.checkNotNullExpressionValue(publishSubject, "eventSubject");
         return publishSubject;
     }
 
-    @Override // b.a.d.d0, androidx.view.ViewModel
+    @Override // b.a.d.AppViewModel, androidx.view.ViewModel
     public void onCleared() {
         super.onCleared();
         if (this.submitOnDismiss) {
@@ -418,7 +420,7 @@ public final class CallFeedbackSheetViewModel extends d0<FeedbackSheetViewModel.
 
     @Override // com.discord.widgets.feedback.FeedbackSheetViewModel
     public void selectRating(FeedbackRating feedbackRating) {
-        m.checkNotNullParameter(feedbackRating, "feedbackRating");
+        Intrinsics3.checkNotNullParameter(feedbackRating, "feedbackRating");
         this.pendingCallFeedback = PendingFeedback.CallFeedback.copy$default(this.pendingCallFeedback, 0L, null, null, null, feedbackRating, null, null, null, 239, null);
         int iOrdinal = feedbackRating.ordinal();
         if (iOrdinal != 0) {
@@ -430,7 +432,7 @@ public final class CallFeedbackSheetViewModel extends d0<FeedbackSheetViewModel.
             }
         }
         selectIssue(null, null);
-        updateViewState(createViewState(feedbackRating, n.emptyList()));
+        updateViewState(createViewState(feedbackRating, Collections2.emptyList()));
         submitForm();
     }
 
@@ -447,17 +449,17 @@ public final class CallFeedbackSheetViewModel extends d0<FeedbackSheetViewModel.
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public CallFeedbackSheetViewModel(Config config, StoreAnalytics storeAnalytics, StoreExperiments storeExperiments, Observable<StoreState> observable) {
-        super(new FeedbackSheetViewModel.ViewState(FeedbackRating.NO_RESPONSE, n.emptyList(), R.string.call_feedback_sheet_title, Integer.valueOf(R.string.call_feedback_prompt), R.string.call_feedback_issue_section_header));
-        m.checkNotNullParameter(config, "config");
-        m.checkNotNullParameter(storeAnalytics, "storeAnalytics");
-        m.checkNotNullParameter(storeExperiments, "storeExperiments");
-        m.checkNotNullParameter(observable, "storeStateObservable");
+        super(new FeedbackSheetViewModel.ViewState(FeedbackRating.NO_RESPONSE, Collections2.emptyList(), R.string.call_feedback_sheet_title, Integer.valueOf(R.string.call_feedback_prompt), R.string.call_feedback_issue_section_header));
+        Intrinsics3.checkNotNullParameter(config, "config");
+        Intrinsics3.checkNotNullParameter(storeAnalytics, "storeAnalytics");
+        Intrinsics3.checkNotNullParameter(storeExperiments, "storeExperiments");
+        Intrinsics3.checkNotNullParameter(observable, "storeStateObservable");
         this.storeAnalytics = storeAnalytics;
         this.storeExperiments = storeExperiments;
         this.eventSubject = PublishSubject.k0();
         this.submitOnDismiss = true;
         this.pendingCallFeedback = new PendingFeedback.CallFeedback(config.getChannelId(), config.getRtcConnectionId(), config.getCallDurationMs(), config.getMediaSessionId(), null, null, null, null, 240, null);
-        this.issuesUiOptions = u.plus((Collection<? extends FeedbackIssue>) d0.t.m.shuffled(ISSUES_UI_OPTIONS), FeedbackIssue.OTHER);
+        this.issuesUiOptions = _Collections.plus((Collection<? extends FeedbackIssue>) CollectionsJVM.shuffled(ISSUES_UI_OPTIONS), FeedbackIssue.OTHER);
         storeAnalytics.trackShowCallFeedbackSheet(config.getChannelId());
         ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(observable, this, null, 2, null), CallFeedbackSheetViewModel.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass1(), 62, (Object) null);
     }

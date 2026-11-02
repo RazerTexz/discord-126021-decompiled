@@ -1,8 +1,8 @@
 package com.discord.api.friendsuggestions;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.api.user.User;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 import java.util.List;
 
 /* JADX INFO: compiled from: FriendSuggestion.kt */
@@ -23,7 +23,7 @@ public final /* data */ class FriendSuggestion {
             return false;
         }
         FriendSuggestion friendSuggestion = (FriendSuggestion) other;
-        return m.areEqual(this.suggestedUser, friendSuggestion.suggestedUser) && m.areEqual(this.reasons, friendSuggestion.reasons);
+        return Intrinsics3.areEqual(this.suggestedUser, friendSuggestion.suggestedUser) && Intrinsics3.areEqual(this.reasons, friendSuggestion.reasons);
     }
 
     /* JADX INFO: renamed from: b, reason: from getter */
@@ -39,9 +39,9 @@ public final /* data */ class FriendSuggestion {
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("FriendSuggestion(suggestedUser=");
+        StringBuilder sbU = outline.U("FriendSuggestion(suggestedUser=");
         sbU.append(this.suggestedUser);
         sbU.append(", reasons=");
-        return a.L(sbU, this.reasons, ")");
+        return outline.L(sbU, this.reasons, ")");
     }
 }

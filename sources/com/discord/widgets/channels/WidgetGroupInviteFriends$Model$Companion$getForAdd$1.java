@@ -6,10 +6,11 @@ import com.discord.models.user.CoreUser;
 import com.discord.models.user.User;
 import com.discord.stores.StoreStream;
 import com.discord.utilities.user.UserUtils;
-import d0.t.o;
-import d0.z.d.k;
-import d0.z.d.m;
-import j0.k.b;
+import d0.t.Iterables2;
+import d0.z.d.FunctionReferenceImpl;
+import d0.z.d.Intrinsics3;
+import j0.k.Func1;
+import j0.l.e.ScalarSynchronousObservable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
@@ -20,13 +21,13 @@ import rx.functions.Func2;
 
 /* JADX INFO: compiled from: WidgetGroupInviteFriends.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class WidgetGroupInviteFriends$Model$Companion$getForAdd$1<T, R> implements b<Channel, Observable<? extends WidgetGroupInviteFriends.Model>> {
+public final class WidgetGroupInviteFriends$Model$Companion$getForAdd$1<T, R> implements Func1<Channel, Observable<? extends WidgetGroupInviteFriends.Model>> {
     public final /* synthetic */ Observable $addedUsersPublisher;
     public final /* synthetic */ Observable $filterPublisher;
 
     /* JADX INFO: renamed from: com.discord.widgets.channels.WidgetGroupInviteFriends$Model$Companion$getForAdd$1$1, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetGroupInviteFriends.kt */
-    public final /* synthetic */ class AnonymousClass1 extends k implements Function2<Collection<? extends User>, String, WidgetGroupInviteFriends.Model.Companion.AddedUsersInput> {
+    public final /* synthetic */ class AnonymousClass1 extends FunctionReferenceImpl implements Function2<Collection<? extends User>, String, WidgetGroupInviteFriends.Model.Companion.AddedUsersInput> {
         public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
 
         public AnonymousClass1() {
@@ -40,27 +41,27 @@ public final class WidgetGroupInviteFriends$Model$Companion$getForAdd$1<T, R> im
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final WidgetGroupInviteFriends.Model.Companion.AddedUsersInput invoke2(Collection<? extends User> collection, String str) {
-            m.checkNotNullParameter(collection, "p1");
-            m.checkNotNullParameter(str, "p2");
+            Intrinsics3.checkNotNullParameter(collection, "p1");
+            Intrinsics3.checkNotNullParameter(str, "p2");
             return new WidgetGroupInviteFriends.Model.Companion.AddedUsersInput(collection, str);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.widgets.channels.WidgetGroupInviteFriends$Model$Companion$getForAdd$1$2, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetGroupInviteFriends.kt */
-    public final class AnonymousClass2<T, R> implements b<WidgetGroupInviteFriends.Model.Companion.AddedUsersInput, Observable<? extends WidgetGroupInviteFriends.Model>> {
+    public final class AnonymousClass2<T, R> implements Func1<WidgetGroupInviteFriends.Model.Companion.AddedUsersInput, Observable<? extends WidgetGroupInviteFriends.Model>> {
         public final /* synthetic */ Channel $channel;
 
         /* JADX INFO: renamed from: com.discord.widgets.channels.WidgetGroupInviteFriends$Model$Companion$getForAdd$1$2$3, reason: invalid class name */
         /* JADX INFO: compiled from: WidgetGroupInviteFriends.kt */
-        public final class AnonymousClass3<T, R> implements b<List<? extends WidgetGroupInviteFriends.Model.FriendItem>, Observable<? extends WidgetGroupInviteFriends.Model>> {
+        public final class AnonymousClass3<T, R> implements Func1<List<? extends WidgetGroupInviteFriends.Model.FriendItem>, Observable<? extends WidgetGroupInviteFriends.Model>> {
             public final /* synthetic */ WidgetGroupInviteFriends.Model.Companion.AddedUsersInput $usersFilter;
 
             public AnonymousClass3(WidgetGroupInviteFriends.Model.Companion.AddedUsersInput addedUsersInput) {
                 this.$usersFilter = addedUsersInput;
             }
 
-            @Override // j0.k.b
+            @Override // j0.k.Func1
             public /* bridge */ /* synthetic */ Observable<? extends WidgetGroupInviteFriends.Model> call(List<? extends WidgetGroupInviteFriends.Model.FriendItem> list) {
                 return call2((List<WidgetGroupInviteFriends.Model.FriendItem>) list);
             }
@@ -70,21 +71,21 @@ public final class WidgetGroupInviteFriends$Model$Companion$getForAdd$1<T, R> im
                 Channel channel = AnonymousClass2.this.$channel;
                 String filter = this.$usersFilter.getFilter();
                 Collection<User> addedUsers = this.$usersFilter.getAddedUsers();
-                m.checkNotNullExpressionValue(list, "friendItems");
-                return new j0.l.e.k(new WidgetGroupInviteFriends.Model(channel, filter, addedUsers, list, 1, UserUtils.INSTANCE.isStaff(StoreStream.INSTANCE.getUsers().getMeSnapshot()) ? 25 : 10));
+                Intrinsics3.checkNotNullExpressionValue(list, "friendItems");
+                return new ScalarSynchronousObservable(new WidgetGroupInviteFriends.Model(channel, filter, addedUsers, list, 1, UserUtils.INSTANCE.isStaff(StoreStream.INSTANCE.getUsers().getMeSnapshot()) ? 25 : 10));
             }
         }
 
         /* JADX INFO: renamed from: com.discord.widgets.channels.WidgetGroupInviteFriends$Model$Companion$getForAdd$1$2$2, reason: invalid class name and collision with other inner class name */
         /* JADX INFO: compiled from: WidgetGroupInviteFriends.kt */
-        public final class C03632<T, R> implements b<WidgetGroupInviteFriends.Model.ModelAppUserRelationship, List<? extends WidgetGroupInviteFriends.Model.FriendItem>> {
+        public final class C02432<T, R> implements Func1<WidgetGroupInviteFriends.Model.ModelAppUserRelationship, List<? extends WidgetGroupInviteFriends.Model.FriendItem>> {
             public final /* synthetic */ WidgetGroupInviteFriends.Model.Companion.AddedUsersInput $usersFilter;
 
-            public C03632(WidgetGroupInviteFriends.Model.Companion.AddedUsersInput addedUsersInput) {
+            public C02432(WidgetGroupInviteFriends.Model.Companion.AddedUsersInput addedUsersInput) {
                 this.$usersFilter = addedUsersInput;
             }
 
-            @Override // j0.k.b
+            @Override // j0.k.Func1
             public /* bridge */ /* synthetic */ List<? extends WidgetGroupInviteFriends.Model.FriendItem> call(WidgetGroupInviteFriends.Model.ModelAppUserRelationship modelAppUserRelationship) {
                 return call2(modelAppUserRelationship);
             }
@@ -92,7 +93,7 @@ public final class WidgetGroupInviteFriends$Model$Companion$getForAdd$1<T, R> im
             /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
             public final List<WidgetGroupInviteFriends.Model.FriendItem> call2(WidgetGroupInviteFriends.Model.ModelAppUserRelationship modelAppUserRelationship) {
                 WidgetGroupInviteFriends.Model.FriendItem.Companion companion = WidgetGroupInviteFriends.Model.FriendItem.INSTANCE;
-                m.checkNotNullExpressionValue(modelAppUserRelationship, "friends");
+                Intrinsics3.checkNotNullExpressionValue(modelAppUserRelationship, "friends");
                 return companion.createData(modelAppUserRelationship, this.$usersFilter.getAddedUsers());
             }
         }
@@ -101,7 +102,7 @@ public final class WidgetGroupInviteFriends$Model$Companion$getForAdd$1<T, R> im
             this.$channel = channel;
         }
 
-        @Override // j0.k.b
+        @Override // j0.k.Func1
         public /* bridge */ /* synthetic */ Observable<? extends WidgetGroupInviteFriends.Model> call(WidgetGroupInviteFriends.Model.Companion.AddedUsersInput addedUsersInput) {
             return call2(addedUsersInput);
         }
@@ -112,7 +113,7 @@ public final class WidgetGroupInviteFriends$Model$Companion$getForAdd$1<T, R> im
             WidgetGroupInviteFriends.Model.Companion companion = WidgetGroupInviteFriends.Model.INSTANCE;
             List<com.discord.api.user.User> listZ = this.$channel.z();
             if (listZ != null) {
-                arrayList = new ArrayList(o.collectionSizeOrDefault(listZ, 10));
+                arrayList = new ArrayList(Iterables2.collectionSizeOrDefault(listZ, 10));
                 Iterator<T> it = listZ.iterator();
                 while (it.hasNext()) {
                     arrayList.add(new CoreUser((com.discord.api.user.User) it.next()));
@@ -120,7 +121,7 @@ public final class WidgetGroupInviteFriends$Model$Companion$getForAdd$1<T, R> im
             } else {
                 arrayList = null;
             }
-            return WidgetGroupInviteFriends.Model.Companion.access$getFilteredFriends(companion, arrayList, addedUsersInput.getFilter()).G(new C03632(addedUsersInput)).Y(new AnonymousClass3(addedUsersInput));
+            return WidgetGroupInviteFriends.Model.Companion.access$getFilteredFriends(companion, arrayList, addedUsersInput.getFilter()).G(new C02432(addedUsersInput)).Y(new AnonymousClass3(addedUsersInput));
         }
     }
 
@@ -132,7 +133,7 @@ public final class WidgetGroupInviteFriends$Model$Companion$getForAdd$1<T, R> im
     /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
     public final Observable<? extends WidgetGroupInviteFriends.Model> call2(Channel channel) {
         if (channel == null) {
-            return new j0.l.e.k(null);
+            return new ScalarSynchronousObservable(null);
         }
         Observable observable = this.$addedUsersPublisher;
         Observable observable2 = this.$filterPublisher;
@@ -144,7 +145,7 @@ public final class WidgetGroupInviteFriends$Model$Companion$getForAdd$1<T, R> im
         return Observable.j(observable, observable2, (Func2) widgetGroupInviteFriends$sam$rx_functions_Func2$0).Y(new AnonymousClass2(channel));
     }
 
-    @Override // j0.k.b
+    @Override // j0.k.Func1
     public /* bridge */ /* synthetic */ Observable<? extends WidgetGroupInviteFriends.Model> call(Channel channel) {
         return call2(channel);
     }

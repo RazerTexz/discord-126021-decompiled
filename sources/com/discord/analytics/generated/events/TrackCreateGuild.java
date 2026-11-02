@@ -1,16 +1,16 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.analytics.generated.traits.TrackGuildTemplate;
-import com.discord.analytics.generated.traits.TrackGuildTemplateReceiver;
+import com.discord.analytics.generated.traits.TrackGuildTemplate2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackCreateGuild.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackCreateGuild implements AnalyticsSchema, TrackBaseReceiver, TrackGuildTemplateReceiver {
+public final /* data */ class TrackCreateGuild implements AnalyticsSchema, TrackBase2, TrackGuildTemplate2 {
     private final Long guildId = null;
     private final CharSequence guildName = null;
     private TrackBase trackBase;
@@ -25,7 +25,7 @@ public final /* data */ class TrackCreateGuild implements AnalyticsSchema, Track
             return false;
         }
         TrackCreateGuild trackCreateGuild = (TrackCreateGuild) other;
-        return m.areEqual(this.guildId, trackCreateGuild.guildId) && m.areEqual(this.guildName, trackCreateGuild.guildName);
+        return Intrinsics3.areEqual(this.guildId, trackCreateGuild.guildId) && Intrinsics3.areEqual(this.guildName, trackCreateGuild.guildName);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -42,9 +42,9 @@ public final /* data */ class TrackCreateGuild implements AnalyticsSchema, Track
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackCreateGuild(guildId=");
+        StringBuilder sbU = outline.U("TrackCreateGuild(guildId=");
         sbU.append(this.guildId);
         sbU.append(", guildName=");
-        return a.E(sbU, this.guildName, ")");
+        return outline.E(sbU, this.guildName, ")");
     }
 }

@@ -1,18 +1,18 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.analytics.generated.traits.TrackLocationMetadata;
-import com.discord.analytics.generated.traits.TrackLocationMetadataReceiver;
+import com.discord.analytics.generated.traits.TrackLocationMetadata2;
 import com.discord.analytics.generated.traits.TrackSourceMetadata;
-import com.discord.analytics.generated.traits.TrackSourceMetadataReceiver;
+import com.discord.analytics.generated.traits.TrackSourceMetadata2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackUpsellClicked.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackUpsellClicked implements AnalyticsSchema, TrackBaseReceiver, TrackLocationMetadataReceiver, TrackSourceMetadataReceiver {
+public final /* data */ class TrackUpsellClicked implements AnalyticsSchema, TrackBase2, TrackLocationMetadata2, TrackSourceMetadata2 {
     private final CharSequence action = null;
     private final CharSequence subtype = null;
     private TrackBase trackBase;
@@ -29,7 +29,7 @@ public final /* data */ class TrackUpsellClicked implements AnalyticsSchema, Tra
             return false;
         }
         TrackUpsellClicked trackUpsellClicked = (TrackUpsellClicked) other;
-        return m.areEqual(this.type, trackUpsellClicked.type) && m.areEqual(this.subtype, trackUpsellClicked.subtype) && m.areEqual(this.action, trackUpsellClicked.action);
+        return Intrinsics3.areEqual(this.type, trackUpsellClicked.type) && Intrinsics3.areEqual(this.subtype, trackUpsellClicked.subtype) && Intrinsics3.areEqual(this.action, trackUpsellClicked.action);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -48,11 +48,11 @@ public final /* data */ class TrackUpsellClicked implements AnalyticsSchema, Tra
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackUpsellClicked(type=");
+        StringBuilder sbU = outline.U("TrackUpsellClicked(type=");
         sbU.append(this.type);
         sbU.append(", subtype=");
         sbU.append(this.subtype);
         sbU.append(", action=");
-        return a.E(sbU, this.action, ")");
+        return outline.E(sbU, this.action, ")");
     }
 }

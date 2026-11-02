@@ -1,5 +1,6 @@
 package b.i.a.f.h.l;
 
+import b.d.b.a.outline;
 import b.i.a.f.h.l.l3;
 import b.i.a.f.h.l.n3;
 import com.google.android.gms.internal.measurement.zzhi;
@@ -32,7 +33,7 @@ public abstract class l3<MessageType extends l3<MessageType, BuilderType>, Build
             throw new IllegalStateException("Did not write as much data as expected.");
         } catch (IOException e) {
             String name = getClass().getName();
-            StringBuilder sbS = b.d.b.a.a.S(name.length() + 62 + 10, "Serializing ", name, " to a ", "ByteString");
+            StringBuilder sbS = outline.S(name.length() + 62 + 10, "Serializing ", name, " to a ", "ByteString");
             sbS.append(" threw an IOException (should never happen).");
             throw new RuntimeException(sbS.toString(), e);
         }
@@ -113,7 +114,7 @@ public abstract class l3<MessageType extends l3<MessageType, BuilderType>, Build
             throw new IllegalStateException("Did not write as much data as expected.");
         } catch (IOException e) {
             String name = getClass().getName();
-            StringBuilder sbS = b.d.b.a.a.S(name.length() + 62 + 10, "Serializing ", name, " to a ", "byte array");
+            StringBuilder sbS = outline.S(name.length() + 62 + 10, "Serializing ", name, " to a ", "byte array");
             sbS.append(" threw an IOException (should never happen).");
             throw new RuntimeException(sbS.toString(), e);
         }

@@ -1,14 +1,14 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackPremiumGuildSubscriptionRemoved.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackPremiumGuildSubscriptionRemoved implements AnalyticsSchema, TrackBaseReceiver {
+public final /* data */ class TrackPremiumGuildSubscriptionRemoved implements AnalyticsSchema, TrackBase2 {
     private final Long currentTier = null;
     private final Long guildId = null;
     private final Long premiumGuildSubscriptionId = null;
@@ -26,7 +26,7 @@ public final /* data */ class TrackPremiumGuildSubscriptionRemoved implements An
             return false;
         }
         TrackPremiumGuildSubscriptionRemoved trackPremiumGuildSubscriptionRemoved = (TrackPremiumGuildSubscriptionRemoved) other;
-        return m.areEqual(this.guildId, trackPremiumGuildSubscriptionRemoved.guildId) && m.areEqual(this.premiumGuildSubscriptionId, trackPremiumGuildSubscriptionRemoved.premiumGuildSubscriptionId) && m.areEqual(this.currentTier, trackPremiumGuildSubscriptionRemoved.currentTier) && m.areEqual(this.previousTier, trackPremiumGuildSubscriptionRemoved.previousTier) && m.areEqual(this.premiumSubscriptionCount, trackPremiumGuildSubscriptionRemoved.premiumSubscriptionCount) && m.areEqual(this.tierLost, trackPremiumGuildSubscriptionRemoved.tierLost);
+        return Intrinsics3.areEqual(this.guildId, trackPremiumGuildSubscriptionRemoved.guildId) && Intrinsics3.areEqual(this.premiumGuildSubscriptionId, trackPremiumGuildSubscriptionRemoved.premiumGuildSubscriptionId) && Intrinsics3.areEqual(this.currentTier, trackPremiumGuildSubscriptionRemoved.currentTier) && Intrinsics3.areEqual(this.previousTier, trackPremiumGuildSubscriptionRemoved.previousTier) && Intrinsics3.areEqual(this.premiumSubscriptionCount, trackPremiumGuildSubscriptionRemoved.premiumSubscriptionCount) && Intrinsics3.areEqual(this.tierLost, trackPremiumGuildSubscriptionRemoved.tierLost);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -51,7 +51,7 @@ public final /* data */ class TrackPremiumGuildSubscriptionRemoved implements An
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackPremiumGuildSubscriptionRemoved(guildId=");
+        StringBuilder sbU = outline.U("TrackPremiumGuildSubscriptionRemoved(guildId=");
         sbU.append(this.guildId);
         sbU.append(", premiumGuildSubscriptionId=");
         sbU.append(this.premiumGuildSubscriptionId);
@@ -62,6 +62,6 @@ public final /* data */ class TrackPremiumGuildSubscriptionRemoved implements An
         sbU.append(", premiumSubscriptionCount=");
         sbU.append(this.premiumSubscriptionCount);
         sbU.append(", tierLost=");
-        return a.G(sbU, this.tierLost, ")");
+        return outline.G(sbU, this.tierLost, ")");
     }
 }

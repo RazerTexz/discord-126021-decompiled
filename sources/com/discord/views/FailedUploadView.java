@@ -9,22 +9,22 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.DrawableRes;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import b.a.i.c2;
+import b.a.i.ViewChatUploadBinding;
 import com.discord.R;
 import com.discord.utilities.view.extensions.ViewExtensions;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: FailedUploadView.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class FailedUploadView extends ConstraintLayout {
 
     /* JADX INFO: renamed from: j, reason: from kotlin metadata */
-    public final c2 binding;
+    public final ViewChatUploadBinding binding;
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public FailedUploadView(Context context, AttributeSet attributeSet) {
         super(context, attributeSet);
-        m.checkNotNullParameter(context, "context");
+        Intrinsics3.checkNotNullParameter(context, "context");
         View viewInflate = LayoutInflater.from(getContext()).inflate(R.layout.view_chat_upload, (ViewGroup) this, false);
         addView(viewInflate);
         int i = R.id.display_name;
@@ -39,9 +39,9 @@ public final class FailedUploadView extends ConstraintLayout {
                     i = R.id.subtitle_text;
                     TextView textView2 = (TextView) viewInflate.findViewById(R.id.subtitle_text);
                     if (textView2 != null) {
-                        c2 c2Var = new c2((ConstraintLayout) viewInflate, textView, imageView, imageView2, textView2);
-                        m.checkNotNullExpressionValue(c2Var, "ViewChatUploadBinding.in…rom(context), this, true)");
-                        this.binding = c2Var;
+                        ViewChatUploadBinding viewChatUploadBinding = new ViewChatUploadBinding((ConstraintLayout) viewInflate, textView, imageView, imageView2, textView2);
+                        Intrinsics3.checkNotNullExpressionValue(viewChatUploadBinding, "ViewChatUploadBinding.in…rom(context), this, true)");
+                        this.binding = viewChatUploadBinding;
                         return;
                     }
                 }
@@ -51,12 +51,12 @@ public final class FailedUploadView extends ConstraintLayout {
     }
 
     public final void a(CharSequence title, @DrawableRes int iconResId, String subtitle) {
-        m.checkNotNullParameter(title, "title");
+        Intrinsics3.checkNotNullParameter(title, "title");
         TextView textView = this.binding.f91b;
-        m.checkNotNullExpressionValue(textView, "binding.displayName");
+        Intrinsics3.checkNotNullExpressionValue(textView, "binding.displayName");
         textView.setText(title);
         TextView textView2 = this.binding.d;
-        m.checkNotNullExpressionValue(textView2, "binding.subtitleText");
+        Intrinsics3.checkNotNullExpressionValue(textView2, "binding.subtitleText");
         ViewExtensions.setTextAndVisibilityBy(textView2, subtitle);
         this.binding.c.setImageResource(iconResId);
     }

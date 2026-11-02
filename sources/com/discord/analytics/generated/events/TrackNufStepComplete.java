@@ -1,21 +1,21 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackNufStepComplete.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackNufStepComplete implements AnalyticsSchema, TrackBaseReceiver {
+public final /* data */ class TrackNufStepComplete implements AnalyticsSchema, TrackBase2 {
     private final Long step = null;
     private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "nuf_step_complete";
 
     public boolean equals(Object other) {
         if (this != other) {
-            return (other instanceof TrackNufStepComplete) && m.areEqual(this.step, ((TrackNufStepComplete) other).step);
+            return (other instanceof TrackNufStepComplete) && Intrinsics3.areEqual(this.step, ((TrackNufStepComplete) other).step);
         }
         return true;
     }
@@ -35,6 +35,6 @@ public final /* data */ class TrackNufStepComplete implements AnalyticsSchema, T
     }
 
     public String toString() {
-        return a.G(a.U("TrackNufStepComplete(step="), this.step, ")");
+        return outline.G(outline.U("TrackNufStepComplete(step="), this.step, ")");
     }
 }

@@ -1,11 +1,14 @@
 package com.google.gson.internal.bind;
 
-import b.i.d.d;
-import b.i.d.o;
-import b.i.d.p.c;
+import b.i.d.ExclusionStrategy;
+import b.i.d.FieldAttributes;
+import b.i.d.FieldNamingStrategy;
+import b.i.d.TypeAdapterFactory2;
+import b.i.d.p.Since2;
+import b.i.d.p.Until;
+import b.i.d.q.ObjectConstructor;
 import b.i.d.q.g;
-import b.i.d.q.r;
-import b.i.d.q.y.b;
+import b.i.d.q.y.ReflectionAccessor;
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.TypeAdapter;
 import com.google.gson.internal.Excluder;
@@ -19,21 +22,21 @@ import java.util.List;
 import java.util.Map;
 
 /* JADX INFO: loaded from: classes3.dex */
-public final class ReflectiveTypeAdapterFactory implements o {
+public final class ReflectiveTypeAdapterFactory implements TypeAdapterFactory2 {
     public final g j;
-    public final d k;
+    public final FieldNamingStrategy k;
     public final Excluder l;
     public final JsonAdapterAnnotationTypeAdapterFactory m;
-    public final b n = b.a;
+    public final ReflectionAccessor n = ReflectionAccessor.a;
 
     public final class Adapter<T> extends TypeAdapter<T> {
-        public final r<T> a;
+        public final ObjectConstructor<T> a;
 
         /* JADX INFO: renamed from: b, reason: collision with root package name */
         public final Map<String, a> f3122b;
 
-        public Adapter(r<T> rVar, Map<String, a> map) {
-            this.a = rVar;
+        public Adapter(ObjectConstructor<T> objectConstructor, Map<String, a> map) {
+            this.a = objectConstructor;
             this.f3122b = map;
         }
 
@@ -104,9 +107,9 @@ public final class ReflectiveTypeAdapterFactory implements o {
         public abstract boolean c(Object obj) throws IllegalAccessException, IOException;
     }
 
-    public ReflectiveTypeAdapterFactory(g gVar, d dVar, Excluder excluder, JsonAdapterAnnotationTypeAdapterFactory jsonAdapterAnnotationTypeAdapterFactory) {
+    public ReflectiveTypeAdapterFactory(g gVar, FieldNamingStrategy fieldNamingStrategy, Excluder excluder, JsonAdapterAnnotationTypeAdapterFactory jsonAdapterAnnotationTypeAdapterFactory) {
         this.j = gVar;
-        this.k = dVar;
+        this.k = fieldNamingStrategy;
         this.l = excluder;
         this.m = jsonAdapterAnnotationTypeAdapterFactory;
     }
@@ -116,14 +119,14 @@ public final class ReflectiveTypeAdapterFactory implements o {
         Excluder excluder = this.l;
         Class<?> type = field.getType();
         if (!(excluder.b(type) || excluder.f(type, z2))) {
-            if ((excluder.l & field.getModifiers()) == 0 && ((excluder.k == -1.0d || excluder.i((c) field.getAnnotation(c.class), (b.i.d.p.d) field.getAnnotation(b.i.d.p.d.class))) && !field.isSynthetic() && ((excluder.m || !excluder.h(field.getType())) && !excluder.g(field.getType())))) {
-                List<b.i.d.a> list = z2 ? excluder.n : excluder.o;
+            if ((excluder.l & field.getModifiers()) == 0 && ((excluder.k == -1.0d || excluder.i((Since2) field.getAnnotation(Since2.class), (Until) field.getAnnotation(Until.class))) && !field.isSynthetic() && ((excluder.m || !excluder.h(field.getType())) && !excluder.g(field.getType())))) {
+                List<ExclusionStrategy> list = z2 ? excluder.n : excluder.o;
                 if (!list.isEmpty()) {
-                    b.i.d.b bVar = new b.i.d.b(field);
-                    Iterator<b.i.d.a> it = list.iterator();
+                    FieldAttributes fieldAttributes = new FieldAttributes(field);
+                    Iterator<ExclusionStrategy> it = list.iterator();
                     while (true) {
                         if (it.hasNext()) {
-                            if (it.next().a(bVar)) {
+                            if (it.next().a(fieldAttributes)) {
                                 z3 = true;
                             }
                         }
@@ -146,7 +149,7 @@ public final class ReflectiveTypeAdapterFactory implements o {
         	at jadx.core.dex.visitors.MoveInlineVisitor.moveInline(MoveInlineVisitor.java:41)
         	at jadx.core.dex.visitors.ConstructorVisitor.visit(ConstructorVisitor.java:43)
         */
-    @Override // b.i.d.o
+    @Override // b.i.d.TypeAdapterFactory2
     public <T> com.google.gson.TypeAdapter<T> create(
     /*  JADX ERROR: Method generation error
         jadx.core.utils.exceptions.JadxRuntimeException: Code variable not set in r36v0 ??

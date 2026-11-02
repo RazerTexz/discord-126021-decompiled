@@ -8,12 +8,12 @@ import android.view.ViewGroup;
 import androidx.exifinterface.media.ExifInterface;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
-import b.a.d.j;
-import b.d.b.a.a;
+import b.a.d.AppScreen2;
+import b.d.b.a.outline;
 import com.discord.R;
 import com.discord.app.AppFragment;
+import com.discord.app.AppLogger2;
 import com.discord.app.AppViewFlipper;
-import com.discord.app.LoggingConfig;
 import com.discord.databinding.WidgetServerSettingsIntegrationsBinding;
 import com.discord.models.domain.ModelAuditLogEntry;
 import com.discord.models.domain.ModelGuildIntegration;
@@ -24,10 +24,10 @@ import com.discord.utilities.mg_recycler.MGRecyclerAdapterSimple;
 import com.discord.utilities.mg_recycler.MGRecyclerDataPayload;
 import com.discord.utilities.rx.ObservableExtensionsKt;
 import com.discord.utilities.viewbinding.FragmentViewBindingDelegate;
-import com.discord.utilities.viewbinding.FragmentViewBindingDelegateKt;
-import d0.z.d.k;
-import d0.z.d.m;
-import d0.z.d.o;
+import com.discord.utilities.viewbinding.FragmentViewBindingDelegate3;
+import d0.z.d.FunctionReferenceImpl;
+import d0.z.d.Intrinsics3;
+import d0.z.d.Lambda;
 import java.util.List;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
@@ -39,7 +39,7 @@ import rx.Observable;
 /* JADX INFO: compiled from: WidgetServerSettingsIntegrations.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetServerSettingsIntegrations extends AppFragment {
-    public static final /* synthetic */ KProperty[] $$delegatedProperties = {a.d0(WidgetServerSettingsIntegrations.class, "binding", "getBinding()Lcom/discord/databinding/WidgetServerSettingsIntegrationsBinding;", 0)};
+    public static final /* synthetic */ KProperty[] $$delegatedProperties = {outline.d0(WidgetServerSettingsIntegrations.class, "binding", "getBinding()Lcom/discord/databinding/WidgetServerSettingsIntegrationsBinding;", 0)};
 
     /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
     public static final Companion INSTANCE = new Companion(null);
@@ -50,7 +50,7 @@ public final class WidgetServerSettingsIntegrations extends AppFragment {
 
     /* JADX INFO: renamed from: binding$delegate, reason: from kotlin metadata */
     private final FragmentViewBindingDelegate binding;
-    private final LoggingConfig loggingConfig;
+    private final AppLogger2 loggingConfig;
 
     /* JADX INFO: compiled from: WidgetServerSettingsIntegrations.kt */
     public final class Adapter extends MGRecyclerAdapterSimple<Model.IntegrationItem> {
@@ -59,11 +59,11 @@ public final class WidgetServerSettingsIntegrations extends AppFragment {
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
         public Adapter(RecyclerView recyclerView) {
             super(recyclerView, false, 2, null);
-            m.checkNotNullParameter(recyclerView, "recycler");
+            Intrinsics3.checkNotNullParameter(recyclerView, "recycler");
         }
 
         public final void configure(List<Model.IntegrationItem> data, Function1<? super Long, Unit> onIntegrationSelectedListener) {
-            m.checkNotNullParameter(data, "data");
+            Intrinsics3.checkNotNullParameter(data, "data");
             this.onIntegrationSelectedListener = onIntegrationSelectedListener;
             setData(data);
         }
@@ -82,7 +82,7 @@ public final class WidgetServerSettingsIntegrations extends AppFragment {
 
         @Override // androidx.recyclerview.widget.RecyclerView.Adapter
         public WidgetServerSettingsIntegrationsListItem onCreateViewHolder(ViewGroup parent, int viewType) {
-            m.checkNotNullParameter(parent, "parent");
+            Intrinsics3.checkNotNullParameter(parent, "parent");
             if (viewType == 0) {
                 return new WidgetServerSettingsIntegrationsListItem(this);
             }
@@ -92,7 +92,7 @@ public final class WidgetServerSettingsIntegrations extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.servers.WidgetServerSettingsIntegrations$configureUI$1, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetServerSettingsIntegrations.kt */
-    public final class AnonymousClass1 extends o implements Function1<Long, Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function1<Long, Unit> {
         public final /* synthetic */ Model $model;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -114,7 +114,7 @@ public final class WidgetServerSettingsIntegrations extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.servers.WidgetServerSettingsIntegrations$onResume$1, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetServerSettingsIntegrations.kt */
-    public final /* synthetic */ class AnonymousClass1 extends k implements Function1<Model, Unit> {
+    public final /* synthetic */ class AnonymousClass1 extends FunctionReferenceImpl implements Function1<Model, Unit> {
         public AnonymousClass1(WidgetServerSettingsIntegrations widgetServerSettingsIntegrations) {
             super(1, widgetServerSettingsIntegrations, WidgetServerSettingsIntegrations.class, "configureUI", "configureUI(Lcom/discord/widgets/servers/WidgetServerSettingsIntegrations$Model;)V", 0);
         }
@@ -137,11 +137,11 @@ public final class WidgetServerSettingsIntegrations extends AppFragment {
         }
 
         public final void create(Context context, long guildId) {
-            m.checkNotNullParameter(context, "context");
+            Intrinsics3.checkNotNullParameter(context, "context");
             StoreStream.INSTANCE.getAnalytics().onGuildSettingsPaneViewed("INTEGRATIONS", guildId);
             Intent intentPutExtra = new Intent().putExtra("INTENT_EXTRA_GUILD_ID", guildId);
-            m.checkNotNullExpressionValue(intentPutExtra, "Intent()\n          .putE…_EXTRA_GUILD_ID, guildId)");
-            j.d(context, WidgetServerSettingsIntegrations.class, intentPutExtra);
+            Intrinsics3.checkNotNullExpressionValue(intentPutExtra, "Intent()\n          .putE…_EXTRA_GUILD_ID, guildId)");
+            AppScreen2.d(context, WidgetServerSettingsIntegrations.class, intentPutExtra);
         }
 
         public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
@@ -165,10 +165,10 @@ public final class WidgetServerSettingsIntegrations extends AppFragment {
 
             public final Observable<Model> get(long guildId) {
                 StoreStream.Companion companion = StoreStream.INSTANCE;
-                Observable observableG = Observable.g(companion.getGuildIntegrations().get(guildId), StoreUser.observeMe$default(companion.getUsers(), false, 1, null), companion.getPermissions().observePermissionsForGuild(guildId), companion.getGuilds().observeGuild(guildId), companion.getGuilds().observeRoles(guildId), WidgetServerSettingsIntegrations$Model$Companion$get$1.INSTANCE);
-                m.checkNotNullExpressionValue(observableG, "Observable\n             …        }\n              }");
+                Observable observableG = Observable.g(companion.getGuildIntegrations().get(guildId), StoreUser.observeMe$default(companion.getUsers(), false, 1, null), companion.getPermissions().observePermissionsForGuild(guildId), companion.getGuilds().observeGuild(guildId), companion.getGuilds().observeRoles(guildId), WidgetServerSettingsIntegrations2.INSTANCE);
+                Intrinsics3.checkNotNullExpressionValue(observableG, "Observable\n             …        }\n              }");
                 Observable<Model> observableR = ObservableExtensionsKt.computationLatest(observableG).r();
-                m.checkNotNullExpressionValue(observableR, "Observable\n             …  .distinctUntilChanged()");
+                Intrinsics3.checkNotNullExpressionValue(observableR, "Observable\n             …  .distinctUntilChanged()");
                 return observableR;
             }
 
@@ -186,7 +186,7 @@ public final class WidgetServerSettingsIntegrations extends AppFragment {
             private final int type;
 
             public IntegrationItem(ModelGuildIntegration modelGuildIntegration, long j) {
-                m.checkNotNullParameter(modelGuildIntegration, "integration");
+                Intrinsics3.checkNotNullParameter(modelGuildIntegration, "integration");
                 this.integration = modelGuildIntegration;
                 this.guildId = j;
                 this.key = String.valueOf(modelGuildIntegration.getId());
@@ -203,7 +203,7 @@ public final class WidgetServerSettingsIntegrations extends AppFragment {
             }
 
             public final IntegrationItem copy(ModelGuildIntegration integration, long guildId) {
-                m.checkNotNullParameter(integration, "integration");
+                Intrinsics3.checkNotNullParameter(integration, "integration");
                 return new IntegrationItem(integration, guildId);
             }
 
@@ -215,7 +215,7 @@ public final class WidgetServerSettingsIntegrations extends AppFragment {
                     return false;
                 }
                 IntegrationItem integrationItem = (IntegrationItem) other;
-                return m.areEqual(this.integration, integrationItem.integration) && this.guildId == integrationItem.guildId;
+                return Intrinsics3.areEqual(this.integration, integrationItem.integration) && this.guildId == integrationItem.guildId;
             }
 
             /* JADX INFO: renamed from: component2, reason: from getter */
@@ -252,16 +252,16 @@ public final class WidgetServerSettingsIntegrations extends AppFragment {
             }
 
             public String toString() {
-                StringBuilder sbU = a.U("IntegrationItem(integration=");
+                StringBuilder sbU = outline.U("IntegrationItem(integration=");
                 sbU.append(this.integration);
                 sbU.append(", guildId=");
-                return a.C(sbU, this.guildId, ")");
+                return outline.C(sbU, this.guildId, ")");
             }
         }
 
         public Model(long j, String str, List<IntegrationItem> list) {
-            m.checkNotNullParameter(str, "guildName");
-            m.checkNotNullParameter(list, "integrations");
+            Intrinsics3.checkNotNullParameter(str, "guildName");
+            Intrinsics3.checkNotNullParameter(list, "integrations");
             this.guildId = j;
             this.guildName = str;
             this.integrations = list;
@@ -286,8 +286,8 @@ public final class WidgetServerSettingsIntegrations extends AppFragment {
         }
 
         public final Model copy(long guildId, String guildName, List<IntegrationItem> integrations) {
-            m.checkNotNullParameter(guildName, "guildName");
-            m.checkNotNullParameter(integrations, "integrations");
+            Intrinsics3.checkNotNullParameter(guildName, "guildName");
+            Intrinsics3.checkNotNullParameter(integrations, "integrations");
             return new Model(guildId, guildName, integrations);
         }
 
@@ -299,7 +299,7 @@ public final class WidgetServerSettingsIntegrations extends AppFragment {
                 return false;
             }
             Model model = (Model) other;
-            return this.guildId == model.guildId && m.areEqual(this.guildName, model.guildName) && m.areEqual(this.integrations, model.integrations);
+            return this.guildId == model.guildId && Intrinsics3.areEqual(this.guildName, model.guildName) && Intrinsics3.areEqual(this.integrations, model.integrations);
         }
 
         /* JADX INFO: renamed from: component1, reason: from getter */
@@ -333,19 +333,19 @@ public final class WidgetServerSettingsIntegrations extends AppFragment {
         }
 
         public String toString() {
-            StringBuilder sbU = a.U("Model(guildId=");
+            StringBuilder sbU = outline.U("Model(guildId=");
             sbU.append(this.guildId);
             sbU.append(", guildName=");
             sbU.append(this.guildName);
             sbU.append(", integrations=");
-            return a.L(sbU, this.integrations, ")");
+            return outline.L(sbU, this.integrations, ")");
         }
     }
 
     public WidgetServerSettingsIntegrations() {
         super(R.layout.widget_server_settings_integrations);
-        this.binding = FragmentViewBindingDelegateKt.viewBinding$default(this, WidgetServerSettingsIntegrations$binding$2.INSTANCE, null, 2, null);
-        this.loggingConfig = new LoggingConfig(false, null, WidgetServerSettingsIntegrations$loggingConfig$1.INSTANCE, 3);
+        this.binding = FragmentViewBindingDelegate3.viewBinding$default(this, WidgetServerSettingsIntegrations3.INSTANCE, null, 2, null);
+        this.loggingConfig = new AppLogger2(false, null, WidgetServerSettingsIntegrations4.INSTANCE, 3);
     }
 
     public static final /* synthetic */ void access$configureUI(WidgetServerSettingsIntegrations widgetServerSettingsIntegrations, Model model) {
@@ -369,7 +369,7 @@ public final class WidgetServerSettingsIntegrations extends AppFragment {
         setActionBarTitle(R.string.integrations);
         setActionBarSubtitle(model.getGuildName());
         AppViewFlipper appViewFlipper = getBinding().c;
-        m.checkNotNullExpressionValue(appViewFlipper, "binding.integrationsViewFlipper");
+        Intrinsics3.checkNotNullExpressionValue(appViewFlipper, "binding.integrationsViewFlipper");
         appViewFlipper.setDisplayedChild(model.getIntegrations().isEmpty() ? 1 : 0);
         Adapter adapter = this.adapter;
         if (adapter != null) {
@@ -386,7 +386,7 @@ public final class WidgetServerSettingsIntegrations extends AppFragment {
     }
 
     @Override // com.discord.app.AppFragment, com.discord.app.AppLogger.a
-    public LoggingConfig getLoggingConfig() {
+    public AppLogger2 getLoggingConfig() {
         return this.loggingConfig;
     }
 
@@ -406,12 +406,12 @@ public final class WidgetServerSettingsIntegrations extends AppFragment {
 
     @Override // com.discord.app.AppFragment
     public void onViewBound(View view) {
-        m.checkNotNullParameter(view, "view");
+        Intrinsics3.checkNotNullParameter(view, "view");
         super.onViewBound(view);
         AppFragment.setActionBarDisplayHomeAsUpEnabled$default(this, false, 1, null);
         MGRecyclerAdapter.Companion companion = MGRecyclerAdapter.INSTANCE;
         RecyclerView recyclerView = getBinding().f2577b;
-        m.checkNotNullExpressionValue(recyclerView, "binding.integrationsRecycler");
+        Intrinsics3.checkNotNullExpressionValue(recyclerView, "binding.integrationsRecycler");
         this.adapter = (Adapter) companion.configure(new Adapter(recyclerView));
     }
 }

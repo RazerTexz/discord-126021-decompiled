@@ -1,8 +1,8 @@
 package com.discord.api.report;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.models.domain.ModelAuditLogEntry;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: ReportReason.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -19,7 +19,7 @@ public final /* data */ class ReportReason {
             return false;
         }
         ReportReason reportReason = (ReportReason) other;
-        return this.reason == reportReason.reason && m.areEqual(this.label, reportReason.label) && m.areEqual(this.description, reportReason.description);
+        return this.reason == reportReason.reason && Intrinsics3.areEqual(this.label, reportReason.label) && Intrinsics3.areEqual(this.description, reportReason.description);
     }
 
     /* JADX INFO: renamed from: a, reason: from getter */
@@ -46,11 +46,11 @@ public final /* data */ class ReportReason {
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("ReportReason(reason=");
+        StringBuilder sbU = outline.U("ReportReason(reason=");
         sbU.append(this.reason);
         sbU.append(", label=");
         sbU.append(this.label);
         sbU.append(", description=");
-        return a.J(sbU, this.description, ")");
+        return outline.J(sbU, this.description, ")");
     }
 }

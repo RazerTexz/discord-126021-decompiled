@@ -10,13 +10,13 @@ import com.discord.databinding.WidgetSettingsBinding;
 import com.discord.views.StatusView;
 import com.discord.widgets.user.profile.UserProfileHeaderView;
 import com.google.android.material.button.MaterialButton;
-import d0.z.d.k;
-import d0.z.d.m;
+import d0.z.d.FunctionReferenceImpl;
+import d0.z.d.Intrinsics3;
 import kotlin.jvm.functions.Function1;
 
 /* JADX INFO: compiled from: WidgetSettings.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final /* synthetic */ class WidgetSettings$binding$2 extends k implements Function1<View, WidgetSettingsBinding> {
+public final /* synthetic */ class WidgetSettings$binding$2 extends FunctionReferenceImpl implements Function1<View, WidgetSettingsBinding> {
     public static final WidgetSettings$binding$2 INSTANCE = new WidgetSettings$binding$2();
 
     public WidgetSettings$binding$2() {
@@ -30,7 +30,7 @@ public final /* synthetic */ class WidgetSettings$binding$2 extends k implements
 
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final WidgetSettingsBinding invoke2(View view) {
-        m.checkNotNullParameter(view, "p1");
+        Intrinsics3.checkNotNullParameter(view, "p1");
         int i = R.id.accessibility;
         TextView textView = (TextView) view.findViewById(R.id.accessibility);
         if (textView != null) {

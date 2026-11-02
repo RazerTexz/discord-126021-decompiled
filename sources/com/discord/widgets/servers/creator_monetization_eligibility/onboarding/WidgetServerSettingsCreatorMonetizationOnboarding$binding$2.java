@@ -7,13 +7,13 @@ import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import com.discord.R;
 import com.discord.app.AppViewFlipper;
 import com.discord.databinding.WidgetServerSettingsCreatorMonetizationOnboardingBinding;
-import d0.z.d.k;
-import d0.z.d.m;
+import d0.z.d.FunctionReferenceImpl;
+import d0.z.d.Intrinsics3;
 import kotlin.jvm.functions.Function1;
 
 /* JADX INFO: compiled from: WidgetServerSettingsCreatorMonetizationOnboarding.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final /* synthetic */ class WidgetServerSettingsCreatorMonetizationOnboarding$binding$2 extends k implements Function1<View, WidgetServerSettingsCreatorMonetizationOnboardingBinding> {
+public final /* synthetic */ class WidgetServerSettingsCreatorMonetizationOnboarding$binding$2 extends FunctionReferenceImpl implements Function1<View, WidgetServerSettingsCreatorMonetizationOnboardingBinding> {
     public static final WidgetServerSettingsCreatorMonetizationOnboarding$binding$2 INSTANCE = new WidgetServerSettingsCreatorMonetizationOnboarding$binding$2();
 
     public WidgetServerSettingsCreatorMonetizationOnboarding$binding$2() {
@@ -27,7 +27,7 @@ public final /* synthetic */ class WidgetServerSettingsCreatorMonetizationOnboar
 
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final WidgetServerSettingsCreatorMonetizationOnboardingBinding invoke2(View view) {
-        m.checkNotNullParameter(view, "p1");
+        Intrinsics3.checkNotNullParameter(view, "p1");
         int i = R.id.error_notice_text;
         TextView textView = (TextView) view.findViewById(R.id.error_notice_text);
         if (textView != null) {

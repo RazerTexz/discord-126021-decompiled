@@ -5,8 +5,8 @@ import android.util.AttributeSet;
 import android.view.ViewGroup;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import d0.d0.f;
-import d0.z.d.m;
+import d0.d0._Ranges;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: ResizingGridLayoutManager.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -14,7 +14,7 @@ public class ResizingGridLayoutManager extends GridLayoutManager {
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public ResizingGridLayoutManager(Context context, int i, int i2) {
         super(context, i, i2, false);
-        m.checkNotNullParameter(context, "context");
+        Intrinsics3.checkNotNullParameter(context, "context");
     }
 
     @Override // androidx.recyclerview.widget.LinearLayoutManager, androidx.recyclerview.widget.RecyclerView.LayoutManager
@@ -29,7 +29,7 @@ public class ResizingGridLayoutManager extends GridLayoutManager {
 
     @Override // androidx.recyclerview.widget.GridLayoutManager, androidx.recyclerview.widget.RecyclerView.LayoutManager
     public boolean checkLayoutParams(RecyclerView.LayoutParams lp) {
-        m.checkNotNullParameter(lp, "lp");
+        Intrinsics3.checkNotNullParameter(lp, "lp");
         RecyclerView.LayoutParams layoutParamsGenerateDefaultLayoutParams = generateDefaultLayoutParams();
         return super.checkLayoutParams(lp) && ((ViewGroup.MarginLayoutParams) layoutParamsGenerateDefaultLayoutParams).width == ((ViewGroup.MarginLayoutParams) lp).width && ((ViewGroup.MarginLayoutParams) layoutParamsGenerateDefaultLayoutParams).height == ((ViewGroup.MarginLayoutParams) lp).height;
     }
@@ -37,16 +37,16 @@ public class ResizingGridLayoutManager extends GridLayoutManager {
     @Override // androidx.recyclerview.widget.GridLayoutManager, androidx.recyclerview.widget.LinearLayoutManager, androidx.recyclerview.widget.RecyclerView.LayoutManager
     public RecyclerView.LayoutParams generateDefaultLayoutParams() {
         RecyclerView.LayoutParams layoutParamsGenerateDefaultLayoutParams = super.generateDefaultLayoutParams();
-        m.checkNotNullExpressionValue(layoutParamsGenerateDefaultLayoutParams, "super.generateDefaultLayoutParams()");
+        Intrinsics3.checkNotNullExpressionValue(layoutParamsGenerateDefaultLayoutParams, "super.generateDefaultLayoutParams()");
         return spanLayoutSize(layoutParamsGenerateDefaultLayoutParams);
     }
 
     @Override // androidx.recyclerview.widget.GridLayoutManager, androidx.recyclerview.widget.RecyclerView.LayoutManager
     public RecyclerView.LayoutParams generateLayoutParams(Context c, AttributeSet attrs) {
-        m.checkNotNullParameter(c, "c");
-        m.checkNotNullParameter(attrs, "attrs");
+        Intrinsics3.checkNotNullParameter(c, "c");
+        Intrinsics3.checkNotNullParameter(attrs, "attrs");
         RecyclerView.LayoutParams layoutParamsGenerateLayoutParams = super.generateLayoutParams(c, attrs);
-        m.checkNotNullExpressionValue(layoutParamsGenerateLayoutParams, "super.generateLayoutParams(c, attrs)");
+        Intrinsics3.checkNotNullExpressionValue(layoutParamsGenerateLayoutParams, "super.generateLayoutParams(c, attrs)");
         return spanLayoutSize(layoutParamsGenerateLayoutParams);
     }
 
@@ -81,7 +81,7 @@ public class ResizingGridLayoutManager extends GridLayoutManager {
         if (getItemCount() != 2) {
             itemCount = (getItemCount() % 2) + (getItemCount() / 2);
         }
-        ((ViewGroup.MarginLayoutParams) layoutParams).width = f.coerceAtLeast(getHorizontalSpace() / itemCount, getHorizontalSpace() / maxColumns());
+        ((ViewGroup.MarginLayoutParams) layoutParams).width = _Ranges.coerceAtLeast(getHorizontalSpace() / itemCount, getHorizontalSpace() / maxColumns());
         return layoutParams;
     }
 
@@ -90,15 +90,15 @@ public class ResizingGridLayoutManager extends GridLayoutManager {
         if (getItemCount() != 2) {
             itemCount = (getItemCount() % 2) + (getItemCount() / 2);
         }
-        ((ViewGroup.MarginLayoutParams) layoutParams).height = f.coerceAtLeast(getVerticalSpace() / itemCount, getVerticalSpace() / maxRows());
+        ((ViewGroup.MarginLayoutParams) layoutParams).height = _Ranges.coerceAtLeast(getVerticalSpace() / itemCount, getVerticalSpace() / maxRows());
         return layoutParams;
     }
 
     @Override // androidx.recyclerview.widget.GridLayoutManager, androidx.recyclerview.widget.RecyclerView.LayoutManager
     public RecyclerView.LayoutParams generateLayoutParams(ViewGroup.LayoutParams lp) {
-        m.checkNotNullParameter(lp, "lp");
+        Intrinsics3.checkNotNullParameter(lp, "lp");
         RecyclerView.LayoutParams layoutParamsGenerateLayoutParams = super.generateLayoutParams(lp);
-        m.checkNotNullExpressionValue(layoutParamsGenerateLayoutParams, "super.generateLayoutParams(lp)");
+        Intrinsics3.checkNotNullExpressionValue(layoutParamsGenerateLayoutParams, "super.generateLayoutParams(lp)");
         return spanLayoutSize(layoutParamsGenerateLayoutParams);
     }
 }

@@ -18,7 +18,7 @@ import com.discord.utilities.mg_recycler.MGRecyclerViewHolder;
 import com.discord.utilities.view.extensions.ViewExtensions;
 import com.discord.widgets.channels.list.items.CollapsedUser;
 import com.facebook.drawee.view.SimpleDraweeView;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 import java.util.Objects;
 
 /* JADX INFO: compiled from: WidgetCollapsedUsersListAdapter.kt */
@@ -35,10 +35,10 @@ public final class WidgetCollapsedUsersListAdapter extends MGRecyclerAdapterSimp
 
         @Override // androidx.recyclerview.widget.RecyclerView.ItemDecoration
         public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
-            m.checkNotNullParameter(outRect, "outRect");
-            m.checkNotNullParameter(view, "view");
-            m.checkNotNullParameter(parent, "parent");
-            m.checkNotNullParameter(state, "state");
+            Intrinsics3.checkNotNullParameter(outRect, "outRect");
+            Intrinsics3.checkNotNullParameter(view, "view");
+            Intrinsics3.checkNotNullParameter(parent, "parent");
+            Intrinsics3.checkNotNullParameter(state, "state");
             ViewGroup.LayoutParams layoutParams = view.getLayoutParams();
             Objects.requireNonNull(layoutParams, "null cannot be cast to non-null type androidx.recyclerview.widget.RecyclerView.LayoutParams");
             outRect.set(((RecyclerView.LayoutParams) layoutParams).getViewAdapterPosition() != 0 ? this.offset : 0, 0, 0, 0);
@@ -52,7 +52,7 @@ public final class WidgetCollapsedUsersListAdapter extends MGRecyclerAdapterSimp
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
         public WidgetCollapsedUserListItem(@LayoutRes int i, WidgetCollapsedUsersListAdapter widgetCollapsedUsersListAdapter) {
             super(i, widgetCollapsedUsersListAdapter);
-            m.checkNotNullParameter(widgetCollapsedUsersListAdapter, "adapter");
+            Intrinsics3.checkNotNullParameter(widgetCollapsedUsersListAdapter, "adapter");
             View view = this.itemView;
             int i2 = R.id.widget_collapsed_user_count;
             TextView textView = (TextView) view.findViewById(R.id.widget_collapsed_user_count);
@@ -61,7 +61,7 @@ public final class WidgetCollapsedUsersListAdapter extends MGRecyclerAdapterSimp
                 SimpleDraweeView simpleDraweeView = (SimpleDraweeView) view.findViewById(R.id.widget_collapsed_user_imageview);
                 if (simpleDraweeView != null) {
                     WidgetCollapsedVoiceUserListItemBinding widgetCollapsedVoiceUserListItemBinding = new WidgetCollapsedVoiceUserListItemBinding((FrameLayout) view, textView, simpleDraweeView);
-                    m.checkNotNullExpressionValue(widgetCollapsedVoiceUserListItemBinding, "WidgetCollapsedVoiceUser…temBinding.bind(itemView)");
+                    Intrinsics3.checkNotNullExpressionValue(widgetCollapsedVoiceUserListItemBinding, "WidgetCollapsedVoiceUser…temBinding.bind(itemView)");
                     this.binding = widgetCollapsedVoiceUserListItemBinding;
                     return;
                 }
@@ -76,26 +76,26 @@ public final class WidgetCollapsedUsersListAdapter extends MGRecyclerAdapterSimp
 
         /* JADX INFO: renamed from: onConfigure, reason: avoid collision after fix types in other method */
         public void onConfigure2(int position, CollapsedUser data) {
-            m.checkNotNullParameter(data, "data");
+            Intrinsics3.checkNotNullParameter(data, "data");
             super.onConfigure(position, data);
             if (data.getExtraCount() <= 0) {
                 if (data.getEmptySlot()) {
                     return;
                 }
                 TextView textView = this.binding.f2352b;
-                m.checkNotNullExpressionValue(textView, "binding.widgetCollapsedUserCount");
+                Intrinsics3.checkNotNullExpressionValue(textView, "binding.widgetCollapsedUserCount");
                 textView.setVisibility(8);
                 SimpleDraweeView simpleDraweeView = this.binding.c;
-                m.checkNotNullExpressionValue(simpleDraweeView, "binding.widgetCollapsedUserImageview");
+                Intrinsics3.checkNotNullExpressionValue(simpleDraweeView, "binding.widgetCollapsedUserImageview");
                 IconUtils.setIcon$default(simpleDraweeView, data.getUser(), R.dimen.avatar_size_medium, null, null, null, 56, null);
                 return;
             }
             TextView textView2 = this.binding.f2352b;
-            m.checkNotNullExpressionValue(textView2, "binding.widgetCollapsedUserCount");
+            Intrinsics3.checkNotNullExpressionValue(textView2, "binding.widgetCollapsedUserCount");
             ViewExtensions.setTextAndVisibilityBy(textView2, "" + '+' + data.getExtraCount());
             MGImages mGImages = MGImages.INSTANCE;
             SimpleDraweeView simpleDraweeView2 = this.binding.c;
-            m.checkNotNullExpressionValue(simpleDraweeView2, "binding.widgetCollapsedUserImageview");
+            Intrinsics3.checkNotNullExpressionValue(simpleDraweeView2, "binding.widgetCollapsedUserImageview");
             MGImages.setImage$default(mGImages, simpleDraweeView2, R.drawable.drawable_grey_user_icon, (MGImages.ChangeDetector) null, 4, (Object) null);
         }
     }
@@ -103,9 +103,9 @@ public final class WidgetCollapsedUsersListAdapter extends MGRecyclerAdapterSimp
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public WidgetCollapsedUsersListAdapter(RecyclerView recyclerView) {
         super(recyclerView, false, 2, null);
-        m.checkNotNullParameter(recyclerView, "recycler");
+        Intrinsics3.checkNotNullParameter(recyclerView, "recycler");
         Context context = recyclerView.getContext();
-        m.checkNotNullExpressionValue(context, "recycler.context");
+        Intrinsics3.checkNotNullExpressionValue(context, "recycler.context");
         recyclerView.addItemDecoration(new OverlapDecoration(-context.getResources().getDimensionPixelSize(R.dimen.avatar_overlap)));
     }
 
@@ -116,7 +116,7 @@ public final class WidgetCollapsedUsersListAdapter extends MGRecyclerAdapterSimp
 
     @Override // androidx.recyclerview.widget.RecyclerView.Adapter
     public MGRecyclerViewHolder<?, CollapsedUser> onCreateViewHolder(ViewGroup parent, int viewType) {
-        m.checkNotNullParameter(parent, "parent");
+        Intrinsics3.checkNotNullParameter(parent, "parent");
         return new WidgetCollapsedUserListItem(R.layout.widget_collapsed_voice_user_list_item, this);
     }
 }

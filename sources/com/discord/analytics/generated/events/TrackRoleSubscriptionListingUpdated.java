@@ -1,18 +1,18 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.analytics.generated.traits.TrackGuild;
-import com.discord.analytics.generated.traits.TrackGuildReceiver;
+import com.discord.analytics.generated.traits.TrackGuild2;
 import com.discord.api.science.AnalyticsSchema;
 import com.discord.models.domain.ModelAuditLogEntry;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 import java.util.List;
 
 /* JADX INFO: compiled from: TrackRoleSubscriptionListingUpdated.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackRoleSubscriptionListingUpdated implements AnalyticsSchema, TrackBaseReceiver, TrackGuildReceiver {
+public final /* data */ class TrackRoleSubscriptionListingUpdated implements AnalyticsSchema, TrackBase2, TrackGuild2 {
     private final List<Long> channelBenefitIds = null;
     private final List<CharSequence> intangibleBenefitNames = null;
     private final CharSequence name = null;
@@ -25,7 +25,7 @@ public final /* data */ class TrackRoleSubscriptionListingUpdated implements Ana
     private TrackGuild trackGuild;
     private final transient String analyticsSchemaTypeName = "role_subscription_listing_updated";
 
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    @Override // com.discord.analytics.generated.traits.TrackGuild2
     public void c(TrackGuild trackGuild) {
         this.trackGuild = trackGuild;
     }
@@ -38,7 +38,7 @@ public final /* data */ class TrackRoleSubscriptionListingUpdated implements Ana
             return false;
         }
         TrackRoleSubscriptionListingUpdated trackRoleSubscriptionListingUpdated = (TrackRoleSubscriptionListingUpdated) other;
-        return m.areEqual(this.roleSubscriptionListingId, trackRoleSubscriptionListingUpdated.roleSubscriptionListingId) && m.areEqual(this.name, trackRoleSubscriptionListingUpdated.name) && m.areEqual(this.roleSubscriptionGroupListingId, trackRoleSubscriptionListingUpdated.roleSubscriptionGroupListingId) && m.areEqual(this.published, trackRoleSubscriptionListingUpdated.published) && m.areEqual(this.channelBenefitIds, trackRoleSubscriptionListingUpdated.channelBenefitIds) && m.areEqual(this.roleId, trackRoleSubscriptionListingUpdated.roleId) && m.areEqual(this.intangibleBenefitNames, trackRoleSubscriptionListingUpdated.intangibleBenefitNames) && m.areEqual(this.priceTier, trackRoleSubscriptionListingUpdated.priceTier);
+        return Intrinsics3.areEqual(this.roleSubscriptionListingId, trackRoleSubscriptionListingUpdated.roleSubscriptionListingId) && Intrinsics3.areEqual(this.name, trackRoleSubscriptionListingUpdated.name) && Intrinsics3.areEqual(this.roleSubscriptionGroupListingId, trackRoleSubscriptionListingUpdated.roleSubscriptionGroupListingId) && Intrinsics3.areEqual(this.published, trackRoleSubscriptionListingUpdated.published) && Intrinsics3.areEqual(this.channelBenefitIds, trackRoleSubscriptionListingUpdated.channelBenefitIds) && Intrinsics3.areEqual(this.roleId, trackRoleSubscriptionListingUpdated.roleId) && Intrinsics3.areEqual(this.intangibleBenefitNames, trackRoleSubscriptionListingUpdated.intangibleBenefitNames) && Intrinsics3.areEqual(this.priceTier, trackRoleSubscriptionListingUpdated.priceTier);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -47,7 +47,7 @@ public final /* data */ class TrackRoleSubscriptionListingUpdated implements Ana
         return this.analyticsSchemaTypeName;
     }
 
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    @Override // com.discord.analytics.generated.traits.TrackGuild2
     /* JADX INFO: renamed from: a, reason: from getter */
     public TrackGuild getTrackGuild() {
         return this.trackGuild;
@@ -73,7 +73,7 @@ public final /* data */ class TrackRoleSubscriptionListingUpdated implements Ana
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackRoleSubscriptionListingUpdated(roleSubscriptionListingId=");
+        StringBuilder sbU = outline.U("TrackRoleSubscriptionListingUpdated(roleSubscriptionListingId=");
         sbU.append(this.roleSubscriptionListingId);
         sbU.append(", name=");
         sbU.append(this.name);
@@ -88,6 +88,6 @@ public final /* data */ class TrackRoleSubscriptionListingUpdated implements Ana
         sbU.append(", intangibleBenefitNames=");
         sbU.append(this.intangibleBenefitNames);
         sbU.append(", priceTier=");
-        return a.G(sbU, this.priceTier, ")");
+        return outline.G(sbU, this.priceTier, ")");
     }
 }

@@ -1,5 +1,6 @@
 package b.i.a.f.h.l;
 
+import b.d.b.a.outline;
 import java.util.AbstractList;
 import java.util.Arrays;
 import java.util.RandomAccess;
@@ -45,7 +46,7 @@ public final class m6<E> extends o3<E> implements RandomAccess {
     }
 
     public final String e(int i) {
-        return b.d.b.a.a.h(35, "Index:", i, ", Size:", this.m);
+        return outline.h(35, "Index:", i, ", Size:", this.m);
     }
 
     @Override // b.i.a.f.h.l.b5

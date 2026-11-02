@@ -1,14 +1,14 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackMobileOverlayClosed.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackMobileOverlayClosed implements AnalyticsSchema, TrackBaseReceiver {
+public final /* data */ class TrackMobileOverlayClosed implements AnalyticsSchema, TrackBase2 {
     private final CharSequence rtcConnectionId = null;
     private TrackBase trackBase;
     private final CharSequence type = null;
@@ -22,7 +22,7 @@ public final /* data */ class TrackMobileOverlayClosed implements AnalyticsSchem
             return false;
         }
         TrackMobileOverlayClosed trackMobileOverlayClosed = (TrackMobileOverlayClosed) other;
-        return m.areEqual(this.type, trackMobileOverlayClosed.type) && m.areEqual(this.rtcConnectionId, trackMobileOverlayClosed.rtcConnectionId);
+        return Intrinsics3.areEqual(this.type, trackMobileOverlayClosed.type) && Intrinsics3.areEqual(this.rtcConnectionId, trackMobileOverlayClosed.rtcConnectionId);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -39,9 +39,9 @@ public final /* data */ class TrackMobileOverlayClosed implements AnalyticsSchem
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackMobileOverlayClosed(type=");
+        StringBuilder sbU = outline.U("TrackMobileOverlayClosed(type=");
         sbU.append(this.type);
         sbU.append(", rtcConnectionId=");
-        return a.E(sbU, this.rtcConnectionId, ")");
+        return outline.E(sbU, this.rtcConnectionId, ")");
     }
 }

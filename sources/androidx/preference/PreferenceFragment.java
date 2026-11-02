@@ -22,7 +22,7 @@ import androidx.annotation.XmlRes;
 import androidx.core.content.res.TypedArrayUtils;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import b.d.b.a.a;
+import b.d.b.a.outline;
 
 /* JADX INFO: loaded from: classes.dex */
 @Deprecated
@@ -461,7 +461,7 @@ public abstract class PreferenceFragment extends Fragment implements PreferenceM
             boolean z2 = preferenceFindPreference instanceof PreferenceScreen;
             preference = preferenceFindPreference;
             if (!z2) {
-                throw new IllegalArgumentException(a.y("Preference object with key ", str, " is not a PreferenceScreen"));
+                throw new IllegalArgumentException(outline.y("Preference object with key ", str, " is not a PreferenceScreen"));
             }
         }
         setPreferenceScreen((PreferenceScreen) preference);

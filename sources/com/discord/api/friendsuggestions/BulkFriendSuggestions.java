@@ -1,7 +1,7 @@
 package com.discord.api.friendsuggestions;
 
-import b.d.b.a.a;
-import d0.z.d.m;
+import b.d.b.a.outline;
+import d0.z.d.Intrinsics3;
 import java.util.List;
 
 /* JADX INFO: compiled from: BulkFriendSuggestions.kt */
@@ -22,7 +22,7 @@ public final /* data */ class BulkFriendSuggestions {
             return false;
         }
         BulkFriendSuggestions bulkFriendSuggestions = (BulkFriendSuggestions) other;
-        return m.areEqual(this.bulkAddToken, bulkFriendSuggestions.bulkAddToken) && m.areEqual(this.friendSuggestions, bulkFriendSuggestions.friendSuggestions);
+        return Intrinsics3.areEqual(this.bulkAddToken, bulkFriendSuggestions.bulkAddToken) && Intrinsics3.areEqual(this.friendSuggestions, bulkFriendSuggestions.friendSuggestions);
     }
 
     /* JADX INFO: renamed from: a, reason: from getter */
@@ -38,9 +38,9 @@ public final /* data */ class BulkFriendSuggestions {
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("BulkFriendSuggestions(bulkAddToken=");
+        StringBuilder sbU = outline.U("BulkFriendSuggestions(bulkAddToken=");
         sbU.append(this.bulkAddToken);
         sbU.append(", friendSuggestions=");
-        return a.L(sbU, this.friendSuggestions, ")");
+        return outline.L(sbU, this.friendSuggestions, ")");
     }
 }

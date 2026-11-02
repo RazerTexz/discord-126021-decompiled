@@ -6,25 +6,25 @@ import retrofit2.Response;
 /* JADX INFO: compiled from: lambda */
 /* JADX INFO: loaded from: classes3.dex */
 public final /* synthetic */ class b implements Runnable {
-    public final /* synthetic */ i.b.a j;
-    public final /* synthetic */ f k;
+    public final /* synthetic */ DefaultCallAdapterFactory.b.a j;
+    public final /* synthetic */ Callback3 k;
     public final /* synthetic */ Response l;
 
-    public /* synthetic */ b(i.b.a aVar, f fVar, Response response) {
+    public /* synthetic */ b(DefaultCallAdapterFactory.b.a aVar, Callback3 callback3, Response response) {
         this.j = aVar;
-        this.k = fVar;
+        this.k = callback3;
         this.l = response;
     }
 
     @Override // java.lang.Runnable
     public final void run() {
-        i.b.a aVar = this.j;
-        f fVar = this.k;
+        DefaultCallAdapterFactory.b.a aVar = this.j;
+        Callback3 callback3 = this.k;
         Response response = this.l;
-        if (i.b.this.k.d()) {
-            fVar.a(i.b.this, new IOException("Canceled"));
+        if (DefaultCallAdapterFactory.b.this.k.d()) {
+            callback3.a(DefaultCallAdapterFactory.b.this, new IOException("Canceled"));
         } else {
-            fVar.b(i.b.this, response);
+            callback3.b(DefaultCallAdapterFactory.b.this, response);
         }
     }
 }

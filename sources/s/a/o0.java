@@ -1,17 +1,17 @@
 package s.a;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import kotlin.Unit;
 import kotlinx.coroutines.Job;
 
 /* JADX INFO: compiled from: JobSupport.kt */
 /* JADX INFO: loaded from: classes3.dex */
 public final class o0 extends g1<Job> {
-    public final m0 n;
+    public final Job2 n;
 
-    public o0(Job job, m0 m0Var) {
+    public o0(Job job, Job2 job2) {
         super(job);
-        this.n = m0Var;
+        this.n = job2;
     }
 
     @Override // kotlin.jvm.functions.Function1
@@ -20,14 +20,14 @@ public final class o0 extends g1<Job> {
         return Unit.a;
     }
 
-    @Override // s.a.y
+    @Override // s.a.CompletionHandler2
     public void q(Throwable th) {
         this.n.dispose();
     }
 
-    @Override // s.a.a.k
+    @Override // s.a.a.LockFreeLinkedList3
     public String toString() {
-        StringBuilder sbU = a.U("DisposeOnCompletion[");
+        StringBuilder sbU = outline.U("DisposeOnCompletion[");
         sbU.append(this.n);
         sbU.append(']');
         return sbU.toString();

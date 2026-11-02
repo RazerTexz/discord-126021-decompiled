@@ -3,8 +3,9 @@ package com.google.android.exoplayer2.metadata.icy;
 import android.os.Parcel;
 import android.os.Parcelable;
 import androidx.annotation.Nullable;
-import b.i.a.c.j1;
-import b.i.a.c.p1;
+import b.i.a.c.Format2;
+import b.i.a.c.MediaMetadata;
+import b.i.a.c.z2.Metadata2;
 import com.google.android.exoplayer2.metadata.Metadata;
 import java.util.Arrays;
 import java.util.Objects;
@@ -58,7 +59,7 @@ public final class IcyInfo implements Metadata.Entry {
     }
 
     @Override // com.google.android.exoplayer2.metadata.Metadata.Entry
-    public void n(p1.b bVar) {
+    public void n(MediaMetadata.b bVar) {
         String str = this.k;
         if (str != null) {
             bVar.a = str;
@@ -67,7 +68,7 @@ public final class IcyInfo implements Metadata.Entry {
 
     @Override // com.google.android.exoplayer2.metadata.Metadata.Entry
     public /* synthetic */ byte[] o0() {
-        return b.i.a.c.z2.a.a(this);
+        return Metadata2.a(this);
     }
 
     public String toString() {
@@ -82,8 +83,8 @@ public final class IcyInfo implements Metadata.Entry {
     }
 
     @Override // com.google.android.exoplayer2.metadata.Metadata.Entry
-    public /* synthetic */ j1 y() {
-        return b.i.a.c.z2.a.b(this);
+    public /* synthetic */ Format2 y() {
+        return Metadata2.b(this);
     }
 
     public IcyInfo(Parcel parcel) {

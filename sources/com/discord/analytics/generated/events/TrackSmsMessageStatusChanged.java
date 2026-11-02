@@ -1,14 +1,14 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackSmsMessageStatusChanged.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackSmsMessageStatusChanged implements AnalyticsSchema, TrackBaseReceiver {
+public final /* data */ class TrackSmsMessageStatusChanged implements AnalyticsSchema, TrackBase2 {
     private final CharSequence accountId = null;
     private final CharSequence carrierName = null;
     private final Long errorCode = null;
@@ -27,7 +27,7 @@ public final /* data */ class TrackSmsMessageStatusChanged implements AnalyticsS
             return false;
         }
         TrackSmsMessageStatusChanged trackSmsMessageStatusChanged = (TrackSmsMessageStatusChanged) other;
-        return m.areEqual(this.messageStatus, trackSmsMessageStatusChanged.messageStatus) && m.areEqual(this.phoneNumber, trackSmsMessageStatusChanged.phoneNumber) && m.areEqual(this.carrierName, trackSmsMessageStatusChanged.carrierName) && m.areEqual(this.messageId, trackSmsMessageStatusChanged.messageId) && m.areEqual(this.accountId, trackSmsMessageStatusChanged.accountId) && m.areEqual(this.errorCode, trackSmsMessageStatusChanged.errorCode) && m.areEqual(this.phoneCountry, trackSmsMessageStatusChanged.phoneCountry);
+        return Intrinsics3.areEqual(this.messageStatus, trackSmsMessageStatusChanged.messageStatus) && Intrinsics3.areEqual(this.phoneNumber, trackSmsMessageStatusChanged.phoneNumber) && Intrinsics3.areEqual(this.carrierName, trackSmsMessageStatusChanged.carrierName) && Intrinsics3.areEqual(this.messageId, trackSmsMessageStatusChanged.messageId) && Intrinsics3.areEqual(this.accountId, trackSmsMessageStatusChanged.accountId) && Intrinsics3.areEqual(this.errorCode, trackSmsMessageStatusChanged.errorCode) && Intrinsics3.areEqual(this.phoneCountry, trackSmsMessageStatusChanged.phoneCountry);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -54,7 +54,7 @@ public final /* data */ class TrackSmsMessageStatusChanged implements AnalyticsS
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackSmsMessageStatusChanged(messageStatus=");
+        StringBuilder sbU = outline.U("TrackSmsMessageStatusChanged(messageStatus=");
         sbU.append(this.messageStatus);
         sbU.append(", phoneNumber=");
         sbU.append(this.phoneNumber);
@@ -67,6 +67,6 @@ public final /* data */ class TrackSmsMessageStatusChanged implements AnalyticsS
         sbU.append(", errorCode=");
         sbU.append(this.errorCode);
         sbU.append(", phoneCountry=");
-        return a.E(sbU, this.phoneCountry, ")");
+        return outline.E(sbU, this.phoneCountry, ")");
     }
 }

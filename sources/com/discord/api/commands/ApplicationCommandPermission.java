@@ -1,15 +1,15 @@
 package com.discord.api.commands;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.models.domain.ModelAuditLogEntry;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: ApplicationCommandPermission.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class ApplicationCommandPermission {
     private final long id;
     private final boolean permission;
-    private final ApplicationCommandPermissionType type;
+    private final ApplicationCommandPermission2 type;
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -19,7 +19,7 @@ public final /* data */ class ApplicationCommandPermission {
             return false;
         }
         ApplicationCommandPermission applicationCommandPermission = (ApplicationCommandPermission) other;
-        return this.id == applicationCommandPermission.id && m.areEqual(this.type, applicationCommandPermission.type) && this.permission == applicationCommandPermission.permission;
+        return this.id == applicationCommandPermission.id && Intrinsics3.areEqual(this.type, applicationCommandPermission.type) && this.permission == applicationCommandPermission.permission;
     }
 
     /* JADX INFO: renamed from: a, reason: from getter */
@@ -40,8 +40,8 @@ public final /* data */ class ApplicationCommandPermission {
     public int hashCode() {
         long j = this.id;
         int i = ((int) (j ^ (j >>> 32))) * 31;
-        ApplicationCommandPermissionType applicationCommandPermissionType = this.type;
-        int iHashCode = (i + (applicationCommandPermissionType != null ? applicationCommandPermissionType.hashCode() : 0)) * 31;
+        ApplicationCommandPermission2 applicationCommandPermission2 = this.type;
+        int iHashCode = (i + (applicationCommandPermission2 != null ? applicationCommandPermission2.hashCode() : 0)) * 31;
         boolean z2 = this.permission;
         ?? r0 = z2;
         if (z2) {
@@ -51,11 +51,11 @@ public final /* data */ class ApplicationCommandPermission {
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("ApplicationCommandPermission(id=");
+        StringBuilder sbU = outline.U("ApplicationCommandPermission(id=");
         sbU.append(this.id);
         sbU.append(", type=");
         sbU.append(this.type);
         sbU.append(", permission=");
-        return a.O(sbU, this.permission, ")");
+        return outline.O(sbU, this.permission, ")");
     }
 }

@@ -5,23 +5,23 @@ import java.util.Objects;
 /* JADX INFO: compiled from: lambda */
 /* JADX INFO: loaded from: classes3.dex */
 public final /* synthetic */ class l implements Runnable {
-    public final /* synthetic */ s.a j;
-    public final /* synthetic */ s k;
+    public final /* synthetic */ DrmSessionEventListener.a j;
+    public final /* synthetic */ DrmSessionEventListener k;
     public final /* synthetic */ int l;
 
-    public /* synthetic */ l(s.a aVar, s sVar, int i) {
+    public /* synthetic */ l(DrmSessionEventListener.a aVar, DrmSessionEventListener drmSessionEventListener, int i) {
         this.j = aVar;
-        this.k = sVar;
+        this.k = drmSessionEventListener;
         this.l = i;
     }
 
     @Override // java.lang.Runnable
     public final void run() {
-        s.a aVar = this.j;
-        s sVar = this.k;
+        DrmSessionEventListener.a aVar = this.j;
+        DrmSessionEventListener drmSessionEventListener = this.k;
         int i = this.l;
         Objects.requireNonNull(aVar);
-        Objects.requireNonNull(sVar);
-        sVar.c0(aVar.a, aVar.f1156b, i);
+        Objects.requireNonNull(drmSessionEventListener);
+        drmSessionEventListener.c0(aVar.a, aVar.f1156b, i);
     }
 }

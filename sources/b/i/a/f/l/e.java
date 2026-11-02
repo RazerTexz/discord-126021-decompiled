@@ -6,8 +6,8 @@ import android.os.Looper;
 
 /* JADX INFO: compiled from: com.google.android.gms:play-services-base@@17.3.0 */
 /* JADX INFO: loaded from: classes3.dex */
-public final class e extends b.i.a.f.e.h.a.C0112a<b.i.a.f.l.b.a, a> {
-    @Override // b.i.a.f.e.h.a.C0112a
+public final class e extends b.i.a.f.e.h.a.C0035a<b.i.a.f.l.b.a, a> {
+    @Override // b.i.a.f.e.h.a.C0035a
     public final b.i.a.f.e.h.a.f a(Context context, Looper looper, b.i.a.f.e.k.c cVar, a aVar, b.i.a.f.e.h.c.a aVar2, b.i.a.f.e.h.c.b bVar) {
         a aVar3 = cVar.g;
         Integer num = cVar.h;

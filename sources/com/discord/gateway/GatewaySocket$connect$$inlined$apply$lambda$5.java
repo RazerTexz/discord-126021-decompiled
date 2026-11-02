@@ -1,14 +1,14 @@
 package com.discord.gateway;
 
 import com.discord.utilities.websocket.WebSocket;
-import d0.z.d.m;
-import d0.z.d.o;
+import d0.z.d.Intrinsics3;
+import d0.z.d.Lambda;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function1;
 
 /* JADX INFO: compiled from: GatewaySocket.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final class GatewaySocket$connect$$inlined$apply$lambda$5 extends o implements Function1<WebSocket.Error, Unit> {
+public final class GatewaySocket$connect$$inlined$apply$lambda$5 extends Lambda implements Function1<WebSocket.Error, Unit> {
     public final /* synthetic */ String $gatewayUrl$inlined;
     public final /* synthetic */ GatewaySocket this$0;
 
@@ -27,7 +27,7 @@ public final class GatewaySocket$connect$$inlined$apply$lambda$5 extends o imple
 
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final void invoke2(WebSocket.Error error) {
-        m.checkNotNullParameter(error, "it");
+        Intrinsics3.checkNotNullParameter(error, "it");
         GatewaySocket.access$handleWebSocketError(this.this$0);
     }
 }

@@ -1,8 +1,8 @@
 package com.discord.api.report;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.models.domain.ModelAuditLogEntry;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: InAppReportsMenu.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -11,7 +11,7 @@ public final /* data */ class ReportNodeChild {
     private final int ref;
 
     public ReportNodeChild(String str, int i) {
-        m.checkNotNullParameter(str, ModelAuditLogEntry.CHANGE_KEY_NAME);
+        Intrinsics3.checkNotNullParameter(str, ModelAuditLogEntry.CHANGE_KEY_NAME);
         this.name = str;
         this.ref = i;
     }
@@ -24,7 +24,7 @@ public final /* data */ class ReportNodeChild {
             return false;
         }
         ReportNodeChild reportNodeChild = (ReportNodeChild) other;
-        return m.areEqual(this.name, reportNodeChild.name) && this.ref == reportNodeChild.ref;
+        return Intrinsics3.areEqual(this.name, reportNodeChild.name) && this.ref == reportNodeChild.ref;
     }
 
     /* JADX INFO: renamed from: a, reason: from getter */
@@ -43,9 +43,9 @@ public final /* data */ class ReportNodeChild {
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("ReportNodeChild(name=");
+        StringBuilder sbU = outline.U("ReportNodeChild(name=");
         sbU.append(this.name);
         sbU.append(", ref=");
-        return a.B(sbU, this.ref, ")");
+        return outline.B(sbU, this.ref, ")");
     }
 }

@@ -10,7 +10,7 @@ import com.discord.utilities.dimen.DimenUtils;
 import com.discord.utilities.spans.BlockBackgroundSpan;
 import com.discord.utilities.spans.VerticalPaddingSpan;
 import com.discord.utilities.textprocessing.node.BasicRenderContext;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 import java.util.Arrays;
 
 /* JADX INFO: compiled from: BlockBackgroundNode.kt */
@@ -22,7 +22,7 @@ public final class BlockBackgroundNode<R extends BasicRenderContext> extends Nod
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public BlockBackgroundNode(boolean z2, Node<R>... nodeArr) {
         super((Node[]) Arrays.copyOf(nodeArr, nodeArr.length));
-        m.checkNotNullParameter(nodeArr, "children");
+        Intrinsics3.checkNotNullParameter(nodeArr, "children");
         this.inQuote = z2;
         this.isRevealed = true;
     }
@@ -55,8 +55,8 @@ public final class BlockBackgroundNode<R extends BasicRenderContext> extends Nod
 
     public void render(SpannableStringBuilder builder, R renderContext) {
         int spoilerColorRes;
-        m.checkNotNullParameter(builder, "builder");
-        m.checkNotNullParameter(renderContext, "renderContext");
+        Intrinsics3.checkNotNullParameter(builder, "builder");
+        Intrinsics3.checkNotNullParameter(renderContext, "renderContext");
         ensureEndsWithNewline(builder);
         int length = builder.length();
         super.render(builder, renderContext);

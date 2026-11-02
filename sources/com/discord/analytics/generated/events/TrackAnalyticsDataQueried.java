@@ -1,14 +1,14 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackAnalyticsDataQueried.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackAnalyticsDataQueried implements AnalyticsSchema, TrackBaseReceiver {
+public final /* data */ class TrackAnalyticsDataQueried implements AnalyticsSchema, TrackBase2 {
     private final Long applicationId = null;
     private final Long dateRangeEnd = null;
     private final Long dateRangeStart = null;
@@ -28,7 +28,7 @@ public final /* data */ class TrackAnalyticsDataQueried implements AnalyticsSche
             return false;
         }
         TrackAnalyticsDataQueried trackAnalyticsDataQueried = (TrackAnalyticsDataQueried) other;
-        return m.areEqual(this.applicationId, trackAnalyticsDataQueried.applicationId) && m.areEqual(this.guildId, trackAnalyticsDataQueried.guildId) && m.areEqual(this.tableName, trackAnalyticsDataQueried.tableName) && m.areEqual(this.dateRangeStart, trackAnalyticsDataQueried.dateRangeStart) && m.areEqual(this.dateRangeEnd, trackAnalyticsDataQueried.dateRangeEnd) && m.areEqual(this.interval, trackAnalyticsDataQueried.interval) && m.areEqual(this.responseIsSuccessful, trackAnalyticsDataQueried.responseIsSuccessful) && m.areEqual(this.responseHasData, trackAnalyticsDataQueried.responseHasData);
+        return Intrinsics3.areEqual(this.applicationId, trackAnalyticsDataQueried.applicationId) && Intrinsics3.areEqual(this.guildId, trackAnalyticsDataQueried.guildId) && Intrinsics3.areEqual(this.tableName, trackAnalyticsDataQueried.tableName) && Intrinsics3.areEqual(this.dateRangeStart, trackAnalyticsDataQueried.dateRangeStart) && Intrinsics3.areEqual(this.dateRangeEnd, trackAnalyticsDataQueried.dateRangeEnd) && Intrinsics3.areEqual(this.interval, trackAnalyticsDataQueried.interval) && Intrinsics3.areEqual(this.responseIsSuccessful, trackAnalyticsDataQueried.responseIsSuccessful) && Intrinsics3.areEqual(this.responseHasData, trackAnalyticsDataQueried.responseHasData);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -57,7 +57,7 @@ public final /* data */ class TrackAnalyticsDataQueried implements AnalyticsSche
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackAnalyticsDataQueried(applicationId=");
+        StringBuilder sbU = outline.U("TrackAnalyticsDataQueried(applicationId=");
         sbU.append(this.applicationId);
         sbU.append(", guildId=");
         sbU.append(this.guildId);
@@ -72,6 +72,6 @@ public final /* data */ class TrackAnalyticsDataQueried implements AnalyticsSche
         sbU.append(", responseIsSuccessful=");
         sbU.append(this.responseIsSuccessful);
         sbU.append(", responseHasData=");
-        return a.D(sbU, this.responseHasData, ")");
+        return outline.D(sbU, this.responseHasData, ")");
     }
 }

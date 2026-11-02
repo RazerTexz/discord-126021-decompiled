@@ -25,6 +25,7 @@ import androidx.appcompat.widget.ActivityChooserModel;
 import androidx.constraintlayout.solver.widgets.analyzer.BasicMeasure;
 import androidx.core.app.NotificationCompat;
 import androidx.core.content.ContextCompat;
+import b.d.b.a.outline;
 import com.google.android.gms.tasks.Task;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -137,7 +138,7 @@ public class c {
             }
         } catch (PackageManager.NameNotFoundException e) {
             String strValueOf2 = String.valueOf(e);
-            b.d.b.a.a.h0(strValueOf2.length() + 35, "Couldn't get own application info: ", strValueOf2, "FirebaseMessaging");
+            outline.h0(strValueOf2.length() + 35, "Couldn't get own application info: ", strValueOf2, "FirebaseMessaging");
         }
         String packageName = context.getPackageName();
         String strE2 = rVar.e("gcm.n.android_channel_id");
@@ -161,7 +162,7 @@ public class c {
                             notificationManager.createNotificationChannel(new NotificationChannel("fcm_fallback_notification_channel", context.getString(context.getResources().getIdentifier("fcm_fallback_notification_channel_label", "string", context.getPackageName())), 3));
                         }
                     } else if (notificationManager.getNotificationChannel(strE2) == null) {
-                        b.d.b.a.a.i0(b.d.b.a.a.b(strE2, 122), "Notification Channel requested (", strE2, ") has not been created by the app. Manifest configuration, or default, value will be used.", "FirebaseMessaging");
+                        outline.i0(outline.b(strE2, 122), "Notification Channel requested (", strE2, ") has not been created by the app. Manifest configuration, or default, value will be used.", "FirebaseMessaging");
                         strE2 = bundle.getString("com.google.firebase.messaging.default_notification_channel_id");
                         if (!TextUtils.isEmpty(strE2)) {
                             Log.w("FirebaseMessaging", "Missing Default Notification Channel metadata in AndroidManifest. Default value will be used.");
@@ -198,7 +199,7 @@ public class c {
                 try {
                 } catch (PackageManager.NameNotFoundException e2) {
                     String strValueOf3 = String.valueOf(e2);
-                    b.d.b.a.a.h0(strValueOf3.length() + 35, "Couldn't get own application info: ", strValueOf3, "FirebaseMessaging");
+                    outline.h0(strValueOf3.length() + 35, "Couldn't get own application info: ", strValueOf3, "FirebaseMessaging");
                     identifier = i;
                 }
             }
@@ -208,7 +209,7 @@ public class c {
         } else {
             identifier = resources.getIdentifier(strE3, "drawable", packageName);
             if ((identifier == 0 || !a.b(resources, identifier)) && ((identifier = resources.getIdentifier(strE3, "mipmap", packageName)) == 0 || !a.b(resources, identifier))) {
-                b.d.b.a.a.i0(b.d.b.a.a.b(strE3, 61), "Icon resource ", strE3, " not found. Notification will use default icon.", "FirebaseMessaging");
+                outline.i0(outline.b(strE3, 61), "Icon resource ", strE3, " not found. Notification will use default icon.", "FirebaseMessaging");
                 i = bundle.getInt("com.google.firebase.messaging.default_notification_icon", 0);
                 identifier = i == 0 ? packageManager.getApplicationInfo(packageName, 0).icon : packageManager.getApplicationInfo(packageName, 0).icon;
                 if (identifier != 0) {
@@ -228,7 +229,7 @@ public class c {
         } else if ("default".equals(strE4) || resources.getIdentifier(strE4, "raw", packageName) == 0) {
             defaultUri = RingtoneManager.getDefaultUri(2);
         } else {
-            StringBuilder sb = new StringBuilder(b.d.b.a.a.b(strE4, b.d.b.a.a.b(packageName, 24)));
+            StringBuilder sb = new StringBuilder(outline.b(strE4, outline.b(packageName, 24)));
             sb.append("android.resource://");
             sb.append(packageName);
             sb.append("/raw/");
@@ -293,7 +294,7 @@ public class c {
             try {
                 numValueOf = Integer.valueOf(Color.parseColor(strE7));
             } catch (IllegalArgumentException unused3) {
-                b.d.b.a.a.i0(b.d.b.a.a.b(strE7, 56), "Color is invalid: ", strE7, ". Notification will use default color.", "FirebaseMessaging");
+                outline.i0(outline.b(strE7, 56), "Color is invalid: ", strE7, ". Notification will use default color.", "FirebaseMessaging");
                 i2 = bundle.getInt("com.google.firebase.messaging.default_notification_color", 0);
                 if (i2 != 0) {
                     try {
@@ -321,7 +322,7 @@ public class c {
             numB = null;
         } else if (numB.intValue() < -2 || numB.intValue() > 2) {
             String strValueOf4 = String.valueOf(numB);
-            b.d.b.a.a.i0(strValueOf4.length() + 72, "notificationPriority is invalid ", strValueOf4, ". Skipping setting notificationPriority.", "FirebaseMessaging");
+            outline.i0(strValueOf4.length() + 72, "notificationPriority is invalid ", strValueOf4, ". Skipping setting notificationPriority.", "FirebaseMessaging");
             numB = null;
         }
         if (numB != null) {
@@ -332,7 +333,7 @@ public class c {
             numB2 = null;
         } else if (numB2.intValue() < -1 || numB2.intValue() > 1) {
             String strValueOf5 = String.valueOf(numB2);
-            b.d.b.a.a.i0(strValueOf5.length() + 53, "visibility is invalid: ", strValueOf5, ". Skipping setting visibility.", "NotificationParams");
+            outline.i0(strValueOf5.length() + 53, "visibility is invalid: ", strValueOf5, ". Skipping setting visibility.", "NotificationParams");
             numB2 = null;
         }
         if (numB2 != null) {
@@ -343,7 +344,7 @@ public class c {
             numB3 = null;
         } else if (numB3.intValue() < 0) {
             String strValueOf6 = String.valueOf(numB3);
-            b.d.b.a.a.i0(strValueOf6.length() + 67, "notificationCount is invalid: ", strValueOf6, ". Skipping setting notificationCount.", "FirebaseMessaging");
+            outline.i0(strValueOf6.length() + 67, "notificationCount is invalid: ", strValueOf6, ". Skipping setting notificationCount.", "FirebaseMessaging");
             numB3 = null;
         }
         if (numB3 != null) {
@@ -357,7 +358,7 @@ public class c {
                 lValueOf = Long.valueOf(Long.parseLong(strE8));
             } catch (NumberFormatException unused5) {
                 String strH = r.h("gcm.n.event_time");
-                b.d.b.a.a.r0(b.d.b.a.a.S(b.d.b.a.a.b(strE8, b.d.b.a.a.b(strH, 38)), "Couldn't parse value of ", strH, "(", strE8), ") into a long", "NotificationParams");
+                outline.r0(outline.S(outline.b(strE8, outline.b(strH, 38)), "Couldn't parse value of ", strH, "(", strE8), ") into a long", "NotificationParams");
                 lValueOf = null;
             }
         }
@@ -380,7 +381,7 @@ public class c {
                 }
             } catch (NumberFormatException | JSONException unused6) {
                 String strValueOf7 = String.valueOf(jSONArrayC);
-                b.d.b.a.a.i0(strValueOf7.length() + 74, "User defined vibrateTimings is invalid: ", strValueOf7, ". Skipping setting vibrateTimings.", "NotificationParams");
+                outline.i0(strValueOf7.length() + 74, "User defined vibrateTimings is invalid: ", strValueOf7, ". Skipping setting vibrateTimings.", "NotificationParams");
                 jArr = null;
             }
         }
@@ -406,11 +407,11 @@ public class c {
             } catch (IllegalArgumentException e3) {
                 String strValueOf8 = String.valueOf(jSONArrayC2);
                 String message = e3.getMessage();
-                b.d.b.a.a.r0(b.d.b.a.a.S(b.d.b.a.a.b(message, strValueOf8.length() + 60), "LightSettings is invalid: ", strValueOf8, ". ", message), ". Skipping setting LightSettings", "NotificationParams");
+                outline.r0(outline.S(outline.b(message, strValueOf8.length() + 60), "LightSettings is invalid: ", strValueOf8, ". ", message), ". Skipping setting LightSettings", "NotificationParams");
                 iArr = null;
             } catch (JSONException unused7) {
                 String strValueOf9 = String.valueOf(jSONArrayC2);
-                b.d.b.a.a.i0(strValueOf9.length() + 58, "LightSettings is invalid: ", strValueOf9, ". Skipping setting LightSettings", "NotificationParams");
+                outline.i0(strValueOf9.length() + 58, "LightSettings is invalid: ", strValueOf9, ". Skipping setting LightSettings", "NotificationParams");
                 iArr = null;
             }
         }
@@ -448,7 +449,7 @@ public class c {
                 Thread.currentThread().interrupt();
             } catch (ExecutionException e4) {
                 String strValueOf10 = String.valueOf(e4.getCause());
-                b.d.b.a.a.h0(strValueOf10.length() + 26, "Failed to download image: ", strValueOf10, "FirebaseMessaging");
+                outline.h0(strValueOf10.length() + 26, "Failed to download image: ", strValueOf10, "FirebaseMessaging");
             } catch (TimeoutException unused9) {
                 Log.w("FirebaseMessaging", "Failed to download image in time, showing notification without it");
                 oVar.close();

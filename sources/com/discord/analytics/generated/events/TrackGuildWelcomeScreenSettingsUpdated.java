@@ -1,32 +1,32 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.analytics.generated.traits.TrackGuild;
-import com.discord.analytics.generated.traits.TrackGuildReceiver;
+import com.discord.analytics.generated.traits.TrackGuild2;
 import com.discord.analytics.generated.traits.TrackGuildWelcomeScreen;
-import com.discord.analytics.generated.traits.TrackGuildWelcomeScreenReceiver;
+import com.discord.analytics.generated.traits.TrackGuildWelcomeScreen2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackGuildWelcomeScreenSettingsUpdated.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackGuildWelcomeScreenSettingsUpdated implements AnalyticsSchema, TrackBaseReceiver, TrackGuildReceiver, TrackGuildWelcomeScreenReceiver {
+public final /* data */ class TrackGuildWelcomeScreenSettingsUpdated implements AnalyticsSchema, TrackBase2, TrackGuild2, TrackGuildWelcomeScreen2 {
     private final Boolean isEnabled = null;
     private TrackBase trackBase;
     private TrackGuild trackGuild;
     private TrackGuildWelcomeScreen trackGuildWelcomeScreen;
     private final transient String analyticsSchemaTypeName = "guild_welcome_screen_settings_updated";
 
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    @Override // com.discord.analytics.generated.traits.TrackGuild2
     public void c(TrackGuild trackGuild) {
         this.trackGuild = trackGuild;
     }
 
     public boolean equals(Object other) {
         if (this != other) {
-            return (other instanceof TrackGuildWelcomeScreenSettingsUpdated) && m.areEqual(this.isEnabled, ((TrackGuildWelcomeScreenSettingsUpdated) other).isEnabled);
+            return (other instanceof TrackGuildWelcomeScreenSettingsUpdated) && Intrinsics3.areEqual(this.isEnabled, ((TrackGuildWelcomeScreenSettingsUpdated) other).isEnabled);
         }
         return true;
     }
@@ -37,7 +37,7 @@ public final /* data */ class TrackGuildWelcomeScreenSettingsUpdated implements 
         return this.analyticsSchemaTypeName;
     }
 
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    @Override // com.discord.analytics.generated.traits.TrackGuild2
     /* JADX INFO: renamed from: a, reason: from getter */
     public TrackGuild getTrackGuild() {
         return this.trackGuild;
@@ -52,6 +52,6 @@ public final /* data */ class TrackGuildWelcomeScreenSettingsUpdated implements 
     }
 
     public String toString() {
-        return a.D(a.U("TrackGuildWelcomeScreenSettingsUpdated(isEnabled="), this.isEnabled, ")");
+        return outline.D(outline.U("TrackGuildWelcomeScreenSettingsUpdated(isEnabled="), this.isEnabled, ")");
     }
 }

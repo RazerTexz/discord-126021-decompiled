@@ -2,8 +2,8 @@ package com.discord.widgets.settings.connections;
 
 import android.content.Context;
 import androidx.core.app.NotificationCompat;
-import b.a.d.d0;
-import b.d.b.a.a;
+import b.a.d.AppViewModel;
+import b.d.b.a.outline;
 import com.discord.api.connectedaccounts.ConnectedAccount;
 import com.discord.api.connectedaccounts.ConnectedAccountIntegration;
 import com.discord.api.connectedaccounts.ConnectedIntegrationGuild;
@@ -13,9 +13,9 @@ import com.discord.stores.StoreUserConnections;
 import com.discord.utilities.error.Error;
 import com.discord.utilities.rest.RestAPI;
 import com.discord.utilities.rx.ObservableExtensionsKt;
-import d0.t.h0;
-import d0.z.d.m;
-import d0.z.d.o;
+import d0.t.Maps6;
+import d0.z.d.Intrinsics3;
+import d0.z.d.Lambda;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -30,7 +30,7 @@ import rx.subjects.BehaviorSubject;
 
 /* JADX INFO: compiled from: WidgetSettingsUserConnectionsViewModel.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class WidgetSettingsUserConnectionsViewModel extends d0<ViewState> {
+public final class WidgetSettingsUserConnectionsViewModel extends AppViewModel<ViewState> {
 
     /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
     public static final Companion INSTANCE = new Companion(null);
@@ -52,15 +52,15 @@ public final class WidgetSettingsUserConnectionsViewModel extends d0<ViewState> 
         /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
         public final List<ConnectionState> call2(StoreState storeState, Map<String, ? extends JoinStatus> map) {
             WidgetSettingsUserConnectionsViewModel widgetSettingsUserConnectionsViewModel = WidgetSettingsUserConnectionsViewModel.this;
-            m.checkNotNullExpressionValue(storeState, "storeState");
-            m.checkNotNullExpressionValue(map, "joinMap");
+            Intrinsics3.checkNotNullExpressionValue(storeState, "storeState");
+            Intrinsics3.checkNotNullExpressionValue(map, "joinMap");
             return WidgetSettingsUserConnectionsViewModel.access$combineState(widgetSettingsUserConnectionsViewModel, storeState, map);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.widgets.settings.connections.WidgetSettingsUserConnectionsViewModel$joinConnectionIntegrationGuild$1, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetSettingsUserConnectionsViewModel.kt */
-    public final class AnonymousClass1 extends o implements Function1<Error, Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function1<Error, Unit> {
         public final /* synthetic */ String $integrationId;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -77,7 +77,7 @@ public final class WidgetSettingsUserConnectionsViewModel extends d0<ViewState> 
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(Error error) {
-            m.checkNotNullParameter(error, "it");
+            Intrinsics3.checkNotNullParameter(error, "it");
             WidgetSettingsUserConnectionsViewModel.access$getJoinStatusMap$p(WidgetSettingsUserConnectionsViewModel.this).put(this.$integrationId, JoinStatus.JoinFailed.INSTANCE);
             WidgetSettingsUserConnectionsViewModel.access$getJoinStateSubject$p(WidgetSettingsUserConnectionsViewModel.this).onNext(WidgetSettingsUserConnectionsViewModel.access$getJoinStatusMap$p(WidgetSettingsUserConnectionsViewModel.this));
         }
@@ -85,7 +85,7 @@ public final class WidgetSettingsUserConnectionsViewModel extends d0<ViewState> 
 
     /* JADX INFO: renamed from: com.discord.widgets.settings.connections.WidgetSettingsUserConnectionsViewModel$2, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetSettingsUserConnectionsViewModel.kt */
-    public final class AnonymousClass2 extends o implements Function1<List<? extends ConnectionState>, Unit> {
+    public final class AnonymousClass2 extends Lambda implements Function1<List<? extends ConnectionState>, Unit> {
         public AnonymousClass2() {
             super(1);
         }
@@ -99,14 +99,14 @@ public final class WidgetSettingsUserConnectionsViewModel extends d0<ViewState> 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(List<ConnectionState> list) {
             WidgetSettingsUserConnectionsViewModel widgetSettingsUserConnectionsViewModel = WidgetSettingsUserConnectionsViewModel.this;
-            m.checkNotNullExpressionValue(list, "storeState");
+            Intrinsics3.checkNotNullExpressionValue(list, "storeState");
             WidgetSettingsUserConnectionsViewModel.access$handleConnectionsState(widgetSettingsUserConnectionsViewModel, list);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.widgets.settings.connections.WidgetSettingsUserConnectionsViewModel$joinConnectionIntegrationGuild$2, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetSettingsUserConnectionsViewModel.kt */
-    public final class AnonymousClass2 extends o implements Function1<Void, Unit> {
+    public final class AnonymousClass2 extends Lambda implements Function1<Void, Unit> {
         public final /* synthetic */ String $integrationId;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -139,8 +139,8 @@ public final class WidgetSettingsUserConnectionsViewModel extends d0<ViewState> 
 
         private final Observable<StoreState> observeStores() {
             StoreStream.Companion companion = StoreStream.INSTANCE;
-            Observable<StoreState> observableJ = Observable.j(companion.getUserConnections().observeConnectedAccounts(), companion.getGuilds().observeGuilds(), WidgetSettingsUserConnectionsViewModel$Companion$observeStores$1.INSTANCE);
-            m.checkNotNullExpressionValue(observableJ, "Observable.combineLatest…= \"contacts\" }, guilds) }");
+            Observable<StoreState> observableJ = Observable.j(companion.getUserConnections().observeConnectedAccounts(), companion.getGuilds().observeGuilds(), WidgetSettingsUserConnectionsViewModel2.INSTANCE);
+            Intrinsics3.checkNotNullExpressionValue(observableJ, "Observable.combineLatest…= \"contacts\" }, guilds) }");
             return observableJ;
         }
 
@@ -156,8 +156,8 @@ public final class WidgetSettingsUserConnectionsViewModel extends d0<ViewState> 
 
         /* JADX WARN: Multi-variable type inference failed */
         public ConnectionState(ConnectedAccount connectedAccount, Map<String, ? extends JoinStatus> map) {
-            m.checkNotNullParameter(connectedAccount, "connection");
-            m.checkNotNullParameter(map, "integrationGuildJoinStatus");
+            Intrinsics3.checkNotNullParameter(connectedAccount, "connection");
+            Intrinsics3.checkNotNullParameter(map, "integrationGuildJoinStatus");
             this.connection = connectedAccount;
             this.integrationGuildJoinStatus = map;
         }
@@ -178,8 +178,8 @@ public final class WidgetSettingsUserConnectionsViewModel extends d0<ViewState> 
         }
 
         public final ConnectionState copy(ConnectedAccount connection, Map<String, ? extends JoinStatus> integrationGuildJoinStatus) {
-            m.checkNotNullParameter(connection, "connection");
-            m.checkNotNullParameter(integrationGuildJoinStatus, "integrationGuildJoinStatus");
+            Intrinsics3.checkNotNullParameter(connection, "connection");
+            Intrinsics3.checkNotNullParameter(integrationGuildJoinStatus, "integrationGuildJoinStatus");
             return new ConnectionState(connection, integrationGuildJoinStatus);
         }
 
@@ -191,7 +191,7 @@ public final class WidgetSettingsUserConnectionsViewModel extends d0<ViewState> 
                 return false;
             }
             ConnectionState connectionState = (ConnectionState) other;
-            return m.areEqual(this.connection, connectionState.connection) && m.areEqual(this.integrationGuildJoinStatus, connectionState.integrationGuildJoinStatus);
+            return Intrinsics3.areEqual(this.connection, connectionState.connection) && Intrinsics3.areEqual(this.integrationGuildJoinStatus, connectionState.integrationGuildJoinStatus);
         }
 
         /* JADX INFO: renamed from: component1, reason: from getter */
@@ -215,10 +215,10 @@ public final class WidgetSettingsUserConnectionsViewModel extends d0<ViewState> 
         }
 
         public String toString() {
-            StringBuilder sbU = a.U("ConnectionState(connection=");
+            StringBuilder sbU = outline.U("ConnectionState(connection=");
             sbU.append(this.connection);
             sbU.append(", integrationGuildJoinStatus=");
-            return a.M(sbU, this.integrationGuildJoinStatus, ")");
+            return outline.M(sbU, this.integrationGuildJoinStatus, ")");
         }
     }
 
@@ -266,8 +266,8 @@ public final class WidgetSettingsUserConnectionsViewModel extends d0<ViewState> 
         private final Map<Long, Guild> guilds;
 
         public StoreState(List<ConnectedAccount> list, Map<Long, Guild> map) {
-            m.checkNotNullParameter(list, "connectedAccounts");
-            m.checkNotNullParameter(map, "guilds");
+            Intrinsics3.checkNotNullParameter(list, "connectedAccounts");
+            Intrinsics3.checkNotNullParameter(map, "guilds");
             this.connectedAccounts = list;
             this.guilds = map;
         }
@@ -292,8 +292,8 @@ public final class WidgetSettingsUserConnectionsViewModel extends d0<ViewState> 
         }
 
         public final StoreState copy(List<ConnectedAccount> connectedAccounts, Map<Long, Guild> guilds) {
-            m.checkNotNullParameter(connectedAccounts, "connectedAccounts");
-            m.checkNotNullParameter(guilds, "guilds");
+            Intrinsics3.checkNotNullParameter(connectedAccounts, "connectedAccounts");
+            Intrinsics3.checkNotNullParameter(guilds, "guilds");
             return new StoreState(connectedAccounts, guilds);
         }
 
@@ -305,7 +305,7 @@ public final class WidgetSettingsUserConnectionsViewModel extends d0<ViewState> 
                 return false;
             }
             StoreState storeState = (StoreState) other;
-            return m.areEqual(this.connectedAccounts, storeState.connectedAccounts) && m.areEqual(this.guilds, storeState.guilds);
+            return Intrinsics3.areEqual(this.connectedAccounts, storeState.connectedAccounts) && Intrinsics3.areEqual(this.guilds, storeState.guilds);
         }
 
         public final List<ConnectedAccount> getConnectedAccounts() {
@@ -324,10 +324,10 @@ public final class WidgetSettingsUserConnectionsViewModel extends d0<ViewState> 
         }
 
         public String toString() {
-            StringBuilder sbU = a.U("StoreState(connectedAccounts=");
+            StringBuilder sbU = outline.U("StoreState(connectedAccounts=");
             sbU.append(this.connectedAccounts);
             sbU.append(", guilds=");
-            return a.M(sbU, this.guilds, ")");
+            return outline.M(sbU, this.guilds, ")");
         }
     }
 
@@ -350,7 +350,7 @@ public final class WidgetSettingsUserConnectionsViewModel extends d0<ViewState> 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
             public Loaded(List<ConnectionState> list) {
                 super(null);
-                m.checkNotNullParameter(list, "data");
+                Intrinsics3.checkNotNullParameter(list, "data");
                 this.data = list;
             }
 
@@ -367,13 +367,13 @@ public final class WidgetSettingsUserConnectionsViewModel extends d0<ViewState> 
             }
 
             public final Loaded copy(List<ConnectionState> data) {
-                m.checkNotNullParameter(data, "data");
+                Intrinsics3.checkNotNullParameter(data, "data");
                 return new Loaded(data);
             }
 
             public boolean equals(Object other) {
                 if (this != other) {
-                    return (other instanceof Loaded) && m.areEqual(this.data, ((Loaded) other).data);
+                    return (other instanceof Loaded) && Intrinsics3.areEqual(this.data, ((Loaded) other).data);
                 }
                 return true;
             }
@@ -391,7 +391,7 @@ public final class WidgetSettingsUserConnectionsViewModel extends d0<ViewState> 
             }
 
             public String toString() {
-                return a.L(a.U("Loaded(data="), this.data, ")");
+                return outline.L(outline.U("Loaded(data="), this.data, ")");
             }
         }
 
@@ -469,7 +469,7 @@ public final class WidgetSettingsUserConnectionsViewModel extends d0<ViewState> 
     }
 
     public final void joinConnectionIntegrationGuild(String integrationId) {
-        m.checkNotNullParameter(integrationId, "integrationId");
+        Intrinsics3.checkNotNullParameter(integrationId, "integrationId");
         this.joinStatusMap.put(integrationId, JoinStatus.Joining.INSTANCE);
         this.joinStateSubject.onNext(this.joinStatusMap);
         ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.restSubscribeOn$default(this.restApi.joinGuildFromIntegration(integrationId), false, 1, null), WidgetSettingsUserConnectionsViewModel.class, (Context) null, (Function1) null, new AnonymousClass1(integrationId), (Function0) null, (Function0) null, new AnonymousClass2(integrationId), 54, (Object) null);
@@ -478,16 +478,16 @@ public final class WidgetSettingsUserConnectionsViewModel extends d0<ViewState> 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public WidgetSettingsUserConnectionsViewModel(Observable<StoreState> observable, StoreUserConnections storeUserConnections, RestAPI restAPI) {
         super(ViewState.Uninitialized.INSTANCE);
-        m.checkNotNullParameter(observable, "storeStateObservable");
-        m.checkNotNullParameter(storeUserConnections, "storeUserConnections");
-        m.checkNotNullParameter(restAPI, "restApi");
+        Intrinsics3.checkNotNullParameter(observable, "storeStateObservable");
+        Intrinsics3.checkNotNullParameter(storeUserConnections, "storeUserConnections");
+        Intrinsics3.checkNotNullParameter(restAPI, "restApi");
         this.restApi = restAPI;
         this.joinStatusMap = new LinkedHashMap();
-        BehaviorSubject<Map<String, JoinStatus>> behaviorSubjectL0 = BehaviorSubject.l0(h0.emptyMap());
+        BehaviorSubject<Map<String, JoinStatus>> behaviorSubjectL0 = BehaviorSubject.l0(Maps6.emptyMap());
         this.joinStateSubject = behaviorSubjectL0;
         storeUserConnections.fetchConnectedAccounts();
         Observable observableJ = Observable.j(observable, behaviorSubjectL0, new AnonymousClass1());
-        m.checkNotNullExpressionValue(observableJ, "Observable.combineLatest…te(storeState, joinMap) }");
+        Intrinsics3.checkNotNullExpressionValue(observableJ, "Observable.combineLatest…te(storeState, joinMap) }");
         ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.computationLatest(observableJ), this, null, 2, null), WidgetSettingsUserConnectionsViewModel.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass2(), 62, (Object) null);
     }
 }

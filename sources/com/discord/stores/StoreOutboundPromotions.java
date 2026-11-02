@@ -2,7 +2,7 @@ package com.discord.stores;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.api.premium.ClaimedOutboundPromotion;
 import com.discord.api.premium.OutboundPromotion;
 import com.discord.api.user.User;
@@ -10,14 +10,14 @@ import com.discord.api.utcdatetime.UtcDateTime;
 import com.discord.models.domain.ModelPayload;
 import com.discord.models.user.MeUser;
 import com.discord.stores.updates.ObservationDeck;
-import com.discord.stores.updates.ObservationDeckProvider;
+import com.discord.stores.updates.ObservationDeck4;
 import com.discord.utilities.rest.RestAPI;
 import com.discord.utilities.rx.ObservableExtensionsKt;
 import com.discord.utilities.user.UserUtils;
 import com.discord.widgets.settings.premium.OutboundPromosPreviewFeatureFlag;
-import d0.t.n;
-import d0.z.d.m;
-import d0.z.d.o;
+import d0.t.Collections2;
+import d0.z.d.Intrinsics3;
+import d0.z.d.Lambda;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
@@ -44,7 +44,7 @@ public final class StoreOutboundPromotions extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreOutboundPromotions$markSeen$1, reason: invalid class name */
     /* JADX INFO: compiled from: StoreOutboundPromotions.kt */
-    public final class AnonymousClass1 extends o implements Function0<Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function0<Unit> {
         public AnonymousClass1() {
             super(0);
         }
@@ -85,7 +85,7 @@ public final class StoreOutboundPromotions extends StoreV2 {
             OutboundPromotion outboundPromotion = (OutboundPromotion) next;
             if (outboundPromotion != null) {
                 SharedPreferences.Editor editorEdit = StoreOutboundPromotions.this.getPrefs().edit();
-                m.checkNotNullExpressionValue(editorEdit, "editor");
+                Intrinsics3.checkNotNullExpressionValue(editorEdit, "editor");
                 editorEdit.putLong(StoreOutboundPromotions.LATEST_SEEN_PROMO_DATE, outboundPromotion.getStartDate().getDateTimeMillis());
                 editorEdit.apply();
                 StoreOutboundPromotions storeOutboundPromotions = StoreOutboundPromotions.this;
@@ -97,7 +97,7 @@ public final class StoreOutboundPromotions extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreOutboundPromotions$observeState$1, reason: invalid class name */
     /* JADX INFO: compiled from: StoreOutboundPromotions.kt */
-    public final class AnonymousClass1 extends o implements Function0<State> {
+    public final class AnonymousClass1 extends Lambda implements Function0<State> {
         public AnonymousClass1() {
             super(0);
         }
@@ -116,7 +116,7 @@ public final class StoreOutboundPromotions extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreOutboundPromotions$observeUnseenCount$1, reason: invalid class name */
     /* JADX INFO: compiled from: StoreOutboundPromotions.kt */
-    public final class AnonymousClass1 extends o implements Function0<Integer> {
+    public final class AnonymousClass1 extends Lambda implements Function0<Integer> {
         public AnonymousClass1() {
             super(0);
         }
@@ -152,7 +152,7 @@ public final class StoreOutboundPromotions extends StoreV2 {
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
             public Loaded(List<OutboundPromotion> list, int i) {
                 super(null);
-                m.checkNotNullParameter(list, "validActivePromotions");
+                Intrinsics3.checkNotNullParameter(list, "validActivePromotions");
                 this.validActivePromotions = list;
                 this.unseenCount = i;
             }
@@ -173,7 +173,7 @@ public final class StoreOutboundPromotions extends StoreV2 {
             }
 
             public final Loaded copy(List<OutboundPromotion> validActivePromotions, int unseenCount) {
-                m.checkNotNullParameter(validActivePromotions, "validActivePromotions");
+                Intrinsics3.checkNotNullParameter(validActivePromotions, "validActivePromotions");
                 return new Loaded(validActivePromotions, unseenCount);
             }
 
@@ -190,7 +190,7 @@ public final class StoreOutboundPromotions extends StoreV2 {
                     return false;
                 }
                 Loaded loaded = (Loaded) other;
-                return m.areEqual(this.validActivePromotions, loaded.validActivePromotions) && this.unseenCount == loaded.unseenCount;
+                return Intrinsics3.areEqual(this.validActivePromotions, loaded.validActivePromotions) && this.unseenCount == loaded.unseenCount;
             }
 
             /* JADX INFO: renamed from: component2, reason: from getter */
@@ -212,10 +212,10 @@ public final class StoreOutboundPromotions extends StoreV2 {
             }
 
             public String toString() {
-                StringBuilder sbU = a.U("Loaded(validActivePromotions=");
+                StringBuilder sbU = outline.U("Loaded(validActivePromotions=");
                 sbU.append(this.validActivePromotions);
                 sbU.append(", unseenCount=");
-                return a.B(sbU, this.unseenCount, ")");
+                return outline.B(sbU, this.unseenCount, ")");
             }
 
             @Override // com.discord.stores.StoreOutboundPromotions.State
@@ -246,7 +246,7 @@ public final class StoreOutboundPromotions extends StoreV2 {
     }
 
     public /* synthetic */ StoreOutboundPromotions(OutboundPromosPreviewFeatureFlag outboundPromosPreviewFeatureFlag, Dispatcher dispatcher, ObservationDeck observationDeck, RestAPI restAPI, int i, DefaultConstructorMarker defaultConstructorMarker) {
-        this(outboundPromosPreviewFeatureFlag, dispatcher, (i & 4) != 0 ? ObservationDeckProvider.get() : observationDeck, (i & 8) != 0 ? RestAPI.INSTANCE.getApi() : restAPI);
+        this(outboundPromosPreviewFeatureFlag, dispatcher, (i & 4) != 0 ? ObservationDeck4.get() : observationDeck, (i & 8) != 0 ? RestAPI.INSTANCE.getApi() : restAPI);
     }
 
     public static final /* synthetic */ Dispatcher access$getDispatcher$p(StoreOutboundPromotions storeOutboundPromotions) {
@@ -294,23 +294,23 @@ public final class StoreOutboundPromotions extends StoreV2 {
         return 0;
     }
 
-    @StoreThread
+    @Store3
     public final void handleConnectionOpen$app_productionGoogleRelease(ModelPayload readyPayload) {
-        m.checkNotNullParameter(readyPayload, "readyPayload");
+        Intrinsics3.checkNotNullParameter(readyPayload, "readyPayload");
         UserUtils userUtils = UserUtils.INSTANCE;
         User me2 = readyPayload.getMe();
-        m.checkNotNullExpressionValue(me2, "readyPayload.me");
+        Intrinsics3.checkNotNullExpressionValue(me2, "readyPayload.me");
         if (!userUtils.isPremiumTier2(new MeUser(me2))) {
-            this.state = new State.Loaded(n.emptyList(), 0);
+            this.state = new State.Loaded(Collections2.emptyList(), 0);
             markChanged();
             return;
         }
         this.state = State.Loading.INSTANCE;
         markChanged();
         RestAPI restAPI = this.restAPI;
-        Observable observableA = ObservableExtensionsKt.restSubscribeOn$default(this.previewFeatureFlag.isEnabled() ? restAPI.getAllPreviewPromotions() : restAPI.getAllActiveOutboundPromotions(), false, 1, null).A(new StoreOutboundPromotions$handleConnectionOpen$2(this));
-        m.checkNotNullExpressionValue(observableA, "restAPI.run {\n        if…            }\n          }");
-        ObservableExtensionsKt.appSubscribe$default(observableA, StoreOutboundPromotions.class, (Context) null, (Function1) null, new StoreOutboundPromotions$handleConnectionOpen$3(this), (Function0) null, (Function0) null, new StoreOutboundPromotions$handleConnectionOpen$4(this), 54, (Object) null);
+        Observable observableA = ObservableExtensionsKt.restSubscribeOn$default(this.previewFeatureFlag.isEnabled() ? restAPI.getAllPreviewPromotions() : restAPI.getAllActiveOutboundPromotions(), false, 1, null).A(new StoreOutboundPromotions2(this));
+        Intrinsics3.checkNotNullExpressionValue(observableA, "restAPI.run {\n        if…            }\n          }");
+        ObservableExtensionsKt.appSubscribe$default(observableA, StoreOutboundPromotions.class, (Context) null, (Function1) null, new StoreOutboundPromotions3(this), (Function0) null, (Function0) null, new StoreOutboundPromotions4(this), 54, (Object) null);
     }
 
     public final void markSeen() {
@@ -319,13 +319,13 @@ public final class StoreOutboundPromotions extends StoreV2 {
 
     public final Observable<State> observeState() {
         Observable<State> observableR = ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck.UpdateSource[]{this}, false, null, null, new AnonymousClass1(), 14, null).r();
-        m.checkNotNullExpressionValue(observableR, "observationDeck.connectR…  .distinctUntilChanged()");
+        Intrinsics3.checkNotNullExpressionValue(observableR, "observationDeck.connectR…  .distinctUntilChanged()");
         return observableR;
     }
 
     public final Observable<Integer> observeUnseenCount() {
         Observable<Integer> observableR = ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck.UpdateSource[]{this}, false, null, null, new AnonymousClass1(), 14, null).r();
-        m.checkNotNullExpressionValue(observableR, "observationDeck.connectR…  .distinctUntilChanged()");
+        Intrinsics3.checkNotNullExpressionValue(observableR, "observationDeck.connectR…  .distinctUntilChanged()");
         return observableR;
     }
 
@@ -344,17 +344,17 @@ public final class StoreOutboundPromotions extends StoreV2 {
         int i = 0;
         while (it.hasNext()) {
             if ((((OutboundPromotion) it.next()).getStartDate().getDateTimeMillis() > j) && (i = i + 1) < 0) {
-                n.throwCountOverflow();
+                Collections2.throwCountOverflow();
             }
         }
         return i;
     }
 
     public StoreOutboundPromotions(OutboundPromosPreviewFeatureFlag outboundPromosPreviewFeatureFlag, Dispatcher dispatcher, ObservationDeck observationDeck, RestAPI restAPI) {
-        m.checkNotNullParameter(outboundPromosPreviewFeatureFlag, "previewFeatureFlag");
-        m.checkNotNullParameter(dispatcher, "dispatcher");
-        m.checkNotNullParameter(observationDeck, "observationDeck");
-        m.checkNotNullParameter(restAPI, "restAPI");
+        Intrinsics3.checkNotNullParameter(outboundPromosPreviewFeatureFlag, "previewFeatureFlag");
+        Intrinsics3.checkNotNullParameter(dispatcher, "dispatcher");
+        Intrinsics3.checkNotNullParameter(observationDeck, "observationDeck");
+        Intrinsics3.checkNotNullParameter(restAPI, "restAPI");
         this.previewFeatureFlag = outboundPromosPreviewFeatureFlag;
         this.dispatcher = dispatcher;
         this.observationDeck = observationDeck;

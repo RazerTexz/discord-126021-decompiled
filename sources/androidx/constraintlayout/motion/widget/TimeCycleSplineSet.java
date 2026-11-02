@@ -5,7 +5,7 @@ import android.util.SparseArray;
 import android.view.View;
 import androidx.constraintlayout.motion.utils.CurveFit;
 import androidx.constraintlayout.widget.ConstraintAttribute;
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import java.lang.reflect.Array;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -395,7 +395,7 @@ public abstract class TimeCycleSplineSet {
     public void setup(int i) {
         int i2 = this.count;
         if (i2 == 0) {
-            StringBuilder sbU = a.U("Error no points added to ");
+            StringBuilder sbU = outline.U("Error no points added to ");
             sbU.append(this.mType);
             Log.e(TAG, sbU.toString());
             return;
@@ -448,7 +448,7 @@ public abstract class TimeCycleSplineSet {
         String string = this.mType;
         DecimalFormat decimalFormat = new DecimalFormat("##.##");
         for (int i = 0; i < this.count; i++) {
-            StringBuilder sbX = a.X(string, "[");
+            StringBuilder sbX = outline.X(string, "[");
             sbX.append(this.mTimePoints[i]);
             sbX.append(" , ");
             sbX.append(decimalFormat.format(this.mValues[i]));

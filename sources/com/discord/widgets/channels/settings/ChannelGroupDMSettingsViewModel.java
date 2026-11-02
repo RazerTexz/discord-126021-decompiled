@@ -2,8 +2,8 @@ package com.discord.widgets.channels.settings;
 
 import android.content.Context;
 import androidx.annotation.MainThread;
-import b.a.d.d0;
-import b.d.b.a.a;
+import b.a.d.AppViewModel;
+import b.d.b.a.outline;
 import com.discord.api.channel.Channel;
 import com.discord.models.domain.ModelAuditLogEntry;
 import com.discord.models.domain.ModelNotificationSettings;
@@ -14,9 +14,9 @@ import com.discord.stores.StoreUserGuildSettings;
 import com.discord.utilities.icon.IconUtils;
 import com.discord.utilities.rest.RestAPI;
 import com.discord.utilities.rx.ObservableExtensionsKt;
-import d0.g;
-import d0.z.d.m;
-import d0.z.d.o;
+import d0.LazyJVM;
+import d0.z.d.Intrinsics3;
+import d0.z.d.Lambda;
 import kotlin.Lazy;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
@@ -27,7 +27,7 @@ import rx.subjects.PublishSubject;
 
 /* JADX INFO: compiled from: ChannelGroupDMSettingsViewModel.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class ChannelGroupDMSettingsViewModel extends d0<ViewState> {
+public final class ChannelGroupDMSettingsViewModel extends AppViewModel<ViewState> {
 
     /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
     public static final Companion INSTANCE = new Companion(null);
@@ -38,7 +38,7 @@ public final class ChannelGroupDMSettingsViewModel extends d0<ViewState> {
 
     /* JADX INFO: renamed from: com.discord.widgets.channels.settings.ChannelGroupDMSettingsViewModel$1, reason: invalid class name */
     /* JADX INFO: compiled from: ChannelGroupDMSettingsViewModel.kt */
-    public final class AnonymousClass1 extends o implements Function1<StoreState, Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function1<StoreState, Unit> {
         public AnonymousClass1() {
             super(1);
         }
@@ -51,14 +51,14 @@ public final class ChannelGroupDMSettingsViewModel extends d0<ViewState> {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(StoreState storeState) {
-            m.checkNotNullParameter(storeState, "storeState");
+            Intrinsics3.checkNotNullParameter(storeState, "storeState");
             ChannelGroupDMSettingsViewModel.access$handleStoreState(ChannelGroupDMSettingsViewModel.this, storeState);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.widgets.channels.settings.ChannelGroupDMSettingsViewModel$editGroup$1, reason: invalid class name */
     /* JADX INFO: compiled from: ChannelGroupDMSettingsViewModel.kt */
-    public final class AnonymousClass1 extends o implements Function1<Channel, Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function1<Channel, Unit> {
         public final /* synthetic */ ViewState.Valid $viewState;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -76,7 +76,7 @@ public final class ChannelGroupDMSettingsViewModel extends d0<ViewState> {
         /* JADX WARN: Type inference incomplete: some casts might be missing */
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(Channel channel) {
-            m.checkNotNullParameter(channel, "it");
+            Intrinsics3.checkNotNullParameter(channel, "it");
             ChannelGroupDMSettingsViewModel.access$getEventSubject$p(ChannelGroupDMSettingsViewModel.this).k.onNext((T) Event.SettingsSaved.INSTANCE);
             ChannelGroupDMSettingsViewModel channelGroupDMSettingsViewModel = ChannelGroupDMSettingsViewModel.this;
             ViewState.Valid valid = this.$viewState;
@@ -86,7 +86,7 @@ public final class ChannelGroupDMSettingsViewModel extends d0<ViewState> {
 
     /* JADX INFO: renamed from: com.discord.widgets.channels.settings.ChannelGroupDMSettingsViewModel$leaveGroup$1, reason: invalid class name */
     /* JADX INFO: compiled from: ChannelGroupDMSettingsViewModel.kt */
-    public final class AnonymousClass1 extends o implements Function1<Channel, Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function1<Channel, Unit> {
         public AnonymousClass1() {
             super(1);
         }
@@ -100,7 +100,7 @@ public final class ChannelGroupDMSettingsViewModel extends d0<ViewState> {
         /* JADX WARN: Type inference incomplete: some casts might be missing */
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(Channel channel) {
-            m.checkNotNullParameter(channel, "it");
+            Intrinsics3.checkNotNullParameter(channel, "it");
             ChannelGroupDMSettingsViewModel.access$getEventSubject$p(ChannelGroupDMSettingsViewModel.this).k.onNext((T) Event.LeaveGroupSuccess.INSTANCE);
         }
     }
@@ -121,8 +121,8 @@ public final class ChannelGroupDMSettingsViewModel extends d0<ViewState> {
         }
 
         private final Observable<StoreState> observeStoreState(long channelId, StoreChannels storeChannels, StoreUserGuildSettings storeUserGuildSettings) {
-            Observable observableY = storeChannels.observeChannel(channelId).Y(new ChannelGroupDMSettingsViewModel$Companion$observeStoreState$1(storeUserGuildSettings));
-            m.checkNotNullExpressionValue(observableY, "storeChannels\n          …            }\n          }");
+            Observable observableY = storeChannels.observeChannel(channelId).Y(new ChannelGroupDMSettingsViewModel2(storeUserGuildSettings));
+            Intrinsics3.checkNotNullExpressionValue(observableY, "storeChannels\n          …            }\n          }");
             return observableY;
         }
 
@@ -180,8 +180,8 @@ public final class ChannelGroupDMSettingsViewModel extends d0<ViewState> {
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
             public Valid(Channel channel, ModelNotificationSettings modelNotificationSettings) {
                 super(null);
-                m.checkNotNullParameter(channel, "channel");
-                m.checkNotNullParameter(modelNotificationSettings, "notificationSettings");
+                Intrinsics3.checkNotNullParameter(channel, "channel");
+                Intrinsics3.checkNotNullParameter(modelNotificationSettings, "notificationSettings");
                 this.channel = channel;
                 this.notificationSettings = modelNotificationSettings;
             }
@@ -197,8 +197,8 @@ public final class ChannelGroupDMSettingsViewModel extends d0<ViewState> {
             }
 
             public final Valid copy(Channel channel, ModelNotificationSettings notificationSettings) {
-                m.checkNotNullParameter(channel, "channel");
-                m.checkNotNullParameter(notificationSettings, "notificationSettings");
+                Intrinsics3.checkNotNullParameter(channel, "channel");
+                Intrinsics3.checkNotNullParameter(notificationSettings, "notificationSettings");
                 return new Valid(channel, notificationSettings);
             }
 
@@ -210,7 +210,7 @@ public final class ChannelGroupDMSettingsViewModel extends d0<ViewState> {
                     return false;
                 }
                 Valid valid = (Valid) other;
-                return m.areEqual(this.channel, valid.channel) && m.areEqual(this.notificationSettings, valid.notificationSettings);
+                return Intrinsics3.areEqual(this.channel, valid.channel) && Intrinsics3.areEqual(this.notificationSettings, valid.notificationSettings);
             }
 
             /* JADX INFO: renamed from: component1, reason: from getter */
@@ -239,7 +239,7 @@ public final class ChannelGroupDMSettingsViewModel extends d0<ViewState> {
             }
 
             public String toString() {
-                StringBuilder sbU = a.U("Valid(channel=");
+                StringBuilder sbU = outline.U("Valid(channel=");
                 sbU.append(this.channel);
                 sbU.append(", notificationSettings=");
                 sbU.append(this.notificationSettings);
@@ -281,12 +281,12 @@ public final class ChannelGroupDMSettingsViewModel extends d0<ViewState> {
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
             public Valid(ChannelSettings channelSettings, String str, String str2) {
                 super(null);
-                m.checkNotNullParameter(channelSettings, "channelSettings");
+                Intrinsics3.checkNotNullParameter(channelSettings, "channelSettings");
                 this.channelSettings = channelSettings;
                 this.originalIconUrl = str;
                 this.editedIconUrl = str2;
-                this.hasUnsavedIconChange = !m.areEqual(str, str2);
-                this.isDefaultPhoto = g.lazy(new ChannelGroupDMSettingsViewModel$ViewState$Valid$isDefaultPhoto$2(this));
+                this.hasUnsavedIconChange = !Intrinsics3.areEqual(str, str2);
+                this.isDefaultPhoto = LazyJVM.lazy(new ChannelGroupDMSettingsViewModel3(this));
             }
 
             public static /* synthetic */ Valid copy$default(Valid valid, ChannelSettings channelSettings, String str, String str2, int i, Object obj) {
@@ -303,7 +303,7 @@ public final class ChannelGroupDMSettingsViewModel extends d0<ViewState> {
             }
 
             public final Valid copy(ChannelSettings channelSettings, String originalIconUrl, String editedIconUrl) {
-                m.checkNotNullParameter(channelSettings, "channelSettings");
+                Intrinsics3.checkNotNullParameter(channelSettings, "channelSettings");
                 return new Valid(channelSettings, originalIconUrl, editedIconUrl);
             }
 
@@ -315,7 +315,7 @@ public final class ChannelGroupDMSettingsViewModel extends d0<ViewState> {
                     return false;
                 }
                 Valid valid = (Valid) other;
-                return m.areEqual(this.channelSettings, valid.channelSettings) && m.areEqual(this.originalIconUrl, valid.originalIconUrl) && m.areEqual(this.editedIconUrl, valid.editedIconUrl);
+                return Intrinsics3.areEqual(this.channelSettings, valid.channelSettings) && Intrinsics3.areEqual(this.originalIconUrl, valid.originalIconUrl) && Intrinsics3.areEqual(this.editedIconUrl, valid.editedIconUrl);
             }
 
             /* JADX INFO: renamed from: component1, reason: from getter */
@@ -371,12 +371,12 @@ public final class ChannelGroupDMSettingsViewModel extends d0<ViewState> {
             }
 
             public String toString() {
-                StringBuilder sbU = a.U("Valid(channelSettings=");
+                StringBuilder sbU = outline.U("Valid(channelSettings=");
                 sbU.append(this.channelSettings);
                 sbU.append(", originalIconUrl=");
                 sbU.append(this.originalIconUrl);
                 sbU.append(", editedIconUrl=");
-                return a.J(sbU, this.editedIconUrl, ")");
+                return outline.J(sbU, this.editedIconUrl, ")");
             }
         }
 
@@ -427,7 +427,7 @@ public final class ChannelGroupDMSettingsViewModel extends d0<ViewState> {
 
     @MainThread
     private final void handleStoreState(StoreState storeState) {
-        if (m.areEqual(storeState, StoreState.Invalid.INSTANCE)) {
+        if (Intrinsics3.areEqual(storeState, StoreState.Invalid.INSTANCE)) {
             updateViewState(ViewState.Invalid.INSTANCE);
             return;
         }
@@ -455,13 +455,13 @@ public final class ChannelGroupDMSettingsViewModel extends d0<ViewState> {
     @MainThread
     public final Observable<Event> observeEvents() {
         PublishSubject<Event> publishSubject = this.eventSubject;
-        m.checkNotNullExpressionValue(publishSubject, "eventSubject");
+        Intrinsics3.checkNotNullExpressionValue(publishSubject, "eventSubject");
         return publishSubject;
     }
 
     @MainThread
     public final void onIconEdited(String iconUrl) {
-        m.checkNotNullParameter(iconUrl, "iconUrl");
+        Intrinsics3.checkNotNullParameter(iconUrl, "iconUrl");
         ViewState viewState = getViewState();
         if (!(viewState instanceof ViewState.Valid)) {
             viewState = null;
@@ -485,16 +485,16 @@ public final class ChannelGroupDMSettingsViewModel extends d0<ViewState> {
     }
 
     public final void unmute(Context context) {
-        m.checkNotNullParameter(context, "context");
+        Intrinsics3.checkNotNullParameter(context, "context");
         this.storeUserGuildSettings.setChannelMuted(context, this.channelId, false, null);
     }
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public ChannelGroupDMSettingsViewModel(long j, RestAPI restAPI, StoreUserGuildSettings storeUserGuildSettings, Observable<StoreState> observable) {
         super(null, 1, null);
-        m.checkNotNullParameter(restAPI, "restApi");
-        m.checkNotNullParameter(storeUserGuildSettings, "storeUserGuildSettings");
-        m.checkNotNullParameter(observable, "storeStateObservable");
+        Intrinsics3.checkNotNullParameter(restAPI, "restApi");
+        Intrinsics3.checkNotNullParameter(storeUserGuildSettings, "storeUserGuildSettings");
+        Intrinsics3.checkNotNullParameter(observable, "storeStateObservable");
         this.channelId = j;
         this.restApi = restAPI;
         this.storeUserGuildSettings = storeUserGuildSettings;

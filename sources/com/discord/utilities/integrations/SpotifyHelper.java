@@ -15,9 +15,9 @@ import com.discord.utilities.receiver.spotify.SpotifyPlayingStateReceiver;
 import com.discord.utilities.rest.RestAPI;
 import com.discord.utilities.rx.ObservableExtensionsKt;
 import com.discord.utilities.uri.UriHandler;
-import d0.y.b;
-import d0.z.d.m;
-import d0.z.d.o;
+import d0.y.Closeable;
+import d0.z.d.Intrinsics3;
+import d0.z.d.Lambda;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.net.URL;
@@ -34,7 +34,7 @@ public final class SpotifyHelper {
 
     /* JADX INFO: renamed from: com.discord.utilities.integrations.SpotifyHelper$launchAlbum$1, reason: invalid class name */
     /* JADX INFO: compiled from: SpotifyHelper.kt */
-    public final class AnonymousClass1 extends o implements Function0<Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function0<Unit> {
         public final /* synthetic */ long $applicationId;
         public final /* synthetic */ Context $context;
         public final /* synthetic */ String $sessionId;
@@ -42,8 +42,8 @@ public final class SpotifyHelper {
 
         /* JADX INFO: renamed from: com.discord.utilities.integrations.SpotifyHelper$launchAlbum$1$1, reason: invalid class name and collision with other inner class name */
         /* JADX INFO: compiled from: SpotifyHelper.kt */
-        public final class C03361 extends o implements Function1<ActivityMetadata, Unit> {
-            public C03361() {
+        public final class C02161 extends Lambda implements Function1<ActivityMetadata, Unit> {
+            public C02161() {
                 super(1);
             }
 
@@ -80,7 +80,7 @@ public final class SpotifyHelper {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2() {
-            ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui(ObservableExtensionsKt.restSubscribeOn$default(RestAPI.INSTANCE.getApi().getActivityMetadata(this.$userId, this.$sessionId, this.$applicationId), false, 1, null)), this.$context, "REST: Spotify GetActivityMetadata", (Function1) null, new C03361(), (Function1) null, (Function0) null, (Function0) null, 116, (Object) null);
+            ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui(ObservableExtensionsKt.restSubscribeOn$default(RestAPI.INSTANCE.getApi().getActivityMetadata(this.$userId, this.$sessionId, this.$applicationId), false, 1, null)), this.$context, "REST: Spotify GetActivityMetadata", (Function1) null, new C02161(), (Function1) null, (Function0) null, (Function0) null, 116, (Object) null);
         }
     }
 
@@ -96,7 +96,7 @@ public final class SpotifyHelper {
         @Override // java.lang.Runnable
         public final void run() throws IllegalAccessException, InvocationTargetException {
             try {
-                b.closeFinally(new URL("https://app.adjust.com/ndjczk?campaign=" + this.$context.getPackageName()).openStream(), null);
+                Closeable.closeFinally(new URL("https://app.adjust.com/ndjczk?campaign=" + this.$context.getPackageName()).openStream(), null);
             } catch (IOException e) {
                 Log.w("SPOTIFY", "Couldn't open tracking url", e);
             }
@@ -111,7 +111,7 @@ public final class SpotifyHelper {
     }
 
     public final boolean isSpotifyInstalled(Context context) {
-        m.checkNotNullParameter(context, "context");
+        Intrinsics3.checkNotNullParameter(context, "context");
         try {
             context.getPackageManager().getPackageInfo(SPOTIFY_PACKAGE_NAME, 0);
             return true;
@@ -123,7 +123,7 @@ public final class SpotifyHelper {
     public final void launchAlbum(Context context, Activity activity, long userId, boolean isMe) {
         String sessionId;
         Long applicationId;
-        m.checkNotNullParameter(context, "context");
+        Intrinsics3.checkNotNullParameter(context, "context");
         if (isMe) {
             openSpotifyApp(context);
         } else {
@@ -148,21 +148,21 @@ public final class SpotifyHelper {
 
     public final void launchTrack(Context context, Activity activity) {
         String syncId;
-        m.checkNotNullParameter(context, "context");
+        Intrinsics3.checkNotNullParameter(context, "context");
         if (activity == null || (syncId = activity.getSyncId()) == null) {
             return;
         }
-        INSTANCE.runIfSpotifyInstalled(new SpotifyHelper$launchTrack$$inlined$let$lambda$1(syncId, context), context);
+        INSTANCE.runIfSpotifyInstalled(new SpotifyHelper2(syncId, context), context);
     }
 
     public final void openPlayStoreForSpotify(Context context) {
-        m.checkNotNullParameter(context, "context");
+        Intrinsics3.checkNotNullParameter(context, "context");
         new Thread(new AnonymousClass1(context)).start();
         UriHandler.handle$default(UriHandler.INSTANCE, context, "https://play.google.com/store/apps/details?id=com.spotify.music&utm_source=discord&utm_medium=mobile", false, false, null, 28, null);
     }
 
     public final void openSpotifyApp(Context context) {
-        m.checkNotNullParameter(context, "context");
+        Intrinsics3.checkNotNullParameter(context, "context");
         Intent launchIntentForPackage = context.getPackageManager().getLaunchIntentForPackage(SPOTIFY_PACKAGE_NAME);
         if (launchIntentForPackage != null) {
             context.startActivity(launchIntentForPackage);
@@ -170,7 +170,7 @@ public final class SpotifyHelper {
     }
 
     public static final void registerSpotifyBroadcastReceivers(Context context) {
-        m.checkNotNullParameter(context, "context");
+        Intrinsics3.checkNotNullParameter(context, "context");
         context.registerReceiver(new SpotifyMetadataReceiver(), new IntentFilter("com.spotify.music.metadatachanged"));
         context.registerReceiver(new SpotifyPlayingStateReceiver(), new IntentFilter("com.spotify.music.playbackstatechanged"));
     }

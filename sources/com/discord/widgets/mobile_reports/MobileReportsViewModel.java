@@ -2,8 +2,8 @@ package com.discord.widgets.mobile_reports;
 
 import android.content.Context;
 import androidx.core.app.NotificationCompat;
-import b.a.d.d0;
-import b.d.b.a.a;
+import b.a.d.AppViewModel;
+import b.d.b.a.outline;
 import com.discord.R;
 import com.discord.api.channel.Channel;
 import com.discord.api.directory.DirectoryEntryGuild;
@@ -42,10 +42,11 @@ import com.discord.utilities.textprocessing.MessageRenderContext;
 import com.discord.utilities.time.Clock;
 import com.discord.utilities.time.ClockFactory;
 import com.facebook.drawee.span.DraweeSpanStringBuilder;
-import d0.o;
-import d0.t.n;
-import d0.t.u;
-import d0.z.d.m;
+import d0.Tuples;
+import d0.t.Collections2;
+import d0.t._Collections;
+import d0.z.d.Intrinsics3;
+import d0.z.d.Lambda;
 import java.lang.ref.WeakReference;
 import java.util.Collection;
 import java.util.HashMap;
@@ -55,7 +56,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import kotlin.NoWhenBranchMatchedException;
-import kotlin.Pair;
+import kotlin.Tuples2;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
@@ -66,34 +67,34 @@ import rx.functions.Func2;
 
 /* JADX INFO: compiled from: MobileReportsViewModel.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class MobileReportsViewModel extends d0<ViewState> {
+public final class MobileReportsViewModel extends AppViewModel<ViewState> {
 
     /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
     public static final Companion INSTANCE = new Companion(null);
-    private final MobileReportArgs args;
+    private final WidgetMobileReports2 args;
     private final Clock clock;
     private final WeakReference<Context> context;
     private final RestAPI restAPI;
 
     /* JADX INFO: renamed from: com.discord.widgets.mobile_reports.MobileReportsViewModel$1, reason: invalid class name */
     /* JADX INFO: compiled from: MobileReportsViewModel.kt */
-    public final class AnonymousClass1<T1, T2, R> implements Func2<StoreState, MenuAPIResponse, Pair<? extends StoreState, ? extends MenuAPIResponse>> {
+    public final class AnonymousClass1<T1, T2, R> implements Func2<StoreState, MenuAPIResponse, Tuples2<? extends StoreState, ? extends MenuAPIResponse>> {
         public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
 
         @Override // rx.functions.Func2
-        public /* bridge */ /* synthetic */ Pair<? extends StoreState, ? extends MenuAPIResponse> call(StoreState storeState, MenuAPIResponse menuAPIResponse) {
+        public /* bridge */ /* synthetic */ Tuples2<? extends StoreState, ? extends MenuAPIResponse> call(StoreState storeState, MenuAPIResponse menuAPIResponse) {
             return call2(storeState, menuAPIResponse);
         }
 
         /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
-        public final Pair<StoreState, MenuAPIResponse> call2(StoreState storeState, MenuAPIResponse menuAPIResponse) {
-            return o.to(storeState, menuAPIResponse);
+        public final Tuples2<StoreState, MenuAPIResponse> call2(StoreState storeState, MenuAPIResponse menuAPIResponse) {
+            return Tuples.to(storeState, menuAPIResponse);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.widgets.mobile_reports.MobileReportsViewModel$handleBlockUser$1, reason: invalid class name */
     /* JADX INFO: compiled from: MobileReportsViewModel.kt */
-    public final class AnonymousClass1 extends d0.z.d.o implements Function1<Void, Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function1<Void, Unit> {
         public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
 
         public AnonymousClass1() {
@@ -113,7 +114,7 @@ public final class MobileReportsViewModel extends d0<ViewState> {
 
     /* JADX INFO: renamed from: com.discord.widgets.mobile_reports.MobileReportsViewModel$handleSubmit$1, reason: invalid class name */
     /* JADX INFO: compiled from: MobileReportsViewModel.kt */
-    public final class AnonymousClass1 extends d0.z.d.o implements Function1<Unit, Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function1<Unit, Unit> {
         public final /* synthetic */ ViewState.Menu $currentViewState;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -130,29 +131,29 @@ public final class MobileReportsViewModel extends d0<ViewState> {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(Unit unit) {
-            m.checkNotNullParameter(unit, "it");
+            Intrinsics3.checkNotNullParameter(unit, "it");
             MobileReportsViewModel.this.handleNext(new ReportNodeChild("", this.$currentViewState.getMenu().getSuccess_node_id()), null);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.widgets.mobile_reports.MobileReportsViewModel$2, reason: invalid class name */
     /* JADX INFO: compiled from: MobileReportsViewModel.kt */
-    public final class AnonymousClass2 extends d0.z.d.o implements Function1<Pair<? extends StoreState, ? extends MenuAPIResponse>, Unit> {
+    public final class AnonymousClass2 extends Lambda implements Function1<Tuples2<? extends StoreState, ? extends MenuAPIResponse>, Unit> {
         public AnonymousClass2() {
             super(1);
         }
 
         @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Pair<? extends StoreState, ? extends MenuAPIResponse> pair) {
-            invoke2((Pair<StoreState, MenuAPIResponse>) pair);
+        public /* bridge */ /* synthetic */ Unit invoke(Tuples2<? extends StoreState, ? extends MenuAPIResponse> tuples2) {
+            invoke2((Tuples2<StoreState, MenuAPIResponse>) tuples2);
             return Unit.a;
         }
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Pair<StoreState, MenuAPIResponse> pair) {
+        public final void invoke2(Tuples2<StoreState, MenuAPIResponse> tuples2) {
             ReportNode reportNode;
-            StoreState storeStateComponent1 = pair.component1();
-            MenuAPIResponse menuAPIResponseComponent2 = pair.component2();
+            StoreState storeStateComponent1 = tuples2.component1();
+            MenuAPIResponse menuAPIResponseComponent2 = tuples2.component2();
             if (menuAPIResponseComponent2 != null) {
                 reportNode = menuAPIResponseComponent2.c().get(Integer.valueOf(menuAPIResponseComponent2.getRoot_node_id()));
             } else {
@@ -163,12 +164,12 @@ public final class MobileReportsViewModel extends d0<ViewState> {
                 return;
             }
             MobileReportsViewModel mobileReportsViewModel = MobileReportsViewModel.this;
-            m.checkNotNullExpressionValue(storeStateComponent1, "storeState");
+            Intrinsics3.checkNotNullExpressionValue(storeStateComponent1, "storeState");
             MessagePreview messagePreviewAccess$parseMessagePreview = MobileReportsViewModel.access$parseMessagePreview(mobileReportsViewModel, storeStateComponent1);
             MobileReportsViewModel mobileReportsViewModel2 = MobileReportsViewModel.this;
             ViewState viewStateAccess$getViewState$p = MobileReportsViewModel.access$getViewState$p(mobileReportsViewModel2);
             if (viewStateAccess$getViewState$p == null) {
-                viewStateAccess$getViewState$p = new ViewState.Menu(menuAPIResponseComponent2, messagePreviewAccess$parseMessagePreview, MobileReportsViewModel.access$parseChannelPreview(MobileReportsViewModel.this, storeStateComponent1), MobileReportsViewModel.access$parseDirectoryServerPreview(MobileReportsViewModel.this, storeStateComponent1), MobileReportsViewModel.access$parseEventPreview(MobileReportsViewModel.this, storeStateComponent1), new NodeNavigationType.Initial(reportNode), null, n.emptyList(), messagePreviewAccess$parseMessagePreview != null ? new BlockUserElement(storeStateComponent1.getBlockedUsers().containsKey(Long.valueOf(messagePreviewAccess$parseMessagePreview.getAuthor().getId())), messagePreviewAccess$parseMessagePreview.getAuthor()) : null, 64, null);
+                viewStateAccess$getViewState$p = new ViewState.Menu(menuAPIResponseComponent2, messagePreviewAccess$parseMessagePreview, MobileReportsViewModel.access$parseChannelPreview(MobileReportsViewModel.this, storeStateComponent1), MobileReportsViewModel.access$parseDirectoryServerPreview(MobileReportsViewModel.this, storeStateComponent1), MobileReportsViewModel.access$parseEventPreview(MobileReportsViewModel.this, storeStateComponent1), new NodeNavigationType.Initial(reportNode), null, Collections2.emptyList(), messagePreviewAccess$parseMessagePreview != null ? new BlockUserElement(storeStateComponent1.getBlockedUsers().containsKey(Long.valueOf(messagePreviewAccess$parseMessagePreview.getAuthor().getId())), messagePreviewAccess$parseMessagePreview.getAuthor()) : null, 64, null);
             }
             MobileReportsViewModel.access$updateViewState(mobileReportsViewModel2, viewStateAccess$getViewState$p);
         }
@@ -176,7 +177,7 @@ public final class MobileReportsViewModel extends d0<ViewState> {
 
     /* JADX INFO: renamed from: com.discord.widgets.mobile_reports.MobileReportsViewModel$handleSubmit$2, reason: invalid class name */
     /* JADX INFO: compiled from: MobileReportsViewModel.kt */
-    public final class AnonymousClass2 extends d0.z.d.o implements Function1<Error, Unit> {
+    public final class AnonymousClass2 extends Lambda implements Function1<Error, Unit> {
         public final /* synthetic */ ViewState.Menu $currentViewState;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -193,14 +194,14 @@ public final class MobileReportsViewModel extends d0<ViewState> {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(Error error) {
-            m.checkNotNullParameter(error, "it");
+            Intrinsics3.checkNotNullParameter(error, "it");
             MobileReportsViewModel.access$updateViewState(MobileReportsViewModel.this, ViewState.Menu.copy$default(this.$currentViewState, null, null, null, null, null, null, SubmitState.Error.INSTANCE, null, null, 447, null));
         }
     }
 
     /* JADX INFO: renamed from: com.discord.widgets.mobile_reports.MobileReportsViewModel$3, reason: invalid class name */
     /* JADX INFO: compiled from: MobileReportsViewModel.kt */
-    public final class AnonymousClass3 extends d0.z.d.o implements Function1<Error, Unit> {
+    public final class AnonymousClass3 extends Lambda implements Function1<Error, Unit> {
         public AnonymousClass3() {
             super(1);
         }
@@ -213,7 +214,7 @@ public final class MobileReportsViewModel extends d0<ViewState> {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(Error error) {
-            m.checkNotNullParameter(error, "it");
+            Intrinsics3.checkNotNullParameter(error, "it");
             Logger.e$default(AppLog.g, "Can't parse report message? Closing report screen.", null, null, 6, null);
             MobileReportsViewModel.access$updateViewState(MobileReportsViewModel.this, ViewState.Invalid.INSTANCE);
         }
@@ -225,7 +226,7 @@ public final class MobileReportsViewModel extends d0<ViewState> {
         private final User user;
 
         public BlockUserElement(boolean z2, User user) {
-            m.checkNotNullParameter(user, "user");
+            Intrinsics3.checkNotNullParameter(user, "user");
             this.isBlocked = z2;
             this.user = user;
         }
@@ -241,7 +242,7 @@ public final class MobileReportsViewModel extends d0<ViewState> {
         }
 
         public final BlockUserElement copy(boolean isBlocked, User user) {
-            m.checkNotNullParameter(user, "user");
+            Intrinsics3.checkNotNullParameter(user, "user");
             return new BlockUserElement(isBlocked, user);
         }
 
@@ -253,7 +254,7 @@ public final class MobileReportsViewModel extends d0<ViewState> {
                 return false;
             }
             BlockUserElement blockUserElement = (BlockUserElement) other;
-            return this.isBlocked == blockUserElement.isBlocked && m.areEqual(this.user, blockUserElement.user);
+            return this.isBlocked == blockUserElement.isBlocked && Intrinsics3.areEqual(this.user, blockUserElement.user);
         }
 
         /* JADX INFO: renamed from: component1, reason: from getter */
@@ -290,7 +291,7 @@ public final class MobileReportsViewModel extends d0<ViewState> {
         }
 
         public String toString() {
-            StringBuilder sbU = a.U("BlockUserElement(isBlocked=");
+            StringBuilder sbU = outline.U("BlockUserElement(isBlocked=");
             sbU.append(this.isBlocked);
             sbU.append(", user=");
             sbU.append(this.user);
@@ -305,8 +306,8 @@ public final class MobileReportsViewModel extends d0<ViewState> {
         private final StageInstance stageInstance;
 
         public ChannelPreview(Guild guild, StageInstance stageInstance) {
-            m.checkNotNullParameter(guild, "guild");
-            m.checkNotNullParameter(stageInstance, "stageInstance");
+            Intrinsics3.checkNotNullParameter(guild, "guild");
+            Intrinsics3.checkNotNullParameter(stageInstance, "stageInstance");
             this.guild = guild;
             this.stageInstance = stageInstance;
         }
@@ -322,8 +323,8 @@ public final class MobileReportsViewModel extends d0<ViewState> {
         }
 
         public final ChannelPreview copy(Guild guild, StageInstance stageInstance) {
-            m.checkNotNullParameter(guild, "guild");
-            m.checkNotNullParameter(stageInstance, "stageInstance");
+            Intrinsics3.checkNotNullParameter(guild, "guild");
+            Intrinsics3.checkNotNullParameter(stageInstance, "stageInstance");
             return new ChannelPreview(guild, stageInstance);
         }
 
@@ -335,7 +336,7 @@ public final class MobileReportsViewModel extends d0<ViewState> {
                 return false;
             }
             ChannelPreview channelPreview = (ChannelPreview) other;
-            return m.areEqual(this.guild, channelPreview.guild) && m.areEqual(this.stageInstance, channelPreview.stageInstance);
+            return Intrinsics3.areEqual(this.guild, channelPreview.guild) && Intrinsics3.areEqual(this.stageInstance, channelPreview.stageInstance);
         }
 
         /* JADX INFO: renamed from: component1, reason: from getter */
@@ -364,7 +365,7 @@ public final class MobileReportsViewModel extends d0<ViewState> {
         }
 
         public String toString() {
-            StringBuilder sbU = a.U("ChannelPreview(guild=");
+            StringBuilder sbU = outline.U("ChannelPreview(guild=");
             sbU.append(this.guild);
             sbU.append(", stageInstance=");
             sbU.append(this.stageInstance);
@@ -380,9 +381,9 @@ public final class MobileReportsViewModel extends d0<ViewState> {
         private final HashSet<ReportNodeElementData> selections;
 
         public CheckboxElement(String str, List<ReportNodeElementData> list, HashSet<ReportNodeElementData> hashSet) {
-            m.checkNotNullParameter(str, ModelAuditLogEntry.CHANGE_KEY_NAME);
-            m.checkNotNullParameter(list, "data");
-            m.checkNotNullParameter(hashSet, "selections");
+            Intrinsics3.checkNotNullParameter(str, ModelAuditLogEntry.CHANGE_KEY_NAME);
+            Intrinsics3.checkNotNullParameter(list, "data");
+            Intrinsics3.checkNotNullParameter(hashSet, "selections");
             this.name = str;
             this.data = list;
             this.selections = hashSet;
@@ -411,9 +412,9 @@ public final class MobileReportsViewModel extends d0<ViewState> {
         }
 
         public final CheckboxElement copy(String name, List<ReportNodeElementData> data, HashSet<ReportNodeElementData> selections) {
-            m.checkNotNullParameter(name, ModelAuditLogEntry.CHANGE_KEY_NAME);
-            m.checkNotNullParameter(data, "data");
-            m.checkNotNullParameter(selections, "selections");
+            Intrinsics3.checkNotNullParameter(name, ModelAuditLogEntry.CHANGE_KEY_NAME);
+            Intrinsics3.checkNotNullParameter(data, "data");
+            Intrinsics3.checkNotNullParameter(selections, "selections");
             return new CheckboxElement(name, data, selections);
         }
 
@@ -425,7 +426,7 @@ public final class MobileReportsViewModel extends d0<ViewState> {
                 return false;
             }
             CheckboxElement checkboxElement = (CheckboxElement) other;
-            return m.areEqual(this.name, checkboxElement.name) && m.areEqual(this.data, checkboxElement.data) && m.areEqual(this.selections, checkboxElement.selections);
+            return Intrinsics3.areEqual(this.name, checkboxElement.name) && Intrinsics3.areEqual(this.data, checkboxElement.data) && Intrinsics3.areEqual(this.selections, checkboxElement.selections);
         }
 
         public final List<ReportNodeElementData> getData() {
@@ -455,7 +456,7 @@ public final class MobileReportsViewModel extends d0<ViewState> {
         }
 
         public String toString() {
-            StringBuilder sbU = a.U("CheckboxElement(name=");
+            StringBuilder sbU = outline.U("CheckboxElement(name=");
             sbU.append(this.name);
             sbU.append(", data=");
             sbU.append(this.data);
@@ -475,19 +476,19 @@ public final class MobileReportsViewModel extends d0<ViewState> {
             return companion.getLocation(reportNode);
         }
 
-        public static final /* synthetic */ Observable access$getStoreState(Companion companion, MobileReportArgs mobileReportArgs) {
-            return companion.getStoreState(mobileReportArgs);
+        public static final /* synthetic */ Observable access$getStoreState(Companion companion, WidgetMobileReports2 widgetMobileReports2) {
+            return companion.getStoreState(widgetMobileReports2);
         }
 
         private final String getLocation(ReportNode node) {
             return "REPORT_MENU_NODE_" + node + ".id";
         }
 
-        private final Observable<StoreState> getStoreState(MobileReportArgs args) {
+        private final Observable<StoreState> getStoreState(WidgetMobileReports2 args) {
             StoreStream.Companion companion = StoreStream.INSTANCE;
             StoreMessages messages = companion.getMessages();
             long channelId = args.getChannelId();
-            MobileReportArgs.Message message = (MobileReportArgs.Message) (!(args instanceof MobileReportArgs.Message) ? null : args);
+            WidgetMobileReports2.Message message = (WidgetMobileReports2.Message) (!(args instanceof WidgetMobileReports2.Message) ? null : args);
             Observable<Message> observableObserveMessagesForChannel = messages.observeMessagesForChannel(channelId, message != null ? message.getMessageId() : -1L);
             Observable<Channel> observableObserveChannel = companion.getChannels().observeChannel(args.getChannelId());
             Observable<Guild> observableObserveFromChannelId = companion.getGuilds().observeFromChannelId(args.getChannelId());
@@ -495,15 +496,15 @@ public final class MobileReportsViewModel extends d0<ViewState> {
             Observable<Map<Long, Integer>> observableObserveForType = companion.getUserRelationships().observeForType(2);
             Observable<RestCallState<List<DirectoryEntryGuild>>> observableObserveDirectoriesForChannel = companion.getDirectories().observeDirectoriesForChannel(args.getChannelId());
             StoreGuildScheduledEvents guildScheduledEvents = companion.getGuildScheduledEvents();
-            boolean z2 = args instanceof MobileReportArgs.GuildScheduledEvent;
-            MobileReportArgs.GuildScheduledEvent guildScheduledEvent = (MobileReportArgs.GuildScheduledEvent) (!z2 ? null : args);
+            boolean z2 = args instanceof WidgetMobileReports2.GuildScheduledEvent;
+            WidgetMobileReports2.GuildScheduledEvent guildScheduledEvent = (WidgetMobileReports2.GuildScheduledEvent) (!z2 ? null : args);
             Long lValueOf = guildScheduledEvent != null ? Long.valueOf(guildScheduledEvent.getEventId()) : null;
-            MobileReportArgs.GuildScheduledEvent guildScheduledEvent2 = (MobileReportArgs.GuildScheduledEvent) (!z2 ? null : args);
+            WidgetMobileReports2.GuildScheduledEvent guildScheduledEvent2 = (WidgetMobileReports2.GuildScheduledEvent) (!z2 ? null : args);
             Observable<GuildScheduledEvent> observableObserveGuildScheduledEvent = guildScheduledEvents.observeGuildScheduledEvent(lValueOf, guildScheduledEvent2 != null ? Long.valueOf(guildScheduledEvent2.getGuildId()) : null);
             StoreGuilds guilds = companion.getGuilds();
-            MobileReportArgs.GuildScheduledEvent guildScheduledEvent3 = (MobileReportArgs.GuildScheduledEvent) (z2 ? args : null);
-            Observable<StoreState> observableD = Observable.d(observableObserveMessagesForChannel, observableObserveChannel, observableObserveFromChannelId, observableObserveStageInstanceForChannel, observableObserveForType, observableObserveDirectoriesForChannel, observableObserveGuildScheduledEvent, guilds.observeGuild(guildScheduledEvent3 != null ? guildScheduledEvent3.getGuildId() : -1L), new MobileReportsViewModel$Companion$getStoreState$1(args));
-            m.checkNotNullExpressionValue(observableD, "Observable.combineLatest…nt = event,\n      )\n    }");
+            WidgetMobileReports2.GuildScheduledEvent guildScheduledEvent3 = (WidgetMobileReports2.GuildScheduledEvent) (z2 ? args : null);
+            Observable<StoreState> observableD = Observable.d(observableObserveMessagesForChannel, observableObserveChannel, observableObserveFromChannelId, observableObserveStageInstanceForChannel, observableObserveForType, observableObserveDirectoriesForChannel, observableObserveGuildScheduledEvent, guilds.observeGuild(guildScheduledEvent3 != null ? guildScheduledEvent3.getGuildId() : -1L), new MobileReportsViewModel2(args));
+            Intrinsics3.checkNotNullExpressionValue(observableD, "Observable.combineLatest…nt = event,\n      )\n    }");
             return observableD;
         }
 
@@ -518,8 +519,8 @@ public final class MobileReportsViewModel extends d0<ViewState> {
         private final Guild hub;
 
         public DirectoryServerPreview(Guild guild, DirectoryEntryGuild directoryEntryGuild) {
-            m.checkNotNullParameter(guild, "hub");
-            m.checkNotNullParameter(directoryEntryGuild, "directoryEntry");
+            Intrinsics3.checkNotNullParameter(guild, "hub");
+            Intrinsics3.checkNotNullParameter(directoryEntryGuild, "directoryEntry");
             this.hub = guild;
             this.directoryEntry = directoryEntryGuild;
         }
@@ -535,8 +536,8 @@ public final class MobileReportsViewModel extends d0<ViewState> {
         }
 
         public final DirectoryServerPreview copy(Guild hub, DirectoryEntryGuild directoryEntry) {
-            m.checkNotNullParameter(hub, "hub");
-            m.checkNotNullParameter(directoryEntry, "directoryEntry");
+            Intrinsics3.checkNotNullParameter(hub, "hub");
+            Intrinsics3.checkNotNullParameter(directoryEntry, "directoryEntry");
             return new DirectoryServerPreview(hub, directoryEntry);
         }
 
@@ -548,7 +549,7 @@ public final class MobileReportsViewModel extends d0<ViewState> {
                 return false;
             }
             DirectoryServerPreview directoryServerPreview = (DirectoryServerPreview) other;
-            return m.areEqual(this.hub, directoryServerPreview.hub) && m.areEqual(this.directoryEntry, directoryServerPreview.directoryEntry);
+            return Intrinsics3.areEqual(this.hub, directoryServerPreview.hub) && Intrinsics3.areEqual(this.directoryEntry, directoryServerPreview.directoryEntry);
         }
 
         /* JADX INFO: renamed from: component2, reason: from getter */
@@ -577,7 +578,7 @@ public final class MobileReportsViewModel extends d0<ViewState> {
         }
 
         public String toString() {
-            StringBuilder sbU = a.U("DirectoryServerPreview(hub=");
+            StringBuilder sbU = outline.U("DirectoryServerPreview(hub=");
             sbU.append(this.hub);
             sbU.append(", directoryEntry=");
             sbU.append(this.directoryEntry);
@@ -592,8 +593,8 @@ public final class MobileReportsViewModel extends d0<ViewState> {
         private final Guild guild;
 
         public GuildScheduledEventPreview(Guild guild, GuildScheduledEvent guildScheduledEvent) {
-            m.checkNotNullParameter(guild, "guild");
-            m.checkNotNullParameter(guildScheduledEvent, "event");
+            Intrinsics3.checkNotNullParameter(guild, "guild");
+            Intrinsics3.checkNotNullParameter(guildScheduledEvent, "event");
             this.guild = guild;
             this.event = guildScheduledEvent;
         }
@@ -609,8 +610,8 @@ public final class MobileReportsViewModel extends d0<ViewState> {
         }
 
         public final GuildScheduledEventPreview copy(Guild guild, GuildScheduledEvent event) {
-            m.checkNotNullParameter(guild, "guild");
-            m.checkNotNullParameter(event, "event");
+            Intrinsics3.checkNotNullParameter(guild, "guild");
+            Intrinsics3.checkNotNullParameter(event, "event");
             return new GuildScheduledEventPreview(guild, event);
         }
 
@@ -622,7 +623,7 @@ public final class MobileReportsViewModel extends d0<ViewState> {
                 return false;
             }
             GuildScheduledEventPreview guildScheduledEventPreview = (GuildScheduledEventPreview) other;
-            return m.areEqual(this.guild, guildScheduledEventPreview.guild) && m.areEqual(this.event, guildScheduledEventPreview.event);
+            return Intrinsics3.areEqual(this.guild, guildScheduledEventPreview.guild) && Intrinsics3.areEqual(this.event, guildScheduledEventPreview.event);
         }
 
         /* JADX INFO: renamed from: component2, reason: from getter */
@@ -651,7 +652,7 @@ public final class MobileReportsViewModel extends d0<ViewState> {
         }
 
         public String toString() {
-            StringBuilder sbU = a.U("GuildScheduledEventPreview(guild=");
+            StringBuilder sbU = outline.U("GuildScheduledEventPreview(guild=");
             sbU.append(this.guild);
             sbU.append(", event=");
             sbU.append(this.event);
@@ -669,9 +670,9 @@ public final class MobileReportsViewModel extends d0<ViewState> {
         private final DraweeSpanStringBuilder text;
 
         public MessagePreview(DraweeSpanStringBuilder draweeSpanStringBuilder, String str, int i, User user, boolean z2) {
-            m.checkNotNullParameter(draweeSpanStringBuilder, NotificationCompat.MessagingStyle.Message.KEY_TEXT);
-            m.checkNotNullParameter(str, "authorName");
-            m.checkNotNullParameter(user, "author");
+            Intrinsics3.checkNotNullParameter(draweeSpanStringBuilder, NotificationCompat.MessagingStyle.Message.KEY_TEXT);
+            Intrinsics3.checkNotNullParameter(str, "authorName");
+            Intrinsics3.checkNotNullParameter(user, "author");
             this.text = draweeSpanStringBuilder;
             this.authorName = str;
             this.authorNameColor = i;
@@ -702,9 +703,9 @@ public final class MobileReportsViewModel extends d0<ViewState> {
         }
 
         public final MessagePreview copy(DraweeSpanStringBuilder text, String authorName, int authorNameColor, User author, boolean hasEmbeds) {
-            m.checkNotNullParameter(text, NotificationCompat.MessagingStyle.Message.KEY_TEXT);
-            m.checkNotNullParameter(authorName, "authorName");
-            m.checkNotNullParameter(author, "author");
+            Intrinsics3.checkNotNullParameter(text, NotificationCompat.MessagingStyle.Message.KEY_TEXT);
+            Intrinsics3.checkNotNullParameter(authorName, "authorName");
+            Intrinsics3.checkNotNullParameter(author, "author");
             return new MessagePreview(text, authorName, authorNameColor, author, hasEmbeds);
         }
 
@@ -716,7 +717,7 @@ public final class MobileReportsViewModel extends d0<ViewState> {
                 return false;
             }
             MessagePreview messagePreview = (MessagePreview) other;
-            return m.areEqual(this.text, messagePreview.text) && m.areEqual(this.authorName, messagePreview.authorName) && this.authorNameColor == messagePreview.authorNameColor && m.areEqual(this.author, messagePreview.author) && this.hasEmbeds == messagePreview.hasEmbeds;
+            return Intrinsics3.areEqual(this.text, messagePreview.text) && Intrinsics3.areEqual(this.authorName, messagePreview.authorName) && this.authorNameColor == messagePreview.authorNameColor && Intrinsics3.areEqual(this.author, messagePreview.author) && this.hasEmbeds == messagePreview.hasEmbeds;
         }
 
         /* JADX INFO: renamed from: component4, reason: from getter */
@@ -785,7 +786,7 @@ public final class MobileReportsViewModel extends d0<ViewState> {
         }
 
         public String toString() {
-            StringBuilder sbU = a.U("MessagePreview(text=");
+            StringBuilder sbU = outline.U("MessagePreview(text=");
             sbU.append((Object) this.text);
             sbU.append(", authorName=");
             sbU.append(this.authorName);
@@ -794,7 +795,7 @@ public final class MobileReportsViewModel extends d0<ViewState> {
             sbU.append(", author=");
             sbU.append(this.author);
             sbU.append(", hasEmbeds=");
-            return a.O(sbU, this.hasEmbeds, ")");
+            return outline.O(sbU, this.hasEmbeds, ")");
         }
 
         public /* synthetic */ MessagePreview(DraweeSpanStringBuilder draweeSpanStringBuilder, String str, int i, User user, boolean z2, int i2, DefaultConstructorMarker defaultConstructorMarker) {
@@ -813,7 +814,7 @@ public final class MobileReportsViewModel extends d0<ViewState> {
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
             public Back(ReportNode reportNode) {
                 super(reportNode, null);
-                m.checkNotNullParameter(reportNode, "prevNode");
+                Intrinsics3.checkNotNullParameter(reportNode, "prevNode");
                 this.prevNode = reportNode;
             }
 
@@ -825,13 +826,13 @@ public final class MobileReportsViewModel extends d0<ViewState> {
             }
 
             public final Back copy(ReportNode prevNode) {
-                m.checkNotNullParameter(prevNode, "prevNode");
+                Intrinsics3.checkNotNullParameter(prevNode, "prevNode");
                 return new Back(prevNode);
             }
 
             public boolean equals(Object other) {
                 if (this != other) {
-                    return (other instanceof Back) && m.areEqual(this.prevNode, ((Back) other).prevNode);
+                    return (other instanceof Back) && Intrinsics3.areEqual(this.prevNode, ((Back) other).prevNode);
                 }
                 return true;
             }
@@ -850,7 +851,7 @@ public final class MobileReportsViewModel extends d0<ViewState> {
             }
 
             public String toString() {
-                StringBuilder sbU = a.U("Back(prevNode=");
+                StringBuilder sbU = outline.U("Back(prevNode=");
                 sbU.append(this.prevNode);
                 sbU.append(")");
                 return sbU.toString();
@@ -864,7 +865,7 @@ public final class MobileReportsViewModel extends d0<ViewState> {
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
             public Initial(ReportNode reportNode) {
                 super(reportNode, null);
-                m.checkNotNullParameter(reportNode, "initialNode");
+                Intrinsics3.checkNotNullParameter(reportNode, "initialNode");
                 this.initialNode = reportNode;
             }
 
@@ -876,13 +877,13 @@ public final class MobileReportsViewModel extends d0<ViewState> {
             }
 
             public final Initial copy(ReportNode initialNode) {
-                m.checkNotNullParameter(initialNode, "initialNode");
+                Intrinsics3.checkNotNullParameter(initialNode, "initialNode");
                 return new Initial(initialNode);
             }
 
             public boolean equals(Object other) {
                 if (this != other) {
-                    return (other instanceof Initial) && m.areEqual(this.initialNode, ((Initial) other).initialNode);
+                    return (other instanceof Initial) && Intrinsics3.areEqual(this.initialNode, ((Initial) other).initialNode);
                 }
                 return true;
             }
@@ -901,7 +902,7 @@ public final class MobileReportsViewModel extends d0<ViewState> {
             }
 
             public String toString() {
-                StringBuilder sbU = a.U("Initial(initialNode=");
+                StringBuilder sbU = outline.U("Initial(initialNode=");
                 sbU.append(this.initialNode);
                 sbU.append(")");
                 return sbU.toString();
@@ -915,7 +916,7 @@ public final class MobileReportsViewModel extends d0<ViewState> {
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
             public Next(ReportNode reportNode) {
                 super(reportNode, null);
-                m.checkNotNullParameter(reportNode, "nextNode");
+                Intrinsics3.checkNotNullParameter(reportNode, "nextNode");
                 this.nextNode = reportNode;
             }
 
@@ -927,13 +928,13 @@ public final class MobileReportsViewModel extends d0<ViewState> {
             }
 
             public final Next copy(ReportNode nextNode) {
-                m.checkNotNullParameter(nextNode, "nextNode");
+                Intrinsics3.checkNotNullParameter(nextNode, "nextNode");
                 return new Next(nextNode);
             }
 
             public boolean equals(Object other) {
                 if (this != other) {
-                    return (other instanceof Next) && m.areEqual(this.nextNode, ((Next) other).nextNode);
+                    return (other instanceof Next) && Intrinsics3.areEqual(this.nextNode, ((Next) other).nextNode);
                 }
                 return true;
             }
@@ -952,7 +953,7 @@ public final class MobileReportsViewModel extends d0<ViewState> {
             }
 
             public String toString() {
-                StringBuilder sbU = a.U("Next(nextNode=");
+                StringBuilder sbU = outline.U("Next(nextNode=");
                 sbU.append(this.nextNode);
                 sbU.append(")");
                 return sbU.toString();
@@ -987,7 +988,7 @@ public final class MobileReportsViewModel extends d0<ViewState> {
         private final boolean successElement;
 
         public NodeState(ReportNode reportNode, CheckboxElement checkboxElement, MessagePreview messagePreview, ChannelPreview channelPreview, DirectoryServerPreview directoryServerPreview, GuildScheduledEventPreview guildScheduledEventPreview, BlockUserElement blockUserElement, List<NodeResult> list, boolean z2, SubmitState submitState, ReportNodeBottomButton reportNodeBottomButton) {
-            m.checkNotNullParameter(reportNode, "node");
+            Intrinsics3.checkNotNullParameter(reportNode, "node");
             this.node = reportNode;
             this.checkboxElement = checkboxElement;
             this.messagePreviewElement = messagePreview;
@@ -1011,7 +1012,7 @@ public final class MobileReportsViewModel extends d0<ViewState> {
         }
 
         public final NodeState copy(ReportNode node, CheckboxElement checkboxElement, MessagePreview messagePreviewElement, ChannelPreview channelPreviewElement, DirectoryServerPreview directoryServerPreviewElement, GuildScheduledEventPreview eventPreviewElement, BlockUserElement blockUserElement, List<NodeResult> breadcrumbsElement, boolean successElement, SubmitState submitState, ReportNodeBottomButton bottomButton) {
-            m.checkNotNullParameter(node, "node");
+            Intrinsics3.checkNotNullParameter(node, "node");
             return new NodeState(node, checkboxElement, messagePreviewElement, channelPreviewElement, directoryServerPreviewElement, eventPreviewElement, blockUserElement, breadcrumbsElement, successElement, submitState, bottomButton);
         }
 
@@ -1023,7 +1024,7 @@ public final class MobileReportsViewModel extends d0<ViewState> {
                 return false;
             }
             NodeState nodeState = (NodeState) other;
-            return m.areEqual(this.node, nodeState.node) && m.areEqual(this.checkboxElement, nodeState.checkboxElement) && m.areEqual(this.messagePreviewElement, nodeState.messagePreviewElement) && m.areEqual(this.channelPreviewElement, nodeState.channelPreviewElement) && m.areEqual(this.directoryServerPreviewElement, nodeState.directoryServerPreviewElement) && m.areEqual(this.eventPreviewElement, nodeState.eventPreviewElement) && m.areEqual(this.blockUserElement, nodeState.blockUserElement) && m.areEqual(this.breadcrumbsElement, nodeState.breadcrumbsElement) && this.successElement == nodeState.successElement && m.areEqual(this.submitState, nodeState.submitState) && m.areEqual(this.bottomButton, nodeState.bottomButton);
+            return Intrinsics3.areEqual(this.node, nodeState.node) && Intrinsics3.areEqual(this.checkboxElement, nodeState.checkboxElement) && Intrinsics3.areEqual(this.messagePreviewElement, nodeState.messagePreviewElement) && Intrinsics3.areEqual(this.channelPreviewElement, nodeState.channelPreviewElement) && Intrinsics3.areEqual(this.directoryServerPreviewElement, nodeState.directoryServerPreviewElement) && Intrinsics3.areEqual(this.eventPreviewElement, nodeState.eventPreviewElement) && Intrinsics3.areEqual(this.blockUserElement, nodeState.blockUserElement) && Intrinsics3.areEqual(this.breadcrumbsElement, nodeState.breadcrumbsElement) && this.successElement == nodeState.successElement && Intrinsics3.areEqual(this.submitState, nodeState.submitState) && Intrinsics3.areEqual(this.bottomButton, nodeState.bottomButton);
         }
 
         /* JADX INFO: renamed from: component7, reason: from getter */
@@ -1155,7 +1156,7 @@ public final class MobileReportsViewModel extends d0<ViewState> {
         }
 
         public String toString() {
-            StringBuilder sbU = a.U("NodeState(node=");
+            StringBuilder sbU = outline.U("NodeState(node=");
             sbU.append(this.node);
             sbU.append(", checkboxElement=");
             sbU.append(this.checkboxElement);
@@ -1193,7 +1194,7 @@ public final class MobileReportsViewModel extends d0<ViewState> {
         private final StageInstance stageInstance;
 
         public StoreState(Message message, Channel channel, Guild guild, DirectoryEntryGuild directoryEntryGuild, StageInstance stageInstance, Map<Long, Integer> map, GuildScheduledEvent guildScheduledEvent) {
-            m.checkNotNullParameter(map, "blockedUsers");
+            Intrinsics3.checkNotNullParameter(map, "blockedUsers");
             this.message = message;
             this.channel = channel;
             this.guild = guild;
@@ -1239,7 +1240,7 @@ public final class MobileReportsViewModel extends d0<ViewState> {
         }
 
         public final StoreState copy(Message message, Channel channel, Guild guild, DirectoryEntryGuild directoryEntry, StageInstance stageInstance, Map<Long, Integer> blockedUsers, GuildScheduledEvent event) {
-            m.checkNotNullParameter(blockedUsers, "blockedUsers");
+            Intrinsics3.checkNotNullParameter(blockedUsers, "blockedUsers");
             return new StoreState(message, channel, guild, directoryEntry, stageInstance, blockedUsers, event);
         }
 
@@ -1251,7 +1252,7 @@ public final class MobileReportsViewModel extends d0<ViewState> {
                 return false;
             }
             StoreState storeState = (StoreState) other;
-            return m.areEqual(this.message, storeState.message) && m.areEqual(this.channel, storeState.channel) && m.areEqual(this.guild, storeState.guild) && m.areEqual(this.directoryEntry, storeState.directoryEntry) && m.areEqual(this.stageInstance, storeState.stageInstance) && m.areEqual(this.blockedUsers, storeState.blockedUsers) && m.areEqual(this.event, storeState.event);
+            return Intrinsics3.areEqual(this.message, storeState.message) && Intrinsics3.areEqual(this.channel, storeState.channel) && Intrinsics3.areEqual(this.guild, storeState.guild) && Intrinsics3.areEqual(this.directoryEntry, storeState.directoryEntry) && Intrinsics3.areEqual(this.stageInstance, storeState.stageInstance) && Intrinsics3.areEqual(this.blockedUsers, storeState.blockedUsers) && Intrinsics3.areEqual(this.event, storeState.event);
         }
 
         public final Map<Long, Integer> getBlockedUsers() {
@@ -1330,7 +1331,7 @@ public final class MobileReportsViewModel extends d0<ViewState> {
         }
 
         public String toString() {
-            StringBuilder sbU = a.U("StoreState(message=");
+            StringBuilder sbU = outline.U("StoreState(message=");
             sbU.append(this.message);
             sbU.append(", channel=");
             sbU.append(this.channel);
@@ -1425,10 +1426,10 @@ public final class MobileReportsViewModel extends d0<ViewState> {
             }
 
             public final Menu copy(MenuAPIResponse menu, MessagePreview messagePreview, ChannelPreview channelPreview, DirectoryServerPreview directoryServerPreview, GuildScheduledEventPreview eventPreview, NodeNavigationType nodeNavigationType, SubmitState submitState, List<NodeResult> history, BlockUserElement blockUserElement) {
-                m.checkNotNullParameter(menu, "menu");
-                m.checkNotNullParameter(nodeNavigationType, "nodeNavigationType");
-                m.checkNotNullParameter(submitState, "submitState");
-                m.checkNotNullParameter(history, "history");
+                Intrinsics3.checkNotNullParameter(menu, "menu");
+                Intrinsics3.checkNotNullParameter(nodeNavigationType, "nodeNavigationType");
+                Intrinsics3.checkNotNullParameter(submitState, "submitState");
+                Intrinsics3.checkNotNullParameter(history, "history");
                 return new Menu(menu, messagePreview, channelPreview, directoryServerPreview, eventPreview, nodeNavigationType, submitState, history, blockUserElement);
             }
 
@@ -1440,7 +1441,7 @@ public final class MobileReportsViewModel extends d0<ViewState> {
                     return false;
                 }
                 Menu menu = (Menu) other;
-                return m.areEqual(this.menu, menu.menu) && m.areEqual(this.messagePreview, menu.messagePreview) && m.areEqual(this.channelPreview, menu.channelPreview) && m.areEqual(this.directoryServerPreview, menu.directoryServerPreview) && m.areEqual(this.eventPreview, menu.eventPreview) && m.areEqual(this.nodeNavigationType, menu.nodeNavigationType) && m.areEqual(this.submitState, menu.submitState) && m.areEqual(this.history, menu.history) && m.areEqual(this.blockUserElement, menu.blockUserElement);
+                return Intrinsics3.areEqual(this.menu, menu.menu) && Intrinsics3.areEqual(this.messagePreview, menu.messagePreview) && Intrinsics3.areEqual(this.channelPreview, menu.channelPreview) && Intrinsics3.areEqual(this.directoryServerPreview, menu.directoryServerPreview) && Intrinsics3.areEqual(this.eventPreview, menu.eventPreview) && Intrinsics3.areEqual(this.nodeNavigationType, menu.nodeNavigationType) && Intrinsics3.areEqual(this.submitState, menu.submitState) && Intrinsics3.areEqual(this.history, menu.history) && Intrinsics3.areEqual(this.blockUserElement, menu.blockUserElement);
             }
 
             public final NodeState genNodeState() {
@@ -1473,8 +1474,8 @@ public final class MobileReportsViewModel extends d0<ViewState> {
                     next = it.next();
                     reportNodeElement7 = (ReportNodeElement) next;
                     Objects.requireNonNull(companion);
-                    m.checkNotNullParameter(reportNodeElement7, "element");
-                } while (!m.areEqual(reportNodeElement7.getType(), "checkbox"));
+                    Intrinsics3.checkNotNullParameter(reportNodeElement7, "element");
+                } while (!Intrinsics3.areEqual(reportNodeElement7.getType(), "checkbox"));
                 ReportNodeElement reportNodeElement8 = (ReportNodeElement) next;
                 if (reportNodeElement8 != null) {
                     List<ReportNodeElementData> listA = reportNodeElement8.a();
@@ -1493,8 +1494,8 @@ public final class MobileReportsViewModel extends d0<ViewState> {
                     next2 = it2.next();
                     reportNodeElement6 = (ReportNodeElement) next2;
                     Objects.requireNonNull(companion2);
-                    m.checkNotNullParameter(reportNodeElement6, "element");
-                } while (!m.areEqual(reportNodeElement6.getType(), "message_preview"));
+                    Intrinsics3.checkNotNullParameter(reportNodeElement6, "element");
+                } while (!Intrinsics3.areEqual(reportNodeElement6.getType(), "message_preview"));
                 MessagePreview messagePreview = ((ReportNodeElement) next2) != null ? this.messagePreview : null;
                 List<ReportNodeElement> listC3 = node.c();
                 ReportNodeElement.Companion companion3 = ReportNodeElement.INSTANCE;
@@ -1507,8 +1508,8 @@ public final class MobileReportsViewModel extends d0<ViewState> {
                     next3 = it3.next();
                     reportNodeElement5 = (ReportNodeElement) next3;
                     Objects.requireNonNull(companion3);
-                    m.checkNotNullParameter(reportNodeElement5, "element");
-                } while (!m.areEqual(reportNodeElement5.getType(), "channel_preview"));
+                    Intrinsics3.checkNotNullParameter(reportNodeElement5, "element");
+                } while (!Intrinsics3.areEqual(reportNodeElement5.getType(), "channel_preview"));
                 ChannelPreview channelPreview = ((ReportNodeElement) next3) != null ? this.channelPreview : null;
                 List<ReportNodeElement> listC4 = node.c();
                 ReportNodeElement.Companion companion4 = ReportNodeElement.INSTANCE;
@@ -1521,8 +1522,8 @@ public final class MobileReportsViewModel extends d0<ViewState> {
                     next4 = it4.next();
                     reportNodeElement4 = (ReportNodeElement) next4;
                     Objects.requireNonNull(companion4);
-                    m.checkNotNullParameter(reportNodeElement4, "element");
-                } while (!m.areEqual(reportNodeElement4.getType(), "guild_directory_entry_preview"));
+                    Intrinsics3.checkNotNullParameter(reportNodeElement4, "element");
+                } while (!Intrinsics3.areEqual(reportNodeElement4.getType(), "guild_directory_entry_preview"));
                 DirectoryServerPreview directoryServerPreview = ((ReportNodeElement) next4) != null ? this.directoryServerPreview : null;
                 List<ReportNodeElement> listC5 = node.c();
                 ReportNodeElement.Companion companion5 = ReportNodeElement.INSTANCE;
@@ -1535,8 +1536,8 @@ public final class MobileReportsViewModel extends d0<ViewState> {
                     next5 = it5.next();
                     reportNodeElement3 = (ReportNodeElement) next5;
                     Objects.requireNonNull(companion5);
-                    m.checkNotNullParameter(reportNodeElement3, "element");
-                } while (!m.areEqual(reportNodeElement3.getType(), "guild_scheduled_event_preview"));
+                    Intrinsics3.checkNotNullParameter(reportNodeElement3, "element");
+                } while (!Intrinsics3.areEqual(reportNodeElement3.getType(), "guild_scheduled_event_preview"));
                 GuildScheduledEventPreview guildScheduledEventPreview = ((ReportNodeElement) next5) != null ? this.eventPreview : null;
                 List<ReportNodeElement> listC6 = node.c();
                 ReportNodeElement.Companion companion6 = ReportNodeElement.INSTANCE;
@@ -1549,8 +1550,8 @@ public final class MobileReportsViewModel extends d0<ViewState> {
                     next6 = it6.next();
                     reportNodeElement2 = (ReportNodeElement) next6;
                     Objects.requireNonNull(companion6);
-                    m.checkNotNullParameter(reportNodeElement2, "element");
-                } while (!m.areEqual(reportNodeElement2.getType(), "block_users"));
+                    Intrinsics3.checkNotNullParameter(reportNodeElement2, "element");
+                } while (!Intrinsics3.areEqual(reportNodeElement2.getType(), "block_users"));
                 BlockUserElement blockUserElement = ((ReportNodeElement) next6) != null ? this.blockUserElement : null;
                 List<ReportNodeElement> listC7 = node.c();
                 ReportNodeElement.Companion companion7 = ReportNodeElement.INSTANCE;
@@ -1563,16 +1564,16 @@ public final class MobileReportsViewModel extends d0<ViewState> {
                     next7 = it7.next();
                     reportNodeElement = (ReportNodeElement) next7;
                     Objects.requireNonNull(companion7);
-                    m.checkNotNullParameter(reportNodeElement, "element");
-                } while (!m.areEqual(reportNodeElement.getType(), "breadcrumbs"));
+                    Intrinsics3.checkNotNullParameter(reportNodeElement, "element");
+                } while (!Intrinsics3.areEqual(reportNodeElement.getType(), "breadcrumbs"));
                 List<NodeResult> list = ((ReportNodeElement) next7) != null ? this.history : null;
                 List<ReportNodeElement> listC8 = node.c();
                 ReportNodeElement.Companion companion8 = ReportNodeElement.INSTANCE;
                 for (Object obj2 : listC8) {
                     ReportNodeElement reportNodeElement9 = (ReportNodeElement) obj2;
                     Objects.requireNonNull(companion8);
-                    m.checkNotNullParameter(reportNodeElement9, "element");
-                    if (m.areEqual(reportNodeElement9.getType(), "success")) {
+                    Intrinsics3.checkNotNullParameter(reportNodeElement9, "element");
+                    if (Intrinsics3.areEqual(reportNodeElement9.getType(), "success")) {
                         obj = obj2;
                         break;
                     }
@@ -1682,7 +1683,7 @@ public final class MobileReportsViewModel extends d0<ViewState> {
             }
 
             public String toString() {
-                StringBuilder sbU = a.U("Menu(menu=");
+                StringBuilder sbU = outline.U("Menu(menu=");
                 sbU.append(this.menu);
                 sbU.append(", messagePreview=");
                 sbU.append(this.messagePreview);
@@ -1707,10 +1708,10 @@ public final class MobileReportsViewModel extends d0<ViewState> {
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
             public Menu(MenuAPIResponse menuAPIResponse, MessagePreview messagePreview, ChannelPreview channelPreview, DirectoryServerPreview directoryServerPreview, GuildScheduledEventPreview guildScheduledEventPreview, NodeNavigationType nodeNavigationType, SubmitState submitState, List<NodeResult> list, BlockUserElement blockUserElement) {
                 super(null);
-                m.checkNotNullParameter(menuAPIResponse, "menu");
-                m.checkNotNullParameter(nodeNavigationType, "nodeNavigationType");
-                m.checkNotNullParameter(submitState, "submitState");
-                m.checkNotNullParameter(list, "history");
+                Intrinsics3.checkNotNullParameter(menuAPIResponse, "menu");
+                Intrinsics3.checkNotNullParameter(nodeNavigationType, "nodeNavigationType");
+                Intrinsics3.checkNotNullParameter(submitState, "submitState");
+                Intrinsics3.checkNotNullParameter(list, "history");
                 this.menu = menuAPIResponse;
                 this.messagePreview = messagePreview;
                 this.channelPreview = channelPreview;
@@ -1731,8 +1732,8 @@ public final class MobileReportsViewModel extends d0<ViewState> {
         }
     }
 
-    public /* synthetic */ MobileReportsViewModel(WeakReference weakReference, MobileReportArgs mobileReportArgs, RestAPI restAPI, Clock clock, Observable observable, int i, DefaultConstructorMarker defaultConstructorMarker) {
-        this(weakReference, mobileReportArgs, (i & 4) != 0 ? RestAPI.INSTANCE.getApi() : restAPI, (i & 8) != 0 ? ClockFactory.get() : clock, (i & 16) != 0 ? Companion.access$getStoreState(INSTANCE, mobileReportArgs) : observable);
+    public /* synthetic */ MobileReportsViewModel(WeakReference weakReference, WidgetMobileReports2 widgetMobileReports2, RestAPI restAPI, Clock clock, Observable observable, int i, DefaultConstructorMarker defaultConstructorMarker) {
+        this(weakReference, widgetMobileReports2, (i & 4) != 0 ? RestAPI.INSTANCE.getApi() : restAPI, (i & 8) != 0 ? ClockFactory.get() : clock, (i & 16) != 0 ? Companion.access$getStoreState(INSTANCE, widgetMobileReports2) : observable);
     }
 
     public static final /* synthetic */ ViewState access$getViewState$p(MobileReportsViewModel mobileReportsViewModel) {
@@ -1768,7 +1769,7 @@ public final class MobileReportsViewModel extends d0<ViewState> {
         if (menu == null) {
             return false;
         }
-        NodeResult nodeResult = (NodeResult) u.lastOrNull((List) menu.getHistory());
+        NodeResult nodeResult = (NodeResult) _Collections.lastOrNull((List) menu.getHistory());
         ReportNode node = nodeResult != null ? nodeResult.getNode() : null;
         ReportNode node2 = menu.getNodeNavigationType().getNode();
         MenuAPIResponse menu2 = menu.getMenu();
@@ -1776,7 +1777,7 @@ public final class MobileReportsViewModel extends d0<ViewState> {
             if (node == null || menu2.getRoot_node_id() == node2.getId()) {
                 return false;
             }
-            updateViewState(ViewState.Menu.copy$default(menu, null, null, null, null, null, new NodeNavigationType.Back(node), null, u.dropLast(menu.getHistory(), 1), null, 351, null));
+            updateViewState(ViewState.Menu.copy$default(menu, null, null, null, null, null, new NodeNavigationType.Back(node), null, _Collections.dropLast(menu.getHistory(), 1), null, 351, null));
         }
         return true;
     }
@@ -1799,7 +1800,7 @@ public final class MobileReportsViewModel extends d0<ViewState> {
 
     public final void handleNext(ReportNodeChild destination, NodeElementResult elementResult) {
         ReportNode reportNode;
-        m.checkNotNullParameter(destination, "destination");
+        Intrinsics3.checkNotNullParameter(destination, "destination");
         ViewState viewState = getViewState();
         if (!(viewState instanceof ViewState.Menu)) {
             viewState = null;
@@ -1808,7 +1809,7 @@ public final class MobileReportsViewModel extends d0<ViewState> {
         if (menu == null || (reportNode = menu.getMenu().c().get(Integer.valueOf(destination.getRef()))) == null) {
             return;
         }
-        updateViewState(ViewState.Menu.copy$default(menu, null, null, null, null, null, new NodeNavigationType.Next(reportNode), SubmitState.None.INSTANCE, u.plus((Collection<? extends NodeResult>) menu.getHistory(), new NodeResult(menu.getNodeNavigationType().getNode(), destination, elementResult)), null, 287, null));
+        updateViewState(ViewState.Menu.copy$default(menu, null, null, null, null, null, new NodeNavigationType.Next(reportNode), SubmitState.None.INSTANCE, _Collections.plus((Collection<? extends NodeResult>) menu.getHistory(), new NodeResult(menu.getNodeNavigationType().getNode(), destination, elementResult)), null, 287, null));
     }
 
     public final void handleSubmit() {
@@ -1823,26 +1824,26 @@ public final class MobileReportsViewModel extends d0<ViewState> {
             return;
         }
         updateViewState(ViewState.Menu.copy$default(menu, null, null, null, null, null, null, SubmitState.Loading.INSTANCE, null, null, 447, null));
-        MobileReportArgs mobileReportArgs = this.args;
-        if (mobileReportArgs instanceof MobileReportArgs.Message) {
+        WidgetMobileReports2 widgetMobileReports2 = this.args;
+        if (widgetMobileReports2 instanceof WidgetMobileReports2.Message) {
             ReportSubmissionBody.Companion companion = ReportSubmissionBody.INSTANCE;
             long jCurrentTimeMillis = (this.clock.currentTimeMillis() - SnowflakeUtils.DISCORD_EPOCH) << 22;
             long channelId = this.args.getChannelId();
-            long messageId = ((MobileReportArgs.Message) this.args).getMessageId();
+            long messageId = ((WidgetMobileReports2.Message) this.args).getMessageId();
             MenuAPIResponse menu2 = menu.getMenu();
             List<NodeResult> history = menu.getHistory();
             Objects.requireNonNull(companion);
-            m.checkNotNullParameter(menu2, "menu");
-            m.checkNotNullParameter(history, "results");
-            Pair<List<Integer>, Map<String, List<String>>> pairA = companion.a(history);
-            List<Integer> listComponent1 = pairA.component1();
-            Map<String, List<String>> mapComponent2 = pairA.component2();
+            Intrinsics3.checkNotNullParameter(menu2, "menu");
+            Intrinsics3.checkNotNullParameter(history, "results");
+            Tuples2<List<Integer>, Map<String, List<String>>> tuples2A = companion.a(history);
+            List<Integer> listComponent1 = tuples2A.component1();
+            Map<String, List<String>> mapComponent2 = tuples2A.component2();
             Long lValueOf = Long.valueOf(messageId);
             Long lValueOf2 = Long.valueOf(channelId);
             String name = menu2.getName();
             String language = menu2.getLanguage();
             reportSubmissionBody = new ReportSubmissionBody(jCurrentTimeMillis, lValueOf, lValueOf2, null, null, null, language != null ? language : "en", menu2.getVariant(), name, menu2.getVersion(), listComponent1, mapComponent2, 56);
-        } else if (mobileReportArgs instanceof MobileReportArgs.StageChannel) {
+        } else if (widgetMobileReports2 instanceof WidgetMobileReports2.StageChannel) {
             ChannelPreview channelPreview = menu.getChannelPreview();
             if (channelPreview == null || (guild = channelPreview.getGuild()) == null) {
                 Logger.e$default(AppLog.g, "Tried to send report for stage channel, but without guild id?", null, null, 6, null);
@@ -1855,30 +1856,30 @@ public final class MobileReportsViewModel extends d0<ViewState> {
             MenuAPIResponse menu3 = menu.getMenu();
             List<NodeResult> history2 = menu.getHistory();
             Objects.requireNonNull(companion2);
-            m.checkNotNullParameter(menu3, "menu");
-            m.checkNotNullParameter(history2, "results");
-            Pair<List<Integer>, Map<String, List<String>>> pairA2 = companion2.a(history2);
-            List<Integer> listComponent2 = pairA2.component1();
-            Map<String, List<String>> mapComponent3 = pairA2.component2();
+            Intrinsics3.checkNotNullParameter(menu3, "menu");
+            Intrinsics3.checkNotNullParameter(history2, "results");
+            Tuples2<List<Integer>, Map<String, List<String>>> tuples2A2 = companion2.a(history2);
+            List<Integer> listComponent2 = tuples2A2.component1();
+            Map<String, List<String>> mapComponent3 = tuples2A2.component2();
             Long lValueOf3 = Long.valueOf(id2);
             Long lValueOf4 = Long.valueOf(channelId2);
             String name2 = menu3.getName();
             String language2 = menu3.getLanguage();
             reportSubmissionBody = new ReportSubmissionBody(jCurrentTimeMillis2, null, lValueOf4, lValueOf3, null, null, language2 != null ? language2 : "en", menu3.getVariant(), name2, menu3.getVersion(), listComponent2, mapComponent3, 50);
-        } else if (mobileReportArgs instanceof MobileReportArgs.DirectoryServer) {
+        } else if (widgetMobileReports2 instanceof WidgetMobileReports2.DirectoryServer) {
             ReportSubmissionBody.Companion companion3 = ReportSubmissionBody.INSTANCE;
             long jCurrentTimeMillis3 = (this.clock.currentTimeMillis() - SnowflakeUtils.DISCORD_EPOCH) << 22;
             long channelId3 = this.args.getChannelId();
-            long guildId = ((MobileReportArgs.DirectoryServer) this.args).getGuildId();
-            long hubId = ((MobileReportArgs.DirectoryServer) this.args).getHubId();
+            long guildId = ((WidgetMobileReports2.DirectoryServer) this.args).getGuildId();
+            long hubId = ((WidgetMobileReports2.DirectoryServer) this.args).getHubId();
             MenuAPIResponse menu4 = menu.getMenu();
             List<NodeResult> history3 = menu.getHistory();
             Objects.requireNonNull(companion3);
-            m.checkNotNullParameter(menu4, "menu");
-            m.checkNotNullParameter(history3, "results");
-            Pair<List<Integer>, Map<String, List<String>>> pairA3 = companion3.a(history3);
-            List<Integer> listComponent3 = pairA3.component1();
-            Map<String, List<String>> mapComponent4 = pairA3.component2();
+            Intrinsics3.checkNotNullParameter(menu4, "menu");
+            Intrinsics3.checkNotNullParameter(history3, "results");
+            Tuples2<List<Integer>, Map<String, List<String>>> tuples2A3 = companion3.a(history3);
+            List<Integer> listComponent3 = tuples2A3.component1();
+            Map<String, List<String>> mapComponent4 = tuples2A3.component2();
             Long lValueOf5 = Long.valueOf(guildId);
             Long lValueOf6 = Long.valueOf(channelId3);
             Long lValueOf7 = Long.valueOf(hubId);
@@ -1886,21 +1887,21 @@ public final class MobileReportsViewModel extends d0<ViewState> {
             String language3 = menu4.getLanguage();
             reportSubmissionBody = new ReportSubmissionBody(jCurrentTimeMillis3, null, lValueOf6, lValueOf5, lValueOf7, null, language3 != null ? language3 : "en", menu4.getVariant(), name3, menu4.getVersion(), listComponent3, mapComponent4, 34);
         } else {
-            if (!(mobileReportArgs instanceof MobileReportArgs.GuildScheduledEvent)) {
+            if (!(widgetMobileReports2 instanceof WidgetMobileReports2.GuildScheduledEvent)) {
                 throw new NoWhenBranchMatchedException();
             }
             ReportSubmissionBody.Companion companion4 = ReportSubmissionBody.INSTANCE;
             long jCurrentTimeMillis4 = (this.clock.currentTimeMillis() - SnowflakeUtils.DISCORD_EPOCH) << 22;
-            long guildId2 = ((MobileReportArgs.GuildScheduledEvent) this.args).getGuildId();
-            long eventId = ((MobileReportArgs.GuildScheduledEvent) this.args).getEventId();
+            long guildId2 = ((WidgetMobileReports2.GuildScheduledEvent) this.args).getGuildId();
+            long eventId = ((WidgetMobileReports2.GuildScheduledEvent) this.args).getEventId();
             MenuAPIResponse menu5 = menu.getMenu();
             List<NodeResult> history4 = menu.getHistory();
             Objects.requireNonNull(companion4);
-            m.checkNotNullParameter(menu5, "menu");
-            m.checkNotNullParameter(history4, "results");
-            Pair<List<Integer>, Map<String, List<String>>> pairA4 = companion4.a(history4);
-            List<Integer> listComponent4 = pairA4.component1();
-            Map<String, List<String>> mapComponent5 = pairA4.component2();
+            Intrinsics3.checkNotNullParameter(menu5, "menu");
+            Intrinsics3.checkNotNullParameter(history4, "results");
+            Tuples2<List<Integer>, Map<String, List<String>>> tuples2A4 = companion4.a(history4);
+            List<Integer> listComponent4 = tuples2A4.component1();
+            Map<String, List<String>> mapComponent5 = tuples2A4.component2();
             Long lValueOf8 = Long.valueOf(guildId2);
             Long lValueOf9 = Long.valueOf(eventId);
             String name4 = menu5.getName();
@@ -1941,7 +1942,7 @@ public final class MobileReportsViewModel extends d0<ViewState> {
         Message message;
         Context context = this.context.get();
         if (context != null) {
-            m.checkNotNullExpressionValue(context, "context.get() ?: return null");
+            Intrinsics3.checkNotNullExpressionValue(context, "context.get() ?: return null");
             Channel channel = storeState.getChannel();
             if (channel != null && (message = storeState.getMessage()) != null) {
                 StoreStream.Companion companion = StoreStream.INSTANCE;
@@ -1952,12 +1953,12 @@ public final class MobileReportsViewModel extends d0<ViewState> {
                     return null;
                 }
                 long id2 = companion.getUsers().getMeSnapshot().getId();
-                Map map = (Map) a.c(channel, companion.getGuilds().getMembers());
+                Map map = (Map) outline.c(channel, companion.getGuilds().getMembers());
                 if (map == null) {
                     map = new HashMap();
                 }
                 Map map2 = map;
-                Map map3 = (Map) a.c(channel, companion.getGuilds().getRoles());
+                Map map3 = (Map) outline.c(channel, companion.getGuilds().getRoles());
                 Map<Long, String> channelNames = companion.getChannels().getChannelNames();
                 Map<Long, String> nickOrUsernames = MessageUtils.getNickOrUsernames(message, channel, map2, channel.q());
                 String content = message.getContent();
@@ -1981,19 +1982,19 @@ public final class MobileReportsViewModel extends d0<ViewState> {
     }
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-    public MobileReportsViewModel(WeakReference<Context> weakReference, MobileReportArgs mobileReportArgs, RestAPI restAPI, Clock clock, Observable<StoreState> observable) {
+    public MobileReportsViewModel(WeakReference<Context> weakReference, WidgetMobileReports2 widgetMobileReports2, RestAPI restAPI, Clock clock, Observable<StoreState> observable) {
         super(null);
-        m.checkNotNullParameter(weakReference, "context");
-        m.checkNotNullParameter(mobileReportArgs, "args");
-        m.checkNotNullParameter(restAPI, "restAPI");
-        m.checkNotNullParameter(clock, "clock");
-        m.checkNotNullParameter(observable, "storeStateObservable");
+        Intrinsics3.checkNotNullParameter(weakReference, "context");
+        Intrinsics3.checkNotNullParameter(widgetMobileReports2, "args");
+        Intrinsics3.checkNotNullParameter(restAPI, "restAPI");
+        Intrinsics3.checkNotNullParameter(clock, "clock");
+        Intrinsics3.checkNotNullParameter(observable, "storeStateObservable");
         this.context = weakReference;
-        this.args = mobileReportArgs;
+        this.args = widgetMobileReports2;
         this.restAPI = restAPI;
         this.clock = clock;
-        Observable observableJ = Observable.j(ObservableExtensionsKt.computationLatest(observable), ObservableExtensionsKt.restSubscribeOn$default(restAPI.getReportMenu(mobileReportArgs.getReportType().getPathValue()), false, 1, null), AnonymousClass1.INSTANCE);
-        m.checkNotNullExpressionValue(observableJ, "Observable\n        .comb…> storeState to menuAPI }");
+        Observable observableJ = Observable.j(ObservableExtensionsKt.computationLatest(observable), ObservableExtensionsKt.restSubscribeOn$default(restAPI.getReportMenu(widgetMobileReports2.getReportType().getPathValue()), false, 1, null), AnonymousClass1.INSTANCE);
+        Intrinsics3.checkNotNullExpressionValue(observableJ, "Observable\n        .comb…> storeState to menuAPI }");
         ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(observableJ, this, null, 2, null), MobileReportsViewModel.class, (Context) null, (Function1) null, new AnonymousClass3(), (Function0) null, (Function0) null, new AnonymousClass2(), 54, (Object) null);
     }
 }

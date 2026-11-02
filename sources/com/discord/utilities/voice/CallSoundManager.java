@@ -2,7 +2,7 @@ package com.discord.utilities.voice;
 
 import android.content.Context;
 import androidx.annotation.MainThread;
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.api.channel.Channel;
 import com.discord.api.channel.ChannelUtils;
 import com.discord.app.AppComponent;
@@ -19,9 +19,10 @@ import com.discord.utilities.analytics.Traits;
 import com.discord.utilities.media.AppSound;
 import com.discord.utilities.media.AppSoundManager;
 import com.discord.utilities.rx.ObservableExtensionsKt;
-import d0.t.n;
-import d0.z.d.m;
-import d0.z.d.o;
+import d0.t.Collections2;
+import d0.t.Iterables2;
+import d0.z.d.Intrinsics3;
+import d0.z.d.Lambda;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
@@ -51,7 +52,7 @@ public final class CallSoundManager {
 
     /* JADX INFO: renamed from: com.discord.utilities.voice.CallSoundManager$subscribeToStoreState$1, reason: invalid class name */
     /* JADX INFO: compiled from: CallSoundManager.kt */
-    public final class AnonymousClass1 extends o implements Function1<Subscription, Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function1<Subscription, Unit> {
         public AnonymousClass1() {
             super(1);
         }
@@ -64,14 +65,14 @@ public final class CallSoundManager {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(Subscription subscription) {
-            m.checkNotNullParameter(subscription, Traits.Payment.Type.SUBSCRIPTION);
+            Intrinsics3.checkNotNullParameter(subscription, Traits.Payment.Type.SUBSCRIPTION);
             CallSoundManager.access$setStoreStateSubscription$p(CallSoundManager.this, subscription);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.utilities.voice.CallSoundManager$subscribeToStoreState$2, reason: invalid class name */
     /* JADX INFO: compiled from: CallSoundManager.kt */
-    public final class AnonymousClass2 extends o implements Function0<Unit> {
+    public final class AnonymousClass2 extends Lambda implements Function0<Unit> {
         public AnonymousClass2() {
             super(0);
         }
@@ -90,7 +91,7 @@ public final class CallSoundManager {
 
     /* JADX INFO: renamed from: com.discord.utilities.voice.CallSoundManager$subscribeToStoreState$3, reason: invalid class name */
     /* JADX INFO: compiled from: CallSoundManager.kt */
-    public final class AnonymousClass3 extends o implements Function1<StoreState, Unit> {
+    public final class AnonymousClass3 extends Lambda implements Function1<StoreState, Unit> {
         public final /* synthetic */ long $voiceChannelId;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -109,7 +110,7 @@ public final class CallSoundManager {
         public final void invoke2(StoreState storeState) {
             CallSoundManager callSoundManager = CallSoundManager.this;
             long j = this.$voiceChannelId;
-            m.checkNotNullExpressionValue(storeState, "storeState");
+            Intrinsics3.checkNotNullExpressionValue(storeState, "storeState");
             CallSoundManager.access$handleStoreState(callSoundManager, j, storeState);
         }
     }
@@ -131,11 +132,11 @@ public final class CallSoundManager {
 
         /* JADX WARN: Multi-variable type inference failed */
         public StoreState(Map<Long, StoreVoiceParticipants.VoiceUser> map, RtcConnection.State state, Map<Long, ? extends ModelApplicationStream> map2, Map<String, ? extends List<Long>> map3, StoreApplicationStreaming.ActiveApplicationStream activeApplicationStream, MeUser meUser, Channel channel) {
-            m.checkNotNullParameter(map, "voiceParticipants");
-            m.checkNotNullParameter(state, "rtcConnectionState");
-            m.checkNotNullParameter(map2, "streamsByUser");
-            m.checkNotNullParameter(map3, "streamSpectators");
-            m.checkNotNullParameter(meUser, "me");
+            Intrinsics3.checkNotNullParameter(map, "voiceParticipants");
+            Intrinsics3.checkNotNullParameter(state, "rtcConnectionState");
+            Intrinsics3.checkNotNullParameter(map2, "streamsByUser");
+            Intrinsics3.checkNotNullParameter(map3, "streamSpectators");
+            Intrinsics3.checkNotNullParameter(meUser, "me");
             this.voiceParticipants = map;
             this.rtcConnectionState = state;
             this.streamsByUser = map2;
@@ -189,11 +190,11 @@ public final class CallSoundManager {
         }
 
         public final StoreState copy(Map<Long, StoreVoiceParticipants.VoiceUser> voiceParticipants, RtcConnection.State rtcConnectionState, Map<Long, ? extends ModelApplicationStream> streamsByUser, Map<String, ? extends List<Long>> streamSpectators, StoreApplicationStreaming.ActiveApplicationStream activeApplicationStream, MeUser me2, Channel selectedVoiceChannel) {
-            m.checkNotNullParameter(voiceParticipants, "voiceParticipants");
-            m.checkNotNullParameter(rtcConnectionState, "rtcConnectionState");
-            m.checkNotNullParameter(streamsByUser, "streamsByUser");
-            m.checkNotNullParameter(streamSpectators, "streamSpectators");
-            m.checkNotNullParameter(me2, "me");
+            Intrinsics3.checkNotNullParameter(voiceParticipants, "voiceParticipants");
+            Intrinsics3.checkNotNullParameter(rtcConnectionState, "rtcConnectionState");
+            Intrinsics3.checkNotNullParameter(streamsByUser, "streamsByUser");
+            Intrinsics3.checkNotNullParameter(streamSpectators, "streamSpectators");
+            Intrinsics3.checkNotNullParameter(me2, "me");
             return new StoreState(voiceParticipants, rtcConnectionState, streamsByUser, streamSpectators, activeApplicationStream, me2, selectedVoiceChannel);
         }
 
@@ -205,7 +206,7 @@ public final class CallSoundManager {
                 return false;
             }
             StoreState storeState = (StoreState) other;
-            return m.areEqual(this.voiceParticipants, storeState.voiceParticipants) && m.areEqual(this.rtcConnectionState, storeState.rtcConnectionState) && m.areEqual(this.streamsByUser, storeState.streamsByUser) && m.areEqual(this.streamSpectators, storeState.streamSpectators) && m.areEqual(this.activeApplicationStream, storeState.activeApplicationStream) && m.areEqual(this.me, storeState.me) && m.areEqual(this.selectedVoiceChannel, storeState.selectedVoiceChannel);
+            return Intrinsics3.areEqual(this.voiceParticipants, storeState.voiceParticipants) && Intrinsics3.areEqual(this.rtcConnectionState, storeState.rtcConnectionState) && Intrinsics3.areEqual(this.streamsByUser, storeState.streamsByUser) && Intrinsics3.areEqual(this.streamSpectators, storeState.streamSpectators) && Intrinsics3.areEqual(this.activeApplicationStream, storeState.activeApplicationStream) && Intrinsics3.areEqual(this.me, storeState.me) && Intrinsics3.areEqual(this.selectedVoiceChannel, storeState.selectedVoiceChannel);
         }
 
         /* JADX INFO: renamed from: component5, reason: from getter */
@@ -274,7 +275,7 @@ public final class CallSoundManager {
         }
 
         public String toString() {
-            StringBuilder sbU = a.U("StoreState(voiceParticipants=");
+            StringBuilder sbU = outline.U("StoreState(voiceParticipants=");
             sbU.append(this.voiceParticipants);
             sbU.append(", rtcConnectionState=");
             sbU.append(this.rtcConnectionState);
@@ -306,11 +307,11 @@ public final class CallSoundManager {
         }
 
         public StoreStateGenerator(StoreVoiceParticipants storeVoiceParticipants, StoreRtcConnection storeRtcConnection, StoreApplicationStreaming storeApplicationStreaming, StoreUser storeUser, StoreChannels storeChannels) {
-            m.checkNotNullParameter(storeVoiceParticipants, "storeVoiceParticipants");
-            m.checkNotNullParameter(storeRtcConnection, "storeRtcConnection");
-            m.checkNotNullParameter(storeApplicationStreaming, "storeApplicationStreaming");
-            m.checkNotNullParameter(storeUser, "storeUser");
-            m.checkNotNullParameter(storeChannels, "storeChannels");
+            Intrinsics3.checkNotNullParameter(storeVoiceParticipants, "storeVoiceParticipants");
+            Intrinsics3.checkNotNullParameter(storeRtcConnection, "storeRtcConnection");
+            Intrinsics3.checkNotNullParameter(storeApplicationStreaming, "storeApplicationStreaming");
+            Intrinsics3.checkNotNullParameter(storeUser, "storeUser");
+            Intrinsics3.checkNotNullParameter(storeChannels, "storeChannels");
             this.storeVoiceParticipants = storeVoiceParticipants;
             this.storeRtcConnection = storeRtcConnection;
             this.storeApplicationStreaming = storeApplicationStreaming;
@@ -320,8 +321,8 @@ public final class CallSoundManager {
 
         @Override // com.discord.utilities.voice.CallSoundManager.IStoreStateGenerator
         public Observable<StoreState> observeStoreState(long voiceChannelId) {
-            Observable<StoreState> observableE = Observable.e(this.storeVoiceParticipants.get(voiceChannelId), this.storeRtcConnection.getConnectionState(), this.storeApplicationStreaming.observeStreamsByUser(), this.storeApplicationStreaming.observeStreamSpectators(), this.storeApplicationStreaming.observeActiveStream(), StoreUser.observeMe$default(this.storeUser, false, 1, null), this.storeChannels.observeChannel(voiceChannelId), CallSoundManager$StoreStateGenerator$observeStoreState$1.INSTANCE);
-            m.checkNotNullExpressionValue(observableE, "Observable.combineLatest…Channel\n        )\n      }");
+            Observable<StoreState> observableE = Observable.e(this.storeVoiceParticipants.get(voiceChannelId), this.storeRtcConnection.getConnectionState(), this.storeApplicationStreaming.observeStreamsByUser(), this.storeApplicationStreaming.observeStreamSpectators(), this.storeApplicationStreaming.observeActiveStream(), StoreUser.observeMe$default(this.storeUser, false, 1, null), this.storeChannels.observeChannel(voiceChannelId), CallSoundManager2.INSTANCE);
+            Intrinsics3.checkNotNullExpressionValue(observableE, "Observable.combineLatest…Channel\n        )\n      }");
             return observableE;
         }
 
@@ -331,13 +332,13 @@ public final class CallSoundManager {
     }
 
     public CallSoundManager(AppComponent appComponent, AppSoundManager appSoundManager, IStoreStateGenerator iStoreStateGenerator) {
-        m.checkNotNullParameter(appComponent, "appComponent");
-        m.checkNotNullParameter(appSoundManager, "appSoundManager");
-        m.checkNotNullParameter(iStoreStateGenerator, "storeStateGenerator");
+        Intrinsics3.checkNotNullParameter(appComponent, "appComponent");
+        Intrinsics3.checkNotNullParameter(appSoundManager, "appSoundManager");
+        Intrinsics3.checkNotNullParameter(iStoreStateGenerator, "storeStateGenerator");
         this.appComponent = appComponent;
         this.appSoundManager = appSoundManager;
         this.storeStateGenerator = iStoreStateGenerator;
-        this.streamingUserIds = n.emptyList();
+        this.streamingUserIds = Collections2.emptyList();
     }
 
     public static final /* synthetic */ AppSoundManager access$getAppSoundManager$p(CallSoundManager callSoundManager) {
@@ -384,7 +385,7 @@ public final class CallSoundManager {
                 arrayList.add(next);
             }
         }
-        ArrayList arrayList2 = new ArrayList(d0.t.o.collectionSizeOrDefault(arrayList, 10));
+        ArrayList arrayList2 = new ArrayList(Iterables2.collectionSizeOrDefault(arrayList, 10));
         Iterator it2 = arrayList.iterator();
         while (it2.hasNext()) {
             arrayList2.add(Long.valueOf(((ModelApplicationStream) it2.next()).getOwnerId()));
@@ -413,7 +414,7 @@ public final class CallSoundManager {
             this.activeStreamViewerCount = size;
         }
         String str2 = this.activeStreamKey;
-        boolean z5 = str2 != null && m.areEqual(str2, str);
+        boolean z5 = str2 != null && Intrinsics3.areEqual(str2, str);
         List<Long> list3 = this.streamingUserIds;
         if (!(list3 instanceof Collection) || !list3.isEmpty()) {
             Iterator<T> it3 = list3.iterator();
@@ -453,7 +454,7 @@ public final class CallSoundManager {
         if (z5 && i <= 25 && this.activeStreamViewerCount < i) {
             z2 = true;
         }
-        if (m.areEqual(this.voiceChannelId, l)) {
+        if (Intrinsics3.areEqual(this.voiceChannelId, l)) {
             if (z3) {
                 this.appSoundManager.play(AppSound.INSTANCE.getSOUND_STREAM_STARTED());
             } else if (z4) {
@@ -465,7 +466,7 @@ public final class CallSoundManager {
             }
         }
         Map<Long, StoreVoiceParticipants.VoiceUser> voiceParticipants = storeState.getVoiceParticipants();
-        boolean zAreEqual = m.areEqual(storeState.getRtcConnectionState(), RtcConnection.State.f.a);
+        boolean zAreEqual = Intrinsics3.areEqual(storeState.getRtcConnectionState(), RtcConnection.State.f.a);
         Collection<StoreVoiceParticipants.VoiceUser> collectionValues2 = voiceParticipants.values();
         ArrayList arrayList4 = new ArrayList();
         for (Object obj2 : collectionValues2) {
@@ -509,7 +510,7 @@ public final class CallSoundManager {
             subscription.unsubscribe();
         }
         Observable<StoreState> observableR = this.storeStateGenerator.observeStoreState(voiceChannelId).r();
-        m.checkNotNullExpressionValue(observableR, "storeStateGenerator\n    …  .distinctUntilChanged()");
+        Intrinsics3.checkNotNullExpressionValue(observableR, "storeStateGenerator\n    …  .distinctUntilChanged()");
         ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.computationLatest(observableR), this.appComponent, null, 2, null), CallSoundManager.class, (Context) null, new AnonymousClass1(), (Function1) null, new AnonymousClass2(), (Function0) null, new AnonymousClass3(voiceChannelId), 42, (Object) null);
     }
 

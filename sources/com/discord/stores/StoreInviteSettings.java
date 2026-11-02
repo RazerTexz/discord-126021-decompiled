@@ -4,7 +4,7 @@ import android.content.Context;
 import android.os.Parcel;
 import android.os.Parcelable;
 import androidx.core.app.NotificationCompat;
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.api.channel.Channel;
 import com.discord.api.channel.ChannelUtils;
 import com.discord.models.domain.ModelAuditLogEntry;
@@ -14,10 +14,10 @@ import com.discord.restapi.RestAPIParams;
 import com.discord.utilities.permissions.PermissionUtils;
 import com.discord.utilities.rest.RestAPI;
 import com.discord.utilities.rx.ObservableExtensionsKt;
-import d0.t.u;
-import d0.z.d.m;
-import j0.k.b;
-import j0.l.e.k;
+import d0.t._Collections;
+import d0.z.d.Intrinsics3;
+import j0.k.Func1;
+import j0.l.e.ScalarSynchronousObservable;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
@@ -40,10 +40,10 @@ public final class StoreInviteSettings extends Store {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreInviteSettings$generateInviteDefaultChannel$1, reason: invalid class name */
     /* JADX INFO: compiled from: StoreInviteSettings.kt */
-    public final class AnonymousClass1<T, R> implements b<Map<Long, ? extends Channel>, Collection<? extends Channel>> {
+    public final class AnonymousClass1<T, R> implements Func1<Map<Long, ? extends Channel>, Collection<? extends Channel>> {
         public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
 
-        @Override // j0.k.b
+        @Override // j0.k.Func1
         public /* bridge */ /* synthetic */ Collection<? extends Channel> call(Map<Long, ? extends Channel> map) {
             return call2((Map<Long, Channel>) map);
         }
@@ -78,7 +78,7 @@ public final class StoreInviteSettings extends Store {
                     long jLongValue2 = entry.getValue().longValue();
                     Channel channel = map.get(Long.valueOf(jLongValue));
                     if (channel != null) {
-                        m.checkNotNullParameter(channel, "$this$isInvitableChannel");
+                        Intrinsics3.checkNotNullParameter(channel, "$this$isInvitableChannel");
                         if ((ChannelUtils.v(channel) || ChannelUtils.w(channel)) && PermissionUtils.INSTANCE.hasAccess(channel, Long.valueOf(jLongValue2)) && PermissionUtils.can(1L, Long.valueOf(jLongValue2))) {
                             map3.put(Long.valueOf(jLongValue), channel);
                         }
@@ -91,43 +91,43 @@ public final class StoreInviteSettings extends Store {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreInviteSettings$getInvite$1, reason: invalid class name */
     /* JADX INFO: compiled from: StoreInviteSettings.kt */
-    public final class AnonymousClass1<T, R> implements b<InviteCode, Observable<? extends StoreInstantInvites.InviteState>> {
+    public final class AnonymousClass1<T, R> implements Func1<InviteCode, Observable<? extends StoreInstantInvites.InviteState>> {
         public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
 
-        @Override // j0.k.b
+        @Override // j0.k.Func1
         public /* bridge */ /* synthetic */ Observable<? extends StoreInstantInvites.InviteState> call(InviteCode inviteCode) {
             return call2(inviteCode);
         }
 
         /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
         public final Observable<? extends StoreInstantInvites.InviteState> call2(InviteCode inviteCode) {
-            return inviteCode == null ? new k(null) : StoreStream.INSTANCE.getInstantInvites().observeInvite(ModelInvite.getInviteStoreKey(inviteCode.getInviteCode(), inviteCode.getEventId()));
+            return inviteCode == null ? new ScalarSynchronousObservable(null) : StoreStream.INSTANCE.getInstantInvites().observeInvite(ModelInvite.getInviteStoreKey(inviteCode.getInviteCode(), inviteCode.getEventId()));
         }
     }
 
     /* JADX INFO: renamed from: com.discord.stores.StoreInviteSettings$generateInviteDefaultChannel$2, reason: invalid class name */
     /* JADX INFO: compiled from: StoreInviteSettings.kt */
-    public final class AnonymousClass2<T, R> implements b<Collection<? extends Channel>, List<? extends Channel>> {
+    public final class AnonymousClass2<T, R> implements Func1<Collection<? extends Channel>, List<? extends Channel>> {
         public static final AnonymousClass2 INSTANCE = new AnonymousClass2();
 
-        @Override // j0.k.b
+        @Override // j0.k.Func1
         public /* bridge */ /* synthetic */ List<? extends Channel> call(Collection<? extends Channel> collection) {
             return call2((Collection<Channel>) collection);
         }
 
         /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
         public final List<Channel> call2(Collection<Channel> collection) {
-            m.checkNotNullExpressionValue(collection, "it");
-            return u.sortedWith(collection, ChannelUtils.h(Channel.INSTANCE));
+            Intrinsics3.checkNotNullExpressionValue(collection, "it");
+            return _Collections.sortedWith(collection, ChannelUtils.h(Channel.INSTANCE));
         }
     }
 
     /* JADX INFO: renamed from: com.discord.stores.StoreInviteSettings$getInvite$2, reason: invalid class name */
     /* JADX INFO: compiled from: StoreInviteSettings.kt */
-    public final class AnonymousClass2<T, R> implements b<StoreInstantInvites.InviteState, ModelInvite> {
+    public final class AnonymousClass2<T, R> implements Func1<StoreInstantInvites.InviteState, ModelInvite> {
         public static final AnonymousClass2 INSTANCE = new AnonymousClass2();
 
-        @Override // j0.k.b
+        @Override // j0.k.Func1
         public /* bridge */ /* synthetic */ ModelInvite call(StoreInstantInvites.InviteState inviteState) {
             return call2(inviteState);
         }
@@ -143,18 +143,18 @@ public final class StoreInviteSettings extends Store {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreInviteSettings$generateInviteDefaultChannel$3, reason: invalid class name */
     /* JADX INFO: compiled from: StoreInviteSettings.kt */
-    public final class AnonymousClass3<T, R> implements b<List<? extends Channel>, Long> {
+    public final class AnonymousClass3<T, R> implements Func1<List<? extends Channel>, Long> {
         public static final AnonymousClass3 INSTANCE = new AnonymousClass3();
 
-        @Override // j0.k.b
+        @Override // j0.k.Func1
         public /* bridge */ /* synthetic */ Long call(List<? extends Channel> list) {
             return call2((List<Channel>) list);
         }
 
         /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
         public final Long call2(List<Channel> list) {
-            m.checkNotNullExpressionValue(list, "it");
-            Channel channel = (Channel) u.firstOrNull((List) list);
+            Intrinsics3.checkNotNullExpressionValue(list, "it");
+            Channel channel = (Channel) _Collections.firstOrNull((List) list);
             if (channel != null) {
                 return Long.valueOf(channel.getId());
             }
@@ -164,14 +164,14 @@ public final class StoreInviteSettings extends Store {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreInviteSettings$generateInviteDefaultChannel$4, reason: invalid class name */
     /* JADX INFO: compiled from: StoreInviteSettings.kt */
-    public final class AnonymousClass4<T, R> implements b<Long, Observable<? extends ModelInvite>> {
+    public final class AnonymousClass4<T, R> implements Func1<Long, Observable<? extends ModelInvite>> {
         public final /* synthetic */ long $guildId;
 
         public AnonymousClass4(long j) {
             this.$guildId = j;
         }
 
-        @Override // j0.k.b
+        @Override // j0.k.Func1
         public /* bridge */ /* synthetic */ Observable<? extends ModelInvite> call(Long l) {
             return call2(l);
         }
@@ -186,7 +186,7 @@ public final class StoreInviteSettings extends Store {
                     return observableGenerateInvite;
                 }
             }
-            return new k(null);
+            return new ScalarSynchronousObservable(null);
         }
     }
 
@@ -201,7 +201,7 @@ public final class StoreInviteSettings extends Store {
             /* JADX WARN: Can't rename method to resolve collision */
             @Override // android.os.Parcelable.Creator
             public final InviteCode createFromParcel(Parcel parcel) {
-                m.checkNotNullParameter(parcel, "in");
+                Intrinsics3.checkNotNullParameter(parcel, "in");
                 return new InviteCode(parcel.readString(), parcel.readString(), parcel.readInt() != 0 ? Long.valueOf(parcel.readLong()) : null);
             }
 
@@ -223,8 +223,8 @@ public final class StoreInviteSettings extends Store {
         }
 
         public InviteCode(String str, String str2, Long l) {
-            m.checkNotNullParameter(str, "inviteCode");
-            m.checkNotNullParameter(str2, "source");
+            Intrinsics3.checkNotNullParameter(str, "inviteCode");
+            Intrinsics3.checkNotNullParameter(str2, "source");
             this.inviteCode = str;
             this.source = str2;
             this.eventId = l;
@@ -244,8 +244,8 @@ public final class StoreInviteSettings extends Store {
         }
 
         public final InviteCode copy(String inviteCode, String source, Long eventId) {
-            m.checkNotNullParameter(inviteCode, "inviteCode");
-            m.checkNotNullParameter(source, "source");
+            Intrinsics3.checkNotNullParameter(inviteCode, "inviteCode");
+            Intrinsics3.checkNotNullParameter(source, "source");
             return new InviteCode(inviteCode, source, eventId);
         }
 
@@ -262,7 +262,7 @@ public final class StoreInviteSettings extends Store {
                 return false;
             }
             InviteCode inviteCode = (InviteCode) other;
-            return m.areEqual(this.inviteCode, inviteCode.inviteCode) && m.areEqual(this.source, inviteCode.source) && m.areEqual(this.eventId, inviteCode.eventId);
+            return Intrinsics3.areEqual(this.inviteCode, inviteCode.inviteCode) && Intrinsics3.areEqual(this.source, inviteCode.source) && Intrinsics3.areEqual(this.eventId, inviteCode.eventId);
         }
 
         /* JADX INFO: renamed from: component3, reason: from getter */
@@ -302,17 +302,17 @@ public final class StoreInviteSettings extends Store {
         }
 
         public String toString() {
-            StringBuilder sbU = a.U("InviteCode(inviteCode=");
+            StringBuilder sbU = outline.U("InviteCode(inviteCode=");
             sbU.append(this.inviteCode);
             sbU.append(", source=");
             sbU.append(this.source);
             sbU.append(", eventId=");
-            return a.G(sbU, this.eventId, ")");
+            return outline.G(sbU, this.eventId, ")");
         }
 
         @Override // android.os.Parcelable
         public void writeToParcel(Parcel parcel, int flags) {
-            m.checkNotNullParameter(parcel, "parcel");
+            Intrinsics3.checkNotNullParameter(parcel, "parcel");
             parcel.writeString(this.inviteCode);
             parcel.writeString(this.source);
             Long l = this.eventId;
@@ -341,32 +341,32 @@ public final class StoreInviteSettings extends Store {
     }
 
     public final synchronized Observable<ModelInvite> generateInvite(long channelId, ModelInvite.Settings settings) {
-        m.checkNotNullParameter(settings, "settings");
+        Intrinsics3.checkNotNullParameter(settings, "settings");
         return ObservableExtensionsKt.restSubscribeOn$default(RestAPI.INSTANCE.getApi().postChannelInvite(channelId, new RestAPIParams.Invite(settings.getMaxAge(), settings.getMaxUses(), settings.isTemporary(), null)), false, 1, null);
     }
 
     public final Observable<ModelInvite> generateInviteDefaultChannel(long guildId) {
         Observable<ModelInvite> observableA = getInvitableChannels(guildId).G(AnonymousClass1.INSTANCE).G(AnonymousClass2.INSTANCE).G(AnonymousClass3.INSTANCE).Z(1).A(new AnonymousClass4(guildId));
-        m.checkNotNullExpressionValue(observableA, "getInvitableChannels(gui…le.just(null)\n          }");
+        Intrinsics3.checkNotNullExpressionValue(observableA, "getInvitableChannels(gui…le.just(null)\n          }");
         return observableA;
     }
 
     public final Observable<Map<Long, Channel>> getInvitableChannels(long guildId) {
         StoreStream.Companion companion = StoreStream.INSTANCE;
         Observable<Map<Long, Channel>> observableJ = Observable.j(companion.getChannels().observeGuildAndPrivateChannels(), companion.getPermissions().observeAllPermissions(), new AnonymousClass1(guildId));
-        m.checkNotNullExpressionValue(observableJ, "Observable\n        .comb…  }\n          }\n        }");
+        Intrinsics3.checkNotNullExpressionValue(observableJ, "Observable\n        .comb…  }\n          }\n        }");
         return observableJ;
     }
 
     public final Observable<ModelInvite> getInvite() {
         Observable<ModelInvite> observableG = getInviteCode().A(AnonymousClass1.INSTANCE).G(AnonymousClass2.INSTANCE);
-        m.checkNotNullExpressionValue(observableG, "getInviteCode()\n      .f…-> null\n        }\n      }");
+        Intrinsics3.checkNotNullExpressionValue(observableG, "getInviteCode()\n      .f…-> null\n        }\n      }");
         return observableG;
     }
 
     public final Observable<InviteCode> getInviteCode() {
         Observable<InviteCode> observableR = this.pendingInviteCodeSubject.r();
-        m.checkNotNullExpressionValue(observableR, "pendingInviteCodeSubject.distinctUntilChanged()");
+        Intrinsics3.checkNotNullExpressionValue(observableR, "pendingInviteCodeSubject.distinctUntilChanged()");
         return observableR;
     }
 
@@ -383,9 +383,9 @@ public final class StoreInviteSettings extends Store {
 
     public final Observable<ModelInvite.Settings> getInviteSettings() {
         BehaviorSubject<ModelInvite.Settings> behaviorSubject = this.inviteSettingsSubject;
-        m.checkNotNullExpressionValue(behaviorSubject, "inviteSettingsSubject");
+        Intrinsics3.checkNotNullExpressionValue(behaviorSubject, "inviteSettingsSubject");
         Observable<ModelInvite.Settings> observableR = ObservableExtensionsKt.computationLatest(behaviorSubject).r();
-        m.checkNotNullExpressionValue(observableR, "inviteSettingsSubject\n  …  .distinctUntilChanged()");
+        Intrinsics3.checkNotNullExpressionValue(observableR, "inviteSettingsSubject\n  …  .distinctUntilChanged()");
         return observableR;
     }
 
@@ -401,23 +401,23 @@ public final class StoreInviteSettings extends Store {
     }
 
     public final void setInviteCode(String inviteCode, String source, Long eventId) {
-        m.checkNotNullParameter(inviteCode, "inviteCode");
-        m.checkNotNullParameter(source, "source");
+        Intrinsics3.checkNotNullParameter(inviteCode, "inviteCode");
+        Intrinsics3.checkNotNullParameter(source, "source");
         this.pendingInviteCodeSubject.onNext(new InviteCode(inviteCode, source, eventId));
     }
 
     public final synchronized void setInviteSettings(ModelInvite.Settings settings) {
-        m.checkNotNullParameter(settings, "settings");
+        Intrinsics3.checkNotNullParameter(settings, "settings");
         this.inviteSettings = settings;
         this.inviteSettingsSubject.onNext(settings);
     }
 
     public final void trackWithInvite$app_productionGoogleRelease(Class<?> clazz, Function1<? super ModelInvite, Unit> trackBlock) {
-        m.checkNotNullParameter(clazz, "clazz");
-        m.checkNotNullParameter(trackBlock, "trackBlock");
-        Observable<ModelInvite> observableY = getInvite().y(StoreInviteSettings$trackWithInvite$1.INSTANCE);
-        m.checkNotNullExpressionValue(observableY, "getInvite()\n        .filter { it != null }");
-        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.computationLatest(ObservableExtensionsKt.takeSingleUntilTimeout$default(observableY, 250L, false, 2, null)), clazz, (Context) null, (Function1) null, new StoreInviteSettings$trackWithInvite$2(trackBlock), (Function0) null, (Function0) null, trackBlock, 54, (Object) null);
+        Intrinsics3.checkNotNullParameter(clazz, "clazz");
+        Intrinsics3.checkNotNullParameter(trackBlock, "trackBlock");
+        Observable<ModelInvite> observableY = getInvite().y(StoreInviteSettings2.INSTANCE);
+        Intrinsics3.checkNotNullExpressionValue(observableY, "getInvite()\n        .filter { it != null }");
+        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.computationLatest(ObservableExtensionsKt.takeSingleUntilTimeout$default(observableY, 250L, false, 2, null)), clazz, (Context) null, (Function1) null, new StoreInviteSettings3(trackBlock), (Function0) null, (Function0) null, trackBlock, 54, (Object) null);
     }
 
     public final ModelInvite.Settings getInviteSettings(long guildId) {

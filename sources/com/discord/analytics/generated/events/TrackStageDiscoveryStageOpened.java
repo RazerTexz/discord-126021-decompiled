@@ -1,17 +1,17 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.analytics.generated.traits.TrackGuild;
-import com.discord.analytics.generated.traits.TrackGuildReceiver;
+import com.discord.analytics.generated.traits.TrackGuild2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 import java.util.List;
 
 /* JADX INFO: compiled from: TrackStageDiscoveryStageOpened.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackStageDiscoveryStageOpened implements AnalyticsSchema, TrackBaseReceiver, TrackGuildReceiver {
+public final /* data */ class TrackStageDiscoveryStageOpened implements AnalyticsSchema, TrackBase2, TrackGuild2 {
     private final Long index = null;
     private final Long lastVisibleIndexAtLoad = null;
     private final CharSequence loadId = null;
@@ -22,7 +22,7 @@ public final /* data */ class TrackStageDiscoveryStageOpened implements Analytic
     private TrackGuild trackGuild;
     private final transient String analyticsSchemaTypeName = "stage_discovery_stage_opened";
 
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    @Override // com.discord.analytics.generated.traits.TrackGuild2
     public void c(TrackGuild trackGuild) {
         this.trackGuild = trackGuild;
     }
@@ -35,7 +35,7 @@ public final /* data */ class TrackStageDiscoveryStageOpened implements Analytic
             return false;
         }
         TrackStageDiscoveryStageOpened trackStageDiscoveryStageOpened = (TrackStageDiscoveryStageOpened) other;
-        return m.areEqual(this.loadId, trackStageDiscoveryStageOpened.loadId) && m.areEqual(this.lastVisibleIndexAtLoad, trackStageDiscoveryStageOpened.lastVisibleIndexAtLoad) && m.areEqual(this.index, trackStageDiscoveryStageOpened.index) && m.areEqual(this.stageInstanceId, trackStageDiscoveryStageOpened.stageInstanceId) && m.areEqual(this.recommendationSource, trackStageDiscoveryStageOpened.recommendationSource) && m.areEqual(this.recommendationScore, trackStageDiscoveryStageOpened.recommendationScore);
+        return Intrinsics3.areEqual(this.loadId, trackStageDiscoveryStageOpened.loadId) && Intrinsics3.areEqual(this.lastVisibleIndexAtLoad, trackStageDiscoveryStageOpened.lastVisibleIndexAtLoad) && Intrinsics3.areEqual(this.index, trackStageDiscoveryStageOpened.index) && Intrinsics3.areEqual(this.stageInstanceId, trackStageDiscoveryStageOpened.stageInstanceId) && Intrinsics3.areEqual(this.recommendationSource, trackStageDiscoveryStageOpened.recommendationSource) && Intrinsics3.areEqual(this.recommendationScore, trackStageDiscoveryStageOpened.recommendationScore);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -44,7 +44,7 @@ public final /* data */ class TrackStageDiscoveryStageOpened implements Analytic
         return this.analyticsSchemaTypeName;
     }
 
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    @Override // com.discord.analytics.generated.traits.TrackGuild2
     /* JADX INFO: renamed from: a, reason: from getter */
     public TrackGuild getTrackGuild() {
         return this.trackGuild;
@@ -66,7 +66,7 @@ public final /* data */ class TrackStageDiscoveryStageOpened implements Analytic
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackStageDiscoveryStageOpened(loadId=");
+        StringBuilder sbU = outline.U("TrackStageDiscoveryStageOpened(loadId=");
         sbU.append(this.loadId);
         sbU.append(", lastVisibleIndexAtLoad=");
         sbU.append(this.lastVisibleIndexAtLoad);

@@ -1,9 +1,9 @@
 package com.discord.widgets.directories;
 
 import android.widget.TextView;
-import b.a.k.b;
+import b.a.k.FormatUtils;
 import com.discord.databinding.DirectorySectionHeaderListItemBinding;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: WidgetDirectoryEntryViewHolder.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -12,21 +12,21 @@ public final class SectionHeaderViewHolder extends DirectoryChannelViewHolder {
 
     /* JADX WARN: Illegal instructions before constructor call */
     public SectionHeaderViewHolder(DirectorySectionHeaderListItemBinding directorySectionHeaderListItemBinding) {
-        m.checkNotNullParameter(directorySectionHeaderListItemBinding, "viewBinding");
+        Intrinsics3.checkNotNullParameter(directorySectionHeaderListItemBinding, "viewBinding");
         TextView textView = directorySectionHeaderListItemBinding.a;
-        m.checkNotNullExpressionValue(textView, "viewBinding.root");
+        Intrinsics3.checkNotNullExpressionValue(textView, "viewBinding.root");
         super(textView);
         this.viewBinding = directorySectionHeaderListItemBinding;
     }
 
     @Override // com.discord.widgets.directories.DirectoryChannelViewHolder
     public void bind(DirectoryChannelItem item, DirectoryChannelItemClickInterface listener) {
-        m.checkNotNullParameter(item, "item");
-        m.checkNotNullParameter(listener, "listener");
+        Intrinsics3.checkNotNullParameter(item, "item");
+        Intrinsics3.checkNotNullParameter(listener, "listener");
         int textRes = ((DirectoryChannelItem.SectionHeader) item).getTextRes();
         TextView textView = this.viewBinding.f2097b;
-        m.checkNotNullExpressionValue(textView, "viewBinding.directorySectionText");
-        b.n(textView, textRes, new Object[0], null, 4);
+        Intrinsics3.checkNotNullExpressionValue(textView, "viewBinding.directorySectionText");
+        FormatUtils.n(textView, textRes, new Object[0], null, 4);
     }
 
     public final DirectorySectionHeaderListItemBinding getViewBinding() {

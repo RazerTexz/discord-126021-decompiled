@@ -1,8 +1,8 @@
 package com.discord.api.guild.welcome;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.models.domain.ModelAuditLogEntry;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: GuildWelcomeChannel.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -20,7 +20,7 @@ public final /* data */ class GuildWelcomeChannel {
             return false;
         }
         GuildWelcomeChannel guildWelcomeChannel = (GuildWelcomeChannel) other;
-        return this.channelId == guildWelcomeChannel.channelId && m.areEqual(this.description, guildWelcomeChannel.description) && m.areEqual(this.emojiId, guildWelcomeChannel.emojiId) && m.areEqual(this.emojiName, guildWelcomeChannel.emojiName);
+        return this.channelId == guildWelcomeChannel.channelId && Intrinsics3.areEqual(this.description, guildWelcomeChannel.description) && Intrinsics3.areEqual(this.emojiId, guildWelcomeChannel.emojiId) && Intrinsics3.areEqual(this.emojiName, guildWelcomeChannel.emojiName);
     }
 
     /* JADX INFO: renamed from: a, reason: from getter */
@@ -55,13 +55,13 @@ public final /* data */ class GuildWelcomeChannel {
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("GuildWelcomeChannel(channelId=");
+        StringBuilder sbU = outline.U("GuildWelcomeChannel(channelId=");
         sbU.append(this.channelId);
         sbU.append(", description=");
         sbU.append(this.description);
         sbU.append(", emojiId=");
         sbU.append(this.emojiId);
         sbU.append(", emojiName=");
-        return a.J(sbU, this.emojiName, ")");
+        return outline.J(sbU, this.emojiName, ")");
     }
 }

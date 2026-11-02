@@ -7,9 +7,10 @@ import android.widget.TextView;
 import androidx.core.app.NotificationCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-import b.a.d.m;
-import b.a.k.b;
-import b.d.b.a.a;
+import b.a.d.AppToast;
+import b.a.d.o;
+import b.a.k.FormatUtils;
+import b.d.b.a.outline;
 import com.discord.R;
 import com.discord.app.AppDialog;
 import com.discord.app.AppFragment;
@@ -23,11 +24,12 @@ import com.discord.utilities.rest.RestAPI;
 import com.discord.utilities.rest.RestAPIAbortMessages;
 import com.discord.utilities.rx.ObservableExtensionsKt;
 import com.discord.utilities.viewbinding.FragmentViewBindingDelegate;
-import com.discord.utilities.viewbinding.FragmentViewBindingDelegateKt;
+import com.discord.utilities.viewbinding.FragmentViewBindingDelegate3;
+import com.discord.widgets.captcha.WidgetCaptcha4;
 import com.discord.widgets.captcha.WidgetCaptchaBottomSheet;
-import com.discord.widgets.captcha.WidgetCaptchaKt;
 import com.google.android.material.button.MaterialButton;
-import d0.z.d.o;
+import d0.z.d.Intrinsics3;
+import d0.z.d.Lambda;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
@@ -39,7 +41,7 @@ import rx.functions.Action1;
 /* JADX INFO: compiled from: WidgetCallFailed.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetCallFailed extends AppDialog {
-    public static final /* synthetic */ KProperty[] $$delegatedProperties = {a.d0(WidgetCallFailed.class, "binding", "getBinding()Lcom/discord/databinding/ViewDialogConfirmationBinding;", 0)};
+    public static final /* synthetic */ KProperty[] $$delegatedProperties = {outline.d0(WidgetCallFailed.class, "binding", "getBinding()Lcom/discord/databinding/ViewDialogConfirmationBinding;", 0)};
 
     /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
     public static final Companion INSTANCE = new Companion(null);
@@ -62,7 +64,7 @@ public final class WidgetCallFailed extends AppDialog {
 
     /* JADX INFO: renamed from: com.discord.widgets.voice.call.WidgetCallFailed$onViewBoundOrOnResume$1, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetCallFailed.kt */
-    public final class AnonymousClass1 extends o implements Function1<User, Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function1<User, Unit> {
         public AnonymousClass1() {
             super(1);
         }
@@ -92,7 +94,7 @@ public final class WidgetCallFailed extends AppDialog {
 
         /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
         public final void call2(Void r4) {
-            m.i(WidgetCallFailed.this, R.string.friend_request_sent, 0, 4);
+            AppToast.i(WidgetCallFailed.this, R.string.friend_request_sent, 0, 4);
             WidgetCallFailed.this.dismiss();
         }
     }
@@ -105,13 +107,13 @@ public final class WidgetCallFailed extends AppDialog {
 
         /* JADX INFO: renamed from: com.discord.widgets.voice.call.WidgetCallFailed$sendFriendRequest$2$1, reason: invalid class name */
         /* JADX INFO: compiled from: WidgetCallFailed.kt */
-        public final class AnonymousClass1 extends o implements Function0<Unit> {
+        public final class AnonymousClass1 extends Lambda implements Function0<Unit> {
             public final /* synthetic */ Error $error;
 
             /* JADX INFO: renamed from: com.discord.widgets.voice.call.WidgetCallFailed$sendFriendRequest$2$1$1, reason: invalid class name and collision with other inner class name */
             /* JADX INFO: compiled from: WidgetCallFailed.kt */
-            public final class C04791 extends o implements Function2<AppFragment, CaptchaHelper.CaptchaPayload, Unit> {
-                public C04791() {
+            public final class C03591 extends Lambda implements Function2<AppFragment, CaptchaHelper.CaptchaPayload, Unit> {
+                public C03591() {
                     super(2);
                 }
 
@@ -123,8 +125,8 @@ public final class WidgetCallFailed extends AppDialog {
 
                 /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
                 public final void invoke2(AppFragment appFragment, CaptchaHelper.CaptchaPayload captchaPayload) {
-                    d0.z.d.m.checkNotNullParameter(appFragment, "<anonymous parameter 0>");
-                    d0.z.d.m.checkNotNullParameter(captchaPayload, "captchaPayload");
+                    Intrinsics3.checkNotNullParameter(appFragment, "<anonymous parameter 0>");
+                    Intrinsics3.checkNotNullParameter(captchaPayload, "captchaPayload");
                     AnonymousClass2 anonymousClass2 = AnonymousClass2.this;
                     WidgetCallFailed.access$sendFriendRequest(WidgetCallFailed.this, anonymousClass2.$userId, anonymousClass2.$username, captchaPayload);
                 }
@@ -145,23 +147,23 @@ public final class WidgetCallFailed extends AppDialog {
             /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
             public final void invoke2() {
                 Error error = this.$error;
-                d0.z.d.m.checkNotNullExpressionValue(error, "error");
-                if (WidgetCaptchaKt.isCaptchaError(error)) {
+                Intrinsics3.checkNotNullExpressionValue(error, "error");
+                if (WidgetCaptcha4.isCaptchaError(error)) {
                     WidgetCaptchaBottomSheet.Companion companion = WidgetCaptchaBottomSheet.INSTANCE;
-                    C04791 c04791 = new C04791();
+                    C03591 c03591 = new C03591();
                     CaptchaErrorBody.Companion companion2 = CaptchaErrorBody.INSTANCE;
                     Error error2 = this.$error;
-                    d0.z.d.m.checkNotNullExpressionValue(error2, "error");
-                    WidgetCaptchaBottomSheet.Companion.enqueue$default(companion, "Add Friend Captcha", c04791, null, companion2.createFromError(error2), 4, null);
+                    Intrinsics3.checkNotNullExpressionValue(error2, "error");
+                    WidgetCaptchaBottomSheet.Companion.enqueue$default(companion, "Add Friend Captcha", c03591, null, companion2.createFromError(error2), 4, null);
                     return;
                 }
                 RestAPIAbortMessages.ResponseResolver responseResolver = RestAPIAbortMessages.ResponseResolver.INSTANCE;
                 Context context = WidgetCallFailed.this.getContext();
                 Error error3 = this.$error;
-                d0.z.d.m.checkNotNullExpressionValue(error3, "error");
+                Intrinsics3.checkNotNullExpressionValue(error3, "error");
                 Error.Response response = error3.getResponse();
-                d0.z.d.m.checkNotNullExpressionValue(response, "error.response");
-                m.h(WidgetCallFailed.this.getContext(), responseResolver.getRelationshipResponse(context, response.getCode(), AnonymousClass2.this.$username), 0, null, 12);
+                Intrinsics3.checkNotNullExpressionValue(response, "error.response");
+                AppToast.h(WidgetCallFailed.this.getContext(), responseResolver.getRelationshipResponse(context, response.getCode(), AnonymousClass2.this.$username), 0, null, 12);
             }
         }
 
@@ -178,7 +180,7 @@ public final class WidgetCallFailed extends AppDialog {
         /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
         public final void call2(Error error) {
             RestAPIAbortMessages restAPIAbortMessages = RestAPIAbortMessages.INSTANCE;
-            d0.z.d.m.checkNotNullExpressionValue(error, "error");
+            Intrinsics3.checkNotNullExpressionValue(error, "error");
             RestAPIAbortMessages.handleAbortCodeOrDefault$default(restAPIAbortMessages, error, new AnonymousClass1(error), null, 4, null);
         }
     }
@@ -189,7 +191,7 @@ public final class WidgetCallFailed extends AppDialog {
         }
 
         public final void show(FragmentManager fragmentManager, long userId) {
-            d0.z.d.m.checkNotNullParameter(fragmentManager, "fragmentManager");
+            Intrinsics3.checkNotNullParameter(fragmentManager, "fragmentManager");
             WidgetCallFailed widgetCallFailed = new WidgetCallFailed();
             Bundle bundle = new Bundle();
             bundle.putLong(WidgetCallFailed.INTENT_USER_ID, userId);
@@ -204,7 +206,7 @@ public final class WidgetCallFailed extends AppDialog {
 
     public WidgetCallFailed() {
         super(R.layout.view_dialog_confirmation);
-        this.binding = FragmentViewBindingDelegateKt.viewBinding$default(this, WidgetCallFailed$binding$2.INSTANCE, null, 2, null);
+        this.binding = FragmentViewBindingDelegate3.viewBinding$default(this, WidgetCallFailed2.INSTANCE, null, 2, null);
     }
 
     public static final /* synthetic */ void access$configureUI(WidgetCallFailed widgetCallFailed, User user) {
@@ -221,9 +223,9 @@ public final class WidgetCallFailed extends AppDialog {
             return;
         }
         TextView textView = getBinding().e;
-        d0.z.d.m.checkNotNullExpressionValue(textView, "binding.viewDialogConfirmationText");
-        b.n(textView, R.string.call_invite_not_friends, new Object[]{user.getUsername()}, null, 4);
-        getBinding().c.setOnClickListener(new WidgetCallFailed$configureUI$$inlined$let$lambda$1(this, user));
+        Intrinsics3.checkNotNullExpressionValue(textView, "binding.viewDialogConfirmationText");
+        FormatUtils.n(textView, R.string.call_invite_not_friends, new Object[]{user.getUsername()}, null, 4);
+        getBinding().c.setOnClickListener(new WidgetCallFailed3(this, user));
     }
 
     private final ViewDialogConfirmationBinding getBinding() {
@@ -232,16 +234,16 @@ public final class WidgetCallFailed extends AppDialog {
 
     @Override // com.discord.app.AppDialog
     public void onViewBound(View view) {
-        d0.z.d.m.checkNotNullParameter(view, "view");
+        Intrinsics3.checkNotNullParameter(view, "view");
         super.onViewBound(view);
         TextView textView = getBinding().d;
-        d0.z.d.m.checkNotNullExpressionValue(textView, "binding.viewDialogConfirmationHeader");
+        Intrinsics3.checkNotNullExpressionValue(textView, "binding.viewDialogConfirmationHeader");
         textView.setText(getString(R.string.start_call));
         MaterialButton materialButton = getBinding().c;
-        d0.z.d.m.checkNotNullExpressionValue(materialButton, "binding.viewDialogConfirmationConfirm");
+        Intrinsics3.checkNotNullExpressionValue(materialButton, "binding.viewDialogConfirmationConfirm");
         materialButton.setText(getString(R.string.add_friend_button));
         MaterialButton materialButton2 = getBinding().f2185b;
-        d0.z.d.m.checkNotNullExpressionValue(materialButton2, "binding.viewDialogConfirmationCancel");
+        Intrinsics3.checkNotNullExpressionValue(materialButton2, "binding.viewDialogConfirmationCancel");
         materialButton2.setText(getString(R.string.okay));
         getBinding().f2185b.setOnClickListener(new AnonymousClass1());
     }
@@ -260,6 +262,6 @@ public final class WidgetCallFailed extends AppDialog {
     }
 
     private final void sendFriendRequest(long userId, String username, CaptchaHelper.CaptchaPayload captchaPayload) {
-        ObservableExtensionsKt.ui$default(RestAPI.addRelationship$default(RestAPI.INSTANCE.getApi(), "Call", userId, null, null, captchaPayload, 8, null), this, null, 2, null).k(b.a.d.o.h(new AnonymousClass1(), getAppActivity(), new AnonymousClass2(userId, username)));
+        ObservableExtensionsKt.ui$default(RestAPI.addRelationship$default(RestAPI.INSTANCE.getApi(), "Call", userId, null, null, captchaPayload, 8, null), this, null, 2, null).k(o.h(new AnonymousClass1(), getAppActivity(), new AnonymousClass2(userId, username)));
     }
 }

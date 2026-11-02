@@ -1,22 +1,22 @@
 package com.discord.analytics.generated.events.impression;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.analytics.generated.traits.TrackChannel;
-import com.discord.analytics.generated.traits.TrackChannelReceiver;
+import com.discord.analytics.generated.traits.TrackChannel2;
 import com.discord.analytics.generated.traits.TrackGuild;
-import com.discord.analytics.generated.traits.TrackGuildReceiver;
+import com.discord.analytics.generated.traits.TrackGuild2;
 import com.discord.analytics.generated.traits.TrackImpressionMetadata;
-import com.discord.analytics.generated.traits.TrackImpressionMetadataReceiver;
+import com.discord.analytics.generated.traits.TrackImpressionMetadata2;
 import com.discord.analytics.generated.traits.TrackLocationMetadata;
-import com.discord.analytics.generated.traits.TrackLocationMetadataReceiver;
+import com.discord.analytics.generated.traits.TrackLocationMetadata2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackImpressionActivityBoostingUpsell.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackImpressionActivityBoostingUpsell implements AnalyticsSchema, TrackBaseReceiver, TrackGuildReceiver, TrackChannelReceiver, TrackLocationMetadataReceiver, TrackImpressionMetadataReceiver {
+public final /* data */ class TrackImpressionActivityBoostingUpsell implements AnalyticsSchema, TrackBase2, TrackGuild2, TrackChannel2, TrackLocationMetadata2, TrackImpressionMetadata2 {
     private final Long applicationId = null;
     private final CharSequence sourceSection = null;
     private final Long tier = null;
@@ -27,7 +27,7 @@ public final /* data */ class TrackImpressionActivityBoostingUpsell implements A
     private TrackLocationMetadata trackLocationMetadata;
     private final transient String analyticsSchemaTypeName = "impression_activity_boosting_upsell";
 
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    @Override // com.discord.analytics.generated.traits.TrackGuild2
     public void c(TrackGuild trackGuild) {
         this.trackGuild = trackGuild;
     }
@@ -40,7 +40,7 @@ public final /* data */ class TrackImpressionActivityBoostingUpsell implements A
             return false;
         }
         TrackImpressionActivityBoostingUpsell trackImpressionActivityBoostingUpsell = (TrackImpressionActivityBoostingUpsell) other;
-        return m.areEqual(this.applicationId, trackImpressionActivityBoostingUpsell.applicationId) && m.areEqual(this.sourceSection, trackImpressionActivityBoostingUpsell.sourceSection) && m.areEqual(this.tier, trackImpressionActivityBoostingUpsell.tier);
+        return Intrinsics3.areEqual(this.applicationId, trackImpressionActivityBoostingUpsell.applicationId) && Intrinsics3.areEqual(this.sourceSection, trackImpressionActivityBoostingUpsell.sourceSection) && Intrinsics3.areEqual(this.tier, trackImpressionActivityBoostingUpsell.tier);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -49,7 +49,7 @@ public final /* data */ class TrackImpressionActivityBoostingUpsell implements A
         return this.analyticsSchemaTypeName;
     }
 
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    @Override // com.discord.analytics.generated.traits.TrackGuild2
     /* JADX INFO: renamed from: a, reason: from getter */
     public TrackGuild getTrackGuild() {
         return this.trackGuild;
@@ -65,11 +65,11 @@ public final /* data */ class TrackImpressionActivityBoostingUpsell implements A
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackImpressionActivityBoostingUpsell(applicationId=");
+        StringBuilder sbU = outline.U("TrackImpressionActivityBoostingUpsell(applicationId=");
         sbU.append(this.applicationId);
         sbU.append(", sourceSection=");
         sbU.append(this.sourceSection);
         sbU.append(", tier=");
-        return a.G(sbU, this.tier, ")");
+        return outline.G(sbU, this.tier, ")");
     }
 }

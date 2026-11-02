@@ -1,6 +1,6 @@
 package com.discord.widgets.voice.fullscreen.stage;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.api.channel.Channel;
 import com.discord.api.role.GuildRole;
 import com.discord.models.domain.ModelAuditLogEntry;
@@ -9,7 +9,7 @@ import com.discord.utilities.guilds.RoleUtils;
 import com.discord.utilities.mg_recycler.MGRecyclerDataPayload;
 import com.discord.views.calls.VideoCallParticipantView;
 import com.discord.widgets.voice.fullscreen.CallParticipant;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 import kotlin.jvm.internal.DefaultConstructorMarker;
 
 /* JADX INFO: compiled from: StageCallItem.kt */
@@ -66,12 +66,12 @@ public abstract class StageCallItem implements MGRecyclerDataPayload {
         }
 
         public String toString() {
-            return a.B(a.U("AudienceHeaderItem(audienceSize="), this.audienceSize, ")");
+            return outline.B(outline.U("AudienceHeaderItem(audienceSize="), this.audienceSize, ")");
         }
     }
 
     /* JADX INFO: compiled from: StageCallItem.kt */
-    public final /* data */ class AudienceItem extends StageCallItem implements StageCallParticipantItem, Comparable<AudienceItem> {
+    public final /* data */ class AudienceItem extends StageCallItem implements StageCallItem2, Comparable<AudienceItem> {
         private final Channel channel;
         private final GuildRole hoistedGuildRole;
         private final boolean isBlocked;
@@ -80,8 +80,8 @@ public abstract class StageCallItem implements MGRecyclerDataPayload {
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
         public AudienceItem(StoreVoiceParticipants.VoiceUser voiceUser, Channel channel, GuildRole guildRole, boolean z2) {
             super("audience-" + voiceUser.getUser().getId(), 3, null);
-            m.checkNotNullParameter(voiceUser, "voiceUser");
-            m.checkNotNullParameter(channel, "channel");
+            Intrinsics3.checkNotNullParameter(voiceUser, "voiceUser");
+            Intrinsics3.checkNotNullParameter(channel, "channel");
             this.voiceUser = voiceUser;
             this.channel = channel;
             this.hoistedGuildRole = guildRole;
@@ -118,8 +118,8 @@ public abstract class StageCallItem implements MGRecyclerDataPayload {
         }
 
         public final AudienceItem copy(StoreVoiceParticipants.VoiceUser voiceUser, Channel channel, GuildRole hoistedGuildRole, boolean isBlocked) {
-            m.checkNotNullParameter(voiceUser, "voiceUser");
-            m.checkNotNullParameter(channel, "channel");
+            Intrinsics3.checkNotNullParameter(voiceUser, "voiceUser");
+            Intrinsics3.checkNotNullParameter(channel, "channel");
             return new AudienceItem(voiceUser, channel, hoistedGuildRole, isBlocked);
         }
 
@@ -131,10 +131,10 @@ public abstract class StageCallItem implements MGRecyclerDataPayload {
                 return false;
             }
             AudienceItem audienceItem = (AudienceItem) other;
-            return m.areEqual(getVoiceUser(), audienceItem.getVoiceUser()) && m.areEqual(getChannel(), audienceItem.getChannel()) && m.areEqual(this.hoistedGuildRole, audienceItem.hoistedGuildRole) && this.isBlocked == audienceItem.isBlocked;
+            return Intrinsics3.areEqual(getVoiceUser(), audienceItem.getVoiceUser()) && Intrinsics3.areEqual(getChannel(), audienceItem.getChannel()) && Intrinsics3.areEqual(this.hoistedGuildRole, audienceItem.hoistedGuildRole) && this.isBlocked == audienceItem.isBlocked;
         }
 
-        @Override // com.discord.widgets.voice.fullscreen.stage.StageCallParticipantItem
+        @Override // com.discord.widgets.voice.fullscreen.stage.StageCallItem2
         public Channel getChannel() {
             return this.channel;
         }
@@ -153,7 +153,7 @@ public abstract class StageCallItem implements MGRecyclerDataPayload {
             return this.isBlocked;
         }
 
-        @Override // com.discord.widgets.voice.fullscreen.stage.StageCallParticipantItem
+        @Override // com.discord.widgets.voice.fullscreen.stage.StageCallItem2
         public StoreVoiceParticipants.VoiceUser getVoiceUser() {
             return this.voiceUser;
         }
@@ -183,19 +183,19 @@ public abstract class StageCallItem implements MGRecyclerDataPayload {
         }
 
         public String toString() {
-            StringBuilder sbU = a.U("AudienceItem(voiceUser=");
+            StringBuilder sbU = outline.U("AudienceItem(voiceUser=");
             sbU.append(getVoiceUser());
             sbU.append(", channel=");
             sbU.append(getChannel());
             sbU.append(", hoistedGuildRole=");
             sbU.append(this.hoistedGuildRole);
             sbU.append(", isBlocked=");
-            return a.O(sbU, this.isBlocked, ")");
+            return outline.O(sbU, this.isBlocked, ")");
         }
 
         /* JADX INFO: renamed from: compareTo, reason: avoid collision after fix types in other method */
         public int compareTo2(AudienceItem other) {
-            m.checkNotNullParameter(other, "other");
+            Intrinsics3.checkNotNullParameter(other, "other");
             return RoleUtils.getROLE_COMPARATOR().compare(this.hoistedGuildRole, other.hoistedGuildRole);
         }
     }
@@ -213,7 +213,7 @@ public abstract class StageCallItem implements MGRecyclerDataPayload {
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
         public DetailsItem(String str, String str2, int i, int i2, int i3, int i4, boolean z2) {
             super("details", 0, null);
-            m.checkNotNullParameter(str2, "displayName");
+            Intrinsics3.checkNotNullParameter(str2, "displayName");
             this.topic = str;
             this.displayName = str2;
             this.numUsersConnected = i;
@@ -254,7 +254,7 @@ public abstract class StageCallItem implements MGRecyclerDataPayload {
         }
 
         public final DetailsItem copy(String topic, String displayName, int numUsersConnected, int numSpeakers, int numAudience, int numBlocked, boolean isPublic) {
-            m.checkNotNullParameter(displayName, "displayName");
+            Intrinsics3.checkNotNullParameter(displayName, "displayName");
             return new DetailsItem(topic, displayName, numUsersConnected, numSpeakers, numAudience, numBlocked, isPublic);
         }
 
@@ -266,7 +266,7 @@ public abstract class StageCallItem implements MGRecyclerDataPayload {
                 return false;
             }
             DetailsItem detailsItem = (DetailsItem) other;
-            return m.areEqual(this.topic, detailsItem.topic) && m.areEqual(this.displayName, detailsItem.displayName) && this.numUsersConnected == detailsItem.numUsersConnected && this.numSpeakers == detailsItem.numSpeakers && this.numAudience == detailsItem.numAudience && this.numBlocked == detailsItem.numBlocked && this.isPublic == detailsItem.isPublic;
+            return Intrinsics3.areEqual(this.topic, detailsItem.topic) && Intrinsics3.areEqual(this.displayName, detailsItem.displayName) && this.numUsersConnected == detailsItem.numUsersConnected && this.numSpeakers == detailsItem.numSpeakers && this.numAudience == detailsItem.numAudience && this.numBlocked == detailsItem.numBlocked && this.isPublic == detailsItem.isPublic;
         }
 
         /* JADX INFO: renamed from: component2, reason: from getter */
@@ -351,7 +351,7 @@ public abstract class StageCallItem implements MGRecyclerDataPayload {
         }
 
         public String toString() {
-            StringBuilder sbU = a.U("DetailsItem(topic=");
+            StringBuilder sbU = outline.U("DetailsItem(topic=");
             sbU.append(this.topic);
             sbU.append(", displayName=");
             sbU.append(this.displayName);
@@ -364,7 +364,7 @@ public abstract class StageCallItem implements MGRecyclerDataPayload {
             sbU.append(", numBlocked=");
             sbU.append(this.numBlocked);
             sbU.append(", isPublic=");
-            return a.O(sbU, this.isPublic, ")");
+            return outline.O(sbU, this.isPublic, ")");
         }
     }
 
@@ -378,7 +378,7 @@ public abstract class StageCallItem implements MGRecyclerDataPayload {
     }
 
     /* JADX INFO: compiled from: StageCallItem.kt */
-    public final /* data */ class MediaItem extends StageCallItem implements StageCallParticipantItem {
+    public final /* data */ class MediaItem extends StageCallItem implements StageCallItem2 {
         private final Channel channel;
         private final boolean isBlocked;
         private final boolean isModerator;
@@ -390,10 +390,10 @@ public abstract class StageCallItem implements MGRecyclerDataPayload {
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
         public MediaItem(StoreVoiceParticipants.VoiceUser voiceUser, Channel channel, boolean z2, boolean z3, MediaType mediaType, CallParticipant.UserOrStreamParticipant userOrStreamParticipant) {
             super("media-" + voiceUser.getUser().getId() + '-' + mediaType, 6, null);
-            m.checkNotNullParameter(voiceUser, "voiceUser");
-            m.checkNotNullParameter(channel, "channel");
-            m.checkNotNullParameter(mediaType, "mediaType");
-            m.checkNotNullParameter(userOrStreamParticipant, "userOrStreamParticipant");
+            Intrinsics3.checkNotNullParameter(voiceUser, "voiceUser");
+            Intrinsics3.checkNotNullParameter(channel, "channel");
+            Intrinsics3.checkNotNullParameter(mediaType, "mediaType");
+            Intrinsics3.checkNotNullParameter(userOrStreamParticipant, "userOrStreamParticipant");
             this.voiceUser = voiceUser;
             this.channel = channel;
             this.isModerator = z2;
@@ -438,10 +438,10 @@ public abstract class StageCallItem implements MGRecyclerDataPayload {
         }
 
         public final MediaItem copy(StoreVoiceParticipants.VoiceUser voiceUser, Channel channel, boolean isModerator, boolean isBlocked, MediaType mediaType, CallParticipant.UserOrStreamParticipant userOrStreamParticipant) {
-            m.checkNotNullParameter(voiceUser, "voiceUser");
-            m.checkNotNullParameter(channel, "channel");
-            m.checkNotNullParameter(mediaType, "mediaType");
-            m.checkNotNullParameter(userOrStreamParticipant, "userOrStreamParticipant");
+            Intrinsics3.checkNotNullParameter(voiceUser, "voiceUser");
+            Intrinsics3.checkNotNullParameter(channel, "channel");
+            Intrinsics3.checkNotNullParameter(mediaType, "mediaType");
+            Intrinsics3.checkNotNullParameter(userOrStreamParticipant, "userOrStreamParticipant");
             return new MediaItem(voiceUser, channel, isModerator, isBlocked, mediaType, userOrStreamParticipant);
         }
 
@@ -453,10 +453,10 @@ public abstract class StageCallItem implements MGRecyclerDataPayload {
                 return false;
             }
             MediaItem mediaItem = (MediaItem) other;
-            return m.areEqual(getVoiceUser(), mediaItem.getVoiceUser()) && m.areEqual(getChannel(), mediaItem.getChannel()) && this.isModerator == mediaItem.isModerator && this.isBlocked == mediaItem.isBlocked && m.areEqual(this.mediaType, mediaItem.mediaType) && m.areEqual(this.userOrStreamParticipant, mediaItem.userOrStreamParticipant);
+            return Intrinsics3.areEqual(getVoiceUser(), mediaItem.getVoiceUser()) && Intrinsics3.areEqual(getChannel(), mediaItem.getChannel()) && this.isModerator == mediaItem.isModerator && this.isBlocked == mediaItem.isBlocked && Intrinsics3.areEqual(this.mediaType, mediaItem.mediaType) && Intrinsics3.areEqual(this.userOrStreamParticipant, mediaItem.userOrStreamParticipant);
         }
 
-        @Override // com.discord.widgets.voice.fullscreen.stage.StageCallParticipantItem
+        @Override // com.discord.widgets.voice.fullscreen.stage.StageCallItem2
         public Channel getChannel() {
             return this.channel;
         }
@@ -493,7 +493,7 @@ public abstract class StageCallItem implements MGRecyclerDataPayload {
             return this.userOrStreamParticipant;
         }
 
-        @Override // com.discord.widgets.voice.fullscreen.stage.StageCallParticipantItem
+        @Override // com.discord.widgets.voice.fullscreen.stage.StageCallItem2
         public StoreVoiceParticipants.VoiceUser getVoiceUser() {
             return this.voiceUser;
         }
@@ -534,7 +534,7 @@ public abstract class StageCallItem implements MGRecyclerDataPayload {
         }
 
         public String toString() {
-            StringBuilder sbU = a.U("MediaItem(voiceUser=");
+            StringBuilder sbU = outline.U("MediaItem(voiceUser=");
             sbU.append(getVoiceUser());
             sbU.append(", channel=");
             sbU.append(getChannel());
@@ -567,8 +567,8 @@ public abstract class StageCallItem implements MGRecyclerDataPayload {
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
         public PreStartDetailsItem(String str, String str2, int i, int i2) {
             super("pre-start-details", 5, null);
-            m.checkNotNullParameter(str, "title");
-            m.checkNotNullParameter(str2, "subtitle");
+            Intrinsics3.checkNotNullParameter(str, "title");
+            Intrinsics3.checkNotNullParameter(str2, "subtitle");
             this.title = str;
             this.subtitle = str2;
             this.numSpeakers = i;
@@ -592,8 +592,8 @@ public abstract class StageCallItem implements MGRecyclerDataPayload {
         }
 
         public final PreStartDetailsItem copy(String title, String subtitle, int numSpeakers, int numAudience) {
-            m.checkNotNullParameter(title, "title");
-            m.checkNotNullParameter(subtitle, "subtitle");
+            Intrinsics3.checkNotNullParameter(title, "title");
+            Intrinsics3.checkNotNullParameter(subtitle, "subtitle");
             return new PreStartDetailsItem(title, subtitle, numSpeakers, numAudience);
         }
 
@@ -605,7 +605,7 @@ public abstract class StageCallItem implements MGRecyclerDataPayload {
                 return false;
             }
             PreStartDetailsItem preStartDetailsItem = (PreStartDetailsItem) other;
-            return m.areEqual(this.title, preStartDetailsItem.title) && m.areEqual(this.subtitle, preStartDetailsItem.subtitle) && this.numSpeakers == preStartDetailsItem.numSpeakers && this.numAudience == preStartDetailsItem.numAudience;
+            return Intrinsics3.areEqual(this.title, preStartDetailsItem.title) && Intrinsics3.areEqual(this.subtitle, preStartDetailsItem.subtitle) && this.numSpeakers == preStartDetailsItem.numSpeakers && this.numAudience == preStartDetailsItem.numAudience;
         }
 
         /* JADX INFO: renamed from: component4, reason: from getter */
@@ -652,19 +652,19 @@ public abstract class StageCallItem implements MGRecyclerDataPayload {
         }
 
         public String toString() {
-            StringBuilder sbU = a.U("PreStartDetailsItem(title=");
+            StringBuilder sbU = outline.U("PreStartDetailsItem(title=");
             sbU.append(this.title);
             sbU.append(", subtitle=");
             sbU.append(this.subtitle);
             sbU.append(", numSpeakers=");
             sbU.append(this.numSpeakers);
             sbU.append(", numAudience=");
-            return a.B(sbU, this.numAudience, ")");
+            return outline.B(sbU, this.numAudience, ")");
         }
     }
 
     /* JADX INFO: compiled from: StageCallItem.kt */
-    public final /* data */ class SpeakerItem extends StageCallItem implements StageCallParticipantItem {
+    public final /* data */ class SpeakerItem extends StageCallItem implements StageCallItem2 {
         private final Channel channel;
         private final boolean isBlocked;
         private final boolean isModerator;
@@ -675,9 +675,9 @@ public abstract class StageCallItem implements MGRecyclerDataPayload {
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
         public SpeakerItem(StoreVoiceParticipants.VoiceUser voiceUser, Channel channel, boolean z2, String str, int i, boolean z3) {
             super("speaker-" + voiceUser.getUser().getId(), 1, null);
-            m.checkNotNullParameter(voiceUser, "voiceUser");
-            m.checkNotNullParameter(channel, "channel");
-            m.checkNotNullParameter(str, "positionKey");
+            Intrinsics3.checkNotNullParameter(voiceUser, "voiceUser");
+            Intrinsics3.checkNotNullParameter(channel, "channel");
+            Intrinsics3.checkNotNullParameter(str, "positionKey");
             this.voiceUser = voiceUser;
             this.channel = channel;
             this.isModerator = z2;
@@ -721,9 +721,9 @@ public abstract class StageCallItem implements MGRecyclerDataPayload {
         }
 
         public final SpeakerItem copy(StoreVoiceParticipants.VoiceUser voiceUser, Channel channel, boolean isModerator, String positionKey, int speakersPerRow, boolean isBlocked) {
-            m.checkNotNullParameter(voiceUser, "voiceUser");
-            m.checkNotNullParameter(channel, "channel");
-            m.checkNotNullParameter(positionKey, "positionKey");
+            Intrinsics3.checkNotNullParameter(voiceUser, "voiceUser");
+            Intrinsics3.checkNotNullParameter(channel, "channel");
+            Intrinsics3.checkNotNullParameter(positionKey, "positionKey");
             return new SpeakerItem(voiceUser, channel, isModerator, positionKey, speakersPerRow, isBlocked);
         }
 
@@ -735,10 +735,10 @@ public abstract class StageCallItem implements MGRecyclerDataPayload {
                 return false;
             }
             SpeakerItem speakerItem = (SpeakerItem) other;
-            return m.areEqual(getVoiceUser(), speakerItem.getVoiceUser()) && m.areEqual(getChannel(), speakerItem.getChannel()) && this.isModerator == speakerItem.isModerator && m.areEqual(this.positionKey, speakerItem.positionKey) && this.speakersPerRow == speakerItem.speakersPerRow && this.isBlocked == speakerItem.isBlocked;
+            return Intrinsics3.areEqual(getVoiceUser(), speakerItem.getVoiceUser()) && Intrinsics3.areEqual(getChannel(), speakerItem.getChannel()) && this.isModerator == speakerItem.isModerator && Intrinsics3.areEqual(this.positionKey, speakerItem.positionKey) && this.speakersPerRow == speakerItem.speakersPerRow && this.isBlocked == speakerItem.isBlocked;
         }
 
-        @Override // com.discord.widgets.voice.fullscreen.stage.StageCallParticipantItem
+        @Override // com.discord.widgets.voice.fullscreen.stage.StageCallItem2
         public Channel getChannel() {
             return this.channel;
         }
@@ -771,7 +771,7 @@ public abstract class StageCallItem implements MGRecyclerDataPayload {
             return this.speakersPerRow;
         }
 
-        @Override // com.discord.widgets.voice.fullscreen.stage.StageCallParticipantItem
+        @Override // com.discord.widgets.voice.fullscreen.stage.StageCallItem2
         public StoreVoiceParticipants.VoiceUser getVoiceUser() {
             return this.voiceUser;
         }
@@ -811,7 +811,7 @@ public abstract class StageCallItem implements MGRecyclerDataPayload {
         }
 
         public String toString() {
-            StringBuilder sbU = a.U("SpeakerItem(voiceUser=");
+            StringBuilder sbU = outline.U("SpeakerItem(voiceUser=");
             sbU.append(getVoiceUser());
             sbU.append(", channel=");
             sbU.append(getChannel());
@@ -822,7 +822,7 @@ public abstract class StageCallItem implements MGRecyclerDataPayload {
             sbU.append(", speakersPerRow=");
             sbU.append(this.speakersPerRow);
             sbU.append(", isBlocked=");
-            return a.O(sbU, this.isBlocked, ")");
+            return outline.O(sbU, this.isBlocked, ")");
         }
     }
 

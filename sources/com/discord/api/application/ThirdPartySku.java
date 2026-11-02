@@ -1,8 +1,8 @@
 package com.discord.api.application;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.models.domain.ModelAuditLogEntry;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: ThirdPartySku.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -19,7 +19,7 @@ public final /* data */ class ThirdPartySku {
             return false;
         }
         ThirdPartySku thirdPartySku = (ThirdPartySku) other;
-        return m.areEqual(this.id, thirdPartySku.id) && m.areEqual(this.sku, thirdPartySku.sku) && m.areEqual(this.distributor, thirdPartySku.distributor);
+        return Intrinsics3.areEqual(this.id, thirdPartySku.id) && Intrinsics3.areEqual(this.sku, thirdPartySku.sku) && Intrinsics3.areEqual(this.distributor, thirdPartySku.distributor);
     }
 
     /* JADX INFO: renamed from: a, reason: from getter */
@@ -42,11 +42,11 @@ public final /* data */ class ThirdPartySku {
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("ThirdPartySku(id=");
+        StringBuilder sbU = outline.U("ThirdPartySku(id=");
         sbU.append(this.id);
         sbU.append(", sku=");
         sbU.append(this.sku);
         sbU.append(", distributor=");
-        return a.J(sbU, this.distributor, ")");
+        return outline.J(sbU, this.distributor, ")");
     }
 }

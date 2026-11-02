@@ -7,9 +7,9 @@ import android.widget.TextView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentViewModelLazyKt;
-import b.a.d.g0;
-import b.a.d.i0;
-import b.d.b.a.a;
+import b.a.d.AppViewModelDelegates3;
+import b.a.d.AppViewModelDelegates5;
+import b.d.b.a.outline;
 import com.discord.R;
 import com.discord.api.channel.Channel;
 import com.discord.api.channel.ChannelUtils;
@@ -20,16 +20,16 @@ import com.discord.models.guild.Guild;
 import com.discord.utilities.channel.ChannelInviteLaunchUtils;
 import com.discord.utilities.rx.ObservableExtensionsKt;
 import com.discord.utilities.viewbinding.FragmentViewBindingDelegate;
-import com.discord.utilities.viewbinding.FragmentViewBindingDelegateKt;
+import com.discord.utilities.viewbinding.FragmentViewBindingDelegate3;
 import com.discord.widgets.guildscheduledevent.WidgetGuildScheduledEventListBottomSheet;
 import com.discord.widgets.mobile_reports.WidgetMobileReports;
 import com.discord.widgets.settings.WidgetSettingsVoice;
 import com.discord.widgets.stage.sheet.WidgetStageStartEventBottomSheet;
 import com.google.android.material.switchmaterial.SwitchMaterial;
-import d0.g;
-import d0.z.d.a0;
-import d0.z.d.m;
-import d0.z.d.o;
+import d0.LazyJVM;
+import d0.z.d.Intrinsics3;
+import d0.z.d.Lambda;
+import d0.z.d.Reflection2;
 import kotlin.Lazy;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
@@ -40,7 +40,7 @@ import kotlin.reflect.KProperty;
 /* JADX INFO: compiled from: WidgetVoiceSettingsBottomSheet.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetVoiceSettingsBottomSheet extends AppBottomSheet {
-    public static final /* synthetic */ KProperty[] $$delegatedProperties = {a.d0(WidgetVoiceSettingsBottomSheet.class, "binding", "getBinding()Lcom/discord/databinding/WidgetVoiceSettingsBottomSheetBinding;", 0)};
+    public static final /* synthetic */ KProperty[] $$delegatedProperties = {outline.d0(WidgetVoiceSettingsBottomSheet.class, "binding", "getBinding()Lcom/discord/databinding/WidgetVoiceSettingsBottomSheetBinding;", 0)};
     private static final String ANALYTICS_SOURCE = "Voice Call";
     private static final String ARG_CHANNEL_ID = "ARG_CHANNEL_ID";
 
@@ -74,7 +74,7 @@ public final class WidgetVoiceSettingsBottomSheet extends AppBottomSheet {
 
     /* JADX INFO: renamed from: com.discord.widgets.voice.sheet.WidgetVoiceSettingsBottomSheet$onResume$1, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetVoiceSettingsBottomSheet.kt */
-    public final class AnonymousClass1 extends o implements Function1<WidgetVoiceSettingsBottomSheetViewModel.ViewState, Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function1<WidgetVoiceSettingsBottomSheetViewModel.ViewState, Unit> {
         public AnonymousClass1() {
             super(1);
         }
@@ -87,7 +87,7 @@ public final class WidgetVoiceSettingsBottomSheet extends AppBottomSheet {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(WidgetVoiceSettingsBottomSheetViewModel.ViewState viewState) {
-            m.checkNotNullParameter(viewState, "viewState");
+            Intrinsics3.checkNotNullParameter(viewState, "viewState");
             WidgetVoiceSettingsBottomSheet.access$configureUI(WidgetVoiceSettingsBottomSheet.this, viewState);
         }
     }
@@ -115,7 +115,7 @@ public final class WidgetVoiceSettingsBottomSheet extends AppBottomSheet {
             WidgetVoiceSettingsBottomSheet.this.dismiss();
             WidgetStageStartEventBottomSheet.Companion companion = WidgetStageStartEventBottomSheet.INSTANCE;
             FragmentManager parentFragmentManager = WidgetVoiceSettingsBottomSheet.this.getParentFragmentManager();
-            m.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
+            Intrinsics3.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
             WidgetStageStartEventBottomSheet.Companion.show$default(companion, parentFragmentManager, WidgetVoiceSettingsBottomSheet.access$getChannelId$p(WidgetVoiceSettingsBottomSheet.this), null, 4, null);
         }
     }
@@ -134,7 +134,7 @@ public final class WidgetVoiceSettingsBottomSheet extends AppBottomSheet {
             WidgetVoiceSettingsBottomSheet.this.dismiss();
             WidgetGuildScheduledEventListBottomSheet.Companion companion = WidgetGuildScheduledEventListBottomSheet.INSTANCE;
             FragmentManager parentFragmentManager = WidgetVoiceSettingsBottomSheet.this.getParentFragmentManager();
-            m.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
+            Intrinsics3.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
             companion.show(parentFragmentManager, this.$viewState.getChannel().getGuildId(), Long.valueOf(this.$viewState.getChannel().getId()));
         }
     }
@@ -150,9 +150,9 @@ public final class WidgetVoiceSettingsBottomSheet extends AppBottomSheet {
             WidgetVoiceSettingsBottomSheet.this.dismiss();
             WidgetSettingsVoice.Companion companion = WidgetSettingsVoice.INSTANCE;
             TextView textView = WidgetVoiceSettingsBottomSheet.access$getBinding$p(WidgetVoiceSettingsBottomSheet.this).i;
-            m.checkNotNullExpressionValue(textView, "binding.voiceSettingsVoiceSettings");
+            Intrinsics3.checkNotNullExpressionValue(textView, "binding.voiceSettingsVoiceSettings");
             Context context = textView.getContext();
-            m.checkNotNullExpressionValue(context, "binding.voiceSettingsVoiceSettings.context");
+            Intrinsics3.checkNotNullExpressionValue(context, "binding.voiceSettingsVoiceSettings.context");
             WidgetSettingsVoice.Companion.launch$default(companion, context, null, false, 6, null);
         }
     }
@@ -182,7 +182,7 @@ public final class WidgetVoiceSettingsBottomSheet extends AppBottomSheet {
         public final void onClick(View view) {
             WidgetMobileReports.Companion companion = WidgetMobileReports.INSTANCE;
             Context contextRequireContext = WidgetVoiceSettingsBottomSheet.this.requireContext();
-            m.checkNotNullExpressionValue(contextRequireContext, "requireContext()");
+            Intrinsics3.checkNotNullExpressionValue(contextRequireContext, "requireContext()");
             companion.launchStageChannelReport(contextRequireContext, this.$viewState.getChannel().getId());
         }
     }
@@ -200,7 +200,7 @@ public final class WidgetVoiceSettingsBottomSheet extends AppBottomSheet {
         }
 
         public final void show(Long channelId, FragmentManager fragmentManager) {
-            m.checkNotNullParameter(fragmentManager, "fragmentManager");
+            Intrinsics3.checkNotNullParameter(fragmentManager, "fragmentManager");
             WidgetVoiceSettingsBottomSheet widgetVoiceSettingsBottomSheet = new WidgetVoiceSettingsBottomSheet();
             Bundle bundle = new Bundle();
             if (channelId != null) {
@@ -236,11 +236,11 @@ public final class WidgetVoiceSettingsBottomSheet extends AppBottomSheet {
 
     public WidgetVoiceSettingsBottomSheet() {
         super(false, 1, null);
-        this.binding = FragmentViewBindingDelegateKt.viewBinding$default(this, WidgetVoiceSettingsBottomSheet$binding$2.INSTANCE, null, 2, null);
-        this.channelId = g.lazy(new WidgetVoiceSettingsBottomSheet$channelId$2(this));
-        WidgetVoiceSettingsBottomSheet$viewModel$2 widgetVoiceSettingsBottomSheet$viewModel$2 = new WidgetVoiceSettingsBottomSheet$viewModel$2(this);
-        g0 g0Var = new g0(this);
-        this.viewModel = FragmentViewModelLazyKt.createViewModelLazy(this, a0.getOrCreateKotlinClass(WidgetVoiceSettingsBottomSheetViewModel.class), new WidgetVoiceSettingsBottomSheet$appViewModels$$inlined$viewModels$1(g0Var), new i0(widgetVoiceSettingsBottomSheet$viewModel$2));
+        this.binding = FragmentViewBindingDelegate3.viewBinding$default(this, WidgetVoiceSettingsBottomSheet2.INSTANCE, null, 2, null);
+        this.channelId = LazyJVM.lazy(new WidgetVoiceSettingsBottomSheet3(this));
+        WidgetVoiceSettingsBottomSheet5 widgetVoiceSettingsBottomSheet5 = new WidgetVoiceSettingsBottomSheet5(this);
+        AppViewModelDelegates3 appViewModelDelegates3 = new AppViewModelDelegates3(this);
+        this.viewModel = FragmentViewModelLazyKt.createViewModelLazy(this, Reflection2.getOrCreateKotlinClass(WidgetVoiceSettingsBottomSheetViewModel.class), new WidgetVoiceSettingsBottomSheet$appViewModels$$inlined$viewModels$1(appViewModelDelegates3), new AppViewModelDelegates5(widgetVoiceSettingsBottomSheet5));
     }
 
     public static final /* synthetic */ void access$configureUI(WidgetVoiceSettingsBottomSheet widgetVoiceSettingsBottomSheet, ViewState viewState) {
@@ -263,33 +263,33 @@ public final class WidgetVoiceSettingsBottomSheet extends AppBottomSheet {
         Guild guild;
         getBinding().c.setOnClickListener(new AnonymousClass1(viewState));
         TextView textView = getBinding().c;
-        m.checkNotNullExpressionValue(textView, "binding.voiceSettingsInvite");
+        Intrinsics3.checkNotNullExpressionValue(textView, "binding.voiceSettingsInvite");
         textView.setVisibility(viewState.getShowInviteItem() ? 0 : 8);
         getBinding().h.setOnClickListener(new AnonymousClass2());
         SwitchMaterial switchMaterial = getBinding().h;
-        m.checkNotNullExpressionValue(switchMaterial, "binding.voiceSettingsToggleVideoParticipants");
+        Intrinsics3.checkNotNullExpressionValue(switchMaterial, "binding.voiceSettingsToggleVideoParticipants");
         switchMaterial.setChecked(viewState.getShowVoiceParticipants());
         SwitchMaterial switchMaterial2 = getBinding().h;
-        m.checkNotNullExpressionValue(switchMaterial2, "binding.voiceSettingsToggleVideoParticipants");
+        Intrinsics3.checkNotNullExpressionValue(switchMaterial2, "binding.voiceSettingsToggleVideoParticipants");
         switchMaterial2.setVisibility(viewState.getShowVoiceParticipantsToggle() ? 0 : 8);
         TextView textView2 = getBinding().g;
-        m.checkNotNullExpressionValue(textView2, "binding.voiceSettingsStageSettings");
+        Intrinsics3.checkNotNullExpressionValue(textView2, "binding.voiceSettingsStageSettings");
         textView2.setVisibility(viewState.getShowStageSettings() ? 0 : 8);
         getBinding().g.setOnClickListener(new AnonymousClass3());
         TextView textView3 = getBinding().f2705b;
-        m.checkNotNullExpressionValue(textView3, "binding.voiceSettingsEvents");
+        Intrinsics3.checkNotNullExpressionValue(textView3, "binding.voiceSettingsEvents");
         textView3.setVisibility(ChannelUtils.w(viewState.getChannel()) ? 0 : 8);
         getBinding().f2705b.setOnClickListener(new AnonymousClass4(viewState));
         getBinding().i.setOnClickListener(new AnonymousClass5());
         TextView textView4 = getBinding().e;
         textView4.setVisibility(ChannelUtils.D(viewState.getChannel()) && (guild = viewState.getGuild()) != null && guild.hasFeature(GuildFeature.COMMUNITY) ? 0 : 8);
-        textView4.setOnClickListener(new WidgetVoiceSettingsBottomSheet$configureUI$$inlined$apply$lambda$1(this, viewState));
+        textView4.setOnClickListener(new WidgetVoiceSettingsBottomSheet4(this, viewState));
         getBinding().d.setOnClickListener(new AnonymousClass7());
         SwitchMaterial switchMaterial3 = getBinding().d;
-        m.checkNotNullExpressionValue(switchMaterial3, "binding.voiceSettingsNoiseSuppression");
+        Intrinsics3.checkNotNullExpressionValue(switchMaterial3, "binding.voiceSettingsNoiseSuppression");
         switchMaterial3.setChecked(viewState.getNoiseCancellationEnabled());
         TextView textView5 = getBinding().f;
-        m.checkNotNullExpressionValue(textView5, "binding.voiceSettingsReport");
+        Intrinsics3.checkNotNullExpressionValue(textView5, "binding.voiceSettingsReport");
         textView5.setVisibility(viewState.getShowReportItem() ? 0 : 8);
         getBinding().f.setOnClickListener(new AnonymousClass8(viewState));
     }
@@ -319,7 +319,7 @@ public final class WidgetVoiceSettingsBottomSheet extends AppBottomSheet {
 
     @Override // com.discord.app.AppBottomSheet, androidx.fragment.app.Fragment
     public void onViewCreated(View view, Bundle savedInstanceState) {
-        m.checkNotNullParameter(view, "view");
+        Intrinsics3.checkNotNullParameter(view, "view");
         super.onViewCreated(view, savedInstanceState);
         setBottomSheetState(3);
     }

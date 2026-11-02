@@ -3,7 +3,7 @@ package com.discord.utilities.analytics;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.RemoteException;
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.android.installreferrer.api.InstallReferrerClient;
 import com.android.installreferrer.api.InstallReferrerStateListener;
 import com.android.installreferrer.api.ReferrerDetails;
@@ -11,8 +11,8 @@ import com.discord.utilities.cache.SharedPreferencesProvider;
 import com.discord.utilities.lifecycle.ApplicationProvider;
 import com.discord.utilities.logging.Logger;
 import com.discord.utilities.logging.LoggingProvider;
-import d0.g;
-import d0.z.d.m;
+import d0.LazyJVM;
+import d0.z.d.Intrinsics3;
 import kotlin.Lazy;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function1;
@@ -33,7 +33,7 @@ public final class InstallReferrer {
 
     /* JADX INFO: renamed from: sharedPreferences$delegate, reason: from kotlin metadata */
     private final Lazy sharedPreferences;
-    private static final Lazy INSTANCE$delegate = g.lazy(InstallReferrer$Companion$INSTANCE$2.INSTANCE);
+    private static final Lazy INSTANCE$delegate = LazyJVM.lazy(InstallReferrer2.INSTANCE);
 
     /* JADX INFO: renamed from: com.discord.utilities.analytics.InstallReferrer$createReferrerStateListener$1, reason: invalid class name */
     /* JADX INFO: compiled from: InstallReferrer.kt */
@@ -57,9 +57,9 @@ public final class InstallReferrer {
                 try {
                     Function1 function1 = this.$onReceivedInstallReferrer;
                     ReferrerDetails installReferrer = InstallReferrer.access$getReferrerClient$p(InstallReferrer.this).getInstallReferrer();
-                    m.checkNotNullExpressionValue(installReferrer, "referrerClient.installReferrer");
+                    Intrinsics3.checkNotNullExpressionValue(installReferrer, "referrerClient.installReferrer");
                     String installReferrer2 = installReferrer.getInstallReferrer();
-                    m.checkNotNullExpressionValue(installReferrer2, "referrerClient.installReferrer.installReferrer");
+                    Intrinsics3.checkNotNullExpressionValue(installReferrer2, "referrerClient.installReferrer.installReferrer");
                     function1.invoke(installReferrer2);
                     InstallReferrer.access$setFetchInstallReferrerSuccessful(InstallReferrer.this);
                 } catch (Exception e) {
@@ -86,7 +86,7 @@ public final class InstallReferrer {
         }
 
         public final void init(Function1<? super String, Unit> onReceivedInstallReferrer) {
-            m.checkNotNullParameter(onReceivedInstallReferrer, "onReceivedInstallReferrer");
+            Intrinsics3.checkNotNullParameter(onReceivedInstallReferrer, "onReceivedInstallReferrer");
             getINSTANCE().init(onReceivedInstallReferrer);
         }
 
@@ -98,7 +98,7 @@ public final class InstallReferrer {
     private InstallReferrer(Logger logger, Context context) {
         this.logger = logger;
         this.context = context;
-        this.sharedPreferences = g.lazy(InstallReferrer$sharedPreferences$2.INSTANCE);
+        this.sharedPreferences = LazyJVM.lazy(InstallReferrer3.INSTANCE);
     }
 
     public static final /* synthetic */ Lazy access$getINSTANCE$cp() {
@@ -112,7 +112,7 @@ public final class InstallReferrer {
     public static final /* synthetic */ InstallReferrerClient access$getReferrerClient$p(InstallReferrer installReferrer) {
         InstallReferrerClient installReferrerClient = installReferrer.referrerClient;
         if (installReferrerClient == null) {
-            m.throwUninitializedPropertyAccessException("referrerClient");
+            Intrinsics3.throwUninitializedPropertyAccessException("referrerClient");
         }
         return installReferrerClient;
     }
@@ -138,15 +138,15 @@ public final class InstallReferrer {
     }
 
     public final void init(Function1<? super String, Unit> onReceivedInstallReferrer) {
-        m.checkNotNullParameter(onReceivedInstallReferrer, "onReceivedInstallReferrer");
+        Intrinsics3.checkNotNullParameter(onReceivedInstallReferrer, "onReceivedInstallReferrer");
         if (shouldFetchInstallReferrer()) {
             try {
                 InstallReferrerClient installReferrerClientBuild = InstallReferrerClient.newBuilder(this.context).build();
-                m.checkNotNullExpressionValue(installReferrerClientBuild, "InstallReferrerClient.newBuilder(context).build()");
+                Intrinsics3.checkNotNullExpressionValue(installReferrerClientBuild, "InstallReferrerClient.newBuilder(context).build()");
                 this.referrerClient = installReferrerClientBuild;
                 if (installReferrerClientBuild == null) {
                     try {
-                        m.throwUninitializedPropertyAccessException("referrerClient");
+                        Intrinsics3.throwUninitializedPropertyAccessException("referrerClient");
                     } catch (Exception e) {
                         this.logger.i("Unable to start connection to referrer client.", e);
                         return;
@@ -163,7 +163,7 @@ public final class InstallReferrer {
         int i = SharedPreferencesProvider.INSTANCE.get().getInt(CACHE_KEY_HAS_EXECUTED_ATTEMPTS, 0);
         this.logger.i("Unable to resolve referrer details, " + i + " attempt.", e);
         SharedPreferences.Editor editorEdit = getSharedPreferences().edit();
-        m.checkNotNullExpressionValue(editorEdit, "editor");
+        Intrinsics3.checkNotNullExpressionValue(editorEdit, "editor");
         editorEdit.putInt(CACHE_KEY_HAS_EXECUTED_ATTEMPTS, i + 1);
         editorEdit.apply();
     }
@@ -171,13 +171,13 @@ public final class InstallReferrer {
     private final void setFetchInstallReferrerSuccessful() throws RemoteException {
         InstallReferrerClient installReferrerClient = this.referrerClient;
         if (installReferrerClient == null) {
-            m.throwUninitializedPropertyAccessException("referrerClient");
+            Intrinsics3.throwUninitializedPropertyAccessException("referrerClient");
         }
         ReferrerDetails installReferrer = installReferrerClient.getInstallReferrer();
-        m.checkNotNullExpressionValue(installReferrer, "referrerClient.installReferrer");
-        Logger.i$default(this.logger, a.w("Retrieved install referrer, ", installReferrer.getInstallReferrer()), null, 2, null);
+        Intrinsics3.checkNotNullExpressionValue(installReferrer, "referrerClient.installReferrer");
+        Logger.i$default(this.logger, outline.w("Retrieved install referrer, ", installReferrer.getInstallReferrer()), null, 2, null);
         SharedPreferences.Editor editorEdit = getSharedPreferences().edit();
-        m.checkNotNullExpressionValue(editorEdit, "editor");
+        Intrinsics3.checkNotNullExpressionValue(editorEdit, "editor");
         editorEdit.putBoolean(CACHE_KEY_HAS_EXECUTED, true);
         editorEdit.apply();
     }

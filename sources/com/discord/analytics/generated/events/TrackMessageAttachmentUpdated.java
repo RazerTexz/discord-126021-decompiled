@@ -1,18 +1,18 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.analytics.generated.traits.TrackChannel;
-import com.discord.analytics.generated.traits.TrackChannelReceiver;
+import com.discord.analytics.generated.traits.TrackChannel2;
 import com.discord.analytics.generated.traits.TrackGuild;
-import com.discord.analytics.generated.traits.TrackGuildReceiver;
+import com.discord.analytics.generated.traits.TrackGuild2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackMessageAttachmentUpdated.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackMessageAttachmentUpdated implements AnalyticsSchema, TrackBaseReceiver, TrackGuildReceiver, TrackChannelReceiver {
+public final /* data */ class TrackMessageAttachmentUpdated implements AnalyticsSchema, TrackBase2, TrackGuild2, TrackChannel2 {
     private final Long actionType = null;
     private final CharSequence mimeType = null;
     private final CharSequence source = null;
@@ -22,7 +22,7 @@ public final /* data */ class TrackMessageAttachmentUpdated implements Analytics
     private TrackGuild trackGuild;
     private final transient String analyticsSchemaTypeName = "message_attachment_updated";
 
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    @Override // com.discord.analytics.generated.traits.TrackGuild2
     public void c(TrackGuild trackGuild) {
         this.trackGuild = trackGuild;
     }
@@ -35,7 +35,7 @@ public final /* data */ class TrackMessageAttachmentUpdated implements Analytics
             return false;
         }
         TrackMessageAttachmentUpdated trackMessageAttachmentUpdated = (TrackMessageAttachmentUpdated) other;
-        return m.areEqual(this.source, trackMessageAttachmentUpdated.source) && m.areEqual(this.actionType, trackMessageAttachmentUpdated.actionType) && m.areEqual(this.mimeType, trackMessageAttachmentUpdated.mimeType) && m.areEqual(this.totalAttachments, trackMessageAttachmentUpdated.totalAttachments);
+        return Intrinsics3.areEqual(this.source, trackMessageAttachmentUpdated.source) && Intrinsics3.areEqual(this.actionType, trackMessageAttachmentUpdated.actionType) && Intrinsics3.areEqual(this.mimeType, trackMessageAttachmentUpdated.mimeType) && Intrinsics3.areEqual(this.totalAttachments, trackMessageAttachmentUpdated.totalAttachments);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -44,7 +44,7 @@ public final /* data */ class TrackMessageAttachmentUpdated implements Analytics
         return this.analyticsSchemaTypeName;
     }
 
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    @Override // com.discord.analytics.generated.traits.TrackGuild2
     /* JADX INFO: renamed from: a, reason: from getter */
     public TrackGuild getTrackGuild() {
         return this.trackGuild;
@@ -62,13 +62,13 @@ public final /* data */ class TrackMessageAttachmentUpdated implements Analytics
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackMessageAttachmentUpdated(source=");
+        StringBuilder sbU = outline.U("TrackMessageAttachmentUpdated(source=");
         sbU.append(this.source);
         sbU.append(", actionType=");
         sbU.append(this.actionType);
         sbU.append(", mimeType=");
         sbU.append(this.mimeType);
         sbU.append(", totalAttachments=");
-        return a.G(sbU, this.totalAttachments, ")");
+        return outline.G(sbU, this.totalAttachments, ")");
     }
 }

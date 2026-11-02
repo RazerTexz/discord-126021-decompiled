@@ -3,8 +3,8 @@ package com.discord.widgets.guilds.contextmenu;
 import a0.a.a.b;
 import android.content.Context;
 import androidx.annotation.MainThread;
-import b.a.d.d0;
-import b.d.b.a.a;
+import b.a.d.AppViewModel;
+import b.d.b.a.outline;
 import com.discord.models.guild.Guild;
 import com.discord.stores.StoreGuildSelected;
 import com.discord.stores.StoreGuilds;
@@ -13,9 +13,9 @@ import com.discord.stores.StoreStream;
 import com.discord.stores.StoreUser;
 import com.discord.utilities.rest.RestAPI;
 import com.discord.utilities.rx.ObservableExtensionsKt;
-import d0.z.d.k;
-import d0.z.d.m;
-import d0.z.d.o;
+import d0.z.d.FunctionReferenceImpl;
+import d0.z.d.Intrinsics3;
+import d0.z.d.Lambda;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
@@ -25,7 +25,7 @@ import rx.subjects.PublishSubject;
 
 /* JADX INFO: compiled from: GuildContextMenuViewModel.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class GuildContextMenuViewModel extends d0<ViewState> {
+public final class GuildContextMenuViewModel extends AppViewModel<ViewState> {
 
     /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
     public static final Companion INSTANCE = new Companion(null);
@@ -36,7 +36,7 @@ public final class GuildContextMenuViewModel extends d0<ViewState> {
 
     /* JADX INFO: renamed from: com.discord.widgets.guilds.contextmenu.GuildContextMenuViewModel$1, reason: invalid class name */
     /* JADX INFO: compiled from: GuildContextMenuViewModel.kt */
-    public final /* synthetic */ class AnonymousClass1 extends k implements Function1<StoreState, Unit> {
+    public final /* synthetic */ class AnonymousClass1 extends FunctionReferenceImpl implements Function1<StoreState, Unit> {
         public AnonymousClass1(GuildContextMenuViewModel guildContextMenuViewModel) {
             super(1, guildContextMenuViewModel, GuildContextMenuViewModel.class, "handleStoreState", "handleStoreState(Lcom/discord/widgets/guilds/contextmenu/GuildContextMenuViewModel$StoreState;)V", 0);
         }
@@ -49,14 +49,14 @@ public final class GuildContextMenuViewModel extends d0<ViewState> {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(StoreState storeState) {
-            m.checkNotNullParameter(storeState, "p1");
+            Intrinsics3.checkNotNullParameter(storeState, "p1");
             GuildContextMenuViewModel.access$handleStoreState((GuildContextMenuViewModel) this.receiver, storeState);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.widgets.guilds.contextmenu.GuildContextMenuViewModel$onMarkAsReadClicked$1, reason: invalid class name */
     /* JADX INFO: compiled from: GuildContextMenuViewModel.kt */
-    public final class AnonymousClass1 extends o implements Function1<Void, Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function1<Void, Unit> {
         public AnonymousClass1() {
             super(1);
         }
@@ -84,8 +84,8 @@ public final class GuildContextMenuViewModel extends d0<ViewState> {
         }
 
         private final Observable<StoreState> observeStoreState(long guildId, StoreGuilds guildStore, StoreUser userStore, StoreReadStates readStateStore, StoreGuildSelected selectedGuildStore) {
-            Observable<StoreState> observableH = Observable.h(guildStore.observeGuild(guildId), StoreUser.observeMe$default(userStore, false, 1, null), readStateStore.getIsUnread(guildId), selectedGuildStore.observeSelectedGuildId(), GuildContextMenuViewModel$Companion$observeStoreState$1.INSTANCE);
-            m.checkNotNullExpressionValue(observableH, "Observable.combineLatest…      )\n        }\n      }");
+            Observable<StoreState> observableH = Observable.h(guildStore.observeGuild(guildId), StoreUser.observeMe$default(userStore, false, 1, null), readStateStore.getIsUnread(guildId), selectedGuildStore.observeSelectedGuildId(), GuildContextMenuViewModel2.INSTANCE);
+            Intrinsics3.checkNotNullExpressionValue(observableH, "Observable.combineLatest…      )\n        }\n      }");
             return observableH;
         }
 
@@ -136,7 +136,7 @@ public final class GuildContextMenuViewModel extends d0<ViewState> {
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
             public Valid(Guild guild, long j, boolean z2, long j2) {
                 super(null);
-                m.checkNotNullParameter(guild, "guild");
+                Intrinsics3.checkNotNullParameter(guild, "guild");
                 this.guild = guild;
                 this.myUserId = j;
                 this.isGuildUnread = z2;
@@ -162,7 +162,7 @@ public final class GuildContextMenuViewModel extends d0<ViewState> {
             }
 
             public final Valid copy(Guild guild, long myUserId, boolean isGuildUnread, long selectedGuildId) {
-                m.checkNotNullParameter(guild, "guild");
+                Intrinsics3.checkNotNullParameter(guild, "guild");
                 return new Valid(guild, myUserId, isGuildUnread, selectedGuildId);
             }
 
@@ -174,7 +174,7 @@ public final class GuildContextMenuViewModel extends d0<ViewState> {
                     return false;
                 }
                 Valid valid = (Valid) other;
-                return m.areEqual(this.guild, valid.guild) && this.myUserId == valid.myUserId && this.isGuildUnread == valid.isGuildUnread && this.selectedGuildId == valid.selectedGuildId;
+                return Intrinsics3.areEqual(this.guild, valid.guild) && this.myUserId == valid.myUserId && this.isGuildUnread == valid.isGuildUnread && this.selectedGuildId == valid.selectedGuildId;
             }
 
             /* JADX INFO: renamed from: component1, reason: from getter */
@@ -230,14 +230,14 @@ public final class GuildContextMenuViewModel extends d0<ViewState> {
             }
 
             public String toString() {
-                StringBuilder sbU = a.U("Valid(guild=");
+                StringBuilder sbU = outline.U("Valid(guild=");
                 sbU.append(this.guild);
                 sbU.append(", myUserId=");
                 sbU.append(this.myUserId);
                 sbU.append(", isGuildUnread=");
                 sbU.append(this.isGuildUnread);
                 sbU.append(", selectedGuildId=");
-                return a.C(sbU, this.selectedGuildId, ")");
+                return outline.C(sbU, this.selectedGuildId, ")");
             }
         }
 
@@ -271,7 +271,7 @@ public final class GuildContextMenuViewModel extends d0<ViewState> {
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
             public Valid(Guild guild, boolean z2, boolean z3, boolean z4) {
                 super(null);
-                m.checkNotNullParameter(guild, "guild");
+                Intrinsics3.checkNotNullParameter(guild, "guild");
                 this.guild = guild;
                 this.showMarkAsRead = z2;
                 this.showLeaveGuild = z3;
@@ -295,7 +295,7 @@ public final class GuildContextMenuViewModel extends d0<ViewState> {
             }
 
             public final Valid copy(Guild guild, boolean showMarkAsRead, boolean showLeaveGuild, boolean isGuildSelected) {
-                m.checkNotNullParameter(guild, "guild");
+                Intrinsics3.checkNotNullParameter(guild, "guild");
                 return new Valid(guild, showMarkAsRead, showLeaveGuild, isGuildSelected);
             }
 
@@ -307,7 +307,7 @@ public final class GuildContextMenuViewModel extends d0<ViewState> {
                     return false;
                 }
                 Valid valid = (Valid) other;
-                return m.areEqual(this.guild, valid.guild) && this.showMarkAsRead == valid.showMarkAsRead && this.showLeaveGuild == valid.showLeaveGuild && this.isGuildSelected == valid.isGuildSelected;
+                return Intrinsics3.areEqual(this.guild, valid.guild) && this.showMarkAsRead == valid.showMarkAsRead && this.showLeaveGuild == valid.showLeaveGuild && this.isGuildSelected == valid.isGuildSelected;
             }
 
             /* JADX INFO: renamed from: component1, reason: from getter */
@@ -379,14 +379,14 @@ public final class GuildContextMenuViewModel extends d0<ViewState> {
             }
 
             public String toString() {
-                StringBuilder sbU = a.U("Valid(guild=");
+                StringBuilder sbU = outline.U("Valid(guild=");
                 sbU.append(this.guild);
                 sbU.append(", showMarkAsRead=");
                 sbU.append(this.showMarkAsRead);
                 sbU.append(", showLeaveGuild=");
                 sbU.append(this.showLeaveGuild);
                 sbU.append(", isGuildSelected=");
-                return a.O(sbU, this.isGuildSelected, ")");
+                return outline.O(sbU, this.isGuildSelected, ")");
             }
         }
 
@@ -426,14 +426,14 @@ public final class GuildContextMenuViewModel extends d0<ViewState> {
         if (storeState instanceof StoreState.Valid) {
             StoreState.Valid valid = (StoreState.Valid) storeState;
             updateViewState(new ViewState.Valid(valid.getGuild(), valid.isGuildUnread(), valid.getGuild().getOwnerId() != valid.getMyUserId(), valid.getSelectedGuildId() == valid.getGuild().getId()));
-        } else if (m.areEqual(storeState, StoreState.Invalid.INSTANCE)) {
+        } else if (Intrinsics3.areEqual(storeState, StoreState.Invalid.INSTANCE)) {
             updateViewState(ViewState.Invalid.INSTANCE);
         }
     }
 
     public final Observable<Event> observeEvents() {
         PublishSubject<Event> publishSubject = this.eventSubject;
-        m.checkNotNullExpressionValue(publishSubject, "eventSubject");
+        Intrinsics3.checkNotNullExpressionValue(publishSubject, "eventSubject");
         return publishSubject;
     }
 
@@ -444,8 +444,8 @@ public final class GuildContextMenuViewModel extends d0<ViewState> {
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public GuildContextMenuViewModel(long j, RestAPI restAPI, Observable<StoreState> observable) {
         super(null);
-        m.checkNotNullParameter(restAPI, "restAPI");
-        m.checkNotNullParameter(observable, "storeStateObservable");
+        Intrinsics3.checkNotNullParameter(restAPI, "restAPI");
+        Intrinsics3.checkNotNullParameter(observable, "storeStateObservable");
         this.guildId = j;
         this.restAPI = restAPI;
         this.storeStateObservable = observable;

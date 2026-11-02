@@ -1,8 +1,8 @@
 package com.discord.api.report;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.models.domain.ModelAuditLogEntry;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 import java.util.List;
 
 /* JADX INFO: compiled from: InAppReportsMenu.kt */
@@ -34,7 +34,7 @@ public final /* data */ class ReportNode {
             return false;
         }
         ReportNode reportNode = (ReportNode) other;
-        return this.id == reportNode.id && m.areEqual(this.menu_name, reportNode.menu_name) && m.areEqual(this.header, reportNode.header) && m.areEqual(this.subheader, reportNode.subheader) && m.areEqual(this.info, reportNode.info) && m.areEqual(this.description, reportNode.description) && m.areEqual(this.children, reportNode.children) && m.areEqual(this.elements, reportNode.elements) && m.areEqual(this.button, reportNode.button);
+        return this.id == reportNode.id && Intrinsics3.areEqual(this.menu_name, reportNode.menu_name) && Intrinsics3.areEqual(this.header, reportNode.header) && Intrinsics3.areEqual(this.subheader, reportNode.subheader) && Intrinsics3.areEqual(this.info, reportNode.info) && Intrinsics3.areEqual(this.description, reportNode.description) && Intrinsics3.areEqual(this.children, reportNode.children) && Intrinsics3.areEqual(this.elements, reportNode.elements) && Intrinsics3.areEqual(this.button, reportNode.button);
     }
 
     /* JADX INFO: renamed from: a, reason: from getter */
@@ -83,7 +83,7 @@ public final /* data */ class ReportNode {
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("ReportNode(id=");
+        StringBuilder sbU = outline.U("ReportNode(id=");
         sbU.append(this.id);
         sbU.append(", menu_name=");
         sbU.append(this.menu_name);

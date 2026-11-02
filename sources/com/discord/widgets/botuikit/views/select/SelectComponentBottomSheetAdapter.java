@@ -6,14 +6,14 @@ import android.view.ViewGroup;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 import com.discord.R;
-import com.discord.api.botuikit.SelectItem;
+import com.discord.api.botuikit.SelectComponent2;
 import com.discord.databinding.WidgetSelectComponentBottomSheetItemBinding;
 import com.discord.models.domain.ModelAuditLogEntry;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.google.android.material.checkbox.MaterialCheckBox;
 import com.google.android.material.textview.MaterialTextView;
-import d0.t.n;
-import d0.z.d.m;
+import d0.t.Collections2;
+import d0.z.d.Intrinsics3;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
@@ -23,20 +23,20 @@ import kotlin.jvm.functions.Function2;
 /* JADX INFO: compiled from: SelectComponentBottomSheetAdapter.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class SelectComponentBottomSheetAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-    private List<SelectComponentBottomSheetItem> data;
+    private List<SelectComponentBottomSheetAdapter2> data;
     private boolean emojiAnimationsEnabled;
     private boolean hasDescriptions;
     private boolean hasIcons;
     private boolean isMaxSelected;
     private boolean isMultiSelect;
-    private final Function2<SelectItem, Boolean, Unit> onItemSelected;
+    private final Function2<SelectComponent2, Boolean, Unit> onItemSelected;
 
     /* JADX WARN: Multi-variable type inference failed */
-    public SelectComponentBottomSheetAdapter(Function2<? super SelectItem, ? super Boolean, Unit> function2) {
-        m.checkNotNullParameter(function2, "onItemSelected");
+    public SelectComponentBottomSheetAdapter(Function2<? super SelectComponent2, ? super Boolean, Unit> function2) {
+        Intrinsics3.checkNotNullParameter(function2, "onItemSelected");
         this.onItemSelected = function2;
         setHasStableIds(true);
-        this.data = n.emptyList();
+        this.data = Collections2.emptyList();
         this.emojiAnimationsEnabled = true;
     }
 
@@ -53,13 +53,13 @@ public final class SelectComponentBottomSheetAdapter extends RecyclerView.Adapte
 
     @Override // androidx.recyclerview.widget.RecyclerView.Adapter
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        m.checkNotNullParameter(holder, "holder");
-        ((SelectComponentBottomSheetItemViewHolder) holder).bind(this.data.get(position), this.isMultiSelect, this.hasIcons, this.hasDescriptions, position == this.data.size() - 1, this.isMaxSelected, this.emojiAnimationsEnabled);
+        Intrinsics3.checkNotNullParameter(holder, "holder");
+        ((SelectComponentBottomSheetAdapter3) holder).bind(this.data.get(position), this.isMultiSelect, this.hasIcons, this.hasDescriptions, position == this.data.size() - 1, this.isMaxSelected, this.emojiAnimationsEnabled);
     }
 
     @Override // androidx.recyclerview.widget.RecyclerView.Adapter
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        m.checkNotNullParameter(parent, "parent");
+        Intrinsics3.checkNotNullParameter(parent, "parent");
         View viewInflate = LayoutInflater.from(parent.getContext()).inflate(R.layout.widget_select_component_bottom_sheet_item, parent, false);
         int i = R.id.select_component_sheet_item_description;
         MaterialTextView materialTextView = (MaterialTextView) viewInflate.findViewById(R.id.select_component_sheet_item_description);
@@ -80,8 +80,8 @@ public final class SelectComponentBottomSheetAdapter extends RecyclerView.Adapte
                             MaterialTextView materialTextView2 = (MaterialTextView) viewInflate.findViewById(R.id.select_component_sheet_item_title);
                             if (materialTextView2 != null) {
                                 WidgetSelectComponentBottomSheetItemBinding widgetSelectComponentBottomSheetItemBinding = new WidgetSelectComponentBottomSheetItemBinding((ConstraintLayout) viewInflate, materialTextView, viewFindViewById, viewFindViewById2, simpleDraweeView, materialCheckBox, materialTextView2);
-                                m.checkNotNullExpressionValue(widgetSelectComponentBottomSheetItemBinding, "WidgetSelectComponentBot…          false\n        )");
-                                return new SelectComponentBottomSheetItemViewHolder(widgetSelectComponentBottomSheetItemBinding, this.onItemSelected);
+                                Intrinsics3.checkNotNullExpressionValue(widgetSelectComponentBottomSheetItemBinding, "WidgetSelectComponentBot…          false\n        )");
+                                return new SelectComponentBottomSheetAdapter3(widgetSelectComponentBottomSheetItemBinding, this.onItemSelected);
                             }
                         }
                     }
@@ -91,11 +91,11 @@ public final class SelectComponentBottomSheetAdapter extends RecyclerView.Adapte
         throw new NullPointerException("Missing required view with ID: ".concat(viewInflate.getResources().getResourceName(i)));
     }
 
-    public final void setItems(List<SelectComponentBottomSheetItem> items, int maxSelections, boolean emojiAnimationsEnabled) {
+    public final void setItems(List<SelectComponentBottomSheetAdapter2> items, int maxSelections, boolean emojiAnimationsEnabled) {
         boolean z2;
         boolean z3;
         int i;
-        m.checkNotNullParameter(items, "items");
+        Intrinsics3.checkNotNullParameter(items, "items");
         this.data = items;
         boolean z4 = items instanceof Collection;
         if (!z4 || !items.isEmpty()) {
@@ -105,7 +105,7 @@ public final class SelectComponentBottomSheetAdapter extends RecyclerView.Adapte
                     z2 = false;
                     break;
                 } else {
-                    if (((SelectComponentBottomSheetItem) it.next()).getSelectItem().getEmoji() != null) {
+                    if (((SelectComponentBottomSheetAdapter2) it.next()).getSelectItem().getEmoji() != null) {
                         z2 = true;
                         break;
                     }
@@ -123,7 +123,7 @@ public final class SelectComponentBottomSheetAdapter extends RecyclerView.Adapte
                     z3 = false;
                     break;
                 } else {
-                    if (((SelectComponentBottomSheetItem) it2.next()).getSelectItem().getDescription() != null) {
+                    if (((SelectComponentBottomSheetAdapter2) it2.next()).getSelectItem().getDescription() != null) {
                         z3 = true;
                         break;
                     }
@@ -141,8 +141,8 @@ public final class SelectComponentBottomSheetAdapter extends RecyclerView.Adapte
             Iterator<T> it3 = items.iterator();
             i = 0;
             while (it3.hasNext()) {
-                if (((SelectComponentBottomSheetItem) it3.next()).getSelected() && (i = i + 1) < 0) {
-                    n.throwCountOverflow();
+                if (((SelectComponentBottomSheetAdapter2) it3.next()).getSelected() && (i = i + 1) < 0) {
+                    Collections2.throwCountOverflow();
                 }
             }
         }

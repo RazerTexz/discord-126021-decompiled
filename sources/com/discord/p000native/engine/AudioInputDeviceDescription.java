@@ -1,8 +1,8 @@
 package com.discord.p000native.engine;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.models.domain.ModelAuditLogEntry;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: AudioInputDeviceDescription.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -11,8 +11,8 @@ public final /* data */ class AudioInputDeviceDescription {
     private final String name;
 
     public AudioInputDeviceDescription(String str, String str2) {
-        m.checkNotNullParameter(str, ModelAuditLogEntry.CHANGE_KEY_NAME);
-        m.checkNotNullParameter(str2, "guid");
+        Intrinsics3.checkNotNullParameter(str, ModelAuditLogEntry.CHANGE_KEY_NAME);
+        Intrinsics3.checkNotNullParameter(str2, "guid");
         this.name = str;
         this.guid = str2;
     }
@@ -28,8 +28,8 @@ public final /* data */ class AudioInputDeviceDescription {
     }
 
     public final AudioInputDeviceDescription copy(String name, String guid) {
-        m.checkNotNullParameter(name, ModelAuditLogEntry.CHANGE_KEY_NAME);
-        m.checkNotNullParameter(guid, "guid");
+        Intrinsics3.checkNotNullParameter(name, ModelAuditLogEntry.CHANGE_KEY_NAME);
+        Intrinsics3.checkNotNullParameter(guid, "guid");
         return new AudioInputDeviceDescription(name, guid);
     }
 
@@ -41,7 +41,7 @@ public final /* data */ class AudioInputDeviceDescription {
             return false;
         }
         AudioInputDeviceDescription audioInputDeviceDescription = (AudioInputDeviceDescription) other;
-        return m.areEqual(this.name, audioInputDeviceDescription.name) && m.areEqual(this.guid, audioInputDeviceDescription.guid);
+        return Intrinsics3.areEqual(this.name, audioInputDeviceDescription.name) && Intrinsics3.areEqual(this.guid, audioInputDeviceDescription.guid);
     }
 
     /* JADX INFO: renamed from: component2, reason: from getter */
@@ -70,9 +70,9 @@ public final /* data */ class AudioInputDeviceDescription {
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("AudioInputDeviceDescription(name=");
+        StringBuilder sbU = outline.U("AudioInputDeviceDescription(name=");
         sbU.append(this.name);
         sbU.append(", guid=");
-        return a.J(sbU, this.guid, ")");
+        return outline.J(sbU, this.guid, ")");
     }
 }

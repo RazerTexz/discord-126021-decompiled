@@ -1,7 +1,7 @@
 package org.webrtc;
 
 import androidx.annotation.Nullable;
-import b.d.b.a.a;
+import b.d.b.a.outline;
 
 /* JADX INFO: loaded from: classes3.dex */
 public interface VideoEncoder {
@@ -113,10 +113,10 @@ public interface VideoEncoder {
             if (!this.on) {
                 return "OFF";
             }
-            StringBuilder sbU = a.U("[ ");
+            StringBuilder sbU = outline.U("[ ");
             sbU.append(this.low);
             sbU.append(", ");
-            return a.F(sbU, this.high, " ]");
+            return outline.F(sbU, this.high, " ]");
         }
 
         private ScalingSettings() {

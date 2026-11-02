@@ -1,7 +1,8 @@
 package com.esotericsoftware.kryo.serializers;
 
-import b.e.a.a;
-import b.e.b.d;
+import b.d.b.a.outline;
+import b.e.a.Log;
+import b.e.b.MethodAccess;
 import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryo.KryoException;
 import com.esotericsoftware.kryo.Serializer;
@@ -52,13 +53,13 @@ public class BeanSerializer<T> extends Serializer<T> {
 
         public Object get(Object obj) throws IllegalAccessException, InvocationTargetException {
             Object obj2 = BeanSerializer.this.access;
-            return obj2 != null ? ((d) obj2).d(obj, this.getterAccessIndex, new Object[0]) : this.getMethod.invoke(obj, BeanSerializer.noArgs);
+            return obj2 != null ? ((MethodAccess) obj2).d(obj, this.getterAccessIndex, new Object[0]) : this.getMethod.invoke(obj, BeanSerializer.noArgs);
         }
 
         public void set(Object obj, Object obj2) throws IllegalAccessException, InvocationTargetException {
             Object obj3 = BeanSerializer.this.access;
             if (obj3 != null) {
-                ((d) obj3).d(obj, this.setterAccessIndex, obj2);
+                ((MethodAccess) obj3).d(obj, this.setterAccessIndex, obj2);
             } else {
                 this.setMethod.invoke(obj, obj2);
             }
@@ -94,12 +95,12 @@ public class BeanSerializer<T> extends Serializer<T> {
             }
             this.properties = (CachedProperty[]) arrayList.toArray(new CachedProperty[arrayList.size()]);
             try {
-                this.access = d.b(cls);
+                this.access = MethodAccess.b(cls);
                 int length = this.properties.length;
                 for (int i = 0; i < length; i++) {
                     CachedProperty cachedProperty2 = this.properties[i];
-                    cachedProperty2.getterAccessIndex = ((d) this.access).c(cachedProperty2.getMethod.getName(), cachedProperty2.getMethod.getParameterTypes());
-                    cachedProperty2.setterAccessIndex = ((d) this.access).c(cachedProperty2.setMethod.getName(), cachedProperty2.setMethod.getParameterTypes());
+                    cachedProperty2.getterAccessIndex = ((MethodAccess) this.access).c(cachedProperty2.getMethod.getName(), cachedProperty2.getMethod.getParameterTypes());
+                    cachedProperty2.setterAccessIndex = ((MethodAccess) this.access).c(cachedProperty2.setMethod.getName(), cachedProperty2.setMethod.getParameterTypes());
                 }
             } catch (Throwable unused) {
             }
@@ -138,7 +139,7 @@ public class BeanSerializer<T> extends Serializer<T> {
         for (int i = 0; i < length; i++) {
             CachedProperty cachedProperty = this.properties[i];
             try {
-                a.C0064a c0064a = a.a;
+                Log.a aVar = Log.a;
                 Serializer serializer = cachedProperty.serializer;
                 cachedProperty.set(t, serializer != null ? kryo.readObjectOrNull(input, cachedProperty.setMethodType, serializer) : kryo.readClassAndObject(input));
             } catch (KryoException e) {
@@ -164,7 +165,7 @@ public class BeanSerializer<T> extends Serializer<T> {
         for (int i = 0; i < length; i++) {
             CachedProperty cachedProperty = this.properties[i];
             try {
-                a.C0064a c0064a = a.a;
+                Log.a aVar = Log.a;
                 Object obj = cachedProperty.get(t);
                 Serializer serializer = cachedProperty.serializer;
                 if (serializer != null) {
@@ -176,27 +177,27 @@ public class BeanSerializer<T> extends Serializer<T> {
                 StringBuilder sb = new StringBuilder();
                 sb.append(cachedProperty);
                 sb.append(" (");
-                b.d.b.a.a.m0(cls, sb, ")", e);
+                outline.m0(cls, sb, ")", e);
                 throw e;
             } catch (IllegalAccessException e2) {
                 StringBuilder sb2 = new StringBuilder();
                 sb2.append("Error accessing getter method: ");
                 sb2.append(cachedProperty);
                 sb2.append(" (");
-                throw new KryoException(b.d.b.a.a.o(cls, sb2, ")"), e2);
+                throw new KryoException(outline.o(cls, sb2, ")"), e2);
             } catch (RuntimeException e3) {
                 KryoException kryoException = new KryoException(e3);
                 StringBuilder sb3 = new StringBuilder();
                 sb3.append(cachedProperty);
                 sb3.append(" (");
-                b.d.b.a.a.m0(cls, sb3, ")", kryoException);
+                outline.m0(cls, sb3, ")", kryoException);
                 throw kryoException;
             } catch (InvocationTargetException e4) {
                 StringBuilder sb4 = new StringBuilder();
                 sb4.append("Error invoking getter method: ");
                 sb4.append(cachedProperty);
                 sb4.append(" (");
-                throw new KryoException(b.d.b.a.a.o(cls, sb4, ")"), e4);
+                throw new KryoException(outline.o(cls, sb4, ")"), e4);
             }
         }
     }

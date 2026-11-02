@@ -1,6 +1,6 @@
 package s.a;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 
 /* JADX INFO: compiled from: JobSupport.kt */
 /* JADX INFO: loaded from: classes3.dex */
@@ -22,6 +22,6 @@ public final class p0 implements z0 {
     }
 
     public String toString() {
-        return a.H(a.U("Empty{"), this.j ? "Active" : "New", '}');
+        return outline.H(outline.U("Empty{"), this.j ? "Active" : "New", '}');
     }
 }

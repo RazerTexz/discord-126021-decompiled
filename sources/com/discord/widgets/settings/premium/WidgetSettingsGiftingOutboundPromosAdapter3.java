@@ -1,0 +1,19 @@
+package com.discord.widgets.settings.premium;
+
+import android.view.View;
+
+/* JADX INFO: renamed from: com.discord.widgets.settings.premium.WidgetSettingsGiftingOutboundPromosAdapter$OutboundPromoViewHolder$$special$$inlined$also$lambda$1, reason: use source file name */
+/* JADX INFO: compiled from: WidgetSettingsGiftingOutboundPromosAdapter.kt */
+/* JADX INFO: loaded from: classes2.dex */
+public final class WidgetSettingsGiftingOutboundPromosAdapter3 implements View.OnClickListener {
+    public final /* synthetic */ WidgetSettingsGiftingOutboundPromosAdapter.OutboundPromoViewHolder this$0;
+
+    public WidgetSettingsGiftingOutboundPromosAdapter3(WidgetSettingsGiftingOutboundPromosAdapter.OutboundPromoViewHolder outboundPromoViewHolder) {
+        this.this$0 = outboundPromoViewHolder;
+    }
+
+    @Override // android.view.View.OnClickListener
+    public final void onClick(View view) {
+        WidgetSettingsGiftingOutboundPromosAdapter.OutboundPromoViewHolder.access$getOnMoreDetailsClick$p(this.this$0).invoke(WidgetSettingsGiftingOutboundPromosAdapter.OutboundPromoViewHolder.access$getBoundItem$p(this.this$0));
+    }
+}

@@ -1,20 +1,20 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.analytics.generated.traits.TrackGuild;
-import com.discord.analytics.generated.traits.TrackGuildReceiver;
+import com.discord.analytics.generated.traits.TrackGuild2;
 import com.discord.analytics.generated.traits.TrackLocationMetadata;
-import com.discord.analytics.generated.traits.TrackLocationMetadataReceiver;
+import com.discord.analytics.generated.traits.TrackLocationMetadata2;
 import com.discord.analytics.generated.traits.TrackSourceMetadata;
-import com.discord.analytics.generated.traits.TrackSourceMetadataReceiver;
+import com.discord.analytics.generated.traits.TrackSourceMetadata2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackCustomStatusUpdated.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackCustomStatusUpdated implements AnalyticsSchema, TrackBaseReceiver, TrackGuildReceiver, TrackLocationMetadataReceiver, TrackSourceMetadataReceiver {
+public final /* data */ class TrackCustomStatusUpdated implements AnalyticsSchema, TrackBase2, TrackGuild2, TrackLocationMetadata2, TrackSourceMetadata2 {
     private final CharSequence clearAfter = null;
     private final CharSequence emojiType = null;
     private final Boolean hasEmoji = null;
@@ -27,7 +27,7 @@ public final /* data */ class TrackCustomStatusUpdated implements AnalyticsSchem
     private final Long voiceChannelVoiceStateCount = null;
     private final transient String analyticsSchemaTypeName = "custom_status_updated";
 
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    @Override // com.discord.analytics.generated.traits.TrackGuild2
     public void c(TrackGuild trackGuild) {
         this.trackGuild = trackGuild;
     }
@@ -40,7 +40,7 @@ public final /* data */ class TrackCustomStatusUpdated implements AnalyticsSchem
             return false;
         }
         TrackCustomStatusUpdated trackCustomStatusUpdated = (TrackCustomStatusUpdated) other;
-        return m.areEqual(this.hasEmoji, trackCustomStatusUpdated.hasEmoji) && m.areEqual(this.emojiType, trackCustomStatusUpdated.emojiType) && m.areEqual(this.textLen, trackCustomStatusUpdated.textLen) && m.areEqual(this.clearAfter, trackCustomStatusUpdated.clearAfter) && m.areEqual(this.voiceChannelId, trackCustomStatusUpdated.voiceChannelId) && m.areEqual(this.voiceChannelVoiceStateCount, trackCustomStatusUpdated.voiceChannelVoiceStateCount);
+        return Intrinsics3.areEqual(this.hasEmoji, trackCustomStatusUpdated.hasEmoji) && Intrinsics3.areEqual(this.emojiType, trackCustomStatusUpdated.emojiType) && Intrinsics3.areEqual(this.textLen, trackCustomStatusUpdated.textLen) && Intrinsics3.areEqual(this.clearAfter, trackCustomStatusUpdated.clearAfter) && Intrinsics3.areEqual(this.voiceChannelId, trackCustomStatusUpdated.voiceChannelId) && Intrinsics3.areEqual(this.voiceChannelVoiceStateCount, trackCustomStatusUpdated.voiceChannelVoiceStateCount);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -49,7 +49,7 @@ public final /* data */ class TrackCustomStatusUpdated implements AnalyticsSchem
         return this.analyticsSchemaTypeName;
     }
 
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    @Override // com.discord.analytics.generated.traits.TrackGuild2
     /* JADX INFO: renamed from: a, reason: from getter */
     public TrackGuild getTrackGuild() {
         return this.trackGuild;
@@ -71,7 +71,7 @@ public final /* data */ class TrackCustomStatusUpdated implements AnalyticsSchem
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackCustomStatusUpdated(hasEmoji=");
+        StringBuilder sbU = outline.U("TrackCustomStatusUpdated(hasEmoji=");
         sbU.append(this.hasEmoji);
         sbU.append(", emojiType=");
         sbU.append(this.emojiType);
@@ -82,6 +82,6 @@ public final /* data */ class TrackCustomStatusUpdated implements AnalyticsSchem
         sbU.append(", voiceChannelId=");
         sbU.append(this.voiceChannelId);
         sbU.append(", voiceChannelVoiceStateCount=");
-        return a.G(sbU, this.voiceChannelVoiceStateCount, ")");
+        return outline.G(sbU, this.voiceChannelVoiceStateCount, ")");
     }
 }

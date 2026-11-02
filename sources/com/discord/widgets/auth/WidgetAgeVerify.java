@@ -12,31 +12,32 @@ import androidx.core.app.NotificationCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentViewModelLazyKt;
-import b.a.a.k;
-import b.a.d.f;
-import b.a.d.g0;
-import b.a.d.i0;
-import b.a.d.j;
-import b.a.k.b;
-import b.d.b.a.a;
+import b.a.a.DatePickerDialog;
+import b.a.d.AppHelpDesk;
+import b.a.d.AppScreen2;
+import b.a.d.AppToast;
+import b.a.d.AppViewModelDelegates3;
+import b.a.d.AppViewModelDelegates5;
+import b.a.k.FormatUtils;
+import b.d.b.a.outline;
 import com.discord.R;
 import com.discord.app.AppFragment;
+import com.discord.app.AppLogger2;
 import com.discord.app.AppViewFlipper;
-import com.discord.app.LoggingConfig;
 import com.discord.databinding.WidgetAgeVerifyBinding;
 import com.discord.utilities.analytics.AnalyticsTracker;
 import com.discord.utilities.birthday.BirthdayHelper;
-import com.discord.utilities.resources.StringResourceUtilsKt;
+import com.discord.utilities.resources.StringResourceUtils;
 import com.discord.utilities.rx.ObservableExtensionsKt;
 import com.discord.utilities.view.extensions.ViewExtensions;
 import com.discord.utilities.view.text.LinkifiedTextView;
 import com.discord.utilities.viewbinding.FragmentViewBindingDelegate;
-import com.discord.utilities.viewbinding.FragmentViewBindingDelegateKt;
+import com.discord.utilities.viewbinding.FragmentViewBindingDelegate3;
 import com.discord.views.LoadingButton;
 import com.google.android.material.textfield.TextInputLayout;
-import d0.z.d.a0;
-import d0.z.d.m;
-import d0.z.d.o;
+import d0.z.d.Intrinsics3;
+import d0.z.d.Lambda;
+import d0.z.d.Reflection2;
 import java.text.DateFormat;
 import java.util.Calendar;
 import kotlin.Lazy;
@@ -50,7 +51,7 @@ import rx.functions.Func0;
 /* JADX INFO: compiled from: WidgetAgeVerify.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetAgeVerify extends AppFragment {
-    public static final /* synthetic */ KProperty[] $$delegatedProperties = {a.d0(WidgetAgeVerify.class, "binding", "getBinding()Lcom/discord/databinding/WidgetAgeVerifyBinding;", 0)};
+    public static final /* synthetic */ KProperty[] $$delegatedProperties = {outline.d0(WidgetAgeVerify.class, "binding", "getBinding()Lcom/discord/databinding/WidgetAgeVerifyBinding;", 0)};
 
     /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
     public static final Companion INSTANCE = new Companion(null);
@@ -58,14 +59,14 @@ public final class WidgetAgeVerify extends AppFragment {
 
     /* JADX INFO: renamed from: binding$delegate, reason: from kotlin metadata */
     private final FragmentViewBindingDelegate binding;
-    private final LoggingConfig loggingConfig;
+    private final AppLogger2 loggingConfig;
 
     /* JADX INFO: renamed from: viewModel$delegate, reason: from kotlin metadata */
     private final Lazy viewModel;
 
     /* JADX INFO: renamed from: com.discord.widgets.auth.WidgetAgeVerify$configureBirthdayInput$1, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetAgeVerify.kt */
-    public final class AnonymousClass1 extends o implements Function1<View, Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function1<View, Unit> {
         public final /* synthetic */ Long $timeOfBirth;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -82,13 +83,13 @@ public final class WidgetAgeVerify extends AppFragment {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(View view) {
-            m.checkNotNullParameter(view, "it");
-            k.Companion companion = k.INSTANCE;
+            Intrinsics3.checkNotNullParameter(view, "it");
+            DatePickerDialog.Companion companion = DatePickerDialog.INSTANCE;
             FragmentManager parentFragmentManager = WidgetAgeVerify.this.getParentFragmentManager();
-            m.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
-            CharSequence charSequenceK = b.k(WidgetAgeVerify.this, R.string.age_gate_date_of_birth, new Object[0], null, 4);
+            Intrinsics3.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
+            CharSequence charSequenceK = FormatUtils.k(WidgetAgeVerify.this, R.string.age_gate_date_of_birth, new Object[0], null, 4);
             Long l = this.$timeOfBirth;
-            companion.a(parentFragmentManager, charSequenceK, l != null ? l.longValue() : BirthdayHelper.INSTANCE.defaultInputAge(), BirthdayHelper.INSTANCE.getMaxDateOfBirth()).onDatePicked = new WidgetAgeVerify$configureBirthdayInput$1$$special$$inlined$apply$lambda$1(this);
+            companion.a(parentFragmentManager, charSequenceK, l != null ? l.longValue() : BirthdayHelper.INSTANCE.defaultInputAge(), BirthdayHelper.INSTANCE.getMaxDateOfBirth()).onDatePicked = new WidgetAgeVerify3(this);
         }
     }
 
@@ -106,7 +107,7 @@ public final class WidgetAgeVerify extends AppFragment {
         @Override // rx.functions.Func0, java.util.concurrent.Callable
         public final Boolean call() {
             AppViewFlipper appViewFlipper = WidgetAgeVerify.access$getBinding$p(WidgetAgeVerify.this).f2224b;
-            m.checkNotNullExpressionValue(appViewFlipper, "binding.ageVerifyViewFlipper");
+            Intrinsics3.checkNotNullExpressionValue(appViewFlipper, "binding.ageVerifyViewFlipper");
             int displayedChild = appViewFlipper.getDisplayedChild();
             if (displayedChild == 1) {
                 WidgetAgeVerify.access$getViewModel$p(WidgetAgeVerify.this).onConfirmBackClicked();
@@ -121,7 +122,7 @@ public final class WidgetAgeVerify extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.auth.WidgetAgeVerify$onViewBound$1, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetAgeVerify.kt */
-    public final class AnonymousClass1 extends o implements Function1<WidgetAgeVerifyViewModel.ViewState, Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function1<WidgetAgeVerifyViewModel.ViewState, Unit> {
         public AnonymousClass1() {
             super(1);
         }
@@ -134,7 +135,7 @@ public final class WidgetAgeVerify extends AppFragment {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(WidgetAgeVerifyViewModel.ViewState viewState) {
-            m.checkNotNullParameter(viewState, "it");
+            Intrinsics3.checkNotNullParameter(viewState, "it");
             WidgetAgeVerify.access$configureUI(WidgetAgeVerify.this, viewState);
         }
     }
@@ -154,7 +155,7 @@ public final class WidgetAgeVerify extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.auth.WidgetAgeVerify$onViewBound$2, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetAgeVerify.kt */
-    public final class AnonymousClass2 extends o implements Function1<WidgetAgeVerifyViewModel.Event, Unit> {
+    public final class AnonymousClass2 extends Lambda implements Function1<WidgetAgeVerifyViewModel.Event, Unit> {
         public AnonymousClass2() {
             super(1);
         }
@@ -167,7 +168,7 @@ public final class WidgetAgeVerify extends AppFragment {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(WidgetAgeVerifyViewModel.Event event) {
-            m.checkNotNullParameter(event, "it");
+            Intrinsics3.checkNotNullParameter(event, "it");
             WidgetAgeVerify.access$handleEvent(WidgetAgeVerify.this, event);
         }
     }
@@ -227,11 +228,11 @@ public final class WidgetAgeVerify extends AppFragment {
         }
 
         public final void start(Context context, boolean isNSFWChannel) {
-            m.checkNotNullParameter(context, "context");
+            Intrinsics3.checkNotNullParameter(context, "context");
             AnalyticsTracker.openModal$default("Age Gate", "", null, 4, null);
             Bundle bundle = new Bundle();
             bundle.putBoolean(WidgetAgeVerify.INTENT_EXTRA_NSFW_CHANNEL, isNSFWChannel);
-            j.d(context, WidgetAgeVerify.class, new Intent().putExtras(bundle));
+            AppScreen2.d(context, WidgetAgeVerify.class, new Intent().putExtras(bundle));
         }
 
         public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
@@ -241,11 +242,11 @@ public final class WidgetAgeVerify extends AppFragment {
 
     public WidgetAgeVerify() {
         super(R.layout.widget_age_verify);
-        this.binding = FragmentViewBindingDelegateKt.viewBinding$default(this, WidgetAgeVerify$binding$2.INSTANCE, null, 2, null);
-        WidgetAgeVerify$viewModel$2 widgetAgeVerify$viewModel$2 = WidgetAgeVerify$viewModel$2.INSTANCE;
-        g0 g0Var = new g0(this);
-        this.viewModel = FragmentViewModelLazyKt.createViewModelLazy(this, a0.getOrCreateKotlinClass(WidgetAgeVerifyViewModel.class), new WidgetAgeVerify$appViewModels$$inlined$viewModels$1(g0Var), new i0(widgetAgeVerify$viewModel$2));
-        this.loggingConfig = new LoggingConfig(false, null, new WidgetAgeVerify$loggingConfig$1(this), 3);
+        this.binding = FragmentViewBindingDelegate3.viewBinding$default(this, WidgetAgeVerify2.INSTANCE, null, 2, null);
+        WidgetAgeVerify5 widgetAgeVerify5 = WidgetAgeVerify5.INSTANCE;
+        AppViewModelDelegates3 appViewModelDelegates3 = new AppViewModelDelegates3(this);
+        this.viewModel = FragmentViewModelLazyKt.createViewModelLazy(this, Reflection2.getOrCreateKotlinClass(WidgetAgeVerifyViewModel.class), new WidgetAgeVerify$appViewModels$$inlined$viewModels$1(appViewModelDelegates3), new AppViewModelDelegates5(widgetAgeVerify5));
+        this.loggingConfig = new AppLogger2(false, null, new WidgetAgeVerify4(this), 3);
     }
 
     public static final /* synthetic */ void access$configureUI(WidgetAgeVerify widgetAgeVerify, WidgetAgeVerifyViewModel.ViewState viewState) {
@@ -267,24 +268,24 @@ public final class WidgetAgeVerify extends AppFragment {
     private final void configureBirthdayInput(WidgetAgeVerifyViewModel.ViewState viewState) {
         Long dateOfBirth = viewState.getDateOfBirth();
         Calendar calendar = Calendar.getInstance();
-        m.checkNotNullExpressionValue(calendar, "Calendar.getInstance()");
+        Intrinsics3.checkNotNullExpressionValue(calendar, "Calendar.getInstance()");
         calendar.setTimeInMillis(dateOfBirth != null ? dateOfBirth.longValue() : BirthdayHelper.INSTANCE.getMaxDateOfBirth());
         DateFormat dateInstance = DateFormat.getDateInstance(3);
         if (dateOfBirth != null) {
-            m.checkNotNullExpressionValue(dateInstance, "formatter");
+            Intrinsics3.checkNotNullExpressionValue(dateInstance, "formatter");
             dateInstance.setTimeZone(calendar.getTimeZone());
             String str = dateInstance.format(Long.valueOf(calendar.getTimeInMillis()));
             TextInputLayout textInputLayout = getBinding().e.c;
-            m.checkNotNullExpressionValue(textInputLayout, "binding.verify.ageVerifyInputWrapper");
+            Intrinsics3.checkNotNullExpressionValue(textInputLayout, "binding.verify.ageVerifyInputWrapper");
             ViewExtensions.setText(textInputLayout, new SpannableStringBuilder(str));
         }
         if (viewState.getErrorStringId() != null) {
             TextInputLayout textInputLayout2 = getBinding().e.c;
-            m.checkNotNullExpressionValue(textInputLayout2, "binding.verify.ageVerifyInputWrapper");
-            textInputLayout2.setError(b.k(this, viewState.getErrorStringId().intValue(), new Object[0], null, 4));
+            Intrinsics3.checkNotNullExpressionValue(textInputLayout2, "binding.verify.ageVerifyInputWrapper");
+            textInputLayout2.setError(FormatUtils.k(this, viewState.getErrorStringId().intValue(), new Object[0], null, 4));
         }
         TextInputLayout textInputLayout3 = getBinding().e.c;
-        m.checkNotNullExpressionValue(textInputLayout3, "binding.verify.ageVerifyInputWrapper");
+        Intrinsics3.checkNotNullExpressionValue(textInputLayout3, "binding.verify.ageVerifyInputWrapper");
         ViewExtensions.setOnEditTextClickListener(textInputLayout3, new AnonymousClass1(dateOfBirth));
     }
 
@@ -295,28 +296,28 @@ public final class WidgetAgeVerify extends AppFragment {
         }
         getBinding().e.d.setIsLoading(viewState.isSubmitting());
         LoadingButton loadingButton = getBinding().e.d;
-        m.checkNotNullExpressionValue(loadingButton, "binding.verify.ageVerifyNextButton");
+        Intrinsics3.checkNotNullExpressionValue(loadingButton, "binding.verify.ageVerifyNextButton");
         loadingButton.setEnabled(viewState.getDateOfBirth() != null);
         getBinding().c.c.setIsLoading(viewState.isSubmitting());
         LoadingButton loadingButton2 = getBinding().c.c;
-        m.checkNotNullExpressionValue(loadingButton2, "binding.confirm.ageVerifyConfirmButton");
+        Intrinsics3.checkNotNullExpressionValue(loadingButton2, "binding.confirm.ageVerifyConfirmButton");
         loadingButton2.setEnabled(viewState.getDateOfBirth() != null);
         Resources resources = getResources();
-        m.checkNotNullExpressionValue(resources, "resources");
-        CharSequence quantityString = StringResourceUtilsKt.getQuantityString(resources, requireContext(), R.plurals.age_gate_underage_existing_body_deletion_with_days_days, 30, 30);
+        Intrinsics3.checkNotNullExpressionValue(resources, "resources");
+        CharSequence quantityString = StringResourceUtils.getQuantityString(resources, requireContext(), R.plurals.age_gate_underage_existing_body_deletion_with_days_days, 30, 30);
         TextView textView = getBinding().d.d;
-        m.checkNotNullExpressionValue(textView, "binding.underage.underageWarning");
-        b.n(textView, R.string.age_gate_underage_existing_body_deletion_with_days, new Object[]{quantityString}, null, 4);
+        Intrinsics3.checkNotNullExpressionValue(textView, "binding.underage.underageWarning");
+        FormatUtils.n(textView, R.string.age_gate_underage_existing_body_deletion_with_days, new Object[]{quantityString}, null, 4);
         LinkifiedTextView linkifiedTextView = getBinding().d.c;
-        m.checkNotNullExpressionValue(linkifiedTextView, "binding.underage.ageVerifyUnderageDescription");
+        Intrinsics3.checkNotNullExpressionValue(linkifiedTextView, "binding.underage.ageVerifyUnderageDescription");
         Object[] objArr = new Object[2];
         String underageMessage = viewState.getUnderageMessage();
         if (underageMessage == null) {
             underageMessage = "";
         }
         objArr[0] = underageMessage;
-        objArr[1] = f.a.a(360040724612L, null);
-        b.n(linkifiedTextView, R.string.age_gate_underage_body, objArr, null, 4);
+        objArr[1] = AppHelpDesk.a.a(360040724612L, null);
+        FormatUtils.n(linkifiedTextView, R.string.age_gate_underage_body, objArr, null, 4);
         if (viewState.getDisplayedChild() == 2) {
             requireAppActivity().refreshEnabled = false;
             AppFragment.hideKeyboard$default(this, null, 1, null);
@@ -324,8 +325,8 @@ public final class WidgetAgeVerify extends AppFragment {
         if (viewState.getDisplayedChild() == 1 && (dateOfBirth = viewState.getDateOfBirth()) != null) {
             int age = BirthdayHelper.INSTANCE.getAge(dateOfBirth.longValue());
             TextView textView2 = getBinding().c.e;
-            m.checkNotNullExpressionValue(textView2, "binding.confirm.ageVerifyConfirmTitle");
-            b.n(textView2, R.string.age_gate_confirm_header, new Object[]{String.valueOf(age)}, null, 4);
+            Intrinsics3.checkNotNullExpressionValue(textView2, "binding.confirm.ageVerifyConfirmTitle");
+            FormatUtils.n(textView2, R.string.age_gate_confirm_header, new Object[]{String.valueOf(age)}, null, 4);
         }
         configureBirthdayInput(viewState);
         configureViewFlipper(viewState.getDisplayedChild());
@@ -334,28 +335,28 @@ public final class WidgetAgeVerify extends AppFragment {
 
     private final void configureViewFlipper(int displayedChild) {
         AppViewFlipper appViewFlipper = getBinding().f2224b;
-        m.checkNotNullExpressionValue(appViewFlipper, "binding.ageVerifyViewFlipper");
+        Intrinsics3.checkNotNullExpressionValue(appViewFlipper, "binding.ageVerifyViewFlipper");
         if (displayedChild > appViewFlipper.getDisplayedChild()) {
             AppViewFlipper appViewFlipper2 = getBinding().f2224b;
-            m.checkNotNullExpressionValue(appViewFlipper2, "binding.ageVerifyViewFlipper");
+            Intrinsics3.checkNotNullExpressionValue(appViewFlipper2, "binding.ageVerifyViewFlipper");
             appViewFlipper2.setInAnimation(AnimationUtils.loadAnimation(getContext(), R.anim.activity_slide_horizontal_open_in));
             AppViewFlipper appViewFlipper3 = getBinding().f2224b;
-            m.checkNotNullExpressionValue(appViewFlipper3, "binding.ageVerifyViewFlipper");
+            Intrinsics3.checkNotNullExpressionValue(appViewFlipper3, "binding.ageVerifyViewFlipper");
             appViewFlipper3.setOutAnimation(AnimationUtils.loadAnimation(getContext(), R.anim.activity_slide_horizontal_open_out));
         } else {
             AppViewFlipper appViewFlipper4 = getBinding().f2224b;
-            m.checkNotNullExpressionValue(appViewFlipper4, "binding.ageVerifyViewFlipper");
+            Intrinsics3.checkNotNullExpressionValue(appViewFlipper4, "binding.ageVerifyViewFlipper");
             if (displayedChild < appViewFlipper4.getDisplayedChild()) {
                 AppViewFlipper appViewFlipper5 = getBinding().f2224b;
-                m.checkNotNullExpressionValue(appViewFlipper5, "binding.ageVerifyViewFlipper");
+                Intrinsics3.checkNotNullExpressionValue(appViewFlipper5, "binding.ageVerifyViewFlipper");
                 appViewFlipper5.setInAnimation(AnimationUtils.loadAnimation(getContext(), R.anim.activity_slide_horizontal_close_in));
                 AppViewFlipper appViewFlipper6 = getBinding().f2224b;
-                m.checkNotNullExpressionValue(appViewFlipper6, "binding.ageVerifyViewFlipper");
+                Intrinsics3.checkNotNullExpressionValue(appViewFlipper6, "binding.ageVerifyViewFlipper");
                 appViewFlipper6.setOutAnimation(AnimationUtils.loadAnimation(getContext(), R.anim.activity_slide_horizontal_close_out));
             }
         }
         AppViewFlipper appViewFlipper7 = getBinding().f2224b;
-        m.checkNotNullExpressionValue(appViewFlipper7, "binding.ageVerifyViewFlipper");
+        Intrinsics3.checkNotNullExpressionValue(appViewFlipper7, "binding.ageVerifyViewFlipper");
         appViewFlipper7.setDisplayedChild(displayedChild);
     }
 
@@ -364,7 +365,7 @@ public final class WidgetAgeVerify extends AppFragment {
     }
 
     @Override // com.discord.app.AppFragment, com.discord.app.AppLogger.a
-    public LoggingConfig getLoggingConfig() {
+    public AppLogger2 getLoggingConfig() {
         return this.loggingConfig;
     }
 
@@ -373,16 +374,16 @@ public final class WidgetAgeVerify extends AppFragment {
     }
 
     private final void handleEvent(WidgetAgeVerifyViewModel.Event event) {
-        if (m.areEqual(event, WidgetAgeVerifyViewModel.Event.Verified.INSTANCE)) {
+        if (Intrinsics3.areEqual(event, WidgetAgeVerifyViewModel.Event.Verified.INSTANCE)) {
             Context context = getContext();
-            b.a.d.m.f(this, context != null ? context.getString(R.string.age_gate_age_verified) : null, 1);
+            AppToast.f(this, context != null ? context.getString(R.string.age_gate_age_verified) : null, 1);
             requireActivity().finish();
         }
     }
 
     @Override // com.discord.app.AppFragment
     public void onViewBound(View view) {
-        m.checkNotNullParameter(view, "view");
+        Intrinsics3.checkNotNullParameter(view, "view");
         super.onViewBound(view);
         ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeViewState(), this, null, 2, null), WidgetAgeVerify.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass1(), 62, (Object) null);
         ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeEvents(), this, null, 2, null), WidgetAgeVerify.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass2(), 62, (Object) null);
@@ -394,12 +395,12 @@ public final class WidgetAgeVerify extends AppFragment {
         getBinding().d.f131b.setOnClickListener(new AnonymousClass1());
         boolean booleanExtra = getMostRecentIntent().getBooleanExtra(INTENT_EXTRA_NSFW_CHANNEL, false);
         LinkifiedTextView linkifiedTextView = getBinding().e.f117b;
-        m.checkNotNullExpressionValue(linkifiedTextView, "binding.verify.ageVerifyDescription");
-        b.n(linkifiedTextView, booleanExtra ? R.string.age_gate_nsfw_body : R.string.age_gate_body, new Object[]{f.a.a(360040724612L, null)}, null, 4);
+        Intrinsics3.checkNotNullExpressionValue(linkifiedTextView, "binding.verify.ageVerifyDescription");
+        FormatUtils.n(linkifiedTextView, booleanExtra ? R.string.age_gate_nsfw_body : R.string.age_gate_body, new Object[]{AppHelpDesk.a.a(360040724612L, null)}, null, 4);
         LinkifiedTextView linkifiedTextView2 = getBinding().c.d;
-        m.checkNotNullExpressionValue(linkifiedTextView2, "binding.confirm.ageVerifyConfirmDescription");
+        Intrinsics3.checkNotNullExpressionValue(linkifiedTextView2, "binding.confirm.ageVerifyConfirmDescription");
         LinkifiedTextView linkifiedTextView3 = getBinding().e.f117b;
-        m.checkNotNullExpressionValue(linkifiedTextView3, "binding.verify.ageVerifyDescription");
+        Intrinsics3.checkNotNullExpressionValue(linkifiedTextView3, "binding.verify.ageVerifyDescription");
         linkifiedTextView2.setText(linkifiedTextView3.getText());
         getBinding().e.d.setOnClickListener(new AnonymousClass2(booleanExtra));
         getBinding().c.c.setOnClickListener(new AnonymousClass3(booleanExtra));

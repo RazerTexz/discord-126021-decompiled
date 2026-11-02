@@ -1,6 +1,6 @@
 package org.webrtc;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 
 /* JADX INFO: loaded from: classes3.dex */
 public class StatsReport {
@@ -22,10 +22,10 @@ public class StatsReport {
         }
 
         public String toString() {
-            StringBuilder sbU = a.U("[");
+            StringBuilder sbU = outline.U("[");
             sbU.append(this.name);
             sbU.append(": ");
-            return a.J(sbU, this.value, "]");
+            return outline.J(sbU, this.value, "]");
         }
     }
 
@@ -38,7 +38,7 @@ public class StatsReport {
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("id: ");
+        StringBuilder sbU = outline.U("id: ");
         sbU.append(this.f3822id);
         sbU.append(", type: ");
         sbU.append(this.type);

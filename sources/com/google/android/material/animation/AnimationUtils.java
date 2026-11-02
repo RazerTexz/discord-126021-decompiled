@@ -8,7 +8,7 @@ import androidx.annotation.RestrictTo;
 import androidx.interpolator.view.animation.FastOutLinearInInterpolator;
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator;
 import androidx.interpolator.view.animation.LinearOutSlowInInterpolator;
-import b.d.b.a.a;
+import b.d.b.a.outline;
 
 /* JADX INFO: loaded from: classes3.dex */
 @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
@@ -20,7 +20,7 @@ public class AnimationUtils {
     public static final TimeInterpolator DECELERATE_INTERPOLATOR = new DecelerateInterpolator();
 
     public static float lerp(float f, float f2, float f3) {
-        return a.a(f2, f, f3, f);
+        return outline.a(f2, f, f3, f);
     }
 
     public static int lerp(int i, int i2, float f) {

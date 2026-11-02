@@ -9,13 +9,14 @@ import androidx.annotation.LayoutRes;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import b.d.b.a.outline;
 import com.discord.R;
 import com.discord.utilities.accessibility.AccessibilityUtils;
 import com.discord.utilities.display.DisplayUtils;
 import com.discord.utilities.logging.Logger;
 import com.discord.utilities.view.text.TextWatcher;
 import com.discord.widgets.notice.WidgetNoticeDialog;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function1;
 import rx.subjects.PublishSubject;
@@ -46,7 +47,7 @@ public abstract class AppDialog extends DialogFragment implements AppComponent {
 
     public AppDialog() {
         PublishSubject publishSubjectK0 = PublishSubject.k0();
-        m.checkNotNullExpressionValue(publishSubjectK0, "PublishSubject.create()");
+        Intrinsics3.checkNotNullExpressionValue(publishSubjectK0, "PublishSubject.create()");
         this.unsubscribeSignal = publishSubjectK0;
     }
 
@@ -67,7 +68,7 @@ public abstract class AppDialog extends DialogFragment implements AppComponent {
         if (arguments == null) {
             arguments = new Bundle();
         }
-        m.checkNotNullExpressionValue(arguments, "arguments ?: Bundle()");
+        Intrinsics3.checkNotNullExpressionValue(arguments, "arguments ?: Bundle()");
         return arguments;
     }
 
@@ -106,7 +107,7 @@ public abstract class AppDialog extends DialogFragment implements AppComponent {
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         Window window;
         Dialog dialogOnCreateDialog = super.onCreateDialog(savedInstanceState);
-        m.checkNotNullExpressionValue(dialogOnCreateDialog, "super.onCreateDialog(savedInstanceState)");
+        Intrinsics3.checkNotNullExpressionValue(dialogOnCreateDialog, "super.onCreateDialog(savedInstanceState)");
         dialogOnCreateDialog.requestWindowFeature(1);
         if (AccessibilityUtils.INSTANCE.isReducedMotionEnabled() && (window = dialogOnCreateDialog.getWindow()) != null) {
             window.setWindowAnimations(R.style.FadeInOut);
@@ -146,7 +147,7 @@ public abstract class AppDialog extends DialogFragment implements AppComponent {
                 ((WidgetNoticeDialog) this).logOnStartError(e);
             } else {
                 AppLog appLog = AppLog.g;
-                StringBuilder sbU = b.d.b.a.a.U("Failed to start AppDialog: ");
+                StringBuilder sbU = outline.U("Failed to start AppDialog: ");
                 sbU.append(getClass().getName());
                 Logger.e$default(appLog, sbU.toString(), e, null, 4, null);
             }
@@ -160,7 +161,7 @@ public abstract class AppDialog extends DialogFragment implements AppComponent {
 
     @CallSuper
     public void onViewBound(View view) {
-        m.checkNotNullParameter(view, "view");
+        Intrinsics3.checkNotNullParameter(view, "view");
     }
 
     @CallSuper
@@ -169,7 +170,7 @@ public abstract class AppDialog extends DialogFragment implements AppComponent {
 
     @Override // androidx.fragment.app.Fragment
     public void onViewCreated(View view, Bundle savedInstanceState) {
-        m.checkNotNullParameter(view, "view");
+        Intrinsics3.checkNotNullParameter(view, "view");
         super.onViewCreated(view, savedInstanceState);
         this.isRecreated = savedInstanceState != null;
         DisplayUtils.drawUnderSystemBars(view);
@@ -179,14 +180,14 @@ public abstract class AppDialog extends DialogFragment implements AppComponent {
     }
 
     public final void setOnClickAndDismissListener(View view, Function1<? super View, Unit> function1) {
-        m.checkNotNullParameter(view, "$this$setOnClickAndDismissListener");
-        m.checkNotNullParameter(function1, "onClickListener");
+        Intrinsics3.checkNotNullParameter(view, "$this$setOnClickAndDismissListener");
+        Intrinsics3.checkNotNullParameter(function1, "onClickListener");
         view.setOnClickListener(new a(view, function1));
     }
 
     @Override // androidx.fragment.app.DialogFragment
     public void show(FragmentManager manager, String tag) {
-        m.checkNotNullParameter(manager, "manager");
+        Intrinsics3.checkNotNullParameter(manager, "manager");
         if (!isDetached()) {
             try {
                 super.show(manager, tag);
@@ -194,14 +195,14 @@ public abstract class AppDialog extends DialogFragment implements AppComponent {
             }
         } else {
             AppLog appLog = AppLog.g;
-            StringBuilder sbU = b.d.b.a.a.U("failed to show ");
+            StringBuilder sbU = outline.U("failed to show ");
             sbU.append(manager.getClass().getName());
             Logger.e$default(appLog, "Could not show dialog because of detached FragmentManager", new IllegalStateException(sbU.toString()), null, 4, null);
         }
     }
 
     public final void showKeyboard(View view) {
-        m.checkNotNullParameter(view, "view");
+        Intrinsics3.checkNotNullParameter(view, "view");
         AppActivity appActivity = getAppActivity();
         if (appActivity != null) {
             appActivity.showKeyboard(view);
@@ -211,13 +212,13 @@ public abstract class AppDialog extends DialogFragment implements AppComponent {
     public AppDialog(@LayoutRes int i) {
         super(i);
         PublishSubject publishSubjectK0 = PublishSubject.k0();
-        m.checkNotNullExpressionValue(publishSubjectK0, "PublishSubject.create()");
+        Intrinsics3.checkNotNullExpressionValue(publishSubjectK0, "PublishSubject.create()");
         this.unsubscribeSignal = publishSubjectK0;
     }
 
     @Override // androidx.fragment.app.DialogFragment
     public int show(FragmentTransaction transaction, String tag) {
-        m.checkNotNullParameter(transaction, "transaction");
+        Intrinsics3.checkNotNullParameter(transaction, "transaction");
         try {
             return super.show(transaction, tag);
         } catch (Exception unused) {

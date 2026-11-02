@@ -1,8 +1,8 @@
 package com.discord.api.friendsuggestions;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.models.domain.ModelAuditLogEntry;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: FriendSuggestionReason.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -19,7 +19,7 @@ public final /* data */ class FriendSuggestionReason {
             return false;
         }
         FriendSuggestionReason friendSuggestionReason = (FriendSuggestionReason) other;
-        return m.areEqual(this.type, friendSuggestionReason.type) && m.areEqual(this.platformType, friendSuggestionReason.platformType) && m.areEqual(this.name, friendSuggestionReason.name);
+        return Intrinsics3.areEqual(this.type, friendSuggestionReason.type) && Intrinsics3.areEqual(this.platformType, friendSuggestionReason.platformType) && Intrinsics3.areEqual(this.name, friendSuggestionReason.name);
     }
 
     /* JADX INFO: renamed from: a, reason: from getter */
@@ -42,11 +42,11 @@ public final /* data */ class FriendSuggestionReason {
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("FriendSuggestionReason(type=");
+        StringBuilder sbU = outline.U("FriendSuggestionReason(type=");
         sbU.append(this.type);
         sbU.append(", platformType=");
         sbU.append(this.platformType);
         sbU.append(", name=");
-        return a.J(sbU, this.name, ")");
+        return outline.J(sbU, this.name, ")");
     }
 }

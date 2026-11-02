@@ -6,10 +6,10 @@ import androidx.appcompat.widget.ActivityChooserModel;
 import androidx.core.app.NotificationCompat;
 import com.discord.R;
 import com.discord.app.AppActivity;
-import com.discord.models.domain.Consents;
 import com.discord.models.domain.ModelCustomStatusSetting;
 import com.discord.models.domain.ModelGuildFolder;
 import com.discord.models.domain.ModelPayload;
+import com.discord.models.domain.ModelUserConsents2;
 import com.discord.models.domain.ModelUserSettings;
 import com.discord.restapi.RestAPIParams;
 import com.discord.utilities.analytics.AnalyticsTracker;
@@ -19,10 +19,10 @@ import com.discord.utilities.rest.RestAPI;
 import com.discord.utilities.rx.ObservableExtensionsKt;
 import com.discord.utilities.time.ClockFactory;
 import com.discord.utilities.time.TimeUtils;
-import d0.d0.f;
-import d0.z.d.m;
-import d0.z.d.o;
-import j0.k.b;
+import d0.d0._Ranges;
+import d0.z.d.Intrinsics3;
+import d0.z.d.Lambda;
+import j0.k.Func1;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -64,7 +64,7 @@ public final class StoreUserSettings extends Store {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreUserSettings$expireCustomStatus$1, reason: invalid class name */
     /* JADX INFO: compiled from: StoreUserSettings.kt */
-    public final class AnonymousClass1 extends o implements Function1<ModelUserSettings, Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function1<ModelUserSettings, Unit> {
         public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
 
         public AnonymousClass1() {
@@ -79,23 +79,23 @@ public final class StoreUserSettings extends Store {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(ModelUserSettings modelUserSettings) {
-            m.checkNotNullParameter(modelUserSettings, "it");
+            Intrinsics3.checkNotNullParameter(modelUserSettings, "it");
         }
     }
 
     /* JADX INFO: renamed from: com.discord.stores.StoreUserSettings$observeConsents$1, reason: invalid class name */
     /* JADX INFO: compiled from: StoreUserSettings.kt */
-    public final class AnonymousClass1<T, R> implements b<Throwable, Consents> {
+    public final class AnonymousClass1<T, R> implements Func1<Throwable, ModelUserConsents2> {
         public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
 
-        @Override // j0.k.b
-        public /* bridge */ /* synthetic */ Consents call(Throwable th) {
+        @Override // j0.k.Func1
+        public /* bridge */ /* synthetic */ ModelUserConsents2 call(Throwable th) {
             return call2(th);
         }
 
         /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
-        public final Consents call2(Throwable th) {
-            return Consents.INSTANCE.getDEFAULT();
+        public final ModelUserConsents2 call2(Throwable th) {
+            return ModelUserConsents2.INSTANCE.getDEFAULT();
         }
     }
 
@@ -121,7 +121,7 @@ public final class StoreUserSettings extends Store {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreUserSettings$updateAllowAccessibilityDetectionInternal$1, reason: invalid class name */
     /* JADX INFO: compiled from: StoreUserSettings.kt */
-    public final class AnonymousClass1 extends o implements Function0<Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function0<Unit> {
         public final /* synthetic */ boolean $allowAccessibilityDetection;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -144,7 +144,7 @@ public final class StoreUserSettings extends Store {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreUserSettings$updateContactSyncShown$1, reason: invalid class name */
     /* JADX INFO: compiled from: StoreUserSettings.kt */
-    public final class AnonymousClass1 extends o implements Function1<ModelUserSettings, Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function1<ModelUserSettings, Unit> {
         public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
 
         public AnonymousClass1() {
@@ -159,13 +159,13 @@ public final class StoreUserSettings extends Store {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(ModelUserSettings modelUserSettings) {
-            m.checkNotNullParameter(modelUserSettings, "it");
+            Intrinsics3.checkNotNullParameter(modelUserSettings, "it");
         }
     }
 
     /* JADX INFO: renamed from: com.discord.stores.StoreUserSettings$updateLocalCustomStatus$1, reason: invalid class name */
     /* JADX INFO: compiled from: StoreUserSettings.kt */
-    public final class AnonymousClass1 extends o implements Function1<Subscription, Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function1<Subscription, Unit> {
         public AnonymousClass1() {
             super(1);
         }
@@ -178,14 +178,14 @@ public final class StoreUserSettings extends Store {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(Subscription subscription) {
-            m.checkNotNullParameter(subscription, Traits.Payment.Type.SUBSCRIPTION);
+            Intrinsics3.checkNotNullParameter(subscription, Traits.Payment.Type.SUBSCRIPTION);
             StoreUserSettings.access$setExpireCustomStatusSubscription$p(StoreUserSettings.this, subscription);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.stores.StoreUserSettings$updateLocalCustomStatus$2, reason: invalid class name */
     /* JADX INFO: compiled from: StoreUserSettings.kt */
-    public final class AnonymousClass2 extends o implements Function1<Long, Unit> {
+    public final class AnonymousClass2 extends Lambda implements Function1<Long, Unit> {
         public AnonymousClass2() {
             super(1);
         }
@@ -219,7 +219,7 @@ public final class StoreUserSettings extends Store {
         }
 
         private final void updateUserSettings(AppActivity appActivity, RestAPIParams.UserSettings userSettings, Integer num) {
-            ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.restSubscribeOn$default(RestAPI.INSTANCE.getApi().updateUserSettings(userSettings), false, 1, null), appActivity, null, 2, null), StoreUserSettings.class, appActivity, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new StoreUserSettings$Companion$updateUserSettings$1(appActivity, num), 60, (Object) null);
+            ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.restSubscribeOn$default(RestAPI.INSTANCE.getApi().updateUserSettings(userSettings), false, 1, null), appActivity, null, 2, null), StoreUserSettings.class, appActivity, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new StoreUserSettings2(appActivity, num), 60, (Object) null);
         }
 
         public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
@@ -228,8 +228,8 @@ public final class StoreUserSettings extends Store {
     }
 
     public StoreUserSettings(Dispatcher dispatcher, StoreAccessibility storeAccessibility) {
-        m.checkNotNullParameter(dispatcher, "dispatcher");
-        m.checkNotNullParameter(storeAccessibility, "accessibilityStore");
+        Intrinsics3.checkNotNullParameter(dispatcher, "dispatcher");
+        Intrinsics3.checkNotNullParameter(storeAccessibility, "accessibilityStore");
         this.dispatcher = dispatcher;
         this.accessibilityStore = storeAccessibility;
         this.shouldRenderEmbedsSubject = new SerializedSubject<>(BehaviorSubject.k0());
@@ -326,9 +326,9 @@ public final class StoreUserSettings extends Store {
     }
 
     public final void handleConnectionOpen(ModelPayload payload) {
-        m.checkNotNullParameter(payload, "payload");
+        Intrinsics3.checkNotNullParameter(payload, "payload");
         ModelUserSettings userSettings = payload.getUserSettings();
-        m.checkNotNullExpressionValue(userSettings, "userSettings");
+        Intrinsics3.checkNotNullExpressionValue(userSettings, "userSettings");
         handleUserSettings(userSettings);
     }
 
@@ -338,27 +338,27 @@ public final class StoreUserSettings extends Store {
         if (getIsSyncTextAndImagesEnabled()) {
             if (userSettings.getInlineEmbedMedia() != null) {
                 Boolean inlineEmbedMedia = userSettings.getInlineEmbedMedia();
-                m.checkNotNullExpressionValue(inlineEmbedMedia, "userSettings.inlineEmbedMedia");
+                Intrinsics3.checkNotNullExpressionValue(inlineEmbedMedia, "userSettings.inlineEmbedMedia");
                 setIsEmbedMediaInlined(null, inlineEmbedMedia.booleanValue());
             }
             if (userSettings.getInlineAttachmentMedia() != null) {
                 Boolean inlineAttachmentMedia = userSettings.getInlineAttachmentMedia();
-                m.checkNotNullExpressionValue(inlineAttachmentMedia, "userSettings.inlineAttachmentMedia");
+                Intrinsics3.checkNotNullExpressionValue(inlineAttachmentMedia, "userSettings.inlineAttachmentMedia");
                 setIsAttachmentMediaInline(null, inlineAttachmentMedia.booleanValue());
             }
             if (userSettings.getRenderEmbeds() != null) {
                 Boolean renderEmbeds = userSettings.getRenderEmbeds();
-                m.checkNotNullExpressionValue(renderEmbeds, "userSettings.renderEmbeds");
+                Intrinsics3.checkNotNullExpressionValue(renderEmbeds, "userSettings.renderEmbeds");
                 setIsRenderEmbedsEnabled(null, renderEmbeds.booleanValue());
             }
             if (userSettings.getAnimateEmoji() != null) {
                 Boolean animateEmoji = userSettings.getAnimateEmoji();
-                m.checkNotNullExpressionValue(animateEmoji, "userSettings.animateEmoji");
+                Intrinsics3.checkNotNullExpressionValue(animateEmoji, "userSettings.animateEmoji");
                 setIsAnimatedEmojisEnabled(null, animateEmoji.booleanValue());
             }
             if (userSettings.getAnimateStickers() != null) {
                 Integer animateStickers = userSettings.getAnimateStickers();
-                m.checkNotNullExpressionValue(animateStickers, "userSettings.animateStickers");
+                Intrinsics3.checkNotNullExpressionValue(animateStickers, "userSettings.animateStickers");
                 setStickerAnimationSettings(null, animateStickers.intValue());
             }
         }
@@ -370,13 +370,13 @@ public final class StoreUserSettings extends Store {
         }
         if (userSettings.getDeveloperMode() != null) {
             Boolean developerMode = userSettings.getDeveloperMode();
-            m.checkNotNullExpressionValue(developerMode, "userSettings.developerMode");
+            Intrinsics3.checkNotNullExpressionValue(developerMode, "userSettings.developerMode");
             setDeveloperModeInternal(developerMode.booleanValue());
         }
         if (userSettings.getShowCurrentGame() != null) {
             Persister<Boolean> persister = this.showCurrentGame;
             Boolean showCurrentGame = userSettings.getShowCurrentGame();
-            m.checkNotNullExpressionValue(showCurrentGame, "userSettings.showCurrentGame");
+            Intrinsics3.checkNotNullExpressionValue(showCurrentGame, "userSettings.showCurrentGame");
             Persister.set$default(persister, showCurrentGame, false, 2, null);
         }
         if (userSettings.getExplicitContentFilter() != null) {
@@ -403,60 +403,60 @@ public final class StoreUserSettings extends Store {
         }
     }
 
-    @StoreThread
+    @Store3
     public final void handleUserSettingsUpdate(ModelUserSettings userSettings) {
-        m.checkNotNullParameter(userSettings, "userSettings");
+        Intrinsics3.checkNotNullParameter(userSettings, "userSettings");
         handleUserSettings(userSettings);
     }
 
     @Override // com.discord.stores.Store
-    @StoreThread
+    @Store3
     public void init(Context context) {
-        m.checkNotNullParameter(context, "context");
+        Intrinsics3.checkNotNullParameter(context, "context");
         super.init(context);
         SerializedSubject<Boolean, Boolean> serializedSubject = this.shouldRenderEmbedsSubject;
         serializedSubject.k.onNext(Boolean.valueOf(getIsRenderEmbedsEnabled()));
     }
 
-    public final Observable<Consents> observeConsents() {
-        Observable<Consents> observableM = RestAPI.INSTANCE.getApi().getConsents().M(AnonymousClass1.INSTANCE);
-        m.checkNotNullExpressionValue(observableM, "RestAPI\n          .api\n …turn { Consents.DEFAULT }");
+    public final Observable<ModelUserConsents2> observeConsents() {
+        Observable<ModelUserConsents2> observableM = RestAPI.INSTANCE.getApi().getConsents().M(AnonymousClass1.INSTANCE);
+        Intrinsics3.checkNotNullExpressionValue(observableM, "RestAPI\n          .api\n …turn { Consents.DEFAULT }");
         return ObservableExtensionsKt.restSubscribeOn$default(observableM, false, 1, null);
     }
 
     public final Observable<ModelCustomStatusSetting> observeCustomStatus() {
         Observable<ModelCustomStatusSetting> observableR = ObservableExtensionsKt.computationLatest(this.customStatusSubject).r();
-        m.checkNotNullExpressionValue(observableR, "customStatusSubject\n    …  .distinctUntilChanged()");
+        Intrinsics3.checkNotNullExpressionValue(observableR, "customStatusSubject\n    …  .distinctUntilChanged()");
         return observableR;
     }
 
     public final Observable<Integer> observeExplicitContentFilter() {
         Observable<Integer> observableR = ObservableExtensionsKt.computationLatest(this.explicitContentFilterSubject).r();
-        m.checkNotNullExpressionValue(observableR, "explicitContentFilterSub…  .distinctUntilChanged()");
+        Intrinsics3.checkNotNullExpressionValue(observableR, "explicitContentFilterSub…  .distinctUntilChanged()");
         return observableR;
     }
 
     public final Observable<Integer> observeFriendDiscoveryFlags() {
         Observable<Integer> observableR = ObservableExtensionsKt.computationLatest(this.friendDiscoveryFlagsSubject).r();
-        m.checkNotNullExpressionValue(observableR, "friendDiscoveryFlagsSubj…  .distinctUntilChanged()");
+        Intrinsics3.checkNotNullExpressionValue(observableR, "friendDiscoveryFlagsSubj…  .distinctUntilChanged()");
         return observableR;
     }
 
     public final Observable<ModelUserSettings.FriendSourceFlags> observeFriendSourceFlags() {
         Observable<ModelUserSettings.FriendSourceFlags> observableR = ObservableExtensionsKt.computationLatest(this.friendSourceFlagsSubject).r();
-        m.checkNotNullExpressionValue(observableR, "friendSourceFlagsSubject…  .distinctUntilChanged()");
+        Intrinsics3.checkNotNullExpressionValue(observableR, "friendSourceFlagsSubject…  .distinctUntilChanged()");
         return observableR;
     }
 
     public final Observable<List<ModelGuildFolder>> observeGuildFolders() {
         Observable<List<ModelGuildFolder>> observableR = ObservableExtensionsKt.computationLatest(this.guildFoldersPublisher.getObservable()).r();
-        m.checkNotNullExpressionValue(observableR, "guildFoldersPublisher\n  …  .distinctUntilChanged()");
+        Intrinsics3.checkNotNullExpressionValue(observableR, "guildFoldersPublisher\n  …  .distinctUntilChanged()");
         return observableR;
     }
 
     public final Observable<Boolean> observeIsAccessibilityDetectionAllowed() {
         Observable<Boolean> observableR = this.allowAccessibilityDetectionPublisher.getObservable().r();
-        m.checkNotNullExpressionValue(observableR, "allowAccessibilityDetect…  .distinctUntilChanged()");
+        Intrinsics3.checkNotNullExpressionValue(observableR, "allowAccessibilityDetect…  .distinctUntilChanged()");
         return observableR;
     }
 
@@ -470,10 +470,10 @@ public final class StoreUserSettings extends Store {
     public final Observable<Boolean> observeIsAnimatedEmojisEnabled(boolean respectReducedMotion) {
         Observable<Boolean> observable = this.allowAnimatedEmojisPublisher.getObservable();
         if (respectReducedMotion) {
-            observable = Observable.j(observable, this.accessibilityStore.observeReducedMotionEnabled(), StoreUserSettings$observeIsAnimatedEmojisEnabled$1$1.INSTANCE);
+            observable = Observable.j(observable, this.accessibilityStore.observeReducedMotionEnabled(), StoreUserSettings3.INSTANCE);
         }
         Observable<Boolean> observableR = observable.r();
-        m.checkNotNullExpressionValue(observableR, "allowAnimatedEmojisPubli…  .distinctUntilChanged()");
+        Intrinsics3.checkNotNullExpressionValue(observableR, "allowAnimatedEmojisPubli…  .distinctUntilChanged()");
         return observableR;
     }
 
@@ -487,22 +487,22 @@ public final class StoreUserSettings extends Store {
     public final Observable<Boolean> observeIsAutoPlayGifsEnabled(boolean respectReducedMotion) {
         Observable<Boolean> observable = this.autoPlayGifsPublisher.getObservable();
         if (respectReducedMotion) {
-            observable = Observable.j(observable, this.accessibilityStore.observeReducedMotionEnabled(), StoreUserSettings$observeIsAutoPlayGifsEnabled$1$1.INSTANCE);
+            observable = Observable.j(observable, this.accessibilityStore.observeReducedMotionEnabled(), StoreUserSettings4.INSTANCE);
         }
         Observable<Boolean> observableR = observable.r();
-        m.checkNotNullExpressionValue(observableR, "autoPlayGifsPublisher\n  …  .distinctUntilChanged()");
+        Intrinsics3.checkNotNullExpressionValue(observableR, "autoPlayGifsPublisher\n  …  .distinctUntilChanged()");
         return observableR;
     }
 
     public final Observable<Boolean> observeIsDefaultGuildsRestricted() {
         Observable<Boolean> observableR = ObservableExtensionsKt.computationLatest(this.defaultGuildsRestrictedSubject).r();
-        m.checkNotNullExpressionValue(observableR, "defaultGuildsRestrictedS…  .distinctUntilChanged()");
+        Intrinsics3.checkNotNullExpressionValue(observableR, "defaultGuildsRestrictedS…  .distinctUntilChanged()");
         return observableR;
     }
 
     public final Observable<Boolean> observeIsRenderEmbedsEnabled() {
         Observable<Boolean> observableR = ObservableExtensionsKt.computationLatest(this.shouldRenderEmbedsSubject).r();
-        m.checkNotNullExpressionValue(observableR, "shouldRenderEmbedsSubjec…  .distinctUntilChanged()");
+        Intrinsics3.checkNotNullExpressionValue(observableR, "shouldRenderEmbedsSubjec…  .distinctUntilChanged()");
         return observableR;
     }
 
@@ -516,7 +516,7 @@ public final class StoreUserSettings extends Store {
 
     public final Observable<List<Long>> observeRestrictedGuildIds() {
         Observable<List<Long>> observableR = ObservableExtensionsKt.computationLatest(this.restrictedGuildIdsPublisher.getObservable()).r();
-        m.checkNotNullExpressionValue(observableR, "restrictedGuildIdsPublis…  .distinctUntilChanged()");
+        Intrinsics3.checkNotNullExpressionValue(observableR, "restrictedGuildIdsPublis…  .distinctUntilChanged()");
         return observableR;
     }
 
@@ -530,10 +530,10 @@ public final class StoreUserSettings extends Store {
     public final Observable<Integer> observeStickerAnimationSettings(boolean respectReducedMotion) {
         Observable<Integer> observable = this.stickerAnimationSettingsPublisher.getObservable();
         if (respectReducedMotion) {
-            observable = Observable.j(observable, this.accessibilityStore.observeReducedMotionEnabled(), StoreUserSettings$observeStickerAnimationSettings$1$1.INSTANCE);
+            observable = Observable.j(observable, this.accessibilityStore.observeReducedMotionEnabled(), StoreUserSettings5.INSTANCE);
         }
         Observable<Integer> observableR = observable.r();
-        m.checkNotNullExpressionValue(observableR, "stickerAnimationSettings…  .distinctUntilChanged()");
+        Intrinsics3.checkNotNullExpressionValue(observableR, "stickerAnimationSettings…  .distinctUntilChanged()");
         return observableR;
     }
 
@@ -571,7 +571,7 @@ public final class StoreUserSettings extends Store {
 
     public final Observable<ModelUserSettings> setIsAccessibilityDetectionAllowed(boolean allowAccessibilityDetection) {
         Observable<ModelUserSettings> observableU = RestAPI.INSTANCE.getApi().updateUserSettings(RestAPIParams.UserSettings.INSTANCE.createWithAllowAccessibilityDetection(Boolean.valueOf(allowAccessibilityDetection))).u(new AnonymousClass1(allowAccessibilityDetection));
-        m.checkNotNullExpressionValue(observableU, "RestAPI\n          .api\n …AccessibilityDetection) }");
+        Intrinsics3.checkNotNullExpressionValue(observableU, "RestAPI\n          .api\n …AccessibilityDetection) }");
         return observableU;
     }
 
@@ -605,7 +605,7 @@ public final class StoreUserSettings extends Store {
 
     public final void setIsChromeCustomTabsEnabled(boolean isUseChromeCustomTabsEnabled) {
         SharedPreferences.Editor editorEdit = getPrefs().edit();
-        m.checkNotNullExpressionValue(editorEdit, "editor");
+        Intrinsics3.checkNotNullExpressionValue(editorEdit, "editor");
         editorEdit.putBoolean("CACHE_KEY_USE_CHROME_CUSTOM_TABS", isUseChromeCustomTabsEnabled);
         editorEdit.apply();
     }
@@ -631,7 +631,7 @@ public final class StoreUserSettings extends Store {
 
     public final void setIsMobileOverlayEnabled(boolean isMobileOverlayEnabled) {
         SharedPreferences.Editor editorEdit = getPrefs().edit();
-        m.checkNotNullExpressionValue(editorEdit, "editor");
+        Intrinsics3.checkNotNullExpressionValue(editorEdit, "editor");
         if (getIsMobileOverlayEnabled() != isMobileOverlayEnabled) {
             editorEdit.putBoolean("CACHE_KEY_MOBILE_OVERLAY", isMobileOverlayEnabled);
             AnalyticsTracker.overlayToggled(isMobileOverlayEnabled);
@@ -653,7 +653,7 @@ public final class StoreUserSettings extends Store {
 
     public final void setIsShiftEnterToSendEnabled(boolean isShiftEnterToSendEnabled) {
         SharedPreferences.Editor editorEdit = getPrefs().edit();
-        m.checkNotNullExpressionValue(editorEdit, "editor");
+        Intrinsics3.checkNotNullExpressionValue(editorEdit, "editor");
         if (getIsShiftEnterToSendEnabled() != isShiftEnterToSendEnabled) {
             editorEdit.putBoolean("CACHE_KEY_SHIFT_ENTER_TO_SEND", isShiftEnterToSendEnabled);
         }
@@ -712,15 +712,15 @@ public final class StoreUserSettings extends Store {
     private final synchronized void updateLocalCustomStatus(ModelCustomStatusSetting customStatus) {
         Subscription subscription = this.expireCustomStatusSubscription;
         if (subscription != null) {
-            m.checkNotNull(subscription);
+            Intrinsics3.checkNotNull(subscription);
             subscription.unsubscribe();
         }
         this.customStatusSubject.k.onNext(customStatus);
-        if (!m.areEqual(customStatus, ModelCustomStatusSetting.INSTANCE.getCLEAR())) {
-            m.checkNotNull(customStatus);
+        if (!Intrinsics3.areEqual(customStatus, ModelCustomStatusSetting.INSTANCE.getCLEAR())) {
+            Intrinsics3.checkNotNull(customStatus);
             if (customStatus.getExpiresAt() != null) {
-                Observable<Long> observableD0 = Observable.d0(f.coerceAtLeast(TimeUtils.parseUTCDate(customStatus.getExpiresAt()) - ClockFactory.get().currentTimeMillis(), 0L), TimeUnit.MILLISECONDS);
-                m.checkNotNullExpressionValue(observableD0, "Observable\n            .…l, TimeUnit.MILLISECONDS)");
+                Observable<Long> observableD0 = Observable.d0(_Ranges.coerceAtLeast(TimeUtils.parseUTCDate(customStatus.getExpiresAt()) - ClockFactory.get().currentTimeMillis(), 0L), TimeUnit.MILLISECONDS);
+                Intrinsics3.checkNotNullExpressionValue(observableD0, "Observable\n            .…l, TimeUnit.MILLISECONDS)");
                 ObservableExtensionsKt.appSubscribe$default(observableD0, getClass(), (Context) null, new AnonymousClass1(), (Function1) null, (Function0) null, (Function0) null, new AnonymousClass2(), 58, (Object) null);
             }
         }
@@ -728,7 +728,7 @@ public final class StoreUserSettings extends Store {
 
     public final void getIsSyncTextAndImagesEnabled(boolean isSyncTextAndImagesEnabled) {
         SharedPreferences.Editor editorEdit = getPrefs().edit();
-        m.checkNotNullExpressionValue(editorEdit, "editor");
+        Intrinsics3.checkNotNullExpressionValue(editorEdit, "editor");
         if (getIsSyncTextAndImagesEnabled() != isSyncTextAndImagesEnabled) {
             editorEdit.putBoolean("CACHE_KEY_SYNC_TEXT_AND_IMAGES", isSyncTextAndImagesEnabled);
         }

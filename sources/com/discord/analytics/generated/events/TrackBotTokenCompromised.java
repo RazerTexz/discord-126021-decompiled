@@ -1,14 +1,14 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackBotTokenCompromised.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackBotTokenCompromised implements AnalyticsSchema, TrackBaseReceiver {
+public final /* data */ class TrackBotTokenCompromised implements AnalyticsSchema, TrackBase2 {
     private final Long botId = null;
     private final CharSequence tokenUrl = null;
     private TrackBase trackBase;
@@ -22,7 +22,7 @@ public final /* data */ class TrackBotTokenCompromised implements AnalyticsSchem
             return false;
         }
         TrackBotTokenCompromised trackBotTokenCompromised = (TrackBotTokenCompromised) other;
-        return m.areEqual(this.botId, trackBotTokenCompromised.botId) && m.areEqual(this.tokenUrl, trackBotTokenCompromised.tokenUrl);
+        return Intrinsics3.areEqual(this.botId, trackBotTokenCompromised.botId) && Intrinsics3.areEqual(this.tokenUrl, trackBotTokenCompromised.tokenUrl);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -39,9 +39,9 @@ public final /* data */ class TrackBotTokenCompromised implements AnalyticsSchem
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackBotTokenCompromised(botId=");
+        StringBuilder sbU = outline.U("TrackBotTokenCompromised(botId=");
         sbU.append(this.botId);
         sbU.append(", tokenUrl=");
-        return a.E(sbU, this.tokenUrl, ")");
+        return outline.E(sbU, this.tokenUrl, ")");
     }
 }

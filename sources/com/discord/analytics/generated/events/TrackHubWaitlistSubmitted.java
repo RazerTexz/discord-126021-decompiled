@@ -1,15 +1,15 @@
 package com.discord.analytics.generated.events;
 
 import androidx.core.app.NotificationCompat;
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackHubWaitlistSubmitted.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackHubWaitlistSubmitted implements AnalyticsSchema, TrackBaseReceiver {
+public final /* data */ class TrackHubWaitlistSubmitted implements AnalyticsSchema, TrackBase2 {
     private final CharSequence email = null;
     private final CharSequence emailDomain = null;
     private TrackBase trackBase;
@@ -23,7 +23,7 @@ public final /* data */ class TrackHubWaitlistSubmitted implements AnalyticsSche
             return false;
         }
         TrackHubWaitlistSubmitted trackHubWaitlistSubmitted = (TrackHubWaitlistSubmitted) other;
-        return m.areEqual(this.email, trackHubWaitlistSubmitted.email) && m.areEqual(this.emailDomain, trackHubWaitlistSubmitted.emailDomain);
+        return Intrinsics3.areEqual(this.email, trackHubWaitlistSubmitted.email) && Intrinsics3.areEqual(this.emailDomain, trackHubWaitlistSubmitted.emailDomain);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -40,9 +40,9 @@ public final /* data */ class TrackHubWaitlistSubmitted implements AnalyticsSche
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackHubWaitlistSubmitted(email=");
+        StringBuilder sbU = outline.U("TrackHubWaitlistSubmitted(email=");
         sbU.append(this.email);
         sbU.append(", emailDomain=");
-        return a.E(sbU, this.emailDomain, ")");
+        return outline.E(sbU, this.emailDomain, ")");
     }
 }

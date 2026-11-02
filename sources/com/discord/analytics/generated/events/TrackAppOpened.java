@@ -1,14 +1,14 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackAppOpened.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackAppOpened implements AnalyticsSchema, TrackBaseReceiver {
+public final /* data */ class TrackAppOpened implements AnalyticsSchema, TrackBase2 {
     private final CharSequence loadId = null;
     private final CharSequence openedFrom = null;
     private final CharSequence theme = null;
@@ -26,7 +26,7 @@ public final /* data */ class TrackAppOpened implements AnalyticsSchema, TrackBa
             return false;
         }
         TrackAppOpened trackAppOpened = (TrackAppOpened) other;
-        return m.areEqual(this.openedFrom, trackAppOpened.openedFrom) && m.areEqual(this.uriHost, trackAppOpened.uriHost) && m.areEqual(this.uriScheme, trackAppOpened.uriScheme) && m.areEqual(this.uriPath, trackAppOpened.uriPath) && m.areEqual(this.loadId, trackAppOpened.loadId) && m.areEqual(this.theme, trackAppOpened.theme);
+        return Intrinsics3.areEqual(this.openedFrom, trackAppOpened.openedFrom) && Intrinsics3.areEqual(this.uriHost, trackAppOpened.uriHost) && Intrinsics3.areEqual(this.uriScheme, trackAppOpened.uriScheme) && Intrinsics3.areEqual(this.uriPath, trackAppOpened.uriPath) && Intrinsics3.areEqual(this.loadId, trackAppOpened.loadId) && Intrinsics3.areEqual(this.theme, trackAppOpened.theme);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -51,7 +51,7 @@ public final /* data */ class TrackAppOpened implements AnalyticsSchema, TrackBa
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackAppOpened(openedFrom=");
+        StringBuilder sbU = outline.U("TrackAppOpened(openedFrom=");
         sbU.append(this.openedFrom);
         sbU.append(", uriHost=");
         sbU.append(this.uriHost);
@@ -62,6 +62,6 @@ public final /* data */ class TrackAppOpened implements AnalyticsSchema, TrackBa
         sbU.append(", loadId=");
         sbU.append(this.loadId);
         sbU.append(", theme=");
-        return a.E(sbU, this.theme, ")");
+        return outline.E(sbU, this.theme, ")");
     }
 }

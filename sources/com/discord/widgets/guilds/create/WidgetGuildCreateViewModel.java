@@ -6,8 +6,9 @@ import android.content.res.Resources;
 import androidx.annotation.MainThread;
 import androidx.annotation.StringRes;
 import androidx.core.app.NotificationCompat;
-import b.a.d.d0;
-import b.d.b.a.a;
+import b.a.d.AppViewModel;
+import b.a.k.FormatUtils;
+import b.d.b.a.outline;
 import com.discord.R;
 import com.discord.api.guild.Guild;
 import com.discord.models.user.User;
@@ -16,15 +17,16 @@ import com.discord.stores.StoreGuildSelected;
 import com.discord.stores.StoreGuildTemplates;
 import com.discord.stores.StoreStream;
 import com.discord.stores.StoreUser;
-import com.discord.stores.utilities.RestCallStateKt;
+import com.discord.stores.utilities.RestCallState5;
 import com.discord.utilities.analytics.AnalyticsTracker;
 import com.discord.utilities.error.Error;
 import com.discord.utilities.rest.RestAPI;
 import com.discord.utilities.rx.ObservableExtensionsKt;
-import d0.g0.t;
-import d0.z.d.k;
-import d0.z.d.m;
-import d0.z.d.o;
+import d0.g0.StringsJVM;
+import d0.z.d.FunctionReferenceImpl;
+import d0.z.d.Intrinsics3;
+import d0.z.d.Lambda;
+import j0.l.e.ScalarSynchronousObservable;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
@@ -37,7 +39,7 @@ import rx.subjects.PublishSubject;
 
 /* JADX INFO: compiled from: WidgetGuildCreateViewModel.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class WidgetGuildCreateViewModel extends d0<ViewState> {
+public final class WidgetGuildCreateViewModel extends AppViewModel<ViewState> {
     private final String analyticLocation;
     private final boolean closeWithResult;
     private final String customTitle;
@@ -67,7 +69,7 @@ public final class WidgetGuildCreateViewModel extends d0<ViewState> {
 
     /* JADX INFO: renamed from: com.discord.widgets.guilds.create.WidgetGuildCreateViewModel$createGuild$1, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetGuildCreateViewModel.kt */
-    public final class AnonymousClass1 extends o implements Function1<Guild, Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function1<Guild, Unit> {
         public AnonymousClass1() {
             super(1);
         }
@@ -80,14 +82,14 @@ public final class WidgetGuildCreateViewModel extends d0<ViewState> {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(Guild guild) {
-            m.checkNotNullParameter(guild, "createdGuild");
+            Intrinsics3.checkNotNullParameter(guild, "createdGuild");
             WidgetGuildCreateViewModel.access$handleGuildCreateSuccess(WidgetGuildCreateViewModel.this, new com.discord.models.guild.Guild(guild));
         }
     }
 
     /* JADX INFO: renamed from: com.discord.widgets.guilds.create.WidgetGuildCreateViewModel$2, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetGuildCreateViewModel.kt */
-    public final /* synthetic */ class AnonymousClass2 extends k implements Function2<User, StoreGuildTemplates.GuildTemplateState, StoreState> {
+    public final /* synthetic */ class AnonymousClass2 extends FunctionReferenceImpl implements Function2<User, StoreGuildTemplates.GuildTemplateState, StoreState> {
         public static final AnonymousClass2 INSTANCE = new AnonymousClass2();
 
         public AnonymousClass2() {
@@ -101,15 +103,15 @@ public final class WidgetGuildCreateViewModel extends d0<ViewState> {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final StoreState invoke2(User user, StoreGuildTemplates.GuildTemplateState guildTemplateState) {
-            m.checkNotNullParameter(user, "p1");
-            m.checkNotNullParameter(guildTemplateState, "p2");
+            Intrinsics3.checkNotNullParameter(user, "p1");
+            Intrinsics3.checkNotNullParameter(guildTemplateState, "p2");
             return new StoreState(user, guildTemplateState);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.widgets.guilds.create.WidgetGuildCreateViewModel$createGuild$2, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetGuildCreateViewModel.kt */
-    public final class AnonymousClass2 extends o implements Function1<Error, Unit> {
+    public final class AnonymousClass2 extends Lambda implements Function1<Error, Unit> {
         public AnonymousClass2() {
             super(1);
         }
@@ -122,14 +124,14 @@ public final class WidgetGuildCreateViewModel extends d0<ViewState> {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(Error error) {
-            m.checkNotNullParameter(error, "it");
+            Intrinsics3.checkNotNullParameter(error, "it");
             WidgetGuildCreateViewModel.access$handleGuildCreateFailure(WidgetGuildCreateViewModel.this);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.widgets.guilds.create.WidgetGuildCreateViewModel$3, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetGuildCreateViewModel.kt */
-    public final class AnonymousClass3 extends o implements Function1<StoreState, Unit> {
+    public final class AnonymousClass3 extends Lambda implements Function1<StoreState, Unit> {
         public AnonymousClass3() {
             super(1);
         }
@@ -142,7 +144,7 @@ public final class WidgetGuildCreateViewModel extends d0<ViewState> {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(StoreState storeState) {
-            m.checkNotNullParameter(storeState, "it");
+            Intrinsics3.checkNotNullParameter(storeState, "it");
             WidgetGuildCreateViewModel.this.handleStoreState(storeState);
         }
     }
@@ -191,7 +193,7 @@ public final class WidgetGuildCreateViewModel extends d0<ViewState> {
             }
 
             public String toString() {
-                return a.C(a.U("CloseWithResult(guildId="), this.guildId, ")");
+                return outline.C(outline.U("CloseWithResult(guildId="), this.guildId, ")");
             }
         }
 
@@ -236,7 +238,7 @@ public final class WidgetGuildCreateViewModel extends d0<ViewState> {
             }
 
             public String toString() {
-                return a.C(a.U("LaunchChannelPrompt(guildId="), this.guildId, ")");
+                return outline.C(outline.U("LaunchChannelPrompt(guildId="), this.guildId, ")");
             }
         }
 
@@ -281,7 +283,7 @@ public final class WidgetGuildCreateViewModel extends d0<ViewState> {
             }
 
             public String toString() {
-                return a.C(a.U("LaunchInviteShareScreen(guildId="), this.guildId, ")");
+                return outline.C(outline.U("LaunchInviteShareScreen(guildId="), this.guildId, ")");
             }
         }
 
@@ -326,7 +328,7 @@ public final class WidgetGuildCreateViewModel extends d0<ViewState> {
             }
 
             public String toString() {
-                return a.B(a.U("ShowToast(stringResId="), this.stringResId, ")");
+                return outline.B(outline.U("ShowToast(stringResId="), this.stringResId, ")");
             }
         }
 
@@ -344,8 +346,8 @@ public final class WidgetGuildCreateViewModel extends d0<ViewState> {
         private final User meUser;
 
         public StoreState(User user, StoreGuildTemplates.GuildTemplateState guildTemplateState) {
-            m.checkNotNullParameter(user, "meUser");
-            m.checkNotNullParameter(guildTemplateState, "guildTemplate");
+            Intrinsics3.checkNotNullParameter(user, "meUser");
+            Intrinsics3.checkNotNullParameter(guildTemplateState, "guildTemplate");
             this.meUser = user;
             this.guildTemplate = guildTemplateState;
         }
@@ -361,8 +363,8 @@ public final class WidgetGuildCreateViewModel extends d0<ViewState> {
         }
 
         public final StoreState copy(User meUser, StoreGuildTemplates.GuildTemplateState guildTemplate) {
-            m.checkNotNullParameter(meUser, "meUser");
-            m.checkNotNullParameter(guildTemplate, "guildTemplate");
+            Intrinsics3.checkNotNullParameter(meUser, "meUser");
+            Intrinsics3.checkNotNullParameter(guildTemplate, "guildTemplate");
             return new StoreState(meUser, guildTemplate);
         }
 
@@ -374,7 +376,7 @@ public final class WidgetGuildCreateViewModel extends d0<ViewState> {
                 return false;
             }
             StoreState storeState = (StoreState) other;
-            return m.areEqual(this.meUser, storeState.meUser) && m.areEqual(this.guildTemplate, storeState.guildTemplate);
+            return Intrinsics3.areEqual(this.meUser, storeState.meUser) && Intrinsics3.areEqual(this.guildTemplate, storeState.guildTemplate);
         }
 
         /* JADX INFO: renamed from: component2, reason: from getter */
@@ -403,7 +405,7 @@ public final class WidgetGuildCreateViewModel extends d0<ViewState> {
         }
 
         public String toString() {
-            StringBuilder sbU = a.U("StoreState(meUser=");
+            StringBuilder sbU = outline.U("StoreState(meUser=");
             sbU.append(this.meUser);
             sbU.append(", guildTemplate=");
             sbU.append(this.guildTemplate);
@@ -428,8 +430,8 @@ public final class WidgetGuildCreateViewModel extends d0<ViewState> {
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
             public Initialized(StoreGuildTemplates.GuildTemplateState guildTemplateState, @StringRes int i, String str, String str2, String str3, boolean z2, String str4) {
                 super(null);
-                m.checkNotNullParameter(guildTemplateState, "guildTemplate");
-                m.checkNotNullParameter(str, "username");
+                Intrinsics3.checkNotNullParameter(guildTemplateState, "guildTemplate");
+                Intrinsics3.checkNotNullParameter(str, "username");
                 this.guildTemplate = guildTemplateState;
                 this.defaultGuildNameFormatRes = i;
                 this.username = str;
@@ -470,8 +472,8 @@ public final class WidgetGuildCreateViewModel extends d0<ViewState> {
             }
 
             public final Initialized copy(StoreGuildTemplates.GuildTemplateState guildTemplate, @StringRes int defaultGuildNameFormatRes, String username, String guildName, String guildIconUri, boolean isBusy, String customTitle) {
-                m.checkNotNullParameter(guildTemplate, "guildTemplate");
-                m.checkNotNullParameter(username, "username");
+                Intrinsics3.checkNotNullParameter(guildTemplate, "guildTemplate");
+                Intrinsics3.checkNotNullParameter(username, "username");
                 return new Initialized(guildTemplate, defaultGuildNameFormatRes, username, guildName, guildIconUri, isBusy, customTitle);
             }
 
@@ -483,7 +485,7 @@ public final class WidgetGuildCreateViewModel extends d0<ViewState> {
                     return false;
                 }
                 Initialized initialized = (Initialized) other;
-                return m.areEqual(this.guildTemplate, initialized.guildTemplate) && this.defaultGuildNameFormatRes == initialized.defaultGuildNameFormatRes && m.areEqual(this.username, initialized.username) && m.areEqual(this.guildName, initialized.guildName) && m.areEqual(this.guildIconUri, initialized.guildIconUri) && this.isBusy == initialized.isBusy && m.areEqual(this.customTitle, initialized.customTitle);
+                return Intrinsics3.areEqual(this.guildTemplate, initialized.guildTemplate) && this.defaultGuildNameFormatRes == initialized.defaultGuildNameFormatRes && Intrinsics3.areEqual(this.username, initialized.username) && Intrinsics3.areEqual(this.guildName, initialized.guildName) && Intrinsics3.areEqual(this.guildIconUri, initialized.guildIconUri) && this.isBusy == initialized.isBusy && Intrinsics3.areEqual(this.customTitle, initialized.customTitle);
             }
 
             /* JADX INFO: renamed from: component7, reason: from getter */
@@ -515,9 +517,9 @@ public final class WidgetGuildCreateViewModel extends d0<ViewState> {
             }
 
             public final String getGuildName(Context context) {
-                m.checkNotNullParameter(context, "context");
+                Intrinsics3.checkNotNullParameter(context, "context");
                 String str = this.guildName;
-                return str != null ? str : b.a.k.b.h(context, this.defaultGuildNameFormatRes, new Object[]{this.username}, null, 4).toString();
+                return str != null ? str : FormatUtils.h(context, this.defaultGuildNameFormatRes, new Object[]{this.username}, null, 4).toString();
             }
 
             /* JADX INFO: renamed from: component1, reason: from getter */
@@ -568,7 +570,7 @@ public final class WidgetGuildCreateViewModel extends d0<ViewState> {
             }
 
             public String toString() {
-                StringBuilder sbU = a.U("Initialized(guildTemplate=");
+                StringBuilder sbU = outline.U("Initialized(guildTemplate=");
                 sbU.append(this.guildTemplate);
                 sbU.append(", defaultGuildNameFormatRes=");
                 sbU.append(this.defaultGuildNameFormatRes);
@@ -581,7 +583,7 @@ public final class WidgetGuildCreateViewModel extends d0<ViewState> {
                 sbU.append(", isBusy=");
                 sbU.append(this.isBusy);
                 sbU.append(", customTitle=");
-                return a.J(sbU, this.customTitle, ")");
+                return outline.J(sbU, this.customTitle, ")");
             }
         }
 
@@ -612,10 +614,10 @@ public final class WidgetGuildCreateViewModel extends d0<ViewState> {
         if ((i2 & 512) != 0) {
             StoreStream.Companion companion = StoreStream.INSTANCE;
             Observable observableZ = StoreUser.observeMe$default(companion.getUsers(), false, 1, null).Z(1);
-            Observable<StoreGuildTemplates.GuildTemplateState> kVar = str == null ? new j0.l.e.k<>(StoreGuildTemplates.GuildTemplateState.None.INSTANCE) : companion.getGuildTemplates().observeGuildTemplate(str).v(new AnonymousClass1(str));
+            Observable<StoreGuildTemplates.GuildTemplateState> scalarSynchronousObservable = str == null ? new ScalarSynchronousObservable<>(StoreGuildTemplates.GuildTemplateState.None.INSTANCE) : companion.getGuildTemplates().observeGuildTemplate(str).v(new AnonymousClass1(str));
             AnonymousClass2 anonymousClass2 = AnonymousClass2.INSTANCE;
-            Observable observableJ = Observable.j(observableZ, kVar, (Func2) (anonymousClass2 != null ? new WidgetGuildCreateViewModel$sam$rx_functions_Func2$0(anonymousClass2) : anonymousClass2));
-            m.checkNotNullExpressionValue(observableJ, "Observable.combineLatest…},\n      ::StoreState\n  )");
+            Observable observableJ = Observable.j(observableZ, scalarSynchronousObservable, (Func2) (anonymousClass2 != null ? new WidgetGuildCreateViewModel3(anonymousClass2) : anonymousClass2));
+            Intrinsics3.checkNotNullExpressionValue(observableJ, "Observable.combineLatest…},\n      ::StoreState\n  )");
             observable2 = observableJ;
         } else {
             observable2 = observable;
@@ -638,7 +640,7 @@ public final class WidgetGuildCreateViewModel extends d0<ViewState> {
     @MainThread
     public final void createGuild(Context context) {
         Observable<Guild> observableLogNetworkAction;
-        m.checkNotNullParameter(context, "context");
+        Intrinsics3.checkNotNullParameter(context, "context");
         ViewState viewState = getViewState();
         if (!(viewState instanceof ViewState.Initialized)) {
             viewState = null;
@@ -650,7 +652,7 @@ public final class WidgetGuildCreateViewModel extends d0<ViewState> {
             if (initialized.isBusy()) {
                 return;
             }
-            if (t.isBlank(guildName)) {
+            if (StringsJVM.isBlank(guildName)) {
                 emitEvent(new Event.ShowToast(R.string.server_name_required));
                 return;
             }
@@ -660,8 +662,8 @@ public final class WidgetGuildCreateViewModel extends d0<ViewState> {
                 RestAPI restAPI = this.restAPI;
                 StockGuildTemplate stockGuildTemplate = this.stockGuildTemplate;
                 Resources resources = context.getResources();
-                m.checkNotNullExpressionValue(resources, "context.resources");
-                observableLogNetworkAction = RestCallStateKt.logNetworkAction(restAPI.createGuild(new RestAPIParams.CreateGuild(guildName, guildIconUri, stockGuildTemplate.getChannels(resources), Long.valueOf(this.stockGuildTemplate.getSystemChannelId()))), new WidgetGuildCreateViewModel$createGuild$createGuildRequestObservable$1(this));
+                Intrinsics3.checkNotNullExpressionValue(resources, "context.resources");
+                observableLogNetworkAction = RestCallState5.logNetworkAction(restAPI.createGuild(new RestAPIParams.CreateGuild(guildName, guildIconUri, stockGuildTemplate.getChannels(resources), Long.valueOf(this.stockGuildTemplate.getSystemChannelId()))), new WidgetGuildCreateViewModel2(this));
             }
             ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.restSubscribeOn(observableLogNetworkAction, false), this, null, 2, null), WidgetGuildCreateViewModel.class, (Context) null, (Function1) null, new AnonymousClass2(), (Function0) null, (Function0) null, new AnonymousClass1(), 54, (Object) null);
             updateViewState(ViewState.Initialized.copy$default(initialized, null, 0, null, null, null, true, null, 95, null));
@@ -701,7 +703,7 @@ public final class WidgetGuildCreateViewModel extends d0<ViewState> {
 
     @MainThread
     public final void handleStoreState(StoreState storeState) {
-        m.checkNotNullParameter(storeState, "storeState");
+        Intrinsics3.checkNotNullParameter(storeState, "storeState");
         updateViewState(new ViewState.Initialized(storeState.getGuildTemplate(), this.defaultGuildNameFormatRes, storeState.getMeUser().getUsername(), null, null, false, this.customTitle));
         if (this.didTrackCreateGuildViewed || (storeState.getGuildTemplate() instanceof StoreGuildTemplates.GuildTemplateState.Loading)) {
             return;
@@ -711,7 +713,7 @@ public final class WidgetGuildCreateViewModel extends d0<ViewState> {
 
     public final Observable<Event> observeEvents() {
         PublishSubject<Event> publishSubject = this.eventsSubject;
-        m.checkNotNullExpressionValue(publishSubject, "eventsSubject");
+        Intrinsics3.checkNotNullExpressionValue(publishSubject, "eventsSubject");
         return publishSubject;
     }
 
@@ -729,7 +731,7 @@ public final class WidgetGuildCreateViewModel extends d0<ViewState> {
 
     @MainThread
     public final void updateGuildName(String guildName) {
-        m.checkNotNullParameter(guildName, "guildName");
+        Intrinsics3.checkNotNullParameter(guildName, "guildName");
         ViewState viewState = getViewState();
         if (!(viewState instanceof ViewState.Initialized)) {
             viewState = null;
@@ -743,11 +745,11 @@ public final class WidgetGuildCreateViewModel extends d0<ViewState> {
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public WidgetGuildCreateViewModel(@StringRes int i, StockGuildTemplate stockGuildTemplate, String str, boolean z2, String str2, String str3, boolean z3, StoreGuildSelected storeGuildSelected, RestAPI restAPI, Observable<StoreState> observable) {
         super(ViewState.Uninitialized.INSTANCE);
-        m.checkNotNullParameter(stockGuildTemplate, "stockGuildTemplate");
-        m.checkNotNullParameter(str2, "analyticLocation");
-        m.checkNotNullParameter(storeGuildSelected, "selectedGuildStore");
-        m.checkNotNullParameter(restAPI, "restAPI");
-        m.checkNotNullParameter(observable, "storeObservable");
+        Intrinsics3.checkNotNullParameter(stockGuildTemplate, "stockGuildTemplate");
+        Intrinsics3.checkNotNullParameter(str2, "analyticLocation");
+        Intrinsics3.checkNotNullParameter(storeGuildSelected, "selectedGuildStore");
+        Intrinsics3.checkNotNullParameter(restAPI, "restAPI");
+        Intrinsics3.checkNotNullParameter(observable, "storeObservable");
         this.defaultGuildNameFormatRes = i;
         this.stockGuildTemplate = stockGuildTemplate;
         this.guildTemplateCode = str;

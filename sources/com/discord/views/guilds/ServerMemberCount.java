@@ -9,23 +9,23 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import b.a.i.i3;
-import b.a.k.b;
+import b.a.i.ViewServerMemberCountBinding;
+import b.a.k.FormatUtils;
 import com.discord.R;
-import com.discord.utilities.resources.StringResourceUtilsKt;
-import d0.z.d.m;
+import com.discord.utilities.resources.StringResourceUtils;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: ServerMemberCount.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class ServerMemberCount extends FrameLayout {
 
     /* JADX INFO: renamed from: j, reason: from kotlin metadata */
-    public final i3 binding;
+    public final ViewServerMemberCountBinding binding;
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public ServerMemberCount(Context context, AttributeSet attributeSet) {
         super(context, attributeSet, 0);
-        m.checkNotNullParameter(context, "context");
+        Intrinsics3.checkNotNullParameter(context, "context");
         View viewInflate = LayoutInflater.from(context).inflate(R.layout.view_server_member_count, (ViewGroup) this, false);
         addView(viewInflate);
         int i = R.id.item_invite_online_dot;
@@ -40,9 +40,9 @@ public final class ServerMemberCount extends FrameLayout {
                     i = R.id.item_invite_total_member_text;
                     TextView textView2 = (TextView) viewInflate.findViewById(R.id.item_invite_total_member_text);
                     if (textView2 != null) {
-                        i3 i3Var = new i3((LinearLayout) viewInflate, imageView, textView, imageView2, textView2);
-                        m.checkNotNullExpressionValue(i3Var, "ViewServerMemberCountBin…rom(context), this, true)");
-                        this.binding = i3Var;
+                        ViewServerMemberCountBinding viewServerMemberCountBinding = new ViewServerMemberCountBinding((LinearLayout) viewInflate, imageView, textView, imageView2, textView2);
+                        Intrinsics3.checkNotNullExpressionValue(viewServerMemberCountBinding, "ViewServerMemberCountBin…rom(context), this, true)");
+                        this.binding = viewServerMemberCountBinding;
                         return;
                     }
                 }
@@ -53,48 +53,48 @@ public final class ServerMemberCount extends FrameLayout {
 
     public final void setInvalidText(CharSequence charSequence) {
         ImageView imageView = this.binding.f134b;
-        m.checkNotNullExpressionValue(imageView, "binding.itemInviteOnlineDot");
+        Intrinsics3.checkNotNullExpressionValue(imageView, "binding.itemInviteOnlineDot");
         imageView.setVisibility(8);
         ImageView imageView2 = this.binding.d;
-        m.checkNotNullExpressionValue(imageView2, "binding.itemInviteTotalMemberDot");
+        Intrinsics3.checkNotNullExpressionValue(imageView2, "binding.itemInviteTotalMemberDot");
         imageView2.setVisibility(8);
         TextView textView = this.binding.c;
-        m.checkNotNullExpressionValue(textView, "binding.itemInviteOnlineText");
-        b.a(textView, charSequence);
+        Intrinsics3.checkNotNullExpressionValue(textView, "binding.itemInviteOnlineText");
+        FormatUtils.a(textView, charSequence);
         TextView textView2 = this.binding.e;
-        m.checkNotNullExpressionValue(textView2, "binding.itemInviteTotalMemberText");
-        b.a(textView2, null);
+        Intrinsics3.checkNotNullExpressionValue(textView2, "binding.itemInviteTotalMemberText");
+        FormatUtils.a(textView2, null);
     }
 
     public final void setMembers(Integer members) {
         CharSequence i18nPluralString;
         ImageView imageView = this.binding.d;
-        m.checkNotNullExpressionValue(imageView, "binding.itemInviteTotalMemberDot");
+        Intrinsics3.checkNotNullExpressionValue(imageView, "binding.itemInviteTotalMemberDot");
         imageView.setVisibility(members != null ? 0 : 8);
         TextView textView = this.binding.e;
-        m.checkNotNullExpressionValue(textView, "binding.itemInviteTotalMemberText");
+        Intrinsics3.checkNotNullExpressionValue(textView, "binding.itemInviteTotalMemberText");
         if (members != null) {
             members.intValue();
             Context context = getContext();
-            m.checkNotNullExpressionValue(context, "context");
-            i18nPluralString = StringResourceUtilsKt.getI18nPluralString(context, R.plurals.members_header_members, members.intValue(), members);
+            Intrinsics3.checkNotNullExpressionValue(context, "context");
+            i18nPluralString = StringResourceUtils.getI18nPluralString(context, R.plurals.members_header_members, members.intValue(), members);
         } else {
             i18nPluralString = null;
         }
-        b.a(textView, i18nPluralString);
+        FormatUtils.a(textView, i18nPluralString);
     }
 
     public final void setOnline(Integer active) {
         ImageView imageView = this.binding.f134b;
-        m.checkNotNullExpressionValue(imageView, "binding.itemInviteOnlineDot");
+        Intrinsics3.checkNotNullExpressionValue(imageView, "binding.itemInviteOnlineDot");
         imageView.setVisibility(active != null ? 0 : 8);
         TextView textView = this.binding.c;
-        m.checkNotNullExpressionValue(textView, "binding.itemInviteOnlineText");
+        Intrinsics3.checkNotNullExpressionValue(textView, "binding.itemInviteOnlineText");
         CharSequence charSequenceJ = null;
         if (active != null) {
             active.intValue();
-            charSequenceJ = b.j(this, R.string.instant_invite_guild_members_online, new Object[]{active}, null, 4);
+            charSequenceJ = FormatUtils.j(this, R.string.instant_invite_guild_members_online, new Object[]{active}, null, 4);
         }
-        b.a(textView, charSequenceJ);
+        FormatUtils.a(textView, charSequenceJ);
     }
 }

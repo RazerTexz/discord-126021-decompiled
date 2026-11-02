@@ -8,8 +8,8 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.Guideline;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewbinding.ViewBinding;
-import b.a.i.o;
-import b.a.i.p;
+import b.a.i.ForumBrowserEmptyBinding;
+import b.a.i.ForumBrowserLoadingBinding;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -25,10 +25,10 @@ public final class WidgetForumBrowserBinding implements ViewBinding {
     public final ExtendedFloatingActionButton f2387b;
 
     @NonNull
-    public final o c;
+    public final ForumBrowserEmptyBinding c;
 
     @NonNull
-    public final p d;
+    public final ForumBrowserLoadingBinding d;
 
     @NonNull
     public final ViewStub e;
@@ -39,11 +39,11 @@ public final class WidgetForumBrowserBinding implements ViewBinding {
     @NonNull
     public final FloatingActionButton g;
 
-    public WidgetForumBrowserBinding(@NonNull ConstraintLayout constraintLayout, @NonNull Guideline guideline, @NonNull ExtendedFloatingActionButton extendedFloatingActionButton, @NonNull o oVar, @NonNull p pVar, @NonNull ViewStub viewStub, @NonNull RecyclerView recyclerView, @NonNull AppBarLayout appBarLayout, @NonNull Barrier barrier, @NonNull FloatingActionButton floatingActionButton) {
+    public WidgetForumBrowserBinding(@NonNull ConstraintLayout constraintLayout, @NonNull Guideline guideline, @NonNull ExtendedFloatingActionButton extendedFloatingActionButton, @NonNull ForumBrowserEmptyBinding forumBrowserEmptyBinding, @NonNull ForumBrowserLoadingBinding forumBrowserLoadingBinding, @NonNull ViewStub viewStub, @NonNull RecyclerView recyclerView, @NonNull AppBarLayout appBarLayout, @NonNull Barrier barrier, @NonNull FloatingActionButton floatingActionButton) {
         this.a = constraintLayout;
         this.f2387b = extendedFloatingActionButton;
-        this.c = oVar;
-        this.d = pVar;
+        this.c = forumBrowserEmptyBinding;
+        this.d = forumBrowserLoadingBinding;
         this.e = viewStub;
         this.f = recyclerView;
         this.g = floatingActionButton;

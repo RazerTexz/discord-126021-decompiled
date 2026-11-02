@@ -9,11 +9,12 @@ import com.discord.api.thread.ThreadMembersUpdate;
 import com.discord.api.thread.ThreadMetadata;
 import com.discord.api.user.User;
 import com.discord.stores.updates.ObservationDeck;
-import d0.t.g0;
-import d0.t.n0;
-import d0.t.u;
-import d0.z.d.m;
-import d0.z.d.o;
+import d0.t.Iterables2;
+import d0.t.MapsJVM;
+import d0.t.Sets5;
+import d0.t._Collections;
+import d0.z.d.Intrinsics3;
+import d0.z.d.Lambda;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -35,7 +36,7 @@ public final class StoreThreadMembers extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreThreadMembers$observeThreadMembers$1, reason: invalid class name */
     /* JADX INFO: compiled from: StoreThreadMembers.kt */
-    public final class AnonymousClass1 extends o implements Function0<Set<? extends Long>> {
+    public final class AnonymousClass1 extends Lambda implements Function0<Set<? extends Long>> {
         public final /* synthetic */ long $channelId;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -53,13 +54,13 @@ public final class StoreThreadMembers extends StoreV2 {
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final Set<? extends Long> invoke2() {
             Set<? extends Long> set = (Set) StoreThreadMembers.access$getMemberListsSnapshot$p(StoreThreadMembers.this).get(Long.valueOf(this.$channelId));
-            return set != null ? set : n0.emptySet();
+            return set != null ? set : Sets5.emptySet();
         }
     }
 
     public StoreThreadMembers(ObservationDeck observationDeck, StoreChannels storeChannels) {
-        m.checkNotNullParameter(observationDeck, "observationDeck");
-        m.checkNotNullParameter(storeChannels, "storeChannels");
+        Intrinsics3.checkNotNullParameter(observationDeck, "observationDeck");
+        Intrinsics3.checkNotNullParameter(storeChannels, "storeChannels");
         this.observationDeck = observationDeck;
         this.storeChannels = storeChannels;
         this.memberLists = new LinkedHashMap();
@@ -74,25 +75,25 @@ public final class StoreThreadMembers extends StoreV2 {
         storeThreadMembers.memberListsSnapshot = map;
     }
 
-    @StoreThread
+    @Store3
     public final void handleConnectionOpen() {
         this.memberLists.clear();
         markChanged();
     }
 
-    @StoreThread
+    @Store3
     public final void handleThreadCreateOrUpdate(Channel channel) {
         ThreadMetadata threadMetadata;
-        m.checkNotNullParameter(channel, "channel");
+        Intrinsics3.checkNotNullParameter(channel, "channel");
         if (this.memberLists.containsKey(Long.valueOf(channel.getId())) && (threadMetadata = channel.getThreadMetadata()) != null && threadMetadata.getArchived()) {
             this.memberLists.remove(Long.valueOf(channel.getId()));
             markChanged();
         }
     }
 
-    @StoreThread
+    @Store3
     public final void handleThreadDelete(Channel channel) {
-        m.checkNotNullParameter(channel, "channel");
+        Intrinsics3.checkNotNullParameter(channel, "channel");
         if (this.memberLists.containsKey(Long.valueOf(channel.getId()))) {
             this.memberLists.remove(Long.valueOf(channel.getId()));
             markChanged();
@@ -100,22 +101,22 @@ public final class StoreThreadMembers extends StoreV2 {
     }
 
     /* JADX WARN: Code duplicated, block: B:16:0x0060  */
-    @StoreThread
+    @Store3
     public final void handleThreadMemberListUpdate(ThreadMemberListUpdate threadMemberListUpdate) {
         Set<Long> linkedHashSet;
-        m.checkNotNullParameter(threadMemberListUpdate, "threadMemberListUpdate");
+        Intrinsics3.checkNotNullParameter(threadMemberListUpdate, "threadMemberListUpdate");
         Channel channelInternal$app_productionGoogleRelease = this.storeChannels.getChannelInternal$app_productionGoogleRelease(threadMemberListUpdate.getGuildId(), threadMemberListUpdate.getThreadId());
         if ((channelInternal$app_productionGoogleRelease != null ? Long.valueOf(channelInternal$app_productionGoogleRelease.getParentId()) : null) != null) {
             Map<Long, Set<Long>> map = this.memberLists;
             Long lValueOf = Long.valueOf(channelInternal$app_productionGoogleRelease.getId());
             List<ThreadListMember> listB = threadMemberListUpdate.b();
             if (listB != null) {
-                ArrayList arrayList = new ArrayList(d0.t.o.collectionSizeOrDefault(listB, 10));
+                ArrayList arrayList = new ArrayList(Iterables2.collectionSizeOrDefault(listB, 10));
                 Iterator<T> it = listB.iterator();
                 while (it.hasNext()) {
                     arrayList.add(Long.valueOf(((ThreadListMember) it.next()).getUserId()));
                 }
-                linkedHashSet = u.toMutableSet(arrayList);
+                linkedHashSet = _Collections.toMutableSet(arrayList);
                 if (linkedHashSet == null) {
                     linkedHashSet = new LinkedHashSet<>();
                 }
@@ -127,10 +128,10 @@ public final class StoreThreadMembers extends StoreV2 {
         }
     }
 
-    @StoreThread
+    @Store3
     public final void handleThreadMembersUpdate(ThreadMembersUpdate threadMembersUpdate) {
         User user;
-        m.checkNotNullParameter(threadMembersUpdate, "threadMembersUpdate");
+        Intrinsics3.checkNotNullParameter(threadMembersUpdate, "threadMembersUpdate");
         if (this.memberLists.containsKey(Long.valueOf(threadMembersUpdate.getId()))) {
             List<AugmentedThreadMember> listA = threadMembersUpdate.a();
             if (listA != null) {
@@ -164,20 +165,20 @@ public final class StoreThreadMembers extends StoreV2 {
 
     public final Observable<Set<Long>> observeThreadMembers(long channelId) {
         Observable<Set<Long>> observableR = ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck.UpdateSource[]{this}, false, null, null, new AnonymousClass1(channelId), 14, null).r();
-        m.checkNotNullExpressionValue(observableR, "observationDeck.connectR…  .distinctUntilChanged()");
+        Intrinsics3.checkNotNullExpressionValue(observableR, "observationDeck.connectR…  .distinctUntilChanged()");
         return observableR;
     }
 
     @Override // com.discord.stores.StoreV2
-    @StoreThread
+    @Store3
     public void snapshotData() {
         super.snapshotData();
         Map<Long, Set<Long>> map = this.memberLists;
-        LinkedHashMap linkedHashMap = new LinkedHashMap(g0.mapCapacity(map.size()));
+        LinkedHashMap linkedHashMap = new LinkedHashMap(MapsJVM.mapCapacity(map.size()));
         Iterator<T> it = map.entrySet().iterator();
         while (it.hasNext()) {
             Map.Entry entry = (Map.Entry) it.next();
-            linkedHashMap.put(entry.getKey(), u.toSet((Iterable) entry.getValue()));
+            linkedHashMap.put(entry.getKey(), _Collections.toSet((Iterable) entry.getValue()));
         }
         this.memberListsSnapshot = new HashMap<>(linkedHashMap);
     }

@@ -1,16 +1,19 @@
 package b.i.a.c;
 
+import b.i.a.c.a3.MediaSource2;
+import b.i.a.c.s2.AnalyticsCollector;
+import b.i.b.b.ImmutableList2;
 import java.util.Objects;
 
 /* JADX INFO: compiled from: lambda */
 /* JADX INFO: loaded from: classes3.dex */
 public final /* synthetic */ class m0 implements Runnable {
-    public final /* synthetic */ s1 j;
-    public final /* synthetic */ b.i.b.b.p.a k;
-    public final /* synthetic */ b.i.a.c.a3.a0.a l;
+    public final /* synthetic */ MediaPeriodQueue j;
+    public final /* synthetic */ ImmutableList2.a k;
+    public final /* synthetic */ MediaSource2.a l;
 
-    public /* synthetic */ m0(s1 s1Var, b.i.b.b.p.a aVar, b.i.a.c.a3.a0.a aVar2) {
-        this.j = s1Var;
+    public /* synthetic */ m0(MediaPeriodQueue mediaPeriodQueue, ImmutableList2.a aVar, MediaSource2.a aVar2) {
+        this.j = mediaPeriodQueue;
         this.k = aVar;
         this.l = aVar2;
     }
@@ -18,24 +21,24 @@ public final /* synthetic */ class m0 implements Runnable {
     /* JADX WARN: Multi-variable type inference failed */
     @Override // java.lang.Runnable
     public final void run() {
-        s1 s1Var = this.j;
-        b.i.b.b.p.a aVar = this.k;
-        b.i.a.c.a3.a0.a aVar2 = this.l;
-        b.i.a.c.s2.g1 g1Var = s1Var.c;
-        b.i.b.b.p pVarC = aVar.c();
-        b.i.a.c.s2.g1.a aVar3 = g1Var.m;
-        y1 y1Var = g1Var.p;
-        Objects.requireNonNull(y1Var);
+        MediaPeriodQueue mediaPeriodQueue = this.j;
+        ImmutableList2.a aVar = this.k;
+        MediaSource2.a aVar2 = this.l;
+        AnalyticsCollector analyticsCollector = mediaPeriodQueue.c;
+        ImmutableList2 immutableList2C = aVar.c();
+        AnalyticsCollector.a aVar3 = analyticsCollector.m;
+        Player2 player2 = analyticsCollector.p;
+        Objects.requireNonNull(player2);
         Objects.requireNonNull(aVar3);
-        aVar3.f1081b = b.i.b.b.p.n(pVarC);
-        if (!pVarC.isEmpty()) {
-            aVar3.e = (b.i.a.c.a3.a0.a) pVarC.get(0);
+        aVar3.f1081b = ImmutableList2.n(immutableList2C);
+        if (!immutableList2C.isEmpty()) {
+            aVar3.e = (MediaSource2.a) immutableList2C.get(0);
             Objects.requireNonNull(aVar2);
             aVar3.f = aVar2;
         }
         if (aVar3.d == null) {
-            aVar3.d = b.i.a.c.s2.g1.a.b(y1Var, aVar3.f1081b, aVar3.e, aVar3.a);
+            aVar3.d = AnalyticsCollector.a.b(player2, aVar3.f1081b, aVar3.e, aVar3.a);
         }
-        aVar3.d(y1Var.K());
+        aVar3.d(player2.K());
     }
 }

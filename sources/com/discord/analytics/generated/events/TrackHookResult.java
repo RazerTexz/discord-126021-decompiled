@@ -1,14 +1,14 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackHookResult.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackHookResult implements AnalyticsSchema, TrackBaseReceiver {
+public final /* data */ class TrackHookResult implements AnalyticsSchema, TrackBase2 {
     private final CharSequence error = null;
     private final Long gameId = null;
     private final CharSequence gameName = null;
@@ -25,7 +25,7 @@ public final /* data */ class TrackHookResult implements AnalyticsSchema, TrackB
             return false;
         }
         TrackHookResult trackHookResult = (TrackHookResult) other;
-        return m.areEqual(this.success, trackHookResult.success) && m.areEqual(this.error, trackHookResult.error) && m.areEqual(this.gameName, trackHookResult.gameName) && m.areEqual(this.gameId, trackHookResult.gameId) && m.areEqual(this.soundshareSession, trackHookResult.soundshareSession);
+        return Intrinsics3.areEqual(this.success, trackHookResult.success) && Intrinsics3.areEqual(this.error, trackHookResult.error) && Intrinsics3.areEqual(this.gameName, trackHookResult.gameName) && Intrinsics3.areEqual(this.gameId, trackHookResult.gameId) && Intrinsics3.areEqual(this.soundshareSession, trackHookResult.soundshareSession);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -48,7 +48,7 @@ public final /* data */ class TrackHookResult implements AnalyticsSchema, TrackB
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackHookResult(success=");
+        StringBuilder sbU = outline.U("TrackHookResult(success=");
         sbU.append(this.success);
         sbU.append(", error=");
         sbU.append(this.error);
@@ -57,6 +57,6 @@ public final /* data */ class TrackHookResult implements AnalyticsSchema, TrackB
         sbU.append(", gameId=");
         sbU.append(this.gameId);
         sbU.append(", soundshareSession=");
-        return a.E(sbU, this.soundshareSession, ")");
+        return outline.E(sbU, this.soundshareSession, ")");
     }
 }

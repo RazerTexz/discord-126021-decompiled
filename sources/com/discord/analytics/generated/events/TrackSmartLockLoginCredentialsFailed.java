@@ -1,12 +1,12 @@
 package com.discord.analytics.generated.events;
 
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.api.science.AnalyticsSchema;
 
 /* JADX INFO: compiled from: TrackSmartLockLoginCredentialsFailed.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final class TrackSmartLockLoginCredentialsFailed implements AnalyticsSchema, TrackBaseReceiver {
+public final class TrackSmartLockLoginCredentialsFailed implements AnalyticsSchema, TrackBase2 {
     private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "smart_lock_login_credentials_failed";
 

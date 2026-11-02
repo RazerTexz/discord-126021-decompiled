@@ -21,7 +21,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import b.d.b.a.a;
+import b.d.b.a.outline;
 
 /* JADX INFO: loaded from: classes.dex */
 public abstract class PreferenceFragmentCompat extends Fragment implements PreferenceManager.OnPreferenceTreeClickListener, PreferenceManager.OnDisplayPreferenceDialogListener, PreferenceManager.OnNavigateToScreenListener, DialogPreference.TargetFragment {
@@ -311,7 +311,7 @@ public abstract class PreferenceFragmentCompat extends Fragment implements Prefe
                 dialogFragmentNewInstance = ListPreferenceDialogFragmentCompat.newInstance(preference.getKey());
             } else {
                 if (!(preference instanceof MultiSelectListPreference)) {
-                    StringBuilder sbU = a.U("Cannot display dialog for an unknown Preference type: ");
+                    StringBuilder sbU = outline.U("Cannot display dialog for an unknown Preference type: ");
                     sbU.append(preference.getClass().getSimpleName());
                     sbU.append(". Make sure to implement onPreferenceDisplayDialog() to handle displaying a custom dialog for this Preference.");
                     throw new IllegalArgumentException(sbU.toString());
@@ -455,7 +455,7 @@ public abstract class PreferenceFragmentCompat extends Fragment implements Prefe
             boolean z2 = preferenceFindPreference instanceof PreferenceScreen;
             preference = preferenceFindPreference;
             if (!z2) {
-                throw new IllegalArgumentException(a.y("Preference object with key ", str, " is not a PreferenceScreen"));
+                throw new IllegalArgumentException(outline.y("Preference object with key ", str, " is not a PreferenceScreen"));
             }
         }
         setPreferenceScreen((PreferenceScreen) preference);

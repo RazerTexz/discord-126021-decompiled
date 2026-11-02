@@ -1,16 +1,16 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.analytics.generated.traits.TrackLocationMetadata;
-import com.discord.analytics.generated.traits.TrackLocationMetadataReceiver;
+import com.discord.analytics.generated.traits.TrackLocationMetadata2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackMicTestingStarted.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackMicTestingStarted implements AnalyticsSchema, TrackBaseReceiver, TrackLocationMetadataReceiver {
+public final /* data */ class TrackMicTestingStarted implements AnalyticsSchema, TrackBase2, TrackLocationMetadata2 {
     private final CharSequence inputDeviceName = null;
     private final Long inputDeviceVolume = null;
     private final CharSequence inputMode = null;
@@ -30,7 +30,7 @@ public final /* data */ class TrackMicTestingStarted implements AnalyticsSchema,
             return false;
         }
         TrackMicTestingStarted trackMicTestingStarted = (TrackMicTestingStarted) other;
-        return m.areEqual(this.inputDeviceName, trackMicTestingStarted.inputDeviceName) && m.areEqual(this.inputDeviceVolume, trackMicTestingStarted.inputDeviceVolume) && m.areEqual(this.outputDeviceName, trackMicTestingStarted.outputDeviceName) && m.areEqual(this.outputDeviceVolume, trackMicTestingStarted.outputDeviceVolume) && m.areEqual(this.inputMode, trackMicTestingStarted.inputMode) && m.areEqual(this.inputSensitivityIsAutomatic, trackMicTestingStarted.inputSensitivityIsAutomatic) && m.areEqual(this.inputSensitivityThreshold, trackMicTestingStarted.inputSensitivityThreshold);
+        return Intrinsics3.areEqual(this.inputDeviceName, trackMicTestingStarted.inputDeviceName) && Intrinsics3.areEqual(this.inputDeviceVolume, trackMicTestingStarted.inputDeviceVolume) && Intrinsics3.areEqual(this.outputDeviceName, trackMicTestingStarted.outputDeviceName) && Intrinsics3.areEqual(this.outputDeviceVolume, trackMicTestingStarted.outputDeviceVolume) && Intrinsics3.areEqual(this.inputMode, trackMicTestingStarted.inputMode) && Intrinsics3.areEqual(this.inputSensitivityIsAutomatic, trackMicTestingStarted.inputSensitivityIsAutomatic) && Intrinsics3.areEqual(this.inputSensitivityThreshold, trackMicTestingStarted.inputSensitivityThreshold);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -57,7 +57,7 @@ public final /* data */ class TrackMicTestingStarted implements AnalyticsSchema,
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackMicTestingStarted(inputDeviceName=");
+        StringBuilder sbU = outline.U("TrackMicTestingStarted(inputDeviceName=");
         sbU.append(this.inputDeviceName);
         sbU.append(", inputDeviceVolume=");
         sbU.append(this.inputDeviceVolume);
@@ -70,6 +70,6 @@ public final /* data */ class TrackMicTestingStarted implements AnalyticsSchema,
         sbU.append(", inputSensitivityIsAutomatic=");
         sbU.append(this.inputSensitivityIsAutomatic);
         sbU.append(", inputSensitivityThreshold=");
-        return a.G(sbU, this.inputSensitivityThreshold, ")");
+        return outline.G(sbU, this.inputSensitivityThreshold, ")");
     }
 }

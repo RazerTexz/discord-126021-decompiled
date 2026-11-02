@@ -3,8 +3,8 @@ package com.discord.widgets.auth;
 import android.content.Context;
 import androidx.annotation.MainThread;
 import androidx.media.AudioAttributesCompat;
-import b.a.d.d0;
-import b.d.b.a.a;
+import b.a.d.AppViewModel;
+import b.d.b.a.outline;
 import com.discord.R;
 import com.discord.api.channel.Channel;
 import com.discord.api.user.NsfwAllowance;
@@ -20,10 +20,10 @@ import com.discord.utilities.error.Error;
 import com.discord.utilities.rest.RestAPI;
 import com.discord.utilities.rx.ObservableExtensionsKt;
 import com.discord.utilities.time.TimeUtils;
-import d0.t.n;
-import d0.t.u;
-import d0.z.d.m;
-import d0.z.d.o;
+import d0.t.Collections2;
+import d0.t._Collections;
+import d0.z.d.Intrinsics3;
+import d0.z.d.Lambda;
 import java.util.List;
 import java.util.Map;
 import kotlin.Unit;
@@ -35,7 +35,7 @@ import rx.subjects.PublishSubject;
 
 /* JADX INFO: compiled from: WidgetAgeVerifyViewModel.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class WidgetAgeVerifyViewModel extends d0<ViewState> {
+public final class WidgetAgeVerifyViewModel extends AppViewModel<ViewState> {
 
     /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
     public static final Companion INSTANCE = new Companion(null);
@@ -45,7 +45,7 @@ public final class WidgetAgeVerifyViewModel extends d0<ViewState> {
 
     /* JADX INFO: renamed from: com.discord.widgets.auth.WidgetAgeVerifyViewModel$1, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetAgeVerifyViewModel.kt */
-    public final class AnonymousClass1 extends o implements Function1<StoreState, Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function1<StoreState, Unit> {
         public AnonymousClass1() {
             super(1);
         }
@@ -58,14 +58,14 @@ public final class WidgetAgeVerifyViewModel extends d0<ViewState> {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(StoreState storeState) {
-            m.checkNotNullParameter(storeState, "storeState");
+            Intrinsics3.checkNotNullParameter(storeState, "storeState");
             WidgetAgeVerifyViewModel.access$handleStoreState(WidgetAgeVerifyViewModel.this, storeState);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.widgets.auth.WidgetAgeVerifyViewModel$submit$1, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetAgeVerifyViewModel.kt */
-    public final class AnonymousClass1 extends o implements Function1<User, Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function1<User, Unit> {
         public AnonymousClass1() {
             super(1);
         }
@@ -78,14 +78,14 @@ public final class WidgetAgeVerifyViewModel extends d0<ViewState> {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(User user) {
-            m.checkNotNullParameter(user, "it");
+            Intrinsics3.checkNotNullParameter(user, "it");
             WidgetAgeVerifyViewModel.access$handleUserUpdateSuccess(WidgetAgeVerifyViewModel.this);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.widgets.auth.WidgetAgeVerifyViewModel$submit$2, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetAgeVerifyViewModel.kt */
-    public final class AnonymousClass2 extends o implements Function1<Error, Unit> {
+    public final class AnonymousClass2 extends Lambda implements Function1<Error, Unit> {
         public AnonymousClass2() {
             super(1);
         }
@@ -98,7 +98,7 @@ public final class WidgetAgeVerifyViewModel extends d0<ViewState> {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(Error error) {
-            m.checkNotNullParameter(error, "it");
+            Intrinsics3.checkNotNullParameter(error, "it");
             WidgetAgeVerifyViewModel.access$handleUserUpdateFailure(WidgetAgeVerifyViewModel.this, error);
         }
     }
@@ -110,8 +110,8 @@ public final class WidgetAgeVerifyViewModel extends d0<ViewState> {
 
         public final Observable<StoreState> observeStores() {
             StoreStream.Companion companion = StoreStream.INSTANCE;
-            Observable<StoreState> observableI = Observable.i(StoreUser.observeMe$default(companion.getUsers(), false, 1, null), companion.getAuthentication().observeIsAuthed$app_productionGoogleRelease(), companion.getChannelsSelected().observeSelectedChannel().Y(WidgetAgeVerifyViewModel$Companion$observeStores$1.INSTANCE), WidgetAgeVerifyViewModel$Companion$observeStores$2.INSTANCE);
-            m.checkNotNullExpressionValue(observableI, "Observable.combineLatest…hed\n          )\n        }");
+            Observable<StoreState> observableI = Observable.i(StoreUser.observeMe$default(companion.getUsers(), false, 1, null), companion.getAuthentication().observeIsAuthed$app_productionGoogleRelease(), companion.getChannelsSelected().observeSelectedChannel().Y(WidgetAgeVerifyViewModel2.INSTANCE), WidgetAgeVerifyViewModel3.INSTANCE);
+            Intrinsics3.checkNotNullExpressionValue(observableI, "Observable.combineLatest…hed\n          )\n        }");
             return observableI;
         }
 
@@ -147,7 +147,7 @@ public final class WidgetAgeVerifyViewModel extends d0<ViewState> {
         private final Channel safeChannel;
 
         public StoreState(Channel channel, NsfwAllowance nsfwAllowance, boolean z2) {
-            m.checkNotNullParameter(nsfwAllowance, "nsfwAllowed");
+            Intrinsics3.checkNotNullParameter(nsfwAllowance, "nsfwAllowed");
             this.safeChannel = channel;
             this.nsfwAllowed = nsfwAllowance;
             this.authed = z2;
@@ -167,7 +167,7 @@ public final class WidgetAgeVerifyViewModel extends d0<ViewState> {
         }
 
         public final StoreState copy(Channel safeChannel, NsfwAllowance nsfwAllowed, boolean authed) {
-            m.checkNotNullParameter(nsfwAllowed, "nsfwAllowed");
+            Intrinsics3.checkNotNullParameter(nsfwAllowed, "nsfwAllowed");
             return new StoreState(safeChannel, nsfwAllowed, authed);
         }
 
@@ -179,7 +179,7 @@ public final class WidgetAgeVerifyViewModel extends d0<ViewState> {
                 return false;
             }
             StoreState storeState = (StoreState) other;
-            return m.areEqual(this.safeChannel, storeState.safeChannel) && m.areEqual(this.nsfwAllowed, storeState.nsfwAllowed) && this.authed == storeState.authed;
+            return Intrinsics3.areEqual(this.safeChannel, storeState.safeChannel) && Intrinsics3.areEqual(this.nsfwAllowed, storeState.nsfwAllowed) && this.authed == storeState.authed;
         }
 
         /* JADX INFO: renamed from: component3, reason: from getter */
@@ -228,12 +228,12 @@ public final class WidgetAgeVerifyViewModel extends d0<ViewState> {
         }
 
         public String toString() {
-            StringBuilder sbU = a.U("StoreState(safeChannel=");
+            StringBuilder sbU = outline.U("StoreState(safeChannel=");
             sbU.append(this.safeChannel);
             sbU.append(", nsfwAllowed=");
             sbU.append(this.nsfwAllowed);
             sbU.append(", authed=");
-            return a.O(sbU, this.authed, ")");
+            return outline.O(sbU, this.authed, ")");
         }
     }
 
@@ -299,7 +299,7 @@ public final class WidgetAgeVerifyViewModel extends d0<ViewState> {
                 return false;
             }
             ViewState viewState = (ViewState) other;
-            return this.isSubmitting == viewState.isSubmitting && m.areEqual(this.errorStringId, viewState.errorStringId) && this.displayedChild == viewState.displayedChild && m.areEqual(this.dateOfBirth, viewState.dateOfBirth) && m.areEqual(this.underageMessage, viewState.underageMessage) && m.areEqual(this.safeChannel, viewState.safeChannel) && this.shouldClose == viewState.shouldClose;
+            return this.isSubmitting == viewState.isSubmitting && Intrinsics3.areEqual(this.errorStringId, viewState.errorStringId) && this.displayedChild == viewState.displayedChild && Intrinsics3.areEqual(this.dateOfBirth, viewState.dateOfBirth) && Intrinsics3.areEqual(this.underageMessage, viewState.underageMessage) && Intrinsics3.areEqual(this.safeChannel, viewState.safeChannel) && this.shouldClose == viewState.shouldClose;
         }
 
         /* JADX INFO: renamed from: component4, reason: from getter */
@@ -401,7 +401,7 @@ public final class WidgetAgeVerifyViewModel extends d0<ViewState> {
         }
 
         public String toString() {
-            StringBuilder sbU = a.U("ViewState(isSubmitting=");
+            StringBuilder sbU = outline.U("ViewState(isSubmitting=");
             sbU.append(this.isSubmitting);
             sbU.append(", errorStringId=");
             sbU.append(this.errorStringId);
@@ -414,7 +414,7 @@ public final class WidgetAgeVerifyViewModel extends d0<ViewState> {
             sbU.append(", safeChannel=");
             sbU.append(this.safeChannel);
             sbU.append(", shouldClose=");
-            return a.O(sbU, this.shouldClose, ")");
+            return outline.O(sbU, this.shouldClose, ")");
         }
     }
 
@@ -473,23 +473,23 @@ public final class WidgetAgeVerifyViewModel extends d0<ViewState> {
         ViewState viewState = getViewState();
         if (viewState != null) {
             Error.Response response = error.getResponse();
-            m.checkNotNullExpressionValue(response, "error.response");
+            Intrinsics3.checkNotNullExpressionValue(response, "error.response");
             Map<String, List<String>> messages = response.getMessages();
-            m.checkNotNullExpressionValue(messages, "error.response.messages");
+            Intrinsics3.checkNotNullExpressionValue(messages, "error.response.messages");
             if (!messages.containsKey(BirthdayHelper.DATE_OF_BIRTH_KEY)) {
                 updateViewState(ViewState.copy$default(viewState, false, Integer.valueOf(R.string.age_gate_failed_to_update_birthday), 0, null, null, null, false, 124, null));
                 return;
             }
             Error.Response response2 = error.getResponse();
-            m.checkNotNullExpressionValue(response2, "error.response");
+            Intrinsics3.checkNotNullExpressionValue(response2, "error.response");
             Map<String, List<String>> messages2 = response2.getMessages();
-            m.checkNotNullExpressionValue(messages2, "error.response.messages");
+            Intrinsics3.checkNotNullExpressionValue(messages2, "error.response.messages");
             List<String> listEmptyList = messages2.get(BirthdayHelper.DATE_OF_BIRTH_KEY);
             if (listEmptyList == null) {
-                listEmptyList = n.emptyList();
+                listEmptyList = Collections2.emptyList();
             }
-            m.checkNotNullExpressionValue(listEmptyList, "error.response.messages\n…IRTH_KEY) { emptyList() }");
-            String strJoinToString$default = u.joinToString$default(listEmptyList, "\n", null, null, 0, null, null, 62, null);
+            Intrinsics3.checkNotNullExpressionValue(listEmptyList, "error.response.messages\n…IRTH_KEY) { emptyList() }");
+            String strJoinToString$default = _Collections.joinToString$default(listEmptyList, "\n", null, null, 0, null, null, 62, null);
             updateViewState(ViewState.copy$default(viewState, false, null, 2, null, strJoinToString$default, null, false, 106, null));
             this.storeAuth.setAgeGateError(strJoinToString$default);
         }
@@ -507,7 +507,7 @@ public final class WidgetAgeVerifyViewModel extends d0<ViewState> {
 
     public final Observable<Event> observeEvents() {
         PublishSubject<Event> publishSubject = this.eventsSubject;
-        m.checkNotNullExpressionValue(publishSubject, "eventsSubject");
+        Intrinsics3.checkNotNullExpressionValue(publishSubject, "eventsSubject");
         return publishSubject;
     }
 
@@ -549,9 +549,9 @@ public final class WidgetAgeVerifyViewModel extends d0<ViewState> {
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public WidgetAgeVerifyViewModel(RestAPI restAPI, StoreAuthentication storeAuthentication, Observable<StoreState> observable) {
         super(new ViewState(false, null, 0, null, null, null, false));
-        m.checkNotNullParameter(restAPI, "restAPI");
-        m.checkNotNullParameter(storeAuthentication, "storeAuth");
-        m.checkNotNullParameter(observable, "storeObservable");
+        Intrinsics3.checkNotNullParameter(restAPI, "restAPI");
+        Intrinsics3.checkNotNullParameter(storeAuthentication, "storeAuth");
+        Intrinsics3.checkNotNullParameter(observable, "storeObservable");
         this.restAPI = restAPI;
         this.storeAuth = storeAuthentication;
         this.eventsSubject = PublishSubject.k0();

@@ -17,8 +17,8 @@ import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import x.a.b.b.a.b;
-import x.a.b.b.a.c;
+import x.a.b.b.a.IMediaSession;
+import x.a.b.b.a.MediaControllerCompat;
 
 /* JADX INFO: loaded from: classes.dex */
 @RequiresApi(21)
@@ -30,8 +30,8 @@ public class MediaControllerCompat$MediaControllerImplApi21 {
     public final Object f20b = new Object();
 
     @GuardedBy("mLock")
-    public final List<c> c = new ArrayList();
-    public HashMap<c, a> d = new HashMap<>();
+    public final List<MediaControllerCompat> c = new ArrayList();
+    public HashMap<MediaControllerCompat, a> d = new HashMap<>();
 
     public class ExtraBinderRequestResultReceiver extends ResultReceiver {
         public WeakReference<MediaControllerCompat$MediaControllerImplApi21> j;
@@ -49,9 +49,9 @@ public class MediaControllerCompat$MediaControllerImplApi21 {
             }
             synchronized (mediaControllerCompat$MediaControllerImplApi21.f20b) {
                 MediaSessionCompat.Token token = mediaControllerCompat$MediaControllerImplApi21.e;
-                b bVarC = b.a.c(BundleCompat.getBinder(bundle, "android.support.v4.media.session.EXTRA_BINDER"));
+                IMediaSession iMediaSessionC = IMediaSession.a.c(BundleCompat.getBinder(bundle, "android.support.v4.media.session.EXTRA_BINDER"));
                 synchronized (token.j) {
-                    token.l = bVarC;
+                    token.l = iMediaSessionC;
                 }
                 MediaSessionCompat.Token token2 = mediaControllerCompat$MediaControllerImplApi21.e;
                 VersionedParcelable versionedParcelable = ParcelUtils.getVersionedParcelable(bundle, "android.support.v4.media.session.SESSION_TOKEN2");
@@ -63,37 +63,37 @@ public class MediaControllerCompat$MediaControllerImplApi21 {
         }
     }
 
-    public class a extends c.b {
-        public a(c cVar) {
-            super(cVar);
+    public class a extends MediaControllerCompat.b {
+        public a(MediaControllerCompat mediaControllerCompat) {
+            super(mediaControllerCompat);
         }
 
-        @Override // x.a.b.b.a.c.b, x.a.b.b.a.a
+        @Override // x.a.b.b.a.MediaControllerCompat.b, x.a.b.b.a.IMediaControllerCallback
         public void U(CharSequence charSequence) throws RemoteException {
             throw new AssertionError();
         }
 
-        @Override // x.a.b.b.a.c.b, x.a.b.b.a.a
+        @Override // x.a.b.b.a.MediaControllerCompat.b, x.a.b.b.a.IMediaControllerCallback
         public void W() throws RemoteException {
             throw new AssertionError();
         }
 
-        @Override // x.a.b.b.a.c.b, x.a.b.b.a.a
+        @Override // x.a.b.b.a.MediaControllerCompat.b, x.a.b.b.a.IMediaControllerCallback
         public void X(MediaMetadataCompat mediaMetadataCompat) throws RemoteException {
             throw new AssertionError();
         }
 
-        @Override // x.a.b.b.a.c.b, x.a.b.b.a.a
+        @Override // x.a.b.b.a.MediaControllerCompat.b, x.a.b.b.a.IMediaControllerCallback
         public void s0(ParcelableVolumeInfo parcelableVolumeInfo) throws RemoteException {
             throw new AssertionError();
         }
 
-        @Override // x.a.b.b.a.c.b, x.a.b.b.a.a
+        @Override // x.a.b.b.a.MediaControllerCompat.b, x.a.b.b.a.IMediaControllerCallback
         public void y(Bundle bundle) throws RemoteException {
             throw new AssertionError();
         }
 
-        @Override // x.a.b.b.a.c.b, x.a.b.b.a.a
+        @Override // x.a.b.b.a.MediaControllerCompat.b, x.a.b.b.a.IMediaControllerCallback
         public void z(List<MediaSessionCompat.QueueItem> list) throws RemoteException {
             throw new AssertionError();
         }
@@ -113,10 +113,10 @@ public class MediaControllerCompat$MediaControllerImplApi21 {
         if (this.e.b() == null) {
             return;
         }
-        for (c cVar : this.c) {
-            a aVar = new a(cVar);
-            this.d.put(cVar, aVar);
-            cVar.a = aVar;
+        for (MediaControllerCompat mediaControllerCompat : this.c) {
+            a aVar = new a(mediaControllerCompat);
+            this.d.put(mediaControllerCompat, aVar);
+            mediaControllerCompat.a = aVar;
             try {
                 this.e.b().k(aVar);
             } catch (RemoteException e) {

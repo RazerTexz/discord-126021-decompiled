@@ -3,6 +3,7 @@ package android.support.v4.media;
 import android.annotation.SuppressLint;
 import android.os.Parcel;
 import android.os.Parcelable;
+import b.d.b.a.outline;
 
 /* JADX INFO: loaded from: classes.dex */
 @SuppressLint({"BanParcelableUsage"})
@@ -34,7 +35,7 @@ public final class RatingCompat implements Parcelable {
     }
 
     public String toString() {
-        StringBuilder sbU = b.d.b.a.a.U("Rating:style=");
+        StringBuilder sbU = outline.U("Rating:style=");
         sbU.append(this.j);
         sbU.append(" rating=");
         float f = this.k;

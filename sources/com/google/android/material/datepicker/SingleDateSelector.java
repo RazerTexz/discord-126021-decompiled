@@ -14,8 +14,8 @@ import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
 import androidx.core.util.Pair;
 import b.i.a.f.e.o.f;
-import b.i.a.g.d.c;
-import b.i.a.g.d.l;
+import b.i.a.g.d.DateFormatTextWatcher;
+import b.i.a.g.d.UtcDates;
 import com.google.android.material.R;
 import com.google.android.material.internal.ManufacturerUtils;
 import com.google.android.material.internal.ViewUtils;
@@ -35,7 +35,7 @@ public class SingleDateSelector implements DateSelector<Long> {
     private Long selectedItem;
     public static final Parcelable.Creator<SingleDateSelector> CREATOR = new b();
 
-    public class a extends c {
+    public class a extends DateFormatTextWatcher {
         public final /* synthetic */ OnSelectionChangedListener p;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -44,12 +44,12 @@ public class SingleDateSelector implements DateSelector<Long> {
             this.p = onSelectionChangedListener;
         }
 
-        @Override // b.i.a.g.d.c
+        @Override // b.i.a.g.d.DateFormatTextWatcher
         public void a() {
             this.p.onIncompleteSelectionChanged();
         }
 
-        @Override // b.i.a.g.d.c
+        @Override // b.i.a.g.d.DateFormatTextWatcher
         public void b(@Nullable Long l) {
             if (l == null) {
                 SingleDateSelector.access$000(SingleDateSelector.this);
@@ -151,8 +151,8 @@ public class SingleDateSelector implements DateSelector<Long> {
         if (ManufacturerUtils.isDateInputKeyboardMissingSeparatorCharacters()) {
             editText.setInputType(17);
         }
-        SimpleDateFormat simpleDateFormatE = l.e();
-        String strF = l.f(viewInflate.getResources(), simpleDateFormatE);
+        SimpleDateFormat simpleDateFormatE = UtcDates.e();
+        String strF = UtcDates.f(viewInflate.getResources(), simpleDateFormatE);
         textInputLayout.setPlaceholderText(strF);
         Long l = this.selectedItem;
         if (l != null) {
@@ -187,6 +187,6 @@ public class SingleDateSelector implements DateSelector<Long> {
 
     /* JADX INFO: renamed from: setSelection, reason: avoid collision after fix types in other method */
     public void setSelection2(@Nullable Long l) {
-        this.selectedItem = l == null ? null : Long.valueOf(l.a(l.longValue()));
+        this.selectedItem = l == null ? null : Long.valueOf(UtcDates.a(l.longValue()));
     }
 }

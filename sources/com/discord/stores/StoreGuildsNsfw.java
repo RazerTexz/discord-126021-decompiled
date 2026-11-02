@@ -7,11 +7,12 @@ import com.discord.models.domain.ModelAuditLogEntry;
 import com.discord.stores.updates.ObservationDeck;
 import com.discord.utilities.channel.ChannelSelector;
 import com.discord.utilities.rx.ObservableExtensionsKt;
-import d0.g0.s;
-import d0.t.n0;
-import d0.t.u;
-import d0.z.d.m;
-import d0.z.d.o;
+import d0.g0.StringNumberConversions;
+import d0.t.Iterables2;
+import d0.t.Sets5;
+import d0.t._Collections;
+import d0.z.d.Intrinsics3;
+import d0.z.d.Lambda;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -38,7 +39,7 @@ public final class StoreGuildsNsfw extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreGuildsNsfw$allow$1, reason: invalid class name */
     /* JADX INFO: compiled from: StoreGuildsNsfw.kt */
-    public final class AnonymousClass1 extends o implements Function0<Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function0<Unit> {
         public final /* synthetic */ long $guildId;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -62,7 +63,7 @@ public final class StoreGuildsNsfw extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreGuildsNsfw$deny$1, reason: invalid class name */
     /* JADX INFO: compiled from: StoreGuildsNsfw.kt */
-    public final class AnonymousClass1 extends o implements Function1<Channel, Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function1<Channel, Unit> {
         public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
 
         public AnonymousClass1() {
@@ -87,7 +88,7 @@ public final class StoreGuildsNsfw extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreGuildsNsfw$observeIsGuildNsfwGateAgreed$1, reason: invalid class name */
     /* JADX INFO: compiled from: StoreGuildsNsfw.kt */
-    public final class AnonymousClass1 extends o implements Function0<Boolean> {
+    public final class AnonymousClass1 extends Lambda implements Function0<Boolean> {
         public final /* synthetic */ long $guildId;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -118,14 +119,14 @@ public final class StoreGuildsNsfw extends StoreV2 {
     }
 
     public StoreGuildsNsfw(Dispatcher dispatcher, StoreChannels storeChannels, ObservationDeck observationDeck) {
-        m.checkNotNullParameter(dispatcher, "dispatcher");
-        m.checkNotNullParameter(storeChannels, "storeChannels");
-        m.checkNotNullParameter(observationDeck, "observationDeck");
+        Intrinsics3.checkNotNullParameter(dispatcher, "dispatcher");
+        Intrinsics3.checkNotNullParameter(storeChannels, "storeChannels");
+        Intrinsics3.checkNotNullParameter(observationDeck, "observationDeck");
         this.dispatcher = dispatcher;
         this.storeChannels = storeChannels;
         this.observationDeck = observationDeck;
         this.guildIdsAllowed = new LinkedHashSet();
-        this.guildIdsAllowedSnapshot = n0.emptySet();
+        this.guildIdsAllowedSnapshot = Sets5.emptySet();
     }
 
     public static final /* synthetic */ Set access$getGuildIdsAllowed$p(StoreGuildsNsfw storeGuildsNsfw) {
@@ -141,14 +142,14 @@ public final class StoreGuildsNsfw extends StoreV2 {
     }
 
     @Override // com.discord.stores.Store
-    @StoreThread
+    @Store3
     public void init(Context context) {
         Set<Long> setEmptySet;
-        m.checkNotNullParameter(context, "context");
+        Intrinsics3.checkNotNullParameter(context, "context");
         super.init(context);
-        Set<String> stringSet = getPrefs().getStringSet(GUILDS_ALLOWED_KEY, n0.emptySet());
+        Set<String> stringSet = getPrefs().getStringSet(GUILDS_ALLOWED_KEY, Sets5.emptySet());
         if (stringSet == null || (setEmptySet = toGuildIdSet(stringSet)) == null) {
-            setEmptySet = n0.emptySet();
+            setEmptySet = Sets5.emptySet();
         }
         this.guildIdsAllowed.addAll(setEmptySet);
         markChanged();
@@ -163,12 +164,12 @@ public final class StoreGuildsNsfw extends StoreV2 {
     }
 
     @Override // com.discord.stores.StoreV2
-    @StoreThread
+    @Store3
     public void snapshotData() {
         super.snapshotData();
         this.guildIdsAllowedSnapshot = new HashSet(this.guildIdsAllowed);
         SharedPreferences.Editor editorEdit = getPrefs().edit();
-        m.checkNotNullExpressionValue(editorEdit, "editor");
+        Intrinsics3.checkNotNullExpressionValue(editorEdit, "editor");
         editorEdit.putStringSet(GUILDS_ALLOWED_KEY, toStringSet(this.guildIdsAllowed));
         editorEdit.apply();
     }
@@ -177,20 +178,20 @@ public final class StoreGuildsNsfw extends StoreV2 {
         ArrayList arrayList = new ArrayList();
         Iterator<T> it = set.iterator();
         while (it.hasNext()) {
-            Long longOrNull = s.toLongOrNull((String) it.next());
+            Long longOrNull = StringNumberConversions.toLongOrNull((String) it.next());
             if (longOrNull != null) {
                 arrayList.add(longOrNull);
             }
         }
-        return u.toSet(arrayList);
+        return _Collections.toSet(arrayList);
     }
 
     private final Set<String> toStringSet(Set<Long> set) {
-        ArrayList arrayList = new ArrayList(d0.t.o.collectionSizeOrDefault(set, 10));
+        ArrayList arrayList = new ArrayList(Iterables2.collectionSizeOrDefault(set, 10));
         Iterator<T> it = set.iterator();
         while (it.hasNext()) {
             arrayList.add(String.valueOf(((Number) it.next()).longValue()));
         }
-        return u.toSet(arrayList);
+        return _Collections.toSet(arrayList);
     }
 }

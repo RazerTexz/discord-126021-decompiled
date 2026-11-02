@@ -1,22 +1,23 @@
 package b.i.a.c.s2;
 
-import b.i.a.c.x1;
+import b.i.a.c.PlaybackParameters;
+import b.i.a.c.f3.ListenerSet;
 
 /* JADX INFO: compiled from: lambda */
 /* JADX INFO: loaded from: classes3.dex */
-public final /* synthetic */ class m implements b.i.a.c.f3.p.a {
-    public final /* synthetic */ h1.a a;
+public final /* synthetic */ class m implements ListenerSet.a {
+    public final /* synthetic */ AnalyticsListener.a a;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    public final /* synthetic */ x1 f1093b;
+    public final /* synthetic */ PlaybackParameters f1093b;
 
-    public /* synthetic */ m(h1.a aVar, x1 x1Var) {
+    public /* synthetic */ m(AnalyticsListener.a aVar, PlaybackParameters playbackParameters) {
         this.a = aVar;
-        this.f1093b = x1Var;
+        this.f1093b = playbackParameters;
     }
 
-    @Override // b.i.a.c.f3.p.a
+    @Override // b.i.a.c.f3.ListenerSet.a
     public final void invoke(Object obj) {
-        ((h1) obj).I();
+        ((AnalyticsListener) obj).I();
     }
 }

@@ -9,22 +9,22 @@ import android.widget.TextView;
 import androidx.annotation.DrawableRes;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.app.NotificationCompat;
-import b.a.i.a0;
-import b.a.k.b;
+import b.a.i.IconRowBinding;
+import b.a.k.FormatUtils;
 import com.discord.R;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: IconRow.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class IconRow extends ConstraintLayout {
 
     /* JADX INFO: renamed from: j, reason: from kotlin metadata */
-    public final a0 binding;
+    public final IconRowBinding binding;
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public IconRow(Context context, AttributeSet attributeSet) {
         super(context, attributeSet, 0);
-        m.checkNotNullParameter(context, "context");
+        Intrinsics3.checkNotNullParameter(context, "context");
         LayoutInflater.from(context).inflate(R.layout.icon_row, this);
         int i = R.id.divider;
         View viewFindViewById = findViewById(R.id.divider);
@@ -35,9 +35,9 @@ public final class IconRow extends ConstraintLayout {
                 i = R.id.text;
                 TextView textView = (TextView) findViewById(R.id.text);
                 if (textView != null) {
-                    a0 a0Var = new a0(this, viewFindViewById, imageView, textView);
-                    m.checkNotNullExpressionValue(a0Var, "IconRowBinding.inflate(L…ater.from(context), this)");
-                    this.binding = a0Var;
+                    IconRowBinding iconRowBinding = new IconRowBinding(this, viewFindViewById, imageView, textView);
+                    Intrinsics3.checkNotNullExpressionValue(iconRowBinding, "IconRowBinding.inflate(L…ater.from(context), this)");
+                    this.binding = iconRowBinding;
                     return;
                 }
             }
@@ -50,14 +50,14 @@ public final class IconRow extends ConstraintLayout {
             this.binding.f73b.setImageResource(imageRes.intValue());
         }
         ImageView imageView = this.binding.f73b;
-        m.checkNotNullExpressionValue(imageView, "binding.image");
+        Intrinsics3.checkNotNullExpressionValue(imageView, "binding.image");
         imageView.setVisibility(imageRes == null || imageRes.intValue() != 0 ? 0 : 8);
     }
 
     public final void setText(String text) {
-        m.checkNotNullParameter(text, NotificationCompat.MessagingStyle.Message.KEY_TEXT);
+        Intrinsics3.checkNotNullParameter(text, NotificationCompat.MessagingStyle.Message.KEY_TEXT);
         TextView textView = this.binding.c;
-        m.checkNotNullExpressionValue(textView, "binding.text");
-        b.a(textView, text);
+        Intrinsics3.checkNotNullExpressionValue(textView, "binding.text");
+        FormatUtils.a(textView, text);
     }
 }

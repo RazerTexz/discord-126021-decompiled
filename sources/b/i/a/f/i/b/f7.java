@@ -1,6 +1,7 @@
 package b.i.a.f.i.b;
 
 import androidx.annotation.WorkerThread;
+import b.c.a.a0.AnimatableValueParser;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -18,7 +19,7 @@ public final class f7 implements Runnable {
 
     public f7(d7 d7Var, String str, URL url, x4 x4Var) {
         this.m = d7Var;
-        b.c.a.a0.d.w(str);
+        AnimatableValueParser.w(str);
         this.j = url;
         this.k = x4Var;
         this.l = str;

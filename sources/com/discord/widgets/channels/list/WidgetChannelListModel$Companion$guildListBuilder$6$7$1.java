@@ -1,12 +1,12 @@
 package com.discord.widgets.channels.list;
 
 import com.discord.models.domain.ModelAuditLogEntry;
-import d0.z.d.o;
+import d0.z.d.Lambda;
 import kotlin.jvm.functions.Function2;
 
 /* JADX INFO: compiled from: WidgetChannelListModel.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class WidgetChannelListModel$Companion$guildListBuilder$6$7$1 extends o implements Function2<Integer, Integer, WidgetChannelListModel.ThreadSpineType> {
+public final class WidgetChannelListModel$Companion$guildListBuilder$6$7$1 extends Lambda implements Function2<Integer, Integer, WidgetChannelListModel.ThreadSpineType> {
     public static final WidgetChannelListModel$Companion$guildListBuilder$6$7$1 INSTANCE = new WidgetChannelListModel$Companion$guildListBuilder$6$7$1();
 
     public WidgetChannelListModel$Companion$guildListBuilder$6$7$1() {

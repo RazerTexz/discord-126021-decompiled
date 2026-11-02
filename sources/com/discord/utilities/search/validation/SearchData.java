@@ -1,6 +1,6 @@
 package com.discord.utilities.search.validation;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.api.channel.Channel;
 import com.discord.api.channel.ChannelUtils;
 import com.discord.models.guild.UserGuildMember;
@@ -8,8 +8,8 @@ import com.discord.models.member.GuildMember;
 import com.discord.models.user.CoreUser;
 import com.discord.models.user.MeUser;
 import com.discord.models.user.User;
-import d0.t.h0;
-import d0.z.d.m;
+import d0.t.Maps6;
+import d0.z.d.Intrinsics3;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -33,26 +33,26 @@ public final /* data */ class SearchData {
 
         public final SearchData buildForChannel(Channel channel, MeUser meUser, Map<Long, GuildMember> guildMembers) {
             List<com.discord.api.user.User> listZ;
-            m.checkNotNullParameter(meUser, "meUser");
-            m.checkNotNullParameter(guildMembers, "guildMembers");
+            Intrinsics3.checkNotNullParameter(meUser, "meUser");
+            Intrinsics3.checkNotNullParameter(guildMembers, "guildMembers");
             HashMap map = new HashMap();
             HashMap map2 = new HashMap();
-            SearchData$Builder$buildForChannel$1 searchData$Builder$buildForChannel$1 = new SearchData$Builder$buildForChannel$1(this, map, guildMembers, map2);
+            SearchData2 searchData2 = new SearchData2(this, map, guildMembers, map2);
             if (channel != null && (listZ = channel.z()) != null) {
                 Iterator<T> it = listZ.iterator();
                 while (it.hasNext()) {
-                    searchData$Builder$buildForChannel$1.invoke2((User) new CoreUser((com.discord.api.user.User) it.next()));
+                    searchData2.invoke2((User) new CoreUser((com.discord.api.user.User) it.next()));
                 }
             }
-            searchData$Builder$buildForChannel$1.invoke2((User) meUser);
+            searchData2.invoke2((User) meUser);
             return new SearchData(map2, null, map, null, null, 26, null);
         }
 
         public final SearchData buildForGuild(Map<Long, GuildMember> guildMembers, Map<Long, ? extends User> allUsers, Map<Long, Channel> guildSearchableChannels, Map<Long, Long> guildChannelPermissions) {
-            m.checkNotNullParameter(guildMembers, "guildMembers");
-            m.checkNotNullParameter(allUsers, "allUsers");
-            m.checkNotNullParameter(guildSearchableChannels, "guildSearchableChannels");
-            m.checkNotNullParameter(guildChannelPermissions, "guildChannelPermissions");
+            Intrinsics3.checkNotNullParameter(guildMembers, "guildMembers");
+            Intrinsics3.checkNotNullParameter(allUsers, "allUsers");
+            Intrinsics3.checkNotNullParameter(guildSearchableChannels, "guildSearchableChannels");
+            Intrinsics3.checkNotNullParameter(guildChannelPermissions, "guildChannelPermissions");
             HashMap map = new HashMap();
             for (Channel channel : guildSearchableChannels.values()) {
                 map.put(ChannelUtils.c(channel), Long.valueOf(channel.getId()));
@@ -82,11 +82,11 @@ public final /* data */ class SearchData {
     }
 
     public SearchData(Map<String, Long> map, Map<String, Long> map2, Map<Long, UserGuildMember> map3, Map<Long, Channel> map4, Map<Long, Long> map5) {
-        m.checkNotNullParameter(map, "usernameAndDiscriminatorIndex");
-        m.checkNotNullParameter(map2, "channelNameIndex");
-        m.checkNotNullParameter(map3, "users");
-        m.checkNotNullParameter(map4, "channels");
-        m.checkNotNullParameter(map5, "channelPermissions");
+        Intrinsics3.checkNotNullParameter(map, "usernameAndDiscriminatorIndex");
+        Intrinsics3.checkNotNullParameter(map2, "channelNameIndex");
+        Intrinsics3.checkNotNullParameter(map3, "users");
+        Intrinsics3.checkNotNullParameter(map4, "channels");
+        Intrinsics3.checkNotNullParameter(map5, "channelPermissions");
         this.usernameAndDiscriminatorIndex = map;
         this.channelNameIndex = map2;
         this.users = map3;
@@ -138,11 +138,11 @@ public final /* data */ class SearchData {
     }
 
     public final SearchData copy(Map<String, Long> usernameAndDiscriminatorIndex, Map<String, Long> channelNameIndex, Map<Long, UserGuildMember> users, Map<Long, Channel> channels, Map<Long, Long> channelPermissions) {
-        m.checkNotNullParameter(usernameAndDiscriminatorIndex, "usernameAndDiscriminatorIndex");
-        m.checkNotNullParameter(channelNameIndex, "channelNameIndex");
-        m.checkNotNullParameter(users, "users");
-        m.checkNotNullParameter(channels, "channels");
-        m.checkNotNullParameter(channelPermissions, "channelPermissions");
+        Intrinsics3.checkNotNullParameter(usernameAndDiscriminatorIndex, "usernameAndDiscriminatorIndex");
+        Intrinsics3.checkNotNullParameter(channelNameIndex, "channelNameIndex");
+        Intrinsics3.checkNotNullParameter(users, "users");
+        Intrinsics3.checkNotNullParameter(channels, "channels");
+        Intrinsics3.checkNotNullParameter(channelPermissions, "channelPermissions");
         return new SearchData(usernameAndDiscriminatorIndex, channelNameIndex, users, channels, channelPermissions);
     }
 
@@ -154,7 +154,7 @@ public final /* data */ class SearchData {
             return false;
         }
         SearchData searchData = (SearchData) other;
-        return m.areEqual(this.usernameAndDiscriminatorIndex, searchData.usernameAndDiscriminatorIndex) && m.areEqual(this.channelNameIndex, searchData.channelNameIndex) && m.areEqual(this.users, searchData.users) && m.areEqual(this.channels, searchData.channels) && m.areEqual(this.channelPermissions, searchData.channelPermissions);
+        return Intrinsics3.areEqual(this.usernameAndDiscriminatorIndex, searchData.usernameAndDiscriminatorIndex) && Intrinsics3.areEqual(this.channelNameIndex, searchData.channelNameIndex) && Intrinsics3.areEqual(this.users, searchData.users) && Intrinsics3.areEqual(this.channels, searchData.channels) && Intrinsics3.areEqual(this.channelPermissions, searchData.channelPermissions);
     }
 
     public final Map<String, Long> getChannelNameIndex() {
@@ -170,7 +170,7 @@ public final /* data */ class SearchData {
     }
 
     public final Long getUserId(String username, int discriminator) {
-        m.checkNotNullParameter(username, "username");
+        Intrinsics3.checkNotNullParameter(username, "username");
         return this.usernameAndDiscriminatorIndex.get(username + discriminator);
     }
 
@@ -192,7 +192,7 @@ public final /* data */ class SearchData {
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("SearchData(usernameAndDiscriminatorIndex=");
+        StringBuilder sbU = outline.U("SearchData(usernameAndDiscriminatorIndex=");
         sbU.append(this.usernameAndDiscriminatorIndex);
         sbU.append(", channelNameIndex=");
         sbU.append(this.channelNameIndex);
@@ -201,10 +201,10 @@ public final /* data */ class SearchData {
         sbU.append(", channels=");
         sbU.append(this.channels);
         sbU.append(", channelPermissions=");
-        return a.M(sbU, this.channelPermissions, ")");
+        return outline.M(sbU, this.channelPermissions, ")");
     }
 
     public /* synthetic */ SearchData(Map map, Map map2, Map map3, Map map4, Map map5, int i, DefaultConstructorMarker defaultConstructorMarker) {
-        this((i & 1) != 0 ? h0.emptyMap() : map, (i & 2) != 0 ? h0.emptyMap() : map2, (i & 4) != 0 ? h0.emptyMap() : map3, (i & 8) != 0 ? h0.emptyMap() : map4, (i & 16) != 0 ? h0.emptyMap() : map5);
+        this((i & 1) != 0 ? Maps6.emptyMap() : map, (i & 2) != 0 ? Maps6.emptyMap() : map2, (i & 4) != 0 ? Maps6.emptyMap() : map3, (i & 8) != 0 ? Maps6.emptyMap() : map4, (i & 16) != 0 ? Maps6.emptyMap() : map5);
     }
 }

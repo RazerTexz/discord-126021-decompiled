@@ -17,7 +17,7 @@ import androidx.constraintlayout.motion.widget.Debug;
 import androidx.constraintlayout.motion.widget.MotionScene;
 import androidx.constraintlayout.solver.widgets.ConstraintWidget;
 import androidx.constraintlayout.solver.widgets.HelperWidget;
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.models.domain.ModelAuditLogEntry;
 import java.io.IOException;
 import java.lang.reflect.Field;
@@ -330,7 +330,7 @@ public class ConstraintSet {
             if (constraintAttribute2.getType() == attributeType) {
                 return constraintAttribute2;
             }
-            StringBuilder sbU = a.U("ConstraintAttribute is already a ");
+            StringBuilder sbU = outline.U("ConstraintAttribute is already a ");
             sbU.append(constraintAttribute2.getType().name());
             throw new IllegalArgumentException(sbU.toString());
         }
@@ -489,7 +489,7 @@ public class ConstraintSet {
             if (this.mSavedAttributes.containsKey(strArr[i])) {
                 ConstraintAttribute constraintAttribute = this.mSavedAttributes.get(strArr[i]);
                 if (constraintAttribute.getType() != attributeType) {
-                    StringBuilder sbU = a.U("ConstraintAttribute is already a ");
+                    StringBuilder sbU = outline.U("ConstraintAttribute is already a ");
                     sbU.append(constraintAttribute.getType().name());
                     throw new IllegalArgumentException(sbU.toString());
                 }
@@ -554,7 +554,7 @@ public class ConstraintSet {
             View childAt = constraintLayout.getChildAt(i);
             int id2 = childAt.getId();
             if (!this.mConstraints.containsKey(Integer.valueOf(id2))) {
-                StringBuilder sbU = a.U("id unknown ");
+                StringBuilder sbU = outline.U("id unknown ");
                 sbU.append(Debug.getName(childAt));
                 Log.v(TAG, sbU.toString());
             } else {
@@ -591,7 +591,7 @@ public class ConstraintSet {
             View childAt = constraintLayout.getChildAt(i);
             int id2 = childAt.getId();
             if (!this.mConstraints.containsKey(Integer.valueOf(id2))) {
-                StringBuilder sbU = a.U("id unknown ");
+                StringBuilder sbU = outline.U("id unknown ");
                 sbU.append(Debug.getName(childAt));
                 Log.w(TAG, sbU.toString());
             } else {
@@ -769,7 +769,7 @@ public class ConstraintSet {
                     layout.leftToRight = -1;
                 } else {
                     if (i4 != 2) {
-                        throw new IllegalArgumentException(a.J(a.U("Left to "), sideToString(i4), " undefined"));
+                        throw new IllegalArgumentException(outline.J(outline.U("Left to "), sideToString(i4), " undefined"));
                     }
                     Layout layout2 = constraint.layout;
                     layout2.leftToRight = i3;
@@ -784,7 +784,7 @@ public class ConstraintSet {
                     layout3.rightToRight = -1;
                 } else {
                     if (i4 != 2) {
-                        throw new IllegalArgumentException(a.J(a.U("right to "), sideToString(i4), " undefined"));
+                        throw new IllegalArgumentException(outline.J(outline.U("right to "), sideToString(i4), " undefined"));
                     }
                     Layout layout4 = constraint.layout;
                     layout4.rightToRight = i3;
@@ -800,7 +800,7 @@ public class ConstraintSet {
                     layout5.baselineToBaseline = -1;
                 } else {
                     if (i4 != 4) {
-                        throw new IllegalArgumentException(a.J(a.U("right to "), sideToString(i4), " undefined"));
+                        throw new IllegalArgumentException(outline.J(outline.U("right to "), sideToString(i4), " undefined"));
                     }
                     Layout layout6 = constraint.layout;
                     layout6.topToBottom = i3;
@@ -817,7 +817,7 @@ public class ConstraintSet {
                     layout7.baselineToBaseline = -1;
                 } else {
                     if (i4 != 3) {
-                        throw new IllegalArgumentException(a.J(a.U("right to "), sideToString(i4), " undefined"));
+                        throw new IllegalArgumentException(outline.J(outline.U("right to "), sideToString(i4), " undefined"));
                     }
                     Layout layout8 = constraint.layout;
                     layout8.bottomToTop = i3;
@@ -828,7 +828,7 @@ public class ConstraintSet {
                 return;
             case 5:
                 if (i4 != 5) {
-                    throw new IllegalArgumentException(a.J(a.U("right to "), sideToString(i4), " undefined"));
+                    throw new IllegalArgumentException(outline.J(outline.U("right to "), sideToString(i4), " undefined"));
                 }
                 Layout layout9 = constraint.layout;
                 layout9.baselineToBaseline = i3;
@@ -844,7 +844,7 @@ public class ConstraintSet {
                     layout10.startToEnd = -1;
                 } else {
                     if (i4 != 7) {
-                        throw new IllegalArgumentException(a.J(a.U("right to "), sideToString(i4), " undefined"));
+                        throw new IllegalArgumentException(outline.J(outline.U("right to "), sideToString(i4), " undefined"));
                     }
                     Layout layout11 = constraint.layout;
                     layout11.startToEnd = i3;
@@ -859,7 +859,7 @@ public class ConstraintSet {
                     layout12.endToStart = -1;
                 } else {
                     if (i4 != 6) {
-                        throw new IllegalArgumentException(a.J(a.U("right to "), sideToString(i4), " undefined"));
+                        throw new IllegalArgumentException(outline.J(outline.U("right to "), sideToString(i4), " undefined"));
                     }
                     Layout layout13 = constraint.layout;
                     layout13.endToStart = i3;
@@ -871,7 +871,7 @@ public class ConstraintSet {
                 StringBuilder sb = new StringBuilder();
                 sb.append(sideToString(i2));
                 sb.append(" to ");
-                throw new IllegalArgumentException(a.J(sb, sideToString(i4), " unknown"));
+                throw new IllegalArgumentException(outline.J(sb, sideToString(i4), " unknown"));
         }
     }
 
@@ -1130,7 +1130,7 @@ public class ConstraintSet {
         for (int i = 0; i < strArrSplit.length; i++) {
             String[] strArrSplit2 = strArrSplit[i].split("=");
             if (strArrSplit2.length != 2) {
-                a.r0(a.U(" Unable to parse "), strArrSplit[i], TAG);
+                outline.r0(outline.U(" Unable to parse "), strArrSplit[i], TAG);
             } else {
                 Constraint.access$600(constraint, strArrSplit2[0], Color.parseColor(strArrSplit2[1]));
             }
@@ -1142,7 +1142,7 @@ public class ConstraintSet {
         for (int i = 0; i < strArrSplit.length; i++) {
             String[] strArrSplit2 = strArrSplit[i].split("=");
             if (strArrSplit2.length != 2) {
-                a.r0(a.U(" Unable to parse "), strArrSplit[i], TAG);
+                outline.r0(outline.U(" Unable to parse "), strArrSplit[i], TAG);
             } else {
                 Constraint.access$700(constraint, strArrSplit2[0], Float.parseFloat(strArrSplit2[1]));
             }
@@ -1154,7 +1154,7 @@ public class ConstraintSet {
         for (int i = 0; i < strArrSplit.length; i++) {
             String[] strArrSplit2 = strArrSplit[i].split("=");
             if (strArrSplit2.length != 2) {
-                a.r0(a.U(" Unable to parse "), strArrSplit[i], TAG);
+                outline.r0(outline.U(" Unable to parse "), strArrSplit[i], TAG);
             } else {
                 Constraint.access$700(constraint, strArrSplit2[0], Integer.decode(strArrSplit2[1]).intValue());
             }
@@ -1165,7 +1165,7 @@ public class ConstraintSet {
         String[] strArrSplitString = splitString(str);
         for (int i = 0; i < strArrSplitString.length; i++) {
             String[] strArrSplit = strArrSplitString[i].split("=");
-            a.r0(a.U(" Unable to parse "), strArrSplitString[i], TAG);
+            outline.r0(outline.U(" Unable to parse "), strArrSplitString[i], TAG);
             Constraint.access$800(constraint, strArrSplit[0], strArrSplit[1]);
         }
     }
@@ -1504,14 +1504,14 @@ public class ConstraintSet {
                     layout53.constrainedHeight = typedArray.getBoolean(index, layout53.constrainedHeight);
                     break;
                 case 82:
-                    StringBuilder sbU = a.U("unused attribute 0x");
+                    StringBuilder sbU = outline.U("unused attribute 0x");
                     sbU.append(Integer.toHexString(index));
                     sbU.append("   ");
                     sbU.append(mapToConstant.get(index));
                     Log.w(TAG, sbU.toString());
                     break;
                 default:
-                    StringBuilder sbU2 = a.U("Unknown attribute 0x");
+                    StringBuilder sbU2 = outline.U("Unknown attribute 0x");
                     sbU2.append(Integer.toHexString(index));
                     sbU2.append("   ");
                     sbU2.append(mapToConstant.get(index));
@@ -2352,7 +2352,7 @@ public class ConstraintSet {
                                                     this.mBarrierAllowsGoneWidgets = typedArrayObtainStyledAttributes.getBoolean(index, this.mBarrierAllowsGoneWidgets);
                                                     break;
                                                 case 76:
-                                                    StringBuilder sbU = a.U("unused attribute 0x");
+                                                    StringBuilder sbU = outline.U("unused attribute 0x");
                                                     sbU.append(Integer.toHexString(index));
                                                     sbU.append("   ");
                                                     sbU.append(mapToConstant.get(index));
@@ -2362,7 +2362,7 @@ public class ConstraintSet {
                                                     this.mConstraintTag = typedArrayObtainStyledAttributes.getString(index);
                                                     break;
                                                 default:
-                                                    StringBuilder sbU2 = a.U("Unknown attribute 0x");
+                                                    StringBuilder sbU2 = outline.U("Unknown attribute 0x");
                                                     sbU2.append(Integer.toHexString(index));
                                                     sbU2.append("   ");
                                                     sbU2.append(mapToConstant.get(index));
@@ -2949,7 +2949,7 @@ public class ConstraintSet {
                         layout2.leftToLeft = -1;
                         return;
                     }
-                    throw new IllegalArgumentException(a.J(a.U("left to "), sideToString(i4), " undefined"));
+                    throw new IllegalArgumentException(outline.J(outline.U("left to "), sideToString(i4), " undefined"));
                 }
             case 2:
                 if (i4 == 1) {
@@ -2964,7 +2964,7 @@ public class ConstraintSet {
                         layout4.rightToLeft = -1;
                         return;
                     }
-                    throw new IllegalArgumentException(a.J(a.U("right to "), sideToString(i4), " undefined"));
+                    throw new IllegalArgumentException(outline.J(outline.U("right to "), sideToString(i4), " undefined"));
                 }
             case 3:
                 if (i4 == 3) {
@@ -2981,7 +2981,7 @@ public class ConstraintSet {
                     layout6.baselineToBaseline = -1;
                     return;
                 }
-                throw new IllegalArgumentException(a.J(a.U("right to "), sideToString(i4), " undefined"));
+                throw new IllegalArgumentException(outline.J(outline.U("right to "), sideToString(i4), " undefined"));
             case 4:
                 if (i4 == 4) {
                     Layout layout7 = constraint.layout;
@@ -2997,7 +2997,7 @@ public class ConstraintSet {
                     layout8.baselineToBaseline = -1;
                     return;
                 }
-                throw new IllegalArgumentException(a.J(a.U("right to "), sideToString(i4), " undefined"));
+                throw new IllegalArgumentException(outline.J(outline.U("right to "), sideToString(i4), " undefined"));
             case 5:
                 if (i4 == 5) {
                     Layout layout9 = constraint.layout;
@@ -3008,7 +3008,7 @@ public class ConstraintSet {
                     layout9.topToBottom = -1;
                     return;
                 }
-                throw new IllegalArgumentException(a.J(a.U("right to "), sideToString(i4), " undefined"));
+                throw new IllegalArgumentException(outline.J(outline.U("right to "), sideToString(i4), " undefined"));
             case 6:
                 if (i4 == 6) {
                     Layout layout10 = constraint.layout;
@@ -3022,7 +3022,7 @@ public class ConstraintSet {
                         layout11.startToStart = -1;
                         return;
                     }
-                    throw new IllegalArgumentException(a.J(a.U("right to "), sideToString(i4), " undefined"));
+                    throw new IllegalArgumentException(outline.J(outline.U("right to "), sideToString(i4), " undefined"));
                 }
             case 7:
                 if (i4 == 7) {
@@ -3037,13 +3037,13 @@ public class ConstraintSet {
                         layout13.endToEnd = -1;
                         return;
                     }
-                    throw new IllegalArgumentException(a.J(a.U("right to "), sideToString(i4), " undefined"));
+                    throw new IllegalArgumentException(outline.J(outline.U("right to "), sideToString(i4), " undefined"));
                 }
             default:
                 StringBuilder sb = new StringBuilder();
                 sb.append(sideToString(i2));
                 sb.append(" to ");
-                throw new IllegalArgumentException(a.J(sb, sideToString(i4), " unknown"));
+                throw new IllegalArgumentException(outline.J(sb, sideToString(i4), " unknown"));
         }
     }
 }

@@ -1,14 +1,14 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackNotificationPermissionStatus.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackNotificationPermissionStatus implements AnalyticsSchema, TrackBaseReceiver {
+public final /* data */ class TrackNotificationPermissionStatus implements AnalyticsSchema, TrackBase2 {
     private final Boolean backgroundAppEnabled = null;
     private final Boolean foregroundAppEnabled = null;
     private final Boolean osEnabled = null;
@@ -23,7 +23,7 @@ public final /* data */ class TrackNotificationPermissionStatus implements Analy
             return false;
         }
         TrackNotificationPermissionStatus trackNotificationPermissionStatus = (TrackNotificationPermissionStatus) other;
-        return m.areEqual(this.osEnabled, trackNotificationPermissionStatus.osEnabled) && m.areEqual(this.foregroundAppEnabled, trackNotificationPermissionStatus.foregroundAppEnabled) && m.areEqual(this.backgroundAppEnabled, trackNotificationPermissionStatus.backgroundAppEnabled);
+        return Intrinsics3.areEqual(this.osEnabled, trackNotificationPermissionStatus.osEnabled) && Intrinsics3.areEqual(this.foregroundAppEnabled, trackNotificationPermissionStatus.foregroundAppEnabled) && Intrinsics3.areEqual(this.backgroundAppEnabled, trackNotificationPermissionStatus.backgroundAppEnabled);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -42,11 +42,11 @@ public final /* data */ class TrackNotificationPermissionStatus implements Analy
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackNotificationPermissionStatus(osEnabled=");
+        StringBuilder sbU = outline.U("TrackNotificationPermissionStatus(osEnabled=");
         sbU.append(this.osEnabled);
         sbU.append(", foregroundAppEnabled=");
         sbU.append(this.foregroundAppEnabled);
         sbU.append(", backgroundAppEnabled=");
-        return a.D(sbU, this.backgroundAppEnabled, ")");
+        return outline.D(sbU, this.backgroundAppEnabled, ")");
     }
 }

@@ -7,8 +7,8 @@ import android.util.AttributeSet;
 import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
 import com.discord.utils.R;
-import d0.a0.a;
-import d0.z.d.m;
+import d0.a0.MathJVM;
+import d0.z.d.Intrinsics3;
 import kotlin.jvm.internal.DefaultConstructorMarker;
 
 /* JADX INFO: compiled from: MaxHeightRecyclerView.kt */
@@ -33,7 +33,7 @@ public final class MaxHeightRecyclerView extends RecyclerView {
             return 0;
         }
         TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes(attributeSet, R.b.MaxHeightRecyclerView, i, 0);
-        m.checkNotNullExpressionValue(typedArrayObtainStyledAttributes, "obtainStyledAttributes(a…lerView, defStyleAttr, 0)");
+        Intrinsics3.checkNotNullExpressionValue(typedArrayObtainStyledAttributes, "obtainStyledAttributes(a…lerView, defStyleAttr, 0)");
         int dimensionPixelSize = typedArrayObtainStyledAttributes.getDimensionPixelSize(R.b.MaxHeightRecyclerView_max_height, 0);
         float f = typedArrayObtainStyledAttributes.getFloat(R.b.MaxHeightRecyclerView_max_height_screen_ratio, 0.0f);
         typedArrayObtainStyledAttributes.recycle();
@@ -41,8 +41,8 @@ public final class MaxHeightRecyclerView extends RecyclerView {
             return dimensionPixelSize;
         }
         Resources resources = context.getResources();
-        m.checkNotNullExpressionValue(resources, "resources");
-        return a.roundToInt(resources.getDisplayMetrics().heightPixels * f);
+        Intrinsics3.checkNotNullExpressionValue(resources, "resources");
+        return MathJVM.roundToInt(resources.getDisplayMetrics().heightPixels * f);
     }
 
     public final int getMaxHeight() {
@@ -65,7 +65,7 @@ public final class MaxHeightRecyclerView extends RecyclerView {
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public MaxHeightRecyclerView(Context context, AttributeSet attributeSet, int i) {
         super(context, attributeSet, i);
-        m.checkNotNullParameter(context, "context");
+        Intrinsics3.checkNotNullParameter(context, "context");
         this.maxHeight = getHeightMaximum(context, attributeSet, 0);
     }
 }

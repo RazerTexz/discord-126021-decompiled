@@ -1,7 +1,7 @@
 package s.a;
 
-import b.d.b.a.a;
-import com.discord.widgets.chat.input.MentionUtilsKt;
+import b.d.b.a.outline;
+import com.discord.widgets.chat.input.MentionUtils;
 import java.util.concurrent.atomic.AtomicIntegerFieldUpdater;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function1;
@@ -27,18 +27,18 @@ public final class c1 extends e1<Job> {
         return Unit.a;
     }
 
-    @Override // s.a.y
+    @Override // s.a.CompletionHandler2
     public void q(Throwable th) {
         if (n.compareAndSet(this, 0, 1)) {
             this.o.invoke(th);
         }
     }
 
-    @Override // s.a.a.k
+    @Override // s.a.a.LockFreeLinkedList3
     public String toString() {
-        StringBuilder sbU = a.U("InvokeOnCancelling[");
+        StringBuilder sbU = outline.U("InvokeOnCancelling[");
         sbU.append(c1.class.getSimpleName());
-        sbU.append(MentionUtilsKt.MENTIONS_CHAR);
+        sbU.append(MentionUtils.MENTIONS_CHAR);
         sbU.append(b.i.a.f.e.o.f.l0(this));
         sbU.append(']');
         return sbU.toString();

@@ -1,5 +1,6 @@
 package b.i.a.f.h.l;
 
+import b.d.b.a.outline;
 import com.discord.api.permission.Permission;
 import com.google.android.gms.internal.measurement.zzhi;
 import com.google.android.gms.internal.measurement.zzij;
@@ -4226,7 +4227,7 @@ public final class e6<T> implements q6<T> {
             }
             String name = cls.getName();
             String string = Arrays.toString(declaredFields);
-            throw new RuntimeException(b.d.b.a.a.J(b.d.b.a.a.S(b.d.b.a.a.b(string, name.length() + b.d.b.a.a.b(str, 40)), "Field ", str, " for ", name), " not found. Known fields are ", string));
+            throw new RuntimeException(outline.J(outline.S(outline.b(string, name.length() + outline.b(str, 40)), "Field ", str, " for ", name), " not found. Known fields are ", string));
         }
     }
 

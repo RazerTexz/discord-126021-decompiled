@@ -5,7 +5,7 @@ import android.view.View;
 import androidx.exifinterface.media.ExifInterface;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.R;
 import com.discord.app.AppFragment;
 import com.discord.databinding.WidgetSearchSuggestionsBinding;
@@ -16,7 +16,7 @@ import com.discord.utilities.mg_recycler.MGRecyclerDataPayload;
 import com.discord.utilities.rx.ObservableExtensionsKt;
 import com.discord.utilities.search.query.FilterType;
 import com.discord.utilities.search.query.node.QueryNode;
-import com.discord.utilities.search.query.node.answer.HasAnswerOption;
+import com.discord.utilities.search.query.node.answer.HasNode2;
 import com.discord.utilities.search.strings.ContextSearchStringProvider;
 import com.discord.utilities.search.strings.SearchStringProvider;
 import com.discord.utilities.search.suggestion.entries.ChannelSuggestion;
@@ -26,9 +26,9 @@ import com.discord.utilities.search.suggestion.entries.RecentQuerySuggestion;
 import com.discord.utilities.search.suggestion.entries.SearchSuggestion;
 import com.discord.utilities.search.suggestion.entries.UserSuggestion;
 import com.discord.utilities.viewbinding.FragmentViewBindingDelegate;
-import com.discord.utilities.viewbinding.FragmentViewBindingDelegateKt;
-import d0.z.d.m;
-import d0.z.d.o;
+import com.discord.utilities.viewbinding.FragmentViewBindingDelegate3;
+import d0.z.d.Intrinsics3;
+import d0.z.d.Lambda;
 import java.util.ArrayList;
 import java.util.List;
 import kotlin.Unit;
@@ -41,7 +41,7 @@ import rx.Observable;
 /* JADX INFO: compiled from: WidgetSearchSuggestions.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetSearchSuggestions extends AppFragment {
-    public static final /* synthetic */ KProperty[] $$delegatedProperties = {a.d0(WidgetSearchSuggestions.class, "binding", "getBinding()Lcom/discord/databinding/WidgetSearchSuggestionsBinding;", 0)};
+    public static final /* synthetic */ KProperty[] $$delegatedProperties = {outline.d0(WidgetSearchSuggestions.class, "binding", "getBinding()Lcom/discord/databinding/WidgetSearchSuggestionsBinding;", 0)};
     private WidgetSearchSuggestionsAdapter adapter;
 
     /* JADX INFO: renamed from: binding$delegate, reason: from kotlin metadata */
@@ -50,7 +50,7 @@ public final class WidgetSearchSuggestions extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.search.suggestions.WidgetSearchSuggestions$configureUI$1, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetSearchSuggestions.kt */
-    public final class AnonymousClass1 extends o implements Function1<FilterType, Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function1<FilterType, Unit> {
         public final /* synthetic */ Model $model;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -67,14 +67,14 @@ public final class WidgetSearchSuggestions extends AppFragment {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(FilterType filterType) {
-            m.checkNotNullParameter(filterType, "filterType");
+            Intrinsics3.checkNotNullParameter(filterType, "filterType");
             StoreStream.INSTANCE.getSearch().getStoreSearchInput().onFilterClicked(filterType, WidgetSearchSuggestions.access$getSearchStringProvider$p(WidgetSearchSuggestions.this), this.$model.getQuery());
         }
     }
 
     /* JADX INFO: renamed from: com.discord.widgets.search.suggestions.WidgetSearchSuggestions$onViewBoundOrOnResume$1, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetSearchSuggestions.kt */
-    public final class AnonymousClass1 extends o implements Function1<Model, Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function1<Model, Unit> {
         public AnonymousClass1() {
             super(1);
         }
@@ -87,14 +87,14 @@ public final class WidgetSearchSuggestions extends AppFragment {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(Model model) {
-            m.checkNotNullParameter(model, "model");
+            Intrinsics3.checkNotNullParameter(model, "model");
             WidgetSearchSuggestions.access$configureUI(WidgetSearchSuggestions.this, model);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.widgets.search.suggestions.WidgetSearchSuggestions$configureUI$2, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetSearchSuggestions.kt */
-    public final class AnonymousClass2 extends o implements Function1<UserSuggestion, Unit> {
+    public final class AnonymousClass2 extends Lambda implements Function1<UserSuggestion, Unit> {
         public final /* synthetic */ Model $model;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -111,7 +111,7 @@ public final class WidgetSearchSuggestions extends AppFragment {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(UserSuggestion userSuggestion) {
-            m.checkNotNullParameter(userSuggestion, "userSuggestion");
+            Intrinsics3.checkNotNullParameter(userSuggestion, "userSuggestion");
             int iOrdinal = userSuggestion.getTargetType().ordinal();
             if (iOrdinal != 0) {
                 if (iOrdinal != 1) {
@@ -128,7 +128,7 @@ public final class WidgetSearchSuggestions extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.search.suggestions.WidgetSearchSuggestions$configureUI$3, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetSearchSuggestions.kt */
-    public final class AnonymousClass3 extends o implements Function1<ChannelSuggestion, Unit> {
+    public final class AnonymousClass3 extends Lambda implements Function1<ChannelSuggestion, Unit> {
         public final /* synthetic */ Model $model;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -145,14 +145,14 @@ public final class WidgetSearchSuggestions extends AppFragment {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(ChannelSuggestion channelSuggestion) {
-            m.checkNotNullParameter(channelSuggestion, "channelSuggestion");
+            Intrinsics3.checkNotNullParameter(channelSuggestion, "channelSuggestion");
             StoreStream.INSTANCE.getSearch().getStoreSearchInput().onInChannelClicked(channelSuggestion, WidgetSearchSuggestions.access$getSearchStringProvider$p(WidgetSearchSuggestions.this).getInFilterString(), this.$model.getQuery());
         }
     }
 
     /* JADX INFO: renamed from: com.discord.widgets.search.suggestions.WidgetSearchSuggestions$configureUI$4, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetSearchSuggestions.kt */
-    public final class AnonymousClass4 extends o implements Function1<HasAnswerOption, Unit> {
+    public final class AnonymousClass4 extends Lambda implements Function1<HasNode2, Unit> {
         public final /* synthetic */ Model $model;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -162,21 +162,21 @@ public final class WidgetSearchSuggestions extends AppFragment {
         }
 
         @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(HasAnswerOption hasAnswerOption) {
-            invoke2(hasAnswerOption);
+        public /* bridge */ /* synthetic */ Unit invoke(HasNode2 hasNode2) {
+            invoke2(hasNode2);
             return Unit.a;
         }
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(HasAnswerOption hasAnswerOption) {
-            m.checkNotNullParameter(hasAnswerOption, "hasAnswerOption");
-            StoreStream.INSTANCE.getSearch().getStoreSearchInput().onHasClicked(hasAnswerOption, WidgetSearchSuggestions.access$getSearchStringProvider$p(WidgetSearchSuggestions.this).getHasFilterString(), hasAnswerOption.getLocalizedInputText(WidgetSearchSuggestions.access$getSearchStringProvider$p(WidgetSearchSuggestions.this)), this.$model.getQuery());
+        public final void invoke2(HasNode2 hasNode2) {
+            Intrinsics3.checkNotNullParameter(hasNode2, "hasAnswerOption");
+            StoreStream.INSTANCE.getSearch().getStoreSearchInput().onHasClicked(hasNode2, WidgetSearchSuggestions.access$getSearchStringProvider$p(WidgetSearchSuggestions.this).getHasFilterString(), hasNode2.getLocalizedInputText(WidgetSearchSuggestions.access$getSearchStringProvider$p(WidgetSearchSuggestions.this)), this.$model.getQuery());
         }
     }
 
     /* JADX INFO: renamed from: com.discord.widgets.search.suggestions.WidgetSearchSuggestions$configureUI$5, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetSearchSuggestions.kt */
-    public final class AnonymousClass5 extends o implements Function1<List<? extends QueryNode>, Unit> {
+    public final class AnonymousClass5 extends Lambda implements Function1<List<? extends QueryNode>, Unit> {
         public static final AnonymousClass5 INSTANCE = new AnonymousClass5();
 
         public AnonymousClass5() {
@@ -191,14 +191,14 @@ public final class WidgetSearchSuggestions extends AppFragment {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(List<? extends QueryNode> list) {
-            m.checkNotNullParameter(list, "queryNodes");
+            Intrinsics3.checkNotNullParameter(list, "queryNodes");
             StoreStream.INSTANCE.getSearch().getStoreSearchInput().onQueryClicked(list);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.widgets.search.suggestions.WidgetSearchSuggestions$configureUI$6, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetSearchSuggestions.kt */
-    public final class AnonymousClass6 extends o implements Function0<Unit> {
+    public final class AnonymousClass6 extends Lambda implements Function0<Unit> {
         public static final AnonymousClass6 INSTANCE = new AnonymousClass6();
 
         public AnonymousClass6() {
@@ -232,12 +232,12 @@ public final class WidgetSearchSuggestions extends AppFragment {
             }
 
             public final Observable<Model> get(SearchStringProvider searchStringProvider) {
-                m.checkNotNullParameter(searchStringProvider, "searchStringProvider");
+                Intrinsics3.checkNotNullParameter(searchStringProvider, "searchStringProvider");
                 StoreStream.Companion companion = StoreStream.INSTANCE;
-                Observable observableI = Observable.i(companion.getSearch().getStoreSearchData().get(), companion.getSearch().getStoreSearchInput().getCurrentParsedInput(), companion.getSearch().getHistory(), new WidgetSearchSuggestions$Model$Companion$get$1(searchStringProvider));
-                m.checkNotNullExpressionValue(observableI, "Observable.combineLatest…gestionEntries)\n        }");
+                Observable observableI = Observable.i(companion.getSearch().getStoreSearchData().get(), companion.getSearch().getStoreSearchInput().getCurrentParsedInput(), companion.getSearch().getHistory(), new WidgetSearchSuggestions2(searchStringProvider));
+                Intrinsics3.checkNotNullExpressionValue(observableI, "Observable.combineLatest…gestionEntries)\n        }");
                 Observable<Model> observableR = ObservableExtensionsKt.computationLatest(observableI).r();
-                m.checkNotNullExpressionValue(observableR, "Observable.combineLatest…().distinctUntilChanged()");
+                Intrinsics3.checkNotNullExpressionValue(observableR, "Observable.combineLatest…().distinctUntilChanged()");
                 return observableR;
             }
 
@@ -264,8 +264,8 @@ public final class WidgetSearchSuggestions extends AppFragment {
 
         /* JADX WARN: Multi-variable type inference failed */
         public Model(List<QueryNode> list, List<? extends SearchSuggestion> list2) {
-            m.checkNotNullParameter(list, "query");
-            m.checkNotNullParameter(list2, "suggestionEntries");
+            Intrinsics3.checkNotNullParameter(list, "query");
+            Intrinsics3.checkNotNullParameter(list2, "suggestionEntries");
             this.query = list;
             this.suggestionEntries = list2;
             this.suggestionItems = new ArrayList();
@@ -311,8 +311,8 @@ public final class WidgetSearchSuggestions extends AppFragment {
         }
 
         public final Model copy(List<QueryNode> query, List<? extends SearchSuggestion> suggestionEntries) {
-            m.checkNotNullParameter(query, "query");
-            m.checkNotNullParameter(suggestionEntries, "suggestionEntries");
+            Intrinsics3.checkNotNullParameter(query, "query");
+            Intrinsics3.checkNotNullParameter(suggestionEntries, "suggestionEntries");
             return new Model(query, suggestionEntries);
         }
 
@@ -324,7 +324,7 @@ public final class WidgetSearchSuggestions extends AppFragment {
                 return false;
             }
             Model model = (Model) other;
-            return m.areEqual(this.query, model.query) && m.areEqual(this.suggestionEntries, model.suggestionEntries);
+            return Intrinsics3.areEqual(this.query, model.query) && Intrinsics3.areEqual(this.suggestionEntries, model.suggestionEntries);
         }
 
         public final List<QueryNode> getQuery() {
@@ -347,10 +347,10 @@ public final class WidgetSearchSuggestions extends AppFragment {
         }
 
         public String toString() {
-            StringBuilder sbU = a.U("Model(query=");
+            StringBuilder sbU = outline.U("Model(query=");
             sbU.append(this.query);
             sbU.append(", suggestionEntries=");
-            return a.L(sbU, this.suggestionEntries, ")");
+            return outline.L(sbU, this.suggestionEntries, ")");
         }
     }
 
@@ -368,7 +368,7 @@ public final class WidgetSearchSuggestions extends AppFragment {
 
     public WidgetSearchSuggestions() {
         super(R.layout.widget_search_suggestions);
-        this.binding = FragmentViewBindingDelegateKt.viewBinding$default(this, WidgetSearchSuggestions$binding$2.INSTANCE, null, 2, null);
+        this.binding = FragmentViewBindingDelegate3.viewBinding$default(this, WidgetSearchSuggestions3.INSTANCE, null, 2, null);
     }
 
     public static final /* synthetic */ void access$configureUI(WidgetSearchSuggestions widgetSearchSuggestions, Model model) {
@@ -378,7 +378,7 @@ public final class WidgetSearchSuggestions extends AppFragment {
     public static final /* synthetic */ SearchStringProvider access$getSearchStringProvider$p(WidgetSearchSuggestions widgetSearchSuggestions) {
         SearchStringProvider searchStringProvider = widgetSearchSuggestions.searchStringProvider;
         if (searchStringProvider == null) {
-            m.throwUninitializedPropertyAccessException("searchStringProvider");
+            Intrinsics3.throwUninitializedPropertyAccessException("searchStringProvider");
         }
         return searchStringProvider;
     }
@@ -390,37 +390,37 @@ public final class WidgetSearchSuggestions extends AppFragment {
     private final void configureUI(Model model) {
         WidgetSearchSuggestionsAdapter widgetSearchSuggestionsAdapter = this.adapter;
         if (widgetSearchSuggestionsAdapter == null) {
-            m.throwUninitializedPropertyAccessException("adapter");
+            Intrinsics3.throwUninitializedPropertyAccessException("adapter");
         }
         widgetSearchSuggestionsAdapter.setData(model.getSuggestionItems());
         WidgetSearchSuggestionsAdapter widgetSearchSuggestionsAdapter2 = this.adapter;
         if (widgetSearchSuggestionsAdapter2 == null) {
-            m.throwUninitializedPropertyAccessException("adapter");
+            Intrinsics3.throwUninitializedPropertyAccessException("adapter");
         }
         widgetSearchSuggestionsAdapter2.setOnFilterClicked(new AnonymousClass1(model));
         WidgetSearchSuggestionsAdapter widgetSearchSuggestionsAdapter3 = this.adapter;
         if (widgetSearchSuggestionsAdapter3 == null) {
-            m.throwUninitializedPropertyAccessException("adapter");
+            Intrinsics3.throwUninitializedPropertyAccessException("adapter");
         }
         widgetSearchSuggestionsAdapter3.setOnUserClicked(new AnonymousClass2(model));
         WidgetSearchSuggestionsAdapter widgetSearchSuggestionsAdapter4 = this.adapter;
         if (widgetSearchSuggestionsAdapter4 == null) {
-            m.throwUninitializedPropertyAccessException("adapter");
+            Intrinsics3.throwUninitializedPropertyAccessException("adapter");
         }
         widgetSearchSuggestionsAdapter4.setOnChannelClicked(new AnonymousClass3(model));
         WidgetSearchSuggestionsAdapter widgetSearchSuggestionsAdapter5 = this.adapter;
         if (widgetSearchSuggestionsAdapter5 == null) {
-            m.throwUninitializedPropertyAccessException("adapter");
+            Intrinsics3.throwUninitializedPropertyAccessException("adapter");
         }
         widgetSearchSuggestionsAdapter5.setOnHasClicked(new AnonymousClass4(model));
         WidgetSearchSuggestionsAdapter widgetSearchSuggestionsAdapter6 = this.adapter;
         if (widgetSearchSuggestionsAdapter6 == null) {
-            m.throwUninitializedPropertyAccessException("adapter");
+            Intrinsics3.throwUninitializedPropertyAccessException("adapter");
         }
         widgetSearchSuggestionsAdapter6.setOnRecentQueryClicked(AnonymousClass5.INSTANCE);
         WidgetSearchSuggestionsAdapter widgetSearchSuggestionsAdapter7 = this.adapter;
         if (widgetSearchSuggestionsAdapter7 == null) {
-            m.throwUninitializedPropertyAccessException("adapter");
+            Intrinsics3.throwUninitializedPropertyAccessException("adapter");
         }
         widgetSearchSuggestionsAdapter7.setOnClearHistoryClicked(AnonymousClass6.INSTANCE);
     }
@@ -431,15 +431,15 @@ public final class WidgetSearchSuggestions extends AppFragment {
 
     @Override // com.discord.app.AppFragment
     public void onViewBound(View view) {
-        m.checkNotNullParameter(view, "view");
+        Intrinsics3.checkNotNullParameter(view, "view");
         super.onViewBound(view);
         MGRecyclerAdapter.Companion companion = MGRecyclerAdapter.INSTANCE;
         RecyclerView recyclerView = getBinding().f2526b;
-        m.checkNotNullExpressionValue(recyclerView, "binding.searchSuggestionsRecycler");
+        Intrinsics3.checkNotNullExpressionValue(recyclerView, "binding.searchSuggestionsRecycler");
         this.adapter = (WidgetSearchSuggestionsAdapter) companion.configure(new WidgetSearchSuggestionsAdapter(recyclerView));
         if (AccessibilityUtils.INSTANCE.isReducedMotionEnabled()) {
             RecyclerView recyclerView2 = getBinding().f2526b;
-            m.checkNotNullExpressionValue(recyclerView2, "binding.searchSuggestionsRecycler");
+            Intrinsics3.checkNotNullExpressionValue(recyclerView2, "binding.searchSuggestionsRecycler");
             recyclerView2.setItemAnimator(null);
         }
     }
@@ -451,7 +451,7 @@ public final class WidgetSearchSuggestions extends AppFragment {
         this.searchStringProvider = contextSearchStringProvider;
         Model.Companion companion = Model.INSTANCE;
         if (contextSearchStringProvider == null) {
-            m.throwUninitializedPropertyAccessException("searchStringProvider");
+            Intrinsics3.throwUninitializedPropertyAccessException("searchStringProvider");
         }
         ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(companion.get(contextSearchStringProvider), this, null, 2, null), WidgetSearchSuggestions.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass1(), 62, (Object) null);
     }

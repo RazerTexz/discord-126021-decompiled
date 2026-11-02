@@ -3,7 +3,8 @@ package com.google.android.exoplayer2.metadata.id3;
 import android.os.Parcel;
 import android.os.Parcelable;
 import androidx.annotation.Nullable;
-import b.i.a.c.f3.e0;
+import b.d.b.a.outline;
+import b.i.a.c.f3.Util2;
 import java.util.Arrays;
 
 /* JADX INFO: loaded from: classes3.dex */
@@ -42,7 +43,7 @@ public final class GeobFrame extends Id3Frame {
             return false;
         }
         GeobFrame geobFrame = (GeobFrame) obj;
-        return e0.a(this.k, geobFrame.k) && e0.a(this.l, geobFrame.l) && e0.a(this.m, geobFrame.m) && Arrays.equals(this.n, geobFrame.n);
+        return Util2.a(this.k, geobFrame.k) && Util2.a(this.l, geobFrame.l) && Util2.a(this.m, geobFrame.m) && Arrays.equals(this.n, geobFrame.n);
     }
 
     public int hashCode() {
@@ -60,7 +61,7 @@ public final class GeobFrame extends Id3Frame {
         String str2 = this.k;
         String str3 = this.l;
         String str4 = this.m;
-        return b.d.b.a.a.K(b.d.b.a.a.S(b.d.b.a.a.b(str4, b.d.b.a.a.b(str3, b.d.b.a.a.b(str2, b.d.b.a.a.b(str, 36)))), str, ": mimeType=", str2, ", filename="), str3, ", description=", str4);
+        return outline.K(outline.S(outline.b(str4, outline.b(str3, outline.b(str2, outline.b(str, 36)))), str, ": mimeType=", str2, ", filename="), str3, ", description=", str4);
     }
 
     @Override // android.os.Parcelable
@@ -74,7 +75,7 @@ public final class GeobFrame extends Id3Frame {
     public GeobFrame(Parcel parcel) {
         super("GEOB");
         String string = parcel.readString();
-        int i = e0.a;
+        int i = Util2.a;
         this.k = string;
         this.l = parcel.readString();
         this.m = parcel.readString();

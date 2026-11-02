@@ -3,6 +3,7 @@ package b.i.a.f.i.b;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import b.d.b.a.outline;
 import com.google.android.gms.measurement.internal.zzap;
 import com.google.android.gms.measurement.internal.zzaq;
 
@@ -40,6 +41,6 @@ public final class u3 {
         String str = this.f1569b;
         String str2 = this.a;
         String strValueOf = String.valueOf(this.d);
-        return b.d.b.a.a.J(b.d.b.a.a.S(strValueOf.length() + b.d.b.a.a.b(str2, b.d.b.a.a.b(str, 21)), "origin=", str, ",name=", str2), ",params=", strValueOf);
+        return outline.J(outline.S(strValueOf.length() + outline.b(str2, outline.b(str, 21)), "origin=", str, ",name=", str2), ",params=", strValueOf);
     }
 }

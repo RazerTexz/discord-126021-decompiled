@@ -1,10 +1,10 @@
 package com.discord.models.domain;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.api.premium.SubscriptionPlan;
 import com.discord.api.user.User;
 import com.discord.utilities.time.TimeUtils;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: ModelGift.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -22,7 +22,7 @@ public final /* data */ class ModelGift {
     private final int uses;
 
     public ModelGift(long j, boolean z2, String str, String str2, int i, ModelStoreListing modelStoreListing, int i2, User user, Long l, SubscriptionPlan subscriptionPlan, Integer num) {
-        m.checkNotNullParameter(str2, ModelAuditLogEntry.CHANGE_KEY_CODE);
+        Intrinsics3.checkNotNullParameter(str2, ModelAuditLogEntry.CHANGE_KEY_CODE);
         this.skuId = j;
         this.redeemed = z2;
         this.expiresAt = str;
@@ -41,7 +41,7 @@ public final /* data */ class ModelGift {
     }
 
     public final ModelGift copy(long skuId, boolean redeemed, String expiresAt, String code, int uses, ModelStoreListing storeListing, int maxUses, User user, Long subscriptionPlanId, SubscriptionPlan subscriptionPlan, Integer giftStyle) {
-        m.checkNotNullParameter(code, ModelAuditLogEntry.CHANGE_KEY_CODE);
+        Intrinsics3.checkNotNullParameter(code, ModelAuditLogEntry.CHANGE_KEY_CODE);
         return new ModelGift(skuId, redeemed, expiresAt, code, uses, storeListing, maxUses, user, subscriptionPlanId, subscriptionPlan, giftStyle);
     }
 
@@ -53,7 +53,7 @@ public final /* data */ class ModelGift {
             return false;
         }
         ModelGift modelGift = (ModelGift) other;
-        return this.skuId == modelGift.skuId && this.redeemed == modelGift.redeemed && m.areEqual(this.expiresAt, modelGift.expiresAt) && m.areEqual(this.code, modelGift.code) && this.uses == modelGift.uses && m.areEqual(this.storeListing, modelGift.storeListing) && this.maxUses == modelGift.maxUses && m.areEqual(this.user, modelGift.user) && m.areEqual(this.subscriptionPlanId, modelGift.subscriptionPlanId) && m.areEqual(this.subscriptionPlan, modelGift.subscriptionPlan) && m.areEqual(this.giftStyle, modelGift.giftStyle);
+        return this.skuId == modelGift.skuId && this.redeemed == modelGift.redeemed && Intrinsics3.areEqual(this.expiresAt, modelGift.expiresAt) && Intrinsics3.areEqual(this.code, modelGift.code) && this.uses == modelGift.uses && Intrinsics3.areEqual(this.storeListing, modelGift.storeListing) && this.maxUses == modelGift.maxUses && Intrinsics3.areEqual(this.user, modelGift.user) && Intrinsics3.areEqual(this.subscriptionPlanId, modelGift.subscriptionPlanId) && Intrinsics3.areEqual(this.subscriptionPlan, modelGift.subscriptionPlan) && Intrinsics3.areEqual(this.giftStyle, modelGift.giftStyle);
     }
 
     /* JADX INFO: renamed from: component4, reason: from getter */
@@ -223,7 +223,7 @@ public final /* data */ class ModelGift {
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("ModelGift(skuId=");
+        StringBuilder sbU = outline.U("ModelGift(skuId=");
         sbU.append(this.skuId);
         sbU.append(", redeemed=");
         sbU.append(this.redeemed);
@@ -244,6 +244,6 @@ public final /* data */ class ModelGift {
         sbU.append(", subscriptionPlan=");
         sbU.append(this.subscriptionPlan);
         sbU.append(", giftStyle=");
-        return a.F(sbU, this.giftStyle, ")");
+        return outline.F(sbU, this.giftStyle, ")");
     }
 }

@@ -1,14 +1,14 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackVoiceQuality.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackVoiceQuality implements AnalyticsSchema, TrackBaseReceiver {
+public final /* data */ class TrackVoiceQuality implements AnalyticsSchema, TrackBase2 {
     private final Long averagePing = null;
     private final Long channelId = null;
     private final Long duration = null;
@@ -31,7 +31,7 @@ public final /* data */ class TrackVoiceQuality implements AnalyticsSchema, Trac
             return false;
         }
         TrackVoiceQuality trackVoiceQuality = (TrackVoiceQuality) other;
-        return m.areEqual(this.averagePing, trackVoiceQuality.averagePing) && m.areEqual(this.channelId, trackVoiceQuality.channelId) && m.areEqual(this.duration, trackVoiceQuality.duration) && m.areEqual(this.guildId, trackVoiceQuality.guildId) && m.areEqual(this.maximumPing, trackVoiceQuality.maximumPing) && m.areEqual(this.minimumPing, trackVoiceQuality.minimumPing) && m.areEqual(this.previousTier, trackVoiceQuality.previousTier) && m.areEqual(this.quality, trackVoiceQuality.quality) && m.areEqual(this.sessionId, trackVoiceQuality.sessionId) && m.areEqual(this.speaker, trackVoiceQuality.speaker) && m.areEqual(this.tier, trackVoiceQuality.tier);
+        return Intrinsics3.areEqual(this.averagePing, trackVoiceQuality.averagePing) && Intrinsics3.areEqual(this.channelId, trackVoiceQuality.channelId) && Intrinsics3.areEqual(this.duration, trackVoiceQuality.duration) && Intrinsics3.areEqual(this.guildId, trackVoiceQuality.guildId) && Intrinsics3.areEqual(this.maximumPing, trackVoiceQuality.maximumPing) && Intrinsics3.areEqual(this.minimumPing, trackVoiceQuality.minimumPing) && Intrinsics3.areEqual(this.previousTier, trackVoiceQuality.previousTier) && Intrinsics3.areEqual(this.quality, trackVoiceQuality.quality) && Intrinsics3.areEqual(this.sessionId, trackVoiceQuality.sessionId) && Intrinsics3.areEqual(this.speaker, trackVoiceQuality.speaker) && Intrinsics3.areEqual(this.tier, trackVoiceQuality.tier);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -66,7 +66,7 @@ public final /* data */ class TrackVoiceQuality implements AnalyticsSchema, Trac
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackVoiceQuality(averagePing=");
+        StringBuilder sbU = outline.U("TrackVoiceQuality(averagePing=");
         sbU.append(this.averagePing);
         sbU.append(", channelId=");
         sbU.append(this.channelId);
@@ -87,6 +87,6 @@ public final /* data */ class TrackVoiceQuality implements AnalyticsSchema, Trac
         sbU.append(", speaker=");
         sbU.append(this.speaker);
         sbU.append(", tier=");
-        return a.G(sbU, this.tier, ")");
+        return outline.G(sbU, this.tier, ")");
     }
 }

@@ -4,11 +4,11 @@ import android.content.Context;
 import android.view.View;
 import android.widget.ImageView;
 import androidx.core.app.NotificationCompat;
-import b.a.d.j;
+import b.a.d.AppScreen2;
 import com.discord.stores.StoreStream;
 import com.discord.utilities.analytics.AnalyticsTracker;
 import com.discord.widgets.settings.account.WidgetSettingsAccountChangePassword;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 import kotlin.jvm.internal.DefaultConstructorMarker;
 import rx.functions.Func0;
 
@@ -42,8 +42,8 @@ public final class WidgetAuthForceChangePassword extends WidgetSettingsAccountCh
         }
 
         public final void launch(Context context) {
-            m.checkNotNullParameter(context, "context");
-            j.e(context, WidgetAuthForceChangePassword.class, null, 4);
+            Intrinsics3.checkNotNullParameter(context, "context");
+            AppScreen2.e(context, WidgetAuthForceChangePassword.class, null, 4);
         }
 
         public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
@@ -58,10 +58,10 @@ public final class WidgetAuthForceChangePassword extends WidgetSettingsAccountCh
 
     @Override // com.discord.widgets.settings.account.WidgetSettingsAccountChangePassword, com.discord.app.AppFragment
     public void onViewBound(View view) {
-        m.checkNotNullParameter(view, "view");
+        Intrinsics3.checkNotNullParameter(view, "view");
         super.onViewBound(view);
         ImageView imageView = getBinding().f2596b;
-        m.checkNotNullExpressionValue(imageView, "binding.authChangePasswordIcon");
+        Intrinsics3.checkNotNullExpressionValue(imageView, "binding.authChangePasswordIcon");
         imageView.setVisibility(0);
         setOnBackPressed(AnonymousClass1.INSTANCE, 0);
     }

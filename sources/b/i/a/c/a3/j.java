@@ -1,11 +1,13 @@
 package b.i.a.c.a3;
 
+import b.i.a.c.x2.ExtractorsFactory2;
+
 /* JADX INFO: compiled from: lambda */
 /* JADX INFO: loaded from: classes3.dex */
-public final /* synthetic */ class j implements d0.a {
-    public final /* synthetic */ b.i.a.c.x2.l a;
+public final /* synthetic */ class j implements ProgressiveMediaExtractor.a {
+    public final /* synthetic */ ExtractorsFactory2 a;
 
-    public /* synthetic */ j(b.i.a.c.x2.l lVar) {
-        this.a = lVar;
+    public /* synthetic */ j(ExtractorsFactory2 extractorsFactory2) {
+        this.a = extractorsFactory2;
     }
 }

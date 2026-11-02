@@ -6,7 +6,7 @@ import android.os.IBinder;
 import android.os.IInterface;
 import android.os.Parcel;
 import android.os.RemoteException;
-import b.c.a.a0.d;
+import b.c.a.a0.AnimatableValueParser;
 import b.i.c.o.b.g;
 import b.i.c.o.b.k;
 import com.google.android.gms.common.api.Status;
@@ -47,7 +47,7 @@ public class a extends Binder implements IInterface {
         Status status = (Status) b.a(parcel, Status.CREATOR);
         DynamicLinkData dynamicLinkData = (DynamicLinkData) b.a(parcel, DynamicLinkData.CREATOR);
         g gVar = (g) kVar;
-        d.a2(status, dynamicLinkData == null ? null : new PendingDynamicLinkData(dynamicLinkData), gVar.a);
+        AnimatableValueParser.a2(status, dynamicLinkData == null ? null : new PendingDynamicLinkData(dynamicLinkData), gVar.a);
         if (dynamicLinkData != null) {
             Bundle bundle = dynamicLinkData.n;
             if (bundle == null) {

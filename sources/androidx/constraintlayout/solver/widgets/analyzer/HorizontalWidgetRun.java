@@ -3,7 +3,7 @@ package androidx.constraintlayout.solver.widgets.analyzer;
 import androidx.constraintlayout.solver.widgets.ConstraintAnchor;
 import androidx.constraintlayout.solver.widgets.ConstraintWidget;
 import androidx.constraintlayout.solver.widgets.Helper;
-import b.d.b.a.a;
+import b.d.b.a.outline;
 
 /* JADX INFO: loaded from: classes.dex */
 public class HorizontalWidgetRun extends WidgetRun {
@@ -277,7 +277,7 @@ public class HorizontalWidgetRun extends WidgetRun {
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("HorizontalRun ");
+        StringBuilder sbU = outline.U("HorizontalRun ");
         sbU.append(this.widget.getDebugName());
         return sbU.toString();
     }

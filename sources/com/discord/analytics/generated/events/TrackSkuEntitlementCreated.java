@@ -1,20 +1,20 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.analytics.generated.traits.TrackEntitlementMetadata;
-import com.discord.analytics.generated.traits.TrackEntitlementMetadataReceiver;
+import com.discord.analytics.generated.traits.TrackEntitlementMetadata2;
 import com.discord.analytics.generated.traits.TrackPaymentMetadata;
-import com.discord.analytics.generated.traits.TrackPaymentMetadataReceiver;
+import com.discord.analytics.generated.traits.TrackPaymentMetadata2;
 import com.discord.analytics.generated.traits.TrackStoreSkuMetadata;
-import com.discord.analytics.generated.traits.TrackStoreSkuMetadataReceiver;
+import com.discord.analytics.generated.traits.TrackStoreSkuMetadata2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackSkuEntitlementCreated.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackSkuEntitlementCreated implements AnalyticsSchema, TrackBaseReceiver, TrackStoreSkuMetadataReceiver, TrackPaymentMetadataReceiver, TrackEntitlementMetadataReceiver {
+public final /* data */ class TrackSkuEntitlementCreated implements AnalyticsSchema, TrackBase2, TrackStoreSkuMetadata2, TrackPaymentMetadata2, TrackEntitlementMetadata2 {
     private final Long endTimestamp = null;
     private final CharSequence entitlementType = null;
     private final CharSequence redemptionCode = null;
@@ -33,7 +33,7 @@ public final /* data */ class TrackSkuEntitlementCreated implements AnalyticsSch
             return false;
         }
         TrackSkuEntitlementCreated trackSkuEntitlementCreated = (TrackSkuEntitlementCreated) other;
-        return m.areEqual(this.entitlementType, trackSkuEntitlementCreated.entitlementType) && m.areEqual(this.startTimestamp, trackSkuEntitlementCreated.startTimestamp) && m.areEqual(this.endTimestamp, trackSkuEntitlementCreated.endTimestamp) && m.areEqual(this.redemptionCode, trackSkuEntitlementCreated.redemptionCode);
+        return Intrinsics3.areEqual(this.entitlementType, trackSkuEntitlementCreated.entitlementType) && Intrinsics3.areEqual(this.startTimestamp, trackSkuEntitlementCreated.startTimestamp) && Intrinsics3.areEqual(this.endTimestamp, trackSkuEntitlementCreated.endTimestamp) && Intrinsics3.areEqual(this.redemptionCode, trackSkuEntitlementCreated.redemptionCode);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -54,13 +54,13 @@ public final /* data */ class TrackSkuEntitlementCreated implements AnalyticsSch
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackSkuEntitlementCreated(entitlementType=");
+        StringBuilder sbU = outline.U("TrackSkuEntitlementCreated(entitlementType=");
         sbU.append(this.entitlementType);
         sbU.append(", startTimestamp=");
         sbU.append(this.startTimestamp);
         sbU.append(", endTimestamp=");
         sbU.append(this.endTimestamp);
         sbU.append(", redemptionCode=");
-        return a.E(sbU, this.redemptionCode, ")");
+        return outline.E(sbU, this.redemptionCode, ")");
     }
 }

@@ -7,11 +7,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
 import androidx.core.content.ContextCompat;
-import b.a.i.g1;
+import b.a.i.PrivateChannelSideBarActionsViewBinding;
 import com.discord.R;
 import com.discord.utilities.drawable.DrawableCompat;
 import com.google.android.material.button.MaterialButton;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 import defpackage.d;
 
 /* JADX INFO: compiled from: PrivateChannelSideBarActionsView.kt */
@@ -19,12 +19,12 @@ import defpackage.d;
 public final class PrivateChannelSideBarActionsView extends LinearLayout {
 
     /* JADX INFO: renamed from: j, reason: from kotlin metadata */
-    public final g1 binding;
+    public final PrivateChannelSideBarActionsViewBinding binding;
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public PrivateChannelSideBarActionsView(Context context, AttributeSet attributeSet) {
         super(context, attributeSet);
-        m.checkNotNullParameter(context, "context");
+        Intrinsics3.checkNotNullParameter(context, "context");
         LayoutInflater.from(getContext()).inflate(R.layout.private_channel_side_bar_actions_view, this);
         int i = R.id.private_channel_sidebar_actions_call;
         MaterialButton materialButton = (MaterialButton) findViewById(R.id.private_channel_sidebar_actions_call);
@@ -38,9 +38,9 @@ public final class PrivateChannelSideBarActionsView extends LinearLayout {
                     i = R.id.private_channel_sidebar_actions_video;
                     MaterialButton materialButton4 = (MaterialButton) findViewById(R.id.private_channel_sidebar_actions_video);
                     if (materialButton4 != null) {
-                        g1 g1Var = new g1(this, materialButton, materialButton2, materialButton3, materialButton4);
-                        m.checkNotNullExpressionValue(g1Var, "PrivateChannelSideBarAct…ater.from(context), this)");
-                        this.binding = g1Var;
+                        PrivateChannelSideBarActionsViewBinding privateChannelSideBarActionsViewBinding = new PrivateChannelSideBarActionsViewBinding(this, materialButton, materialButton2, materialButton3, materialButton4);
+                        Intrinsics3.checkNotNullExpressionValue(privateChannelSideBarActionsViewBinding, "PrivateChannelSideBarAct…ater.from(context), this)");
+                        this.binding = privateChannelSideBarActionsViewBinding;
                         a(d.j, d.k, d.l, d.m, false);
                         return;
                     }
@@ -51,10 +51,10 @@ public final class PrivateChannelSideBarActionsView extends LinearLayout {
     }
 
     public final void a(View.OnClickListener onCallClicked, View.OnClickListener onVideoClicked, View.OnClickListener onNotificationsClicked, View.OnClickListener onSearchClicked, boolean channelIsMuted) {
-        m.checkNotNullParameter(onCallClicked, "onCallClicked");
-        m.checkNotNullParameter(onVideoClicked, "onVideoClicked");
-        m.checkNotNullParameter(onNotificationsClicked, "onNotificationsClicked");
-        m.checkNotNullParameter(onSearchClicked, "onSearchClicked");
+        Intrinsics3.checkNotNullParameter(onCallClicked, "onCallClicked");
+        Intrinsics3.checkNotNullParameter(onVideoClicked, "onVideoClicked");
+        Intrinsics3.checkNotNullParameter(onNotificationsClicked, "onNotificationsClicked");
+        Intrinsics3.checkNotNullParameter(onSearchClicked, "onSearchClicked");
         int themedDrawableRes$default = channelIsMuted ? DrawableCompat.getThemedDrawableRes$default(this, R.attr.ic_sidebar_notifications_off_24dp, 0, 2, (Object) null) : DrawableCompat.getThemedDrawableRes$default(this, R.attr.ic_sidebar_notifications_on_24dp, 0, 2, (Object) null);
         this.binding.f118b.setOnClickListener(onCallClicked);
         this.binding.e.setOnClickListener(onVideoClicked);

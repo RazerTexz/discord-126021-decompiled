@@ -1,16 +1,16 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.analytics.generated.traits.TrackLocationMetadata;
-import com.discord.analytics.generated.traits.TrackLocationMetadataReceiver;
+import com.discord.analytics.generated.traits.TrackLocationMetadata2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackTooltipViewed.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackTooltipViewed implements AnalyticsSchema, TrackBaseReceiver, TrackLocationMetadataReceiver {
+public final /* data */ class TrackTooltipViewed implements AnalyticsSchema, TrackBase2, TrackLocationMetadata2 {
     private TrackBase trackBase;
     private TrackLocationMetadata trackLocationMetadata;
     private final CharSequence type = null;
@@ -18,7 +18,7 @@ public final /* data */ class TrackTooltipViewed implements AnalyticsSchema, Tra
 
     public boolean equals(Object other) {
         if (this != other) {
-            return (other instanceof TrackTooltipViewed) && m.areEqual(this.type, ((TrackTooltipViewed) other).type);
+            return (other instanceof TrackTooltipViewed) && Intrinsics3.areEqual(this.type, ((TrackTooltipViewed) other).type);
         }
         return true;
     }
@@ -38,6 +38,6 @@ public final /* data */ class TrackTooltipViewed implements AnalyticsSchema, Tra
     }
 
     public String toString() {
-        return a.E(a.U("TrackTooltipViewed(type="), this.type, ")");
+        return outline.E(outline.U("TrackTooltipViewed(type="), this.type, ")");
     }
 }

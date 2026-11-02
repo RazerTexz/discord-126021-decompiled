@@ -1,12 +1,12 @@
 package com.discord.widgets.settings;
 
 import com.discord.widgets.user.profile.UserProfileHeaderViewModel;
-import d0.z.d.o;
+import d0.z.d.Lambda;
 import kotlin.jvm.functions.Function0;
 
 /* JADX INFO: compiled from: WidgetSettings.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class WidgetSettings$viewModelUserProfileHeader$2 extends o implements Function0<UserProfileHeaderViewModel> {
+public final class WidgetSettings$viewModelUserProfileHeader$2 extends Lambda implements Function0<UserProfileHeaderViewModel> {
     public static final WidgetSettings$viewModelUserProfileHeader$2 INSTANCE = new WidgetSettings$viewModelUserProfileHeader$2();
 
     public WidgetSettings$viewModelUserProfileHeader$2() {

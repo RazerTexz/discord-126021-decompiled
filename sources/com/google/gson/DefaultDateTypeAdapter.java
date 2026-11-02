@@ -1,8 +1,9 @@
 package com.google.gson;
 
+import b.d.b.a.outline;
 import b.i.a.f.e.o.f;
-import b.i.d.q.o;
-import b.i.d.q.x.d.a;
+import b.i.d.q.JavaVersion;
+import b.i.d.q.x.d.ISO8601Utils;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonToken;
 import com.google.gson.stream.JsonWriter;
@@ -35,7 +36,7 @@ public final class DefaultDateTypeAdapter extends TypeAdapter<Date> {
         if (!Locale.getDefault().equals(locale)) {
             arrayList.add(DateFormat.getDateTimeInstance(i, i2));
         }
-        if (o.a >= 9) {
+        if (JavaVersion.a >= 9) {
             arrayList.add(f.r0(i, i2));
         }
     }
@@ -61,7 +62,7 @@ public final class DefaultDateTypeAdapter extends TypeAdapter<Date> {
             while (true) {
                 if (!it.hasNext()) {
                     try {
-                        dateB = a.b(strJ, new ParsePosition(0));
+                        dateB = ISO8601Utils.b(strJ, new ParsePosition(0));
                         break;
                     } catch (ParseException e) {
                         throw new JsonSyntaxException(strJ, e);
@@ -92,12 +93,12 @@ public final class DefaultDateTypeAdapter extends TypeAdapter<Date> {
     public String toString() {
         DateFormat dateFormat = this.f3114b.get(0);
         if (dateFormat instanceof SimpleDateFormat) {
-            StringBuilder sbU = b.d.b.a.a.U("DefaultDateTypeAdapter(");
+            StringBuilder sbU = outline.U("DefaultDateTypeAdapter(");
             sbU.append(((SimpleDateFormat) dateFormat).toPattern());
             sbU.append(')');
             return sbU.toString();
         }
-        StringBuilder sbU2 = b.d.b.a.a.U("DefaultDateTypeAdapter(");
+        StringBuilder sbU2 = outline.U("DefaultDateTypeAdapter(");
         sbU2.append(dateFormat.getClass().getSimpleName());
         sbU2.append(')');
         return sbU2.toString();

@@ -19,6 +19,6 @@ public final class WidgetGuildInviteShareSheet$configureNormalUI$$inlined$with$l
 
     @Override // android.view.View.OnClickListener
     public final void onClick(View view) {
-        GuildInviteUiHelperKt.shareLinkClick(this.this$0.getContext(), this.$invite, this.$viewState$inlined.getChannel());
+        GuildInviteUiHelper.shareLinkClick(this.this$0.getContext(), this.$invite, this.$viewState$inlined.getChannel());
     }
 }

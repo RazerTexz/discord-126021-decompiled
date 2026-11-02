@@ -2,7 +2,7 @@ package androidx.constraintlayout.widget;
 
 import android.view.View;
 import android.view.ViewGroup;
-import b.d.b.a.a;
+import b.d.b.a.outline;
 
 /* JADX INFO: loaded from: classes.dex */
 public class ConstraintProperties {
@@ -131,7 +131,7 @@ public class ConstraintProperties {
                     layoutParams.leftToRight = -1;
                 } else {
                     if (i3 != 2) {
-                        throw new IllegalArgumentException(a.J(a.U("Left to "), sideToString(i3), " undefined"));
+                        throw new IllegalArgumentException(outline.J(outline.U("Left to "), sideToString(i3), " undefined"));
                     }
                     ConstraintLayout.LayoutParams layoutParams2 = this.mParams;
                     layoutParams2.leftToRight = i2;
@@ -146,7 +146,7 @@ public class ConstraintProperties {
                     layoutParams3.rightToRight = -1;
                 } else {
                     if (i3 != 2) {
-                        throw new IllegalArgumentException(a.J(a.U("right to "), sideToString(i3), " undefined"));
+                        throw new IllegalArgumentException(outline.J(outline.U("right to "), sideToString(i3), " undefined"));
                     }
                     ConstraintLayout.LayoutParams layoutParams4 = this.mParams;
                     layoutParams4.rightToRight = i2;
@@ -162,7 +162,7 @@ public class ConstraintProperties {
                     layoutParams5.baselineToBaseline = -1;
                 } else {
                     if (i3 != 4) {
-                        throw new IllegalArgumentException(a.J(a.U("right to "), sideToString(i3), " undefined"));
+                        throw new IllegalArgumentException(outline.J(outline.U("right to "), sideToString(i3), " undefined"));
                     }
                     ConstraintLayout.LayoutParams layoutParams6 = this.mParams;
                     layoutParams6.topToBottom = i2;
@@ -179,7 +179,7 @@ public class ConstraintProperties {
                     layoutParams7.baselineToBaseline = -1;
                 } else {
                     if (i3 != 3) {
-                        throw new IllegalArgumentException(a.J(a.U("right to "), sideToString(i3), " undefined"));
+                        throw new IllegalArgumentException(outline.J(outline.U("right to "), sideToString(i3), " undefined"));
                     }
                     ConstraintLayout.LayoutParams layoutParams8 = this.mParams;
                     layoutParams8.bottomToTop = i2;
@@ -190,7 +190,7 @@ public class ConstraintProperties {
                 return this;
             case 5:
                 if (i3 != 5) {
-                    throw new IllegalArgumentException(a.J(a.U("right to "), sideToString(i3), " undefined"));
+                    throw new IllegalArgumentException(outline.J(outline.U("right to "), sideToString(i3), " undefined"));
                 }
                 ConstraintLayout.LayoutParams layoutParams9 = this.mParams;
                 layoutParams9.baselineToBaseline = i2;
@@ -206,7 +206,7 @@ public class ConstraintProperties {
                     layoutParams10.startToEnd = -1;
                 } else {
                     if (i3 != 7) {
-                        throw new IllegalArgumentException(a.J(a.U("right to "), sideToString(i3), " undefined"));
+                        throw new IllegalArgumentException(outline.J(outline.U("right to "), sideToString(i3), " undefined"));
                     }
                     ConstraintLayout.LayoutParams layoutParams11 = this.mParams;
                     layoutParams11.startToEnd = i2;
@@ -221,7 +221,7 @@ public class ConstraintProperties {
                     layoutParams12.endToStart = -1;
                 } else {
                     if (i3 != 6) {
-                        throw new IllegalArgumentException(a.J(a.U("right to "), sideToString(i3), " undefined"));
+                        throw new IllegalArgumentException(outline.J(outline.U("right to "), sideToString(i3), " undefined"));
                     }
                     ConstraintLayout.LayoutParams layoutParams13 = this.mParams;
                     layoutParams13.endToStart = i2;
@@ -233,7 +233,7 @@ public class ConstraintProperties {
                 StringBuilder sb = new StringBuilder();
                 sb.append(sideToString(i));
                 sb.append(" to ");
-                throw new IllegalArgumentException(a.J(sb, sideToString(i3), " unknown"));
+                throw new IllegalArgumentException(outline.J(sb, sideToString(i3), " unknown"));
         }
     }
 

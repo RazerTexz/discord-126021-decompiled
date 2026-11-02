@@ -1,6 +1,6 @@
 package com.discord.models.domain;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import java.io.IOException;
 
 /* JADX INFO: loaded from: classes.dex */
@@ -96,7 +96,7 @@ public class ModelWebhook implements Model {
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("ModelWebhook(avatar=");
+        StringBuilder sbU = outline.U("ModelWebhook(avatar=");
         sbU.append(getAvatar());
         sbU.append(", name=");
         sbU.append(getName());

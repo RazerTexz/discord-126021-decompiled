@@ -9,10 +9,11 @@ import android.widget.TextView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentViewModelLazyKt;
-import b.a.d.g0;
-import b.a.d.i0;
-import b.a.k.b;
-import b.d.b.a.a;
+import b.a.d.AppToast;
+import b.a.d.AppViewModelDelegates3;
+import b.a.d.AppViewModelDelegates5;
+import b.a.k.FormatUtils;
+import b.d.b.a.outline;
 import com.discord.R;
 import com.discord.app.AppBottomSheet;
 import com.discord.databinding.WidgetMuteSettingsSheetBinding;
@@ -22,12 +23,12 @@ import com.discord.utilities.color.ColorCompat;
 import com.discord.utilities.rx.ObservableExtensionsKt;
 import com.discord.utilities.time.TimeUtils;
 import com.discord.utilities.viewbinding.FragmentViewBindingDelegate;
-import com.discord.utilities.viewbinding.FragmentViewBindingDelegateKt;
+import com.discord.utilities.viewbinding.FragmentViewBindingDelegate3;
 import com.discord.widgets.channels.settings.WidgetChannelNotificationSettings;
-import d0.z.d.a0;
-import d0.z.d.k;
-import d0.z.d.m;
-import d0.z.d.o;
+import d0.z.d.FunctionReferenceImpl;
+import d0.z.d.Intrinsics3;
+import d0.z.d.Lambda;
+import d0.z.d.Reflection2;
 import kotlin.Lazy;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
@@ -39,7 +40,7 @@ import rx.subscriptions.CompositeSubscription;
 /* JADX INFO: compiled from: WidgetMuteSettingsSheet.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetMuteSettingsSheet extends AppBottomSheet {
-    public static final /* synthetic */ KProperty[] $$delegatedProperties = {a.d0(WidgetMuteSettingsSheet.class, "binding", "getBinding()Lcom/discord/databinding/WidgetMuteSettingsSheetBinding;", 0)};
+    public static final /* synthetic */ KProperty[] $$delegatedProperties = {outline.d0(WidgetMuteSettingsSheet.class, "binding", "getBinding()Lcom/discord/databinding/WidgetMuteSettingsSheetBinding;", 0)};
     private static final float ACTIVE_OPACITY = 1.0f;
     private static final String ARG_CHANNEL_ID = "ARG_CHANNEL_ID";
     private static final String ARG_GUILD_ID = "ARG_GUILD_ID";
@@ -63,16 +64,16 @@ public final class WidgetMuteSettingsSheet extends AppBottomSheet {
         @Override // android.view.View.OnClickListener
         public final void onClick(View view) {
             MuteSettingsSheetViewModel muteSettingsSheetViewModelAccess$getViewModel$p = WidgetMuteSettingsSheet.access$getViewModel$p(WidgetMuteSettingsSheet.this);
-            m.checkNotNullExpressionValue(view, "it");
+            Intrinsics3.checkNotNullExpressionValue(view, "it");
             Context context = view.getContext();
-            m.checkNotNullExpressionValue(context, "it.context");
+            Intrinsics3.checkNotNullExpressionValue(context, "it.context");
             muteSettingsSheetViewModelAccess$getViewModel$p.unmute(context);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.widgets.settings.WidgetMuteSettingsSheet$configureNotificationSettings$1, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetMuteSettingsSheet.kt */
-    public final class AnonymousClass1 extends o implements Function1<RenderContext, Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function1<RenderContext, Unit> {
         public AnonymousClass1() {
             super(1);
         }
@@ -85,7 +86,7 @@ public final class WidgetMuteSettingsSheet extends AppBottomSheet {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(RenderContext renderContext) {
-            m.checkNotNullParameter(renderContext, "$receiver");
+            Intrinsics3.checkNotNullParameter(renderContext, "$receiver");
             renderContext.boldColor = Integer.valueOf(ColorCompat.getColor(WidgetMuteSettingsSheet.this.requireContext(), R.color.status_red_500));
         }
     }
@@ -99,16 +100,16 @@ public final class WidgetMuteSettingsSheet extends AppBottomSheet {
         @Override // android.view.View.OnClickListener
         public final void onClick(View view) {
             MuteSettingsSheetViewModel muteSettingsSheetViewModelAccess$getViewModel$p = WidgetMuteSettingsSheet.access$getViewModel$p(WidgetMuteSettingsSheet.this);
-            m.checkNotNullExpressionValue(view, "it");
+            Intrinsics3.checkNotNullExpressionValue(view, "it");
             Context context = view.getContext();
-            m.checkNotNullExpressionValue(context, "it.context");
+            Intrinsics3.checkNotNullExpressionValue(context, "it.context");
             muteSettingsSheetViewModelAccess$getViewModel$p.selectMuteDurationMs(900000L, context);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.widgets.settings.WidgetMuteSettingsSheet$bindSubscriptions$2, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetMuteSettingsSheet.kt */
-    public final /* synthetic */ class AnonymousClass2 extends k implements Function1<MuteSettingsSheetViewModel.ViewState, Unit> {
+    public final /* synthetic */ class AnonymousClass2 extends FunctionReferenceImpl implements Function1<MuteSettingsSheetViewModel.ViewState, Unit> {
         public AnonymousClass2(WidgetMuteSettingsSheet widgetMuteSettingsSheet) {
             super(1, widgetMuteSettingsSheet, WidgetMuteSettingsSheet.class, "updateViews", "updateViews(Lcom/discord/widgets/settings/MuteSettingsSheetViewModel$ViewState;)V", 0);
         }
@@ -121,7 +122,7 @@ public final class WidgetMuteSettingsSheet extends AppBottomSheet {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(MuteSettingsSheetViewModel.ViewState viewState) {
-            m.checkNotNullParameter(viewState, "p1");
+            Intrinsics3.checkNotNullParameter(viewState, "p1");
             WidgetMuteSettingsSheet.access$updateViews((WidgetMuteSettingsSheet) this.receiver, viewState);
         }
     }
@@ -147,16 +148,16 @@ public final class WidgetMuteSettingsSheet extends AppBottomSheet {
         @Override // android.view.View.OnClickListener
         public final void onClick(View view) {
             MuteSettingsSheetViewModel muteSettingsSheetViewModelAccess$getViewModel$p = WidgetMuteSettingsSheet.access$getViewModel$p(WidgetMuteSettingsSheet.this);
-            m.checkNotNullExpressionValue(view, "it");
+            Intrinsics3.checkNotNullExpressionValue(view, "it");
             Context context = view.getContext();
-            m.checkNotNullExpressionValue(context, "it.context");
+            Intrinsics3.checkNotNullExpressionValue(context, "it.context");
             muteSettingsSheetViewModelAccess$getViewModel$p.selectMuteDurationMs(3600000L, context);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.widgets.settings.WidgetMuteSettingsSheet$bindSubscriptions$3, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetMuteSettingsSheet.kt */
-    public final /* synthetic */ class AnonymousClass3 extends k implements Function1<MuteSettingsSheetViewModel.Event, Unit> {
+    public final /* synthetic */ class AnonymousClass3 extends FunctionReferenceImpl implements Function1<MuteSettingsSheetViewModel.Event, Unit> {
         public AnonymousClass3(WidgetMuteSettingsSheet widgetMuteSettingsSheet) {
             super(1, widgetMuteSettingsSheet, WidgetMuteSettingsSheet.class, "handleEvent", "handleEvent(Lcom/discord/widgets/settings/MuteSettingsSheetViewModel$Event;)V", 0);
         }
@@ -169,7 +170,7 @@ public final class WidgetMuteSettingsSheet extends AppBottomSheet {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(MuteSettingsSheetViewModel.Event event) {
-            m.checkNotNullParameter(event, "p1");
+            Intrinsics3.checkNotNullParameter(event, "p1");
             WidgetMuteSettingsSheet.access$handleEvent((WidgetMuteSettingsSheet) this.receiver, event);
         }
     }
@@ -183,9 +184,9 @@ public final class WidgetMuteSettingsSheet extends AppBottomSheet {
         @Override // android.view.View.OnClickListener
         public final void onClick(View view) {
             MuteSettingsSheetViewModel muteSettingsSheetViewModelAccess$getViewModel$p = WidgetMuteSettingsSheet.access$getViewModel$p(WidgetMuteSettingsSheet.this);
-            m.checkNotNullExpressionValue(view, "it");
+            Intrinsics3.checkNotNullExpressionValue(view, "it");
             Context context = view.getContext();
-            m.checkNotNullExpressionValue(context, "it.context");
+            Intrinsics3.checkNotNullExpressionValue(context, "it.context");
             muteSettingsSheetViewModelAccess$getViewModel$p.selectMuteDurationMs(28800000L, context);
         }
     }
@@ -199,9 +200,9 @@ public final class WidgetMuteSettingsSheet extends AppBottomSheet {
         @Override // android.view.View.OnClickListener
         public final void onClick(View view) {
             MuteSettingsSheetViewModel muteSettingsSheetViewModelAccess$getViewModel$p = WidgetMuteSettingsSheet.access$getViewModel$p(WidgetMuteSettingsSheet.this);
-            m.checkNotNullExpressionValue(view, "it");
+            Intrinsics3.checkNotNullExpressionValue(view, "it");
             Context context = view.getContext();
-            m.checkNotNullExpressionValue(context, "it.context");
+            Intrinsics3.checkNotNullExpressionValue(context, "it.context");
             muteSettingsSheetViewModelAccess$getViewModel$p.selectMuteDurationMs(86400000L, context);
         }
     }
@@ -215,9 +216,9 @@ public final class WidgetMuteSettingsSheet extends AppBottomSheet {
         @Override // android.view.View.OnClickListener
         public final void onClick(View view) {
             MuteSettingsSheetViewModel muteSettingsSheetViewModelAccess$getViewModel$p = WidgetMuteSettingsSheet.access$getViewModel$p(WidgetMuteSettingsSheet.this);
-            m.checkNotNullExpressionValue(view, "it");
+            Intrinsics3.checkNotNullExpressionValue(view, "it");
             Context context = view.getContext();
-            m.checkNotNullExpressionValue(context, "it.context");
+            Intrinsics3.checkNotNullExpressionValue(context, "it.context");
             muteSettingsSheetViewModelAccess$getViewModel$p.selectMuteDurationMs(0L, context);
         }
     }
@@ -228,7 +229,7 @@ public final class WidgetMuteSettingsSheet extends AppBottomSheet {
         }
 
         public final void showForChannel(long channelId, FragmentManager fragmentManager) {
-            m.checkNotNullParameter(fragmentManager, "fragmentManager");
+            Intrinsics3.checkNotNullParameter(fragmentManager, "fragmentManager");
             WidgetMuteSettingsSheet widgetMuteSettingsSheet = new WidgetMuteSettingsSheet();
             Bundle bundle = new Bundle();
             bundle.putLong(WidgetMuteSettingsSheet.ARG_CHANNEL_ID, channelId);
@@ -237,7 +238,7 @@ public final class WidgetMuteSettingsSheet extends AppBottomSheet {
         }
 
         public final void showForGuild(long guildId, FragmentManager fragmentManager) {
-            m.checkNotNullParameter(fragmentManager, "fragmentManager");
+            Intrinsics3.checkNotNullParameter(fragmentManager, "fragmentManager");
             WidgetMuteSettingsSheet widgetMuteSettingsSheet = new WidgetMuteSettingsSheet();
             Bundle bundle = new Bundle();
             bundle.putLong(WidgetMuteSettingsSheet.ARG_GUILD_ID, guildId);
@@ -286,10 +287,10 @@ public final class WidgetMuteSettingsSheet extends AppBottomSheet {
 
     public WidgetMuteSettingsSheet() {
         super(false, 1, null);
-        this.binding = FragmentViewBindingDelegateKt.viewBinding$default(this, WidgetMuteSettingsSheet$binding$2.INSTANCE, null, 2, null);
-        WidgetMuteSettingsSheet$viewModel$2 widgetMuteSettingsSheet$viewModel$2 = new WidgetMuteSettingsSheet$viewModel$2(this);
-        g0 g0Var = new g0(this);
-        this.viewModel = FragmentViewModelLazyKt.createViewModelLazy(this, a0.getOrCreateKotlinClass(MuteSettingsSheetViewModel.class), new WidgetMuteSettingsSheet$appViewModels$$inlined$viewModels$1(g0Var), new i0(widgetMuteSettingsSheet$viewModel$2));
+        this.binding = FragmentViewBindingDelegate3.viewBinding$default(this, WidgetMuteSettingsSheet2.INSTANCE, null, 2, null);
+        WidgetMuteSettingsSheet4 widgetMuteSettingsSheet4 = new WidgetMuteSettingsSheet4(this);
+        AppViewModelDelegates3 appViewModelDelegates3 = new AppViewModelDelegates3(this);
+        this.viewModel = FragmentViewModelLazyKt.createViewModelLazy(this, Reflection2.getOrCreateKotlinClass(MuteSettingsSheetViewModel.class), new WidgetMuteSettingsSheet$appViewModels$$inlined$viewModels$1(appViewModelDelegates3), new AppViewModelDelegates5(widgetMuteSettingsSheet4));
     }
 
     public static final /* synthetic */ Bundle access$getArgumentsOrDefault$p(WidgetMuteSettingsSheet widgetMuteSettingsSheet) {
@@ -314,7 +315,7 @@ public final class WidgetMuteSettingsSheet extends AppBottomSheet {
 
     @Override // com.discord.app.AppBottomSheet
     public void bindSubscriptions(CompositeSubscription compositeSubscription) {
-        m.checkNotNullParameter(compositeSubscription, "compositeSubscription");
+        Intrinsics3.checkNotNullParameter(compositeSubscription, "compositeSubscription");
         super.bindSubscriptions(compositeSubscription);
         getBinding().o.setOnClickListener(new AnonymousClass1());
         ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeViewState(), this, null, 2, null), WidgetMuteSettingsSheet.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass2(this), 62, (Object) null);
@@ -325,14 +326,14 @@ public final class WidgetMuteSettingsSheet extends AppBottomSheet {
         CharSequence charSequenceK;
         CharSequence charSequenceE;
         TextView textView = getBinding().g;
-        m.checkNotNullExpressionValue(textView, "binding.notificationSettingsOverridesLabel");
+        Intrinsics3.checkNotNullExpressionValue(textView, "binding.notificationSettingsOverridesLabel");
         int notificationSetting = viewState.getNotificationSetting();
         if (notificationSetting == ModelNotificationSettings.FREQUENCY_ALL) {
-            charSequenceK = b.k(this, R.string.form_label_all_messages_short, new Object[0], null, 4);
+            charSequenceK = FormatUtils.k(this, R.string.form_label_all_messages_short, new Object[0], null, 4);
         } else if (notificationSetting == ModelNotificationSettings.FREQUENCY_MENTIONS) {
-            charSequenceK = b.k(this, R.string.form_label_only_mentions_short, new Object[0], null, 4);
+            charSequenceK = FormatUtils.k(this, R.string.form_label_only_mentions_short, new Object[0], null, 4);
         } else {
-            charSequenceK = notificationSetting == ModelNotificationSettings.FREQUENCY_NOTHING ? b.k(this, R.string.form_label_nothing, new Object[0], null, 4) : "";
+            charSequenceK = notificationSetting == ModelNotificationSettings.FREQUENCY_NOTHING ? FormatUtils.k(this, R.string.form_label_nothing, new Object[0], null, 4) : "";
         }
         textView.setText(charSequenceK);
         int iOrdinal = viewState.getSettingsType().ordinal();
@@ -344,74 +345,74 @@ public final class WidgetMuteSettingsSheet extends AppBottomSheet {
                 }
                 if (z2) {
                     TextView textView2 = getBinding().f;
-                    m.checkNotNullExpressionValue(textView2, "binding.notificationSettingsLabel");
+                    Intrinsics3.checkNotNullExpressionValue(textView2, "binding.notificationSettingsLabel");
                     textView2.setAlpha(0.2f);
                     getBinding().d.setOnClickListener(null);
                     TextView textView3 = getBinding().f2498b;
-                    m.checkNotNullExpressionValue(textView3, "binding.channelMutedDetails");
+                    Intrinsics3.checkNotNullExpressionValue(textView3, "binding.channelMutedDetails");
                     textView3.setVisibility(0);
                     TextView textView4 = getBinding().f2498b;
-                    m.checkNotNullExpressionValue(textView4, "binding.channelMutedDetails");
+                    Intrinsics3.checkNotNullExpressionValue(textView4, "binding.channelMutedDetails");
                     if (viewState.isChannelMuted()) {
-                        charSequenceE = b.k(this, R.string.form_description_mobile_notification_muted, new Object[0], null, 4);
+                        charSequenceE = FormatUtils.k(this, R.string.form_description_mobile_notification_muted, new Object[0], null, 4);
                     } else {
-                        charSequenceE = b.e(this, R.string.form_label_mobile_channel_override_guild_muted, new Object[0], new AnonymousClass1());
+                        charSequenceE = FormatUtils.e(this, R.string.form_label_mobile_channel_override_guild_muted, new Object[0], new AnonymousClass1());
                     }
                     textView4.setText(charSequenceE);
                 } else {
                     TextView textView5 = getBinding().f;
-                    m.checkNotNullExpressionValue(textView5, "binding.notificationSettingsLabel");
+                    Intrinsics3.checkNotNullExpressionValue(textView5, "binding.notificationSettingsLabel");
                     textView5.setAlpha(1.0f);
                     getBinding().d.setOnClickListener(new AnonymousClass2());
                     TextView textView6 = getBinding().f2498b;
-                    m.checkNotNullExpressionValue(textView6, "binding.channelMutedDetails");
+                    Intrinsics3.checkNotNullExpressionValue(textView6, "binding.channelMutedDetails");
                     textView6.setVisibility(8);
                 }
                 FrameLayout frameLayout = getBinding().e;
-                m.checkNotNullExpressionValue(frameLayout, "binding.notificationSettingsButtonContainer");
+                Intrinsics3.checkNotNullExpressionValue(frameLayout, "binding.notificationSettingsButtonContainer");
                 frameLayout.setVisibility(0);
                 return;
             }
         }
         FrameLayout frameLayout2 = getBinding().e;
-        m.checkNotNullExpressionValue(frameLayout2, "binding.notificationSettingsButtonContainer");
+        Intrinsics3.checkNotNullExpressionValue(frameLayout2, "binding.notificationSettingsButtonContainer");
         frameLayout2.setVisibility(8);
         TextView textView7 = getBinding().f2498b;
-        m.checkNotNullExpressionValue(textView7, "binding.channelMutedDetails");
+        Intrinsics3.checkNotNullExpressionValue(textView7, "binding.channelMutedDetails");
         textView7.setVisibility(8);
     }
 
     private final void configureUnmuteButton(MuteSettingsSheetViewModel.ViewState.Loaded viewState) {
         CharSequence charSequenceE;
-        WidgetMuteSettingsSheet$configureUnmuteButton$boldRenderContext$1 widgetMuteSettingsSheet$configureUnmuteButton$boldRenderContext$1 = new WidgetMuteSettingsSheet$configureUnmuteButton$boldRenderContext$1(this);
+        WidgetMuteSettingsSheet3 widgetMuteSettingsSheet3 = new WidgetMuteSettingsSheet3(this);
         if (!viewState.isChannelMuted()) {
             LinearLayout linearLayout = getBinding().o;
-            m.checkNotNullExpressionValue(linearLayout, "binding.unmuteButton");
+            Intrinsics3.checkNotNullExpressionValue(linearLayout, "binding.unmuteButton");
             linearLayout.setVisibility(8);
             LinearLayout linearLayout2 = getBinding().c;
-            m.checkNotNullExpressionValue(linearLayout2, "binding.muteSettingsSheetMuteOptions");
+            Intrinsics3.checkNotNullExpressionValue(linearLayout2, "binding.muteSettingsSheetMuteOptions");
             linearLayout2.setVisibility(0);
             return;
         }
         TextView textView = getBinding().q;
-        m.checkNotNullExpressionValue(textView, "binding.unmuteButtonLabel");
-        b.m(textView, R.string.unmute_channel, new Object[]{viewState.getSubtitle()}, widgetMuteSettingsSheet$configureUnmuteButton$boldRenderContext$1);
+        Intrinsics3.checkNotNullExpressionValue(textView, "binding.unmuteButtonLabel");
+        FormatUtils.m(textView, R.string.unmute_channel, new Object[]{viewState.getSubtitle()}, widgetMuteSettingsSheet3);
         TextView textView2 = getBinding().p;
-        m.checkNotNullExpressionValue(textView2, "binding.unmuteButtonDetailsLabel");
+        Intrinsics3.checkNotNullExpressionValue(textView2, "binding.unmuteButtonDetailsLabel");
         int iOrdinal = viewState.getSettingsType().ordinal();
         if (iOrdinal == 1 || iOrdinal == 2) {
             String muteEndTime = viewState.getMuteEndTime();
-            charSequenceE = muteEndTime == null ? b.e(this, R.string.form_label_mobile_dm_muted, new Object[0], widgetMuteSettingsSheet$configureUnmuteButton$boldRenderContext$1) : b.e(this, R.string.form_label_mobile_dm_muted_until, new Object[]{parseMuteEndtime(muteEndTime)}, widgetMuteSettingsSheet$configureUnmuteButton$boldRenderContext$1);
+            charSequenceE = muteEndTime == null ? FormatUtils.e(this, R.string.form_label_mobile_dm_muted, new Object[0], widgetMuteSettingsSheet3) : FormatUtils.e(this, R.string.form_label_mobile_dm_muted_until, new Object[]{parseMuteEndtime(muteEndTime)}, widgetMuteSettingsSheet3);
         } else {
             String muteEndTime2 = viewState.getMuteEndTime();
-            charSequenceE = muteEndTime2 == null ? b.e(this, R.string.form_label_mobile_channel_muted, new Object[0], widgetMuteSettingsSheet$configureUnmuteButton$boldRenderContext$1) : b.e(this, R.string.form_label_mobile_channel_muted_until, new Object[]{parseMuteEndtime(muteEndTime2)}, widgetMuteSettingsSheet$configureUnmuteButton$boldRenderContext$1);
+            charSequenceE = muteEndTime2 == null ? FormatUtils.e(this, R.string.form_label_mobile_channel_muted, new Object[0], widgetMuteSettingsSheet3) : FormatUtils.e(this, R.string.form_label_mobile_channel_muted_until, new Object[]{parseMuteEndtime(muteEndTime2)}, widgetMuteSettingsSheet3);
         }
         textView2.setText(charSequenceE);
         LinearLayout linearLayout3 = getBinding().o;
-        m.checkNotNullExpressionValue(linearLayout3, "binding.unmuteButton");
+        Intrinsics3.checkNotNullExpressionValue(linearLayout3, "binding.unmuteButton");
         linearLayout3.setVisibility(0);
         LinearLayout linearLayout4 = getBinding().c;
-        m.checkNotNullExpressionValue(linearLayout4, "binding.muteSettingsSheetMuteOptions");
+        Intrinsics3.checkNotNullExpressionValue(linearLayout4, "binding.muteSettingsSheetMuteOptions");
         linearLayout4.setVisibility(8);
     }
 
@@ -434,14 +435,14 @@ public final class WidgetMuteSettingsSheet extends AppBottomSheet {
         } else if (event instanceof MuteSettingsSheetViewModel.Event.NavigateToChannelSettings) {
             WidgetChannelNotificationSettings.Companion companion = WidgetChannelNotificationSettings.INSTANCE;
             Context contextRequireContext = requireContext();
-            m.checkNotNullExpressionValue(contextRequireContext, "requireContext()");
+            Intrinsics3.checkNotNullExpressionValue(contextRequireContext, "requireContext()");
             WidgetChannelNotificationSettings.Companion.launch$default(companion, contextRequireContext, ((MuteSettingsSheetViewModel.Event.NavigateToChannelSettings) event).getChannelId(), false, 4, null);
         }
     }
 
     @Override // com.discord.app.AppBottomSheet, androidx.fragment.app.Fragment
     public void onViewCreated(View view, Bundle savedInstanceState) {
-        m.checkNotNullParameter(view, "view");
+        Intrinsics3.checkNotNullParameter(view, "view");
         super.onViewCreated(view, savedInstanceState);
         getBinding().j.setOnClickListener(new AnonymousClass1());
         getBinding().k.setOnClickListener(new AnonymousClass2());
@@ -453,7 +454,7 @@ public final class WidgetMuteSettingsSheet extends AppBottomSheet {
     private final String parseMuteEndtime(String muteEndTime) {
         TimeUtils timeUtils = TimeUtils.INSTANCE;
         Context contextRequireContext = requireContext();
-        m.checkNotNullExpressionValue(contextRequireContext, "requireContext()");
+        Intrinsics3.checkNotNullExpressionValue(contextRequireContext, "requireContext()");
         return TimeUtils.renderUtcDateTime$default(timeUtils, muteEndTime, contextRequireContext, null, 3, 3, 4, null);
     }
 
@@ -465,7 +466,7 @@ public final class WidgetMuteSettingsSheet extends AppBottomSheet {
         Integer numValueOf;
         if (!(viewState instanceof MuteSettingsSheetViewModel.ViewState.Loaded)) {
             if (viewState instanceof MuteSettingsSheetViewModel.ViewState.Failure) {
-                b.a.d.m.i(this, R.string.default_failure_to_perform_action_message, 0, 4);
+                AppToast.i(this, R.string.default_failure_to_perform_action_message, 0, 4);
                 dismiss();
                 return;
             }
@@ -485,10 +486,10 @@ public final class WidgetMuteSettingsSheet extends AppBottomSheet {
             numValueOf = Integer.valueOf(R.string.mute_settings_mute_channel);
         }
         TextView textView = getBinding().n;
-        m.checkNotNullExpressionValue(textView, "binding.title");
-        textView.setText(numValueOf != null ? b.k(this, numValueOf.intValue(), new Object[0], null, 4) : null);
+        Intrinsics3.checkNotNullExpressionValue(textView, "binding.title");
+        textView.setText(numValueOf != null ? FormatUtils.k(this, numValueOf.intValue(), new Object[0], null, 4) : null);
         TextView textView2 = getBinding().m;
-        m.checkNotNullExpressionValue(textView2, "binding.subtitle");
+        Intrinsics3.checkNotNullExpressionValue(textView2, "binding.subtitle");
         textView2.setText(loaded.getSubtitle());
         configureUnmuteButton(loaded);
         configureNotificationSettings(loaded);

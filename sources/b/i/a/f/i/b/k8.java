@@ -10,11 +10,12 @@ import android.os.RemoteException;
 import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import b.c.a.a0.AnimatableValueParser;
 import com.google.android.gms.common.ConnectionResult;
 
 /* JADX INFO: compiled from: com.google.android.gms:play-services-measurement-impl@@18.0.0 */
 /* JADX INFO: loaded from: classes3.dex */
-public final class k8 implements ServiceConnection, b.i.a.f.e.k.b.a, b.i.a.f.e.k.b.InterfaceC0114b {
+public final class k8 implements ServiceConnection, b.i.a.f.e.k.b.a, b.i.a.f.e.k.b.InterfaceC0037b {
     public volatile boolean j;
     public volatile r3 k;
     public final /* synthetic */ q7 l;
@@ -26,15 +27,15 @@ public final class k8 implements ServiceConnection, b.i.a.f.e.k.b.a, b.i.a.f.e.k
     @Override // b.i.a.f.e.k.b.a
     @MainThread
     public final void c(int i) {
-        b.c.a.a0.d.u("MeasurementServiceConnection.onConnectionSuspended");
+        AnimatableValueParser.u("MeasurementServiceConnection.onConnectionSuspended");
         this.l.g().m.a("Service connection suspended");
         this.l.f().v(new o8(this));
     }
 
-    @Override // b.i.a.f.e.k.b.InterfaceC0114b
+    @Override // b.i.a.f.e.k.b.InterfaceC0037b
     @MainThread
     public final void g(@NonNull ConnectionResult connectionResult) {
-        b.c.a.a0.d.u("MeasurementServiceConnection.onConnectionFailed");
+        AnimatableValueParser.u("MeasurementServiceConnection.onConnectionFailed");
         u4 u4Var = this.l.a;
         q3 q3Var = u4Var.j;
         q3 q3Var2 = (q3Var == null || !q3Var.n()) ? null : u4Var.j;
@@ -51,7 +52,7 @@ public final class k8 implements ServiceConnection, b.i.a.f.e.k.b.a, b.i.a.f.e.k
     @Override // b.i.a.f.e.k.b.a
     @MainThread
     public final void i(@Nullable Bundle bundle) {
-        b.c.a.a0.d.u("MeasurementServiceConnection.onConnected");
+        AnimatableValueParser.u("MeasurementServiceConnection.onConnected");
         synchronized (this) {
             try {
                 this.l.f().v(new l8(this, this.k.w()));
@@ -65,7 +66,7 @@ public final class k8 implements ServiceConnection, b.i.a.f.e.k.b.a, b.i.a.f.e.k
     @Override // android.content.ServiceConnection
     @MainThread
     public final void onServiceConnected(ComponentName componentName, IBinder iBinder) {
-        b.c.a.a0.d.u("MeasurementServiceConnection.onServiceConnected");
+        AnimatableValueParser.u("MeasurementServiceConnection.onServiceConnected");
         synchronized (this) {
             if (iBinder == null) {
                 this.j = false;
@@ -102,7 +103,7 @@ public final class k8 implements ServiceConnection, b.i.a.f.e.k.b.a, b.i.a.f.e.k
     @Override // android.content.ServiceConnection
     @MainThread
     public final void onServiceDisconnected(ComponentName componentName) {
-        b.c.a.a0.d.u("MeasurementServiceConnection.onServiceDisconnected");
+        AnimatableValueParser.u("MeasurementServiceConnection.onServiceDisconnected");
         this.l.g().m.a("Service disconnected");
         this.l.f().v(new m8(this, componentName));
     }

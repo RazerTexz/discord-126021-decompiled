@@ -1,7 +1,7 @@
 package com.discord.api.friendsuggestions;
 
-import b.d.b.a.a;
-import d0.z.d.m;
+import b.d.b.a.outline;
+import d0.z.d.Intrinsics3;
 import java.util.List;
 
 /* JADX INFO: compiled from: BulkAddFriendsResponse.kt */
@@ -26,7 +26,7 @@ public final /* data */ class BulkAddFriendsResponse {
             return false;
         }
         BulkAddFriendsResponse bulkAddFriendsResponse = (BulkAddFriendsResponse) other;
-        return m.areEqual(this.successfulRequests, bulkAddFriendsResponse.successfulRequests) && m.areEqual(this.failedRequests, bulkAddFriendsResponse.failedRequests);
+        return Intrinsics3.areEqual(this.successfulRequests, bulkAddFriendsResponse.successfulRequests) && Intrinsics3.areEqual(this.failedRequests, bulkAddFriendsResponse.failedRequests);
     }
 
     public int hashCode() {
@@ -37,9 +37,9 @@ public final /* data */ class BulkAddFriendsResponse {
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("BulkAddFriendsResponse(successfulRequests=");
+        StringBuilder sbU = outline.U("BulkAddFriendsResponse(successfulRequests=");
         sbU.append(this.successfulRequests);
         sbU.append(", failedRequests=");
-        return a.L(sbU, this.failedRequests, ")");
+        return outline.L(sbU, this.failedRequests, ")");
     }
 }

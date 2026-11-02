@@ -6,28 +6,29 @@ import androidx.work.ListenableWorker;
 import androidx.work.Worker;
 import androidx.work.WorkerParameters;
 import com.discord.stores.StoreStream;
-import d0.z.d.m;
-import j0.k.b;
+import d0.z.d.Intrinsics3;
+import j0.k.Func1;
+import j0.m.BlockingObservable;
 
 /* JADX INFO: compiled from: BackgroundMessageSendWorker.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final class BackgroundMessageSendWorker extends Worker {
 
     /* JADX INFO: compiled from: BackgroundMessageSendWorker.kt */
-    public final class a<T, R> implements b<Boolean, Boolean> {
+    public final class a<T, R> implements Func1<Boolean, Boolean> {
         public static final a j = new a();
 
-        @Override // j0.k.b
+        @Override // j0.k.Func1
         public Boolean call(Boolean bool) {
-            return Boolean.valueOf(m.areEqual(bool, Boolean.TRUE));
+            return Boolean.valueOf(Intrinsics3.areEqual(bool, Boolean.TRUE));
         }
     }
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public BackgroundMessageSendWorker(Context context, WorkerParameters workerParameters) {
         super(context, workerParameters);
-        m.checkNotNullParameter(context, "context");
-        m.checkNotNullParameter(workerParameters, "params");
+        Intrinsics3.checkNotNullParameter(context, "context");
+        Intrinsics3.checkNotNullParameter(workerParameters, "params");
     }
 
     @Override // androidx.work.Worker
@@ -39,14 +40,14 @@ public final class BackgroundMessageSendWorker extends Worker {
         Application application = (Application) applicationContext;
         if (application == null) {
             ListenableWorker.Result resultFailure = ListenableWorker.Result.failure();
-            m.checkNotNullExpressionValue(resultFailure, "Result.failure()");
+            Intrinsics3.checkNotNullExpressionValue(resultFailure, "Result.failure()");
             return resultFailure;
         }
         StoreStream.Companion companion = StoreStream.INSTANCE;
         companion.initialize(application);
-        new j0.m.a(companion.getMessages().observeInitResendFinished().y(a.j).Z(1)).b();
+        new BlockingObservable(companion.getMessages().observeInitResendFinished().y(a.j).Z(1)).b();
         ListenableWorker.Result resultSuccess = ListenableWorker.Result.success();
-        m.checkNotNullExpressionValue(resultSuccess, "Result.success()");
+        Intrinsics3.checkNotNullExpressionValue(resultSuccess, "Result.success()");
         return resultSuccess;
     }
 }

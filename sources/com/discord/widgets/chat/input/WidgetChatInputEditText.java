@@ -9,8 +9,8 @@ import com.discord.stores.StoreStream;
 import com.discord.utilities.time.ClockFactory;
 import com.discord.utilities.view.text.TextWatcher;
 import com.lytefast.flexinput.widget.FlexEditText;
-import d0.g0.w;
-import d0.z.d.m;
+import d0.g0.Strings4;
+import d0.z.d.Intrinsics3;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.internal.DefaultConstructorMarker;
@@ -39,7 +39,7 @@ public final class WidgetChatInputEditText {
         @Override // android.view.View.OnKeyListener
         public final boolean onKey(View view, int i, KeyEvent keyEvent) {
             Function0<Unit> onSendListener;
-            m.checkNotNullParameter(keyEvent, "event");
+            Intrinsics3.checkNotNullParameter(keyEvent, "event");
             boolean z2 = (keyEvent.getFlags() & 2) == 2;
             if ((i == 66) && !z2) {
                 boolean zHasModifiers = keyEvent.hasModifiers(1);
@@ -67,7 +67,7 @@ public final class WidgetChatInputEditText {
 
         @Override // com.discord.utilities.view.text.TextWatcher, android.text.TextWatcher
         public void afterTextChanged(Editable s2) {
-            m.checkNotNullParameter(s2, "s");
+            Intrinsics3.checkNotNullParameter(s2, "s");
             super.afterTextChanged(s2);
             WidgetChatInputEditText.this.saveText();
             boolean zIsEmpty = TextUtils.isEmpty(s2);
@@ -75,7 +75,7 @@ public final class WidgetChatInputEditText {
                 this.empty = zIsEmpty;
                 WidgetChatInputEditText.access$getEmptyTextSubject$p(WidgetChatInputEditText.this).onNext(Boolean.valueOf(zIsEmpty));
             }
-            boolean zStartsWith$default = w.startsWith$default((CharSequence) s2.toString(), MentionUtilsKt.SLASH_CHAR, false, 2, (Object) null);
+            boolean zStartsWith$default = Strings4.startsWith$default((CharSequence) s2.toString(), MentionUtils.SLASH_CHAR, false, 2, (Object) null);
             if (WidgetChatInputEditText.access$getLastTypingEmissionMillis$p(WidgetChatInputEditText.this) - ClockFactory.get().currentTimeMillis() >= -10000 || zIsEmpty || zStartsWith$default) {
                 return;
             }
@@ -111,7 +111,7 @@ public final class WidgetChatInputEditText {
         }
 
         public final String toStringSafe(TextView textView) {
-            m.checkNotNullParameter(textView, "textView");
+            Intrinsics3.checkNotNullParameter(textView, "textView");
             try {
                 return textView.getText().toString();
             } catch (Exception unused) {
@@ -125,12 +125,12 @@ public final class WidgetChatInputEditText {
     }
 
     public WidgetChatInputEditText(FlexEditText flexEditText, MessageDraftsRepo messageDraftsRepo) {
-        m.checkNotNullParameter(flexEditText, "editText");
-        m.checkNotNullParameter(messageDraftsRepo, "messageDraftsRepo");
+        Intrinsics3.checkNotNullParameter(flexEditText, "editText");
+        Intrinsics3.checkNotNullParameter(messageDraftsRepo, "messageDraftsRepo");
         this.editText = flexEditText;
         this.messageDraftsRepo = messageDraftsRepo;
         BehaviorSubject behaviorSubjectL0 = BehaviorSubject.l0(Boolean.TRUE);
-        m.checkNotNullExpressionValue(behaviorSubjectL0, "BehaviorSubject.create(true)");
+        Intrinsics3.checkNotNullExpressionValue(behaviorSubjectL0, "BehaviorSubject.create(true)");
         this.emptyTextSubject = behaviorSubjectL0;
         setOnTextChangedListener();
         setSoftwareKeyboardSendBehavior();

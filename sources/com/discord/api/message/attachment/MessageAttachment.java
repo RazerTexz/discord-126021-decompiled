@@ -1,10 +1,10 @@
 package com.discord.api.message.attachment;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.models.domain.ModelAuditLogEntry;
-import d0.g0.t;
-import d0.g0.w;
-import d0.z.d.m;
+import d0.g0.Strings4;
+import d0.g0.StringsJVM;
+import d0.z.d.Intrinsics3;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
@@ -27,11 +27,11 @@ public final /* data */ class MessageAttachment {
         boolean z2;
         String str = this.url;
         Locale locale = Locale.ROOT;
-        m.checkNotNullExpressionValue(locale, "Locale.ROOT");
+        Intrinsics3.checkNotNullExpressionValue(locale, "Locale.ROOT");
         Objects.requireNonNull(str, "null cannot be cast to non-null type java.lang.String");
         String lowerCase = str.toLowerCase(locale);
-        m.checkNotNullExpressionValue(lowerCase, "(this as java.lang.String).toLowerCase(locale)");
-        List<String> listA = MessageAttachmentKt.a();
+        Intrinsics3.checkNotNullExpressionValue(lowerCase, "(this as java.lang.String).toLowerCase(locale)");
+        List<String> listA = MessageAttachment2.a();
         boolean z3 = true;
         if (!(listA instanceof Collection) || !listA.isEmpty()) {
             Iterator<T> it = listA.iterator();
@@ -40,7 +40,7 @@ public final /* data */ class MessageAttachment {
                     z2 = false;
                     break;
                 }
-                if (w.contains$default((CharSequence) lowerCase, (CharSequence) it.next(), false, 2, (Object) null)) {
+                if (Strings4.contains$default((CharSequence) lowerCase, (CharSequence) it.next(), false, 2, (Object) null)) {
                     z2 = true;
                     break;
                 }
@@ -52,13 +52,13 @@ public final /* data */ class MessageAttachment {
         if (z2) {
             return MessageAttachmentType.IMAGE;
         }
-        List<String> listB = MessageAttachmentKt.b();
+        List<String> listB = MessageAttachment2.b();
         if ((listB instanceof Collection) && listB.isEmpty()) {
             z3 = false;
         } else {
             Iterator<T> it2 = listB.iterator();
             while (it2.hasNext()) {
-                if (w.contains$default((CharSequence) lowerCase, (CharSequence) it2.next(), false, 2, (Object) null)) {
+                if (Strings4.contains$default((CharSequence) lowerCase, (CharSequence) it2.next(), false, 2, (Object) null)) {
                 }
             }
             z3 = false;
@@ -74,7 +74,7 @@ public final /* data */ class MessageAttachment {
             return false;
         }
         MessageAttachment messageAttachment = (MessageAttachment) other;
-        return m.areEqual(this.url, messageAttachment.url) && this.size == messageAttachment.size && this.id == messageAttachment.id && m.areEqual(this.proxyUrl, messageAttachment.proxyUrl) && m.areEqual(this.filename, messageAttachment.filename) && m.areEqual(this.width, messageAttachment.width) && m.areEqual(this.height, messageAttachment.height);
+        return Intrinsics3.areEqual(this.url, messageAttachment.url) && this.size == messageAttachment.size && this.id == messageAttachment.id && Intrinsics3.areEqual(this.proxyUrl, messageAttachment.proxyUrl) && Intrinsics3.areEqual(this.filename, messageAttachment.filename) && Intrinsics3.areEqual(this.width, messageAttachment.width) && Intrinsics3.areEqual(this.height, messageAttachment.height);
     }
 
     /* JADX INFO: renamed from: a, reason: from getter */
@@ -108,7 +108,7 @@ public final /* data */ class MessageAttachment {
     }
 
     public final boolean h() {
-        return t.startsWith$default(this.filename, SPOILER_PREFIX, false, 2, null);
+        return StringsJVM.startsWith$default(this.filename, SPOILER_PREFIX, false, 2, null);
     }
 
     public int hashCode() {
@@ -129,7 +129,7 @@ public final /* data */ class MessageAttachment {
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("MessageAttachment(url=");
+        StringBuilder sbU = outline.U("MessageAttachment(url=");
         sbU.append(this.url);
         sbU.append(", size=");
         sbU.append(this.size);
@@ -142,6 +142,6 @@ public final /* data */ class MessageAttachment {
         sbU.append(", width=");
         sbU.append(this.width);
         sbU.append(", height=");
-        return a.F(sbU, this.height, ")");
+        return outline.F(sbU, this.height, ")");
     }
 }

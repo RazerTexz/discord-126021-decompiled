@@ -1,16 +1,16 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.analytics.generated.traits.TrackLocationMetadata;
-import com.discord.analytics.generated.traits.TrackLocationMetadataReceiver;
+import com.discord.analytics.generated.traits.TrackLocationMetadata2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackVideoEffectUpdated.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackVideoEffectUpdated implements AnalyticsSchema, TrackBaseReceiver, TrackLocationMetadataReceiver {
+public final /* data */ class TrackVideoEffectUpdated implements AnalyticsSchema, TrackBase2, TrackLocationMetadata2 {
     private final Long channelId = null;
     private final Long channelType = null;
     private final CharSequence effectDetail = null;
@@ -34,7 +34,7 @@ public final /* data */ class TrackVideoEffectUpdated implements AnalyticsSchema
             return false;
         }
         TrackVideoEffectUpdated trackVideoEffectUpdated = (TrackVideoEffectUpdated) other;
-        return m.areEqual(this.effectType, trackVideoEffectUpdated.effectType) && m.areEqual(this.effectDetail, trackVideoEffectUpdated.effectDetail) && m.areEqual(this.effectState, trackVideoEffectUpdated.effectState) && m.areEqual(this.channelId, trackVideoEffectUpdated.channelId) && m.areEqual(this.channelType, trackVideoEffectUpdated.channelType) && m.areEqual(this.guildId, trackVideoEffectUpdated.guildId) && m.areEqual(this.videoStreamCount, trackVideoEffectUpdated.videoStreamCount) && m.areEqual(this.voiceStateCount, trackVideoEffectUpdated.voiceStateCount) && m.areEqual(this.mediaSessionId, trackVideoEffectUpdated.mediaSessionId) && m.areEqual(this.rtcConnectionId, trackVideoEffectUpdated.rtcConnectionId) && m.areEqual(this.isAnimated, trackVideoEffectUpdated.isAnimated);
+        return Intrinsics3.areEqual(this.effectType, trackVideoEffectUpdated.effectType) && Intrinsics3.areEqual(this.effectDetail, trackVideoEffectUpdated.effectDetail) && Intrinsics3.areEqual(this.effectState, trackVideoEffectUpdated.effectState) && Intrinsics3.areEqual(this.channelId, trackVideoEffectUpdated.channelId) && Intrinsics3.areEqual(this.channelType, trackVideoEffectUpdated.channelType) && Intrinsics3.areEqual(this.guildId, trackVideoEffectUpdated.guildId) && Intrinsics3.areEqual(this.videoStreamCount, trackVideoEffectUpdated.videoStreamCount) && Intrinsics3.areEqual(this.voiceStateCount, trackVideoEffectUpdated.voiceStateCount) && Intrinsics3.areEqual(this.mediaSessionId, trackVideoEffectUpdated.mediaSessionId) && Intrinsics3.areEqual(this.rtcConnectionId, trackVideoEffectUpdated.rtcConnectionId) && Intrinsics3.areEqual(this.isAnimated, trackVideoEffectUpdated.isAnimated);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -69,7 +69,7 @@ public final /* data */ class TrackVideoEffectUpdated implements AnalyticsSchema
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackVideoEffectUpdated(effectType=");
+        StringBuilder sbU = outline.U("TrackVideoEffectUpdated(effectType=");
         sbU.append(this.effectType);
         sbU.append(", effectDetail=");
         sbU.append(this.effectDetail);
@@ -90,6 +90,6 @@ public final /* data */ class TrackVideoEffectUpdated implements AnalyticsSchema
         sbU.append(", rtcConnectionId=");
         sbU.append(this.rtcConnectionId);
         sbU.append(", isAnimated=");
-        return a.D(sbU, this.isAnimated, ")");
+        return outline.D(sbU, this.isAnimated, ")");
     }
 }

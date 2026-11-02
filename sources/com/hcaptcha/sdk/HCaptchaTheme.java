@@ -1,7 +1,7 @@
 package com.hcaptcha.sdk;
 
 import androidx.annotation.NonNull;
-import b.g.a.a.f0;
+import b.g.a.a.JsonValue;
 import com.discord.models.domain.ModelUserSettings;
 import java.io.Serializable;
 
@@ -23,7 +23,7 @@ public enum HCaptchaTheme implements Serializable {
 
     @Override // java.lang.Enum
     @NonNull
-    @f0
+    @JsonValue
     public String toString() {
         return this.theme;
     }

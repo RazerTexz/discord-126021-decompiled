@@ -1,14 +1,14 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackVideoLayoutToggled.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackVideoLayoutToggled implements AnalyticsSchema, TrackBaseReceiver {
+public final /* data */ class TrackVideoLayoutToggled implements AnalyticsSchema, TrackBase2 {
     private final Long channelId = null;
     private final Long channelType = null;
     private final Long gameId = null;
@@ -33,7 +33,7 @@ public final /* data */ class TrackVideoLayoutToggled implements AnalyticsSchema
             return false;
         }
         TrackVideoLayoutToggled trackVideoLayoutToggled = (TrackVideoLayoutToggled) other;
-        return m.areEqual(this.guildId, trackVideoLayoutToggled.guildId) && m.areEqual(this.channelId, trackVideoLayoutToggled.channelId) && m.areEqual(this.channelType, trackVideoLayoutToggled.channelType) && m.areEqual(this.voiceStateCount, trackVideoLayoutToggled.voiceStateCount) && m.areEqual(this.videoStreamCount, trackVideoLayoutToggled.videoStreamCount) && m.areEqual(this.videoEnabled, trackVideoLayoutToggled.videoEnabled) && m.areEqual(this.gameName, trackVideoLayoutToggled.gameName) && m.areEqual(this.gameId, trackVideoLayoutToggled.gameId) && m.areEqual(this.videoLayout, trackVideoLayoutToggled.videoLayout) && m.areEqual(this.gamePlatform, trackVideoLayoutToggled.gamePlatform) && m.areEqual(this.streamerUserId, trackVideoLayoutToggled.streamerUserId) && m.areEqual(this.videoStreamState, trackVideoLayoutToggled.videoStreamState) && m.areEqual(this.mediaSessionId, trackVideoLayoutToggled.mediaSessionId);
+        return Intrinsics3.areEqual(this.guildId, trackVideoLayoutToggled.guildId) && Intrinsics3.areEqual(this.channelId, trackVideoLayoutToggled.channelId) && Intrinsics3.areEqual(this.channelType, trackVideoLayoutToggled.channelType) && Intrinsics3.areEqual(this.voiceStateCount, trackVideoLayoutToggled.voiceStateCount) && Intrinsics3.areEqual(this.videoStreamCount, trackVideoLayoutToggled.videoStreamCount) && Intrinsics3.areEqual(this.videoEnabled, trackVideoLayoutToggled.videoEnabled) && Intrinsics3.areEqual(this.gameName, trackVideoLayoutToggled.gameName) && Intrinsics3.areEqual(this.gameId, trackVideoLayoutToggled.gameId) && Intrinsics3.areEqual(this.videoLayout, trackVideoLayoutToggled.videoLayout) && Intrinsics3.areEqual(this.gamePlatform, trackVideoLayoutToggled.gamePlatform) && Intrinsics3.areEqual(this.streamerUserId, trackVideoLayoutToggled.streamerUserId) && Intrinsics3.areEqual(this.videoStreamState, trackVideoLayoutToggled.videoStreamState) && Intrinsics3.areEqual(this.mediaSessionId, trackVideoLayoutToggled.mediaSessionId);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -72,7 +72,7 @@ public final /* data */ class TrackVideoLayoutToggled implements AnalyticsSchema
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackVideoLayoutToggled(guildId=");
+        StringBuilder sbU = outline.U("TrackVideoLayoutToggled(guildId=");
         sbU.append(this.guildId);
         sbU.append(", channelId=");
         sbU.append(this.channelId);
@@ -97,6 +97,6 @@ public final /* data */ class TrackVideoLayoutToggled implements AnalyticsSchema
         sbU.append(", videoStreamState=");
         sbU.append(this.videoStreamState);
         sbU.append(", mediaSessionId=");
-        return a.E(sbU, this.mediaSessionId, ")");
+        return outline.E(sbU, this.mediaSessionId, ")");
     }
 }

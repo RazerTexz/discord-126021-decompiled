@@ -1,7 +1,7 @@
 package com.discord.stores;
 
 import androidx.core.app.NotificationCompat;
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.api.channel.Channel;
 import com.discord.api.channel.ChannelUtils;
 import com.discord.api.message.Message;
@@ -12,8 +12,8 @@ import com.discord.models.member.GuildMember;
 import com.discord.models.user.User;
 import com.discord.utilities.permissions.PermissionUtils;
 import com.discord.utilities.threads.ThreadUtils;
-import d0.t.n;
-import d0.z.d.m;
+import d0.t.Collections2;
+import d0.z.d.Intrinsics3;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
@@ -95,7 +95,7 @@ public final class NotificationTextUtils {
             if (iComputeThreadNotificationSetting == 8) {
                 return false;
             }
-            if (!m.areEqual(message.getMentionEveryone(), Boolean.TRUE)) {
+            if (!Intrinsics3.areEqual(message.getMentionEveryone(), Boolean.TRUE)) {
                 List<com.discord.api.user.User> listT = message.t();
                 if (listT == null) {
                     listS = message.s();
@@ -168,7 +168,7 @@ public final class NotificationTextUtils {
         List<Long> listS;
         boolean z2;
         boolean z3;
-        if (!m.areEqual(message.getMentionEveryone(), Boolean.TRUE) || isSuppressEveryone) {
+        if (!Intrinsics3.areEqual(message.getMentionEveryone(), Boolean.TRUE) || isSuppressEveryone) {
             List<com.discord.api.user.User> listT = message.t();
             if (listT != null) {
                 if (!listT.isEmpty()) {
@@ -249,13 +249,13 @@ public final class NotificationTextUtils {
     public final boolean shouldNotifyInAppPopup(User me2, Message msg, Channel channel, Map<Long, Integer> blockedRelationships, Channel parentChannel, Guild guild, Map<Long, ? extends Map<Long, GuildMember>> guildMembers, Map<Long, ? extends ModelNotificationSettings> guildSettings, Map<Long, StoreThreadsJoined.JoinedThread> joinedThreads, long selectedVoiceChannelId, Long channelPermissions) {
         com.discord.api.user.User author;
         List<Long> listEmptyList;
-        m.checkNotNullParameter(me2, "me");
-        m.checkNotNullParameter(msg, NotificationCompat.CATEGORY_MESSAGE);
-        m.checkNotNullParameter(channel, "channel");
-        m.checkNotNullParameter(blockedRelationships, "blockedRelationships");
-        m.checkNotNullParameter(guildMembers, "guildMembers");
-        m.checkNotNullParameter(guildSettings, "guildSettings");
-        m.checkNotNullParameter(joinedThreads, "joinedThreads");
+        Intrinsics3.checkNotNullParameter(me2, "me");
+        Intrinsics3.checkNotNullParameter(msg, NotificationCompat.CATEGORY_MESSAGE);
+        Intrinsics3.checkNotNullParameter(channel, "channel");
+        Intrinsics3.checkNotNullParameter(blockedRelationships, "blockedRelationships");
+        Intrinsics3.checkNotNullParameter(guildMembers, "guildMembers");
+        Intrinsics3.checkNotNullParameter(guildSettings, "guildSettings");
+        Intrinsics3.checkNotNullParameter(joinedThreads, "joinedThreads");
         if (ChannelUtils.y(channel) || (author = msg.getAuthor()) == null || author.getId() == 0 || author.getId() == me2.getId() || blockedRelationships.containsKey(Long.valueOf(author.getId()))) {
             return false;
         }
@@ -263,15 +263,15 @@ public final class NotificationTextUtils {
         if (type != null && type.intValue() == 3) {
             return false;
         }
-        Map map = (Map) a.c(channel, guildMembers);
-        GuildMember guildMember = map != null ? (GuildMember) a.f(me2, map) : null;
+        Map map = (Map) outline.c(channel, guildMembers);
+        GuildMember guildMember = map != null ? (GuildMember) outline.f(me2, map) : null;
         if (guildMember == null || (listEmptyList = guildMember.getRoles()) == null) {
-            listEmptyList = n.emptyList();
+            listEmptyList = Collections2.emptyList();
         }
         List<Long> list = listEmptyList;
-        ModelNotificationSettings modelNotificationSettings = (ModelNotificationSettings) a.c(channel, guildSettings);
+        ModelNotificationSettings modelNotificationSettings = (ModelNotificationSettings) outline.c(channel, guildSettings);
         if (ChannelUtils.H(channel)) {
-            return isThreadNotificationAllowed(me2, list, msg, (StoreThreadsJoined.JoinedThread) a.d(channel, joinedThreads), modelNotificationSettings, guild, channel, parentChannel);
+            return isThreadNotificationAllowed(me2, list, msg, (StoreThreadsJoined.JoinedThread) outline.d(channel, joinedThreads), modelNotificationSettings, guild, channel, parentChannel);
         }
         if (modelNotificationSettings != null) {
             return isNotificationAllowed(modelNotificationSettings, me2, list, msg, guild, channel, channelPermissions, selectedVoiceChannelId);

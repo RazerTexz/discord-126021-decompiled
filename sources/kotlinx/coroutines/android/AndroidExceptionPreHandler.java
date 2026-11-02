@@ -2,7 +2,7 @@ package kotlinx.coroutines.android;
 
 import android.os.Build;
 import androidx.annotation.Keep;
-import d0.w.a;
+import d0.w.CoroutineContextImpl;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import kotlin.coroutines.CoroutineContext;
@@ -11,7 +11,7 @@ import kotlinx.coroutines.CoroutineExceptionHandler;
 /* JADX INFO: compiled from: AndroidExceptionPreHandler.kt */
 /* JADX INFO: loaded from: classes3.dex */
 @Keep
-public final class AndroidExceptionPreHandler extends a implements CoroutineExceptionHandler {
+public final class AndroidExceptionPreHandler extends CoroutineContextImpl implements CoroutineExceptionHandler {
     private volatile Object _preHandler;
 
     public AndroidExceptionPreHandler() {

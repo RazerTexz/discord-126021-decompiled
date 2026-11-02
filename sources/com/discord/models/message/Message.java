@@ -4,7 +4,7 @@ import a0.a.a.b;
 import androidx.appcompat.widget.ActivityChooserModel;
 import androidx.constraintlayout.solver.widgets.analyzer.BasicMeasure;
 import androidx.core.app.NotificationCompat;
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.api.application.Application;
 import com.discord.api.botuikit.Component;
 import com.discord.api.channel.Channel;
@@ -25,9 +25,9 @@ import com.discord.api.user.User;
 import com.discord.api.utcdatetime.UtcDateTime;
 import com.discord.models.domain.ModelAuditLogEntry;
 import com.discord.utilities.captcha.CaptchaHelper;
-import d0.g0.w;
-import d0.t.h0;
-import d0.z.d.m;
+import d0.g0.Strings4;
+import d0.t.Maps6;
+import d0.z.d.Intrinsics3;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -77,7 +77,7 @@ public final /* data */ class Message {
     private final Boolean tts;
     private final Integer type;
     private final Long webhookId;
-    private static final Map<String, MessageReaction> EMPTY_REACTIONS = h0.emptyMap();
+    private static final Map<String, MessageReaction> EMPTY_REACTIONS = Maps6.emptyMap();
 
     /* JADX WARN: Multi-variable type inference failed */
     public Message(long j, long j2, Long l, User user, String str, UtcDateTime utcDateTime, UtcDateTime utcDateTime2, Boolean bool, Boolean bool2, List<User> list, List<Long> list2, List<MessageAttachment> list3, List<MessageEmbed> list4, List<MessageReaction> list5, String str2, Boolean bool3, Long l2, Integer num, MessageActivity messageActivity, Application application, Long l3, MessageReference messageReference, Long l4, List<Sticker> list6, List<StickerPartial> list7, com.discord.api.message.Message message, Interaction interaction, Channel channel, List<? extends Component> list8, MessageCall messageCall, Boolean bool4, RoleSubscriptionData roleSubscriptionData, boolean z2, MessageAllowedMentions messageAllowedMentions, Integer num2, Long l5, Long l6, List<LocalAttachment> list9, CaptchaHelper.CaptchaPayload captchaPayload) {
@@ -180,7 +180,7 @@ public final /* data */ class Message {
             return false;
         }
         Message message = (Message) other;
-        return this.id == message.id && this.channelId == message.channelId && m.areEqual(this.guildId, message.guildId) && m.areEqual(this.author, message.author) && m.areEqual(this.content, message.content) && m.areEqual(this.timestamp, message.timestamp) && m.areEqual(this.editedTimestamp, message.editedTimestamp) && m.areEqual(this.tts, message.tts) && m.areEqual(this.mentionEveryone, message.mentionEveryone) && m.areEqual(this.mentions, message.mentions) && m.areEqual(this.mentionRoles, message.mentionRoles) && m.areEqual(this.attachments, message.attachments) && m.areEqual(this.embeds, message.embeds) && m.areEqual(this.reactions, message.reactions) && m.areEqual(this.nonce, message.nonce) && m.areEqual(this.pinned, message.pinned) && m.areEqual(this.webhookId, message.webhookId) && m.areEqual(this.type, message.type) && m.areEqual(this.activity, message.activity) && m.areEqual(this.application, message.application) && m.areEqual(this.applicationId, message.applicationId) && m.areEqual(this.messageReference, message.messageReference) && m.areEqual(this.flags, message.flags) && m.areEqual(this.stickers, message.stickers) && m.areEqual(this.stickerItems, message.stickerItems) && m.areEqual(this.referencedMessage, message.referencedMessage) && m.areEqual(this.interaction, message.interaction) && m.areEqual(this.thread, message.thread) && m.areEqual(this.components, message.components) && m.areEqual(this.call, message.call) && m.areEqual(this.hit, message.hit) && m.areEqual(this.roleSubscriptionData, message.roleSubscriptionData) && this.hasLocalUploads == message.hasLocalUploads && m.areEqual(this.allowedMentions, message.allowedMentions) && m.areEqual(this.numRetries, message.numRetries) && m.areEqual(this.lastManualAttemptTimestamp, message.lastManualAttemptTimestamp) && m.areEqual(this.initialAttemptTimestamp, message.initialAttemptTimestamp) && m.areEqual(this.localAttachments, message.localAttachments) && m.areEqual(this.captchaPayload, message.captchaPayload);
+        return this.id == message.id && this.channelId == message.channelId && Intrinsics3.areEqual(this.guildId, message.guildId) && Intrinsics3.areEqual(this.author, message.author) && Intrinsics3.areEqual(this.content, message.content) && Intrinsics3.areEqual(this.timestamp, message.timestamp) && Intrinsics3.areEqual(this.editedTimestamp, message.editedTimestamp) && Intrinsics3.areEqual(this.tts, message.tts) && Intrinsics3.areEqual(this.mentionEveryone, message.mentionEveryone) && Intrinsics3.areEqual(this.mentions, message.mentions) && Intrinsics3.areEqual(this.mentionRoles, message.mentionRoles) && Intrinsics3.areEqual(this.attachments, message.attachments) && Intrinsics3.areEqual(this.embeds, message.embeds) && Intrinsics3.areEqual(this.reactions, message.reactions) && Intrinsics3.areEqual(this.nonce, message.nonce) && Intrinsics3.areEqual(this.pinned, message.pinned) && Intrinsics3.areEqual(this.webhookId, message.webhookId) && Intrinsics3.areEqual(this.type, message.type) && Intrinsics3.areEqual(this.activity, message.activity) && Intrinsics3.areEqual(this.application, message.application) && Intrinsics3.areEqual(this.applicationId, message.applicationId) && Intrinsics3.areEqual(this.messageReference, message.messageReference) && Intrinsics3.areEqual(this.flags, message.flags) && Intrinsics3.areEqual(this.stickers, message.stickers) && Intrinsics3.areEqual(this.stickerItems, message.stickerItems) && Intrinsics3.areEqual(this.referencedMessage, message.referencedMessage) && Intrinsics3.areEqual(this.interaction, message.interaction) && Intrinsics3.areEqual(this.thread, message.thread) && Intrinsics3.areEqual(this.components, message.components) && Intrinsics3.areEqual(this.call, message.call) && Intrinsics3.areEqual(this.hit, message.hit) && Intrinsics3.areEqual(this.roleSubscriptionData, message.roleSubscriptionData) && this.hasLocalUploads == message.hasLocalUploads && Intrinsics3.areEqual(this.allowedMentions, message.allowedMentions) && Intrinsics3.areEqual(this.numRetries, message.numRetries) && Intrinsics3.areEqual(this.lastManualAttemptTimestamp, message.lastManualAttemptTimestamp) && Intrinsics3.areEqual(this.initialAttemptTimestamp, message.initialAttemptTimestamp) && Intrinsics3.areEqual(this.localAttachments, message.localAttachments) && Intrinsics3.areEqual(this.captchaPayload, message.captchaPayload);
     }
 
     /* JADX INFO: renamed from: component19, reason: from getter */
@@ -431,7 +431,7 @@ public final /* data */ class Message {
     public final Map<String, MessageReaction> getReactionsMap() {
         Map<String, MessageReaction> map = this.cachedReactionsMap;
         if (map != null) {
-            m.checkNotNull(map);
+            Intrinsics3.checkNotNull(map);
         } else {
             List<MessageReaction> list = this.reactions;
             if (list == null || !(!list.isEmpty())) {
@@ -698,7 +698,7 @@ public final /* data */ class Message {
 
     public final boolean isSpotifyListeningActivity() {
         MessageActivity messageActivity = this.activity;
-        return messageActivity != null && messageActivity.getType() == MessageActivityType.LISTEN && w.contains$default((CharSequence) messageActivity.getPartyId(), (CharSequence) "spotify", false, 2, (Object) null);
+        return messageActivity != null && messageActivity.getType() == MessageActivityType.LISTEN && Strings4.contains$default((CharSequence) messageActivity.getPartyId(), (CharSequence) "spotify", false, 2, (Object) null);
     }
 
     public final boolean isSystemMessage() {
@@ -720,7 +720,7 @@ public final /* data */ class Message {
     }
 
     public final Message merge(com.discord.api.message.Message message) {
-        m.checkNotNullParameter(message, "new");
+        Intrinsics3.checkNotNullParameter(message, "new");
         long jO = message.getId();
         long jG = message.getChannelId() != 0 ? message.getChannelId() : this.channelId;
         Long lM = message.getGuildId();
@@ -879,7 +879,7 @@ public final /* data */ class Message {
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("Message(id=");
+        StringBuilder sbU = outline.U("Message(id=");
         sbU.append(this.id);
         sbU.append(", channelId=");
         sbU.append(this.channelId);
@@ -968,6 +968,6 @@ public final /* data */ class Message {
     /* JADX WARN: 'this' call moved to the top of the method (can break code semantics) */
     public Message(com.discord.api.message.Message message) {
         this(message.getId(), message.getChannelId(), message.getGuildId(), message.getAuthor(), message.getContent(), message.getTimestamp(), message.getEditedTimestamp(), message.getTts(), message.getMentionEveryone(), message.t(), message.s(), message.d(), message.k(), message.x(), message.getNonce(), message.getPinned(), message.getWebhookId(), message.getType(), message.getActivity(), message.getApplication(), message.getApplicationId(), message.getMessageReference(), message.getFlags(), message.B(), message.A(), message.getReferencedMessage(), message.getInteraction(), message.getThread(), message.h(), message.getCall(), message.getHit(), message.getRoleSubscriptionData(), false, null, null, null, null, null, null, 0, Opcodes.LAND, null);
-        m.checkNotNullParameter(message, "message");
+        Intrinsics3.checkNotNullParameter(message, "message");
     }
 }

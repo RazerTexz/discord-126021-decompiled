@@ -1,14 +1,14 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackPrivacyControlUpdated.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackPrivacyControlUpdated implements AnalyticsSchema, TrackBaseReceiver {
+public final /* data */ class TrackPrivacyControlUpdated implements AnalyticsSchema, TrackBase2 {
     private final Boolean controlState = null;
     private final CharSequence controlType = null;
     private TrackBase trackBase;
@@ -22,7 +22,7 @@ public final /* data */ class TrackPrivacyControlUpdated implements AnalyticsSch
             return false;
         }
         TrackPrivacyControlUpdated trackPrivacyControlUpdated = (TrackPrivacyControlUpdated) other;
-        return m.areEqual(this.controlType, trackPrivacyControlUpdated.controlType) && m.areEqual(this.controlState, trackPrivacyControlUpdated.controlState);
+        return Intrinsics3.areEqual(this.controlType, trackPrivacyControlUpdated.controlType) && Intrinsics3.areEqual(this.controlState, trackPrivacyControlUpdated.controlState);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -39,9 +39,9 @@ public final /* data */ class TrackPrivacyControlUpdated implements AnalyticsSch
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackPrivacyControlUpdated(controlType=");
+        StringBuilder sbU = outline.U("TrackPrivacyControlUpdated(controlType=");
         sbU.append(this.controlType);
         sbU.append(", controlState=");
-        return a.D(sbU, this.controlState, ")");
+        return outline.D(sbU, this.controlState, ")");
     }
 }

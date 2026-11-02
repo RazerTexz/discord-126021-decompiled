@@ -5,12 +5,12 @@ import java.util.List;
 
 /* JADX INFO: compiled from: lambda */
 /* JADX INFO: loaded from: classes3.dex */
-public final /* synthetic */ class k implements v {
+public final /* synthetic */ class k implements MediaCodecSelector {
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
     public static final /* synthetic */ k f1305b = new k();
 
-    @Override // b.i.a.c.y2.v
+    @Override // b.i.a.c.y2.MediaCodecSelector
     public final List a(String str, boolean z2, boolean z3) {
         return MediaCodecUtil.e(str, z2, z3);
     }

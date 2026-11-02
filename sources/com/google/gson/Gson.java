@@ -1,13 +1,14 @@
 package com.google.gson;
 
-import b.i.d.c;
-import b.i.d.d;
-import b.i.d.f;
-import b.i.d.j;
-import b.i.d.n;
-import b.i.d.o;
+import b.i.a.f.e.o.f;
+import b.i.d.FieldNamingPolicy;
+import b.i.d.FieldNamingStrategy;
+import b.i.d.InstanceCreator;
+import b.i.d.JsonNull;
+import b.i.d.LongSerializationPolicy;
+import b.i.d.TypeAdapterFactory2;
 import b.i.d.q.g;
-import b.i.d.q.x.a;
+import b.i.d.q.x.JsonTreeReader;
 import com.google.gson.internal.Excluder;
 import com.google.gson.internal.bind.ArrayTypeAdapter;
 import com.google.gson.internal.bind.CollectionTypeAdapterFactory;
@@ -51,15 +52,15 @@ public final class Gson {
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
     public final ThreadLocal<Map<TypeToken<?>, FutureTypeAdapter<?>>> f3115b;
-    public final List<o> f;
-    public final Map<Type, f<?>> g;
+    public final List<TypeAdapterFactory2> f;
+    public final Map<Type, InstanceCreator<?>> g;
     public final boolean h;
     public final boolean i;
     public final boolean j;
     public final boolean k;
     public final boolean l;
-    public final List<o> m;
-    public final List<o> n;
+    public final List<TypeAdapterFactory2> m;
+    public final List<TypeAdapterFactory2> n;
     public static final TypeToken<?> a = TypeToken.get(Object.class);
 
     /* JADX INFO: renamed from: com.google.gson.Gson$1, reason: invalid class name */
@@ -214,7 +215,7 @@ public final class Gson {
     }
 
     public Gson() {
-        this(Excluder.j, c.j, Collections.emptyMap(), false, false, false, true, false, false, false, n.j, null, 2, 2, Collections.emptyList(), Collections.emptyList(), Collections.emptyList());
+        this(Excluder.j, FieldNamingPolicy.j, Collections.emptyMap(), false, false, false, true, false, false, false, LongSerializationPolicy.j, null, 2, 2, Collections.emptyList(), Collections.emptyList(), Collections.emptyList());
     }
 
     public static void a(Object obj, JsonReader jsonReader) {
@@ -239,7 +240,7 @@ public final class Gson {
     }
 
     public <T> T c(JsonElement jsonElement, Class<T> cls) throws JsonSyntaxException {
-        return (T) b.i.a.f.e.o.f.E1(cls).cast(jsonElement == null ? null : d(new a(jsonElement), cls));
+        return (T) f.E1(cls).cast(jsonElement == null ? null : d(new JsonTreeReader(jsonElement), cls));
     }
 
     public <T> T d(JsonReader jsonReader, Type type) throws JsonSyntaxException, JsonIOException {
@@ -280,11 +281,11 @@ public final class Gson {
         JsonReader jsonReaderK = k(reader);
         Object objD = d(jsonReaderK, cls);
         a(objD, jsonReaderK);
-        return (T) b.i.a.f.e.o.f.E1(cls).cast(objD);
+        return (T) f.E1(cls).cast(objD);
     }
 
     public <T> T f(String str, Class<T> cls) throws JsonSyntaxException {
-        return (T) b.i.a.f.e.o.f.E1(cls).cast(g(str, cls));
+        return (T) f.E1(cls).cast(g(str, cls));
     }
 
     public <T> T g(String str, Type type) throws JsonSyntaxException {
@@ -316,7 +317,7 @@ public final class Gson {
         try {
             FutureTypeAdapter<?> futureTypeAdapter2 = new FutureTypeAdapter<>();
             map.put(typeToken, futureTypeAdapter2);
-            Iterator<o> it = this.f.iterator();
+            Iterator<TypeAdapterFactory2> it = this.f.iterator();
             while (it.hasNext()) {
                 TypeAdapter<T> typeAdapterCreate = it.next().create(this, typeToken);
                 if (typeAdapterCreate != null) {
@@ -346,18 +347,18 @@ public final class Gson {
         return h(TypeToken.get((Class) cls));
     }
 
-    public <T> TypeAdapter<T> j(o oVar, TypeToken<T> typeToken) {
-        if (!this.f.contains(oVar)) {
-            oVar = this.e;
+    public <T> TypeAdapter<T> j(TypeAdapterFactory2 typeAdapterFactory2, TypeToken<T> typeToken) {
+        if (!this.f.contains(typeAdapterFactory2)) {
+            typeAdapterFactory2 = this.e;
         }
         boolean z2 = false;
-        for (o oVar2 : this.f) {
+        for (TypeAdapterFactory2 typeAdapterFactory3 : this.f) {
             if (z2) {
-                TypeAdapter<T> typeAdapterCreate = oVar2.create(this, typeToken);
+                TypeAdapter<T> typeAdapterCreate = typeAdapterFactory3.create(this, typeToken);
                 if (typeAdapterCreate != null) {
                     return typeAdapterCreate;
                 }
-            } else if (oVar2 == oVar) {
+            } else if (typeAdapterFactory3 == typeAdapterFactory2) {
                 z2 = true;
             }
         }
@@ -385,7 +386,7 @@ public final class Gson {
 
     public String m(Object obj) {
         if (obj == null) {
-            JsonElement jsonElement = j.a;
+            JsonElement jsonElement = JsonNull.a;
             StringWriter stringWriter = new StringWriter();
             try {
                 n(jsonElement, l(stringWriter));
@@ -467,7 +468,7 @@ public final class Gson {
         return "{serializeNulls:" + this.h + ",factories:" + this.f + ",instanceCreators:" + this.d + "}";
     }
 
-    public Gson(Excluder excluder, d dVar, Map<Type, f<?>> map, boolean z2, boolean z3, boolean z4, boolean z5, boolean z6, boolean z7, boolean z8, n nVar, String str, int i, int i2, List<o> list, List<o> list2, List<o> list3) {
+    public Gson(Excluder excluder, FieldNamingStrategy fieldNamingStrategy, Map<Type, InstanceCreator<?>> map, boolean z2, boolean z3, boolean z4, boolean z5, boolean z6, boolean z7, boolean z8, LongSerializationPolicy longSerializationPolicy, String str, int i, int i2, List<TypeAdapterFactory2> list, List<TypeAdapterFactory2> list2, List<TypeAdapterFactory2> list3) {
         TypeAdapter anonymousClass3;
         TypeAdapter anonymousClass1;
         TypeAdapter anonymousClass2;
@@ -492,7 +493,7 @@ public final class Gson {
         arrayList.add(TypeAdapters.g);
         arrayList.add(TypeAdapters.i);
         arrayList.add(TypeAdapters.k);
-        if (nVar == n.j) {
+        if (longSerializationPolicy == LongSerializationPolicy.j) {
             anonymousClass3 = TypeAdapters.t;
         } else {
             anonymousClass3 = new AnonymousClass3();
@@ -543,7 +544,7 @@ public final class Gson {
         this.e = jsonAdapterAnnotationTypeAdapterFactory;
         arrayList.add(jsonAdapterAnnotationTypeAdapterFactory);
         arrayList.add(TypeAdapters.Z);
-        arrayList.add(new ReflectiveTypeAdapterFactory(this.d, dVar, excluder, jsonAdapterAnnotationTypeAdapterFactory));
+        arrayList.add(new ReflectiveTypeAdapterFactory(this.d, fieldNamingStrategy, excluder, jsonAdapterAnnotationTypeAdapterFactory));
         this.f = Collections.unmodifiableList(arrayList);
     }
 }

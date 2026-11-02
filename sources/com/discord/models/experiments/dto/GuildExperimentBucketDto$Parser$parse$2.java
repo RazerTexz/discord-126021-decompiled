@@ -1,10 +1,10 @@
 package com.discord.models.experiments.dto;
 
 import com.discord.models.domain.Model;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 import java.io.IOException;
 import kotlin.jvm.internal.Ref$ObjectRef;
-import kotlin.ranges.IntRange;
+import kotlin.ranges.Ranges2;
 
 /* JADX INFO: compiled from: GuildExperimentDto.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -14,18 +14,18 @@ public final class GuildExperimentBucketDto$Parser$parse$2 implements Runnable {
 
     /* JADX INFO: renamed from: com.discord.models.experiments.dto.GuildExperimentBucketDto$Parser$parse$2$1, reason: invalid class name */
     /* JADX INFO: compiled from: GuildExperimentDto.kt */
-    public final class AnonymousClass1<T> implements Model.JsonReader.ItemFactory<IntRange> {
+    public final class AnonymousClass1<T> implements Model.JsonReader.ItemFactory<Ranges2> {
         public AnonymousClass1() {
         }
 
         @Override // com.discord.models.domain.Model.JsonReader.ItemFactory
-        public /* bridge */ /* synthetic */ IntRange get() {
+        public /* bridge */ /* synthetic */ Ranges2 get() {
             return get2();
         }
 
         @Override // com.discord.models.domain.Model.JsonReader.ItemFactory
         /* JADX INFO: renamed from: get, reason: avoid collision after fix types in other method */
-        public final IntRange get2() {
+        public final Ranges2 get2() {
             return GuildExperimentBucketDto.Parser.access$parsePosition(GuildExperimentBucketDto.Parser.INSTANCE, GuildExperimentBucketDto$Parser$parse$2.this.$reader);
         }
     }
@@ -40,7 +40,7 @@ public final class GuildExperimentBucketDto$Parser$parse$2 implements Runnable {
     public final void run() throws IOException {
         Ref$ObjectRef ref$ObjectRef = this.$positions;
         ?? NextList = this.$reader.nextList(new AnonymousClass1());
-        m.checkNotNullExpressionValue(NextList, "reader.nextList { parsePosition(reader) }");
+        Intrinsics3.checkNotNullExpressionValue(NextList, "reader.nextList { parsePosition(reader) }");
         ref$ObjectRef.element = NextList;
     }
 }

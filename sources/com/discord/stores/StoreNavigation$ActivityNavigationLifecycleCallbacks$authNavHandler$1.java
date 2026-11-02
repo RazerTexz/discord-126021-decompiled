@@ -2,24 +2,24 @@ package com.discord.stores;
 
 import android.content.Intent;
 import androidx.appcompat.widget.ActivityChooserModel;
-import b.a.d.j;
+import b.a.d.AppScreen2;
 import com.discord.app.AppActivity;
 import com.discord.models.authentication.AuthState;
 import com.discord.widgets.auth.WidgetAuthForceChangePassword;
-import d0.z.d.a0;
-import d0.z.d.m;
-import d0.z.d.o;
+import d0.z.d.Intrinsics3;
+import d0.z.d.Lambda;
+import d0.z.d.Reflection2;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function2;
 
 /* JADX INFO: compiled from: StoreNavigation.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class StoreNavigation$ActivityNavigationLifecycleCallbacks$authNavHandler$1 extends o implements Function2<AppActivity, StoreNavigation.ActivityNavigationLifecycleCallbacks.ModelGlobalNavigation, Boolean> {
+public final class StoreNavigation$ActivityNavigationLifecycleCallbacks$authNavHandler$1 extends Lambda implements Function2<AppActivity, StoreNavigation.ActivityNavigationLifecycleCallbacks.ModelGlobalNavigation, Boolean> {
     public static final StoreNavigation$ActivityNavigationLifecycleCallbacks$authNavHandler$1 INSTANCE = new StoreNavigation$ActivityNavigationLifecycleCallbacks$authNavHandler$1();
 
     /* JADX INFO: renamed from: com.discord.stores.StoreNavigation$ActivityNavigationLifecycleCallbacks$authNavHandler$1$1, reason: invalid class name */
     /* JADX INFO: compiled from: StoreNavigation.kt */
-    public final class AnonymousClass1 extends o implements Function2<AppActivity, Boolean, Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function2<AppActivity, Boolean, Unit> {
         public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
 
         public AnonymousClass1() {
@@ -33,10 +33,10 @@ public final class StoreNavigation$ActivityNavigationLifecycleCallbacks$authNavH
         }
 
         public final void invoke(AppActivity appActivity, boolean z2) {
-            m.checkNotNullParameter(appActivity, "context");
+            Intrinsics3.checkNotNullParameter(appActivity, "context");
             Intent intentAddFlags = new Intent().addFlags(268468224);
-            m.checkNotNullExpressionValue(intentAddFlags, "Intent()\n            .ad…FLAG_ACTIVITY_CLEAR_TASK)");
-            j.b(appActivity, z2, intentAddFlags);
+            Intrinsics3.checkNotNullExpressionValue(intentAddFlags, "Intent()\n            .ad…FLAG_ACTIVITY_CLEAR_TASK)");
+            AppScreen2.b(appActivity, z2, intentAddFlags);
         }
     }
 
@@ -51,12 +51,12 @@ public final class StoreNavigation$ActivityNavigationLifecycleCallbacks$authNavH
 
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final boolean invoke2(AppActivity appActivity, StoreNavigation.ActivityNavigationLifecycleCallbacks.ModelGlobalNavigation modelGlobalNavigation) {
-        m.checkNotNullParameter(appActivity, ActivityChooserModel.ATTRIBUTE_ACTIVITY);
-        m.checkNotNullParameter(modelGlobalNavigation, "model");
-        j jVar = j.g;
-        boolean zG = appActivity.g(j.a);
-        boolean zG2 = appActivity.g(j.f58b);
-        boolean zH = appActivity.h(a0.getOrCreateKotlinClass(WidgetAuthForceChangePassword.class));
+        Intrinsics3.checkNotNullParameter(appActivity, ActivityChooserModel.ATTRIBUTE_ACTIVITY);
+        Intrinsics3.checkNotNullParameter(modelGlobalNavigation, "model");
+        AppScreen2 appScreen2 = AppScreen2.g;
+        boolean zG = appActivity.g(AppScreen2.a);
+        boolean zG2 = appActivity.g(AppScreen2.f58b);
+        boolean zH = appActivity.h(Reflection2.getOrCreateKotlinClass(WidgetAuthForceChangePassword.class));
         boolean zIsInitializedForAuthedUser = modelGlobalNavigation.isInitializedForAuthedUser();
         AnonymousClass1 anonymousClass1 = AnonymousClass1.INSTANCE;
         if (!zIsInitializedForAuthedUser || (!(zG || zH) || modelGlobalNavigation.getAuthState() == null)) {

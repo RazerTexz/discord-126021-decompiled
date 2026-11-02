@@ -18,8 +18,8 @@ import androidx.annotation.StyleRes;
 import androidx.annotation.VisibleForTesting;
 import androidx.core.view.ViewCompat;
 import androidx.vectordrawable.graphics.drawable.Animatable2Compat;
-import b.i.a.g.g.e;
-import b.i.a.g.g.f;
+import b.i.a.g.g.DrawableWithAnimatedVisibilityChange;
+import b.i.a.g.g.DrawingDelegate;
 import com.google.android.material.R;
 import com.google.android.material.color.MaterialColors;
 import com.google.android.material.internal.ThemeEnforcement;
@@ -165,7 +165,7 @@ public abstract class BaseProgressIndicator<S extends BaseProgressIndicatorSpec>
 
     public void applyNewVisibility(boolean z2) {
         if (this.isParentDoneInitializing) {
-            ((e) getCurrentDrawable()).setVisible(visibleToUser(), false, z2);
+            ((DrawableWithAnimatedVisibilityChange) getCurrentDrawable()).setVisible(visibleToUser(), false, z2);
         }
     }
 
@@ -178,7 +178,7 @@ public abstract class BaseProgressIndicator<S extends BaseProgressIndicatorSpec>
     }
 
     @Nullable
-    private f<S> getCurrentDrawingDelegate() {
+    private DrawingDelegate<S> getCurrentDrawingDelegate() {
         if (isIndeterminate()) {
             if (getIndeterminateDrawable() == null) {
                 return null;
@@ -247,7 +247,7 @@ public abstract class BaseProgressIndicator<S extends BaseProgressIndicatorSpec>
     }
 
     private void internalHide() {
-        ((e) getCurrentDrawable()).setVisible(false, false, true);
+        ((DrawableWithAnimatedVisibilityChange) getCurrentDrawable()).setVisible(false, false, true);
         if (isNoLongerNeedToBeVisible()) {
             setVisibility(4);
         }
@@ -300,7 +300,7 @@ public abstract class BaseProgressIndicator<S extends BaseProgressIndicatorSpec>
     public void onDetachedFromWindow() {
         removeCallbacks(this.delayedHide);
         removeCallbacks(this.delayedShow);
-        ((e) getCurrentDrawable()).hideNow();
+        ((DrawableWithAnimatedVisibilityChange) getCurrentDrawable()).hideNow();
         unregisterAnimationCallbacks();
         super.onDetachedFromWindow();
     }
@@ -321,7 +321,7 @@ public abstract class BaseProgressIndicator<S extends BaseProgressIndicatorSpec>
     @Override // android.widget.ProgressBar, android.view.View
     public synchronized void onMeasure(int i, int i2) {
         super.onMeasure(i, i2);
-        f<S> currentDrawingDelegate = getCurrentDrawingDelegate();
+        DrawingDelegate<S> currentDrawingDelegate = getCurrentDrawingDelegate();
         if (currentDrawingDelegate == null) {
             return;
         }
@@ -379,14 +379,14 @@ public abstract class BaseProgressIndicator<S extends BaseProgressIndicatorSpec>
         if (visibleToUser() && z2) {
             throw new IllegalStateException("Cannot switch to indeterminate mode while the progress indicator is visible.");
         }
-        e eVar = (e) getCurrentDrawable();
-        if (eVar != null) {
-            eVar.hideNow();
+        DrawableWithAnimatedVisibilityChange drawableWithAnimatedVisibilityChange = (DrawableWithAnimatedVisibilityChange) getCurrentDrawable();
+        if (drawableWithAnimatedVisibilityChange != null) {
+            drawableWithAnimatedVisibilityChange.hideNow();
         }
         super.setIndeterminate(z2);
-        e eVar2 = (e) getCurrentDrawable();
-        if (eVar2 != null) {
-            eVar2.setVisible(visibleToUser(), false, false);
+        DrawableWithAnimatedVisibilityChange drawableWithAnimatedVisibilityChange2 = (DrawableWithAnimatedVisibilityChange) getCurrentDrawable();
+        if (drawableWithAnimatedVisibilityChange2 != null) {
+            drawableWithAnimatedVisibilityChange2.setVisible(visibleToUser(), false, false);
         }
         this.isIndeterminateModeChangeRequested = false;
     }
@@ -399,7 +399,7 @@ public abstract class BaseProgressIndicator<S extends BaseProgressIndicatorSpec>
             if (!(drawable instanceof IndeterminateDrawable)) {
                 throw new IllegalArgumentException("Cannot set framework drawable as indeterminate drawable.");
             }
-            ((e) drawable).hideNow();
+            ((DrawableWithAnimatedVisibilityChange) drawable).hideNow();
             super.setIndeterminateDrawable(drawable);
         }
     }

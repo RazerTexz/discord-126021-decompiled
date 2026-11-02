@@ -4,7 +4,7 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.view.Lifecycle;
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
@@ -33,7 +33,7 @@ public final class BackStackRecord extends FragmentTransaction implements Fragme
                 if (fragment != null) {
                     fragment.mBackStackNesting += i;
                     if (FragmentManager.isLoggingEnabled(2)) {
-                        StringBuilder sbU = a.U("Bump nesting of ");
+                        StringBuilder sbU = outline.U("Bump nesting of ");
                         sbU.append(op.mFragment);
                         sbU.append(" to ");
                         sbU.append(op.mFragment.mBackStackNesting);
@@ -93,7 +93,7 @@ public final class BackStackRecord extends FragmentTransaction implements Fragme
         if (fragmentManager == null || fragmentManager == this.mManager) {
             return super.detach(fragment);
         }
-        StringBuilder sbU = a.U("Cannot detach Fragment attached to a different FragmentManager. Fragment ");
+        StringBuilder sbU = outline.U("Cannot detach Fragment attached to a different FragmentManager. Fragment ");
         sbU.append(fragment.toString());
         sbU.append(" is already attached to a FragmentManager.");
         throw new IllegalStateException(sbU.toString());
@@ -126,7 +126,7 @@ public final class BackStackRecord extends FragmentTransaction implements Fragme
                     break;
                 case 2:
                 default:
-                    StringBuilder sbU = a.U("Unknown cmd: ");
+                    StringBuilder sbU = outline.U("Unknown cmd: ");
                     sbU.append(op.mCmd);
                     throw new IllegalArgumentException(sbU.toString());
                 case 3:
@@ -188,7 +188,7 @@ public final class BackStackRecord extends FragmentTransaction implements Fragme
                     break;
                 case 2:
                 default:
-                    StringBuilder sbU = a.U("Unknown cmd: ");
+                    StringBuilder sbU = outline.U("Unknown cmd: ");
                     sbU.append(op.mCmd);
                     throw new IllegalArgumentException(sbU.toString());
                 case 3:
@@ -350,7 +350,7 @@ public final class BackStackRecord extends FragmentTransaction implements Fragme
         if (fragmentManager == null || fragmentManager == this.mManager) {
             return super.hide(fragment);
         }
-        StringBuilder sbU = a.U("Cannot hide Fragment attached to a different FragmentManager. Fragment ");
+        StringBuilder sbU = outline.U("Cannot hide Fragment attached to a different FragmentManager. Fragment ");
         sbU.append(fragment.toString());
         sbU.append(" is already attached to a FragmentManager.");
         throw new IllegalStateException(sbU.toString());
@@ -394,7 +394,7 @@ public final class BackStackRecord extends FragmentTransaction implements Fragme
         if (fragmentManager == null || fragmentManager == this.mManager) {
             return super.remove(fragment);
         }
-        StringBuilder sbU = a.U("Cannot remove Fragment attached to a different FragmentManager. Fragment ");
+        StringBuilder sbU = outline.U("Cannot remove Fragment attached to a different FragmentManager. Fragment ");
         sbU.append(fragment.toString());
         sbU.append(" is already attached to a FragmentManager.");
         throw new IllegalStateException(sbU.toString());
@@ -413,7 +413,7 @@ public final class BackStackRecord extends FragmentTransaction implements Fragme
     @NonNull
     public FragmentTransaction setMaxLifecycle(@NonNull Fragment fragment, @NonNull Lifecycle.State state) {
         if (fragment.mFragmentManager != this.mManager) {
-            StringBuilder sbU = a.U("Cannot setMaxLifecycle for Fragment not attached to FragmentManager ");
+            StringBuilder sbU = outline.U("Cannot setMaxLifecycle for Fragment not attached to FragmentManager ");
             sbU.append(this.mManager);
             throw new IllegalArgumentException(sbU.toString());
         }
@@ -442,7 +442,7 @@ public final class BackStackRecord extends FragmentTransaction implements Fragme
         if (fragment == null || (fragmentManager = fragment.mFragmentManager) == null || fragmentManager == this.mManager) {
             return super.setPrimaryNavigationFragment(fragment);
         }
-        StringBuilder sbU = a.U("Cannot setPrimaryNavigation for Fragment attached to a different FragmentManager. Fragment ");
+        StringBuilder sbU = outline.U("Cannot setPrimaryNavigation for Fragment attached to a different FragmentManager. Fragment ");
         sbU.append(fragment.toString());
         sbU.append(" is already attached to a FragmentManager.");
         throw new IllegalStateException(sbU.toString());
@@ -455,7 +455,7 @@ public final class BackStackRecord extends FragmentTransaction implements Fragme
         if (fragmentManager == null || fragmentManager == this.mManager) {
             return super.show(fragment);
         }
-        StringBuilder sbU = a.U("Cannot show Fragment attached to a different FragmentManager. Fragment ");
+        StringBuilder sbU = outline.U("Cannot show Fragment attached to a different FragmentManager. Fragment ");
         sbU.append(fragment.toString());
         sbU.append(" is already attached to a FragmentManager.");
         throw new IllegalStateException(sbU.toString());
@@ -597,7 +597,7 @@ public final class BackStackRecord extends FragmentTransaction implements Fragme
                     string = "OP_SET_MAX_LIFECYCLE";
                     break;
                 default:
-                    StringBuilder sbU = a.U("cmd=");
+                    StringBuilder sbU = outline.U("cmd=");
                     sbU.append(op.mCmd);
                     string = sbU.toString();
                     break;

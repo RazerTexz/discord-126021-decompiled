@@ -1,14 +1,14 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackCloseTutorial.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackCloseTutorial implements AnalyticsSchema, TrackBaseReceiver {
+public final /* data */ class TrackCloseTutorial implements AnalyticsSchema, TrackBase2 {
     private final Boolean acknowledged = null;
     private final Long applicationId = null;
     private TrackBase trackBase;
@@ -23,7 +23,7 @@ public final /* data */ class TrackCloseTutorial implements AnalyticsSchema, Tra
             return false;
         }
         TrackCloseTutorial trackCloseTutorial = (TrackCloseTutorial) other;
-        return m.areEqual(this.acknowledged, trackCloseTutorial.acknowledged) && m.areEqual(this.tutorial, trackCloseTutorial.tutorial) && m.areEqual(this.applicationId, trackCloseTutorial.applicationId);
+        return Intrinsics3.areEqual(this.acknowledged, trackCloseTutorial.acknowledged) && Intrinsics3.areEqual(this.tutorial, trackCloseTutorial.tutorial) && Intrinsics3.areEqual(this.applicationId, trackCloseTutorial.applicationId);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -42,11 +42,11 @@ public final /* data */ class TrackCloseTutorial implements AnalyticsSchema, Tra
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackCloseTutorial(acknowledged=");
+        StringBuilder sbU = outline.U("TrackCloseTutorial(acknowledged=");
         sbU.append(this.acknowledged);
         sbU.append(", tutorial=");
         sbU.append(this.tutorial);
         sbU.append(", applicationId=");
-        return a.G(sbU, this.applicationId, ")");
+        return outline.G(sbU, this.applicationId, ")");
     }
 }

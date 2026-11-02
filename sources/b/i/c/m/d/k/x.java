@@ -11,6 +11,46 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.ActivityChooserModel;
+import b.d.b.a.outline;
+import b.i.a.b.Encoding2;
+import b.i.a.b.Transformer;
+import b.i.a.b.TransportFactory;
+import b.i.a.b.i.CCTDestination;
+import b.i.a.b.j.TransportFactoryImpl;
+import b.i.a.b.j.TransportRuntime;
+import b.i.c.m.d.CrashlyticsNativeComponent;
+import b.i.c.m.d.Logger3;
+import b.i.c.m.d.NativeSessionFileProvider;
+import b.i.c.m.d.i.AnalyticsEventLogger;
+import b.i.c.m.d.l.LogFileManager;
+import b.i.c.m.d.m.AutoValue_CrashlyticsReport;
+import b.i.c.m.d.m.AutoValue_CrashlyticsReport_FilesPayload;
+import b.i.c.m.d.m.AutoValue_CrashlyticsReport_Session;
+import b.i.c.m.d.m.AutoValue_CrashlyticsReport_Session_Application;
+import b.i.c.m.d.m.AutoValue_CrashlyticsReport_Session_Device;
+import b.i.c.m.d.m.AutoValue_CrashlyticsReport_Session_OperatingSystem;
+import b.i.c.m.d.m.CrashlyticsReport;
+import b.i.c.m.d.m.ImmutableList3;
+import b.i.c.m.d.m.x.CrashlyticsReportJsonTransform8;
+import b.i.c.m.d.n.HttpRequestFactory;
+import b.i.c.m.d.o.CrashlyticsReportPersistence2;
+import b.i.c.m.d.o.CrashlyticsReportPersistence7;
+import b.i.c.m.d.o.FileStoreImpl;
+import b.i.c.m.d.p.ByteString2;
+import b.i.c.m.d.p.ClsFileOutputStream;
+import b.i.c.m.d.p.CodedOutputStream2;
+import b.i.c.m.d.p.SessionProtobufHelper;
+import b.i.c.m.d.q.ReportManager;
+import b.i.c.m.d.q.ReportUploader;
+import b.i.c.m.d.q.c.Report2;
+import b.i.c.m.d.r.DataTransportCrashlyticsReportSender3;
+import b.i.c.m.d.s.SettingsController;
+import b.i.c.m.d.s.SettingsDataProvider;
+import b.i.c.m.d.s.h.AppSettingsData;
+import b.i.c.m.d.t.MiddleOutFallbackStrategy;
+import b.i.c.m.d.t.RemoveRepeatsStrategy;
+import b.i.c.m.d.t.StackTraceTrimmingStrategy;
+import b.i.c.m.d.t.TrimmedThrowableData;
 import com.google.android.gms.tasks.Task;
 import com.google.android.gms.tasks.TaskCompletionSource;
 import java.io.File;
@@ -43,33 +83,33 @@ import java.util.regex.Pattern;
 /* JADX INFO: compiled from: CrashlyticsController.java */
 /* JADX INFO: loaded from: classes3.dex */
 public class x {
-    public final d1 A;
-    public p0 B;
+    public final SessionReportingCoordinator3 A;
+    public CrashlyticsUncaughtExceptionHandler B;
 
     /* JADX INFO: renamed from: s, reason: collision with root package name */
     public final j f1700s;
 
     /* JADX INFO: renamed from: x, reason: collision with root package name */
-    public final b.i.c.m.d.t.d f1701x;
+    public final StackTraceTrimmingStrategy f1701x;
 
     /* JADX INFO: renamed from: y, reason: collision with root package name */
     public final String f1702y;
 
     /* JADX INFO: renamed from: z, reason: collision with root package name */
-    public final b.i.c.m.d.i.a f1703z;
+    public final AnalyticsEventLogger f1703z;
     public final Context i;
-    public final q0 j;
-    public final m0 k;
-    public final f1 l;
-    public final b.i.c.m.d.k.i m;
-    public final b.i.c.m.d.n.b n;
-    public final v0 o;
-    public final b.i.c.m.d.o.h p;
-    public final b.i.c.m.d.k.b q;
-    public final b.i.c.m.d.l.b t;
-    public final b.i.c.m.d.q.a u;
-    public final b.i.c.m.d.q.b.a v;
-    public final b.i.c.m.d.a w;
+    public final DataCollectionArbiter j;
+    public final CrashlyticsFileMarker k;
+    public final UserMetadata l;
+    public final CrashlyticsBackgroundWorker m;
+    public final HttpRequestFactory n;
+    public final IdManager o;
+    public final FileStoreImpl p;
+    public final AppData q;
+    public final LogFileManager t;
+    public final ReportManager u;
+    public final ReportUploader.a v;
+    public final CrashlyticsNativeComponent w;
     public static final FilenameFilter a = new a("BeginSession");
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
@@ -84,7 +124,7 @@ public class x {
     public AtomicBoolean F = new AtomicBoolean(false);
     public static final Map<String, String> f = Collections.singletonMap("X-CRASHLYTICS-SEND-FLAGS", "1");
     public static final String[] g = {"SessionUser", "SessionApp", "SessionOS", "SessionDevice"};
-    public final b.i.c.m.d.q.b.InterfaceC0150b r = new h0(this);
+    public final ReportUploader.b r = new h0(this);
 
     /* JADX INFO: compiled from: CrashlyticsController.java */
     public class a extends h {
@@ -154,7 +194,7 @@ public class x {
 
     /* JADX INFO: compiled from: CrashlyticsController.java */
     public interface g {
-        void a(b.i.c.m.d.p.c cVar) throws Exception;
+        void a(CodedOutputStream2 codedOutputStream2) throws Exception;
     }
 
     /* JADX INFO: compiled from: CrashlyticsController.java */
@@ -175,16 +215,16 @@ public class x {
     public class i implements FilenameFilter {
         @Override // java.io.FilenameFilter
         public boolean accept(File file, String str) {
-            return ((b.i.c.m.d.p.b.a) b.i.c.m.d.p.b.j).accept(file, str) || str.contains("SessionMissingBinaryImages");
+            return ((ClsFileOutputStream.a) ClsFileOutputStream.j).accept(file, str) || str.contains("SessionMissingBinaryImages");
         }
     }
 
     /* JADX INFO: compiled from: CrashlyticsController.java */
-    public final class j implements b.i.c.m.d.l.b.InterfaceC0138b {
-        public final b.i.c.m.d.o.h a;
+    public final class j implements LogFileManager.b {
+        public final FileStoreImpl a;
 
-        public j(b.i.c.m.d.o.h hVar) {
-            this.a = hVar;
+        public j(FileStoreImpl fileStoreImpl) {
+            this.a = fileStoreImpl;
         }
 
         public File a() {
@@ -197,13 +237,13 @@ public class x {
     }
 
     /* JADX INFO: compiled from: CrashlyticsController.java */
-    public final class k implements b.i.c.m.d.q.b.c {
+    public final class k implements ReportUploader.c {
         public k(a aVar) {
         }
     }
 
     /* JADX INFO: compiled from: CrashlyticsController.java */
-    public final class l implements b.i.c.m.d.q.b.a {
+    public final class l implements ReportUploader.a {
         public l(a aVar) {
         }
     }
@@ -211,21 +251,21 @@ public class x {
     /* JADX INFO: compiled from: CrashlyticsController.java */
     public final class m implements Runnable {
         public final Context j;
-        public final b.i.c.m.d.q.c.c k;
-        public final b.i.c.m.d.q.b l;
+        public final Report2 k;
+        public final ReportUploader l;
         public final boolean m;
 
-        public m(Context context, b.i.c.m.d.q.c.c cVar, b.i.c.m.d.q.b bVar, boolean z2) {
+        public m(Context context, Report2 report2, ReportUploader reportUploader, boolean z2) {
             this.j = context;
-            this.k = cVar;
-            this.l = bVar;
+            this.k = report2;
+            this.l = reportUploader;
             this.m = z2;
         }
 
         @Override // java.lang.Runnable
         public void run() {
-            if (b.i.c.m.d.k.h.b(this.j)) {
-                b.i.c.m.d.b.a.b("Attempting to send crash report at time of crash...");
+            if (CommonUtils.b(this.j)) {
+                Logger3.a.b("Attempting to send crash report at time of crash...");
                 this.l.a(this.k, this.m);
             }
         }
@@ -248,57 +288,57 @@ public class x {
         }
     }
 
-    public x(Context context, b.i.c.m.d.k.i iVar, b.i.c.m.d.n.b bVar, v0 v0Var, q0 q0Var, b.i.c.m.d.o.h hVar, m0 m0Var, b.i.c.m.d.k.b bVar2, b.i.c.m.d.q.a aVar, b.i.c.m.d.q.b.InterfaceC0150b interfaceC0150b, b.i.c.m.d.a aVar2, b.i.c.m.d.i.a aVar3, b.i.c.m.d.s.d dVar) {
+    public x(Context context, CrashlyticsBackgroundWorker crashlyticsBackgroundWorker, HttpRequestFactory httpRequestFactory, IdManager idManager, DataCollectionArbiter dataCollectionArbiter, FileStoreImpl fileStoreImpl, CrashlyticsFileMarker crashlyticsFileMarker, AppData appData, ReportManager reportManager, ReportUploader.b bVar, CrashlyticsNativeComponent crashlyticsNativeComponent, AnalyticsEventLogger analyticsEventLogger, SettingsDataProvider settingsDataProvider) {
         this.i = context;
-        this.m = iVar;
-        this.n = bVar;
-        this.o = v0Var;
-        this.j = q0Var;
-        this.p = hVar;
-        this.k = m0Var;
-        this.q = bVar2;
-        this.w = aVar2;
-        this.f1702y = bVar2.g.a();
-        this.f1703z = aVar3;
-        f1 f1Var = new f1();
-        this.l = f1Var;
-        j jVar = new j(hVar);
+        this.m = crashlyticsBackgroundWorker;
+        this.n = httpRequestFactory;
+        this.o = idManager;
+        this.j = dataCollectionArbiter;
+        this.p = fileStoreImpl;
+        this.k = crashlyticsFileMarker;
+        this.q = appData;
+        this.w = crashlyticsNativeComponent;
+        this.f1702y = appData.g.a();
+        this.f1703z = analyticsEventLogger;
+        UserMetadata userMetadata = new UserMetadata();
+        this.l = userMetadata;
+        j jVar = new j(fileStoreImpl);
         this.f1700s = jVar;
-        b.i.c.m.d.l.b bVar3 = new b.i.c.m.d.l.b(context, jVar);
-        this.t = bVar3;
-        this.u = new b.i.c.m.d.q.a(new k(null));
+        LogFileManager logFileManager = new LogFileManager(context, jVar);
+        this.t = logFileManager;
+        this.u = new ReportManager(new k(null));
         this.v = new l(null);
-        b.i.c.m.d.t.a aVar4 = new b.i.c.m.d.t.a(1024, new b.i.c.m.d.t.c(10));
-        this.f1701x = aVar4;
-        File file = new File(new File(hVar.a.getFilesDir(), ".com.google.firebase.crashlytics").getPath());
-        n0 n0Var = new n0(context, v0Var, bVar2, aVar4);
-        b.i.c.m.d.o.g gVar = new b.i.c.m.d.o.g(file, dVar);
-        b.i.c.m.d.m.x.h hVar2 = b.i.c.m.d.r.c.a;
-        b.i.a.b.j.n.b(context);
-        b.i.a.b.g gVarC = b.i.a.b.j.n.a().c(new b.i.a.b.i.a(b.i.c.m.d.r.c.f1746b, b.i.c.m.d.r.c.c));
-        b.i.a.b.b bVar4 = new b.i.a.b.b("json");
-        b.i.a.b.e<b.i.c.m.d.m.v, byte[]> eVar = b.i.c.m.d.r.c.d;
-        this.A = new d1(n0Var, gVar, new b.i.c.m.d.r.c(((b.i.a.b.j.j) gVarC).a("FIREBASE_CRASHLYTICS_REPORT", b.i.c.m.d.m.v.class, bVar4, eVar), eVar), bVar3, f1Var);
+        MiddleOutFallbackStrategy middleOutFallbackStrategy = new MiddleOutFallbackStrategy(1024, new RemoveRepeatsStrategy(10));
+        this.f1701x = middleOutFallbackStrategy;
+        File file = new File(new File(fileStoreImpl.a.getFilesDir(), ".com.google.firebase.crashlytics").getPath());
+        CrashlyticsReportDataCapture crashlyticsReportDataCapture = new CrashlyticsReportDataCapture(context, idManager, appData, middleOutFallbackStrategy);
+        CrashlyticsReportPersistence7 crashlyticsReportPersistence7 = new CrashlyticsReportPersistence7(file, settingsDataProvider);
+        CrashlyticsReportJsonTransform8 crashlyticsReportJsonTransform8 = DataTransportCrashlyticsReportSender3.a;
+        TransportRuntime.b(context);
+        TransportFactory transportFactoryC = TransportRuntime.a().c(new CCTDestination(DataTransportCrashlyticsReportSender3.f1746b, DataTransportCrashlyticsReportSender3.c));
+        Encoding2 encoding2 = new Encoding2("json");
+        Transformer<CrashlyticsReport, byte[]> transformer = DataTransportCrashlyticsReportSender3.d;
+        this.A = new SessionReportingCoordinator3(crashlyticsReportDataCapture, crashlyticsReportPersistence7, new DataTransportCrashlyticsReportSender3(((TransportFactoryImpl) transportFactoryC).a("FIREBASE_CRASHLYTICS_REPORT", CrashlyticsReport.class, encoding2, transformer), transformer), logFileManager, userMetadata);
     }
 
-    public static void A(b.i.c.m.d.p.c cVar, File file) throws Throwable {
+    public static void A(CodedOutputStream2 codedOutputStream2, File file) throws Throwable {
         if (!file.exists()) {
-            b.i.c.m.d.b bVar = b.i.c.m.d.b.a;
-            StringBuilder sbU = b.d.b.a.a.U("Tried to include a file that doesn't exist: ");
+            Logger3 logger3 = Logger3.a;
+            StringBuilder sbU = outline.U("Tried to include a file that doesn't exist: ");
             sbU.append(file.getName());
-            bVar.d(sbU.toString());
+            logger3.d(sbU.toString());
             return;
         }
         FileInputStream fileInputStream = null;
         try {
             FileInputStream fileInputStream2 = new FileInputStream(file);
             try {
-                e(fileInputStream2, cVar, (int) file.length());
-                b.i.c.m.d.k.h.c(fileInputStream2, "Failed to close file input stream.");
+                e(fileInputStream2, codedOutputStream2, (int) file.length());
+                CommonUtils.c(fileInputStream2, "Failed to close file input stream.");
             } catch (Throwable th) {
                 th = th;
                 fileInputStream = fileInputStream2;
-                b.i.c.m.d.k.h.c(fileInputStream, "Failed to close file input stream.");
+                CommonUtils.c(fileInputStream, "Failed to close file input stream.");
                 throw th;
             }
         } catch (Throwable th2) {
@@ -312,88 +352,88 @@ public class x {
         Integer num;
         Objects.requireNonNull(xVar);
         long j2 = j();
-        new b.i.c.m.d.k.g(xVar.o);
-        String str3 = b.i.c.m.d.k.g.f1684b;
-        b.i.c.m.d.b bVar = b.i.c.m.d.b.a;
-        b.d.b.a.a.o0("Opening a new session with ID ", str3, bVar);
+        new CLSUUID(xVar.o);
+        String str3 = CLSUUID.f1684b;
+        Logger3 logger3 = Logger3.a;
+        outline.o0("Opening a new session with ID ", str3, logger3);
         xVar.w.h(str3);
         Locale locale = Locale.US;
         String str4 = String.format(locale, "Crashlytics Android SDK/%s", "17.3.0");
         xVar.z(str3, "BeginSession", new u(xVar, str3, str4, j2));
         xVar.w.d(str3, str4, j2);
-        v0 v0Var = xVar.o;
-        String str5 = v0Var.e;
-        b.i.c.m.d.k.b bVar2 = xVar.q;
-        String str6 = bVar2.e;
-        String str7 = bVar2.f;
-        String strB = v0Var.b();
-        int iG = r0.f(xVar.q.c).g();
+        IdManager idManager = xVar.o;
+        String str5 = idManager.e;
+        AppData appData = xVar.q;
+        String str6 = appData.e;
+        String str7 = appData.f;
+        String strB = idManager.b();
+        int iG = DeliveryMechanism.f(xVar.q.c).g();
         xVar.z(str3, "SessionApp", new v(xVar, str5, str6, str7, strB, iG));
         xVar.w.f(str3, str5, str6, str7, strB, iG, xVar.f1702y);
         String str8 = Build.VERSION.RELEASE;
         String str9 = Build.VERSION.CODENAME;
-        boolean zU = b.i.c.m.d.k.h.u(xVar.i);
+        boolean zU = CommonUtils.u(xVar.i);
         xVar.z(str3, "SessionOS", new w(xVar, str8, str9, zU));
         xVar.w.g(str3, str8, str9, zU);
         Context context = xVar.i;
         StatFs statFs = new StatFs(Environment.getDataDirectory().getPath());
-        b.i.c.m.d.k.h.b bVar3 = b.i.c.m.d.k.h.b.UNKNOWN;
+        CommonUtils.b bVar = CommonUtils.b.UNKNOWN;
         String str10 = Build.CPU_ABI;
         if (TextUtils.isEmpty(str10)) {
-            bVar.b("Architecture#getValue()::Build.CPU_ABI returned null or empty");
+            logger3.b("Architecture#getValue()::Build.CPU_ABI returned null or empty");
         } else {
-            b.i.c.m.d.k.h.b bVar4 = b.i.c.m.d.k.h.b.t.get(str10.toLowerCase(locale));
-            if (bVar4 != null) {
-                bVar3 = bVar4;
+            CommonUtils.b bVar2 = CommonUtils.b.t.get(str10.toLowerCase(locale));
+            if (bVar2 != null) {
+                bVar = bVar2;
             }
         }
-        int iOrdinal = bVar3.ordinal();
+        int iOrdinal = bVar.ordinal();
         String str11 = Build.MODEL;
         int iAvailableProcessors = Runtime.getRuntime().availableProcessors();
-        long jP = b.i.c.m.d.k.h.p();
+        long jP = CommonUtils.p();
         long blockCount = ((long) statFs.getBlockCount()) * ((long) statFs.getBlockSize());
-        boolean zS = b.i.c.m.d.k.h.s(context);
-        int iK = b.i.c.m.d.k.h.k(context);
+        boolean zS = CommonUtils.s(context);
+        int iK = CommonUtils.k(context);
         String str12 = Build.MANUFACTURER;
         String str13 = Build.PRODUCT;
         xVar.z(str3, "SessionDevice", new y(xVar, iOrdinal, str11, iAvailableProcessors, jP, blockCount, zS, iK, str12, str13));
         xVar.w.c(str3, iOrdinal, str11, iAvailableProcessors, jP, blockCount, zS, iK, str12, str13);
         xVar.t.a(str3);
-        d1 d1Var = xVar.A;
+        SessionReportingCoordinator3 sessionReportingCoordinator3 = xVar.A;
         String strT = t(str3);
-        n0 n0Var = d1Var.a;
-        Objects.requireNonNull(n0Var);
-        Charset charset = b.i.c.m.d.m.v.a;
-        b.i.c.m.d.m.b.C0141b c0141b = new b.i.c.m.d.m.b.C0141b();
-        c0141b.a = "17.3.0";
-        String str14 = n0Var.e.a;
+        CrashlyticsReportDataCapture crashlyticsReportDataCapture = sessionReportingCoordinator3.a;
+        Objects.requireNonNull(crashlyticsReportDataCapture);
+        Charset charset = CrashlyticsReport.a;
+        AutoValue_CrashlyticsReport.b bVar3 = new AutoValue_CrashlyticsReport.b();
+        bVar3.a = "17.3.0";
+        String str14 = crashlyticsReportDataCapture.e.a;
         Objects.requireNonNull(str14, "Null gmpAppId");
-        c0141b.f1714b = str14;
-        String strB2 = n0Var.d.b();
+        bVar3.f1714b = str14;
+        String strB2 = crashlyticsReportDataCapture.d.b();
         Objects.requireNonNull(strB2, "Null installationUuid");
-        c0141b.d = strB2;
-        String str15 = n0Var.e.e;
+        bVar3.d = strB2;
+        String str15 = crashlyticsReportDataCapture.e.e;
         Objects.requireNonNull(str15, "Null buildVersion");
-        c0141b.e = str15;
-        String str16 = n0Var.e.f;
+        bVar3.e = str15;
+        String str16 = crashlyticsReportDataCapture.e.f;
         Objects.requireNonNull(str16, "Null displayVersion");
-        c0141b.f = str16;
-        c0141b.c = 4;
-        b.i.c.m.d.m.f.b bVar5 = new b.i.c.m.d.m.f.b();
-        bVar5.b(false);
-        bVar5.c = Long.valueOf(j2);
+        bVar3.f = str16;
+        bVar3.c = 4;
+        AutoValue_CrashlyticsReport_Session.b bVar4 = new AutoValue_CrashlyticsReport_Session.b();
+        bVar4.b(false);
+        bVar4.c = Long.valueOf(j2);
         Objects.requireNonNull(strT, "Null identifier");
-        bVar5.f1719b = strT;
-        String str17 = n0.a;
+        bVar4.f1719b = strT;
+        String str17 = CrashlyticsReportDataCapture.a;
         Objects.requireNonNull(str17, "Null generator");
-        bVar5.a = str17;
-        String str18 = n0Var.d.e;
+        bVar4.a = str17;
+        String str18 = crashlyticsReportDataCapture.d.e;
         Objects.requireNonNull(str18, "Null identifier");
-        String str19 = n0Var.e.e;
+        String str19 = crashlyticsReportDataCapture.e.e;
         Objects.requireNonNull(str19, "Null version");
-        String str20 = n0Var.e.f;
-        String strB3 = n0Var.d.b();
-        String strA = n0Var.e.g.a();
+        String str20 = crashlyticsReportDataCapture.e.f;
+        String strB3 = crashlyticsReportDataCapture.d.b();
+        String strA = crashlyticsReportDataCapture.e.g.a();
         if (strA != null) {
             str2 = strA;
             str = "Unity";
@@ -401,60 +441,60 @@ public class x {
             str = null;
             str2 = null;
         }
-        bVar5.f = new b.i.c.m.d.m.g(str18, str19, str20, null, strB3, str, str2, null);
+        bVar4.f = new AutoValue_CrashlyticsReport_Session_Application(str18, str19, str20, null, strB3, str, str2, null);
         Integer num2 = 3;
         Objects.requireNonNull(str8, "Null version");
         Objects.requireNonNull(str9, "Null buildVersion");
-        Boolean boolValueOf = Boolean.valueOf(b.i.c.m.d.k.h.u(n0Var.c));
+        Boolean boolValueOf = Boolean.valueOf(CommonUtils.u(crashlyticsReportDataCapture.c));
         String strW = num2 == null ? " platform" : "";
         if (boolValueOf == null) {
-            strW = b.d.b.a.a.w(strW, " jailbroken");
+            strW = outline.w(strW, " jailbroken");
         }
         if (!strW.isEmpty()) {
-            throw new IllegalStateException(b.d.b.a.a.w("Missing required properties:", strW));
+            throw new IllegalStateException(outline.w("Missing required properties:", strW));
         }
-        bVar5.h = new b.i.c.m.d.m.t(num2.intValue(), str8, str9, boolValueOf.booleanValue(), null);
+        bVar4.h = new AutoValue_CrashlyticsReport_Session_OperatingSystem(num2.intValue(), str8, str9, boolValueOf.booleanValue(), null);
         StatFs statFs2 = new StatFs(Environment.getDataDirectory().getPath());
         int iIntValue = 7;
-        if (!TextUtils.isEmpty(str10) && (num = n0.f1691b.get(str10.toLowerCase(locale))) != null) {
+        if (!TextUtils.isEmpty(str10) && (num = CrashlyticsReportDataCapture.f1691b.get(str10.toLowerCase(locale))) != null) {
             iIntValue = num.intValue();
         }
         int iAvailableProcessors2 = Runtime.getRuntime().availableProcessors();
-        long jP2 = b.i.c.m.d.k.h.p();
+        long jP2 = CommonUtils.p();
         long blockCount2 = ((long) statFs2.getBlockCount()) * ((long) statFs2.getBlockSize());
-        boolean zS2 = b.i.c.m.d.k.h.s(n0Var.c);
-        int iK2 = b.i.c.m.d.k.h.k(n0Var.c);
-        b.i.c.m.d.m.i.b bVar6 = new b.i.c.m.d.m.i.b();
-        bVar6.a = Integer.valueOf(iIntValue);
+        boolean zS2 = CommonUtils.s(crashlyticsReportDataCapture.c);
+        int iK2 = CommonUtils.k(crashlyticsReportDataCapture.c);
+        AutoValue_CrashlyticsReport_Session_Device.b bVar5 = new AutoValue_CrashlyticsReport_Session_Device.b();
+        bVar5.a = Integer.valueOf(iIntValue);
         Objects.requireNonNull(str11, "Null model");
-        bVar6.f1722b = str11;
-        bVar6.c = Integer.valueOf(iAvailableProcessors2);
-        bVar6.d = Long.valueOf(jP2);
-        bVar6.e = Long.valueOf(blockCount2);
-        bVar6.f = Boolean.valueOf(zS2);
-        bVar6.g = Integer.valueOf(iK2);
+        bVar5.f1722b = str11;
+        bVar5.c = Integer.valueOf(iAvailableProcessors2);
+        bVar5.d = Long.valueOf(jP2);
+        bVar5.e = Long.valueOf(blockCount2);
+        bVar5.f = Boolean.valueOf(zS2);
+        bVar5.g = Integer.valueOf(iK2);
         Objects.requireNonNull(str12, "Null manufacturer");
-        bVar6.h = str12;
+        bVar5.h = str12;
         Objects.requireNonNull(str13, "Null modelClass");
-        bVar6.i = str13;
-        bVar5.i = bVar6.a();
-        bVar5.k = 3;
-        c0141b.g = bVar5.a();
-        b.i.c.m.d.m.v vVarA = c0141b.a();
-        b.i.c.m.d.o.g gVar = d1Var.f1680b;
-        Objects.requireNonNull(gVar);
-        b.i.c.m.d.m.v.d dVarH = vVarA.h();
+        bVar5.i = str13;
+        bVar4.i = bVar5.a();
+        bVar4.k = 3;
+        bVar3.g = bVar4.a();
+        CrashlyticsReport crashlyticsReportA = bVar3.a();
+        CrashlyticsReportPersistence7 crashlyticsReportPersistence7 = sessionReportingCoordinator3.f1680b;
+        Objects.requireNonNull(crashlyticsReportPersistence7);
+        CrashlyticsReport.d dVarH = crashlyticsReportA.h();
         if (dVarH == null) {
-            bVar.b("Could not get session for report");
+            logger3.b("Could not get session for report");
             return;
         }
         String strG = dVarH.g();
         try {
-            File fileH = gVar.h(strG);
-            b.i.c.m.d.o.g.i(fileH);
-            b.i.c.m.d.o.g.l(new File(fileH, "report"), b.i.c.m.d.o.g.c.g(vVarA));
+            File fileH = crashlyticsReportPersistence7.h(strG);
+            CrashlyticsReportPersistence7.i(fileH);
+            CrashlyticsReportPersistence7.l(new File(fileH, "report"), CrashlyticsReportPersistence7.c.g(crashlyticsReportA));
         } catch (IOException e2) {
-            b.i.c.m.d.b.a.c("Could not persist report for session " + strG, e2);
+            Logger3.a.c("Could not persist report for session " + strG, e2);
         }
     }
 
@@ -473,17 +513,17 @@ public class x {
                     z2 = false;
                 }
                 if (z2) {
-                    b.i.c.m.d.b.a.b("Skipping logging Crashlytics event to Firebase, FirebaseCrash exists");
+                    Logger3.a.b("Skipping logging Crashlytics event to Firebase, FirebaseCrash exists");
                     taskO = b.i.a.f.e.o.f.Z(null);
                 } else {
                     taskO = b.i.a.f.e.o.f.o(new ScheduledThreadPoolExecutor(1), new a0(xVar, j2));
                 }
                 arrayList.add(taskO);
             } catch (NumberFormatException unused2) {
-                b.i.c.m.d.b bVar = b.i.c.m.d.b.a;
-                StringBuilder sbU = b.d.b.a.a.U("Could not parse timestamp from file ");
+                Logger3 logger3 = Logger3.a;
+                StringBuilder sbU = outline.U("Could not parse timestamp from file ");
                 sbU.append(file.getName());
-                bVar.b(sbU.toString());
+                logger3.b(sbU.toString());
             }
             file.delete();
         }
@@ -495,29 +535,29 @@ public class x {
         if (str == null) {
             return;
         }
-        b.i.c.m.d.p.c cVarI = null;
+        CodedOutputStream2 codedOutputStream2I = null;
         try {
             fileOutputStream = new FileOutputStream(file, true);
             try {
-                cVarI = b.i.c.m.d.p.c.i(fileOutputStream);
-                b.i.c.m.d.p.a aVar = b.i.c.m.d.p.d.a;
-                b.i.c.m.d.p.a aVarA = b.i.c.m.d.p.a.a(str);
-                cVarI.r(7, 2);
-                int iB = b.i.c.m.d.p.c.b(2, aVarA);
-                cVarI.o(b.i.c.m.d.p.c.d(iB) + b.i.c.m.d.p.c.e(5) + iB);
-                cVarI.r(5, 2);
-                cVarI.o(iB);
-                cVarI.l(2, aVarA);
-                StringBuilder sbU = b.d.b.a.a.U("Failed to flush to append to ");
+                codedOutputStream2I = CodedOutputStream2.i(fileOutputStream);
+                ByteString2 byteString2 = SessionProtobufHelper.a;
+                ByteString2 byteString2A = ByteString2.a(str);
+                codedOutputStream2I.r(7, 2);
+                int iB = CodedOutputStream2.b(2, byteString2A);
+                codedOutputStream2I.o(CodedOutputStream2.d(iB) + CodedOutputStream2.e(5) + iB);
+                codedOutputStream2I.r(5, 2);
+                codedOutputStream2I.o(iB);
+                codedOutputStream2I.l(2, byteString2A);
+                StringBuilder sbU = outline.U("Failed to flush to append to ");
                 sbU.append(file.getPath());
-                b.i.c.m.d.k.h.h(cVarI, sbU.toString());
-                b.i.c.m.d.k.h.c(fileOutputStream, "Failed to close " + file.getPath());
+                CommonUtils.h(codedOutputStream2I, sbU.toString());
+                CommonUtils.c(fileOutputStream, "Failed to close " + file.getPath());
             } catch (Throwable th) {
                 th = th;
-                StringBuilder sbU2 = b.d.b.a.a.U("Failed to flush to append to ");
+                StringBuilder sbU2 = outline.U("Failed to flush to append to ");
                 sbU2.append(file.getPath());
-                b.i.c.m.d.k.h.h(cVarI, sbU2.toString());
-                b.i.c.m.d.k.h.c(fileOutputStream, "Failed to close " + file.getPath());
+                CommonUtils.h(codedOutputStream2I, sbU2.toString());
+                CommonUtils.c(fileOutputStream, "Failed to close " + file.getPath());
                 throw th;
             }
         } catch (Throwable th2) {
@@ -526,20 +566,20 @@ public class x {
         }
     }
 
-    public final void d(b.i.c.m.d.p.b bVar) {
-        if (bVar == null) {
+    public final void d(ClsFileOutputStream clsFileOutputStream) {
+        if (clsFileOutputStream == null) {
             return;
         }
         try {
-            bVar.a();
+            clsFileOutputStream.a();
         } catch (IOException e2) {
-            if (b.i.c.m.d.b.a.a(6)) {
+            if (Logger3.a.a(6)) {
                 Log.e("FirebaseCrashlytics", "Error closing session file stream in the presence of an exception", e2);
             }
         }
     }
 
-    public static void e(InputStream inputStream, b.i.c.m.d.p.c cVar, int i2) throws IOException {
+    public static void e(InputStream inputStream, CodedOutputStream2 codedOutputStream2, int i2) throws IOException {
         byte[] bArr = new byte[i2];
         int i3 = 0;
         while (i3 < i2) {
@@ -550,36 +590,36 @@ public class x {
                 i3 += i4;
             }
         }
-        Objects.requireNonNull(cVar);
-        int i5 = cVar.k;
-        int i6 = cVar.l;
+        Objects.requireNonNull(codedOutputStream2);
+        int i5 = codedOutputStream2.k;
+        int i6 = codedOutputStream2.l;
         int i7 = i5 - i6;
         if (i7 >= i2) {
-            System.arraycopy(bArr, 0, cVar.j, i6, i2);
-            cVar.l += i2;
+            System.arraycopy(bArr, 0, codedOutputStream2.j, i6, i2);
+            codedOutputStream2.l += i2;
             return;
         }
-        System.arraycopy(bArr, 0, cVar.j, i6, i7);
+        System.arraycopy(bArr, 0, codedOutputStream2.j, i6, i7);
         int i8 = i7 + 0;
         int i9 = i2 - i7;
-        cVar.l = cVar.k;
-        cVar.j();
-        if (i9 > cVar.k) {
-            cVar.m.write(bArr, i8, i9);
+        codedOutputStream2.l = codedOutputStream2.k;
+        codedOutputStream2.j();
+        if (i9 > codedOutputStream2.k) {
+            codedOutputStream2.m.write(bArr, i8, i9);
         } else {
-            System.arraycopy(bArr, i8, cVar.j, 0, i9);
-            cVar.l = i9;
+            System.arraycopy(bArr, i8, codedOutputStream2.j, 0, i9);
+            codedOutputStream2.l = i9;
         }
     }
 
     /* JADX WARN: Multi-variable type inference failed */
     public final void f(int i2, boolean z2) throws Exception {
         FileInputStream fileInputStream;
-        f1 f1Var;
+        UserMetadata userMetadata;
         String strJ;
         String str;
-        b.i.c.m.d.p.c cVarI;
-        b.i.c.m.d.p.b bVar;
+        CodedOutputStream2 codedOutputStream2I;
+        ClsFileOutputStream clsFileOutputStream;
         String str2;
         InputStream inputStreamH;
         int i3 = (z2 ? 1 : 0) + 8;
@@ -607,41 +647,41 @@ public class x {
             String name2 = file2.getName();
             Matcher matcher = e.matcher(name2);
             if (!matcher.matches()) {
-                b.i.c.m.d.b.a.b("Deleting unknown file: " + name2);
+                Logger3.a.b("Deleting unknown file: " + name2);
                 file2.delete();
             } else if (!hashSet.contains(matcher.group(1))) {
-                b.i.c.m.d.b.a.b("Trimming session file: " + name2);
+                Logger3.a.b("Trimming session file: " + name2);
                 file2.delete();
             }
         }
         File[] fileArrS2 = s();
         if (fileArrS2.length <= z2) {
-            b.i.c.m.d.b.a.b("No open sessions to be closed.");
+            Logger3.a.b("No open sessions to be closed.");
             return;
         }
         String strO = o(fileArrS2[z2 ? 1 : 0]);
         if (p()) {
-            f1Var = this.l;
+            userMetadata = this.l;
         } else {
-            File fileB = new z0(l()).b(strO);
+            File fileB = new MetaDataStore2(l()).b(strO);
             if (fileB.exists()) {
                 try {
                     try {
                         fileInputStream = new FileInputStream(fileB);
                         try {
-                            f1Var = z0.c(b.i.c.m.d.k.h.x(fileInputStream));
-                            b.i.c.m.d.k.h.c(fileInputStream, "Failed to close user metadata file.");
+                            userMetadata = MetaDataStore2.c(CommonUtils.x(fileInputStream));
+                            CommonUtils.c(fileInputStream, "Failed to close user metadata file.");
                         } catch (Exception e2) {
                             e = e2;
                             fileInputStream2 = fileInputStream;
-                            if (b.i.c.m.d.b.a.a(6)) {
+                            if (Logger3.a.a(6)) {
                                 Log.e("FirebaseCrashlytics", "Error deserializing user metadata.", e);
                             }
-                            b.i.c.m.d.k.h.c(fileInputStream2, "Failed to close user metadata file.");
-                            f1Var = new f1();
+                            CommonUtils.c(fileInputStream2, "Failed to close user metadata file.");
+                            userMetadata = new UserMetadata();
                         } catch (Throwable th) {
                             th = th;
-                            b.i.c.m.d.k.h.c(fileInputStream, "Failed to close user metadata file.");
+                            CommonUtils.c(fileInputStream, "Failed to close user metadata file.");
                             throw th;
                         }
                     } catch (Exception e3) {
@@ -652,50 +692,50 @@ public class x {
                     fileInputStream = fileInputStream2;
                 }
             } else {
-                f1Var = new f1();
+                userMetadata = new UserMetadata();
             }
         }
-        z(strO, "SessionUser", new z(this, f1Var));
+        z(strO, "SessionUser", new z(this, userMetadata));
         String str3 = "report";
         String str4 = "user";
         if (this.w.e(strO)) {
-            b.i.c.m.d.b bVar2 = b.i.c.m.d.b.a;
-            b.d.b.a.a.o0("Finalizing native report for session ", strO, bVar2);
-            b.i.c.m.d.d dVarB = this.w.b(strO);
-            File fileD = dVarB.d();
+            Logger3 logger3 = Logger3.a;
+            outline.o0("Finalizing native report for session ", strO, logger3);
+            NativeSessionFileProvider nativeSessionFileProviderB = this.w.b(strO);
+            File fileD = nativeSessionFileProviderB.d();
             if (fileD == null || !fileD.exists()) {
-                bVar2.g("No minidump data found for session " + strO);
+                logger3.g("No minidump data found for session " + strO);
             } else {
                 long jLastModified = fileD.lastModified();
-                b.i.c.m.d.l.b bVar3 = new b.i.c.m.d.l.b(this.i, this.f1700s, strO);
+                LogFileManager logFileManager = new LogFileManager(this.i, this.f1700s, strO);
                 File file3 = new File(m(), strO);
                 if (file3.mkdirs()) {
                     g(jLastModified);
                     File fileL = l();
-                    byte[] bArrC = bVar3.d.c();
-                    z0 z0Var = new z0(fileL);
-                    File fileB2 = z0Var.b(strO);
-                    File fileA = z0Var.a(strO);
-                    ArrayList<a1> arrayList = new ArrayList();
-                    arrayList.add(new b.i.c.m.d.k.f("logs_file", "logs", bArrC));
-                    arrayList.add(new u0("crash_meta_file", "metadata", dVarB.f()));
-                    arrayList.add(new u0("session_meta_file", "session", dVarB.e()));
-                    arrayList.add(new u0("app_meta_file", "app", dVarB.a()));
-                    arrayList.add(new u0("device_meta_file", "device", dVarB.c()));
-                    arrayList.add(new u0("os_meta_file", "os", dVarB.b()));
-                    arrayList.add(new u0("minidump_file", "minidump", dVarB.d()));
-                    arrayList.add(new u0("user_meta_file", "user", fileB2));
-                    arrayList.add(new u0("keys_file", "keys", fileA));
-                    for (a1 a1Var : arrayList) {
+                    byte[] bArrC = logFileManager.d.c();
+                    MetaDataStore2 metaDataStore2 = new MetaDataStore2(fileL);
+                    File fileB2 = metaDataStore2.b(strO);
+                    File fileA = metaDataStore2.a(strO);
+                    ArrayList<NativeSessionFile> arrayList = new ArrayList();
+                    arrayList.add(new BytesBackedNativeSessionFile("logs_file", "logs", bArrC));
+                    arrayList.add(new FileBackedNativeSessionFile("crash_meta_file", "metadata", nativeSessionFileProviderB.f()));
+                    arrayList.add(new FileBackedNativeSessionFile("session_meta_file", "session", nativeSessionFileProviderB.e()));
+                    arrayList.add(new FileBackedNativeSessionFile("app_meta_file", "app", nativeSessionFileProviderB.a()));
+                    arrayList.add(new FileBackedNativeSessionFile("device_meta_file", "device", nativeSessionFileProviderB.c()));
+                    arrayList.add(new FileBackedNativeSessionFile("os_meta_file", "os", nativeSessionFileProviderB.b()));
+                    arrayList.add(new FileBackedNativeSessionFile("minidump_file", "minidump", nativeSessionFileProviderB.d()));
+                    arrayList.add(new FileBackedNativeSessionFile("user_meta_file", "user", fileB2));
+                    arrayList.add(new FileBackedNativeSessionFile("keys_file", "keys", fileA));
+                    for (NativeSessionFile nativeSessionFile : arrayList) {
                         try {
-                            inputStreamH = a1Var.h();
+                            inputStreamH = nativeSessionFile.h();
                             if (inputStreamH != null) {
                                 try {
-                                    b.i.a.f.e.o.f.t0(inputStreamH, new File(file3, a1Var.a()));
+                                    b.i.a.f.e.o.f.t0(inputStreamH, new File(file3, nativeSessionFile.a()));
                                 } catch (IOException unused) {
                                 } catch (Throwable th3) {
                                     th = th3;
-                                    b.i.c.m.d.k.h.d(inputStreamH);
+                                    CommonUtils.d(inputStreamH);
                                     throw th;
                                 }
                             }
@@ -705,65 +745,65 @@ public class x {
                             th = th4;
                             inputStreamH = null;
                         }
-                        b.i.c.m.d.k.h.d(inputStreamH);
+                        CommonUtils.d(inputStreamH);
                     }
-                    d1 d1Var = this.A;
+                    SessionReportingCoordinator3 sessionReportingCoordinator3 = this.A;
                     String strReplaceAll = strO.replaceAll("-", "");
-                    Objects.requireNonNull(d1Var);
+                    Objects.requireNonNull(sessionReportingCoordinator3);
                     ArrayList arrayList2 = new ArrayList();
                     Iterator it = arrayList.iterator();
                     while (it.hasNext()) {
-                        b.i.c.m.d.m.v.c.a aVarB = ((a1) it.next()).b();
+                        CrashlyticsReport.c.a aVarB = ((NativeSessionFile) it.next()).b();
                         if (aVarB != null) {
                             arrayList2.add(aVarB);
                         }
                     }
-                    b.i.c.m.d.o.g gVar = d1Var.f1680b;
-                    b.i.c.m.d.m.d dVar = new b.i.c.m.d.m.d(new b.i.c.m.d.m.w(arrayList2), null, null);
-                    Objects.requireNonNull(gVar);
-                    File file4 = new File(gVar.h(strReplaceAll), "report");
-                    File file5 = gVar.j;
+                    CrashlyticsReportPersistence7 crashlyticsReportPersistence7 = sessionReportingCoordinator3.f1680b;
+                    AutoValue_CrashlyticsReport_FilesPayload autoValue_CrashlyticsReport_FilesPayload = new AutoValue_CrashlyticsReport_FilesPayload(new ImmutableList3(arrayList2), null, null);
+                    Objects.requireNonNull(crashlyticsReportPersistence7);
+                    File file4 = new File(crashlyticsReportPersistence7.h(strReplaceAll), "report");
+                    File file5 = crashlyticsReportPersistence7.j;
                     try {
-                        b.i.c.m.d.m.x.h hVar = b.i.c.m.d.o.g.c;
-                        b.i.c.m.d.m.b.C0141b c0141b = (b.i.c.m.d.m.b.C0141b) hVar.f(b.i.c.m.d.o.g.j(file4)).i();
-                        c0141b.g = null;
-                        c0141b.h = dVar;
-                        b.i.c.m.d.m.v vVarA = c0141b.a();
-                        b.i.c.m.d.o.g.i(file5);
-                        b.i.c.m.d.o.g.l(new File(file5, strReplaceAll), hVar.g(vVarA));
+                        CrashlyticsReportJsonTransform8 crashlyticsReportJsonTransform8 = CrashlyticsReportPersistence7.c;
+                        AutoValue_CrashlyticsReport.b bVar = (AutoValue_CrashlyticsReport.b) crashlyticsReportJsonTransform8.f(CrashlyticsReportPersistence7.j(file4)).i();
+                        bVar.g = null;
+                        bVar.h = autoValue_CrashlyticsReport_FilesPayload;
+                        CrashlyticsReport crashlyticsReportA = bVar.a();
+                        CrashlyticsReportPersistence7.i(file5);
+                        CrashlyticsReportPersistence7.l(new File(file5, strReplaceAll), crashlyticsReportJsonTransform8.g(crashlyticsReportA));
                     } catch (IOException e4) {
-                        b.i.c.m.d.b.a.c("Could not synthesize final native report file for " + file4, e4);
+                        Logger3.a.c("Could not synthesize final native report file for " + file4, e4);
                     }
-                    bVar3.d.d();
+                    logFileManager.d.d();
                 } else {
-                    bVar2.b("Couldn't create native sessions directory");
+                    logger3.b("Couldn't create native sessions directory");
                 }
             }
             if (!this.w.a(strO)) {
-                b.d.b.a.a.o0("Could not finalize native session: ", strO, b.i.c.m.d.b.a);
+                outline.o0("Could not finalize native session: ", strO, Logger3.a);
             }
         }
-        b.i.c.m.d.b.a.b("Closing open sessions.");
+        Logger3.a.b("Closing open sessions.");
         int i5 = z2 ? 1 : 0;
         while (i5 < fileArrS2.length) {
             File file6 = fileArrS2[i5];
             String strO2 = o(file6);
-            b.i.c.m.d.b bVar4 = b.i.c.m.d.b.a;
-            bVar4.b("Closing session: " + strO2);
-            bVar4.b("Collecting session parts for ID " + strO2);
-            File[] fileArrR = r(l(), new h(b.d.b.a.a.w(strO2, "SessionCrash")));
+            Logger3 logger4 = Logger3.a;
+            logger4.b("Closing session: " + strO2);
+            logger4.b("Collecting session parts for ID " + strO2);
+            File[] fileArrR = r(l(), new h(outline.w(strO2, "SessionCrash")));
             boolean z3 = fileArrR.length > 0;
             Locale locale = Locale.US;
-            bVar4.b(String.format(locale, "Session %s has fatal exception: %s", strO2, Boolean.valueOf(z3)));
-            File[] fileArrR2 = r(l(), new h(b.d.b.a.a.w(strO2, "SessionEvent")));
+            logger4.b(String.format(locale, "Session %s has fatal exception: %s", strO2, Boolean.valueOf(z3)));
+            File[] fileArrR2 = r(l(), new h(outline.w(strO2, "SessionEvent")));
             boolean z4 = fileArrR2.length > 0;
             String str5 = str3;
-            bVar4.b(String.format(locale, "Session %s has non-fatal exceptions: %s", strO2, Boolean.valueOf(z4)));
+            logger4.b(String.format(locale, "Session %s has non-fatal exceptions: %s", strO2, Boolean.valueOf(z4)));
             if (z3 || z4) {
                 if (fileArrR2.length > i2) {
-                    bVar4.b(String.format(locale, "Trimming down to %d logged exceptions.", Integer.valueOf(i2)));
+                    logger4.b(String.format(locale, "Trimming down to %d logged exceptions.", Integer.valueOf(i2)));
                     v(strO2, i2);
-                    fileArrR2 = r(l(), new h(b.d.b.a.a.w(strO2, "SessionEvent")));
+                    fileArrR2 = r(l(), new h(outline.w(strO2, "SessionEvent")));
                 }
                 File file7 = z3 ? fileArrR[0] : null;
                 boolean z5 = file7 != null;
@@ -772,31 +812,31 @@ public class x {
                     fileK.mkdirs();
                 }
                 try {
-                    bVar = new b.i.c.m.d.p.b(fileK, strO2);
+                    clsFileOutputStream = new ClsFileOutputStream(fileK, strO2);
                     try {
-                        cVarI = b.i.c.m.d.p.c.i(bVar);
+                        codedOutputStream2I = CodedOutputStream2.i(clsFileOutputStream);
                         try {
                             try {
-                                bVar4.b("Collecting SessionStart data for session ID " + strO2);
-                                A(cVarI, file6);
+                                logger4.b("Collecting SessionStart data for session ID " + strO2);
+                                A(codedOutputStream2I, file6);
                                 str2 = str4;
                                 try {
-                                    cVarI.t(4, j());
-                                    cVarI.k(5, z5);
-                                    cVarI.s(11, 1);
-                                    cVarI.m(12, 3);
-                                    w(cVarI, strO2);
-                                    x(cVarI, fileArrR2, strO2);
+                                    codedOutputStream2I.t(4, j());
+                                    codedOutputStream2I.k(5, z5);
+                                    codedOutputStream2I.s(11, 1);
+                                    codedOutputStream2I.m(12, 3);
+                                    w(codedOutputStream2I, strO2);
+                                    x(codedOutputStream2I, fileArrR2, strO2);
                                     if (z5) {
-                                        A(cVarI, file7);
+                                        A(codedOutputStream2I, file7);
                                     }
-                                    b.i.c.m.d.k.h.h(cVarI, "Error flushing session file stream");
-                                    b.i.c.m.d.k.h.c(bVar, "Failed to close CLS file");
+                                    CommonUtils.h(codedOutputStream2I, "Error flushing session file stream");
+                                    CommonUtils.c(clsFileOutputStream, "Failed to close CLS file");
                                 } catch (Exception e5) {
                                     e = e5;
-                                    b.i.c.m.d.b.a.e("Failed to write session file for session ID: " + strO2, e);
-                                    b.i.c.m.d.k.h.h(cVarI, "Error flushing session file stream");
-                                    d(bVar);
+                                    Logger3.a.e("Failed to write session file for session ID: " + strO2, e);
+                                    CommonUtils.h(codedOutputStream2I, "Error flushing session file stream");
+                                    d(clsFileOutputStream);
                                 }
                             } catch (Exception e6) {
                                 e = e6;
@@ -804,33 +844,33 @@ public class x {
                             }
                         } catch (Throwable th5) {
                             th = th5;
-                            b.i.c.m.d.k.h.h(cVarI, "Error flushing session file stream");
-                            b.i.c.m.d.k.h.c(bVar, "Failed to close CLS file");
+                            CommonUtils.h(codedOutputStream2I, "Error flushing session file stream");
+                            CommonUtils.c(clsFileOutputStream, "Failed to close CLS file");
                             throw th;
                         }
                     } catch (Exception e7) {
                         e = e7;
                         str2 = str4;
-                        cVarI = null;
+                        codedOutputStream2I = null;
                     } catch (Throwable th6) {
                         th = th6;
-                        cVarI = null;
+                        codedOutputStream2I = null;
                     }
                 } catch (Exception e8) {
                     e = e8;
                     str2 = str4;
-                    cVarI = null;
-                    bVar = null;
+                    codedOutputStream2I = null;
+                    clsFileOutputStream = null;
                 } catch (Throwable th7) {
                     th = th7;
-                    cVarI = null;
-                    bVar = null;
+                    codedOutputStream2I = null;
+                    clsFileOutputStream = null;
                 }
             } else {
-                b.d.b.a.a.o0("No events present for session ID ", strO2, bVar4);
+                outline.o0("No events present for session ID ", strO2, logger4);
                 str2 = str4;
             }
-            b.i.c.m.d.b.a.b("Removing session part files for ID " + strO2);
+            Logger3.a.b("Removing session part files for ID " + strO2);
             File[] fileArrR3 = r(l(), new n(strO2));
             for (File file8 : fileArrR3) {
                 file8.delete();
@@ -842,29 +882,29 @@ public class x {
         String str6 = str3;
         String str7 = str4;
         String strT = z2 != 0 ? t(o(fileArrS2[0])) : null;
-        d1 d1Var2 = this.A;
+        SessionReportingCoordinator3 sessionReportingCoordinator4 = this.A;
         long j2 = j();
-        b.i.c.m.d.o.g gVar2 = d1Var2.f1680b;
-        List<File> listF = b.i.c.m.d.o.g.f(gVar2.g, new b.i.c.m.d.o.b(strT));
-        Collections.sort(listF, b.i.c.m.d.o.g.d);
+        CrashlyticsReportPersistence7 crashlyticsReportPersistence8 = sessionReportingCoordinator4.f1680b;
+        List<File> listF = CrashlyticsReportPersistence7.f(crashlyticsReportPersistence8.g, new CrashlyticsReportPersistence2(strT));
+        Collections.sort(listF, CrashlyticsReportPersistence7.d);
         if (listF.size() > 8) {
             Iterator<File> it2 = listF.subList(8, listF.size()).iterator();
             while (it2.hasNext()) {
-                b.i.c.m.d.o.g.k(it2.next());
+                CrashlyticsReportPersistence7.k(it2.next());
             }
             listF = listF.subList(0, 8);
         }
         for (File file9 : listF) {
-            b.i.c.m.d.b bVar5 = b.i.c.m.d.b.a;
-            StringBuilder sbU = b.d.b.a.a.U("Finalizing report for session ");
+            Logger3 logger5 = Logger3.a;
+            StringBuilder sbU = outline.U("Finalizing report for session ");
             sbU.append(file9.getName());
-            bVar5.b(sbU.toString());
-            List<File> listG = b.i.c.m.d.o.g.g(file9, b.i.c.m.d.o.g.e);
+            logger5.b(sbU.toString());
+            List<File> listG = CrashlyticsReportPersistence7.g(file9, CrashlyticsReportPersistence7.e);
             if (listG.isEmpty()) {
-                StringBuilder sbU2 = b.d.b.a.a.U("Session ");
+                StringBuilder sbU2 = outline.U("Session ");
                 sbU2.append(file9.getName());
                 sbU2.append(" has no events.");
-                bVar5.b(sbU2.toString());
+                logger5.b(sbU2.toString());
             } else {
                 Collections.sort(listG);
                 ArrayList arrayList3 = new ArrayList();
@@ -877,12 +917,12 @@ public class x {
                                 File file10 = new File(file9, str7);
                                 if (file10.isFile()) {
                                     try {
-                                        strJ = b.i.c.m.d.o.g.j(file10);
+                                        strJ = CrashlyticsReportPersistence7.j(file10);
                                     } catch (IOException e9) {
-                                        b.i.c.m.d.b bVar6 = b.i.c.m.d.b.a;
-                                        StringBuilder sbU3 = b.d.b.a.a.U("Could not read user ID file in ");
+                                        Logger3 logger6 = Logger3.a;
+                                        StringBuilder sbU3 = outline.U("Could not read user ID file in ");
                                         sbU3.append(file9.getName());
-                                        bVar6.c(sbU3.toString(), e9);
+                                        logger6.c(sbU3.toString(), e9);
                                         strJ = null;
                                     }
                                 } else {
@@ -890,48 +930,48 @@ public class x {
                                 }
                                 str = str6;
                                 File file11 = new File(file9, str);
-                                File file12 = z6 ? gVar2.h : gVar2.i;
+                                File file12 = z6 ? crashlyticsReportPersistence8.h : crashlyticsReportPersistence8.i;
                                 try {
-                                    b.i.c.m.d.m.x.h hVar2 = b.i.c.m.d.o.g.c;
-                                    b.i.c.m.d.m.v vVarJ = hVar2.f(b.i.c.m.d.o.g.j(file11)).j(j2, z6, strJ);
-                                    b.i.c.m.d.m.w<b.i.c.m.d.m.v.d.AbstractC0143d> wVar = new b.i.c.m.d.m.w<>(arrayList3);
-                                    if (vVarJ.h() == null) {
+                                    CrashlyticsReportJsonTransform8 crashlyticsReportJsonTransform9 = CrashlyticsReportPersistence7.c;
+                                    CrashlyticsReport crashlyticsReportJ = crashlyticsReportJsonTransform9.f(CrashlyticsReportPersistence7.j(file11)).j(j2, z6, strJ);
+                                    ImmutableList3<CrashlyticsReport.d.AbstractC0049d> immutableList3 = new ImmutableList3<>(arrayList3);
+                                    if (crashlyticsReportJ.h() == null) {
                                         throw new IllegalStateException("Reports without sessions cannot have events added to them.");
                                     }
-                                    b.i.c.m.d.m.v.a aVarI = vVarJ.i();
-                                    b.i.c.m.d.m.f.b bVar7 = (b.i.c.m.d.m.f.b) vVarJ.h().l();
-                                    bVar7.j = wVar;
-                                    b.i.c.m.d.m.b.C0141b c0141b2 = (b.i.c.m.d.m.b.C0141b) aVarI;
-                                    c0141b2.g = bVar7.a();
-                                    b.i.c.m.d.m.v vVarA2 = c0141b2.a();
-                                    b.i.c.m.d.m.v.d dVarH = vVarA2.h();
+                                    CrashlyticsReport.a aVarI = crashlyticsReportJ.i();
+                                    AutoValue_CrashlyticsReport_Session.b bVar2 = (AutoValue_CrashlyticsReport_Session.b) crashlyticsReportJ.h().l();
+                                    bVar2.j = immutableList3;
+                                    AutoValue_CrashlyticsReport.b bVar3 = (AutoValue_CrashlyticsReport.b) aVarI;
+                                    bVar3.g = bVar2.a();
+                                    CrashlyticsReport crashlyticsReportA2 = bVar3.a();
+                                    CrashlyticsReport.d dVarH = crashlyticsReportA2.h();
                                     if (dVarH != null) {
-                                        b.i.c.m.d.o.g.i(file12);
-                                        b.i.c.m.d.o.g.l(new File(file12, dVarH.g()), hVar2.g(vVarA2));
+                                        CrashlyticsReportPersistence7.i(file12);
+                                        CrashlyticsReportPersistence7.l(new File(file12, dVarH.g()), crashlyticsReportJsonTransform9.g(crashlyticsReportA2));
                                         break;
                                     }
                                     break;
                                 } catch (IOException e10) {
-                                    b.i.c.m.d.b.a.c("Could not synthesize final report file for " + file11, e10);
+                                    Logger3.a.c("Could not synthesize final report file for " + file11, e10);
                                     break;
                                 }
                             }
-                            b.i.c.m.d.b bVar8 = b.i.c.m.d.b.a;
-                            StringBuilder sbU4 = b.d.b.a.a.U("Could not parse event files for session ");
+                            Logger3 logger7 = Logger3.a;
+                            StringBuilder sbU4 = outline.U("Could not parse event files for session ");
                             sbU4.append(file9.getName());
-                            bVar8.b(sbU4.toString());
+                            logger7.b(sbU4.toString());
                         } else {
                             File next = it3.next();
                             try {
-                                b.i.c.m.d.m.x.h hVar3 = b.i.c.m.d.o.g.c;
-                                String strJ2 = b.i.c.m.d.o.g.j(next);
-                                Objects.requireNonNull(hVar3);
+                                CrashlyticsReportJsonTransform8 crashlyticsReportJsonTransform10 = CrashlyticsReportPersistence7.c;
+                                String strJ2 = CrashlyticsReportPersistence7.j(next);
+                                Objects.requireNonNull(crashlyticsReportJsonTransform10);
                                 try {
                                     JsonReader jsonReader = new JsonReader(new StringReader(strJ2));
                                     try {
-                                        b.i.c.m.d.m.v.d.AbstractC0143d abstractC0143dB = b.i.c.m.d.m.x.h.b(jsonReader);
+                                        CrashlyticsReport.d.AbstractC0049d abstractC0049dB = CrashlyticsReportJsonTransform8.b(jsonReader);
                                         jsonReader.close();
-                                        arrayList3.add(abstractC0143dB);
+                                        arrayList3.add(abstractC0049dB);
                                         if (!z6) {
                                             String name3 = next.getName();
                                             if (!(name3.startsWith("event") && name3.endsWith("_"))) {
@@ -949,20 +989,20 @@ public class x {
                                     throw new IOException(e11);
                                 }
                             } catch (IOException e12) {
-                                b.i.c.m.d.b.a.c("Could not add event to report for " + next, e12);
+                                Logger3.a.c("Could not add event to report for " + next, e12);
                             }
                         }
                     }
                 }
-                b.i.c.m.d.o.g.k(file9);
+                CrashlyticsReportPersistence7.k(file9);
                 str6 = str;
             }
             str = str6;
-            b.i.c.m.d.o.g.k(file9);
+            CrashlyticsReportPersistence7.k(file9);
             str6 = str;
         }
-        Objects.requireNonNull(((b.i.c.m.d.s.c) gVar2.k).c().b());
-        ArrayList arrayList4 = (ArrayList) gVar2.e();
+        Objects.requireNonNull(((SettingsController) crashlyticsReportPersistence8.k).c().b());
+        ArrayList arrayList4 = (ArrayList) crashlyticsReportPersistence8.e();
         int size = arrayList4.size();
         if (size <= 4) {
             return;
@@ -977,24 +1017,24 @@ public class x {
         try {
             new File(l(), ".ae" + j2).createNewFile();
         } catch (IOException unused) {
-            b.i.c.m.d.b.a.b("Could not write app exception marker.");
+            Logger3.a.b("Could not write app exception marker.");
         }
     }
 
     public boolean h(int i2) {
         this.m.a();
         if (p()) {
-            b.i.c.m.d.b.a.b("Skipping session finalization because a crash has already occurred.");
+            Logger3.a.b("Skipping session finalization because a crash has already occurred.");
             return false;
         }
-        b.i.c.m.d.b bVar = b.i.c.m.d.b.a;
-        bVar.b("Finalizing previously open sessions.");
+        Logger3 logger3 = Logger3.a;
+        logger3.b("Finalizing previously open sessions.");
         try {
             f(i2, true);
-            bVar.b("Closed all previously open sessions");
+            logger3.b("Closed all previously open sessions");
             return true;
         } catch (Exception e2) {
-            if (b.i.c.m.d.b.a.a(6)) {
+            if (Logger3.a.a(6)) {
                 Log.e("FirebaseCrashlytics", "Unable to finalize previously open sessions.", e2);
             }
             return false;
@@ -1035,8 +1075,8 @@ public class x {
     }
 
     public boolean p() {
-        p0 p0Var = this.B;
-        return p0Var != null && p0Var.d.get();
+        CrashlyticsUncaughtExceptionHandler crashlyticsUncaughtExceptionHandler = this.B;
+        return crashlyticsUncaughtExceptionHandler != null && crashlyticsUncaughtExceptionHandler.d.get();
     }
 
     public File[] q() {
@@ -1073,71 +1113,71 @@ public class x {
         return str.replaceAll("-", "");
     }
 
-    public Task<Void> u(float f2, Task<b.i.c.m.d.s.h.b> task) {
+    public Task<Void> u(float f2, Task<AppSettingsData> task) {
         b.i.a.f.n.c0<Void> c0Var;
         Task taskZ;
-        b.i.c.m.d.q.a aVar = this.u;
+        ReportManager reportManager = this.u;
         File[] fileArrQ = x.this.q();
         File[] fileArrListFiles = x.this.m().listFiles();
         if (fileArrListFiles == null) {
             fileArrListFiles = new File[0];
         }
         if (!((fileArrQ != null && fileArrQ.length > 0) || fileArrListFiles.length > 0)) {
-            b.i.c.m.d.b.a.b("No reports are available.");
+            Logger3.a.b("No reports are available.");
             this.C.b(Boolean.FALSE);
             return b.i.a.f.e.o.f.Z(null);
         }
-        b.i.c.m.d.b bVar = b.i.c.m.d.b.a;
-        bVar.b("Unsent reports are available.");
+        Logger3 logger3 = Logger3.a;
+        logger3.b("Unsent reports are available.");
         if (this.j.b()) {
-            bVar.b("Automatic data collection is enabled. Allowing upload.");
+            logger3.b("Automatic data collection is enabled. Allowing upload.");
             this.C.b(Boolean.FALSE);
             taskZ = b.i.a.f.e.o.f.Z(Boolean.TRUE);
         } else {
-            bVar.b("Automatic data collection is disabled.");
-            bVar.b("Notifying that unsent reports are available.");
+            logger3.b("Automatic data collection is disabled.");
+            logger3.b("Notifying that unsent reports are available.");
             this.C.b(Boolean.TRUE);
-            q0 q0Var = this.j;
-            synchronized (q0Var.c) {
-                c0Var = q0Var.d.a;
+            DataCollectionArbiter dataCollectionArbiter = this.j;
+            synchronized (dataCollectionArbiter.c) {
+                c0Var = dataCollectionArbiter.d.a;
             }
             Task<TContinuationResult> taskQ = c0Var.q(new e0(this));
-            bVar.b("Waiting for send/deleteUnsentReports to be called.");
+            logger3.b("Waiting for send/deleteUnsentReports to be called.");
             b.i.a.f.n.c0<Boolean> c0Var2 = this.D.a;
-            FilenameFilter filenameFilter = h1.a;
+            FilenameFilter filenameFilter = Utils3.a;
             TaskCompletionSource taskCompletionSource = new TaskCompletionSource();
-            i1 i1Var = new i1(taskCompletionSource);
-            taskQ.h(i1Var);
-            c0Var2.h(i1Var);
+            Utils4 utils4 = new Utils4(taskCompletionSource);
+            taskQ.h(utils4);
+            c0Var2.h(utils4);
             taskZ = taskCompletionSource.a;
         }
         return taskZ.q(new e(task, f2));
     }
 
     public final void v(String str, int i2) {
-        h1.b(l(), new h(b.d.b.a.a.w(str, "SessionEvent")), i2, d);
+        Utils3.b(l(), new h(outline.w(str, "SessionEvent")), i2, d);
     }
 
-    public final void w(b.i.c.m.d.p.c cVar, String str) throws Throwable {
+    public final void w(CodedOutputStream2 codedOutputStream2, String str) throws Throwable {
         for (String str2 : g) {
-            File[] fileArrR = r(l(), new h(b.d.b.a.a.y(str, str2, ".cls")));
+            File[] fileArrR = r(l(), new h(outline.y(str, str2, ".cls")));
             if (fileArrR.length == 0) {
-                b.i.c.m.d.b.a.b("Can't find " + str2 + " data for session ID " + str);
+                Logger3.a.b("Can't find " + str2 + " data for session ID " + str);
             } else {
-                b.i.c.m.d.b.a.b("Collecting " + str2 + " data for session ID " + str);
-                A(cVar, fileArrR[0]);
+                Logger3.a.b("Collecting " + str2 + " data for session ID " + str);
+                A(codedOutputStream2, fileArrR[0]);
             }
         }
     }
 
-    public static void x(b.i.c.m.d.p.c cVar, File[] fileArr, String str) throws Throwable {
-        Arrays.sort(fileArr, b.i.c.m.d.k.h.c);
+    public static void x(CodedOutputStream2 codedOutputStream2, File[] fileArr, String str) throws Throwable {
+        Arrays.sort(fileArr, CommonUtils.c);
         for (File file : fileArr) {
             try {
-                b.i.c.m.d.b.a.b(String.format(Locale.US, "Found Non Fatal for session ID %s in %s ", str, file.getName()));
-                A(cVar, file);
+                Logger3.a.b(String.format(Locale.US, "Found Non Fatal for session ID %s in %s ", str, file.getName()));
+                A(codedOutputStream2, file);
             } catch (Exception e2) {
-                if (b.i.c.m.d.b.a.a(6)) {
+                if (Logger3.a.a(6)) {
                     Log.e("FirebaseCrashlytics", "Error writting non-fatal to session.", e2);
                 }
             }
@@ -1158,35 +1198,35 @@ public class x {
     /* JADX WARN: Code duplicated, block: B:53:0x02bd  */
     /* JADX WARN: Code duplicated, block: B:56:0x0306  */
     /* JADX WARN: Code duplicated, block: B:63:0x0288 A[SYNTHETIC] */
-    public final void y(b.i.c.m.d.p.c cVar, Thread thread, Throwable th, long j2, String str, boolean z2) throws Exception {
+    public final void y(CodedOutputStream2 codedOutputStream2, Thread thread, Throwable th, long j2, String str, boolean z2) throws Exception {
         Thread[] threadArr;
         Map<String, String> mapA;
         Map<String, String> treeMap;
         byte[] bArrC;
-        b.i.c.m.d.p.a aVarA;
-        b.i.c.m.d.p.a aVar;
-        b.i.c.m.d.p.a aVar2;
+        ByteString2 byteString2A;
+        ByteString2 byteString2;
+        ByteString2 byteString3;
         Thread[] threadArr2;
         int iD;
         int length;
         int i2;
-        b.i.c.m.d.p.a aVar3;
+        ByteString2 byteString4;
         String value;
-        b.i.c.m.d.t.e eVar = new b.i.c.m.d.t.e(th, this.f1701x);
+        TrimmedThrowableData trimmedThrowableData = new TrimmedThrowableData(th, this.f1701x);
         Context context = this.i;
-        b.i.c.m.d.k.e eVarA = b.i.c.m.d.k.e.a(context);
-        Float f2 = eVarA.a;
-        int iB = eVarA.b();
-        boolean zM = b.i.c.m.d.k.h.m(context);
+        BatteryState batteryStateA = BatteryState.a(context);
+        Float f2 = batteryStateA.a;
+        int iB = batteryStateA.b();
+        boolean zM = CommonUtils.m(context);
         int i3 = context.getResources().getConfiguration().orientation;
-        long jP = b.i.c.m.d.k.h.p();
+        long jP = CommonUtils.p();
         ActivityManager.MemoryInfo memoryInfo = new ActivityManager.MemoryInfo();
         ((ActivityManager) context.getSystemService(ActivityChooserModel.ATTRIBUTE_ACTIVITY)).getMemoryInfo(memoryInfo);
         long j3 = jP - memoryInfo.availMem;
-        long jA = b.i.c.m.d.k.h.a(Environment.getDataDirectory().getPath());
-        ActivityManager.RunningAppProcessInfo runningAppProcessInfoI = b.i.c.m.d.k.h.i(context.getPackageName(), context);
+        long jA = CommonUtils.a(Environment.getDataDirectory().getPath());
+        ActivityManager.RunningAppProcessInfo runningAppProcessInfoI = CommonUtils.i(context.getPackageName(), context);
         LinkedList linkedList = new LinkedList();
-        StackTraceElement[] stackTraceElementArr = eVar.c;
+        StackTraceElement[] stackTraceElementArr = trimmedThrowableData.c;
         String str2 = this.q.f1677b;
         String str3 = this.o.e;
         if (z2) {
@@ -1203,227 +1243,227 @@ public class x {
         } else {
             threadArr = new Thread[0];
         }
-        if (b.i.c.m.d.k.h.j(context, "com.crashlytics.CollectCustomKeys", true)) {
+        if (CommonUtils.j(context, "com.crashlytics.CollectCustomKeys", true)) {
             mapA = this.l.a();
             if (mapA != null && mapA.size() > 1) {
                 treeMap = new TreeMap(mapA);
             }
             bArrC = this.t.d.c();
-            b.i.c.m.d.p.a aVar4 = b.i.c.m.d.p.d.a;
-            b.i.c.m.d.p.a aVarA2 = b.i.c.m.d.p.a.a(str3);
+            ByteString2 byteString5 = SessionProtobufHelper.a;
+            ByteString2 byteString2A2 = ByteString2.a(str3);
             if (str2 == null) {
-                aVarA = null;
+                byteString2A = null;
             } else {
-                aVarA = b.i.c.m.d.p.a.a(str2.replace("-", ""));
+                byteString2A = ByteString2.a(str2.replace("-", ""));
             }
             if (bArrC != null) {
                 int length2 = bArrC.length;
                 byte[] bArr = new byte[length2];
                 System.arraycopy(bArrC, 0, bArr, 0, length2);
-                aVar = new b.i.c.m.d.p.a(bArr);
+                byteString2 = new ByteString2(bArr);
             } else {
-                b.i.c.m.d.b.a.b("No log data to include with this event.");
-                aVar = null;
+                Logger3.a.b("No log data to include with this event.");
+                byteString2 = null;
             }
-            cVar.r(10, 2);
-            int iB2 = b.i.c.m.d.p.c.b(2, b.i.c.m.d.p.a.a(str)) + b.i.c.m.d.p.c.h(1, j2) + 0;
-            aVar2 = aVar;
+            codedOutputStream2.r(10, 2);
+            int iB2 = CodedOutputStream2.b(2, ByteString2.a(str)) + CodedOutputStream2.h(1, j2) + 0;
+            byteString3 = byteString2;
             threadArr2 = threadArr;
-            int iF = b.i.c.m.d.p.d.f(eVar, thread, stackTraceElementArr, threadArr, linkedList, 8, aVarA2, aVarA, treeMap, runningAppProcessInfoI, i3);
-            int iD2 = b.i.c.m.d.p.c.d(iF) + b.i.c.m.d.p.c.e(3) + iF + iB2;
-            int iG = b.i.c.m.d.p.d.g(f2, iB, zM, i3, j3, jA);
-            iD = b.i.c.m.d.p.c.d(iG) + b.i.c.m.d.p.c.e(5) + iG + iD2;
-            if (aVar2 != null) {
-                int iB3 = b.i.c.m.d.p.c.b(1, aVar2);
-                iD += b.i.c.m.d.p.c.d(iB3) + b.i.c.m.d.p.c.e(6) + iB3;
+            int iF = SessionProtobufHelper.f(trimmedThrowableData, thread, stackTraceElementArr, threadArr, linkedList, 8, byteString2A2, byteString2A, treeMap, runningAppProcessInfoI, i3);
+            int iD2 = CodedOutputStream2.d(iF) + CodedOutputStream2.e(3) + iF + iB2;
+            int iG = SessionProtobufHelper.g(f2, iB, zM, i3, j3, jA);
+            iD = CodedOutputStream2.d(iG) + CodedOutputStream2.e(5) + iG + iD2;
+            if (byteString3 != null) {
+                int iB3 = CodedOutputStream2.b(1, byteString3);
+                iD += CodedOutputStream2.d(iB3) + CodedOutputStream2.e(6) + iB3;
             }
-            cVar.o(iD);
-            cVar.t(1, j2);
-            cVar.l(2, b.i.c.m.d.p.a.a(str));
-            cVar.r(3, 2);
-            b.i.c.m.d.p.a aVar5 = aVarA;
-            cVar.o(b.i.c.m.d.p.d.f(eVar, thread, stackTraceElementArr, threadArr2, linkedList, 8, aVarA2, aVar5, treeMap, runningAppProcessInfoI, i3));
-            cVar.r(1, 2);
-            cVar.o(b.i.c.m.d.p.d.e(eVar, thread, stackTraceElementArr, threadArr2, linkedList, 8, aVarA2, aVar5));
-            b.i.c.m.d.p.d.m(cVar, thread, stackTraceElementArr, 4, true);
+            codedOutputStream2.o(iD);
+            codedOutputStream2.t(1, j2);
+            codedOutputStream2.l(2, ByteString2.a(str));
+            codedOutputStream2.r(3, 2);
+            ByteString2 byteString6 = byteString2A;
+            codedOutputStream2.o(SessionProtobufHelper.f(trimmedThrowableData, thread, stackTraceElementArr, threadArr2, linkedList, 8, byteString2A2, byteString6, treeMap, runningAppProcessInfoI, i3));
+            codedOutputStream2.r(1, 2);
+            codedOutputStream2.o(SessionProtobufHelper.e(trimmedThrowableData, thread, stackTraceElementArr, threadArr2, linkedList, 8, byteString2A2, byteString6));
+            SessionProtobufHelper.m(codedOutputStream2, thread, stackTraceElementArr, 4, true);
             length = threadArr2.length;
             for (i2 = 0; i2 < length; i2++) {
-                b.i.c.m.d.p.d.m(cVar, threadArr2[i2], (StackTraceElement[]) linkedList.get(i2), 0, false);
+                SessionProtobufHelper.m(codedOutputStream2, threadArr2[i2], (StackTraceElement[]) linkedList.get(i2), 0, false);
             }
-            b.i.c.m.d.p.d.l(cVar, eVar, 1, 8, 2);
-            cVar.r(3, 2);
-            cVar.o(b.i.c.m.d.p.d.d());
-            b.i.c.m.d.p.a aVar6 = b.i.c.m.d.p.d.a;
-            cVar.l(1, aVar6);
-            cVar.l(2, aVar6);
-            cVar.t(3, 0L);
-            cVar.r(4, 2);
-            aVar3 = aVarA;
-            cVar.o(b.i.c.m.d.p.d.a(aVarA2, aVar3));
-            cVar.t(1, 0L);
-            cVar.t(2, 0L);
-            cVar.l(3, aVarA2);
-            if (aVar3 != null) {
-                cVar.l(4, aVar3);
+            SessionProtobufHelper.l(codedOutputStream2, trimmedThrowableData, 1, 8, 2);
+            codedOutputStream2.r(3, 2);
+            codedOutputStream2.o(SessionProtobufHelper.d());
+            ByteString2 byteString7 = SessionProtobufHelper.a;
+            codedOutputStream2.l(1, byteString7);
+            codedOutputStream2.l(2, byteString7);
+            codedOutputStream2.t(3, 0L);
+            codedOutputStream2.r(4, 2);
+            byteString4 = byteString2A;
+            codedOutputStream2.o(SessionProtobufHelper.a(byteString2A2, byteString4));
+            codedOutputStream2.t(1, 0L);
+            codedOutputStream2.t(2, 0L);
+            codedOutputStream2.l(3, byteString2A2);
+            if (byteString4 != null) {
+                codedOutputStream2.l(4, byteString4);
             }
             if (treeMap != null && !treeMap.isEmpty()) {
                 for (Map.Entry<String, String> entry2 : treeMap.entrySet()) {
-                    cVar.r(2, 2);
-                    cVar.o(b.i.c.m.d.p.d.b(entry2.getKey(), entry2.getValue()));
-                    cVar.l(1, b.i.c.m.d.p.a.a(entry2.getKey()));
+                    codedOutputStream2.r(2, 2);
+                    codedOutputStream2.o(SessionProtobufHelper.b(entry2.getKey(), entry2.getValue()));
+                    codedOutputStream2.l(1, ByteString2.a(entry2.getKey()));
                     value = entry2.getValue();
                     if (value == null) {
                         value = "";
                     }
-                    cVar.l(2, b.i.c.m.d.p.a.a(value));
+                    codedOutputStream2.l(2, ByteString2.a(value));
                 }
             }
             if (runningAppProcessInfoI != null) {
-                cVar.k(3, runningAppProcessInfoI.importance != 100);
+                codedOutputStream2.k(3, runningAppProcessInfoI.importance != 100);
             }
-            cVar.s(4, i3);
-            cVar.r(5, 2);
-            cVar.o(b.i.c.m.d.p.d.g(f2, iB, zM, i3, j3, jA));
+            codedOutputStream2.s(4, i3);
+            codedOutputStream2.r(5, 2);
+            codedOutputStream2.o(SessionProtobufHelper.g(f2, iB, zM, i3, j3, jA));
             if (f2 != null) {
                 float fFloatValue = f2.floatValue();
-                cVar.o(13);
+                codedOutputStream2.o(13);
                 int iFloatToRawIntBits = Float.floatToRawIntBits(fFloatValue);
-                cVar.n(iFloatToRawIntBits & 255);
-                cVar.n((iFloatToRawIntBits >> 8) & 255);
-                cVar.n((iFloatToRawIntBits >> 16) & 255);
-                cVar.n((iFloatToRawIntBits >> 24) & 255);
+                codedOutputStream2.n(iFloatToRawIntBits & 255);
+                codedOutputStream2.n((iFloatToRawIntBits >> 8) & 255);
+                codedOutputStream2.n((iFloatToRawIntBits >> 16) & 255);
+                codedOutputStream2.n((iFloatToRawIntBits >> 24) & 255);
             }
-            cVar.o(16);
-            cVar.o((iB << 1) ^ (iB >> 31));
-            cVar.k(3, zM);
-            cVar.s(4, i3);
-            cVar.t(5, j3);
-            cVar.t(6, jA);
-            if (aVar2 != null) {
-                cVar.r(6, 2);
-                cVar.o(b.i.c.m.d.p.c.b(1, aVar2));
-                cVar.l(1, aVar2);
+            codedOutputStream2.o(16);
+            codedOutputStream2.o((iB << 1) ^ (iB >> 31));
+            codedOutputStream2.k(3, zM);
+            codedOutputStream2.s(4, i3);
+            codedOutputStream2.t(5, j3);
+            codedOutputStream2.t(6, jA);
+            if (byteString3 != null) {
+                codedOutputStream2.r(6, 2);
+                codedOutputStream2.o(CodedOutputStream2.b(1, byteString3));
+                codedOutputStream2.l(1, byteString3);
             }
             this.t.d.d();
         }
         mapA = new TreeMap<>();
         treeMap = mapA;
         bArrC = this.t.d.c();
-        b.i.c.m.d.p.a aVar7 = b.i.c.m.d.p.d.a;
-        b.i.c.m.d.p.a aVarA3 = b.i.c.m.d.p.a.a(str3);
+        ByteString2 byteString8 = SessionProtobufHelper.a;
+        ByteString2 byteString2A3 = ByteString2.a(str3);
         if (str2 == null) {
-            aVarA = null;
+            byteString2A = null;
         } else {
-            aVarA = b.i.c.m.d.p.a.a(str2.replace("-", ""));
+            byteString2A = ByteString2.a(str2.replace("-", ""));
         }
         if (bArrC != null) {
             int length3 = bArrC.length;
             byte[] bArr2 = new byte[length3];
             System.arraycopy(bArrC, 0, bArr2, 0, length3);
-            aVar = new b.i.c.m.d.p.a(bArr2);
+            byteString2 = new ByteString2(bArr2);
         } else {
-            b.i.c.m.d.b.a.b("No log data to include with this event.");
-            aVar = null;
+            Logger3.a.b("No log data to include with this event.");
+            byteString2 = null;
         }
-        cVar.r(10, 2);
-        int iB4 = b.i.c.m.d.p.c.b(2, b.i.c.m.d.p.a.a(str)) + b.i.c.m.d.p.c.h(1, j2) + 0;
-        aVar2 = aVar;
+        codedOutputStream2.r(10, 2);
+        int iB4 = CodedOutputStream2.b(2, ByteString2.a(str)) + CodedOutputStream2.h(1, j2) + 0;
+        byteString3 = byteString2;
         threadArr2 = threadArr;
-        int iF2 = b.i.c.m.d.p.d.f(eVar, thread, stackTraceElementArr, threadArr, linkedList, 8, aVarA3, aVarA, treeMap, runningAppProcessInfoI, i3);
-        int iD3 = b.i.c.m.d.p.c.d(iF2) + b.i.c.m.d.p.c.e(3) + iF2 + iB4;
-        int iG2 = b.i.c.m.d.p.d.g(f2, iB, zM, i3, j3, jA);
-        iD = b.i.c.m.d.p.c.d(iG2) + b.i.c.m.d.p.c.e(5) + iG2 + iD3;
-        if (aVar2 != null) {
-            int iB5 = b.i.c.m.d.p.c.b(1, aVar2);
-            iD += b.i.c.m.d.p.c.d(iB5) + b.i.c.m.d.p.c.e(6) + iB5;
+        int iF2 = SessionProtobufHelper.f(trimmedThrowableData, thread, stackTraceElementArr, threadArr, linkedList, 8, byteString2A3, byteString2A, treeMap, runningAppProcessInfoI, i3);
+        int iD3 = CodedOutputStream2.d(iF2) + CodedOutputStream2.e(3) + iF2 + iB4;
+        int iG2 = SessionProtobufHelper.g(f2, iB, zM, i3, j3, jA);
+        iD = CodedOutputStream2.d(iG2) + CodedOutputStream2.e(5) + iG2 + iD3;
+        if (byteString3 != null) {
+            int iB5 = CodedOutputStream2.b(1, byteString3);
+            iD += CodedOutputStream2.d(iB5) + CodedOutputStream2.e(6) + iB5;
         }
-        cVar.o(iD);
-        cVar.t(1, j2);
-        cVar.l(2, b.i.c.m.d.p.a.a(str));
-        cVar.r(3, 2);
-        b.i.c.m.d.p.a aVar8 = aVarA;
-        cVar.o(b.i.c.m.d.p.d.f(eVar, thread, stackTraceElementArr, threadArr2, linkedList, 8, aVarA3, aVar8, treeMap, runningAppProcessInfoI, i3));
-        cVar.r(1, 2);
-        cVar.o(b.i.c.m.d.p.d.e(eVar, thread, stackTraceElementArr, threadArr2, linkedList, 8, aVarA3, aVar8));
-        b.i.c.m.d.p.d.m(cVar, thread, stackTraceElementArr, 4, true);
+        codedOutputStream2.o(iD);
+        codedOutputStream2.t(1, j2);
+        codedOutputStream2.l(2, ByteString2.a(str));
+        codedOutputStream2.r(3, 2);
+        ByteString2 byteString9 = byteString2A;
+        codedOutputStream2.o(SessionProtobufHelper.f(trimmedThrowableData, thread, stackTraceElementArr, threadArr2, linkedList, 8, byteString2A3, byteString9, treeMap, runningAppProcessInfoI, i3));
+        codedOutputStream2.r(1, 2);
+        codedOutputStream2.o(SessionProtobufHelper.e(trimmedThrowableData, thread, stackTraceElementArr, threadArr2, linkedList, 8, byteString2A3, byteString9));
+        SessionProtobufHelper.m(codedOutputStream2, thread, stackTraceElementArr, 4, true);
         length = threadArr2.length;
         while (i2 < length) {
-            b.i.c.m.d.p.d.m(cVar, threadArr2[i2], (StackTraceElement[]) linkedList.get(i2), 0, false);
+            SessionProtobufHelper.m(codedOutputStream2, threadArr2[i2], (StackTraceElement[]) linkedList.get(i2), 0, false);
         }
-        b.i.c.m.d.p.d.l(cVar, eVar, 1, 8, 2);
-        cVar.r(3, 2);
-        cVar.o(b.i.c.m.d.p.d.d());
-        b.i.c.m.d.p.a aVar9 = b.i.c.m.d.p.d.a;
-        cVar.l(1, aVar9);
-        cVar.l(2, aVar9);
-        cVar.t(3, 0L);
-        cVar.r(4, 2);
-        aVar3 = aVarA;
-        cVar.o(b.i.c.m.d.p.d.a(aVarA3, aVar3));
-        cVar.t(1, 0L);
-        cVar.t(2, 0L);
-        cVar.l(3, aVarA3);
-        if (aVar3 != null) {
-            cVar.l(4, aVar3);
+        SessionProtobufHelper.l(codedOutputStream2, trimmedThrowableData, 1, 8, 2);
+        codedOutputStream2.r(3, 2);
+        codedOutputStream2.o(SessionProtobufHelper.d());
+        ByteString2 byteString10 = SessionProtobufHelper.a;
+        codedOutputStream2.l(1, byteString10);
+        codedOutputStream2.l(2, byteString10);
+        codedOutputStream2.t(3, 0L);
+        codedOutputStream2.r(4, 2);
+        byteString4 = byteString2A;
+        codedOutputStream2.o(SessionProtobufHelper.a(byteString2A3, byteString4));
+        codedOutputStream2.t(1, 0L);
+        codedOutputStream2.t(2, 0L);
+        codedOutputStream2.l(3, byteString2A3);
+        if (byteString4 != null) {
+            codedOutputStream2.l(4, byteString4);
         }
         if (treeMap != null) {
             while (r3.hasNext()) {
-                cVar.r(2, 2);
-                cVar.o(b.i.c.m.d.p.d.b(entry2.getKey(), entry2.getValue()));
-                cVar.l(1, b.i.c.m.d.p.a.a(entry2.getKey()));
+                codedOutputStream2.r(2, 2);
+                codedOutputStream2.o(SessionProtobufHelper.b(entry2.getKey(), entry2.getValue()));
+                codedOutputStream2.l(1, ByteString2.a(entry2.getKey()));
                 value = entry2.getValue();
                 if (value == null) {
                     value = "";
                 }
-                cVar.l(2, b.i.c.m.d.p.a.a(value));
+                codedOutputStream2.l(2, ByteString2.a(value));
             }
         }
         if (runningAppProcessInfoI != null) {
-            cVar.k(3, runningAppProcessInfoI.importance != 100);
+            codedOutputStream2.k(3, runningAppProcessInfoI.importance != 100);
         }
-        cVar.s(4, i3);
-        cVar.r(5, 2);
-        cVar.o(b.i.c.m.d.p.d.g(f2, iB, zM, i3, j3, jA));
+        codedOutputStream2.s(4, i3);
+        codedOutputStream2.r(5, 2);
+        codedOutputStream2.o(SessionProtobufHelper.g(f2, iB, zM, i3, j3, jA));
         if (f2 != null) {
             float fFloatValue2 = f2.floatValue();
-            cVar.o(13);
+            codedOutputStream2.o(13);
             int iFloatToRawIntBits2 = Float.floatToRawIntBits(fFloatValue2);
-            cVar.n(iFloatToRawIntBits2 & 255);
-            cVar.n((iFloatToRawIntBits2 >> 8) & 255);
-            cVar.n((iFloatToRawIntBits2 >> 16) & 255);
-            cVar.n((iFloatToRawIntBits2 >> 24) & 255);
+            codedOutputStream2.n(iFloatToRawIntBits2 & 255);
+            codedOutputStream2.n((iFloatToRawIntBits2 >> 8) & 255);
+            codedOutputStream2.n((iFloatToRawIntBits2 >> 16) & 255);
+            codedOutputStream2.n((iFloatToRawIntBits2 >> 24) & 255);
         }
-        cVar.o(16);
-        cVar.o((iB << 1) ^ (iB >> 31));
-        cVar.k(3, zM);
-        cVar.s(4, i3);
-        cVar.t(5, j3);
-        cVar.t(6, jA);
-        if (aVar2 != null) {
-            cVar.r(6, 2);
-            cVar.o(b.i.c.m.d.p.c.b(1, aVar2));
-            cVar.l(1, aVar2);
+        codedOutputStream2.o(16);
+        codedOutputStream2.o((iB << 1) ^ (iB >> 31));
+        codedOutputStream2.k(3, zM);
+        codedOutputStream2.s(4, i3);
+        codedOutputStream2.t(5, j3);
+        codedOutputStream2.t(6, jA);
+        if (byteString3 != null) {
+            codedOutputStream2.r(6, 2);
+            codedOutputStream2.o(CodedOutputStream2.b(1, byteString3));
+            codedOutputStream2.l(1, byteString3);
         }
         this.t.d.d();
     }
 
     public final void z(String str, String str2, g gVar) throws Exception {
         Throwable th;
-        b.i.c.m.d.p.b bVar;
-        b.i.c.m.d.p.c cVar = null;
+        ClsFileOutputStream clsFileOutputStream;
+        CodedOutputStream2 codedOutputStream2 = null;
         try {
-            bVar = new b.i.c.m.d.p.b(l(), str + str2);
+            clsFileOutputStream = new ClsFileOutputStream(l(), str + str2);
             try {
-                b.i.c.m.d.p.c cVarI = b.i.c.m.d.p.c.i(bVar);
+                CodedOutputStream2 codedOutputStream2I = CodedOutputStream2.i(clsFileOutputStream);
                 try {
-                    gVar.a(cVarI);
-                    b.i.c.m.d.k.h.h(cVarI, "Failed to flush to session " + str2 + " file.");
-                    b.i.c.m.d.k.h.c(bVar, "Failed to close session " + str2 + " file.");
+                    gVar.a(codedOutputStream2I);
+                    CommonUtils.h(codedOutputStream2I, "Failed to flush to session " + str2 + " file.");
+                    CommonUtils.c(clsFileOutputStream, "Failed to close session " + str2 + " file.");
                 } catch (Throwable th2) {
                     th = th2;
-                    cVar = cVarI;
-                    b.i.c.m.d.k.h.h(cVar, "Failed to flush to session " + str2 + " file.");
-                    b.i.c.m.d.k.h.c(bVar, "Failed to close session " + str2 + " file.");
+                    codedOutputStream2 = codedOutputStream2I;
+                    CommonUtils.h(codedOutputStream2, "Failed to flush to session " + str2 + " file.");
+                    CommonUtils.c(clsFileOutputStream, "Failed to close session " + str2 + " file.");
                     throw th;
                 }
             } catch (Throwable th3) {
@@ -1431,7 +1471,7 @@ public class x {
             }
         } catch (Throwable th4) {
             th = th4;
-            bVar = null;
+            clsFileOutputStream = null;
         }
     }
 }

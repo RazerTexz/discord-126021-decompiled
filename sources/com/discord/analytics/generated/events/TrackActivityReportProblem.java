@@ -1,15 +1,15 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.api.science.AnalyticsSchema;
 import com.discord.models.domain.ModelAuditLogEntry;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackActivityReportProblem.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackActivityReportProblem implements AnalyticsSchema, TrackBaseReceiver {
+public final /* data */ class TrackActivityReportProblem implements AnalyticsSchema, TrackBase2 {
     private final Long applicationId = null;
     private final CharSequence applicationName = null;
     private final Long channelId = null;
@@ -30,7 +30,7 @@ public final /* data */ class TrackActivityReportProblem implements AnalyticsSch
             return false;
         }
         TrackActivityReportProblem trackActivityReportProblem = (TrackActivityReportProblem) other;
-        return m.areEqual(this.channelId, trackActivityReportProblem.channelId) && m.areEqual(this.guildId, trackActivityReportProblem.guildId) && m.areEqual(this.reason, trackActivityReportProblem.reason) && m.areEqual(this.rtcConnectionId, trackActivityReportProblem.rtcConnectionId) && m.areEqual(this.mediaSessionId, trackActivityReportProblem.mediaSessionId) && m.areEqual(this.rating, trackActivityReportProblem.rating) && m.areEqual(this.feedback, trackActivityReportProblem.feedback) && m.areEqual(this.applicationId, trackActivityReportProblem.applicationId) && m.areEqual(this.applicationName, trackActivityReportProblem.applicationName);
+        return Intrinsics3.areEqual(this.channelId, trackActivityReportProblem.channelId) && Intrinsics3.areEqual(this.guildId, trackActivityReportProblem.guildId) && Intrinsics3.areEqual(this.reason, trackActivityReportProblem.reason) && Intrinsics3.areEqual(this.rtcConnectionId, trackActivityReportProblem.rtcConnectionId) && Intrinsics3.areEqual(this.mediaSessionId, trackActivityReportProblem.mediaSessionId) && Intrinsics3.areEqual(this.rating, trackActivityReportProblem.rating) && Intrinsics3.areEqual(this.feedback, trackActivityReportProblem.feedback) && Intrinsics3.areEqual(this.applicationId, trackActivityReportProblem.applicationId) && Intrinsics3.areEqual(this.applicationName, trackActivityReportProblem.applicationName);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -61,7 +61,7 @@ public final /* data */ class TrackActivityReportProblem implements AnalyticsSch
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackActivityReportProblem(channelId=");
+        StringBuilder sbU = outline.U("TrackActivityReportProblem(channelId=");
         sbU.append(this.channelId);
         sbU.append(", guildId=");
         sbU.append(this.guildId);
@@ -78,6 +78,6 @@ public final /* data */ class TrackActivityReportProblem implements AnalyticsSch
         sbU.append(", applicationId=");
         sbU.append(this.applicationId);
         sbU.append(", applicationName=");
-        return a.E(sbU, this.applicationName, ")");
+        return outline.E(sbU, this.applicationName, ")");
     }
 }

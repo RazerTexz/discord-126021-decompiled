@@ -2,6 +2,7 @@ package b.i.a.f.d;
 
 import android.os.Bundle;
 import android.util.Log;
+import b.d.b.a.outline;
 import com.google.android.gms.cloudmessaging.zzp;
 import com.google.android.gms.tasks.TaskCompletionSource;
 
@@ -27,7 +28,7 @@ public abstract class q<T> {
         if (Log.isLoggable("MessengerIpcClient", 3)) {
             String strValueOf = String.valueOf(this);
             String strValueOf2 = String.valueOf(zzpVar);
-            Log.d("MessengerIpcClient", b.d.b.a.a.l(strValueOf2.length() + strValueOf.length() + 14, "Failing ", strValueOf, " with ", strValueOf2));
+            Log.d("MessengerIpcClient", outline.l(strValueOf2.length() + strValueOf.length() + 14, "Failing ", strValueOf, " with ", strValueOf2));
         }
         this.f1341b.a.t(zzpVar);
     }
@@ -36,7 +37,7 @@ public abstract class q<T> {
         if (Log.isLoggable("MessengerIpcClient", 3)) {
             String strValueOf = String.valueOf(this);
             String strValueOf2 = String.valueOf(t);
-            Log.d("MessengerIpcClient", b.d.b.a.a.l(strValueOf2.length() + strValueOf.length() + 16, "Finishing ", strValueOf, " with ", strValueOf2));
+            Log.d("MessengerIpcClient", outline.l(strValueOf2.length() + strValueOf.length() + 16, "Finishing ", strValueOf, " with ", strValueOf2));
         }
         this.f1341b.a.s(t);
     }

@@ -1,8 +1,8 @@
 package com.discord.widgets.chat.list.entries;
 
 import a0.a.a.b;
-import b.d.b.a.a;
-import d0.z.d.m;
+import b.d.b.a.outline;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: UploadProgressEntry.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -13,7 +13,7 @@ public final /* data */ class UploadProgressEntry extends ChatListEntry {
     private final int type;
 
     public UploadProgressEntry(String str, long j) {
-        m.checkNotNullParameter(str, "messageNonce");
+        Intrinsics3.checkNotNullParameter(str, "messageNonce");
         this.messageNonce = str;
         this.channelId = j;
         this.type = 6;
@@ -31,7 +31,7 @@ public final /* data */ class UploadProgressEntry extends ChatListEntry {
     }
 
     public final UploadProgressEntry copy(String messageNonce, long channelId) {
-        m.checkNotNullParameter(messageNonce, "messageNonce");
+        Intrinsics3.checkNotNullParameter(messageNonce, "messageNonce");
         return new UploadProgressEntry(messageNonce, channelId);
     }
 
@@ -43,7 +43,7 @@ public final /* data */ class UploadProgressEntry extends ChatListEntry {
             return false;
         }
         UploadProgressEntry uploadProgressEntry = (UploadProgressEntry) other;
-        return m.areEqual(this.messageNonce, uploadProgressEntry.messageNonce) && this.channelId == uploadProgressEntry.channelId;
+        return Intrinsics3.areEqual(this.messageNonce, uploadProgressEntry.messageNonce) && this.channelId == uploadProgressEntry.channelId;
     }
 
     /* JADX INFO: renamed from: component2, reason: from getter */
@@ -80,9 +80,9 @@ public final /* data */ class UploadProgressEntry extends ChatListEntry {
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("UploadProgressEntry(messageNonce=");
+        StringBuilder sbU = outline.U("UploadProgressEntry(messageNonce=");
         sbU.append(this.messageNonce);
         sbU.append(", channelId=");
-        return a.C(sbU, this.channelId, ")");
+        return outline.C(sbU, this.channelId, ")");
     }
 }

@@ -2,16 +2,16 @@ package com.discord.stores;
 
 import android.net.Uri;
 import androidx.appcompat.widget.ActivityChooserModel;
-import b.a.d.j;
+import b.a.d.AppScreen2;
 import com.discord.app.AppActivity;
 import com.discord.widgets.auth.WidgetOauth2Authorize;
-import d0.z.d.m;
-import d0.z.d.o;
+import d0.z.d.Intrinsics3;
+import d0.z.d.Lambda;
 import kotlin.jvm.functions.Function2;
 
 /* JADX INFO: compiled from: StoreNavigation.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class StoreNavigation$ActivityNavigationLifecycleCallbacks$oAuthStateHandler$1 extends o implements Function2<AppActivity, StoreNavigation.ActivityNavigationLifecycleCallbacks.ModelGlobalNavigation, Boolean> {
+public final class StoreNavigation$ActivityNavigationLifecycleCallbacks$oAuthStateHandler$1 extends Lambda implements Function2<AppActivity, StoreNavigation.ActivityNavigationLifecycleCallbacks.ModelGlobalNavigation, Boolean> {
     public final /* synthetic */ StoreNavigation.ActivityNavigationLifecycleCallbacks this$0;
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -27,16 +27,16 @@ public final class StoreNavigation$ActivityNavigationLifecycleCallbacks$oAuthSta
 
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final boolean invoke2(AppActivity appActivity, StoreNavigation.ActivityNavigationLifecycleCallbacks.ModelGlobalNavigation modelGlobalNavigation) {
-        m.checkNotNullParameter(appActivity, ActivityChooserModel.ATTRIBUTE_ACTIVITY);
-        m.checkNotNullParameter(modelGlobalNavigation, "model");
+        Intrinsics3.checkNotNullParameter(appActivity, ActivityChooserModel.ATTRIBUTE_ACTIVITY);
+        Intrinsics3.checkNotNullParameter(modelGlobalNavigation, "model");
         Uri oAuthUri = modelGlobalNavigation.getOAuthUri();
-        if (!m.areEqual(oAuthUri, Uri.EMPTY)) {
-            j jVar = j.g;
-            if (!appActivity.g(j.c)) {
+        if (!Intrinsics3.areEqual(oAuthUri, Uri.EMPTY)) {
+            AppScreen2 appScreen2 = AppScreen2.g;
+            if (!appActivity.g(AppScreen2.c)) {
                 WidgetOauth2Authorize.INSTANCE.launch(appActivity, oAuthUri);
                 StoreAuthentication authentication = StoreNavigation.ActivityNavigationLifecycleCallbacks.access$getStream$p(this.this$0).getAuthentication();
                 Uri uri = Uri.EMPTY;
-                m.checkNotNullExpressionValue(uri, "Uri.EMPTY");
+                Intrinsics3.checkNotNullExpressionValue(uri, "Uri.EMPTY");
                 authentication.setOAuthUriSubject(uri);
                 return true;
             }

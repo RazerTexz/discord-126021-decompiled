@@ -1,18 +1,18 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.analytics.generated.traits.TrackChannel;
-import com.discord.analytics.generated.traits.TrackChannelReceiver;
+import com.discord.analytics.generated.traits.TrackChannel2;
 import com.discord.analytics.generated.traits.TrackGuild;
-import com.discord.analytics.generated.traits.TrackGuildReceiver;
+import com.discord.analytics.generated.traits.TrackGuild2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackFileUploadAlertViewed.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackFileUploadAlertViewed implements AnalyticsSchema, TrackBaseReceiver, TrackGuildReceiver, TrackChannelReceiver {
+public final /* data */ class TrackFileUploadAlertViewed implements AnalyticsSchema, TrackBase2, TrackGuild2, TrackChannel2 {
     private final CharSequence alertType = null;
     private final Boolean hasImage = null;
     private final Boolean hasVideo = null;
@@ -28,7 +28,7 @@ public final /* data */ class TrackFileUploadAlertViewed implements AnalyticsSch
     private TrackGuild trackGuild;
     private final transient String analyticsSchemaTypeName = "file_upload_alert_viewed";
 
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    @Override // com.discord.analytics.generated.traits.TrackGuild2
     public void c(TrackGuild trackGuild) {
         this.trackGuild = trackGuild;
     }
@@ -41,7 +41,7 @@ public final /* data */ class TrackFileUploadAlertViewed implements AnalyticsSch
             return false;
         }
         TrackFileUploadAlertViewed trackFileUploadAlertViewed = (TrackFileUploadAlertViewed) other;
-        return m.areEqual(this.alertType, trackFileUploadAlertViewed.alertType) && m.areEqual(this.numAttachments, trackFileUploadAlertViewed.numAttachments) && m.areEqual(this.maxAttachmentSize, trackFileUploadAlertViewed.maxAttachmentSize) && m.areEqual(this.totalAttachmentSize, trackFileUploadAlertViewed.totalAttachmentSize) && m.areEqual(this.hasImage, trackFileUploadAlertViewed.hasImage) && m.areEqual(this.hasVideo, trackFileUploadAlertViewed.hasVideo) && m.areEqual(this.isPremium, trackFileUploadAlertViewed.isPremium) && m.areEqual(this.imageCompressionQuality, trackFileUploadAlertViewed.imageCompressionQuality) && m.areEqual(this.imageCompressionSettingEnabled, trackFileUploadAlertViewed.imageCompressionSettingEnabled) && m.areEqual(this.previewEnabled, trackFileUploadAlertViewed.previewEnabled);
+        return Intrinsics3.areEqual(this.alertType, trackFileUploadAlertViewed.alertType) && Intrinsics3.areEqual(this.numAttachments, trackFileUploadAlertViewed.numAttachments) && Intrinsics3.areEqual(this.maxAttachmentSize, trackFileUploadAlertViewed.maxAttachmentSize) && Intrinsics3.areEqual(this.totalAttachmentSize, trackFileUploadAlertViewed.totalAttachmentSize) && Intrinsics3.areEqual(this.hasImage, trackFileUploadAlertViewed.hasImage) && Intrinsics3.areEqual(this.hasVideo, trackFileUploadAlertViewed.hasVideo) && Intrinsics3.areEqual(this.isPremium, trackFileUploadAlertViewed.isPremium) && Intrinsics3.areEqual(this.imageCompressionQuality, trackFileUploadAlertViewed.imageCompressionQuality) && Intrinsics3.areEqual(this.imageCompressionSettingEnabled, trackFileUploadAlertViewed.imageCompressionSettingEnabled) && Intrinsics3.areEqual(this.previewEnabled, trackFileUploadAlertViewed.previewEnabled);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -50,7 +50,7 @@ public final /* data */ class TrackFileUploadAlertViewed implements AnalyticsSch
         return this.analyticsSchemaTypeName;
     }
 
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    @Override // com.discord.analytics.generated.traits.TrackGuild2
     /* JADX INFO: renamed from: a, reason: from getter */
     public TrackGuild getTrackGuild() {
         return this.trackGuild;
@@ -80,7 +80,7 @@ public final /* data */ class TrackFileUploadAlertViewed implements AnalyticsSch
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackFileUploadAlertViewed(alertType=");
+        StringBuilder sbU = outline.U("TrackFileUploadAlertViewed(alertType=");
         sbU.append(this.alertType);
         sbU.append(", numAttachments=");
         sbU.append(this.numAttachments);
@@ -99,6 +99,6 @@ public final /* data */ class TrackFileUploadAlertViewed implements AnalyticsSch
         sbU.append(", imageCompressionSettingEnabled=");
         sbU.append(this.imageCompressionSettingEnabled);
         sbU.append(", previewEnabled=");
-        return a.D(sbU, this.previewEnabled, ")");
+        return outline.D(sbU, this.previewEnabled, ")");
     }
 }

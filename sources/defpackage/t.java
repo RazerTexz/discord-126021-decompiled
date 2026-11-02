@@ -1,14 +1,14 @@
 package defpackage;
 
 import com.discord.views.calls.VideoCallParticipantView;
-import d0.z.d.m;
-import d0.z.d.o;
+import d0.z.d.Intrinsics3;
+import d0.z.d.Lambda;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function2;
 
 /* JADX INFO: compiled from: kotlin-style lambda group */
 /* JADX INFO: loaded from: classes2.dex */
-public final class t extends o implements Function2<VideoCallParticipantView.StreamResolution, VideoCallParticipantView.StreamFps, Unit> {
+public final class t extends Lambda implements Function2<VideoCallParticipantView.StreamResolution, VideoCallParticipantView.StreamFps, Unit> {
     public static final t j = new t(0);
     public static final t k = new t(1);
     public final /* synthetic */ int l;
@@ -23,13 +23,13 @@ public final class t extends o implements Function2<VideoCallParticipantView.Str
     public final Unit invoke(VideoCallParticipantView.StreamResolution streamResolution, VideoCallParticipantView.StreamFps streamFps) {
         int i = this.l;
         if (i == 0) {
-            m.checkNotNullParameter(streamResolution, "<anonymous parameter 0>");
+            Intrinsics3.checkNotNullParameter(streamResolution, "<anonymous parameter 0>");
             return Unit.a;
         }
         if (i != 1) {
             throw null;
         }
-        m.checkNotNullParameter(streamResolution, "<anonymous parameter 0>");
+        Intrinsics3.checkNotNullParameter(streamResolution, "<anonymous parameter 0>");
         return Unit.a;
     }
 }

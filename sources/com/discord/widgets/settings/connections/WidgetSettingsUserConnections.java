@@ -16,11 +16,11 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentViewModelLazyKt;
 import androidx.recyclerview.widget.RecyclerView;
-import b.a.d.g0;
-import b.a.d.i0;
-import b.a.d.j;
-import b.a.k.b;
-import b.d.b.a.a;
+import b.a.d.AppScreen2;
+import b.a.d.AppViewModelDelegates3;
+import b.a.d.AppViewModelDelegates5;
+import b.a.k.FormatUtils;
+import b.d.b.a.outline;
 import com.discord.R;
 import com.discord.api.activity.ActivityType;
 import com.discord.api.connectedaccounts.ConnectedAccount;
@@ -40,12 +40,13 @@ import com.discord.utilities.mg_recycler.MGRecyclerViewHolder;
 import com.discord.utilities.platform.Platform;
 import com.discord.utilities.rx.ObservableExtensionsKt;
 import com.discord.utilities.viewbinding.FragmentViewBindingDelegate;
-import com.discord.utilities.viewbinding.FragmentViewBindingDelegateKt;
+import com.discord.utilities.viewbinding.FragmentViewBindingDelegate3;
 import com.google.android.material.switchmaterial.SwitchMaterial;
-import d0.g0.t;
-import d0.z.d.a0;
-import d0.z.d.m;
-import d0.z.d.o;
+import d0.g0.StringsJVM;
+import d0.t.Iterables2;
+import d0.z.d.Intrinsics3;
+import d0.z.d.Lambda;
+import d0.z.d.Reflection2;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -60,7 +61,7 @@ import rx.functions.Action2;
 /* JADX INFO: compiled from: WidgetSettingsUserConnections.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetSettingsUserConnections extends AppFragment {
-    public static final /* synthetic */ KProperty[] $$delegatedProperties = {a.d0(WidgetSettingsUserConnections.class, "binding", "getBinding()Lcom/discord/databinding/WidgetSettingsConnectionsBinding;", 0)};
+    public static final /* synthetic */ KProperty[] $$delegatedProperties = {outline.d0(WidgetSettingsUserConnections.class, "binding", "getBinding()Lcom/discord/databinding/WidgetSettingsConnectionsBinding;", 0)};
     public static final String CONNECTION_ID = "connection_id";
 
     /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
@@ -88,7 +89,7 @@ public final class WidgetSettingsUserConnections extends AppFragment {
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
             public ViewHolder(@LayoutRes Adapter adapter, int i, Adapter adapter2) {
                 super(i, adapter2);
-                m.checkNotNullParameter(adapter2, "adapter");
+                Intrinsics3.checkNotNullParameter(adapter2, "adapter");
                 this.this$0 = adapter;
                 View view = this.itemView;
                 int i2 = R.id.connected_account_disconnect;
@@ -125,7 +126,7 @@ public final class WidgetSettingsUserConnections extends AppFragment {
                                                         SwitchMaterial switchMaterial3 = (SwitchMaterial) view.findViewById(R.id.sync_friends_switch);
                                                         if (switchMaterial3 != null) {
                                                             WidgetSettingsItemConnectedAccountBinding widgetSettingsItemConnectedAccountBinding = new WidgetSettingsItemConnectedAccountBinding((CardView) view, imageView, viewFindViewById, imageView2, textView, switchMaterial, switchMaterial2, viewFindViewById2, textView2, linearLayout, textView3, switchMaterial3);
-                                                            m.checkNotNullExpressionValue(widgetSettingsItemConnectedAccountBinding, "WidgetSettingsItemConnec…untBinding.bind(itemView)");
+                                                            Intrinsics3.checkNotNullExpressionValue(widgetSettingsItemConnectedAccountBinding, "WidgetSettingsItemConnec…untBinding.bind(itemView)");
                                                             this.binding = widgetSettingsItemConnectedAccountBinding;
                                                             return;
                                                         }
@@ -155,17 +156,17 @@ public final class WidgetSettingsUserConnections extends AppFragment {
                 StoreStream.Companion companion = StoreStream.INSTANCE;
                 StoreUserConnections userConnections = companion.getUserConnections();
                 SwitchMaterial switchMaterial = this.binding.i;
-                m.checkNotNullExpressionValue(switchMaterial, "binding.syncFriendsSwitch");
+                Intrinsics3.checkNotNullExpressionValue(switchMaterial, "binding.syncFriendsSwitch");
                 boolean zIsChecked = switchMaterial.isChecked();
                 SwitchMaterial switchMaterial2 = this.binding.e;
-                m.checkNotNullExpressionValue(switchMaterial2, "binding.displayActivitySwitch");
+                Intrinsics3.checkNotNullExpressionValue(switchMaterial2, "binding.displayActivitySwitch");
                 boolean zIsChecked2 = switchMaterial2.isChecked();
                 SwitchMaterial switchMaterial3 = this.binding.f;
-                m.checkNotNullExpressionValue(switchMaterial3, "binding.displaySwitch");
+                Intrinsics3.checkNotNullExpressionValue(switchMaterial3, "binding.displaySwitch");
                 userConnections.updateUserConnection(connectedAccount, zIsChecked, zIsChecked2, switchMaterial3.isChecked());
-                if (m.areEqual(connectedAccount.getType(), Platform.SPOTIFY.getPlatformId())) {
+                if (Intrinsics3.areEqual(connectedAccount.getType(), Platform.SPOTIFY.getPlatformId())) {
                     SwitchMaterial switchMaterial4 = this.binding.e;
-                    m.checkNotNullExpressionValue(switchMaterial4, "binding.displayActivitySwitch");
+                    Intrinsics3.checkNotNullExpressionValue(switchMaterial4, "binding.displayActivitySwitch");
                     if (switchMaterial4.isChecked()) {
                         return;
                     }
@@ -176,7 +177,7 @@ public final class WidgetSettingsUserConnections extends AppFragment {
             @SuppressLint({"DefaultLocale"})
             /* JADX INFO: renamed from: onConfigure, reason: avoid collision after fix types in other method */
             public void onConfigure2(int position, UserConnectionItem data) {
-                m.checkNotNullParameter(data, "data");
+                Intrinsics3.checkNotNullParameter(data, "data");
                 super.onConfigure(position, data);
                 ConnectedAccount connection = data.getConnectedAccount().getConnection();
                 Platform platformFrom = Platform.INSTANCE.from(connection);
@@ -184,68 +185,68 @@ public final class WidgetSettingsUserConnections extends AppFragment {
                 this.binding.a.setOnClickListener(new WidgetSettingsUserConnections$Adapter$ViewHolder$onConfigure$$inlined$apply$lambda$1(platformFrom, this, data));
                 ImageView imageView = this.binding.c;
                 View view = this.itemView;
-                m.checkNotNullExpressionValue(view, "itemView");
+                Intrinsics3.checkNotNullExpressionValue(view, "itemView");
                 Integer themedPlatformImage = platformFrom.getThemedPlatformImage();
                 imageView.setImageResource(DrawableCompat.getThemedDrawableRes$default(view, themedPlatformImage != null ? themedPlatformImage.intValue() : 0, 0, 2, (Object) null));
                 ImageView imageView2 = this.binding.c;
-                m.checkNotNullExpressionValue(imageView2, "binding.connectedAccountImg");
+                Intrinsics3.checkNotNullExpressionValue(imageView2, "binding.connectedAccountImg");
                 imageView2.setContentDescription(platformFrom.name());
                 TextView textView = this.binding.d;
-                m.checkNotNullExpressionValue(textView, "binding.connectedAccountName");
+                Intrinsics3.checkNotNullExpressionValue(textView, "binding.connectedAccountName");
                 textView.setText(connection.getName());
                 this.binding.f2626b.setOnClickListener(new WidgetSettingsUserConnections$Adapter$ViewHolder$onConfigure$$inlined$apply$lambda$2(connection, platformFrom, id2, this, data));
                 this.binding.f.setOnCheckedChangeListener(null);
                 SwitchMaterial switchMaterial = this.binding.f;
-                m.checkNotNullExpressionValue(switchMaterial, "binding.displaySwitch");
+                Intrinsics3.checkNotNullExpressionValue(switchMaterial, "binding.displaySwitch");
                 switchMaterial.setChecked(connection.getVisibility() == 1);
                 this.binding.f.setOnCheckedChangeListener(new WidgetSettingsUserConnections$Adapter$ViewHolder$onConfigure$$inlined$apply$lambda$3(connection, this, data));
                 this.binding.i.setOnCheckedChangeListener(null);
                 SwitchMaterial switchMaterial2 = this.binding.i;
-                m.checkNotNullExpressionValue(switchMaterial2, "binding.syncFriendsSwitch");
+                Intrinsics3.checkNotNullExpressionValue(switchMaterial2, "binding.syncFriendsSwitch");
                 switchMaterial2.setVisibility(platformFrom.getCanSyncFriends() ? 0 : 8);
                 SwitchMaterial switchMaterial3 = this.binding.i;
-                m.checkNotNullExpressionValue(switchMaterial3, "binding.syncFriendsSwitch");
+                Intrinsics3.checkNotNullExpressionValue(switchMaterial3, "binding.syncFriendsSwitch");
                 switchMaterial3.setChecked(connection.getFriendSync());
                 this.binding.i.setOnCheckedChangeListener(new WidgetSettingsUserConnections$Adapter$ViewHolder$onConfigure$$inlined$apply$lambda$4(connection, this, data));
                 this.binding.e.setOnCheckedChangeListener(null);
                 SwitchMaterial switchMaterial4 = this.binding.e;
-                m.checkNotNullExpressionValue(switchMaterial4, "binding.displayActivitySwitch");
+                Intrinsics3.checkNotNullExpressionValue(switchMaterial4, "binding.displayActivitySwitch");
                 switchMaterial4.setVisibility(platformFrom.getCanShowActivity() ? 0 : 8);
                 SwitchMaterial switchMaterial5 = this.binding.e;
-                m.checkNotNullExpressionValue(switchMaterial5, "binding.displayActivitySwitch");
-                b.n(switchMaterial5, R.string.display_activity, new Object[]{t.capitalize(platformFrom.getProperName())}, null, 4);
+                Intrinsics3.checkNotNullExpressionValue(switchMaterial5, "binding.displayActivitySwitch");
+                FormatUtils.n(switchMaterial5, R.string.display_activity, new Object[]{StringsJVM.capitalize(platformFrom.getProperName())}, null, 4);
                 SwitchMaterial switchMaterial6 = this.binding.e;
-                m.checkNotNullExpressionValue(switchMaterial6, "binding.displayActivitySwitch");
+                Intrinsics3.checkNotNullExpressionValue(switchMaterial6, "binding.displayActivitySwitch");
                 switchMaterial6.setChecked(connection.getShowActivity());
                 this.binding.e.setOnCheckedChangeListener(new WidgetSettingsUserConnections$Adapter$ViewHolder$onConfigure$$inlined$apply$lambda$5(connection, this, data));
-                if (m.areEqual(connection.getType(), Platform.SPOTIFY.getPlatformId())) {
+                if (Intrinsics3.areEqual(connection.getType(), Platform.SPOTIFY.getPlatformId())) {
                     TextView textView2 = this.binding.g;
-                    m.checkNotNullExpressionValue(textView2, "binding.extraInfo");
+                    Intrinsics3.checkNotNullExpressionValue(textView2, "binding.extraInfo");
                     textView2.setVisibility(0);
                     TextView textView3 = this.binding.g;
-                    m.checkNotNullExpressionValue(textView3, "binding.extraInfo");
-                    b.n(textView3, R.string.spotify_connection_info_android, new Object[0], null, 4);
+                    Intrinsics3.checkNotNullExpressionValue(textView3, "binding.extraInfo");
+                    FormatUtils.n(textView3, R.string.spotify_connection_info_android, new Object[0], null, 4);
                     this.binding.g.setOnClickListener(new WidgetSettingsUserConnections$Adapter$ViewHolder$onConfigure$$inlined$apply$lambda$6(this, data));
                 } else {
                     TextView textView4 = this.binding.g;
-                    m.checkNotNullExpressionValue(textView4, "binding.extraInfo");
+                    Intrinsics3.checkNotNullExpressionValue(textView4, "binding.extraInfo");
                     textView4.setVisibility(8);
                 }
                 List<ConnectedAccountIntegration> listC = connection.c();
                 if (listC == null || listC.isEmpty()) {
                     LinearLayout linearLayout = this.binding.h;
-                    m.checkNotNullExpressionValue(linearLayout, "binding.integrationsRoot");
+                    Intrinsics3.checkNotNullExpressionValue(linearLayout, "binding.integrationsRoot");
                     linearLayout.setVisibility(8);
                     return;
                 }
                 LinearLayout linearLayout2 = this.binding.h;
-                m.checkNotNullExpressionValue(linearLayout2, "binding.integrationsRoot");
+                Intrinsics3.checkNotNullExpressionValue(linearLayout2, "binding.integrationsRoot");
                 linearLayout2.setVisibility(0);
                 int iIndexOfChild = this.binding.h.indexOfChild(this.binding.h.findViewById(R.id.label));
                 if (iIndexOfChild != -1) {
                     LinearLayout linearLayout3 = this.binding.h;
                     int i = iIndexOfChild + 1;
-                    m.checkNotNullExpressionValue(linearLayout3, "binding.integrationsRoot");
+                    Intrinsics3.checkNotNullExpressionValue(linearLayout3, "binding.integrationsRoot");
                     linearLayout3.removeViewsInLayout(i, linearLayout3.getChildCount() - i);
                 }
                 List<ConnectedAccountIntegration> listC2 = connection.c();
@@ -265,9 +266,9 @@ public final class WidgetSettingsUserConnections extends AppFragment {
         /* JADX WARN: Multi-variable type inference failed */
         public Adapter(RecyclerView recyclerView, FragmentManager fragmentManager, Function1<? super String, Unit> function1) {
             super(recyclerView, false, 2, null);
-            m.checkNotNullParameter(recyclerView, "recyclerView");
-            m.checkNotNullParameter(fragmentManager, "fragmentManager");
-            m.checkNotNullParameter(function1, "onJoinIntegration");
+            Intrinsics3.checkNotNullParameter(recyclerView, "recyclerView");
+            Intrinsics3.checkNotNullParameter(fragmentManager, "fragmentManager");
+            Intrinsics3.checkNotNullParameter(function1, "onJoinIntegration");
             this.fragmentManager = fragmentManager;
             this.onJoinIntegration = function1;
         }
@@ -287,14 +288,14 @@ public final class WidgetSettingsUserConnections extends AppFragment {
 
         @Override // androidx.recyclerview.widget.RecyclerView.Adapter
         public MGRecyclerViewHolder<Adapter, UserConnectionItem> onCreateViewHolder(ViewGroup parent, int viewType) {
-            m.checkNotNullParameter(parent, "parent");
+            Intrinsics3.checkNotNullParameter(parent, "parent");
             return new ViewHolder(this, R.layout.widget_settings_item_connected_account, this);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.widgets.settings.connections.WidgetSettingsUserConnections$onViewBoundOrOnResume$1, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetSettingsUserConnections.kt */
-    public final class AnonymousClass1 extends o implements Function1<WidgetSettingsUserConnectionsViewModel.ViewState, Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function1<WidgetSettingsUserConnectionsViewModel.ViewState, Unit> {
         public AnonymousClass1() {
             super(1);
         }
@@ -307,7 +308,7 @@ public final class WidgetSettingsUserConnections extends AppFragment {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(WidgetSettingsUserConnectionsViewModel.ViewState viewState) {
-            m.checkNotNullParameter(viewState, "viewState");
+            Intrinsics3.checkNotNullParameter(viewState, "viewState");
             WidgetSettingsUserConnections.access$handleViewState(WidgetSettingsUserConnections.this, viewState);
         }
     }
@@ -325,7 +326,7 @@ public final class WidgetSettingsUserConnections extends AppFragment {
 
         /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
         public final void call2(MenuItem menuItem, Context context) {
-            m.checkNotNullExpressionValue(menuItem, "menuItem");
+            Intrinsics3.checkNotNullExpressionValue(menuItem, "menuItem");
             if (menuItem.getItemId() == R.id.menu_add_connections && WidgetSettingsUserConnections.this.getContext() != null) {
                 WidgetSettingsUserConnectionsAdd.INSTANCE.show(WidgetSettingsUserConnections.this);
             }
@@ -338,8 +339,8 @@ public final class WidgetSettingsUserConnections extends AppFragment {
         }
 
         public final void launch(Context context) {
-            m.checkNotNullParameter(context, "context");
-            j.e(context, WidgetSettingsUserConnections.class, null, 4);
+            Intrinsics3.checkNotNullParameter(context, "context");
+            AppScreen2.e(context, WidgetSettingsUserConnections.class, null, 4);
         }
 
         public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
@@ -354,7 +355,7 @@ public final class WidgetSettingsUserConnections extends AppFragment {
         private final int type;
 
         public UserConnectionItem(WidgetSettingsUserConnectionsViewModel.ConnectionState connectionState) {
-            m.checkNotNullParameter(connectionState, "connectedAccount");
+            Intrinsics3.checkNotNullParameter(connectionState, "connectedAccount");
             this.connectedAccount = connectionState;
             this.key = connectionState.getConnection().getId();
         }
@@ -376,10 +377,10 @@ public final class WidgetSettingsUserConnections extends AppFragment {
 
     public WidgetSettingsUserConnections() {
         super(R.layout.widget_settings_connections);
-        this.binding = FragmentViewBindingDelegateKt.viewBinding$default(this, WidgetSettingsUserConnections$binding$2.INSTANCE, null, 2, null);
+        this.binding = FragmentViewBindingDelegate3.viewBinding$default(this, WidgetSettingsUserConnections$binding$2.INSTANCE, null, 2, null);
         WidgetSettingsUserConnections$viewModel$2 widgetSettingsUserConnections$viewModel$2 = WidgetSettingsUserConnections$viewModel$2.INSTANCE;
-        g0 g0Var = new g0(this);
-        this.viewModel = FragmentViewModelLazyKt.createViewModelLazy(this, a0.getOrCreateKotlinClass(WidgetSettingsUserConnectionsViewModel.class), new WidgetSettingsUserConnections$appViewModels$$inlined$viewModels$1(g0Var), new i0(widgetSettingsUserConnections$viewModel$2));
+        AppViewModelDelegates3 appViewModelDelegates3 = new AppViewModelDelegates3(this);
+        this.viewModel = FragmentViewModelLazyKt.createViewModelLazy(this, Reflection2.getOrCreateKotlinClass(WidgetSettingsUserConnectionsViewModel.class), new WidgetSettingsUserConnections$appViewModels$$inlined$viewModels$1(appViewModelDelegates3), new AppViewModelDelegates5(widgetSettingsUserConnections$viewModel$2));
     }
 
     public static final /* synthetic */ WidgetSettingsUserConnectionsViewModel access$getViewModel$p(WidgetSettingsUserConnections widgetSettingsUserConnections) {
@@ -403,31 +404,31 @@ public final class WidgetSettingsUserConnections extends AppFragment {
         int itemCount = adapter != null ? adapter.getItemCount() : 0;
         if (viewState instanceof WidgetSettingsUserConnectionsViewModel.ViewState.Uninitialized) {
             TextView textView = getBinding().f2614b;
-            m.checkNotNullExpressionValue(textView, "binding.connectionsEmpty");
+            Intrinsics3.checkNotNullExpressionValue(textView, "binding.connectionsEmpty");
             textView.setVisibility(8);
             RecyclerView recyclerView = getBinding().c;
-            m.checkNotNullExpressionValue(recyclerView, "binding.connectionsRecycler");
+            Intrinsics3.checkNotNullExpressionValue(recyclerView, "binding.connectionsRecycler");
             recyclerView.setVisibility(8);
             return;
         }
         if (viewState instanceof WidgetSettingsUserConnectionsViewModel.ViewState.Empty) {
             TextView textView2 = getBinding().f2614b;
-            m.checkNotNullExpressionValue(textView2, "binding.connectionsEmpty");
+            Intrinsics3.checkNotNullExpressionValue(textView2, "binding.connectionsEmpty");
             textView2.setVisibility(0);
             RecyclerView recyclerView2 = getBinding().c;
-            m.checkNotNullExpressionValue(recyclerView2, "binding.connectionsRecycler");
+            Intrinsics3.checkNotNullExpressionValue(recyclerView2, "binding.connectionsRecycler");
             recyclerView2.setVisibility(8);
             return;
         }
         if (viewState instanceof WidgetSettingsUserConnectionsViewModel.ViewState.Loaded) {
             TextView textView3 = getBinding().f2614b;
-            m.checkNotNullExpressionValue(textView3, "binding.connectionsEmpty");
+            Intrinsics3.checkNotNullExpressionValue(textView3, "binding.connectionsEmpty");
             textView3.setVisibility(8);
             RecyclerView recyclerView3 = getBinding().c;
-            m.checkNotNullExpressionValue(recyclerView3, "binding.connectionsRecycler");
+            Intrinsics3.checkNotNullExpressionValue(recyclerView3, "binding.connectionsRecycler");
             recyclerView3.setVisibility(0);
             List<WidgetSettingsUserConnectionsViewModel.ConnectionState> data = ((WidgetSettingsUserConnectionsViewModel.ViewState.Loaded) viewState).getData();
-            ArrayList arrayList = new ArrayList(d0.t.o.collectionSizeOrDefault(data, 10));
+            ArrayList arrayList = new ArrayList(Iterables2.collectionSizeOrDefault(data, 10));
             Iterator<T> it = data.iterator();
             while (it.hasNext()) {
                 arrayList.add(new UserConnectionItem((WidgetSettingsUserConnectionsViewModel.ConnectionState) it.next()));
@@ -449,16 +450,16 @@ public final class WidgetSettingsUserConnections extends AppFragment {
 
     @Override // com.discord.app.AppFragment
     public void onViewBound(View view) {
-        m.checkNotNullParameter(view, "view");
+        Intrinsics3.checkNotNullParameter(view, "view");
         super.onViewBound(view);
         FragmentActivity activity = getActivity();
         if (activity != null) {
             MGRecyclerAdapter.Companion companion = MGRecyclerAdapter.INSTANCE;
             RecyclerView recyclerView = getBinding().c;
-            m.checkNotNullExpressionValue(recyclerView, "binding.connectionsRecycler");
-            m.checkNotNullExpressionValue(activity, "it");
+            Intrinsics3.checkNotNullExpressionValue(recyclerView, "binding.connectionsRecycler");
+            Intrinsics3.checkNotNullExpressionValue(activity, "it");
             FragmentManager supportFragmentManager = activity.getSupportFragmentManager();
-            m.checkNotNullExpressionValue(supportFragmentManager, "it.supportFragmentManager");
+            Intrinsics3.checkNotNullExpressionValue(supportFragmentManager, "it.supportFragmentManager");
             this.adapter = (Adapter) companion.configure(new Adapter(recyclerView, supportFragmentManager, new WidgetSettingsUserConnections$onViewBound$$inlined$let$lambda$1(this)));
         }
         AppFragment.setActionBarDisplayHomeAsUpEnabled$default(this, false, 1, null);

@@ -4,7 +4,7 @@ import com.discord.models.domain.emoji.Emoji;
 import com.discord.widgets.chat.input.emoji.EmojiPickerListener;
 import com.lytefast.flexinput.fragment.FlexInputFragment;
 import com.lytefast.flexinput.viewmodel.FlexInputViewModel;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 import java.util.Objects;
 
 /* JADX INFO: compiled from: WidgetChatInputAttachments.kt */
@@ -18,12 +18,12 @@ public final class WidgetChatInputAttachments$createAndConfigureExpressionFragme
 
     @Override // com.discord.widgets.chat.input.emoji.EmojiPickerListener
     public void onEmojiPicked(Emoji emoji) {
-        m.checkNotNullParameter(emoji, "emoji");
+        Intrinsics3.checkNotNullParameter(emoji, "emoji");
         FlexInputFragment flexInputFragmentAccess$getFlexInputFragment$p = WidgetChatInputAttachments.access$getFlexInputFragment$p(this.this$0);
         String chatInputText = emoji.getChatInputText();
-        m.checkNotNullExpressionValue(chatInputText, "emoji.chatInputText");
+        Intrinsics3.checkNotNullExpressionValue(chatInputText, "emoji.chatInputText");
         Objects.requireNonNull(flexInputFragmentAccess$getFlexInputFragment$p);
-        m.checkNotNullParameter(chatInputText, "emojiText");
+        Intrinsics3.checkNotNullParameter(chatInputText, "emojiText");
         FlexInputViewModel flexInputViewModel = flexInputFragmentAccess$getFlexInputFragment$p.viewModel;
         if (flexInputViewModel != null) {
             flexInputViewModel.onInputTextAppended(chatInputText + ' ');

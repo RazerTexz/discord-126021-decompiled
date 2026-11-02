@@ -1,7 +1,7 @@
 package com.discord.api.message;
 
-import b.d.b.a.a;
-import d0.z.d.m;
+import b.d.b.a.outline;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: MessageReference.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -24,7 +24,7 @@ public final /* data */ class MessageReference {
             return false;
         }
         MessageReference messageReference = (MessageReference) other;
-        return m.areEqual(this.guildId, messageReference.guildId) && m.areEqual(this.channelId, messageReference.channelId) && m.areEqual(this.messageId, messageReference.messageId);
+        return Intrinsics3.areEqual(this.guildId, messageReference.guildId) && Intrinsics3.areEqual(this.channelId, messageReference.channelId) && Intrinsics3.areEqual(this.messageId, messageReference.messageId);
     }
 
     /* JADX INFO: renamed from: a, reason: from getter */
@@ -52,11 +52,11 @@ public final /* data */ class MessageReference {
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("MessageReference(guildId=");
+        StringBuilder sbU = outline.U("MessageReference(guildId=");
         sbU.append(this.guildId);
         sbU.append(", channelId=");
         sbU.append(this.channelId);
         sbU.append(", messageId=");
-        return a.G(sbU, this.messageId, ")");
+        return outline.G(sbU, this.messageId, ")");
     }
 }

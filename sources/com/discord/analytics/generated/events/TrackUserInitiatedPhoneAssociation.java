@@ -1,14 +1,14 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackUserInitiatedPhoneAssociation.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackUserInitiatedPhoneAssociation implements AnalyticsSchema, TrackBaseReceiver {
+public final /* data */ class TrackUserInitiatedPhoneAssociation implements AnalyticsSchema, TrackBase2 {
     private final CharSequence carrierName = null;
     private final CharSequence carrierType = null;
     private final Long codeType = null;
@@ -25,7 +25,7 @@ public final /* data */ class TrackUserInitiatedPhoneAssociation implements Anal
             return false;
         }
         TrackUserInitiatedPhoneAssociation trackUserInitiatedPhoneAssociation = (TrackUserInitiatedPhoneAssociation) other;
-        return m.areEqual(this.phoneNumber, trackUserInitiatedPhoneAssociation.phoneNumber) && m.areEqual(this.carrierType, trackUserInitiatedPhoneAssociation.carrierType) && m.areEqual(this.carrierName, trackUserInitiatedPhoneAssociation.carrierName) && m.areEqual(this.codeType, trackUserInitiatedPhoneAssociation.codeType) && m.areEqual(this.phoneCountry, trackUserInitiatedPhoneAssociation.phoneCountry);
+        return Intrinsics3.areEqual(this.phoneNumber, trackUserInitiatedPhoneAssociation.phoneNumber) && Intrinsics3.areEqual(this.carrierType, trackUserInitiatedPhoneAssociation.carrierType) && Intrinsics3.areEqual(this.carrierName, trackUserInitiatedPhoneAssociation.carrierName) && Intrinsics3.areEqual(this.codeType, trackUserInitiatedPhoneAssociation.codeType) && Intrinsics3.areEqual(this.phoneCountry, trackUserInitiatedPhoneAssociation.phoneCountry);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -48,7 +48,7 @@ public final /* data */ class TrackUserInitiatedPhoneAssociation implements Anal
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackUserInitiatedPhoneAssociation(phoneNumber=");
+        StringBuilder sbU = outline.U("TrackUserInitiatedPhoneAssociation(phoneNumber=");
         sbU.append(this.phoneNumber);
         sbU.append(", carrierType=");
         sbU.append(this.carrierType);
@@ -57,6 +57,6 @@ public final /* data */ class TrackUserInitiatedPhoneAssociation implements Anal
         sbU.append(", codeType=");
         sbU.append(this.codeType);
         sbU.append(", phoneCountry=");
-        return a.E(sbU, this.phoneCountry, ")");
+        return outline.E(sbU, this.phoneCountry, ")");
     }
 }

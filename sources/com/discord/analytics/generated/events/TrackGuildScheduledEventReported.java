@@ -1,17 +1,17 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.analytics.generated.traits.TrackGuild;
-import com.discord.analytics.generated.traits.TrackGuildReceiver;
+import com.discord.analytics.generated.traits.TrackGuild2;
 import com.discord.api.science.AnalyticsSchema;
 import com.discord.models.domain.ModelAuditLogEntry;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackGuildScheduledEventReported.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackGuildScheduledEventReported implements AnalyticsSchema, TrackBaseReceiver, TrackGuildReceiver {
+public final /* data */ class TrackGuildScheduledEventReported implements AnalyticsSchema, TrackBase2, TrackGuild2 {
     private final CharSequence description = null;
     private final Long guildScheduledEventId = null;
     private final Long reasonEnum = null;
@@ -22,7 +22,7 @@ public final /* data */ class TrackGuildScheduledEventReported implements Analyt
     private TrackGuild trackGuild;
     private final transient String analyticsSchemaTypeName = "guild_scheduled_event_reported";
 
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    @Override // com.discord.analytics.generated.traits.TrackGuild2
     public void c(TrackGuild trackGuild) {
         this.trackGuild = trackGuild;
     }
@@ -35,7 +35,7 @@ public final /* data */ class TrackGuildScheduledEventReported implements Analyt
             return false;
         }
         TrackGuildScheduledEventReported trackGuildScheduledEventReported = (TrackGuildScheduledEventReported) other;
-        return m.areEqual(this.reportType, trackGuildScheduledEventReported.reportType) && m.areEqual(this.reportSubType, trackGuildScheduledEventReported.reportSubType) && m.areEqual(this.subject, trackGuildScheduledEventReported.subject) && m.areEqual(this.description, trackGuildScheduledEventReported.description) && m.areEqual(this.reasonEnum, trackGuildScheduledEventReported.reasonEnum) && m.areEqual(this.guildScheduledEventId, trackGuildScheduledEventReported.guildScheduledEventId);
+        return Intrinsics3.areEqual(this.reportType, trackGuildScheduledEventReported.reportType) && Intrinsics3.areEqual(this.reportSubType, trackGuildScheduledEventReported.reportSubType) && Intrinsics3.areEqual(this.subject, trackGuildScheduledEventReported.subject) && Intrinsics3.areEqual(this.description, trackGuildScheduledEventReported.description) && Intrinsics3.areEqual(this.reasonEnum, trackGuildScheduledEventReported.reasonEnum) && Intrinsics3.areEqual(this.guildScheduledEventId, trackGuildScheduledEventReported.guildScheduledEventId);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -44,7 +44,7 @@ public final /* data */ class TrackGuildScheduledEventReported implements Analyt
         return this.analyticsSchemaTypeName;
     }
 
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    @Override // com.discord.analytics.generated.traits.TrackGuild2
     /* JADX INFO: renamed from: a, reason: from getter */
     public TrackGuild getTrackGuild() {
         return this.trackGuild;
@@ -66,7 +66,7 @@ public final /* data */ class TrackGuildScheduledEventReported implements Analyt
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackGuildScheduledEventReported(reportType=");
+        StringBuilder sbU = outline.U("TrackGuildScheduledEventReported(reportType=");
         sbU.append(this.reportType);
         sbU.append(", reportSubType=");
         sbU.append(this.reportSubType);
@@ -77,6 +77,6 @@ public final /* data */ class TrackGuildScheduledEventReported implements Analyt
         sbU.append(", reasonEnum=");
         sbU.append(this.reasonEnum);
         sbU.append(", guildScheduledEventId=");
-        return a.G(sbU, this.guildScheduledEventId, ")");
+        return outline.G(sbU, this.guildScheduledEventId, ")");
     }
 }

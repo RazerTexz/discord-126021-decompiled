@@ -5,9 +5,10 @@ import android.util.AttributeSet;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.LinearLayout;
-import androidx.core.view.ViewGroupKt;
-import d0.t.n;
-import d0.z.d.m;
+import androidx.core.view.ViewGroup;
+import b.a.y.n0.SegmentedControlSegment;
+import d0.t.Collections2;
+import d0.z.d.Intrinsics3;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function1;
 
@@ -40,18 +41,18 @@ public final class SegmentedControlContainer extends LinearLayout {
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public SegmentedControlContainer(Context context, AttributeSet attributeSet) {
         super(context, attributeSet);
-        m.checkNotNullParameter(context, "context");
+        Intrinsics3.checkNotNullParameter(context, "context");
     }
 
     public final void a(int selectedIndex) {
         int i = 0;
-        for (View view : ViewGroupKt.getChildren(this)) {
+        for (View view : ViewGroup.getChildren(this)) {
             int i2 = i + 1;
             if (i < 0) {
-                n.throwIndexOverflow();
+                Collections2.throwIndexOverflow();
             }
             View view2 = view;
-            if (!(view2 instanceof b.a.y.n0.a)) {
+            if (!(view2 instanceof SegmentedControlSegment)) {
                 throw new IllegalStateException("All children must be SegmentedControlSegments.".toString());
             }
             view2.setOnClickListener(new a(i, this));
@@ -68,22 +69,22 @@ public final class SegmentedControlContainer extends LinearLayout {
     }
 
     public final void setOnSegmentSelectedChangeListener(Function1<? super Integer, Unit> listener) {
-        m.checkNotNullParameter(listener, "listener");
+        Intrinsics3.checkNotNullParameter(listener, "listener");
         this.segmentSelectedChangeListener = listener;
     }
 
     public final void setSelectedIndex(int selectedIndex) {
         int i = 0;
-        for (KeyEvent.Callback callback : ViewGroupKt.getChildren(this)) {
+        for (KeyEvent.Callback callback : ViewGroup.getChildren(this)) {
             int i2 = i + 1;
             if (i < 0) {
-                n.throwIndexOverflow();
+                Collections2.throwIndexOverflow();
             }
             KeyEvent.Callback callback2 = (View) callback;
-            if (!(callback2 instanceof b.a.y.n0.a)) {
+            if (!(callback2 instanceof SegmentedControlSegment)) {
                 throw new IllegalStateException("All children must be SegmentedControlSegments.".toString());
             }
-            ((b.a.y.n0.a) callback2).a(i == selectedIndex);
+            ((SegmentedControlSegment) callback2).a(i == selectedIndex);
             i = i2;
         }
     }

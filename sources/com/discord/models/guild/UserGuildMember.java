@@ -1,9 +1,9 @@
 package com.discord.models.guild;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.models.member.GuildMember;
 import com.discord.models.user.User;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 import kotlin.jvm.internal.DefaultConstructorMarker;
 
 /* JADX INFO: compiled from: UserGuildMember.kt */
@@ -14,7 +14,7 @@ public final /* data */ class UserGuildMember {
     private final User user;
 
     public UserGuildMember(User user, GuildMember guildMember) {
-        m.checkNotNullParameter(user, "user");
+        Intrinsics3.checkNotNullParameter(user, "user");
         this.user = user;
         this.guildMember = guildMember;
         this.nickname = guildMember != null ? guildMember.getNick() : null;
@@ -31,7 +31,7 @@ public final /* data */ class UserGuildMember {
     }
 
     public final UserGuildMember copy(User user, GuildMember guildMember) {
-        m.checkNotNullParameter(user, "user");
+        Intrinsics3.checkNotNullParameter(user, "user");
         return new UserGuildMember(user, guildMember);
     }
 
@@ -43,7 +43,7 @@ public final /* data */ class UserGuildMember {
             return false;
         }
         UserGuildMember userGuildMember = (UserGuildMember) other;
-        return m.areEqual(this.user, userGuildMember.user) && m.areEqual(this.guildMember, userGuildMember.guildMember);
+        return Intrinsics3.areEqual(this.user, userGuildMember.user) && Intrinsics3.areEqual(this.guildMember, userGuildMember.guildMember);
     }
 
     /* JADX INFO: renamed from: component2, reason: from getter */
@@ -80,7 +80,7 @@ public final /* data */ class UserGuildMember {
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("UserGuildMember(user=");
+        StringBuilder sbU = outline.U("UserGuildMember(user=");
         sbU.append(this.user);
         sbU.append(", guildMember=");
         sbU.append(this.guildMember);

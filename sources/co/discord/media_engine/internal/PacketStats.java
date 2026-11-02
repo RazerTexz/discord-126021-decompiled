@@ -1,7 +1,7 @@
 package co.discord.media_engine.internal;
 
 import a0.a.a.b;
-import b.d.b.a.a;
+import b.d.b.a.outline;
 
 /* JADX INFO: compiled from: NativeStatistics.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -78,13 +78,13 @@ public final /* data */ class PacketStats {
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("PacketStats(headerBytes=");
+        StringBuilder sbU = outline.U("PacketStats(headerBytes=");
         sbU.append(this.headerBytes);
         sbU.append(", packets=");
         sbU.append(this.packets);
         sbU.append(", paddingBytes=");
         sbU.append(this.paddingBytes);
         sbU.append(", payloadBytes=");
-        return a.C(sbU, this.payloadBytes, ")");
+        return outline.C(sbU, this.payloadBytes, ")");
     }
 }

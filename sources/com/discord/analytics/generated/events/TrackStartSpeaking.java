@@ -1,18 +1,18 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.analytics.generated.traits.TrackChannel;
-import com.discord.analytics.generated.traits.TrackChannelReceiver;
+import com.discord.analytics.generated.traits.TrackChannel2;
 import com.discord.analytics.generated.traits.TrackGuild;
-import com.discord.analytics.generated.traits.TrackGuildReceiver;
+import com.discord.analytics.generated.traits.TrackGuild2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackStartSpeaking.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackStartSpeaking implements AnalyticsSchema, TrackBaseReceiver, TrackGuildReceiver, TrackChannelReceiver {
+public final /* data */ class TrackStartSpeaking implements AnalyticsSchema, TrackBase2, TrackGuild2, TrackChannel2 {
     private final Long channel = null;
     private final CharSequence gameExeName = null;
     private final Long gameId = null;
@@ -33,7 +33,7 @@ public final /* data */ class TrackStartSpeaking implements AnalyticsSchema, Tra
     private final Long voiceStateCount = null;
     private final transient String analyticsSchemaTypeName = "start_speaking";
 
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    @Override // com.discord.analytics.generated.traits.TrackGuild2
     public void c(TrackGuild trackGuild) {
         this.trackGuild = trackGuild;
     }
@@ -46,7 +46,7 @@ public final /* data */ class TrackStartSpeaking implements AnalyticsSchema, Tra
             return false;
         }
         TrackStartSpeaking trackStartSpeaking = (TrackStartSpeaking) other;
-        return m.areEqual(this.channel, trackStartSpeaking.channel) && m.areEqual(this.mode, trackStartSpeaking.mode) && m.areEqual(this.priority, trackStartSpeaking.priority) && m.areEqual(this.server, trackStartSpeaking.server) && m.areEqual(this.gamePlatform, trackStartSpeaking.gamePlatform) && m.areEqual(this.gameName, trackStartSpeaking.gameName) && m.areEqual(this.gameExeName, trackStartSpeaking.gameExeName) && m.areEqual(this.gameId, trackStartSpeaking.gameId) && m.areEqual(this.mediaSessionId, trackStartSpeaking.mediaSessionId) && m.areEqual(this.rtcConnectionId, trackStartSpeaking.rtcConnectionId) && m.areEqual(this.packetsSent, trackStartSpeaking.packetsSent) && m.areEqual(this.packetsSentLost, trackStartSpeaking.packetsSentLost) && m.areEqual(this.packetsReceived, trackStartSpeaking.packetsReceived) && m.areEqual(this.packetsReceivedLost, trackStartSpeaking.packetsReceivedLost) && m.areEqual(this.voiceStateCount, trackStartSpeaking.voiceStateCount);
+        return Intrinsics3.areEqual(this.channel, trackStartSpeaking.channel) && Intrinsics3.areEqual(this.mode, trackStartSpeaking.mode) && Intrinsics3.areEqual(this.priority, trackStartSpeaking.priority) && Intrinsics3.areEqual(this.server, trackStartSpeaking.server) && Intrinsics3.areEqual(this.gamePlatform, trackStartSpeaking.gamePlatform) && Intrinsics3.areEqual(this.gameName, trackStartSpeaking.gameName) && Intrinsics3.areEqual(this.gameExeName, trackStartSpeaking.gameExeName) && Intrinsics3.areEqual(this.gameId, trackStartSpeaking.gameId) && Intrinsics3.areEqual(this.mediaSessionId, trackStartSpeaking.mediaSessionId) && Intrinsics3.areEqual(this.rtcConnectionId, trackStartSpeaking.rtcConnectionId) && Intrinsics3.areEqual(this.packetsSent, trackStartSpeaking.packetsSent) && Intrinsics3.areEqual(this.packetsSentLost, trackStartSpeaking.packetsSentLost) && Intrinsics3.areEqual(this.packetsReceived, trackStartSpeaking.packetsReceived) && Intrinsics3.areEqual(this.packetsReceivedLost, trackStartSpeaking.packetsReceivedLost) && Intrinsics3.areEqual(this.voiceStateCount, trackStartSpeaking.voiceStateCount);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -55,7 +55,7 @@ public final /* data */ class TrackStartSpeaking implements AnalyticsSchema, Tra
         return this.analyticsSchemaTypeName;
     }
 
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    @Override // com.discord.analytics.generated.traits.TrackGuild2
     /* JADX INFO: renamed from: a, reason: from getter */
     public TrackGuild getTrackGuild() {
         return this.trackGuild;
@@ -95,7 +95,7 @@ public final /* data */ class TrackStartSpeaking implements AnalyticsSchema, Tra
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackStartSpeaking(channel=");
+        StringBuilder sbU = outline.U("TrackStartSpeaking(channel=");
         sbU.append(this.channel);
         sbU.append(", mode=");
         sbU.append(this.mode);
@@ -124,6 +124,6 @@ public final /* data */ class TrackStartSpeaking implements AnalyticsSchema, Tra
         sbU.append(", packetsReceivedLost=");
         sbU.append(this.packetsReceivedLost);
         sbU.append(", voiceStateCount=");
-        return a.G(sbU, this.voiceStateCount, ")");
+        return outline.G(sbU, this.voiceStateCount, ")");
     }
 }

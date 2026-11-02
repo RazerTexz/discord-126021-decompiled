@@ -10,16 +10,16 @@ import android.widget.TextView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentManager;
-import b.a.i.a2;
-import b.a.k.b;
+import b.a.i.ViewCallEventsButtonBinding;
+import b.a.k.FormatUtils;
 import com.discord.R;
 import com.discord.api.guildscheduledevent.GuildScheduledEvent;
 import com.discord.models.domain.ModelAuditLogEntry;
-import com.discord.utilities.color.ColorCompatKt;
-import com.discord.utilities.guildscheduledevent.GuildScheduledEventUtilitiesKt;
-import com.discord.utilities.resources.StringResourceUtilsKt;
+import com.discord.utilities.color.ColorCompat2;
+import com.discord.utilities.guildscheduledevent.GuildScheduledEventUtilities5;
+import com.discord.utilities.resources.StringResourceUtils;
 import com.discord.widgets.guildscheduledevent.WidgetGuildScheduledEventListBottomSheet;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 import java.util.List;
 
 /* JADX INFO: compiled from: CallEventsButtonView.kt */
@@ -27,7 +27,7 @@ import java.util.List;
 public final class CallEventsButtonView extends ConstraintLayout {
 
     /* JADX INFO: renamed from: j, reason: from kotlin metadata */
-    public final a2 binding;
+    public final ViewCallEventsButtonBinding binding;
 
     /* JADX INFO: compiled from: CallEventsButtonView.kt */
     public final class a implements View.OnClickListener {
@@ -50,7 +50,7 @@ public final class CallEventsButtonView extends ConstraintLayout {
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public CallEventsButtonView(Context context, AttributeSet attributeSet) {
         super(context, attributeSet);
-        m.checkNotNullParameter(context, "context");
+        Intrinsics3.checkNotNullParameter(context, "context");
         View viewInflate = LayoutInflater.from(getContext()).inflate(R.layout.view_call_events_button, (ViewGroup) this, false);
         addView(viewInflate);
         int i = R.id.icon;
@@ -59,9 +59,9 @@ public final class CallEventsButtonView extends ConstraintLayout {
             i = R.id.text;
             TextView textView = (TextView) viewInflate.findViewById(R.id.text);
             if (textView != null) {
-                a2 a2Var = new a2((ConstraintLayout) viewInflate, imageView, textView);
-                m.checkNotNullExpressionValue(a2Var, "ViewCallEventsButtonBind…rom(context), this, true)");
-                this.binding = a2Var;
+                ViewCallEventsButtonBinding viewCallEventsButtonBinding = new ViewCallEventsButtonBinding((ConstraintLayout) viewInflate, imageView, textView);
+                Intrinsics3.checkNotNullExpressionValue(viewCallEventsButtonBinding, "ViewCallEventsButtonBind…rom(context), this, true)");
+                this.binding = viewCallEventsButtonBinding;
                 return;
             }
         }
@@ -69,13 +69,13 @@ public final class CallEventsButtonView extends ConstraintLayout {
     }
 
     public final void a(FragmentManager fragmentManager, long guildId, long channelId, List<GuildScheduledEvent> events) {
-        m.checkNotNullParameter(fragmentManager, "fragmentManager");
-        m.checkNotNullParameter(events, "events");
+        Intrinsics3.checkNotNullParameter(fragmentManager, "fragmentManager");
+        Intrinsics3.checkNotNullParameter(events, "events");
         this.binding.a.setOnClickListener(new a(fragmentManager, guildId, channelId));
-        boolean zHasLiveEvent = GuildScheduledEventUtilitiesKt.hasLiveEvent(events);
+        boolean zHasLiveEvent = GuildScheduledEventUtilities5.hasLiveEvent(events);
         if (zHasLiveEvent) {
             TextView textView = this.binding.c;
-            m.checkNotNullExpressionValue(textView, "binding.text");
+            Intrinsics3.checkNotNullExpressionValue(textView, "binding.text");
             textView.setText(getContext().getString(R.string.live_event));
             setContentColor(ContextCompat.getColor(getContext(), R.color.status_green_560));
             return;
@@ -85,20 +85,20 @@ public final class CallEventsButtonView extends ConstraintLayout {
         }
         int size = events.size();
         Context context = getContext();
-        m.checkNotNullExpressionValue(context, "context");
-        CharSequence i18nPluralString = StringResourceUtilsKt.getI18nPluralString(context, R.plurals.guild_events_plural_number, size, Integer.valueOf(size));
+        Intrinsics3.checkNotNullExpressionValue(context, "context");
+        CharSequence i18nPluralString = StringResourceUtils.getI18nPluralString(context, R.plurals.guild_events_plural_number, size, Integer.valueOf(size));
         TextView textView2 = this.binding.c;
-        m.checkNotNullExpressionValue(textView2, "binding.text");
+        Intrinsics3.checkNotNullExpressionValue(textView2, "binding.text");
         Context context2 = getContext();
-        m.checkNotNullExpressionValue(context2, "context");
-        textView2.setText(b.h(context2, R.string.guild_events_plural, new Object[]{i18nPluralString}, null, 4));
+        Intrinsics3.checkNotNullExpressionValue(context2, "context");
+        textView2.setText(FormatUtils.h(context2, R.string.guild_events_plural, new Object[]{i18nPluralString}, null, 4));
         setContentColor(ContextCompat.getColor(getContext(), R.color.white));
     }
 
     private final void setContentColor(int color) {
         this.binding.c.setTextColor(color);
         ImageView imageView = this.binding.f75b;
-        m.checkNotNullExpressionValue(imageView, "binding.icon");
-        ColorCompatKt.tintWithColor(imageView, color);
+        Intrinsics3.checkNotNullExpressionValue(imageView, "binding.icon");
+        ColorCompat2.tintWithColor(imageView, color);
     }
 }

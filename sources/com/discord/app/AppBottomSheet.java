@@ -26,9 +26,10 @@ import com.discord.utilities.view.text.TextWatcher;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
-import d0.z.d.m;
-import d0.z.d.o;
-import j0.l.e.k;
+import d0.LazyJVM;
+import d0.z.d.Intrinsics3;
+import d0.z.d.Lambda;
+import j0.l.e.ScalarSynchronousObservable;
 import kotlin.Lazy;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
@@ -40,12 +41,12 @@ import rx.subscriptions.CompositeSubscription;
 
 /* JADX INFO: compiled from: AppBottomSheet.kt */
 /* JADX INFO: loaded from: classes.dex */
-public abstract class AppBottomSheet extends BottomSheetDialogFragment implements AppPermissionsRequests, AppComponent, AppLogger.a {
+public abstract class AppBottomSheet extends BottomSheetDialogFragment implements AppPermissions2, AppComponent, AppLogger.a {
 
     /* JADX INFO: renamed from: appLogger$delegate, reason: from kotlin metadata */
     private final Lazy appLogger;
     private CompositeSubscription compositeSubscription;
-    private final LoggingConfig loggingConfig;
+    private final AppLogger2 loggingConfig;
     private View peekBottomView;
     private final View.OnLayoutChangeListener peekLayoutListener;
     private final boolean shouldAvoidKeyboard;
@@ -67,23 +68,23 @@ public abstract class AppBottomSheet extends BottomSheetDialogFragment implement
         public final WindowInsetsCompat onApplyWindowInsets(View view, WindowInsetsCompat windowInsetsCompat) {
             int i = this.c;
             if (i == 0) {
-                m.checkNotNullParameter(view, "v");
-                m.checkNotNullParameter(windowInsetsCompat, "insets");
+                Intrinsics3.checkNotNullParameter(view, "v");
+                Intrinsics3.checkNotNullParameter(windowInsetsCompat, "insets");
                 view.setPadding(view.getPaddingLeft(), windowInsetsCompat.getSystemWindowInsetTop(), view.getPaddingRight(), view.getPaddingBottom());
                 return new WindowInsetsCompat.Builder(windowInsetsCompat).setSystemWindowInsets(Insets.of(windowInsetsCompat.getSystemWindowInsetLeft(), 0, windowInsetsCompat.getSystemWindowInsetRight(), windowInsetsCompat.getSystemWindowInsetBottom())).build();
             }
             if (i != 1) {
                 throw null;
             }
-            m.checkNotNullExpressionValue(view, "v");
-            m.checkNotNullExpressionValue(windowInsetsCompat, "insets");
+            Intrinsics3.checkNotNullExpressionValue(view, "v");
+            Intrinsics3.checkNotNullExpressionValue(windowInsetsCompat, "insets");
             view.setPadding(windowInsetsCompat.getSystemWindowInsetLeft(), windowInsetsCompat.getSystemWindowInsetTop(), windowInsetsCompat.getSystemWindowInsetRight(), windowInsetsCompat.getSystemWindowInsetBottom());
             return windowInsetsCompat.consumeSystemWindowInsets();
         }
     }
 
     /* JADX INFO: compiled from: AppBottomSheet.kt */
-    public final class b extends o implements Function0<AppLogger> {
+    public final class b extends Lambda implements Function0<AppLogger> {
         public b() {
             super(0);
         }
@@ -102,7 +103,7 @@ public abstract class AppBottomSheet extends BottomSheetDialogFragment implement
         public final /* synthetic */ AppBottomSheet f2079b;
 
         /* JADX INFO: compiled from: AppBottomSheet.kt */
-        public final class a extends o implements Function1<Unit, Unit> {
+        public final class a extends Lambda implements Function1<Unit, Unit> {
             public a() {
                 super(1);
             }
@@ -129,9 +130,9 @@ public abstract class AppBottomSheet extends BottomSheetDialogFragment implement
 
         @Override // android.content.DialogInterface.OnShowListener
         public final void onShow(DialogInterface dialogInterface) {
-            k kVar = new k(Unit.a);
-            m.checkNotNullExpressionValue(kVar, "Observable.just(Unit)");
-            ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(kVar, this.f2079b, null, 2, null), this.f2079b.getClass(), (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new a(), 62, (Object) null);
+            ScalarSynchronousObservable scalarSynchronousObservable = new ScalarSynchronousObservable(Unit.a);
+            Intrinsics3.checkNotNullExpressionValue(scalarSynchronousObservable, "Observable.just(Unit)");
+            ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(scalarSynchronousObservable, this.f2079b, null, 2, null), this.f2079b.getClass(), (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new a(), 62, (Object) null);
         }
     }
 
@@ -142,12 +143,12 @@ public abstract class AppBottomSheet extends BottomSheetDialogFragment implement
 
         @Override // com.google.android.material.bottomsheet.BottomSheetBehavior.BottomSheetCallback
         public void onSlide(View view, float f) {
-            m.checkNotNullParameter(view, "bottomSheet");
+            Intrinsics3.checkNotNullParameter(view, "bottomSheet");
         }
 
         @Override // com.google.android.material.bottomsheet.BottomSheetBehavior.BottomSheetCallback
         public void onStateChanged(View view, int i) {
-            m.checkNotNullParameter(view, "bottomSheet");
+            Intrinsics3.checkNotNullParameter(view, "bottomSheet");
             AppBottomSheet.this.onStateChanged(i);
             if (i == 5) {
                 AppBottomSheet.this.dismiss();
@@ -177,7 +178,7 @@ public abstract class AppBottomSheet extends BottomSheetDialogFragment implement
         @Override // android.content.DialogInterface.OnShowListener
         public final void onShow(DialogInterface dialogInterface) {
             BottomSheetBehavior bottomSheetBehaviorFrom = BottomSheetBehavior.from(this.a.findViewById(R.id.design_bottom_sheet));
-            m.checkNotNullExpressionValue(bottomSheetBehaviorFrom, "BottomSheetBehavior.from(bottomSheet)");
+            Intrinsics3.checkNotNullExpressionValue(bottomSheetBehaviorFrom, "BottomSheetBehavior.from(bottomSheet)");
             bottomSheetBehaviorFrom.setSkipCollapsed(true);
             bottomSheetBehaviorFrom.setState(3);
         }
@@ -208,7 +209,7 @@ public abstract class AppBottomSheet extends BottomSheetDialogFragment implement
     }
 
     public void bindSubscriptions(CompositeSubscription compositeSubscription) {
-        m.checkNotNullParameter(compositeSubscription, "compositeSubscription");
+        Intrinsics3.checkNotNullParameter(compositeSubscription, "compositeSubscription");
     }
 
     @Override // com.google.android.material.bottomsheet.BottomSheetDialogFragment, androidx.fragment.app.DialogFragment
@@ -227,7 +228,7 @@ public abstract class AppBottomSheet extends BottomSheetDialogFragment implement
         }
         ViewCompat.setOnApplyWindowInsetsListener(viewFindViewById, a.a);
         View viewFindViewById2 = view.getRootView().findViewById(R.id.design_bottom_sheet);
-        m.checkNotNullExpressionValue(viewFindViewById2, "designBottomSheet");
+        Intrinsics3.checkNotNullExpressionValue(viewFindViewById2, "designBottomSheet");
         viewFindViewById2.setFitsSystemWindows(true);
         ViewCompat.setOnApplyWindowInsetsListener(viewFindViewById2, DisplayUtils.getNO_OP_WINDOW_INSETS_LISTENER());
         ViewCompat.setOnApplyWindowInsetsListener(view, a.f2078b);
@@ -246,7 +247,7 @@ public abstract class AppBottomSheet extends BottomSheetDialogFragment implement
         if (arguments == null) {
             arguments = new Bundle();
         }
-        m.checkNotNullExpressionValue(arguments, "arguments ?: Bundle()");
+        Intrinsics3.checkNotNullExpressionValue(arguments, "arguments ?: Bundle()");
         return arguments;
     }
 
@@ -270,7 +271,7 @@ public abstract class AppBottomSheet extends BottomSheetDialogFragment implement
     public abstract int getContentViewResId();
 
     @Override // com.discord.app.AppLogger.a
-    public LoggingConfig getLoggingConfig() {
+    public AppLogger2 getLoggingConfig() {
         return this.loggingConfig;
     }
 
@@ -279,7 +280,7 @@ public abstract class AppBottomSheet extends BottomSheetDialogFragment implement
         return this.unsubscribeSignal;
     }
 
-    @Override // com.discord.app.AppPermissionsRequests
+    @Override // com.discord.app.AppPermissions2
     public boolean hasMedia() {
         return requireAppActivity().appPermissions.hasMedia();
     }
@@ -314,7 +315,7 @@ public abstract class AppBottomSheet extends BottomSheetDialogFragment implement
         Dialog dialogOnCreateDialog = super.onCreateDialog(savedInstanceState);
         dialogOnCreateDialog.setCanceledOnTouchOutside(true);
         if (AccessibilityUtils.INSTANCE.isReducedMotionEnabled()) {
-            m.checkNotNullExpressionValue(dialogOnCreateDialog, "dialog");
+            Intrinsics3.checkNotNullExpressionValue(dialogOnCreateDialog, "dialog");
             Window window = dialogOnCreateDialog.getWindow();
             if (window != null) {
                 window.setWindowAnimations(R.style.FadeInOut);
@@ -323,13 +324,13 @@ public abstract class AppBottomSheet extends BottomSheetDialogFragment implement
         if (this.shouldAvoidKeyboard) {
             dialogOnCreateDialog.setOnShowListener(new c(dialogOnCreateDialog, this));
         }
-        m.checkNotNullExpressionValue(dialogOnCreateDialog, "super.onCreateDialog(sav…      }\n      }\n    }\n  }");
+        Intrinsics3.checkNotNullExpressionValue(dialogOnCreateDialog, "super.onCreateDialog(sav…      }\n      }\n    }\n  }");
         return dialogOnCreateDialog;
     }
 
     @Override // androidx.fragment.app.Fragment
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        m.checkNotNullParameter(inflater, "inflater");
+        Intrinsics3.checkNotNullParameter(inflater, "inflater");
         return inflater.inflate(getContentViewResId(), (ViewGroup) null);
     }
 
@@ -364,7 +365,7 @@ public abstract class AppBottomSheet extends BottomSheetDialogFragment implement
     @Override // androidx.fragment.app.Fragment
     @CallSuper
     public void onViewCreated(View view, Bundle savedInstanceState) {
-        m.checkNotNullParameter(view, "view");
+        Intrinsics3.checkNotNullParameter(view, "view");
         super.onViewCreated(view, savedInstanceState);
         DisplayUtils.drawUnderSystemBars(view);
         BottomSheetBehavior<View> bottomSheetBehavior = getBottomSheetBehavior();
@@ -374,46 +375,46 @@ public abstract class AppBottomSheet extends BottomSheetDialogFragment implement
         getAppLogger().b();
     }
 
-    @Override // com.discord.app.AppPermissionsRequests
+    @Override // com.discord.app.AppPermissions2
     public void requestCameraQRScanner(Function0<Unit> onSuccess, Function0<Unit> onFailure) {
-        m.checkNotNullParameter(onSuccess, "onSuccess");
+        Intrinsics3.checkNotNullParameter(onSuccess, "onSuccess");
         requireAppActivity().appPermissions.requestCameraQRScanner(onSuccess, onFailure);
     }
 
-    @Override // com.discord.app.AppPermissionsRequests
+    @Override // com.discord.app.AppPermissions2
     public void requestContacts(Function0<Unit> onSuccess, Function0<Unit> onFailure) {
-        m.checkNotNullParameter(onSuccess, "onSuccess");
-        m.checkNotNullParameter(onFailure, "onFailure");
+        Intrinsics3.checkNotNullParameter(onSuccess, "onSuccess");
+        Intrinsics3.checkNotNullParameter(onFailure, "onFailure");
         requireAppActivity().appPermissions.requestContacts(onSuccess, onFailure);
     }
 
-    @Override // com.discord.app.AppPermissionsRequests
+    @Override // com.discord.app.AppPermissions2
     public void requestMedia(Function0<Unit> onSuccess) {
-        m.checkNotNullParameter(onSuccess, "onSuccess");
+        Intrinsics3.checkNotNullParameter(onSuccess, "onSuccess");
         requireAppActivity().appPermissions.requestMedia(onSuccess);
     }
 
-    @Override // com.discord.app.AppPermissionsRequests
+    @Override // com.discord.app.AppPermissions2
     public void requestMediaDownload(Function0<Unit> onSuccess) {
-        m.checkNotNullParameter(onSuccess, "onSuccess");
+        Intrinsics3.checkNotNullParameter(onSuccess, "onSuccess");
         requireAppActivity().appPermissions.requestMediaDownload(onSuccess);
     }
 
-    @Override // com.discord.app.AppPermissionsRequests
+    @Override // com.discord.app.AppPermissions2
     public void requestMicrophone(Function0<Unit> onFailure, Function0<Unit> onSuccess) {
-        m.checkNotNullParameter(onSuccess, "onSuccess");
+        Intrinsics3.checkNotNullParameter(onSuccess, "onSuccess");
         requireAppActivity().appPermissions.requestMicrophone(onFailure, onSuccess);
     }
 
-    @Override // com.discord.app.AppPermissionsRequests
+    @Override // com.discord.app.AppPermissions2
     public void requestVideoCallPermissions(Function0<Unit> onSuccess) {
-        m.checkNotNullParameter(onSuccess, "onSuccess");
+        Intrinsics3.checkNotNullParameter(onSuccess, "onSuccess");
         requireAppActivity().appPermissions.requestVideoCallPermissions(onSuccess);
     }
 
     public final AppActivity requireAppActivity() {
         AppActivity appActivity = getAppActivity();
-        m.checkNotNull(appActivity);
+        Intrinsics3.checkNotNull(appActivity);
         return appActivity;
     }
 
@@ -444,13 +445,13 @@ public abstract class AppBottomSheet extends BottomSheetDialogFragment implement
     }
 
     public final void setOnClickAndDismissListener(View view, Function1<? super View, Unit> function1) {
-        m.checkNotNullParameter(view, "$this$setOnClickAndDismissListener");
-        m.checkNotNullParameter(function1, "onClickListener");
+        Intrinsics3.checkNotNullParameter(view, "$this$setOnClickAndDismissListener");
+        Intrinsics3.checkNotNullParameter(function1, "onClickListener");
         view.setOnClickListener(new g(view, function1));
     }
 
     public final void setPeekHeightBottomView(View targetView) {
-        if (m.areEqual(this.peekBottomView, targetView)) {
+        if (Intrinsics3.areEqual(this.peekBottomView, targetView)) {
             return;
         }
         View view = this.peekBottomView;
@@ -468,7 +469,7 @@ public abstract class AppBottomSheet extends BottomSheetDialogFragment implement
 
     @Override // androidx.fragment.app.DialogFragment
     public void show(FragmentManager manager, String tag) {
-        m.checkNotNullParameter(manager, "manager");
+        Intrinsics3.checkNotNullParameter(manager, "manager");
         if (manager.findFragmentByTag(tag) != null) {
             return;
         }
@@ -479,7 +480,7 @@ public abstract class AppBottomSheet extends BottomSheetDialogFragment implement
     }
 
     public final void showKeyboard(View view) {
-        m.checkNotNullParameter(view, "view");
+        Intrinsics3.checkNotNullParameter(view, "view");
         AppActivity appActivity = getAppActivity();
         if (appActivity != null) {
             appActivity.showKeyboard(view);
@@ -496,15 +497,15 @@ public abstract class AppBottomSheet extends BottomSheetDialogFragment implement
     public AppBottomSheet(boolean z2) {
         this.shouldAvoidKeyboard = z2;
         PublishSubject publishSubjectK0 = PublishSubject.k0();
-        m.checkNotNullExpressionValue(publishSubjectK0, "PublishSubject.create()");
+        Intrinsics3.checkNotNullExpressionValue(publishSubjectK0, "PublishSubject.create()");
         this.unsubscribeSignal = publishSubjectK0;
         this.peekLayoutListener = new e();
-        this.appLogger = d0.g.lazy(new b());
+        this.appLogger = LazyJVM.lazy(new b());
     }
 
     @Override // androidx.fragment.app.DialogFragment
     public int show(FragmentTransaction transaction, String tag) {
-        m.checkNotNullParameter(transaction, "transaction");
+        Intrinsics3.checkNotNullParameter(transaction, "transaction");
         try {
             return super.show(transaction, tag);
         } catch (Exception unused) {
@@ -512,9 +513,9 @@ public abstract class AppBottomSheet extends BottomSheetDialogFragment implement
         }
     }
 
-    @Override // com.discord.app.AppPermissionsRequests
+    @Override // com.discord.app.AppPermissions2
     public void requestCameraQRScanner(Function0<Unit> onSuccess) {
-        m.checkNotNullParameter(onSuccess, "onSuccess");
+        Intrinsics3.checkNotNullParameter(onSuccess, "onSuccess");
         requireAppActivity().appPermissions.requestCameraQRScanner(onSuccess);
     }
 }

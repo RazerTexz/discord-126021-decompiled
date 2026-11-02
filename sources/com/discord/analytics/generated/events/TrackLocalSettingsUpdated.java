@@ -1,14 +1,14 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackLocalSettingsUpdated.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackLocalSettingsUpdated implements AnalyticsSchema, TrackBaseReceiver {
+public final /* data */ class TrackLocalSettingsUpdated implements AnalyticsSchema, TrackBase2 {
     private final Boolean autoStreaming = null;
     private final Boolean colorblindEnabled = null;
     private final Boolean gameDetectionEnabled = null;
@@ -27,7 +27,7 @@ public final /* data */ class TrackLocalSettingsUpdated implements AnalyticsSche
             return false;
         }
         TrackLocalSettingsUpdated trackLocalSettingsUpdated = (TrackLocalSettingsUpdated) other;
-        return m.areEqual(this.notificationsEnabled, trackLocalSettingsUpdated.notificationsEnabled) && m.areEqual(this.notificationsInAppEnabled, trackLocalSettingsUpdated.notificationsInAppEnabled) && m.areEqual(this.colorblindEnabled, trackLocalSettingsUpdated.colorblindEnabled) && m.areEqual(this.saturationLevel, trackLocalSettingsUpdated.saturationLevel) && m.areEqual(this.gameDetectionEnabled, trackLocalSettingsUpdated.gameDetectionEnabled) && m.areEqual(this.nativePhoneIntegrationEnabled, trackLocalSettingsUpdated.nativePhoneIntegrationEnabled) && m.areEqual(this.autoStreaming, trackLocalSettingsUpdated.autoStreaming);
+        return Intrinsics3.areEqual(this.notificationsEnabled, trackLocalSettingsUpdated.notificationsEnabled) && Intrinsics3.areEqual(this.notificationsInAppEnabled, trackLocalSettingsUpdated.notificationsInAppEnabled) && Intrinsics3.areEqual(this.colorblindEnabled, trackLocalSettingsUpdated.colorblindEnabled) && Intrinsics3.areEqual(this.saturationLevel, trackLocalSettingsUpdated.saturationLevel) && Intrinsics3.areEqual(this.gameDetectionEnabled, trackLocalSettingsUpdated.gameDetectionEnabled) && Intrinsics3.areEqual(this.nativePhoneIntegrationEnabled, trackLocalSettingsUpdated.nativePhoneIntegrationEnabled) && Intrinsics3.areEqual(this.autoStreaming, trackLocalSettingsUpdated.autoStreaming);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -54,7 +54,7 @@ public final /* data */ class TrackLocalSettingsUpdated implements AnalyticsSche
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackLocalSettingsUpdated(notificationsEnabled=");
+        StringBuilder sbU = outline.U("TrackLocalSettingsUpdated(notificationsEnabled=");
         sbU.append(this.notificationsEnabled);
         sbU.append(", notificationsInAppEnabled=");
         sbU.append(this.notificationsInAppEnabled);
@@ -67,6 +67,6 @@ public final /* data */ class TrackLocalSettingsUpdated implements AnalyticsSche
         sbU.append(", nativePhoneIntegrationEnabled=");
         sbU.append(this.nativePhoneIntegrationEnabled);
         sbU.append(", autoStreaming=");
-        return a.D(sbU, this.autoStreaming, ")");
+        return outline.D(sbU, this.autoStreaming, ")");
     }
 }

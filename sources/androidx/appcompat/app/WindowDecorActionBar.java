@@ -44,7 +44,7 @@ import androidx.core.view.ViewPropertyAnimatorListenerAdapter;
 import androidx.core.view.ViewPropertyAnimatorUpdateListener;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentTransaction;
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 
@@ -664,7 +664,7 @@ public class WindowDecorActionBar extends ActionBar implements ActionBarOverlayL
         if (view instanceof Toolbar) {
             return ((Toolbar) view).getWrapper();
         }
-        StringBuilder sbU = a.U("Can't make a decor toolbar out of ");
+        StringBuilder sbU = outline.U("Can't make a decor toolbar out of ");
         sbU.append(view != 0 ? view.getClass().getSimpleName() : "null");
         throw new IllegalStateException(sbU.toString());
     }

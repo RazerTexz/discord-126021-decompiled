@@ -1,22 +1,22 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.analytics.generated.traits.TrackChannel;
-import com.discord.analytics.generated.traits.TrackChannelReceiver;
+import com.discord.analytics.generated.traits.TrackChannel2;
 import com.discord.analytics.generated.traits.TrackGuild;
-import com.discord.analytics.generated.traits.TrackGuildReceiver;
+import com.discord.analytics.generated.traits.TrackGuild2;
 import com.discord.analytics.generated.traits.TrackLocationMetadata;
-import com.discord.analytics.generated.traits.TrackLocationMetadataReceiver;
+import com.discord.analytics.generated.traits.TrackLocationMetadata2;
 import com.discord.api.science.AnalyticsSchema;
 import com.discord.models.domain.ModelAuditLogEntry;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 import java.util.List;
 
 /* JADX INFO: compiled from: TrackMessageReported.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackMessageReported implements AnalyticsSchema, TrackBaseReceiver, TrackLocationMetadataReceiver, TrackGuildReceiver, TrackChannelReceiver {
+public final /* data */ class TrackMessageReported implements AnalyticsSchema, TrackBase2, TrackLocationMetadata2, TrackGuild2, TrackChannel2 {
     private final CharSequence description = null;
     private final Long messageId = null;
     private final List<Long> mutualGuildIds = null;
@@ -32,7 +32,7 @@ public final /* data */ class TrackMessageReported implements AnalyticsSchema, T
     private TrackLocationMetadata trackLocationMetadata;
     private final transient String analyticsSchemaTypeName = "message_reported";
 
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    @Override // com.discord.analytics.generated.traits.TrackGuild2
     public void c(TrackGuild trackGuild) {
         this.trackGuild = trackGuild;
     }
@@ -45,7 +45,7 @@ public final /* data */ class TrackMessageReported implements AnalyticsSchema, T
             return false;
         }
         TrackMessageReported trackMessageReported = (TrackMessageReported) other;
-        return m.areEqual(this.reportType, trackMessageReported.reportType) && m.areEqual(this.reportSubType, trackMessageReported.reportSubType) && m.areEqual(this.subject, trackMessageReported.subject) && m.areEqual(this.description, trackMessageReported.description) && m.areEqual(this.reasonEnum, trackMessageReported.reasonEnum) && m.areEqual(this.messageId, trackMessageReported.messageId) && m.areEqual(this.reportId, trackMessageReported.reportId) && m.areEqual(this.mutualGuildIds, trackMessageReported.mutualGuildIds) && m.areEqual(this.reportedMessageAuthorId, trackMessageReported.reportedMessageAuthorId);
+        return Intrinsics3.areEqual(this.reportType, trackMessageReported.reportType) && Intrinsics3.areEqual(this.reportSubType, trackMessageReported.reportSubType) && Intrinsics3.areEqual(this.subject, trackMessageReported.subject) && Intrinsics3.areEqual(this.description, trackMessageReported.description) && Intrinsics3.areEqual(this.reasonEnum, trackMessageReported.reasonEnum) && Intrinsics3.areEqual(this.messageId, trackMessageReported.messageId) && Intrinsics3.areEqual(this.reportId, trackMessageReported.reportId) && Intrinsics3.areEqual(this.mutualGuildIds, trackMessageReported.mutualGuildIds) && Intrinsics3.areEqual(this.reportedMessageAuthorId, trackMessageReported.reportedMessageAuthorId);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -54,7 +54,7 @@ public final /* data */ class TrackMessageReported implements AnalyticsSchema, T
         return this.analyticsSchemaTypeName;
     }
 
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    @Override // com.discord.analytics.generated.traits.TrackGuild2
     /* JADX INFO: renamed from: a, reason: from getter */
     public TrackGuild getTrackGuild() {
         return this.trackGuild;
@@ -82,7 +82,7 @@ public final /* data */ class TrackMessageReported implements AnalyticsSchema, T
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackMessageReported(reportType=");
+        StringBuilder sbU = outline.U("TrackMessageReported(reportType=");
         sbU.append(this.reportType);
         sbU.append(", reportSubType=");
         sbU.append(this.reportSubType);
@@ -99,6 +99,6 @@ public final /* data */ class TrackMessageReported implements AnalyticsSchema, T
         sbU.append(", mutualGuildIds=");
         sbU.append(this.mutualGuildIds);
         sbU.append(", reportedMessageAuthorId=");
-        return a.G(sbU, this.reportedMessageAuthorId, ")");
+        return outline.G(sbU, this.reportedMessageAuthorId, ")");
     }
 }

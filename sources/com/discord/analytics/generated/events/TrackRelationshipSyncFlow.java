@@ -1,16 +1,16 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.analytics.generated.traits.TrackLocationMetadata;
-import com.discord.analytics.generated.traits.TrackLocationMetadataReceiver;
+import com.discord.analytics.generated.traits.TrackLocationMetadata2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackRelationshipSyncFlow.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackRelationshipSyncFlow implements AnalyticsSchema, TrackBaseReceiver, TrackLocationMetadataReceiver {
+public final /* data */ class TrackRelationshipSyncFlow implements AnalyticsSchema, TrackBase2, TrackLocationMetadata2 {
     private final Boolean back = null;
     private final CharSequence flowType = null;
     private final CharSequence fromStep = null;
@@ -33,7 +33,7 @@ public final /* data */ class TrackRelationshipSyncFlow implements AnalyticsSche
             return false;
         }
         TrackRelationshipSyncFlow trackRelationshipSyncFlow = (TrackRelationshipSyncFlow) other;
-        return m.areEqual(this.flowType, trackRelationshipSyncFlow.flowType) && m.areEqual(this.fromStep, trackRelationshipSyncFlow.fromStep) && m.areEqual(this.toStep, trackRelationshipSyncFlow.toStep) && m.areEqual(this.skip, trackRelationshipSyncFlow.skip) && m.areEqual(this.back, trackRelationshipSyncFlow.back) && m.areEqual(this.secondsOnFromStep, trackRelationshipSyncFlow.secondsOnFromStep) && m.areEqual(this.numContactsFound, trackRelationshipSyncFlow.numContactsFound) && m.areEqual(this.numContactsAdded, trackRelationshipSyncFlow.numContactsAdded) && m.areEqual(this.mobileContactsPermission, trackRelationshipSyncFlow.mobileContactsPermission) && m.areEqual(this.hasPhoneNumber, trackRelationshipSyncFlow.hasPhoneNumber);
+        return Intrinsics3.areEqual(this.flowType, trackRelationshipSyncFlow.flowType) && Intrinsics3.areEqual(this.fromStep, trackRelationshipSyncFlow.fromStep) && Intrinsics3.areEqual(this.toStep, trackRelationshipSyncFlow.toStep) && Intrinsics3.areEqual(this.skip, trackRelationshipSyncFlow.skip) && Intrinsics3.areEqual(this.back, trackRelationshipSyncFlow.back) && Intrinsics3.areEqual(this.secondsOnFromStep, trackRelationshipSyncFlow.secondsOnFromStep) && Intrinsics3.areEqual(this.numContactsFound, trackRelationshipSyncFlow.numContactsFound) && Intrinsics3.areEqual(this.numContactsAdded, trackRelationshipSyncFlow.numContactsAdded) && Intrinsics3.areEqual(this.mobileContactsPermission, trackRelationshipSyncFlow.mobileContactsPermission) && Intrinsics3.areEqual(this.hasPhoneNumber, trackRelationshipSyncFlow.hasPhoneNumber);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -66,7 +66,7 @@ public final /* data */ class TrackRelationshipSyncFlow implements AnalyticsSche
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackRelationshipSyncFlow(flowType=");
+        StringBuilder sbU = outline.U("TrackRelationshipSyncFlow(flowType=");
         sbU.append(this.flowType);
         sbU.append(", fromStep=");
         sbU.append(this.fromStep);
@@ -85,6 +85,6 @@ public final /* data */ class TrackRelationshipSyncFlow implements AnalyticsSche
         sbU.append(", mobileContactsPermission=");
         sbU.append(this.mobileContactsPermission);
         sbU.append(", hasPhoneNumber=");
-        return a.D(sbU, this.hasPhoneNumber, ")");
+        return outline.D(sbU, this.hasPhoneNumber, ")");
     }
 }

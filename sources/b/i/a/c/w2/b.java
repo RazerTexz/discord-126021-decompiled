@@ -1,16 +1,18 @@
 package b.i.a.c.w2;
 
+import b.i.a.c.f3.Consumer3;
+
 /* JADX INFO: compiled from: lambda */
 /* JADX INFO: loaded from: classes3.dex */
-public final /* synthetic */ class b implements b.i.a.c.f3.k {
+public final /* synthetic */ class b implements Consumer3 {
     public final /* synthetic */ Exception a;
 
     public /* synthetic */ b(Exception exc) {
         this.a = exc;
     }
 
-    @Override // b.i.a.c.f3.k
+    @Override // b.i.a.c.f3.Consumer3
     public final void accept(Object obj) {
-        ((s.a) obj).e(this.a);
+        ((DrmSessionEventListener.a) obj).e(this.a);
     }
 }

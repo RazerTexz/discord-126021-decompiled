@@ -15,14 +15,15 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentViewModelLazyKt;
-import b.a.d.f;
-import b.a.d.g0;
-import b.a.d.i0;
-import b.a.d.j;
-import b.a.i.a3;
-import b.a.i.b3;
-import b.a.k.b;
-import b.d.b.a.a;
+import b.a.d.AppHelpDesk;
+import b.a.d.AppScreen2;
+import b.a.d.AppToast;
+import b.a.d.AppViewModelDelegates3;
+import b.a.d.AppViewModelDelegates5;
+import b.a.i.ViewPremiumSettingsTier1Binding;
+import b.a.i.ViewPremiumSettingsTier2Binding;
+import b.a.k.FormatUtils;
+import b.d.b.a.outline;
 import com.android.billingclient.api.Purchase;
 import com.android.billingclient.api.SkuDetails;
 import com.discord.R;
@@ -36,15 +37,15 @@ import com.discord.i18n.RenderContext;
 import com.discord.models.domain.ModelEntitlement;
 import com.discord.models.domain.ModelGuildBoostSlot;
 import com.discord.models.domain.ModelSubscription;
-import com.discord.models.domain.billing.ModelInvoiceItem;
 import com.discord.models.domain.billing.ModelInvoicePreview;
+import com.discord.models.domain.billing.ModelInvoicePreview3;
 import com.discord.models.domain.premium.SubscriptionPlanType;
 import com.discord.stores.StoreStream;
 import com.discord.utilities.accessibility.AccessibilityUtils;
 import com.discord.utilities.analytics.Traits;
 import com.discord.utilities.billing.GooglePlaySku;
-import com.discord.utilities.billing.GooglePlaySkuKt;
-import com.discord.utilities.billing.PremiumUtilsKt;
+import com.discord.utilities.billing.GooglePlaySku2;
+import com.discord.utilities.billing.PremiumUtils2;
 import com.discord.utilities.locale.LocaleManager;
 import com.discord.utilities.logging.Logger;
 import com.discord.utilities.premium.BlockRussianPurchasesUtils;
@@ -55,17 +56,19 @@ import com.discord.utilities.time.TimeUtils;
 import com.discord.utilities.uri.UriHandler;
 import com.discord.utilities.view.extensions.ViewExtensions;
 import com.discord.utilities.viewbinding.FragmentViewBindingDelegate;
-import com.discord.utilities.viewbinding.FragmentViewBindingDelegateKt;
+import com.discord.utilities.viewbinding.FragmentViewBindingDelegate3;
 import com.discord.views.ActiveSubscriptionView;
 import com.discord.widgets.notice.WidgetNoticeDialog;
 import com.discord.widgets.settings.guildboost.WidgetSettingsGuildBoost;
 import com.google.android.material.button.MaterialButton;
-import d0.t.m0;
-import d0.t.n;
-import d0.z.d.a0;
-import d0.z.d.k;
-import d0.z.d.m;
-import d0.z.d.o;
+import d0.Tuples;
+import d0.t.Collections2;
+import d0.t.MapsJVM;
+import d0.t.SetsJVM;
+import d0.z.d.FunctionReferenceImpl;
+import d0.z.d.Intrinsics3;
+import d0.z.d.Lambda;
+import d0.z.d.Reflection2;
 import java.text.NumberFormat;
 import java.util.Collection;
 import java.util.Iterator;
@@ -85,7 +88,7 @@ import rx.Observable;
 /* JADX INFO: compiled from: WidgetSettingsPremium.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetSettingsPremium extends AppFragment {
-    public static final /* synthetic */ KProperty[] $$delegatedProperties = {a.d0(WidgetSettingsPremium.class, "binding", "getBinding()Lcom/discord/databinding/WidgetSettingsPremiumBinding;", 0)};
+    public static final /* synthetic */ KProperty[] $$delegatedProperties = {outline.d0(WidgetSettingsPremium.class, "binding", "getBinding()Lcom/discord/databinding/WidgetSettingsPremiumBinding;", 0)};
     private static final String ANALYTICS_LOCATION_SECTION = "analytics_location_section";
 
     /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
@@ -117,9 +120,9 @@ public final class WidgetSettingsPremium extends AppFragment {
         public final void onClick(View view) {
             if (this.$isAppleSubscription) {
                 PremiumUtils premiumUtils = PremiumUtils.INSTANCE;
-                m.checkNotNullExpressionValue(view, "it");
+                Intrinsics3.checkNotNullExpressionValue(view, "it");
                 Context context = view.getContext();
-                m.checkNotNullExpressionValue(context, "it.context");
+                Intrinsics3.checkNotNullExpressionValue(context, "it.context");
                 premiumUtils.openAppleBilling(context);
             }
         }
@@ -142,7 +145,7 @@ public final class WidgetSettingsPremium extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.settings.premium.WidgetSettingsPremium$getGuildBoostViewCallbacks$1, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetSettingsPremium.kt */
-    public final class AnonymousClass1 extends o implements Function0<Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function0<Unit> {
         public AnonymousClass1() {
             super(0);
         }
@@ -161,7 +164,7 @@ public final class WidgetSettingsPremium extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.settings.premium.WidgetSettingsPremium$getPremiumSubscriptionViewCallbacks$1, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetSettingsPremium.kt */
-    public final class AnonymousClass1 extends o implements Function0<Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function0<Unit> {
         public final /* synthetic */ ModelSubscription $premiumSubscription;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -184,7 +187,7 @@ public final class WidgetSettingsPremium extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.settings.premium.WidgetSettingsPremium$onViewBoundOrOnResume$1, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetSettingsPremium.kt */
-    public final class AnonymousClass1 extends o implements Function1<SettingsPremiumViewModel.ViewState, Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function1<SettingsPremiumViewModel.ViewState, Unit> {
         public AnonymousClass1() {
             super(1);
         }
@@ -209,7 +212,7 @@ public final class WidgetSettingsPremium extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.settings.premium.WidgetSettingsPremium$showCancelConfirmationAlert$1, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetSettingsPremium.kt */
-    public final class AnonymousClass1 extends o implements Function1<View, Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function1<View, Unit> {
         public final /* synthetic */ SettingsPremiumViewModel $viewModel;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -226,14 +229,14 @@ public final class WidgetSettingsPremium extends AppFragment {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(View view) {
-            m.checkNotNullParameter(view, "it");
+            Intrinsics3.checkNotNullParameter(view, "it");
             this.$viewModel.cancelSubscription();
         }
     }
 
     /* JADX INFO: renamed from: com.discord.widgets.settings.premium.WidgetSettingsPremium$showContent$1, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetSettingsPremium.kt */
-    public final class AnonymousClass1 extends o implements Function1<Long, Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function1<Long, Unit> {
         public final /* synthetic */ Integer $scrollTargetSection;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -281,7 +284,7 @@ public final class WidgetSettingsPremium extends AppFragment {
         public final void onClick(View view) {
             if (this.$isGoogleSubscription) {
                 PremiumUtils premiumUtils = PremiumUtils.INSTANCE;
-                Context contextX = a.x(view, "it", "it.context");
+                Context contextX = outline.x(view, "it", "it.context");
                 ModelSubscription modelSubscription = this.$subscription;
                 premiumUtils.openGooglePlayBilling(contextX, modelSubscription != null ? modelSubscription.getPaymentGatewayPlanId() : null);
             }
@@ -296,13 +299,13 @@ public final class WidgetSettingsPremium extends AppFragment {
 
         @Override // android.view.View.OnClickListener
         public final void onClick(View view) {
-            UriHandler.handle$default(UriHandler.INSTANCE, a.I(WidgetSettingsPremium.access$getBinding$p(WidgetSettingsPremium.this).k.c, "binding.premiumSettingsPriceChangeNotice.textview", "binding.premiumSettingsP…geNotice.textview.context"), f.a.a(4407269525911L, null), false, false, null, 28, null);
+            UriHandler.handle$default(UriHandler.INSTANCE, outline.I(WidgetSettingsPremium.access$getBinding$p(WidgetSettingsPremium.this).k.c, "binding.premiumSettingsPriceChangeNotice.textview", "binding.premiumSettingsP…geNotice.textview.context"), AppHelpDesk.a.a(4407269525911L, null), false, false, null, 28, null);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.widgets.settings.premium.WidgetSettingsPremium$getGuildBoostViewCallbacks$2, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetSettingsPremium.kt */
-    public final class AnonymousClass2 extends o implements Function0<Unit> {
+    public final class AnonymousClass2 extends Lambda implements Function0<Unit> {
         public final /* synthetic */ String $skuName;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -325,7 +328,7 @@ public final class WidgetSettingsPremium extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.settings.premium.WidgetSettingsPremium$getPremiumSubscriptionViewCallbacks$2, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetSettingsPremium.kt */
-    public final class AnonymousClass2 extends o implements Function0<Unit> {
+    public final class AnonymousClass2 extends Lambda implements Function0<Unit> {
         public final /* synthetic */ ModelSubscription $premiumSubscription;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -348,7 +351,7 @@ public final class WidgetSettingsPremium extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.settings.premium.WidgetSettingsPremium$onViewBoundOrOnResume$2, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetSettingsPremium.kt */
-    public final /* synthetic */ class AnonymousClass2 extends k implements Function1<SettingsPremiumViewModel.Event, Unit> {
+    public final /* synthetic */ class AnonymousClass2 extends FunctionReferenceImpl implements Function1<SettingsPremiumViewModel.Event, Unit> {
         public AnonymousClass2(WidgetSettingsPremium widgetSettingsPremium) {
             super(1, widgetSettingsPremium, WidgetSettingsPremium.class, "handleEvent", "handleEvent(Lcom/discord/widgets/settings/premium/SettingsPremiumViewModel$Event;)V", 0);
         }
@@ -361,14 +364,14 @@ public final class WidgetSettingsPremium extends AppFragment {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(SettingsPremiumViewModel.Event event) {
-            m.checkNotNullParameter(event, "p1");
+            Intrinsics3.checkNotNullParameter(event, "p1");
             WidgetSettingsPremium.access$handleEvent((WidgetSettingsPremium) this.receiver, event);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.widgets.settings.premium.WidgetSettingsPremium$getGuildBoostViewCallbacks$3, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetSettingsPremium.kt */
-    public final class AnonymousClass3 extends o implements Function0<Unit> {
+    public final class AnonymousClass3 extends Lambda implements Function0<Unit> {
         public final /* synthetic */ String $skuName;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -391,7 +394,7 @@ public final class WidgetSettingsPremium extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.settings.premium.WidgetSettingsPremium$getPremiumSubscriptionViewCallbacks$3, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetSettingsPremium.kt */
-    public final class AnonymousClass3 extends o implements Function0<Unit> {
+    public final class AnonymousClass3 extends Lambda implements Function0<Unit> {
         public final /* synthetic */ ModelSubscription $premiumSubscription;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -414,7 +417,7 @@ public final class WidgetSettingsPremium extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.settings.premium.WidgetSettingsPremium$getGuildBoostViewCallbacks$4, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetSettingsPremium.kt */
-    public final class AnonymousClass4 extends o implements Function0<Unit> {
+    public final class AnonymousClass4 extends Lambda implements Function0<Unit> {
         public final /* synthetic */ String $skuName;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -437,7 +440,7 @@ public final class WidgetSettingsPremium extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.settings.premium.WidgetSettingsPremium$getPremiumSubscriptionViewCallbacks$4, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetSettingsPremium.kt */
-    public final class AnonymousClass4 extends o implements Function0<Unit> {
+    public final class AnonymousClass4 extends Lambda implements Function0<Unit> {
         public AnonymousClass4() {
             super(0);
         }
@@ -456,7 +459,7 @@ public final class WidgetSettingsPremium extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.settings.premium.WidgetSettingsPremium$getGuildBoostViewCallbacks$5, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetSettingsPremium.kt */
-    public final class AnonymousClass5 extends o implements Function0<Unit> {
+    public final class AnonymousClass5 extends Lambda implements Function0<Unit> {
         public final /* synthetic */ String $skuName;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -479,7 +482,7 @@ public final class WidgetSettingsPremium extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.settings.premium.WidgetSettingsPremium$getPremiumSubscriptionViewCallbacks$5, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetSettingsPremium.kt */
-    public final class AnonymousClass5 extends o implements Function0<Unit> {
+    public final class AnonymousClass5 extends Lambda implements Function0<Unit> {
         public AnonymousClass5() {
             super(0);
         }
@@ -499,7 +502,7 @@ public final class WidgetSettingsPremium extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.settings.premium.WidgetSettingsPremium$getGuildBoostViewCallbacks$6, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetSettingsPremium.kt */
-    public final class AnonymousClass6 extends o implements Function0<Unit> {
+    public final class AnonymousClass6 extends Lambda implements Function0<Unit> {
         public AnonymousClass6() {
             super(0);
         }
@@ -590,7 +593,7 @@ public final class WidgetSettingsPremium extends AppFragment {
                     return false;
                 }
                 SubscriptionViewCallbacks subscriptionViewCallbacks = (SubscriptionViewCallbacks) other;
-                return m.areEqual(this.restoreCallback, subscriptionViewCallbacks.restoreCallback) && m.areEqual(this.managePlanCallback, subscriptionViewCallbacks.managePlanCallback) && m.areEqual(this.cancelCallback, subscriptionViewCallbacks.cancelCallback) && m.areEqual(this.manageGuildBoostCallback, subscriptionViewCallbacks.manageGuildBoostCallback) && m.areEqual(this.manageBillingCallback, subscriptionViewCallbacks.manageBillingCallback);
+                return Intrinsics3.areEqual(this.restoreCallback, subscriptionViewCallbacks.restoreCallback) && Intrinsics3.areEqual(this.managePlanCallback, subscriptionViewCallbacks.managePlanCallback) && Intrinsics3.areEqual(this.cancelCallback, subscriptionViewCallbacks.cancelCallback) && Intrinsics3.areEqual(this.manageGuildBoostCallback, subscriptionViewCallbacks.manageGuildBoostCallback) && Intrinsics3.areEqual(this.manageBillingCallback, subscriptionViewCallbacks.manageBillingCallback);
             }
 
             public final Function0<Unit> getCancelCallback() {
@@ -627,7 +630,7 @@ public final class WidgetSettingsPremium extends AppFragment {
             }
 
             public String toString() {
-                StringBuilder sbU = a.U("SubscriptionViewCallbacks(restoreCallback=");
+                StringBuilder sbU = outline.U("SubscriptionViewCallbacks(restoreCallback=");
                 sbU.append(this.restoreCallback);
                 sbU.append(", managePlanCallback=");
                 sbU.append(this.managePlanCallback);
@@ -656,12 +659,12 @@ public final class WidgetSettingsPremium extends AppFragment {
         }
 
         public final void launch(Context context, Integer scrollToSection, String locationSection) {
-            m.checkNotNullParameter(context, "context");
+            Intrinsics3.checkNotNullParameter(context, "context");
             if (BlockRussianPurchasesUtils.INSTANCE.getINSTANCE().showDialog()) {
                 return;
             }
             StoreStream.INSTANCE.getAnalytics().onUserSettingsPaneViewed("Discord Nitro", locationSection);
-            j.d(context, WidgetSettingsPremium.class, new Intent().putExtra(WidgetSettingsPremium.INTENT_SCROLL_TO_SECTION, scrollToSection).putExtra(WidgetSettingsPremium.ANALYTICS_LOCATION_SECTION, locationSection));
+            AppScreen2.d(context, WidgetSettingsPremium.class, new Intent().putExtra(WidgetSettingsPremium.INTENT_SCROLL_TO_SECTION, scrollToSection).putExtra(WidgetSettingsPremium.ANALYTICS_LOCATION_SECTION, locationSection));
         }
 
         public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
@@ -721,10 +724,10 @@ public final class WidgetSettingsPremium extends AppFragment {
 
     public WidgetSettingsPremium() {
         super(R.layout.widget_settings_premium);
-        this.binding = FragmentViewBindingDelegateKt.viewBinding$default(this, WidgetSettingsPremium$binding$2.INSTANCE, null, 2, null);
-        WidgetSettingsPremium$viewModel$2 widgetSettingsPremium$viewModel$2 = WidgetSettingsPremium$viewModel$2.INSTANCE;
-        g0 g0Var = new g0(this);
-        this.viewModel = FragmentViewModelLazyKt.createViewModelLazy(this, a0.getOrCreateKotlinClass(SettingsPremiumViewModel.class), new WidgetSettingsPremium$appViewModels$$inlined$viewModels$1(g0Var), new i0(widgetSettingsPremium$viewModel$2));
+        this.binding = FragmentViewBindingDelegate3.viewBinding$default(this, WidgetSettingsPremium2.INSTANCE, null, 2, null);
+        WidgetSettingsPremium8 widgetSettingsPremium8 = WidgetSettingsPremium8.INSTANCE;
+        AppViewModelDelegates3 appViewModelDelegates3 = new AppViewModelDelegates3(this);
+        this.viewModel = FragmentViewModelLazyKt.createViewModelLazy(this, Reflection2.getOrCreateKotlinClass(SettingsPremiumViewModel.class), new WidgetSettingsPremium$appViewModels$$inlined$viewModels$1(appViewModelDelegates3), new AppViewModelDelegates5(widgetSettingsPremium8));
         this.localeManager = new LocaleManager();
     }
 
@@ -787,10 +790,10 @@ public final class WidgetSettingsPremium extends AppFragment {
             }
         }
         LinearLayout linearLayout = getBinding().g;
-        m.checkNotNullExpressionValue(linearLayout, "binding.premiumSettingsCreditContainer");
+        Intrinsics3.checkNotNullExpressionValue(linearLayout, "binding.premiumSettingsCreditContainer");
         linearLayout.setVisibility(i > 0 || i2 > 0 ? 0 : 8);
         View view = getBinding().f2633b.d;
-        m.checkNotNullExpressionValue(view, "binding.accountCredits.creditNitroDivider");
+        Intrinsics3.checkNotNullExpressionValue(view, "binding.accountCredits.creditNitroDivider");
         view.setVisibility(i > 0 && i2 > 0 ? 0 : 8);
         getBinding().f2633b.c.a(SubscriptionPlanType.PREMIUM_MONTH_TIER_1.getPlanId(), i, currentSubscription);
         getBinding().f2633b.f110b.a(SubscriptionPlanType.PREMIUM_MONTH_TIER_2.getPlanId(), i2, currentSubscription);
@@ -802,7 +805,7 @@ public final class WidgetSettingsPremium extends AppFragment {
     /* JADX WARN: Code duplicated, block: B:49:0x00ae  */
     /* JADX WARN: Code duplicated, block: B:72:0x00ef  */
     private final void configureActiveSubscriptionView(SettingsPremiumViewModel.ViewState.Loaded model) {
-        ModelInvoiceItem modelInvoiceItem;
+        ModelInvoicePreview3 modelInvoicePreview3;
         int size;
         boolean z2;
         Function0<Unit> managePlanCallback;
@@ -810,7 +813,7 @@ public final class WidgetSettingsPremium extends AppFragment {
         ModelSubscription.Status status2;
         ModelSubscription.Status status3;
         ModelSubscription.Status status4;
-        List<ModelInvoiceItem> invoiceItems;
+        List<ModelInvoicePreview3> invoiceItems;
         Object next;
         long subscriptionPlanId;
         Long guildBoostPlanId;
@@ -834,13 +837,13 @@ public final class WidgetSettingsPremium extends AppFragment {
         boolean zIsGoogleSubscription = premiumSubscription != null ? premiumSubscription.isGoogleSubscription() : false;
         GooglePlaySku googlePlaySkuFromSkuName = (premiumSubscription == null || (paymentGatewayPlanId = premiumSubscription.getPaymentGatewayPlanId()) == null) ? null : GooglePlaySku.INSTANCE.fromSkuName(paymentGatewayPlanId);
         LinearLayout linearLayout = getBinding().q;
-        m.checkNotNullExpressionValue(linearLayout, "binding.premiumSettingsSubscriptionContainer");
+        Intrinsics3.checkNotNullExpressionValue(linearLayout, "binding.premiumSettingsSubscriptionContainer");
         linearLayout.setVisibility(model.getHasAnyGuildBoosts() || z8 ? 0 : 8);
         ActiveSubscriptionView activeSubscriptionView = getBinding().f;
-        m.checkNotNullExpressionValue(activeSubscriptionView, "binding.premiumSettingsActiveSubscription");
+        Intrinsics3.checkNotNullExpressionValue(activeSubscriptionView, "binding.premiumSettingsActiveSubscription");
         activeSubscriptionView.setVisibility(z8 && currentInvoicePreview != null ? 0 : 8);
         if (z8 && currentInvoicePreview != null) {
-            m.checkNotNull(premiumSubscription);
+            Intrinsics3.checkNotNull(premiumSubscription);
             Iterator<T> it = currentInvoicePreview.getInvoiceItems().iterator();
             do {
                 if (!it.hasNext()) {
@@ -848,9 +851,9 @@ public final class WidgetSettingsPremium extends AppFragment {
                     break;
                 }
                 next2 = it.next();
-                ModelInvoiceItem modelInvoiceItem2 = (ModelInvoiceItem) next2;
-                if (modelInvoiceItem2.getSubscriptionPlanId() != premiumSubscription.getPremiumBasePlanId()) {
-                    long subscriptionPlanId2 = modelInvoiceItem2.getSubscriptionPlanId();
+                ModelInvoicePreview3 modelInvoicePreview4 = (ModelInvoicePreview3) next2;
+                if (modelInvoicePreview4.getSubscriptionPlanId() != premiumSubscription.getPremiumBasePlanId()) {
+                    long subscriptionPlanId2 = modelInvoicePreview4.getSubscriptionPlanId();
                     ModelSubscription.SubscriptionRenewalMutations renewalMutations5 = premiumSubscription.getRenewalMutations();
                     if (renewalMutations5 == null || subscriptionPlanId2 != renewalMutations5.getPremiumBasePlanId()) {
                         z6 = false;
@@ -861,9 +864,9 @@ public final class WidgetSettingsPremium extends AppFragment {
                     z6 = true;
                 }
             } while (!z6);
-            ModelInvoiceItem modelInvoiceItem3 = (ModelInvoiceItem) next2;
-            int premiumSubscriptionCount = (googlePlaySkuFromSkuName == null || !GooglePlaySkuKt.isBundledSku(googlePlaySkuFromSkuName)) ? 0 : googlePlaySkuFromSkuName.getPremiumSubscriptionCount();
-            CharSequence priceText = getPriceText(premiumSubscription, skuDetails, modelInvoiceItem3);
+            ModelInvoicePreview3 modelInvoicePreview5 = (ModelInvoicePreview3) next2;
+            int premiumSubscriptionCount = (googlePlaySkuFromSkuName == null || !GooglePlaySku2.isBundledSku(googlePlaySkuFromSkuName)) ? 0 : googlePlaySkuFromSkuName.getPremiumSubscriptionCount();
+            CharSequence priceText = getPriceText(premiumSubscription, skuDetails, modelInvoicePreview5);
             if (premiumSubscription.getStatus().isAccountHold()) {
                 z3 = false;
             } else {
@@ -919,7 +922,7 @@ public final class WidgetSettingsPremium extends AppFragment {
         }
         ModelInvoicePreview currentInvoicePreview2 = model.getCurrentInvoicePreview();
         if (currentInvoicePreview2 == null || (invoiceItems = currentInvoicePreview2.getInvoiceItems()) == null) {
-            modelInvoiceItem = null;
+            modelInvoicePreview3 = null;
         } else {
             Iterator<T> it2 = invoiceItems.iterator();
             do {
@@ -928,16 +931,16 @@ public final class WidgetSettingsPremium extends AppFragment {
                     break;
                 } else {
                     next = it2.next();
-                    subscriptionPlanId = ((ModelInvoiceItem) next).getSubscriptionPlanId();
+                    subscriptionPlanId = ((ModelInvoicePreview3) next).getSubscriptionPlanId();
                     guildBoostPlanId = premiumSubscription != null ? premiumSubscription.getGuildBoostPlanId() : null;
                 }
             } while (!(guildBoostPlanId != null && subscriptionPlanId == guildBoostPlanId.longValue()));
-            modelInvoiceItem = (ModelInvoiceItem) next;
+            modelInvoicePreview3 = (ModelInvoicePreview3) next;
         }
         ActiveSubscriptionView activeSubscriptionView4 = getBinding().e;
-        m.checkNotNullExpressionValue(activeSubscriptionView4, "binding.premiumSettingsActiveGuildSubscription");
-        activeSubscriptionView4.setVisibility(model.getHasAnyGuildBoosts() && modelInvoiceItem != null ? 0 : 8);
-        if (!model.getHasAnyGuildBoosts() || modelInvoiceItem == null) {
+        Intrinsics3.checkNotNullExpressionValue(activeSubscriptionView4, "binding.premiumSettingsActiveGuildSubscription");
+        activeSubscriptionView4.setVisibility(model.getHasAnyGuildBoosts() && modelInvoicePreview3 != null ? 0 : 8);
+        if (!model.getHasAnyGuildBoosts() || modelInvoicePreview3 == null) {
             return;
         }
         Map<Long, ModelGuildBoostSlot> guildSubscriptions = model.getGuildSubscriptions();
@@ -947,10 +950,10 @@ public final class WidgetSettingsPremium extends AppFragment {
             size = googlePlaySkuFromSkuName.getPremiumSubscriptionCount();
         }
         int i = size;
-        CharSequence priceText2 = getPriceText(premiumSubscription, skuDetails, modelInvoiceItem);
+        CharSequence priceText2 = getPriceText(premiumSubscription, skuDetails, modelInvoicePreview3);
         boolean z9 = zIsGoogleSubscription && (premiumSubscription != null ? ActiveSubscriptionView.b(premiumSubscription) : null) == ActiveSubscriptionView.ActiveSubscriptionType.PREMIUM_GUILD;
         ActiveSubscriptionView activeSubscriptionView5 = getBinding().e;
-        m.checkNotNullExpressionValue(activeSubscriptionView5, "binding.premiumSettingsActiveGuildSubscription");
+        Intrinsics3.checkNotNullExpressionValue(activeSubscriptionView5, "binding.premiumSettingsActiveGuildSubscription");
         activeSubscriptionView5.setVisibility(!zIsGoogleSubscription || z9 ? 0 : 8);
         Companion.SubscriptionViewCallbacks guildBoostViewCallbacks = getGuildBoostViewCallbacks(z9, premiumSubscription != null ? premiumSubscription.getPaymentGatewayPlanId() : null);
         Collection<ModelGuildBoostSlot> collectionValues = guildSubscriptions.values();
@@ -1005,27 +1008,27 @@ public final class WidgetSettingsPremium extends AppFragment {
 
     private final void configureButtonText(Map<String, ? extends SkuDetails> skuDetails) {
         MaterialButton materialButton = getBinding().t.f76b;
-        m.checkNotNullExpressionValue(materialButton, "binding.premiumTier1.premiumSettingsPremiumClassic");
+        Intrinsics3.checkNotNullExpressionValue(materialButton, "binding.premiumTier1.premiumSettingsPremiumClassic");
         materialButton.setText(getPriceText(skuDetails != null ? skuDetails.get(GooglePlaySku.PREMIUM_TIER_1_MONTHLY.getSkuName()) : null));
         MaterialButton materialButton2 = getBinding().u.f84b;
-        m.checkNotNullExpressionValue(materialButton2, "binding.premiumTier2.premiumSettingsPremium");
+        Intrinsics3.checkNotNullExpressionValue(materialButton2, "binding.premiumTier2.premiumSettingsPremium");
         materialButton2.setText(getPriceText(skuDetails != null ? skuDetails.get(GooglePlaySku.PREMIUM_TIER_2_MONTHLY.getSkuName()) : null));
     }
 
     private final void configureButtons(ModelSubscription premiumSubscription, Map<String, ? extends SkuDetails> skuDetails) {
         configureButtonText(skuDetails);
         if (premiumSubscription == null || !premiumSubscription.isAppleSubscription()) {
-            for (MaterialButton materialButton : n.listOf((Object[]) new MaterialButton[]{getBinding().t.f76b, getBinding().u.f84b})) {
-                m.checkNotNullExpressionValue(materialButton, "button");
+            for (MaterialButton materialButton : Collections2.listOf((Object[]) new MaterialButton[]{getBinding().t.f76b, getBinding().u.f84b})) {
+                Intrinsics3.checkNotNullExpressionValue(materialButton, "button");
                 materialButton.setEnabled(premiumSubscription == null);
-                materialButton.setOnClickListener(new WidgetSettingsPremium$configureButtons$$inlined$forEach$lambda$2(materialButton, this, premiumSubscription));
+                materialButton.setOnClickListener(new WidgetSettingsPremium4(materialButton, this, premiumSubscription));
             }
             return;
         }
-        for (MaterialButton materialButton2 : n.listOf((Object[]) new MaterialButton[]{getBinding().t.f76b, getBinding().u.f84b})) {
-            m.checkNotNullExpressionValue(materialButton2, "button");
+        for (MaterialButton materialButton2 : Collections2.listOf((Object[]) new MaterialButton[]{getBinding().t.f76b, getBinding().u.f84b})) {
+            Intrinsics3.checkNotNullExpressionValue(materialButton2, "button");
             ViewExtensions.setEnabledAlpha$default(materialButton2, true, 0.0f, 2, null);
-            materialButton2.setOnClickListener(new WidgetSettingsPremium$configureButtons$$inlined$forEach$lambda$1(this));
+            materialButton2.setOnClickListener(new WidgetSettingsPremium3(this));
         }
     }
 
@@ -1035,13 +1038,13 @@ public final class WidgetSettingsPremium extends AppFragment {
         if (planType != null) {
             int iOrdinal = planType.ordinal();
             if (iOrdinal == 4) {
-                charSequenceK = b.k(this, R.string.premium_grandfathered_monthly, new Object[]{DateFormat.getMediumDateFormat(requireContext()).format(PremiumUtilsKt.getGRANDFATHERED_MONTHLY_END_DATE())}, null, 4);
+                charSequenceK = FormatUtils.k(this, R.string.premium_grandfathered_monthly, new Object[]{DateFormat.getMediumDateFormat(requireContext()).format(PremiumUtils2.getGRANDFATHERED_MONTHLY_END_DATE())}, null, 4);
             } else if (iOrdinal == 5) {
-                charSequenceK = b.k(this, R.string.premium_grandfathered_yearly, new Object[]{DateFormat.getMediumDateFormat(requireContext()).format(PremiumUtilsKt.getGRANDFATHERED_YEARLY_END_DATE())}, null, 4);
+                charSequenceK = FormatUtils.k(this, R.string.premium_grandfathered_yearly, new Object[]{DateFormat.getMediumDateFormat(requireContext()).format(PremiumUtils2.getGRANDFATHERED_YEARLY_END_DATE())}, null, 4);
             }
         }
         TextView textView = getBinding().i;
-        m.checkNotNullExpressionValue(textView, "binding.premiumSettingsGrandfathered");
+        Intrinsics3.checkNotNullExpressionValue(textView, "binding.premiumSettingsGrandfathered");
         ViewExtensions.setTextAndVisibilityBy(textView, charSequenceK);
     }
 
@@ -1052,7 +1055,7 @@ public final class WidgetSettingsPremium extends AppFragment {
         ModelInvoicePreview renewalInvoicePreview = model.getRenewalInvoicePreview();
         if (premiumSubscription == null || !premiumSubscription.getPlanType().isPremiumSubscription()) {
             TextView textView = getBinding().j;
-            m.checkNotNullExpressionValue(textView, "binding.premiumSettingsLegalese");
+            Intrinsics3.checkNotNullExpressionValue(textView, "binding.premiumSettingsLegalese");
             textView.setVisibility(8);
             return;
         }
@@ -1067,16 +1070,16 @@ public final class WidgetSettingsPremium extends AppFragment {
         }
         Object googleSubscriptionRenewalPrice = getGoogleSubscriptionRenewalPrice(premiumSubscription, skuDetails);
         if (googleSubscriptionRenewalPrice == null) {
-            googleSubscriptionRenewalPrice = PremiumUtilsKt.getFormattedPriceUsd(renewalInvoicePreview != null ? renewalInvoicePreview.getTotal() : 0, requireContext());
+            googleSubscriptionRenewalPrice = PremiumUtils2.getFormattedPriceUsd(renewalInvoicePreview != null ? renewalInvoicePreview.getTotal() : 0, requireContext());
         }
         TextView textView2 = getBinding().j;
-        m.checkNotNullExpressionValue(textView2, "binding.premiumSettingsLegalese");
+        Intrinsics3.checkNotNullExpressionValue(textView2, "binding.premiumSettingsLegalese");
         textView2.setVisibility(0);
         TextView textView3 = getBinding().j;
-        m.checkNotNullExpressionValue(textView3, "binding.premiumSettingsLegalese");
-        b.n(textView3, i, new Object[]{b.k(this, R.string.terms_of_service_url, new Object[0], null, 4), b.k(this, R.string.paid_services_terms_url, new Object[0], null, 4), b.k(this, R.string.privacy_policy_url, new Object[0], null, 4), googleSubscriptionRenewalPrice}, null, 4);
+        Intrinsics3.checkNotNullExpressionValue(textView3, "binding.premiumSettingsLegalese");
+        FormatUtils.n(textView3, i, new Object[]{FormatUtils.k(this, R.string.terms_of_service_url, new Object[0], null, 4), FormatUtils.k(this, R.string.paid_services_terms_url, new Object[0], null, 4), FormatUtils.k(this, R.string.privacy_policy_url, new Object[0], null, 4), googleSubscriptionRenewalPrice}, null, 4);
         TextView textView4 = getBinding().j;
-        m.checkNotNullExpressionValue(textView4, "binding.premiumSettingsLegalese");
+        Intrinsics3.checkNotNullExpressionValue(textView4, "binding.premiumSettingsLegalese");
         textView4.setMovementMethod(LinkMovementMethod.getInstance());
     }
 
@@ -1113,10 +1116,10 @@ public final class WidgetSettingsPremium extends AppFragment {
             strRenderUtcDate$default = "";
         }
         LinearLayout linearLayout = getBinding().c.f;
-        m.checkNotNullExpressionValue(linearLayout, "binding.payment.premiumSettingsPaymentContainer");
+        Intrinsics3.checkNotNullExpressionValue(linearLayout, "binding.payment.premiumSettingsPaymentContainer");
         linearLayout.setVisibility(premiumSubscription != null ? 0 : 8);
         View view = getBinding().c.c;
-        m.checkNotNullExpressionValue(view, "binding.payment.premiumSettingsBillingDivider");
+        Intrinsics3.checkNotNullExpressionValue(view, "binding.payment.premiumSettingsBillingDivider");
         view.setVisibility(zIsAppleSubscription ? 0 : 8);
         if (premiumSubscription != null) {
             ActiveSubscriptionView.ActiveSubscriptionType activeSubscriptionTypeB = ActiveSubscriptionView.b(premiumSubscription);
@@ -1125,15 +1128,15 @@ public final class WidgetSettingsPremium extends AppFragment {
             if (zIsGoogleSubscription && strA != null) {
                 objK = strA;
             } else if (activeSubscriptionTypeB == ActiveSubscriptionView.ActiveSubscriptionType.PREMIUM) {
-                objK = b.k(this, R.string.premium_tier_2, new Object[0], null, 4);
+                objK = FormatUtils.k(this, R.string.premium_tier_2, new Object[0], null, 4);
             } else if (activeSubscriptionTypeB == ActiveSubscriptionView.ActiveSubscriptionType.PREMIUM_CLASSIC) {
-                objK = b.k(this, R.string.premium_tier_1, new Object[0], null, 4);
+                objK = FormatUtils.k(this, R.string.premium_tier_1, new Object[0], null, 4);
             } else if (activeSubscriptionTypeB == ActiveSubscriptionView.ActiveSubscriptionType.PREMIUM_GUILD) {
-                objK = b.k(this, R.string.premium_guild_subscription_title, new Object[0], null, 4);
+                objK = FormatUtils.k(this, R.string.premium_guild_subscription_title, new Object[0], null, 4);
             }
         }
         if (zIsAppleSubscription) {
-            charSequenceK = b.k(this, R.string.billing_managed_by_apple, new Object[0], null, 4);
+            charSequenceK = FormatUtils.k(this, R.string.billing_managed_by_apple, new Object[0], null, 4);
         } else if (premiumSubscription == null) {
             charSequenceK = null;
         } else {
@@ -1143,34 +1146,34 @@ public final class WidgetSettingsPremium extends AppFragment {
                 objArr[0] = strRenderUtcDate$default;
                 Object googleSubscriptionRenewalPrice = getGoogleSubscriptionRenewalPrice(premiumSubscription, skuDetails);
                 if (googleSubscriptionRenewalPrice == null) {
-                    googleSubscriptionRenewalPrice = PremiumUtilsKt.getFormattedPriceUsd(renewalInvoicePreview != null ? renewalInvoicePreview.getTotal() : 0, requireContext());
+                    googleSubscriptionRenewalPrice = PremiumUtils2.getFormattedPriceUsd(renewalInvoicePreview != null ? renewalInvoicePreview.getTotal() : 0, requireContext());
                 }
                 objArr[1] = googleSubscriptionRenewalPrice;
-                charSequenceK = b.k(this, R.string.premium_settings_renewal_info, objArr, null, 4);
+                charSequenceK = FormatUtils.k(this, R.string.premium_settings_renewal_info, objArr, null, 4);
             } else if (iOrdinal3 == 2) {
-                charSequenceK = b.k(this, R.string.premium_settings_past_due_info, new Object[]{objK, strRenderUtcDate$default}, null, 4);
+                charSequenceK = FormatUtils.k(this, R.string.premium_settings_past_due_info, new Object[]{objK, strRenderUtcDate$default}, null, 4);
             } else if (iOrdinal3 == 3) {
-                charSequenceK = b.k(this, R.string.premium_settings_cancelled_info, new Object[]{strRenderUtcDate$default}, null, 4);
+                charSequenceK = FormatUtils.k(this, R.string.premium_settings_cancelled_info, new Object[]{strRenderUtcDate$default}, null, 4);
             } else if (iOrdinal3 != 5) {
                 charSequenceK = null;
             } else {
-                charSequenceK = b.k(this, R.string.premium_settings_account_hold_info, new Object[]{TimeUtils.renderUtcDate$default(TimeUtils.INSTANCE, premiumSubscription.getAccountHoldEstimatedExpirationTimestamp(), requireContext(), 0, 4, null)}, null, 4);
+                charSequenceK = FormatUtils.k(this, R.string.premium_settings_account_hold_info, new Object[]{TimeUtils.renderUtcDate$default(TimeUtils.INSTANCE, premiumSubscription.getAccountHoldEstimatedExpirationTimestamp(), requireContext(), 0, 4, null)}, null, 4);
             }
         }
         TextView textView = getBinding().c.d;
-        m.checkNotNullExpressionValue(textView, "binding.payment.premiumSettingsBillingInformation");
+        Intrinsics3.checkNotNullExpressionValue(textView, "binding.payment.premiumSettingsBillingInformation");
         textView.setVisibility(charSequenceK != null ? 0 : 8);
         if (charSequenceK != null) {
             TextView textView2 = getBinding().c.d;
-            m.checkNotNullExpressionValue(textView2, "binding.payment.premiumSettingsBillingInformation");
+            Intrinsics3.checkNotNullExpressionValue(textView2, "binding.payment.premiumSettingsBillingInformation");
             textView2.setText(charSequenceK);
         }
         MaterialButton materialButton = getBinding().c.f195b;
-        m.checkNotNullExpressionValue(materialButton, "binding.payment.activeSubscriptionsBottomButton");
-        ViewExtensions.setTextAndVisibilityBy(materialButton, zIsAppleSubscription ? b.k(this, R.string.billing_manage_subscription, new Object[0], null, 4) : null);
+        Intrinsics3.checkNotNullExpressionValue(materialButton, "binding.payment.activeSubscriptionsBottomButton");
+        ViewExtensions.setTextAndVisibilityBy(materialButton, zIsAppleSubscription ? FormatUtils.k(this, R.string.billing_manage_subscription, new Object[0], null, 4) : null);
         getBinding().c.f195b.setOnClickListener(new AnonymousClass1(zIsAppleSubscription));
         TextView textView3 = getBinding().c.e;
-        m.checkNotNullExpressionValue(textView3, "binding.payment.premiumSettingsGooglePlayManage");
+        Intrinsics3.checkNotNullExpressionValue(textView3, "binding.payment.premiumSettingsGooglePlayManage");
         textView3.setVisibility(zIsGoogleSubscription ? 0 : 8);
         getBinding().c.e.setOnClickListener(new AnonymousClass2(zIsGoogleSubscription, premiumSubscription));
     }
@@ -1178,22 +1181,22 @@ public final class WidgetSettingsPremium extends AppFragment {
     private final void configurePriceChangeNotice(ModelSubscription subscription, Map<String, ? extends SkuDetails> skuDetailsMap) {
         SkuDetails skuDetails = skuDetailsMap != null ? skuDetailsMap.get(GooglePlaySku.PREMIUM_TIER_2_MONTHLY.getSkuName()) : null;
         String strOptString = skuDetails != null ? skuDetails.f2006b.optString("price_currency_code") : null;
-        Map mapMapOf = d0.t.g0.mapOf(d0.o.to("PLN", Integer.valueOf(R.string.country_name_pl)));
+        Map mapMapOf = MapsJVM.mapOf(Tuples.to("PLN", Integer.valueOf(R.string.country_name_pl)));
         Objects.requireNonNull(mapMapOf, "null cannot be cast to non-null type kotlin.collections.Map<K, *>");
         boolean z2 = mapMapOf.containsKey(strOptString) && (subscription == null || subscription.isGoogleSubscription());
         CardView cardView = getBinding().k.f79b;
-        m.checkNotNullExpressionValue(cardView, "binding.premiumSettingsPriceChangeNotice.card");
+        Intrinsics3.checkNotNullExpressionValue(cardView, "binding.premiumSettingsPriceChangeNotice.card");
         cardView.setVisibility(z2 ? 0 : 8);
         if (z2) {
             int i = subscription == null ? R.string.localized_pricing_mobile_price_change_notice_no_sub : R.string.localized_pricing_mobile_price_change_notice_has_sub;
             TextView textView = getBinding().k.c;
-            m.checkNotNullExpressionValue(textView, "binding.premiumSettingsPriceChangeNotice.textview");
+            Intrinsics3.checkNotNullExpressionValue(textView, "binding.premiumSettingsPriceChangeNotice.textview");
             Object[] objArr = new Object[3];
             Integer num = (Integer) mapMapOf.get(strOptString);
-            objArr[0] = num != null ? b.k(this, num.intValue(), new Object[0], null, 4) : null;
+            objArr[0] = num != null ? FormatUtils.k(this, num.intValue(), new Object[0], null, 4) : null;
             objArr[1] = skuDetails != null ? skuDetails.b() : null;
-            objArr[2] = f.a.a(4407269525911L, null);
-            textView.setText(b.k(this, i, objArr, null, 4));
+            objArr[2] = AppHelpDesk.a.a(4407269525911L, null);
+            textView.setText(FormatUtils.k(this, i, objArr, null, 4));
             getBinding().k.c.setOnClickListener(new AnonymousClass2());
         }
     }
@@ -1227,7 +1230,7 @@ public final class WidgetSettingsPremium extends AppFragment {
             z2 = false;
         }
         CardView cardView = getBinding().o;
-        m.checkNotNullExpressionValue(cardView, "binding.premiumSettingsStatusNoticeContainer");
+        Intrinsics3.checkNotNullExpressionValue(cardView, "binding.premiumSettingsStatusNoticeContainer");
         cardView.setVisibility(z2 ? 0 : 8);
         if (!z2 || subscription == null) {
             return;
@@ -1257,9 +1260,9 @@ public final class WidgetSettingsPremium extends AppFragment {
                 planString2 = getPlanString(subscriptionPlanType2);
             } else {
                 planString2 = skuDetails.a();
-                m.checkNotNullExpressionValue(planString2, "skuDetails.description");
+                Intrinsics3.checkNotNullExpressionValue(planString2, "skuDetails.description");
             }
-            charSequenceK = b.k(this, R.string.premium_pending_plan_change_notice, new Object[]{planString2, strRenderUtcDate$default}, null, 4);
+            charSequenceK = FormatUtils.k(this, R.string.premium_pending_plan_change_notice, new Object[]{planString2, strRenderUtcDate$default}, null, 4);
         } else if (zIsAccountHold) {
             String paymentGatewayPlanId2 = subscription.getPaymentGatewayPlanId();
             if (paymentGatewayPlanId2 == null) {
@@ -1271,7 +1274,7 @@ public final class WidgetSettingsPremium extends AppFragment {
                         break;
                     }
                     subscriptionPlanType = subscriptionPlanTypeArrValues[i];
-                    if (subscription.hasAnyOfPlans(m0.setOf(Long.valueOf(subscriptionPlanType.getPlanId())))) {
+                    if (subscription.hasAnyOfPlans(SetsJVM.setOf(Long.valueOf(subscriptionPlanType.getPlanId())))) {
                         break;
                     } else {
                         i++;
@@ -1289,7 +1292,7 @@ public final class WidgetSettingsPremium extends AppFragment {
                             break;
                         }
                         subscriptionPlanType = subscriptionPlanTypeArrValues[i];
-                        if (subscription.hasAnyOfPlans(m0.setOf(Long.valueOf(subscriptionPlanType.getPlanId())))) {
+                        if (subscription.hasAnyOfPlans(SetsJVM.setOf(Long.valueOf(subscriptionPlanType.getPlanId())))) {
                             break;
                             break;
                         }
@@ -1298,20 +1301,20 @@ public final class WidgetSettingsPremium extends AppFragment {
                     planString = getPlanString(subscriptionPlanType);
                 }
             }
-            charSequenceK = b.k(this, R.string.premium_settings_account_hold_notice_info, new Object[]{TimeUtils.renderUtcDate$default(TimeUtils.INSTANCE, subscription.getAccountHoldEstimatedExpirationTimestamp(), requireContext(), 0, 4, null), planString}, null, 4);
+            charSequenceK = FormatUtils.k(this, R.string.premium_settings_account_hold_notice_info, new Object[]{TimeUtils.renderUtcDate$default(TimeUtils.INSTANCE, subscription.getAccountHoldEstimatedExpirationTimestamp(), requireContext(), 0, 4, null), planString}, null, 4);
         } else {
             charSequenceK = "";
         }
         TextView textView = getBinding().p;
-        m.checkNotNullExpressionValue(textView, "binding.premiumSettingsStatusNoticeTv");
+        Intrinsics3.checkNotNullExpressionValue(textView, "binding.premiumSettingsStatusNoticeTv");
         textView.setText(charSequenceK);
         Button button = getBinding().n;
-        m.checkNotNullExpressionValue(button, "binding.premiumSettingsStatusNoticeButton");
+        Intrinsics3.checkNotNullExpressionValue(button, "binding.premiumSettingsStatusNoticeButton");
         button.setVisibility(zIsAccountHold ? 0 : 8);
         if (zIsAccountHold) {
             Button button2 = getBinding().n;
-            m.checkNotNullExpressionValue(button2, "binding.premiumSettingsStatusNoticeButton");
-            b.n(button2, R.string.premium_settings_account_hold_notice_change_payment_method_button, new Object[0], null, 4);
+            Intrinsics3.checkNotNullExpressionValue(button2, "binding.premiumSettingsStatusNoticeButton");
+            FormatUtils.n(button2, R.string.premium_settings_account_hold_notice_change_payment_method_button, new Object[0], null, 4);
             getBinding().n.setOnClickListener(new AnonymousClass1(subscription));
         }
     }
@@ -1353,17 +1356,17 @@ public final class WidgetSettingsPremium extends AppFragment {
         if (planType != null) {
             switch (planType.ordinal()) {
                 case 6:
-                    return b.k(this, R.string.premium_plan_month_tier_1, new Object[0], null, 4);
+                    return FormatUtils.k(this, R.string.premium_plan_month_tier_1, new Object[0], null, 4);
                 case 7:
-                    return b.k(this, R.string.premium_plan_year_tier_1, new Object[0], null, 4);
+                    return FormatUtils.k(this, R.string.premium_plan_year_tier_1, new Object[0], null, 4);
                 case 8:
-                    return b.k(this, R.string.premium_plan_month_tier_2, new Object[0], null, 4);
+                    return FormatUtils.k(this, R.string.premium_plan_month_tier_2, new Object[0], null, 4);
                 case 9:
-                    return b.k(this, R.string.premium_plan_3_month_tier_2, new Object[0], null, 4);
+                    return FormatUtils.k(this, R.string.premium_plan_3_month_tier_2, new Object[0], null, 4);
                 case 10:
-                    return b.k(this, R.string.premium_plan_6_month_tier_2, new Object[0], null, 4);
+                    return FormatUtils.k(this, R.string.premium_plan_6_month_tier_2, new Object[0], null, 4);
                 case 11:
-                    return b.k(this, R.string.premium_plan_year_tier_2, new Object[0], null, 4);
+                    return FormatUtils.k(this, R.string.premium_plan_year_tier_2, new Object[0], null, 4);
             }
         }
         return "";
@@ -1373,7 +1376,7 @@ public final class WidgetSettingsPremium extends AppFragment {
         if (!premiumSubscription.isGoogleSubscription()) {
             return premiumSubscription.isAppleSubscription() ? new Companion.SubscriptionViewCallbacks(null, null, null, null, null) : new Companion.SubscriptionViewCallbacks(null, new AnonymousClass4(), new AnonymousClass5(), null, null);
         }
-        WidgetSettingsPremium$getPremiumSubscriptionViewCallbacks$manageBundledGuildBoostCallback$1 widgetSettingsPremium$getPremiumSubscriptionViewCallbacks$manageBundledGuildBoostCallback$1 = canManageGuildBoosts ? new WidgetSettingsPremium$getPremiumSubscriptionViewCallbacks$manageBundledGuildBoostCallback$1(this) : null;
+        WidgetSettingsPremium5 widgetSettingsPremium5 = canManageGuildBoosts ? new WidgetSettingsPremium5(this) : null;
         boolean z2 = true;
         if (!(purchases instanceof Collection) || !purchases.isEmpty()) {
             Iterator<T> it = purchases.iterator();
@@ -1387,11 +1390,11 @@ public final class WidgetSettingsPremium extends AppFragment {
             z2 = false;
             break;
         }
-        return new Companion.SubscriptionViewCallbacks(new AnonymousClass1(premiumSubscription), z2 ? new WidgetSettingsPremium$getPremiumSubscriptionViewCallbacks$managePlanCallback$2(this) : new WidgetSettingsPremium$getPremiumSubscriptionViewCallbacks$managePlanCallback$3(this, premiumSubscription), new AnonymousClass2(premiumSubscription), widgetSettingsPremium$getPremiumSubscriptionViewCallbacks$manageBundledGuildBoostCallback$1, new AnonymousClass3(premiumSubscription));
+        return new Companion.SubscriptionViewCallbacks(new AnonymousClass1(premiumSubscription), z2 ? new WidgetSettingsPremium6(this) : new WidgetSettingsPremium7(this, premiumSubscription), new AnonymousClass2(premiumSubscription), widgetSettingsPremium5, new AnonymousClass3(premiumSubscription));
     }
 
     private final CharSequence getPriceText(SkuDetails skuDetails) {
-        return skuDetails != null ? b.k(this, R.string.premium_settings_starting_at_per_month, new Object[]{skuDetails.b()}, null, 4) : b.k(this, R.string.stream_premium_upsell_cta, new Object[0], null, 4);
+        return skuDetails != null ? FormatUtils.k(this, R.string.premium_settings_starting_at_per_month, new Object[]{skuDetails.b()}, null, 4) : FormatUtils.k(this, R.string.stream_premium_upsell_cta, new Object[0], null, 4);
     }
 
     private final SettingsPremiumViewModel getViewModel() {
@@ -1400,40 +1403,40 @@ public final class WidgetSettingsPremium extends AppFragment {
 
     private final void handleEvent(SettingsPremiumViewModel.Event event) {
         if (event instanceof SettingsPremiumViewModel.Event.ErrorToast) {
-            b.a.d.m.i(this, ((SettingsPremiumViewModel.Event.ErrorToast) event).getErrorStringResId(), 0, 4);
+            AppToast.i(this, ((SettingsPremiumViewModel.Event.ErrorToast) event).getErrorStringResId(), 0, 4);
         }
     }
 
     @Override // com.discord.app.AppFragment
     public void onViewBound(View view) {
-        m.checkNotNullParameter(view, "view");
+        Intrinsics3.checkNotNullParameter(view, "view");
         super.onViewBound(view);
         setActionBarSubtitle(R.string.user_settings);
         setActionBarTitle(R.string.premium_title);
         AppFragment.setActionBarDisplayHomeAsUpEnabled$default(this, false, 1, null);
         TextView textView = getBinding().d.e;
-        m.checkNotNullExpressionValue(textView, "binding.premiumPerks.uploadSizePerk");
-        textView.setText(b.d(view, R.string.premium_perks_upload_size, new Object[0], new AnonymousClass1()));
+        Intrinsics3.checkNotNullExpressionValue(textView, "binding.premiumPerks.uploadSizePerk");
+        textView.setText(FormatUtils.d(view, R.string.premium_perks_upload_size, new Object[0], new AnonymousClass1()));
         TextView textView2 = getBinding().t.d;
-        m.checkNotNullExpressionValue(textView2, "binding.premiumTier1.tier1UploadSizePerk");
-        textView2.setText(b.d(view, R.string.premium_perks_upload_size, new Object[0], new AnonymousClass2()));
+        Intrinsics3.checkNotNullExpressionValue(textView2, "binding.premiumTier1.tier1UploadSizePerk");
+        textView2.setText(FormatUtils.d(view, R.string.premium_perks_upload_size, new Object[0], new AnonymousClass2()));
         TextView textView3 = getBinding().d.f239b;
-        m.checkNotNullExpressionValue(textView3, "binding.premiumPerks.guildSubscriptionPerk");
-        textView3.setText(b.d(view, R.string.premium_perks_tier_2_guild_subscription, new Object[0], AnonymousClass3.INSTANCE));
+        Intrinsics3.checkNotNullExpressionValue(textView3, "binding.premiumPerks.guildSubscriptionPerk");
+        textView3.setText(FormatUtils.d(view, R.string.premium_perks_tier_2_guild_subscription, new Object[0], AnonymousClass3.INSTANCE));
         TextView textView4 = getBinding().t.c;
-        m.checkNotNullExpressionValue(textView4, "binding.premiumTier1.tier1GuildSubscriptionPerk");
-        textView4.setText(b.d(view, R.string.premium_perks_tier_1_guild_subscription, new Object[0], AnonymousClass4.INSTANCE));
+        Intrinsics3.checkNotNullExpressionValue(textView4, "binding.premiumTier1.tier1GuildSubscriptionPerk");
+        textView4.setText(FormatUtils.d(view, R.string.premium_perks_tier_1_guild_subscription, new Object[0], AnonymousClass4.INSTANCE));
         NumberFormat numberFormat = NumberFormat.getInstance(this.localeManager.getPrimaryLocale(requireContext()));
         TextView textView5 = getBinding().d.c;
-        m.checkNotNullExpressionValue(textView5, "binding.premiumPerks.maxGuildsPerk");
-        textView5.setText(b.d(view, R.string.premium_perks_tier_2_max_guilds, new Object[0], new AnonymousClass5(numberFormat)));
+        Intrinsics3.checkNotNullExpressionValue(textView5, "binding.premiumPerks.maxGuildsPerk");
+        textView5.setText(FormatUtils.d(view, R.string.premium_perks_tier_2_max_guilds, new Object[0], new AnonymousClass5(numberFormat)));
         TextView textView6 = getBinding().d.d;
-        m.checkNotNullExpressionValue(textView6, "binding.premiumPerks.maxMessageLengthPerk");
-        textView6.setText(b.e(this, R.string.premium_chat_perks_max_message_length, new Object[0], new AnonymousClass6(numberFormat)));
+        Intrinsics3.checkNotNullExpressionValue(textView6, "binding.premiumPerks.maxMessageLengthPerk");
+        textView6.setText(FormatUtils.e(this, R.string.premium_chat_perks_max_message_length, new Object[0], new AnonymousClass6(numberFormat)));
         configureButtonText$default(this, null, 1, null);
-        for (TextView textView7 : n.listOf((Object[]) new TextView[]{getBinding().r, getBinding().h, getBinding().c.g})) {
+        for (TextView textView7 : Collections2.listOf((Object[]) new TextView[]{getBinding().r, getBinding().h, getBinding().c.g})) {
             AccessibilityUtils accessibilityUtils = AccessibilityUtils.INSTANCE;
-            m.checkNotNullExpressionValue(textView7, "header");
+            Intrinsics3.checkNotNullExpressionValue(textView7, "header");
             accessibilityUtils.setViewIsHeading(textView7);
         }
     }
@@ -1442,7 +1445,7 @@ public final class WidgetSettingsPremium extends AppFragment {
     public void onViewBoundOrOnResume() {
         super.onViewBoundOrOnResume();
         Observable<SettingsPremiumViewModel.ViewState> observableR = getViewModel().observeViewState().q(200L, TimeUnit.MILLISECONDS).r();
-        m.checkNotNullExpressionValue(observableR, "viewModel\n        .obser…  .distinctUntilChanged()");
+        Intrinsics3.checkNotNullExpressionValue(observableR, "viewModel\n        .obser…  .distinctUntilChanged()");
         ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(observableR, this, null, 2, null), WidgetSettingsPremium.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass1(), 62, (Object) null);
         ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(getViewModel().getEventSubject(), this, null, 2, null), WidgetSettingsPremium.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass2(this), 62, (Object) null);
     }
@@ -1450,19 +1453,19 @@ public final class WidgetSettingsPremium extends AppFragment {
     private final void scrollToSection(Integer section) {
         int top;
         if (section != null && section.intValue() == 0) {
-            a3 a3Var = getBinding().t;
-            m.checkNotNullExpressionValue(a3Var, "binding.premiumTier1");
-            LinearLayout linearLayout = a3Var.a;
-            m.checkNotNullExpressionValue(linearLayout, "binding.premiumTier1.root");
+            ViewPremiumSettingsTier1Binding viewPremiumSettingsTier1Binding = getBinding().t;
+            Intrinsics3.checkNotNullExpressionValue(viewPremiumSettingsTier1Binding, "binding.premiumTier1");
+            LinearLayout linearLayout = viewPremiumSettingsTier1Binding.a;
+            Intrinsics3.checkNotNullExpressionValue(linearLayout, "binding.premiumTier1.root");
             int top2 = linearLayout.getTop();
             ScrollView scrollView = getBinding().m;
-            m.checkNotNullExpressionValue(scrollView, "binding.premiumSettingsScrollview");
+            Intrinsics3.checkNotNullExpressionValue(scrollView, "binding.premiumSettingsScrollview");
             top = scrollView.getHeight() + top2;
         } else if (section != null && section.intValue() == 1) {
-            b3 b3Var = getBinding().u;
-            m.checkNotNullExpressionValue(b3Var, "binding.premiumTier2");
-            LinearLayout linearLayout2 = b3Var.a;
-            m.checkNotNullExpressionValue(linearLayout2, "binding.premiumTier2.root");
+            ViewPremiumSettingsTier2Binding viewPremiumSettingsTier2Binding = getBinding().u;
+            Intrinsics3.checkNotNullExpressionValue(viewPremiumSettingsTier2Binding, "binding.premiumTier2");
+            LinearLayout linearLayout2 = viewPremiumSettingsTier2Binding.a;
+            Intrinsics3.checkNotNullExpressionValue(linearLayout2, "binding.premiumTier2.root");
             top = linearLayout2.getTop();
         } else {
             top = 0;
@@ -1477,27 +1480,27 @@ public final class WidgetSettingsPremium extends AppFragment {
     private final void showCancelConfirmationAlert(SettingsPremiumViewModel viewModel) {
         WidgetNoticeDialog.Companion companion = WidgetNoticeDialog.INSTANCE;
         FragmentManager parentFragmentManager = getParentFragmentManager();
-        m.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
-        WidgetNoticeDialog.Companion.show$default(companion, parentFragmentManager, b.k(this, R.string.premium_cancel_confirm_header, new Object[0], null, 4), b.k(this, R.string.premium_cancel_confirm_body, new Object[]{f.a.a(360055386693L, null)}, null, 4), b.k(this, R.string.premium_cancel_confirm_button, new Object[0], null, 4), b.k(this, R.string.nevermind, new Object[0], null, 4), d0.t.g0.mapOf(d0.o.to(Integer.valueOf(R.id.notice_ok), new AnonymousClass1(viewModel))), null, null, null, Integer.valueOf(R.attr.notice_theme_positive_red), null, null, 0, null, 15808, null);
+        Intrinsics3.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
+        WidgetNoticeDialog.Companion.show$default(companion, parentFragmentManager, FormatUtils.k(this, R.string.premium_cancel_confirm_header, new Object[0], null, 4), FormatUtils.k(this, R.string.premium_cancel_confirm_body, new Object[]{AppHelpDesk.a.a(360055386693L, null)}, null, 4), FormatUtils.k(this, R.string.premium_cancel_confirm_button, new Object[0], null, 4), FormatUtils.k(this, R.string.nevermind, new Object[0], null, 4), MapsJVM.mapOf(Tuples.to(Integer.valueOf(R.id.notice_ok), new AnonymousClass1(viewModel))), null, null, null, Integer.valueOf(R.attr.notice_theme_positive_red), null, null, 0, null, 15808, null);
     }
 
     private final void showContent(SettingsPremiumViewModel.ViewState.Loaded model) {
         SubscriptionPlanType planType;
         AppViewFlipper appViewFlipper = getBinding().f2634s;
-        m.checkNotNullExpressionValue(appViewFlipper, "binding.premiumSettingsViewFlipper");
+        Intrinsics3.checkNotNullExpressionValue(appViewFlipper, "binding.premiumSettingsViewFlipper");
         appViewFlipper.setDisplayedChild(0);
         ModelSubscription premiumSubscription = model.getPremiumSubscription();
         Boolean boolValueOf = (premiumSubscription == null || (planType = premiumSubscription.getPlanType()) == null) ? null : Boolean.valueOf(planType.isPremiumSubscription());
         ModelSubscription premiumSubscription2 = model.getPremiumSubscription();
         Boolean boolValueOf2 = premiumSubscription2 != null ? Boolean.valueOf(premiumSubscription2.isNonePlan()) : null;
         Boolean bool = Boolean.FALSE;
-        if (m.areEqual(boolValueOf, bool) && m.areEqual(boolValueOf2, bool)) {
-            StringBuilder sbU = a.U("Attempting to open WidgetSettingsPremium with non-Premium ");
-            StringBuilder sbU2 = a.U("and non-Guild Boost subscription: ");
+        if (Intrinsics3.areEqual(boolValueOf, bool) && Intrinsics3.areEqual(boolValueOf2, bool)) {
+            StringBuilder sbU = outline.U("Attempting to open WidgetSettingsPremium with non-Premium ");
+            StringBuilder sbU2 = outline.U("and non-Guild Boost subscription: ");
             sbU2.append(model.getPremiumSubscription().getId());
             sbU.append(sbU2.toString());
             String string = sbU.toString();
-            m.checkNotNullExpressionValue(string, "StringBuilder()\n        …}\")\n          .toString()");
+            Intrinsics3.checkNotNullExpressionValue(string, "StringBuilder()\n        …}\")\n          .toString()");
             Logger.e$default(AppLog.g, string, null, null, 6, null);
             FragmentActivity activity = getActivity();
             if (activity != null) {
@@ -1521,7 +1524,7 @@ public final class WidgetSettingsPremium extends AppFragment {
         }
         try {
             Observable<Long> observableD0 = Observable.d0(300L, TimeUnit.MILLISECONDS);
-            m.checkNotNullExpressionValue(observableD0, "Observable\n            .…0, TimeUnit.MILLISECONDS)");
+            Intrinsics3.checkNotNullExpressionValue(observableD0, "Observable\n            .…0, TimeUnit.MILLISECONDS)");
             ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(observableD0, this, null, 2, null), getClass(), (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass1(numValueOf), 62, (Object) null);
         } catch (Exception e) {
             Logger.e$default(AppLog.g, "Error Scrolling to section", e, null, 4, null);
@@ -1532,25 +1535,25 @@ public final class WidgetSettingsPremium extends AppFragment {
     private final void showDesktopManageAlert() {
         WidgetNoticeDialog.Companion companion = WidgetNoticeDialog.INSTANCE;
         FragmentManager parentFragmentManager = getParentFragmentManager();
-        m.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
-        WidgetNoticeDialog.Companion.show$default(companion, parentFragmentManager, b.k(this, R.string.billing_manage_subscription, new Object[0], null, 4), b.k(this, R.string.premium_manage_via_desktop, new Object[]{f.a.a(360055386693L, null)}, null, 4), b.k(this, R.string.premium_guild_subscription_header_subscribe_tooltip_close, new Object[0], null, 4), null, null, null, null, null, null, null, null, 0, null, 16368, null);
+        Intrinsics3.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
+        WidgetNoticeDialog.Companion.show$default(companion, parentFragmentManager, FormatUtils.k(this, R.string.billing_manage_subscription, new Object[0], null, 4), FormatUtils.k(this, R.string.premium_manage_via_desktop, new Object[]{AppHelpDesk.a.a(360055386693L, null)}, null, 4), FormatUtils.k(this, R.string.premium_guild_subscription_header_subscribe_tooltip_close, new Object[0], null, 4), null, null, null, null, null, null, null, null, 0, null, 16368, null);
     }
 
     private final void showFailureUI() {
         AppViewFlipper appViewFlipper = getBinding().f2634s;
-        m.checkNotNullExpressionValue(appViewFlipper, "binding.premiumSettingsViewFlipper");
+        Intrinsics3.checkNotNullExpressionValue(appViewFlipper, "binding.premiumSettingsViewFlipper");
         appViewFlipper.setDisplayedChild(2);
         getBinding().l.setOnClickListener(new AnonymousClass1());
     }
 
     private final void showLoadingUI() {
         AppViewFlipper appViewFlipper = getBinding().f2634s;
-        m.checkNotNullExpressionValue(appViewFlipper, "binding.premiumSettingsViewFlipper");
+        Intrinsics3.checkNotNullExpressionValue(appViewFlipper, "binding.premiumSettingsViewFlipper");
         appViewFlipper.setDisplayedChild(1);
         scrollToTop();
     }
 
-    private final CharSequence getPriceText(ModelSubscription premiumSubscription, Map<String, ? extends SkuDetails> skuDetails, ModelInvoiceItem invoiceItem) {
+    private final CharSequence getPriceText(ModelSubscription premiumSubscription, Map<String, ? extends SkuDetails> skuDetails, ModelInvoicePreview3 invoiceItem) {
         SubscriptionPlanType planType;
         SkuDetails skuDetails2;
         boolean zIsGoogleSubscription = premiumSubscription != null ? premiumSubscription.isGoogleSubscription() : false;
@@ -1567,31 +1570,31 @@ public final class WidgetSettingsPremium extends AppFragment {
         }
         String strB = (premiumSubscription == null || (skuDetails2 = skuDetails.get(premiumSubscription.getPaymentGatewayPlanId())) == null) ? null : skuDetails2.b();
         if (zIsGoogleSubscription && strB != null) {
-            return intervalCount == 1 ? b.k(this, i, new Object[]{strB}, null, 4) : b.k(this, i, new Object[]{strB, Integer.valueOf(intervalCount)}, null, 4);
+            return intervalCount == 1 ? FormatUtils.k(this, i, new Object[]{strB}, null, 4) : FormatUtils.k(this, i, new Object[]{strB, Integer.valueOf(intervalCount)}, null, 4);
         }
         if (intervalCount == 1) {
             Object[] objArr = new Object[1];
-            objArr[0] = PremiumUtilsKt.getFormattedPriceUsd(invoiceItem != null ? invoiceItem.getAmount() : 0, requireContext());
-            return b.k(this, i, objArr, null, 4);
+            objArr[0] = PremiumUtils2.getFormattedPriceUsd(invoiceItem != null ? invoiceItem.getAmount() : 0, requireContext());
+            return FormatUtils.k(this, i, objArr, null, 4);
         }
         Object[] objArr2 = new Object[2];
-        objArr2[0] = PremiumUtilsKt.getFormattedPriceUsd(invoiceItem != null ? invoiceItem.getAmount() : 0, requireContext());
+        objArr2[0] = PremiumUtils2.getFormattedPriceUsd(invoiceItem != null ? invoiceItem.getAmount() : 0, requireContext());
         objArr2[1] = Integer.valueOf(intervalCount);
-        return b.k(this, i, objArr2, null, 4);
+        return FormatUtils.k(this, i, objArr2, null, 4);
     }
 
     /* JADX INFO: renamed from: com.discord.widgets.settings.premium.WidgetSettingsPremium$onViewBound$1, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetSettingsPremium.kt */
-    public final class AnonymousClass1 extends o implements Function1<RenderContext, Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function1<RenderContext, Unit> {
         public AnonymousClass1() {
             super(1);
         }
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(RenderContext renderContext) {
-            m.checkNotNullParameter(renderContext, "$receiver");
-            renderContext.args.put("maxUploadStandard", b.k(WidgetSettingsPremium.this, R.string.file_upload_limit_standard, new Object[0], null, 4).toString());
-            renderContext.args.put("maxUploadPremium", b.k(WidgetSettingsPremium.this, R.string.file_upload_limit_premium_tier_2, new Object[0], null, 4).toString());
+            Intrinsics3.checkNotNullParameter(renderContext, "$receiver");
+            renderContext.args.put("maxUploadStandard", FormatUtils.k(WidgetSettingsPremium.this, R.string.file_upload_limit_standard, new Object[0], null, 4).toString());
+            renderContext.args.put("maxUploadPremium", FormatUtils.k(WidgetSettingsPremium.this, R.string.file_upload_limit_premium_tier_2, new Object[0], null, 4).toString());
         }
 
         @Override // kotlin.jvm.functions.Function1
@@ -1603,16 +1606,16 @@ public final class WidgetSettingsPremium extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.settings.premium.WidgetSettingsPremium$onViewBound$2, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetSettingsPremium.kt */
-    public final class AnonymousClass2 extends o implements Function1<RenderContext, Unit> {
+    public final class AnonymousClass2 extends Lambda implements Function1<RenderContext, Unit> {
         public AnonymousClass2() {
             super(1);
         }
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(RenderContext renderContext) {
-            m.checkNotNullParameter(renderContext, "$receiver");
-            renderContext.args.put("maxUploadStandard", b.k(WidgetSettingsPremium.this, R.string.file_upload_limit_standard, new Object[0], null, 4).toString());
-            renderContext.args.put("maxUploadPremium", b.k(WidgetSettingsPremium.this, R.string.file_upload_limit_premium_tier_1, new Object[0], null, 4).toString());
+            Intrinsics3.checkNotNullParameter(renderContext, "$receiver");
+            renderContext.args.put("maxUploadStandard", FormatUtils.k(WidgetSettingsPremium.this, R.string.file_upload_limit_standard, new Object[0], null, 4).toString());
+            renderContext.args.put("maxUploadPremium", FormatUtils.k(WidgetSettingsPremium.this, R.string.file_upload_limit_premium_tier_1, new Object[0], null, 4).toString());
         }
 
         @Override // kotlin.jvm.functions.Function1
@@ -1624,7 +1627,7 @@ public final class WidgetSettingsPremium extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.settings.premium.WidgetSettingsPremium$onViewBound$4, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetSettingsPremium.kt */
-    public final class AnonymousClass4 extends o implements Function1<RenderContext, Unit> {
+    public final class AnonymousClass4 extends Lambda implements Function1<RenderContext, Unit> {
         public static final AnonymousClass4 INSTANCE = new AnonymousClass4();
 
         public AnonymousClass4() {
@@ -1633,10 +1636,10 @@ public final class WidgetSettingsPremium extends AppFragment {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(RenderContext renderContext) {
-            m.checkNotNullParameter(renderContext, "$receiver");
+            Intrinsics3.checkNotNullParameter(renderContext, "$receiver");
             Map<String, String> map = renderContext.args;
             String str = NumberFormat.getPercentInstance().format(Float.valueOf(0.3f));
-            m.checkNotNullExpressionValue(str, "NumberFormat.getPercentI…_DISCOUNT_PERCENT\n      )");
+            Intrinsics3.checkNotNullExpressionValue(str, "NumberFormat.getPercentI…_DISCOUNT_PERCENT\n      )");
             map.put("discountPercentage", str);
         }
 
@@ -1649,7 +1652,7 @@ public final class WidgetSettingsPremium extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.settings.premium.WidgetSettingsPremium$onViewBound$5, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetSettingsPremium.kt */
-    public final class AnonymousClass5 extends o implements Function1<RenderContext, Unit> {
+    public final class AnonymousClass5 extends Lambda implements Function1<RenderContext, Unit> {
         public final /* synthetic */ NumberFormat $numberFormat;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -1660,14 +1663,14 @@ public final class WidgetSettingsPremium extends AppFragment {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(RenderContext renderContext) {
-            m.checkNotNullParameter(renderContext, "$receiver");
+            Intrinsics3.checkNotNullParameter(renderContext, "$receiver");
             Map<String, String> map = renderContext.args;
             String str = this.$numberFormat.format((Object) 100);
-            m.checkNotNullExpressionValue(str, "numberFormat.format(Prem…_NON_PREMIUM_GUILD_COUNT)");
+            Intrinsics3.checkNotNullExpressionValue(str, "numberFormat.format(Prem…_NON_PREMIUM_GUILD_COUNT)");
             map.put("nonPremiumMaxGuilds", str);
             Map<String, String> map2 = renderContext.args;
             String str2 = this.$numberFormat.format((Object) 200);
-            m.checkNotNullExpressionValue(str2, "numberFormat.format(Prem….MAX_PREMIUM_GUILD_COUNT)");
+            Intrinsics3.checkNotNullExpressionValue(str2, "numberFormat.format(Prem….MAX_PREMIUM_GUILD_COUNT)");
             map2.put("premiumMaxGuilds", str2);
         }
 
@@ -1680,7 +1683,7 @@ public final class WidgetSettingsPremium extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.settings.premium.WidgetSettingsPremium$onViewBound$3, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetSettingsPremium.kt */
-    public final class AnonymousClass3 extends o implements Function1<RenderContext, Unit> {
+    public final class AnonymousClass3 extends Lambda implements Function1<RenderContext, Unit> {
         public static final AnonymousClass3 INSTANCE = new AnonymousClass3();
 
         public AnonymousClass3() {
@@ -1689,11 +1692,11 @@ public final class WidgetSettingsPremium extends AppFragment {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(RenderContext renderContext) {
-            m.checkNotNullParameter(renderContext, "$receiver");
+            Intrinsics3.checkNotNullParameter(renderContext, "$receiver");
             renderContext.args.put("numBoosts", String.valueOf(2));
             Map<String, String> map = renderContext.args;
             String str = NumberFormat.getPercentInstance().format(Float.valueOf(0.3f));
-            m.checkNotNullExpressionValue(str, "NumberFormat.getPercentI…_DISCOUNT_PERCENT\n      )");
+            Intrinsics3.checkNotNullExpressionValue(str, "NumberFormat.getPercentI…_DISCOUNT_PERCENT\n      )");
             map.put("discountPercentage", str);
         }
 
@@ -1706,7 +1709,7 @@ public final class WidgetSettingsPremium extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.settings.premium.WidgetSettingsPremium$onViewBound$6, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetSettingsPremium.kt */
-    public final class AnonymousClass6 extends o implements Function1<RenderContext, Unit> {
+    public final class AnonymousClass6 extends Lambda implements Function1<RenderContext, Unit> {
         public final /* synthetic */ NumberFormat $numberFormat;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -1717,14 +1720,14 @@ public final class WidgetSettingsPremium extends AppFragment {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(RenderContext renderContext) {
-            m.checkNotNullParameter(renderContext, "$receiver");
+            Intrinsics3.checkNotNullParameter(renderContext, "$receiver");
             Map<String, String> map = renderContext.args;
             String str = this.$numberFormat.format((Object) 2000);
-            m.checkNotNullExpressionValue(str, "numberFormat.format(Send…_MESSAGE_CHARACTER_COUNT)");
+            Intrinsics3.checkNotNullExpressionValue(str, "numberFormat.format(Send…_MESSAGE_CHARACTER_COUNT)");
             map.put("nonPremiumMaxMessageLength", str);
             Map<String, String> map2 = renderContext.args;
             String str2 = this.$numberFormat.format(Integer.valueOf(SendUtils.MAX_MESSAGE_CHARACTER_COUNT_PREMIUM));
-            m.checkNotNullExpressionValue(str2, "numberFormat.format(Send…_CHARACTER_COUNT_PREMIUM)");
+            Intrinsics3.checkNotNullExpressionValue(str2, "numberFormat.format(Send…_CHARACTER_COUNT_PREMIUM)");
             map2.put("premiumMaxMessageLength", str2);
         }
 

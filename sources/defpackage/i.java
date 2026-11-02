@@ -2,14 +2,15 @@ package defpackage;
 
 import android.content.Context;
 import android.view.View;
+import b.a.d.AppToast;
 import com.discord.R;
 import com.discord.rtcconnection.audio.DiscordAudioManager;
 import com.discord.stores.StoreMediaSettings;
 import com.discord.stores.StoreStream;
 import com.discord.utilities.voice.DiscordOverlayService;
 import com.discord.views.OverlayMenuView;
-import d0.t.n;
-import d0.z.d.m;
+import d0.t.Collections2;
+import d0.z.d.Intrinsics3;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
@@ -32,7 +33,7 @@ public final class i implements View.OnClickListener {
         if (i2 == 0) {
             DiscordOverlayService.Companion companion = DiscordOverlayService.INSTANCE;
             Context context = ((OverlayMenuView) this.k).getContext();
-            m.checkNotNullExpressionValue(context, "context");
+            Intrinsics3.checkNotNullExpressionValue(context, "context");
             companion.launchForVoiceChannelSelect(context);
             ((OverlayMenuView) this.k).getOnDismissRequested$app_productionGoogleRelease().invoke();
             return;
@@ -46,7 +47,7 @@ public final class i implements View.OnClickListener {
                 i = 0;
                 while (it.hasNext()) {
                     if (((DiscordAudioManager.AudioDevice) it.next()).isAvailable && (i = i + 1) < 0) {
-                        n.throwCountOverflow();
+                        Collections2.throwCountOverflow();
                     }
                 }
             }
@@ -54,8 +55,8 @@ public final class i implements View.OnClickListener {
                 StoreStream.INSTANCE.getAudioManagerV2().toggleSpeakerOutput();
                 return;
             } else {
-                m.checkNotNullExpressionValue(view, "it");
-                b.a.d.m.g(view.getContext(), R.string.audio_devices_toggle_unavailable, 0, null, 12);
+                Intrinsics3.checkNotNullExpressionValue(view, "it");
+                AppToast.g(view.getContext(), R.string.audio_devices_toggle_unavailable, 0, null, 12);
                 return;
             }
         }
@@ -68,20 +69,20 @@ public final class i implements View.OnClickListener {
             return;
         }
         if (((OverlayMenuView.a) this.k).c.isSuppressed()) {
-            m.checkNotNullExpressionValue(view, "view");
-            b.a.d.m.g(view.getContext(), R.string.suppressed_permission_body, 0, null, 12);
+            Intrinsics3.checkNotNullExpressionValue(view, "view");
+            AppToast.g(view.getContext(), R.string.suppressed_permission_body, 0, null, 12);
         } else {
             if (((OverlayMenuView.a) this.k).c.isMuted()) {
-                m.checkNotNullExpressionValue(view, "view");
-                b.a.d.m.g(view.getContext(), R.string.server_muted_dialog_body, 0, null, 12);
+                Intrinsics3.checkNotNullExpressionValue(view, "view");
+                AppToast.g(view.getContext(), R.string.server_muted_dialog_body, 0, null, 12);
                 return;
             }
             StoreMediaSettings.SelfMuteFailure selfMuteFailure = StoreStream.INSTANCE.getMediaSettings().toggleSelfMuted();
             if (selfMuteFailure == null || selfMuteFailure.ordinal() != 0) {
                 return;
             }
-            m.checkNotNullExpressionValue(view, "view");
-            b.a.d.m.g(view.getContext(), R.string.vad_permission_small, 0, null, 12);
+            Intrinsics3.checkNotNullExpressionValue(view, "view");
+            AppToast.g(view.getContext(), R.string.vad_permission_small, 0, null, 12);
         }
     }
 }

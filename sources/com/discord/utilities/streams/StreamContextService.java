@@ -19,14 +19,15 @@ import com.discord.stores.StoreUser;
 import com.discord.stores.StoreVoiceChannelSelected;
 import com.discord.stores.StoreVoiceStates;
 import com.discord.utilities.permissions.PermissionUtils;
-import com.discord.utilities.rx.ObservableCombineLatestOverloadsKt;
-import d0.d0.f;
-import d0.t.g0;
-import d0.t.h0;
-import d0.z.d.m;
-import d0.z.d.o;
-import j0.k.b;
-import j0.l.e.k;
+import com.discord.utilities.rx.ObservableCombineLatestOverloads2;
+import d0.d0._Ranges;
+import d0.t.Iterables2;
+import d0.t.Maps6;
+import d0.t.MapsJVM;
+import d0.z.d.Intrinsics3;
+import d0.z.d.Lambda;
+import j0.k.Func1;
+import j0.l.e.ScalarSynchronousObservable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
@@ -52,11 +53,11 @@ public final class StreamContextService {
 
     /* JADX INFO: renamed from: com.discord.utilities.streams.StreamContextService$getForActiveStream$1, reason: invalid class name */
     /* JADX INFO: compiled from: StreamContextService.kt */
-    public final class AnonymousClass1<T, R> implements b<StoreApplicationStreaming.ActiveApplicationStream, Observable<? extends StreamContext>> {
+    public final class AnonymousClass1<T, R> implements Func1<StoreApplicationStreaming.ActiveApplicationStream, Observable<? extends StreamContext>> {
         public AnonymousClass1() {
         }
 
-        @Override // j0.k.b
+        @Override // j0.k.Func1
         public /* bridge */ /* synthetic */ Observable<? extends StreamContext> call(StoreApplicationStreaming.ActiveApplicationStream activeApplicationStream) {
             return call2(activeApplicationStream);
         }
@@ -64,7 +65,7 @@ public final class StreamContextService {
         /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
         public final Observable<? extends StreamContext> call2(StoreApplicationStreaming.ActiveApplicationStream activeApplicationStream) {
             if (activeApplicationStream == null) {
-                return new k(null);
+                return new ScalarSynchronousObservable(null);
             }
             return StreamContextService.this.getForUser(activeApplicationStream.getStream().getOwnerId(), false);
         }
@@ -72,10 +73,10 @@ public final class StreamContextService {
 
     /* JADX INFO: renamed from: com.discord.utilities.streams.StreamContextService$getForAllStreamingUsers$1, reason: invalid class name */
     /* JADX INFO: compiled from: StreamContextService.kt */
-    public final class AnonymousClass1<T, R> implements b<Map<Long, ? extends ModelApplicationStream>, Collection<? extends ModelApplicationStream>> {
+    public final class AnonymousClass1<T, R> implements Func1<Map<Long, ? extends ModelApplicationStream>, Collection<? extends ModelApplicationStream>> {
         public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
 
-        @Override // j0.k.b
+        @Override // j0.k.Func1
         public /* bridge */ /* synthetic */ Collection<? extends ModelApplicationStream> call(Map<Long, ? extends ModelApplicationStream> map) {
             return call2(map);
         }
@@ -88,16 +89,16 @@ public final class StreamContextService {
 
     /* JADX INFO: renamed from: com.discord.utilities.streams.StreamContextService$getForUser$1, reason: invalid class name */
     /* JADX INFO: compiled from: StreamContextService.kt */
-    public final class AnonymousClass1<T, R> implements b<ModelApplicationStream, Observable<? extends StreamContext>> {
+    public final class AnonymousClass1<T, R> implements Func1<ModelApplicationStream, Observable<? extends StreamContext>> {
         public final /* synthetic */ boolean $includePreview;
         public final /* synthetic */ long $userId;
 
         /* JADX INFO: renamed from: com.discord.utilities.streams.StreamContextService$getForUser$1$2, reason: invalid class name */
         /* JADX INFO: compiled from: StreamContextService.kt */
-        public final class AnonymousClass2<T, R> implements b<GuildMember, String> {
+        public final class AnonymousClass2<T, R> implements Func1<GuildMember, String> {
             public static final AnonymousClass2 INSTANCE = new AnonymousClass2();
 
-            @Override // j0.k.b
+            @Override // j0.k.Func1
             public /* bridge */ /* synthetic */ String call(GuildMember guildMember) {
                 return call2(guildMember);
             }
@@ -113,7 +114,7 @@ public final class StreamContextService {
 
         /* JADX INFO: renamed from: com.discord.utilities.streams.StreamContextService$getForUser$1$3, reason: invalid class name */
         /* JADX INFO: compiled from: StreamContextService.kt */
-        public final class AnonymousClass3 extends o implements Function10<Guild, StoreApplicationStreamPreviews.StreamPreview, Long, User, MeUser, String, Map<Long, ? extends VoiceState>, Channel, Long, StoreApplicationStreaming.ActiveApplicationStream, StreamContext> {
+        public final class AnonymousClass3 extends Lambda implements Function10<Guild, StoreApplicationStreamPreviews.StreamPreview, Long, User, MeUser, String, Map<Long, ? extends VoiceState>, Channel, Long, StoreApplicationStreaming.ActiveApplicationStream, StreamContext> {
             public final /* synthetic */ ModelApplicationStream $stream;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -129,8 +130,8 @@ public final class StreamContextService {
 
             public final StreamContext invoke(Guild guild, StoreApplicationStreamPreviews.StreamPreview streamPreview, Long l, User user, MeUser meUser, String str, Map<Long, VoiceState> map, Channel channel, long j, StoreApplicationStreaming.ActiveApplicationStream activeApplicationStream) {
                 StreamContext.Joinability joinability;
-                m.checkNotNullParameter(meUser, "me");
-                m.checkNotNullParameter(map, "voiceStates");
+                Intrinsics3.checkNotNullParameter(meUser, "me");
+                Intrinsics3.checkNotNullParameter(map, "voiceStates");
                 if (((this.$stream instanceof ModelApplicationStream.GuildStream) && guild == null) || user == null) {
                     return null;
                 }
@@ -144,17 +145,17 @@ public final class StreamContextService {
                 } else {
                     joinability = StreamContext.Joinability.MISSING_PERMISSIONS;
                 }
-                return new StreamContext(this.$stream, guild, streamPreview, joinability, user, str, activeApplicationStream != null && activeApplicationStream.getState().isStreamActive() && m.areEqual(activeApplicationStream.getStream(), this.$stream), user.getId() == meUser.getId());
+                return new StreamContext(this.$stream, guild, streamPreview, joinability, user, str, activeApplicationStream != null && activeApplicationStream.getState().isStreamActive() && Intrinsics3.areEqual(activeApplicationStream.getStream(), this.$stream), user.getId() == meUser.getId());
             }
         }
 
         /* JADX INFO: renamed from: com.discord.utilities.streams.StreamContextService$getForUser$1$1, reason: invalid class name and collision with other inner class name */
         /* JADX INFO: compiled from: StreamContextService.kt */
-        public final class C03451<T, R> implements b<Map<Long, ? extends GuildMember>, GuildMember> {
-            public C03451() {
+        public final class C02251<T, R> implements Func1<Map<Long, ? extends GuildMember>, GuildMember> {
+            public C02251() {
             }
 
-            @Override // j0.k.b
+            @Override // j0.k.Func1
             public /* bridge */ /* synthetic */ GuildMember call(Map<Long, ? extends GuildMember> map) {
                 return call2((Map<Long, GuildMember>) map);
             }
@@ -170,7 +171,7 @@ public final class StreamContextService {
             this.$userId = j;
         }
 
-        @Override // j0.k.b
+        @Override // j0.k.Func1
         public /* bridge */ /* synthetic */ Observable<? extends StreamContext> call(ModelApplicationStream modelApplicationStream) {
             return call2(modelApplicationStream);
         }
@@ -179,7 +180,7 @@ public final class StreamContextService {
         public final Observable<? extends StreamContext> call2(ModelApplicationStream modelApplicationStream) {
             long guildId;
             if (modelApplicationStream == null) {
-                return new k(null);
+                return new ScalarSynchronousObservable(null);
             }
             if (modelApplicationStream instanceof ModelApplicationStream.GuildStream) {
                 guildId = ((ModelApplicationStream.GuildStream) modelApplicationStream).getGuildId();
@@ -195,15 +196,15 @@ public final class StreamContextService {
             Observable<Long> observableObservePermissionsForChannel = StreamContextService.access$getPermissionsStore$p(StreamContextService.this).observePermissionsForChannel(modelApplicationStream.getChannelId());
             Observable<User> observableObserveUser = StreamContextService.access$getUserStore$p(StreamContextService.this).observeUser(this.$userId);
             Observable observableObserveMe$default = StoreUser.observeMe$default(StreamContextService.access$getUserStore$p(StreamContextService.this), false, 1, null);
-            Observable<R> observableR = StreamContextService.access$getGuildStore$p(StreamContextService.this).observeComputed(guildId).G(new C03451()).G(AnonymousClass2.INSTANCE).r();
-            m.checkNotNullExpressionValue(observableR, "guildStore\n             …  .distinctUntilChanged()");
-            return ObservableCombineLatestOverloadsKt.combineLatest(observableObserveGuild, observableAccess$getPreviewObservable, observableObservePermissionsForChannel, observableObserveUser, observableObserveMe$default, observableR, StreamContextService.access$getVoiceStateStore$p(StreamContextService.this).observe(guildId, modelApplicationStream.getChannelId()), StreamContextService.access$getChannelStore$p(StreamContextService.this).observeChannel(modelApplicationStream.getChannelId()), StreamContextService.access$getVoiceChannelSelectedStore$p(StreamContextService.this).observeSelectedVoiceChannelId(), StreamContextService.access$getApplicationStreamingStore$p(StreamContextService.this).observeActiveStream(), new AnonymousClass3(modelApplicationStream));
+            Observable<R> observableR = StreamContextService.access$getGuildStore$p(StreamContextService.this).observeComputed(guildId).G(new C02251()).G(AnonymousClass2.INSTANCE).r();
+            Intrinsics3.checkNotNullExpressionValue(observableR, "guildStore\n             …  .distinctUntilChanged()");
+            return ObservableCombineLatestOverloads2.combineLatest(observableObserveGuild, observableAccess$getPreviewObservable, observableObservePermissionsForChannel, observableObserveUser, observableObserveMe$default, observableR, StreamContextService.access$getVoiceStateStore$p(StreamContextService.this).observe(guildId, modelApplicationStream.getChannelId()), StreamContextService.access$getChannelStore$p(StreamContextService.this).observeChannel(modelApplicationStream.getChannelId()), StreamContextService.access$getVoiceChannelSelectedStore$p(StreamContextService.this).observeSelectedVoiceChannelId(), StreamContextService.access$getApplicationStreamingStore$p(StreamContextService.this).observeActiveStream(), new AnonymousClass3(modelApplicationStream));
         }
     }
 
     /* JADX INFO: renamed from: com.discord.utilities.streams.StreamContextService$getForAllStreamingUsers$2, reason: invalid class name */
     /* JADX INFO: compiled from: StreamContextService.kt */
-    public final class AnonymousClass2<T, R> implements b<Collection<? extends ModelApplicationStream>, Observable<? extends Map<Long, ? extends StreamContext>>> {
+    public final class AnonymousClass2<T, R> implements Func1<Collection<? extends ModelApplicationStream>, Observable<? extends Map<Long, ? extends StreamContext>>> {
 
         /* JADX INFO: renamed from: com.discord.utilities.streams.StreamContextService$getForAllStreamingUsers$2$1, reason: invalid class name */
         /* JADX INFO: compiled from: StreamContextService.kt */
@@ -218,7 +219,7 @@ public final class StreamContextService {
             @Override // rx.functions.FuncN
             /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
             public final Map<Long, ? extends StreamContext> call2(Object[] objArr) {
-                m.checkNotNullExpressionValue(objArr, "allUserStreamContexts");
+                Intrinsics3.checkNotNullExpressionValue(objArr, "allUserStreamContexts");
                 ArrayList arrayList = new ArrayList();
                 for (Object obj : objArr) {
                     if (!(obj instanceof StreamContext)) {
@@ -229,7 +230,7 @@ public final class StreamContextService {
                         arrayList.add(streamContext);
                     }
                 }
-                LinkedHashMap linkedHashMap = new LinkedHashMap(f.coerceAtLeast(g0.mapCapacity(d0.t.o.collectionSizeOrDefault(arrayList, 10)), 16));
+                LinkedHashMap linkedHashMap = new LinkedHashMap(_Ranges.coerceAtLeast(MapsJVM.mapCapacity(Iterables2.collectionSizeOrDefault(arrayList, 10)), 16));
                 for (T t : arrayList) {
                     linkedHashMap.put(Long.valueOf(((StreamContext) t).getUser().getId()), t);
                 }
@@ -240,7 +241,7 @@ public final class StreamContextService {
         public AnonymousClass2() {
         }
 
-        @Override // j0.k.b
+        @Override // j0.k.Func1
         public /* bridge */ /* synthetic */ Observable<? extends Map<Long, ? extends StreamContext>> call(Collection<? extends ModelApplicationStream> collection) {
             return call2(collection);
         }
@@ -248,10 +249,10 @@ public final class StreamContextService {
         /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
         public final Observable<? extends Map<Long, StreamContext>> call2(Collection<? extends ModelApplicationStream> collection) {
             if (collection.isEmpty()) {
-                return new k(h0.emptyMap());
+                return new ScalarSynchronousObservable(Maps6.emptyMap());
             }
-            m.checkNotNullExpressionValue(collection, "allUserStreams");
-            ArrayList arrayList = new ArrayList(d0.t.o.collectionSizeOrDefault(collection, 10));
+            Intrinsics3.checkNotNullExpressionValue(collection, "allUserStreams");
+            ArrayList arrayList = new ArrayList(Iterables2.collectionSizeOrDefault(collection, 10));
             Iterator<T> it = collection.iterator();
             while (it.hasNext()) {
                 arrayList.add(StreamContextService.this.getForUser(((ModelApplicationStream) it.next()).getOwnerId(), false));
@@ -265,14 +266,14 @@ public final class StreamContextService {
     }
 
     public StreamContextService(StoreApplicationStreaming storeApplicationStreaming, StoreGuilds storeGuilds, StorePermissions storePermissions, StoreUser storeUser, StoreVoiceChannelSelected storeVoiceChannelSelected, StoreVoiceStates storeVoiceStates, StoreChannels storeChannels, StoreApplicationStreamPreviews storeApplicationStreamPreviews) {
-        m.checkNotNullParameter(storeApplicationStreaming, "applicationStreamingStore");
-        m.checkNotNullParameter(storeGuilds, "guildStore");
-        m.checkNotNullParameter(storePermissions, "permissionsStore");
-        m.checkNotNullParameter(storeUser, "userStore");
-        m.checkNotNullParameter(storeVoiceChannelSelected, "voiceChannelSelectedStore");
-        m.checkNotNullParameter(storeVoiceStates, "voiceStateStore");
-        m.checkNotNullParameter(storeChannels, "channelStore");
-        m.checkNotNullParameter(storeApplicationStreamPreviews, "applicationStreamPreviewStore");
+        Intrinsics3.checkNotNullParameter(storeApplicationStreaming, "applicationStreamingStore");
+        Intrinsics3.checkNotNullParameter(storeGuilds, "guildStore");
+        Intrinsics3.checkNotNullParameter(storePermissions, "permissionsStore");
+        Intrinsics3.checkNotNullParameter(storeUser, "userStore");
+        Intrinsics3.checkNotNullParameter(storeVoiceChannelSelected, "voiceChannelSelectedStore");
+        Intrinsics3.checkNotNullParameter(storeVoiceStates, "voiceStateStore");
+        Intrinsics3.checkNotNullParameter(storeChannels, "channelStore");
+        Intrinsics3.checkNotNullParameter(storeApplicationStreamPreviews, "applicationStreamPreviewStore");
         this.applicationStreamingStore = storeApplicationStreaming;
         this.guildStore = storeGuilds;
         this.permissionsStore = storePermissions;
@@ -321,19 +322,19 @@ public final class StreamContextService {
 
     public final Observable<StreamContext> getForActiveStream() {
         Observable observableY = this.applicationStreamingStore.observeActiveStream().Y(new AnonymousClass1());
-        m.checkNotNullExpressionValue(observableY, "applicationStreamingStor…  )\n          }\n        }");
+        Intrinsics3.checkNotNullExpressionValue(observableY, "applicationStreamingStor…  )\n          }\n        }");
         return observableY;
     }
 
     public final Observable<Map<Long, StreamContext>> getForAllStreamingUsers() {
         Observable<Map<Long, StreamContext>> observableY = this.applicationStreamingStore.observeStreamsByUser().G(AnonymousClass1.INSTANCE).Y(new AnonymousClass2());
-        m.checkNotNullExpressionValue(observableY, "applicationStreamingStor…  }\n          }\n        }");
+        Intrinsics3.checkNotNullExpressionValue(observableY, "applicationStreamingStor…  }\n          }\n        }");
         return observableY;
     }
 
     public final Observable<StreamContext> getForUser(long userId, boolean includePreview) {
         Observable observableY = this.applicationStreamingStore.observeStreamsForUser(userId).Y(new AnonymousClass1(includePreview, userId));
-        m.checkNotNullExpressionValue(observableY, "applicationStreamingStor…  }\n          }\n        }");
+        Intrinsics3.checkNotNullExpressionValue(observableY, "applicationStreamingStor…  }\n          }\n        }");
         return observableY;
     }
 
@@ -341,9 +342,9 @@ public final class StreamContextService {
         if (includePreview) {
             return applicationStreamPreviewStore.observeStreamPreview(stream);
         }
-        k kVar = new k(null);
-        m.checkNotNullExpressionValue(kVar, "Observable.just(null)");
-        return kVar;
+        ScalarSynchronousObservable scalarSynchronousObservable = new ScalarSynchronousObservable(null);
+        Intrinsics3.checkNotNullExpressionValue(scalarSynchronousObservable, "Observable.just(null)");
+        return scalarSynchronousObservable;
     }
 
     public /* synthetic */ StreamContextService(StoreApplicationStreaming storeApplicationStreaming, StoreGuilds storeGuilds, StorePermissions storePermissions, StoreUser storeUser, StoreVoiceChannelSelected storeVoiceChannelSelected, StoreVoiceStates storeVoiceStates, StoreChannels storeChannels, StoreApplicationStreamPreviews storeApplicationStreamPreviews, int i, DefaultConstructorMarker defaultConstructorMarker) {

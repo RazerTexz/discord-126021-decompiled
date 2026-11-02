@@ -1,16 +1,16 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.analytics.generated.traits.TrackOverlayClientMetadata;
-import com.discord.analytics.generated.traits.TrackOverlayClientMetadataReceiver;
+import com.discord.analytics.generated.traits.TrackOverlayClientMetadata2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackNotificationViewed.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackNotificationViewed implements AnalyticsSchema, TrackBaseReceiver, TrackOverlayClientMetadataReceiver {
+public final /* data */ class TrackNotificationViewed implements AnalyticsSchema, TrackBase2, TrackOverlayClientMetadata2 {
     private final CharSequence activityName = null;
     private final Long activityType = null;
     private final Long channelId = null;
@@ -34,7 +34,7 @@ public final /* data */ class TrackNotificationViewed implements AnalyticsSchema
             return false;
         }
         TrackNotificationViewed trackNotificationViewed = (TrackNotificationViewed) other;
-        return m.areEqual(this.notifType, trackNotificationViewed.notifType) && m.areEqual(this.notifUserId, trackNotificationViewed.notifUserId) && m.areEqual(this.messageId, trackNotificationViewed.messageId) && m.areEqual(this.messageType, trackNotificationViewed.messageType) && m.areEqual(this.guildId, trackNotificationViewed.guildId) && m.areEqual(this.channelId, trackNotificationViewed.channelId) && m.areEqual(this.channelType, trackNotificationViewed.channelType) && m.areEqual(this.relType, trackNotificationViewed.relType) && m.areEqual(this.platformType, trackNotificationViewed.platformType) && m.areEqual(this.activityType, trackNotificationViewed.activityType) && m.areEqual(this.activityName, trackNotificationViewed.activityName);
+        return Intrinsics3.areEqual(this.notifType, trackNotificationViewed.notifType) && Intrinsics3.areEqual(this.notifUserId, trackNotificationViewed.notifUserId) && Intrinsics3.areEqual(this.messageId, trackNotificationViewed.messageId) && Intrinsics3.areEqual(this.messageType, trackNotificationViewed.messageType) && Intrinsics3.areEqual(this.guildId, trackNotificationViewed.guildId) && Intrinsics3.areEqual(this.channelId, trackNotificationViewed.channelId) && Intrinsics3.areEqual(this.channelType, trackNotificationViewed.channelType) && Intrinsics3.areEqual(this.relType, trackNotificationViewed.relType) && Intrinsics3.areEqual(this.platformType, trackNotificationViewed.platformType) && Intrinsics3.areEqual(this.activityType, trackNotificationViewed.activityType) && Intrinsics3.areEqual(this.activityName, trackNotificationViewed.activityName);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -69,7 +69,7 @@ public final /* data */ class TrackNotificationViewed implements AnalyticsSchema
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackNotificationViewed(notifType=");
+        StringBuilder sbU = outline.U("TrackNotificationViewed(notifType=");
         sbU.append(this.notifType);
         sbU.append(", notifUserId=");
         sbU.append(this.notifUserId);
@@ -90,6 +90,6 @@ public final /* data */ class TrackNotificationViewed implements AnalyticsSchema
         sbU.append(", activityType=");
         sbU.append(this.activityType);
         sbU.append(", activityName=");
-        return a.E(sbU, this.activityName, ")");
+        return outline.E(sbU, this.activityName, ")");
     }
 }

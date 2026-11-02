@@ -1,7 +1,7 @@
 package com.discord.widgets.channels.list;
 
 import android.view.View;
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.widgets.channels.list.items.ChannelListItem;
 import com.discord.widgets.channels.list.items.ChannelListItemInvite;
 import com.discord.widgets.guilds.invite.WidgetGuildInviteShare;
@@ -19,6 +19,6 @@ public final class WidgetChannelsListAdapter$ItemInvite$onConfigure$1 implements
 
     @Override // android.view.View.OnClickListener
     public final void onClick(View view) {
-        WidgetGuildInviteShare.Companion.launch$default(WidgetGuildInviteShare.INSTANCE, a.x(view, "it", "it.context"), WidgetChannelsListAdapter.access$getFragmentManager$p(WidgetChannelsListAdapter.ItemInvite.access$getAdapter$p(this.this$0)), ((ChannelListItemInvite) this.$data).getGuildId(), null, false, null, null, "Directory", 120, null);
+        WidgetGuildInviteShare.Companion.launch$default(WidgetGuildInviteShare.INSTANCE, outline.x(view, "it", "it.context"), WidgetChannelsListAdapter.access$getFragmentManager$p(WidgetChannelsListAdapter.ItemInvite.access$getAdapter$p(this.this$0)), ((ChannelListItemInvite) this.$data).getGuildId(), null, false, null, null, "Directory", 120, null);
     }
 }

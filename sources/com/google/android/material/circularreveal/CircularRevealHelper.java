@@ -14,7 +14,7 @@ import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.view.ViewCompat;
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.google.android.material.math.MathUtils;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -121,7 +121,7 @@ public class CircularRevealHelper {
                 canvas.restoreToCount(iSave);
             } else {
                 if (i != 2) {
-                    throw new IllegalStateException(a.q("Unsupported strategy ", i));
+                    throw new IllegalStateException(outline.q("Unsupported strategy ", i));
                 }
                 this.delegate.actualDraw(canvas);
                 if (shouldDrawScrim()) {

@@ -1,8 +1,8 @@
 package com.discord.api.message.embed;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.models.domain.ModelAuditLogEntry;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: EmbedField.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -19,7 +19,7 @@ public final /* data */ class EmbedField {
             return false;
         }
         EmbedField embedField = (EmbedField) other;
-        return m.areEqual(this.name, embedField.name) && m.areEqual(this.value, embedField.value) && m.areEqual(this.inline, embedField.inline);
+        return Intrinsics3.areEqual(this.name, embedField.name) && Intrinsics3.areEqual(this.value, embedField.value) && Intrinsics3.areEqual(this.inline, embedField.inline);
     }
 
     /* JADX INFO: renamed from: a, reason: from getter */
@@ -42,11 +42,11 @@ public final /* data */ class EmbedField {
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("EmbedField(name=");
+        StringBuilder sbU = outline.U("EmbedField(name=");
         sbU.append(this.name);
         sbU.append(", value=");
         sbU.append(this.value);
         sbU.append(", inline=");
-        return a.D(sbU, this.inline, ")");
+        return outline.D(sbU, this.inline, ")");
     }
 }

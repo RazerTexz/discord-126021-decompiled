@@ -2,7 +2,7 @@ package androidx.concurrent.futures;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
-import b.i.b.d.a.a;
+import b.i.b.d.a.ListenableFuture8;
 
 /* JADX INFO: loaded from: classes.dex */
 @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
@@ -25,7 +25,7 @@ public final class ResolvableFuture<V> extends AbstractResolvableFuture<V> {
     }
 
     @Override // androidx.concurrent.futures.AbstractResolvableFuture
-    public boolean setFuture(a<? extends V> aVar) {
-        return super.setFuture(aVar);
+    public boolean setFuture(ListenableFuture8<? extends V> listenableFuture8) {
+        return super.setFuture(listenableFuture8);
     }
 }

@@ -1,7 +1,7 @@
 package com.discord.stores;
 
 import a0.a.a.b;
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.api.channel.Channel;
 import com.discord.api.channel.ChannelUtils;
 import com.discord.api.guild.Guild;
@@ -14,12 +14,12 @@ import com.discord.models.domain.ModelMuteConfig;
 import com.discord.models.domain.ModelPayload;
 import com.discord.models.thread.dto.ModelThreadListSync;
 import com.discord.stores.updates.ObservationDeck;
-import com.discord.stores.updates.ObservationDeckProvider;
+import com.discord.stores.updates.ObservationDeck4;
 import com.discord.utilities.search.network.state.SearchState;
-import d0.t.h0;
-import d0.t.r;
-import d0.z.d.m;
-import d0.z.d.o;
+import d0.t.Maps6;
+import d0.t.MutableCollections;
+import d0.z.d.Intrinsics3;
+import d0.z.d.Lambda;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -39,7 +39,7 @@ public final class StoreThreadsJoined extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreThreadsJoined$observeJoinedThread$1, reason: invalid class name */
     /* JADX INFO: compiled from: StoreThreadsJoined.kt */
-    public final class AnonymousClass1 extends o implements Function0<JoinedThread> {
+    public final class AnonymousClass1 extends Lambda implements Function0<JoinedThread> {
         public final /* synthetic */ long $threadId;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -62,7 +62,7 @@ public final class StoreThreadsJoined extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreThreadsJoined$observeJoinedThreads$1, reason: invalid class name */
     /* JADX INFO: compiled from: StoreThreadsJoined.kt */
-    public final class AnonymousClass1 extends o implements Function0<Map<Long, ? extends JoinedThread>> {
+    public final class AnonymousClass1 extends Lambda implements Function0<Map<Long, ? extends JoinedThread>> {
         public AnonymousClass1() {
             super(0);
         }
@@ -89,8 +89,8 @@ public final class StoreThreadsJoined extends StoreV2 {
         private final long threadId;
 
         public JoinedThread(long j, long j2, int i, boolean z2, ModelMuteConfig modelMuteConfig, UtcDateTime utcDateTime) {
-            m.checkNotNullParameter(modelMuteConfig, "muteConfig");
-            m.checkNotNullParameter(utcDateTime, "joinTimestamp");
+            Intrinsics3.checkNotNullParameter(modelMuteConfig, "muteConfig");
+            Intrinsics3.checkNotNullParameter(utcDateTime, "joinTimestamp");
             this.threadId = j;
             this.guildId = j2;
             this.flags = i;
@@ -104,8 +104,8 @@ public final class StoreThreadsJoined extends StoreV2 {
         }
 
         public final JoinedThread copy(long threadId, long guildId, int flags, boolean muted, ModelMuteConfig muteConfig, UtcDateTime joinTimestamp) {
-            m.checkNotNullParameter(muteConfig, "muteConfig");
-            m.checkNotNullParameter(joinTimestamp, "joinTimestamp");
+            Intrinsics3.checkNotNullParameter(muteConfig, "muteConfig");
+            Intrinsics3.checkNotNullParameter(joinTimestamp, "joinTimestamp");
             return new JoinedThread(threadId, guildId, flags, muted, muteConfig, joinTimestamp);
         }
 
@@ -117,7 +117,7 @@ public final class StoreThreadsJoined extends StoreV2 {
                 return false;
             }
             JoinedThread joinedThread = (JoinedThread) other;
-            return this.threadId == joinedThread.threadId && this.guildId == joinedThread.guildId && this.flags == joinedThread.flags && this.muted == joinedThread.muted && m.areEqual(this.muteConfig, joinedThread.muteConfig) && m.areEqual(this.joinTimestamp, joinedThread.joinTimestamp);
+            return this.threadId == joinedThread.threadId && this.guildId == joinedThread.guildId && this.flags == joinedThread.flags && this.muted == joinedThread.muted && Intrinsics3.areEqual(this.muteConfig, joinedThread.muteConfig) && Intrinsics3.areEqual(this.joinTimestamp, joinedThread.joinTimestamp);
         }
 
         /* JADX INFO: renamed from: component3, reason: from getter */
@@ -194,7 +194,7 @@ public final class StoreThreadsJoined extends StoreV2 {
         }
 
         public String toString() {
-            StringBuilder sbU = a.U("JoinedThread(threadId=");
+            StringBuilder sbU = outline.U("JoinedThread(threadId=");
             sbU.append(this.threadId);
             sbU.append(", guildId=");
             sbU.append(this.guildId);
@@ -212,7 +212,7 @@ public final class StoreThreadsJoined extends StoreV2 {
     }
 
     public /* synthetic */ StoreThreadsJoined(StoreUser storeUser, ObservationDeck observationDeck, int i, DefaultConstructorMarker defaultConstructorMarker) {
-        this(storeUser, (i & 2) != 0 ? ObservationDeckProvider.get() : observationDeck);
+        this(storeUser, (i & 2) != 0 ? ObservationDeck4.get() : observationDeck);
     }
 
     public static final /* synthetic */ Map access$getAllJoinedThreads(StoreThreadsJoined storeThreadsJoined) {
@@ -220,7 +220,7 @@ public final class StoreThreadsJoined extends StoreV2 {
     }
 
     private final void deleteThreads(long guildId) {
-        if (r.removeAll(this.joinedThreads.values(), new StoreThreadsJoined$deleteThreads$removed$1(guildId))) {
+        if (MutableCollections.removeAll(this.joinedThreads.values(), new StoreThreadsJoined2(guildId))) {
             markChanged();
         }
     }
@@ -229,7 +229,7 @@ public final class StoreThreadsJoined extends StoreV2 {
         return this.joinedThreadsSnapshot;
     }
 
-    @StoreThread
+    @Store3
     public final Map<Long, JoinedThread> getAllJoinedThreadsInternal$app_productionGoogleRelease() {
         return this.joinedThreads;
     }
@@ -238,35 +238,35 @@ public final class StoreThreadsJoined extends StoreV2 {
         return this.joinedThreadsSnapshot.get(Long.valueOf(threadId));
     }
 
-    @StoreThread
+    @Store3
     public final void handleConnectionOpen(ModelPayload payload) {
-        m.checkNotNullParameter(payload, "payload");
+        Intrinsics3.checkNotNullParameter(payload, "payload");
         this.joinedThreads.clear();
         List<Guild> guilds = payload.getGuilds();
-        m.checkNotNullExpressionValue(guilds, "payload.guilds");
+        Intrinsics3.checkNotNullExpressionValue(guilds, "payload.guilds");
         for (Guild guild : guilds) {
-            m.checkNotNullExpressionValue(guild, "guild");
+            Intrinsics3.checkNotNullExpressionValue(guild, "guild");
             saveThreads(guild);
         }
         markChanged();
     }
 
-    @StoreThread
+    @Store3
     public final void handleGuildCreate(Guild guild) {
-        m.checkNotNullParameter(guild, "guild");
+        Intrinsics3.checkNotNullParameter(guild, "guild");
         deleteThreads(guild.getId());
         saveThreads(guild);
     }
 
-    @StoreThread
+    @Store3
     public final void handleGuildDelete(long guildId) {
         deleteThreads(guildId);
     }
 
-    @StoreThread
+    @Store3
     public final void handleSearchFinish(SearchState searchState) {
         Channel channel;
-        m.checkNotNullParameter(searchState, "searchState");
+        Intrinsics3.checkNotNullParameter(searchState, "searchState");
         List<Channel> threads = searchState.getThreads();
         if (threads == null || (channel = threads.get(0)) == null) {
             return;
@@ -282,9 +282,9 @@ public final class StoreThreadsJoined extends StoreV2 {
         }
     }
 
-    @StoreThread
+    @Store3
     public final void handleThreadCreateOrUpdate(Channel channel) {
-        m.checkNotNullParameter(channel, "channel");
+        Intrinsics3.checkNotNullParameter(channel, "channel");
         ThreadMember member = channel.getMember();
         if (member == null || member.getUserId() != this.storeUser.getMeSnapshot().getId()) {
             return;
@@ -293,18 +293,18 @@ public final class StoreThreadsJoined extends StoreV2 {
         markChanged();
     }
 
-    @StoreThread
+    @Store3
     public final void handleThreadDelete(Channel channel) {
-        m.checkNotNullParameter(channel, "channel");
+        Intrinsics3.checkNotNullParameter(channel, "channel");
         if (this.joinedThreads.containsKey(Long.valueOf(channel.getId()))) {
             this.joinedThreads.remove(Long.valueOf(channel.getId()));
             markChanged();
         }
     }
 
-    @StoreThread
+    @Store3
     public final void handleThreadListSync(ModelThreadListSync payload) {
-        m.checkNotNullParameter(payload, "payload");
+        Intrinsics3.checkNotNullParameter(payload, "payload");
         List<ThreadMember> members = payload.getMembers();
         if (members != null) {
             for (ThreadMember threadMember : members) {
@@ -314,19 +314,19 @@ public final class StoreThreadsJoined extends StoreV2 {
         }
     }
 
-    @StoreThread
+    @Store3
     public final void handleThreadMemberUpdate(ThreadMemberUpdate payload) {
-        m.checkNotNullParameter(payload, "payload");
+        Intrinsics3.checkNotNullParameter(payload, "payload");
         if (payload.getUserId() == this.storeUser.getMeSnapshot().getId()) {
             this.joinedThreads.put(Long.valueOf(payload.getId()), new JoinedThread(payload.getId(), payload.getGuildId(), payload.getFlags(), payload.getMuted(), new ModelMuteConfig(payload.getMuteConfig()), payload.getJoinTimestamp()));
             markChanged();
         }
     }
 
-    @StoreThread
+    @Store3
     public final void handleThreadMembersUpdate(ThreadMembersUpdate payload) {
         List<Long> listD;
-        m.checkNotNullParameter(payload, "payload");
+        Intrinsics3.checkNotNullParameter(payload, "payload");
         long id2 = this.storeUser.getMeSnapshot().getId();
         if (this.joinedThreads.containsKey(Long.valueOf(payload.getId())) && (listD = payload.d()) != null && listD.contains(Long.valueOf(id2))) {
             this.joinedThreads.remove(Long.valueOf(payload.getId()));
@@ -354,7 +354,7 @@ public final class StoreThreadsJoined extends StoreV2 {
         return this.joinedThreadsSnapshot.containsKey(Long.valueOf(threadId));
     }
 
-    @StoreThread
+    @Store3
     public final boolean hasJoinedInternal(long threadId) {
         return this.joinedThreads.containsKey(Long.valueOf(threadId));
     }
@@ -381,17 +381,17 @@ public final class StoreThreadsJoined extends StoreV2 {
     }
 
     @Override // com.discord.stores.StoreV2
-    @StoreThread
+    @Store3
     public void snapshotData() {
         this.joinedThreadsSnapshot = new HashMap(this.joinedThreads);
     }
 
     public StoreThreadsJoined(StoreUser storeUser, ObservationDeck observationDeck) {
-        m.checkNotNullParameter(storeUser, "storeUser");
-        m.checkNotNullParameter(observationDeck, "observationDeck");
+        Intrinsics3.checkNotNullParameter(storeUser, "storeUser");
+        Intrinsics3.checkNotNullParameter(observationDeck, "observationDeck");
         this.storeUser = storeUser;
         this.observationDeck = observationDeck;
         this.joinedThreads = new HashMap();
-        this.joinedThreadsSnapshot = h0.emptyMap();
+        this.joinedThreadsSnapshot = Maps6.emptyMap();
     }
 }

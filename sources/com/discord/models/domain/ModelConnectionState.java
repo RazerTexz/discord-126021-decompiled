@@ -1,6 +1,6 @@
 package com.discord.models.domain;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import java.io.IOException;
 
 /* JADX INFO: loaded from: classes.dex */
@@ -81,7 +81,7 @@ public class ModelConnectionState implements Model {
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("ModelConnectionState(code=");
+        StringBuilder sbU = outline.U("ModelConnectionState(code=");
         sbU.append(getCode());
         sbU.append(", state=");
         sbU.append(getState());

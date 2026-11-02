@@ -10,8 +10,8 @@ import androidx.annotation.MainThread;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.ViewKt;
 import androidx.core.view.WindowInsetsCompat;
-import b.a.d.f;
-import b.a.k.b;
+import b.a.d.AppHelpDesk;
+import b.a.k.FormatUtils;
 import com.discord.R;
 import com.discord.api.user.NsfwAllowance;
 import com.discord.app.AppComponent;
@@ -22,8 +22,8 @@ import com.discord.utilities.analytics.Traits;
 import com.discord.utilities.rx.ObservableExtensionsKt;
 import com.discord.utilities.view.text.LinkifiedTextView;
 import com.google.android.material.button.MaterialButton;
-import d0.z.d.m;
-import d0.z.d.o;
+import d0.z.d.Intrinsics3;
+import d0.z.d.Lambda;
 import java.util.concurrent.TimeUnit;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
@@ -85,7 +85,7 @@ public final class WidgetHomePanelNsfw {
 
     /* JADX INFO: renamed from: com.discord.widgets.home.WidgetHomePanelNsfw$toggleContainerVisibility$2, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetHomePanelNsfw.kt */
-    public final class AnonymousClass2 extends o implements Function1<Subscription, Unit> {
+    public final class AnonymousClass2 extends Lambda implements Function1<Subscription, Unit> {
         public AnonymousClass2() {
             super(1);
         }
@@ -98,14 +98,14 @@ public final class WidgetHomePanelNsfw {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(Subscription subscription) {
-            m.checkNotNullParameter(subscription, Traits.Payment.Type.SUBSCRIPTION);
+            Intrinsics3.checkNotNullParameter(subscription, Traits.Payment.Type.SUBSCRIPTION);
             WidgetHomePanelNsfw.access$setHidePanelSubscription$p(WidgetHomePanelNsfw.this, subscription);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.widgets.home.WidgetHomePanelNsfw$toggleContainerVisibility$3, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetHomePanelNsfw.kt */
-    public final class AnonymousClass3 extends o implements Function1<Long, Unit> {
+    public final class AnonymousClass3 extends Lambda implements Function1<Long, Unit> {
         public final /* synthetic */ Function1 $onToggleNsfw;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -137,7 +137,7 @@ public final class WidgetHomePanelNsfw {
     }
 
     public WidgetHomePanelNsfw(AppComponent appComponent) {
-        m.checkNotNullParameter(appComponent, "appComponent");
+        Intrinsics3.checkNotNullParameter(appComponent, "appComponent");
         this.appComponent = appComponent;
         this.guildsNsfwStore = StoreStream.INSTANCE.getGuildsNsfw();
     }
@@ -167,7 +167,7 @@ public final class WidgetHomePanelNsfw {
     public final void configureUI(long guildId, boolean isChannelNsfw, boolean isNsfwUnconsented, NsfwAllowance nsfwAllowed, ViewStub viewStub, Function1<? super Boolean, Unit> onToggleNsfw, Function0<Unit> onDenyNsfw) {
         MaterialButton materialButton;
         MaterialButton materialButton2;
-        m.checkNotNullParameter(onToggleNsfw, "onToggleNsfw");
+        Intrinsics3.checkNotNullParameter(onToggleNsfw, "onToggleNsfw");
         Subscription subscription = this.hidePanelSubscription;
         if (subscription != null) {
             subscription.unsubscribe();
@@ -186,7 +186,7 @@ public final class WidgetHomePanelNsfw {
 
     public final void dispatchApplyWindowInsets(WindowInsetsCompat insets) {
         LinearLayout linearLayout;
-        m.checkNotNullParameter(insets, "insets");
+        Intrinsics3.checkNotNullParameter(insets, "insets");
         WidgetHomePanelCenterNsfwBinding widgetHomePanelCenterNsfwBinding = this.binding;
         if (widgetHomePanelCenterNsfwBinding == null || (linearLayout = widgetHomePanelCenterNsfwBinding.a) == null) {
             return;
@@ -229,7 +229,7 @@ public final class WidgetHomePanelNsfw {
         boolean z2 = nsfwAllowed == NsfwAllowance.DISALLOWED;
         if (!isChannelNsfw || (!isNsfwUnconsented && !z2)) {
             Observable<Long> observableD0 = Observable.d0(HIDE_DELAY_MILLIS, TimeUnit.MILLISECONDS);
-            m.checkNotNullExpressionValue(observableD0, "Observable.timer(HIDE_DE…S, TimeUnit.MILLISECONDS)");
+            Intrinsics3.checkNotNullExpressionValue(observableD0, "Observable.timer(HIDE_DE…S, TimeUnit.MILLISECONDS)");
             ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(observableD0, this.appComponent, null, 2, null), WidgetHomePanelNsfw.class, (Context) null, new AnonymousClass2(), (Function1) null, (Function0) null, (Function0) null, new AnonymousClass3(onToggleNsfw), 58, (Object) null);
             return;
         }
@@ -254,7 +254,7 @@ public final class WidgetHomePanelNsfw {
                                 TextView textView2 = (TextView) viewInflate.findViewById(R.id.home_panel_center_nsfw_title);
                                 if (textView2 != null) {
                                     this.binding = new WidgetHomePanelCenterNsfwBinding((LinearLayout) viewInflate, linearLayout, imageView2, materialButton3, materialButton4, linkifiedTextView3, textView2);
-                                    ViewCompat.setOnApplyWindowInsetsListener(viewInflate, WidgetHomePanelNsfw$toggleContainerVisibility$1$1.INSTANCE);
+                                    ViewCompat.setOnApplyWindowInsetsListener(viewInflate, WidgetHomePanelNsfw2.INSTANCE);
                                     viewInflate.requestApplyInsets();
                                 }
                             }
@@ -275,20 +275,20 @@ public final class WidgetHomePanelNsfw {
             }
             WidgetHomePanelCenterNsfwBinding widgetHomePanelCenterNsfwBinding3 = this.binding;
             if (widgetHomePanelCenterNsfwBinding3 != null && (materialButton = widgetHomePanelCenterNsfwBinding3.d) != null) {
-                b.n(materialButton, R.string.back, new Object[0], null, 4);
+                FormatUtils.n(materialButton, R.string.back, new Object[0], null, 4);
             }
             WidgetHomePanelCenterNsfwBinding widgetHomePanelCenterNsfwBinding4 = this.binding;
             if (widgetHomePanelCenterNsfwBinding4 != null && (textView = widgetHomePanelCenterNsfwBinding4.f) != null) {
-                b.n(textView, R.string.age_gate_nsfw_underage_header, new Object[0], null, 4);
+                FormatUtils.n(textView, R.string.age_gate_nsfw_underage_header, new Object[0], null, 4);
             }
             WidgetHomePanelCenterNsfwBinding widgetHomePanelCenterNsfwBinding5 = this.binding;
             if (widgetHomePanelCenterNsfwBinding5 != null && (linkifiedTextView2 = widgetHomePanelCenterNsfwBinding5.e) != null) {
-                b.n(linkifiedTextView2, R.string.age_gate_nsfw_underage_body, new Object[]{f.a.a(115000084051L, "h_5206f3f2-0ee4-4380-b50a-25319e45bc7c")}, null, 4);
+                FormatUtils.n(linkifiedTextView2, R.string.age_gate_nsfw_underage_body, new Object[]{AppHelpDesk.a.a(115000084051L, "h_5206f3f2-0ee4-4380-b50a-25319e45bc7c")}, null, 4);
             }
         } else {
             WidgetHomePanelCenterNsfwBinding widgetHomePanelCenterNsfwBinding6 = this.binding;
             if (widgetHomePanelCenterNsfwBinding6 != null && (linkifiedTextView = widgetHomePanelCenterNsfwBinding6.e) != null) {
-                b.n(linkifiedTextView, R.string.age_gate_nsfw_description, new Object[0], null, 4);
+                FormatUtils.n(linkifiedTextView, R.string.age_gate_nsfw_description, new Object[0], null, 4);
             }
         }
         setContainerViewHidden(false, onToggleNsfw);

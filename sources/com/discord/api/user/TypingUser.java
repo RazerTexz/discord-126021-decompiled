@@ -1,8 +1,8 @@
 package com.discord.api.user;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.api.guildmember.GuildMember;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TypingUser.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -20,7 +20,7 @@ public final /* data */ class TypingUser {
             return false;
         }
         TypingUser typingUser = (TypingUser) other;
-        return this.userId == typingUser.userId && this.guildId == typingUser.guildId && this.channelId == typingUser.channelId && m.areEqual(this.member, typingUser.member);
+        return this.userId == typingUser.userId && this.guildId == typingUser.guildId && this.channelId == typingUser.channelId && Intrinsics3.areEqual(this.member, typingUser.member);
     }
 
     /* JADX INFO: renamed from: a, reason: from getter */
@@ -54,7 +54,7 @@ public final /* data */ class TypingUser {
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TypingUser(userId=");
+        StringBuilder sbU = outline.U("TypingUser(userId=");
         sbU.append(this.userId);
         sbU.append(", guildId=");
         sbU.append(this.guildId);

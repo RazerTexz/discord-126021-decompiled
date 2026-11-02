@@ -1,8 +1,8 @@
 package com.discord.api.activity;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.models.domain.ModelAuditLogEntry;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: ActivityEmoji.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -25,7 +25,7 @@ public final /* data */ class ActivityEmoji {
             return false;
         }
         ActivityEmoji activityEmoji = (ActivityEmoji) other;
-        return m.areEqual(this.id, activityEmoji.id) && m.areEqual(this.name, activityEmoji.name) && this.animated == activityEmoji.animated;
+        return Intrinsics3.areEqual(this.id, activityEmoji.id) && Intrinsics3.areEqual(this.name, activityEmoji.name) && this.animated == activityEmoji.animated;
     }
 
     /* JADX INFO: renamed from: a, reason: from getter */
@@ -62,11 +62,11 @@ public final /* data */ class ActivityEmoji {
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("ActivityEmoji(id=");
+        StringBuilder sbU = outline.U("ActivityEmoji(id=");
         sbU.append(this.id);
         sbU.append(", name=");
         sbU.append(this.name);
         sbU.append(", animated=");
-        return a.O(sbU, this.animated, ")");
+        return outline.O(sbU, this.animated, ")");
     }
 }

@@ -5,6 +5,7 @@ import android.content.ServiceConnection;
 import android.os.IBinder;
 import android.os.IInterface;
 import android.os.RemoteException;
+import b.c.a.a0.AnimatableValueParser;
 
 /* JADX INFO: loaded from: classes3.dex */
 public final class l implements ServiceConnection {
@@ -18,7 +19,7 @@ public final class l implements ServiceConnection {
 
     @Override // android.content.ServiceConnection
     public final void onServiceConnected(ComponentName componentName, IBinder iBinder) {
-        b.c.a.a0.d.u("AnalyticsServiceConnection.onServiceConnected");
+        AnimatableValueParser.u("AnalyticsServiceConnection.onServiceConnected");
         synchronized (this) {
             try {
                 if (iBinder == null) {
@@ -62,7 +63,7 @@ public final class l implements ServiceConnection {
 
     @Override // android.content.ServiceConnection
     public final void onServiceDisconnected(ComponentName componentName) {
-        b.c.a.a0.d.u("AnalyticsServiceConnection.onServiceDisconnected");
+        AnimatableValueParser.u("AnalyticsServiceConnection.onServiceDisconnected");
         this.l.q().a(new n(this, componentName));
     }
 }

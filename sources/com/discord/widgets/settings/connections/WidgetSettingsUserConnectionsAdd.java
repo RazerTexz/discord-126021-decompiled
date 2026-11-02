@@ -11,7 +11,7 @@ import androidx.annotation.LayoutRes;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.R;
 import com.discord.app.AppBottomSheet;
 import com.discord.databinding.WidgetSettingsConnectionsAddBinding;
@@ -25,10 +25,11 @@ import com.discord.utilities.mg_recycler.MGRecyclerDataPayload;
 import com.discord.utilities.mg_recycler.MGRecyclerViewHolder;
 import com.discord.utilities.platform.Platform;
 import com.discord.utilities.viewbinding.FragmentViewBindingDelegate;
-import com.discord.utilities.viewbinding.FragmentViewBindingDelegateKt;
-import com.discord.widgets.playstation.PlaystationExperimentUtilsKt;
-import d0.z.d.m;
-import d0.z.d.o;
+import com.discord.utilities.viewbinding.FragmentViewBindingDelegate3;
+import com.discord.widgets.playstation.PlaystationExperimentUtils;
+import d0.t.Iterables2;
+import d0.z.d.Intrinsics3;
+import d0.z.d.Lambda;
 import java.util.ArrayList;
 import java.util.Iterator;
 import kotlin.Unit;
@@ -39,7 +40,7 @@ import kotlin.reflect.KProperty;
 /* JADX INFO: compiled from: WidgetSettingsUserConnectionsAdd.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetSettingsUserConnectionsAdd extends AppBottomSheet {
-    public static final /* synthetic */ KProperty[] $$delegatedProperties = {a.d0(WidgetSettingsUserConnectionsAdd.class, "binding", "getBinding()Lcom/discord/databinding/WidgetSettingsConnectionsAddBinding;", 0)};
+    public static final /* synthetic */ KProperty[] $$delegatedProperties = {outline.d0(WidgetSettingsUserConnectionsAdd.class, "binding", "getBinding()Lcom/discord/databinding/WidgetSettingsConnectionsAddBinding;", 0)};
 
     /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
     public static final Companion INSTANCE = new Companion(null);
@@ -71,8 +72,8 @@ public final class WidgetSettingsUserConnectionsAdd extends AppBottomSheet {
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
             public ViewHolder(@LayoutRes int i, Adapter adapter, Function0<Unit> function0) {
                 super(i, adapter);
-                m.checkNotNullParameter(adapter, "adapter");
-                m.checkNotNullParameter(function0, "dialogDismissCallback");
+                Intrinsics3.checkNotNullParameter(adapter, "adapter");
+                Intrinsics3.checkNotNullParameter(function0, "dialogDismissCallback");
                 this.dialogDismissCallback = function0;
                 View view = this.itemView;
                 int i2 = R.id.add_connected_account_image;
@@ -82,7 +83,7 @@ public final class WidgetSettingsUserConnectionsAdd extends AppBottomSheet {
                     TextView textView = (TextView) view.findViewById(R.id.add_connected_account_text);
                     if (textView != null) {
                         WidgetSettingsItemAddConnectedAccountBinding widgetSettingsItemAddConnectedAccountBinding = new WidgetSettingsItemAddConnectedAccountBinding((LinearLayout) view, imageView, textView);
-                        m.checkNotNullExpressionValue(widgetSettingsItemAddConnectedAccountBinding, "WidgetSettingsItemAddCon…untBinding.bind(itemView)");
+                        Intrinsics3.checkNotNullExpressionValue(widgetSettingsItemAddConnectedAccountBinding, "WidgetSettingsItemAddCon…untBinding.bind(itemView)");
                         this.binding = widgetSettingsItemAddConnectedAccountBinding;
                         return;
                     }
@@ -101,25 +102,25 @@ public final class WidgetSettingsUserConnectionsAdd extends AppBottomSheet {
 
             /* JADX INFO: renamed from: onConfigure, reason: avoid collision after fix types in other method */
             public void onConfigure2(int position, PlatformItem data) {
-                m.checkNotNullParameter(data, "data");
+                Intrinsics3.checkNotNullParameter(data, "data");
                 super.onConfigure(position, data);
                 TextView textView = this.binding.c;
-                m.checkNotNullExpressionValue(textView, "binding.addConnectedAccountText");
+                Intrinsics3.checkNotNullExpressionValue(textView, "binding.addConnectedAccountText");
                 textView.setText(data.getPlatform().getProperName());
                 ImageView imageView = this.binding.f2622b;
                 View view = this.itemView;
-                m.checkNotNullExpressionValue(view, "itemView");
+                Intrinsics3.checkNotNullExpressionValue(view, "itemView");
                 Integer themedPlatformImage = data.getPlatform().getThemedPlatformImage();
                 imageView.setImageResource(DrawableCompat.getThemedDrawableRes$default(view, themedPlatformImage != null ? themedPlatformImage.intValue() : 0, 0, 2, (Object) null));
-                this.itemView.setOnClickListener(new WidgetSettingsUserConnectionsAdd$Adapter$ViewHolder$onConfigure$1(this, data));
+                this.itemView.setOnClickListener(new WidgetSettingsUserConnectionsAdd2(this, data));
             }
         }
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
         public Adapter(RecyclerView recyclerView, Function0<Unit> function0) {
             super(recyclerView, false, 2, null);
-            m.checkNotNullParameter(recyclerView, "recyclerView");
-            m.checkNotNullParameter(function0, "dialogDismissCallback");
+            Intrinsics3.checkNotNullParameter(recyclerView, "recyclerView");
+            Intrinsics3.checkNotNullParameter(function0, "dialogDismissCallback");
             this.dialogDismissCallback = function0;
         }
 
@@ -134,14 +135,14 @@ public final class WidgetSettingsUserConnectionsAdd extends AppBottomSheet {
 
         @Override // androidx.recyclerview.widget.RecyclerView.Adapter
         public MGRecyclerViewHolder<Adapter, PlatformItem> onCreateViewHolder(ViewGroup parent, int viewType) {
-            m.checkNotNullParameter(parent, "parent");
+            Intrinsics3.checkNotNullParameter(parent, "parent");
             return new ViewHolder(R.layout.widget_settings_item_add_connected_account, this, this.dialogDismissCallback);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.widgets.settings.connections.WidgetSettingsUserConnectionsAdd$onViewCreated$1, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetSettingsUserConnectionsAdd.kt */
-    public final class AnonymousClass1 extends o implements Function0<Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function0<Unit> {
         public AnonymousClass1() {
             super(0);
         }
@@ -167,10 +168,10 @@ public final class WidgetSettingsUserConnectionsAdd extends AppBottomSheet {
         }
 
         public final void show(Fragment fragment) {
-            m.checkNotNullParameter(fragment, "fragment");
+            Intrinsics3.checkNotNullParameter(fragment, "fragment");
             WidgetSettingsUserConnectionsAdd widgetSettingsUserConnectionsAdd = new WidgetSettingsUserConnectionsAdd();
             FragmentManager parentFragmentManager = fragment.getParentFragmentManager();
-            m.checkNotNullExpressionValue(parentFragmentManager, "fragment.parentFragmentManager");
+            Intrinsics3.checkNotNullExpressionValue(parentFragmentManager, "fragment.parentFragmentManager");
             widgetSettingsUserConnectionsAdd.show(parentFragmentManager, "javaClass");
         }
 
@@ -186,7 +187,7 @@ public final class WidgetSettingsUserConnectionsAdd extends AppBottomSheet {
         private final int type;
 
         public PlatformItem(Platform platform) {
-            m.checkNotNullParameter(platform, "platform");
+            Intrinsics3.checkNotNullParameter(platform, "platform");
             this.platform = platform;
             this.key = platform.name();
         }
@@ -199,13 +200,13 @@ public final class WidgetSettingsUserConnectionsAdd extends AppBottomSheet {
         }
 
         public final PlatformItem copy(Platform platform) {
-            m.checkNotNullParameter(platform, "platform");
+            Intrinsics3.checkNotNullParameter(platform, "platform");
             return new PlatformItem(platform);
         }
 
         public boolean equals(Object other) {
             if (this != other) {
-                return (other instanceof PlatformItem) && m.areEqual(this.platform, ((PlatformItem) other).platform);
+                return (other instanceof PlatformItem) && Intrinsics3.areEqual(this.platform, ((PlatformItem) other).platform);
             }
             return true;
         }
@@ -238,7 +239,7 @@ public final class WidgetSettingsUserConnectionsAdd extends AppBottomSheet {
         }
 
         public String toString() {
-            StringBuilder sbU = a.U("PlatformItem(platform=");
+            StringBuilder sbU = outline.U("PlatformItem(platform=");
             sbU.append(this.platform);
             sbU.append(")");
             return sbU.toString();
@@ -247,7 +248,7 @@ public final class WidgetSettingsUserConnectionsAdd extends AppBottomSheet {
 
     public WidgetSettingsUserConnectionsAdd() {
         super(false, 1, null);
-        this.binding = FragmentViewBindingDelegateKt.viewBinding$default(this, WidgetSettingsUserConnectionsAdd$binding$2.INSTANCE, null, 2, null);
+        this.binding = FragmentViewBindingDelegate3.viewBinding$default(this, WidgetSettingsUserConnectionsAdd3.INSTANCE, null, 2, null);
     }
 
     private final WidgetSettingsConnectionsAddBinding getBinding() {
@@ -271,9 +272,9 @@ public final class WidgetSettingsUserConnectionsAdd extends AppBottomSheet {
 
     @Override // com.discord.app.AppBottomSheet, androidx.fragment.app.Fragment
     public void onViewCreated(View view, Bundle savedInstanceState) {
-        m.checkNotNullParameter(view, "view");
+        Intrinsics3.checkNotNullParameter(view, "view");
         super.onViewCreated(view, savedInstanceState);
-        boolean zCanSeePlaystationAccountIntegration = PlaystationExperimentUtilsKt.canSeePlaystationAccountIntegration(StoreStream.INSTANCE.getExperiments());
+        boolean zCanSeePlaystationAccountIntegration = PlaystationExperimentUtils.canSeePlaystationAccountIntegration(StoreStream.INSTANCE.getExperiments());
         Platform[] platformArrValues = Platform.values();
         ArrayList arrayList = new ArrayList();
         for (int i = 0; i < 15; i++) {
@@ -282,14 +283,14 @@ public final class WidgetSettingsUserConnectionsAdd extends AppBottomSheet {
                 arrayList.add(platform);
             }
         }
-        ArrayList arrayList2 = new ArrayList(d0.t.o.collectionSizeOrDefault(arrayList, 10));
+        ArrayList arrayList2 = new ArrayList(Iterables2.collectionSizeOrDefault(arrayList, 10));
         Iterator it = arrayList.iterator();
         while (it.hasNext()) {
             arrayList2.add(new PlatformItem((Platform) it.next()));
         }
         MGRecyclerAdapter.Companion companion = MGRecyclerAdapter.INSTANCE;
         RecyclerView recyclerView = getBinding().f2613b;
-        m.checkNotNullExpressionValue(recyclerView, "binding.connectionsRecycler");
+        Intrinsics3.checkNotNullExpressionValue(recyclerView, "binding.connectionsRecycler");
         Adapter adapter = (Adapter) companion.configure(new Adapter(recyclerView, new AnonymousClass1()));
         this.adapter = adapter;
         if (adapter != null) {

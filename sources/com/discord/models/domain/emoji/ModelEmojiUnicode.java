@@ -5,11 +5,12 @@ import android.content.Context;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.text.TextUtils;
+import b.a.m.a.h0.a;
 import b.a.m.a.h0.b;
 import b.a.m.a.h0.c;
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.models.domain.Model;
-import com.discord.widgets.chat.input.MentionUtilsKt;
+import com.discord.widgets.chat.input.MentionUtils;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -218,7 +219,7 @@ public class ModelEmojiUnicode implements Model, Emoji {
             str = getFirstName();
         }
         try {
-            return Pattern.compile("([^\\\\]|^):" + str + MentionUtilsKt.EMOJIS_AND_STICKERS_CHAR);
+            return Pattern.compile("([^\\\\]|^):" + str + MentionUtils.EMOJIS_AND_STICKERS_CHAR);
         } catch (PatternSyntaxException unused) {
             return Pattern.compile("$^");
         }
@@ -301,7 +302,7 @@ public class ModelEmojiUnicode implements Model, Emoji {
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("ModelEmojiUnicode(names=");
+        StringBuilder sbU = outline.U("ModelEmojiUnicode(names=");
         sbU.append(getNames());
         sbU.append(", surrogates=");
         sbU.append(getSurrogates());
@@ -339,7 +340,7 @@ public class ModelEmojiUnicode implements Model, Emoji {
         public void assignField(Model.JsonReader jsonReader) throws IOException {
             EmojiCategory byString = EmojiCategory.getByString(jsonReader.nextName());
             if (byString != null) {
-                this.emojis.put(byString, jsonReader.nextList(new b.a.m.a.h0.a(jsonReader)));
+                this.emojis.put(byString, jsonReader.nextList(new a(jsonReader)));
             } else {
                 jsonReader.skipValue();
             }
@@ -375,7 +376,7 @@ public class ModelEmojiUnicode implements Model, Emoji {
         }
 
         public String toString() {
-            StringBuilder sbU = a.U("ModelEmojiUnicode.Bundle(emojis=");
+            StringBuilder sbU = outline.U("ModelEmojiUnicode.Bundle(emojis=");
             sbU.append(getEmojis());
             sbU.append(")");
             return sbU.toString();

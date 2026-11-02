@@ -1,13 +1,13 @@
 package com.discord.widgets.guilds.list;
 
 import a0.a.a.b;
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.api.channel.Channel;
 import com.discord.api.guildjoinrequest.ApplicationStatus;
 import com.discord.models.domain.ModelAuditLogEntry;
 import com.discord.models.guild.Guild;
 import com.discord.widgets.channels.list.WidgetChannelListUnreads;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 import java.util.List;
 import kotlin.jvm.internal.DefaultConstructorMarker;
 
@@ -89,7 +89,7 @@ public abstract class GuildListItem {
         }
 
         public final FolderItem copy(long folderId, Integer color, String name, boolean isOpen, List<Guild> guilds, boolean isAnyGuildSelected, boolean isAnyGuildConnectedToVoice, boolean isAnyGuildConnectedToStageChannel, int mentionCount, boolean isUnread, boolean isTargetedForFolderAddition) {
-            m.checkNotNullParameter(guilds, "guilds");
+            Intrinsics3.checkNotNullParameter(guilds, "guilds");
             return new FolderItem(folderId, color, name, isOpen, guilds, isAnyGuildSelected, isAnyGuildConnectedToVoice, isAnyGuildConnectedToStageChannel, mentionCount, isUnread, isTargetedForFolderAddition);
         }
 
@@ -101,7 +101,7 @@ public abstract class GuildListItem {
                 return false;
             }
             FolderItem folderItem = (FolderItem) other;
-            return this.folderId == folderItem.folderId && m.areEqual(this.color, folderItem.color) && m.areEqual(this.name, folderItem.name) && this.isOpen == folderItem.isOpen && m.areEqual(this.guilds, folderItem.guilds) && this.isAnyGuildSelected == folderItem.isAnyGuildSelected && this.isAnyGuildConnectedToVoice == folderItem.isAnyGuildConnectedToVoice && this.isAnyGuildConnectedToStageChannel == folderItem.isAnyGuildConnectedToStageChannel && getMentionCount() == folderItem.getMentionCount() && getIsUnread() == folderItem.getIsUnread() && this.isTargetedForFolderAddition == folderItem.isTargetedForFolderAddition;
+            return this.folderId == folderItem.folderId && Intrinsics3.areEqual(this.color, folderItem.color) && Intrinsics3.areEqual(this.name, folderItem.name) && this.isOpen == folderItem.isOpen && Intrinsics3.areEqual(this.guilds, folderItem.guilds) && this.isAnyGuildSelected == folderItem.isAnyGuildSelected && this.isAnyGuildConnectedToVoice == folderItem.isAnyGuildConnectedToVoice && this.isAnyGuildConnectedToStageChannel == folderItem.isAnyGuildConnectedToStageChannel && getMentionCount() == folderItem.getMentionCount() && getIsUnread() == folderItem.getIsUnread() && this.isTargetedForFolderAddition == folderItem.isTargetedForFolderAddition;
         }
 
         /* JADX INFO: renamed from: component2, reason: from getter */
@@ -260,7 +260,7 @@ public abstract class GuildListItem {
         }
 
         public String toString() {
-            StringBuilder sbU = a.U("FolderItem(folderId=");
+            StringBuilder sbU = outline.U("FolderItem(folderId=");
             sbU.append(this.folderId);
             sbU.append(", color=");
             sbU.append(this.color);
@@ -281,13 +281,13 @@ public abstract class GuildListItem {
             sbU.append(", isUnread=");
             sbU.append(getIsUnread());
             sbU.append(", isTargetedForFolderAddition=");
-            return a.O(sbU, this.isTargetedForFolderAddition, ")");
+            return outline.O(sbU, this.isTargetedForFolderAddition, ")");
         }
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
         public FolderItem(long j, Integer num, String str, boolean z2, List<Guild> list, boolean z3, boolean z4, boolean z5, int i, boolean z6, boolean z7) {
             super(j, null);
-            m.checkNotNullParameter(list, "guilds");
+            Intrinsics3.checkNotNullParameter(list, "guilds");
             this.folderId = j;
             this.color = num;
             this.name = str;
@@ -348,7 +348,7 @@ public abstract class GuildListItem {
         }
 
         public String toString() {
-            return a.O(a.U("FriendsItem(isSelected="), this.isSelected, ")");
+            return outline.O(outline.U("FriendsItem(isSelected="), this.isSelected, ")");
         }
     }
 
@@ -387,7 +387,7 @@ public abstract class GuildListItem {
         }
 
         public final GuildItem copy(Guild guild, int mentionCount, boolean isLurkingGuild, boolean isUnread, boolean isSelected, Long folderId, boolean isConnectedToVoice, boolean hasOngoingApplicationStream, boolean isTargetedForFolderCreation, Boolean isLastGuildInFolder, ApplicationStatus applicationStatus, boolean isPendingGuild, boolean hasActiveStageChannel, boolean isConnectedToStageChannel, boolean hasActiveScheduledEvent) {
-            m.checkNotNullParameter(guild, "guild");
+            Intrinsics3.checkNotNullParameter(guild, "guild");
             return new GuildItem(guild, mentionCount, isLurkingGuild, isUnread, isSelected, folderId, isConnectedToVoice, hasOngoingApplicationStream, isTargetedForFolderCreation, isLastGuildInFolder, applicationStatus, isPendingGuild, hasActiveStageChannel, isConnectedToStageChannel, hasActiveScheduledEvent);
         }
 
@@ -399,7 +399,7 @@ public abstract class GuildListItem {
                 return false;
             }
             GuildItem guildItem = (GuildItem) other;
-            return m.areEqual(this.guild, guildItem.guild) && getMentionCount() == guildItem.getMentionCount() && this.isLurkingGuild == guildItem.isLurkingGuild && getIsUnread() == guildItem.getIsUnread() && this.isSelected == guildItem.isSelected && m.areEqual(this.folderId, guildItem.folderId) && this.isConnectedToVoice == guildItem.isConnectedToVoice && this.hasOngoingApplicationStream == guildItem.hasOngoingApplicationStream && this.isTargetedForFolderCreation == guildItem.isTargetedForFolderCreation && m.areEqual(this.isLastGuildInFolder, guildItem.isLastGuildInFolder) && m.areEqual(this.applicationStatus, guildItem.applicationStatus) && this.isPendingGuild == guildItem.isPendingGuild && this.hasActiveStageChannel == guildItem.hasActiveStageChannel && this.isConnectedToStageChannel == guildItem.isConnectedToStageChannel && this.hasActiveScheduledEvent == guildItem.hasActiveScheduledEvent;
+            return Intrinsics3.areEqual(this.guild, guildItem.guild) && getMentionCount() == guildItem.getMentionCount() && this.isLurkingGuild == guildItem.isLurkingGuild && getIsUnread() == guildItem.getIsUnread() && this.isSelected == guildItem.isSelected && Intrinsics3.areEqual(this.folderId, guildItem.folderId) && this.isConnectedToVoice == guildItem.isConnectedToVoice && this.hasOngoingApplicationStream == guildItem.hasOngoingApplicationStream && this.isTargetedForFolderCreation == guildItem.isTargetedForFolderCreation && Intrinsics3.areEqual(this.isLastGuildInFolder, guildItem.isLastGuildInFolder) && Intrinsics3.areEqual(this.applicationStatus, guildItem.applicationStatus) && this.isPendingGuild == guildItem.isPendingGuild && this.hasActiveStageChannel == guildItem.hasActiveStageChannel && this.isConnectedToStageChannel == guildItem.isConnectedToStageChannel && this.hasActiveScheduledEvent == guildItem.hasActiveScheduledEvent;
         }
 
         /* JADX INFO: renamed from: component11, reason: from getter */
@@ -634,7 +634,7 @@ public abstract class GuildListItem {
         }
 
         public String toString() {
-            StringBuilder sbU = a.U("GuildItem(guild=");
+            StringBuilder sbU = outline.U("GuildItem(guild=");
             sbU.append(this.guild);
             sbU.append(", mentionCount=");
             sbU.append(getMentionCount());
@@ -663,13 +663,13 @@ public abstract class GuildListItem {
             sbU.append(", isConnectedToStageChannel=");
             sbU.append(this.isConnectedToStageChannel);
             sbU.append(", hasActiveScheduledEvent=");
-            return a.O(sbU, this.hasActiveScheduledEvent, ")");
+            return outline.O(sbU, this.hasActiveScheduledEvent, ")");
         }
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
         public GuildItem(Guild guild, int i, boolean z2, boolean z3, boolean z4, Long l, boolean z5, boolean z6, boolean z7, Boolean bool, ApplicationStatus applicationStatus, boolean z8, boolean z9, boolean z10, boolean z11) {
             super(guild.getId(), null);
-            m.checkNotNullParameter(guild, "guild");
+            Intrinsics3.checkNotNullParameter(guild, "guild");
             this.guild = guild;
             this.mentionCount = i;
             this.isLurkingGuild = z2;
@@ -742,7 +742,7 @@ public abstract class GuildListItem {
         }
 
         public String toString() {
-            return a.O(a.U("HubItem(showSparkle="), this.showSparkle, ")");
+            return outline.O(outline.U("HubItem(showSparkle="), this.showSparkle, ")");
         }
     }
 
@@ -755,7 +755,7 @@ public abstract class GuildListItem {
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
         public PrivateChannelItem(Channel channel, int i) {
             super(channel.getId(), null);
-            m.checkNotNullParameter(channel, "channel");
+            Intrinsics3.checkNotNullParameter(channel, "channel");
             this.channel = channel;
             this.mentionCount = i;
         }
@@ -775,7 +775,7 @@ public abstract class GuildListItem {
         }
 
         public final PrivateChannelItem copy(Channel channel, int mentionCount) {
-            m.checkNotNullParameter(channel, "channel");
+            Intrinsics3.checkNotNullParameter(channel, "channel");
             return new PrivateChannelItem(channel, mentionCount);
         }
 
@@ -787,7 +787,7 @@ public abstract class GuildListItem {
                 return false;
             }
             PrivateChannelItem privateChannelItem = (PrivateChannelItem) other;
-            return m.areEqual(this.channel, privateChannelItem.channel) && getMentionCount() == privateChannelItem.getMentionCount();
+            return Intrinsics3.areEqual(this.channel, privateChannelItem.channel) && getMentionCount() == privateChannelItem.getMentionCount();
         }
 
         /* JADX INFO: renamed from: component1, reason: from getter */
@@ -816,7 +816,7 @@ public abstract class GuildListItem {
         }
 
         public String toString() {
-            StringBuilder sbU = a.U("PrivateChannelItem(channel=");
+            StringBuilder sbU = outline.U("PrivateChannelItem(channel=");
             sbU.append(this.channel);
             sbU.append(", mentionCount=");
             sbU.append(getMentionCount());
@@ -875,7 +875,7 @@ public abstract class GuildListItem {
         }
 
         public String toString() {
-            return a.B(a.U("UnavailableItem(unavailableGuildCount="), this.unavailableGuildCount, ")");
+            return outline.B(outline.U("UnavailableItem(unavailableGuildCount="), this.unavailableGuildCount, ")");
         }
     }
 

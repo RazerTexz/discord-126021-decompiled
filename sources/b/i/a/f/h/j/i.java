@@ -1,6 +1,7 @@
 package b.i.a.f.h.j;
 
 import android.content.Context;
+import b.c.a.a0.AnimatableValueParser;
 
 /* JADX INFO: loaded from: classes3.dex */
 public final class i {
@@ -11,7 +12,7 @@ public final class i {
 
     public i(Context context) {
         Context applicationContext = context.getApplicationContext();
-        b.c.a.a0.d.z(applicationContext, "Application context can't be null");
+        AnimatableValueParser.z(applicationContext, "Application context can't be null");
         this.a = applicationContext;
         this.f1419b = applicationContext;
     }

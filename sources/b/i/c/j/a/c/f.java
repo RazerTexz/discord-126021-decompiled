@@ -1,11 +1,12 @@
 package b.i.c.j.a.c;
 
 import android.os.Bundle;
+import b.i.c.m.CrashlyticsAnalyticsListener;
 import com.discord.models.domain.ModelAuditLogEntry;
 
 /* JADX INFO: compiled from: com.google.android.gms:play-services-measurement-api@@18.0.0 */
 /* JADX INFO: loaded from: classes3.dex */
-public final class f implements b.i.a.f.i.a.a.InterfaceC0118a {
+public final class f implements b.i.a.f.i.a.a.InterfaceC0041a {
     public final /* synthetic */ d a;
 
     public f(d dVar) {
@@ -21,6 +22,6 @@ public final class f implements b.i.a.f.i.a.a.InterfaceC0118a {
         bundle2.putString(ModelAuditLogEntry.CHANGE_KEY_NAME, str2);
         bundle2.putLong("timestampInMillis", j);
         bundle2.putBundle("params", bundle);
-        ((b.i.c.m.a) this.a.a).a(3, bundle2);
+        ((CrashlyticsAnalyticsListener) this.a.a).a(3, bundle2);
     }
 }

@@ -1,8 +1,8 @@
 package com.discord.api.commands;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.models.domain.ModelAuditLogEntry;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: ApplicationCommandAutocompleteChoice.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -18,7 +18,7 @@ public final /* data */ class ApplicationCommandAutocompleteChoice {
             return false;
         }
         ApplicationCommandAutocompleteChoice applicationCommandAutocompleteChoice = (ApplicationCommandAutocompleteChoice) other;
-        return m.areEqual(this.name, applicationCommandAutocompleteChoice.name) && m.areEqual(this.value, applicationCommandAutocompleteChoice.value);
+        return Intrinsics3.areEqual(this.name, applicationCommandAutocompleteChoice.name) && Intrinsics3.areEqual(this.value, applicationCommandAutocompleteChoice.value);
     }
 
     /* JADX INFO: renamed from: a, reason: from getter */
@@ -39,9 +39,9 @@ public final /* data */ class ApplicationCommandAutocompleteChoice {
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("ApplicationCommandAutocompleteChoice(name=");
+        StringBuilder sbU = outline.U("ApplicationCommandAutocompleteChoice(name=");
         sbU.append(this.name);
         sbU.append(", value=");
-        return a.J(sbU, this.value, ")");
+        return outline.J(sbU, this.value, ")");
     }
 }

@@ -1,8 +1,8 @@
 package co.discord.media_engine;
 
 import androidx.core.app.NotificationCompat;
-import b.d.b.a.a;
-import d0.z.d.m;
+import b.d.b.a.outline;
+import d0.z.d.Intrinsics3;
 import java.util.Map;
 
 /* JADX INFO: compiled from: Statistics.kt */
@@ -15,8 +15,8 @@ public final /* data */ class Stats {
     private final Transport transport;
 
     public Stats(Transport transport, OutboundRtpAudio outboundRtpAudio, OutboundRtpVideo outboundRtpVideo, Map<String, InboundRtpAudio> map, Map<String, InboundRtpVideo> map2) {
-        m.checkNotNullParameter(map, "inboundRtpAudio");
-        m.checkNotNullParameter(map2, "inboundRtpVideo");
+        Intrinsics3.checkNotNullParameter(map, "inboundRtpAudio");
+        Intrinsics3.checkNotNullParameter(map2, "inboundRtpVideo");
         this.transport = transport;
         this.outboundRtpAudio = outboundRtpAudio;
         this.outboundRtpVideo = outboundRtpVideo;
@@ -56,8 +56,8 @@ public final /* data */ class Stats {
     }
 
     public final Stats copy(Transport transport, OutboundRtpAudio outboundRtpAudio, OutboundRtpVideo outboundRtpVideo, Map<String, InboundRtpAudio> inboundRtpAudio, Map<String, InboundRtpVideo> inboundRtpVideo) {
-        m.checkNotNullParameter(inboundRtpAudio, "inboundRtpAudio");
-        m.checkNotNullParameter(inboundRtpVideo, "inboundRtpVideo");
+        Intrinsics3.checkNotNullParameter(inboundRtpAudio, "inboundRtpAudio");
+        Intrinsics3.checkNotNullParameter(inboundRtpVideo, "inboundRtpVideo");
         return new Stats(transport, outboundRtpAudio, outboundRtpVideo, inboundRtpAudio, inboundRtpVideo);
     }
 
@@ -69,7 +69,7 @@ public final /* data */ class Stats {
             return false;
         }
         Stats stats = (Stats) other;
-        return m.areEqual(this.transport, stats.transport) && m.areEqual(this.outboundRtpAudio, stats.outboundRtpAudio) && m.areEqual(this.outboundRtpVideo, stats.outboundRtpVideo) && m.areEqual(this.inboundRtpAudio, stats.inboundRtpAudio) && m.areEqual(this.inboundRtpVideo, stats.inboundRtpVideo);
+        return Intrinsics3.areEqual(this.transport, stats.transport) && Intrinsics3.areEqual(this.outboundRtpAudio, stats.outboundRtpAudio) && Intrinsics3.areEqual(this.outboundRtpVideo, stats.outboundRtpVideo) && Intrinsics3.areEqual(this.inboundRtpAudio, stats.inboundRtpAudio) && Intrinsics3.areEqual(this.inboundRtpVideo, stats.inboundRtpVideo);
     }
 
     public final Map<String, InboundRtpAudio> getInboundRtpAudio() {
@@ -121,7 +121,7 @@ public final /* data */ class Stats {
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("Stats(transport=");
+        StringBuilder sbU = outline.U("Stats(transport=");
         sbU.append(this.transport);
         sbU.append(", outboundRtpAudio=");
         sbU.append(this.outboundRtpAudio);
@@ -130,6 +130,6 @@ public final /* data */ class Stats {
         sbU.append(", inboundRtpAudio=");
         sbU.append(this.inboundRtpAudio);
         sbU.append(", inboundRtpVideo=");
-        return a.M(sbU, this.inboundRtpVideo, ")");
+        return outline.M(sbU, this.inboundRtpVideo, ")");
     }
 }

@@ -1,7 +1,7 @@
 package com.discord.api.message.reaction;
 
-import b.d.b.a.a;
-import d0.z.d.m;
+import b.d.b.a.outline;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: MessageReaction.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -11,7 +11,7 @@ public final /* data */ class MessageReaction {
     private final boolean me;
 
     public MessageReaction(int i, MessageReactionEmoji messageReactionEmoji, boolean z2) {
-        m.checkNotNullParameter(messageReactionEmoji, "emoji");
+        Intrinsics3.checkNotNullParameter(messageReactionEmoji, "emoji");
         this.count = i;
         this.emoji = messageReactionEmoji;
         this.me = z2;
@@ -25,7 +25,7 @@ public final /* data */ class MessageReaction {
             return false;
         }
         MessageReaction messageReaction = (MessageReaction) other;
-        return this.count == messageReaction.count && m.areEqual(this.emoji, messageReaction.emoji) && this.me == messageReaction.me;
+        return this.count == messageReaction.count && Intrinsics3.areEqual(this.emoji, messageReaction.emoji) && this.me == messageReaction.me;
     }
 
     /* JADX INFO: renamed from: a, reason: from getter */
@@ -61,11 +61,11 @@ public final /* data */ class MessageReaction {
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("MessageReaction(count=");
+        StringBuilder sbU = outline.U("MessageReaction(count=");
         sbU.append(this.count);
         sbU.append(", emoji=");
         sbU.append(this.emoji);
         sbU.append(", me=");
-        return a.O(sbU, this.me, ")");
+        return outline.O(sbU, this.me, ")");
     }
 }

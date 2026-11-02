@@ -1,7 +1,7 @@
 package com.discord.widgets.channels.memberlist;
 
 import androidx.core.app.NotificationCompat;
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.api.channel.Channel;
 import com.discord.api.user.User;
 import com.discord.models.domain.ModelApplicationStream;
@@ -10,8 +10,8 @@ import com.discord.stores.StoreApplicationStreaming;
 import com.discord.stores.StoreStream;
 import com.discord.stores.StoreUser;
 import com.discord.stores.StoreUserPresence;
-import d0.z.d.m;
-import j0.k.b;
+import d0.z.d.Intrinsics3;
+import j0.k.Func1;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
@@ -28,10 +28,10 @@ public final class PrivateChannelMemberListService {
 
     /* JADX INFO: renamed from: com.discord.widgets.channels.memberlist.PrivateChannelMemberListService$observeStateForGroupDm$1, reason: invalid class name */
     /* JADX INFO: compiled from: PrivateChannelMemberListService.kt */
-    public final class AnonymousClass1<T, R> implements b<User, Long> {
+    public final class AnonymousClass1<T, R> implements Func1<User, Long> {
         public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
 
-        @Override // j0.k.b
+        @Override // j0.k.Func1
         public /* bridge */ /* synthetic */ Long call(User user) {
             return call2(user);
         }
@@ -44,7 +44,7 @@ public final class PrivateChannelMemberListService {
 
     /* JADX INFO: renamed from: com.discord.widgets.channels.memberlist.PrivateChannelMemberListService$observeStateForGroupDm$2, reason: invalid class name */
     /* JADX INFO: compiled from: PrivateChannelMemberListService.kt */
-    public final class AnonymousClass2<T, R> implements b<List<Long>, Observable<? extends State>> {
+    public final class AnonymousClass2<T, R> implements Func1<List<Long>, Observable<? extends State>> {
         public final /* synthetic */ Channel $channel;
 
         /* JADX INFO: renamed from: com.discord.widgets.channels.memberlist.PrivateChannelMemberListService$observeStateForGroupDm$2$1, reason: invalid class name */
@@ -61,9 +61,9 @@ public final class PrivateChannelMemberListService {
             /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
             public final State call2(Map<Long, ? extends com.discord.models.user.User> map, Map<Long, Presence> map2, Map<Long, ? extends ModelApplicationStream> map3) {
                 Channel channel = AnonymousClass2.this.$channel;
-                m.checkNotNullExpressionValue(map, "users");
-                m.checkNotNullExpressionValue(map2, "presences");
-                m.checkNotNullExpressionValue(map3, "applicationStreams");
+                Intrinsics3.checkNotNullExpressionValue(map, "users");
+                Intrinsics3.checkNotNullExpressionValue(map2, "presences");
+                Intrinsics3.checkNotNullExpressionValue(map3, "applicationStreams");
                 return new State(channel, map, map2, map3);
             }
         }
@@ -72,7 +72,7 @@ public final class PrivateChannelMemberListService {
             this.$channel = channel;
         }
 
-        @Override // j0.k.b
+        @Override // j0.k.Func1
         public /* bridge */ /* synthetic */ Observable<? extends State> call(List<Long> list) {
             return call2(list);
         }
@@ -80,7 +80,7 @@ public final class PrivateChannelMemberListService {
         /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
         public final Observable<? extends State> call2(List<Long> list) {
             StoreUser storeUserAccess$getStoreUser$p = PrivateChannelMemberListService.access$getStoreUser$p(PrivateChannelMemberListService.this);
-            m.checkNotNullExpressionValue(list, "ids");
+            Intrinsics3.checkNotNullExpressionValue(list, "ids");
             return Observable.i(storeUserAccess$getStoreUser$p.observeUsers(list), PrivateChannelMemberListService.access$getStorePresences$p(PrivateChannelMemberListService.this).observePresencesForUsers(list), PrivateChannelMemberListService.access$getStoreApplicationStreaming$p(PrivateChannelMemberListService.this).observeStreamsByUser(), new AnonymousClass1());
         }
     }
@@ -94,10 +94,10 @@ public final class PrivateChannelMemberListService {
 
         /* JADX WARN: Multi-variable type inference failed */
         public State(Channel channel, Map<Long, ? extends com.discord.models.user.User> map, Map<Long, Presence> map2, Map<Long, ? extends ModelApplicationStream> map3) {
-            m.checkNotNullParameter(channel, "channel");
-            m.checkNotNullParameter(map, "users");
-            m.checkNotNullParameter(map2, "presences");
-            m.checkNotNullParameter(map3, "applicationStreams");
+            Intrinsics3.checkNotNullParameter(channel, "channel");
+            Intrinsics3.checkNotNullParameter(map, "users");
+            Intrinsics3.checkNotNullParameter(map2, "presences");
+            Intrinsics3.checkNotNullParameter(map3, "applicationStreams");
             this.channel = channel;
             this.users = map;
             this.presences = map2;
@@ -134,10 +134,10 @@ public final class PrivateChannelMemberListService {
         }
 
         public final State copy(Channel channel, Map<Long, ? extends com.discord.models.user.User> users, Map<Long, Presence> presences, Map<Long, ? extends ModelApplicationStream> applicationStreams) {
-            m.checkNotNullParameter(channel, "channel");
-            m.checkNotNullParameter(users, "users");
-            m.checkNotNullParameter(presences, "presences");
-            m.checkNotNullParameter(applicationStreams, "applicationStreams");
+            Intrinsics3.checkNotNullParameter(channel, "channel");
+            Intrinsics3.checkNotNullParameter(users, "users");
+            Intrinsics3.checkNotNullParameter(presences, "presences");
+            Intrinsics3.checkNotNullParameter(applicationStreams, "applicationStreams");
             return new State(channel, users, presences, applicationStreams);
         }
 
@@ -149,7 +149,7 @@ public final class PrivateChannelMemberListService {
                 return false;
             }
             State state = (State) other;
-            return m.areEqual(this.channel, state.channel) && m.areEqual(this.users, state.users) && m.areEqual(this.presences, state.presences) && m.areEqual(this.applicationStreams, state.applicationStreams);
+            return Intrinsics3.areEqual(this.channel, state.channel) && Intrinsics3.areEqual(this.users, state.users) && Intrinsics3.areEqual(this.presences, state.presences) && Intrinsics3.areEqual(this.applicationStreams, state.applicationStreams);
         }
 
         public final Map<Long, ModelApplicationStream> getApplicationStreams() {
@@ -185,14 +185,14 @@ public final class PrivateChannelMemberListService {
         }
 
         public String toString() {
-            StringBuilder sbU = a.U("State(channel=");
+            StringBuilder sbU = outline.U("State(channel=");
             sbU.append(this.channel);
             sbU.append(", users=");
             sbU.append(this.users);
             sbU.append(", presences=");
             sbU.append(this.presences);
             sbU.append(", applicationStreams=");
-            return a.M(sbU, this.applicationStreams, ")");
+            return outline.M(sbU, this.applicationStreams, ")");
         }
     }
 
@@ -201,9 +201,9 @@ public final class PrivateChannelMemberListService {
     }
 
     public PrivateChannelMemberListService(StoreUser storeUser, StoreUserPresence storeUserPresence, StoreApplicationStreaming storeApplicationStreaming) {
-        m.checkNotNullParameter(storeUser, "storeUser");
-        m.checkNotNullParameter(storeUserPresence, "storePresences");
-        m.checkNotNullParameter(storeApplicationStreaming, "storeApplicationStreaming");
+        Intrinsics3.checkNotNullParameter(storeUser, "storeUser");
+        Intrinsics3.checkNotNullParameter(storeUserPresence, "storePresences");
+        Intrinsics3.checkNotNullParameter(storeApplicationStreaming, "storeApplicationStreaming");
         this.storeUser = storeUser;
         this.storePresences = storeUserPresence;
         this.storeApplicationStreaming = storeApplicationStreaming;
@@ -222,9 +222,9 @@ public final class PrivateChannelMemberListService {
     }
 
     public final Observable<State> observeStateForGroupDm(Channel channel) {
-        m.checkNotNullParameter(channel, "channel");
+        Intrinsics3.checkNotNullParameter(channel, "channel");
         Observable<State> observableY = Observable.I(this.storeUser.observeMeId().Z(1).c0(5000L, TimeUnit.MILLISECONDS), Observable.B(channel.z()).G(AnonymousClass1.INSTANCE)).f0().Y(new AnonymousClass2(channel));
-        m.checkNotNullExpressionValue(observableY, "Observable.merge(\n      …            }\n          }");
+        Intrinsics3.checkNotNullExpressionValue(observableY, "Observable.merge(\n      …            }\n          }");
         return observableY;
     }
 

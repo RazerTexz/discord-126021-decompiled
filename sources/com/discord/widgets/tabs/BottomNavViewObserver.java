@@ -1,7 +1,7 @@
 package com.discord.widgets.tabs;
 
-import d0.g;
-import d0.z.d.m;
+import d0.LazyJVM;
+import d0.z.d.Intrinsics3;
 import kotlin.Lazy;
 import kotlin.jvm.internal.DefaultConstructorMarker;
 import rx.Observable;
@@ -13,7 +13,7 @@ public final class BottomNavViewObserver implements TabsHostBottomNavigationView
 
     /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
     public static final Companion INSTANCE = new Companion(null);
-    private static final Lazy INSTANCE$delegate = g.lazy(BottomNavViewObserver$Companion$INSTANCE$2.INSTANCE);
+    private static final Lazy INSTANCE$delegate = LazyJVM.lazy(BottomNavViewObserver2.INSTANCE);
     private final BehaviorSubject<Integer> heightSubject = BehaviorSubject.l0(0);
 
     /* JADX INFO: compiled from: BottomNavViewObserver.kt */
@@ -38,7 +38,7 @@ public final class BottomNavViewObserver implements TabsHostBottomNavigationView
 
     public final Observable<Integer> observeHeight() {
         BehaviorSubject<Integer> behaviorSubject = this.heightSubject;
-        m.checkNotNullExpressionValue(behaviorSubject, "heightSubject");
+        Intrinsics3.checkNotNullExpressionValue(behaviorSubject, "heightSubject");
         return behaviorSubject;
     }
 

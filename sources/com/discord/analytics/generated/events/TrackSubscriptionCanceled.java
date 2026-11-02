@@ -1,14 +1,14 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackSubscriptionCanceled.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackSubscriptionCanceled implements AnalyticsSchema, TrackBaseReceiver {
+public final /* data */ class TrackSubscriptionCanceled implements AnalyticsSchema, TrackBase2 {
     private final CharSequence cancellationType = null;
     private final Long createdAt = null;
     private final Long currentPeriodEnd = null;
@@ -30,7 +30,7 @@ public final /* data */ class TrackSubscriptionCanceled implements AnalyticsSche
             return false;
         }
         TrackSubscriptionCanceled trackSubscriptionCanceled = (TrackSubscriptionCanceled) other;
-        return m.areEqual(this.subscriptionId, trackSubscriptionCanceled.subscriptionId) && m.areEqual(this.subscriptionType, trackSubscriptionCanceled.subscriptionType) && m.areEqual(this.subscriptionLength, trackSubscriptionCanceled.subscriptionLength) && m.areEqual(this.paymentGatewayPlanId, trackSubscriptionCanceled.paymentGatewayPlanId) && m.areEqual(this.planId, trackSubscriptionCanceled.planId) && m.areEqual(this.paymentGateway, trackSubscriptionCanceled.paymentGateway) && m.areEqual(this.cancellationType, trackSubscriptionCanceled.cancellationType) && m.areEqual(this.createdAt, trackSubscriptionCanceled.createdAt) && m.areEqual(this.currentPeriodStart, trackSubscriptionCanceled.currentPeriodStart) && m.areEqual(this.currentPeriodEnd, trackSubscriptionCanceled.currentPeriodEnd);
+        return Intrinsics3.areEqual(this.subscriptionId, trackSubscriptionCanceled.subscriptionId) && Intrinsics3.areEqual(this.subscriptionType, trackSubscriptionCanceled.subscriptionType) && Intrinsics3.areEqual(this.subscriptionLength, trackSubscriptionCanceled.subscriptionLength) && Intrinsics3.areEqual(this.paymentGatewayPlanId, trackSubscriptionCanceled.paymentGatewayPlanId) && Intrinsics3.areEqual(this.planId, trackSubscriptionCanceled.planId) && Intrinsics3.areEqual(this.paymentGateway, trackSubscriptionCanceled.paymentGateway) && Intrinsics3.areEqual(this.cancellationType, trackSubscriptionCanceled.cancellationType) && Intrinsics3.areEqual(this.createdAt, trackSubscriptionCanceled.createdAt) && Intrinsics3.areEqual(this.currentPeriodStart, trackSubscriptionCanceled.currentPeriodStart) && Intrinsics3.areEqual(this.currentPeriodEnd, trackSubscriptionCanceled.currentPeriodEnd);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -63,7 +63,7 @@ public final /* data */ class TrackSubscriptionCanceled implements AnalyticsSche
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackSubscriptionCanceled(subscriptionId=");
+        StringBuilder sbU = outline.U("TrackSubscriptionCanceled(subscriptionId=");
         sbU.append(this.subscriptionId);
         sbU.append(", subscriptionType=");
         sbU.append(this.subscriptionType);
@@ -82,6 +82,6 @@ public final /* data */ class TrackSubscriptionCanceled implements AnalyticsSche
         sbU.append(", currentPeriodStart=");
         sbU.append(this.currentPeriodStart);
         sbU.append(", currentPeriodEnd=");
-        return a.G(sbU, this.currentPeriodEnd, ")");
+        return outline.G(sbU, this.currentPeriodEnd, ")");
     }
 }

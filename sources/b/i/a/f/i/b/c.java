@@ -8,6 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.Size;
 import androidx.annotation.WorkerThread;
+import b.c.a.a0.AnimatableValueParser;
 import b.i.a.f.h.l.oa;
 import b.i.a.f.h.l.pa;
 import java.lang.reflect.InvocationTargetException;
@@ -177,7 +178,7 @@ public final class c extends s5 {
 
     @Nullable
     public final Boolean w(@Size(min = 1) String str) {
-        b.c.a.a0.d.w(str);
+        AnimatableValueParser.w(str);
         Bundle bundleD = D();
         if (bundleD == null) {
             g().f.a("Failed to load metadata: Metadata bundle is null");

@@ -2,28 +2,33 @@ package b.i.c.m.d.k;
 
 import android.content.Context;
 import androidx.annotation.NonNull;
+import b.i.c.m.d.q.ReportUploader;
+import b.i.c.m.d.q.d.CompositeCreateReportSpiCall;
+import b.i.c.m.d.q.d.DefaultCreateReportSpiCall;
+import b.i.c.m.d.q.d.NativeCreateReportSpiCall;
+import b.i.c.m.d.s.h.AppSettingsData;
 
 /* JADX INFO: compiled from: CrashlyticsController.java */
 /* JADX INFO: loaded from: classes3.dex */
-public class h0 implements b.i.c.m.d.q.b.InterfaceC0150b {
+public class h0 implements ReportUploader.b {
     public final /* synthetic */ x a;
 
     public h0(x xVar) {
         this.a = xVar;
     }
 
-    public b.i.c.m.d.q.b a(@NonNull b.i.c.m.d.s.h.b bVar) {
-        String str = bVar.c;
-        String str2 = bVar.d;
-        String str3 = bVar.e;
+    public ReportUploader a(@NonNull AppSettingsData appSettingsData) {
+        String str = appSettingsData.c;
+        String str2 = appSettingsData.d;
+        String str3 = appSettingsData.e;
         x xVar = this.a;
         Context context = xVar.i;
-        int iN = h.n(context, "com.crashlytics.ApiEndpoint", "string");
+        int iN = CommonUtils.n(context, "com.crashlytics.ApiEndpoint", "string");
         String string = iN > 0 ? context.getString(iN) : "";
-        b.i.c.m.d.q.d.a aVar = new b.i.c.m.d.q.d.a(new b.i.c.m.d.q.d.c(string, str, xVar.n, "17.3.0"), new b.i.c.m.d.q.d.d(string, str2, xVar.n, "17.3.0"));
+        CompositeCreateReportSpiCall compositeCreateReportSpiCall = new CompositeCreateReportSpiCall(new DefaultCreateReportSpiCall(string, str, xVar.n, "17.3.0"), new NativeCreateReportSpiCall(string, str2, xVar.n, "17.3.0"));
         String str4 = this.a.q.a;
-        int iM = b.c.a.y.b.m(bVar);
+        int iM = b.c.a.y.b.m(appSettingsData);
         x xVar2 = this.a;
-        return new b.i.c.m.d.q.b(str3, str4, iM, xVar2.u, aVar, xVar2.v);
+        return new ReportUploader(str3, str4, iM, xVar2.u, compositeCreateReportSpiCall, xVar2.v);
     }
 }

@@ -1,8 +1,8 @@
 package com.discord.api.sticker;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.models.domain.ModelAuditLogEntry;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 import java.io.Serializable;
 import kotlin.NoWhenBranchMatchedException;
 
@@ -28,8 +28,8 @@ public final /* data */ class StickerPartial implements Serializable, BaseSticke
     }
 
     public StickerPartial(long j, StickerFormatType stickerFormatType, String str) {
-        m.checkNotNullParameter(stickerFormatType, "formatType");
-        m.checkNotNullParameter(str, ModelAuditLogEntry.CHANGE_KEY_NAME);
+        Intrinsics3.checkNotNullParameter(stickerFormatType, "formatType");
+        Intrinsics3.checkNotNullParameter(str, ModelAuditLogEntry.CHANGE_KEY_NAME);
         this.id = j;
         this.formatType = stickerFormatType;
         this.name = str;
@@ -63,7 +63,7 @@ public final /* data */ class StickerPartial implements Serializable, BaseSticke
             return false;
         }
         StickerPartial stickerPartial = (StickerPartial) other;
-        return this.id == stickerPartial.id && m.areEqual(this.formatType, stickerPartial.formatType) && m.areEqual(this.name, stickerPartial.name);
+        return this.id == stickerPartial.id && Intrinsics3.areEqual(this.formatType, stickerPartial.formatType) && Intrinsics3.areEqual(this.name, stickerPartial.name);
     }
 
     @Override // com.discord.api.sticker.BaseSticker
@@ -97,11 +97,11 @@ public final /* data */ class StickerPartial implements Serializable, BaseSticke
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("StickerPartial(id=");
+        StringBuilder sbU = outline.U("StickerPartial(id=");
         sbU.append(this.id);
         sbU.append(", formatType=");
         sbU.append(this.formatType);
         sbU.append(", name=");
-        return a.J(sbU, this.name, ")");
+        return outline.J(sbU, this.name, ")");
     }
 }

@@ -1,6 +1,8 @@
 package d0.e0.p.d.m0.k.v;
 
-import d0.e0.p.d.m0.n.c0;
+import d0.e0.p.d.m0.c.ModuleDescriptor2;
+import d0.e0.p.d.m0.n.KotlinType;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: constantValues.kt */
 /* JADX INFO: loaded from: classes3.dex */
@@ -15,14 +17,14 @@ public abstract class g<T> {
         if (this != obj) {
             T value = getValue();
             g gVar = obj instanceof g ? (g) obj : null;
-            if (!d0.z.d.m.areEqual(value, gVar != null ? gVar.getValue() : null)) {
+            if (!Intrinsics3.areEqual(value, gVar != null ? gVar.getValue() : null)) {
                 return false;
             }
         }
         return true;
     }
 
-    public abstract c0 getType(d0.e0.p.d.m0.c.c0 c0Var);
+    public abstract KotlinType getType(ModuleDescriptor2 moduleDescriptor2);
 
     public T getValue() {
         return this.a;

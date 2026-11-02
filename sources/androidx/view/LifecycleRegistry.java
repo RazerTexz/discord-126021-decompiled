@@ -8,7 +8,7 @@ import androidx.annotation.VisibleForTesting;
 import androidx.arch.core.executor.ArchTaskExecutor;
 import androidx.arch.core.internal.FastSafeIterableMap;
 import androidx.arch.core.internal.SafeIterableMap;
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -64,7 +64,7 @@ public class LifecycleRegistry extends Lifecycle {
                 pushParentState(observerWithState.mState);
                 Lifecycle.Event eventUpFrom = Lifecycle.Event.upFrom(observerWithState.mState);
                 if (eventUpFrom == null) {
-                    StringBuilder sbU = a.U("no event up from ");
+                    StringBuilder sbU = outline.U("no event up from ");
                     sbU.append(observerWithState.mState);
                     throw new IllegalStateException(sbU.toString());
                 }
@@ -87,7 +87,7 @@ public class LifecycleRegistry extends Lifecycle {
             while (value.mState.compareTo(this.mState) > 0 && !this.mNewEventOccurred && this.mObserverMap.contains(next.getKey())) {
                 Lifecycle.Event eventDownFrom = Lifecycle.Event.downFrom(value.mState);
                 if (eventDownFrom == null) {
-                    StringBuilder sbU = a.U("no event down from ");
+                    StringBuilder sbU = outline.U("no event down from ");
                     sbU.append(value.mState);
                     throw new IllegalStateException(sbU.toString());
                 }
@@ -118,7 +118,7 @@ public class LifecycleRegistry extends Lifecycle {
     @SuppressLint({"RestrictedApi"})
     private void enforceMainThreadIfNeeded(String str) {
         if (this.mEnforceMainThread && !ArchTaskExecutor.getInstance().isMainThread()) {
-            throw new IllegalStateException(a.y("Method ", str, " must be called on the main thread"));
+            throw new IllegalStateException(outline.y("Method ", str, " must be called on the main thread"));
         }
     }
 
@@ -131,7 +131,7 @@ public class LifecycleRegistry extends Lifecycle {
                 pushParentState(observerWithState.mState);
                 Lifecycle.Event eventUpFrom = Lifecycle.Event.upFrom(observerWithState.mState);
                 if (eventUpFrom == null) {
-                    StringBuilder sbU = a.U("no event up from ");
+                    StringBuilder sbU = outline.U("no event up from ");
                     sbU.append(observerWithState.mState);
                     throw new IllegalStateException(sbU.toString());
                 }

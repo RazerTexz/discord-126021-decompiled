@@ -1,6 +1,7 @@
 package b.i.a.b.j.t.i;
 
 import android.database.Cursor;
+import b.i.a.b.Encoding2;
 import java.util.ArrayList;
 
 /* JADX INFO: compiled from: SQLiteEventStore.java */
@@ -11,7 +12,7 @@ public final /* synthetic */ class l implements t.b {
     @Override // b.i.a.b.j.t.i.t.b
     public Object apply(Object obj) {
         Cursor cursor = (Cursor) obj;
-        b.i.a.b.b bVar = t.j;
+        Encoding2 encoding2 = t.j;
         ArrayList arrayList = new ArrayList();
         int length = 0;
         while (cursor.moveToNext()) {

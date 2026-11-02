@@ -1,21 +1,21 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackContactSelected.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackContactSelected implements AnalyticsSchema, TrackBaseReceiver {
+public final /* data */ class TrackContactSelected implements AnalyticsSchema, TrackBase2 {
     private final Boolean selected = null;
     private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "contact_selected";
 
     public boolean equals(Object other) {
         if (this != other) {
-            return (other instanceof TrackContactSelected) && m.areEqual(this.selected, ((TrackContactSelected) other).selected);
+            return (other instanceof TrackContactSelected) && Intrinsics3.areEqual(this.selected, ((TrackContactSelected) other).selected);
         }
         return true;
     }
@@ -35,6 +35,6 @@ public final /* data */ class TrackContactSelected implements AnalyticsSchema, T
     }
 
     public String toString() {
-        return a.D(a.U("TrackContactSelected(selected="), this.selected, ")");
+        return outline.D(outline.U("TrackContactSelected(selected="), this.selected, ")");
     }
 }

@@ -1,14 +1,14 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackAnalyticsOttEventTracked.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackAnalyticsOttEventTracked implements AnalyticsSchema, TrackBaseReceiver {
+public final /* data */ class TrackAnalyticsOttEventTracked implements AnalyticsSchema, TrackBase2 {
     private final CharSequence fpc = null;
     private final CharSequence kpi = null;
     private final CharSequence pip = null;
@@ -23,7 +23,7 @@ public final /* data */ class TrackAnalyticsOttEventTracked implements Analytics
             return false;
         }
         TrackAnalyticsOttEventTracked trackAnalyticsOttEventTracked = (TrackAnalyticsOttEventTracked) other;
-        return m.areEqual(this.kpi, trackAnalyticsOttEventTracked.kpi) && m.areEqual(this.fpc, trackAnalyticsOttEventTracked.fpc) && m.areEqual(this.pip, trackAnalyticsOttEventTracked.pip);
+        return Intrinsics3.areEqual(this.kpi, trackAnalyticsOttEventTracked.kpi) && Intrinsics3.areEqual(this.fpc, trackAnalyticsOttEventTracked.fpc) && Intrinsics3.areEqual(this.pip, trackAnalyticsOttEventTracked.pip);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -42,11 +42,11 @@ public final /* data */ class TrackAnalyticsOttEventTracked implements Analytics
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackAnalyticsOttEventTracked(kpi=");
+        StringBuilder sbU = outline.U("TrackAnalyticsOttEventTracked(kpi=");
         sbU.append(this.kpi);
         sbU.append(", fpc=");
         sbU.append(this.fpc);
         sbU.append(", pip=");
-        return a.E(sbU, this.pip, ")");
+        return outline.E(sbU, this.pip, ")");
     }
 }

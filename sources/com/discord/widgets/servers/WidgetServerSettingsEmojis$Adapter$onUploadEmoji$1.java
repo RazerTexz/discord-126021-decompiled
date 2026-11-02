@@ -1,12 +1,12 @@
 package com.discord.widgets.servers;
 
-import d0.z.d.o;
+import d0.z.d.Lambda;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 
 /* JADX INFO: compiled from: WidgetServerSettingsEmojis.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class WidgetServerSettingsEmojis$Adapter$onUploadEmoji$1 extends o implements Function0<Unit> {
+public final class WidgetServerSettingsEmojis$Adapter$onUploadEmoji$1 extends Lambda implements Function0<Unit> {
     public static final WidgetServerSettingsEmojis$Adapter$onUploadEmoji$1 INSTANCE = new WidgetServerSettingsEmojis$Adapter$onUploadEmoji$1();
 
     public WidgetServerSettingsEmojis$Adapter$onUploadEmoji$1() {

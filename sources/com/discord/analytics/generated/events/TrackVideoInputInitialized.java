@@ -1,15 +1,15 @@
 package com.discord.analytics.generated.events;
 
 import androidx.appcompat.widget.ActivityChooserModel;
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackVideoInputInitialized.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackVideoInputInitialized implements AnalyticsSchema, TrackBaseReceiver {
+public final /* data */ class TrackVideoInputInitialized implements AnalyticsSchema, TrackBase2 {
     private final Float activity = null;
     private final CharSequence deviceName = null;
     private final Long timeToFirstFrameMs = null;
@@ -25,7 +25,7 @@ public final /* data */ class TrackVideoInputInitialized implements AnalyticsSch
             return false;
         }
         TrackVideoInputInitialized trackVideoInputInitialized = (TrackVideoInputInitialized) other;
-        return m.areEqual(this.deviceName, trackVideoInputInitialized.deviceName) && m.areEqual(this.timeToFirstFrameMs, trackVideoInputInitialized.timeToFirstFrameMs) && m.areEqual(this.timedOut, trackVideoInputInitialized.timedOut) && m.areEqual(this.activity, trackVideoInputInitialized.activity);
+        return Intrinsics3.areEqual(this.deviceName, trackVideoInputInitialized.deviceName) && Intrinsics3.areEqual(this.timeToFirstFrameMs, trackVideoInputInitialized.timeToFirstFrameMs) && Intrinsics3.areEqual(this.timedOut, trackVideoInputInitialized.timedOut) && Intrinsics3.areEqual(this.activity, trackVideoInputInitialized.activity);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -46,7 +46,7 @@ public final /* data */ class TrackVideoInputInitialized implements AnalyticsSch
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackVideoInputInitialized(deviceName=");
+        StringBuilder sbU = outline.U("TrackVideoInputInitialized(deviceName=");
         sbU.append(this.deviceName);
         sbU.append(", timeToFirstFrameMs=");
         sbU.append(this.timeToFirstFrameMs);

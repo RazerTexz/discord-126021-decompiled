@@ -1,8 +1,9 @@
 package com.discord.models.domain;
 
 import android.text.TextUtils;
+import b.a.m.a.a;
 import b.a.m.a.d0;
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.api.presence.ClientStatus;
 import com.discord.models.deserialization.gson.InboundGatewayGsonParser;
 import java.io.IOException;
@@ -96,7 +97,7 @@ public class ModelUserSettings implements Model {
         }
 
         public String toString() {
-            StringBuilder sbU = a.U("ModelUserSettings.FriendSourceFlags(all=");
+            StringBuilder sbU = outline.U("ModelUserSettings.FriendSourceFlags(all=");
             sbU.append(isAll());
             sbU.append(", mutualGuilds=");
             sbU.append(isMutualGuilds());
@@ -124,7 +125,7 @@ public class ModelUserSettings implements Model {
             case "guild_positions":
                 List<ModelGuildFolder> list = this.guildFolders;
                 if (list == null || list.isEmpty()) {
-                    this.guildFolders = convertFromPositions(jsonReader.nextList(new b.a.m.a.a(jsonReader)));
+                    this.guildFolders = convertFromPositions(jsonReader.nextList(new a(jsonReader)));
                     break;
                 }
                 break;
@@ -132,7 +133,7 @@ public class ModelUserSettings implements Model {
                 this.showCurrentGame = Boolean.valueOf(jsonReader.nextBoolean(false));
                 break;
             case "restricted_guilds":
-                this.restrictedGuilds = jsonReader.nextList(new b.a.m.a.a(jsonReader));
+                this.restrictedGuilds = jsonReader.nextList(new a(jsonReader));
                 break;
             case "render_embeds":
                 this.renderEmbeds = jsonReader.nextBooleanOrNull();
@@ -373,7 +374,7 @@ public class ModelUserSettings implements Model {
         if (TextUtils.isEmpty(locale.getCountry())) {
             string = "";
         } else {
-            StringBuilder sbQ = a.Q('-');
+            StringBuilder sbQ = outline.Q('-');
             sbQ.append(locale.getCountry().toUpperCase(Locale.getDefault()));
             string = sbQ.toString();
         }
@@ -442,7 +443,7 @@ public class ModelUserSettings implements Model {
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("ModelUserSettings(theme=");
+        StringBuilder sbU = outline.U("ModelUserSettings(theme=");
         sbU.append(getTheme());
         sbU.append(", guildFolders=");
         sbU.append(getGuildFolders());

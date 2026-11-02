@@ -1,8 +1,8 @@
 package com.google.android.exoplayer2.drm;
 
 import androidx.annotation.Nullable;
-import b.i.a.c.v2.b;
-import b.i.a.c.w2.s;
+import b.i.a.c.v2.CryptoConfig;
+import b.i.a.c.w2.DrmSessionEventListener;
 import java.io.IOException;
 import java.util.UUID;
 
@@ -18,9 +18,9 @@ public interface DrmSession {
         }
     }
 
-    void a(@Nullable s.a aVar);
+    void a(@Nullable DrmSessionEventListener.a aVar);
 
-    void b(@Nullable s.a aVar);
+    void b(@Nullable DrmSessionEventListener.a aVar);
 
     UUID c();
 
@@ -32,7 +32,7 @@ public interface DrmSession {
     DrmSessionException f();
 
     @Nullable
-    b g();
+    CryptoConfig g();
 
     int getState();
 }

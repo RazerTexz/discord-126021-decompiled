@@ -9,7 +9,7 @@ public final /* synthetic */ class c implements Comparator {
 
     @Override // java.util.Comparator
     public final int compare(Object obj, Object obj2) {
-        int i = x.a;
-        return Float.compare(((x.b) obj).c, ((x.b) obj2).c);
+        int i = SlidingPercentile.a;
+        return Float.compare(((SlidingPercentile.b) obj).c, ((SlidingPercentile.b) obj2).c);
     }
 }

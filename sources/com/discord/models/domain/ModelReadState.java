@@ -1,7 +1,7 @@
 package com.discord.models.domain;
 
-import b.d.b.a.a;
-import d0.z.d.m;
+import b.d.b.a.outline;
+import d0.z.d.Intrinsics3;
 import java.io.IOException;
 import kotlin.jvm.internal.DefaultConstructorMarker;
 import kotlin.jvm.internal.Ref$IntRef;
@@ -30,7 +30,7 @@ public final /* data */ class ModelReadState {
         /* JADX WARN: Can't rename method to resolve collision */
         @Override // com.discord.models.domain.Model.Parser
         public ModelReadState parse(Model.JsonReader reader) throws IOException {
-            m.checkNotNullParameter(reader, "reader");
+            Intrinsics3.checkNotNullParameter(reader, "reader");
             Ref$IntRef ref$IntRef = new Ref$IntRef();
             ref$IntRef.element = 0;
             Ref$LongRef ref$LongRef = new Ref$LongRef();
@@ -43,7 +43,7 @@ public final /* data */ class ModelReadState {
             ref$LongRef4.element = 0L;
             Ref$IntRef ref$IntRef2 = new Ref$IntRef();
             ref$IntRef2.element = 0;
-            reader.nextObject(new ModelReadState$Parser$parse$1(ref$LongRef3, reader, ref$IntRef, ref$LongRef, ref$LongRef2, ref$LongRef4, ref$IntRef2));
+            reader.nextObject(new ModelReadState2(ref$LongRef3, reader, ref$IntRef, ref$LongRef, ref$LongRef2, ref$LongRef4, ref$IntRef2));
             return new ModelReadState(ref$LongRef3.element, ref$LongRef4.element, ref$LongRef.element, ref$LongRef2.element, ref$IntRef.element, ref$IntRef2.element, null);
         }
     }
@@ -137,14 +137,14 @@ public final /* data */ class ModelReadState {
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("ModelReadState(channelId=");
+        StringBuilder sbU = outline.U("ModelReadState(channelId=");
         sbU.append(this.channelId);
         sbU.append(", lastMessageId=");
         sbU.append(this.lastMessageId);
         sbU.append(", mentionCount=");
         sbU.append(this.mentionCount);
         sbU.append(", version=");
-        return a.B(sbU, this.version, ")");
+        return outline.B(sbU, this.version, ")");
     }
 
     public /* synthetic */ ModelReadState(long j, long j2, long j3, long j4, int i, int i2, DefaultConstructorMarker defaultConstructorMarker) {

@@ -10,7 +10,7 @@ import android.widget.TextView;
 import com.discord.R;
 import com.discord.app.AppLog;
 import com.discord.utilities.logging.Logger;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 import java.util.Objects;
 
 /* JADX INFO: compiled from: StepsProgressIndicatorView.kt */
@@ -23,7 +23,7 @@ public final class StepsProgressIndicatorView extends LinearLayout {
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public StepsProgressIndicatorView(Context context, AttributeSet attributeSet) {
         super(context, attributeSet);
-        m.checkNotNullParameter(context, "context");
+        Intrinsics3.checkNotNullParameter(context, "context");
         setOrientation(0);
     }
 

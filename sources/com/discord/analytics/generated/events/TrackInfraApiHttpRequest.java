@@ -1,14 +1,14 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackInfraApiHttpRequest.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackInfraApiHttpRequest implements AnalyticsSchema, TrackBaseReceiver {
+public final /* data */ class TrackInfraApiHttpRequest implements AnalyticsSchema, TrackBase2 {
     private final Long count = null;
     private final Long statusCode = null;
     private TrackBase trackBase;
@@ -22,7 +22,7 @@ public final /* data */ class TrackInfraApiHttpRequest implements AnalyticsSchem
             return false;
         }
         TrackInfraApiHttpRequest trackInfraApiHttpRequest = (TrackInfraApiHttpRequest) other;
-        return m.areEqual(this.statusCode, trackInfraApiHttpRequest.statusCode) && m.areEqual(this.count, trackInfraApiHttpRequest.count);
+        return Intrinsics3.areEqual(this.statusCode, trackInfraApiHttpRequest.statusCode) && Intrinsics3.areEqual(this.count, trackInfraApiHttpRequest.count);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -39,9 +39,9 @@ public final /* data */ class TrackInfraApiHttpRequest implements AnalyticsSchem
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackInfraApiHttpRequest(statusCode=");
+        StringBuilder sbU = outline.U("TrackInfraApiHttpRequest(statusCode=");
         sbU.append(this.statusCode);
         sbU.append(", count=");
-        return a.G(sbU, this.count, ")");
+        return outline.G(sbU, this.count, ")");
     }
 }

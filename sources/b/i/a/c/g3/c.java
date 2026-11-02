@@ -1,28 +1,29 @@
 package b.i.a.c.g3;
 
-import b.i.a.c.f3.e0;
+import b.i.a.c.f3.Util2;
+import b.i.a.c.v2.DecoderCounters;
 import java.util.Objects;
 
 /* JADX INFO: compiled from: lambda */
 /* JADX INFO: loaded from: classes3.dex */
 public final /* synthetic */ class c implements Runnable {
-    public final /* synthetic */ x.a j;
-    public final /* synthetic */ b.i.a.c.v2.e k;
+    public final /* synthetic */ VideoRendererEventListener2.a j;
+    public final /* synthetic */ DecoderCounters k;
 
-    public /* synthetic */ c(x.a aVar, b.i.a.c.v2.e eVar) {
+    public /* synthetic */ c(VideoRendererEventListener2.a aVar, DecoderCounters decoderCounters) {
         this.j = aVar;
-        this.k = eVar;
+        this.k = decoderCounters;
     }
 
     @Override // java.lang.Runnable
     public final void run() {
-        x.a aVar = this.j;
-        b.i.a.c.v2.e eVar = this.k;
+        VideoRendererEventListener2.a aVar = this.j;
+        DecoderCounters decoderCounters = this.k;
         Objects.requireNonNull(aVar);
-        synchronized (eVar) {
+        synchronized (decoderCounters) {
         }
-        x xVar = aVar.f995b;
-        int i = e0.a;
-        xVar.Z(eVar);
+        VideoRendererEventListener2 videoRendererEventListener2 = aVar.f995b;
+        int i = Util2.a;
+        videoRendererEventListener2.Z(decoderCounters);
     }
 }

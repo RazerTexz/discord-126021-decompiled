@@ -6,15 +6,15 @@ import com.discord.models.user.CoreUser;
 import com.discord.models.user.User;
 import com.discord.stores.StorePendingReplies;
 import com.discord.stores.StoreStream;
-import d0.z.d.m;
-import j0.k.b;
-import j0.l.e.k;
+import d0.z.d.Intrinsics3;
+import j0.k.Func1;
+import j0.l.e.ScalarSynchronousObservable;
 import rx.Observable;
 import rx.functions.Func2;
 
 /* JADX INFO: compiled from: ChatInputViewModel.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class ChatInputViewModel$Companion$getPendingReplyStateObservable$1<T, R> implements b<StorePendingReplies.PendingReply, Observable<? extends ChatInputViewModel.StoreState.Loaded.PendingReply>> {
+public final class ChatInputViewModel$Companion$getPendingReplyStateObservable$1<T, R> implements Func1<StorePendingReplies.PendingReply, Observable<? extends ChatInputViewModel.StoreState.Loaded.PendingReply>> {
     public static final ChatInputViewModel$Companion$getPendingReplyStateObservable$1 INSTANCE = new ChatInputViewModel$Companion$getPendingReplyStateObservable$1();
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.input.ChatInputViewModel$Companion$getPendingReplyStateObservable$1$1, reason: invalid class name */
@@ -39,28 +39,28 @@ public final class ChatInputViewModel$Companion$getPendingReplyStateObservable$1
 
     /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
     public final Observable<? extends ChatInputViewModel.StoreState.Loaded.PendingReply> call2(StorePendingReplies.PendingReply pendingReply) {
-        Observable<R> kVar;
+        Observable<R> scalarSynchronousObservable;
         if (pendingReply == null) {
-            return new k(null);
+            return new ScalarSynchronousObservable(null);
         }
         if (pendingReply.getOriginalMessage().isWebhook()) {
             com.discord.api.user.User author = pendingReply.getOriginalMessage().getAuthor();
-            m.checkNotNull(author);
-            return new k(new ChatInputViewModel.StoreState.Loaded.PendingReply(pendingReply, new CoreUser(author), null));
+            Intrinsics3.checkNotNull(author);
+            return new ScalarSynchronousObservable(new ChatInputViewModel.StoreState.Loaded.PendingReply(pendingReply, new CoreUser(author), null));
         }
         com.discord.api.user.User author2 = pendingReply.getOriginalMessage().getAuthor();
-        m.checkNotNull(author2);
+        Intrinsics3.checkNotNull(author2);
         long id2 = author2.getId();
         Long guildId = pendingReply.getMessageReference().getGuildId();
         if (guildId != null) {
-            kVar = StoreStream.INSTANCE.getGuilds().observeComputed(guildId.longValue()).G(new ChatInputViewModel$Companion$getPendingReplyStateObservable$1$$special$$inlined$let$lambda$1(id2)).r();
+            scalarSynchronousObservable = StoreStream.INSTANCE.getGuilds().observeComputed(guildId.longValue()).G(new ChatInputViewModel$Companion$getPendingReplyStateObservable$1$$special$$inlined$let$lambda$1(id2)).r();
         } else {
-            kVar = new k(null);
+            scalarSynchronousObservable = new ScalarSynchronousObservable(null);
         }
-        return Observable.j(StoreStream.INSTANCE.getUsers().observeUser(id2), kVar, new AnonymousClass1(pendingReply));
+        return Observable.j(StoreStream.INSTANCE.getUsers().observeUser(id2), scalarSynchronousObservable, new AnonymousClass1(pendingReply));
     }
 
-    @Override // j0.k.b
+    @Override // j0.k.Func1
     public /* bridge */ /* synthetic */ Observable<? extends ChatInputViewModel.StoreState.Loaded.PendingReply> call(StorePendingReplies.PendingReply pendingReply) {
         return call2(pendingReply);
     }

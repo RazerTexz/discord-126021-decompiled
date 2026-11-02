@@ -7,11 +7,13 @@ import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.concurrent.futures.CallbackToFutureAdapter;
-import b.d.b.a.a;
+import b.d.b.a.outline;
+import b.i.b.d.a.ListenableFuture8;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import x.a.a.d.b;
+import x.a.a.d.ITrustedWebActivityService;
+import y.a.b.a;
 
 /* JADX INFO: loaded from: classes.dex */
 public class ConnectionHolder implements ServiceConnection {
@@ -39,7 +41,7 @@ public class ConnectionHolder implements ServiceConnection {
     public class WrapperFactory {
         @NonNull
         public TrustedWebActivityServiceConnection create(ComponentName componentName, IBinder iBinder) {
-            return new TrustedWebActivityServiceConnection(b.a.asInterface(iBinder), componentName);
+            return new TrustedWebActivityServiceConnection(ITrustedWebActivityService.a.asInterface(iBinder), componentName);
         }
     }
 
@@ -68,7 +70,7 @@ public class ConnectionHolder implements ServiceConnection {
             }
             completer.set(trustedWebActivityServiceConnection);
         }
-        StringBuilder sbU = a.U("ConnectionHolder, state = ");
+        StringBuilder sbU = outline.U("ConnectionHolder, state = ");
         sbU.append(this.mState);
         return sbU.toString();
     }
@@ -87,8 +89,8 @@ public class ConnectionHolder implements ServiceConnection {
 
     @NonNull
     @MainThread
-    public b.i.b.d.a.a<TrustedWebActivityServiceConnection> getServiceWrapper() {
-        return CallbackToFutureAdapter.getFuture(new y.a.b.a(this));
+    public ListenableFuture8<TrustedWebActivityServiceConnection> getServiceWrapper() {
+        return CallbackToFutureAdapter.getFuture(new a(this));
     }
 
     @Override // android.content.ServiceConnection

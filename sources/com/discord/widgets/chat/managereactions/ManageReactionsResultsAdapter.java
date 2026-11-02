@@ -7,7 +7,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.R;
 import com.discord.api.message.reaction.MessageReactionEmoji;
 import com.discord.databinding.WidgetManageReactionsResultErrorBinding;
@@ -20,7 +20,7 @@ import com.discord.utilities.mg_recycler.MGRecyclerAdapterSimple;
 import com.discord.utilities.mg_recycler.MGRecyclerDataPayload;
 import com.discord.utilities.mg_recycler.MGRecyclerViewHolder;
 import com.facebook.drawee.view.SimpleDraweeView;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: ManageReactionsResultsAdapter.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -38,7 +38,7 @@ public final class ManageReactionsResultsAdapter extends MGRecyclerAdapterSimple
         private final int type;
 
         public ErrorItem(long j, long j2, MessageReactionEmoji messageReactionEmoji) {
-            m.checkNotNullParameter(messageReactionEmoji, "emoji");
+            Intrinsics3.checkNotNullParameter(messageReactionEmoji, "emoji");
             this.channelId = j;
             this.messageId = j2;
             this.emoji = messageReactionEmoji;
@@ -76,7 +76,7 @@ public final class ManageReactionsResultsAdapter extends MGRecyclerAdapterSimple
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
         public ErrorViewHolder(ManageReactionsResultsAdapter manageReactionsResultsAdapter) {
             super(R.layout.widget_manage_reactions_result_error, manageReactionsResultsAdapter);
-            m.checkNotNullParameter(manageReactionsResultsAdapter, "adapter");
+            Intrinsics3.checkNotNullParameter(manageReactionsResultsAdapter, "adapter");
             View view = this.itemView;
             int i = R.id.manage_reactions_result_error_img;
             ImageView imageView = (ImageView) view.findViewById(R.id.manage_reactions_result_error_img);
@@ -85,7 +85,7 @@ public final class ManageReactionsResultsAdapter extends MGRecyclerAdapterSimple
                 TextView textView = (TextView) view.findViewById(R.id.manage_reactions_result_error_text);
                 if (textView != null) {
                     WidgetManageReactionsResultErrorBinding widgetManageReactionsResultErrorBinding = new WidgetManageReactionsResultErrorBinding((RelativeLayout) view, imageView, textView);
-                    m.checkNotNullExpressionValue(widgetManageReactionsResultErrorBinding, "WidgetManageReactionsRes…rorBinding.bind(itemView)");
+                    Intrinsics3.checkNotNullExpressionValue(widgetManageReactionsResultErrorBinding, "WidgetManageReactionsRes…rorBinding.bind(itemView)");
                     this.binding = widgetManageReactionsResultErrorBinding;
                     return;
                 }
@@ -100,9 +100,9 @@ public final class ManageReactionsResultsAdapter extends MGRecyclerAdapterSimple
 
         /* JADX INFO: renamed from: onConfigure, reason: avoid collision after fix types in other method */
         public void onConfigure2(int position, MGRecyclerDataPayload data) {
-            m.checkNotNullParameter(data, "data");
+            Intrinsics3.checkNotNullParameter(data, "data");
             super.onConfigure(position, data);
-            this.binding.f2484b.setOnClickListener(new ManageReactionsResultsAdapter$ErrorViewHolder$onConfigure$1(data));
+            this.binding.f2484b.setOnClickListener(new ManageReactionsResultsAdapter2(data));
         }
     }
 
@@ -111,7 +111,7 @@ public final class ManageReactionsResultsAdapter extends MGRecyclerAdapterSimple
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
         public LoadingViewHolder(ManageReactionsResultsAdapter manageReactionsResultsAdapter) {
             super(R.layout.widget_manage_reactions_result_loading, manageReactionsResultsAdapter);
-            m.checkNotNullParameter(manageReactionsResultsAdapter, "adapter");
+            Intrinsics3.checkNotNullParameter(manageReactionsResultsAdapter, "adapter");
         }
     }
 
@@ -127,8 +127,8 @@ public final class ManageReactionsResultsAdapter extends MGRecyclerAdapterSimple
         private final User user;
 
         public ReactionUserItem(User user, long j, long j2, MessageReactionEmoji messageReactionEmoji, boolean z2, GuildMember guildMember) {
-            m.checkNotNullParameter(user, "user");
-            m.checkNotNullParameter(messageReactionEmoji, "emoji");
+            Intrinsics3.checkNotNullParameter(user, "user");
+            Intrinsics3.checkNotNullParameter(messageReactionEmoji, "emoji");
             this.user = user;
             this.channelId = j;
             this.messageId = j2;
@@ -143,8 +143,8 @@ public final class ManageReactionsResultsAdapter extends MGRecyclerAdapterSimple
         }
 
         public final ReactionUserItem copy(User user, long channelId, long messageId, MessageReactionEmoji emoji, boolean canDelete, GuildMember guildMember) {
-            m.checkNotNullParameter(user, "user");
-            m.checkNotNullParameter(emoji, "emoji");
+            Intrinsics3.checkNotNullParameter(user, "user");
+            Intrinsics3.checkNotNullParameter(emoji, "emoji");
             return new ReactionUserItem(user, channelId, messageId, emoji, canDelete, guildMember);
         }
 
@@ -156,7 +156,7 @@ public final class ManageReactionsResultsAdapter extends MGRecyclerAdapterSimple
                 return false;
             }
             ReactionUserItem reactionUserItem = (ReactionUserItem) other;
-            return m.areEqual(this.user, reactionUserItem.user) && this.channelId == reactionUserItem.channelId && this.messageId == reactionUserItem.messageId && m.areEqual(this.emoji, reactionUserItem.emoji) && this.canDelete == reactionUserItem.canDelete && m.areEqual(this.guildMember, reactionUserItem.guildMember);
+            return Intrinsics3.areEqual(this.user, reactionUserItem.user) && this.channelId == reactionUserItem.channelId && this.messageId == reactionUserItem.messageId && Intrinsics3.areEqual(this.emoji, reactionUserItem.emoji) && this.canDelete == reactionUserItem.canDelete && Intrinsics3.areEqual(this.guildMember, reactionUserItem.guildMember);
         }
 
         /* JADX INFO: renamed from: component5, reason: from getter */
@@ -244,7 +244,7 @@ public final class ManageReactionsResultsAdapter extends MGRecyclerAdapterSimple
         }
 
         public String toString() {
-            StringBuilder sbU = a.U("ReactionUserItem(user=");
+            StringBuilder sbU = outline.U("ReactionUserItem(user=");
             sbU.append(this.user);
             sbU.append(", channelId=");
             sbU.append(this.channelId);
@@ -268,7 +268,7 @@ public final class ManageReactionsResultsAdapter extends MGRecyclerAdapterSimple
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
         public ReactionUserViewHolder(ManageReactionsResultsAdapter manageReactionsResultsAdapter) {
             super(R.layout.widget_manage_reactions_result_user, manageReactionsResultsAdapter);
-            m.checkNotNullParameter(manageReactionsResultsAdapter, "adapter");
+            Intrinsics3.checkNotNullParameter(manageReactionsResultsAdapter, "adapter");
             View view = this.itemView;
             int i = R.id.manage_reactions_result_remove_reaction;
             ImageView imageView = (ImageView) view.findViewById(R.id.manage_reactions_result_remove_reaction);
@@ -280,7 +280,7 @@ public final class ManageReactionsResultsAdapter extends MGRecyclerAdapterSimple
                     TextView textView = (TextView) view.findViewById(R.id.manage_reactions_result_user_name);
                     if (textView != null) {
                         WidgetManageReactionsResultUserBinding widgetManageReactionsResultUserBinding = new WidgetManageReactionsResultUserBinding((RelativeLayout) view, imageView, simpleDraweeView, textView);
-                        m.checkNotNullExpressionValue(widgetManageReactionsResultUserBinding, "WidgetManageReactionsRes…serBinding.bind(itemView)");
+                        Intrinsics3.checkNotNullExpressionValue(widgetManageReactionsResultUserBinding, "WidgetManageReactionsRes…serBinding.bind(itemView)");
                         this.binding = widgetManageReactionsResultUserBinding;
                         return;
                     }
@@ -297,11 +297,11 @@ public final class ManageReactionsResultsAdapter extends MGRecyclerAdapterSimple
         /* JADX INFO: renamed from: onConfigure, reason: avoid collision after fix types in other method */
         public void onConfigure2(int position, MGRecyclerDataPayload data) {
             String username;
-            m.checkNotNullParameter(data, "data");
+            Intrinsics3.checkNotNullParameter(data, "data");
             super.onConfigure(position, data);
             if (data instanceof ReactionUserItem) {
                 TextView textView = this.binding.d;
-                m.checkNotNullExpressionValue(textView, "binding.manageReactionsResultUserName");
+                Intrinsics3.checkNotNullExpressionValue(textView, "binding.manageReactionsResultUserName");
                 ReactionUserItem reactionUserItem = (ReactionUserItem) data;
                 GuildMember guildMember = reactionUserItem.getGuildMember();
                 if (guildMember == null || (username = guildMember.getNick()) == null) {
@@ -309,12 +309,12 @@ public final class ManageReactionsResultsAdapter extends MGRecyclerAdapterSimple
                 }
                 textView.setText(username);
                 SimpleDraweeView simpleDraweeView = this.binding.c;
-                m.checkNotNullExpressionValue(simpleDraweeView, "binding.manageReactionsResultUserAvatar");
+                Intrinsics3.checkNotNullExpressionValue(simpleDraweeView, "binding.manageReactionsResultUserAvatar");
                 IconUtils.setIcon$default(simpleDraweeView, reactionUserItem.getUser(), R.dimen.avatar_size_standard, null, null, reactionUserItem.getGuildMember(), 24, null);
                 ImageView imageView = this.binding.f2485b;
-                m.checkNotNullExpressionValue(imageView, "binding.manageReactionsResultRemoveReaction");
+                Intrinsics3.checkNotNullExpressionValue(imageView, "binding.manageReactionsResultRemoveReaction");
                 imageView.setVisibility(reactionUserItem.getCanDelete() ? 0 : 8);
-                this.binding.f2485b.setOnClickListener(new ManageReactionsResultsAdapter$ReactionUserViewHolder$onConfigure$1(data));
+                this.binding.f2485b.setOnClickListener(new ManageReactionsResultsAdapter3(data));
             }
         }
     }
@@ -322,7 +322,7 @@ public final class ManageReactionsResultsAdapter extends MGRecyclerAdapterSimple
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public ManageReactionsResultsAdapter(RecyclerView recyclerView) {
         super(recyclerView, false, 2, null);
-        m.checkNotNullParameter(recyclerView, "recycler");
+        Intrinsics3.checkNotNullParameter(recyclerView, "recycler");
     }
 
     @Override // androidx.recyclerview.widget.RecyclerView.Adapter
@@ -348,7 +348,7 @@ public final class ManageReactionsResultsAdapter extends MGRecyclerAdapterSimple
 
     @Override // androidx.recyclerview.widget.RecyclerView.Adapter
     public MGRecyclerViewHolder<ManageReactionsResultsAdapter, MGRecyclerDataPayload> onCreateViewHolder(ViewGroup parent, int viewType) {
-        m.checkNotNullParameter(parent, "parent");
+        Intrinsics3.checkNotNullParameter(parent, "parent");
         if (viewType == 0) {
             return new ReactionUserViewHolder(this);
         }

@@ -1,7 +1,7 @@
 package com.discord.api.science;
 
-import b.d.b.a.a;
-import d0.z.d.m;
+import b.d.b.a.outline;
+import d0.z.d.Intrinsics3;
 import java.util.List;
 import java.util.Map;
 import kotlin.jvm.internal.DefaultConstructorMarker;
@@ -23,8 +23,8 @@ public final class Science {
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
             public MapObject(String str, Map<String, ? extends Object> map) {
                 super(null);
-                m.checkNotNullParameter(str, "type");
-                m.checkNotNullParameter(map, "properties");
+                Intrinsics3.checkNotNullParameter(str, "type");
+                Intrinsics3.checkNotNullParameter(map, "properties");
                 this.type = str;
                 this.properties = map;
             }
@@ -37,7 +37,7 @@ public final class Science {
                     return false;
                 }
                 MapObject mapObject = (MapObject) other;
-                return m.areEqual(this.type, mapObject.type) && m.areEqual(this.properties, mapObject.properties);
+                return Intrinsics3.areEqual(this.type, mapObject.type) && Intrinsics3.areEqual(this.properties, mapObject.properties);
             }
 
             @Override // com.discord.api.science.Science.Event
@@ -54,10 +54,10 @@ public final class Science {
             }
 
             public String toString() {
-                StringBuilder sbU = a.U("MapObject(type=");
+                StringBuilder sbU = outline.U("MapObject(type=");
                 sbU.append(this.type);
                 sbU.append(", properties=");
-                return a.M(sbU, this.properties, ")");
+                return outline.M(sbU, this.properties, ")");
             }
         }
 
@@ -69,14 +69,14 @@ public final class Science {
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
             public SchemaObject(AnalyticsSchema analyticsSchema) {
                 super(null);
-                m.checkNotNullParameter(analyticsSchema, "schema");
+                Intrinsics3.checkNotNullParameter(analyticsSchema, "schema");
                 this.schema = analyticsSchema;
                 this.type = analyticsSchema.getAnalyticsSchemaTypeName();
             }
 
             public boolean equals(Object other) {
                 if (this != other) {
-                    return (other instanceof SchemaObject) && m.areEqual(this.schema, ((SchemaObject) other).schema);
+                    return (other instanceof SchemaObject) && Intrinsics3.areEqual(this.schema, ((SchemaObject) other).schema);
                 }
                 return true;
             }
@@ -101,7 +101,7 @@ public final class Science {
             }
 
             public String toString() {
-                StringBuilder sbU = a.U("SchemaObject(schema=");
+                StringBuilder sbU = outline.U("SchemaObject(schema=");
                 sbU.append(this.schema);
                 sbU.append(")");
                 return sbU.toString();

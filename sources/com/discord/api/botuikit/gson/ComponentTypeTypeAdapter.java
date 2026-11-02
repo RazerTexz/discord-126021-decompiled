@@ -1,46 +1,46 @@
 package com.discord.api.botuikit.gson;
 
-import b.c.a.a0.d;
-import com.discord.api.botuikit.ComponentType;
+import b.c.a.a0.AnimatableValueParser;
+import com.discord.api.botuikit.Component6;
 import com.google.gson.TypeAdapter;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 import java.io.IOException;
 
 /* JADX INFO: compiled from: ComponentTypeTypeAdapter.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final class ComponentTypeTypeAdapter extends TypeAdapter<ComponentType> {
+public final class ComponentTypeTypeAdapter extends TypeAdapter<Component6> {
     /* JADX WARN: Code duplicated, block: B:18:0x002e  */
     /* JADX WARN: Code duplicated, block: B:22:? A[RETURN, SYNTHETIC] */
     @Override // com.google.gson.TypeAdapter
-    public ComponentType read(JsonReader jsonReader) throws IOException {
-        ComponentType componentType;
-        m.checkNotNullParameter(jsonReader, "in");
-        Integer numN1 = d.n1(jsonReader);
-        ComponentType[] componentTypeArrValues = ComponentType.values();
+    public Component6 read(JsonReader jsonReader) throws IOException {
+        Component6 component6;
+        Intrinsics3.checkNotNullParameter(jsonReader, "in");
+        Integer numN1 = AnimatableValueParser.n1(jsonReader);
+        Component6[] component6ArrValues = Component6.values();
         for (int i = 0; i < 5; i++) {
-            componentType = componentTypeArrValues[i];
-            if (numN1 != null && componentType.getType() == numN1.intValue()) {
-                if (componentType != null) {
-                    return componentType;
+            component6 = component6ArrValues[i];
+            if (numN1 != null && component6.getType() == numN1.intValue()) {
+                if (component6 != null) {
+                    return component6;
                 }
-                return ComponentType.UNKNOWN;
+                return Component6.UNKNOWN;
             }
         }
-        componentType = null;
-        if (componentType != null) {
-            return componentType;
+        component6 = null;
+        if (component6 != null) {
+            return component6;
         }
-        return ComponentType.UNKNOWN;
+        return Component6.UNKNOWN;
     }
 
     @Override // com.google.gson.TypeAdapter
-    public void write(JsonWriter jsonWriter, ComponentType componentType) throws IOException {
-        ComponentType componentType2 = componentType;
-        m.checkNotNullParameter(jsonWriter, "out");
-        if (componentType2 != null) {
-            jsonWriter.D(Integer.valueOf(componentType2.getType()));
+    public void write(JsonWriter jsonWriter, Component6 component6) throws IOException {
+        Component6 component7 = component6;
+        Intrinsics3.checkNotNullParameter(jsonWriter, "out");
+        if (component7 != null) {
+            jsonWriter.D(Integer.valueOf(component7.getType()));
         }
     }
 }

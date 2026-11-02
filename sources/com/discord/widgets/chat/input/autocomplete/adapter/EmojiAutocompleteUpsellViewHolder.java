@@ -5,15 +5,15 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
-import b.a.k.b;
+import b.a.k.FormatUtils;
 import com.discord.R;
 import com.discord.databinding.WidgetChatInputEmojiAutocompleteUpsellItemBinding;
 import com.discord.models.domain.emoji.Emoji;
 import com.discord.views.PileView;
 import com.discord.widgets.chat.input.autocomplete.Autocompletable;
 import com.discord.widgets.chat.input.autocomplete.EmojiUpsellPlaceholder;
-import d0.t.o;
-import d0.z.d.m;
+import d0.t.Iterables2;
+import d0.z.d.Intrinsics3;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -45,8 +45,8 @@ public final class EmojiAutocompleteUpsellViewHolder extends RecyclerView.ViewHo
     /* JADX WARN: Multi-variable type inference failed */
     public EmojiAutocompleteUpsellViewHolder(WidgetChatInputEmojiAutocompleteUpsellItemBinding widgetChatInputEmojiAutocompleteUpsellItemBinding, Function1<? super Autocompletable, Unit> function1) {
         super(widgetChatInputEmojiAutocompleteUpsellItemBinding.a);
-        m.checkNotNullParameter(widgetChatInputEmojiAutocompleteUpsellItemBinding, "binding");
-        m.checkNotNullParameter(function1, "onItemSelected");
+        Intrinsics3.checkNotNullParameter(widgetChatInputEmojiAutocompleteUpsellItemBinding, "binding");
+        Intrinsics3.checkNotNullParameter(function1, "onItemSelected");
         this.binding = widgetChatInputEmojiAutocompleteUpsellItemBinding;
         this.onItemSelected = function1;
     }
@@ -60,23 +60,23 @@ public final class EmojiAutocompleteUpsellViewHolder extends RecyclerView.ViewHo
     }
 
     public final void bind(EmojiUpsellPlaceholder emojiUpsellPlaceholder) {
-        m.checkNotNullParameter(emojiUpsellPlaceholder, "emojiUpsellPlaceholder");
+        Intrinsics3.checkNotNullParameter(emojiUpsellPlaceholder, "emojiUpsellPlaceholder");
         int lockedTotal = emojiUpsellPlaceholder.getLockedTotal();
         LinearLayout linearLayout = this.binding.a;
-        m.checkNotNullExpressionValue(linearLayout, "binding.root");
+        Intrinsics3.checkNotNullExpressionValue(linearLayout, "binding.root");
         Resources resources = linearLayout.getResources();
         String string = resources.getString(R.string.autocomplete_emoji_upsell);
-        m.checkNotNullExpressionValue(string, "resources.getString(R.st…utocomplete_emoji_upsell)");
+        Intrinsics3.checkNotNullExpressionValue(string, "resources.getString(R.st…utocomplete_emoji_upsell)");
         String quantityString = resources.getQuantityString(R.plurals.autocomplete_emoji_upsell_count, lockedTotal);
-        m.checkNotNullExpressionValue(quantityString, "resources.getQuantityStr…moji_upsell_count, count)");
+        Intrinsics3.checkNotNullExpressionValue(quantityString, "resources.getQuantityStr…moji_upsell_count, count)");
         TextView textView = this.binding.c;
-        m.checkNotNullExpressionValue(textView, "binding.chatInputEmojiUpsellText");
-        b.o(textView, string, new Object[]{b.l(quantityString, new Object[]{Integer.valueOf(lockedTotal)}, null, 2)}, null, 4);
+        Intrinsics3.checkNotNullExpressionValue(textView, "binding.chatInputEmojiUpsellText");
+        FormatUtils.o(textView, string, new Object[]{FormatUtils.l(quantityString, new Object[]{Integer.valueOf(lockedTotal)}, null, 2)}, null, 4);
         List<Emoji> lockedFirstThree = emojiUpsellPlaceholder.getLockedFirstThree();
-        ArrayList arrayList = new ArrayList(o.collectionSizeOrDefault(lockedFirstThree, 10));
+        ArrayList arrayList = new ArrayList(Iterables2.collectionSizeOrDefault(lockedFirstThree, 10));
         Iterator<T> it = lockedFirstThree.iterator();
         while (it.hasNext()) {
-            arrayList.add(new PileView.c(new EmojiAutocompleteUpsellViewHolder$bind$$inlined$map$lambda$1((Emoji) it.next(), this, emojiUpsellPlaceholder), null));
+            arrayList.add(new PileView.c(new EmojiAutocompleteUpsellViewHolder2((Emoji) it.next(), this, emojiUpsellPlaceholder), null));
         }
         this.binding.f2306b.setItems(arrayList);
         this.binding.a.setOnClickListener(new AnonymousClass1(emojiUpsellPlaceholder));

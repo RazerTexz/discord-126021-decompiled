@@ -1,12 +1,12 @@
 package com.discord.analytics.generated.events;
 
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.api.science.AnalyticsSchema;
 
 /* JADX INFO: compiled from: TrackRegisterWillView.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final class TrackRegisterWillView implements AnalyticsSchema, TrackBaseReceiver {
+public final class TrackRegisterWillView implements AnalyticsSchema, TrackBase2 {
     private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "register_will_view";
 

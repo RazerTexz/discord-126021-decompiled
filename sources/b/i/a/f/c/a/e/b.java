@@ -9,8 +9,8 @@ import b.i.a.f.h.b.i;
 
 /* JADX INFO: compiled from: com.google.android.gms:play-services-auth-api-phone@@17.4.0 */
 /* JADX INFO: loaded from: classes3.dex */
-public final class b extends b.i.a.f.e.h.a.C0112a<i, b.i.a.f.e.h.a.d.c> {
-    @Override // b.i.a.f.e.h.a.C0112a
+public final class b extends b.i.a.f.e.h.a.C0035a<i, b.i.a.f.e.h.a.d.c> {
+    @Override // b.i.a.f.e.h.a.C0035a
     public final /* synthetic */ b.i.a.f.e.h.a.f b(Context context, Looper looper, c cVar, b.i.a.f.e.h.a.d.c cVar2, f fVar, l lVar) {
         return new i(context, looper, cVar, fVar, lVar);
     }

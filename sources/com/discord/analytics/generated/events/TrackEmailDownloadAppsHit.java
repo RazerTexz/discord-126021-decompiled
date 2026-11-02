@@ -1,14 +1,14 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackEmailDownloadAppsHit.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackEmailDownloadAppsHit implements AnalyticsSchema, TrackBaseReceiver {
+public final /* data */ class TrackEmailDownloadAppsHit implements AnalyticsSchema, TrackBase2 {
     private final CharSequence platform = null;
     private TrackBase trackBase;
     private final Long trackingPixelUuid = null;
@@ -22,7 +22,7 @@ public final /* data */ class TrackEmailDownloadAppsHit implements AnalyticsSche
             return false;
         }
         TrackEmailDownloadAppsHit trackEmailDownloadAppsHit = (TrackEmailDownloadAppsHit) other;
-        return m.areEqual(this.trackingPixelUuid, trackEmailDownloadAppsHit.trackingPixelUuid) && m.areEqual(this.platform, trackEmailDownloadAppsHit.platform);
+        return Intrinsics3.areEqual(this.trackingPixelUuid, trackEmailDownloadAppsHit.trackingPixelUuid) && Intrinsics3.areEqual(this.platform, trackEmailDownloadAppsHit.platform);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -39,9 +39,9 @@ public final /* data */ class TrackEmailDownloadAppsHit implements AnalyticsSche
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackEmailDownloadAppsHit(trackingPixelUuid=");
+        StringBuilder sbU = outline.U("TrackEmailDownloadAppsHit(trackingPixelUuid=");
         sbU.append(this.trackingPixelUuid);
         sbU.append(", platform=");
-        return a.E(sbU, this.platform, ")");
+        return outline.E(sbU, this.platform, ")");
     }
 }

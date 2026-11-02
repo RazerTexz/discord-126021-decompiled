@@ -1,14 +1,14 @@
 package com.discord.widgets.guilds.invite;
 
 import a0.a.a.b;
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.api.channel.Channel;
 import com.discord.api.guild.Guild;
 import com.discord.api.guildscheduledevent.GuildScheduledEvent;
 import com.discord.api.user.User;
 import com.discord.models.domain.ModelInvite;
 import com.discord.models.invite.InviteUtils;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 import java.io.Serializable;
 import kotlin.NoWhenBranchMatchedException;
 import kotlin.jvm.internal.DefaultConstructorMarker;
@@ -34,19 +34,19 @@ public final /* data */ class GuildInvite implements Serializable {
 
         public final GuildInvite createFromModelInvite(ModelInvite invite) {
             boolean zAreEqual;
-            m.checkNotNullParameter(invite, "invite");
+            Intrinsics3.checkNotNullParameter(invite, "invite");
             GuildScheduledEvent guildScheduledEvent = invite.getGuildScheduledEvent();
             Long lValueOf = null;
             if ((guildScheduledEvent != null ? guildScheduledEvent.getChannelId() : null) != null) {
                 GuildScheduledEvent guildScheduledEvent2 = invite.getGuildScheduledEvent();
                 Long channelId = guildScheduledEvent2 != null ? guildScheduledEvent2.getChannelId() : null;
                 Channel channel = invite.getChannel();
-                zAreEqual = m.areEqual(channelId, channel != null ? Long.valueOf(channel.getId()) : null);
+                zAreEqual = Intrinsics3.areEqual(channelId, channel != null ? Long.valueOf(channel.getId()) : null);
             } else {
                 zAreEqual = true;
             }
             String str = invite.code;
-            m.checkNotNullExpressionValue(str, "invite.code");
+            Intrinsics3.checkNotNullExpressionValue(str, "invite.code");
             Guild guild = invite.guild;
             Long lValueOf2 = guild != null ? Long.valueOf(guild.getId()) : null;
             Channel channel2 = invite.getChannel();
@@ -72,7 +72,7 @@ public final /* data */ class GuildInvite implements Serializable {
     }
 
     public GuildInvite(String str, Long l, Long l2, Long l3, boolean z2, long j, Long l4) {
-        m.checkNotNullParameter(str, "inviteCode");
+        Intrinsics3.checkNotNullParameter(str, "inviteCode");
         this.inviteCode = str;
         this.guildId = l;
         this.channelId = l2;
@@ -87,7 +87,7 @@ public final /* data */ class GuildInvite implements Serializable {
     }
 
     public final GuildInvite copy(String inviteCode, Long guildId, Long channelId, Long inviterId, boolean isStaticInvite, long expirationTimeMs, Long guildScheduledEventId) {
-        m.checkNotNullParameter(inviteCode, "inviteCode");
+        Intrinsics3.checkNotNullParameter(inviteCode, "inviteCode");
         return new GuildInvite(inviteCode, guildId, channelId, inviterId, isStaticInvite, expirationTimeMs, guildScheduledEventId);
     }
 
@@ -99,7 +99,7 @@ public final /* data */ class GuildInvite implements Serializable {
             return false;
         }
         GuildInvite guildInvite = (GuildInvite) other;
-        return m.areEqual(this.inviteCode, guildInvite.inviteCode) && m.areEqual(this.guildId, guildInvite.guildId) && m.areEqual(this.channelId, guildInvite.channelId) && m.areEqual(this.inviterId, guildInvite.inviterId) && this.isStaticInvite == guildInvite.isStaticInvite && this.expirationTimeMs == guildInvite.expirationTimeMs && m.areEqual(this.guildScheduledEventId, guildInvite.guildScheduledEventId);
+        return Intrinsics3.areEqual(this.inviteCode, guildInvite.inviteCode) && Intrinsics3.areEqual(this.guildId, guildInvite.guildId) && Intrinsics3.areEqual(this.channelId, guildInvite.channelId) && Intrinsics3.areEqual(this.inviterId, guildInvite.inviterId) && this.isStaticInvite == guildInvite.isStaticInvite && this.expirationTimeMs == guildInvite.expirationTimeMs && Intrinsics3.areEqual(this.guildScheduledEventId, guildInvite.guildScheduledEventId);
     }
 
     /* JADX INFO: renamed from: component3, reason: from getter */
@@ -194,7 +194,7 @@ public final /* data */ class GuildInvite implements Serializable {
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("GuildInvite(inviteCode=");
+        StringBuilder sbU = outline.U("GuildInvite(inviteCode=");
         sbU.append(this.inviteCode);
         sbU.append(", guildId=");
         sbU.append(this.guildId);
@@ -207,6 +207,6 @@ public final /* data */ class GuildInvite implements Serializable {
         sbU.append(", expirationTimeMs=");
         sbU.append(this.expirationTimeMs);
         sbU.append(", guildScheduledEventId=");
-        return a.G(sbU, this.guildScheduledEventId, ")");
+        return outline.G(sbU, this.guildScheduledEventId, ")");
     }
 }

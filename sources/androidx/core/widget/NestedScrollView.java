@@ -38,7 +38,7 @@ import androidx.core.view.ScrollingView;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.accessibility.AccessibilityNodeInfoCompat;
 import androidx.core.view.accessibility.AccessibilityRecordCompat;
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import java.util.ArrayList;
 
 /* JADX INFO: loaded from: classes.dex */
@@ -180,10 +180,10 @@ public class NestedScrollView extends FrameLayout implements NestedScrollingPare
 
         @NonNull
         public String toString() {
-            StringBuilder sbU = a.U("HorizontalScrollView.SavedState{");
+            StringBuilder sbU = outline.U("HorizontalScrollView.SavedState{");
             sbU.append(Integer.toHexString(System.identityHashCode(this)));
             sbU.append(" scrollPosition=");
-            return a.B(sbU, this.scrollPosition, "}");
+            return outline.B(sbU, this.scrollPosition, "}");
         }
 
         @Override // android.view.View.BaseSavedState, android.view.AbsSavedState, android.os.Parcelable
@@ -1027,7 +1027,7 @@ public class NestedScrollView extends FrameLayout implements NestedScrollingPare
             } else if (actionMasked == 2) {
                 int iFindPointerIndex = motionEvent.findPointerIndex(this.mActivePointerId);
                 if (iFindPointerIndex == -1) {
-                    StringBuilder sbU = a.U("Invalid pointerId=");
+                    StringBuilder sbU = outline.U("Invalid pointerId=");
                     sbU.append(this.mActivePointerId);
                     sbU.append(" in onTouchEvent");
                     Log.e(TAG, sbU.toString());

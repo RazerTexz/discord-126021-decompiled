@@ -2,7 +2,7 @@ package androidx.transition;
 
 import android.view.View;
 import androidx.annotation.NonNull;
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -30,13 +30,13 @@ public class TransitionValues {
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TransitionValues@");
+        StringBuilder sbU = outline.U("TransitionValues@");
         sbU.append(Integer.toHexString(hashCode()));
         sbU.append(":\n");
-        StringBuilder sbX = a.X(sbU.toString(), "    view = ");
+        StringBuilder sbX = outline.X(sbU.toString(), "    view = ");
         sbX.append(this.view);
         sbX.append("\n");
-        String strW = a.w(sbX.toString(), "    values:");
+        String strW = outline.w(sbX.toString(), "    values:");
         for (String str : this.values.keySet()) {
             strW = strW + "    " + str + ": " + this.values.get(str) + "\n";
         }

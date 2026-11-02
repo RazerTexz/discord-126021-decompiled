@@ -1,6 +1,6 @@
 package com.discord.models.domain;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 
 /* JADX INFO: compiled from: ModelAppliedGuildBoost.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -81,11 +81,11 @@ public final /* data */ class ModelAppliedGuildBoost {
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("ModelAppliedGuildBoost(id=");
+        StringBuilder sbU = outline.U("ModelAppliedGuildBoost(id=");
         sbU.append(this.id);
         sbU.append(", guildId=");
         sbU.append(this.guildId);
         sbU.append(", userId=");
-        return a.C(sbU, this.userId, ")");
+        return outline.C(sbU, this.userId, ")");
     }
 }

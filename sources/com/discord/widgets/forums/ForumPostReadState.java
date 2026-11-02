@@ -1,7 +1,7 @@
 package com.discord.widgets.forums;
 
 import a0.a.a.b;
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import kotlin.jvm.internal.DefaultConstructorMarker;
 
 /* JADX INFO: compiled from: ForumPostReadState.kt */
@@ -111,11 +111,11 @@ public final /* data */ class ForumPostReadState {
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("ForumPostReadState(channelId=");
+        StringBuilder sbU = outline.U("ForumPostReadState(channelId=");
         sbU.append(this.channelId);
         sbU.append(", hasSeenBefore=");
         sbU.append(this.hasSeenBefore);
         sbU.append(", hasUnread=");
-        return a.O(sbU, this.hasUnread, ")");
+        return outline.O(sbU, this.hasUnread, ")");
     }
 }

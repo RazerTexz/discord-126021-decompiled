@@ -1,14 +1,14 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackPremiumUpgradeCompleted.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackPremiumUpgradeCompleted implements AnalyticsSchema, TrackBaseReceiver {
+public final /* data */ class TrackPremiumUpgradeCompleted implements AnalyticsSchema, TrackBase2 {
     private final CharSequence errorCode = null;
     private final CharSequence plan = null;
     private final Boolean success = null;
@@ -23,7 +23,7 @@ public final /* data */ class TrackPremiumUpgradeCompleted implements AnalyticsS
             return false;
         }
         TrackPremiumUpgradeCompleted trackPremiumUpgradeCompleted = (TrackPremiumUpgradeCompleted) other;
-        return m.areEqual(this.success, trackPremiumUpgradeCompleted.success) && m.areEqual(this.errorCode, trackPremiumUpgradeCompleted.errorCode) && m.areEqual(this.plan, trackPremiumUpgradeCompleted.plan);
+        return Intrinsics3.areEqual(this.success, trackPremiumUpgradeCompleted.success) && Intrinsics3.areEqual(this.errorCode, trackPremiumUpgradeCompleted.errorCode) && Intrinsics3.areEqual(this.plan, trackPremiumUpgradeCompleted.plan);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -42,11 +42,11 @@ public final /* data */ class TrackPremiumUpgradeCompleted implements AnalyticsS
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackPremiumUpgradeCompleted(success=");
+        StringBuilder sbU = outline.U("TrackPremiumUpgradeCompleted(success=");
         sbU.append(this.success);
         sbU.append(", errorCode=");
         sbU.append(this.errorCode);
         sbU.append(", plan=");
-        return a.E(sbU, this.plan, ")");
+        return outline.E(sbU, this.plan, ")");
     }
 }

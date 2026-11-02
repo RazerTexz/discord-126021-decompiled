@@ -1,7 +1,7 @@
 package com.discord.api.handoff;
 
-import b.d.b.a.a;
-import d0.z.d.m;
+import b.d.b.a.outline;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: HandoffToken.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -10,7 +10,7 @@ public final /* data */ class HandoffToken {
 
     public boolean equals(Object other) {
         if (this != other) {
-            return (other instanceof HandoffToken) && m.areEqual(this.handoffToken, ((HandoffToken) other).handoffToken);
+            return (other instanceof HandoffToken) && Intrinsics3.areEqual(this.handoffToken, ((HandoffToken) other).handoffToken);
         }
         return true;
     }
@@ -29,6 +29,6 @@ public final /* data */ class HandoffToken {
     }
 
     public String toString() {
-        return a.J(a.U("HandoffToken(handoffToken="), this.handoffToken, ")");
+        return outline.J(outline.U("HandoffToken(handoffToken="), this.handoffToken, ")");
     }
 }

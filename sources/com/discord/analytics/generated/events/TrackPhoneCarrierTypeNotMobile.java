@@ -1,14 +1,14 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackPhoneCarrierTypeNotMobile.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackPhoneCarrierTypeNotMobile implements AnalyticsSchema, TrackBaseReceiver {
+public final /* data */ class TrackPhoneCarrierTypeNotMobile implements AnalyticsSchema, TrackBase2 {
     private final CharSequence carrierName = null;
     private final CharSequence carrierType = null;
     private TrackBase trackBase;
@@ -22,7 +22,7 @@ public final /* data */ class TrackPhoneCarrierTypeNotMobile implements Analytic
             return false;
         }
         TrackPhoneCarrierTypeNotMobile trackPhoneCarrierTypeNotMobile = (TrackPhoneCarrierTypeNotMobile) other;
-        return m.areEqual(this.carrierName, trackPhoneCarrierTypeNotMobile.carrierName) && m.areEqual(this.carrierType, trackPhoneCarrierTypeNotMobile.carrierType);
+        return Intrinsics3.areEqual(this.carrierName, trackPhoneCarrierTypeNotMobile.carrierName) && Intrinsics3.areEqual(this.carrierType, trackPhoneCarrierTypeNotMobile.carrierType);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -39,9 +39,9 @@ public final /* data */ class TrackPhoneCarrierTypeNotMobile implements Analytic
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackPhoneCarrierTypeNotMobile(carrierName=");
+        StringBuilder sbU = outline.U("TrackPhoneCarrierTypeNotMobile(carrierName=");
         sbU.append(this.carrierName);
         sbU.append(", carrierType=");
-        return a.E(sbU, this.carrierType, ")");
+        return outline.E(sbU, this.carrierType, ")");
     }
 }

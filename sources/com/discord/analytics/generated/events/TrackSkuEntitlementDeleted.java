@@ -1,18 +1,18 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.analytics.generated.traits.TrackEntitlementMetadata;
-import com.discord.analytics.generated.traits.TrackEntitlementMetadataReceiver;
+import com.discord.analytics.generated.traits.TrackEntitlementMetadata2;
 import com.discord.analytics.generated.traits.TrackStoreSkuMetadata;
-import com.discord.analytics.generated.traits.TrackStoreSkuMetadataReceiver;
+import com.discord.analytics.generated.traits.TrackStoreSkuMetadata2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackSkuEntitlementDeleted.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackSkuEntitlementDeleted implements AnalyticsSchema, TrackBaseReceiver, TrackStoreSkuMetadataReceiver, TrackEntitlementMetadataReceiver {
+public final /* data */ class TrackSkuEntitlementDeleted implements AnalyticsSchema, TrackBase2, TrackStoreSkuMetadata2, TrackEntitlementMetadata2 {
     private final CharSequence deletionType = null;
     private final CharSequence entitlementType = null;
     private TrackBase trackBase;
@@ -28,7 +28,7 @@ public final /* data */ class TrackSkuEntitlementDeleted implements AnalyticsSch
             return false;
         }
         TrackSkuEntitlementDeleted trackSkuEntitlementDeleted = (TrackSkuEntitlementDeleted) other;
-        return m.areEqual(this.entitlementType, trackSkuEntitlementDeleted.entitlementType) && m.areEqual(this.deletionType, trackSkuEntitlementDeleted.deletionType);
+        return Intrinsics3.areEqual(this.entitlementType, trackSkuEntitlementDeleted.entitlementType) && Intrinsics3.areEqual(this.deletionType, trackSkuEntitlementDeleted.deletionType);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -45,9 +45,9 @@ public final /* data */ class TrackSkuEntitlementDeleted implements AnalyticsSch
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackSkuEntitlementDeleted(entitlementType=");
+        StringBuilder sbU = outline.U("TrackSkuEntitlementDeleted(entitlementType=");
         sbU.append(this.entitlementType);
         sbU.append(", deletionType=");
-        return a.E(sbU, this.deletionType, ")");
+        return outline.E(sbU, this.deletionType, ")");
     }
 }

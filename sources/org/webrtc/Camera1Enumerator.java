@@ -3,7 +3,7 @@ package org.webrtc;
 import android.hardware.Camera;
 import android.os.SystemClock;
 import androidx.annotation.Nullable;
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -67,7 +67,7 @@ public class Camera1Enumerator implements CameraEnumerator {
                     Logging.e(TAG, "getSupportedFormats() failed on camera index " + i, e);
                 }
                 long jElapsedRealtime2 = SystemClock.elapsedRealtime();
-                StringBuilder sbV = a.V("Get supported formats for camera index ", i, " done. Time spent: ");
+                StringBuilder sbV = outline.V("Get supported formats for camera index ", i, " done. Time spent: ");
                 sbV.append(jElapsedRealtime2 - jElapsedRealtime);
                 sbV.append(" ms.");
                 Logging.d(TAG, sbV.toString());
@@ -95,7 +95,7 @@ public class Camera1Enumerator implements CameraEnumerator {
                 return i;
             }
         }
-        throw new IllegalArgumentException(a.w("No such camera: ", str));
+        throw new IllegalArgumentException(outline.w("No such camera: ", str));
     }
 
     @Nullable

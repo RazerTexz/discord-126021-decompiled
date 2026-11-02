@@ -37,7 +37,7 @@ import androidx.core.content.res.TypedArrayUtils;
 import androidx.core.graphics.PathParser;
 import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.core.view.ViewCompat;
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import java.io.IOException;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
@@ -855,9 +855,9 @@ public class VectorDrawableCompat extends VectorDrawableCommon {
     private void printGroupTree(VGroup vGroup, int i) {
         String strW = "";
         for (int i2 = 0; i2 < i; i2++) {
-            strW = a.w(strW, "    ");
+            strW = outline.w(strW, "    ");
         }
-        StringBuilder sbX = a.X(strW, "current group is :");
+        StringBuilder sbX = outline.X(strW, "current group is :");
         sbX.append(vGroup.getGroupName());
         sbX.append(" rotation is ");
         sbX.append(vGroup.mRotate);
@@ -1122,12 +1122,12 @@ public class VectorDrawableCompat extends VectorDrawableCommon {
         public String nodesToString(PathParser.PathDataNode[] pathDataNodeArr) {
             String string = " ";
             for (int i = 0; i < pathDataNodeArr.length; i++) {
-                StringBuilder sbU = a.U(string);
+                StringBuilder sbU = outline.U(string);
                 sbU.append(pathDataNodeArr[i].mType);
                 sbU.append(":");
                 string = sbU.toString();
                 for (float f : pathDataNodeArr[i].mParams) {
-                    StringBuilder sbU2 = a.U(string);
+                    StringBuilder sbU2 = outline.U(string);
                     sbU2.append(f);
                     sbU2.append(",");
                     string = sbU2.toString();
@@ -1139,9 +1139,9 @@ public class VectorDrawableCompat extends VectorDrawableCommon {
         public void printVPath(int i) {
             String strW = "";
             for (int i2 = 0; i2 < i; i2++) {
-                strW = a.w(strW, "    ");
+                strW = outline.w(strW, "    ");
             }
-            StringBuilder sbX = a.X(strW, "current path is :");
+            StringBuilder sbX = outline.X(strW, "current path is :");
             sbX.append(this.mPathName);
             sbX.append(" pathData is ");
             sbX.append(nodesToString(this.mNodes));

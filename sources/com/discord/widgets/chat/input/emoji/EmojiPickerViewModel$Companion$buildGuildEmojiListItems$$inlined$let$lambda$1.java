@@ -1,12 +1,12 @@
 package com.discord.widgets.chat.input.emoji;
 
 import com.discord.models.guild.Guild;
-import d0.z.d.o;
+import d0.z.d.Lambda;
 import kotlin.jvm.functions.Function1;
 
 /* JADX INFO: compiled from: EmojiPickerViewModel.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class EmojiPickerViewModel$Companion$buildGuildEmojiListItems$$inlined$let$lambda$1 extends o implements Function1<Long, Guild> {
+public final class EmojiPickerViewModel$Companion$buildGuildEmojiListItems$$inlined$let$lambda$1 extends Lambda implements Function1<Long, Guild> {
     public final /* synthetic */ boolean $allowEmojisToAnimate$inlined;
     public final /* synthetic */ Guild $guild$inlined;
     public final /* synthetic */ boolean $includeUnavailable$inlined;

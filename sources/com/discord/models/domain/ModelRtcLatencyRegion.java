@@ -1,7 +1,7 @@
 package com.discord.models.domain;
 
-import b.d.b.a.a;
-import d0.z.d.m;
+import b.d.b.a.outline;
+import d0.z.d.Intrinsics3;
 import java.util.List;
 
 /* JADX INFO: compiled from: ModelRtcLatencyRegion.kt */
@@ -11,8 +11,8 @@ public final /* data */ class ModelRtcLatencyRegion {
     private final String region;
 
     public ModelRtcLatencyRegion(String str, List<String> list) {
-        m.checkNotNullParameter(str, ModelAuditLogEntry.CHANGE_KEY_REGION);
-        m.checkNotNullParameter(list, "ips");
+        Intrinsics3.checkNotNullParameter(str, ModelAuditLogEntry.CHANGE_KEY_REGION);
+        Intrinsics3.checkNotNullParameter(list, "ips");
         this.region = str;
         this.ips = list;
     }
@@ -33,8 +33,8 @@ public final /* data */ class ModelRtcLatencyRegion {
     }
 
     public final ModelRtcLatencyRegion copy(String region, List<String> ips) {
-        m.checkNotNullParameter(region, ModelAuditLogEntry.CHANGE_KEY_REGION);
-        m.checkNotNullParameter(ips, "ips");
+        Intrinsics3.checkNotNullParameter(region, ModelAuditLogEntry.CHANGE_KEY_REGION);
+        Intrinsics3.checkNotNullParameter(ips, "ips");
         return new ModelRtcLatencyRegion(region, ips);
     }
 
@@ -46,7 +46,7 @@ public final /* data */ class ModelRtcLatencyRegion {
             return false;
         }
         ModelRtcLatencyRegion modelRtcLatencyRegion = (ModelRtcLatencyRegion) other;
-        return m.areEqual(this.region, modelRtcLatencyRegion.region) && m.areEqual(this.ips, modelRtcLatencyRegion.ips);
+        return Intrinsics3.areEqual(this.region, modelRtcLatencyRegion.region) && Intrinsics3.areEqual(this.ips, modelRtcLatencyRegion.ips);
     }
 
     public final List<String> getIps() {
@@ -70,9 +70,9 @@ public final /* data */ class ModelRtcLatencyRegion {
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("ModelRtcLatencyRegion(region=");
+        StringBuilder sbU = outline.U("ModelRtcLatencyRegion(region=");
         sbU.append(this.region);
         sbU.append(", ips=");
-        return a.L(sbU, this.ips, ")");
+        return outline.L(sbU, this.ips, ")");
     }
 }

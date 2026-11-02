@@ -1,14 +1,14 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackContextMenuImageCopyFailed.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackContextMenuImageCopyFailed implements AnalyticsSchema, TrackBaseReceiver {
+public final /* data */ class TrackContextMenuImageCopyFailed implements AnalyticsSchema, TrackBase2 {
     private final Long channelId = null;
     private TrackBase trackBase;
     private final CharSequence url = null;
@@ -22,7 +22,7 @@ public final /* data */ class TrackContextMenuImageCopyFailed implements Analyti
             return false;
         }
         TrackContextMenuImageCopyFailed trackContextMenuImageCopyFailed = (TrackContextMenuImageCopyFailed) other;
-        return m.areEqual(this.channelId, trackContextMenuImageCopyFailed.channelId) && m.areEqual(this.url, trackContextMenuImageCopyFailed.url);
+        return Intrinsics3.areEqual(this.channelId, trackContextMenuImageCopyFailed.channelId) && Intrinsics3.areEqual(this.url, trackContextMenuImageCopyFailed.url);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -39,9 +39,9 @@ public final /* data */ class TrackContextMenuImageCopyFailed implements Analyti
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackContextMenuImageCopyFailed(channelId=");
+        StringBuilder sbU = outline.U("TrackContextMenuImageCopyFailed(channelId=");
         sbU.append(this.channelId);
         sbU.append(", url=");
-        return a.E(sbU, this.url, ")");
+        return outline.E(sbU, this.url, ")");
     }
 }

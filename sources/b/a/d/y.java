@@ -2,6 +2,7 @@ package b.a.d;
 
 import android.content.Context;
 import com.discord.utilities.rx.ObservableExtensionsKt;
+import d0.z.d.Intrinsics3;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
 import rx.Observable;
@@ -25,10 +26,10 @@ public final class y<T, R> implements Observable.c<T, T> {
         this.o = function0;
     }
 
-    @Override // j0.k.b
+    @Override // j0.k.Func1
     public Object call(Object obj) {
         Observable observable = (Observable) obj;
-        d0.z.d.m.checkNotNullExpressionValue(observable, "observable");
+        Intrinsics3.checkNotNullExpressionValue(observable, "observable");
         Context context = this.j;
         String str = this.k;
         Function1 function1 = this.l;

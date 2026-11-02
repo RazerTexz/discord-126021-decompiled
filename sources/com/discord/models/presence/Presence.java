@@ -1,10 +1,10 @@
 package com.discord.models.presence;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.api.activity.Activity;
 import com.discord.api.presence.ClientStatus;
 import com.discord.api.presence.ClientStatuses;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 import java.util.List;
 
 /* JADX INFO: compiled from: Presence.kt */
@@ -15,7 +15,7 @@ public final /* data */ class Presence {
     private final ClientStatus status;
 
     public Presence(ClientStatus clientStatus, ClientStatuses clientStatuses, List<Activity> list) {
-        m.checkNotNullParameter(clientStatus, "status");
+        Intrinsics3.checkNotNullParameter(clientStatus, "status");
         this.status = clientStatus;
         this.clientStatuses = clientStatuses;
         this.activities = list;
@@ -40,7 +40,7 @@ public final /* data */ class Presence {
     }
 
     public final Presence copy(ClientStatus status, ClientStatuses clientStatuses, List<Activity> activities) {
-        m.checkNotNullParameter(status, "status");
+        Intrinsics3.checkNotNullParameter(status, "status");
         return new Presence(status, clientStatuses, activities);
     }
 
@@ -52,7 +52,7 @@ public final /* data */ class Presence {
             return false;
         }
         Presence presence = (Presence) other;
-        return m.areEqual(this.status, presence.status) && m.areEqual(this.clientStatuses, presence.clientStatuses) && m.areEqual(this.activities, presence.activities);
+        return Intrinsics3.areEqual(this.status, presence.status) && Intrinsics3.areEqual(this.clientStatuses, presence.clientStatuses) && Intrinsics3.areEqual(this.activities, presence.activities);
     }
 
     public final List<Activity> getActivities() {
@@ -87,11 +87,11 @@ public final /* data */ class Presence {
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("Presence(status=");
+        StringBuilder sbU = outline.U("Presence(status=");
         sbU.append(this.status);
         sbU.append(", clientStatuses=");
         sbU.append(this.clientStatuses);
         sbU.append(", activities=");
-        return a.L(sbU, this.activities, ")");
+        return outline.L(sbU, this.activities, ")");
     }
 }

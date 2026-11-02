@@ -1,18 +1,18 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.analytics.generated.traits.TrackChannel;
-import com.discord.analytics.generated.traits.TrackChannelReceiver;
+import com.discord.analytics.generated.traits.TrackChannel2;
 import com.discord.analytics.generated.traits.TrackGuild;
-import com.discord.analytics.generated.traits.TrackGuildReceiver;
+import com.discord.analytics.generated.traits.TrackGuild2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackNewsCardEditorViewed.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackNewsCardEditorViewed implements AnalyticsSchema, TrackBaseReceiver, TrackGuildReceiver, TrackChannelReceiver {
+public final /* data */ class TrackNewsCardEditorViewed implements AnalyticsSchema, TrackBase2, TrackGuild2, TrackChannel2 {
     private final Long applicationId = null;
     private final CharSequence applicationName = null;
     private final Long messageId = null;
@@ -23,7 +23,7 @@ public final /* data */ class TrackNewsCardEditorViewed implements AnalyticsSche
     private TrackGuild trackGuild;
     private final transient String analyticsSchemaTypeName = "news_card_editor_viewed";
 
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    @Override // com.discord.analytics.generated.traits.TrackGuild2
     public void c(TrackGuild trackGuild) {
         this.trackGuild = trackGuild;
     }
@@ -36,7 +36,7 @@ public final /* data */ class TrackNewsCardEditorViewed implements AnalyticsSche
             return false;
         }
         TrackNewsCardEditorViewed trackNewsCardEditorViewed = (TrackNewsCardEditorViewed) other;
-        return m.areEqual(this.applicationName, trackNewsCardEditorViewed.applicationName) && m.areEqual(this.applicationId, trackNewsCardEditorViewed.applicationId) && m.areEqual(this.messageId, trackNewsCardEditorViewed.messageId) && m.areEqual(this.newsUrl, trackNewsCardEditorViewed.newsUrl) && m.areEqual(this.newsCardEditorStep, trackNewsCardEditorViewed.newsCardEditorStep);
+        return Intrinsics3.areEqual(this.applicationName, trackNewsCardEditorViewed.applicationName) && Intrinsics3.areEqual(this.applicationId, trackNewsCardEditorViewed.applicationId) && Intrinsics3.areEqual(this.messageId, trackNewsCardEditorViewed.messageId) && Intrinsics3.areEqual(this.newsUrl, trackNewsCardEditorViewed.newsUrl) && Intrinsics3.areEqual(this.newsCardEditorStep, trackNewsCardEditorViewed.newsCardEditorStep);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -45,7 +45,7 @@ public final /* data */ class TrackNewsCardEditorViewed implements AnalyticsSche
         return this.analyticsSchemaTypeName;
     }
 
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    @Override // com.discord.analytics.generated.traits.TrackGuild2
     /* JADX INFO: renamed from: a, reason: from getter */
     public TrackGuild getTrackGuild() {
         return this.trackGuild;
@@ -65,7 +65,7 @@ public final /* data */ class TrackNewsCardEditorViewed implements AnalyticsSche
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackNewsCardEditorViewed(applicationName=");
+        StringBuilder sbU = outline.U("TrackNewsCardEditorViewed(applicationName=");
         sbU.append(this.applicationName);
         sbU.append(", applicationId=");
         sbU.append(this.applicationId);
@@ -74,6 +74,6 @@ public final /* data */ class TrackNewsCardEditorViewed implements AnalyticsSche
         sbU.append(", newsUrl=");
         sbU.append(this.newsUrl);
         sbU.append(", newsCardEditorStep=");
-        return a.E(sbU, this.newsCardEditorStep, ")");
+        return outline.E(sbU, this.newsCardEditorStep, ")");
     }
 }

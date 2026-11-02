@@ -1,14 +1,14 @@
 package com.facebook.imagepipeline.nativecode;
 
 import android.content.Context;
-import b.f.d.d.c;
+import b.f.d.d.DoNotStrip;
 import com.facebook.soloader.SoLoader;
 import java.io.IOException;
 
 /* JADX INFO: loaded from: classes3.dex */
-@c
+@DoNotStrip
 public class NativeCodeInitializer {
-    @c
+    @DoNotStrip
     public static void init(Context context) throws IOException {
         SoLoader.init(context, 0);
     }

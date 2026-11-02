@@ -18,7 +18,7 @@ public final class k extends b.i.a.f.h.g.a implements IInterface {
         parcelG.writeString(str);
         parcelG.writeInt(i);
         Parcel parcelC = c(2, parcelG);
-        b.i.a.f.f.a aVarG = b.i.a.f.f.a.AbstractBinderC0117a.g(parcelC.readStrongBinder());
+        b.i.a.f.f.a aVarG = b.i.a.f.f.a.AbstractBinderC0040a.g(parcelC.readStrongBinder());
         parcelC.recycle();
         return aVarG;
     }
@@ -29,7 +29,7 @@ public final class k extends b.i.a.f.h.g.a implements IInterface {
         parcelG.writeString(str);
         parcelG.writeInt(i);
         Parcel parcelC = c(4, parcelG);
-        b.i.a.f.f.a aVarG = b.i.a.f.f.a.AbstractBinderC0117a.g(parcelC.readStrongBinder());
+        b.i.a.f.f.a aVarG = b.i.a.f.f.a.AbstractBinderC0040a.g(parcelC.readStrongBinder());
         parcelC.recycle();
         return aVarG;
     }
@@ -41,7 +41,7 @@ public final class k extends b.i.a.f.h.g.a implements IInterface {
         parcelG.writeInt(z2 ? 1 : 0);
         parcelG.writeLong(j);
         Parcel parcelC = c(7, parcelG);
-        b.i.a.f.f.a aVarG = b.i.a.f.f.a.AbstractBinderC0117a.g(parcelC.readStrongBinder());
+        b.i.a.f.f.a aVarG = b.i.a.f.f.a.AbstractBinderC0040a.g(parcelC.readStrongBinder());
         parcelC.recycle();
         return aVarG;
     }
@@ -53,7 +53,7 @@ public final class k extends b.i.a.f.h.g.a implements IInterface {
         parcelG.writeInt(i);
         b.i.a.f.h.g.c.b(parcelG, aVar2);
         Parcel parcelC = c(8, parcelG);
-        b.i.a.f.f.a aVarG = b.i.a.f.f.a.AbstractBinderC0117a.g(parcelC.readStrongBinder());
+        b.i.a.f.f.a aVarG = b.i.a.f.f.a.AbstractBinderC0040a.g(parcelC.readStrongBinder());
         parcelC.recycle();
         return aVarG;
     }

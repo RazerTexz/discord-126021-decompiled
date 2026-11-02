@@ -1,9 +1,9 @@
 package com.discord.widgets.chat.input;
 
 import androidx.exifinterface.media.ExifInterface;
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.models.domain.ModelAuditLogEntry;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 import java.util.List;
 
 /* JADX INFO: compiled from: WidgetChatInputMentionsTags.kt */
@@ -15,8 +15,8 @@ public final /* data */ class WidgetChatInputMentionsTags<T> {
 
     /* JADX WARN: Multi-variable type inference failed */
     public WidgetChatInputMentionsTags(List<? extends T> list, char c, String str) {
-        m.checkNotNullParameter(list, ModelAuditLogEntry.CHANGE_KEY_TAGS);
-        m.checkNotNullParameter(str, "token");
+        Intrinsics3.checkNotNullParameter(list, ModelAuditLogEntry.CHANGE_KEY_TAGS);
+        Intrinsics3.checkNotNullParameter(str, "token");
         this.tags = list;
         this.tokenIdentifier = c;
         this.token = str;
@@ -41,8 +41,8 @@ public final /* data */ class WidgetChatInputMentionsTags<T> {
     }
 
     public final WidgetChatInputMentionsTags<T> copy(List<? extends T> tags, char tokenIdentifier, String token) {
-        m.checkNotNullParameter(tags, ModelAuditLogEntry.CHANGE_KEY_TAGS);
-        m.checkNotNullParameter(token, "token");
+        Intrinsics3.checkNotNullParameter(tags, ModelAuditLogEntry.CHANGE_KEY_TAGS);
+        Intrinsics3.checkNotNullParameter(token, "token");
         return new WidgetChatInputMentionsTags<>(tags, tokenIdentifier, token);
     }
 
@@ -54,7 +54,7 @@ public final /* data */ class WidgetChatInputMentionsTags<T> {
             return false;
         }
         WidgetChatInputMentionsTags widgetChatInputMentionsTags = (WidgetChatInputMentionsTags) other;
-        return m.areEqual(this.tags, widgetChatInputMentionsTags.tags) && this.tokenIdentifier == widgetChatInputMentionsTags.tokenIdentifier && m.areEqual(this.token, widgetChatInputMentionsTags.token);
+        return Intrinsics3.areEqual(this.tags, widgetChatInputMentionsTags.tags) && this.tokenIdentifier == widgetChatInputMentionsTags.tokenIdentifier && Intrinsics3.areEqual(this.token, widgetChatInputMentionsTags.token);
     }
 
     public final List<T> getTags() {
@@ -87,11 +87,11 @@ public final /* data */ class WidgetChatInputMentionsTags<T> {
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("WidgetChatInputMentionsTags(tags=");
+        StringBuilder sbU = outline.U("WidgetChatInputMentionsTags(tags=");
         sbU.append(this.tags);
         sbU.append(", tokenIdentifier=");
         sbU.append(this.tokenIdentifier);
         sbU.append(", token=");
-        return a.J(sbU, this.token, ")");
+        return outline.J(sbU, this.token, ")");
     }
 }

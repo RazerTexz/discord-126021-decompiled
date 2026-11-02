@@ -1,6 +1,6 @@
 package com.discord.stores;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.api.voice.state.VoiceState;
 import com.discord.app.AppLog;
 import com.discord.gateway.GatewaySocket;
@@ -9,11 +9,11 @@ import com.discord.models.domain.ModelPayload;
 import com.discord.utilities.analytics.AnalyticsTracker;
 import com.discord.utilities.logging.Logger;
 import com.discord.utilities.time.Clock;
-import d0.o;
-import d0.t.g0;
-import d0.t.h0;
-import d0.t.u;
-import d0.z.d.m;
+import d0.Tuples;
+import d0.t.Maps6;
+import d0.t.MapsJVM;
+import d0.t._Collections;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: ConnectionTimeStats.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -38,27 +38,27 @@ public final class ConnectionTimeStats {
 
         @Override // com.discord.gateway.GatewaySocket.DefaultListener, com.discord.gateway.GatewaySocket.Listener
         public void onConnected(GatewaySocket gatewaySocket) {
-            m.checkNotNullParameter(gatewaySocket, "gatewaySocket");
+            Intrinsics3.checkNotNullParameter(gatewaySocket, "gatewaySocket");
             Stat.end$default(ConnectionTimeStats.access$getGatewayConnection$p(ConnectionTimeStats.this), false, 1, null);
             Stat.start$default(ConnectionTimeStats.access$getGatewayHello$p(ConnectionTimeStats.this), false, 1, null);
         }
 
         @Override // com.discord.gateway.GatewaySocket.DefaultListener, com.discord.gateway.GatewaySocket.Listener
         public void onConnecting(GatewaySocket gatewaySocket) {
-            m.checkNotNullParameter(gatewaySocket, "gatewaySocket");
+            Intrinsics3.checkNotNullParameter(gatewaySocket, "gatewaySocket");
             Stat.start$default(ConnectionTimeStats.access$getGatewayConnection$p(ConnectionTimeStats.this), false, 1, null);
         }
 
         @Override // com.discord.gateway.GatewaySocket.DefaultListener, com.discord.gateway.GatewaySocket.Listener
         public void onDisconnected(GatewaySocket gatewaySocket) {
-            m.checkNotNullParameter(gatewaySocket, "gatewaySocket");
+            Intrinsics3.checkNotNullParameter(gatewaySocket, "gatewaySocket");
             ConnectionTimeStats.access$getGatewayConnection$p(ConnectionTimeStats.this).clear();
             ConnectionTimeStats.access$getGatewayHello$p(ConnectionTimeStats.this).clear();
         }
 
         @Override // com.discord.gateway.GatewaySocket.DefaultListener, com.discord.gateway.GatewaySocket.Listener
         public void onHello(GatewaySocket gatewaySocket) {
-            m.checkNotNullParameter(gatewaySocket, "gatewaySocket");
+            Intrinsics3.checkNotNullParameter(gatewaySocket, "gatewaySocket");
             Stat.end$default(ConnectionTimeStats.access$getGatewayHello$p(ConnectionTimeStats.this), false, 1, null);
         }
     }
@@ -139,9 +139,9 @@ public final class ConnectionTimeStats {
         private final StatType type;
 
         public Stat(Clock clock, ConnectionTimeStats connectionTimeStats, StatType statType) {
-            m.checkNotNullParameter(clock, "clock");
-            m.checkNotNullParameter(connectionTimeStats, "owner");
-            m.checkNotNullParameter(statType, "type");
+            Intrinsics3.checkNotNullParameter(clock, "clock");
+            Intrinsics3.checkNotNullParameter(connectionTimeStats, "owner");
+            Intrinsics3.checkNotNullParameter(statType, "type");
             this.clock = clock;
             this.owner = connectionTimeStats;
             this.type = statType;
@@ -174,7 +174,7 @@ public final class ConnectionTimeStats {
                     return;
                 }
                 AppLog appLog = AppLog.g;
-                StringBuilder sbU = a.U("ConnectionTimeStats: \"");
+                StringBuilder sbU = outline.U("ConnectionTimeStats: \"");
                 sbU.append(this.type);
                 sbU.append("\" attempting to end while endTime is set!");
                 Logger.w$default(appLog, sbU.toString(), null, 2, null);
@@ -184,7 +184,7 @@ public final class ConnectionTimeStats {
             long jCurrentTimeMillis = this.clock.currentTimeMillis();
             if (l == null) {
                 AppLog appLog2 = AppLog.g;
-                StringBuilder sbU2 = a.U("ConnectionTimeStats: \"");
+                StringBuilder sbU2 = outline.U("ConnectionTimeStats: \"");
                 sbU2.append(this.type);
                 sbU2.append("\" ended without starting!");
                 Logger.w$default(appLog2, sbU2.toString(), null, 2, null);
@@ -193,15 +193,15 @@ public final class ConnectionTimeStats {
             long jLongValue = jCurrentTimeMillis - l.longValue();
             if (jLongValue < 0) {
                 AppLog appLog3 = AppLog.g;
-                StringBuilder sbU3 = a.U("ConnectionTimeStats: \"");
+                StringBuilder sbU3 = outline.U("ConnectionTimeStats: \"");
                 sbU3.append(this.type);
                 sbU3.append("\" has a negative time!");
-                sbU3.append(u.joinToString$default(h0.mapOf(o.to(this.type.toString(), "type"), o.to(String.valueOf(jLongValue), "elapsedMs"), o.to(String.valueOf(l.longValue()), "start"), o.to(String.valueOf(jCurrentTimeMillis), "end")).entrySet(), "\n\t", null, null, 0, null, null, 62, null));
+                sbU3.append(_Collections.joinToString$default(Maps6.mapOf(Tuples.to(this.type.toString(), "type"), Tuples.to(String.valueOf(jLongValue), "elapsedMs"), Tuples.to(String.valueOf(l.longValue()), "start"), Tuples.to(String.valueOf(jCurrentTimeMillis), "end")).entrySet(), "\n\t", null, null, 0, null, null, 62, null));
                 Logger.w$default(appLog3, sbU3.toString(), null, 2, null);
                 return;
             }
             this.endTime = Long.valueOf(jCurrentTimeMillis);
-            StringBuilder sbU4 = a.U("ConnectionTimeStats: \"");
+            StringBuilder sbU4 = outline.U("ConnectionTimeStats: \"");
             sbU4.append(this.type);
             sbU4.append("\" took ");
             sbU4.append(jLongValue);
@@ -227,7 +227,7 @@ public final class ConnectionTimeStats {
                     return;
                 }
                 AppLog appLog = AppLog.g;
-                StringBuilder sbU = a.U("ConnectionTimeStats: \"");
+                StringBuilder sbU = outline.U("ConnectionTimeStats: \"");
                 sbU.append(this.type);
                 sbU.append("\" attempting to re-start without reset!");
                 Logger.w$default(appLog, sbU.toString(), null, 2, null);
@@ -235,7 +235,7 @@ public final class ConnectionTimeStats {
             }
             if (this.endTime != null) {
                 AppLog appLog2 = AppLog.g;
-                StringBuilder sbU2 = a.U("ConnectionTimeStats: \"");
+                StringBuilder sbU2 = outline.U("ConnectionTimeStats: \"");
                 sbU2.append(this.type);
                 sbU2.append("\" attempting to re-start while endTime is set!");
                 Logger.w$default(appLog2, sbU2.toString(), null, 2, null);
@@ -243,7 +243,7 @@ public final class ConnectionTimeStats {
             }
             long jCurrentTimeMillis = this.clock.currentTimeMillis();
             this.startTime = Long.valueOf(jCurrentTimeMillis);
-            StringBuilder sbU3 = a.U("ConnectionTimeStats: \"");
+            StringBuilder sbU3 = outline.U("ConnectionTimeStats: \"");
             sbU3.append(this.type);
             sbU3.append("\" started @ ");
             sbU3.append(jCurrentTimeMillis);
@@ -266,10 +266,10 @@ public final class ConnectionTimeStats {
     }
 
     public ConnectionTimeStats(Clock clock) {
-        m.checkNotNullParameter(clock, "clock");
+        Intrinsics3.checkNotNullParameter(clock, "clock");
         StatType statType = StatType.VideoFirstFrame;
-        if (!m.areEqual(statType.toString(), "VideoFirstFrame")) {
-            Logger.e$default(AppLog.g, "ConnectionTimeStats.StatType has been renamed!", null, g0.mapOf(o.to(ModelAuditLogEntry.CHANGE_KEY_NAME, statType.toString())), 2, null);
+        if (!Intrinsics3.areEqual(statType.toString(), "VideoFirstFrame")) {
+            Logger.e$default(AppLog.g, "ConnectionTimeStats.StatType has been renamed!", null, MapsJVM.mapOf(Tuples.to(ModelAuditLogEntry.CHANGE_KEY_NAME, statType.toString())), 2, null);
         }
         this.gatewayConnection = new Stat(clock, this, StatType.GatewayConnection);
         this.gatewayHello = new Stat(clock, this, StatType.GatewayHello);
@@ -328,7 +328,7 @@ public final class ConnectionTimeStats {
     }
 
     public final void addListener(GatewaySocket socket) {
-        m.checkNotNullParameter(socket, "socket");
+        Intrinsics3.checkNotNullParameter(socket, "socket");
         socket.getListeners().add(new AnonymousClass1());
     }
 
@@ -359,13 +359,13 @@ public final class ConnectionTimeStats {
     }
 
     public final void handleConnectionOpen(ModelPayload payload) {
-        m.checkNotNullParameter(payload, "payload");
+        Intrinsics3.checkNotNullParameter(payload, "payload");
         clear$default(this, false, 1, null);
         this.myUserId = Long.valueOf(payload.getMe().getId());
     }
 
     public final void handleStreamWatch(String streamKey) {
-        m.checkNotNullParameter(streamKey, "streamKey");
+        Intrinsics3.checkNotNullParameter(streamKey, "streamKey");
         Stat.start$default(this.streamRequested, false, 1, null);
     }
 
@@ -376,7 +376,7 @@ public final class ConnectionTimeStats {
     }
 
     public final void handleVoiceStateUpdate(VoiceState voiceState) {
-        m.checkNotNullParameter(voiceState, "voiceState");
+        Intrinsics3.checkNotNullParameter(voiceState, "voiceState");
         long userId = voiceState.getUserId();
         Long l = this.myUserId;
         if (l != null && userId == l.longValue() && voiceState.getChannelId() == null) {
@@ -389,17 +389,17 @@ public final class ConnectionTimeStats {
     }
 
     public final void addListener(StoreRtcConnection rtcConnection) {
-        m.checkNotNullParameter(rtcConnection, "rtcConnection");
+        Intrinsics3.checkNotNullParameter(rtcConnection, "rtcConnection");
         rtcConnection.getListeners().add(new AnonymousClass2());
     }
 
     public final void addListener(StoreStreamRtcConnection streamRtcConnection) {
-        m.checkNotNullParameter(streamRtcConnection, "streamRtcConnection");
+        Intrinsics3.checkNotNullParameter(streamRtcConnection, "streamRtcConnection");
         streamRtcConnection.getListeners().add(new AnonymousClass3());
     }
 
     public final void addListener(StoreMediaEngine storeMediaEngine) {
-        m.checkNotNullParameter(storeMediaEngine, "storeMediaEngine");
+        Intrinsics3.checkNotNullParameter(storeMediaEngine, "storeMediaEngine");
         storeMediaEngine.getListeners().add(new AnonymousClass4());
     }
 }

@@ -1,6 +1,6 @@
 package org.objectweb.asm;
 
-import com.discord.widgets.chat.input.MentionUtilsKt;
+import com.discord.widgets.chat.input.MentionUtils;
 
 /* JADX INFO: loaded from: discord-126021.apk:org/objectweb/asm/ClassWriter.SCL.lombok */
 public class ClassWriter extends ClassVisitor {
@@ -539,9 +539,9 @@ public class ClassWriter extends ClassVisitor {
     protected String getCommonSuperClass(String type1, String type2) {
         ClassLoader classLoader = getClassLoader();
         try {
-            Class<?> class1 = Class.forName(type1.replace(MentionUtilsKt.SLASH_CHAR, '.'), false, classLoader);
+            Class<?> class1 = Class.forName(type1.replace(MentionUtils.SLASH_CHAR, '.'), false, classLoader);
             try {
-                Class<?> class2 = Class.forName(type2.replace(MentionUtilsKt.SLASH_CHAR, '.'), false, classLoader);
+                Class<?> class2 = Class.forName(type2.replace(MentionUtils.SLASH_CHAR, '.'), false, classLoader);
                 if (class1.isAssignableFrom(class2)) {
                     return type1;
                 }
@@ -554,7 +554,7 @@ public class ClassWriter extends ClassVisitor {
                 do {
                     class1 = class1.getSuperclass();
                 } while (!class1.isAssignableFrom(class2));
-                return class1.getName().replace('.', MentionUtilsKt.SLASH_CHAR);
+                return class1.getName().replace('.', MentionUtils.SLASH_CHAR);
             } catch (ClassNotFoundException e) {
                 throw new TypeNotPresentException(type2, e);
             }

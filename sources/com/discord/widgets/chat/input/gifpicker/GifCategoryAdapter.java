@@ -13,9 +13,9 @@ import com.discord.databinding.GifCategoryItemViewBinding;
 import com.discord.models.domain.ModelAuditLogEntry;
 import com.discord.utilities.recycler.DiffCreator;
 import com.facebook.drawee.view.SimpleDraweeView;
-import d0.t.n;
-import d0.z.d.m;
-import d0.z.d.o;
+import d0.t.Collections2;
+import d0.z.d.Intrinsics3;
+import d0.z.d.Lambda;
 import java.util.List;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function1;
@@ -30,7 +30,7 @@ public final class GifCategoryAdapter extends RecyclerView.Adapter<GifCategoryVi
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.input.gifpicker.GifCategoryAdapter$setItems$1, reason: invalid class name */
     /* JADX INFO: compiled from: GifCategoryAdapter.kt */
-    public final class AnonymousClass1 extends o implements Function1<List<? extends GifCategoryItem>, Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function1<List<? extends GifCategoryItem>, Unit> {
         public AnonymousClass1() {
             super(1);
         }
@@ -43,7 +43,7 @@ public final class GifCategoryAdapter extends RecyclerView.Adapter<GifCategoryVi
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(List<? extends GifCategoryItem> list) {
-            m.checkNotNullParameter(list, "items");
+            Intrinsics3.checkNotNullParameter(list, "items");
             GifCategoryAdapter.access$setItems$p(GifCategoryAdapter.this, list);
         }
     }
@@ -77,27 +77,27 @@ public final class GifCategoryAdapter extends RecyclerView.Adapter<GifCategoryVi
     }
 
     public final void setItems(List<? extends GifCategoryItem> newItems) {
-        m.checkNotNullParameter(newItems, "newItems");
+        Intrinsics3.checkNotNullParameter(newItems, "newItems");
         this.diffCreator.dispatchDiffUpdatesAsync(this, new AnonymousClass1(), this.items, newItems);
     }
 
     /* JADX WARN: Multi-variable type inference failed */
     public GifCategoryAdapter(AppComponent appComponent, Function1<? super GifCategoryItem, Unit> function1, DiffCreator<List<GifCategoryItem>, GifCategoryViewHolder> diffCreator) {
-        m.checkNotNullParameter(appComponent, "appComponent");
-        m.checkNotNullParameter(diffCreator, "diffCreator");
+        Intrinsics3.checkNotNullParameter(appComponent, "appComponent");
+        Intrinsics3.checkNotNullParameter(diffCreator, "diffCreator");
         this.onSelectGifCategory = function1;
         this.diffCreator = diffCreator;
-        this.items = n.emptyList();
+        this.items = Collections2.emptyList();
     }
 
     public void onBindViewHolder(GifCategoryViewHolder holder, int position) {
-        m.checkNotNullParameter(holder, "holder");
+        Intrinsics3.checkNotNullParameter(holder, "holder");
         holder.configure(this.items.get(position), this.onSelectGifCategory);
     }
 
     @Override // androidx.recyclerview.widget.RecyclerView.Adapter
     public GifCategoryViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        m.checkNotNullParameter(parent, "parent");
+        Intrinsics3.checkNotNullParameter(parent, "parent");
         View viewInflate = LayoutInflater.from(parent.getContext()).inflate(R.layout.gif_category_item_view, parent, false);
         int i = R.id.gif_category_item_icon;
         ImageView imageView = (ImageView) viewInflate.findViewById(R.id.gif_category_item_icon);
@@ -109,7 +109,7 @@ public final class GifCategoryAdapter extends RecyclerView.Adapter<GifCategoryVi
                 TextView textView = (TextView) viewInflate.findViewById(R.id.gif_category_item_title);
                 if (textView != null) {
                     GifCategoryItemViewBinding gifCategoryItemViewBinding = new GifCategoryItemViewBinding((CardView) viewInflate, imageView, simpleDraweeView, textView);
-                    m.checkNotNullExpressionValue(gifCategoryItemViewBinding, "GifCategoryItemViewBindi….context), parent, false)");
+                    Intrinsics3.checkNotNullExpressionValue(gifCategoryItemViewBinding, "GifCategoryItemViewBindi….context), parent, false)");
                     return new GifCategoryViewHolder(gifCategoryItemViewBinding);
                 }
             }

@@ -3,16 +3,16 @@ package com.discord.stores;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.models.domain.ModelPayload;
 import com.discord.models.domain.ModelUserSettings;
 import com.discord.models.domain.auth.ModelLoginResult;
-import com.discord.models.domain.auth.ModelUserSettingsBootstrap;
+import com.discord.models.domain.auth.ModelLoginResult2;
 import com.discord.stores.updates.ObservationDeck;
-import com.discord.stores.updates.ObservationDeckProvider;
-import com.discord.utilities.cache.SharedPreferenceExtensionsKt;
-import d0.z.d.m;
-import d0.z.d.o;
+import com.discord.stores.updates.ObservationDeck4;
+import com.discord.utilities.cache.SharedPreferenceExtensions;
+import d0.z.d.Intrinsics3;
+import d0.z.d.Lambda;
 import java.util.concurrent.TimeUnit;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
@@ -29,7 +29,7 @@ public final class StoreUserSettingsSystem extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreUserSettingsSystem$observeSettings$1, reason: invalid class name */
     /* JADX INFO: compiled from: StoreUserSettingsSystem.kt */
-    public final class AnonymousClass1 extends o implements Function0<Settings> {
+    public final class AnonymousClass1 extends Lambda implements Function0<Settings> {
         public AnonymousClass1() {
             super(0);
         }
@@ -48,7 +48,7 @@ public final class StoreUserSettingsSystem extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreUserSettingsSystem$setTheme$1, reason: invalid class name */
     /* JADX INFO: compiled from: StoreUserSettingsSystem.kt */
-    public final class AnonymousClass1 extends o implements Function0<Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function0<Unit> {
         public final /* synthetic */ boolean $apiSync;
         public final /* synthetic */ Function0 $onRequestApiSync;
         public final /* synthetic */ String $theme;
@@ -75,7 +75,7 @@ public final class StoreUserSettingsSystem extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreUserSettingsSystem$setFontScale$2, reason: invalid class name */
     /* JADX INFO: compiled from: StoreUserSettingsSystem.kt */
-    public final class AnonymousClass2 extends o implements Function0<Unit> {
+    public final class AnonymousClass2 extends Lambda implements Function0<Unit> {
         public final /* synthetic */ int $fontScale;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -106,7 +106,7 @@ public final class StoreUserSettingsSystem extends StoreV2 {
         private final String theme;
 
         public Settings(String str, String str2, int i) {
-            m.checkNotNullParameter(str, "theme");
+            Intrinsics3.checkNotNullParameter(str, "theme");
             this.theme = str;
             this._locale = str2;
             this.fontScale = i;
@@ -126,7 +126,7 @@ public final class StoreUserSettingsSystem extends StoreV2 {
         }
 
         public final Settings copy(String theme, String _locale, int fontScale) {
-            m.checkNotNullParameter(theme, "theme");
+            Intrinsics3.checkNotNullParameter(theme, "theme");
             return new Settings(theme, _locale, fontScale);
         }
 
@@ -138,7 +138,7 @@ public final class StoreUserSettingsSystem extends StoreV2 {
                 return false;
             }
             Settings settings = (Settings) other;
-            return m.areEqual(this.theme, settings.theme) && m.areEqual(this._locale, settings._locale) && this.fontScale == settings.fontScale;
+            return Intrinsics3.areEqual(this.theme, settings.theme) && Intrinsics3.areEqual(this._locale, settings._locale) && this.fontScale == settings.fontScale;
         }
 
         /* JADX INFO: renamed from: component3, reason: from getter */
@@ -156,7 +156,7 @@ public final class StoreUserSettingsSystem extends StoreV2 {
                 return str;
             }
             String defaultLocale = ModelUserSettings.getDefaultLocale();
-            m.checkNotNullExpressionValue(defaultLocale, "ModelUserSettings.getDefaultLocale()");
+            Intrinsics3.checkNotNullExpressionValue(defaultLocale, "ModelUserSettings.getDefaultLocale()");
             return defaultLocale;
         }
 
@@ -186,19 +186,19 @@ public final class StoreUserSettingsSystem extends StoreV2 {
         }
 
         public String toString() {
-            StringBuilder sbU = a.U("Settings(theme=");
+            StringBuilder sbU = outline.U("Settings(theme=");
             sbU.append(this.theme);
             sbU.append(", _locale=");
             sbU.append(this._locale);
             sbU.append(", fontScale=");
-            return a.B(sbU, this.fontScale, ")");
+            return outline.B(sbU, this.fontScale, ")");
         }
     }
 
     /* JADX WARN: Multi-variable type inference failed */
     public StoreUserSettingsSystem(Function1<? super Integer, Unit> function1, Dispatcher dispatcher) {
-        m.checkNotNullParameter(function1, "onFontScaleUpdated");
-        m.checkNotNullParameter(dispatcher, "dispatcher");
+        Intrinsics3.checkNotNullParameter(function1, "onFontScaleUpdated");
+        Intrinsics3.checkNotNullParameter(dispatcher, "dispatcher");
         this.onFontScaleUpdated = function1;
         this.dispatcher = dispatcher;
     }
@@ -210,7 +210,7 @@ public final class StoreUserSettingsSystem extends StoreV2 {
     public static final /* synthetic */ Settings access$getSettings$p(StoreUserSettingsSystem storeUserSettingsSystem) {
         Settings settings = storeUserSettingsSystem.settings;
         if (settings == null) {
-            m.throwUninitializedPropertyAccessException("settings");
+            Intrinsics3.throwUninitializedPropertyAccessException("settings");
         }
         return settings;
     }
@@ -226,7 +226,7 @@ public final class StoreUserSettingsSystem extends StoreV2 {
     public final int getFontScale() {
         Settings settings = this.settings;
         if (settings == null) {
-            m.throwUninitializedPropertyAccessException("settings");
+            Intrinsics3.throwUninitializedPropertyAccessException("settings");
         }
         return settings.getFontScale();
     }
@@ -242,7 +242,7 @@ public final class StoreUserSettingsSystem extends StoreV2 {
     public final String getLocale() {
         Settings settings = this.settings;
         if (settings == null) {
-            m.throwUninitializedPropertyAccessException("settings");
+            Intrinsics3.throwUninitializedPropertyAccessException("settings");
         }
         return settings.getLocale();
     }
@@ -250,29 +250,29 @@ public final class StoreUserSettingsSystem extends StoreV2 {
     public final String getTheme() {
         Settings settings = this.settings;
         if (settings == null) {
-            m.throwUninitializedPropertyAccessException("settings");
+            Intrinsics3.throwUninitializedPropertyAccessException("settings");
         }
         return settings.getTheme();
     }
 
-    @StoreThread
+    @Store3
     public final void handleConnectionOpen(ModelPayload payload) {
-        m.checkNotNullParameter(payload, "payload");
+        Intrinsics3.checkNotNullParameter(payload, "payload");
         ModelUserSettings userSettings = payload.getUserSettings();
-        m.checkNotNullExpressionValue(userSettings, "payload.userSettings");
+        Intrinsics3.checkNotNullExpressionValue(userSettings, "payload.userSettings");
         handleUserSettings(userSettings);
     }
 
-    @StoreThread
+    @Store3
     public final void handleLoginResult(ModelLoginResult loginResult) {
-        m.checkNotNullParameter(loginResult, "loginResult");
-        ModelUserSettingsBootstrap userSettings = loginResult.getUserSettings();
+        Intrinsics3.checkNotNullParameter(loginResult, "loginResult");
+        ModelLoginResult2 userSettings = loginResult.getUserSettings();
         handleUserSettingsThemeUpdate(userSettings != null ? userSettings.getTheme() : null);
-        ModelUserSettingsBootstrap userSettings2 = loginResult.getUserSettings();
+        ModelLoginResult2 userSettings2 = loginResult.getUserSettings();
         handleUserSettingsLocaleUpdate(userSettings2 != null ? userSettings2.getLocale() : null);
     }
 
-    @StoreThread
+    @Store3
     public final void handlePreLogout() {
         setIsSyncThemeEnabled(true);
         setIsLocaleSyncEnabled(true);
@@ -280,7 +280,7 @@ public final class StoreUserSettingsSystem extends StoreV2 {
         setFontScale(-1);
     }
 
-    @StoreThread
+    @Store3
     private final void handleUserSettings(ModelUserSettings userSettings) {
         handleUserSettingsThemeUpdate(userSettings.getTheme());
         handleUserSettingsLocaleUpdate(userSettings.getLocale());
@@ -293,7 +293,7 @@ public final class StoreUserSettingsSystem extends StoreV2 {
         setLocale$default(this, locale, false, null, 4, null);
     }
 
-    @StoreThread
+    @Store3
     private final void handleUserSettingsThemeUpdate(String theme) {
         if (theme == null || !getIsThemeSyncEnabled()) {
             return;
@@ -301,35 +301,35 @@ public final class StoreUserSettingsSystem extends StoreV2 {
         setThemeInternal$default(this, theme, false, null, 4, null);
     }
 
-    @StoreThread
+    @Store3
     public final void handleUserSettingsUpdate(ModelUserSettings userSettings) {
-        m.checkNotNullParameter(userSettings, "userSettings");
+        Intrinsics3.checkNotNullParameter(userSettings, "userSettings");
         handleUserSettings(userSettings);
     }
 
     @Override // com.discord.stores.Store
-    @StoreThread
+    @Store3
     public void init(Context context) {
-        m.checkNotNullParameter(context, "context");
+        Intrinsics3.checkNotNullParameter(context, "context");
         super.init(context);
         Resources resources = context.getResources();
-        m.checkNotNullExpressionValue(resources, "context.resources");
-        this.settings = new Settings(SharedPreferenceExtensionsKt.getStringNonNull(getPrefsSessionDurable(), "CACHE_KEY_THEME", (resources.getConfiguration().uiMode & 48) != 32 ? ModelUserSettings.THEME_LIGHT : ModelUserSettings.THEME_DARK), getPrefs().getString("CACHE_KEY_LOCALE", null), getPrefs().getInt("CACHE_KEY_FONT_SCALE", -1));
+        Intrinsics3.checkNotNullExpressionValue(resources, "context.resources");
+        this.settings = new Settings(SharedPreferenceExtensions.getStringNonNull(getPrefsSessionDurable(), "CACHE_KEY_THEME", (resources.getConfiguration().uiMode & 48) != 32 ? ModelUserSettings.THEME_LIGHT : ModelUserSettings.THEME_DARK), getPrefs().getString("CACHE_KEY_LOCALE", null), getPrefs().getInt("CACHE_KEY_FONT_SCALE", -1));
     }
 
     public final Observable<Settings> observeSettings(boolean sample) {
-        Observable observableConnectRx$default = ObservationDeck.connectRx$default(ObservationDeckProvider.get(), new ObservationDeck.UpdateSource[]{this}, false, null, null, new AnonymousClass1(), 14, null);
+        Observable observableConnectRx$default = ObservationDeck.connectRx$default(ObservationDeck4.get(), new ObservationDeck.UpdateSource[]{this}, false, null, null, new AnonymousClass1(), 14, null);
         if (sample) {
             observableConnectRx$default = observableConnectRx$default.P(1500L, TimeUnit.MILLISECONDS);
         }
         Observable<Settings> observableR = observableConnectRx$default.r();
-        m.checkNotNullExpressionValue(observableR, "ObservationDeckProvider\n…  .distinctUntilChanged()");
+        Intrinsics3.checkNotNullExpressionValue(observableR, "ObservationDeckProvider\n…  .distinctUntilChanged()");
         return observableR;
     }
 
     public final void setFontScale(int fontScale) {
         SharedPreferences.Editor editorEdit = getPrefs().edit();
-        m.checkNotNullExpressionValue(editorEdit, "editor");
+        Intrinsics3.checkNotNullExpressionValue(editorEdit, "editor");
         editorEdit.putInt("CACHE_KEY_FONT_SCALE", fontScale);
         editorEdit.apply();
         this.dispatcher.schedule(new AnonymousClass2(fontScale));
@@ -337,14 +337,14 @@ public final class StoreUserSettingsSystem extends StoreV2 {
 
     public final void setIsLocaleSyncEnabled(boolean isLocaleSyncEnabled) {
         SharedPreferences.Editor editorEdit = getPrefs().edit();
-        m.checkNotNullExpressionValue(editorEdit, "editor");
+        Intrinsics3.checkNotNullExpressionValue(editorEdit, "editor");
         editorEdit.putBoolean("CACHE_KEY_LOCALE_SYNC", isLocaleSyncEnabled);
         editorEdit.apply();
     }
 
     public final void setIsSyncThemeEnabled(boolean isSyncThemeEnabled) {
         SharedPreferences.Editor editorEdit = getPrefsSessionDurable().edit();
-        m.checkNotNullExpressionValue(editorEdit, "editor");
+        Intrinsics3.checkNotNullExpressionValue(editorEdit, "editor");
         editorEdit.putBoolean("CACHE_KEY_THEME_SYNC", isSyncThemeEnabled);
         editorEdit.apply();
     }
@@ -363,11 +363,11 @@ public final class StoreUserSettingsSystem extends StoreV2 {
         }
         Settings settings = this.settings;
         if (settings == null) {
-            m.throwUninitializedPropertyAccessException("settings");
+            Intrinsics3.throwUninitializedPropertyAccessException("settings");
         }
         this.settings = Settings.copy$default(settings, null, locale, 0, 5, null);
         SharedPreferences.Editor editorEdit = getPrefs().edit();
-        m.checkNotNullExpressionValue(editorEdit, "editor");
+        Intrinsics3.checkNotNullExpressionValue(editorEdit, "editor");
         editorEdit.putString("CACHE_KEY_LOCALE", locale);
         editorEdit.apply();
         markChanged();
@@ -382,7 +382,7 @@ public final class StoreUserSettingsSystem extends StoreV2 {
     }
 
     public final void setTheme(String theme, boolean apiSync, Function0<Unit> onRequestApiSync) {
-        m.checkNotNullParameter(theme, "theme");
+        Intrinsics3.checkNotNullParameter(theme, "theme");
         this.dispatcher.schedule(new AnonymousClass1(theme, apiSync, onRequestApiSync));
     }
 
@@ -394,21 +394,21 @@ public final class StoreUserSettingsSystem extends StoreV2 {
         storeUserSettingsSystem.setThemeInternal(str, z2, function0);
     }
 
-    @StoreThread
+    @Store3
     private final void setThemeInternal(String theme, boolean apiSync, Function0<Unit> onRequestApiSync) {
         if (getIsThemeSyncEnabled() && apiSync && (onRequestApiSync == null || onRequestApiSync.invoke() == null)) {
             throw new IllegalArgumentException("API callback required.");
         }
-        if (m.areEqual(getTheme(), ModelUserSettings.THEME_PURE_EVIL) && m.areEqual(theme, ModelUserSettings.THEME_DARK)) {
+        if (Intrinsics3.areEqual(getTheme(), ModelUserSettings.THEME_PURE_EVIL) && Intrinsics3.areEqual(theme, ModelUserSettings.THEME_DARK)) {
             theme = ModelUserSettings.THEME_PURE_EVIL;
         }
         Settings settings = this.settings;
         if (settings == null) {
-            m.throwUninitializedPropertyAccessException("settings");
+            Intrinsics3.throwUninitializedPropertyAccessException("settings");
         }
         this.settings = Settings.copy$default(settings, theme, null, 0, 6, null);
         SharedPreferences.Editor editorEdit = getPrefsSessionDurable().edit();
-        m.checkNotNullExpressionValue(editorEdit, "editor");
+        Intrinsics3.checkNotNullExpressionValue(editorEdit, "editor");
         editorEdit.putString("CACHE_KEY_THEME", theme);
         editorEdit.apply();
         markChanged();

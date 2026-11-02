@@ -2,6 +2,7 @@ package com.discord.utilities;
 
 import android.content.Context;
 import androidx.annotation.MainThread;
+import b.a.d.AppToast;
 import com.discord.R;
 import com.discord.api.channel.Channel;
 import com.discord.api.channel.ChannelUtils;
@@ -13,8 +14,8 @@ import com.discord.stores.StoreUserGuildSettings;
 import com.discord.stores.StoreVoiceChannelSelected;
 import com.discord.utilities.rx.ObservableExtensionsKt;
 import com.discord.widgets.stage.StageRoles;
-import d0.z.d.m;
-import d0.z.d.o;
+import d0.z.d.Intrinsics3;
+import d0.z.d.Lambda;
 import kotlin.NoWhenBranchMatchedException;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
@@ -32,7 +33,7 @@ public final class StoreUIEventHandler {
 
     /* JADX INFO: renamed from: com.discord.utilities.StoreUIEventHandler$subscribeToStoreEvents$1, reason: invalid class name */
     /* JADX INFO: compiled from: StoreUIEventHandler.kt */
-    public final class AnonymousClass1 extends o implements Function1<KrispOveruseDetector.Status, Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function1<KrispOveruseDetector.Status, Unit> {
         public AnonymousClass1() {
             super(1);
         }
@@ -45,14 +46,14 @@ public final class StoreUIEventHandler {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(KrispOveruseDetector.Status status) {
-            m.checkNotNullParameter(status, "it");
+            Intrinsics3.checkNotNullParameter(status, "it");
             StoreUIEventHandler.access$handleKrispStatusEvent(StoreUIEventHandler.this, status);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.utilities.StoreUIEventHandler$subscribeToStoreEvents$2, reason: invalid class name */
     /* JADX INFO: compiled from: StoreUIEventHandler.kt */
-    public final class AnonymousClass2 extends o implements Function1<StoreUserGuildSettings.Event, Unit> {
+    public final class AnonymousClass2 extends Lambda implements Function1<StoreUserGuildSettings.Event, Unit> {
         public AnonymousClass2() {
             super(1);
         }
@@ -65,7 +66,7 @@ public final class StoreUIEventHandler {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(StoreUserGuildSettings.Event event) {
-            m.checkNotNullParameter(event, "event");
+            Intrinsics3.checkNotNullParameter(event, "event");
             StoreUIEventHandler.access$handleUserGuildSettingsEvent(StoreUIEventHandler.this, event);
         }
     }
@@ -92,12 +93,12 @@ public final class StoreUIEventHandler {
     }
 
     public StoreUIEventHandler(Context context, StoreMediaEngine storeMediaEngine, StoreChannels storeChannels, StoreVoiceChannelSelected storeVoiceChannelSelected, StoreStageChannels storeStageChannels, StoreUserGuildSettings storeUserGuildSettings) {
-        m.checkNotNullParameter(context, "context");
-        m.checkNotNullParameter(storeMediaEngine, "mediaEngineStore");
-        m.checkNotNullParameter(storeChannels, "channelsStore");
-        m.checkNotNullParameter(storeVoiceChannelSelected, "voiceChannelSelectedStore");
-        m.checkNotNullParameter(storeStageChannels, "stageChannelsStore");
-        m.checkNotNullParameter(storeUserGuildSettings, "storeUserGuildSettings");
+        Intrinsics3.checkNotNullParameter(context, "context");
+        Intrinsics3.checkNotNullParameter(storeMediaEngine, "mediaEngineStore");
+        Intrinsics3.checkNotNullParameter(storeChannels, "channelsStore");
+        Intrinsics3.checkNotNullParameter(storeVoiceChannelSelected, "voiceChannelSelectedStore");
+        Intrinsics3.checkNotNullParameter(storeStageChannels, "stageChannelsStore");
+        Intrinsics3.checkNotNullParameter(storeUserGuildSettings, "storeUserGuildSettings");
         this.context = context;
         this.mediaEngineStore = storeMediaEngine;
         this.channelsStore = storeChannels;
@@ -134,7 +135,7 @@ public final class StoreUIEventHandler {
             }
             i = R.string.mobile_advanced_voice_activity_cpu_overuse;
         }
-        b.a.d.m.g(this.context, i, 0, null, 12);
+        AppToast.g(this.context, i, 0, null, 12);
     }
 
     @MainThread
@@ -156,8 +157,8 @@ public final class StoreUIEventHandler {
             }
             i = R.string.category_settings_have_been_updated;
         }
-        b.a.d.m.g(this.context, i, 0, null, 12);
-        KotlinExtensionsKt.getExhaustive(Unit.a);
+        AppToast.g(this.context, i, 0, null, 12);
+        KotlinExtensions.getExhaustive(Unit.a);
     }
 
     private final void subscribeToStoreEvents() {

@@ -20,6 +20,8 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
+import b.c.a.a0.AnimatableValueParser;
+import b.d.b.a.outline;
 import b.i.a.f.h.l.fc;
 import com.adjust.sdk.Constants;
 import com.discord.models.domain.ModelAuditLogEntry;
@@ -227,7 +229,7 @@ public final class t9 extends r5 {
 
     public final void K(fc fcVar, long j) {
         try {
-            fcVar.f(b.d.b.a.a.T("r", j));
+            fcVar.f(outline.T("r", j));
         } catch (RemoteException e) {
             this.a.g().i.b("Error returning long value to wrapper", e);
         }
@@ -369,7 +371,7 @@ public final class t9 extends r5 {
     }
 
     public static boolean X(String str) {
-        b.c.a.a0.d.w(str);
+        AnimatableValueParser.w(str);
         return str.charAt(0) != '_' || str.equals("_ep");
     }
 
@@ -921,7 +923,7 @@ public final class t9 extends r5 {
     public static long w(byte[] bArr) {
         Objects.requireNonNull(bArr, "null reference");
         int i = 0;
-        b.c.a.a0.d.F(bArr.length > 0);
+        AnimatableValueParser.F(bArr.length > 0);
         long j = 0;
         for (int length = bArr.length - 1; length >= 0 && length >= bArr.length - 8; length--) {
             j += (((long) bArr[length]) & 255) << i;

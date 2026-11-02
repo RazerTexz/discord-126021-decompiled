@@ -5,5 +5,5 @@ import java.util.Collection;
 /* JADX INFO: compiled from: javaElements.kt */
 /* JADX INFO: loaded from: classes3.dex */
 public interface y extends i {
-    Collection<j> getUpperBounds();
+    Collection<javaTypes3> getUpperBounds();
 }

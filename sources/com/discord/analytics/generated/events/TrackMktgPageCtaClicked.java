@@ -1,16 +1,16 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.analytics.generated.traits.TrackLocationMetadata;
-import com.discord.analytics.generated.traits.TrackLocationMetadataReceiver;
+import com.discord.analytics.generated.traits.TrackLocationMetadata2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackMktgPageCtaClicked.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackMktgPageCtaClicked implements AnalyticsSchema, TrackBaseReceiver, TrackLocationMetadataReceiver {
+public final /* data */ class TrackMktgPageCtaClicked implements AnalyticsSchema, TrackBase2, TrackLocationMetadata2 {
     private final CharSequence pageName = null;
     private final Boolean rpcConnected = null;
     private TrackBase trackBase;
@@ -25,7 +25,7 @@ public final /* data */ class TrackMktgPageCtaClicked implements AnalyticsSchema
             return false;
         }
         TrackMktgPageCtaClicked trackMktgPageCtaClicked = (TrackMktgPageCtaClicked) other;
-        return m.areEqual(this.pageName, trackMktgPageCtaClicked.pageName) && m.areEqual(this.rpcConnected, trackMktgPageCtaClicked.rpcConnected);
+        return Intrinsics3.areEqual(this.pageName, trackMktgPageCtaClicked.pageName) && Intrinsics3.areEqual(this.rpcConnected, trackMktgPageCtaClicked.rpcConnected);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -42,9 +42,9 @@ public final /* data */ class TrackMktgPageCtaClicked implements AnalyticsSchema
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackMktgPageCtaClicked(pageName=");
+        StringBuilder sbU = outline.U("TrackMktgPageCtaClicked(pageName=");
         sbU.append(this.pageName);
         sbU.append(", rpcConnected=");
-        return a.D(sbU, this.rpcConnected, ")");
+        return outline.D(sbU, this.rpcConnected, ")");
     }
 }

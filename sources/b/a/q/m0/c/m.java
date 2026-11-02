@@ -1,7 +1,9 @@
 package b.a.q.m0.c;
 
+import b.c.a.a0.AnimatableValueParser;
 import com.discord.rtcconnection.mediaengine.MediaEngine;
 import com.hammerandchisel.libdiscord.Discord;
+import d0.z.d.Lambda;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 
@@ -11,7 +13,7 @@ public final class m implements Discord.AecConfigCallback {
     public final /* synthetic */ k a;
 
     /* JADX INFO: compiled from: MediaEngineLegacy.kt */
-    public final class a extends d0.z.d.o implements Function0<Unit> {
+    public final class a extends Lambda implements Function0<Unit> {
         public final /* synthetic */ boolean $enabled;
         public final /* synthetic */ boolean $previouslyEnabled;
         public final /* synthetic */ boolean $previouslyMobileMode;
@@ -35,7 +37,7 @@ public final class m implements Discord.AecConfigCallback {
             kVar.i = null;
             if (echoCancellationInfo != null) {
                 MediaEngine.EchoCancellationInfo echoCancellationInfo2 = new MediaEngine.EchoCancellationInfo(echoCancellationInfo.builtinAecRequested, echoCancellationInfo.builtinAecSupportedNative, echoCancellationInfo.builtinAecSupportedJava, echoCancellationInfo.builtinAecEnabled, this.$requestEnable, this.$enabled, this.$requestMobileMode, this.$previouslyEnabled, this.$previouslyMobileMode);
-                b.c.a.a0.d.d1("MediaEngineLegacy", "onEchoCancellationUpdated: " + echoCancellationInfo2);
+                AnimatableValueParser.d1("MediaEngineLegacy", "onEchoCancellationUpdated: " + echoCancellationInfo2);
                 m.this.a.p.onEchoCancellationUpdated(echoCancellationInfo2);
             }
             return Unit.a;

@@ -7,20 +7,20 @@ import android.widget.TextView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentViewModelLazyKt;
-import b.a.d.g0;
-import b.a.d.i0;
-import b.a.k.b;
-import b.d.b.a.a;
+import b.a.d.AppViewModelDelegates3;
+import b.a.d.AppViewModelDelegates5;
+import b.a.k.FormatUtils;
+import b.d.b.a.outline;
 import com.discord.R;
 import com.discord.app.AppDialog;
 import com.discord.databinding.ConfirmRemovePermissionDialogBinding;
-import com.discord.utilities.KotlinExtensionsKt;
+import com.discord.utilities.KotlinExtensions;
 import com.discord.utilities.rx.ObservableExtensionsKt;
 import com.discord.utilities.viewbinding.FragmentViewBindingDelegate;
-import com.discord.utilities.viewbinding.FragmentViewBindingDelegateKt;
-import d0.z.d.a0;
-import d0.z.d.m;
-import d0.z.d.o;
+import com.discord.utilities.viewbinding.FragmentViewBindingDelegate3;
+import d0.z.d.Intrinsics3;
+import d0.z.d.Lambda;
+import d0.z.d.Reflection2;
 import java.io.Serializable;
 import java.util.Objects;
 import kotlin.Lazy;
@@ -34,7 +34,7 @@ import kotlin.reflect.KProperty;
 /* JADX INFO: compiled from: ConfirmRemovePermissionDialog.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class ConfirmRemovePermissionDialog extends AppDialog {
-    public static final /* synthetic */ KProperty[] $$delegatedProperties = {a.d0(ConfirmRemovePermissionDialog.class, "binding", "getBinding()Lcom/discord/databinding/ConfirmRemovePermissionDialogBinding;", 0)};
+    public static final /* synthetic */ KProperty[] $$delegatedProperties = {outline.d0(ConfirmRemovePermissionDialog.class, "binding", "getBinding()Lcom/discord/databinding/ConfirmRemovePermissionDialogBinding;", 0)};
     private static final String ARG_PERMISSION_OWNER = "ARG_PERMISSION_OWNER";
 
     /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
@@ -48,7 +48,7 @@ public final class ConfirmRemovePermissionDialog extends AppDialog {
 
     /* JADX INFO: renamed from: com.discord.widgets.channels.permissions.ConfirmRemovePermissionDialog$onResume$1, reason: invalid class name */
     /* JADX INFO: compiled from: ConfirmRemovePermissionDialog.kt */
-    public final class AnonymousClass1 extends o implements Function1<ConfirmRemovePermissionDialogViewModel.ViewState, Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function1<ConfirmRemovePermissionDialogViewModel.ViewState, Unit> {
         public AnonymousClass1() {
             super(1);
         }
@@ -61,7 +61,7 @@ public final class ConfirmRemovePermissionDialog extends AppDialog {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(ConfirmRemovePermissionDialogViewModel.ViewState viewState) {
-            m.checkNotNullParameter(viewState, "viewState");
+            Intrinsics3.checkNotNullParameter(viewState, "viewState");
             ConfirmRemovePermissionDialog.access$configureUI(ConfirmRemovePermissionDialog.this, viewState);
         }
     }
@@ -96,8 +96,8 @@ public final class ConfirmRemovePermissionDialog extends AppDialog {
         }
 
         public final void show(PermissionOwner permissionOwner, long channelId, FragmentManager fragmentManager) {
-            m.checkNotNullParameter(permissionOwner, "permissionOwner");
-            m.checkNotNullParameter(fragmentManager, "fragmentManager");
+            Intrinsics3.checkNotNullParameter(permissionOwner, "permissionOwner");
+            Intrinsics3.checkNotNullParameter(fragmentManager, "fragmentManager");
             ConfirmRemovePermissionDialog confirmRemovePermissionDialog = new ConfirmRemovePermissionDialog();
             Bundle bundle = new Bundle();
             bundle.putSerializable(ConfirmRemovePermissionDialog.ARG_PERMISSION_OWNER, permissionOwner);
@@ -113,10 +113,10 @@ public final class ConfirmRemovePermissionDialog extends AppDialog {
 
     public ConfirmRemovePermissionDialog() {
         super(R.layout.confirm_remove_permission_dialog);
-        ConfirmRemovePermissionDialog$viewModel$2 confirmRemovePermissionDialog$viewModel$2 = new ConfirmRemovePermissionDialog$viewModel$2(this);
-        g0 g0Var = new g0(this);
-        this.viewModel = FragmentViewModelLazyKt.createViewModelLazy(this, a0.getOrCreateKotlinClass(ConfirmRemovePermissionDialogViewModel.class), new ConfirmRemovePermissionDialog$appViewModels$$inlined$viewModels$1(g0Var), new i0(confirmRemovePermissionDialog$viewModel$2));
-        this.binding = FragmentViewBindingDelegateKt.viewBinding$default(this, ConfirmRemovePermissionDialog$binding$2.INSTANCE, null, 2, null);
+        ConfirmRemovePermissionDialog3 confirmRemovePermissionDialog3 = new ConfirmRemovePermissionDialog3(this);
+        AppViewModelDelegates3 appViewModelDelegates3 = new AppViewModelDelegates3(this);
+        this.viewModel = FragmentViewModelLazyKt.createViewModelLazy(this, Reflection2.getOrCreateKotlinClass(ConfirmRemovePermissionDialogViewModel.class), new ConfirmRemovePermissionDialog$appViewModels$$inlined$viewModels$1(appViewModelDelegates3), new AppViewModelDelegates5(confirmRemovePermissionDialog3));
+        this.binding = FragmentViewBindingDelegate3.viewBinding$default(this, ConfirmRemovePermissionDialog2.INSTANCE, null, 2, null);
     }
 
     public static final /* synthetic */ void access$configureUI(ConfirmRemovePermissionDialog confirmRemovePermissionDialog, ConfirmRemovePermissionDialogViewModel.ViewState viewState) {
@@ -141,13 +141,13 @@ public final class ConfirmRemovePermissionDialog extends AppDialog {
             getBinding().d.setIsLoading(((ConfirmRemovePermissionDialogViewModel.ViewState.Default) viewState).isSubmitting());
             unit = Unit.a;
         } else {
-            if (!m.areEqual(viewState, ConfirmRemovePermissionDialogViewModel.ViewState.Complete.INSTANCE)) {
+            if (!Intrinsics3.areEqual(viewState, ConfirmRemovePermissionDialogViewModel.ViewState.Complete.INSTANCE)) {
                 throw new NoWhenBranchMatchedException();
             }
             dismiss();
             unit = Unit.a;
         }
-        KotlinExtensionsKt.getExhaustive(unit);
+        KotlinExtensions.getExhaustive(unit);
     }
 
     private final ConfirmRemovePermissionDialogBinding getBinding() {
@@ -186,8 +186,8 @@ public final class ConfirmRemovePermissionDialog extends AppDialog {
             username = nickname != null ? nickname : member.getUser().getUsername();
         }
         TextView textView = getBinding().f2091b;
-        m.checkNotNullExpressionValue(textView, "binding.body");
-        b.n(textView, R.string.settings_permissions_delete_body, new Object[]{username}, null, 4);
+        Intrinsics3.checkNotNullExpressionValue(textView, "binding.body");
+        FormatUtils.n(textView, R.string.settings_permissions_delete_body, new Object[]{username}, null, 4);
         getBinding().d.setOnClickListener(new AnonymousClass2());
         getBinding().c.setOnClickListener(new AnonymousClass3());
     }

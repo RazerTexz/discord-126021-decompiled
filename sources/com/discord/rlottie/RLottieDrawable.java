@@ -14,9 +14,9 @@ import android.util.Log;
 import android.view.View;
 import androidx.annotation.RawRes;
 import com.discord.models.domain.ModelAuditLogEntry;
-import d0.g0.c;
-import d0.t.k;
-import d0.z.d.m;
+import d0.g0.Charsets2;
+import d0.t._Arrays;
+import d0.z.d.Intrinsics3;
 import java.io.File;
 import java.io.InputStream;
 import java.lang.ref.WeakReference;
@@ -154,7 +154,7 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable {
                         RLottieDrawable rLottieDrawable2 = (RLottieDrawable) this.k;
                         Integer[] numArr = rLottieDrawable2.t;
                         if (numArr != null) {
-                            RLottieDrawable.o.replaceColors(rLottieDrawable2.Q, k.toIntArray(numArr));
+                            RLottieDrawable.o.replaceColors(rLottieDrawable2.Q, _Arrays.toIntArray(numArr));
                         }
                         RLottieDrawable rLottieDrawable3 = (RLottieDrawable) this.k;
                         rLottieDrawable3.t = null;
@@ -165,14 +165,14 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable {
                             int i = rLottieDrawable4.I;
                             Bitmap bitmap = rLottieDrawable4.E;
                             if (bitmap == null) {
-                                m.throwNpe();
+                                Intrinsics3.throwNpe();
                             }
                             RLottieDrawable rLottieDrawable5 = (RLottieDrawable) this.k;
                             int i2 = rLottieDrawable5.p;
                             int i3 = rLottieDrawable5.q;
                             Bitmap bitmap2 = rLottieDrawable5.E;
                             if (bitmap2 == null) {
-                                m.throwNpe();
+                                Intrinsics3.throwNpe();
                             }
                             if (companion.getFrame(j, i, bitmap, i2, i3, bitmap2.getRowBytes(), true) == -1) {
                                 RLottieDrawable.j.post(((RLottieDrawable) this.k).S);
@@ -263,7 +263,7 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable {
     }
 
     public RLottieDrawable(File file, int i, int i2, boolean z2, boolean z3, float f, int[] iArr, int i3) {
-        m.checkParameterIsNotNull(file, "file");
+        Intrinsics3.checkParameterIsNotNull(file, "file");
         int[] iArr2 = new int[3];
         this.r = iArr2;
         this.u = new HashMap<>();
@@ -285,11 +285,11 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable {
         this.J = z3;
         this.K = f;
         Paint paint = getPaint();
-        m.checkExpressionValueIsNotNull(paint, "paint");
+        Intrinsics3.checkExpressionValueIsNotNull(paint, "paint");
         paint.setFlags(2);
         Companion companion = o;
         String absolutePath = file.getAbsolutePath();
-        m.checkExpressionValueIsNotNull(absolutePath, "file.absolutePath");
+        Intrinsics3.checkExpressionValueIsNotNull(absolutePath, "file.absolutePath");
         this.Q = companion.create(absolutePath, i, i2, iArr2, z2, null, this.J);
         if (z2 && n == null) {
             n = new ThreadPoolExecutor(1, 1, 0L, TimeUnit.MILLISECONDS, new LinkedBlockingQueue());
@@ -314,7 +314,7 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable {
         if (rLottieDrawable.C != null) {
             Bitmap bitmap = rLottieDrawable.C;
             if (bitmap == null) {
-                m.throwNpe();
+                Intrinsics3.throwNpe();
             }
             bitmap.recycle();
             rLottieDrawable.C = null;
@@ -322,7 +322,7 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable {
         if (rLottieDrawable.E != null) {
             Bitmap bitmap2 = rLottieDrawable.E;
             if (bitmap2 == null) {
-                m.throwNpe();
+                Intrinsics3.throwNpe();
             }
             bitmap2.recycle();
             rLottieDrawable.E = null;
@@ -388,7 +388,7 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable {
     @Override // android.graphics.drawable.BitmapDrawable, android.graphics.drawable.Drawable
     public void draw(Canvas canvas) {
         boolean z2;
-        m.checkParameterIsNotNull(canvas, "canvas");
+        Intrinsics3.checkParameterIsNotNull(canvas, "canvas");
         if (this.Q != 0) {
             long jElapsedRealtime = SystemClock.elapsedRealtime();
             long jAbs = Math.abs(jElapsedRealtime - this.f2768y);
@@ -464,7 +464,7 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable {
                 canvas.scale(this.L, this.M);
                 Bitmap bitmap = this.C;
                 if (bitmap == null) {
-                    m.throwNpe();
+                    Intrinsics3.throwNpe();
                 }
                 canvas.drawBitmap(bitmap, 0.0f, 0.0f, getPaint());
                 if (this.P) {
@@ -483,7 +483,7 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable {
     }
 
     public final void f(PlaybackMode playbackMode) {
-        m.checkParameterIsNotNull(playbackMode, "value");
+        Intrinsics3.checkParameterIsNotNull(playbackMode, "value");
         if (this.w == PlaybackMode.ONCE && playbackMode == PlaybackMode.FREEZE && this.I != 0) {
             return;
         }
@@ -522,7 +522,7 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable {
 
     @Override // android.graphics.drawable.BitmapDrawable, android.graphics.drawable.Drawable
     public void onBoundsChange(Rect rect) {
-        m.checkParameterIsNotNull(rect, "bounds");
+        Intrinsics3.checkParameterIsNotNull(rect, "bounds");
         super.onBoundsChange(rect);
         this.N = true;
     }
@@ -545,8 +545,8 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable {
     }
 
     public RLottieDrawable(Context context, @RawRes int i, String str, int i2, int i3, float f, boolean z2, int[] iArr) {
-        m.checkParameterIsNotNull(context, "context");
-        m.checkParameterIsNotNull(str, ModelAuditLogEntry.CHANGE_KEY_NAME);
+        Intrinsics3.checkParameterIsNotNull(context, "context");
+        Intrinsics3.checkParameterIsNotNull(str, ModelAuditLogEntry.CHANGE_KEY_NAME);
         this.r = new int[3];
         this.u = new HashMap<>();
         this.v = new HashMap<>();
@@ -564,7 +564,7 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable {
         this.X = new a(0, this);
         try {
             InputStream inputStreamOpenRawResource = context.getResources().openRawResource(i);
-            m.checkExpressionValueIsNotNull(inputStreamOpenRawResource, "context.resources.openRawResource(rawRes)");
+            Intrinsics3.checkExpressionValueIsNotNull(inputStreamOpenRawResource, "context.resources.openRawResource(rawRes)");
             Ref$IntRef ref$IntRef = new Ref$IntRef();
             int i4 = 0;
             while (true) {
@@ -583,13 +583,13 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable {
                 System.arraycopy(bArr, 0, k, i4, ref$IntRef.element);
                 i4 += ref$IntRef.element;
             }
-            String str2 = new String(k, 0, i4, c.a);
+            String str2 = new String(k, 0, i4, Charsets2.a);
             inputStreamOpenRawResource.close();
             this.p = i2;
             this.q = i3;
             this.K = f;
             Paint paint = getPaint();
-            m.checkExpressionValueIsNotNull(paint, "paint");
+            Intrinsics3.checkExpressionValueIsNotNull(paint, "paint");
             paint.setFlags(2);
             this.Q = o.createWithJson(str2, str, this.r, iArr);
             this.f2766s = Math.max(16, (int) (1000.0f / this.r[1]));

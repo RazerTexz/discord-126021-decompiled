@@ -1,18 +1,18 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.analytics.generated.traits.TrackChannel;
-import com.discord.analytics.generated.traits.TrackChannelReceiver;
+import com.discord.analytics.generated.traits.TrackChannel2;
 import com.discord.analytics.generated.traits.TrackLfgGroup;
-import com.discord.analytics.generated.traits.TrackLfgGroupReceiver;
+import com.discord.analytics.generated.traits.TrackLfgGroup2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackLfgGroupJoined.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackLfgGroupJoined implements AnalyticsSchema, TrackBaseReceiver, TrackChannelReceiver, TrackLfgGroupReceiver {
+public final /* data */ class TrackLfgGroupJoined implements AnalyticsSchema, TrackBase2, TrackChannel2, TrackLfgGroup2 {
     private final Boolean browserFiltered = null;
     private final Long groupIndex = null;
     private TrackBase trackBase;
@@ -28,7 +28,7 @@ public final /* data */ class TrackLfgGroupJoined implements AnalyticsSchema, Tr
             return false;
         }
         TrackLfgGroupJoined trackLfgGroupJoined = (TrackLfgGroupJoined) other;
-        return m.areEqual(this.browserFiltered, trackLfgGroupJoined.browserFiltered) && m.areEqual(this.groupIndex, trackLfgGroupJoined.groupIndex);
+        return Intrinsics3.areEqual(this.browserFiltered, trackLfgGroupJoined.browserFiltered) && Intrinsics3.areEqual(this.groupIndex, trackLfgGroupJoined.groupIndex);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -45,9 +45,9 @@ public final /* data */ class TrackLfgGroupJoined implements AnalyticsSchema, Tr
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackLfgGroupJoined(browserFiltered=");
+        StringBuilder sbU = outline.U("TrackLfgGroupJoined(browserFiltered=");
         sbU.append(this.browserFiltered);
         sbU.append(", groupIndex=");
-        return a.G(sbU, this.groupIndex, ")");
+        return outline.G(sbU, this.groupIndex, ")");
     }
 }

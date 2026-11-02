@@ -19,14 +19,14 @@ import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
 import java.util.ArrayList;
 import java.util.List;
-import x.a.a.a;
-import x.a.a.b;
+import x.a.a.ICustomTabsCallback;
+import x.a.a.ICustomTabsService;
 
 /* JADX INFO: loaded from: classes.dex */
 public class CustomTabsClient {
     private static final String TAG = "CustomTabsClient";
     private final Context mApplicationContext;
-    private final b mService;
+    private final ICustomTabsService mService;
     private final ComponentName mServiceComponentName;
 
     /* JADX INFO: renamed from: androidx.browser.customtabs.CustomTabsClient$1, reason: invalid class name */
@@ -48,8 +48,8 @@ public class CustomTabsClient {
         }
     }
 
-    public CustomTabsClient(b bVar, ComponentName componentName, Context context) {
-        this.mService = bVar;
+    public CustomTabsClient(ICustomTabsService iCustomTabsService, ComponentName componentName, Context context) {
+        this.mService = iCustomTabsService;
         this.mServiceComponentName = componentName;
         this.mApplicationContext = context;
     }
@@ -90,7 +90,7 @@ public class CustomTabsClient {
         }
     }
 
-    private a.AbstractBinderC0650a createCallbackWrapper(@Nullable CustomTabsCallback customTabsCallback) {
+    private ICustomTabsCallback.a createCallbackWrapper(@Nullable CustomTabsCallback customTabsCallback) {
         return new AnonymousClass2(customTabsCallback);
     }
 
@@ -126,17 +126,17 @@ public class CustomTabsClient {
     @Nullable
     private CustomTabsSession newSessionInternal(@Nullable CustomTabsCallback customTabsCallback, @Nullable PendingIntent pendingIntent) {
         boolean zNewSession;
-        a.AbstractBinderC0650a abstractBinderC0650aCreateCallbackWrapper = createCallbackWrapper(customTabsCallback);
+        ICustomTabsCallback.a aVarCreateCallbackWrapper = createCallbackWrapper(customTabsCallback);
         try {
             if (pendingIntent != null) {
                 Bundle bundle = new Bundle();
                 bundle.putParcelable(CustomTabsIntent.EXTRA_SESSION_ID, pendingIntent);
-                zNewSession = this.mService.newSessionWithExtras(abstractBinderC0650aCreateCallbackWrapper, bundle);
+                zNewSession = this.mService.newSessionWithExtras(aVarCreateCallbackWrapper, bundle);
             } else {
-                zNewSession = this.mService.newSession(abstractBinderC0650aCreateCallbackWrapper);
+                zNewSession = this.mService.newSession(aVarCreateCallbackWrapper);
             }
             if (zNewSession) {
-                return new CustomTabsSession(this.mService, abstractBinderC0650aCreateCallbackWrapper, this.mServiceComponentName, pendingIntent);
+                return new CustomTabsSession(this.mService, aVarCreateCallbackWrapper, this.mServiceComponentName, pendingIntent);
             }
             return null;
         } catch (RemoteException unused) {
@@ -153,7 +153,7 @@ public class CustomTabsClient {
     }
 
     /* JADX INFO: renamed from: androidx.browser.customtabs.CustomTabsClient$2, reason: invalid class name */
-    public class AnonymousClass2 extends a.AbstractBinderC0650a {
+    public class AnonymousClass2 extends ICustomTabsCallback.a {
         public final /* synthetic */ CustomTabsCallback val$callback;
         private Handler mHandler = new Handler(Looper.getMainLooper());
 
@@ -243,7 +243,7 @@ public class CustomTabsClient {
             this.val$callback = customTabsCallback;
         }
 
-        @Override // x.a.a.a
+        @Override // x.a.a.ICustomTabsCallback
         public void extraCallback(String str, Bundle bundle) throws RemoteException {
             if (this.val$callback == null) {
                 return;
@@ -251,7 +251,7 @@ public class CustomTabsClient {
             this.mHandler.post(new RunnableC00012(str, bundle));
         }
 
-        @Override // x.a.a.a
+        @Override // x.a.a.ICustomTabsCallback
         public Bundle extraCallbackWithResult(@NonNull String str, @Nullable Bundle bundle) throws RemoteException {
             CustomTabsCallback customTabsCallback = this.val$callback;
             if (customTabsCallback == null) {
@@ -260,7 +260,7 @@ public class CustomTabsClient {
             return customTabsCallback.extraCallbackWithResult(str, bundle);
         }
 
-        @Override // x.a.a.a
+        @Override // x.a.a.ICustomTabsCallback
         public void onMessageChannelReady(Bundle bundle) throws RemoteException {
             if (this.val$callback == null) {
                 return;
@@ -268,7 +268,7 @@ public class CustomTabsClient {
             this.mHandler.post(new AnonymousClass3(bundle));
         }
 
-        @Override // x.a.a.a
+        @Override // x.a.a.ICustomTabsCallback
         public void onNavigationEvent(int i, Bundle bundle) {
             if (this.val$callback == null) {
                 return;
@@ -276,7 +276,7 @@ public class CustomTabsClient {
             this.mHandler.post(new AnonymousClass1(i, bundle));
         }
 
-        @Override // x.a.a.a
+        @Override // x.a.a.ICustomTabsCallback
         public void onPostMessage(String str, Bundle bundle) throws RemoteException {
             if (this.val$callback == null) {
                 return;
@@ -284,7 +284,7 @@ public class CustomTabsClient {
             this.mHandler.post(new AnonymousClass4(str, bundle));
         }
 
-        @Override // x.a.a.a
+        @Override // x.a.a.ICustomTabsCallback
         public void onRelationshipValidationResult(int i, Uri uri, boolean z2, @Nullable Bundle bundle) throws RemoteException {
             if (this.val$callback == null) {
                 return;

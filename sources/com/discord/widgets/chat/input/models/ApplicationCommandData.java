@@ -1,9 +1,9 @@
 package com.discord.widgets.chat.input.models;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.models.commands.Application;
 import com.discord.models.commands.ApplicationCommand;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 import java.util.List;
 import kotlin.jvm.internal.DefaultConstructorMarker;
 
@@ -16,9 +16,9 @@ public final /* data */ class ApplicationCommandData {
     private final List<ApplicationCommandValue> values;
 
     public ApplicationCommandData(Application application, ApplicationCommand applicationCommand, List<ApplicationCommandValue> list, boolean z2) {
-        m.checkNotNullParameter(application, "application");
-        m.checkNotNullParameter(applicationCommand, "applicationCommand");
-        m.checkNotNullParameter(list, "values");
+        Intrinsics3.checkNotNullParameter(application, "application");
+        Intrinsics3.checkNotNullParameter(applicationCommand, "applicationCommand");
+        Intrinsics3.checkNotNullParameter(list, "values");
         this.application = application;
         this.applicationCommand = applicationCommand;
         this.values = list;
@@ -47,9 +47,9 @@ public final /* data */ class ApplicationCommandData {
     }
 
     public final ApplicationCommandData copy(Application application, ApplicationCommand applicationCommand, List<ApplicationCommandValue> values, boolean validInputs) {
-        m.checkNotNullParameter(application, "application");
-        m.checkNotNullParameter(applicationCommand, "applicationCommand");
-        m.checkNotNullParameter(values, "values");
+        Intrinsics3.checkNotNullParameter(application, "application");
+        Intrinsics3.checkNotNullParameter(applicationCommand, "applicationCommand");
+        Intrinsics3.checkNotNullParameter(values, "values");
         return new ApplicationCommandData(application, applicationCommand, values, validInputs);
     }
 
@@ -61,7 +61,7 @@ public final /* data */ class ApplicationCommandData {
             return false;
         }
         ApplicationCommandData applicationCommandData = (ApplicationCommandData) other;
-        return m.areEqual(this.application, applicationCommandData.application) && m.areEqual(this.applicationCommand, applicationCommandData.applicationCommand) && m.areEqual(this.values, applicationCommandData.values) && this.validInputs == applicationCommandData.validInputs;
+        return Intrinsics3.areEqual(this.application, applicationCommandData.application) && Intrinsics3.areEqual(this.applicationCommand, applicationCommandData.applicationCommand) && Intrinsics3.areEqual(this.values, applicationCommandData.values) && this.validInputs == applicationCommandData.validInputs;
     }
 
     /* JADX INFO: renamed from: component1, reason: from getter */
@@ -116,14 +116,14 @@ public final /* data */ class ApplicationCommandData {
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("ApplicationCommandData(application=");
+        StringBuilder sbU = outline.U("ApplicationCommandData(application=");
         sbU.append(this.application);
         sbU.append(", applicationCommand=");
         sbU.append(this.applicationCommand);
         sbU.append(", values=");
         sbU.append(this.values);
         sbU.append(", validInputs=");
-        return a.O(sbU, this.validInputs, ")");
+        return outline.O(sbU, this.validInputs, ")");
     }
 
     public /* synthetic */ ApplicationCommandData(Application application, ApplicationCommand applicationCommand, List list, boolean z2, int i, DefaultConstructorMarker defaultConstructorMarker) {

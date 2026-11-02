@@ -1,7 +1,7 @@
 package com.discord.api.activity;
 
-import b.d.b.a.a;
-import d0.z.d.m;
+import b.d.b.a.outline;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: ActivityActionConfirmation.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -10,7 +10,7 @@ public final /* data */ class ActivityActionConfirmation {
 
     public boolean equals(Object other) {
         if (this != other) {
-            return (other instanceof ActivityActionConfirmation) && m.areEqual(this.secret, ((ActivityActionConfirmation) other).secret);
+            return (other instanceof ActivityActionConfirmation) && Intrinsics3.areEqual(this.secret, ((ActivityActionConfirmation) other).secret);
         }
         return true;
     }
@@ -29,6 +29,6 @@ public final /* data */ class ActivityActionConfirmation {
     }
 
     public String toString() {
-        return a.J(a.U("ActivityActionConfirmation(secret="), this.secret, ")");
+        return outline.J(outline.U("ActivityActionConfirmation(secret="), this.secret, ")");
     }
 }

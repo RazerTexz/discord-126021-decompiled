@@ -10,9 +10,10 @@ import android.os.RemoteException;
 import android.os.SystemClock;
 import android.util.Log;
 import androidx.annotation.Nullable;
-import b.c.a.a0.d;
+import b.c.a.a0.AnimatableValueParser;
 import b.i.a.f.e.c;
 import b.i.a.f.h.a.b;
+import b.i.a.f.h.a.d;
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.common.GooglePlayServicesRepairableException;
 import java.io.IOException;
@@ -115,7 +116,7 @@ public class AdvertisingIdClient {
     }
 
     public final void a() {
-        d.x("Calling this from your main thread can lead to deadlock");
+        AnimatableValueParser.x("Calling this from your main thread can lead to deadlock");
         synchronized (this) {
             if (this.f == null || this.a == null) {
                 return;
@@ -135,7 +136,7 @@ public class AdvertisingIdClient {
 
     public Info b() throws IOException {
         Info info;
-        d.x("Calling this from your main thread can lead to deadlock");
+        AnimatableValueParser.x("Calling this from your main thread can lead to deadlock");
         synchronized (this) {
             if (this.c) {
                 Objects.requireNonNull(this.a, "null reference");
@@ -199,7 +200,7 @@ public class AdvertisingIdClient {
             IBinder iBinderA = aVar.a(10000L, TimeUnit.MILLISECONDS);
             int i = b.i.a.f.h.a.c.a;
             IInterface iInterfaceQueryLocalInterface = iBinderA.queryLocalInterface("com.google.android.gms.ads.identifier.internal.IAdvertisingIdService");
-            return iInterfaceQueryLocalInterface instanceof b ? (b) iInterfaceQueryLocalInterface : new b.i.a.f.h.a.d(iBinderA);
+            return iInterfaceQueryLocalInterface instanceof b ? (b) iInterfaceQueryLocalInterface : new d(iBinderA);
         } catch (InterruptedException unused) {
             throw new IOException("Interrupted exception");
         } catch (Throwable th) {
@@ -224,7 +225,7 @@ public class AdvertisingIdClient {
     }
 
     public final void f(boolean z2) throws GooglePlayServicesRepairableException, IllegalStateException, GooglePlayServicesNotAvailableException, IOException {
-        d.x("Calling this from your main thread can lead to deadlock");
+        AnimatableValueParser.x("Calling this from your main thread can lead to deadlock");
         synchronized (this) {
             if (this.c) {
                 a();

@@ -1,15 +1,15 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 import java.util.List;
 
 /* JADX INFO: compiled from: TrackRingCall.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackRingCall implements AnalyticsSchema, TrackBaseReceiver {
+public final /* data */ class TrackRingCall implements AnalyticsSchema, TrackBase2 {
     private final Long channelId = null;
     private final Long channelType = null;
     private final Long messageId = null;
@@ -25,7 +25,7 @@ public final /* data */ class TrackRingCall implements AnalyticsSchema, TrackBas
             return false;
         }
         TrackRingCall trackRingCall = (TrackRingCall) other;
-        return m.areEqual(this.channelId, trackRingCall.channelId) && m.areEqual(this.messageId, trackRingCall.messageId) && m.areEqual(this.channelType, trackRingCall.channelType) && m.areEqual(this.recipientIds, trackRingCall.recipientIds);
+        return Intrinsics3.areEqual(this.channelId, trackRingCall.channelId) && Intrinsics3.areEqual(this.messageId, trackRingCall.messageId) && Intrinsics3.areEqual(this.channelType, trackRingCall.channelType) && Intrinsics3.areEqual(this.recipientIds, trackRingCall.recipientIds);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -46,13 +46,13 @@ public final /* data */ class TrackRingCall implements AnalyticsSchema, TrackBas
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackRingCall(channelId=");
+        StringBuilder sbU = outline.U("TrackRingCall(channelId=");
         sbU.append(this.channelId);
         sbU.append(", messageId=");
         sbU.append(this.messageId);
         sbU.append(", channelType=");
         sbU.append(this.channelType);
         sbU.append(", recipientIds=");
-        return a.L(sbU, this.recipientIds, ")");
+        return outline.L(sbU, this.recipientIds, ")");
     }
 }

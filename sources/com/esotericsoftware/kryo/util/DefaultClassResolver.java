@@ -1,6 +1,7 @@
 package com.esotericsoftware.kryo.util;
 
-import b.e.a.a;
+import b.d.b.a.outline;
+import b.e.a.Log;
 import com.esotericsoftware.kryo.ClassResolver;
 import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryo.KryoException;
@@ -48,7 +49,7 @@ public class DefaultClassResolver implements ClassResolver {
     public Registration readClass(Input input) {
         int varInt = input.readVarInt(true);
         if (varInt == 0) {
-            a.C0064a c0064a = a.a;
+            Log.a aVar = Log.a;
             return null;
         }
         if (varInt == 1) {
@@ -60,9 +61,9 @@ public class DefaultClassResolver implements ClassResolver {
         int i = varInt - 2;
         Registration registration = this.idToRegistration.get(i);
         if (registration == null) {
-            throw new KryoException(b.d.b.a.a.q("Encountered unregistered class ID: ", i));
+            throw new KryoException(outline.q("Encountered unregistered class ID: ", i));
         }
-        a.C0064a c0064a2 = a.a;
+        Log.a aVar2 = Log.a;
         this.memoizedClassId = varInt;
         this.memoizedClassIdValue = registration;
         return registration;
@@ -81,12 +82,12 @@ public class DefaultClassResolver implements ClassResolver {
                 try {
                     typeByName = Class.forName(string, false, this.kryo.getClassLoader());
                 } catch (ClassNotFoundException e) {
-                    a.C0064a c0064a = a.a;
-                    a.a.a(4, "kryo", b.d.b.a.a.y("Unable to load class ", string, " with kryo's ClassLoader. Retrying with current.."), null);
+                    Log.a aVar = Log.a;
+                    Log.a.a(4, "kryo", outline.y("Unable to load class ", string, " with kryo's ClassLoader. Retrying with current.."), null);
                     try {
                         typeByName = Class.forName(string);
                     } catch (ClassNotFoundException unused) {
-                        throw new KryoException(b.d.b.a.a.w("Unable to find class: ", string), e);
+                        throw new KryoException(outline.w("Unable to find class: ", string), e);
                     }
                 }
                 if (this.nameToClass == null) {
@@ -95,9 +96,9 @@ public class DefaultClassResolver implements ClassResolver {
                 this.nameToClass.put(string, typeByName);
             }
             this.nameIdToClass.put(varInt, typeByName);
-            a.C0064a c0064a2 = a.a;
+            Log.a aVar2 = Log.a;
         } else {
-            a.C0064a c0064a3 = a.a;
+            Log.a aVar3 = Log.a;
         }
         return this.kryo.getRegistration(typeByName);
     }
@@ -108,10 +109,10 @@ public class DefaultClassResolver implements ClassResolver {
             throw new IllegalArgumentException("registration cannot be null.");
         }
         if (registration.getId() != -1) {
-            a.C0064a c0064a = a.a;
+            Log.a aVar = Log.a;
             this.idToRegistration.put(registration.getId(), registration);
         } else {
-            a.C0064a c0064a2 = a.a;
+            Log.a aVar2 = Log.a;
         }
         this.classToRegistration.put(registration.getType(), registration);
         if (registration.getType().isPrimitive()) {
@@ -149,7 +150,7 @@ public class DefaultClassResolver implements ClassResolver {
     @Override // com.esotericsoftware.kryo.ClassResolver
     public Registration writeClass(Output output, Class cls) {
         if (cls == null) {
-            a.C0064a c0064a = a.a;
+            Log.a aVar = Log.a;
             output.writeVarInt(0, true);
             return null;
         }
@@ -157,7 +158,7 @@ public class DefaultClassResolver implements ClassResolver {
         if (registration.getId() == -1) {
             writeName(output, cls, registration);
         } else {
-            a.C0064a c0064a2 = a.a;
+            Log.a aVar2 = Log.a;
             output.writeVarInt(registration.getId() + 2, true);
         }
         return registration;
@@ -168,11 +169,11 @@ public class DefaultClassResolver implements ClassResolver {
         output.writeVarInt(1, true);
         IdentityObjectIntMap<Class> identityObjectIntMap = this.classToNameId;
         if (identityObjectIntMap != null && (i = identityObjectIntMap.get(cls, -1)) != -1) {
-            a.C0064a c0064a = a.a;
+            Log.a aVar = Log.a;
             output.writeVarInt(i, true);
             return;
         }
-        a.C0064a c0064a2 = a.a;
+        Log.a aVar2 = Log.a;
         int i2 = this.nextNameId;
         this.nextNameId = i2 + 1;
         if (this.classToNameId == null) {

@@ -21,21 +21,32 @@ import androidx.annotation.Nullable;
 import androidx.annotation.RawRes;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.core.view.ViewCompat;
-import b.c.a.b0.g;
-import b.c.a.d;
-import b.c.a.e;
-import b.c.a.h;
-import b.c.a.i;
-import b.c.a.j;
-import b.c.a.l;
-import b.c.a.n;
-import b.c.a.o;
-import b.c.a.r;
-import b.c.a.s;
-import b.c.a.t;
-import b.c.a.u;
-import b.c.a.v;
-import b.c.a.y.f;
+import b.c.a.FontAssetDelegate;
+import b.c.a.ImageAssetDelegate;
+import b.c.a.L;
+import b.c.a.LottieComposition;
+import b.c.a.LottieCompositionFactory;
+import b.c.a.LottieCompositionFactory2;
+import b.c.a.LottieCompositionFactory3;
+import b.c.a.LottieCompositionFactory4;
+import b.c.a.LottieCompositionFactory5;
+import b.c.a.LottieDrawable;
+import b.c.a.LottieListener;
+import b.c.a.LottieOnCompositionLoadedListener;
+import b.c.a.LottieProperty;
+import b.c.a.LottieTask2;
+import b.c.a.PerformanceTracker;
+import b.c.a.RenderMode;
+import b.c.a.SimpleColorFilter;
+import b.c.a.TextDelegate;
+import b.c.a.b0.Logger2;
+import b.c.a.b0.LottieValueAnimator;
+import b.c.a.b0.Utils;
+import b.c.a.c0.LottieValueCallback;
+import b.c.a.x.FontAssetManager;
+import b.c.a.x.ImageAssetManager;
+import b.c.a.y.KeyPath;
+import b.d.b.a.outline;
 import java.io.ByteArrayInputStream;
 import java.io.InterruptedIOException;
 import java.lang.ref.WeakReference;
@@ -57,10 +68,10 @@ public class LottieAnimationView extends AppCompatImageView {
     public int A;
 
     @Nullable
-    public r<d> B;
+    public LottieTask2<LottieComposition> B;
 
     @Nullable
-    public d C;
+    public LottieComposition C;
 
     /* JADX INFO: renamed from: s, reason: collision with root package name */
     @RawRes
@@ -70,19 +81,19 @@ public class LottieAnimationView extends AppCompatImageView {
     public boolean f1998x;
 
     /* JADX INFO: renamed from: y, reason: collision with root package name */
-    public t f1999y;
+    public RenderMode f1999y;
 
     /* JADX INFO: renamed from: z, reason: collision with root package name */
-    public Set<n> f2000z;
-    public final l<d> l;
-    public final l<Throwable> m;
+    public Set<LottieOnCompositionLoadedListener> f2000z;
+    public final LottieListener<LottieComposition> l;
+    public final LottieListener<Throwable> m;
 
     @Nullable
-    public l<Throwable> n;
+    public LottieListener<Throwable> n;
 
     @DrawableRes
     public int o;
-    public final j p;
+    public final LottieDrawable p;
     public boolean q;
     public String r;
     public boolean t;
@@ -90,7 +101,7 @@ public class LottieAnimationView extends AppCompatImageView {
     public boolean v;
     public boolean w;
     public static final String j = LottieAnimationView.class.getSimpleName();
-    public static final l<Throwable> k = new a();
+    public static final LottieListener<Throwable> k = new a();
 
     public class SavedState extends View.BaseSavedState {
         public String j;
@@ -140,33 +151,33 @@ public class LottieAnimationView extends AppCompatImageView {
         }
     }
 
-    public class a implements l<Throwable> {
-        @Override // b.c.a.l
+    public class a implements LottieListener<Throwable> {
+        @Override // b.c.a.LottieListener
         public void a(Throwable th) {
             Throwable th2 = th;
-            PathMeasure pathMeasure = g.a;
+            PathMeasure pathMeasure = Utils.a;
             if (!((th2 instanceof SocketException) || (th2 instanceof ClosedChannelException) || (th2 instanceof InterruptedIOException) || (th2 instanceof ProtocolException) || (th2 instanceof SSLException) || (th2 instanceof UnknownHostException) || (th2 instanceof UnknownServiceException))) {
                 throw new IllegalStateException("Unable to parse composition", th2);
             }
-            b.c.a.b0.c.c("Unable to load composition.", th2);
+            Logger2.c("Unable to load composition.", th2);
         }
     }
 
-    public class b implements l<d> {
+    public class b implements LottieListener<LottieComposition> {
         public b() {
         }
 
-        @Override // b.c.a.l
-        public void a(d dVar) {
-            LottieAnimationView.this.setComposition(dVar);
+        @Override // b.c.a.LottieListener
+        public void a(LottieComposition lottieComposition) {
+            LottieAnimationView.this.setComposition(lottieComposition);
         }
     }
 
-    public class c implements l<Throwable> {
+    public class c implements LottieListener<Throwable> {
         public c() {
         }
 
-        @Override // b.c.a.l
+        @Override // b.c.a.LottieListener
         public void a(Throwable th) {
             Throwable th2 = th;
             LottieAnimationView lottieAnimationView = LottieAnimationView.this;
@@ -174,12 +185,12 @@ public class LottieAnimationView extends AppCompatImageView {
             if (i != 0) {
                 lottieAnimationView.setImageResource(i);
             }
-            l<Throwable> lVar = LottieAnimationView.this.n;
-            if (lVar == null) {
+            LottieListener<Throwable> lottieListener = LottieAnimationView.this.n;
+            if (lottieListener == null) {
                 String str = LottieAnimationView.j;
-                lVar = LottieAnimationView.k;
+                lottieListener = LottieAnimationView.k;
             }
-            lVar.a(th2);
+            lottieListener.a(th2);
         }
     }
 
@@ -189,14 +200,14 @@ public class LottieAnimationView extends AppCompatImageView {
         this.l = new b();
         this.m = new c();
         this.o = 0;
-        j jVar = new j();
-        this.p = jVar;
+        LottieDrawable lottieDrawable = new LottieDrawable();
+        this.p = lottieDrawable;
         this.t = false;
         this.u = false;
         this.v = false;
         this.w = false;
         this.f1998x = true;
-        this.f1999y = t.AUTOMATIC;
+        this.f1999y = RenderMode.AUTOMATIC;
         this.f2000z = new HashSet();
         this.A = 0;
         TypedArray typedArrayObtainStyledAttributes = getContext().obtainStyledAttributes(attributeSet, R.b.LottieAnimationView, R.a.lottieAnimationViewStyle, 0);
@@ -231,7 +242,7 @@ public class LottieAnimationView extends AppCompatImageView {
             this.w = true;
         }
         if (typedArrayObtainStyledAttributes.getBoolean(R.b.LottieAnimationView_lottie_loop, false)) {
-            jVar.l.setRepeatCount(-1);
+            lottieDrawable.l.setRepeatCount(-1);
         }
         int i4 = R.b.LottieAnimationView_lottie_repeatMode;
         if (typedArrayObtainStyledAttributes.hasValue(i4)) {
@@ -248,51 +259,51 @@ public class LottieAnimationView extends AppCompatImageView {
         setImageAssetsFolder(typedArrayObtainStyledAttributes.getString(R.b.LottieAnimationView_lottie_imageAssetsFolder));
         setProgress(typedArrayObtainStyledAttributes.getFloat(R.b.LottieAnimationView_lottie_progress, 0.0f));
         boolean z2 = typedArrayObtainStyledAttributes.getBoolean(R.b.LottieAnimationView_lottie_enableMergePathsForKitKatAndAbove, false);
-        if (jVar.w != z2) {
-            jVar.w = z2;
-            if (jVar.k != null) {
-                jVar.b();
+        if (lottieDrawable.w != z2) {
+            lottieDrawable.w = z2;
+            if (lottieDrawable.k != null) {
+                lottieDrawable.b();
             }
         }
         int i7 = R.b.LottieAnimationView_lottie_colorFilter;
         if (typedArrayObtainStyledAttributes.hasValue(i7)) {
-            jVar.a(new f("**"), o.C, new b.c.a.c0.c(new u(typedArrayObtainStyledAttributes.getColor(i7, 0))));
+            lottieDrawable.a(new KeyPath("**"), LottieProperty.C, new LottieValueCallback(new SimpleColorFilter(typedArrayObtainStyledAttributes.getColor(i7, 0))));
         }
         int i8 = R.b.LottieAnimationView_lottie_scale;
         if (typedArrayObtainStyledAttributes.hasValue(i8)) {
-            jVar.m = typedArrayObtainStyledAttributes.getFloat(i8, 1.0f);
-            jVar.v();
+            lottieDrawable.m = typedArrayObtainStyledAttributes.getFloat(i8, 1.0f);
+            lottieDrawable.v();
         }
         int i9 = R.b.LottieAnimationView_lottie_renderMode;
         if (typedArrayObtainStyledAttributes.hasValue(i9)) {
             int i10 = typedArrayObtainStyledAttributes.getInt(i9, 0);
-            t.values();
-            setRenderMode(t.values()[i10 >= 3 ? 0 : i10]);
+            RenderMode.values();
+            setRenderMode(RenderMode.values()[i10 >= 3 ? 0 : i10]);
         }
         if (getScaleType() != null) {
-            jVar.r = getScaleType();
+            lottieDrawable.r = getScaleType();
         }
         typedArrayObtainStyledAttributes.recycle();
         Context context2 = getContext();
-        PathMeasure pathMeasure = g.a;
+        PathMeasure pathMeasure = Utils.a;
         Boolean boolValueOf = Boolean.valueOf(Settings.Global.getFloat(context2.getContentResolver(), "animator_duration_scale", 1.0f) != 0.0f);
-        Objects.requireNonNull(jVar);
-        jVar.n = boolValueOf.booleanValue();
+        Objects.requireNonNull(lottieDrawable);
+        lottieDrawable.n = boolValueOf.booleanValue();
         b();
         this.q = true;
     }
 
     public final void a() {
-        r<d> rVar = this.B;
-        if (rVar != null) {
-            l<d> lVar = this.l;
-            synchronized (rVar) {
-                rVar.f374b.remove(lVar);
+        LottieTask2<LottieComposition> lottieTask2 = this.B;
+        if (lottieTask2 != null) {
+            LottieListener<LottieComposition> lottieListener = this.l;
+            synchronized (lottieTask2) {
+                lottieTask2.f374b.remove(lottieListener);
             }
-            r<d> rVar2 = this.B;
-            l<Throwable> lVar2 = this.m;
-            synchronized (rVar2) {
-                rVar2.c.remove(lVar2);
+            LottieTask2<LottieComposition> lottieTask3 = this.B;
+            LottieListener<Throwable> lottieListener2 = this.m;
+            synchronized (lottieTask3) {
+                lottieTask3.c.remove(lottieListener2);
             }
         }
     }
@@ -302,9 +313,9 @@ public class LottieAnimationView extends AppCompatImageView {
         int iOrdinal = this.f1999y.ordinal();
         int i = 2;
         if (iOrdinal == 0) {
-            d dVar = this.C;
+            LottieComposition lottieComposition = this.C;
             boolean z2 = false;
-            if ((dVar == null || !dVar.n || Build.VERSION.SDK_INT >= 28) && (dVar == null || dVar.o <= 4)) {
+            if ((lottieComposition == null || !lottieComposition.n || Build.VERSION.SDK_INT >= 28) && (lottieComposition == null || lottieComposition.o <= 4)) {
                 z2 = true;
             }
             if (!z2) {
@@ -323,10 +334,10 @@ public class LottieAnimationView extends AppCompatImageView {
         this.A++;
         super.buildDrawingCache(z2);
         if (this.A == 1 && getWidth() > 0 && getHeight() > 0 && getLayerType() == 1 && getDrawingCache(z2) == null) {
-            setRenderMode(t.HARDWARE);
+            setRenderMode(RenderMode.HARDWARE);
         }
         this.A--;
-        b.c.a.c.a("buildDrawingCache");
+        L.a("buildDrawingCache");
     }
 
     @MainThread
@@ -335,9 +346,9 @@ public class LottieAnimationView extends AppCompatImageView {
         this.v = false;
         this.u = false;
         this.t = false;
-        j jVar = this.p;
-        jVar.p.clear();
-        jVar.l.m();
+        LottieDrawable lottieDrawable = this.p;
+        lottieDrawable.p.clear();
+        lottieDrawable.l.m();
         b();
     }
 
@@ -352,14 +363,14 @@ public class LottieAnimationView extends AppCompatImageView {
     }
 
     @Nullable
-    public d getComposition() {
+    public LottieComposition getComposition() {
         return this.C;
     }
 
     public long getDuration() {
-        d dVar = this.C;
-        if (dVar != null) {
-            return (long) dVar.b();
+        LottieComposition lottieComposition = this.C;
+        if (lottieComposition != null) {
+            return (long) lottieComposition.b();
         }
         return 0L;
     }
@@ -382,10 +393,10 @@ public class LottieAnimationView extends AppCompatImageView {
     }
 
     @Nullable
-    public s getPerformanceTracker() {
-        d dVar = this.p.k;
-        if (dVar != null) {
-            return dVar.a;
+    public PerformanceTracker getPerformanceTracker() {
+        LottieComposition lottieComposition = this.p.k;
+        if (lottieComposition != null) {
+            return lottieComposition.a;
         }
         return null;
     }
@@ -414,9 +425,9 @@ public class LottieAnimationView extends AppCompatImageView {
     @Override // android.widget.ImageView, android.view.View, android.graphics.drawable.Drawable.Callback
     public void invalidateDrawable(@NonNull Drawable drawable) {
         Drawable drawable2 = getDrawable();
-        j jVar = this.p;
-        if (drawable2 == jVar) {
-            super.invalidateDrawable(jVar);
+        LottieDrawable lottieDrawable = this.p;
+        if (drawable2 == lottieDrawable) {
+            super.invalidateDrawable(lottieDrawable);
         } else {
             super.invalidateDrawable(drawable);
         }
@@ -441,9 +452,9 @@ public class LottieAnimationView extends AppCompatImageView {
             this.v = false;
             this.u = false;
             this.t = false;
-            j jVar = this.p;
-            jVar.p.clear();
-            jVar.l.cancel();
+            LottieDrawable lottieDrawable = this.p;
+            lottieDrawable.p.clear();
+            lottieDrawable.l.cancel();
             b();
             this.v = true;
         }
@@ -484,9 +495,9 @@ public class LottieAnimationView extends AppCompatImageView {
         savedState.k = this.f1997s;
         savedState.l = this.p.g();
         savedState.m = this.p.i() || (!ViewCompat.isAttachedToWindow(this) && this.v);
-        j jVar = this.p;
-        savedState.n = jVar.t;
-        savedState.o = jVar.l.getRepeatMode();
+        LottieDrawable lottieDrawable = this.p;
+        savedState.n = lottieDrawable.t;
+        savedState.o = lottieDrawable.l.getRepeatMode();
         savedState.p = this.p.h();
         return savedState;
     }
@@ -519,36 +530,36 @@ public class LottieAnimationView extends AppCompatImageView {
     }
 
     public void setAnimation(@RawRes int i) {
-        r<d> rVarA;
+        LottieTask2<LottieComposition> lottieTask2A;
         this.f1997s = i;
         this.r = null;
         if (this.f1998x) {
             Context context = getContext();
-            rVarA = e.a(e.f(context, i), new h(new WeakReference(context), context.getApplicationContext(), i));
+            lottieTask2A = LottieCompositionFactory.a(LottieCompositionFactory.f(context, i), new LottieCompositionFactory4(new WeakReference(context), context.getApplicationContext(), i));
         } else {
             Context context2 = getContext();
-            Map<String, r<d>> map = e.a;
-            rVarA = e.a(null, new h(new WeakReference(context2), context2.getApplicationContext(), i));
+            Map<String, LottieTask2<LottieComposition>> map = LottieCompositionFactory.a;
+            lottieTask2A = LottieCompositionFactory.a(null, new LottieCompositionFactory4(new WeakReference(context2), context2.getApplicationContext(), i));
         }
-        setCompositionTask(rVarA);
+        setCompositionTask(lottieTask2A);
     }
 
     @Deprecated
     public void setAnimationFromJson(String str) {
-        setCompositionTask(e.a(null, new i(new ByteArrayInputStream(str.getBytes()), null)));
+        setCompositionTask(LottieCompositionFactory.a(null, new LottieCompositionFactory5(new ByteArrayInputStream(str.getBytes()), null)));
     }
 
     public void setAnimationFromUrl(String str) {
-        r<d> rVarA;
+        LottieTask2<LottieComposition> lottieTask2A;
         if (this.f1998x) {
             Context context = getContext();
-            Map<String, r<d>> map = e.a;
-            String strW = b.d.b.a.a.w("url_", str);
-            rVarA = e.a(strW, new b.c.a.f(context, str, strW));
+            Map<String, LottieTask2<LottieComposition>> map = LottieCompositionFactory.a;
+            String strW = outline.w("url_", str);
+            lottieTask2A = LottieCompositionFactory.a(strW, new LottieCompositionFactory2(context, str, strW));
         } else {
-            rVarA = e.a(null, new b.c.a.f(getContext(), str, null));
+            lottieTask2A = LottieCompositionFactory.a(null, new LottieCompositionFactory2(getContext(), str, null));
         }
-        setCompositionTask(rVarA);
+        setCompositionTask(lottieTask2A);
     }
 
     public void setApplyingOpacityToLayersEnabled(boolean z2) {
@@ -559,44 +570,44 @@ public class LottieAnimationView extends AppCompatImageView {
         this.f1998x = z2;
     }
 
-    public void setComposition(@NonNull d dVar) {
+    public void setComposition(@NonNull LottieComposition lottieComposition) {
         this.p.setCallback(this);
-        this.C = dVar;
-        j jVar = this.p;
+        this.C = lottieComposition;
+        LottieDrawable lottieDrawable = this.p;
         boolean z2 = false;
-        if (jVar.k != dVar) {
-            jVar.C = false;
-            jVar.c();
-            jVar.k = dVar;
-            jVar.b();
-            b.c.a.b0.d dVar2 = jVar.l;
-            z2 = dVar2.f344s == null;
-            dVar2.f344s = dVar;
+        if (lottieDrawable.k != lottieComposition) {
+            lottieDrawable.C = false;
+            lottieDrawable.c();
+            lottieDrawable.k = lottieComposition;
+            lottieDrawable.b();
+            LottieValueAnimator lottieValueAnimator = lottieDrawable.l;
+            z2 = lottieValueAnimator.f344s == null;
+            lottieValueAnimator.f344s = lottieComposition;
             if (z2) {
-                dVar2.o((int) Math.max(dVar2.q, dVar.k), (int) Math.min(dVar2.r, dVar.l));
+                lottieValueAnimator.o((int) Math.max(lottieValueAnimator.q, lottieComposition.k), (int) Math.min(lottieValueAnimator.r, lottieComposition.l));
             } else {
-                dVar2.o((int) dVar.k, (int) dVar.l);
+                lottieValueAnimator.o((int) lottieComposition.k, (int) lottieComposition.l);
             }
-            float f = dVar2.o;
-            dVar2.o = 0.0f;
-            dVar2.n((int) f);
-            dVar2.f();
-            jVar.u(jVar.l.getAnimatedFraction());
-            jVar.m = jVar.m;
-            jVar.v();
-            jVar.v();
-            Iterator it = new ArrayList(jVar.p).iterator();
+            float f = lottieValueAnimator.o;
+            lottieValueAnimator.o = 0.0f;
+            lottieValueAnimator.n((int) f);
+            lottieValueAnimator.f();
+            lottieDrawable.u(lottieDrawable.l.getAnimatedFraction());
+            lottieDrawable.m = lottieDrawable.m;
+            lottieDrawable.v();
+            lottieDrawable.v();
+            Iterator it = new ArrayList(lottieDrawable.p).iterator();
             while (it.hasNext()) {
-                ((j.o) it.next()).a(dVar);
+                ((LottieDrawable.o) it.next()).a(lottieComposition);
                 it.remove();
             }
-            jVar.p.clear();
-            dVar.a.a = jVar.f355z;
-            Drawable.Callback callback = jVar.getCallback();
+            lottieDrawable.p.clear();
+            lottieComposition.a.a = lottieDrawable.f355z;
+            Drawable.Callback callback = lottieDrawable.getCallback();
             if (callback instanceof ImageView) {
                 ImageView imageView = (ImageView) callback;
                 imageView.setImageDrawable(null);
-                imageView.setImageDrawable(jVar);
+                imageView.setImageDrawable(lottieDrawable);
             }
             z2 = true;
         }
@@ -604,44 +615,44 @@ public class LottieAnimationView extends AppCompatImageView {
         if (getDrawable() != this.p || z2) {
             onVisibilityChanged(this, getVisibility());
             requestLayout();
-            Iterator<n> it2 = this.f2000z.iterator();
+            Iterator<LottieOnCompositionLoadedListener> it2 = this.f2000z.iterator();
             while (it2.hasNext()) {
-                it2.next().a(dVar);
+                it2.next().a(lottieComposition);
             }
         }
     }
 
-    private void setCompositionTask(r<d> rVar) {
+    private void setCompositionTask(LottieTask2<LottieComposition> lottieTask2) {
         this.C = null;
         this.p.c();
         a();
-        rVar.b(this.l);
-        rVar.a(this.m);
-        this.B = rVar;
+        lottieTask2.b(this.l);
+        lottieTask2.a(this.m);
+        this.B = lottieTask2;
     }
 
-    public void setFailureListener(@Nullable l<Throwable> lVar) {
-        this.n = lVar;
+    public void setFailureListener(@Nullable LottieListener<Throwable> lottieListener) {
+        this.n = lottieListener;
     }
 
     public void setFallbackResource(@DrawableRes int i) {
         this.o = i;
     }
 
-    public void setFontAssetDelegate(b.c.a.a aVar) {
-        b.c.a.x.a aVar2 = this.p.v;
+    public void setFontAssetDelegate(FontAssetDelegate fontAssetDelegate) {
+        FontAssetManager fontAssetManager = this.p.v;
     }
 
     public void setFrame(int i) {
         this.p.l(i);
     }
 
-    public void setImageAssetDelegate(b.c.a.b bVar) {
-        j jVar = this.p;
-        jVar.u = bVar;
-        b.c.a.x.b bVar2 = jVar.f352s;
-        if (bVar2 != null) {
-            bVar2.d = bVar;
+    public void setImageAssetDelegate(ImageAssetDelegate imageAssetDelegate) {
+        LottieDrawable lottieDrawable = this.p;
+        lottieDrawable.u = imageAssetDelegate;
+        ImageAssetManager imageAssetManager = lottieDrawable.f352s;
+        if (imageAssetManager != null) {
+            imageAssetManager.d = imageAssetDelegate;
         }
     }
 
@@ -688,11 +699,11 @@ public class LottieAnimationView extends AppCompatImageView {
     }
 
     public void setPerformanceTrackingEnabled(boolean z2) {
-        j jVar = this.p;
-        jVar.f355z = z2;
-        d dVar = jVar.k;
-        if (dVar != null) {
-            dVar.a.a = z2;
+        LottieDrawable lottieDrawable = this.p;
+        lottieDrawable.f355z = z2;
+        LottieComposition lottieComposition = lottieDrawable.k;
+        if (lottieComposition != null) {
+            lottieComposition.a.a = z2;
         }
     }
 
@@ -700,8 +711,8 @@ public class LottieAnimationView extends AppCompatImageView {
         this.p.u(f);
     }
 
-    public void setRenderMode(t tVar) {
-        this.f1999y = tVar;
+    public void setRenderMode(RenderMode renderMode) {
+        this.f1999y = renderMode;
         b();
     }
 
@@ -718,9 +729,9 @@ public class LottieAnimationView extends AppCompatImageView {
     }
 
     public void setScale(float f) {
-        j jVar = this.p;
-        jVar.m = f;
-        jVar.v();
+        LottieDrawable lottieDrawable = this.p;
+        lottieDrawable.m = f;
+        lottieDrawable.v();
         if (getDrawable() == this.p) {
             setImageDrawable(null);
             setImageDrawable(this.p);
@@ -730,9 +741,9 @@ public class LottieAnimationView extends AppCompatImageView {
     @Override // android.widget.ImageView
     public void setScaleType(ImageView.ScaleType scaleType) {
         super.setScaleType(scaleType);
-        j jVar = this.p;
-        if (jVar != null) {
-            jVar.r = scaleType;
+        LottieDrawable lottieDrawable = this.p;
+        if (lottieDrawable != null) {
+            lottieDrawable.r = scaleType;
         }
     }
 
@@ -740,7 +751,7 @@ public class LottieAnimationView extends AppCompatImageView {
         this.p.l.l = f;
     }
 
-    public void setTextDelegate(v vVar) {
+    public void setTextDelegate(TextDelegate textDelegate) {
         Objects.requireNonNull(this.p);
     }
 
@@ -753,19 +764,19 @@ public class LottieAnimationView extends AppCompatImageView {
     }
 
     public void setAnimation(String str) {
-        r<d> rVarA;
+        LottieTask2<LottieComposition> lottieTask2A;
         this.r = str;
         this.f1997s = 0;
         if (this.f1998x) {
             Context context = getContext();
-            Map<String, r<d>> map = e.a;
-            String strW = b.d.b.a.a.w("asset_", str);
-            rVarA = e.a(strW, new b.c.a.g(context.getApplicationContext(), str, strW));
+            Map<String, LottieTask2<LottieComposition>> map = LottieCompositionFactory.a;
+            String strW = outline.w("asset_", str);
+            lottieTask2A = LottieCompositionFactory.a(strW, new LottieCompositionFactory3(context.getApplicationContext(), str, strW));
         } else {
             Context context2 = getContext();
-            Map<String, r<d>> map2 = e.a;
-            rVarA = e.a(null, new b.c.a.g(context2.getApplicationContext(), str, null));
+            Map<String, LottieTask2<LottieComposition>> map2 = LottieCompositionFactory.a;
+            lottieTask2A = LottieCompositionFactory.a(null, new LottieCompositionFactory3(context2.getApplicationContext(), str, null));
         }
-        setCompositionTask(rVarA);
+        setCompositionTask(lottieTask2A);
     }
 }

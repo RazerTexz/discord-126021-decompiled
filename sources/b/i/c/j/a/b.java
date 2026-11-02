@@ -21,7 +21,7 @@ public class b implements b.i.c.j.a.a {
     public final Map<String, ?> c;
 
     /* JADX INFO: compiled from: com.google.android.gms:play-services-measurement-api@@18.0.0 */
-    public class a implements b.i.c.j.a.a.InterfaceC0136a {
+    public class a implements b.i.c.j.a.a.InterfaceC0046a {
         public a(b bVar, String str) {
         }
     }
@@ -140,7 +140,7 @@ public class b implements b.i.c.j.a.a {
 
     @Override // b.i.c.j.a.a
     @WorkerThread
-    public b.i.c.j.a.a.InterfaceC0136a c(@NonNull String str, b.i.c.j.a.a.b bVar) {
+    public b.i.c.j.a.a.InterfaceC0046a c(@NonNull String str, b.i.c.j.a.a.b bVar) {
         Object dVar;
         Objects.requireNonNull(bVar, "null reference");
         if (!c.a(str)) {

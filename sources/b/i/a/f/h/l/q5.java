@@ -1,5 +1,6 @@
 package b.i.a.f.h.l;
 
+import b.d.b.a.outline;
 import java.nio.charset.Charset;
 import java.util.AbstractList;
 import java.util.Arrays;
@@ -155,7 +156,7 @@ public final class q5 extends o3<Long> implements c5, l6, RandomAccess {
     }
 
     public final String i(int i) {
-        return b.d.b.a.a.h(35, "Index:", i, ", Size:", this.m);
+        return outline.h(35, "Index:", i, ", Size:", this.m);
     }
 
     @Override // java.util.AbstractList, java.util.List

@@ -1,23 +1,23 @@
 package com.discord.utilities.collections;
 
 import androidx.exifinterface.media.ExifInterface;
-import d0.z.d.g0.a;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
+import d0.z.d.g0.KMarkers;
 import java.util.Iterator;
 import java.util.LinkedList;
 
 /* JADX INFO: compiled from: MutablePartitionedIterator.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class MutablePartitionedIterator<T> implements Iterator<T>, a {
+public final class MutablePartitionedIterator<T> implements Iterator<T>, KMarkers {
     private Iterator<? extends T> currentPartitionIterator;
     private final Iterator<Iterable<T>> partitionIterator;
 
     /* JADX WARN: Multi-variable type inference failed */
     public MutablePartitionedIterator(Iterator<? extends Iterable<? extends T>> it) {
-        m.checkNotNullParameter(it, "partitionIterator");
+        Intrinsics3.checkNotNullParameter(it, "partitionIterator");
         this.partitionIterator = it;
         Iterator<? extends T> it2 = new LinkedList().iterator();
-        m.checkNotNullExpressionValue(it2, "LinkedList<T>().iterator()");
+        Intrinsics3.checkNotNullExpressionValue(it2, "LinkedList<T>().iterator()");
         this.currentPartitionIterator = it2;
     }
 

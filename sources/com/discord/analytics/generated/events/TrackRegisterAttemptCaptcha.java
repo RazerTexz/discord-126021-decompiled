@@ -1,20 +1,20 @@
 package com.discord.analytics.generated.events;
 
 import androidx.core.app.NotificationCompat;
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.analytics.generated.traits.TrackGiftCodeMetadata;
-import com.discord.analytics.generated.traits.TrackGiftCodeMetadataReceiver;
+import com.discord.analytics.generated.traits.TrackGiftCodeMetadata2;
 import com.discord.analytics.generated.traits.TrackGuildTemplate;
-import com.discord.analytics.generated.traits.TrackGuildTemplateReceiver;
+import com.discord.analytics.generated.traits.TrackGuildTemplate2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 import java.util.List;
 
 /* JADX INFO: compiled from: TrackRegisterAttemptCaptcha.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackRegisterAttemptCaptcha implements AnalyticsSchema, TrackBaseReceiver, TrackGiftCodeMetadataReceiver, TrackGuildTemplateReceiver {
+public final /* data */ class TrackRegisterAttemptCaptcha implements AnalyticsSchema, TrackBase2, TrackGiftCodeMetadata2, TrackGuildTemplate2 {
     private final CharSequence email = null;
     private final Boolean forceBadCaptcha = null;
     private final Boolean full = null;
@@ -44,7 +44,7 @@ public final /* data */ class TrackRegisterAttemptCaptcha implements AnalyticsSc
             return false;
         }
         TrackRegisterAttemptCaptcha trackRegisterAttemptCaptcha = (TrackRegisterAttemptCaptcha) other;
-        return m.areEqual(this.registrationSource, trackRegisterAttemptCaptcha.registrationSource) && m.areEqual(this.full, trackRegisterAttemptCaptcha.full) && m.areEqual(this.instantInvite, trackRegisterAttemptCaptcha.instantInvite) && m.areEqual(this.inviteCode, trackRegisterAttemptCaptcha.inviteCode) && m.areEqual(this.inviteGuildId, trackRegisterAttemptCaptcha.inviteGuildId) && m.areEqual(this.inviteChannelId, trackRegisterAttemptCaptcha.inviteChannelId) && m.areEqual(this.inviteChannelType, trackRegisterAttemptCaptcha.inviteChannelType) && m.areEqual(this.inviteInviterId, trackRegisterAttemptCaptcha.inviteInviterId) && m.areEqual(this.ipBlacklists, trackRegisterAttemptCaptcha.ipBlacklists) && m.areEqual(this.hasInvalidFingerprint, trackRegisterAttemptCaptcha.hasInvalidFingerprint) && m.areEqual(this.forceBadCaptcha, trackRegisterAttemptCaptcha.forceBadCaptcha) && m.areEqual(this.email, trackRegisterAttemptCaptcha.email) && m.areEqual(this.phone, trackRegisterAttemptCaptcha.phone) && m.areEqual(this.identityType, trackRegisterAttemptCaptcha.identityType) && m.areEqual(this.phoneCarrierName, trackRegisterAttemptCaptcha.phoneCarrierName) && m.areEqual(this.phoneCountry, trackRegisterAttemptCaptcha.phoneCountry);
+        return Intrinsics3.areEqual(this.registrationSource, trackRegisterAttemptCaptcha.registrationSource) && Intrinsics3.areEqual(this.full, trackRegisterAttemptCaptcha.full) && Intrinsics3.areEqual(this.instantInvite, trackRegisterAttemptCaptcha.instantInvite) && Intrinsics3.areEqual(this.inviteCode, trackRegisterAttemptCaptcha.inviteCode) && Intrinsics3.areEqual(this.inviteGuildId, trackRegisterAttemptCaptcha.inviteGuildId) && Intrinsics3.areEqual(this.inviteChannelId, trackRegisterAttemptCaptcha.inviteChannelId) && Intrinsics3.areEqual(this.inviteChannelType, trackRegisterAttemptCaptcha.inviteChannelType) && Intrinsics3.areEqual(this.inviteInviterId, trackRegisterAttemptCaptcha.inviteInviterId) && Intrinsics3.areEqual(this.ipBlacklists, trackRegisterAttemptCaptcha.ipBlacklists) && Intrinsics3.areEqual(this.hasInvalidFingerprint, trackRegisterAttemptCaptcha.hasInvalidFingerprint) && Intrinsics3.areEqual(this.forceBadCaptcha, trackRegisterAttemptCaptcha.forceBadCaptcha) && Intrinsics3.areEqual(this.email, trackRegisterAttemptCaptcha.email) && Intrinsics3.areEqual(this.phone, trackRegisterAttemptCaptcha.phone) && Intrinsics3.areEqual(this.identityType, trackRegisterAttemptCaptcha.identityType) && Intrinsics3.areEqual(this.phoneCarrierName, trackRegisterAttemptCaptcha.phoneCarrierName) && Intrinsics3.areEqual(this.phoneCountry, trackRegisterAttemptCaptcha.phoneCountry);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -89,7 +89,7 @@ public final /* data */ class TrackRegisterAttemptCaptcha implements AnalyticsSc
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackRegisterAttemptCaptcha(registrationSource=");
+        StringBuilder sbU = outline.U("TrackRegisterAttemptCaptcha(registrationSource=");
         sbU.append(this.registrationSource);
         sbU.append(", full=");
         sbU.append(this.full);
@@ -120,6 +120,6 @@ public final /* data */ class TrackRegisterAttemptCaptcha implements AnalyticsSc
         sbU.append(", phoneCarrierName=");
         sbU.append(this.phoneCarrierName);
         sbU.append(", phoneCountry=");
-        return a.E(sbU, this.phoneCountry, ")");
+        return outline.E(sbU, this.phoneCountry, ")");
     }
 }

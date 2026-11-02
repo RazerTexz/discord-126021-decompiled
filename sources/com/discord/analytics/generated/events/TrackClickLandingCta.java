@@ -1,16 +1,16 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.analytics.generated.traits.TrackMarketingSite;
-import com.discord.analytics.generated.traits.TrackMarketingSiteReceiver;
+import com.discord.analytics.generated.traits.TrackMarketingSite2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackClickLandingCta.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackClickLandingCta implements AnalyticsSchema, TrackBaseReceiver, TrackMarketingSiteReceiver {
+public final /* data */ class TrackClickLandingCta implements AnalyticsSchema, TrackBase2, TrackMarketingSite2 {
     private final CharSequence buttonstate = null;
     private final CharSequence buttontype = null;
     private final CharSequence pageName = null;
@@ -27,7 +27,7 @@ public final /* data */ class TrackClickLandingCta implements AnalyticsSchema, T
             return false;
         }
         TrackClickLandingCta trackClickLandingCta = (TrackClickLandingCta) other;
-        return m.areEqual(this.buttonstate, trackClickLandingCta.buttonstate) && m.areEqual(this.buttontype, trackClickLandingCta.buttontype) && m.areEqual(this.pageName, trackClickLandingCta.pageName) && m.areEqual(this.staticExperimentUuid, trackClickLandingCta.staticExperimentUuid);
+        return Intrinsics3.areEqual(this.buttonstate, trackClickLandingCta.buttonstate) && Intrinsics3.areEqual(this.buttontype, trackClickLandingCta.buttontype) && Intrinsics3.areEqual(this.pageName, trackClickLandingCta.pageName) && Intrinsics3.areEqual(this.staticExperimentUuid, trackClickLandingCta.staticExperimentUuid);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -48,13 +48,13 @@ public final /* data */ class TrackClickLandingCta implements AnalyticsSchema, T
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackClickLandingCta(buttonstate=");
+        StringBuilder sbU = outline.U("TrackClickLandingCta(buttonstate=");
         sbU.append(this.buttonstate);
         sbU.append(", buttontype=");
         sbU.append(this.buttontype);
         sbU.append(", pageName=");
         sbU.append(this.pageName);
         sbU.append(", staticExperimentUuid=");
-        return a.E(sbU, this.staticExperimentUuid, ")");
+        return outline.E(sbU, this.staticExperimentUuid, ")");
     }
 }

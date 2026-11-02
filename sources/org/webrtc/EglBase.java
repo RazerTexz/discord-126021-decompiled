@@ -2,7 +2,7 @@ package org.webrtc;
 
 import android.graphics.SurfaceTexture;
 import android.view.Surface;
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import java.util.ArrayList;
 
 /* JADX INFO: loaded from: classes3.dex */
@@ -102,7 +102,7 @@ public interface EglBase {
 
         public ConfigBuilder setOpenGlesVersion(int i) {
             if (i < 1 || i > 3) {
-                throw new IllegalArgumentException(a.r("OpenGL ES version ", i, " not supported"));
+                throw new IllegalArgumentException(outline.r("OpenGL ES version ", i, " not supported"));
             }
             this.openGlesVersion = i;
             return this;

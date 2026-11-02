@@ -1,22 +1,22 @@
 package com.discord.analytics.generated.events.network_action;
 
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.analytics.generated.traits.TrackLocationMetadata;
-import com.discord.analytics.generated.traits.TrackLocationMetadataReceiver;
+import com.discord.analytics.generated.traits.TrackLocationMetadata2;
 import com.discord.analytics.generated.traits.TrackNetworkMetadata;
-import com.discord.analytics.generated.traits.TrackNetworkMetadataReceiver;
+import com.discord.analytics.generated.traits.TrackNetworkMetadata2;
 import com.discord.api.science.AnalyticsSchema;
 
 /* JADX INFO: compiled from: TrackNetworkActionUserLoginMfa.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final class TrackNetworkActionUserLoginMfa implements AnalyticsSchema, TrackBaseReceiver, TrackLocationMetadataReceiver, TrackNetworkMetadataReceiver {
+public final class TrackNetworkActionUserLoginMfa implements AnalyticsSchema, TrackBase2, TrackLocationMetadata2, TrackNetworkMetadata2 {
     private TrackBase trackBase;
     private TrackLocationMetadata trackLocationMetadata;
     private TrackNetworkMetadata trackNetworkMetadata;
     private final transient String analyticsSchemaTypeName = "network_action_user_login_mfa";
 
-    @Override // com.discord.analytics.generated.traits.TrackNetworkMetadataReceiver
+    @Override // com.discord.analytics.generated.traits.TrackNetworkMetadata2
     public void b(TrackNetworkMetadata trackNetworkMetadata) {
         this.trackNetworkMetadata = trackNetworkMetadata;
     }

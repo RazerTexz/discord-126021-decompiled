@@ -3,8 +3,8 @@ package com.discord.widgets.stickers;
 import android.content.Context;
 import androidx.annotation.MainThread;
 import androidx.fragment.app.Fragment;
-import b.a.d.d0;
-import b.d.b.a.a;
+import b.a.d.AppViewModel;
+import b.d.b.a.outline;
 import com.discord.api.guild.Guild;
 import com.discord.api.sticker.Sticker;
 import com.discord.models.user.MeUser;
@@ -15,9 +15,9 @@ import com.discord.stores.StoreUser;
 import com.discord.utilities.rest.RestAPI;
 import com.discord.utilities.rx.ObservableExtensionsKt;
 import com.discord.utilities.user.UserUtils;
-import com.discord.widgets.guilds.join.GuildJoinHelperKt;
-import d0.z.d.m;
-import d0.z.d.o;
+import com.discord.widgets.guilds.join.GuildJoinHelper;
+import d0.z.d.Intrinsics3;
+import d0.z.d.Lambda;
 import java.util.Map;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
@@ -27,7 +27,7 @@ import rx.Observable;
 
 /* JADX INFO: compiled from: GuildStickerSheetViewModel.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final class GuildStickerSheetViewModel extends d0<ViewState> {
+public final class GuildStickerSheetViewModel extends AppViewModel<ViewState> {
 
     /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
     public static final Companion INSTANCE = new Companion(null);
@@ -37,7 +37,7 @@ public final class GuildStickerSheetViewModel extends d0<ViewState> {
 
     /* JADX INFO: renamed from: com.discord.widgets.stickers.GuildStickerSheetViewModel$1, reason: invalid class name */
     /* JADX INFO: compiled from: GuildStickerSheetViewModel.kt */
-    public final class AnonymousClass1 extends o implements Function1<StoreState, Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function1<StoreState, Unit> {
         public AnonymousClass1() {
             super(1);
         }
@@ -50,14 +50,14 @@ public final class GuildStickerSheetViewModel extends d0<ViewState> {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(StoreState storeState) {
-            m.checkNotNullParameter(storeState, "storeState");
+            Intrinsics3.checkNotNullParameter(storeState, "storeState");
             GuildStickerSheetViewModel.access$handleStoreState(GuildStickerSheetViewModel.this, storeState);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.widgets.stickers.GuildStickerSheetViewModel$joinGuild$1, reason: invalid class name */
     /* JADX INFO: compiled from: GuildStickerSheetViewModel.kt */
-    public final class AnonymousClass1 extends o implements Function1<Guild, Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function1<Guild, Unit> {
         public AnonymousClass1() {
             super(1);
         }
@@ -70,7 +70,7 @@ public final class GuildStickerSheetViewModel extends d0<ViewState> {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(Guild guild) {
-            m.checkNotNullParameter(guild, "it");
+            Intrinsics3.checkNotNullParameter(guild, "it");
             GuildStickerSheetViewModel.access$updateViewState(GuildStickerSheetViewModel.this, ViewState.Dismiss.INSTANCE);
         }
     }
@@ -91,7 +91,7 @@ public final class GuildStickerSheetViewModel extends d0<ViewState> {
                 /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
                 public Known(com.discord.models.guild.Guild guild, boolean z2, boolean z3, Integer num) {
                     super(null);
-                    m.checkNotNullParameter(guild, "guild");
+                    Intrinsics3.checkNotNullParameter(guild, "guild");
                     this.guild = guild;
                     this.isPublic = z2;
                     this.isUserInGuild = z3;
@@ -123,7 +123,7 @@ public final class GuildStickerSheetViewModel extends d0<ViewState> {
                 }
 
                 public final Known copy(com.discord.models.guild.Guild guild, boolean isPublic, boolean isUserInGuild, Integer approximateOnline) {
-                    m.checkNotNullParameter(guild, "guild");
+                    Intrinsics3.checkNotNullParameter(guild, "guild");
                     return new Known(guild, isPublic, isUserInGuild, approximateOnline);
                 }
 
@@ -135,7 +135,7 @@ public final class GuildStickerSheetViewModel extends d0<ViewState> {
                         return false;
                     }
                     Known known = (Known) other;
-                    return m.areEqual(this.guild, known.guild) && getIsPublic() == known.getIsPublic() && getIsUserInGuild() == known.getIsUserInGuild() && m.areEqual(this.approximateOnline, known.approximateOnline);
+                    return Intrinsics3.areEqual(this.guild, known.guild) && getIsPublic() == known.getIsPublic() && getIsUserInGuild() == known.getIsUserInGuild() && Intrinsics3.areEqual(this.approximateOnline, known.approximateOnline);
                 }
 
                 /* JADX INFO: renamed from: component4, reason: from getter */
@@ -192,14 +192,14 @@ public final class GuildStickerSheetViewModel extends d0<ViewState> {
                 }
 
                 public String toString() {
-                    StringBuilder sbU = a.U("Known(guild=");
+                    StringBuilder sbU = outline.U("Known(guild=");
                     sbU.append(this.guild);
                     sbU.append(", isPublic=");
                     sbU.append(getIsPublic());
                     sbU.append(", isUserInGuild=");
                     sbU.append(getIsUserInGuild());
                     sbU.append(", approximateOnline=");
-                    return a.F(sbU, this.approximateOnline, ")");
+                    return outline.F(sbU, this.approximateOnline, ")");
                 }
             }
 
@@ -248,14 +248,14 @@ public final class GuildStickerSheetViewModel extends d0<ViewState> {
         }
 
         private final Observable<GuildStickerGuildInfo> getGuildForGuildSticker(RestAPI restAPI, Sticker sticker, StoreGuilds storeGuilds) {
-            Observable<GuildStickerGuildInfo> observableA = Observable.D(new GuildStickerSheetViewModel$Companion$getGuildForGuildSticker$1(storeGuilds, sticker)).A(new GuildStickerSheetViewModel$Companion$getGuildForGuildSticker$2(restAPI, sticker));
-            m.checkNotNullExpressionValue(observableA, "Observable.fromCallable …      }\n        }\n      }");
+            Observable<GuildStickerGuildInfo> observableA = Observable.D(new GuildStickerSheetViewModel2(storeGuilds, sticker)).A(new GuildStickerSheetViewModel3(restAPI, sticker));
+            Intrinsics3.checkNotNullExpressionValue(observableA, "Observable.fromCallable …      }\n        }\n      }");
             return observableA;
         }
 
         private final Observable<StoreState> observeStoreState(RestAPI restAPI, Sticker sticker, StoreUser storeUser, StoreChannelsSelected storeChannelsSelected, StoreGuilds storeGuilds) {
-            Observable<StoreState> observableH = Observable.h(getGuildForGuildSticker(restAPI, sticker, storeGuilds), StoreUser.observeMe$default(storeUser, false, 1, null), storeChannelsSelected.observeSelectedChannel(), storeGuilds.observeGuilds(), GuildStickerSheetViewModel$Companion$observeStoreState$1.INSTANCE);
-            m.checkNotNullExpressionValue(observableH, "Observable.combineLatest…erGuildInfo\n      )\n    }");
+            Observable<StoreState> observableH = Observable.h(getGuildForGuildSticker(restAPI, sticker, storeGuilds), StoreUser.observeMe$default(storeUser, false, 1, null), storeChannelsSelected.observeSelectedChannel(), storeGuilds.observeGuilds(), GuildStickerSheetViewModel4.INSTANCE);
+            Intrinsics3.checkNotNullExpressionValue(observableH, "Observable.combineLatest…erGuildInfo\n      )\n    }");
             return observableH;
         }
 
@@ -272,9 +272,9 @@ public final class GuildStickerSheetViewModel extends d0<ViewState> {
         private final Map<Long, com.discord.models.guild.Guild> userGuilds;
 
         public StoreState(MeUser meUser, Long l, Map<Long, com.discord.models.guild.Guild> map, Companion.GuildStickerGuildInfo guildStickerGuildInfo) {
-            m.checkNotNullParameter(meUser, "meUser");
-            m.checkNotNullParameter(map, "userGuilds");
-            m.checkNotNullParameter(guildStickerGuildInfo, "guildStickerGuildInfo");
+            Intrinsics3.checkNotNullParameter(meUser, "meUser");
+            Intrinsics3.checkNotNullParameter(map, "userGuilds");
+            Intrinsics3.checkNotNullParameter(guildStickerGuildInfo, "guildStickerGuildInfo");
             this.meUser = meUser;
             this.currentGuildId = l;
             this.userGuilds = map;
@@ -303,9 +303,9 @@ public final class GuildStickerSheetViewModel extends d0<ViewState> {
         }
 
         public final StoreState copy(MeUser meUser, Long currentGuildId, Map<Long, com.discord.models.guild.Guild> userGuilds, Companion.GuildStickerGuildInfo guildStickerGuildInfo) {
-            m.checkNotNullParameter(meUser, "meUser");
-            m.checkNotNullParameter(userGuilds, "userGuilds");
-            m.checkNotNullParameter(guildStickerGuildInfo, "guildStickerGuildInfo");
+            Intrinsics3.checkNotNullParameter(meUser, "meUser");
+            Intrinsics3.checkNotNullParameter(userGuilds, "userGuilds");
+            Intrinsics3.checkNotNullParameter(guildStickerGuildInfo, "guildStickerGuildInfo");
             return new StoreState(meUser, currentGuildId, userGuilds, guildStickerGuildInfo);
         }
 
@@ -317,7 +317,7 @@ public final class GuildStickerSheetViewModel extends d0<ViewState> {
                 return false;
             }
             StoreState storeState = (StoreState) other;
-            return m.areEqual(this.meUser, storeState.meUser) && m.areEqual(this.currentGuildId, storeState.currentGuildId) && m.areEqual(this.userGuilds, storeState.userGuilds) && m.areEqual(this.guildStickerGuildInfo, storeState.guildStickerGuildInfo);
+            return Intrinsics3.areEqual(this.meUser, storeState.meUser) && Intrinsics3.areEqual(this.currentGuildId, storeState.currentGuildId) && Intrinsics3.areEqual(this.userGuilds, storeState.userGuilds) && Intrinsics3.areEqual(this.guildStickerGuildInfo, storeState.guildStickerGuildInfo);
         }
 
         /* JADX INFO: renamed from: component2, reason: from getter */
@@ -363,7 +363,7 @@ public final class GuildStickerSheetViewModel extends d0<ViewState> {
         }
 
         public String toString() {
-            StringBuilder sbU = a.U("StoreState(meUser=");
+            StringBuilder sbU = outline.U("StoreState(meUser=");
             sbU.append(this.meUser);
             sbU.append(", currentGuildId=");
             sbU.append(this.currentGuildId);
@@ -398,8 +398,8 @@ public final class GuildStickerSheetViewModel extends d0<ViewState> {
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
             public Loaded(Sticker sticker, boolean z2, boolean z3, Companion.GuildStickerGuildInfo guildStickerGuildInfo) {
                 super(null);
-                m.checkNotNullParameter(sticker, "sticker");
-                m.checkNotNullParameter(guildStickerGuildInfo, "guildStickerGuildInfo");
+                Intrinsics3.checkNotNullParameter(sticker, "sticker");
+                Intrinsics3.checkNotNullParameter(guildStickerGuildInfo, "guildStickerGuildInfo");
                 this.sticker = sticker;
                 this.isUserPremium = z2;
                 this.isCurrentGuild = z3;
@@ -423,8 +423,8 @@ public final class GuildStickerSheetViewModel extends d0<ViewState> {
             }
 
             public final Loaded copy(Sticker sticker, boolean isUserPremium, boolean isCurrentGuild, Companion.GuildStickerGuildInfo guildStickerGuildInfo) {
-                m.checkNotNullParameter(sticker, "sticker");
-                m.checkNotNullParameter(guildStickerGuildInfo, "guildStickerGuildInfo");
+                Intrinsics3.checkNotNullParameter(sticker, "sticker");
+                Intrinsics3.checkNotNullParameter(guildStickerGuildInfo, "guildStickerGuildInfo");
                 return new Loaded(sticker, isUserPremium, isCurrentGuild, guildStickerGuildInfo);
             }
 
@@ -436,7 +436,7 @@ public final class GuildStickerSheetViewModel extends d0<ViewState> {
                     return false;
                 }
                 Loaded loaded = (Loaded) other;
-                return m.areEqual(this.sticker, loaded.sticker) && this.isUserPremium == loaded.isUserPremium && this.isCurrentGuild == loaded.isCurrentGuild && m.areEqual(this.guildStickerGuildInfo, loaded.guildStickerGuildInfo);
+                return Intrinsics3.areEqual(this.sticker, loaded.sticker) && this.isUserPremium == loaded.isUserPremium && this.isCurrentGuild == loaded.isCurrentGuild && Intrinsics3.areEqual(this.guildStickerGuildInfo, loaded.guildStickerGuildInfo);
             }
 
             /* JADX INFO: renamed from: component4, reason: from getter */
@@ -499,7 +499,7 @@ public final class GuildStickerSheetViewModel extends d0<ViewState> {
             }
 
             public String toString() {
-                StringBuilder sbU = a.U("Loaded(sticker=");
+                StringBuilder sbU = outline.U("Loaded(sticker=");
                 sbU.append(this.sticker);
                 sbU.append(", isUserPremium=");
                 sbU.append(this.isUserPremium);
@@ -548,26 +548,26 @@ public final class GuildStickerSheetViewModel extends d0<ViewState> {
 
     @MainThread
     private final void handleStoreState(StoreState storeState) {
-        updateViewState(new ViewState.Loaded(this.sticker, UserUtils.INSTANCE.getCanUsePremiumStickers(storeState.getMeUser()), m.areEqual(storeState.getCurrentGuildId(), this.sticker.getGuildId()), storeState.getGuildStickerGuildInfo()));
+        updateViewState(new ViewState.Loaded(this.sticker, UserUtils.INSTANCE.getCanUsePremiumStickers(storeState.getMeUser()), Intrinsics3.areEqual(storeState.getCurrentGuildId(), this.sticker.getGuildId()), storeState.getGuildStickerGuildInfo()));
     }
 
     public final void joinGuild(com.discord.models.guild.Guild guild, Fragment fragment) {
-        m.checkNotNullParameter(guild, "guild");
-        m.checkNotNullParameter(fragment, "fragment");
+        Intrinsics3.checkNotNullParameter(guild, "guild");
+        Intrinsics3.checkNotNullParameter(fragment, "fragment");
         Context contextRequireContext = fragment.requireContext();
-        m.checkNotNullExpressionValue(contextRequireContext, "fragment.requireContext()");
-        GuildJoinHelperKt.joinGuild$default(contextRequireContext, guild.getId(), false, null, null, null, GuildStickerSheetViewModel.class, null, null, null, new AnonymousClass1(), 952, null);
+        Intrinsics3.checkNotNullExpressionValue(contextRequireContext, "fragment.requireContext()");
+        GuildJoinHelper.joinGuild$default(contextRequireContext, guild.getId(), false, null, null, null, GuildStickerSheetViewModel.class, null, null, null, new AnonymousClass1(), 952, null);
     }
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public GuildStickerSheetViewModel(Sticker sticker, RestAPI restAPI, StoreUser storeUser, StoreChannelsSelected storeChannelsSelected, StoreGuilds storeGuilds, Observable<StoreState> observable) {
         super(ViewState.Loading.INSTANCE);
-        m.checkNotNullParameter(sticker, "sticker");
-        m.checkNotNullParameter(restAPI, "restAPI");
-        m.checkNotNullParameter(storeUser, "storeUser");
-        m.checkNotNullParameter(storeChannelsSelected, "storeChannelsSelected");
-        m.checkNotNullParameter(storeGuilds, "storeGuilds");
-        m.checkNotNullParameter(observable, "storeStateObservable");
+        Intrinsics3.checkNotNullParameter(sticker, "sticker");
+        Intrinsics3.checkNotNullParameter(restAPI, "restAPI");
+        Intrinsics3.checkNotNullParameter(storeUser, "storeUser");
+        Intrinsics3.checkNotNullParameter(storeChannelsSelected, "storeChannelsSelected");
+        Intrinsics3.checkNotNullParameter(storeGuilds, "storeGuilds");
+        Intrinsics3.checkNotNullParameter(observable, "storeStateObservable");
         this.sticker = sticker;
         this.restAPI = restAPI;
         this.storeUser = storeUser;

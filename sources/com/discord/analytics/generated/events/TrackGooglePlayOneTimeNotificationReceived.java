@@ -1,14 +1,14 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackGooglePlayOneTimeNotificationReceived.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackGooglePlayOneTimeNotificationReceived implements AnalyticsSchema, TrackBaseReceiver {
+public final /* data */ class TrackGooglePlayOneTimeNotificationReceived implements AnalyticsSchema, TrackBase2 {
     private final Long eventTime = null;
     private final CharSequence messageId = null;
     private final Long notificationType = null;
@@ -32,7 +32,7 @@ public final /* data */ class TrackGooglePlayOneTimeNotificationReceived impleme
             return false;
         }
         TrackGooglePlayOneTimeNotificationReceived trackGooglePlayOneTimeNotificationReceived = (TrackGooglePlayOneTimeNotificationReceived) other;
-        return m.areEqual(this.paymentId, trackGooglePlayOneTimeNotificationReceived.paymentId) && m.areEqual(this.skuId, trackGooglePlayOneTimeNotificationReceived.skuId) && m.areEqual(this.oneTimePurchaseSkuId, trackGooglePlayOneTimeNotificationReceived.oneTimePurchaseSkuId) && m.areEqual(this.paymentGateway, trackGooglePlayOneTimeNotificationReceived.paymentGateway) && m.areEqual(this.messageId, trackGooglePlayOneTimeNotificationReceived.messageId) && m.areEqual(this.version, trackGooglePlayOneTimeNotificationReceived.version) && m.areEqual(this.packageName, trackGooglePlayOneTimeNotificationReceived.packageName) && m.areEqual(this.eventTime, trackGooglePlayOneTimeNotificationReceived.eventTime) && m.areEqual(this.notificationVersion, trackGooglePlayOneTimeNotificationReceived.notificationVersion) && m.areEqual(this.notificationType, trackGooglePlayOneTimeNotificationReceived.notificationType) && m.areEqual(this.purchaseToken, trackGooglePlayOneTimeNotificationReceived.purchaseToken) && m.areEqual(this.orderId, trackGooglePlayOneTimeNotificationReceived.orderId);
+        return Intrinsics3.areEqual(this.paymentId, trackGooglePlayOneTimeNotificationReceived.paymentId) && Intrinsics3.areEqual(this.skuId, trackGooglePlayOneTimeNotificationReceived.skuId) && Intrinsics3.areEqual(this.oneTimePurchaseSkuId, trackGooglePlayOneTimeNotificationReceived.oneTimePurchaseSkuId) && Intrinsics3.areEqual(this.paymentGateway, trackGooglePlayOneTimeNotificationReceived.paymentGateway) && Intrinsics3.areEqual(this.messageId, trackGooglePlayOneTimeNotificationReceived.messageId) && Intrinsics3.areEqual(this.version, trackGooglePlayOneTimeNotificationReceived.version) && Intrinsics3.areEqual(this.packageName, trackGooglePlayOneTimeNotificationReceived.packageName) && Intrinsics3.areEqual(this.eventTime, trackGooglePlayOneTimeNotificationReceived.eventTime) && Intrinsics3.areEqual(this.notificationVersion, trackGooglePlayOneTimeNotificationReceived.notificationVersion) && Intrinsics3.areEqual(this.notificationType, trackGooglePlayOneTimeNotificationReceived.notificationType) && Intrinsics3.areEqual(this.purchaseToken, trackGooglePlayOneTimeNotificationReceived.purchaseToken) && Intrinsics3.areEqual(this.orderId, trackGooglePlayOneTimeNotificationReceived.orderId);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -69,7 +69,7 @@ public final /* data */ class TrackGooglePlayOneTimeNotificationReceived impleme
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackGooglePlayOneTimeNotificationReceived(paymentId=");
+        StringBuilder sbU = outline.U("TrackGooglePlayOneTimeNotificationReceived(paymentId=");
         sbU.append(this.paymentId);
         sbU.append(", skuId=");
         sbU.append(this.skuId);
@@ -92,6 +92,6 @@ public final /* data */ class TrackGooglePlayOneTimeNotificationReceived impleme
         sbU.append(", purchaseToken=");
         sbU.append(this.purchaseToken);
         sbU.append(", orderId=");
-        return a.E(sbU, this.orderId, ")");
+        return outline.E(sbU, this.orderId, ")");
     }
 }

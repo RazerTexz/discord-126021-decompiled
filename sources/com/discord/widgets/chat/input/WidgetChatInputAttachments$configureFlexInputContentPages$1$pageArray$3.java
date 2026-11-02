@@ -2,12 +2,12 @@ package com.discord.widgets.chat.input;
 
 import android.content.Context;
 import androidx.fragment.app.Fragment;
-import b.b.a.d.d;
+import b.b.a.d.AddContentPagerAdapter4;
 import com.lytefast.flexinput.fragment.CameraFragment;
 
 /* JADX INFO: compiled from: WidgetChatInputAttachments.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class WidgetChatInputAttachments$configureFlexInputContentPages$1$pageArray$3 extends d.a {
+public final class WidgetChatInputAttachments$configureFlexInputContentPages$1$pageArray$3 extends AddContentPagerAdapter4.a {
     public final /* synthetic */ Context $context;
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -16,12 +16,12 @@ public final class WidgetChatInputAttachments$configureFlexInputContentPages$1$p
         this.$context = context;
     }
 
-    @Override // b.b.a.d.d.a
+    @Override // b.b.a.d.AddContentPagerAdapter4.a
     public /* bridge */ /* synthetic */ Fragment createFragment() {
         return createFragment();
     }
 
-    @Override // b.b.a.d.d.a
+    @Override // b.b.a.d.AddContentPagerAdapter4.a
     public CameraFragment createFragment() {
         return new CameraFragment();
     }

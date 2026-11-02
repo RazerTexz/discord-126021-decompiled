@@ -1,14 +1,14 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackGuildCreationIntentSelected.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackGuildCreationIntentSelected implements AnalyticsSchema, TrackBaseReceiver {
+public final /* data */ class TrackGuildCreationIntentSelected implements AnalyticsSchema, TrackBase2 {
     private final Boolean isCommunity = null;
     private final Boolean skipped = null;
     private TrackBase trackBase;
@@ -22,7 +22,7 @@ public final /* data */ class TrackGuildCreationIntentSelected implements Analyt
             return false;
         }
         TrackGuildCreationIntentSelected trackGuildCreationIntentSelected = (TrackGuildCreationIntentSelected) other;
-        return m.areEqual(this.isCommunity, trackGuildCreationIntentSelected.isCommunity) && m.areEqual(this.skipped, trackGuildCreationIntentSelected.skipped);
+        return Intrinsics3.areEqual(this.isCommunity, trackGuildCreationIntentSelected.isCommunity) && Intrinsics3.areEqual(this.skipped, trackGuildCreationIntentSelected.skipped);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -39,9 +39,9 @@ public final /* data */ class TrackGuildCreationIntentSelected implements Analyt
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackGuildCreationIntentSelected(isCommunity=");
+        StringBuilder sbU = outline.U("TrackGuildCreationIntentSelected(isCommunity=");
         sbU.append(this.isCommunity);
         sbU.append(", skipped=");
-        return a.D(sbU, this.skipped, ")");
+        return outline.D(sbU, this.skipped, ")");
     }
 }

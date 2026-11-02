@@ -1,11 +1,11 @@
 package com.discord.utilities.search.network.state;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.api.channel.Channel;
 import com.discord.api.thread.ThreadMember;
 import com.discord.models.message.Message;
 import com.discord.utilities.search.network.SearchQuery;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 import java.util.List;
 import kotlin.jvm.internal.DefaultConstructorMarker;
 
@@ -22,7 +22,7 @@ public final /* data */ class SearchState {
 
     /* JADX WARN: Multi-variable type inference failed */
     public SearchState(QueryFetchState queryFetchState, SearchQuery searchQuery, List<Channel> list, List<? extends ThreadMember> list2, List<Message> list3, boolean z2, int i) {
-        m.checkNotNullParameter(queryFetchState, "queryFetchState");
+        Intrinsics3.checkNotNullParameter(queryFetchState, "queryFetchState");
         this.queryFetchState = queryFetchState;
         this.searchQuery = searchQuery;
         this.threads = list;
@@ -76,7 +76,7 @@ public final /* data */ class SearchState {
     }
 
     public final SearchState copy(QueryFetchState queryFetchState, SearchQuery searchQuery, List<Channel> threads, List<? extends ThreadMember> threadMembers, List<Message> hits, boolean hasMore, int totalResults) {
-        m.checkNotNullParameter(queryFetchState, "queryFetchState");
+        Intrinsics3.checkNotNullParameter(queryFetchState, "queryFetchState");
         return new SearchState(queryFetchState, searchQuery, threads, threadMembers, hits, hasMore, totalResults);
     }
 
@@ -88,7 +88,7 @@ public final /* data */ class SearchState {
             return false;
         }
         SearchState searchState = (SearchState) other;
-        return m.areEqual(this.queryFetchState, searchState.queryFetchState) && m.areEqual(this.searchQuery, searchState.searchQuery) && m.areEqual(this.threads, searchState.threads) && m.areEqual(this.threadMembers, searchState.threadMembers) && m.areEqual(this.hits, searchState.hits) && this.hasMore == searchState.hasMore && this.totalResults == searchState.totalResults;
+        return Intrinsics3.areEqual(this.queryFetchState, searchState.queryFetchState) && Intrinsics3.areEqual(this.searchQuery, searchState.searchQuery) && Intrinsics3.areEqual(this.threads, searchState.threads) && Intrinsics3.areEqual(this.threadMembers, searchState.threadMembers) && Intrinsics3.areEqual(this.hits, searchState.hits) && this.hasMore == searchState.hasMore && this.totalResults == searchState.totalResults;
     }
 
     /* JADX INFO: renamed from: component6, reason: from getter */
@@ -164,7 +164,7 @@ public final /* data */ class SearchState {
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("SearchState(queryFetchState=");
+        StringBuilder sbU = outline.U("SearchState(queryFetchState=");
         sbU.append(this.queryFetchState);
         sbU.append(", searchQuery=");
         sbU.append(this.searchQuery);
@@ -177,7 +177,7 @@ public final /* data */ class SearchState {
         sbU.append(", hasMore=");
         sbU.append(this.hasMore);
         sbU.append(", totalResults=");
-        return a.B(sbU, this.totalResults, ")");
+        return outline.B(sbU, this.totalResults, ")");
     }
 
     public /* synthetic */ SearchState(QueryFetchState queryFetchState, SearchQuery searchQuery, List list, List list2, List list3, boolean z2, int i, int i2, DefaultConstructorMarker defaultConstructorMarker) {

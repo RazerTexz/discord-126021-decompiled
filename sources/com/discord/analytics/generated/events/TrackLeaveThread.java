@@ -1,16 +1,16 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.analytics.generated.traits.TrackThread;
-import com.discord.analytics.generated.traits.TrackThreadReceiver;
+import com.discord.analytics.generated.traits.TrackThread2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackLeaveThread.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackLeaveThread implements AnalyticsSchema, TrackBaseReceiver, TrackThreadReceiver {
+public final /* data */ class TrackLeaveThread implements AnalyticsSchema, TrackBase2, TrackThread2 {
     private final Long channelId = null;
     private final Long channelType = null;
     private final Long guildId = null;
@@ -29,7 +29,7 @@ public final /* data */ class TrackLeaveThread implements AnalyticsSchema, Track
             return false;
         }
         TrackLeaveThread trackLeaveThread = (TrackLeaveThread) other;
-        return m.areEqual(this.channelId, trackLeaveThread.channelId) && m.areEqual(this.parentId, trackLeaveThread.parentId) && m.areEqual(this.guildId, trackLeaveThread.guildId) && m.areEqual(this.channelType, trackLeaveThread.channelType) && m.areEqual(this.targetUserId, trackLeaveThread.targetUserId) && m.areEqual(this.isSelfLeave, trackLeaveThread.isSelfLeave);
+        return Intrinsics3.areEqual(this.channelId, trackLeaveThread.channelId) && Intrinsics3.areEqual(this.parentId, trackLeaveThread.parentId) && Intrinsics3.areEqual(this.guildId, trackLeaveThread.guildId) && Intrinsics3.areEqual(this.channelType, trackLeaveThread.channelType) && Intrinsics3.areEqual(this.targetUserId, trackLeaveThread.targetUserId) && Intrinsics3.areEqual(this.isSelfLeave, trackLeaveThread.isSelfLeave);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -54,7 +54,7 @@ public final /* data */ class TrackLeaveThread implements AnalyticsSchema, Track
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackLeaveThread(channelId=");
+        StringBuilder sbU = outline.U("TrackLeaveThread(channelId=");
         sbU.append(this.channelId);
         sbU.append(", parentId=");
         sbU.append(this.parentId);
@@ -65,6 +65,6 @@ public final /* data */ class TrackLeaveThread implements AnalyticsSchema, Track
         sbU.append(", targetUserId=");
         sbU.append(this.targetUserId);
         sbU.append(", isSelfLeave=");
-        return a.D(sbU, this.isSelfLeave, ")");
+        return outline.D(sbU, this.isSelfLeave, ")");
     }
 }

@@ -2,8 +2,8 @@ package com.google.android.gms.internal.icing;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import b.c.a.a0.d;
-import b.d.b.a.a;
+import b.c.a.a0.AnimatableValueParser;
+import b.d.b.a.outline;
 import b.i.a.f.h.k.o;
 import b.i.a.f.h.k.q;
 import com.google.android.gms.common.internal.safeparcel.AbstractSafeParcelable;
@@ -57,7 +57,7 @@ public final class zzk extends AbstractSafeParcelable {
         StringBuilder sb = new StringBuilder(32);
         sb.append("Invalid section type ");
         sb.append(i);
-        d.o(z2, sb.toString());
+        AnimatableValueParser.o(z2, sb.toString());
         this.k = str;
         this.l = zztVar;
         this.m = i;
@@ -75,7 +75,7 @@ public final class zzk extends AbstractSafeParcelable {
                 str2 = null;
             }
             if (str2 == null) {
-                strG = a.g(32, "Invalid section type ", i);
+                strG = outline.g(32, "Invalid section type ", i);
             } else if (str != null && bArr != null) {
                 strG = "Both content and blobContent set";
             }
@@ -89,13 +89,13 @@ public final class zzk extends AbstractSafeParcelable {
 
     @Override // android.os.Parcelable
     public final void writeToParcel(Parcel parcel, int i) {
-        int iY2 = d.y2(parcel, 20293);
-        d.t2(parcel, 1, this.k, false);
-        d.s2(parcel, 3, this.l, i, false);
+        int iY2 = AnimatableValueParser.y2(parcel, 20293);
+        AnimatableValueParser.t2(parcel, 1, this.k, false);
+        AnimatableValueParser.s2(parcel, 3, this.l, i, false);
         int i2 = this.m;
         parcel.writeInt(262148);
         parcel.writeInt(i2);
-        d.q2(parcel, 5, this.n, false);
-        d.A2(parcel, iY2);
+        AnimatableValueParser.q2(parcel, 5, this.n, false);
+        AnimatableValueParser.A2(parcel, iY2);
     }
 }

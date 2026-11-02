@@ -1,6 +1,6 @@
 package com.esotericsoftware.kryo.io;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.esotericsoftware.kryo.KryoException;
 import com.esotericsoftware.kryo.util.UnsafeUtil;
 import java.io.IOException;
@@ -790,7 +790,7 @@ public class ByteBufferInput extends Input {
         }
         int i4 = this.capacity;
         if (i > i4) {
-            StringBuilder sbU = a.U("Buffer too small: capacity: ");
+            StringBuilder sbU = outline.U("Buffer too small: capacity: ");
             sbU.append(this.capacity);
             sbU.append(", required: ");
             sbU.append(i);

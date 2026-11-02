@@ -5,10 +5,10 @@ import android.graphics.SurfaceTexture;
 /* JADX INFO: compiled from: lambda */
 /* JADX INFO: loaded from: classes3.dex */
 public final /* synthetic */ class a implements SurfaceTexture.OnFrameAvailableListener {
-    public final /* synthetic */ j j;
+    public final /* synthetic */ SceneRenderer j;
 
-    public /* synthetic */ a(j jVar) {
-        this.j = jVar;
+    public /* synthetic */ a(SceneRenderer sceneRenderer) {
+        this.j = sceneRenderer;
     }
 
     @Override // android.graphics.SurfaceTexture.OnFrameAvailableListener

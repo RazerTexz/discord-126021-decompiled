@@ -12,22 +12,22 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentViewModelLazyKt;
-import b.a.d.g0;
-import b.a.d.i0;
-import b.d.b.a.a;
+import b.a.d.AppViewModelDelegates3;
+import b.a.d.AppViewModelDelegates5;
+import b.d.b.a.outline;
 import com.discord.R;
 import com.discord.app.AppFragment;
 import com.discord.databinding.WidgetSettingsBinding;
 import com.discord.models.presence.Presence;
 import com.discord.models.user.MeUser;
 import com.discord.stores.StoreStream;
-import com.discord.utilities.KotlinExtensionsKt;
+import com.discord.utilities.KotlinExtensions;
 import com.discord.utilities.accessibility.AccessibilityUtils;
 import com.discord.utilities.presence.PresenceUtils;
 import com.discord.utilities.rx.ObservableExtensionsKt;
 import com.discord.utilities.user.UserUtils;
 import com.discord.utilities.viewbinding.FragmentViewBindingDelegate;
-import com.discord.utilities.viewbinding.FragmentViewBindingDelegateKt;
+import com.discord.utilities.viewbinding.FragmentViewBindingDelegate3;
 import com.discord.widgets.debugging.WidgetDebugging;
 import com.discord.widgets.notice.WidgetNoticeDialog;
 import com.discord.widgets.tabs.NavigationTab;
@@ -38,11 +38,11 @@ import com.discord.widgets.user.profile.UserProfileHeaderView;
 import com.discord.widgets.user.profile.UserProfileHeaderViewModel;
 import com.google.android.material.shape.MaterialShapeDrawable;
 import com.google.android.material.shape.ShapeAppearanceModel;
-import d0.t.n;
-import d0.z.d.a0;
-import d0.z.d.k;
-import d0.z.d.m;
-import d0.z.d.o;
+import d0.t.Collections2;
+import d0.z.d.FunctionReferenceImpl;
+import d0.z.d.Intrinsics3;
+import d0.z.d.Lambda;
+import d0.z.d.Reflection2;
 import kotlin.Lazy;
 import kotlin.NoWhenBranchMatchedException;
 import kotlin.Unit;
@@ -54,7 +54,7 @@ import rx.functions.Action2;
 /* JADX INFO: compiled from: WidgetSettings.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetSettings extends AppFragment implements OnTabSelectedListener {
-    public static final /* synthetic */ KProperty[] $$delegatedProperties = {a.d0(WidgetSettings.class, "binding", "getBinding()Lcom/discord/databinding/WidgetSettingsBinding;", 0)};
+    public static final /* synthetic */ KProperty[] $$delegatedProperties = {outline.d0(WidgetSettings.class, "binding", "getBinding()Lcom/discord/databinding/WidgetSettingsBinding;", 0)};
 
     /* JADX INFO: renamed from: binding$delegate, reason: from kotlin metadata */
     private final FragmentViewBindingDelegate binding;
@@ -78,16 +78,16 @@ public final class WidgetSettings extends AppFragment implements OnTabSelectedLi
 
         /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
         public final void call2(MenuItem menuItem, Context context) {
-            m.checkNotNullExpressionValue(menuItem, "menuItem");
+            Intrinsics3.checkNotNullExpressionValue(menuItem, "menuItem");
             switch (menuItem.getItemId()) {
                 case R.id.menu_settings_debugging /* 2131364408 */:
                     WidgetDebugging.Companion companion = WidgetDebugging.INSTANCE;
-                    m.checkNotNullExpressionValue(context, "context");
+                    Intrinsics3.checkNotNullExpressionValue(context, "context");
                     companion.launch(context);
                     break;
                 case R.id.menu_settings_log_out /* 2131364409 */:
                     WidgetSettings widgetSettings = WidgetSettings.this;
-                    m.checkNotNullExpressionValue(context, "context");
+                    Intrinsics3.checkNotNullExpressionValue(context, "context");
                     WidgetSettings.access$showLogoutDialog(widgetSettings, context);
                     break;
             }
@@ -96,7 +96,7 @@ public final class WidgetSettings extends AppFragment implements OnTabSelectedLi
 
     /* JADX INFO: renamed from: com.discord.widgets.settings.WidgetSettings$onViewBoundOrOnResume$1, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetSettings.kt */
-    public final /* synthetic */ class AnonymousClass1 extends k implements Function1<SettingsViewModel.ViewState, Unit> {
+    public final /* synthetic */ class AnonymousClass1 extends FunctionReferenceImpl implements Function1<SettingsViewModel.ViewState, Unit> {
         public AnonymousClass1(WidgetSettings widgetSettings) {
             super(1, widgetSettings, WidgetSettings.class, "configureUI", "configureUI(Lcom/discord/widgets/settings/SettingsViewModel$ViewState;)V", 0);
         }
@@ -109,14 +109,14 @@ public final class WidgetSettings extends AppFragment implements OnTabSelectedLi
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(SettingsViewModel.ViewState viewState) {
-            m.checkNotNullParameter(viewState, "p1");
+            Intrinsics3.checkNotNullParameter(viewState, "p1");
             WidgetSettings.access$configureUI((WidgetSettings) this.receiver, viewState);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.widgets.settings.WidgetSettings$showLogoutDialog$1, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetSettings.kt */
-    public final class AnonymousClass1 extends o implements Function1<View, Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function1<View, Unit> {
         public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
 
         public AnonymousClass1() {
@@ -131,20 +131,20 @@ public final class WidgetSettings extends AppFragment implements OnTabSelectedLi
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(View view) {
-            m.checkNotNullParameter(view, "it");
+            Intrinsics3.checkNotNullParameter(view, "it");
             StoreStream.INSTANCE.getAuthentication().logout();
         }
     }
 
     public WidgetSettings() {
         super(R.layout.widget_settings);
-        this.binding = FragmentViewBindingDelegateKt.viewBinding$default(this, WidgetSettings$binding$2.INSTANCE, null, 2, null);
+        this.binding = FragmentViewBindingDelegate3.viewBinding$default(this, WidgetSettings$binding$2.INSTANCE, null, 2, null);
         WidgetSettings$viewModel$2 widgetSettings$viewModel$2 = WidgetSettings$viewModel$2.INSTANCE;
-        g0 g0Var = new g0(this);
-        this.viewModel = FragmentViewModelLazyKt.createViewModelLazy(this, a0.getOrCreateKotlinClass(SettingsViewModel.class), new WidgetSettings$appViewModels$$inlined$viewModels$1(g0Var), new i0(widgetSettings$viewModel$2));
+        AppViewModelDelegates3 appViewModelDelegates3 = new AppViewModelDelegates3(this);
+        this.viewModel = FragmentViewModelLazyKt.createViewModelLazy(this, Reflection2.getOrCreateKotlinClass(SettingsViewModel.class), new WidgetSettings$appViewModels$$inlined$viewModels$1(appViewModelDelegates3), new AppViewModelDelegates5(widgetSettings$viewModel$2));
         WidgetSettings$viewModelUserProfileHeader$2 widgetSettings$viewModelUserProfileHeader$2 = WidgetSettings$viewModelUserProfileHeader$2.INSTANCE;
-        g0 g0Var2 = new g0(this);
-        this.viewModelUserProfileHeader = FragmentViewModelLazyKt.createViewModelLazy(this, a0.getOrCreateKotlinClass(UserProfileHeaderViewModel.class), new WidgetSettings$appViewModels$$inlined$viewModels$2(g0Var2), new i0(widgetSettings$viewModelUserProfileHeader$2));
+        AppViewModelDelegates3 appViewModelDelegates4 = new AppViewModelDelegates3(this);
+        this.viewModelUserProfileHeader = FragmentViewModelLazyKt.createViewModelLazy(this, Reflection2.getOrCreateKotlinClass(UserProfileHeaderViewModel.class), new WidgetSettings$appViewModels$$inlined$viewModels$2(appViewModelDelegates4), new AppViewModelDelegates5(widgetSettings$viewModelUserProfileHeader$2));
     }
 
     public static final /* synthetic */ void access$configureUI(WidgetSettings widgetSettings, SettingsViewModel.ViewState viewState) {
@@ -171,51 +171,51 @@ public final class WidgetSettings extends AppFragment implements OnTabSelectedLi
         boolean hasSubscription = userUtils.getHasSubscription(meUser);
         WidgetSettingsBinding binding = getBinding();
         View view = binding.n;
-        m.checkNotNullExpressionValue(view, "developerOptionsDivider");
+        Intrinsics3.checkNotNullExpressionValue(view, "developerOptionsDivider");
         view.setVisibility(z2 ? 0 : 8);
         TextView textView = binding.o;
-        m.checkNotNullExpressionValue(textView, "developerOptionsHeader");
+        Intrinsics3.checkNotNullExpressionValue(textView, "developerOptionsHeader");
         textView.setVisibility(z2 ? 0 : 8);
         TextView textView2 = binding.m;
-        m.checkNotNullExpressionValue(textView2, "developerOptions");
+        Intrinsics3.checkNotNullExpressionValue(textView2, "developerOptions");
         textView2.setVisibility(z2 ? 0 : 8);
         binding.m.setOnClickListener(WidgetSettings$configureLoaded$1$1.INSTANCE);
         LinearLayout linearLayout = binding.u;
-        m.checkNotNullExpressionValue(linearLayout, "nitroSettingsContainer");
+        Intrinsics3.checkNotNullExpressionValue(linearLayout, "nitroSettingsContainer");
         linearLayout.setVisibility(zIsVerified ? 0 : 8);
         TextView textView3 = binding.E;
-        m.checkNotNullExpressionValue(textView3, "settingsNitro");
+        Intrinsics3.checkNotNullExpressionValue(textView3, "settingsNitro");
         textView3.setText(getString(hasSubscription ? R.string.billing_manage_subscription : R.string.premium_settings_subscribe_today));
         TextView textView4 = binding.q;
-        m.checkNotNullExpressionValue(textView4, "nitroBoosting");
+        Intrinsics3.checkNotNullExpressionValue(textView4, "nitroBoosting");
         textView4.setText(getString(hasSubscription ? R.string.premium_guild_perks_modal_manage_your_subscriptions : R.string.premium_settings_premium_guild_subscriptions));
         Presence presence = model.getPresence();
         binding.G.setPresence(presence);
         TextView textView5 = binding.F;
-        m.checkNotNullExpressionValue(textView5, "settingsPresenceText");
+        Intrinsics3.checkNotNullExpressionValue(textView5, "settingsPresenceText");
         textView5.setText(getString(PresenceUtils.INSTANCE.getStatusStringResForPresence(presence)));
         TextView textView6 = binding.C;
-        m.checkNotNullExpressionValue(textView6, "roleSubscriptions");
+        Intrinsics3.checkNotNullExpressionValue(textView6, "roleSubscriptions");
         textView6.setVisibility(model.getShowRoleSubscriptionsButton() ? 0 : 8);
         if (model.getPromoCount() > 0) {
             TextView textView7 = binding.r;
-            m.checkNotNullExpressionValue(textView7, "nitroGiftingBadge");
+            Intrinsics3.checkNotNullExpressionValue(textView7, "nitroGiftingBadge");
             textView7.setText(String.valueOf(model.getPromoCount()));
             TextView textView8 = binding.r;
-            m.checkNotNullExpressionValue(textView8, "nitroGiftingBadge");
+            Intrinsics3.checkNotNullExpressionValue(textView8, "nitroGiftingBadge");
             MaterialShapeDrawable materialShapeDrawable = new MaterialShapeDrawable(new ShapeAppearanceModel.Builder().setAllCornerSizes(ShapeAppearanceModel.PILL).build());
             materialShapeDrawable.setFillColor(ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.status_red_500)));
             textView8.setBackground(materialShapeDrawable);
             TextView textView9 = binding.r;
-            m.checkNotNullExpressionValue(textView9, "nitroGiftingBadge");
+            Intrinsics3.checkNotNullExpressionValue(textView9, "nitroGiftingBadge");
             textView9.setVisibility(0);
         } else {
             TextView textView10 = binding.r;
-            m.checkNotNullExpressionValue(textView10, "nitroGiftingBadge");
+            Intrinsics3.checkNotNullExpressionValue(textView10, "nitroGiftingBadge");
             textView10.setVisibility(8);
         }
         LinearLayout linearLayout2 = binding.v;
-        m.checkNotNullExpressionValue(linearLayout2, "notificationUpsell");
+        Intrinsics3.checkNotNullExpressionValue(linearLayout2, "notificationUpsell");
         linearLayout2.setVisibility((NotificationManagerCompat.from(requireContext()).areNotificationsEnabled() || model.getPushNotificationUpsellDismissed()) ? false : true ? 0 : 8);
     }
 
@@ -237,7 +237,7 @@ public final class WidgetSettings extends AppFragment implements OnTabSelectedLi
             configureLoaded((SettingsViewModel.ViewState.Loaded) model);
             unit = Unit.a;
         }
-        KotlinExtensionsKt.getExhaustive(unit);
+        KotlinExtensions.getExhaustive(unit);
     }
 
     private final WidgetSettingsBinding getBinding() {
@@ -261,7 +261,7 @@ public final class WidgetSettings extends AppFragment implements OnTabSelectedLi
 
     @Override // com.discord.app.AppFragment
     public void onViewBound(View view) {
-        m.checkNotNullParameter(view, "view");
+        Intrinsics3.checkNotNullParameter(view, "view");
         super.onViewBound(view);
         Fragment parentFragment = getParentFragment();
         if (!(parentFragment instanceof WidgetTabsHost)) {
@@ -276,11 +276,11 @@ public final class WidgetSettings extends AppFragment implements OnTabSelectedLi
         UserProfileHeaderView userProfileHeaderView = binding.L;
         Badge.Companion companion = Badge.INSTANCE;
         FragmentManager parentFragmentManager = getParentFragmentManager();
-        m.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
+        Intrinsics3.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
         userProfileHeaderView.setOnBadgeClick(companion.onBadgeClick(parentFragmentManager, requireContext()));
         binding.L.setOnBannerPress(new WidgetSettings$onViewBound$$inlined$with$lambda$2(this));
         TextView textView = binding.f;
-        m.checkNotNullExpressionValue(textView, "appInfoHeader");
+        Intrinsics3.checkNotNullExpressionValue(textView, "appInfoHeader");
         textView.setText(getString(R.string.app_information) + " - 126.21 - Stable (126021)");
         binding.B.setOnClickListener(new WidgetSettings$onViewBound$$inlined$with$lambda$3(this));
         binding.u.setOnClickListener(WidgetSettings$onViewBound$1$5.INSTANCE);
@@ -306,9 +306,9 @@ public final class WidgetSettings extends AppFragment implements OnTabSelectedLi
         binding.k.setOnClickListener(WidgetSettings$onViewBound$1$25.INSTANCE);
         binding.f2608x.setOnClickListener(WidgetSettings$onViewBound$1$26.INSTANCE);
         binding.w.setOnClickListener(WidgetSettings$onViewBound$1$27.INSTANCE);
-        for (TextView textView2 : n.listOf((Object[]) new TextView[]{binding.K, binding.t, binding.g, binding.o, binding.f})) {
+        for (TextView textView2 : Collections2.listOf((Object[]) new TextView[]{binding.K, binding.t, binding.g, binding.o, binding.f})) {
             AccessibilityUtils accessibilityUtils = AccessibilityUtils.INSTANCE;
-            m.checkNotNullExpressionValue(textView2, "header");
+            Intrinsics3.checkNotNullExpressionValue(textView2, "header");
             accessibilityUtils.setViewIsHeading(textView2);
         }
     }
@@ -318,14 +318,14 @@ public final class WidgetSettings extends AppFragment implements OnTabSelectedLi
         super.onViewBoundOrOnResume();
         UserProfileHeaderView.Companion companion = UserProfileHeaderView.INSTANCE;
         UserProfileHeaderView userProfileHeaderView = getBinding().L;
-        m.checkNotNullExpressionValue(userProfileHeaderView, "binding.userSettingsProfileHeaderView");
+        Intrinsics3.checkNotNullExpressionValue(userProfileHeaderView, "binding.userSettingsProfileHeaderView");
         companion.bind(userProfileHeaderView, this, getViewModelUserProfileHeader().observeViewState());
         ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeViewState(), this, null, 2, null), WidgetSettings.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass1(this), 62, (Object) null);
     }
 
     private final void showLogoutDialog(Context context) {
         FragmentManager parentFragmentManager = getParentFragmentManager();
-        m.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
+        Intrinsics3.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
         WidgetNoticeDialog.Builder.setNegativeButton$default(new WidgetNoticeDialog.Builder(context).setTitle(R.string.logout).setMessage(R.string.user_settings_confirm_logout).setDialogAttrTheme(R.attr.notice_theme_positive_red).setPositiveButton(R.string.logout, AnonymousClass1.INSTANCE), R.string.cancel, (Function1) null, 2, (Object) null).show(parentFragmentManager);
     }
 }

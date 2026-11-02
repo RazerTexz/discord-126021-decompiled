@@ -1,12 +1,14 @@
 package b.a.q.m0.c;
 
 import com.discord.rtcconnection.mediaengine.MediaEngine;
+import d0.z.d.Intrinsics3;
+import d0.z.d.Lambda;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function1;
 
 /* JADX INFO: compiled from: MediaEngineLegacy.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final class j extends d0.z.d.o implements Function1<MediaEngine.c, Unit> {
+public final class j extends Lambda implements Function1<MediaEngine.c, Unit> {
     public static final j j = new j();
 
     public j() {
@@ -16,7 +18,7 @@ public final class j extends d0.z.d.o implements Function1<MediaEngine.c, Unit> 
     @Override // kotlin.jvm.functions.Function1
     public Unit invoke(MediaEngine.c cVar) {
         MediaEngine.c cVar2 = cVar;
-        d0.z.d.m.checkNotNullParameter(cVar2, "it");
+        Intrinsics3.checkNotNullParameter(cVar2, "it");
         cVar2.onConnecting();
         return Unit.a;
     }

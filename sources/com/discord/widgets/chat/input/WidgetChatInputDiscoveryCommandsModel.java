@@ -1,9 +1,9 @@
 package com.discord.widgets.chat.input;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.models.commands.Application;
 import com.discord.models.commands.ApplicationCommand;
-import com.discord.models.commands.ApplicationCommandKt;
+import com.discord.models.commands.ApplicationCommand2;
 import com.discord.models.commands.ModelApplicationComparator;
 import com.discord.stores.DiscoverCommands;
 import com.discord.stores.LoadState;
@@ -11,15 +11,15 @@ import com.discord.widgets.chat.input.autocomplete.ApplicationCommandAutocomplet
 import com.discord.widgets.chat.input.autocomplete.ApplicationCommandLoadingPlaceholder;
 import com.discord.widgets.chat.input.autocomplete.ApplicationPlaceholder;
 import com.discord.widgets.chat.input.autocomplete.Autocompletable;
-import d0.t.u;
-import d0.z.d.m;
+import d0.t._Collections;
+import d0.z.d.Intrinsics3;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.TreeSet;
-import kotlin.Pair;
+import kotlin.Tuples2;
 import kotlin.jvm.internal.DefaultConstructorMarker;
 
 /* JADX INFO: compiled from: WidgetChatInputDiscoveryCommandsModel.kt */
@@ -28,7 +28,7 @@ public final /* data */ class WidgetChatInputDiscoveryCommandsModel {
 
     /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
     public static final Companion INSTANCE = new Companion(null);
-    private final List<Pair<Application, List<Autocompletable>>> commandsByApplication;
+    private final List<Tuples2<Application, List<Autocompletable>>> commandsByApplication;
     private final boolean hasMoreAfter;
     private final boolean hasMoreBefore;
     private final Long jumpedApplicationId;
@@ -49,10 +49,10 @@ public final /* data */ class WidgetChatInputDiscoveryCommandsModel {
         }
 
         public final WidgetChatInputDiscoveryCommandsModel parseModelDiscoveryCommands(long myId, List<Long> myRoles, List<Application> applications, DiscoverCommands discoveryCommands, boolean includeHeaders, int placeholdersCount, List<? extends ApplicationCommand> frecencyCommands) {
-            m.checkNotNullParameter(myRoles, "myRoles");
-            m.checkNotNullParameter(applications, "applications");
-            m.checkNotNullParameter(discoveryCommands, "discoveryCommands");
-            m.checkNotNullParameter(frecencyCommands, "frecencyCommands");
+            Intrinsics3.checkNotNullParameter(myRoles, "myRoles");
+            Intrinsics3.checkNotNullParameter(applications, "applications");
+            Intrinsics3.checkNotNullParameter(discoveryCommands, "discoveryCommands");
+            Intrinsics3.checkNotNullParameter(frecencyCommands, "frecencyCommands");
             HashMap map = new HashMap();
             for (Application application : applications) {
                 map.put(Long.valueOf(application.getId()), application);
@@ -63,9 +63,9 @@ public final /* data */ class WidgetChatInputDiscoveryCommandsModel {
                 long applicationId = applicationCommand.getApplicationId();
                 Application application2 = (Application) map.get(Long.valueOf(applicationId));
                 if (application2 != null) {
-                    m.checkNotNullExpressionValue(application2, "appMap[appId] ?: continue");
+                    Intrinsics3.checkNotNullExpressionValue(application2, "appMap[appId] ?: continue");
                     treeSet.add(application2);
-                    ApplicationCommandAutocompletable applicationCommandAutocompletable = new ApplicationCommandAutocompletable(application2, applicationCommand, ApplicationCommandKt.hasPermission(applicationCommand, myId, myRoles), false);
+                    ApplicationCommandAutocompletable applicationCommandAutocompletable = new ApplicationCommandAutocompletable(application2, applicationCommand, ApplicationCommand2.hasPermission(applicationCommand, myId, myRoles), false);
                     if (map2.containsKey(Long.valueOf(applicationId))) {
                         List list = (List) map2.get(Long.valueOf(applicationId));
                         if (list != null) {
@@ -85,19 +85,19 @@ public final /* data */ class WidgetChatInputDiscoveryCommandsModel {
                     if (includeHeaders) {
                         list2.add(0, new ApplicationPlaceholder(application3));
                     }
-                    arrayList2.add(new Pair(application3, list2));
+                    arrayList2.add(new Tuples2(application3, list2));
                 }
             }
             if (placeholdersCount > 0 && (!arrayList2.isEmpty())) {
                 if (discoveryCommands.getHasMoreBefore()) {
-                    Pair pair = (Pair) u.first((List) arrayList2);
-                    Application application4 = (Application) pair.component1();
-                    arrayList2.set(0, new Pair(application4, u.plus((Collection) createPlaceholderModels(placeholdersCount, application4), (Iterable) pair.component2())));
+                    Tuples2 tuples2 = (Tuples2) _Collections.first((List) arrayList2);
+                    Application application4 = (Application) tuples2.component1();
+                    arrayList2.set(0, new Tuples2(application4, _Collections.plus((Collection) createPlaceholderModels(placeholdersCount, application4), (Iterable) tuples2.component2())));
                 }
                 if (discoveryCommands.getHasMoreAfter()) {
-                    Pair pair2 = (Pair) u.last((List) arrayList2);
-                    Application application5 = (Application) pair2.component1();
-                    arrayList2.set(arrayList2.size() - 1, new Pair(application5, u.plus((Collection) pair2.component2(), (Iterable) createPlaceholderModels(placeholdersCount, application5))));
+                    Tuples2 tuples3 = (Tuples2) _Collections.last((List) arrayList2);
+                    Application application5 = (Application) tuples3.component1();
+                    arrayList2.set(arrayList2.size() - 1, new Tuples2(application5, _Collections.plus((Collection) tuples3.component2(), (Iterable) createPlaceholderModels(placeholdersCount, application5))));
                 }
             }
             Application application6 = (Application) map.get(-2L);
@@ -107,11 +107,11 @@ public final /* data */ class WidgetChatInputDiscoveryCommandsModel {
                 for (ApplicationCommand applicationCommand2 : frecencyCommands) {
                     Application application7 = (Application) map.get(Long.valueOf(applicationCommand2.getApplicationId()));
                     if (application7 != null) {
-                        m.checkNotNullExpressionValue(application7, "appMap[command.applicationId] ?: return@forEach");
-                        arrayList3.add(new ApplicationCommandAutocompletable(application7, applicationCommand2, ApplicationCommandKt.hasPermission(applicationCommand2, myId, myRoles), true));
+                        Intrinsics3.checkNotNullExpressionValue(application7, "appMap[command.applicationId] ?: return@forEach");
+                        arrayList3.add(new ApplicationCommandAutocompletable(application7, applicationCommand2, ApplicationCommand2.hasPermission(applicationCommand2, myId, myRoles), true));
                     }
                 }
-                arrayList2.add(0, new Pair(application6, arrayList3));
+                arrayList2.add(0, new Tuples2(application6, arrayList3));
             }
             return new WidgetChatInputDiscoveryCommandsModel(arrayList2, discoveryCommands.getHasMoreBefore(), discoveryCommands.getHasMoreAfter(), discoveryCommands.getJumpedSequenceId(), discoveryCommands.getJumpedApplicationId(), discoveryCommands.getLoadState());
         }
@@ -122,9 +122,9 @@ public final /* data */ class WidgetChatInputDiscoveryCommandsModel {
     }
 
     /* JADX WARN: Multi-variable type inference failed */
-    public WidgetChatInputDiscoveryCommandsModel(List<? extends Pair<Application, ? extends List<? extends Autocompletable>>> list, boolean z2, boolean z3, int i, Long l, LoadState loadState) {
-        m.checkNotNullParameter(list, "commandsByApplication");
-        m.checkNotNullParameter(loadState, "loadState");
+    public WidgetChatInputDiscoveryCommandsModel(List<? extends Tuples2<Application, ? extends List<? extends Autocompletable>>> list, boolean z2, boolean z3, int i, Long l, LoadState loadState) {
+        Intrinsics3.checkNotNullParameter(list, "commandsByApplication");
+        Intrinsics3.checkNotNullParameter(loadState, "loadState");
         this.commandsByApplication = list;
         this.hasMoreBefore = z2;
         this.hasMoreAfter = z3;
@@ -133,7 +133,7 @@ public final /* data */ class WidgetChatInputDiscoveryCommandsModel {
         this.loadState = loadState;
     }
 
-    public final List<Pair<Application, List<Autocompletable>>> component1() {
+    public final List<Tuples2<Application, List<Autocompletable>>> component1() {
         return this.commandsByApplication;
     }
 
@@ -164,9 +164,9 @@ public final /* data */ class WidgetChatInputDiscoveryCommandsModel {
         return widgetChatInputDiscoveryCommandsModel.copy(list, z4, z5, i3, l2, loadState);
     }
 
-    public final WidgetChatInputDiscoveryCommandsModel copy(List<? extends Pair<Application, ? extends List<? extends Autocompletable>>> commandsByApplication, boolean hasMoreBefore, boolean hasMoreAfter, int jumpedSequenceId, Long jumpedApplicationId, LoadState loadState) {
-        m.checkNotNullParameter(commandsByApplication, "commandsByApplication");
-        m.checkNotNullParameter(loadState, "loadState");
+    public final WidgetChatInputDiscoveryCommandsModel copy(List<? extends Tuples2<Application, ? extends List<? extends Autocompletable>>> commandsByApplication, boolean hasMoreBefore, boolean hasMoreAfter, int jumpedSequenceId, Long jumpedApplicationId, LoadState loadState) {
+        Intrinsics3.checkNotNullParameter(commandsByApplication, "commandsByApplication");
+        Intrinsics3.checkNotNullParameter(loadState, "loadState");
         return new WidgetChatInputDiscoveryCommandsModel(commandsByApplication, hasMoreBefore, hasMoreAfter, jumpedSequenceId, jumpedApplicationId, loadState);
     }
 
@@ -178,16 +178,16 @@ public final /* data */ class WidgetChatInputDiscoveryCommandsModel {
             return false;
         }
         WidgetChatInputDiscoveryCommandsModel widgetChatInputDiscoveryCommandsModel = (WidgetChatInputDiscoveryCommandsModel) other;
-        return m.areEqual(this.commandsByApplication, widgetChatInputDiscoveryCommandsModel.commandsByApplication) && this.hasMoreBefore == widgetChatInputDiscoveryCommandsModel.hasMoreBefore && this.hasMoreAfter == widgetChatInputDiscoveryCommandsModel.hasMoreAfter && this.jumpedSequenceId == widgetChatInputDiscoveryCommandsModel.jumpedSequenceId && m.areEqual(this.jumpedApplicationId, widgetChatInputDiscoveryCommandsModel.jumpedApplicationId) && m.areEqual(this.loadState, widgetChatInputDiscoveryCommandsModel.loadState);
+        return Intrinsics3.areEqual(this.commandsByApplication, widgetChatInputDiscoveryCommandsModel.commandsByApplication) && this.hasMoreBefore == widgetChatInputDiscoveryCommandsModel.hasMoreBefore && this.hasMoreAfter == widgetChatInputDiscoveryCommandsModel.hasMoreAfter && this.jumpedSequenceId == widgetChatInputDiscoveryCommandsModel.jumpedSequenceId && Intrinsics3.areEqual(this.jumpedApplicationId, widgetChatInputDiscoveryCommandsModel.jumpedApplicationId) && Intrinsics3.areEqual(this.loadState, widgetChatInputDiscoveryCommandsModel.loadState);
     }
 
-    public final List<Pair<Application, List<Autocompletable>>> getCommandsByApplication() {
+    public final List<Tuples2<Application, List<Autocompletable>>> getCommandsByApplication() {
         return this.commandsByApplication;
     }
 
     public final List<Autocompletable> getFlattenCommandsModel() {
         ArrayList arrayList = new ArrayList();
-        Iterator<Pair<Application, List<Autocompletable>>> it = this.commandsByApplication.iterator();
+        Iterator<Tuples2<Application, List<Autocompletable>>> it = this.commandsByApplication.iterator();
         while (it.hasNext()) {
             arrayList.addAll(it.next().component2());
         }
@@ -247,7 +247,7 @@ public final /* data */ class WidgetChatInputDiscoveryCommandsModel {
     /* JADX WARN: Type inference failed for: r3v1, types: [int] */
     /* JADX WARN: Type inference failed for: r3v2 */
     public int hashCode() {
-        List<Pair<Application, List<Autocompletable>>> list = this.commandsByApplication;
+        List<Tuples2<Application, List<Autocompletable>>> list = this.commandsByApplication;
         int iHashCode = (list != null ? list.hashCode() : 0) * 31;
         boolean z2 = this.hasMoreBefore;
         ?? r2 = z2;
@@ -268,7 +268,7 @@ public final /* data */ class WidgetChatInputDiscoveryCommandsModel {
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("WidgetChatInputDiscoveryCommandsModel(commandsByApplication=");
+        StringBuilder sbU = outline.U("WidgetChatInputDiscoveryCommandsModel(commandsByApplication=");
         sbU.append(this.commandsByApplication);
         sbU.append(", hasMoreBefore=");
         sbU.append(this.hasMoreBefore);

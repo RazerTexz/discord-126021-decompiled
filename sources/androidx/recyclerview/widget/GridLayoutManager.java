@@ -9,7 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import androidx.constraintlayout.solver.widgets.analyzer.BasicMeasure;
 import androidx.core.view.accessibility.AccessibilityNodeInfoCompat;
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import java.util.Arrays;
 
 /* JADX INFO: loaded from: classes.dex */
@@ -378,7 +378,7 @@ public class GridLayoutManager extends LinearLayoutManager {
             int i10 = layoutState.mCurrentPosition;
             int spanSize = getSpanSize(recycler, state, i10);
             if (spanSize > this.mSpanCount) {
-                throw new IllegalArgumentException(a.B(a.W("Item at position ", i10, " requires ", spanSize, " spans but GridLayoutManager has only "), this.mSpanCount, " spans."));
+                throw new IllegalArgumentException(outline.B(outline.W("Item at position ", i10, " requires ", spanSize, " spans but GridLayoutManager has only "), this.mSpanCount, " spans."));
             }
             spanIndex -= spanSize;
             if (spanIndex < 0 || (next = layoutState.next(recycler)) == null) {
@@ -889,7 +889,7 @@ public class GridLayoutManager extends LinearLayoutManager {
         }
         this.mPendingSpanCountChange = true;
         if (i < 1) {
-            throw new IllegalArgumentException(a.q("Span count should be at least 1. Provided ", i));
+            throw new IllegalArgumentException(outline.q("Span count should be at least 1. Provided ", i));
         }
         this.mSpanCount = i;
         this.mSpanSizeLookup.invalidateSpanIndexCache();
@@ -1023,10 +1023,11 @@ public class GridLayoutManager extends LinearLayoutManager {
         /* JADX WARN: Unsupported multi-entry loop pattern (BACK_EDGE: B:16:0x002f -> B:17:0x0030). Please report as a decompilation issue!!! */
         /*  JADX ERROR: StackOverflowError in pass: RegionMakerVisitor
             java.lang.StackOverflowError
-            	at jadx.core.dex.attributes.AttrNode.contains(AttrNode.java:98)
-            	at jadx.core.dex.visitors.regions.maker.RegionMaker.traverse(RegionMaker.java:82)
-            	at jadx.core.dex.visitors.regions.maker.RegionMaker.makeRegion(RegionMaker.java:69)
-            	at jadx.core.dex.visitors.regions.maker.IfRegionMaker.process(IfRegionMaker.java:111)
+            	at jadx.core.dex.visitors.regions.maker.IfRegionMaker.getNextBlockInIfSuccessorChain(IfRegionMaker.java:646)
+            	at jadx.core.dex.visitors.regions.maker.IfRegionMaker.getNextIfNodeInfo(IfRegionMaker.java:620)
+            	at jadx.core.dex.visitors.regions.maker.IfRegionMaker.getNextIf(IfRegionMaker.java:602)
+            	at jadx.core.dex.visitors.regions.maker.IfRegionMaker.mergeNestedIfNodes(IfRegionMaker.java:409)
+            	at jadx.core.dex.visitors.regions.maker.IfRegionMaker.process(IfRegionMaker.java:68)
             	at jadx.core.dex.visitors.regions.maker.RegionMaker.traverse(RegionMaker.java:109)
             	at jadx.core.dex.visitors.regions.maker.RegionMaker.makeRegion(RegionMaker.java:69)
             	at jadx.core.dex.visitors.regions.maker.IfRegionMaker.process(IfRegionMaker.java:111)
@@ -2045,7 +2046,6 @@ public class GridLayoutManager extends LinearLayoutManager {
             	at jadx.core.dex.visitors.regions.maker.RegionMaker.makeRegion(RegionMaker.java:69)
             	at jadx.core.dex.visitors.regions.maker.IfRegionMaker.process(IfRegionMaker.java:111)
             	at jadx.core.dex.visitors.regions.maker.RegionMaker.traverse(RegionMaker.java:109)
-            	at jadx.core.dex.visitors.regions.maker.RegionMaker.makeRegion(RegionMaker.java:69)
             */
         public int getSpanIndex(int r6, int r7) {
             /*

@@ -1,7 +1,7 @@
 package com.discord.widgets.channels;
 
 import android.animation.Animator;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: Animator.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -14,22 +14,22 @@ public final class WidgetChannelTopic$onToggleTopicExpansionState$1$animateMaxLi
 
     @Override // android.animation.Animator.AnimatorListener
     public void onAnimationCancel(Animator animator) {
-        m.checkNotNullParameter(animator, "animator");
+        Intrinsics3.checkNotNullParameter(animator, "animator");
     }
 
     @Override // android.animation.Animator.AnimatorListener
     public void onAnimationEnd(Animator animator) {
-        m.checkNotNullParameter(animator, "animator");
+        Intrinsics3.checkNotNullParameter(animator, "animator");
         WidgetChannelTopic.access$configureEllipsis(WidgetChannelTopic.this);
     }
 
     @Override // android.animation.Animator.AnimatorListener
     public void onAnimationRepeat(Animator animator) {
-        m.checkNotNullParameter(animator, "animator");
+        Intrinsics3.checkNotNullParameter(animator, "animator");
     }
 
     @Override // android.animation.Animator.AnimatorListener
     public void onAnimationStart(Animator animator) {
-        m.checkNotNullParameter(animator, "animator");
+        Intrinsics3.checkNotNullParameter(animator, "animator");
     }
 }

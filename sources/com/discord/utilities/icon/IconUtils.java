@@ -6,14 +6,14 @@ import android.graphics.drawable.Drawable;
 import android.text.TextUtils;
 import android.widget.ImageView;
 import androidx.annotation.DimenRes;
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.BuildConfig;
 import com.discord.R;
 import com.discord.api.channel.Channel;
 import com.discord.api.channel.ChannelUtils;
 import com.discord.api.role.GuildRole;
 import com.discord.models.commands.Application;
-import com.discord.models.commands.ApplicationKt;
+import com.discord.models.commands.Application3;
 import com.discord.models.domain.ModelAuditLogEntry;
 import com.discord.models.guild.Guild;
 import com.discord.models.member.GuildMember;
@@ -24,15 +24,15 @@ import com.discord.utilities.SnowflakeUtils;
 import com.discord.utilities.color.ColorCompat;
 import com.discord.utilities.drawable.DrawableCompat;
 import com.discord.utilities.images.MGImages;
-import com.discord.utilities.string.StringUtilsKt;
-import com.discord.widgets.chat.input.MentionUtilsKt;
+import com.discord.utilities.string.StringUtils2;
+import com.discord.widgets.chat.input.MentionUtils;
 import com.facebook.imagepipeline.request.ImageRequestBuilder;
-import d0.g0.t;
-import d0.g0.w;
-import d0.t.c0;
-import d0.t.k;
-import d0.t.o;
-import d0.z.d.m;
+import d0.g0.Strings4;
+import d0.g0.StringsJVM;
+import d0.t.Iterables2;
+import d0.t.Iterators4;
+import d0.t._Arrays;
+import d0.z.d.Intrinsics3;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -40,7 +40,7 @@ import java.util.NoSuchElementException;
 import java.util.Objects;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function1;
-import kotlin.ranges.IntRange;
+import kotlin.ranges.Ranges2;
 
 /* JADX INFO: compiled from: IconUtils.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -57,11 +57,11 @@ public final class IconUtils {
     public static final IconUtils INSTANCE = new IconUtils();
 
     static {
-        IntRange intRange = new IntRange(0, 7);
-        ArrayList arrayList = new ArrayList(o.collectionSizeOrDefault(intRange, 10));
-        Iterator<Integer> it = intRange.iterator();
+        Ranges2 ranges2 = new Ranges2(0, 7);
+        ArrayList arrayList = new ArrayList(Iterables2.collectionSizeOrDefault(ranges2, 10));
+        Iterator<Integer> it = ranges2.iterator();
         while (it.hasNext()) {
-            arrayList.add("asset://asset/images/group_dm_icon_" + ((c0) it).nextInt() + ".png");
+            arrayList.add("asset://asset/images/group_dm_icon_" + ((Iterators4) it).nextInt() + ".png");
         }
         GROUP_DM_DEFAULT_ICONS = arrayList;
         MEDIA_PROXY_SIZES = new Integer[]{16, 20, 22, 24, 28, 32, 40, 44, 48, 56, 60, 64, 80, 96, 100, 128, 160, 240, 256, 300, 320, 480, 512, 600, 640, 1024, 1280, 1536, 2048, 3072, 4096};
@@ -78,8 +78,8 @@ public final class IconUtils {
     }
 
     public static final String getApplicationIcon(long applicationId, String imageId, int sizePx) {
-        m.checkNotNullParameter(imageId, "imageId");
-        return "https://cdn.discordapp.com/app-icons/" + applicationId + MentionUtilsKt.SLASH_CHAR + imageId + '.' + StringUtilsKt.getSTATIC_IMAGE_EXTENSION() + "?size=" + getMediaProxySize(sizePx);
+        Intrinsics3.checkNotNullParameter(imageId, "imageId");
+        return "https://cdn.discordapp.com/app-icons/" + applicationId + MentionUtils.SLASH_CHAR + imageId + '.' + StringUtils2.getSTATIC_IMAGE_EXTENSION() + "?size=" + getMediaProxySize(sizePx);
     }
 
     public static /* synthetic */ String getAssetImage$default(IconUtils iconUtils, Long l, String str, int i, int i2, Object obj) {
@@ -91,30 +91,30 @@ public final class IconUtils {
 
     @SuppressLint({"DefaultLocale"})
     public final String getAssetImage(Long applicationId, String imageId, int sizePx) {
-        m.checkNotNullParameter(imageId, "imageId");
+        Intrinsics3.checkNotNullParameter(imageId, "imageId");
         int mediaProxySize = getMediaProxySize(sizePx);
-        if (w.contains$default((CharSequence) imageId, MentionUtilsKt.EMOJIS_AND_STICKERS_CHAR, false, 2, (Object) null)) {
-            List listSplit$default = w.split$default((CharSequence) imageId, new char[]{MentionUtilsKt.EMOJIS_AND_STICKERS_CHAR}, false, 2, 2, (Object) null);
+        if (Strings4.contains$default((CharSequence) imageId, MentionUtils.EMOJIS_AND_STICKERS_CHAR, false, 2, (Object) null)) {
+            List listSplit$default = Strings4.split$default((CharSequence) imageId, new char[]{MentionUtils.EMOJIS_AND_STICKERS_CHAR}, false, 2, 2, (Object) null);
             String str = (String) listSplit$default.get(0);
             Objects.requireNonNull(str, "null cannot be cast to non-null type java.lang.String");
             String lowerCase = str.toLowerCase();
-            m.checkNotNullExpressionValue(lowerCase, "(this as java.lang.String).toLowerCase()");
+            Intrinsics3.checkNotNullExpressionValue(lowerCase, "(this as java.lang.String).toLowerCase()");
             return getAssetPlatformUrl(lowerCase, (String) listSplit$default.get(1));
         }
         if (applicationId == null) {
             return null;
         }
-        return "https://cdn.discordapp.com/app-assets/" + applicationId + MentionUtilsKt.SLASH_CHAR + imageId + ".jpg?size=" + mediaProxySize;
+        return "https://cdn.discordapp.com/app-assets/" + applicationId + MentionUtils.SLASH_CHAR + imageId + ".jpg?size=" + mediaProxySize;
     }
 
     private final String getAssetPlatformUrl(String platform, String data) {
         int iHashCode = platform.hashCode();
         if (iHashCode != -1998723398) {
             if (iHashCode == 3491 && platform.equals("mp")) {
-                return a.w("https://media.discordapp.net/", data);
+                return outline.w("https://media.discordapp.net/", data);
             }
         } else if (platform.equals("spotify")) {
-            return a.w("https://i.scdn.co/image/", data);
+            return outline.w("https://i.scdn.co/image/", data);
         }
         return null;
     }
@@ -159,7 +159,7 @@ public final class IconUtils {
         if (BuildConfig.HOST_CDN.length() == 0) {
             return "https://discord.com/api//channels/" + id2 + "/icons/" + icon + ".jpg";
         }
-        return INSTANCE.withSize("https://cdn.discordapp.com/channel-icons/" + id2 + MentionUtilsKt.SLASH_CHAR + icon + '.' + StringUtilsKt.getSTATIC_IMAGE_EXTENSION(), size);
+        return INSTANCE.withSize("https://cdn.discordapp.com/channel-icons/" + id2 + MentionUtils.SLASH_CHAR + icon + '.' + StringUtils2.getSTATIC_IMAGE_EXTENSION(), size);
     }
 
     public static /* synthetic */ String getForGuild$default(Long l, String str, String str2, boolean z2, Integer num, int i, Object obj) {
@@ -210,11 +210,11 @@ public final class IconUtils {
             str = "https://discord.com/api//guilds/" + id2 + "/icons/" + icon + ".jpg";
         } else {
             IconUtils iconUtils = INSTANCE;
-            m.checkNotNull(icon);
-            str = "https://cdn.discordapp.com/icons/" + id2 + MentionUtilsKt.SLASH_CHAR + icon + '.' + iconUtils.getImageExtension(icon, animated);
+            Intrinsics3.checkNotNull(icon);
+            str = "https://cdn.discordapp.com/icons/" + id2 + MentionUtils.SLASH_CHAR + icon + '.' + iconUtils.getImageExtension(icon, animated);
         }
         sb.append(str);
-        String strQ = numValueOf != null ? a.q("?size=", numValueOf.intValue()) : null;
+        String strQ = numValueOf != null ? outline.q("?size=", numValueOf.intValue()) : null;
         if (strQ == null) {
             strQ = "";
         }
@@ -233,7 +233,7 @@ public final class IconUtils {
     }
 
     public final String getForGuildMember(GuildMember guildMember, Integer sizePx, boolean animated) {
-        m.checkNotNullParameter(guildMember, "guildMember");
+        Intrinsics3.checkNotNullParameter(guildMember, "guildMember");
         return getForGuildMember(guildMember.getAvatarHash(), guildMember.getGuildId(), guildMember.getUserId(), sizePx, animated);
     }
 
@@ -242,7 +242,7 @@ public final class IconUtils {
     }
 
     public final String getForGuildMemberBanner(String guildMemberBanner, long guildId, long userId, Integer sizePx, boolean animated) {
-        if ((guildMemberBanner == null || t.isBlank(guildMemberBanner)) || guildId == 0 || userId == 0) {
+        if ((guildMemberBanner == null || StringsJVM.isBlank(guildMemberBanner)) || guildId == 0 || userId == 0) {
             return null;
         }
         return withSize("https://cdn.discordapp.com/guilds/" + guildId + "/users/" + userId + "/banners/" + guildMemberBanner + '.' + getImageExtension(guildMemberBanner, animated), sizePx);
@@ -304,10 +304,10 @@ public final class IconUtils {
     }
 
     public final String getForUserBanner(long userId, String bannerHash, Integer sizePx, boolean animated) {
-        if (bannerHash == null || t.isBlank(bannerHash)) {
+        if (bannerHash == null || StringsJVM.isBlank(bannerHash)) {
             return null;
         }
-        return withSize("https://cdn.discordapp.com/banners/" + userId + MentionUtilsKt.SLASH_CHAR + bannerHash + '.' + getImageExtension(bannerHash, animated), sizePx);
+        return withSize("https://cdn.discordapp.com/banners/" + userId + MentionUtils.SLASH_CHAR + bannerHash + '.' + getImageExtension(bannerHash, animated), sizePx);
     }
 
     public static /* synthetic */ String getGiftSplashUrl$default(IconUtils iconUtils, long j, String str, Integer num, int i, Object obj) {
@@ -332,9 +332,9 @@ public final class IconUtils {
                     break;
                 }
             }
-            numValueOf = Integer.valueOf(numValueOf != null ? numValueOf.intValue() : ((Number) k.last(MEDIA_PROXY_SIZES)).intValue());
+            numValueOf = Integer.valueOf(numValueOf != null ? numValueOf.intValue() : ((Number) _Arrays.last(MEDIA_PROXY_SIZES)).intValue());
         }
-        StringBuilder sbU = a.U("?");
+        StringBuilder sbU = outline.U("?");
         if (numValueOf != null) {
             numValueOf.intValue();
             str = "size=" + numValueOf + "&keep_aspect_ratio=true";
@@ -345,7 +345,7 @@ public final class IconUtils {
             str = "keep_aspect_ratio=true";
         }
         sbU.append(str);
-        return "https://cdn.discordapp.com/app-icons/" + applicationId + MentionUtilsKt.SLASH_CHAR + hash + '.' + StringUtilsKt.getSTATIC_IMAGE_EXTENSION() + sbU.toString();
+        return "https://cdn.discordapp.com/app-icons/" + applicationId + MentionUtils.SLASH_CHAR + hash + '.' + StringUtils2.getSTATIC_IMAGE_EXTENSION() + sbU.toString();
     }
 
     public static /* synthetic */ String getGuildSplashUrl$default(IconUtils iconUtils, long j, String str, Integer num, int i, Object obj) {
@@ -357,15 +357,15 @@ public final class IconUtils {
 
     public final String getGuildSplashUrl(long guildId, String splashHash, Integer size) {
         String str;
-        m.checkNotNullParameter(splashHash, "splashHash");
+        Intrinsics3.checkNotNullParameter(splashHash, "splashHash");
         Integer numValueOf = size != null ? Integer.valueOf(getMediaProxySize(size.intValue())) : null;
         if (BuildConfig.HOST_CDN.length() == 0) {
             str = "https://discord.com/api//guilds/" + guildId + "/splashes/" + splashHash + ".jpg";
         } else {
-            str = "https://cdn.discordapp.com/splashes/" + guildId + MentionUtilsKt.SLASH_CHAR + splashHash + '.' + StringUtilsKt.getSTATIC_IMAGE_EXTENSION();
+            str = "https://cdn.discordapp.com/splashes/" + guildId + MentionUtils.SLASH_CHAR + splashHash + '.' + StringUtils2.getSTATIC_IMAGE_EXTENSION();
         }
-        StringBuilder sbU = a.U(str);
-        String strQ = numValueOf != null ? a.q("?size=", numValueOf.intValue()) : null;
+        StringBuilder sbU = outline.U(str);
+        String strQ = numValueOf != null ? outline.q("?size=", numValueOf.intValue()) : null;
         if (strQ == null) {
             strQ = "";
         }
@@ -374,8 +374,8 @@ public final class IconUtils {
     }
 
     public final String getImageExtension(String imageHash, boolean allowAnimation) {
-        m.checkNotNullParameter(imageHash, "imageHash");
-        return (allowAnimation && isImageHashAnimated(imageHash)) ? ANIMATED_IMAGE_EXTENSION : StringUtilsKt.getSTATIC_IMAGE_EXTENSION();
+        Intrinsics3.checkNotNullParameter(imageHash, "imageHash");
+        return (allowAnimation && isImageHashAnimated(imageHash)) ? ANIMATED_IMAGE_EXTENSION : StringUtils2.getSTATIC_IMAGE_EXTENSION();
     }
 
     public static final int getMediaProxySize(int size) {
@@ -396,15 +396,15 @@ public final class IconUtils {
 
     public final String getRoleIconUrl(long roleId, String iconHash, Integer size) {
         String str;
-        m.checkNotNullParameter(iconHash, "iconHash");
+        Intrinsics3.checkNotNullParameter(iconHash, "iconHash");
         Integer numValueOf = size != null ? Integer.valueOf(getMediaProxySize(size.intValue())) : null;
         if (BuildConfig.HOST_CDN.length() == 0) {
             str = "https://discord.com/api//roles/" + roleId + "/icons/" + iconHash + ".png";
         } else {
-            str = "https://cdn.discordapp.com/role-icons/" + roleId + MentionUtilsKt.SLASH_CHAR + iconHash + '.' + StringUtilsKt.getSTATIC_IMAGE_EXTENSION();
+            str = "https://cdn.discordapp.com/role-icons/" + roleId + MentionUtils.SLASH_CHAR + iconHash + '.' + StringUtils2.getSTATIC_IMAGE_EXTENSION();
         }
-        StringBuilder sbU = a.U(str);
-        String strQ = numValueOf != null ? a.q("?size=", numValueOf.intValue()) : null;
+        StringBuilder sbU = outline.U(str);
+        String strQ = numValueOf != null ? outline.q("?size=", numValueOf.intValue()) : null;
         if (strQ == null) {
             strQ = "";
         }
@@ -421,9 +421,9 @@ public final class IconUtils {
 
     @SuppressLint({"DefaultLocale"})
     public final String getStoreAssetImage(Long applicationId, String imageId, int size) {
-        m.checkNotNullParameter(imageId, "imageId");
+        Intrinsics3.checkNotNullParameter(imageId, "imageId");
         int mediaProxySize = getMediaProxySize(size);
-        if (applicationId != null && (!t.isBlank(BuildConfig.HOST_CDN))) {
+        if (applicationId != null && (!StringsJVM.isBlank(BuildConfig.HOST_CDN))) {
             return "https://cdn.discordapp.com/app-assets/" + applicationId + "/store/" + imageId + ".jpg?size=" + mediaProxySize;
         }
         if (applicationId == null) {
@@ -433,26 +433,26 @@ public final class IconUtils {
     }
 
     public final boolean isDataUrlForGif(String dataUrl) {
-        m.checkNotNullParameter(dataUrl, "dataUrl");
-        return t.startsWith$default(dataUrl, "data:image/gif", false, 2, null);
+        Intrinsics3.checkNotNullParameter(dataUrl, "dataUrl");
+        return StringsJVM.startsWith$default(dataUrl, "data:image/gif", false, 2, null);
     }
 
     public final boolean isImageHashAnimated(String imageHash) {
-        m.checkNotNullParameter(imageHash, "imageHash");
-        return t.startsWith$default(imageHash, "a_", false, 2, null);
+        Intrinsics3.checkNotNullParameter(imageHash, "imageHash");
+        return StringsJVM.startsWith$default(imageHash, "a_", false, 2, null);
     }
 
     public static final void setApplicationIcon(ImageView imageView, Application application) {
-        m.checkNotNullParameter(imageView, "imageView");
-        m.checkNotNullParameter(application, "application");
+        Intrinsics3.checkNotNullParameter(imageView, "imageView");
+        Intrinsics3.checkNotNullParameter(application, "application");
         String applicationIcon$default = getApplicationIcon$default(INSTANCE, application, 0, 2, (Object) null);
-        if (application.getIconRes() == null || ApplicationKt.hasBotAvatar(application)) {
+        if (application.getIconRes() == null || Application3.hasBotAvatar(application)) {
             MGImages.setImage$default(imageView, applicationIcon$default, 0, 0, false, null, null, 124, null);
             return;
         }
         int themedColor = ColorCompat.getThemedColor(imageView, R.attr.colorTextMuted);
         Context context = imageView.getContext();
-        m.checkNotNullExpressionValue(context, "imageView.context");
+        Intrinsics3.checkNotNullExpressionValue(context, "imageView.context");
         Drawable drawable$default = DrawableCompat.getDrawable$default(context, application.getIconRes().intValue(), themedColor, false, 4, null);
         if (drawable$default != null) {
             MGImages.setImage$default(MGImages.INSTANCE, imageView, drawable$default, (MGImages.ChangeDetector) null, 4, (Object) null);
@@ -543,8 +543,8 @@ public final class IconUtils {
     }
 
     public static final void setIcon(ImageView imageView, String url, @DimenRes int sizeDimenRes, Function1<? super ImageRequestBuilder, Unit> transform, MGImages.ChangeDetector changeDetector) {
-        m.checkNotNullParameter(imageView, "imageView");
-        m.checkNotNullParameter(changeDetector, "changeDetector");
+        Intrinsics3.checkNotNullParameter(imageView, "imageView");
+        Intrinsics3.checkNotNullParameter(changeDetector, "changeDetector");
         setIcon(imageView, url, imageView.getResources().getDimensionPixelSize(sizeDimenRes), imageView.getResources().getDimensionPixelSize(sizeDimenRes), true, transform, changeDetector);
     }
 
@@ -568,7 +568,7 @@ public final class IconUtils {
         if (url == null || size == null || size.intValue() <= 0) {
             return url;
         }
-        StringBuilder sbX = a.X(url, "?size=");
+        StringBuilder sbX = outline.X(url, "?size=");
         sbX.append(getMediaProxySize(size.intValue()));
         return sbX.toString();
     }
@@ -600,10 +600,10 @@ public final class IconUtils {
         if (BuildConfig.HOST_CDN.length() == 0) {
             str = "https://discord.com/api//guilds/" + guildId + "/banners/" + banner + ".jpg";
         } else {
-            str = "https://cdn.discordapp.com/banners/" + guildId + MentionUtilsKt.SLASH_CHAR + banner + '.' + getImageExtension(banner, animated);
+            str = "https://cdn.discordapp.com/banners/" + guildId + MentionUtils.SLASH_CHAR + banner + '.' + getImageExtension(banner, animated);
         }
         sb.append(str);
-        String strQ = numValueOf != null ? a.q("?size=", numValueOf.intValue()) : null;
+        String strQ = numValueOf != null ? outline.q("?size=", numValueOf.intValue()) : null;
         if (strQ == null) {
             strQ = "";
         }
@@ -668,11 +668,11 @@ public final class IconUtils {
     }
 
     public final String getApplicationIcon(Application application, int sizePx) {
-        m.checkNotNullParameter(application, "application");
+        Intrinsics3.checkNotNullParameter(application, "application");
         com.discord.api.user.User bot = application.getBot();
         String icon = application.getIcon();
         String applicationIcon = null;
-        if (icon == null || t.isBlank(icon)) {
+        if (icon == null || StringsJVM.isBlank(icon)) {
             icon = null;
         }
         CoreUser coreUser = bot != null ? new CoreUser(bot) : null;
@@ -683,7 +683,7 @@ public final class IconUtils {
         } else if (icon != null) {
             applicationIcon = getApplicationIcon(application.getId(), icon, sizePx);
         }
-        return applicationIcon != null ? applicationIcon : a.r("asset://asset/images/default_avatar_", discriminator, ".png");
+        return applicationIcon != null ? applicationIcon : outline.r("asset://asset/images/default_avatar_", discriminator, ".png");
     }
 
     public static /* synthetic */ void setIcon$default(ImageView imageView, User user, int i, Function1 function1, MGImages.ChangeDetector changeDetector, GuildMember guildMember, int i2, Object obj) {
@@ -696,13 +696,13 @@ public final class IconUtils {
     }
 
     public static final void setIcon(ImageView imageView, String url, int widthPixels, int heightPixels, boolean useSmallCache, Function1<? super ImageRequestBuilder, Unit> transform, MGImages.ChangeDetector changeDetector) {
-        m.checkNotNullParameter(imageView, "imageView");
-        m.checkNotNullParameter(changeDetector, "changeDetector");
+        Intrinsics3.checkNotNullParameter(imageView, "imageView");
+        Intrinsics3.checkNotNullParameter(changeDetector, "changeDetector");
         MGImages.setImage(imageView, url, widthPixels, heightPixels, useSmallCache, transform, changeDetector);
     }
 
     public final String getForGuildMember(String guildMemberAvatar, long guildId, long userId, Integer sizePx, boolean animated) {
-        if ((guildMemberAvatar == null || t.isBlank(guildMemberAvatar)) || guildId == 0 || userId == 0) {
+        if ((guildMemberAvatar == null || StringsJVM.isBlank(guildMemberAvatar)) || guildId == 0 || userId == 0) {
             return null;
         }
         return withSize("https://cdn.discordapp.com/guilds/" + guildId + "/users/" + userId + "/avatars/" + guildMemberAvatar + '.' + getImageExtension(guildMemberAvatar, animated), sizePx);
@@ -719,13 +719,13 @@ public final class IconUtils {
                     return "https://discord.com/api//users/" + userId + "/avatars/" + userAvatar + ".jpg";
                 }
                 IconUtils iconUtils = INSTANCE;
-                return iconUtils.withSize("https://cdn.discordapp.com/avatars/" + userId + MentionUtilsKt.SLASH_CHAR + userAvatar + '.' + iconUtils.getImageExtension(userAvatar, animated), size);
+                return iconUtils.withSize("https://cdn.discordapp.com/avatars/" + userId + MentionUtils.SLASH_CHAR + userAvatar + '.' + iconUtils.getImageExtension(userAvatar, animated), size);
             }
             if (discriminator != null) {
                 iIntValue = discriminator.intValue() % 5;
             }
         }
-        return a.r("asset://asset/images/default_avatar_", iIntValue, ".png");
+        return outline.r("asset://asset/images/default_avatar_", iIntValue, ".png");
     }
 
     public static /* synthetic */ void setIcon$default(ImageView imageView, String str, Long l, String str2, Integer num, int i, Function1 function1, MGImages.ChangeDetector changeDetector, GuildMember guildMember, int i2, Object obj) {
@@ -733,8 +733,8 @@ public final class IconUtils {
     }
 
     public static final void setIcon(ImageView imageView, User user, @DimenRes int sizeDimenRes, Function1<? super ImageRequestBuilder, Unit> transform, MGImages.ChangeDetector changeDetector, GuildMember guildMember) {
-        m.checkNotNullParameter(imageView, "imageView");
-        m.checkNotNullParameter(changeDetector, "changeDetector");
+        Intrinsics3.checkNotNullParameter(imageView, "imageView");
+        Intrinsics3.checkNotNullParameter(changeDetector, "changeDetector");
         setIcon(imageView, user != null ? user.getUsername() : null, user != null ? Long.valueOf(user.getId()) : null, user != null ? user.getAvatar() : null, user != null ? Integer.valueOf(user.getDiscriminator()) : null, sizeDimenRes, transform, changeDetector, guildMember);
     }
 
@@ -794,8 +794,8 @@ public final class IconUtils {
 
     public static final void setIcon(ImageView imageView, String username, Long userId, String userAvatar, Integer discriminator, @DimenRes int sizeDimenRes, Function1<? super ImageRequestBuilder, Unit> transform, MGImages.ChangeDetector changeDetector, GuildMember guildMember) {
         String forUser$default;
-        m.checkNotNullParameter(imageView, "imageView");
-        m.checkNotNullParameter(changeDetector, "changeDetector");
+        Intrinsics3.checkNotNullParameter(imageView, "imageView");
+        Intrinsics3.checkNotNullParameter(changeDetector, "changeDetector");
         Integer numValueOf = sizeDimenRes != R.dimen.avatar_size_unrestricted ? Integer.valueOf(imageView.getResources().getDimensionPixelSize(sizeDimenRes)) : null;
         if (guildMember != null && guildMember.hasAvatar()) {
             forUser$default = getForGuildMember$default(INSTANCE, guildMember, numValueOf, false, 4, null);
@@ -807,23 +807,23 @@ public final class IconUtils {
     }
 
     public static final void setIcon(ImageView imageView, Channel entity, @DimenRes int sizeDimenRes, MGImages.ChangeDetector changeDetector) {
-        m.checkNotNullParameter(imageView, "imageView");
-        m.checkNotNullParameter(changeDetector, "changeDetector");
+        Intrinsics3.checkNotNullParameter(imageView, "imageView");
+        Intrinsics3.checkNotNullParameter(changeDetector, "changeDetector");
         setIcon$default(imageView, getForChannel$default(entity, null, 2, null), sizeDimenRes, (Function1) null, changeDetector, 8, (Object) null);
         imageView.setContentDescription(entity != null ? ChannelUtils.c(entity) : null);
     }
 
     public static final void setIcon(ImageView imageView, Guild entity, @DimenRes int sizeDimenRes, MGImages.ChangeDetector changeDetector, boolean animated) {
-        m.checkNotNullParameter(imageView, "imageView");
-        m.checkNotNullParameter(changeDetector, "changeDetector");
+        Intrinsics3.checkNotNullParameter(imageView, "imageView");
+        Intrinsics3.checkNotNullParameter(changeDetector, "changeDetector");
         setIcon$default(imageView, getForGuild$default(entity, null, animated, null, 10, null), sizeDimenRes, (Function1) null, changeDetector, 8, (Object) null);
         imageView.setContentDescription(entity != null ? entity.getName() : null);
     }
 
     public static final void setIcon(ImageView imageView, GuildRole entity, @DimenRes int sizeDimenRes, MGImages.ChangeDetector changeDetector) {
         String icon;
-        m.checkNotNullParameter(imageView, "imageView");
-        m.checkNotNullParameter(changeDetector, "changeDetector");
+        Intrinsics3.checkNotNullParameter(imageView, "imageView");
+        Intrinsics3.checkNotNullParameter(changeDetector, "changeDetector");
         if (entity == null || (icon = entity.getIcon()) == null) {
             return;
         }

@@ -2,15 +2,15 @@ package com.discord.utilities.search.history;
 
 import android.content.Context;
 import androidx.core.app.NotificationCompat;
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.stores.StoreSearch;
 import com.discord.utilities.persister.Persister;
 import com.discord.utilities.rx.ObservableExtensionsKt;
 import com.discord.utilities.search.query.node.QueryNode;
-import d0.t.u;
-import d0.z.d.m;
-import d0.z.d.o;
-import j0.k.b;
+import d0.t._Collections;
+import d0.z.d.Intrinsics3;
+import d0.z.d.Lambda;
+import j0.k.Func1;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -29,14 +29,14 @@ public final class MGPreferenceSearchHistoryCache implements SearchHistoryCache 
 
     /* JADX INFO: renamed from: com.discord.utilities.search.history.MGPreferenceSearchHistoryCache$clear$1, reason: invalid class name */
     /* JADX INFO: compiled from: MGPreferenceSearchHistoryCache.kt */
-    public final class AnonymousClass1<T, R> implements b<LinkedList<TargetHistory>, LinkedList<TargetHistory>> {
+    public final class AnonymousClass1<T, R> implements Func1<LinkedList<TargetHistory>, LinkedList<TargetHistory>> {
         public final /* synthetic */ StoreSearch.SearchTarget $searchTarget;
 
         public AnonymousClass1(StoreSearch.SearchTarget searchTarget) {
             this.$searchTarget = searchTarget;
         }
 
-        @Override // j0.k.b
+        @Override // j0.k.Func1
         public /* bridge */ /* synthetic */ LinkedList<TargetHistory> call(LinkedList<TargetHistory> linkedList) {
             return call2(linkedList);
         }
@@ -44,21 +44,21 @@ public final class MGPreferenceSearchHistoryCache implements SearchHistoryCache 
         /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
         public final LinkedList<TargetHistory> call2(LinkedList<TargetHistory> linkedList) {
             MGPreferenceSearchHistoryCache mGPreferenceSearchHistoryCache = MGPreferenceSearchHistoryCache.this;
-            m.checkNotNullExpressionValue(linkedList, "it");
+            Intrinsics3.checkNotNullExpressionValue(linkedList, "it");
             return MGPreferenceSearchHistoryCache.access$removeAndCopy(mGPreferenceSearchHistoryCache, linkedList, this.$searchTarget);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.utilities.search.history.MGPreferenceSearchHistoryCache$getHistory$1, reason: invalid class name */
     /* JADX INFO: compiled from: MGPreferenceSearchHistoryCache.kt */
-    public final class AnonymousClass1<T, R> implements b<LinkedList<TargetHistory>, Collection<? extends List<? extends QueryNode>>> {
+    public final class AnonymousClass1<T, R> implements Func1<LinkedList<TargetHistory>, Collection<? extends List<? extends QueryNode>>> {
         public final /* synthetic */ StoreSearch.SearchTarget $searchTarget;
 
         public AnonymousClass1(StoreSearch.SearchTarget searchTarget) {
             this.$searchTarget = searchTarget;
         }
 
-        @Override // j0.k.b
+        @Override // j0.k.Func1
         public /* bridge */ /* synthetic */ Collection<? extends List<? extends QueryNode>> call(LinkedList<TargetHistory> linkedList) {
             return call2(linkedList);
         }
@@ -66,14 +66,14 @@ public final class MGPreferenceSearchHistoryCache implements SearchHistoryCache 
         /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
         public final Collection<List<QueryNode>> call2(LinkedList<TargetHistory> linkedList) {
             MGPreferenceSearchHistoryCache mGPreferenceSearchHistoryCache = MGPreferenceSearchHistoryCache.this;
-            m.checkNotNullExpressionValue(linkedList, "it");
+            Intrinsics3.checkNotNullExpressionValue(linkedList, "it");
             return MGPreferenceSearchHistoryCache.access$find(mGPreferenceSearchHistoryCache, linkedList, this.$searchTarget);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.utilities.search.history.MGPreferenceSearchHistoryCache$persistQuery$1, reason: invalid class name */
     /* JADX INFO: compiled from: MGPreferenceSearchHistoryCache.kt */
-    public final class AnonymousClass1<T, R> implements b<LinkedList<TargetHistory>, LinkedList<TargetHistory>> {
+    public final class AnonymousClass1<T, R> implements Func1<LinkedList<TargetHistory>, LinkedList<TargetHistory>> {
         public final /* synthetic */ List $query;
         public final /* synthetic */ StoreSearch.SearchTarget $searchTarget;
 
@@ -82,7 +82,7 @@ public final class MGPreferenceSearchHistoryCache implements SearchHistoryCache 
             this.$query = list;
         }
 
-        @Override // j0.k.b
+        @Override // j0.k.Func1
         public /* bridge */ /* synthetic */ LinkedList<TargetHistory> call(LinkedList<TargetHistory> linkedList) {
             return call2(linkedList);
         }
@@ -90,14 +90,14 @@ public final class MGPreferenceSearchHistoryCache implements SearchHistoryCache 
         /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
         public final LinkedList<TargetHistory> call2(LinkedList<TargetHistory> linkedList) {
             MGPreferenceSearchHistoryCache mGPreferenceSearchHistoryCache = MGPreferenceSearchHistoryCache.this;
-            m.checkNotNullExpressionValue(linkedList, "it");
+            Intrinsics3.checkNotNullExpressionValue(linkedList, "it");
             return MGPreferenceSearchHistoryCache.access$putAndCopy(mGPreferenceSearchHistoryCache, linkedList, this.$searchTarget, this.$query);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.utilities.search.history.MGPreferenceSearchHistoryCache$clear$2, reason: invalid class name */
     /* JADX INFO: compiled from: MGPreferenceSearchHistoryCache.kt */
-    public final class AnonymousClass2 extends o implements Function1<LinkedList<TargetHistory>, Unit> {
+    public final class AnonymousClass2 extends Lambda implements Function1<LinkedList<TargetHistory>, Unit> {
         public AnonymousClass2() {
             super(1);
         }
@@ -111,14 +111,14 @@ public final class MGPreferenceSearchHistoryCache implements SearchHistoryCache 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(LinkedList<TargetHistory> linkedList) {
             Persister persisterAccess$getBackingCache$p = MGPreferenceSearchHistoryCache.access$getBackingCache$p(MGPreferenceSearchHistoryCache.this);
-            m.checkNotNullExpressionValue(linkedList, "it");
+            Intrinsics3.checkNotNullExpressionValue(linkedList, "it");
             Persister.set$default(persisterAccess$getBackingCache$p, linkedList, false, 2, null);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.utilities.search.history.MGPreferenceSearchHistoryCache$persistQuery$2, reason: invalid class name */
     /* JADX INFO: compiled from: MGPreferenceSearchHistoryCache.kt */
-    public final class AnonymousClass2 extends o implements Function1<LinkedList<TargetHistory>, Unit> {
+    public final class AnonymousClass2 extends Lambda implements Function1<LinkedList<TargetHistory>, Unit> {
         public AnonymousClass2() {
             super(1);
         }
@@ -132,7 +132,7 @@ public final class MGPreferenceSearchHistoryCache implements SearchHistoryCache 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(LinkedList<TargetHistory> linkedList) {
             Persister persisterAccess$getBackingCache$p = MGPreferenceSearchHistoryCache.access$getBackingCache$p(MGPreferenceSearchHistoryCache.this);
-            m.checkNotNullExpressionValue(linkedList, "it");
+            Intrinsics3.checkNotNullExpressionValue(linkedList, "it");
             Persister.set$default(persisterAccess$getBackingCache$p, linkedList, false, 2, null);
         }
     }
@@ -143,8 +143,8 @@ public final class MGPreferenceSearchHistoryCache implements SearchHistoryCache 
         private final StoreSearch.SearchTarget searchTarget;
 
         public TargetHistory(StoreSearch.SearchTarget searchTarget, LinkedList<List<QueryNode>> linkedList) {
-            m.checkNotNullParameter(searchTarget, "searchTarget");
-            m.checkNotNullParameter(linkedList, "recentQueries");
+            Intrinsics3.checkNotNullParameter(searchTarget, "searchTarget");
+            Intrinsics3.checkNotNullParameter(linkedList, "recentQueries");
             this.searchTarget = searchTarget;
             this.recentQueries = linkedList;
         }
@@ -165,8 +165,8 @@ public final class MGPreferenceSearchHistoryCache implements SearchHistoryCache 
         }
 
         public final TargetHistory copy(StoreSearch.SearchTarget searchTarget, LinkedList<List<QueryNode>> recentQueries) {
-            m.checkNotNullParameter(searchTarget, "searchTarget");
-            m.checkNotNullParameter(recentQueries, "recentQueries");
+            Intrinsics3.checkNotNullParameter(searchTarget, "searchTarget");
+            Intrinsics3.checkNotNullParameter(recentQueries, "recentQueries");
             return new TargetHistory(searchTarget, recentQueries);
         }
 
@@ -178,7 +178,7 @@ public final class MGPreferenceSearchHistoryCache implements SearchHistoryCache 
                 return false;
             }
             TargetHistory targetHistory = (TargetHistory) other;
-            return m.areEqual(this.searchTarget, targetHistory.searchTarget) && m.areEqual(this.recentQueries, targetHistory.recentQueries);
+            return Intrinsics3.areEqual(this.searchTarget, targetHistory.searchTarget) && Intrinsics3.areEqual(this.recentQueries, targetHistory.recentQueries);
         }
 
         public final LinkedList<List<QueryNode>> getRecentQueries() {
@@ -202,7 +202,7 @@ public final class MGPreferenceSearchHistoryCache implements SearchHistoryCache 
         }
 
         public String toString() {
-            StringBuilder sbU = a.U("TargetHistory(searchTarget=");
+            StringBuilder sbU = outline.U("TargetHistory(searchTarget=");
             sbU.append(this.searchTarget);
             sbU.append(", recentQueries=");
             sbU.append(this.recentQueries);
@@ -229,20 +229,20 @@ public final class MGPreferenceSearchHistoryCache implements SearchHistoryCache 
 
     @Override // com.discord.utilities.search.history.SearchHistoryCache
     public void clear(StoreSearch.SearchTarget searchTarget) {
-        m.checkNotNullParameter(searchTarget, "searchTarget");
+        Intrinsics3.checkNotNullParameter(searchTarget, "searchTarget");
         Observable<R> observableG = this.backingCache.getObservable().Z(1).G(new AnonymousClass1(searchTarget));
-        m.checkNotNullExpressionValue(observableG, "backingCache\n        .ge…veAndCopy(searchTarget) }");
+        Intrinsics3.checkNotNullExpressionValue(observableG, "backingCache\n        .ge…veAndCopy(searchTarget) }");
         ObservableExtensionsKt.appSubscribe$default(observableG, (Context) null, "clear history", (Function1) null, new AnonymousClass2(), (Function1) null, (Function0) null, (Function0) null, 117, (Object) null);
     }
 
     private final LinkedList<List<QueryNode>> find(LinkedList<TargetHistory> linkedList, StoreSearch.SearchTarget searchTarget) {
         Iterator<TargetHistory> it = linkedList.iterator();
-        m.checkNotNullExpressionValue(it, "iterator()");
+        Intrinsics3.checkNotNullExpressionValue(it, "iterator()");
         while (it.hasNext()) {
             TargetHistory next = it.next();
-            m.checkNotNullExpressionValue(next, "iter.next()");
+            Intrinsics3.checkNotNullExpressionValue(next, "iter.next()");
             TargetHistory targetHistory = next;
-            if (m.areEqual(targetHistory.getSearchTarget(), searchTarget)) {
+            if (Intrinsics3.areEqual(targetHistory.getSearchTarget(), searchTarget)) {
                 return targetHistory.getRecentQueries();
             }
         }
@@ -251,34 +251,34 @@ public final class MGPreferenceSearchHistoryCache implements SearchHistoryCache 
 
     @Override // com.discord.utilities.search.history.SearchHistoryCache
     public Observable<Collection<List<QueryNode>>> getHistory(StoreSearch.SearchTarget searchTarget) {
-        m.checkNotNullParameter(searchTarget, "searchTarget");
+        Intrinsics3.checkNotNullParameter(searchTarget, "searchTarget");
         Observable observableG = this.backingCache.getObservable().G(new AnonymousClass1(searchTarget));
-        m.checkNotNullExpressionValue(observableG, "backingCache\n        .ge…{ it.find(searchTarget) }");
+        Intrinsics3.checkNotNullExpressionValue(observableG, "backingCache\n        .ge…{ it.find(searchTarget) }");
         return observableG;
     }
 
     @Override // com.discord.utilities.search.history.SearchHistoryCache
     public void persistQuery(StoreSearch.SearchTarget searchTarget, List<? extends QueryNode> query) {
-        m.checkNotNullParameter(searchTarget, "searchTarget");
-        m.checkNotNullParameter(query, "query");
+        Intrinsics3.checkNotNullParameter(searchTarget, "searchTarget");
+        Intrinsics3.checkNotNullParameter(query, "query");
         Observable<R> observableG = this.backingCache.getObservable().Z(1).G(new AnonymousClass1(searchTarget, query));
-        m.checkNotNullExpressionValue(observableG, "backingCache\n        .ge…py(searchTarget, query) }");
+        Intrinsics3.checkNotNullExpressionValue(observableG, "backingCache\n        .ge…py(searchTarget, query) }");
         ObservableExtensionsKt.appSubscribe$default(observableG, (Context) null, "persist query", (Function1) null, new AnonymousClass2(), (Function1) null, (Function0) null, (Function0) null, 117, (Object) null);
     }
 
     private final LinkedList<TargetHistory> putAndCopy(LinkedList<TargetHistory> linkedList, StoreSearch.SearchTarget searchTarget, List<? extends QueryNode> list) {
         TargetHistory targetHistory;
         Iterator<TargetHistory> it = linkedList.iterator();
-        m.checkNotNullExpressionValue(it, "iterator()");
+        Intrinsics3.checkNotNullExpressionValue(it, "iterator()");
         while (true) {
             if (!it.hasNext()) {
                 targetHistory = null;
                 break;
             }
             TargetHistory next = it.next();
-            m.checkNotNullExpressionValue(next, "targetsIter.next()");
+            Intrinsics3.checkNotNullExpressionValue(next, "targetsIter.next()");
             targetHistory = next;
-            if (m.areEqual(targetHistory.getSearchTarget(), searchTarget)) {
+            if (Intrinsics3.areEqual(targetHistory.getSearchTarget(), searchTarget)) {
                 it.remove();
                 break;
             }
@@ -287,26 +287,26 @@ public final class MGPreferenceSearchHistoryCache implements SearchHistoryCache 
             targetHistory = new TargetHistory(searchTarget, new LinkedList());
         }
         Iterator<List<QueryNode>> it2 = targetHistory.getRecentQueries().iterator();
-        m.checkNotNullExpressionValue(it2, "targetHistory.recentQueries.iterator()");
+        Intrinsics3.checkNotNullExpressionValue(it2, "targetHistory.recentQueries.iterator()");
         while (it2.hasNext()) {
             List<QueryNode> next2 = it2.next();
-            m.checkNotNullExpressionValue(next2, "queriesIter.next()");
-            if (m.areEqual(next2, list)) {
+            Intrinsics3.checkNotNullExpressionValue(next2, "queriesIter.next()");
+            if (Intrinsics3.areEqual(next2, list)) {
                 it2.remove();
             }
         }
         targetHistory.getRecentQueries().push(list);
-        linkedList.push(new TargetHistory(searchTarget, new LinkedList(u.take(targetHistory.getRecentQueries(), this.MAX_QUERIES_PER_TARGET))));
-        return new LinkedList<>(u.take(linkedList, this.MAX_SEARCH_TARGETS));
+        linkedList.push(new TargetHistory(searchTarget, new LinkedList(_Collections.take(targetHistory.getRecentQueries(), this.MAX_QUERIES_PER_TARGET))));
+        return new LinkedList<>(_Collections.take(linkedList, this.MAX_SEARCH_TARGETS));
     }
 
     private final LinkedList<TargetHistory> removeAndCopy(LinkedList<TargetHistory> linkedList, StoreSearch.SearchTarget searchTarget) {
         Iterator<TargetHistory> it = linkedList.iterator();
-        m.checkNotNullExpressionValue(it, "iterator()");
+        Intrinsics3.checkNotNullExpressionValue(it, "iterator()");
         while (it.hasNext()) {
             TargetHistory next = it.next();
-            m.checkNotNullExpressionValue(next, "iter.next()");
-            if (m.areEqual(next.getSearchTarget(), searchTarget)) {
+            Intrinsics3.checkNotNullExpressionValue(next, "iter.next()");
+            if (Intrinsics3.areEqual(next.getSearchTarget(), searchTarget)) {
                 it.remove();
                 break;
             }

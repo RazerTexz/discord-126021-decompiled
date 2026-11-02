@@ -10,7 +10,7 @@ import androidx.annotation.MainThread;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.core.view.ViewKt;
 import androidx.fragment.app.FragmentManager;
-import b.a.k.b;
+import b.a.k.FormatUtils;
 import com.discord.R;
 import com.discord.api.activity.Activity;
 import com.discord.api.activity.ActivityTimestamps;
@@ -24,13 +24,13 @@ import com.discord.utilities.drawable.DrawableCompat;
 import com.discord.utilities.icon.IconUtils;
 import com.discord.utilities.images.MGImages;
 import com.discord.utilities.platform.Platform;
-import com.discord.utilities.presence.ActivityUtilsKt;
+import com.discord.utilities.presence.ActivityUtils;
 import com.discord.utilities.presence.PresenceUtils;
 import com.discord.utilities.streams.StreamContext;
 import com.discord.utilities.view.extensions.ViewExtensions;
-import com.discord.widgets.playstation.PlaystationExperimentUtilsKt;
+import com.discord.widgets.playstation.PlaystationExperimentUtils;
 import com.facebook.drawee.view.SimpleDraweeView;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.Locale;
@@ -55,9 +55,9 @@ public final class ViewHolderPlatformRichPresence extends ViewHolderUserRichPres
         public final void onClick(View view) {
             StoreUserConnections storeUserConnections = this.$userConnectionStore;
             String platformId = this.$platform.getPlatformId();
-            m.checkNotNullExpressionValue(view, "it");
+            Intrinsics3.checkNotNullExpressionValue(view, "it");
             Context context = view.getContext();
-            m.checkNotNullExpressionValue(context, "it.context");
+            Intrinsics3.checkNotNullExpressionValue(context, "it.context");
             storeUserConnections.authorizeConnection(platformId, context, Traits.Location.Obj.ACTIVITY_ACTION);
         }
     }
@@ -65,14 +65,14 @@ public final class ViewHolderPlatformRichPresence extends ViewHolderUserRichPres
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public ViewHolderPlatformRichPresence(View view, SimpleDraweeView simpleDraweeView, SimpleDraweeView simpleDraweeView2, TextView textView, TextView textView2, TextView textView3, View view2, Button button) {
         super(view, simpleDraweeView, simpleDraweeView2, textView, textView2, null, textView3, null, view2, button, null, 3);
-        m.checkNotNullParameter(view, "root");
-        m.checkNotNullParameter(simpleDraweeView, "richPresenceImageLarge");
-        m.checkNotNullParameter(simpleDraweeView2, "richPresenceImageSmall");
-        m.checkNotNullParameter(textView, "richPresenceHeader");
-        m.checkNotNullParameter(textView2, "richPresenceTitle");
-        m.checkNotNullParameter(textView3, "richPresenceTime");
-        m.checkNotNullParameter(view2, "richPresenceTextContainer");
-        m.checkNotNullParameter(button, "richPresencePrimaryButton");
+        Intrinsics3.checkNotNullParameter(view, "root");
+        Intrinsics3.checkNotNullParameter(simpleDraweeView, "richPresenceImageLarge");
+        Intrinsics3.checkNotNullParameter(simpleDraweeView2, "richPresenceImageSmall");
+        Intrinsics3.checkNotNullParameter(textView, "richPresenceHeader");
+        Intrinsics3.checkNotNullParameter(textView2, "richPresenceTitle");
+        Intrinsics3.checkNotNullParameter(textView3, "richPresenceTime");
+        Intrinsics3.checkNotNullParameter(view2, "richPresenceTextContainer");
+        Intrinsics3.checkNotNullParameter(button, "richPresencePrimaryButton");
     }
 
     private final void configureImages(Platform platform, ModelRichPresence richPresence) {
@@ -119,19 +119,19 @@ public final class ViewHolderPlatformRichPresence extends ViewHolderUserRichPres
     @MainThread
     public void configureUi(FragmentManager fragmentManager, StreamContext streamContext, boolean isMe, User user, Context applicationContext, ModelRichPresence richPresence, boolean userInSameVoiceChannel) {
         boolean z2;
-        m.checkNotNullParameter(fragmentManager, "fragmentManager");
-        m.checkNotNullParameter(applicationContext, "applicationContext");
+        Intrinsics3.checkNotNullParameter(fragmentManager, "fragmentManager");
+        Intrinsics3.checkNotNullParameter(applicationContext, "applicationContext");
         disposeSubscriptions();
         Activity primaryActivity = richPresence != null ? richPresence.getPrimaryActivity() : null;
-        if (primaryActivity == null || !ActivityUtilsKt.isGamePlatform(primaryActivity)) {
+        if (primaryActivity == null || !ActivityUtils.isGamePlatform(primaryActivity)) {
             getRoot().setVisibility(8);
             return;
         }
         getRoot().setVisibility(0);
-        Platform platformFrom = ActivityUtilsKt.isXboxActivity(primaryActivity) ? Platform.XBOX : Platform.INSTANCE.from(primaryActivity.getPlatform());
+        Platform platformFrom = ActivityUtils.isXboxActivity(primaryActivity) ? Platform.XBOX : Platform.INSTANCE.from(primaryActivity.getPlatform());
         TextView richPresenceHeader = getRichPresenceHeader();
         Context context = getRichPresenceHeader().getContext();
-        m.checkNotNullExpressionValue(context, "richPresenceHeader.context");
+        Intrinsics3.checkNotNullExpressionValue(context, "richPresenceHeader.context");
         richPresenceHeader.setText(PresenceUtils.getActivityHeader(context, primaryActivity));
         getRichPresenceTitle().setText(primaryActivity.getName());
         TextView richPresenceTime = getRichPresenceTime();
@@ -139,7 +139,7 @@ public final class ViewHolderPlatformRichPresence extends ViewHolderUserRichPres
         ViewExtensions.setTextAndVisibilityBy(richPresenceTime, timestamps != null ? friendlyTime(timestamps) : null);
         getRichPresenceTextContainer().setSelected(true);
         StoreStream.Companion companion = StoreStream.INSTANCE;
-        boolean zCanSeePlaystationAccountIntegration = PlaystationExperimentUtilsKt.canSeePlaystationAccountIntegration(companion.getExperiments());
+        boolean zCanSeePlaystationAccountIntegration = PlaystationExperimentUtils.canSeePlaystationAccountIntegration(companion.getExperiments());
         if (!platformFrom.getEnabled() || (platformFrom == Platform.PLAYSTATION && !zCanSeePlaystationAccountIntegration)) {
             Button richPresencePrimaryButton = getRichPresencePrimaryButton();
             if (richPresencePrimaryButton != null) {
@@ -162,11 +162,11 @@ public final class ViewHolderPlatformRichPresence extends ViewHolderUserRichPres
                     String type = it.next().getType();
                     String strName = platformFrom.name();
                     Locale locale = Locale.ENGLISH;
-                    m.checkNotNullExpressionValue(locale, "Locale.ENGLISH");
+                    Intrinsics3.checkNotNullExpressionValue(locale, "Locale.ENGLISH");
                     Objects.requireNonNull(strName, "null cannot be cast to non-null type java.lang.String");
                     String lowerCase = strName.toLowerCase(locale);
-                    m.checkNotNullExpressionValue(lowerCase, "(this as java.lang.String).toLowerCase(locale)");
-                    if (m.areEqual(type, lowerCase)) {
+                    Intrinsics3.checkNotNullExpressionValue(lowerCase, "(this as java.lang.String).toLowerCase(locale)");
+                    if (Intrinsics3.areEqual(type, lowerCase)) {
                         z2 = true;
                         break;
                     }
@@ -182,8 +182,8 @@ public final class ViewHolderPlatformRichPresence extends ViewHolderUserRichPres
             Button richPresencePrimaryButton4 = getRichPresencePrimaryButton();
             if (richPresencePrimaryButton4 != null) {
                 Context context2 = getRoot().getContext();
-                m.checkNotNullExpressionValue(context2, "root.context");
-                richPresencePrimaryButton4.setText(b.h(context2, R.string.user_activity_connect_platform, new Object[]{platformFrom.getProperName()}, null, 4));
+                Intrinsics3.checkNotNullExpressionValue(context2, "root.context");
+                richPresencePrimaryButton4.setText(FormatUtils.h(context2, R.string.user_activity_connect_platform, new Object[]{platformFrom.getProperName()}, null, 4));
             }
             Button richPresencePrimaryButton5 = getRichPresencePrimaryButton();
             if (richPresencePrimaryButton5 != null) {

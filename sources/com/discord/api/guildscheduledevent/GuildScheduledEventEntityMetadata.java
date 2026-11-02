@@ -1,8 +1,8 @@
 package com.discord.api.guildscheduledevent;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.models.domain.ModelAuditLogEntry;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 import java.io.Serializable;
 import kotlin.jvm.internal.DefaultConstructorMarker;
 
@@ -32,7 +32,7 @@ public final /* data */ class GuildScheduledEventEntityMetadata implements Seria
         }
 
         public final GuildScheduledEventEntityMetadata a(GuildScheduledEventEntityType entityType, String location) {
-            m.checkNotNullParameter(entityType, "entityType");
+            Intrinsics3.checkNotNullParameter(entityType, "entityType");
             return entityType.ordinal() != 3 ? new GuildScheduledEventEntityMetadata(null, 1) : new GuildScheduledEventEntityMetadata(location);
         }
 
@@ -50,7 +50,7 @@ public final /* data */ class GuildScheduledEventEntityMetadata implements Seria
 
     public boolean equals(Object other) {
         if (this != other) {
-            return (other instanceof GuildScheduledEventEntityMetadata) && m.areEqual(this.location, ((GuildScheduledEventEntityMetadata) other).location);
+            return (other instanceof GuildScheduledEventEntityMetadata) && Intrinsics3.areEqual(this.location, ((GuildScheduledEventEntityMetadata) other).location);
         }
         return true;
     }
@@ -69,7 +69,7 @@ public final /* data */ class GuildScheduledEventEntityMetadata implements Seria
     }
 
     public String toString() {
-        return a.J(a.U("GuildScheduledEventEntityMetadata(location="), this.location, ")");
+        return outline.J(outline.U("GuildScheduledEventEntityMetadata(location="), this.location, ")");
     }
 
     public GuildScheduledEventEntityMetadata(String str) {

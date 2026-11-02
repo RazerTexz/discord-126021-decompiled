@@ -2,11 +2,13 @@ package com.discord.rtcconnection.mediaengine;
 
 import androidx.annotation.AnyThread;
 import androidx.core.app.FrameMetricsAggregator;
+import b.a.q.MediaEngineExecutorService;
+import b.d.b.a.outline;
+import co.discord.media_engine.DeviceDescription4;
 import co.discord.media_engine.RtcRegion;
 import co.discord.media_engine.StreamParameters;
-import co.discord.media_engine.VideoInputDeviceDescription;
 import com.hammerandchisel.libdiscord.Discord;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 import java.util.List;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function1;
@@ -26,8 +28,8 @@ public interface MediaEngine {
         public final String audioLayer;
 
         public AudioInfo(String str, String str2) {
-            m.checkNotNullParameter(str, "audioSubsystem");
-            m.checkNotNullParameter(str2, "audioLayer");
+            Intrinsics3.checkNotNullParameter(str, "audioSubsystem");
+            Intrinsics3.checkNotNullParameter(str2, "audioLayer");
             this.audioSubsystem = str;
             this.audioLayer = str2;
         }
@@ -40,7 +42,7 @@ public interface MediaEngine {
                 return false;
             }
             AudioInfo audioInfo = (AudioInfo) other;
-            return m.areEqual(this.audioSubsystem, audioInfo.audioSubsystem) && m.areEqual(this.audioLayer, audioInfo.audioLayer);
+            return Intrinsics3.areEqual(this.audioSubsystem, audioInfo.audioSubsystem) && Intrinsics3.areEqual(this.audioLayer, audioInfo.audioLayer);
         }
 
         public int hashCode() {
@@ -51,10 +53,10 @@ public interface MediaEngine {
         }
 
         public String toString() {
-            StringBuilder sbU = b.d.b.a.a.U("AudioInfo(audioSubsystem=");
+            StringBuilder sbU = outline.U("AudioInfo(audioSubsystem=");
             sbU.append(this.audioSubsystem);
             sbU.append(", audioLayer=");
-            return b.d.b.a.a.J(sbU, this.audioLayer, ")");
+            return outline.J(sbU, this.audioLayer, ")");
         }
     }
 
@@ -205,7 +207,7 @@ public interface MediaEngine {
         }
 
         public String toString() {
-            StringBuilder sbU = b.d.b.a.a.U("EchoCancellationInfo(builtinAecRequested=");
+            StringBuilder sbU = outline.U("EchoCancellationInfo(builtinAecRequested=");
             sbU.append(this.builtinAecRequested);
             sbU.append(", builtinAecSupportedNative=");
             sbU.append(this.builtinAecSupportedNative);
@@ -222,7 +224,7 @@ public interface MediaEngine {
             sbU.append(", aecEnabledByDefault=");
             sbU.append(this.aecEnabledByDefault);
             sbU.append(", aecMobileModeByDefault=");
-            return b.d.b.a.a.O(sbU, this.aecMobileModeByDefault, ")");
+            return outline.O(sbU, this.aecMobileModeByDefault, ")");
         }
 
         public /* synthetic */ EchoCancellationInfo(boolean z2, boolean z3, boolean z4, boolean z5, boolean z6, boolean z7, boolean z8, boolean z9, boolean z10, int i) {
@@ -271,10 +273,10 @@ public interface MediaEngine {
         }
 
         public String toString() {
-            StringBuilder sbU = b.d.b.a.a.U("LocalVoiceStatus(amplitude=");
+            StringBuilder sbU = outline.U("LocalVoiceStatus(amplitude=");
             sbU.append(this.amplitude);
             sbU.append(", isSpeaking=");
-            return b.d.b.a.a.O(sbU, this.isSpeaking, ")");
+            return outline.O(sbU, this.isSpeaking, ")");
         }
     }
 
@@ -322,8 +324,8 @@ public interface MediaEngine {
         public final boolean isSelfMuted;
 
         public VoiceConfig(float f, boolean z2, boolean z3, boolean z4, boolean z5, MediaEngineConnection.InputMode inputMode, MediaEngineConnection.c cVar, boolean z6, boolean z7) {
-            m.checkNotNullParameter(inputMode, "inputMode");
-            m.checkNotNullParameter(cVar, "inputModeOptions");
+            Intrinsics3.checkNotNullParameter(inputMode, "inputMode");
+            Intrinsics3.checkNotNullParameter(cVar, "inputModeOptions");
             this.outputVolume = f;
             this.echoCancellation = z2;
             this.noiseSuppression = z3;
@@ -343,7 +345,7 @@ public interface MediaEngine {
                 return false;
             }
             VoiceConfig voiceConfig = (VoiceConfig) other;
-            return Float.compare(this.outputVolume, voiceConfig.outputVolume) == 0 && this.echoCancellation == voiceConfig.echoCancellation && this.noiseSuppression == voiceConfig.noiseSuppression && this.noiseCancellation == voiceConfig.noiseCancellation && this.automaticGainControl == voiceConfig.automaticGainControl && m.areEqual(this.inputMode, voiceConfig.inputMode) && m.areEqual(this.inputModeOptions, voiceConfig.inputModeOptions) && this.isSelfDeafened == voiceConfig.isSelfDeafened && this.isSelfMuted == voiceConfig.isSelfMuted;
+            return Float.compare(this.outputVolume, voiceConfig.outputVolume) == 0 && this.echoCancellation == voiceConfig.echoCancellation && this.noiseSuppression == voiceConfig.noiseSuppression && this.noiseCancellation == voiceConfig.noiseCancellation && this.automaticGainControl == voiceConfig.automaticGainControl && Intrinsics3.areEqual(this.inputMode, voiceConfig.inputMode) && Intrinsics3.areEqual(this.inputModeOptions, voiceConfig.inputModeOptions) && this.isSelfDeafened == voiceConfig.isSelfDeafened && this.isSelfMuted == voiceConfig.isSelfMuted;
         }
 
         /* JADX WARN: Multi-variable type inference failed */
@@ -412,7 +414,7 @@ public interface MediaEngine {
         }
 
         public String toString() {
-            StringBuilder sbU = b.d.b.a.a.U("VoiceConfig(outputVolume=");
+            StringBuilder sbU = outline.U("VoiceConfig(outputVolume=");
             sbU.append(this.outputVolume);
             sbU.append(", echoCancellation=");
             sbU.append(this.echoCancellation);
@@ -429,7 +431,7 @@ public interface MediaEngine {
             sbU.append(", isSelfDeafened=");
             sbU.append(this.isSelfDeafened);
             sbU.append(", isSelfMuted=");
-            return b.d.b.a.a.O(sbU, this.isSelfMuted, ")");
+            return outline.O(sbU, this.isSelfMuted, ")");
         }
     }
 
@@ -443,8 +445,8 @@ public interface MediaEngine {
         public final List<StreamParameters> d;
 
         public a(int i, String str, int i2, List<StreamParameters> list) {
-            m.checkNotNullParameter(str, "ip");
-            m.checkNotNullParameter(list, "streams");
+            Intrinsics3.checkNotNullParameter(str, "ip");
+            Intrinsics3.checkNotNullParameter(list, "streams");
             this.a = i;
             this.f2797b = str;
             this.c = i2;
@@ -459,7 +461,7 @@ public interface MediaEngine {
                 return false;
             }
             a aVar = (a) obj;
-            return this.a == aVar.a && m.areEqual(this.f2797b, aVar.f2797b) && this.c == aVar.c && m.areEqual(this.d, aVar.d);
+            return this.a == aVar.a && Intrinsics3.areEqual(this.f2797b, aVar.f2797b) && this.c == aVar.c && Intrinsics3.areEqual(this.d, aVar.d);
         }
 
         public int hashCode() {
@@ -471,14 +473,14 @@ public interface MediaEngine {
         }
 
         public String toString() {
-            StringBuilder sbU = b.d.b.a.a.U("ConnectionOptions(ssrc=");
+            StringBuilder sbU = outline.U("ConnectionOptions(ssrc=");
             sbU.append(this.a);
             sbU.append(", ip=");
             sbU.append(this.f2797b);
             sbU.append(", port=");
             sbU.append(this.c);
             sbU.append(", streams=");
-            return b.d.b.a.a.L(sbU, this.d, ")");
+            return outline.L(sbU, this.d, ")");
         }
     }
 
@@ -502,7 +504,7 @@ public interface MediaEngine {
 
     void b(RtcRegion[] regionsWithIps, Function1<? super String[], Unit> callback);
 
-    b.a.q.c c();
+    MediaEngineExecutorService c();
 
     @AnyThread
     void d(VoiceConfig voiceConfig);
@@ -519,7 +521,7 @@ public interface MediaEngine {
 
     Discord i();
 
-    void j(Function1<? super VideoInputDeviceDescription[], Unit> devicesCallback);
+    void j(Function1<? super DeviceDescription4[], Unit> devicesCallback);
 
     void k(boolean enabled);
 

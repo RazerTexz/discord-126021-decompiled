@@ -1,15 +1,23 @@
 package s.a;
 
 import androidx.recyclerview.widget.RecyclerView;
+import b.d.b.a.outline;
+import d0.d0._Ranges;
+import d0.z.d.Intrinsics3;
 import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
 import java.util.concurrent.locks.LockSupport;
 import kotlin.Unit;
 import kotlin.coroutines.CoroutineContext;
 import kotlinx.coroutines.CancellableContinuation;
+import s.a.a.ArrayQueue;
+import s.a.a.LockFreeTaskQueue2;
+import s.a.a.Symbol3;
+import s.a.a.ThreadSafeHeap;
+import s.a.a.ThreadSafeHeap2;
 
 /* JADX INFO: compiled from: EventLoop.common.kt */
 /* JADX INFO: loaded from: classes3.dex */
-public abstract class r0 extends s0 implements h0 {
+public abstract class r0 extends EventLoop2 implements Delay {
     public static final AtomicReferenceFieldUpdater n = AtomicReferenceFieldUpdater.newUpdater(r0.class, Object.class, "_queue");
     public static final AtomicReferenceFieldUpdater o = AtomicReferenceFieldUpdater.newUpdater(r0.class, Object.class, "_delayed");
     public volatile Object _queue = null;
@@ -58,7 +66,7 @@ public abstract class r0 extends s0 implements h0 {
     }
 
     /* JADX INFO: compiled from: EventLoop.common.kt */
-    public final class d extends s.a.a.v<c> {
+    public final class d extends ThreadSafeHeap<c> {
 
         /* JADX INFO: renamed from: b, reason: collision with root package name */
         public long f3843b;
@@ -104,7 +112,7 @@ public abstract class r0 extends s0 implements h0 {
             if (obj == null) {
                 break;
             }
-            if (!(obj instanceof s.a.a.m)) {
+            if (!(obj instanceof LockFreeTaskQueue2)) {
                 if (obj == t0.f3844b) {
                     break;
                 }
@@ -113,24 +121,24 @@ public abstract class r0 extends s0 implements h0 {
                     break;
                 }
             } else {
-                s.a.a.m mVar = (s.a.a.m) obj;
-                Object objE = mVar.e();
-                if (objE != s.a.a.m.c) {
+                LockFreeTaskQueue2 lockFreeTaskQueue2 = (LockFreeTaskQueue2) obj;
+                Object objE = lockFreeTaskQueue2.e();
+                if (objE != LockFreeTaskQueue2.c) {
                     runnable = (Runnable) objE;
                     break;
                 }
-                n.compareAndSet(this, obj, mVar.d());
+                n.compareAndSet(this, obj, lockFreeTaskQueue2.d());
             }
         }
         if (runnable != null) {
             runnable.run();
             return 0L;
         }
-        s.a.a.b<j0<?>> bVar = this.m;
-        if (bVar == null) {
+        ArrayQueue<DispatchedTask<?>> arrayQueue = this.m;
+        if (arrayQueue == null) {
             j = Long.MAX_VALUE;
         } else {
-            if (bVar.f3826b == bVar.c) {
+            if (arrayQueue.f3826b == arrayQueue.c) {
                 j = Long.MAX_VALUE;
             } else {
                 j = 0;
@@ -146,12 +154,12 @@ public abstract class r0 extends s0 implements h0 {
                 synchronized (dVar) {
                     cVarB = dVar.b();
                     if (cVarB != null) {
-                        return d0.d0.f.coerceAtLeast(cVarB.l - System.nanoTime(), 0L);
+                        return _Ranges.coerceAtLeast(cVarB.l - System.nanoTime(), 0L);
                     }
                 }
             }
-        } else if (obj2 instanceof s.a.a.m) {
-            if (!((s.a.a.m) obj2).c()) {
+        } else if (obj2 instanceof LockFreeTaskQueue2) {
+            if (!((LockFreeTaskQueue2) obj2).c()) {
                 return 0L;
             }
             dVar = (d) this._delayed;
@@ -160,7 +168,7 @@ public abstract class r0 extends s0 implements h0 {
                 }
                 cVarB = dVar.b();
                 if (cVarB != null) {
-                    return d0.d0.f.coerceAtLeast(cVarB.l - System.nanoTime(), 0L);
+                    return _Ranges.coerceAtLeast(cVarB.l - System.nanoTime(), 0L);
                 }
             }
         } else if (obj2 != t0.f3844b) {
@@ -171,7 +179,7 @@ public abstract class r0 extends s0 implements h0 {
 
     public final void T(Runnable runnable) {
         if (!U(runnable)) {
-            d0.q.T(runnable);
+            DefaultExecutor.q.T(runnable);
             return;
         }
         Thread threadS = S();
@@ -190,14 +198,14 @@ public abstract class r0 extends s0 implements h0 {
                 if (n.compareAndSet(this, null, runnable)) {
                     return true;
                 }
-            } else if (obj instanceof s.a.a.m) {
-                s.a.a.m mVar = (s.a.a.m) obj;
-                int iA = mVar.a(runnable);
+            } else if (obj instanceof LockFreeTaskQueue2) {
+                LockFreeTaskQueue2 lockFreeTaskQueue2 = (LockFreeTaskQueue2) obj;
+                int iA = lockFreeTaskQueue2.a(runnable);
                 if (iA == 0) {
                     return true;
                 }
                 if (iA == 1) {
-                    n.compareAndSet(this, obj, mVar.d());
+                    n.compareAndSet(this, obj, lockFreeTaskQueue2.d());
                 } else if (iA == 2) {
                     return false;
                 }
@@ -205,10 +213,10 @@ public abstract class r0 extends s0 implements h0 {
                 if (obj == t0.f3844b) {
                     return false;
                 }
-                s.a.a.m mVar2 = new s.a.a.m(8, true);
-                mVar2.a((Runnable) obj);
-                mVar2.a(runnable);
-                if (n.compareAndSet(this, obj, mVar2)) {
+                LockFreeTaskQueue2 lockFreeTaskQueue3 = new LockFreeTaskQueue2(8, true);
+                lockFreeTaskQueue3.a((Runnable) obj);
+                lockFreeTaskQueue3.a(runnable);
+                if (n.compareAndSet(this, obj, lockFreeTaskQueue3)) {
                     return true;
                 }
             }
@@ -216,8 +224,8 @@ public abstract class r0 extends s0 implements h0 {
     }
 
     public boolean V() {
-        s.a.a.b<j0<?>> bVar = this.m;
-        if (!(bVar == null || bVar.f3826b == bVar.c)) {
+        ArrayQueue<DispatchedTask<?>> arrayQueue = this.m;
+        if (!(arrayQueue == null || arrayQueue.f3826b == arrayQueue.c)) {
             return false;
         }
         d dVar = (d) this._delayed;
@@ -230,8 +238,8 @@ public abstract class r0 extends s0 implements h0 {
         if (obj == null) {
             return true;
         }
-        if (obj instanceof s.a.a.m) {
-            return ((s.a.a.m) obj).c();
+        if (obj instanceof LockFreeTaskQueue2) {
+            return ((LockFreeTaskQueue2) obj).c();
         }
         return obj == t0.f3844b;
     }
@@ -246,7 +254,7 @@ public abstract class r0 extends s0 implements h0 {
             if (dVar == null) {
                 o.compareAndSet(this, null, new d(j));
                 Object obj = this._delayed;
-                d0.z.d.m.checkNotNull(obj);
+                Intrinsics3.checkNotNull(obj);
                 dVar = (d) obj;
             }
             synchronized (cVar) {
@@ -285,7 +293,7 @@ public abstract class r0 extends s0 implements h0 {
         }
         if (c2 != 0) {
             if (c2 == 1) {
-                d0.q.W(j, cVar);
+                DefaultExecutor.q.W(j, cVar);
                 return;
             } else {
                 if (c2 != 2) {
@@ -307,13 +315,13 @@ public abstract class r0 extends s0 implements h0 {
         LockSupport.unpark(threadS);
     }
 
-    @Override // s.a.h0
+    @Override // s.a.Delay
     public void c(long j, CancellableContinuation<? super Unit> cancellableContinuation) {
         long jA = t0.a(j);
         if (jA < 4611686018427387903L) {
             long jNanoTime = System.nanoTime();
             a aVar = new a(jA + jNanoTime, cancellableContinuation);
-            cancellableContinuation.f(new n0(aVar));
+            cancellableContinuation.f(new CancellableContinuation2(aVar));
             W(jNanoTime, aVar);
         }
     }
@@ -335,16 +343,16 @@ public abstract class r0 extends s0 implements h0 {
                 if (n.compareAndSet(this, null, t0.f3844b)) {
                     break;
                 }
-            } else if (obj instanceof s.a.a.m) {
-                ((s.a.a.m) obj).b();
+            } else if (obj instanceof LockFreeTaskQueue2) {
+                ((LockFreeTaskQueue2) obj).b();
                 break;
             } else {
                 if (obj == t0.f3844b) {
                     break;
                 }
-                s.a.a.m mVar = new s.a.a.m(8, true);
-                mVar.a((Runnable) obj);
-                if (n.compareAndSet(this, obj, mVar)) {
+                LockFreeTaskQueue2 lockFreeTaskQueue2 = new LockFreeTaskQueue2(8, true);
+                lockFreeTaskQueue2.a((Runnable) obj);
+                if (n.compareAndSet(this, obj, lockFreeTaskQueue2)) {
                     break;
                 }
             }
@@ -364,17 +372,17 @@ public abstract class r0 extends s0 implements h0 {
             if (cVar == null) {
                 return;
             } else {
-                d0.q.W(jNanoTime, cVar);
+                DefaultExecutor.q.W(jNanoTime, cVar);
             }
         }
     }
 
-    public m0 x(long j, Runnable runnable, CoroutineContext coroutineContext) {
-        return e0.a.x(j, runnable, coroutineContext);
+    public Job2 x(long j, Runnable runnable, CoroutineContext coroutineContext) {
+        return DefaultExecutor2.a.x(j, runnable, coroutineContext);
     }
 
     /* JADX INFO: compiled from: EventLoop.common.kt */
-    public abstract class c implements Runnable, Comparable<c>, m0, s.a.a.w {
+    public abstract class c implements Runnable, Comparable<c>, Job2, ThreadSafeHeap2 {
         public Object j;
         public long l;
         public int k = -1;
@@ -392,11 +400,11 @@ public abstract class r0 extends s0 implements h0 {
             return j < 0 ? -1 : 0;
         }
 
-        @Override // s.a.m0
+        @Override // s.a.Job2
         public final synchronized void dispose() {
             Object obj = this.j;
-            s.a.a.t tVar = t0.a;
-            if (obj == tVar) {
+            Symbol3 symbol3 = t0.a;
+            if (obj == symbol3) {
                 return;
             }
             if (!(obj instanceof d)) {
@@ -410,38 +418,38 @@ public abstract class r0 extends s0 implements h0 {
                     }
                 }
             }
-            this.j = tVar;
+            this.j = symbol3;
         }
 
-        @Override // s.a.a.w
+        @Override // s.a.a.ThreadSafeHeap2
         public void f(int i) {
             this.k = i;
         }
 
-        @Override // s.a.a.w
-        public void g(s.a.a.v<?> vVar) {
+        @Override // s.a.a.ThreadSafeHeap2
+        public void g(ThreadSafeHeap<?> threadSafeHeap) {
             if (!(this.j != t0.a)) {
                 throw new IllegalArgumentException("Failed requirement.".toString());
             }
-            this.j = vVar;
+            this.j = threadSafeHeap;
         }
 
-        @Override // s.a.a.w
+        @Override // s.a.a.ThreadSafeHeap2
         public int getIndex() {
             return this.k;
         }
 
-        @Override // s.a.a.w
-        public s.a.a.v<?> i() {
+        @Override // s.a.a.ThreadSafeHeap2
+        public ThreadSafeHeap<?> i() {
             Object obj = this.j;
-            if (!(obj instanceof s.a.a.v)) {
+            if (!(obj instanceof ThreadSafeHeap)) {
                 obj = null;
             }
-            return (s.a.a.v) obj;
+            return (ThreadSafeHeap) obj;
         }
 
         public String toString() {
-            StringBuilder sbU = b.d.b.a.a.U("Delayed[nanos=");
+            StringBuilder sbU = outline.U("Delayed[nanos=");
             sbU.append(this.l);
             sbU.append(']');
             return sbU.toString();

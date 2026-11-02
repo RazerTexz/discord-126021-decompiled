@@ -10,9 +10,9 @@ import com.discord.utilities.error.Error;
 import com.discord.utilities.logging.Logger;
 import com.discord.utilities.rx.ObservableExtensionsKt;
 import com.google.firebase.crashlytics.FirebaseCrashlytics;
-import d0.g0.w;
-import d0.z.d.m;
-import d0.z.d.o;
+import d0.g0.Strings4;
+import d0.z.d.Intrinsics3;
+import d0.z.d.Lambda;
 import java.util.Iterator;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
@@ -26,7 +26,7 @@ public final class SystemLogReport {
 
     /* JADX INFO: renamed from: com.discord.utilities.systemlog.SystemLogReport$reportLastCrash$1, reason: invalid class name */
     /* JADX INFO: compiled from: SystemLogReport.kt */
-    public final class AnonymousClass1 extends o implements Function1<Error, Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function1<Error, Unit> {
         public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
 
         public AnonymousClass1() {
@@ -41,7 +41,7 @@ public final class SystemLogReport {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(Error error) {
-            m.checkNotNullParameter(error, "error");
+            Intrinsics3.checkNotNullParameter(error, "error");
             error.setShouldLog(false);
             error.setShowErrorToasts(false);
             SystemLogReport.access$sendReport(SystemLogReport.INSTANCE, null);
@@ -51,7 +51,7 @@ public final class SystemLogReport {
 
     /* JADX INFO: renamed from: com.discord.utilities.systemlog.SystemLogReport$reportLastCrash$2, reason: invalid class name */
     /* JADX INFO: compiled from: SystemLogReport.kt */
-    public final class AnonymousClass2 extends o implements Function1<SystemLogUtils.Tombstone, Unit> {
+    public final class AnonymousClass2 extends Lambda implements Function1<SystemLogUtils.Tombstone, Unit> {
         public static final AnonymousClass2 INSTANCE = new AnonymousClass2();
 
         public AnonymousClass2() {
@@ -66,8 +66,8 @@ public final class SystemLogReport {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(SystemLogUtils.Tombstone tombstone) {
-            m.checkNotNullParameter(tombstone, "crash");
-            Iterator it = w.split$default((CharSequence) tombstone.getText(), new String[]{"\n"}, false, 0, 6, (Object) null).iterator();
+            Intrinsics3.checkNotNullParameter(tombstone, "crash");
+            Iterator it = Strings4.split$default((CharSequence) tombstone.getText(), new String[]{"\n"}, false, 0, 6, (Object) null).iterator();
             while (it.hasNext()) {
                 AppLog.g.recordBreadcrumb((String) it.next(), "Tombstone");
             }
@@ -97,11 +97,11 @@ public final class SystemLogReport {
     }
 
     private final boolean checkHashChanged(String hash) {
-        if (m.areEqual(getPrefsSessionDurable().getString(CACHE_KEY_LAST_STORED_TOMBSTONE_HASH, null), hash)) {
+        if (Intrinsics3.areEqual(getPrefsSessionDurable().getString(CACHE_KEY_LAST_STORED_TOMBSTONE_HASH, null), hash)) {
             return false;
         }
         SharedPreferences.Editor editorEdit = getPrefsSessionDurable().edit();
-        m.checkNotNullExpressionValue(editorEdit, "editor");
+        Intrinsics3.checkNotNullExpressionValue(editorEdit, "editor");
         editorEdit.putString(CACHE_KEY_LAST_STORED_TOMBSTONE_HASH, hash);
         editorEdit.apply();
         return true;

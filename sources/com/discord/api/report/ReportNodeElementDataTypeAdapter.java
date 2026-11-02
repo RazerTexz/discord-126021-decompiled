@@ -1,11 +1,11 @@
 package com.discord.api.report;
 
-import b.a.w.a;
+import b.a.w.TypeTokens;
 import com.google.gson.Gson;
 import com.google.gson.TypeAdapter;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 import java.io.IOException;
 import java.util.List;
 
@@ -14,9 +14,9 @@ import java.util.List;
 public final class ReportNodeElementDataTypeAdapter extends TypeAdapter<ReportNodeElementData> {
     @Override // com.google.gson.TypeAdapter
     public ReportNodeElementData read(JsonReader jsonReader) {
-        m.checkNotNullParameter(jsonReader, "reader");
-        Object objD = new Gson().d(jsonReader, a.a);
-        m.checkNotNullExpressionValue(objD, "Gson().fromJson(reader, STRING_LIST_TYPE)");
+        Intrinsics3.checkNotNullParameter(jsonReader, "reader");
+        Object objD = new Gson().d(jsonReader, TypeTokens.a);
+        Intrinsics3.checkNotNullExpressionValue(objD, "Gson().fromJson(reader, STRING_LIST_TYPE)");
         List list = (List) objD;
         return new ReportNodeElementData((String) list.get(0), (String) list.get(1));
     }
@@ -24,7 +24,7 @@ public final class ReportNodeElementDataTypeAdapter extends TypeAdapter<ReportNo
     @Override // com.google.gson.TypeAdapter
     public void write(JsonWriter jsonWriter, ReportNodeElementData reportNodeElementData) throws IOException {
         ReportNodeElementData reportNodeElementData2 = reportNodeElementData;
-        m.checkNotNullParameter(jsonWriter, "out");
+        Intrinsics3.checkNotNullParameter(jsonWriter, "out");
         if (reportNodeElementData2 == null) {
             jsonWriter.s();
         } else {

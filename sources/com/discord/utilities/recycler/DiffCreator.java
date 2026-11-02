@@ -8,18 +8,18 @@ import androidx.exifinterface.media.ExifInterface;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.RecyclerView.ViewHolder;
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.app.AppComponent;
 import com.discord.utilities.analytics.Traits;
 import com.discord.utilities.collections.ShallowPartitionMap;
 import com.discord.utilities.rx.ObservableExtensionsKt;
-import d0.z.d.m;
-import d0.z.d.o;
-import j0.k.b;
+import d0.z.d.Intrinsics3;
+import d0.z.d.Lambda;
+import j0.k.Func1;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import kotlin.Pair;
+import kotlin.Tuples2;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
@@ -48,12 +48,12 @@ public final class DiffCreator<T extends List<? extends DiffKeyProvider>, VH ext
 
         @Override // androidx.recyclerview.widget.DiffUtil.Callback
         public boolean areContentsTheSame(int oldItemPosition, int newItemPosition) {
-            return m.areEqual((DiffKeyProvider) this.$oldItems.get(oldItemPosition), (DiffKeyProvider) this.$newItems.get(newItemPosition));
+            return Intrinsics3.areEqual((DiffKeyProvider) this.$oldItems.get(oldItemPosition), (DiffKeyProvider) this.$newItems.get(newItemPosition));
         }
 
         @Override // androidx.recyclerview.widget.DiffUtil.Callback
         public boolean areItemsTheSame(int oldItemPosition, int newItemPosition) {
-            return m.areEqual(((DiffKeyProvider) this.$oldItems.get(oldItemPosition)).getKey(), ((DiffKeyProvider) this.$newItems.get(newItemPosition)).getKey());
+            return Intrinsics3.areEqual(((DiffKeyProvider) this.$oldItems.get(oldItemPosition)).getKey(), ((DiffKeyProvider) this.$newItems.get(newItemPosition)).getKey());
         }
 
         @Override // androidx.recyclerview.widget.DiffUtil.Callback
@@ -69,24 +69,24 @@ public final class DiffCreator<T extends List<? extends DiffKeyProvider>, VH ext
 
     /* JADX INFO: renamed from: com.discord.utilities.recycler.DiffCreator$subscribeToAsyncUpdateRequests$1, reason: invalid class name */
     /* JADX INFO: compiled from: DiffCreator.kt */
-    public final class AnonymousClass1<T, R> implements b<UpdateRequest<T, VH>, Pair<? extends UpdateRequest<T, VH>, ? extends DiffUtil.DiffResult>> {
+    public final class AnonymousClass1<T, R> implements Func1<UpdateRequest<T, VH>, Tuples2<? extends UpdateRequest<T, VH>, ? extends DiffUtil.DiffResult>> {
         public AnonymousClass1() {
         }
 
-        @Override // j0.k.b
+        @Override // j0.k.Func1
         public /* bridge */ /* synthetic */ Object call(Object obj) {
             return call((UpdateRequest) obj);
         }
 
         /* JADX WARN: Multi-variable type inference failed */
-        public final Pair<UpdateRequest<T, VH>, DiffUtil.DiffResult> call(UpdateRequest<T, VH> updateRequest) {
-            return new Pair<>(updateRequest, DiffCreator.this.calculateDiffResult((List) updateRequest.getOldItems(), (List) updateRequest.getNewItems()));
+        public final Tuples2<UpdateRequest<T, VH>, DiffUtil.DiffResult> call(UpdateRequest<T, VH> updateRequest) {
+            return new Tuples2<>(updateRequest, DiffCreator.this.calculateDiffResult((List) updateRequest.getOldItems(), (List) updateRequest.getNewItems()));
         }
     }
 
     /* JADX INFO: renamed from: com.discord.utilities.recycler.DiffCreator$subscribeToAsyncUpdateRequests$2, reason: invalid class name */
     /* JADX INFO: compiled from: DiffCreator.kt */
-    public final class AnonymousClass2 extends o implements Function1<Subscription, Unit> {
+    public final class AnonymousClass2 extends Lambda implements Function1<Subscription, Unit> {
         public AnonymousClass2() {
             super(1);
         }
@@ -99,27 +99,27 @@ public final class DiffCreator<T extends List<? extends DiffKeyProvider>, VH ext
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(Subscription subscription) {
-            m.checkNotNullParameter(subscription, Traits.Payment.Type.SUBSCRIPTION);
+            Intrinsics3.checkNotNullParameter(subscription, Traits.Payment.Type.SUBSCRIPTION);
             DiffCreator.access$setAsyncDiffSubscription$p(DiffCreator.this, subscription);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.utilities.recycler.DiffCreator$subscribeToAsyncUpdateRequests$3, reason: invalid class name */
     /* JADX INFO: compiled from: DiffCreator.kt */
-    public final class AnonymousClass3 extends o implements Function1<Pair<? extends UpdateRequest<T, VH>, ? extends DiffUtil.DiffResult>, Unit> {
+    public final class AnonymousClass3 extends Lambda implements Function1<Tuples2<? extends UpdateRequest<T, VH>, ? extends DiffUtil.DiffResult>, Unit> {
         public AnonymousClass3() {
             super(1);
         }
 
         @Override // kotlin.jvm.functions.Function1
         public /* bridge */ /* synthetic */ Unit invoke(Object obj) {
-            invoke((Pair) obj);
+            invoke((Tuples2) obj);
             return Unit.a;
         }
 
-        public final void invoke(Pair<UpdateRequest<T, VH>, ? extends DiffUtil.DiffResult> pair) {
-            UpdateRequest<T, VH> updateRequestComponent1 = pair.component1();
-            DiffCreator.access$setItemsAndDispatchUpdate(DiffCreator.this, updateRequestComponent1.getAdapter(), updateRequestComponent1.getSetItems(), updateRequestComponent1.getNewItems(), pair.component2());
+        public final void invoke(Tuples2<UpdateRequest<T, VH>, ? extends DiffUtil.DiffResult> tuples2) {
+            UpdateRequest<T, VH> updateRequestComponent1 = tuples2.component1();
+            DiffCreator.access$setItemsAndDispatchUpdate(DiffCreator.this, updateRequestComponent1.getAdapter(), updateRequestComponent1.getSetItems(), updateRequestComponent1.getNewItems(), tuples2.component2());
         }
     }
 
@@ -132,8 +132,8 @@ public final class DiffCreator<T extends List<? extends DiffKeyProvider>, VH ext
 
         /* JADX WARN: Multi-variable type inference failed */
         public UpdateRequest(RecyclerView.Adapter<VH> adapter, Function1<? super T, Unit> function1, T t, T t2) {
-            m.checkNotNullParameter(adapter, "adapter");
-            m.checkNotNullParameter(function1, "setItems");
+            Intrinsics3.checkNotNullParameter(adapter, "adapter");
+            Intrinsics3.checkNotNullParameter(function1, "setItems");
             this.adapter = adapter;
             this.setItems = function1;
             this.oldItems = t;
@@ -174,8 +174,8 @@ public final class DiffCreator<T extends List<? extends DiffKeyProvider>, VH ext
         }
 
         public final UpdateRequest<T, VH> copy(RecyclerView.Adapter<VH> adapter, Function1<? super T, Unit> setItems, T oldItems, T newItems) {
-            m.checkNotNullParameter(adapter, "adapter");
-            m.checkNotNullParameter(setItems, "setItems");
+            Intrinsics3.checkNotNullParameter(adapter, "adapter");
+            Intrinsics3.checkNotNullParameter(setItems, "setItems");
             return new UpdateRequest<>(adapter, setItems, oldItems, newItems);
         }
 
@@ -187,7 +187,7 @@ public final class DiffCreator<T extends List<? extends DiffKeyProvider>, VH ext
                 return false;
             }
             UpdateRequest updateRequest = (UpdateRequest) other;
-            return m.areEqual(this.adapter, updateRequest.adapter) && m.areEqual(this.setItems, updateRequest.setItems) && m.areEqual(this.oldItems, updateRequest.oldItems) && m.areEqual(this.newItems, updateRequest.newItems);
+            return Intrinsics3.areEqual(this.adapter, updateRequest.adapter) && Intrinsics3.areEqual(this.setItems, updateRequest.setItems) && Intrinsics3.areEqual(this.oldItems, updateRequest.oldItems) && Intrinsics3.areEqual(this.newItems, updateRequest.newItems);
         }
 
         public final RecyclerView.Adapter<VH> getAdapter() {
@@ -218,7 +218,7 @@ public final class DiffCreator<T extends List<? extends DiffKeyProvider>, VH ext
         }
 
         public String toString() {
-            StringBuilder sbU = a.U("UpdateRequest(adapter=");
+            StringBuilder sbU = outline.U("UpdateRequest(adapter=");
             sbU.append(this.adapter);
             sbU.append(", setItems=");
             sbU.append(this.setItems);
@@ -251,8 +251,8 @@ public final class DiffCreator<T extends List<? extends DiffKeyProvider>, VH ext
     }
 
     public final DiffUtil.DiffResult calculateDiffResult(T oldItems, T newItems) {
-        m.checkNotNullParameter(oldItems, "oldItems");
-        m.checkNotNullParameter(newItems, "newItems");
+        Intrinsics3.checkNotNullParameter(oldItems, "oldItems");
+        Intrinsics3.checkNotNullParameter(newItems, "newItems");
         if (isExpensiveDiff(oldItems, newItems)) {
             return null;
         }
@@ -264,19 +264,19 @@ public final class DiffCreator<T extends List<? extends DiffKeyProvider>, VH ext
     }
 
     public final void dispatchDiffUpdates(RecyclerView.Adapter<VH> adapter, Function1<? super T, Unit> setItems, T oldItems, T newItems) {
-        m.checkNotNullParameter(adapter, "adapter");
-        m.checkNotNullParameter(setItems, "setItems");
-        m.checkNotNullParameter(oldItems, "oldItems");
-        m.checkNotNullParameter(newItems, "newItems");
+        Intrinsics3.checkNotNullParameter(adapter, "adapter");
+        Intrinsics3.checkNotNullParameter(setItems, "setItems");
+        Intrinsics3.checkNotNullParameter(oldItems, "oldItems");
+        Intrinsics3.checkNotNullParameter(newItems, "newItems");
         setItemsAndDispatchUpdate(adapter, setItems, newItems, calculateDiffResult(oldItems, newItems));
     }
 
     @MainThread
     public final void dispatchDiffUpdatesAsync(RecyclerView.Adapter<VH> adapter, Function1<? super T, Unit> setItems, T oldItems, T newItems) {
-        m.checkNotNullParameter(adapter, "adapter");
-        m.checkNotNullParameter(setItems, "setItems");
-        m.checkNotNullParameter(oldItems, "oldItems");
-        m.checkNotNullParameter(newItems, "newItems");
+        Intrinsics3.checkNotNullParameter(adapter, "adapter");
+        Intrinsics3.checkNotNullParameter(setItems, "setItems");
+        Intrinsics3.checkNotNullParameter(oldItems, "oldItems");
+        Intrinsics3.checkNotNullParameter(newItems, "newItems");
         if (this.asyncDiffSubscriptionScope == null) {
             throw new IllegalStateException("to use async diffs, provide an asyncDiffSubscriptionScope");
         }
@@ -322,9 +322,9 @@ public final class DiffCreator<T extends List<? extends DiffKeyProvider>, VH ext
 
     private final void subscribeToAsyncUpdateRequests(AppComponent asyncDiffSubscriptionScope) {
         PublishSubject<UpdateRequest<T, VH>> publishSubject = this.updateRequestsSubject;
-        m.checkNotNullExpressionValue(publishSubject, "updateRequestsSubject");
+        Intrinsics3.checkNotNullExpressionValue(publishSubject, "updateRequestsSubject");
         Observable observableG = ObservableExtensionsKt.computationBuffered(publishSubject).G(new AnonymousClass1());
-        m.checkNotNullExpressionValue(observableG, "updateRequestsSubject\n  …ms)\n          )\n        }");
+        Intrinsics3.checkNotNullExpressionValue(observableG, "updateRequestsSubject\n  …ms)\n          )\n        }");
         ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(observableG, asyncDiffSubscriptionScope, null, 2, null), DiffCreator.class, (Context) null, new AnonymousClass2(), (Function1) null, (Function0) null, (Function0) null, new AnonymousClass3(), 58, (Object) null);
     }
 }

@@ -1,12 +1,12 @@
 package com.discord.widgets.user.search;
 
 import com.discord.api.channel.Channel;
-import d0.z.d.o;
+import d0.z.d.Lambda;
 import kotlin.jvm.functions.Function1;
 
 /* JADX INFO: compiled from: WidgetGlobalSearchModel.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final class WidgetGlobalSearchModel$Companion$create$filteredResults$9 extends o implements Function1<Long, Channel> {
+public final class WidgetGlobalSearchModel$Companion$create$filteredResults$9 extends Lambda implements Function1<Long, Channel> {
     public final /* synthetic */ WidgetGlobalSearchModel.ChannelContext $channelContext;
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */

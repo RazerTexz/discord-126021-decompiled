@@ -1,18 +1,18 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.analytics.generated.traits.TrackChannel;
-import com.discord.analytics.generated.traits.TrackChannelReceiver;
+import com.discord.analytics.generated.traits.TrackChannel2;
 import com.discord.analytics.generated.traits.TrackGuild;
-import com.discord.analytics.generated.traits.TrackGuildReceiver;
+import com.discord.analytics.generated.traits.TrackGuild2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackFeedUserPreferenceChanged.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackFeedUserPreferenceChanged implements AnalyticsSchema, TrackBaseReceiver, TrackGuildReceiver, TrackChannelReceiver {
+public final /* data */ class TrackFeedUserPreferenceChanged implements AnalyticsSchema, TrackBase2, TrackGuild2, TrackChannel2 {
     private final CharSequence entityType = null;
     private final CharSequence loadId = null;
     private final Long messageId = null;
@@ -24,7 +24,7 @@ public final /* data */ class TrackFeedUserPreferenceChanged implements Analytic
     private TrackGuild trackGuild;
     private final transient String analyticsSchemaTypeName = "feed_user_preference_changed";
 
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    @Override // com.discord.analytics.generated.traits.TrackGuild2
     public void c(TrackGuild trackGuild) {
         this.trackGuild = trackGuild;
     }
@@ -37,7 +37,7 @@ public final /* data */ class TrackFeedUserPreferenceChanged implements Analytic
             return false;
         }
         TrackFeedUserPreferenceChanged trackFeedUserPreferenceChanged = (TrackFeedUserPreferenceChanged) other;
-        return m.areEqual(this.loadId, trackFeedUserPreferenceChanged.loadId) && m.areEqual(this.operation, trackFeedUserPreferenceChanged.operation) && m.areEqual(this.preference, trackFeedUserPreferenceChanged.preference) && m.areEqual(this.entityType, trackFeedUserPreferenceChanged.entityType) && m.areEqual(this.messageId, trackFeedUserPreferenceChanged.messageId) && m.areEqual(this.targetUserId, trackFeedUserPreferenceChanged.targetUserId);
+        return Intrinsics3.areEqual(this.loadId, trackFeedUserPreferenceChanged.loadId) && Intrinsics3.areEqual(this.operation, trackFeedUserPreferenceChanged.operation) && Intrinsics3.areEqual(this.preference, trackFeedUserPreferenceChanged.preference) && Intrinsics3.areEqual(this.entityType, trackFeedUserPreferenceChanged.entityType) && Intrinsics3.areEqual(this.messageId, trackFeedUserPreferenceChanged.messageId) && Intrinsics3.areEqual(this.targetUserId, trackFeedUserPreferenceChanged.targetUserId);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -46,7 +46,7 @@ public final /* data */ class TrackFeedUserPreferenceChanged implements Analytic
         return this.analyticsSchemaTypeName;
     }
 
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    @Override // com.discord.analytics.generated.traits.TrackGuild2
     /* JADX INFO: renamed from: a, reason: from getter */
     public TrackGuild getTrackGuild() {
         return this.trackGuild;
@@ -68,7 +68,7 @@ public final /* data */ class TrackFeedUserPreferenceChanged implements Analytic
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackFeedUserPreferenceChanged(loadId=");
+        StringBuilder sbU = outline.U("TrackFeedUserPreferenceChanged(loadId=");
         sbU.append(this.loadId);
         sbU.append(", operation=");
         sbU.append(this.operation);
@@ -79,6 +79,6 @@ public final /* data */ class TrackFeedUserPreferenceChanged implements Analytic
         sbU.append(", messageId=");
         sbU.append(this.messageId);
         sbU.append(", targetUserId=");
-        return a.G(sbU, this.targetUserId, ")");
+        return outline.G(sbU, this.targetUserId, ")");
     }
 }

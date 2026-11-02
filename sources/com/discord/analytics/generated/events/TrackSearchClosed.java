@@ -1,18 +1,18 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.analytics.generated.traits.TrackChannel;
-import com.discord.analytics.generated.traits.TrackChannelReceiver;
+import com.discord.analytics.generated.traits.TrackChannel2;
 import com.discord.analytics.generated.traits.TrackGuild;
-import com.discord.analytics.generated.traits.TrackGuildReceiver;
+import com.discord.analytics.generated.traits.TrackGuild2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackSearchClosed.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackSearchClosed implements AnalyticsSchema, TrackBaseReceiver, TrackGuildReceiver, TrackChannelReceiver {
+public final /* data */ class TrackSearchClosed implements AnalyticsSchema, TrackBase2, TrackGuild2, TrackChannel2 {
     private final CharSequence loadId = null;
     private final CharSequence searchId = null;
     private TrackBase trackBase;
@@ -20,7 +20,7 @@ public final /* data */ class TrackSearchClosed implements AnalyticsSchema, Trac
     private TrackGuild trackGuild;
     private final transient String analyticsSchemaTypeName = "search_closed";
 
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    @Override // com.discord.analytics.generated.traits.TrackGuild2
     public void c(TrackGuild trackGuild) {
         this.trackGuild = trackGuild;
     }
@@ -33,7 +33,7 @@ public final /* data */ class TrackSearchClosed implements AnalyticsSchema, Trac
             return false;
         }
         TrackSearchClosed trackSearchClosed = (TrackSearchClosed) other;
-        return m.areEqual(this.searchId, trackSearchClosed.searchId) && m.areEqual(this.loadId, trackSearchClosed.loadId);
+        return Intrinsics3.areEqual(this.searchId, trackSearchClosed.searchId) && Intrinsics3.areEqual(this.loadId, trackSearchClosed.loadId);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -42,7 +42,7 @@ public final /* data */ class TrackSearchClosed implements AnalyticsSchema, Trac
         return this.analyticsSchemaTypeName;
     }
 
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    @Override // com.discord.analytics.generated.traits.TrackGuild2
     /* JADX INFO: renamed from: a, reason: from getter */
     public TrackGuild getTrackGuild() {
         return this.trackGuild;
@@ -56,9 +56,9 @@ public final /* data */ class TrackSearchClosed implements AnalyticsSchema, Trac
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackSearchClosed(searchId=");
+        StringBuilder sbU = outline.U("TrackSearchClosed(searchId=");
         sbU.append(this.searchId);
         sbU.append(", loadId=");
-        return a.E(sbU, this.loadId, ")");
+        return outline.E(sbU, this.loadId, ")");
     }
 }

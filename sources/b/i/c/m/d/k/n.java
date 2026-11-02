@@ -1,5 +1,6 @@
 package b.i.c.m.d.k;
 
+import b.i.c.m.d.l.LogFileManager;
 import java.util.concurrent.Callable;
 
 /* JADX INFO: compiled from: CrashlyticsController.java */
@@ -20,8 +21,8 @@ public class n implements Callable<Void> {
         if (this.l.p()) {
             return null;
         }
-        b.i.c.m.d.l.b bVar = this.l.t;
-        bVar.d.e(this.j, this.k);
+        LogFileManager logFileManager = this.l.t;
+        logFileManager.d.e(this.j, this.k);
         return null;
     }
 }

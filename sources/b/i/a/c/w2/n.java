@@ -7,15 +7,15 @@ import java.util.UUID;
 
 /* JADX INFO: compiled from: lambda */
 /* JADX INFO: loaded from: classes3.dex */
-public final /* synthetic */ class n implements a0.c {
+public final /* synthetic */ class n implements ExoMediaDrm.c {
     public static final /* synthetic */ n a = new n();
 
-    @Override // b.i.a.c.w2.a0.c
-    public final a0 a(UUID uuid) {
-        int i = c0.a;
+    @Override // b.i.a.c.w2.ExoMediaDrm.c
+    public final ExoMediaDrm a(UUID uuid) {
+        int i = FrameworkMediaDrm.a;
         try {
             try {
-                return new c0(uuid);
+                return new FrameworkMediaDrm(uuid);
             } catch (UnsupportedDrmException unused) {
                 String strValueOf = String.valueOf(uuid);
                 StringBuilder sb = new StringBuilder(strValueOf.length() + 53);
@@ -23,7 +23,7 @@ public final /* synthetic */ class n implements a0.c {
                 sb.append(strValueOf);
                 sb.append(".");
                 Log.e("FrameworkMediaDrm", sb.toString());
-                return new y();
+                return new DummyExoMediaDrm();
             }
         } catch (UnsupportedSchemeException e) {
             throw new UnsupportedDrmException(1, e);

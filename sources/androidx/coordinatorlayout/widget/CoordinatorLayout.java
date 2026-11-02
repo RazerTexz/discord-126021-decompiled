@@ -44,7 +44,7 @@ import androidx.core.view.OnApplyWindowInsetsListener;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.customview.view.AbsSavedState;
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.google.android.material.badge.BadgeDrawable;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -686,7 +686,7 @@ public class CoordinatorLayout extends ViewGroup implements NestedScrollingParen
                     try {
                         layoutParams.setBehavior(defaultBehavior.value().getDeclaredConstructor(new Class[0]).newInstance(new Object[0]));
                     } catch (Exception e) {
-                        StringBuilder sbU = a.U("Default behavior class ");
+                        StringBuilder sbU = outline.U("Default behavior class ");
                         sbU.append(defaultBehavior.value().getName());
                         sbU.append(" could not be instantiated. Did you forget a default constructor?");
                         Log.e(TAG, sbU.toString(), e);
@@ -819,7 +819,7 @@ public class CoordinatorLayout extends ViewGroup implements NestedScrollingParen
             if (behavior == null || !behavior.getInsetDodgeRect(this, view, rectAcquireTempRect)) {
                 rectAcquireTempRect.set(rectAcquireTempRect2);
             } else if (!rectAcquireTempRect2.contains(rectAcquireTempRect)) {
-                StringBuilder sbU = a.U("Rect should be within the child's bounds. Rect:");
+                StringBuilder sbU = outline.U("Rect should be within the child's bounds. Rect:");
                 sbU.append(rectAcquireTempRect.toShortString());
                 sbU.append(" | Bounds:");
                 sbU.append(rectAcquireTempRect2.toShortString());
@@ -1408,7 +1408,7 @@ public class CoordinatorLayout extends ViewGroup implements NestedScrollingParen
             }
             return constructor.newInstance(context, attributeSet);
         } catch (Exception e) {
-            throw new RuntimeException(a.w("Could not inflate Behavior subclass ", str), e);
+            throw new RuntimeException(outline.w("Could not inflate Behavior subclass ", str), e);
         }
     }
 
@@ -1980,7 +1980,7 @@ public class CoordinatorLayout extends ViewGroup implements NestedScrollingParen
                     this.mAnchorView = null;
                     return;
                 } else {
-                    StringBuilder sbU = a.U("Could not find CoordinatorLayout descendant view with id ");
+                    StringBuilder sbU = outline.U("Could not find CoordinatorLayout descendant view with id ");
                     sbU.append(coordinatorLayout.getResources().getResourceName(this.mAnchorId));
                     sbU.append(" to anchor view ");
                     sbU.append(view);

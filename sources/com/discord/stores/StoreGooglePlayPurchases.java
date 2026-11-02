@@ -2,7 +2,7 @@ package com.discord.stores;
 
 import a0.a.a.b;
 import android.content.Context;
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.android.billingclient.api.Purchase;
 import com.discord.restapi.RestAPIParams;
 import com.discord.restapi.utils.RetryWithDelay;
@@ -15,11 +15,12 @@ import com.discord.utilities.rest.RestAPI;
 import com.discord.utilities.rx.ObservableExtensionsKt;
 import com.discord.utilities.time.Clock;
 import com.google.gson.Gson;
-import d0.t.n;
-import d0.t.u;
-import d0.z.d.k;
-import d0.z.d.m;
-import d0.z.d.o;
+import d0.t.Collections2;
+import d0.t._Collections;
+import d0.z.d.FunctionReferenceImpl;
+import d0.z.d.Intrinsics3;
+import d0.z.d.Lambda;
+import j0.p.Schedulers2;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -64,9 +65,9 @@ public final class StoreGooglePlayPurchases extends StoreV2 {
         private final long timestamp;
 
         public AnalyticsTrait(long j, long j2, Traits.Location location, Traits.StoreSku storeSku, Traits.Payment payment) {
-            m.checkNotNullParameter(location, "locationTrait");
-            m.checkNotNullParameter(storeSku, "storeSkuTrait");
-            m.checkNotNullParameter(payment, "paymentTrait");
+            Intrinsics3.checkNotNullParameter(location, "locationTrait");
+            Intrinsics3.checkNotNullParameter(storeSku, "storeSkuTrait");
+            Intrinsics3.checkNotNullParameter(payment, "paymentTrait");
             this.skuId = j;
             this.timestamp = j2;
             this.locationTrait = location;
@@ -79,9 +80,9 @@ public final class StoreGooglePlayPurchases extends StoreV2 {
         }
 
         public final AnalyticsTrait copy(long skuId, long timestamp, Traits.Location locationTrait, Traits.StoreSku storeSkuTrait, Traits.Payment paymentTrait) {
-            m.checkNotNullParameter(locationTrait, "locationTrait");
-            m.checkNotNullParameter(storeSkuTrait, "storeSkuTrait");
-            m.checkNotNullParameter(paymentTrait, "paymentTrait");
+            Intrinsics3.checkNotNullParameter(locationTrait, "locationTrait");
+            Intrinsics3.checkNotNullParameter(storeSkuTrait, "storeSkuTrait");
+            Intrinsics3.checkNotNullParameter(paymentTrait, "paymentTrait");
             return new AnalyticsTrait(skuId, timestamp, locationTrait, storeSkuTrait, paymentTrait);
         }
 
@@ -93,7 +94,7 @@ public final class StoreGooglePlayPurchases extends StoreV2 {
                 return false;
             }
             AnalyticsTrait analyticsTrait = (AnalyticsTrait) other;
-            return this.skuId == analyticsTrait.skuId && this.timestamp == analyticsTrait.timestamp && m.areEqual(this.locationTrait, analyticsTrait.locationTrait) && m.areEqual(this.storeSkuTrait, analyticsTrait.storeSkuTrait) && m.areEqual(this.paymentTrait, analyticsTrait.paymentTrait);
+            return this.skuId == analyticsTrait.skuId && this.timestamp == analyticsTrait.timestamp && Intrinsics3.areEqual(this.locationTrait, analyticsTrait.locationTrait) && Intrinsics3.areEqual(this.storeSkuTrait, analyticsTrait.storeSkuTrait) && Intrinsics3.areEqual(this.paymentTrait, analyticsTrait.paymentTrait);
         }
 
         /* JADX INFO: renamed from: component3, reason: from getter */
@@ -152,7 +153,7 @@ public final class StoreGooglePlayPurchases extends StoreV2 {
         }
 
         public String toString() {
-            StringBuilder sbU = a.U("AnalyticsTrait(skuId=");
+            StringBuilder sbU = outline.U("AnalyticsTrait(skuId=");
             sbU.append(this.skuId);
             sbU.append(", timestamp=");
             sbU.append(this.timestamp);
@@ -169,7 +170,7 @@ public final class StoreGooglePlayPurchases extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreGooglePlayPurchases$doDowngrade$1, reason: invalid class name */
     /* JADX INFO: compiled from: StoreGooglePlayPurchases.kt */
-    public final /* synthetic */ class AnonymousClass1 extends k implements Function1<Throwable, Boolean> {
+    public final /* synthetic */ class AnonymousClass1 extends FunctionReferenceImpl implements Function1<Throwable, Boolean> {
         public AnonymousClass1(StoreGooglePlayPurchases storeGooglePlayPurchases) {
             super(1, storeGooglePlayPurchases, StoreGooglePlayPurchases.class, "shouldRetryDowngrade", "shouldRetryDowngrade(Ljava/lang/Throwable;)Z", 0);
         }
@@ -181,14 +182,14 @@ public final class StoreGooglePlayPurchases extends StoreV2 {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final boolean invoke2(Throwable th) {
-            m.checkNotNullParameter(th, "p1");
+            Intrinsics3.checkNotNullParameter(th, "p1");
             return StoreGooglePlayPurchases.access$shouldRetryDowngrade((StoreGooglePlayPurchases) this.receiver, th);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.stores.StoreGooglePlayPurchases$downgradePurchase$1, reason: invalid class name */
     /* JADX INFO: compiled from: StoreGooglePlayPurchases.kt */
-    public final class AnonymousClass1 extends o implements Function0<Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function0<Unit> {
         public AnonymousClass1() {
             super(0);
         }
@@ -215,7 +216,7 @@ public final class StoreGooglePlayPurchases extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreGooglePlayPurchases$observeQueryState$1, reason: invalid class name */
     /* JADX INFO: compiled from: StoreGooglePlayPurchases.kt */
-    public final class AnonymousClass1 extends o implements Function0<QueryState> {
+    public final class AnonymousClass1 extends Lambda implements Function0<QueryState> {
         public AnonymousClass1() {
             super(0);
         }
@@ -234,7 +235,7 @@ public final class StoreGooglePlayPurchases extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreGooglePlayPurchases$observeState$1, reason: invalid class name */
     /* JADX INFO: compiled from: StoreGooglePlayPurchases.kt */
-    public final class AnonymousClass1 extends o implements Function0<State> {
+    public final class AnonymousClass1 extends Lambda implements Function0<State> {
         public AnonymousClass1() {
             super(0);
         }
@@ -253,7 +254,7 @@ public final class StoreGooglePlayPurchases extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreGooglePlayPurchases$onVerificationFailure$1, reason: invalid class name */
     /* JADX INFO: compiled from: StoreGooglePlayPurchases.kt */
-    public final class AnonymousClass1 extends o implements Function0<Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function0<Unit> {
         public final /* synthetic */ VerificationResult $verificationResult;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -272,10 +273,10 @@ public final class StoreGooglePlayPurchases extends StoreV2 {
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2() {
             ArrayList<String> arrayListB = this.$verificationResult.getPurchase().b();
-            m.checkNotNullExpressionValue(arrayListB, "verificationResult.purchase.skus");
+            Intrinsics3.checkNotNullExpressionValue(arrayListB, "verificationResult.purchase.skus");
             for (String str : arrayListB) {
                 PublishSubject publishSubjectAccess$getEventSubject$p = StoreGooglePlayPurchases.access$getEventSubject$p(StoreGooglePlayPurchases.this);
-                m.checkNotNullExpressionValue(str, "sku");
+                Intrinsics3.checkNotNullExpressionValue(str, "sku");
                 publishSubjectAccess$getEventSubject$p.k.onNext((T) new Event.PurchaseQueryFailure(str));
             }
             StoreGooglePlayPurchases.access$setQueryState$p(StoreGooglePlayPurchases.this, QueryState.NotInProgress.INSTANCE);
@@ -285,7 +286,7 @@ public final class StoreGooglePlayPurchases extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreGooglePlayPurchases$onVerificationStart$1, reason: invalid class name */
     /* JADX INFO: compiled from: StoreGooglePlayPurchases.kt */
-    public final class AnonymousClass1 extends o implements Function0<Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function0<Unit> {
         public AnonymousClass1() {
             super(0);
         }
@@ -305,14 +306,14 @@ public final class StoreGooglePlayPurchases extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreGooglePlayPurchases$processPurchases$1, reason: invalid class name */
     /* JADX INFO: compiled from: StoreGooglePlayPurchases.kt */
-    public final class AnonymousClass1 extends o implements Function0<Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function0<Unit> {
         public final /* synthetic */ List $purchases;
         public final /* synthetic */ String $skuType;
 
         /* JADX INFO: renamed from: com.discord.stores.StoreGooglePlayPurchases$processPurchases$1$1, reason: invalid class name and collision with other inner class name */
         /* JADX INFO: compiled from: StoreGooglePlayPurchases.kt */
-        public final class C02361 extends o implements Function1<QueryState, Unit> {
-            public C02361() {
+        public final class C01161 extends Lambda implements Function1<QueryState, Unit> {
+            public C01161() {
                 super(1);
             }
 
@@ -346,19 +347,19 @@ public final class StoreGooglePlayPurchases extends StoreV2 {
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2() {
             StoreGooglePlayPurchases.access$handlePurchases(StoreGooglePlayPurchases.this, this.$purchases, this.$skuType);
-            ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.takeSingleUntilTimeout$default(StoreGooglePlayPurchases.this.observeQueryState(), 0L, false, 3, null), StoreGooglePlayPurchases.this.getClass(), (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new C02361(), 62, (Object) null);
+            ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.takeSingleUntilTimeout$default(StoreGooglePlayPurchases.this.observeQueryState(), 0L, false, 3, null), StoreGooglePlayPurchases.this.getClass(), (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new C01161(), 62, (Object) null);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.stores.StoreGooglePlayPurchases$updatePendingDowngrade$1, reason: invalid class name */
     /* JADX INFO: compiled from: StoreGooglePlayPurchases.kt */
-    public final class AnonymousClass1 extends o implements Function0<Unit> {
-        public final /* synthetic */ PendingDowngrade $newPendingDowngrade;
+    public final class AnonymousClass1 extends Lambda implements Function0<Unit> {
+        public final /* synthetic */ StoreGooglePlayPurchases2 $newPendingDowngrade;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public AnonymousClass1(PendingDowngrade pendingDowngrade) {
+        public AnonymousClass1(StoreGooglePlayPurchases2 storeGooglePlayPurchases2) {
             super(0);
-            this.$newPendingDowngrade = pendingDowngrade;
+            this.$newPendingDowngrade = storeGooglePlayPurchases2;
         }
 
         @Override // kotlin.jvm.functions.Function0
@@ -377,12 +378,12 @@ public final class StoreGooglePlayPurchases extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreGooglePlayPurchases$doDowngrade$2, reason: invalid class name */
     /* JADX INFO: compiled from: StoreGooglePlayPurchases.kt */
-    public final class AnonymousClass2 extends o implements Function1<Object, Unit> {
+    public final class AnonymousClass2 extends Lambda implements Function1<Object, Unit> {
         public final /* synthetic */ String $newSkuName;
 
         /* JADX INFO: renamed from: com.discord.stores.StoreGooglePlayPurchases$doDowngrade$2$1, reason: invalid class name */
         /* JADX INFO: compiled from: StoreGooglePlayPurchases.kt */
-        public final class AnonymousClass1 extends o implements Function0<Unit> {
+        public final class AnonymousClass1 extends Lambda implements Function0<Unit> {
             public AnonymousClass1() {
                 super(0);
             }
@@ -420,12 +421,12 @@ public final class StoreGooglePlayPurchases extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreGooglePlayPurchases$doDowngrade$3, reason: invalid class name */
     /* JADX INFO: compiled from: StoreGooglePlayPurchases.kt */
-    public final class AnonymousClass3 extends o implements Function1<Error, Unit> {
+    public final class AnonymousClass3 extends Lambda implements Function1<Error, Unit> {
         public final /* synthetic */ String $newSkuName;
 
         /* JADX INFO: renamed from: com.discord.stores.StoreGooglePlayPurchases$doDowngrade$3$1, reason: invalid class name */
         /* JADX INFO: compiled from: StoreGooglePlayPurchases.kt */
-        public final class AnonymousClass1 extends o implements Function0<Unit> {
+        public final class AnonymousClass1 extends Lambda implements Function0<Unit> {
             public AnonymousClass1() {
                 super(0);
             }
@@ -457,7 +458,7 @@ public final class StoreGooglePlayPurchases extends StoreV2 {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(Error error) {
-            m.checkNotNullParameter(error, "it");
+            Intrinsics3.checkNotNullParameter(error, "it");
             StoreGooglePlayPurchases.access$getDispatcher$p(StoreGooglePlayPurchases.this).schedule(new AnonymousClass1());
         }
     }
@@ -472,7 +473,7 @@ public final class StoreGooglePlayPurchases extends StoreV2 {
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
             public PurchaseQueryFailure(String str) {
                 super(null);
-                m.checkNotNullParameter(str, "newSkuName");
+                Intrinsics3.checkNotNullParameter(str, "newSkuName");
                 this.newSkuName = str;
             }
 
@@ -484,13 +485,13 @@ public final class StoreGooglePlayPurchases extends StoreV2 {
             }
 
             public final PurchaseQueryFailure copy(String newSkuName) {
-                m.checkNotNullParameter(newSkuName, "newSkuName");
+                Intrinsics3.checkNotNullParameter(newSkuName, "newSkuName");
                 return new PurchaseQueryFailure(newSkuName);
             }
 
             public boolean equals(Object other) {
                 if (this != other) {
-                    return (other instanceof PurchaseQueryFailure) && m.areEqual(this.newSkuName, ((PurchaseQueryFailure) other).newSkuName);
+                    return (other instanceof PurchaseQueryFailure) && Intrinsics3.areEqual(this.newSkuName, ((PurchaseQueryFailure) other).newSkuName);
                 }
                 return true;
             }
@@ -513,7 +514,7 @@ public final class StoreGooglePlayPurchases extends StoreV2 {
             }
 
             public String toString() {
-                return a.J(a.U("PurchaseQueryFailure(newSkuName="), this.newSkuName, ")");
+                return outline.J(outline.U("PurchaseQueryFailure(newSkuName="), this.newSkuName, ")");
             }
         }
 
@@ -545,7 +546,7 @@ public final class StoreGooglePlayPurchases extends StoreV2 {
             }
 
             public final PurchaseQuerySuccess copy(String newSkuName, Long skuId, Long subscriptionPlanId, String giftCode) {
-                m.checkNotNullParameter(newSkuName, "newSkuName");
+                Intrinsics3.checkNotNullParameter(newSkuName, "newSkuName");
                 return new PurchaseQuerySuccess(newSkuName, skuId, subscriptionPlanId, giftCode);
             }
 
@@ -557,7 +558,7 @@ public final class StoreGooglePlayPurchases extends StoreV2 {
                     return false;
                 }
                 PurchaseQuerySuccess purchaseQuerySuccess = (PurchaseQuerySuccess) other;
-                return m.areEqual(this.newSkuName, purchaseQuerySuccess.newSkuName) && m.areEqual(this.skuId, purchaseQuerySuccess.skuId) && m.areEqual(this.subscriptionPlanId, purchaseQuerySuccess.subscriptionPlanId) && m.areEqual(this.giftCode, purchaseQuerySuccess.giftCode);
+                return Intrinsics3.areEqual(this.newSkuName, purchaseQuerySuccess.newSkuName) && Intrinsics3.areEqual(this.skuId, purchaseQuerySuccess.skuId) && Intrinsics3.areEqual(this.subscriptionPlanId, purchaseQuerySuccess.subscriptionPlanId) && Intrinsics3.areEqual(this.giftCode, purchaseQuerySuccess.giftCode);
             }
 
             /* JADX INFO: renamed from: component4, reason: from getter */
@@ -608,20 +609,20 @@ public final class StoreGooglePlayPurchases extends StoreV2 {
             }
 
             public String toString() {
-                StringBuilder sbU = a.U("PurchaseQuerySuccess(newSkuName=");
+                StringBuilder sbU = outline.U("PurchaseQuerySuccess(newSkuName=");
                 sbU.append(this.newSkuName);
                 sbU.append(", skuId=");
                 sbU.append(this.skuId);
                 sbU.append(", subscriptionPlanId=");
                 sbU.append(this.subscriptionPlanId);
                 sbU.append(", giftCode=");
-                return a.J(sbU, this.giftCode, ")");
+                return outline.J(sbU, this.giftCode, ")");
             }
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
             public PurchaseQuerySuccess(String str, Long l, Long l2, String str2) {
                 super(null);
-                m.checkNotNullParameter(str, "newSkuName");
+                Intrinsics3.checkNotNullParameter(str, "newSkuName");
                 this.newSkuName = str;
                 this.skuId = l;
                 this.subscriptionPlanId = l2;
@@ -684,11 +685,11 @@ public final class StoreGooglePlayPurchases extends StoreV2 {
         /* JADX INFO: compiled from: StoreGooglePlayPurchases.kt */
         public final /* data */ class Loaded extends State {
             private final List<Purchase> iapPurchases;
-            private final PendingDowngrade pendingDowngrade;
+            private final StoreGooglePlayPurchases2 pendingDowngrade;
             private final List<Purchase> subscriptionPurchases;
 
-            public /* synthetic */ Loaded(List list, List list2, PendingDowngrade pendingDowngrade, int i, DefaultConstructorMarker defaultConstructorMarker) {
-                this((i & 1) != 0 ? n.emptyList() : list, (i & 2) != 0 ? n.emptyList() : list2, pendingDowngrade);
+            public /* synthetic */ Loaded(List list, List list2, StoreGooglePlayPurchases2 storeGooglePlayPurchases2, int i, DefaultConstructorMarker defaultConstructorMarker) {
+                this((i & 1) != 0 ? Collections2.emptyList() : list, (i & 2) != 0 ? Collections2.emptyList() : list2, storeGooglePlayPurchases2);
             }
 
             public final List<Purchase> component1() {
@@ -700,7 +701,7 @@ public final class StoreGooglePlayPurchases extends StoreV2 {
             }
 
             /* JADX WARN: Multi-variable type inference failed */
-            public static /* synthetic */ Loaded copy$default(Loaded loaded, List list, List list2, PendingDowngrade pendingDowngrade, int i, Object obj) {
+            public static /* synthetic */ Loaded copy$default(Loaded loaded, List list, List list2, StoreGooglePlayPurchases2 storeGooglePlayPurchases2, int i, Object obj) {
                 if ((i & 1) != 0) {
                     list = loaded.subscriptionPurchases;
                 }
@@ -708,14 +709,14 @@ public final class StoreGooglePlayPurchases extends StoreV2 {
                     list2 = loaded.iapPurchases;
                 }
                 if ((i & 4) != 0) {
-                    pendingDowngrade = loaded.pendingDowngrade;
+                    storeGooglePlayPurchases2 = loaded.pendingDowngrade;
                 }
-                return loaded.copy(list, list2, pendingDowngrade);
+                return loaded.copy(list, list2, storeGooglePlayPurchases2);
             }
 
-            public final Loaded copy(List<? extends Purchase> subscriptionPurchases, List<? extends Purchase> iapPurchases, PendingDowngrade pendingDowngrade) {
-                m.checkNotNullParameter(subscriptionPurchases, "subscriptionPurchases");
-                m.checkNotNullParameter(iapPurchases, "iapPurchases");
+            public final Loaded copy(List<? extends Purchase> subscriptionPurchases, List<? extends Purchase> iapPurchases, StoreGooglePlayPurchases2 pendingDowngrade) {
+                Intrinsics3.checkNotNullParameter(subscriptionPurchases, "subscriptionPurchases");
+                Intrinsics3.checkNotNullParameter(iapPurchases, "iapPurchases");
                 return new Loaded(subscriptionPurchases, iapPurchases, pendingDowngrade);
             }
 
@@ -727,7 +728,7 @@ public final class StoreGooglePlayPurchases extends StoreV2 {
                     return false;
                 }
                 Loaded loaded = (Loaded) other;
-                return m.areEqual(this.subscriptionPurchases, loaded.subscriptionPurchases) && m.areEqual(this.iapPurchases, loaded.iapPurchases) && m.areEqual(this.pendingDowngrade, loaded.pendingDowngrade);
+                return Intrinsics3.areEqual(this.subscriptionPurchases, loaded.subscriptionPurchases) && Intrinsics3.areEqual(this.iapPurchases, loaded.iapPurchases) && Intrinsics3.areEqual(this.pendingDowngrade, loaded.pendingDowngrade);
             }
 
             public final List<Purchase> getIapPurchases() {
@@ -735,16 +736,16 @@ public final class StoreGooglePlayPurchases extends StoreV2 {
             }
 
             /* JADX INFO: renamed from: component3, reason: from getter */
-            public final PendingDowngrade getPendingDowngrade() {
+            public final StoreGooglePlayPurchases2 getPendingDowngrade() {
                 return this.pendingDowngrade;
             }
 
-            public final PendingDowngrade getPendingDowngrade() {
+            public final StoreGooglePlayPurchases2 getPendingDowngrade() {
                 return this.pendingDowngrade;
             }
 
             public final List<Purchase> getPurchases() {
-                return u.plus((Collection) this.subscriptionPurchases, (Iterable) this.iapPurchases);
+                return _Collections.plus((Collection) this.subscriptionPurchases, (Iterable) this.iapPurchases);
             }
 
             public final List<Purchase> getSubscriptionPurchases() {
@@ -756,12 +757,12 @@ public final class StoreGooglePlayPurchases extends StoreV2 {
                 int iHashCode = (list != null ? list.hashCode() : 0) * 31;
                 List<Purchase> list2 = this.iapPurchases;
                 int iHashCode2 = (iHashCode + (list2 != null ? list2.hashCode() : 0)) * 31;
-                PendingDowngrade pendingDowngrade = this.pendingDowngrade;
-                return iHashCode2 + (pendingDowngrade != null ? pendingDowngrade.hashCode() : 0);
+                StoreGooglePlayPurchases2 storeGooglePlayPurchases2 = this.pendingDowngrade;
+                return iHashCode2 + (storeGooglePlayPurchases2 != null ? storeGooglePlayPurchases2.hashCode() : 0);
             }
 
             public String toString() {
-                StringBuilder sbU = a.U("Loaded(subscriptionPurchases=");
+                StringBuilder sbU = outline.U("Loaded(subscriptionPurchases=");
                 sbU.append(this.subscriptionPurchases);
                 sbU.append(", iapPurchases=");
                 sbU.append(this.iapPurchases);
@@ -773,13 +774,13 @@ public final class StoreGooglePlayPurchases extends StoreV2 {
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
             /* JADX WARN: Multi-variable type inference failed */
-            public Loaded(List<? extends Purchase> list, List<? extends Purchase> list2, PendingDowngrade pendingDowngrade) {
+            public Loaded(List<? extends Purchase> list, List<? extends Purchase> list2, StoreGooglePlayPurchases2 storeGooglePlayPurchases2) {
                 super(null);
-                m.checkNotNullParameter(list, "subscriptionPurchases");
-                m.checkNotNullParameter(list2, "iapPurchases");
+                Intrinsics3.checkNotNullParameter(list, "subscriptionPurchases");
+                Intrinsics3.checkNotNullParameter(list2, "iapPurchases");
                 this.subscriptionPurchases = list;
                 this.iapPurchases = list2;
-                this.pendingDowngrade = pendingDowngrade;
+                this.pendingDowngrade = storeGooglePlayPurchases2;
             }
         }
 
@@ -794,7 +795,7 @@ public final class StoreGooglePlayPurchases extends StoreV2 {
         private final Purchase purchase;
 
         public VerificationResult(Purchase purchase, RestAPIParams.VerifyPurchaseResponse verifyPurchaseResponse) {
-            m.checkNotNullParameter(purchase, "purchase");
+            Intrinsics3.checkNotNullParameter(purchase, "purchase");
             this.purchase = purchase;
             this.apiResponse = verifyPurchaseResponse;
         }
@@ -810,7 +811,7 @@ public final class StoreGooglePlayPurchases extends StoreV2 {
         }
 
         public final VerificationResult copy(Purchase purchase, RestAPIParams.VerifyPurchaseResponse apiResponse) {
-            m.checkNotNullParameter(purchase, "purchase");
+            Intrinsics3.checkNotNullParameter(purchase, "purchase");
             return new VerificationResult(purchase, apiResponse);
         }
 
@@ -822,7 +823,7 @@ public final class StoreGooglePlayPurchases extends StoreV2 {
                 return false;
             }
             VerificationResult verificationResult = (VerificationResult) other;
-            return m.areEqual(this.purchase, verificationResult.purchase) && m.areEqual(this.apiResponse, verificationResult.apiResponse);
+            return Intrinsics3.areEqual(this.purchase, verificationResult.purchase) && Intrinsics3.areEqual(this.apiResponse, verificationResult.apiResponse);
         }
 
         /* JADX INFO: renamed from: component2, reason: from getter */
@@ -851,7 +852,7 @@ public final class StoreGooglePlayPurchases extends StoreV2 {
         }
 
         public String toString() {
-            StringBuilder sbU = a.U("VerificationResult(purchase=");
+            StringBuilder sbU = outline.U("VerificationResult(purchase=");
             sbU.append(this.purchase);
             sbU.append(", apiResponse=");
             sbU.append(this.apiResponse);
@@ -861,12 +862,12 @@ public final class StoreGooglePlayPurchases extends StoreV2 {
     }
 
     public StoreGooglePlayPurchases(ObservationDeck observationDeck, Dispatcher dispatcher, RestAPI restAPI, Clock clock, Gson gson, AnalyticsTracker analyticsTracker) {
-        m.checkNotNullParameter(observationDeck, "observationDeck");
-        m.checkNotNullParameter(dispatcher, "dispatcher");
-        m.checkNotNullParameter(restAPI, "restAPI");
-        m.checkNotNullParameter(clock, "clock");
-        m.checkNotNullParameter(gson, "gson");
-        m.checkNotNullParameter(analyticsTracker, "analyticsTracker");
+        Intrinsics3.checkNotNullParameter(observationDeck, "observationDeck");
+        Intrinsics3.checkNotNullParameter(dispatcher, "dispatcher");
+        Intrinsics3.checkNotNullParameter(restAPI, "restAPI");
+        Intrinsics3.checkNotNullParameter(clock, "clock");
+        Intrinsics3.checkNotNullParameter(gson, "gson");
+        Intrinsics3.checkNotNullParameter(analyticsTracker, "analyticsTracker");
         this.observationDeck = observationDeck;
         this.dispatcher = dispatcher;
         this.restAPI = restAPI;
@@ -882,8 +883,8 @@ public final class StoreGooglePlayPurchases extends StoreV2 {
         this.eventSubject = PublishSubject.k0();
     }
 
-    public static final /* synthetic */ void access$doDowngrade(StoreGooglePlayPurchases storeGooglePlayPurchases, PendingDowngrade pendingDowngrade) {
-        storeGooglePlayPurchases.doDowngrade(pendingDowngrade);
+    public static final /* synthetic */ void access$doDowngrade(StoreGooglePlayPurchases storeGooglePlayPurchases, StoreGooglePlayPurchases2 storeGooglePlayPurchases2) {
+        storeGooglePlayPurchases.doDowngrade(storeGooglePlayPurchases2);
     }
 
     public static final /* synthetic */ Dispatcher access$getDispatcher$p(StoreGooglePlayPurchases storeGooglePlayPurchases) {
@@ -944,15 +945,15 @@ public final class StoreGooglePlayPurchases extends StoreV2 {
         cacheAnalyticsTraits(cachedAnalyticsTraitsMap);
     }
 
-    @StoreThread
-    private final void doDowngrade(PendingDowngrade downgrade) {
+    @Store3
+    private final void doDowngrade(StoreGooglePlayPurchases2 downgrade) {
         String purchaseToken = downgrade.getPurchaseToken();
         String subscriptionId = downgrade.getSubscriptionId();
         String newSkuName = downgrade.getNewSkuName();
         RestAPIParams.DowngradeSubscriptionBody downgradeSubscriptionBody = new RestAPIParams.DowngradeSubscriptionBody(subscriptionId, purchaseToken, newSkuName);
         RetryWithDelay retryWithDelay = RetryWithDelay.INSTANCE;
-        Observable<Object> observableX = this.restAPI.downgradeSubscription(downgradeSubscriptionBody).X(j0.p.a.c());
-        m.checkNotNullExpressionValue(observableX, "restAPI\n        .downgra…scribeOn(Schedulers.io())");
+        Observable<Object> observableX = this.restAPI.downgradeSubscription(downgradeSubscriptionBody).X(Schedulers2.c());
+        Intrinsics3.checkNotNullExpressionValue(observableX, "restAPI\n        .downgra…scribeOn(Schedulers.io())");
         ObservableExtensionsKt.appSubscribe$default(RetryWithDelay.restRetry$default(retryWithDelay, observableX, 0L, null, null, new AnonymousClass1(this), 1, null), StoreGooglePlayPurchases.class, (Context) null, (Function1) null, new AnonymousClass3(newSkuName), (Function0) null, (Function0) null, new AnonymousClass2(newSkuName), 54, (Object) null);
     }
 
@@ -963,7 +964,7 @@ public final class StoreGooglePlayPurchases extends StoreV2 {
     private final Map<String, AnalyticsTrait> getCachedAnalyticsTraitsMap() {
         String string = getPrefs().getString(CACHE_KEY_PAYMENT_FLOW_ANALYTICS, null);
         if (string != null) {
-            Map<String, AnalyticsTrait> map = (Map) this.gson.g(string, new StoreGooglePlayPurchases$getCachedAnalyticsTraitsMap$1$typeToken$1().getType());
+            Map<String, AnalyticsTrait> map = (Map) this.gson.g(string, new StoreGooglePlayPurchases3().getType());
             if (map != null) {
                 return map;
             }
@@ -978,7 +979,7 @@ public final class StoreGooglePlayPurchases extends StoreV2 {
         }
         State.Loaded loaded = (State.Loaded) storeStateSnapshot;
         List<Purchase> iapPurchases = loaded != null ? loaded.getIapPurchases() : null;
-        return iapPurchases != null ? iapPurchases : n.emptyList();
+        return iapPurchases != null ? iapPurchases : Collections2.emptyList();
     }
 
     private final AnalyticsTrait getOrClearAnalyticsTraits(String paymentGatewaySkuId) {
@@ -993,7 +994,7 @@ public final class StoreGooglePlayPurchases extends StoreV2 {
         return null;
     }
 
-    private final PendingDowngrade getPendingDowngrade() {
+    private final StoreGooglePlayPurchases2 getPendingDowngrade() {
         State storeStateSnapshot = getStoreStateSnapshot();
         if (!(storeStateSnapshot instanceof State.Loaded)) {
             storeStateSnapshot = null;
@@ -1022,10 +1023,10 @@ public final class StoreGooglePlayPurchases extends StoreV2 {
         }
         State.Loaded loaded = (State.Loaded) storeStateSnapshot;
         List<Purchase> subscriptionPurchases = loaded != null ? loaded.getSubscriptionPurchases() : null;
-        return subscriptionPurchases != null ? subscriptionPurchases : n.emptyList();
+        return subscriptionPurchases != null ? subscriptionPurchases : Collections2.emptyList();
     }
 
-    @StoreThread
+    @Store3
     private final void handleDowngradeFailure(String newSkuName) {
         PublishSubject<Event> publishSubject = this.eventSubject;
         publishSubject.k.onNext(new Event.PurchaseQueryFailure(newSkuName));
@@ -1034,7 +1035,7 @@ public final class StoreGooglePlayPurchases extends StoreV2 {
         markChanged();
     }
 
-    @StoreThread
+    @Store3
     private final void handleDowngradeSuccess(String newSkuName) {
         PublishSubject<Event> publishSubject = this.eventSubject;
         publishSubject.k.onNext(new Event.PurchaseQuerySuccess(newSkuName, null, null, null, 14, null));
@@ -1044,7 +1045,7 @@ public final class StoreGooglePlayPurchases extends StoreV2 {
     }
 
     /* JADX WARN: Code duplicated, block: B:49:0x00b7  */
-    @StoreThread
+    @Store3
     private final void handlePurchases(List<? extends Purchase> newPurchases, String skuType) {
         State loaded;
         int iHashCode = skuType.hashCode();
@@ -1059,7 +1060,7 @@ public final class StoreGooglePlayPurchases extends StoreV2 {
         if (iHashCode2 != 3541555) {
             if (iHashCode2 == 100343516 && skuType.equals("inapp")) {
                 if (newPurchases == null) {
-                    newPurchases = n.emptyList();
+                    newPurchases = Collections2.emptyList();
                 }
                 loaded = new State.Loaded(getSubscriptionPurchases(), newPurchases, getPendingDowngrade());
             } else {
@@ -1067,7 +1068,7 @@ public final class StoreGooglePlayPurchases extends StoreV2 {
             }
         } else if (skuType.equals("subs")) {
             if (newPurchases == null) {
-                newPurchases = n.emptyList();
+                newPurchases = Collections2.emptyList();
             }
             loaded = new State.Loaded(newPurchases, getIapPurchases(), getPendingDowngrade());
         } else {
@@ -1087,24 +1088,24 @@ public final class StoreGooglePlayPurchases extends StoreV2 {
 
     public final Observable<Event> observeEvents() {
         PublishSubject<Event> publishSubject = this.eventSubject;
-        m.checkNotNullExpressionValue(publishSubject, "eventSubject");
+        Intrinsics3.checkNotNullExpressionValue(publishSubject, "eventSubject");
         return publishSubject;
     }
 
     public final Observable<QueryState> observeQueryState() {
         Observable<QueryState> observableR = ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck.UpdateSource[]{this}, false, null, null, new AnonymousClass1(), 14, null).r();
-        m.checkNotNullExpressionValue(observableR, "observationDeck.connectR…  .distinctUntilChanged()");
+        Intrinsics3.checkNotNullExpressionValue(observableR, "observationDeck.connectR…  .distinctUntilChanged()");
         return observableR;
     }
 
     public final Observable<State> observeState() {
         Observable<State> observableR = ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck.UpdateSource[]{this}, false, null, null, new AnonymousClass1(), 14, null).r();
-        m.checkNotNullExpressionValue(observableR, "observationDeck.connectR…  .distinctUntilChanged()");
+        Intrinsics3.checkNotNullExpressionValue(observableR, "observationDeck.connectR…  .distinctUntilChanged()");
         return observableR;
     }
 
     public final void onVerificationFailure(VerificationResult verificationResult) {
-        m.checkNotNullParameter(verificationResult, "verificationResult");
+        Intrinsics3.checkNotNullParameter(verificationResult, "verificationResult");
         this.dispatcher.schedule(new AnonymousClass1(verificationResult));
     }
 
@@ -1113,17 +1114,17 @@ public final class StoreGooglePlayPurchases extends StoreV2 {
     }
 
     public final void onVerificationSuccess(VerificationResult verificationResult) {
-        m.checkNotNullParameter(verificationResult, "verificationResult");
+        Intrinsics3.checkNotNullParameter(verificationResult, "verificationResult");
         ArrayList<String> arrayListB = verificationResult.getPurchase().b();
-        m.checkNotNullExpressionValue(arrayListB, "verificationResult.purchase.skus");
+        Intrinsics3.checkNotNullExpressionValue(arrayListB, "verificationResult.purchase.skus");
         Iterator<T> it = arrayListB.iterator();
         while (it.hasNext()) {
-            this.dispatcher.schedule(new StoreGooglePlayPurchases$onVerificationSuccess$$inlined$forEach$lambda$1((String) it.next(), this, verificationResult));
+            this.dispatcher.schedule(new StoreGooglePlayPurchases4((String) it.next(), this, verificationResult));
         }
     }
 
     public final void processPurchases(List<? extends Purchase> purchases, String skuType) {
-        m.checkNotNullParameter(skuType, "skuType");
+        Intrinsics3.checkNotNullParameter(skuType, "skuType");
         this.dispatcher.schedule(new AnonymousClass1(purchases, skuType));
     }
 
@@ -1145,7 +1146,7 @@ public final class StoreGooglePlayPurchases extends StoreV2 {
         if (stateCopy$default instanceof State.Loaded) {
             State.Loaded loaded = (State.Loaded) stateCopy$default;
             stateCopy$default = State.Loaded.copy$default(loaded, new ArrayList(loaded.getSubscriptionPurchases()), new ArrayList(loaded.getIapPurchases()), null, 4, null);
-        } else if (!m.areEqual(stateCopy$default, State.Uninitialized.INSTANCE)) {
+        } else if (!Intrinsics3.areEqual(stateCopy$default, State.Uninitialized.INSTANCE)) {
             throw new NoWhenBranchMatchedException();
         }
         this.storeStateSnapshot = stateCopy$default;
@@ -1153,7 +1154,7 @@ public final class StoreGooglePlayPurchases extends StoreV2 {
     }
 
     public final void trackPaymentFlowCompleted(String paymentGatewaySkuId) {
-        m.checkNotNullParameter(paymentGatewaySkuId, "paymentGatewaySkuId");
+        Intrinsics3.checkNotNullParameter(paymentGatewaySkuId, "paymentGatewaySkuId");
         AnalyticsTrait orClearAnalyticsTraits = getOrClearAnalyticsTraits(paymentGatewaySkuId);
         if (orClearAnalyticsTraits != null) {
             AnalyticsTracker.paymentFlowCompleted$default(this.analyticsTracker, orClearAnalyticsTraits.getLocationTrait(), null, orClearAnalyticsTraits.getPaymentTrait(), orClearAnalyticsTraits.getStoreSkuTrait(), null, 18, null);
@@ -1162,7 +1163,7 @@ public final class StoreGooglePlayPurchases extends StoreV2 {
     }
 
     public final void trackPaymentFlowFailed(String paymentGatewaySkuId) {
-        m.checkNotNullParameter(paymentGatewaySkuId, "paymentGatewaySkuId");
+        Intrinsics3.checkNotNullParameter(paymentGatewaySkuId, "paymentGatewaySkuId");
         AnalyticsTrait orClearAnalyticsTraits = getOrClearAnalyticsTraits(paymentGatewaySkuId);
         if (orClearAnalyticsTraits != null) {
             AnalyticsTracker.paymentFlowFailed$default(this.analyticsTracker, orClearAnalyticsTraits.getLocationTrait(), null, orClearAnalyticsTraits.getStoreSkuTrait(), orClearAnalyticsTraits.getPaymentTrait(), 2, null);
@@ -1171,10 +1172,10 @@ public final class StoreGooglePlayPurchases extends StoreV2 {
     }
 
     public final void trackPaymentFlowStarted(String paymentGatewaySkuId, long skuId, Traits.Location locationTrait, Traits.StoreSku storeSkuTrait, Traits.Payment paymentTrait) {
-        m.checkNotNullParameter(paymentGatewaySkuId, "paymentGatewaySkuId");
-        m.checkNotNullParameter(locationTrait, "locationTrait");
-        m.checkNotNullParameter(storeSkuTrait, "storeSkuTrait");
-        m.checkNotNullParameter(paymentTrait, "paymentTrait");
+        Intrinsics3.checkNotNullParameter(paymentGatewaySkuId, "paymentGatewaySkuId");
+        Intrinsics3.checkNotNullParameter(locationTrait, "locationTrait");
+        Intrinsics3.checkNotNullParameter(storeSkuTrait, "storeSkuTrait");
+        Intrinsics3.checkNotNullParameter(paymentTrait, "paymentTrait");
         AnalyticsTrait analyticsTrait = new AnalyticsTrait(skuId, this.clock.currentTimeMillis(), locationTrait, storeSkuTrait, paymentTrait);
         Map<String, AnalyticsTrait> cachedAnalyticsTraitsMap = getCachedAnalyticsTraitsMap();
         cachedAnalyticsTraitsMap.put(paymentGatewaySkuId, analyticsTrait);
@@ -1183,14 +1184,14 @@ public final class StoreGooglePlayPurchases extends StoreV2 {
     }
 
     public final void trackPaymentFlowStep(String paymentGatewaySkuId, String fromStep, String toStep) {
-        a.q0(paymentGatewaySkuId, "paymentGatewaySkuId", fromStep, "fromStep", toStep, "toStep");
+        outline.q0(paymentGatewaySkuId, "paymentGatewaySkuId", fromStep, "fromStep", toStep, "toStep");
         AnalyticsTrait orClearAnalyticsTraits = getOrClearAnalyticsTraits(paymentGatewaySkuId);
         if (orClearAnalyticsTraits != null) {
             AnalyticsTracker.paymentFlowStep$default(this.analyticsTracker, orClearAnalyticsTraits.getLocationTrait(), null, toStep, fromStep, orClearAnalyticsTraits.getStoreSkuTrait(), orClearAnalyticsTraits.getPaymentTrait(), 2, null);
         }
     }
 
-    public final void updatePendingDowngrade(PendingDowngrade newPendingDowngrade) {
+    public final void updatePendingDowngrade(StoreGooglePlayPurchases2 newPendingDowngrade) {
         this.dispatcher.schedule(new AnonymousClass1(newPendingDowngrade));
     }
 }

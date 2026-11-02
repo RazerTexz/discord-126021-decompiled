@@ -1,16 +1,16 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.analytics.generated.traits.TrackLocationMetadata;
-import com.discord.analytics.generated.traits.TrackLocationMetadataReceiver;
+import com.discord.analytics.generated.traits.TrackLocationMetadata2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackApplicationSettingsUpdated.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackApplicationSettingsUpdated implements AnalyticsSchema, TrackBaseReceiver, TrackLocationMetadataReceiver {
+public final /* data */ class TrackApplicationSettingsUpdated implements AnalyticsSchema, TrackBase2, TrackLocationMetadata2 {
     private final Long applicationId = null;
     private final CharSequence applicationName = null;
     private final Boolean hiddenEnabled = null;
@@ -30,7 +30,7 @@ public final /* data */ class TrackApplicationSettingsUpdated implements Analyti
             return false;
         }
         TrackApplicationSettingsUpdated trackApplicationSettingsUpdated = (TrackApplicationSettingsUpdated) other;
-        return m.areEqual(this.hiddenEnabled, trackApplicationSettingsUpdated.hiddenEnabled) && m.areEqual(this.overlayDisabled, trackApplicationSettingsUpdated.overlayDisabled) && m.areEqual(this.privateEnabled, trackApplicationSettingsUpdated.privateEnabled) && m.areEqual(this.applicationId, trackApplicationSettingsUpdated.applicationId) && m.areEqual(this.applicationName, trackApplicationSettingsUpdated.applicationName) && m.areEqual(this.skuId, trackApplicationSettingsUpdated.skuId) && m.areEqual(this.launcherPlatform, trackApplicationSettingsUpdated.launcherPlatform);
+        return Intrinsics3.areEqual(this.hiddenEnabled, trackApplicationSettingsUpdated.hiddenEnabled) && Intrinsics3.areEqual(this.overlayDisabled, trackApplicationSettingsUpdated.overlayDisabled) && Intrinsics3.areEqual(this.privateEnabled, trackApplicationSettingsUpdated.privateEnabled) && Intrinsics3.areEqual(this.applicationId, trackApplicationSettingsUpdated.applicationId) && Intrinsics3.areEqual(this.applicationName, trackApplicationSettingsUpdated.applicationName) && Intrinsics3.areEqual(this.skuId, trackApplicationSettingsUpdated.skuId) && Intrinsics3.areEqual(this.launcherPlatform, trackApplicationSettingsUpdated.launcherPlatform);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -57,7 +57,7 @@ public final /* data */ class TrackApplicationSettingsUpdated implements Analyti
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackApplicationSettingsUpdated(hiddenEnabled=");
+        StringBuilder sbU = outline.U("TrackApplicationSettingsUpdated(hiddenEnabled=");
         sbU.append(this.hiddenEnabled);
         sbU.append(", overlayDisabled=");
         sbU.append(this.overlayDisabled);
@@ -70,6 +70,6 @@ public final /* data */ class TrackApplicationSettingsUpdated implements Analyti
         sbU.append(", skuId=");
         sbU.append(this.skuId);
         sbU.append(", launcherPlatform=");
-        return a.E(sbU, this.launcherPlatform, ")");
+        return outline.E(sbU, this.launcherPlatform, ")");
     }
 }

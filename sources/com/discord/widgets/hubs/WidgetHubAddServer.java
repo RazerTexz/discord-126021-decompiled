@@ -9,32 +9,32 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentViewModelLazyKt;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import b.a.d.f0;
-import b.a.d.j;
-import b.a.k.b;
-import b.d.b.a.a;
+import b.a.d.AppScreen2;
+import b.a.d.AppViewModelDelegates2;
+import b.a.k.FormatUtils;
+import b.d.b.a.outline;
 import com.discord.R;
 import com.discord.api.directory.DirectoryEntryGuild;
 import com.discord.app.AppFragment;
-import com.discord.app.LoggingConfig;
+import com.discord.app.AppLogger2;
 import com.discord.databinding.WidgetHubAddServerBinding;
 import com.discord.models.guild.Guild;
 import com.discord.utilities.directories.DirectoryUtils;
-import com.discord.utilities.hubs.HubUtilsKt;
+import com.discord.utilities.hubs.HubUtils;
 import com.discord.utilities.rx.ObservableExtensionsKt;
 import com.discord.utilities.viewbinding.FragmentViewBindingDelegate;
-import com.discord.utilities.viewbinding.FragmentViewBindingDelegateKt;
+import com.discord.utilities.viewbinding.FragmentViewBindingDelegate3;
 import com.discord.utilities.views.SimpleRecyclerAdapter;
 import com.discord.views.segmentedcontrol.SegmentedControlContainer;
 import com.discord.widgets.guilds.create.CreateGuildTrigger;
-import com.discord.widgets.nux.GuildCreateArgs;
 import com.discord.widgets.nux.GuildTemplateAnalytics;
-import com.discord.widgets.nux.GuildTemplateArgs;
-import com.discord.widgets.nux.GuildTemplateTypes;
-import com.discord.widgets.nux.WidgetHubGuildTemplates;
-import d0.z.d.a0;
-import d0.z.d.m;
-import d0.z.d.o;
+import com.discord.widgets.nux.GuildTemplates2;
+import com.discord.widgets.nux.WidgetGuildTemplates2;
+import com.discord.widgets.nux.WidgetGuildTemplates3;
+import com.discord.widgets.nux.WidgetGuildTemplates6;
+import d0.z.d.Intrinsics3;
+import d0.z.d.Lambda;
+import d0.z.d.Reflection2;
 import java.util.Iterator;
 import java.util.List;
 import kotlin.Lazy;
@@ -47,7 +47,7 @@ import kotlin.reflect.KProperty;
 /* JADX INFO: compiled from: WidgetHubAddServer.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetHubAddServer extends AppFragment {
-    public static final /* synthetic */ KProperty[] $$delegatedProperties = {a.d0(WidgetHubAddServer.class, "binding", "getBinding()Lcom/discord/databinding/WidgetHubAddServerBinding;", 0)};
+    public static final /* synthetic */ KProperty[] $$delegatedProperties = {outline.d0(WidgetHubAddServer.class, "binding", "getBinding()Lcom/discord/databinding/WidgetHubAddServerBinding;", 0)};
     private static final int CHOOSE_GUILD = 0;
     private static final int GUILDS_ADDED = 1;
 
@@ -58,7 +58,7 @@ public final class WidgetHubAddServer extends AppFragment {
     /* JADX INFO: renamed from: binding$delegate, reason: from kotlin metadata */
     private final FragmentViewBindingDelegate binding;
     private final ActivityResultLauncher<Intent> launcher;
-    private final LoggingConfig loggingConfig;
+    private final AppLogger2 loggingConfig;
 
     /* JADX INFO: renamed from: viewModel$delegate, reason: from kotlin metadata */
     private final Lazy viewModel;
@@ -66,31 +66,31 @@ public final class WidgetHubAddServer extends AppFragment {
     /* JADX INFO: renamed from: com.discord.widgets.hubs.WidgetHubAddServer$configureUI$1, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetHubAddServer.kt */
     public final class AnonymousClass1 implements View.OnClickListener {
-        public final /* synthetic */ HubAddServerState $state;
+        public final /* synthetic */ WidgetHubAddServerViewModel2 $state;
 
-        public AnonymousClass1(HubAddServerState hubAddServerState) {
-            this.$state = hubAddServerState;
+        public AnonymousClass1(WidgetHubAddServerViewModel2 widgetHubAddServerViewModel2) {
+            this.$state = widgetHubAddServerViewModel2;
         }
 
         @Override // android.view.View.OnClickListener
         public final void onClick(View view) {
             Context context = WidgetHubAddServer.this.getContext();
             if (context != null) {
-                m.checkNotNullExpressionValue(context, "context ?: return@setOnClickListener");
-                j jVar = j.g;
+                Intrinsics3.checkNotNullExpressionValue(context, "context ?: return@setOnClickListener");
+                AppScreen2 appScreen2 = AppScreen2.g;
                 ActivityResultLauncher<Intent> activityResultLauncherAccess$getLauncher$p = WidgetHubAddServer.access$getLauncher$p(WidgetHubAddServer.this);
                 CreateGuildTrigger createGuildTrigger = CreateGuildTrigger.DIRECTORY_CHANNEL;
-                String string = b.h(context, R.string.hub_create_or_add_guild_title, new Object[]{this.$state.getHubName()}, null, 4).toString();
+                String string = FormatUtils.h(context, R.string.hub_create_or_add_guild_title, new Object[]{this.$state.getHubName()}, null, 4).toString();
                 String string2 = context.getString(R.string.hub_create_or_add_guild_subtitle);
-                m.checkNotNullExpressionValue(string2, "context.getString(R.stri…te_or_add_guild_subtitle)");
-                jVar.f(context, activityResultLauncherAccess$getLauncher$p, WidgetHubGuildTemplates.class, new GuildCreateArgs(false, GuildTemplateAnalytics.IN_APP_LOCATION_TEMPLATE, createGuildTrigger, new GuildTemplateArgs(string, string2, GuildTemplateTypes.INSTANCE.getHUB(), false, true), true));
+                Intrinsics3.checkNotNullExpressionValue(string2, "context.getString(R.stri…te_or_add_guild_subtitle)");
+                appScreen2.f(context, activityResultLauncherAccess$getLauncher$p, WidgetGuildTemplates6.class, new WidgetGuildTemplates2(false, GuildTemplateAnalytics.IN_APP_LOCATION_TEMPLATE, createGuildTrigger, new WidgetGuildTemplates3(string, string2, GuildTemplates2.INSTANCE.getHUB(), false, true), true));
             }
         }
     }
 
     /* JADX INFO: renamed from: com.discord.widgets.hubs.WidgetHubAddServer$onServerClickListener$1, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetHubAddServer.kt */
-    public final class AnonymousClass1 extends o implements Function1<HubAddServerState, Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function1<WidgetHubAddServerViewModel2, Unit> {
         public final /* synthetic */ long $channelId;
         public final /* synthetic */ Context $context;
         public final /* synthetic */ long $guildId;
@@ -106,16 +106,16 @@ public final class WidgetHubAddServer extends AppFragment {
         }
 
         @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(HubAddServerState hubAddServerState) {
-            invoke2(hubAddServerState);
+        public /* bridge */ /* synthetic */ Unit invoke(WidgetHubAddServerViewModel2 widgetHubAddServerViewModel2) {
+            invoke2(widgetHubAddServerViewModel2);
             return Unit.a;
         }
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(HubAddServerState hubAddServerState) {
+        public final void invoke2(WidgetHubAddServerViewModel2 widgetHubAddServerViewModel2) {
             Object next;
-            m.checkNotNullParameter(hubAddServerState, "state");
-            Iterator<T> it = hubAddServerState.getAddedDirectories().iterator();
+            Intrinsics3.checkNotNullParameter(widgetHubAddServerViewModel2, "state");
+            Iterator<T> it = widgetHubAddServerViewModel2.getAddedDirectories().iterator();
             do {
                 if (!it.hasNext()) {
                     next = null;
@@ -125,31 +125,31 @@ public final class WidgetHubAddServer extends AppFragment {
             } while (!(((DirectoryEntryGuild) next).getGuild().getId() == this.$guildId));
             DirectoryEntryGuild directoryEntryGuild = (DirectoryEntryGuild) next;
             if (directoryEntryGuild != null) {
-                DirectoryUtils.INSTANCE.showServerOptions(WidgetHubAddServer.this, directoryEntryGuild, hubAddServerState.getHubName(), true, new WidgetHubAddServer$onServerClickListener$1$$special$$inlined$let$lambda$1(directoryEntryGuild, this, hubAddServerState));
+                DirectoryUtils.INSTANCE.showServerOptions(WidgetHubAddServer.this, directoryEntryGuild, widgetHubAddServerViewModel2.getHubName(), true, new WidgetHubAddServer6(directoryEntryGuild, this, widgetHubAddServerViewModel2));
             } else {
                 WidgetHubAddServer widgetHubAddServer = WidgetHubAddServer.this;
-                j.g(j.g, widgetHubAddServer.getParentFragmentManager(), this.$context, WidgetHubDescription.class, 0, true, null, new HubDescriptionArgs(this.$guildId, this.$channelId, false, widgetHubAddServer.getViewModel().getHubName(), this.$isNewGuild, null, null, 96, null), 40);
+                AppScreen2.g(AppScreen2.g, widgetHubAddServer.getParentFragmentManager(), this.$context, WidgetHubDescription.class, 0, true, null, new WidgetHubDescriptionViewModel2(this.$guildId, this.$channelId, false, widgetHubAddServer.getViewModel().getHubName(), this.$isNewGuild, null, null, 96, null), 40);
             }
         }
     }
 
     /* JADX INFO: renamed from: com.discord.widgets.hubs.WidgetHubAddServer$onViewBoundOrOnResume$1, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetHubAddServer.kt */
-    public final class AnonymousClass1 extends o implements Function1<HubAddServerState, Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function1<WidgetHubAddServerViewModel2, Unit> {
         public AnonymousClass1() {
             super(1);
         }
 
         @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(HubAddServerState hubAddServerState) {
-            invoke2(hubAddServerState);
+        public /* bridge */ /* synthetic */ Unit invoke(WidgetHubAddServerViewModel2 widgetHubAddServerViewModel2) {
+            invoke2(widgetHubAddServerViewModel2);
             return Unit.a;
         }
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(HubAddServerState hubAddServerState) {
-            m.checkNotNullParameter(hubAddServerState, "viewState");
-            WidgetHubAddServer.access$configureUI(WidgetHubAddServer.this, hubAddServerState);
+        public final void invoke2(WidgetHubAddServerViewModel2 widgetHubAddServerViewModel2) {
+            Intrinsics3.checkNotNullParameter(widgetHubAddServerViewModel2, "viewState");
+            WidgetHubAddServer.access$configureUI(WidgetHubAddServer.this, widgetHubAddServerViewModel2);
         }
     }
 
@@ -159,8 +159,8 @@ public final class WidgetHubAddServer extends AppFragment {
         }
 
         public final void startScreenForResult(AppFragment fragment) {
-            m.checkNotNullParameter(fragment, "fragment");
-            j.g.f(fragment.requireContext(), HubUtilsKt.getAddServerActivityResultHandler(fragment), WidgetHubAddServer.class, null);
+            Intrinsics3.checkNotNullParameter(fragment, "fragment");
+            AppScreen2.g.f(fragment.requireContext(), HubUtils.getAddServerActivityResultHandler(fragment), WidgetHubAddServer.class, null);
         }
 
         public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
@@ -170,17 +170,17 @@ public final class WidgetHubAddServer extends AppFragment {
 
     public WidgetHubAddServer() {
         super(R.layout.widget_hub_add_server);
-        this.binding = FragmentViewBindingDelegateKt.viewBinding$default(this, WidgetHubAddServer$binding$2.INSTANCE, null, 2, null);
-        this.viewModel = FragmentViewModelLazyKt.createViewModelLazy(this, a0.getOrCreateKotlinClass(WidgetHubAddServerViewModel.class), new WidgetHubAddServer$appActivityViewModels$$inlined$activityViewModels$1(this), new f0(WidgetHubAddServer$viewModel$2.INSTANCE));
-        this.adapter = new SimpleRecyclerAdapter<>(null, new WidgetHubAddServer$adapter$1(this), 1, null);
-        ActivityResultLauncher<Intent> activityResultLauncherRegisterForActivityResult = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new WidgetHubAddServer$launcher$1(this));
-        m.checkNotNullExpressionValue(activityResultLauncherRegisterForActivityResult, "registerForActivityResul… isNewGuild = true) }\n  }");
+        this.binding = FragmentViewBindingDelegate3.viewBinding$default(this, WidgetHubAddServer3.INSTANCE, null, 2, null);
+        this.viewModel = FragmentViewModelLazyKt.createViewModelLazy(this, Reflection2.getOrCreateKotlinClass(WidgetHubAddServerViewModel.class), new WidgetHubAddServer$appActivityViewModels$$inlined$activityViewModels$1(this), new AppViewModelDelegates2(WidgetHubAddServer8.INSTANCE));
+        this.adapter = new SimpleRecyclerAdapter<>(null, new WidgetHubAddServer2(this), 1, null);
+        ActivityResultLauncher<Intent> activityResultLauncherRegisterForActivityResult = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new WidgetHubAddServer4(this));
+        Intrinsics3.checkNotNullExpressionValue(activityResultLauncherRegisterForActivityResult, "registerForActivityResul… isNewGuild = true) }\n  }");
         this.launcher = activityResultLauncherRegisterForActivityResult;
-        this.loggingConfig = new LoggingConfig(false, null, WidgetHubAddServer$loggingConfig$1.INSTANCE, 3);
+        this.loggingConfig = new AppLogger2(false, null, WidgetHubAddServer5.INSTANCE, 3);
     }
 
-    public static final /* synthetic */ void access$configureUI(WidgetHubAddServer widgetHubAddServer, HubAddServerState hubAddServerState) {
-        widgetHubAddServer.configureUI(hubAddServerState);
+    public static final /* synthetic */ void access$configureUI(WidgetHubAddServer widgetHubAddServer, WidgetHubAddServerViewModel2 widgetHubAddServerViewModel2) {
+        widgetHubAddServer.configureUI(widgetHubAddServerViewModel2);
     }
 
     public static final /* synthetic */ ActivityResultLauncher access$getLauncher$p(WidgetHubAddServer widgetHubAddServer) {
@@ -191,7 +191,7 @@ public final class WidgetHubAddServer extends AppFragment {
         widgetHubAddServer.onServerClickListener(j, z2);
     }
 
-    private final void configureUI(HubAddServerState state) {
+    private final void configureUI(WidgetHubAddServerViewModel2 state) {
         List<Guild> selectableGuilds;
         SimpleRecyclerAdapter<Guild, DiscordHubAddServerViewHolder> simpleRecyclerAdapter = this.adapter;
         int selectedIndex = state.getSelectedIndex();
@@ -204,7 +204,7 @@ public final class WidgetHubAddServer extends AppFragment {
         }
         simpleRecyclerAdapter.setData(selectableGuilds);
         getBinding().e.setSelectedIndex(state.getSelectedIndex());
-        getBinding().c.setTitle(b.k(this, R.string.hub_choose_guild_title, new Object[]{state.getHubName()}, null, 4));
+        getBinding().c.setTitle(FormatUtils.k(this, R.string.hub_choose_guild_title, new Object[]{state.getHubName()}, null, 4));
         getBinding().f2468b.setOnClickListener(new AnonymousClass1(state));
     }
 
@@ -217,7 +217,7 @@ public final class WidgetHubAddServer extends AppFragment {
     }
 
     @Override // com.discord.app.AppFragment, com.discord.app.AppLogger.a
-    public LoggingConfig getLoggingConfig() {
+    public AppLogger2 getLoggingConfig() {
         return this.loggingConfig;
     }
 
@@ -235,7 +235,7 @@ public final class WidgetHubAddServer extends AppFragment {
     private final void onServerClickListener(long guildId, boolean isNewGuild) {
         Context context = getContext();
         if (context != null) {
-            m.checkNotNullExpressionValue(context, "context ?: return");
+            Intrinsics3.checkNotNullExpressionValue(context, "context ?: return");
             Long channelId = getViewModel().getChannelId();
             if (channelId != null) {
                 getViewModel().withViewState(new AnonymousClass1(guildId, context, channelId.longValue(), isNewGuild));
@@ -245,7 +245,7 @@ public final class WidgetHubAddServer extends AppFragment {
 
     @Override // com.discord.app.AppFragment
     public void onViewBound(View view) {
-        m.checkNotNullParameter(view, "view");
+        Intrinsics3.checkNotNullParameter(view, "view");
         super.onViewBound(view);
         RecyclerView recyclerView = getBinding().d;
         recyclerView.setAdapter(this.adapter);
@@ -254,7 +254,7 @@ public final class WidgetHubAddServer extends AppFragment {
         getBinding().f.setText(getString(R.string.hub_choose_guild_added_tab));
         SegmentedControlContainer segmentedControlContainer = getBinding().e;
         SegmentedControlContainer.b(segmentedControlContainer, 0, 1);
-        segmentedControlContainer.setOnSegmentSelectedChangeListener(new WidgetHubAddServer$onViewBound$$inlined$apply$lambda$1(this));
+        segmentedControlContainer.setOnSegmentSelectedChangeListener(new WidgetHubAddServer7(this));
     }
 
     @Override // com.discord.app.AppFragment

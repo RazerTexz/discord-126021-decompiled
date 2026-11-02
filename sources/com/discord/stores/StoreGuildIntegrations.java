@@ -5,12 +5,13 @@ import androidx.core.app.NotificationCompat;
 import com.discord.models.domain.ModelGuildIntegration;
 import com.discord.utilities.rest.RestAPI;
 import com.discord.utilities.rx.ObservableExtensionsKt;
-import d0.d0.f;
-import d0.t.g0;
-import d0.z.d.k;
-import d0.z.d.m;
-import d0.z.d.o;
-import j0.k.b;
+import d0.d0._Ranges;
+import d0.t.Iterables2;
+import d0.t.MapsJVM;
+import d0.z.d.FunctionReferenceImpl;
+import d0.z.d.Intrinsics3;
+import d0.z.d.Lambda;
+import j0.k.Func1;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -34,14 +35,14 @@ public final class StoreGuildIntegrations {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreGuildIntegrations$get$1, reason: invalid class name */
     /* JADX INFO: compiled from: StoreGuildIntegrations.kt */
-    public final class AnonymousClass1<T, R> implements b<Map<Long, ? extends Map<Long, ? extends ModelGuildIntegration>>, Map<Long, ? extends ModelGuildIntegration>> {
+    public final class AnonymousClass1<T, R> implements Func1<Map<Long, ? extends Map<Long, ? extends ModelGuildIntegration>>, Map<Long, ? extends ModelGuildIntegration>> {
         public final /* synthetic */ long $guildId;
 
         public AnonymousClass1(long j) {
             this.$guildId = j;
         }
 
-        @Override // j0.k.b
+        @Override // j0.k.Func1
         public /* bridge */ /* synthetic */ Map<Long, ? extends ModelGuildIntegration> call(Map<Long, ? extends Map<Long, ? extends ModelGuildIntegration>> map) {
             return call2(map);
         }
@@ -54,12 +55,12 @@ public final class StoreGuildIntegrations {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreGuildIntegrations$onIntegrationScreenClosed$1, reason: invalid class name */
     /* JADX INFO: compiled from: StoreGuildIntegrations.kt */
-    public final class AnonymousClass1 extends o implements Function1<Long, Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function1<Long, Unit> {
 
         /* JADX INFO: renamed from: com.discord.stores.StoreGuildIntegrations$onIntegrationScreenClosed$1$1, reason: invalid class name and collision with other inner class name */
         /* JADX INFO: compiled from: StoreGuildIntegrations.kt */
-        public final /* synthetic */ class C02371 extends k implements Function0<Unit> {
-            public C02371(StoreGuildIntegrations storeGuildIntegrations) {
+        public final /* synthetic */ class C01171 extends FunctionReferenceImpl implements Function0<Unit> {
+            public C01171(StoreGuildIntegrations storeGuildIntegrations) {
                 super(0, storeGuildIntegrations, StoreGuildIntegrations.class, "handleIntegrationScreenClosed", "handleIntegrationScreenClosed()V", 0);
             }
 
@@ -87,13 +88,13 @@ public final class StoreGuildIntegrations {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(Long l) {
-            StoreGuildIntegrations.access$getDispatcher$p(StoreGuildIntegrations.this).schedule(new C02371(StoreGuildIntegrations.this));
+            StoreGuildIntegrations.access$getDispatcher$p(StoreGuildIntegrations.this).schedule(new C01171(StoreGuildIntegrations.this));
         }
     }
 
     /* JADX INFO: renamed from: com.discord.stores.StoreGuildIntegrations$onIntegrationScreenOpened$1, reason: invalid class name */
     /* JADX INFO: compiled from: StoreGuildIntegrations.kt */
-    public final class AnonymousClass1 extends o implements Function0<Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function0<Unit> {
         public final /* synthetic */ long $guildId;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -116,16 +117,16 @@ public final class StoreGuildIntegrations {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreGuildIntegrations$requestGuildIntegrations$1, reason: invalid class name */
     /* JADX INFO: compiled from: StoreGuildIntegrations.kt */
-    public final class AnonymousClass1 extends o implements Function1<List<? extends ModelGuildIntegration>, Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function1<List<? extends ModelGuildIntegration>, Unit> {
         public final /* synthetic */ long $guildId;
 
         /* JADX INFO: renamed from: com.discord.stores.StoreGuildIntegrations$requestGuildIntegrations$1$1, reason: invalid class name and collision with other inner class name */
         /* JADX INFO: compiled from: StoreGuildIntegrations.kt */
-        public final class C02381 extends o implements Function0<Unit> {
+        public final class C01181 extends Lambda implements Function0<Unit> {
             public final /* synthetic */ List $integrations;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-            public C02381(List list) {
+            public C01181(List list) {
                 super(0);
                 this.$integrations = list;
             }
@@ -157,21 +158,21 @@ public final class StoreGuildIntegrations {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(List<? extends ModelGuildIntegration> list) {
-            m.checkNotNullParameter(list, "integrations");
-            StoreGuildIntegrations.access$getDispatcher$p(StoreGuildIntegrations.this).schedule(new C02381(list));
+            Intrinsics3.checkNotNullParameter(list, "integrations");
+            StoreGuildIntegrations.access$getDispatcher$p(StoreGuildIntegrations.this).schedule(new C01181(list));
         }
     }
 
     /* JADX INFO: renamed from: com.discord.stores.StoreGuildIntegrations$get$2, reason: invalid class name */
     /* JADX INFO: compiled from: StoreGuildIntegrations.kt */
-    public final class AnonymousClass2<T, R> implements b<Map<Long, ? extends ModelGuildIntegration>, ModelGuildIntegration> {
+    public final class AnonymousClass2<T, R> implements Func1<Map<Long, ? extends ModelGuildIntegration>, ModelGuildIntegration> {
         public final /* synthetic */ long $integrationId;
 
         public AnonymousClass2(long j) {
             this.$integrationId = j;
         }
 
-        @Override // j0.k.b
+        @Override // j0.k.Func1
         public /* bridge */ /* synthetic */ ModelGuildIntegration call(Map<Long, ? extends ModelGuildIntegration> map) {
             return call2(map);
         }
@@ -187,7 +188,7 @@ public final class StoreGuildIntegrations {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreGuildIntegrations$onIntegrationScreenClosed$2, reason: invalid class name */
     /* JADX INFO: compiled from: StoreGuildIntegrations.kt */
-    public final class AnonymousClass2 extends o implements Function1<Subscription, Unit> {
+    public final class AnonymousClass2 extends Lambda implements Function1<Subscription, Unit> {
         public AnonymousClass2() {
             super(1);
         }
@@ -200,13 +201,13 @@ public final class StoreGuildIntegrations {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(Subscription subscription) {
-            m.checkNotNullParameter(subscription, "it");
+            Intrinsics3.checkNotNullParameter(subscription, "it");
             StoreGuildIntegrations.access$setCloseIntegrationScreenSubscription$p(StoreGuildIntegrations.this, subscription);
         }
     }
 
     public StoreGuildIntegrations(Dispatcher dispatcher) {
-        m.checkNotNullParameter(dispatcher, "dispatcher");
+        Intrinsics3.checkNotNullParameter(dispatcher, "dispatcher");
         this.dispatcher = dispatcher;
         this.allIntegrations = new HashMap<>();
         this.integrationsSubject = BehaviorSubject.l0(new HashMap());
@@ -238,16 +239,16 @@ public final class StoreGuildIntegrations {
 
     public final Observable<Map<Long, ModelGuildIntegration>> get(long guildId) {
         Observable<Map<Long, ModelGuildIntegration>> observableR = this.integrationsSubject.G(new AnonymousClass1(guildId)).r();
-        m.checkNotNullExpressionValue(observableR, "integrationsSubject\n    …  .distinctUntilChanged()");
+        Intrinsics3.checkNotNullExpressionValue(observableR, "integrationsSubject\n    …  .distinctUntilChanged()");
         return observableR;
     }
 
-    @StoreThread
+    @Store3
     private final void handleIntegrationScreenClosed() {
         this.isOnIntegrationsScreen = false;
     }
 
-    @StoreThread
+    @Store3
     private final void handleIntegrationScreenOpened(long guildId) {
         if (this.isOnIntegrationsScreen) {
             return;
@@ -256,11 +257,11 @@ public final class StoreGuildIntegrations {
         requestGuildIntegrations(guildId);
     }
 
-    @StoreThread
+    @Store3
     private final void handleIntegrationsLoaded(long guildId, List<? extends ModelGuildIntegration> integrations) {
         HashMap<Long, Map<Long, ModelGuildIntegration>> map = this.allIntegrations;
         Long lValueOf = Long.valueOf(guildId);
-        LinkedHashMap linkedHashMap = new LinkedHashMap(f.coerceAtLeast(g0.mapCapacity(d0.t.o.collectionSizeOrDefault(integrations, 10)), 16));
+        LinkedHashMap linkedHashMap = new LinkedHashMap(_Ranges.coerceAtLeast(MapsJVM.mapCapacity(Iterables2.collectionSizeOrDefault(integrations, 10)), 16));
         for (Object obj : integrations) {
             linkedHashMap.put(Long.valueOf(((ModelGuildIntegration) obj).getId()), obj);
         }
@@ -268,7 +269,7 @@ public final class StoreGuildIntegrations {
         this.integrationsSubject.onNext(new HashMap(this.allIntegrations));
     }
 
-    @StoreThread
+    @Store3
     public final void handleUpdate(ModelGuildIntegration.Update update) {
         if (!this.isOnIntegrationsScreen || update == null) {
             return;
@@ -282,7 +283,7 @@ public final class StoreGuildIntegrations {
             subscription.unsubscribe();
         }
         Observable<Long> observableD0 = Observable.d0(1000L, TimeUnit.MILLISECONDS);
-        m.checkNotNullExpressionValue(observableD0, "Observable\n        .time…S, TimeUnit.MILLISECONDS)");
+        Intrinsics3.checkNotNullExpressionValue(observableD0, "Observable\n        .time…S, TimeUnit.MILLISECONDS)");
         ObservableExtensionsKt.appSubscribe$default(observableD0, getClass(), (Context) null, new AnonymousClass2(), (Function1) null, (Function0) null, (Function0) null, new AnonymousClass1(), 58, (Object) null);
     }
 
@@ -300,7 +301,7 @@ public final class StoreGuildIntegrations {
 
     public final Observable<ModelGuildIntegration> get(long guildId, long integrationId) {
         Observable<ModelGuildIntegration> observableR = get(guildId).G(new AnonymousClass2(integrationId)).r();
-        m.checkNotNullExpressionValue(observableR, "get(guildId)\n          .…  .distinctUntilChanged()");
+        Intrinsics3.checkNotNullExpressionValue(observableR, "get(guildId)\n          .…  .distinctUntilChanged()");
         return observableR;
     }
 }

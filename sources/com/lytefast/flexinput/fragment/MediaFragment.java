@@ -12,7 +12,8 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-import b.b.a.d.h;
+import b.b.a.FlexInputCoordinator;
+import b.b.a.d.MediaCursorAdapter;
 import com.discord.utilities.display.DisplayUtils;
 import com.lytefast.flexinput.R;
 import com.lytefast.flexinput.adapters.EmptyListAdapter;
@@ -20,8 +21,8 @@ import com.lytefast.flexinput.model.Attachment;
 import com.lytefast.flexinput.model.Media;
 import com.lytefast.flexinput.utils.SelectionAggregator;
 import com.lytefast.flexinput.utils.SelectionCoordinator;
-import d0.z.d.m;
-import d0.z.d.o;
+import d0.z.d.Intrinsics3;
+import d0.z.d.Lambda;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 
@@ -37,44 +38,44 @@ public class MediaFragment extends Fragment {
     /* JADX INFO: compiled from: MediaFragment.kt */
     public final class a implements View.OnClickListener {
         public final /* synthetic */ View j;
-        public final /* synthetic */ h k;
+        public final /* synthetic */ MediaCursorAdapter k;
         public final /* synthetic */ MediaFragment l;
-        public final /* synthetic */ b.b.a.b m;
+        public final /* synthetic */ FlexInputCoordinator m;
 
         /* JADX INFO: renamed from: com.lytefast.flexinput.fragment.MediaFragment$a$a, reason: collision with other inner class name */
         /* JADX INFO: compiled from: MediaFragment.kt */
-        public final class C0490a extends o implements Function0<Unit> {
-            public C0490a() {
+        public final class C0370a extends Lambda implements Function0<Unit> {
+            public C0370a() {
                 super(0);
             }
 
             @Override // kotlin.jvm.functions.Function0
             public Unit invoke() {
                 RecyclerView recyclerView = a.this.l.getRecyclerView();
-                m.checkNotNull(recyclerView);
+                Intrinsics3.checkNotNull(recyclerView);
                 recyclerView.setLayoutManager(new GridLayoutManager(a.this.j.getContext(), 3));
                 RecyclerView recyclerView2 = a.this.l.getRecyclerView();
-                m.checkNotNull(recyclerView2);
+                Intrinsics3.checkNotNull(recyclerView2);
                 recyclerView2.setAdapter(a.this.k);
                 RecyclerView recyclerView3 = a.this.l.getRecyclerView();
-                m.checkNotNull(recyclerView3);
+                Intrinsics3.checkNotNull(recyclerView3);
                 recyclerView3.invalidateItemDecorations();
                 return Unit.a;
             }
         }
 
-        public a(View view, h hVar, MediaFragment mediaFragment, b.b.a.b bVar) {
+        public a(View view, MediaCursorAdapter mediaCursorAdapter, MediaFragment mediaFragment, FlexInputCoordinator flexInputCoordinator) {
             this.j = view;
-            this.k = hVar;
+            this.k = mediaCursorAdapter;
             this.l = mediaFragment;
-            this.m = bVar;
+            this.m = flexInputCoordinator;
         }
 
         @Override // android.view.View.OnClickListener
         public final void onClick(View view) {
-            b.b.a.b bVar = this.m;
-            if (bVar != null) {
-                bVar.requestMediaPermissions(new C0490a());
+            FlexInputCoordinator flexInputCoordinator = this.m;
+            if (flexInputCoordinator != null) {
+                flexInputCoordinator.requestMediaPermissions(new C0370a());
             }
         }
     }
@@ -84,26 +85,26 @@ public class MediaFragment extends Fragment {
         public final /* synthetic */ View a;
 
         /* JADX INFO: renamed from: b, reason: collision with root package name */
-        public final /* synthetic */ h f3167b;
+        public final /* synthetic */ MediaCursorAdapter f3167b;
         public final /* synthetic */ MediaFragment c;
-        public final /* synthetic */ b.b.a.b d;
+        public final /* synthetic */ FlexInputCoordinator d;
 
-        public b(View view, h hVar, MediaFragment mediaFragment, b.b.a.b bVar) {
+        public b(View view, MediaCursorAdapter mediaCursorAdapter, MediaFragment mediaFragment, FlexInputCoordinator flexInputCoordinator) {
             this.a = view;
-            this.f3167b = hVar;
+            this.f3167b = mediaCursorAdapter;
             this.c = mediaFragment;
-            this.d = bVar;
+            this.d = flexInputCoordinator;
         }
 
         @Override // androidx.swiperefreshlayout.widget.SwipeRefreshLayout.OnRefreshListener
         public final void onRefresh() {
             if (MediaFragment.access$hasPermissions(this.c, MediaFragment.REQUIRED_PERMISSION)) {
-                h hVar = this.f3167b;
+                MediaCursorAdapter mediaCursorAdapter = this.f3167b;
                 Context context = this.a.getContext();
-                m.checkNotNullExpressionValue(context, "context");
+                Intrinsics3.checkNotNullExpressionValue(context, "context");
                 ContentResolver contentResolver = context.getContentResolver();
-                m.checkNotNullExpressionValue(contentResolver, "context.contentResolver");
-                hVar.b(contentResolver);
+                Intrinsics3.checkNotNullExpressionValue(contentResolver, "context.contentResolver");
+                mediaCursorAdapter.b(contentResolver);
             }
             SwipeRefreshLayout swipeRefreshLayoutAccess$getSwipeRefreshLayout$p = MediaFragment.access$getSwipeRefreshLayout$p(this.c);
             if (swipeRefreshLayoutAccess$getSwipeRefreshLayout$p != null) {
@@ -144,24 +145,24 @@ public class MediaFragment extends Fragment {
     }
 
     public EmptyListAdapter newPermissionsRequestAdapter(View.OnClickListener onClickListener) {
-        m.checkNotNullParameter(onClickListener, "onClickListener");
+        Intrinsics3.checkNotNullParameter(onClickListener, "onClickListener");
         return new EmptyListAdapter(R.g.item_permission_storage, R.f.permissions_req_btn, onClickListener);
     }
 
     @Override // androidx.fragment.app.Fragment
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        m.checkNotNullParameter(inflater, "inflater");
+        Intrinsics3.checkNotNullParameter(inflater, "inflater");
         this.selectionCoordinator = new SelectionCoordinator<>(null, null, 3);
         Fragment parentFragment = getParentFragment();
         ActivityResultCaller parentFragment2 = parentFragment != null ? parentFragment.getParentFragment() : null;
-        if (!(parentFragment2 instanceof b.b.a.b)) {
+        if (!(parentFragment2 instanceof FlexInputCoordinator)) {
             parentFragment2 = null;
         }
-        b.b.a.b bVar = (b.b.a.b) parentFragment2;
-        if (bVar != null) {
-            SelectionAggregator selectionAggregatorB = bVar.b();
+        FlexInputCoordinator flexInputCoordinator = (FlexInputCoordinator) parentFragment2;
+        if (flexInputCoordinator != null) {
+            SelectionAggregator selectionAggregatorB = flexInputCoordinator.b();
             SelectionCoordinator<Attachment<Object>, Media> selectionCoordinator = this.selectionCoordinator;
-            m.checkNotNull(selectionCoordinator);
+            Intrinsics3.checkNotNull(selectionCoordinator);
             selectionAggregatorB.registerSelectionCoordinator(selectionCoordinator);
         }
         View viewInflate = inflater.inflate(R.g.fragment_recycler_view, container, false);
@@ -170,11 +171,11 @@ public class MediaFragment extends Fragment {
         }
         this.recyclerView = (RecyclerView) viewInflate.findViewById(R.f.list);
         Context context = viewInflate.getContext();
-        m.checkNotNullExpressionValue(context, "context");
+        Intrinsics3.checkNotNullExpressionValue(context, "context");
         int iWidth = (int) (DisplayUtils.getScreenSize(context).width() / 3);
         SelectionCoordinator<Attachment<Object>, Media> selectionCoordinator2 = this.selectionCoordinator;
-        m.checkNotNull(selectionCoordinator2);
-        h hVar = new h(selectionCoordinator2, iWidth, iWidth);
+        Intrinsics3.checkNotNull(selectionCoordinator2);
+        MediaCursorAdapter mediaCursorAdapter = new MediaCursorAdapter(selectionCoordinator2, iWidth, iWidth);
         if (hasPermissions(REQUIRED_PERMISSION)) {
             RecyclerView recyclerView = this.recyclerView;
             if (recyclerView != null) {
@@ -182,18 +183,18 @@ public class MediaFragment extends Fragment {
             }
             RecyclerView recyclerView2 = this.recyclerView;
             if (recyclerView2 != null) {
-                recyclerView2.setAdapter(hVar);
+                recyclerView2.setAdapter(mediaCursorAdapter);
             }
         } else {
             RecyclerView recyclerView3 = this.recyclerView;
             if (recyclerView3 != null) {
-                recyclerView3.setAdapter(newPermissionsRequestAdapter(new a(viewInflate, hVar, this, bVar)));
+                recyclerView3.setAdapter(newPermissionsRequestAdapter(new a(viewInflate, mediaCursorAdapter, this, flexInputCoordinator)));
             }
         }
         SwipeRefreshLayout swipeRefreshLayout = (SwipeRefreshLayout) viewInflate.findViewById(R.f.swipeRefreshLayout);
         this.swipeRefreshLayout = swipeRefreshLayout;
         if (swipeRefreshLayout != null) {
-            swipeRefreshLayout.setOnRefreshListener(new b(viewInflate, hVar, this, bVar));
+            swipeRefreshLayout.setOnRefreshListener(new b(viewInflate, mediaCursorAdapter, this, flexInputCoordinator));
         }
         return viewInflate;
     }
@@ -201,7 +202,7 @@ public class MediaFragment extends Fragment {
     @Override // androidx.fragment.app.Fragment
     public void onDestroyView() {
         SelectionCoordinator<Attachment<Object>, Media> selectionCoordinator = this.selectionCoordinator;
-        m.checkNotNull(selectionCoordinator);
+        Intrinsics3.checkNotNull(selectionCoordinator);
         selectionCoordinator.itemSelectionListener.unregister();
         super.onDestroyView();
     }

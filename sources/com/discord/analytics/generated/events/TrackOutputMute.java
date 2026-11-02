@@ -1,12 +1,12 @@
 package com.discord.analytics.generated.events;
 
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.api.science.AnalyticsSchema;
 
 /* JADX INFO: compiled from: TrackOutputMute.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final class TrackOutputMute implements AnalyticsSchema, TrackBaseReceiver {
+public final class TrackOutputMute implements AnalyticsSchema, TrackBase2 {
     private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "output_mute";
 

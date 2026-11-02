@@ -1,5 +1,6 @@
 package b.i.a.f.h.l;
 
+import b.d.b.a.outline;
 import java.lang.reflect.Field;
 import java.nio.Buffer;
 import java.nio.ByteOrder;
@@ -287,7 +288,7 @@ public final class j7 {
                             Logger logger = Logger.getLogger(j7.class.getName());
                             Level level = Level.WARNING;
                             String strValueOf = String.valueOf(th);
-                            logger.logp(level, "com.google.protobuf.UnsafeUtil", "supportsUnsafeByteBufferOperations", b.d.b.a.a.j(strValueOf.length() + 71, "platform method missing - proto runtime falling back to safer methods: ", strValueOf));
+                            logger.logp(level, "com.google.protobuf.UnsafeUtil", "supportsUnsafeByteBufferOperations", outline.j(strValueOf.length() + 71, "platform method missing - proto runtime falling back to safer methods: ", strValueOf));
                             z2 = false;
                         }
                     }
@@ -359,7 +360,7 @@ public final class j7 {
                     Logger logger2 = Logger.getLogger(j7.class.getName());
                     Level level2 = Level.WARNING;
                     String strValueOf2 = String.valueOf(th);
-                    logger2.logp(level2, "com.google.protobuf.UnsafeUtil", "supportsUnsafeArrayOperations", b.d.b.a.a.j(strValueOf2.length() + 71, "platform method missing - proto runtime falling back to safer methods: ", strValueOf2));
+                    logger2.logp(level2, "com.google.protobuf.UnsafeUtil", "supportsUnsafeArrayOperations", outline.j(strValueOf2.length() + 71, "platform method missing - proto runtime falling back to safer methods: ", strValueOf2));
                     z4 = false;
                     z5 = z3;
                 }

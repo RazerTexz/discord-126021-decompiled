@@ -1,16 +1,16 @@
 package com.discord.analytics.generated.events.activity_internal;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackActivityInternalMetadata;
-import com.discord.analytics.generated.traits.TrackActivityInternalMetadataReceiver;
+import com.discord.analytics.generated.traits.TrackActivityInternalMetadata2;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackActivityInternalActionChess.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackActivityInternalActionChess implements AnalyticsSchema, TrackBaseReceiver, TrackActivityInternalMetadataReceiver {
+public final /* data */ class TrackActivityInternalActionChess implements AnalyticsSchema, TrackBase2, TrackActivityInternalMetadata2 {
     private final CharSequence actionName = null;
     private final Boolean againstBot = null;
     private final CharSequence background = null;
@@ -35,7 +35,7 @@ public final /* data */ class TrackActivityInternalActionChess implements Analyt
             return false;
         }
         TrackActivityInternalActionChess trackActivityInternalActionChess = (TrackActivityInternalActionChess) other;
-        return m.areEqual(this.actionName, trackActivityInternalActionChess.actionName) && m.areEqual(this.phase, trackActivityInternalActionChess.phase) && m.areEqual(this.moveType, trackActivityInternalActionChess.moveType) && m.areEqual(this.lockedGame, trackActivityInternalActionChess.lockedGame) && m.areEqual(this.timedGame, trackActivityInternalActionChess.timedGame) && m.areEqual(this.againstBot, trackActivityInternalActionChess.againstBot) && m.areEqual(this.background, trackActivityInternalActionChess.background) && m.areEqual(this.pieceSet, trackActivityInternalActionChess.pieceSet) && m.areEqual(this.numSpectators, trackActivityInternalActionChess.numSpectators) && m.areEqual(this.playerColor, trackActivityInternalActionChess.playerColor) && m.areEqual(this.lastScreen, trackActivityInternalActionChess.lastScreen) && m.areEqual(this.reconnectTime, trackActivityInternalActionChess.reconnectTime);
+        return Intrinsics3.areEqual(this.actionName, trackActivityInternalActionChess.actionName) && Intrinsics3.areEqual(this.phase, trackActivityInternalActionChess.phase) && Intrinsics3.areEqual(this.moveType, trackActivityInternalActionChess.moveType) && Intrinsics3.areEqual(this.lockedGame, trackActivityInternalActionChess.lockedGame) && Intrinsics3.areEqual(this.timedGame, trackActivityInternalActionChess.timedGame) && Intrinsics3.areEqual(this.againstBot, trackActivityInternalActionChess.againstBot) && Intrinsics3.areEqual(this.background, trackActivityInternalActionChess.background) && Intrinsics3.areEqual(this.pieceSet, trackActivityInternalActionChess.pieceSet) && Intrinsics3.areEqual(this.numSpectators, trackActivityInternalActionChess.numSpectators) && Intrinsics3.areEqual(this.playerColor, trackActivityInternalActionChess.playerColor) && Intrinsics3.areEqual(this.lastScreen, trackActivityInternalActionChess.lastScreen) && Intrinsics3.areEqual(this.reconnectTime, trackActivityInternalActionChess.reconnectTime);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -72,7 +72,7 @@ public final /* data */ class TrackActivityInternalActionChess implements Analyt
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackActivityInternalActionChess(actionName=");
+        StringBuilder sbU = outline.U("TrackActivityInternalActionChess(actionName=");
         sbU.append(this.actionName);
         sbU.append(", phase=");
         sbU.append(this.phase);
@@ -95,6 +95,6 @@ public final /* data */ class TrackActivityInternalActionChess implements Analyt
         sbU.append(", lastScreen=");
         sbU.append(this.lastScreen);
         sbU.append(", reconnectTime=");
-        return a.G(sbU, this.reconnectTime, ")");
+        return outline.G(sbU, this.reconnectTime, ")");
     }
 }

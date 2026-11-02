@@ -1,14 +1,14 @@
 package com.discord.widgets.channels;
 
 import com.discord.models.user.User;
-import d0.z.d.k;
-import d0.z.d.m;
+import d0.z.d.FunctionReferenceImpl;
+import d0.z.d.Intrinsics3;
 import java.util.Collection;
 import kotlin.jvm.functions.Function2;
 
 /* JADX INFO: compiled from: WidgetGroupInviteFriends.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final /* synthetic */ class WidgetGroupInviteFriends$Model$Companion$getForCreate$1 extends k implements Function2<Collection<? extends User>, String, WidgetGroupInviteFriends.Model.Companion.AddedUsersInput> {
+public final /* synthetic */ class WidgetGroupInviteFriends$Model$Companion$getForCreate$1 extends FunctionReferenceImpl implements Function2<Collection<? extends User>, String, WidgetGroupInviteFriends.Model.Companion.AddedUsersInput> {
     public static final WidgetGroupInviteFriends$Model$Companion$getForCreate$1 INSTANCE = new WidgetGroupInviteFriends$Model$Companion$getForCreate$1();
 
     public WidgetGroupInviteFriends$Model$Companion$getForCreate$1() {
@@ -22,8 +22,8 @@ public final /* synthetic */ class WidgetGroupInviteFriends$Model$Companion$getF
 
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final WidgetGroupInviteFriends.Model.Companion.AddedUsersInput invoke2(Collection<? extends User> collection, String str) {
-        m.checkNotNullParameter(collection, "p1");
-        m.checkNotNullParameter(str, "p2");
+        Intrinsics3.checkNotNullParameter(collection, "p1");
+        Intrinsics3.checkNotNullParameter(str, "p2");
         return new WidgetGroupInviteFriends.Model.Companion.AddedUsersInput(collection, str);
     }
 }

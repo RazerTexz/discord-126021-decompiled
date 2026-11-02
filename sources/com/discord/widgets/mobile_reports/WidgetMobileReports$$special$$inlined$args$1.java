@@ -1,14 +1,14 @@
 package com.discord.widgets.mobile_reports;
 
 import android.os.Bundle;
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.app.AppFragment;
-import d0.z.d.o;
+import d0.z.d.Lambda;
 import kotlin.jvm.functions.Function0;
 
 /* JADX INFO: compiled from: ArgUtils.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class WidgetMobileReports$$special$$inlined$args$1 extends o implements Function0<MobileReportArgs> {
+public final class WidgetMobileReports$$special$$inlined$args$1 extends Lambda implements Function0<WidgetMobileReports2> {
     public final /* synthetic */ String $argsKey;
     public final /* synthetic */ AppFragment $this_args;
 
@@ -25,25 +25,25 @@ public final class WidgetMobileReports$$special$$inlined$args$1 extends o implem
     /* JADX WARN: Type inference failed for: r1v11 */
     /* JADX WARN: Type inference failed for: r1v3, types: [com.discord.widgets.mobile_reports.MobileReportArgs] */
     @Override // kotlin.jvm.functions.Function0
-    public final MobileReportArgs invoke() {
+    public final WidgetMobileReports2 invoke() {
         Bundle arguments = this.$this_args.getArguments();
         Object obj = arguments != null ? arguments.get(this.$argsKey) : null;
-        MobileReportArgs mobileReportArgs = (MobileReportArgs) (obj instanceof MobileReportArgs ? obj : null);
-        ?? parcelableExtra = mobileReportArgs;
-        if (mobileReportArgs == null) {
+        WidgetMobileReports2 widgetMobileReports2 = (WidgetMobileReports2) (obj instanceof WidgetMobileReports2 ? obj : null);
+        ?? parcelableExtra = widgetMobileReports2;
+        if (widgetMobileReports2 == null) {
             parcelableExtra = this.$this_args.getMostRecentIntent().getParcelableExtra(this.$argsKey);
         }
         if (parcelableExtra != 0) {
             return parcelableExtra;
         }
-        StringBuilder sbU = a.U("Missing args for class type ");
-        a.l0(MobileReportArgs.class, sbU, " + key ");
-        throw new IllegalStateException(a.H(sbU, this.$argsKey, '!'));
+        StringBuilder sbU = outline.U("Missing args for class type ");
+        outline.l0(WidgetMobileReports2.class, sbU, " + key ");
+        throw new IllegalStateException(outline.H(sbU, this.$argsKey, '!'));
     }
 
     /* JADX WARN: Type inference failed for: r0v0, types: [android.os.Parcelable, com.discord.widgets.mobile_reports.MobileReportArgs] */
     @Override // kotlin.jvm.functions.Function0
-    public /* bridge */ /* synthetic */ MobileReportArgs invoke() {
+    public /* bridge */ /* synthetic */ WidgetMobileReports2 invoke() {
         return invoke();
     }
 }

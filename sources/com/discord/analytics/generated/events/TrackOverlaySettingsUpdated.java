@@ -1,16 +1,16 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.analytics.generated.traits.TrackOverlayClientMetadata;
-import com.discord.analytics.generated.traits.TrackOverlayClientMetadataReceiver;
+import com.discord.analytics.generated.traits.TrackOverlayClientMetadata2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackOverlaySettingsUpdated.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackOverlaySettingsUpdated implements AnalyticsSchema, TrackBaseReceiver, TrackOverlayClientMetadataReceiver {
+public final /* data */ class TrackOverlaySettingsUpdated implements AnalyticsSchema, TrackBase2, TrackOverlayClientMetadata2 {
     private final Boolean enabled = null;
     private final CharSequence hotkey = null;
     private final Boolean notificationsEnabled = null;
@@ -30,7 +30,7 @@ public final /* data */ class TrackOverlaySettingsUpdated implements AnalyticsSc
             return false;
         }
         TrackOverlaySettingsUpdated trackOverlaySettingsUpdated = (TrackOverlaySettingsUpdated) other;
-        return m.areEqual(this.enabled, trackOverlaySettingsUpdated.enabled) && m.areEqual(this.notificationsEnabled, trackOverlaySettingsUpdated.notificationsEnabled) && m.areEqual(this.notificationsPosition, trackOverlaySettingsUpdated.notificationsPosition) && m.areEqual(this.textNotificationsMode, trackOverlaySettingsUpdated.textNotificationsMode) && m.areEqual(this.hotkey, trackOverlaySettingsUpdated.hotkey) && m.areEqual(this.textActivationHotkey, trackOverlaySettingsUpdated.textActivationHotkey) && m.areEqual(this.textOpacitySlider, trackOverlaySettingsUpdated.textOpacitySlider);
+        return Intrinsics3.areEqual(this.enabled, trackOverlaySettingsUpdated.enabled) && Intrinsics3.areEqual(this.notificationsEnabled, trackOverlaySettingsUpdated.notificationsEnabled) && Intrinsics3.areEqual(this.notificationsPosition, trackOverlaySettingsUpdated.notificationsPosition) && Intrinsics3.areEqual(this.textNotificationsMode, trackOverlaySettingsUpdated.textNotificationsMode) && Intrinsics3.areEqual(this.hotkey, trackOverlaySettingsUpdated.hotkey) && Intrinsics3.areEqual(this.textActivationHotkey, trackOverlaySettingsUpdated.textActivationHotkey) && Intrinsics3.areEqual(this.textOpacitySlider, trackOverlaySettingsUpdated.textOpacitySlider);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -57,7 +57,7 @@ public final /* data */ class TrackOverlaySettingsUpdated implements AnalyticsSc
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackOverlaySettingsUpdated(enabled=");
+        StringBuilder sbU = outline.U("TrackOverlaySettingsUpdated(enabled=");
         sbU.append(this.enabled);
         sbU.append(", notificationsEnabled=");
         sbU.append(this.notificationsEnabled);
@@ -70,6 +70,6 @@ public final /* data */ class TrackOverlaySettingsUpdated implements AnalyticsSc
         sbU.append(", textActivationHotkey=");
         sbU.append(this.textActivationHotkey);
         sbU.append(", textOpacitySlider=");
-        return a.G(sbU, this.textOpacitySlider, ")");
+        return outline.G(sbU, this.textOpacitySlider, ")");
     }
 }

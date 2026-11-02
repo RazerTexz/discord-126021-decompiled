@@ -3,19 +3,19 @@ package com.discord.widgets.voice.fullscreen;
 import a0.a.a.b;
 import android.content.Context;
 import androidx.annotation.MainThread;
-import b.a.d.d0;
-import b.d.b.a.a;
+import b.a.d.AppViewModel;
+import b.d.b.a.outline;
 import com.discord.api.channel.Channel;
 import com.discord.api.channel.ChannelUtils;
 import com.discord.api.user.NsfwAllowance;
 import com.discord.models.domain.ModelApplicationStream;
 import com.discord.models.embeddedactivities.EmbeddedActivity;
-import com.discord.stores.SelectedChannelAnalyticsLocation;
 import com.discord.stores.StoreApplication;
 import com.discord.stores.StoreApplicationStreamPreviews;
 import com.discord.stores.StoreApplicationStreaming;
 import com.discord.stores.StoreChannels;
 import com.discord.stores.StoreChannelsSelected;
+import com.discord.stores.StoreChannelsSelected3;
 import com.discord.stores.StoreMediaSettings;
 import com.discord.stores.StoreMentions;
 import com.discord.stores.StoreNavigation;
@@ -25,13 +25,13 @@ import com.discord.stores.StoreUserSettings;
 import com.discord.stores.StoreVoiceChannelSelected;
 import com.discord.utilities.channel.ChannelSelector;
 import com.discord.utilities.rx.ObservableExtensionsKt;
-import com.discord.utilities.voice.VoiceChannelJoinability;
+import com.discord.utilities.voice.VoiceChannelJoinabilityUtils2;
 import com.discord.widgets.voice.model.CallModel;
 import com.discord.widgets.voice.sheet.CallParticipantsAdapter;
-import d0.d0.f;
-import d0.t.u;
-import d0.z.d.m;
-import d0.z.d.o;
+import d0.d0._Ranges;
+import d0.t._Collections;
+import d0.z.d.Intrinsics3;
+import d0.z.d.Lambda;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.List;
@@ -46,7 +46,7 @@ import rx.subjects.PublishSubject;
 
 /* JADX INFO: compiled from: WidgetCallPreviewFullscreenViewModel.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final class WidgetCallPreviewFullscreenViewModel extends d0<ViewState> {
+public final class WidgetCallPreviewFullscreenViewModel extends AppViewModel<ViewState> {
 
     /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
     public static final Companion INSTANCE = new Companion(null);
@@ -67,7 +67,7 @@ public final class WidgetCallPreviewFullscreenViewModel extends d0<ViewState> {
 
     /* JADX INFO: renamed from: com.discord.widgets.voice.fullscreen.WidgetCallPreviewFullscreenViewModel$1, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetCallPreviewFullscreenViewModel.kt */
-    public final class AnonymousClass1 extends o implements Function1<StoreState, Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function1<StoreState, Unit> {
         public AnonymousClass1() {
             super(1);
         }
@@ -81,7 +81,7 @@ public final class WidgetCallPreviewFullscreenViewModel extends d0<ViewState> {
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(StoreState storeState) {
             WidgetCallPreviewFullscreenViewModel widgetCallPreviewFullscreenViewModel = WidgetCallPreviewFullscreenViewModel.this;
-            m.checkNotNullExpressionValue(storeState, "it");
+            Intrinsics3.checkNotNullExpressionValue(storeState, "it");
             WidgetCallPreviewFullscreenViewModel.access$handleStoreState(widgetCallPreviewFullscreenViewModel, storeState);
         }
     }
@@ -96,8 +96,8 @@ public final class WidgetCallPreviewFullscreenViewModel extends d0<ViewState> {
         }
 
         private final Observable<StoreState> observeStoreState(long voiceChannelId, StoreUser storeUser, StoreChannels storeChannels, StoreChannelsSelected storeChannelsSelected, StoreMentions storeMentions, StoreVoiceChannelSelected storeVoiceChannelSelected) {
-            Observable observableY = storeChannels.observeChannel(voiceChannelId).Y(new WidgetCallPreviewFullscreenViewModel$Companion$observeStoreState$1(storeUser, storeChannelsSelected, storeMentions, voiceChannelId, storeVoiceChannelSelected));
-            m.checkNotNullExpressionValue(observableY, "storeChannels.observeCha…  }\n          }\n        }");
+            Observable observableY = storeChannels.observeChannel(voiceChannelId).Y(new WidgetCallPreviewFullscreenViewModel2(storeUser, storeChannelsSelected, storeMentions, voiceChannelId, storeVoiceChannelSelected));
+            Intrinsics3.checkNotNullExpressionValue(observableY, "storeChannels.observeCha…  }\n          }\n        }");
             return observableY;
         }
 
@@ -142,7 +142,7 @@ public final class WidgetCallPreviewFullscreenViewModel extends d0<ViewState> {
                     return false;
                 }
                 LaunchVideoCall launchVideoCall = (LaunchVideoCall) other;
-                return this.channelId == launchVideoCall.channelId && m.areEqual(this.autoTargetStreamKey, launchVideoCall.autoTargetStreamKey);
+                return this.channelId == launchVideoCall.channelId && Intrinsics3.areEqual(this.autoTargetStreamKey, launchVideoCall.autoTargetStreamKey);
             }
 
             /* JADX INFO: renamed from: component2, reason: from getter */
@@ -170,10 +170,10 @@ public final class WidgetCallPreviewFullscreenViewModel extends d0<ViewState> {
             }
 
             public String toString() {
-                StringBuilder sbU = a.U("LaunchVideoCall(channelId=");
+                StringBuilder sbU = outline.U("LaunchVideoCall(channelId=");
                 sbU.append(this.channelId);
                 sbU.append(", autoTargetStreamKey=");
-                return a.J(sbU, this.autoTargetStreamKey, ")");
+                return outline.J(sbU, this.autoTargetStreamKey, ")");
             }
         }
 
@@ -214,7 +214,7 @@ public final class WidgetCallPreviewFullscreenViewModel extends d0<ViewState> {
             /* JADX WARN: Multi-variable type inference failed */
             public Empty(List<? extends CallParticipantsAdapter.ListItem> list) {
                 super(null);
-                m.checkNotNullParameter(list, "items");
+                Intrinsics3.checkNotNullParameter(list, "items");
                 this.items = list;
             }
 
@@ -231,13 +231,13 @@ public final class WidgetCallPreviewFullscreenViewModel extends d0<ViewState> {
             }
 
             public final Empty copy(List<? extends CallParticipantsAdapter.ListItem> items) {
-                m.checkNotNullParameter(items, "items");
+                Intrinsics3.checkNotNullParameter(items, "items");
                 return new Empty(items);
             }
 
             public boolean equals(Object other) {
                 if (this != other) {
-                    return (other instanceof Empty) && m.areEqual(this.items, ((Empty) other).items);
+                    return (other instanceof Empty) && Intrinsics3.areEqual(this.items, ((Empty) other).items);
                 }
                 return true;
             }
@@ -255,7 +255,7 @@ public final class WidgetCallPreviewFullscreenViewModel extends d0<ViewState> {
             }
 
             public String toString() {
-                return a.L(a.U("Empty(items="), this.items, ")");
+                return outline.L(outline.U("Empty(items="), this.items, ")");
             }
         }
 
@@ -267,7 +267,7 @@ public final class WidgetCallPreviewFullscreenViewModel extends d0<ViewState> {
             /* JADX WARN: Multi-variable type inference failed */
             public ListItems(List<? extends CallParticipantsAdapter.ListItem> list) {
                 super(null);
-                m.checkNotNullParameter(list, "items");
+                Intrinsics3.checkNotNullParameter(list, "items");
                 this.items = list;
             }
 
@@ -284,13 +284,13 @@ public final class WidgetCallPreviewFullscreenViewModel extends d0<ViewState> {
             }
 
             public final ListItems copy(List<? extends CallParticipantsAdapter.ListItem> items) {
-                m.checkNotNullParameter(items, "items");
+                Intrinsics3.checkNotNullParameter(items, "items");
                 return new ListItems(items);
             }
 
             public boolean equals(Object other) {
                 if (this != other) {
-                    return (other instanceof ListItems) && m.areEqual(this.items, ((ListItems) other).items);
+                    return (other instanceof ListItems) && Intrinsics3.areEqual(this.items, ((ListItems) other).items);
                 }
                 return true;
             }
@@ -308,7 +308,7 @@ public final class WidgetCallPreviewFullscreenViewModel extends d0<ViewState> {
             }
 
             public String toString() {
-                return a.L(a.U("ListItems(items="), this.items, ")");
+                return outline.L(outline.U("ListItems(items="), this.items, ")");
             }
         }
 
@@ -348,9 +348,9 @@ public final class WidgetCallPreviewFullscreenViewModel extends d0<ViewState> {
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
             public Valid(Channel channel, Channel channel2, boolean z2, int i, int i2, boolean z3, boolean z4, NsfwAllowance nsfwAllowance, CallModel callModel, Channel channel3) {
                 super(null);
-                m.checkNotNullParameter(channel, "voiceChannel");
-                m.checkNotNullParameter(channel2, "selectedTextChannel");
-                m.checkNotNullParameter(callModel, "callModel");
+                Intrinsics3.checkNotNullParameter(channel, "voiceChannel");
+                Intrinsics3.checkNotNullParameter(channel2, "selectedTextChannel");
+                Intrinsics3.checkNotNullParameter(callModel, "callModel");
                 this.voiceChannel = channel;
                 this.selectedTextChannel = channel2;
                 this.isTextInVoiceEnabled = z2;
@@ -368,9 +368,9 @@ public final class WidgetCallPreviewFullscreenViewModel extends d0<ViewState> {
             }
 
             public final Valid copy(Channel voiceChannel, Channel selectedTextChannel, boolean isTextInVoiceEnabled, int totalMentionsCount, int channelMentionsCount, boolean isNsfwUnconsented, boolean isChannelNsfw, NsfwAllowance nsfwAllowed, CallModel callModel, Channel selectedVoiceChannel) {
-                m.checkNotNullParameter(voiceChannel, "voiceChannel");
-                m.checkNotNullParameter(selectedTextChannel, "selectedTextChannel");
-                m.checkNotNullParameter(callModel, "callModel");
+                Intrinsics3.checkNotNullParameter(voiceChannel, "voiceChannel");
+                Intrinsics3.checkNotNullParameter(selectedTextChannel, "selectedTextChannel");
+                Intrinsics3.checkNotNullParameter(callModel, "callModel");
                 return new Valid(voiceChannel, selectedTextChannel, isTextInVoiceEnabled, totalMentionsCount, channelMentionsCount, isNsfwUnconsented, isChannelNsfw, nsfwAllowed, callModel, selectedVoiceChannel);
             }
 
@@ -382,7 +382,7 @@ public final class WidgetCallPreviewFullscreenViewModel extends d0<ViewState> {
                     return false;
                 }
                 Valid valid = (Valid) other;
-                return m.areEqual(this.voiceChannel, valid.voiceChannel) && m.areEqual(this.selectedTextChannel, valid.selectedTextChannel) && this.isTextInVoiceEnabled == valid.isTextInVoiceEnabled && this.totalMentionsCount == valid.totalMentionsCount && this.channelMentionsCount == valid.channelMentionsCount && this.isNsfwUnconsented == valid.isNsfwUnconsented && this.isChannelNsfw == valid.isChannelNsfw && m.areEqual(this.nsfwAllowed, valid.nsfwAllowed) && m.areEqual(this.callModel, valid.callModel) && m.areEqual(this.selectedVoiceChannel, valid.selectedVoiceChannel);
+                return Intrinsics3.areEqual(this.voiceChannel, valid.voiceChannel) && Intrinsics3.areEqual(this.selectedTextChannel, valid.selectedTextChannel) && this.isTextInVoiceEnabled == valid.isTextInVoiceEnabled && this.totalMentionsCount == valid.totalMentionsCount && this.channelMentionsCount == valid.channelMentionsCount && this.isNsfwUnconsented == valid.isNsfwUnconsented && this.isChannelNsfw == valid.isChannelNsfw && Intrinsics3.areEqual(this.nsfwAllowed, valid.nsfwAllowed) && Intrinsics3.areEqual(this.callModel, valid.callModel) && Intrinsics3.areEqual(this.selectedVoiceChannel, valid.selectedVoiceChannel);
             }
 
             /* JADX INFO: renamed from: component9, reason: from getter */
@@ -514,7 +514,7 @@ public final class WidgetCallPreviewFullscreenViewModel extends d0<ViewState> {
             }
 
             public String toString() {
-                StringBuilder sbU = a.U("Valid(voiceChannel=");
+                StringBuilder sbU = outline.U("Valid(voiceChannel=");
                 sbU.append(this.voiceChannel);
                 sbU.append(", selectedTextChannel=");
                 sbU.append(this.selectedTextChannel);
@@ -562,8 +562,8 @@ public final class WidgetCallPreviewFullscreenViewModel extends d0<ViewState> {
         private final Channel voiceChannel;
 
         public ViewState(Channel channel, boolean z2, boolean z3, String str, int i, int i2, boolean z4, ParticipantsList participantsList, boolean z5, boolean z6, NsfwAllowance nsfwAllowance) {
-            m.checkNotNullParameter(channel, "voiceChannel");
-            m.checkNotNullParameter(participantsList, "participantsList");
+            Intrinsics3.checkNotNullParameter(channel, "voiceChannel");
+            Intrinsics3.checkNotNullParameter(participantsList, "participantsList");
             this.voiceChannel = channel;
             this.isTextInVoiceChannelSelected = z2;
             this.textInVoiceEnabled = z3;
@@ -582,8 +582,8 @@ public final class WidgetCallPreviewFullscreenViewModel extends d0<ViewState> {
         }
 
         public final ViewState copy(Channel voiceChannel, boolean isTextInVoiceChannelSelected, boolean textInVoiceEnabled, String titleText, int otherChannelsMentionsCount, int channelMentionsCount, boolean isConnectEnabled, ParticipantsList participantsList, boolean isNsfwUnconsented, boolean isChannelNsfw, NsfwAllowance nsfwAllowed) {
-            m.checkNotNullParameter(voiceChannel, "voiceChannel");
-            m.checkNotNullParameter(participantsList, "participantsList");
+            Intrinsics3.checkNotNullParameter(voiceChannel, "voiceChannel");
+            Intrinsics3.checkNotNullParameter(participantsList, "participantsList");
             return new ViewState(voiceChannel, isTextInVoiceChannelSelected, textInVoiceEnabled, titleText, otherChannelsMentionsCount, channelMentionsCount, isConnectEnabled, participantsList, isNsfwUnconsented, isChannelNsfw, nsfwAllowed);
         }
 
@@ -595,7 +595,7 @@ public final class WidgetCallPreviewFullscreenViewModel extends d0<ViewState> {
                 return false;
             }
             ViewState viewState = (ViewState) other;
-            return m.areEqual(this.voiceChannel, viewState.voiceChannel) && this.isTextInVoiceChannelSelected == viewState.isTextInVoiceChannelSelected && this.textInVoiceEnabled == viewState.textInVoiceEnabled && m.areEqual(this.titleText, viewState.titleText) && this.otherChannelsMentionsCount == viewState.otherChannelsMentionsCount && this.channelMentionsCount == viewState.channelMentionsCount && this.isConnectEnabled == viewState.isConnectEnabled && m.areEqual(this.participantsList, viewState.participantsList) && this.isNsfwUnconsented == viewState.isNsfwUnconsented && this.isChannelNsfw == viewState.isChannelNsfw && m.areEqual(this.nsfwAllowed, viewState.nsfwAllowed);
+            return Intrinsics3.areEqual(this.voiceChannel, viewState.voiceChannel) && this.isTextInVoiceChannelSelected == viewState.isTextInVoiceChannelSelected && this.textInVoiceEnabled == viewState.textInVoiceEnabled && Intrinsics3.areEqual(this.titleText, viewState.titleText) && this.otherChannelsMentionsCount == viewState.otherChannelsMentionsCount && this.channelMentionsCount == viewState.channelMentionsCount && this.isConnectEnabled == viewState.isConnectEnabled && Intrinsics3.areEqual(this.participantsList, viewState.participantsList) && this.isNsfwUnconsented == viewState.isNsfwUnconsented && this.isChannelNsfw == viewState.isChannelNsfw && Intrinsics3.areEqual(this.nsfwAllowed, viewState.nsfwAllowed);
         }
 
         /* JADX INFO: renamed from: component6, reason: from getter */
@@ -752,7 +752,7 @@ public final class WidgetCallPreviewFullscreenViewModel extends d0<ViewState> {
         }
 
         public String toString() {
-            StringBuilder sbU = a.U("ViewState(voiceChannel=");
+            StringBuilder sbU = outline.U("ViewState(voiceChannel=");
             sbU.append(this.voiceChannel);
             sbU.append(", isTextInVoiceChannelSelected=");
             sbU.append(this.isTextInVoiceChannelSelected);
@@ -804,7 +804,7 @@ public final class WidgetCallPreviewFullscreenViewModel extends d0<ViewState> {
             StoreState.Valid valid = (StoreState.Valid) storeState;
             Map<Long, EmbeddedActivity> embeddedActivitiesForChannel = valid.getCallModel().getEmbeddedActivitiesForChannel();
             StoreApplicationStreaming.ActiveApplicationStream activeStream = valid.getCallModel().getActiveStream();
-            List<CallParticipantsAdapter.ListItem> listCreateConnectedListItems = ParticipantsListItemGenerator.INSTANCE.createConnectedListItems(valid.getCallModel().getParticipants(), (activeStream == null || (stream = activeStream.getStream()) == null) ? null : stream.getEncodedStreamKey(), valid.getVoiceChannel(), valid.getCallModel(), u.toList(embeddedActivitiesForChannel.values()), valid.getCallModel().getApplications());
+            List<CallParticipantsAdapter.ListItem> listCreateConnectedListItems = ParticipantsListItemGenerator.INSTANCE.createConnectedListItems(valid.getCallModel().getParticipants(), (activeStream == null || (stream = activeStream.getStream()) == null) ? null : stream.getEncodedStreamKey(), valid.getVoiceChannel(), valid.getCallModel(), _Collections.toList(embeddedActivitiesForChannel.values()), valid.getCallModel().getApplications());
             Channel selectedVoiceChannel = valid.getSelectedVoiceChannel();
             if (selectedVoiceChannel != null) {
                 long id2 = selectedVoiceChannel.getId();
@@ -818,7 +818,7 @@ public final class WidgetCallPreviewFullscreenViewModel extends d0<ViewState> {
             while (it.hasNext()) {
                 this.storeApplication.fetchIfNonexisting(it.next().longValue());
             }
-            updateViewState(new ViewState(valid.getVoiceChannel(), ChannelUtils.J(valid.getSelectedTextChannel()), valid.isTextInVoiceEnabled(), ChannelUtils.c(valid.getVoiceChannel()), f.coerceAtLeast(valid.getTotalMentionsCount() - valid.getChannelMentionsCount(), 0), valid.getChannelMentionsCount(), valid.getCallModel().getVoiceChannelJoinability() != VoiceChannelJoinability.PERMISSIONS_MISSING, ParticipantsListItemGenerator.INSTANCE.refreshStreams(listCreateConnectedListItems, this.fetchedPreviews, this.storeApplicationStreamPreviews) ? new ParticipantsList.ListItems(listCreateConnectedListItems) : new ParticipantsList.Empty(listCreateConnectedListItems), valid.isNsfwUnconsented(), valid.isChannelNsfw(), valid.getNsfwAllowed()));
+            updateViewState(new ViewState(valid.getVoiceChannel(), ChannelUtils.J(valid.getSelectedTextChannel()), valid.isTextInVoiceEnabled(), ChannelUtils.c(valid.getVoiceChannel()), _Ranges.coerceAtLeast(valid.getTotalMentionsCount() - valid.getChannelMentionsCount(), 0), valid.getChannelMentionsCount(), valid.getCallModel().getVoiceChannelJoinability() != VoiceChannelJoinabilityUtils2.PERMISSIONS_MISSING, ParticipantsListItemGenerator.INSTANCE.refreshStreams(listCreateConnectedListItems, this.fetchedPreviews, this.storeApplicationStreamPreviews) ? new ParticipantsList.ListItems(listCreateConnectedListItems) : new ParticipantsList.Empty(listCreateConnectedListItems), valid.isNsfwUnconsented(), valid.isChannelNsfw(), valid.getNsfwAllowed()));
         }
     }
 
@@ -831,20 +831,20 @@ public final class WidgetCallPreviewFullscreenViewModel extends d0<ViewState> {
 
     public final Observable<Event> observeEvents() {
         PublishSubject<Event> publishSubject = this.eventSubject;
-        m.checkNotNullExpressionValue(publishSubject, "eventSubject");
+        Intrinsics3.checkNotNullExpressionValue(publishSubject, "eventSubject");
         return publishSubject;
     }
 
     @MainThread
     public final void onStreamPreviewClicked(String streamKey) {
-        m.checkNotNullParameter(streamKey, "streamKey");
+        Intrinsics3.checkNotNullParameter(streamKey, "streamKey");
         StoreState storeState = this.mostRecentStoreState;
         if (!(storeState instanceof StoreState.Valid)) {
             storeState = null;
         }
         StoreState.Valid valid = (StoreState.Valid) storeState;
         if (valid != null) {
-            if (valid.getCallModel().getVoiceChannelJoinability() == VoiceChannelJoinability.GUILD_VIDEO_AT_CAPACITY) {
+            if (valid.getCallModel().getVoiceChannelJoinability() == VoiceChannelJoinabilityUtils2.GUILD_VIDEO_AT_CAPACITY) {
                 PublishSubject<Event> publishSubject = this.eventSubject;
                 publishSubject.k.onNext(Event.ShowGuildVideoAtCapacityDialog.INSTANCE);
             } else {
@@ -859,7 +859,7 @@ public final class WidgetCallPreviewFullscreenViewModel extends d0<ViewState> {
     public final void onTextInVoiceTapped() {
         ChannelSelector companion = ChannelSelector.INSTANCE.getInstance();
         ViewState viewState = getViewState();
-        ChannelSelector.selectChannel$default(companion, viewState != null ? viewState.getVoiceChannel() : null, null, SelectedChannelAnalyticsLocation.TEXT_IN_VOICE, 2, null);
+        ChannelSelector.selectChannel$default(companion, viewState != null ? viewState.getVoiceChannel() : null, null, StoreChannelsSelected3.TEXT_IN_VOICE, 2, null);
         StoreNavigation.setNavigationPanelAction$default(this.storeNavigation, StoreNavigation.PanelAction.CLOSE, null, 2, null);
     }
 
@@ -886,7 +886,7 @@ public final class WidgetCallPreviewFullscreenViewModel extends d0<ViewState> {
     public final void tryConnectToVoice(boolean muted) {
         StoreState storeState = this.mostRecentStoreState;
         if (storeState instanceof StoreState.Valid) {
-            if (((StoreState.Valid) storeState).getCallModel().getVoiceChannelJoinability() == VoiceChannelJoinability.GUILD_VIDEO_AT_CAPACITY) {
+            if (((StoreState.Valid) storeState).getCallModel().getVoiceChannelJoinability() == VoiceChannelJoinabilityUtils2.GUILD_VIDEO_AT_CAPACITY) {
                 this.eventSubject.k.onNext(Event.ShowGuildVideoAtCapacityDialog.INSTANCE);
                 return;
             }
@@ -903,17 +903,17 @@ public final class WidgetCallPreviewFullscreenViewModel extends d0<ViewState> {
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public WidgetCallPreviewFullscreenViewModel(long j, StoreChannels storeChannels, StoreMentions storeMentions, StoreNavigation storeNavigation, StoreUserSettings storeUserSettings, StoreVoiceChannelSelected storeVoiceChannelSelected, StoreChannelsSelected storeChannelsSelected, StoreApplicationStreamPreviews storeApplicationStreamPreviews, StoreApplication storeApplication, StoreUser storeUser, Observable<StoreState> observable, StoreMediaSettings storeMediaSettings) {
         super(null, 1, null);
-        m.checkNotNullParameter(storeChannels, "storeChannels");
-        m.checkNotNullParameter(storeMentions, "storeMentions");
-        m.checkNotNullParameter(storeNavigation, "storeNavigation");
-        m.checkNotNullParameter(storeUserSettings, "storeUserSettings");
-        m.checkNotNullParameter(storeVoiceChannelSelected, "storeVoiceChannelSelected");
-        m.checkNotNullParameter(storeChannelsSelected, "storeChannelsSelected");
-        m.checkNotNullParameter(storeApplicationStreamPreviews, "storeApplicationStreamPreviews");
-        m.checkNotNullParameter(storeApplication, "storeApplication");
-        m.checkNotNullParameter(storeUser, "storeUser");
-        m.checkNotNullParameter(observable, "storeStateObservable");
-        m.checkNotNullParameter(storeMediaSettings, "mediaSettingsStore");
+        Intrinsics3.checkNotNullParameter(storeChannels, "storeChannels");
+        Intrinsics3.checkNotNullParameter(storeMentions, "storeMentions");
+        Intrinsics3.checkNotNullParameter(storeNavigation, "storeNavigation");
+        Intrinsics3.checkNotNullParameter(storeUserSettings, "storeUserSettings");
+        Intrinsics3.checkNotNullParameter(storeVoiceChannelSelected, "storeVoiceChannelSelected");
+        Intrinsics3.checkNotNullParameter(storeChannelsSelected, "storeChannelsSelected");
+        Intrinsics3.checkNotNullParameter(storeApplicationStreamPreviews, "storeApplicationStreamPreviews");
+        Intrinsics3.checkNotNullParameter(storeApplication, "storeApplication");
+        Intrinsics3.checkNotNullParameter(storeUser, "storeUser");
+        Intrinsics3.checkNotNullParameter(observable, "storeStateObservable");
+        Intrinsics3.checkNotNullParameter(storeMediaSettings, "mediaSettingsStore");
         this.voiceChannelId = j;
         this.storeChannels = storeChannels;
         this.storeMentions = storeMentions;
@@ -928,7 +928,7 @@ public final class WidgetCallPreviewFullscreenViewModel extends d0<ViewState> {
         this.eventSubject = PublishSubject.k0();
         this.fetchedPreviews = new LinkedHashSet();
         Observable observableR = ObservableExtensionsKt.ui$default(ObservableExtensionsKt.computationLatest(observable), this, null, 2, null).r();
-        m.checkNotNullExpressionValue(observableR, "storeStateObservable\n   …  .distinctUntilChanged()");
+        Intrinsics3.checkNotNullExpressionValue(observableR, "storeStateObservable\n   …  .distinctUntilChanged()");
         ObservableExtensionsKt.appSubscribe$default(observableR, WidgetCallPreviewFullscreenViewModel.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass1(), 62, (Object) null);
     }
 }

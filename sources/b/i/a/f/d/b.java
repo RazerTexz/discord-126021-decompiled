@@ -13,6 +13,7 @@ import androidx.annotation.AnyThread;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.collection.SimpleArrayMap;
+import b.d.b.a.outline;
 import b.i.a.f.n.c0;
 import com.google.android.gms.cloudmessaging.zza;
 import com.google.android.gms.tasks.Task;
@@ -92,7 +93,7 @@ public class b {
             }
             intent.putExtra("app", f1338b);
         }
-        intent.putExtra("kid", b.d.b.a.a.k(b.d.b.a.a.b(string, 5), "|ID|", string, "|"));
+        intent.putExtra("kid", outline.k(outline.b(string, 5), "|ID|", string, "|"));
         if (Log.isLoggable("Rpc", 3)) {
             String strValueOf = String.valueOf(intent.getExtras());
             StringBuilder sb = new StringBuilder(strValueOf.length() + 8);

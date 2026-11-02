@@ -21,15 +21,15 @@ import androidx.appcompat.content.res.AppCompatResources;
 import androidx.core.view.AccessibilityDelegateCompat;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.accessibility.AccessibilityNodeInfoCompat;
-import b.i.a.g.k.b;
-import b.i.a.g.k.c;
-import b.i.a.g.k.e;
+import b.i.a.g.k.ClockFaceView2;
+import b.i.a.g.k.ClockFaceView3;
+import b.i.a.g.k.RadialViewGroup;
 import com.google.android.material.R;
 import com.google.android.material.resources.MaterialResources;
 import java.util.Arrays;
 
 /* JADX INFO: loaded from: classes3.dex */
-public class ClockFaceView extends e implements ClockHandView.OnRotateListener {
+public class ClockFaceView extends RadialViewGroup implements ClockHandView.OnRotateListener {
     public final ClockHandView m;
     public final Rect n;
     public final RectF o;
@@ -66,10 +66,10 @@ public class ClockFaceView extends e implements ClockHandView.OnRotateListener {
         int defaultColor = AppCompatResources.getColorStateList(context, R.color.material_timepicker_clockface).getDefaultColor();
         ColorStateList colorStateList2 = MaterialResources.getColorStateList(context, typedArrayObtainStyledAttributes, R.styleable.ClockFaceView_clockFaceBackgroundColor);
         setBackgroundColor(colorStateList2 != null ? colorStateList2.getDefaultColor() : defaultColor);
-        getViewTreeObserver().addOnPreDrawListener(new b(this));
+        getViewTreeObserver().addOnPreDrawListener(new ClockFaceView2(this));
         setFocusable(true);
         typedArrayObtainStyledAttributes.recycle();
-        this.q = new c(this);
+        this.q = new ClockFaceView3(this);
         String[] strArr = new String[12];
         Arrays.fill(strArr, "");
         c(strArr, 0);

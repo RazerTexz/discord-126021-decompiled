@@ -1,19 +1,19 @@
 package com.discord.analytics.generated.events;
 
 import androidx.core.app.NotificationCompat;
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.analytics.generated.traits.TrackGiftCodeMetadata;
-import com.discord.analytics.generated.traits.TrackGiftCodeMetadataReceiver;
+import com.discord.analytics.generated.traits.TrackGiftCodeMetadata2;
 import com.discord.analytics.generated.traits.TrackGuildTemplate;
-import com.discord.analytics.generated.traits.TrackGuildTemplateReceiver;
+import com.discord.analytics.generated.traits.TrackGuildTemplate2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackRegister.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackRegister implements AnalyticsSchema, TrackBaseReceiver, TrackGiftCodeMetadataReceiver, TrackGuildTemplateReceiver {
+public final /* data */ class TrackRegister implements AnalyticsSchema, TrackBase2, TrackGiftCodeMetadata2, TrackGuildTemplate2 {
     private final Float captchaScore = null;
     private final CharSequence email = null;
     private final Boolean full = null;
@@ -46,7 +46,7 @@ public final /* data */ class TrackRegister implements AnalyticsSchema, TrackBas
             return false;
         }
         TrackRegister trackRegister = (TrackRegister) other;
-        return m.areEqual(this.registrationSource, trackRegister.registrationSource) && m.areEqual(this.full, trackRegister.full) && m.areEqual(this.instantInvite, trackRegister.instantInvite) && m.areEqual(this.inviteCode, trackRegister.inviteCode) && m.areEqual(this.inviteGuildId, trackRegister.inviteGuildId) && m.areEqual(this.inviteChannelId, trackRegister.inviteChannelId) && m.areEqual(this.inviteChannelType, trackRegister.inviteChannelType) && m.areEqual(this.inviteInviterId, trackRegister.inviteInviterId) && m.areEqual(this.smiteCaptchaRequested, trackRegister.smiteCaptchaRequested) && m.areEqual(this.solvedCaptcha, trackRegister.solvedCaptcha) && m.areEqual(this.captchaScore, trackRegister.captchaScore) && m.areEqual(this.requireVerifiedPhone, trackRegister.requireVerifiedPhone) && m.areEqual(this.requireVerifiedEmail, trackRegister.requireVerifiedEmail) && m.areEqual(this.requireVerifiedPhoneThenEmail, trackRegister.requireVerifiedPhoneThenEmail) && m.areEqual(this.email, trackRegister.email) && m.areEqual(this.phone, trackRegister.phone) && m.areEqual(this.identityType, trackRegister.identityType) && m.areEqual(this.phoneCarrierName, trackRegister.phoneCarrierName) && m.areEqual(this.phoneCountry, trackRegister.phoneCountry);
+        return Intrinsics3.areEqual(this.registrationSource, trackRegister.registrationSource) && Intrinsics3.areEqual(this.full, trackRegister.full) && Intrinsics3.areEqual(this.instantInvite, trackRegister.instantInvite) && Intrinsics3.areEqual(this.inviteCode, trackRegister.inviteCode) && Intrinsics3.areEqual(this.inviteGuildId, trackRegister.inviteGuildId) && Intrinsics3.areEqual(this.inviteChannelId, trackRegister.inviteChannelId) && Intrinsics3.areEqual(this.inviteChannelType, trackRegister.inviteChannelType) && Intrinsics3.areEqual(this.inviteInviterId, trackRegister.inviteInviterId) && Intrinsics3.areEqual(this.smiteCaptchaRequested, trackRegister.smiteCaptchaRequested) && Intrinsics3.areEqual(this.solvedCaptcha, trackRegister.solvedCaptcha) && Intrinsics3.areEqual(this.captchaScore, trackRegister.captchaScore) && Intrinsics3.areEqual(this.requireVerifiedPhone, trackRegister.requireVerifiedPhone) && Intrinsics3.areEqual(this.requireVerifiedEmail, trackRegister.requireVerifiedEmail) && Intrinsics3.areEqual(this.requireVerifiedPhoneThenEmail, trackRegister.requireVerifiedPhoneThenEmail) && Intrinsics3.areEqual(this.email, trackRegister.email) && Intrinsics3.areEqual(this.phone, trackRegister.phone) && Intrinsics3.areEqual(this.identityType, trackRegister.identityType) && Intrinsics3.areEqual(this.phoneCarrierName, trackRegister.phoneCarrierName) && Intrinsics3.areEqual(this.phoneCountry, trackRegister.phoneCountry);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -97,7 +97,7 @@ public final /* data */ class TrackRegister implements AnalyticsSchema, TrackBas
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackRegister(registrationSource=");
+        StringBuilder sbU = outline.U("TrackRegister(registrationSource=");
         sbU.append(this.registrationSource);
         sbU.append(", full=");
         sbU.append(this.full);
@@ -134,6 +134,6 @@ public final /* data */ class TrackRegister implements AnalyticsSchema, TrackBas
         sbU.append(", phoneCarrierName=");
         sbU.append(this.phoneCarrierName);
         sbU.append(", phoneCountry=");
-        return a.E(sbU, this.phoneCountry, ")");
+        return outline.E(sbU, this.phoneCountry, ")");
     }
 }

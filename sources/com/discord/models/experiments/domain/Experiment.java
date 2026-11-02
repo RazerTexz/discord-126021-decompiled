@@ -1,7 +1,7 @@
 package com.discord.models.experiments.domain;
 
-import b.d.b.a.a;
-import d0.z.d.m;
+import b.d.b.a.outline;
+import d0.z.d.Intrinsics3;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 
@@ -15,7 +15,7 @@ public final /* data */ class Experiment {
     private final Function0<Unit> trackExposure;
 
     public Experiment(int i, int i2, int i3, boolean z2, Function0<Unit> function0) {
-        m.checkNotNullParameter(function0, "trackExposure");
+        Intrinsics3.checkNotNullParameter(function0, "trackExposure");
         this.revision = i;
         this.bucket = i2;
         this.population = i3;
@@ -51,7 +51,7 @@ public final /* data */ class Experiment {
     }
 
     public final Experiment copy(int revision, int bucket, int population, boolean isOverride, Function0<Unit> trackExposure) {
-        m.checkNotNullParameter(trackExposure, "trackExposure");
+        Intrinsics3.checkNotNullParameter(trackExposure, "trackExposure");
         return new Experiment(revision, bucket, population, isOverride, trackExposure);
     }
 
@@ -63,7 +63,7 @@ public final /* data */ class Experiment {
             return false;
         }
         Experiment experiment = (Experiment) other;
-        return this.revision == experiment.revision && this.bucket == experiment.bucket && this.population == experiment.population && this.isOverride == experiment.isOverride && m.areEqual(this.trackExposure, experiment.trackExposure);
+        return this.revision == experiment.revision && this.bucket == experiment.bucket && this.population == experiment.population && this.isOverride == experiment.isOverride && Intrinsics3.areEqual(this.trackExposure, experiment.trackExposure);
     }
 
     /* JADX INFO: renamed from: component2, reason: from getter */
@@ -124,7 +124,7 @@ public final /* data */ class Experiment {
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("Experiment(revision=");
+        StringBuilder sbU = outline.U("Experiment(revision=");
         sbU.append(this.revision);
         sbU.append(", bucket=");
         sbU.append(this.bucket);

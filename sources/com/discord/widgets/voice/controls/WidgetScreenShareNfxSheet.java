@@ -8,23 +8,23 @@ import android.os.Bundle;
 import android.view.View;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.R;
 import com.discord.app.AppBottomSheet;
 import com.discord.app.AppTransitionActivity;
 import com.discord.databinding.WidgetScreenShareNfxSheetBinding;
 import com.discord.utilities.cache.SharedPreferencesProvider;
 import com.discord.utilities.viewbinding.FragmentViewBindingDelegate;
-import com.discord.utilities.viewbinding.FragmentViewBindingDelegateKt;
+import com.discord.utilities.viewbinding.FragmentViewBindingDelegate3;
 import com.discord.utilities.voice.VoiceEngineServiceController;
 import com.discord.widgets.chat.list.TextInVoiceFeatureFlag;
 import com.discord.widgets.voice.fullscreen.WidgetCallFullscreen;
 import com.discord.widgets.voice.fullscreen.WidgetCallPreviewFullscreen;
 import com.discord.widgets.voice.sheet.WidgetVoiceBottomSheet;
 import com.discord.widgets.voice.stream.StreamNavigator;
-import d0.z.d.a0;
-import d0.z.d.m;
-import d0.z.d.o;
+import d0.z.d.Intrinsics3;
+import d0.z.d.Lambda;
+import d0.z.d.Reflection2;
 import java.io.Serializable;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function1;
@@ -34,7 +34,7 @@ import kotlin.reflect.KProperty;
 /* JADX INFO: compiled from: WidgetScreenShareNfxSheet.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetScreenShareNfxSheet extends AppBottomSheet {
-    public static final /* synthetic */ KProperty[] $$delegatedProperties = {a.d0(WidgetScreenShareNfxSheet.class, "binding", "getBinding()Lcom/discord/databinding/WidgetScreenShareNfxSheetBinding;", 0)};
+    public static final /* synthetic */ KProperty[] $$delegatedProperties = {outline.d0(WidgetScreenShareNfxSheet.class, "binding", "getBinding()Lcom/discord/databinding/WidgetScreenShareNfxSheetBinding;", 0)};
     private static final String ARG_VOICE_BOTTOM_SHEET_PARAMS = "ARG_VOICE_BOTTOM_SHEET_PARAMS";
 
     /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
@@ -45,7 +45,7 @@ public final class WidgetScreenShareNfxSheet extends AppBottomSheet {
 
     /* JADX INFO: renamed from: com.discord.widgets.voice.controls.WidgetScreenShareNfxSheet$onActivityResult$1, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetScreenShareNfxSheet.kt */
-    public final class AnonymousClass1 extends o implements Function1<Intent, Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function1<Intent, Unit> {
         public AnonymousClass1() {
             super(1);
         }
@@ -58,12 +58,12 @@ public final class WidgetScreenShareNfxSheet extends AppBottomSheet {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(Intent intent) {
-            m.checkNotNullParameter(intent, "it");
+            Intrinsics3.checkNotNullParameter(intent, "it");
             VoiceEngineServiceController.INSTANCE.getINSTANCE().startStream(intent);
-            if (!WidgetScreenShareNfxSheet.this.requireAppActivity().h(a0.getOrCreateKotlinClass(WidgetCallFullscreen.class))) {
+            if (!WidgetScreenShareNfxSheet.this.requireAppActivity().h(Reflection2.getOrCreateKotlinClass(WidgetCallFullscreen.class))) {
                 WidgetCallFullscreen.Companion companion = WidgetCallFullscreen.INSTANCE;
                 Context contextRequireContext = WidgetScreenShareNfxSheet.this.requireContext();
-                m.checkNotNullExpressionValue(contextRequireContext, "requireContext()");
+                Intrinsics3.checkNotNullExpressionValue(contextRequireContext, "requireContext()");
                 WidgetCallFullscreen.Companion.launch$default(companion, contextRequireContext, WidgetScreenShareNfxSheet.this.requireArguments().getLong("com.discord.intent.extra.EXTRA_CHANNEL_ID"), false, null, null, 28, null);
             }
             WidgetScreenShareNfxSheet.this.dismiss();
@@ -112,15 +112,15 @@ public final class WidgetScreenShareNfxSheet extends AppBottomSheet {
         }
 
         public final void show(FragmentManager fragmentManager, long channelId, long guildId, VoiceBottomSheetParams voiceBottomSheetParams) {
-            m.checkNotNullParameter(fragmentManager, "fragmentManager");
+            Intrinsics3.checkNotNullParameter(fragmentManager, "fragmentManager");
             WidgetScreenShareNfxSheet widgetScreenShareNfxSheet = new WidgetScreenShareNfxSheet();
-            Bundle bundleT = a.T("com.discord.intent.extra.EXTRA_CHANNEL_ID", channelId);
+            Bundle bundleT = outline.T("com.discord.intent.extra.EXTRA_CHANNEL_ID", channelId);
             bundleT.putLong("com.discord.intent.extra.EXTRA_GUILD_ID", guildId);
             bundleT.putSerializable(WidgetScreenShareNfxSheet.ARG_VOICE_BOTTOM_SHEET_PARAMS, voiceBottomSheetParams);
             widgetScreenShareNfxSheet.setArguments(bundleT);
             widgetScreenShareNfxSheet.show(fragmentManager, WidgetScreenShareNfxSheet.class.getName());
             SharedPreferences.Editor editorEdit = SharedPreferencesProvider.INSTANCE.get().edit();
-            m.checkNotNullExpressionValue(editorEdit, "editor");
+            Intrinsics3.checkNotNullExpressionValue(editorEdit, "editor");
             editorEdit.putBoolean("CACHE_KEY_SCREEN_SHARE_NFX_SHEET_SHOWN", true);
             editorEdit.apply();
         }
@@ -136,7 +136,7 @@ public final class WidgetScreenShareNfxSheet extends AppBottomSheet {
         private final boolean forwardToFullscreenIfVideoActivated;
 
         public VoiceBottomSheetParams(boolean z2, WidgetVoiceBottomSheet.FeatureContext featureContext) {
-            m.checkNotNullParameter(featureContext, "featureContext");
+            Intrinsics3.checkNotNullParameter(featureContext, "featureContext");
             this.forwardToFullscreenIfVideoActivated = z2;
             this.featureContext = featureContext;
         }
@@ -152,7 +152,7 @@ public final class WidgetScreenShareNfxSheet extends AppBottomSheet {
         }
 
         public final VoiceBottomSheetParams copy(boolean forwardToFullscreenIfVideoActivated, WidgetVoiceBottomSheet.FeatureContext featureContext) {
-            m.checkNotNullParameter(featureContext, "featureContext");
+            Intrinsics3.checkNotNullParameter(featureContext, "featureContext");
             return new VoiceBottomSheetParams(forwardToFullscreenIfVideoActivated, featureContext);
         }
 
@@ -164,7 +164,7 @@ public final class WidgetScreenShareNfxSheet extends AppBottomSheet {
                 return false;
             }
             VoiceBottomSheetParams voiceBottomSheetParams = (VoiceBottomSheetParams) other;
-            return this.forwardToFullscreenIfVideoActivated == voiceBottomSheetParams.forwardToFullscreenIfVideoActivated && m.areEqual(this.featureContext, voiceBottomSheetParams.featureContext);
+            return this.forwardToFullscreenIfVideoActivated == voiceBottomSheetParams.forwardToFullscreenIfVideoActivated && Intrinsics3.areEqual(this.featureContext, voiceBottomSheetParams.featureContext);
         }
 
         /* JADX INFO: renamed from: component2, reason: from getter */
@@ -201,7 +201,7 @@ public final class WidgetScreenShareNfxSheet extends AppBottomSheet {
         }
 
         public String toString() {
-            StringBuilder sbU = a.U("VoiceBottomSheetParams(forwardToFullscreenIfVideoActivated=");
+            StringBuilder sbU = outline.U("VoiceBottomSheetParams(forwardToFullscreenIfVideoActivated=");
             sbU.append(this.forwardToFullscreenIfVideoActivated);
             sbU.append(", featureContext=");
             sbU.append(this.featureContext);
@@ -212,7 +212,7 @@ public final class WidgetScreenShareNfxSheet extends AppBottomSheet {
 
     public WidgetScreenShareNfxSheet() {
         super(false, 1, null);
-        this.binding = FragmentViewBindingDelegateKt.viewBinding$default(this, WidgetScreenShareNfxSheet$binding$2.INSTANCE, null, 2, null);
+        this.binding = FragmentViewBindingDelegate3.viewBinding$default(this, WidgetScreenShareNfxSheet2.INSTANCE, null, 2, null);
     }
 
     public static final /* synthetic */ void access$maybeNavigateToVoiceBottomSheet(WidgetScreenShareNfxSheet widgetScreenShareNfxSheet) {
@@ -246,13 +246,13 @@ public final class WidgetScreenShareNfxSheet extends AppBottomSheet {
             if (TextInVoiceFeatureFlag.INSTANCE.getINSTANCE().isEnabled(Long.valueOf(getGuildId()))) {
                 WidgetCallPreviewFullscreen.Companion companion = WidgetCallPreviewFullscreen.INSTANCE;
                 Context contextRequireContext = requireContext();
-                m.checkNotNullExpressionValue(contextRequireContext, "requireContext()");
+                Intrinsics3.checkNotNullExpressionValue(contextRequireContext, "requireContext()");
                 companion.launch(contextRequireContext, getChannelId(), AppTransitionActivity.Transition.TYPE_SLIDE_VERTICAL_WITH_FADE);
                 return;
             }
             WidgetVoiceBottomSheet.Companion companion2 = WidgetVoiceBottomSheet.INSTANCE;
             FragmentManager parentFragmentManager = getParentFragmentManager();
-            m.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
+            Intrinsics3.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
             companion2.show(parentFragmentManager, getChannelId(), voiceBottomSheetParams.getForwardToFullscreenIfVideoActivated(), voiceBottomSheetParams.getFeatureContext());
         }
     }
@@ -265,14 +265,14 @@ public final class WidgetScreenShareNfxSheet extends AppBottomSheet {
 
     @Override // androidx.fragment.app.DialogFragment, android.content.DialogInterface.OnCancelListener
     public void onCancel(DialogInterface dialog) {
-        m.checkNotNullParameter(dialog, "dialog");
+        Intrinsics3.checkNotNullParameter(dialog, "dialog");
         super.onCancel(dialog);
         maybeNavigateToVoiceBottomSheet();
     }
 
     @Override // com.discord.app.AppBottomSheet, androidx.fragment.app.Fragment
     public void onViewCreated(View view, Bundle savedInstanceState) {
-        m.checkNotNullParameter(view, "view");
+        Intrinsics3.checkNotNullParameter(view, "view");
         super.onViewCreated(view, savedInstanceState);
         getBinding().c.setOnClickListener(new AnonymousClass1());
         getBinding().f2521b.setOnClickListener(new AnonymousClass2());

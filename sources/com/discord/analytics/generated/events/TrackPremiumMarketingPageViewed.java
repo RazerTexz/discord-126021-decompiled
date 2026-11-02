@@ -1,16 +1,16 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.analytics.generated.traits.TrackSourceMetadata;
-import com.discord.analytics.generated.traits.TrackSourceMetadataReceiver;
+import com.discord.analytics.generated.traits.TrackSourceMetadata2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackPremiumMarketingPageViewed.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackPremiumMarketingPageViewed implements AnalyticsSchema, TrackBaseReceiver, TrackSourceMetadataReceiver {
+public final /* data */ class TrackPremiumMarketingPageViewed implements AnalyticsSchema, TrackBase2, TrackSourceMetadata2 {
     private final CharSequence loadId = null;
     private TrackBase trackBase;
     private TrackSourceMetadata trackSourceMetadata;
@@ -18,7 +18,7 @@ public final /* data */ class TrackPremiumMarketingPageViewed implements Analyti
 
     public boolean equals(Object other) {
         if (this != other) {
-            return (other instanceof TrackPremiumMarketingPageViewed) && m.areEqual(this.loadId, ((TrackPremiumMarketingPageViewed) other).loadId);
+            return (other instanceof TrackPremiumMarketingPageViewed) && Intrinsics3.areEqual(this.loadId, ((TrackPremiumMarketingPageViewed) other).loadId);
         }
         return true;
     }
@@ -38,6 +38,6 @@ public final /* data */ class TrackPremiumMarketingPageViewed implements Analyti
     }
 
     public String toString() {
-        return a.E(a.U("TrackPremiumMarketingPageViewed(loadId="), this.loadId, ")");
+        return outline.E(outline.U("TrackPremiumMarketingPageViewed(loadId="), this.loadId, ")");
     }
 }

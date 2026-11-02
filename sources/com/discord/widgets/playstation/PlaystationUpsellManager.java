@@ -8,7 +8,7 @@ import com.discord.stores.StoreUserConnections;
 import com.discord.utilities.platform.Platform;
 import com.discord.utilities.time.Clock;
 import com.discord.utilities.user.UserUtils;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 import java.util.Collection;
 import java.util.Iterator;
 
@@ -21,18 +21,18 @@ public final class PlaystationUpsellManager {
     private final SharedPreferences sharedPreferences;
 
     public PlaystationUpsellManager(SharedPreferences sharedPreferences, StoreExperiments storeExperiments, Clock clock) {
-        m.checkNotNullParameter(sharedPreferences, "sharedPreferences");
-        m.checkNotNullParameter(storeExperiments, "experimentStore");
-        m.checkNotNullParameter(clock, "clock");
+        Intrinsics3.checkNotNullParameter(sharedPreferences, "sharedPreferences");
+        Intrinsics3.checkNotNullParameter(storeExperiments, "experimentStore");
+        Intrinsics3.checkNotNullParameter(clock, "clock");
         this.sharedPreferences = sharedPreferences;
         this.experimentStore = storeExperiments;
         this.clock = clock;
     }
 
     public final boolean canShow(User user, StoreUserConnections.State connectedAccountsState) {
-        m.checkNotNullParameter(user, "user");
-        m.checkNotNullParameter(connectedAccountsState, "connectedAccountsState");
-        return isAccountOldEnough(user) && isUserMissingPlaystationAccountIntegration(connectedAccountsState) && !hasBeenShown() && PlaystationExperimentUtilsKt.canSeePlaystationUpsells(this.experimentStore);
+        Intrinsics3.checkNotNullParameter(user, "user");
+        Intrinsics3.checkNotNullParameter(connectedAccountsState, "connectedAccountsState");
+        return isAccountOldEnough(user) && isUserMissingPlaystationAccountIntegration(connectedAccountsState) && !hasBeenShown() && PlaystationExperimentUtils.canSeePlaystationUpsells(this.experimentStore);
     }
 
     private final boolean hasBeenShown() {
@@ -45,7 +45,7 @@ public final class PlaystationUpsellManager {
 
     private final boolean isUserMissingPlaystationAccountIntegration(StoreUserConnections.State connectedAccountsState) {
         boolean z2;
-        if (!m.areEqual(connectedAccountsState, StoreUserConnections.State.Loading.INSTANCE)) {
+        if (!Intrinsics3.areEqual(connectedAccountsState, StoreUserConnections.State.Loading.INSTANCE)) {
             if ((connectedAccountsState instanceof Collection) && connectedAccountsState.isEmpty()) {
                 z2 = true;
             } else {

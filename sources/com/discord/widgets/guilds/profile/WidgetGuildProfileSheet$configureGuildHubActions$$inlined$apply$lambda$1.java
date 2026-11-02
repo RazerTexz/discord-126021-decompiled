@@ -1,14 +1,14 @@
 package com.discord.widgets.guilds.profile;
 
 import android.view.View;
-import d0.z.d.m;
-import d0.z.d.o;
+import d0.z.d.Intrinsics3;
+import d0.z.d.Lambda;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function1;
 
 /* JADX INFO: compiled from: WidgetGuildProfileSheet.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class WidgetGuildProfileSheet$configureGuildHubActions$$inlined$apply$lambda$1 extends o implements Function1<View, Unit> {
+public final class WidgetGuildProfileSheet$configureGuildHubActions$$inlined$apply$lambda$1 extends Lambda implements Function1<View, Unit> {
     public final /* synthetic */ WidgetGuildProfileSheetViewModel.Actions $actions$inlined;
     public final /* synthetic */ long $guildId$inlined;
     public final /* synthetic */ WidgetGuildProfileSheet this$0;
@@ -29,7 +29,7 @@ public final class WidgetGuildProfileSheet$configureGuildHubActions$$inlined$app
 
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final void invoke2(View view) {
-        m.checkNotNullParameter(view, "it");
+        Intrinsics3.checkNotNullParameter(view, "it");
         WidgetGuildProfileSheet.access$showLeaveServerDialog(this.this$0, this.$guildId$inlined);
     }
 }

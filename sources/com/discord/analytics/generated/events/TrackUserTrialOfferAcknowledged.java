@@ -1,14 +1,14 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackUserTrialOfferAcknowledged.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackUserTrialOfferAcknowledged implements AnalyticsSchema, TrackBaseReceiver {
+public final /* data */ class TrackUserTrialOfferAcknowledged implements AnalyticsSchema, TrackBase2 {
     private final Long expiresAt = null;
     private TrackBase trackBase;
     private final Long trialId = null;
@@ -23,7 +23,7 @@ public final /* data */ class TrackUserTrialOfferAcknowledged implements Analyti
             return false;
         }
         TrackUserTrialOfferAcknowledged trackUserTrialOfferAcknowledged = (TrackUserTrialOfferAcknowledged) other;
-        return m.areEqual(this.trialOfferId, trackUserTrialOfferAcknowledged.trialOfferId) && m.areEqual(this.trialId, trackUserTrialOfferAcknowledged.trialId) && m.areEqual(this.expiresAt, trackUserTrialOfferAcknowledged.expiresAt);
+        return Intrinsics3.areEqual(this.trialOfferId, trackUserTrialOfferAcknowledged.trialOfferId) && Intrinsics3.areEqual(this.trialId, trackUserTrialOfferAcknowledged.trialId) && Intrinsics3.areEqual(this.expiresAt, trackUserTrialOfferAcknowledged.expiresAt);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -42,11 +42,11 @@ public final /* data */ class TrackUserTrialOfferAcknowledged implements Analyti
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackUserTrialOfferAcknowledged(trialOfferId=");
+        StringBuilder sbU = outline.U("TrackUserTrialOfferAcknowledged(trialOfferId=");
         sbU.append(this.trialOfferId);
         sbU.append(", trialId=");
         sbU.append(this.trialId);
         sbU.append(", expiresAt=");
-        return a.G(sbU, this.expiresAt, ")");
+        return outline.G(sbU, this.expiresAt, ")");
     }
 }

@@ -1,14 +1,14 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackChannelNoticeCtaClicked.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackChannelNoticeCtaClicked implements AnalyticsSchema, TrackBaseReceiver {
+public final /* data */ class TrackChannelNoticeCtaClicked implements AnalyticsSchema, TrackBase2 {
     private final Long guildId = null;
     private final CharSequence noticeType = null;
     private final CharSequence source = null;
@@ -23,7 +23,7 @@ public final /* data */ class TrackChannelNoticeCtaClicked implements AnalyticsS
             return false;
         }
         TrackChannelNoticeCtaClicked trackChannelNoticeCtaClicked = (TrackChannelNoticeCtaClicked) other;
-        return m.areEqual(this.source, trackChannelNoticeCtaClicked.source) && m.areEqual(this.guildId, trackChannelNoticeCtaClicked.guildId) && m.areEqual(this.noticeType, trackChannelNoticeCtaClicked.noticeType);
+        return Intrinsics3.areEqual(this.source, trackChannelNoticeCtaClicked.source) && Intrinsics3.areEqual(this.guildId, trackChannelNoticeCtaClicked.guildId) && Intrinsics3.areEqual(this.noticeType, trackChannelNoticeCtaClicked.noticeType);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -42,11 +42,11 @@ public final /* data */ class TrackChannelNoticeCtaClicked implements AnalyticsS
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackChannelNoticeCtaClicked(source=");
+        StringBuilder sbU = outline.U("TrackChannelNoticeCtaClicked(source=");
         sbU.append(this.source);
         sbU.append(", guildId=");
         sbU.append(this.guildId);
         sbU.append(", noticeType=");
-        return a.E(sbU, this.noticeType, ")");
+        return outline.E(sbU, this.noticeType, ")");
     }
 }

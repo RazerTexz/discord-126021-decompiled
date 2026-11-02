@@ -8,11 +8,11 @@ import com.discord.api.message.reaction.MessageReaction;
 import com.discord.api.message.reaction.MessageReactionEmoji;
 import com.discord.api.message.reaction.MessageReactionUpdate;
 import com.discord.models.message.Message;
-import com.discord.utilities.message.LocalMessageCreatorsKt;
+import com.discord.utilities.message.LocalMessageCreators;
 import com.discord.utilities.message.MessageUtils;
 import com.discord.utilities.persister.Persister;
 import com.discord.utilities.time.ClockFactory;
-import j0.l.e.k;
+import j0.l.e.ScalarSynchronousObservable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -119,7 +119,7 @@ public class StoreMessagesHolder {
             messageReaction = new MessageReaction(1, messageReactionEmoji, z2);
         }
         linkedHashMap.put(strC, messageReaction);
-        return LocalMessageCreatorsKt.createWithReactions(message, linkedHashMap);
+        return LocalMessageCreators.createWithReactions(message, linkedHashMap);
     }
 
     private Map<Long, List<Message>> computeMessagesCache() {
@@ -256,7 +256,7 @@ public class StoreMessagesHolder {
                 if (subscription != null) {
                     subscription.unsubscribe();
                 }
-                this.cachePersistSubscription = new k(null).q(j2, TimeUnit.MILLISECONDS).W(new b(this), a.j);
+                this.cachePersistSubscription = new ScalarSynchronousObservable(null).q(j2, TimeUnit.MILLISECONDS).W(new b(this), a.j);
             }
         }
     }
@@ -291,7 +291,7 @@ public class StoreMessagesHolder {
             if (message == null) {
                 return;
             }
-            treeMap.put(Long.valueOf(messageId), LocalMessageCreatorsKt.createWithReactions(message, null));
+            treeMap.put(Long.valueOf(messageId), LocalMessageCreators.createWithReactions(message, null));
             this.updatedChannels.add(Long.valueOf(channelId));
             publishIfUpdated();
         }
@@ -316,7 +316,7 @@ public class StoreMessagesHolder {
                         linkedHashMap.put(key, entry.getValue());
                     }
                 }
-                treeMap.put(Long.valueOf(messageId), LocalMessageCreatorsKt.createWithReactions(message, linkedHashMap));
+                treeMap.put(Long.valueOf(messageId), LocalMessageCreators.createWithReactions(message, linkedHashMap));
                 this.updatedChannels.add(Long.valueOf(channelId));
                 publishIfUpdated();
             }
@@ -342,7 +342,7 @@ public class StoreMessagesHolder {
         if (linkedHashMap.isEmpty()) {
             linkedHashMap = null;
         }
-        return LocalMessageCreatorsKt.createWithReactions(message, linkedHashMap);
+        return LocalMessageCreators.createWithReactions(message, linkedHashMap);
     }
 
     public void setMyUserId(long j) {

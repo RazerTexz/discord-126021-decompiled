@@ -6,10 +6,10 @@ import com.discord.models.domain.emoji.ModelEmojiGuild;
 import com.discord.stores.updates.ObservationDeck;
 import com.discord.utilities.rest.RestAPI;
 import com.discord.utilities.rx.ObservableExtensionsKt;
-import d0.t.h0;
-import d0.t.n;
-import d0.z.d.m;
-import d0.z.d.o;
+import d0.t.Collections2;
+import d0.t.Maps6;
+import d0.z.d.Intrinsics3;
+import d0.z.d.Lambda;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -32,7 +32,7 @@ public final class StoreEmojiGuild extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreEmojiGuild$activate$1, reason: invalid class name */
     /* JADX INFO: compiled from: StoreEmojiGuild.kt */
-    public final class AnonymousClass1 extends o implements Function0<Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function0<Unit> {
         public final /* synthetic */ long $guildId;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -55,7 +55,7 @@ public final class StoreEmojiGuild extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreEmojiGuild$deactivate$1, reason: invalid class name */
     /* JADX INFO: compiled from: StoreEmojiGuild.kt */
-    public final class AnonymousClass1 extends o implements Function0<Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function0<Unit> {
         public AnonymousClass1() {
             super(0);
         }
@@ -74,7 +74,7 @@ public final class StoreEmojiGuild extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreEmojiGuild$deleteEmoji$1, reason: invalid class name */
     /* JADX INFO: compiled from: StoreEmojiGuild.kt */
-    public final class AnonymousClass1 extends o implements Function0<Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function0<Unit> {
         public final /* synthetic */ long $emojiId;
         public final /* synthetic */ long $guildId;
 
@@ -97,7 +97,7 @@ public final class StoreEmojiGuild extends StoreV2 {
             Long lValueOf = Long.valueOf(this.$guildId);
             List listEmptyList = (List) StoreEmojiGuild.access$getGuildEmoji$p(StoreEmojiGuild.this).get(Long.valueOf(this.$guildId));
             if (listEmptyList == null) {
-                listEmptyList = n.emptyList();
+                listEmptyList = Collections2.emptyList();
             }
             ArrayList arrayList = new ArrayList();
             for (Object obj : listEmptyList) {
@@ -112,7 +112,7 @@ public final class StoreEmojiGuild extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreEmojiGuild$fetchGuildEmoji$1, reason: invalid class name */
     /* JADX INFO: compiled from: StoreEmojiGuild.kt */
-    public final class AnonymousClass1 extends o implements Function1<List<? extends ModelEmojiGuild>, Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function1<List<? extends ModelEmojiGuild>, Unit> {
         public final /* synthetic */ long $guildId;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -129,14 +129,14 @@ public final class StoreEmojiGuild extends StoreV2 {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(List<ModelEmojiGuild> list) {
-            m.checkNotNullParameter(list, "emojis");
+            Intrinsics3.checkNotNullParameter(list, "emojis");
             StoreEmojiGuild.access$handleGuildEmojisLoaded(StoreEmojiGuild.this, this.$guildId, list);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.stores.StoreEmojiGuild$handleGuildEmojisLoaded$1, reason: invalid class name */
     /* JADX INFO: compiled from: StoreEmojiGuild.kt */
-    public final class AnonymousClass1 extends o implements Function0<Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function0<Unit> {
         public final /* synthetic */ List $emojis;
         public final /* synthetic */ long $guildId;
 
@@ -162,7 +162,7 @@ public final class StoreEmojiGuild extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreEmojiGuild$observeGuildEmoji$1, reason: invalid class name */
     /* JADX INFO: compiled from: StoreEmojiGuild.kt */
-    public final class AnonymousClass1 extends o implements Function0<List<? extends ModelEmojiGuild>> {
+    public final class AnonymousClass1 extends Lambda implements Function0<List<? extends ModelEmojiGuild>> {
         public final /* synthetic */ long $guildId;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -184,14 +184,14 @@ public final class StoreEmojiGuild extends StoreV2 {
     }
 
     public StoreEmojiGuild(ObservationDeck observationDeck, Dispatcher dispatcher, RestAPI restAPI) {
-        m.checkNotNullParameter(observationDeck, "observationDeck");
-        m.checkNotNullParameter(dispatcher, "dispatcher");
-        m.checkNotNullParameter(restAPI, "restAPI");
+        Intrinsics3.checkNotNullParameter(observationDeck, "observationDeck");
+        Intrinsics3.checkNotNullParameter(dispatcher, "dispatcher");
+        Intrinsics3.checkNotNullParameter(restAPI, "restAPI");
         this.observationDeck = observationDeck;
         this.dispatcher = dispatcher;
         this.restAPI = restAPI;
         this.guildEmoji = new LinkedHashMap();
-        this.guildEmojiSnapshot = h0.emptyMap();
+        this.guildEmojiSnapshot = Maps6.emptyMap();
         this.activeGuildId = -1L;
     }
 
@@ -231,9 +231,9 @@ public final class StoreEmojiGuild extends StoreV2 {
         return this.guildEmojiSnapshot.get(Long.valueOf(guildId));
     }
 
-    @StoreThread
+    @Store3
     public final void handleEmojiUpdate(GuildEmojisUpdate emojiUpdate) {
-        m.checkNotNullParameter(emojiUpdate, "emojiUpdate");
+        Intrinsics3.checkNotNullParameter(emojiUpdate, "emojiUpdate");
         long guildId = emojiUpdate.getGuildId();
         long j = this.activeGuildId;
         if (guildId == j) {
@@ -241,14 +241,14 @@ public final class StoreEmojiGuild extends StoreV2 {
         }
     }
 
-    @StoreThread
+    @Store3
     private final void handleGuildEmojisLoaded(long guildId, List<ModelEmojiGuild> emojis) {
         this.dispatcher.schedule(new AnonymousClass1(emojis, guildId));
     }
 
     public final Observable<List<ModelEmojiGuild>> observeGuildEmoji(long guildId) {
         Observable<List<ModelEmojiGuild>> observableR = ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck.UpdateSource[]{this}, false, null, null, new AnonymousClass1(guildId), 14, null).r();
-        m.checkNotNullExpressionValue(observableR, "observationDeck.connectR…  .distinctUntilChanged()");
+        Intrinsics3.checkNotNullExpressionValue(observableR, "observationDeck.connectR…  .distinctUntilChanged()");
         return observableR;
     }
 

@@ -2,9 +2,9 @@ package com.discord.i18n;
 
 import android.view.View;
 import androidx.annotation.ColorInt;
-import b.a.k.d;
-import d0.z.d.m;
-import d0.z.d.o;
+import b.a.k.RenderContext2;
+import d0.z.d.Intrinsics3;
+import d0.z.d.Lambda;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -40,7 +40,7 @@ public final class RenderContext {
     public final Map<String, Hook> hooks = new HashMap();
 
     /* JADX INFO: compiled from: RenderContext.kt */
-    public final class a extends o implements Function1<Hook, Unit> {
+    public final class a extends Lambda implements Function1<Hook, Unit> {
         public final /* synthetic */ Function1 $onClick;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -52,18 +52,18 @@ public final class RenderContext {
         @Override // kotlin.jvm.functions.Function1
         public Unit invoke(Hook hook) {
             Hook hook2 = hook;
-            m.checkNotNullParameter(hook2, "$receiver");
-            d dVar = new d(this);
+            Intrinsics3.checkNotNullParameter(hook2, "$receiver");
+            RenderContext2 renderContext2 = new RenderContext2(this);
             Objects.requireNonNull(hook2);
-            m.checkNotNullParameter(dVar, "onClick");
-            hook2.clickHandler = new Hook.a(null, dVar);
+            Intrinsics3.checkNotNullParameter(renderContext2, "onClick");
+            hook2.clickHandler = new Hook.a(null, renderContext2);
             return Unit.a;
         }
     }
 
     public final void a(String key, Function1<? super Hook, Unit> hookInitializer) {
-        m.checkNotNullParameter(key, "key");
-        m.checkNotNullParameter(hookInitializer, "hookInitializer");
+        Intrinsics3.checkNotNullParameter(key, "key");
+        Intrinsics3.checkNotNullParameter(hookInitializer, "hookInitializer");
         Map<String, Hook> map = this.hooks;
         Hook hook = new Hook();
         hookInitializer.invoke(hook);
@@ -71,8 +71,8 @@ public final class RenderContext {
     }
 
     public final void b(String key, Function1<? super View, Unit> onClick) {
-        m.checkNotNullParameter(key, "key");
-        m.checkNotNullParameter(onClick, "onClick");
+        Intrinsics3.checkNotNullParameter(key, "key");
+        Intrinsics3.checkNotNullParameter(onClick, "onClick");
         a(key, new a(onClick));
     }
 }

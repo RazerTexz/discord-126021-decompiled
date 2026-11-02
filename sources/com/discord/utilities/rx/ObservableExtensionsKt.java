@@ -10,16 +10,18 @@ import com.discord.utilities.analytics.Traits;
 import com.discord.utilities.dimmer.DimmerView;
 import com.discord.utilities.error.Error;
 import com.discord.utilities.mg_recycler.MGRecyclerAdapterSimple;
-import d0.z.d.m;
-import d0.z.d.o;
-import j0.k.b;
-import j0.l.a.r;
-import j0.p.a;
+import d0.z.d.Intrinsics3;
+import d0.z.d.Lambda;
+import j0.j.b.AndroidSchedulers;
+import j0.k.Func1;
+import j0.l.a.OnSubscribeLift;
+import j0.l.e.ActionSubscriber;
+import j0.p.Schedulers2;
 import java.lang.ref.WeakReference;
 import java.util.Map;
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
-import kotlin.Pair;
+import kotlin.Tuples2;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
@@ -33,7 +35,7 @@ public final class ObservableExtensionsKt {
 
     /* JADX INFO: renamed from: com.discord.utilities.rx.ObservableExtensionsKt$appSubscribe$1, reason: invalid class name */
     /* JADX INFO: compiled from: ObservableExtensions.kt */
-    public final class AnonymousClass1 extends o implements Function0<Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function0<Unit> {
         public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
 
         public AnonymousClass1() {
@@ -53,17 +55,17 @@ public final class ObservableExtensionsKt {
 
     /* JADX INFO: renamed from: com.discord.utilities.rx.ObservableExtensionsKt$filterIs$1, reason: invalid class name */
     /* JADX INFO: compiled from: ObservableExtensions.kt */
-    public final class AnonymousClass1<T, R> implements b<Object, Boolean> {
+    public final class AnonymousClass1<T, R> implements Func1<Object, Boolean> {
         public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
 
         /* JADX WARN: Can't rename method to resolve collision */
-        @Override // j0.k.b
+        @Override // j0.k.Func1
         public final Boolean call(Object obj) {
-            m.reifiedOperationMarker(3, ExifInterface.GPS_DIRECTION_TRUE);
+            Intrinsics3.reifiedOperationMarker(3, ExifInterface.GPS_DIRECTION_TRUE);
             return Boolean.valueOf(obj instanceof Object);
         }
 
-        @Override // j0.k.b
+        @Override // j0.k.Func1
         public /* bridge */ /* synthetic */ Boolean call(Object obj) {
             return call(obj);
         }
@@ -71,17 +73,17 @@ public final class ObservableExtensionsKt {
 
     /* JADX INFO: renamed from: com.discord.utilities.rx.ObservableExtensionsKt$filterNull$1, reason: invalid class name */
     /* JADX INFO: compiled from: ObservableExtensions.kt */
-    public final class AnonymousClass1<T, R> implements b<T, Boolean> {
+    public final class AnonymousClass1<T, R> implements Func1<T, Boolean> {
         public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
 
         /* JADX WARN: Can't rename method to resolve collision */
-        @Override // j0.k.b
+        @Override // j0.k.Func1
         public final Boolean call(T t) {
             return Boolean.valueOf(t != null);
         }
 
         /* JADX WARN: Multi-variable type inference failed */
-        @Override // j0.k.b
+        @Override // j0.k.Func1
         public /* bridge */ /* synthetic */ Boolean call(Object obj) {
             return call(obj);
         }
@@ -90,22 +92,22 @@ public final class ObservableExtensionsKt {
     /* JADX INFO: Add missing generic type declarations: [V, K] */
     /* JADX INFO: renamed from: com.discord.utilities.rx.ObservableExtensionsKt$toMap$1, reason: invalid class name */
     /* JADX INFO: compiled from: ObservableExtensions.kt */
-    public final class AnonymousClass1<T, R, K, V> implements b<Pair<? extends K, ? extends V>, K> {
+    public final class AnonymousClass1<T, R, K, V> implements Func1<Tuples2<? extends K, ? extends V>, K> {
         public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
 
-        @Override // j0.k.b
+        @Override // j0.k.Func1
         public /* bridge */ /* synthetic */ Object call(Object obj) {
-            return call((Pair) obj);
+            return call((Tuples2) obj);
         }
 
-        public final K call(Pair<? extends K, ? extends V> pair) {
-            return pair.getFirst();
+        public final K call(Tuples2<? extends K, ? extends V> tuples2) {
+            return tuples2.getFirst();
         }
     }
 
     /* JADX INFO: renamed from: com.discord.utilities.rx.ObservableExtensionsKt$withDimmer$1, reason: invalid class name */
     /* JADX INFO: compiled from: ObservableExtensions.kt */
-    public final class AnonymousClass1 extends o implements Function1<Boolean, Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function1<Boolean, Unit> {
         public final /* synthetic */ DimmerView $dimmer;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -130,7 +132,7 @@ public final class ObservableExtensionsKt {
 
     /* JADX INFO: renamed from: com.discord.utilities.rx.ObservableExtensionsKt$appSubscribe$2, reason: invalid class name */
     /* JADX INFO: compiled from: ObservableExtensions.kt */
-    public final class AnonymousClass2 extends o implements Function0<Unit> {
+    public final class AnonymousClass2 extends Lambda implements Function0<Unit> {
         public static final AnonymousClass2 INSTANCE = new AnonymousClass2();
 
         public AnonymousClass2() {
@@ -168,25 +170,25 @@ public final class ObservableExtensionsKt {
 
     /* JADX INFO: renamed from: com.discord.utilities.rx.ObservableExtensionsKt$filterIs$2, reason: invalid class name */
     /* JADX INFO: compiled from: ObservableExtensions.kt */
-    public final class AnonymousClass2<T, R> implements b<Object, T> {
+    public final class AnonymousClass2<T, R> implements Func1<Object, T> {
         public static final AnonymousClass2 INSTANCE = new AnonymousClass2();
 
         /* JADX WARN: Multi-variable type inference failed */
-        @Override // j0.k.b
+        @Override // j0.k.Func1
         public final T call(Object obj) {
-            m.reifiedOperationMarker(1, ExifInterface.GPS_DIRECTION_TRUE);
+            Intrinsics3.reifiedOperationMarker(1, ExifInterface.GPS_DIRECTION_TRUE);
             return obj;
         }
     }
 
     /* JADX INFO: renamed from: com.discord.utilities.rx.ObservableExtensionsKt$filterNull$2, reason: invalid class name */
     /* JADX INFO: compiled from: ObservableExtensions.kt */
-    public final class AnonymousClass2<T, R> implements b<T, T> {
+    public final class AnonymousClass2<T, R> implements Func1<T, T> {
         public static final AnonymousClass2 INSTANCE = new AnonymousClass2();
 
-        @Override // j0.k.b
+        @Override // j0.k.Func1
         public final T call(T t) {
-            m.checkNotNull(t);
+            Intrinsics3.checkNotNull(t);
             return t;
         }
     }
@@ -194,22 +196,22 @@ public final class ObservableExtensionsKt {
     /* JADX INFO: Add missing generic type declarations: [V, K] */
     /* JADX INFO: renamed from: com.discord.utilities.rx.ObservableExtensionsKt$toMap$2, reason: invalid class name */
     /* JADX INFO: compiled from: ObservableExtensions.kt */
-    public final class AnonymousClass2<T, R, K, V> implements b<Pair<? extends K, ? extends V>, V> {
+    public final class AnonymousClass2<T, R, K, V> implements Func1<Tuples2<? extends K, ? extends V>, V> {
         public static final AnonymousClass2 INSTANCE = new AnonymousClass2();
 
-        @Override // j0.k.b
+        @Override // j0.k.Func1
         public /* bridge */ /* synthetic */ Object call(Object obj) {
-            return call((Pair) obj);
+            return call((Tuples2) obj);
         }
 
-        public final V call(Pair<? extends K, ? extends V> pair) {
-            return pair.getSecond();
+        public final V call(Tuples2<? extends K, ? extends V> tuples2) {
+            return tuples2.getSecond();
         }
     }
 
     /* JADX INFO: renamed from: com.discord.utilities.rx.ObservableExtensionsKt$appSubscribe$3, reason: invalid class name */
     /* JADX INFO: compiled from: ObservableExtensions.kt */
-    public final class AnonymousClass3 extends o implements Function0<Unit> {
+    public final class AnonymousClass3 extends Lambda implements Function0<Unit> {
         public static final AnonymousClass3 INSTANCE = new AnonymousClass3();
 
         public AnonymousClass3() {
@@ -229,7 +231,7 @@ public final class ObservableExtensionsKt {
 
     /* JADX INFO: renamed from: com.discord.utilities.rx.ObservableExtensionsKt$appSubscribe$4, reason: invalid class name */
     /* JADX INFO: compiled from: ObservableExtensions.kt */
-    public final class AnonymousClass4 extends o implements Function0<Unit> {
+    public final class AnonymousClass4 extends Lambda implements Function0<Unit> {
         public static final AnonymousClass4 INSTANCE = new AnonymousClass4();
 
         public AnonymousClass4() {
@@ -252,13 +254,13 @@ public final class ObservableExtensionsKt {
     }
 
     public static final <T> void appSubscribe(Observable<T> observable, Class<?> cls, Context context, Function1<? super Subscription, Unit> function1, Function1<? super Error, Unit> function2, Function0<Unit> function0, Function0<Unit> function3, Function1<? super T, Unit> function4) {
-        m.checkNotNullParameter(observable, "$this$appSubscribe");
-        m.checkNotNullParameter(cls, "errorClass");
-        m.checkNotNullParameter(function0, "onCompleted");
-        m.checkNotNullParameter(function3, "onTerminated");
-        m.checkNotNullParameter(function4, "onNext");
+        Intrinsics3.checkNotNullParameter(observable, "$this$appSubscribe");
+        Intrinsics3.checkNotNullParameter(cls, "errorClass");
+        Intrinsics3.checkNotNullParameter(function0, "onCompleted");
+        Intrinsics3.checkNotNullParameter(function3, "onTerminated");
+        Intrinsics3.checkNotNullParameter(function4, "onNext");
         String simpleName = cls.getSimpleName();
-        m.checkNotNullExpressionValue(simpleName, "errorClass.simpleName");
+        Intrinsics3.checkNotNullExpressionValue(simpleName, "errorClass.simpleName");
         appSubscribe(observable, context, simpleName, function1, function4, function2, function0, function3);
     }
 
@@ -270,53 +272,53 @@ public final class ObservableExtensionsKt {
     }
 
     public static final <T> Observable<T> bindToComponentLifecycle(Observable<T> observable, AppComponent appComponent, MGRecyclerAdapterSimple<?> mGRecyclerAdapterSimple) {
-        m.checkNotNullParameter(observable, "$this$bindToComponentLifecycle");
-        m.checkNotNullParameter(appComponent, "appComponent");
+        Intrinsics3.checkNotNullParameter(observable, "$this$bindToComponentLifecycle");
+        Intrinsics3.checkNotNullParameter(appComponent, "appComponent");
         Observable<T> observableA0 = observable.a0(appComponent.getUnsubscribeSignal());
         if (appComponent instanceof Fragment) {
             observableA0 = observableA0.y(new ObservableExtensionsKt$bindToComponentLifecycle$$inlined$let$lambda$1(appComponent));
         }
         Observable<T> observableW = observableA0.w(new AnonymousClass2(mGRecyclerAdapterSimple));
-        m.checkNotNullExpressionValue(observableW, "takeUntil(appComponent.u…beFromUpdates()\n        }");
+        Intrinsics3.checkNotNullExpressionValue(observableW, "takeUntil(appComponent.u…beFromUpdates()\n        }");
         return observableW;
     }
 
     public static final <T> Observable<T> computationBuffered(Observable<T> observable) {
-        m.checkNotNullParameter(observable, "$this$computationBuffered");
-        Observable<T> observableJ = observable.K().X(a.a()).J(a.a());
-        m.checkNotNullExpressionValue(observableJ, "onBackpressureBuffer()\n …Schedulers.computation())");
+        Intrinsics3.checkNotNullParameter(observable, "$this$computationBuffered");
+        Observable<T> observableJ = observable.K().X(Schedulers2.a()).J(Schedulers2.a());
+        Intrinsics3.checkNotNullExpressionValue(observableJ, "onBackpressureBuffer()\n …Schedulers.computation())");
         return observableJ;
     }
 
     public static final <T> Observable<T> computationLatest(Observable<T> observable) {
-        m.checkNotNullParameter(observable, "$this$computationLatest");
-        Observable<T> observableJ = observable.L().X(a.a()).J(a.a());
-        m.checkNotNullExpressionValue(observableJ, "onBackpressureLatest()\n …Schedulers.computation())");
+        Intrinsics3.checkNotNullParameter(observable, "$this$computationLatest");
+        Observable<T> observableJ = observable.L().X(Schedulers2.a()).J(Schedulers2.a());
+        Intrinsics3.checkNotNullExpressionValue(observableJ, "onBackpressureLatest()\n …Schedulers.computation())");
         return observableJ;
     }
 
     public static final /* synthetic */ <T> Observable<T> filterIs(Observable<?> observable) {
-        m.checkNotNullParameter(observable, "$this$filterIs");
-        m.needClassReification();
+        Intrinsics3.checkNotNullParameter(observable, "$this$filterIs");
+        Intrinsics3.needClassReification();
         Observable<?> observableY = observable.y(AnonymousClass1.INSTANCE);
-        m.needClassReification();
+        Intrinsics3.needClassReification();
         Observable<T> observable2 = (Observable<T>) observableY.G(AnonymousClass2.INSTANCE);
-        m.checkNotNullExpressionValue(observable2, "filter { it is T }.map { it as T }");
+        Intrinsics3.checkNotNullExpressionValue(observable2, "filter { it is T }.map { it as T }");
         return observable2;
     }
 
     public static final /* synthetic */ <T> Observable<T> filterNull(Observable<T> observable) {
-        m.checkNotNullParameter(observable, "$this$filterNull");
+        Intrinsics3.checkNotNullParameter(observable, "$this$filterNull");
         Observable<T> observable2 = (Observable<T>) observable.y(AnonymousClass1.INSTANCE).G(AnonymousClass2.INSTANCE);
-        m.checkNotNullExpressionValue(observable2, "filter { it != null }.map { it!! }");
+        Intrinsics3.checkNotNullExpressionValue(observable2, "filter { it != null }.map { it!! }");
         return observable2;
     }
 
     public static final <T> Observable<T> leadingEdgeThrottle(Observable<T> observable, long j, TimeUnit timeUnit) {
-        m.checkNotNullParameter(observable, "$this$leadingEdgeThrottle");
-        m.checkNotNullParameter(timeUnit, "timeUnit");
-        Observable<T> observableH0 = Observable.h0(new r(observable.j, new LeadingEdgeThrottle(j, timeUnit)));
-        m.checkNotNullExpressionValue(observableH0, "lift(LeadingEdgeThrottle…indowDuration, timeUnit))");
+        Intrinsics3.checkNotNullParameter(observable, "$this$leadingEdgeThrottle");
+        Intrinsics3.checkNotNullParameter(timeUnit, "timeUnit");
+        Observable<T> observableH0 = Observable.h0(new OnSubscribeLift(observable.j, new LeadingEdgeThrottle(j, timeUnit)));
+        Intrinsics3.checkNotNullExpressionValue(observableH0, "lift(LeadingEdgeThrottle…indowDuration, timeUnit))");
         return observableH0;
     }
 
@@ -328,14 +330,14 @@ public final class ObservableExtensionsKt {
     }
 
     public static final <T> Observable<T> restSubscribeOn(Observable<T> observable, boolean z2) {
-        m.checkNotNullParameter(observable, "$this$restSubscribeOn");
-        Observable<T> observableX = observable.X(a.c());
+        Intrinsics3.checkNotNullParameter(observable, "$this$restSubscribeOn");
+        Observable<T> observableX = observable.X(Schedulers2.c());
         if (z2) {
             RetryWithDelay retryWithDelay = RetryWithDelay.INSTANCE;
-            m.checkNotNullExpressionValue(observableX, "observable");
+            Intrinsics3.checkNotNullExpressionValue(observableX, "observable");
             observableX = RetryWithDelay.restRetry$default(retryWithDelay, observableX, 0L, null, null, 7, null);
         }
-        m.checkNotNullExpressionValue(observableX, "subscribeOn(Schedulers.i… observable\n      }\n    }");
+        Intrinsics3.checkNotNullExpressionValue(observableX, "subscribeOn(Schedulers.i… observable\n      }\n    }");
         return observableX;
     }
 
@@ -350,17 +352,17 @@ public final class ObservableExtensionsKt {
     }
 
     public static final <T> Observable<T> takeSingleUntilTimeout(Observable<T> observable, long j, boolean z2) {
-        m.checkNotNullParameter(observable, "$this$takeSingleUntilTimeout");
+        Intrinsics3.checkNotNullParameter(observable, "$this$takeSingleUntilTimeout");
         Observable<T> observableZ = observable.Z(1);
         Observable<T> observableC0 = z2 ? observableZ.c0(j, TimeUnit.MILLISECONDS) : observableZ.a0(Observable.d0(j, TimeUnit.MILLISECONDS));
-        m.checkNotNullExpressionValue(observableC0, "take(1).let {\n      if (…LISECONDS))\n      }\n    }");
+        Intrinsics3.checkNotNullExpressionValue(observableC0, "take(1).let {\n      if (…LISECONDS))\n      }\n    }");
         return computationLatest(observableC0);
     }
 
-    public static final <K, V> Observable<Map<K, V>> toMap(Observable<Pair<K, V>> observable) {
-        m.checkNotNullParameter(observable, "$this$toMap");
+    public static final <K, V> Observable<Map<K, V>> toMap(Observable<Tuples2<K, V>> observable) {
+        Intrinsics3.checkNotNullParameter(observable, "$this$toMap");
         Observable<Map<K, V>> observableG0 = observable.g0(AnonymousClass1.INSTANCE, AnonymousClass2.INSTANCE);
-        m.checkNotNullExpressionValue(observableG0, "toMap({ it.first }, { it.second })");
+        Intrinsics3.checkNotNullExpressionValue(observableG0, "toMap({ it.first }, { it.second })");
         return observableG0;
     }
 
@@ -372,9 +374,9 @@ public final class ObservableExtensionsKt {
     }
 
     public static final <T> Observable<T> ui(Observable<T> observable) {
-        m.checkNotNullParameter(observable, "$this$ui");
-        Observable<T> observableJ = observable.J(j0.j.b.a.a());
-        m.checkNotNullExpressionValue(observableJ, "observeOn(AndroidSchedulers.mainThread())");
+        Intrinsics3.checkNotNullParameter(observable, "$this$ui");
+        Observable<T> observableJ = observable.J(AndroidSchedulers.a());
+        Intrinsics3.checkNotNullExpressionValue(observableJ, "observeOn(AndroidSchedulers.mainThread())");
         return observableJ;
     }
 
@@ -386,15 +388,15 @@ public final class ObservableExtensionsKt {
     }
 
     public static final <T> Observable<T> withDimmer(Observable<T> observable, DimmerView dimmerView, long j) {
-        m.checkNotNullParameter(observable, "$this$withDimmer");
-        Observable<T> observableH0 = Observable.h0(new r(observable.j, new OnDelayedEmissionHandler(new AnonymousClass1(dimmerView), j, TimeUnit.MILLISECONDS, null, 8, null)));
-        m.checkNotNullExpressionValue(observableH0, "lift(\n        OnDelayedE…LISECONDS\n        )\n    )");
+        Intrinsics3.checkNotNullParameter(observable, "$this$withDimmer");
+        Observable<T> observableH0 = Observable.h0(new OnSubscribeLift(observable.j, new OnDelayedEmissionHandler(new AnonymousClass1(dimmerView), j, TimeUnit.MILLISECONDS, null, 8, null)));
+        Intrinsics3.checkNotNullExpressionValue(observableH0, "lift(\n        OnDelayedE…LISECONDS\n        )\n    )");
         return observableH0;
     }
 
     public static final <T> Observable<T> ui(Observable<T> observable, AppComponent appComponent, MGRecyclerAdapterSimple<?> mGRecyclerAdapterSimple) {
-        m.checkNotNullParameter(observable, "$this$ui");
-        m.checkNotNullParameter(appComponent, "appComponent");
+        Intrinsics3.checkNotNullParameter(observable, "$this$ui");
+        Intrinsics3.checkNotNullParameter(appComponent, "appComponent");
         return bindToComponentLifecycle(ui(observable), appComponent, mGRecyclerAdapterSimple);
     }
 
@@ -403,19 +405,19 @@ public final class ObservableExtensionsKt {
     }
 
     public static final <T> void appSubscribe(Observable<T> observable, Context context, String str, Function1<? super Subscription, Unit> function1, Function1<? super T, Unit> function2, Function1<? super Error, Unit> function3, Function0<Unit> function0, Function0<Unit> function4) {
-        m.checkNotNullParameter(observable, "$this$appSubscribe");
-        m.checkNotNullParameter(str, "errorTag");
-        m.checkNotNullParameter(function2, "onNext");
-        m.checkNotNullParameter(function0, "onCompleted");
-        m.checkNotNullParameter(function4, "onTerminated");
+        Intrinsics3.checkNotNullParameter(observable, "$this$appSubscribe");
+        Intrinsics3.checkNotNullParameter(str, "errorTag");
+        Intrinsics3.checkNotNullParameter(function2, "onNext");
+        Intrinsics3.checkNotNullParameter(function0, "onCompleted");
+        Intrinsics3.checkNotNullParameter(function4, "onTerminated");
         WeakReference weakReference = new WeakReference(context);
         ObservableExtensionsKt$sam$rx_functions_Action1$0 observableExtensionsKt$sam$rx_functions_Action1$0 = new ObservableExtensionsKt$sam$rx_functions_Action1$0(function2);
         ObservableExtensionsKt$appSubscribe$subscription$1 observableExtensionsKt$appSubscribe$subscription$1 = new ObservableExtensionsKt$appSubscribe$subscription$1(str, function3, weakReference, function4);
         ObservableExtensionsKt$appSubscribe$subscription$2 observableExtensionsKt$appSubscribe$subscription$2 = new ObservableExtensionsKt$appSubscribe$subscription$2(function0, function4);
         Objects.requireNonNull(observable);
-        Subscription subscriptionU = observable.U(new j0.l.e.b(observableExtensionsKt$sam$rx_functions_Action1$0, observableExtensionsKt$appSubscribe$subscription$1, observableExtensionsKt$appSubscribe$subscription$2));
+        Subscription subscriptionU = observable.U(new ActionSubscriber(observableExtensionsKt$sam$rx_functions_Action1$0, observableExtensionsKt$appSubscribe$subscription$1, observableExtensionsKt$appSubscribe$subscription$2));
         if (function1 != null) {
-            m.checkNotNullExpressionValue(subscriptionU, Traits.Payment.Type.SUBSCRIPTION);
+            Intrinsics3.checkNotNullExpressionValue(subscriptionU, Traits.Payment.Type.SUBSCRIPTION);
             function1.invoke(subscriptionU);
         }
     }

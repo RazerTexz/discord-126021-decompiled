@@ -1,15 +1,15 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.api.science.AnalyticsSchema;
 import com.discord.models.domain.ModelAuditLogEntry;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackApplicationGeneratedGenericEvent.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackApplicationGeneratedGenericEvent implements AnalyticsSchema, TrackBaseReceiver {
+public final /* data */ class TrackApplicationGeneratedGenericEvent implements AnalyticsSchema, TrackBase2 {
     private final CharSequence activitySessionId = null;
     private final Long applicationId = null;
     private final CharSequence details = null;
@@ -26,7 +26,7 @@ public final /* data */ class TrackApplicationGeneratedGenericEvent implements A
             return false;
         }
         TrackApplicationGeneratedGenericEvent trackApplicationGeneratedGenericEvent = (TrackApplicationGeneratedGenericEvent) other;
-        return m.areEqual(this.applicationId, trackApplicationGeneratedGenericEvent.applicationId) && m.areEqual(this.activitySessionId, trackApplicationGeneratedGenericEvent.activitySessionId) && m.areEqual(this.type, trackApplicationGeneratedGenericEvent.type) && m.areEqual(this.name, trackApplicationGeneratedGenericEvent.name) && m.areEqual(this.details, trackApplicationGeneratedGenericEvent.details);
+        return Intrinsics3.areEqual(this.applicationId, trackApplicationGeneratedGenericEvent.applicationId) && Intrinsics3.areEqual(this.activitySessionId, trackApplicationGeneratedGenericEvent.activitySessionId) && Intrinsics3.areEqual(this.type, trackApplicationGeneratedGenericEvent.type) && Intrinsics3.areEqual(this.name, trackApplicationGeneratedGenericEvent.name) && Intrinsics3.areEqual(this.details, trackApplicationGeneratedGenericEvent.details);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -49,7 +49,7 @@ public final /* data */ class TrackApplicationGeneratedGenericEvent implements A
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackApplicationGeneratedGenericEvent(applicationId=");
+        StringBuilder sbU = outline.U("TrackApplicationGeneratedGenericEvent(applicationId=");
         sbU.append(this.applicationId);
         sbU.append(", activitySessionId=");
         sbU.append(this.activitySessionId);
@@ -58,6 +58,6 @@ public final /* data */ class TrackApplicationGeneratedGenericEvent implements A
         sbU.append(", name=");
         sbU.append(this.name);
         sbU.append(", details=");
-        return a.E(sbU, this.details, ")");
+        return outline.E(sbU, this.details, ")");
     }
 }

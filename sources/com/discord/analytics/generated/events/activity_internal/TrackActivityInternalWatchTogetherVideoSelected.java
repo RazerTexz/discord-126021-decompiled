@@ -1,16 +1,16 @@
 package com.discord.analytics.generated.events.activity_internal;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackActivityInternalMetadata;
-import com.discord.analytics.generated.traits.TrackActivityInternalMetadataReceiver;
+import com.discord.analytics.generated.traits.TrackActivityInternalMetadata2;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackActivityInternalWatchTogetherVideoSelected.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackActivityInternalWatchTogetherVideoSelected implements AnalyticsSchema, TrackBaseReceiver, TrackActivityInternalMetadataReceiver {
+public final /* data */ class TrackActivityInternalWatchTogetherVideoSelected implements AnalyticsSchema, TrackBase2, TrackActivityInternalMetadata2 {
     private final Boolean isHost = null;
     private final Boolean isHostMode = null;
     private final Long orderCurrent = null;
@@ -27,7 +27,7 @@ public final /* data */ class TrackActivityInternalWatchTogetherVideoSelected im
             return false;
         }
         TrackActivityInternalWatchTogetherVideoSelected trackActivityInternalWatchTogetherVideoSelected = (TrackActivityInternalWatchTogetherVideoSelected) other;
-        return m.areEqual(this.isHost, trackActivityInternalWatchTogetherVideoSelected.isHost) && m.areEqual(this.isHostMode, trackActivityInternalWatchTogetherVideoSelected.isHostMode) && m.areEqual(this.orderCurrent, trackActivityInternalWatchTogetherVideoSelected.orderCurrent) && m.areEqual(this.orderSelected, trackActivityInternalWatchTogetherVideoSelected.orderSelected);
+        return Intrinsics3.areEqual(this.isHost, trackActivityInternalWatchTogetherVideoSelected.isHost) && Intrinsics3.areEqual(this.isHostMode, trackActivityInternalWatchTogetherVideoSelected.isHostMode) && Intrinsics3.areEqual(this.orderCurrent, trackActivityInternalWatchTogetherVideoSelected.orderCurrent) && Intrinsics3.areEqual(this.orderSelected, trackActivityInternalWatchTogetherVideoSelected.orderSelected);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -48,13 +48,13 @@ public final /* data */ class TrackActivityInternalWatchTogetherVideoSelected im
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackActivityInternalWatchTogetherVideoSelected(isHost=");
+        StringBuilder sbU = outline.U("TrackActivityInternalWatchTogetherVideoSelected(isHost=");
         sbU.append(this.isHost);
         sbU.append(", isHostMode=");
         sbU.append(this.isHostMode);
         sbU.append(", orderCurrent=");
         sbU.append(this.orderCurrent);
         sbU.append(", orderSelected=");
-        return a.G(sbU, this.orderSelected, ")");
+        return outline.G(sbU, this.orderSelected, ")");
     }
 }

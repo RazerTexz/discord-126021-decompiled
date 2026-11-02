@@ -6,6 +6,7 @@ import android.os.IBinder;
 import androidx.annotation.BinderThread;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import b.c.a.a0.AnimatableValueParser;
 
 /* JADX INFO: compiled from: com.google.android.gms:play-services-basement@@17.6.0 */
 /* JADX INFO: loaded from: classes3.dex */
@@ -24,7 +25,7 @@ public final class j0 extends a0 {
 
     @BinderThread
     public final void g(int i, @NonNull IBinder iBinder, @Nullable Bundle bundle) {
-        b.c.a.a0.d.z(this.a, "onPostInitComplete can be called only once per call to getRemoteService");
+        AnimatableValueParser.z(this.a, "onPostInitComplete can be called only once per call to getRemoteService");
         b bVar = this.a;
         int i2 = this.f1389b;
         Handler handler = bVar.g;

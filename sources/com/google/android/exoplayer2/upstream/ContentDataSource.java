@@ -9,16 +9,16 @@ import android.os.Bundle;
 import androidx.annotation.DoNotInline;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
-import b.i.a.c.e3.g;
-import b.i.a.c.e3.n;
-import b.i.a.c.f3.e0;
+import b.i.a.c.e3.BaseDataSource;
+import b.i.a.c.e3.DataSpec;
+import b.i.a.c.f3.Util2;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.channels.FileChannel;
 
 /* JADX INFO: loaded from: classes3.dex */
-public final class ContentDataSource extends g {
+public final class ContentDataSource extends BaseDataSource {
     public final ContentResolver e;
 
     @Nullable
@@ -51,16 +51,16 @@ public final class ContentDataSource extends g {
         this.e = context.getContentResolver();
     }
 
-    @Override // b.i.a.c.e3.l
-    public long a(n nVar) throws ContentDataSourceException {
+    @Override // b.i.a.c.e3.DataSource3
+    public long a(DataSpec dataSpec) throws ContentDataSourceException {
         AssetFileDescriptor assetFileDescriptorOpenAssetFileDescriptor;
         try {
-            Uri uri = nVar.a;
+            Uri uri = dataSpec.a;
             this.f = uri;
-            r(nVar);
-            if ("content".equals(nVar.a.getScheme())) {
+            r(dataSpec);
+            if ("content".equals(dataSpec.a.getScheme())) {
                 Bundle bundle = new Bundle();
-                if (e0.a >= 31) {
+                if (Util2.a >= 31) {
                     a.a(bundle);
                 }
                 assetFileDescriptorOpenAssetFileDescriptor = this.e.openTypedAssetFileDescriptor(uri, "*/*", bundle);
@@ -78,12 +78,12 @@ public final class ContentDataSource extends g {
             long length = assetFileDescriptorOpenAssetFileDescriptor.getLength();
             FileInputStream fileInputStream = new FileInputStream(assetFileDescriptorOpenAssetFileDescriptor.getFileDescriptor());
             this.h = fileInputStream;
-            if (length != -1 && nVar.f > length) {
+            if (length != -1 && dataSpec.f > length) {
                 throw new ContentDataSourceException(null, 2008);
             }
             long startOffset = assetFileDescriptorOpenAssetFileDescriptor.getStartOffset();
-            long jSkip = fileInputStream.skip(nVar.f + startOffset) - startOffset;
-            if (jSkip != nVar.f) {
+            long jSkip = fileInputStream.skip(dataSpec.f + startOffset) - startOffset;
+            if (jSkip != dataSpec.f) {
                 throw new ContentDataSourceException(null, 2008);
             }
             if (length == -1) {
@@ -105,7 +105,7 @@ public final class ContentDataSource extends g {
                     throw new ContentDataSourceException(null, 2008);
                 }
             }
-            long jMin = nVar.g;
+            long jMin = dataSpec.g;
             if (jMin != -1) {
                 long j2 = this.i;
                 if (j2 != -1) {
@@ -114,8 +114,8 @@ public final class ContentDataSource extends g {
                 this.i = jMin;
             }
             this.j = true;
-            s(nVar);
-            long j3 = nVar.g;
+            s(dataSpec);
+            long j3 = dataSpec.g;
             return j3 != -1 ? j3 : this.i;
         } catch (ContentDataSourceException e) {
             throw e;
@@ -126,7 +126,7 @@ public final class ContentDataSource extends g {
 
     /* JADX WARN: Bottom block not found for handler: all -> 0x0037 */
     /* JADX WARN: Bottom block not found for handler: all -> 0x0055 */
-    @Override // b.i.a.c.e3.l
+    @Override // b.i.a.c.e3.DataSource3
     /*
         Code decompiled incorrectly, please refer to instructions dump.
     */
@@ -165,13 +165,13 @@ public final class ContentDataSource extends g {
         }
     }
 
-    @Override // b.i.a.c.e3.l
+    @Override // b.i.a.c.e3.DataSource3
     @Nullable
     public Uri n() {
         return this.f;
     }
 
-    @Override // b.i.a.c.e3.h
+    @Override // b.i.a.c.e3.DataReader
     public int read(byte[] bArr, int i, int i2) throws ContentDataSourceException {
         if (i2 == 0) {
             return 0;
@@ -188,7 +188,7 @@ public final class ContentDataSource extends g {
             }
         }
         FileInputStream fileInputStream = this.h;
-        int i3 = e0.a;
+        int i3 = Util2.a;
         int i4 = fileInputStream.read(bArr, i, i2);
         if (i4 == -1) {
             return -1;

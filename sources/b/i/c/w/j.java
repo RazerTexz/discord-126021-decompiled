@@ -1,21 +1,23 @@
 package b.i.c.w;
 
+import b.i.c.q.Event3;
+import b.i.c.q.EventHandler2;
 import com.google.firebase.messaging.FirebaseMessaging;
 
 /* JADX INFO: compiled from: com.google.firebase:firebase-messaging@@21.0.0 */
 /* JADX INFO: loaded from: classes3.dex */
-public final /* synthetic */ class j implements b.i.c.q.b {
+public final /* synthetic */ class j implements EventHandler2 {
     public final FirebaseMessaging.a a;
 
     public j(FirebaseMessaging.a aVar) {
         this.a = aVar;
     }
 
-    @Override // b.i.c.q.b
-    public final void a(b.i.c.q.a aVar) {
-        FirebaseMessaging.a aVar2 = this.a;
-        if (aVar2.b()) {
-            FirebaseMessaging.this.f.execute(new k(aVar2));
+    @Override // b.i.c.q.EventHandler2
+    public final void a(Event3 event3) {
+        FirebaseMessaging.a aVar = this.a;
+        if (aVar.b()) {
+            FirebaseMessaging.this.f.execute(new k(aVar));
         }
     }
 }

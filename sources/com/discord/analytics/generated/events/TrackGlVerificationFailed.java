@@ -1,18 +1,18 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.analytics.generated.traits.TrackDispatchBase;
-import com.discord.analytics.generated.traits.TrackDispatchBaseReceiver;
+import com.discord.analytics.generated.traits.TrackDispatchBase2;
 import com.discord.analytics.generated.traits.TrackDispatchPatch;
-import com.discord.analytics.generated.traits.TrackDispatchPatchReceiver;
+import com.discord.analytics.generated.traits.TrackDispatchPatch2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackGlVerificationFailed.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackGlVerificationFailed implements AnalyticsSchema, TrackBaseReceiver, TrackDispatchBaseReceiver, TrackDispatchPatchReceiver {
+public final /* data */ class TrackGlVerificationFailed implements AnalyticsSchema, TrackBase2, TrackDispatchBase2, TrackDispatchPatch2 {
     private final Long attemptNumber = null;
     private final Long corruptChunks = null;
     private TrackBase trackBase;
@@ -28,7 +28,7 @@ public final /* data */ class TrackGlVerificationFailed implements AnalyticsSche
             return false;
         }
         TrackGlVerificationFailed trackGlVerificationFailed = (TrackGlVerificationFailed) other;
-        return m.areEqual(this.corruptChunks, trackGlVerificationFailed.corruptChunks) && m.areEqual(this.attemptNumber, trackGlVerificationFailed.attemptNumber);
+        return Intrinsics3.areEqual(this.corruptChunks, trackGlVerificationFailed.corruptChunks) && Intrinsics3.areEqual(this.attemptNumber, trackGlVerificationFailed.attemptNumber);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -45,9 +45,9 @@ public final /* data */ class TrackGlVerificationFailed implements AnalyticsSche
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackGlVerificationFailed(corruptChunks=");
+        StringBuilder sbU = outline.U("TrackGlVerificationFailed(corruptChunks=");
         sbU.append(this.corruptChunks);
         sbU.append(", attemptNumber=");
-        return a.G(sbU, this.attemptNumber, ")");
+        return outline.G(sbU, this.attemptNumber, ")");
     }
 }

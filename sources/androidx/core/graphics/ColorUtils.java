@@ -8,7 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.annotation.VisibleForTesting;
 import androidx.core.view.ViewCompat;
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import java.util.Objects;
 
 /* JADX INFO: loaded from: classes.dex */
@@ -200,7 +200,7 @@ public final class ColorUtils {
 
     public static double calculateContrast(@ColorInt int i, @ColorInt int i2) {
         if (Color.alpha(i2) != 255) {
-            StringBuilder sbU = a.U("background can not be translucent: #");
+            StringBuilder sbU = outline.U("background can not be translucent: #");
             sbU.append(Integer.toHexString(i2));
             throw new IllegalArgumentException(sbU.toString());
         }
@@ -222,7 +222,7 @@ public final class ColorUtils {
     public static int calculateMinimumAlpha(@ColorInt int i, @ColorInt int i2, float f) {
         int i3 = 255;
         if (Color.alpha(i2) != 255) {
-            StringBuilder sbU = a.U("background can not be translucent: #");
+            StringBuilder sbU = outline.U("background can not be translucent: #");
             sbU.append(Integer.toHexString(i2));
             throw new IllegalArgumentException(sbU.toString());
         }
@@ -347,7 +347,7 @@ public final class ColorUtils {
             }
             return Color.valueOf(components2, color2.getColorSpace());
         }
-        StringBuilder sbU = a.U("Color models must match (");
+        StringBuilder sbU = outline.U("Color models must match (");
         sbU.append(color.getModel());
         sbU.append(" vs. ");
         sbU.append(color2.getModel());

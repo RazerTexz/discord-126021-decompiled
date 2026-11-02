@@ -8,14 +8,14 @@ import android.widget.TextView;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.core.app.NotificationCompat;
 import androidx.fragment.app.Fragment;
-import b.a.d.j;
-import b.a.k.b;
-import b.d.b.a.a;
+import b.a.d.AppScreen2;
+import b.a.k.FormatUtils;
+import b.d.b.a.outline;
 import com.discord.R;
 import com.discord.analytics.generated.events.network_action.TrackNetworkActionUserRegisterPhone;
-import com.discord.analytics.generated.traits.TrackNetworkMetadataReceiver;
+import com.discord.analytics.generated.traits.TrackNetworkMetadata2;
 import com.discord.app.AppFragment;
-import com.discord.app.LoggingConfig;
+import com.discord.app.AppLogger2;
 import com.discord.databinding.WidgetAuthRegisterIdentityBinding;
 import com.discord.models.domain.ModelInvite;
 import com.discord.models.experiments.domain.Experiment;
@@ -24,8 +24,8 @@ import com.discord.restapi.RestAPIParams;
 import com.discord.stores.StorePhone;
 import com.discord.stores.StoreStream;
 import com.discord.stores.updates.ObservationDeck;
-import com.discord.stores.updates.ObservationDeckProvider;
-import com.discord.stores.utilities.RestCallStateKt;
+import com.discord.stores.updates.ObservationDeck4;
+import com.discord.stores.utilities.RestCallState5;
 import com.discord.utilities.analytics.AnalyticsTracker;
 import com.discord.utilities.auth.RegistrationFlowRepo;
 import com.discord.utilities.captcha.CaptchaHelper;
@@ -37,15 +37,16 @@ import com.discord.utilities.view.extensions.ViewExtensions;
 import com.discord.utilities.view.text.LinkifiedTextView;
 import com.discord.utilities.view.validators.ValidationManager;
 import com.discord.utilities.viewbinding.FragmentViewBindingDelegate;
-import com.discord.utilities.viewbinding.FragmentViewBindingDelegateKt;
+import com.discord.utilities.viewbinding.FragmentViewBindingDelegate3;
 import com.discord.views.phone.PhoneOrEmailInputView;
 import com.discord.views.segmentedcontrol.CardSegment;
 import com.discord.views.segmentedcontrol.SegmentedControlContainer;
-import com.discord.widgets.captcha.WidgetCaptchaKt;
-import d0.g;
-import d0.t.u;
-import d0.z.d.m;
-import d0.z.d.o;
+import com.discord.widgets.captcha.WidgetCaptcha4;
+import d0.LazyJVM;
+import d0.t.CollectionsJVM;
+import d0.t._Collections;
+import d0.z.d.Intrinsics3;
+import d0.z.d.Lambda;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
@@ -61,7 +62,7 @@ import kotlin.reflect.KProperty;
 /* JADX INFO: compiled from: WidgetAuthRegisterIdentity.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetAuthRegisterIdentity extends AppFragment {
-    public static final /* synthetic */ KProperty[] $$delegatedProperties = {a.d0(WidgetAuthRegisterIdentity.class, "binding", "getBinding()Lcom/discord/databinding/WidgetAuthRegisterIdentityBinding;", 0)};
+    public static final /* synthetic */ KProperty[] $$delegatedProperties = {outline.d0(WidgetAuthRegisterIdentity.class, "binding", "getBinding()Lcom/discord/databinding/WidgetAuthRegisterIdentityBinding;", 0)};
     private static final String IS_PHONE_MODE = "IS_PHONE_MODE";
 
     /* JADX INFO: renamed from: binding$delegate, reason: from kotlin metadata */
@@ -71,7 +72,7 @@ public final class WidgetAuthRegisterIdentity extends AppFragment {
     /* JADX INFO: renamed from: emailValidationManager$delegate, reason: from kotlin metadata */
     private final Lazy emailValidationManager;
     private PhoneOrEmailInputView.Mode inputMode;
-    private final LoggingConfig loggingConfig;
+    private final AppLogger2 loggingConfig;
 
     /* JADX INFO: renamed from: phoneValidationManager$delegate, reason: from kotlin metadata */
     private final Lazy phoneValidationManager;
@@ -80,7 +81,7 @@ public final class WidgetAuthRegisterIdentity extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.auth.WidgetAuthRegisterIdentity$configurePhoneInput$1, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetAuthRegisterIdentity.kt */
-    public final class AnonymousClass1 extends o implements Function1<TextView, Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function1<TextView, Unit> {
         public AnonymousClass1() {
             super(1);
         }
@@ -93,14 +94,14 @@ public final class WidgetAuthRegisterIdentity extends AppFragment {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(TextView textView) {
-            m.checkNotNullParameter(textView, "it");
+            Intrinsics3.checkNotNullParameter(textView, "it");
             WidgetAuthRegisterIdentity.access$handleNext(WidgetAuthRegisterIdentity.this);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.widgets.auth.WidgetAuthRegisterIdentity$configureSegmentControl$1, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetAuthRegisterIdentity.kt */
-    public final class AnonymousClass1 extends o implements Function1<Integer, Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function1<Integer, Unit> {
         public AnonymousClass1() {
             super(1);
         }
@@ -119,7 +120,7 @@ public final class WidgetAuthRegisterIdentity extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.auth.WidgetAuthRegisterIdentity$configureUI$1, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetAuthRegisterIdentity.kt */
-    public final class AnonymousClass1 extends o implements Function0<PhoneCountryCode> {
+    public final class AnonymousClass1 extends Lambda implements Function0<PhoneCountryCode> {
         public final /* synthetic */ StorePhone $phoneStore;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -142,7 +143,7 @@ public final class WidgetAuthRegisterIdentity extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.auth.WidgetAuthRegisterIdentity$onViewCreated$1, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetAuthRegisterIdentity.kt */
-    public final class AnonymousClass1 extends o implements Function1<ModelInvite, Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function1<ModelInvite, Unit> {
         public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
 
         public AnonymousClass1() {
@@ -166,7 +167,7 @@ public final class WidgetAuthRegisterIdentity extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.auth.WidgetAuthRegisterIdentity$registerViaPhone$1, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetAuthRegisterIdentity.kt */
-    public final class AnonymousClass1 extends o implements Function1<Void, TrackNetworkMetadataReceiver> {
+    public final class AnonymousClass1 extends Lambda implements Function1<Void, TrackNetworkMetadata2> {
         public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
 
         public AnonymousClass1() {
@@ -174,19 +175,19 @@ public final class WidgetAuthRegisterIdentity extends AppFragment {
         }
 
         @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ TrackNetworkMetadataReceiver invoke(Void r1) {
+        public /* bridge */ /* synthetic */ TrackNetworkMetadata2 invoke(Void r1) {
             return invoke2(r1);
         }
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final TrackNetworkMetadataReceiver invoke2(Void r1) {
+        public final TrackNetworkMetadata2 invoke2(Void r1) {
             return new TrackNetworkActionUserRegisterPhone();
         }
     }
 
     /* JADX INFO: renamed from: com.discord.widgets.auth.WidgetAuthRegisterIdentity$configureUI$2, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetAuthRegisterIdentity.kt */
-    public final class AnonymousClass2 extends o implements Function1<PhoneCountryCode, Unit> {
+    public final class AnonymousClass2 extends Lambda implements Function1<PhoneCountryCode, Unit> {
         public AnonymousClass2() {
             super(1);
         }
@@ -199,14 +200,14 @@ public final class WidgetAuthRegisterIdentity extends AppFragment {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(PhoneCountryCode phoneCountryCode) {
-            m.checkNotNullParameter(phoneCountryCode, "it");
+            Intrinsics3.checkNotNullParameter(phoneCountryCode, "it");
             WidgetAuthRegisterIdentity.access$getBinding$p(WidgetAuthRegisterIdentity.this).d.setCountryCode(phoneCountryCode);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.widgets.auth.WidgetAuthRegisterIdentity$registerViaPhone$2, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetAuthRegisterIdentity.kt */
-    public final class AnonymousClass2 extends o implements Function1<Void, Unit> {
+    public final class AnonymousClass2 extends Lambda implements Function1<Void, Unit> {
         public final /* synthetic */ String $phone;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -224,7 +225,7 @@ public final class WidgetAuthRegisterIdentity extends AppFragment {
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(Void r13) {
             RegistrationFlowRepo.trackTransition$default(RegistrationFlowRepo.INSTANCE.getINSTANCE(), "Account Identity", "success", null, 4, null);
-            WidgetAuthPhoneVerify.INSTANCE.launch(WidgetAuthRegisterIdentity.this.requireContext(), WidgetAuthRegisterIdentity.access$getPhoneVerifyLauncher$p(WidgetAuthRegisterIdentity.this), WidgetAuthRegisterIdentity.access$getBinding$p(WidgetAuthRegisterIdentity.this).d.getTextOrEmpty(), b.h(WidgetAuthRegisterIdentity.this.requireContext(), R.string.sms_confirmation_title, new Object[0], null, 4), b.h(WidgetAuthRegisterIdentity.this.requireContext(), R.string.sms_confirmation_description, new Object[]{this.$phone}, null, 4));
+            WidgetAuthPhoneVerify.INSTANCE.launch(WidgetAuthRegisterIdentity.this.requireContext(), WidgetAuthRegisterIdentity.access$getPhoneVerifyLauncher$p(WidgetAuthRegisterIdentity.this), WidgetAuthRegisterIdentity.access$getBinding$p(WidgetAuthRegisterIdentity.this).d.getTextOrEmpty(), FormatUtils.h(WidgetAuthRegisterIdentity.this.requireContext(), R.string.sms_confirmation_title, new Object[0], null, 4), FormatUtils.h(WidgetAuthRegisterIdentity.this.requireContext(), R.string.sms_confirmation_description, new Object[]{this.$phone}, null, 4));
         }
     }
 
@@ -242,7 +243,7 @@ public final class WidgetAuthRegisterIdentity extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.auth.WidgetAuthRegisterIdentity$registerViaPhone$3, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetAuthRegisterIdentity.kt */
-    public final class AnonymousClass3 extends o implements Function1<Error, Unit> {
+    public final class AnonymousClass3 extends Lambda implements Function1<Error, Unit> {
         public AnonymousClass3() {
             super(1);
         }
@@ -255,30 +256,30 @@ public final class WidgetAuthRegisterIdentity extends AppFragment {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(Error error) {
-            m.checkNotNullParameter(error, "error");
-            if (!GrowthTeamFeatures.INSTANCE.isPhoneVerifyCaptchaEnabled() || !WidgetCaptchaKt.isCaptchaError(error)) {
-                RegistrationFlowRepo.INSTANCE.getINSTANCE().trackTransition("Account Identity", "response_error", d0.t.m.listOf("phone"));
+            Intrinsics3.checkNotNullParameter(error, "error");
+            if (!GrowthTeamFeatures.INSTANCE.isPhoneVerifyCaptchaEnabled() || !WidgetCaptcha4.isCaptchaError(error)) {
+                RegistrationFlowRepo.INSTANCE.getINSTANCE().trackTransition("Account Identity", "response_error", CollectionsJVM.listOf("phone"));
                 return;
             }
             WidgetAuthCaptcha.Companion companion = WidgetAuthCaptcha.INSTANCE;
             Context contextRequireContext = WidgetAuthRegisterIdentity.this.requireContext();
             ActivityResultLauncher<Intent> activityResultLauncherAccess$getCaptchaLauncher$p = WidgetAuthRegisterIdentity.access$getCaptchaLauncher$p(WidgetAuthRegisterIdentity.this);
             Error.Response response = error.getResponse();
-            m.checkNotNullExpressionValue(response, "error.response");
-            companion.processErrorsForCaptcha(contextRequireContext, activityResultLauncherAccess$getCaptchaLauncher$p, u.toMutableList((Collection) response.getMessages().keySet()), error);
+            Intrinsics3.checkNotNullExpressionValue(response, "error.response");
+            companion.processErrorsForCaptcha(contextRequireContext, activityResultLauncherAccess$getCaptchaLauncher$p, _Collections.toMutableList((Collection) response.getMessages().keySet()), error);
         }
     }
 
     public WidgetAuthRegisterIdentity() {
         super(R.layout.widget_auth_register_identity);
-        this.loggingConfig = new LoggingConfig(false, null, WidgetAuthRegisterIdentity$loggingConfig$1.INSTANCE, 3);
-        this.binding = FragmentViewBindingDelegateKt.viewBinding$default(this, WidgetAuthRegisterIdentity$binding$2.INSTANCE, null, 2, null);
+        this.loggingConfig = new AppLogger2(false, null, WidgetAuthRegisterIdentity5.INSTANCE, 3);
+        this.binding = FragmentViewBindingDelegate3.viewBinding$default(this, WidgetAuthRegisterIdentity2.INSTANCE, null, 2, null);
         this.inputMode = PhoneOrEmailInputView.Mode.PHONE;
         this.shouldValidateInputs = true;
-        this.phoneVerifyLauncher = WidgetAuthPhoneVerify.INSTANCE.registerForResult(this, new WidgetAuthRegisterIdentity$phoneVerifyLauncher$1(this));
-        this.captchaLauncher = WidgetAuthCaptcha.INSTANCE.registerForResult(this, new WidgetAuthRegisterIdentity$captchaLauncher$1(this));
-        this.phoneValidationManager = g.lazy(new WidgetAuthRegisterIdentity$phoneValidationManager$2(this));
-        this.emailValidationManager = g.lazy(new WidgetAuthRegisterIdentity$emailValidationManager$2(this));
+        this.phoneVerifyLauncher = WidgetAuthPhoneVerify.INSTANCE.registerForResult(this, new WidgetAuthRegisterIdentity7(this));
+        this.captchaLauncher = WidgetAuthCaptcha.INSTANCE.registerForResult(this, new WidgetAuthRegisterIdentity3(this));
+        this.phoneValidationManager = LazyJVM.lazy(new WidgetAuthRegisterIdentity6(this));
+        this.emailValidationManager = LazyJVM.lazy(new WidgetAuthRegisterIdentity4(this));
     }
 
     public static final /* synthetic */ WidgetAuthRegisterIdentityBinding access$getBinding$p(WidgetAuthRegisterIdentity widgetAuthRegisterIdentity) {
@@ -333,13 +334,13 @@ public final class WidgetAuthRegisterIdentity extends AppFragment {
     private final void configureUI() {
         getBinding().d.b(this);
         StorePhone phone = StoreStream.INSTANCE.getPhone();
-        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(ObservationDeck.connectRx$default(ObservationDeckProvider.get(), new ObservationDeck.UpdateSource[]{phone}, false, null, null, new AnonymousClass1(phone), 14, null), this, null, 2, null), WidgetAuthRegisterIdentity.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass2(), 62, (Object) null);
+        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(ObservationDeck.connectRx$default(ObservationDeck4.get(), new ObservationDeck.UpdateSource[]{phone}, false, null, null, new AnonymousClass1(phone), 14, null), this, null, 2, null), WidgetAuthRegisterIdentity.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass2(), 62, (Object) null);
         configurePhoneInput();
         configureSegmentControl();
         getBinding().d.requestFocus();
         LinkifiedTextView linkifiedTextView = getBinding().e;
-        m.checkNotNullExpressionValue(linkifiedTextView, "binding.authRegisterIdentityPolicyLink");
-        b.n(linkifiedTextView, R.string.register_login_privacy_notice, new Object[]{getString(R.string.privacy_policy_url)}, null, 4);
+        Intrinsics3.checkNotNullExpressionValue(linkifiedTextView, "binding.authRegisterIdentityPolicyLink");
+        FormatUtils.n(linkifiedTextView, R.string.register_login_privacy_notice, new Object[]{getString(R.string.privacy_policy_url)}, null, 4);
         getBinding().f2237b.setOnClickListener(new AnonymousClass3());
     }
 
@@ -350,11 +351,11 @@ public final class WidgetAuthRegisterIdentity extends AppFragment {
     private final CardSegment getCardSegmentForMode(PhoneOrEmailInputView.Mode mode) {
         if (mode == PhoneOrEmailInputView.Mode.PHONE) {
             CardSegment cardSegment = getBinding().c;
-            m.checkNotNullExpressionValue(cardSegment, "binding.authRegisterIdentityFirstSegmentCard");
+            Intrinsics3.checkNotNullExpressionValue(cardSegment, "binding.authRegisterIdentityFirstSegmentCard");
             return cardSegment;
         }
         CardSegment cardSegment2 = getBinding().f;
-        m.checkNotNullExpressionValue(cardSegment2, "binding.authRegisterIdentitySecondSegmentCard");
+        Intrinsics3.checkNotNullExpressionValue(cardSegment2, "binding.authRegisterIdentitySecondSegmentCard");
         return cardSegment2;
     }
 
@@ -363,7 +364,7 @@ public final class WidgetAuthRegisterIdentity extends AppFragment {
     }
 
     @Override // com.discord.app.AppFragment, com.discord.app.AppLogger.a
-    public LoggingConfig getLoggingConfig() {
+    public AppLogger2 getLoggingConfig() {
         return this.loggingConfig;
     }
 
@@ -405,14 +406,14 @@ public final class WidgetAuthRegisterIdentity extends AppFragment {
                 }
                 Object next = it.next();
                 String str = (String) next;
-                if (!m.areEqual(str, NotificationCompat.CATEGORY_EMAIL) && !m.areEqual(str, "phone")) {
+                if (!Intrinsics3.areEqual(str, NotificationCompat.CATEGORY_EMAIL) && !Intrinsics3.areEqual(str, "phone")) {
                     z2 = false;
                 }
                 if (z2) {
                     arrayList.add(next);
                 }
             }
-            List<String> list = u.toList(arrayList);
+            List<String> list = _Collections.toList(arrayList);
             if (!list.isEmpty()) {
                 RegistrationFlowRepo.INSTANCE.getINSTANCE().trackTransition("Account Identity", "response_error", list);
             }
@@ -421,14 +422,14 @@ public final class WidgetAuthRegisterIdentity extends AppFragment {
 
     @Override // androidx.fragment.app.Fragment
     public void onSaveInstanceState(Bundle outState) {
-        m.checkNotNullParameter(outState, "outState");
+        Intrinsics3.checkNotNullParameter(outState, "outState");
         super.onSaveInstanceState(outState);
         outState.putBoolean(IS_PHONE_MODE, this.inputMode == PhoneOrEmailInputView.Mode.PHONE);
     }
 
     @Override // com.discord.app.AppFragment, androidx.fragment.app.Fragment
     public void onViewCreated(View view, Bundle savedInstanceState) {
-        m.checkNotNullParameter(view, "view");
+        Intrinsics3.checkNotNullParameter(view, "view");
         super.onViewCreated(view, savedInstanceState);
         this.inputMode = (savedInstanceState == null || savedInstanceState.getBoolean(IS_PHONE_MODE)) ? PhoneOrEmailInputView.Mode.PHONE : PhoneOrEmailInputView.Mode.EMAIL;
         RegistrationFlowRepo.trackTransition$default(RegistrationFlowRepo.INSTANCE.getINSTANCE(), "Account Identity", "submitted", null, 4, null);
@@ -447,7 +448,7 @@ public final class WidgetAuthRegisterIdentity extends AppFragment {
         RegistrationFlowRepo.Companion companion = RegistrationFlowRepo.INSTANCE;
         companion.getINSTANCE().setEmail(getBinding().d.getTextOrEmpty());
         RegistrationFlowRepo.trackTransition$default(companion.getINSTANCE(), "Account Identity", "success", null, 4, null);
-        j.e(requireContext(), WidgetAuthRegisterAccountInformation.class, null, 4);
+        AppScreen2.e(requireContext(), WidgetAuthRegisterAccountInformation.class, null, 4);
     }
 
     public static /* synthetic */ void registerViaPhone$default(WidgetAuthRegisterIdentity widgetAuthRegisterIdentity, CaptchaHelper.CaptchaPayload captchaPayload, int i, Object obj) {
@@ -460,7 +461,7 @@ public final class WidgetAuthRegisterIdentity extends AppFragment {
     private final void registerViaPhone(CaptchaHelper.CaptchaPayload captchaPayload) {
         String textOrEmpty = getBinding().d.getTextOrEmpty();
         RegistrationFlowRepo.INSTANCE.getINSTANCE().setPhone(textOrEmpty);
-        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.withDimmer$default(ObservableExtensionsKt.ui$default(RestCallStateKt.logNetworkAction(ObservableExtensionsKt.restSubscribeOn$default(RestAPI.INSTANCE.getApi().postAuthRegisterPhone(new RestAPIParams.AuthRegisterPhone(textOrEmpty, captchaPayload != null ? captchaPayload.getCaptchaKey() : null, captchaPayload != null ? captchaPayload.getCaptchaRqtoken() : null)), false, 1, null), AnonymousClass1.INSTANCE), this, null, 2, null), getBinding().h, 0L, 2, null), WidgetAuthRegisterIdentity.class, getContext(), (Function1) null, new AnonymousClass3(), (Function0) null, (Function0) null, new AnonymousClass2(textOrEmpty), 52, (Object) null);
+        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.withDimmer$default(ObservableExtensionsKt.ui$default(RestCallState5.logNetworkAction(ObservableExtensionsKt.restSubscribeOn$default(RestAPI.INSTANCE.getApi().postAuthRegisterPhone(new RestAPIParams.AuthRegisterPhone(textOrEmpty, captchaPayload != null ? captchaPayload.getCaptchaKey() : null, captchaPayload != null ? captchaPayload.getCaptchaRqtoken() : null)), false, 1, null), AnonymousClass1.INSTANCE), this, null, 2, null), getBinding().h, 0L, 2, null), WidgetAuthRegisterIdentity.class, getContext(), (Function1) null, new AnonymousClass3(), (Function0) null, (Function0) null, new AnonymousClass2(textOrEmpty), 52, (Object) null);
     }
 
     private final void setInputMode(PhoneOrEmailInputView.Mode newInputMode) {

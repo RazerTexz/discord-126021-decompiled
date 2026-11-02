@@ -7,22 +7,23 @@ import androidx.core.app.NotificationCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentViewModelLazyKt;
-import b.a.d.f0;
-import b.a.d.j;
-import b.d.b.a.a;
+import b.a.d.AppScreen2;
+import b.a.d.AppToast;
+import b.a.d.AppViewModelDelegates2;
+import b.d.b.a.outline;
 import com.discord.R;
 import com.discord.app.AppFragment;
 import com.discord.databinding.WidgetEnableCommunityStepsBinding;
 import com.discord.utilities.rx.ObservableExtensionsKt;
 import com.discord.utilities.viewbinding.FragmentViewBindingDelegate;
-import com.discord.utilities.viewbinding.FragmentViewBindingDelegateKt;
+import com.discord.utilities.viewbinding.FragmentViewBindingDelegate3;
 import com.discord.views.steps.StepsView;
-import d0.g;
-import d0.t.n;
-import d0.z.d.a0;
-import d0.z.d.k;
-import d0.z.d.m;
-import d0.z.d.o;
+import d0.LazyJVM;
+import d0.t.Collections2;
+import d0.z.d.FunctionReferenceImpl;
+import d0.z.d.Intrinsics3;
+import d0.z.d.Lambda;
+import d0.z.d.Reflection2;
 import kotlin.Lazy;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
@@ -35,7 +36,7 @@ import rx.functions.Func0;
 /* JADX INFO: compiled from: WidgetServerSettingsEnableCommunitySteps.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetServerSettingsEnableCommunitySteps extends AppFragment {
-    public static final /* synthetic */ KProperty[] $$delegatedProperties = {a.d0(WidgetServerSettingsEnableCommunitySteps.class, "binding", "getBinding()Lcom/discord/databinding/WidgetEnableCommunityStepsBinding;", 0)};
+    public static final /* synthetic */ KProperty[] $$delegatedProperties = {outline.d0(WidgetServerSettingsEnableCommunitySteps.class, "binding", "getBinding()Lcom/discord/databinding/WidgetEnableCommunityStepsBinding;", 0)};
 
     /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
     public static final Companion INSTANCE = new Companion(null);
@@ -52,7 +53,7 @@ public final class WidgetServerSettingsEnableCommunitySteps extends AppFragment 
 
     /* JADX INFO: renamed from: com.discord.widgets.servers.community.WidgetServerSettingsEnableCommunitySteps$onViewBound$1, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetServerSettingsEnableCommunitySteps.kt */
-    public final class AnonymousClass1 extends o implements Function0<Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function0<Unit> {
         public AnonymousClass1() {
             super(0);
         }
@@ -74,7 +75,7 @@ public final class WidgetServerSettingsEnableCommunitySteps extends AppFragment 
 
     /* JADX INFO: renamed from: com.discord.widgets.servers.community.WidgetServerSettingsEnableCommunitySteps$onViewBoundOrOnResume$1, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetServerSettingsEnableCommunitySteps.kt */
-    public final /* synthetic */ class AnonymousClass1 extends k implements Function1<WidgetServerSettingsEnableCommunityViewModel.ViewState, Unit> {
+    public final /* synthetic */ class AnonymousClass1 extends FunctionReferenceImpl implements Function1<WidgetServerSettingsEnableCommunityViewModel.ViewState, Unit> {
         public AnonymousClass1(WidgetServerSettingsEnableCommunitySteps widgetServerSettingsEnableCommunitySteps) {
             super(1, widgetServerSettingsEnableCommunitySteps, WidgetServerSettingsEnableCommunitySteps.class, "configureUI", "configureUI(Lcom/discord/widgets/servers/community/WidgetServerSettingsEnableCommunityViewModel$ViewState;)V", 0);
         }
@@ -87,14 +88,14 @@ public final class WidgetServerSettingsEnableCommunitySteps extends AppFragment 
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(WidgetServerSettingsEnableCommunityViewModel.ViewState viewState) {
-            m.checkNotNullParameter(viewState, "p1");
+            Intrinsics3.checkNotNullParameter(viewState, "p1");
             WidgetServerSettingsEnableCommunitySteps.access$configureUI((WidgetServerSettingsEnableCommunitySteps) this.receiver, viewState);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.widgets.servers.community.WidgetServerSettingsEnableCommunitySteps$onViewBound$2, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetServerSettingsEnableCommunitySteps.kt */
-    public final class AnonymousClass2 extends o implements Function1<Integer, Unit> {
+    public final class AnonymousClass2 extends Lambda implements Function1<Integer, Unit> {
         public AnonymousClass2() {
             super(1);
         }
@@ -112,7 +113,7 @@ public final class WidgetServerSettingsEnableCommunitySteps extends AppFragment 
 
     /* JADX INFO: renamed from: com.discord.widgets.servers.community.WidgetServerSettingsEnableCommunitySteps$onViewBoundOrOnResume$2, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetServerSettingsEnableCommunitySteps.kt */
-    public final class AnonymousClass2 extends o implements Function1<WidgetServerSettingsEnableCommunityViewModel.ViewState.Loaded, Unit> {
+    public final class AnonymousClass2 extends Lambda implements Function1<WidgetServerSettingsEnableCommunityViewModel.ViewState.Loaded, Unit> {
         public AnonymousClass2() {
             super(1);
         }
@@ -125,7 +126,7 @@ public final class WidgetServerSettingsEnableCommunitySteps extends AppFragment 
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(WidgetServerSettingsEnableCommunityViewModel.ViewState.Loaded loaded) {
-            m.checkNotNullParameter(loaded, "it");
+            Intrinsics3.checkNotNullParameter(loaded, "it");
             int currentPage = loaded.getCurrentPage();
             if (currentPage < 0) {
                 WidgetServerSettingsEnableCommunitySteps.this.requireActivity().finish();
@@ -158,7 +159,7 @@ public final class WidgetServerSettingsEnableCommunitySteps extends AppFragment 
 
     /* JADX INFO: renamed from: com.discord.widgets.servers.community.WidgetServerSettingsEnableCommunitySteps$onViewBoundOrOnResume$3, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetServerSettingsEnableCommunitySteps.kt */
-    public final class AnonymousClass3 extends o implements Function1<WidgetServerSettingsEnableCommunityViewModel.Event, Unit> {
+    public final class AnonymousClass3 extends Lambda implements Function1<WidgetServerSettingsEnableCommunityViewModel.Event, Unit> {
         public AnonymousClass3() {
             super(1);
         }
@@ -171,16 +172,16 @@ public final class WidgetServerSettingsEnableCommunitySteps extends AppFragment 
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(WidgetServerSettingsEnableCommunityViewModel.Event event) {
-            m.checkNotNullParameter(event, "event");
-            if (!m.areEqual(event, WidgetServerSettingsEnableCommunityViewModel.Event.SaveSuccess.INSTANCE)) {
-                if (m.areEqual(event, WidgetServerSettingsEnableCommunityViewModel.Event.Error.INSTANCE)) {
-                    b.a.d.m.i(WidgetServerSettingsEnableCommunitySteps.this, R.string.guild_settings_public_update_failed, 0, 4);
+            Intrinsics3.checkNotNullParameter(event, "event");
+            if (!Intrinsics3.areEqual(event, WidgetServerSettingsEnableCommunityViewModel.Event.SaveSuccess.INSTANCE)) {
+                if (Intrinsics3.areEqual(event, WidgetServerSettingsEnableCommunityViewModel.Event.Error.INSTANCE)) {
+                    AppToast.i(WidgetServerSettingsEnableCommunitySteps.this, R.string.guild_settings_public_update_failed, 0, 4);
                 }
             } else {
                 WidgetServerSettingsEnableCommunitySteps.this.requireActivity().finish();
                 WidgetServerSettingsCommunityOverview.Companion companion = WidgetServerSettingsCommunityOverview.INSTANCE;
                 FragmentActivity fragmentActivityRequireActivity = WidgetServerSettingsEnableCommunitySteps.this.requireActivity();
-                m.checkNotNullExpressionValue(fragmentActivityRequireActivity, "requireActivity()");
+                Intrinsics3.checkNotNullExpressionValue(fragmentActivityRequireActivity, "requireActivity()");
                 companion.create(fragmentActivityRequireActivity, WidgetServerSettingsEnableCommunitySteps.this.getGuildId());
             }
         }
@@ -192,10 +193,10 @@ public final class WidgetServerSettingsEnableCommunitySteps extends AppFragment 
         }
 
         public final void create(Context context, long guildId) {
-            m.checkNotNullParameter(context, "context");
+            Intrinsics3.checkNotNullParameter(context, "context");
             Intent intentPutExtra = new Intent().putExtra("INTENT_EXTRA_GUILD_ID", guildId);
-            m.checkNotNullExpressionValue(intentPutExtra, "Intent().putExtra(INTENT_EXTRA_GUILD_ID, guildId)");
-            j.d(context, WidgetServerSettingsEnableCommunitySteps.class, intentPutExtra);
+            Intrinsics3.checkNotNullExpressionValue(intentPutExtra, "Intent().putExtra(INTENT_EXTRA_GUILD_ID, guildId)");
+            AppScreen2.d(context, WidgetServerSettingsEnableCommunitySteps.class, intentPutExtra);
         }
 
         public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
@@ -205,9 +206,9 @@ public final class WidgetServerSettingsEnableCommunitySteps extends AppFragment 
 
     public WidgetServerSettingsEnableCommunitySteps() {
         super(R.layout.widget_enable_community_steps);
-        this.binding = FragmentViewBindingDelegateKt.viewBinding$default(this, WidgetServerSettingsEnableCommunitySteps$binding$2.INSTANCE, null, 2, null);
-        this.viewModel = FragmentViewModelLazyKt.createViewModelLazy(this, a0.getOrCreateKotlinClass(WidgetServerSettingsEnableCommunityViewModel.class), new WidgetServerSettingsEnableCommunitySteps$appActivityViewModels$$inlined$activityViewModels$1(this), new f0(new WidgetServerSettingsEnableCommunitySteps$viewModel$2(this)));
-        this.guildId = g.lazy(new WidgetServerSettingsEnableCommunitySteps$guildId$2(this));
+        this.binding = FragmentViewBindingDelegate3.viewBinding$default(this, WidgetServerSettingsEnableCommunitySteps2.INSTANCE, null, 2, null);
+        this.viewModel = FragmentViewModelLazyKt.createViewModelLazy(this, Reflection2.getOrCreateKotlinClass(WidgetServerSettingsEnableCommunityViewModel.class), new WidgetServerSettingsEnableCommunitySteps$appActivityViewModels$$inlined$activityViewModels$1(this), new AppViewModelDelegates2(new WidgetServerSettingsEnableCommunitySteps5(this)));
+        this.guildId = LazyJVM.lazy(new WidgetServerSettingsEnableCommunitySteps3(this));
     }
 
     public static final /* synthetic */ void access$configureUI(WidgetServerSettingsEnableCommunitySteps widgetServerSettingsEnableCommunitySteps, WidgetServerSettingsEnableCommunityViewModel.ViewState viewState) {
@@ -223,7 +224,7 @@ public final class WidgetServerSettingsEnableCommunitySteps extends AppFragment 
     }
 
     private final void configureUI(WidgetServerSettingsEnableCommunityViewModel.ViewState viewState) {
-        if (m.areEqual(viewState, WidgetServerSettingsEnableCommunityViewModel.ViewState.Invalid.INSTANCE)) {
+        if (Intrinsics3.areEqual(viewState, WidgetServerSettingsEnableCommunityViewModel.ViewState.Invalid.INSTANCE)) {
             requireActivity().finish();
         }
     }
@@ -242,9 +243,9 @@ public final class WidgetServerSettingsEnableCommunitySteps extends AppFragment 
 
     @Override // com.discord.app.AppFragment
     public void onViewBound(View view) {
-        m.checkNotNullParameter(view, "view");
+        Intrinsics3.checkNotNullParameter(view, "view");
         super.onViewBound(view);
-        getBinding().f2378b.a(new StepsView.d(this, n.listOf((Object[]) new StepsView.b.a[]{new StepsView.b.a(WidgetServerSettingsEnableCommunity.class, 0, 0, 0, null, null, null, null, false, false, false, 254), new StepsView.b.a(WidgetServerSettingsCommunityFirstStep.class, 0, 0, 0, null, null, null, null, false, false, false, 510), new StepsView.b.a(WidgetServerSettingsCommunitySecondStep.class, 0, 0, 0, null, null, null, null, false, false, false, 510), new StepsView.b.a(WidgetServerSettingsCommunityThirdStep.class, 0, 0, R.string.enable_community_button_text, null, null, null, new WidgetServerSettingsEnableCommunitySteps$onViewBound$steps$1(this), false, false, false, 374)})), new AnonymousClass1(), new AnonymousClass2());
+        getBinding().f2378b.a(new StepsView.d(this, Collections2.listOf((Object[]) new StepsView.b.a[]{new StepsView.b.a(WidgetServerSettingsEnableCommunity.class, 0, 0, 0, null, null, null, null, false, false, false, 254), new StepsView.b.a(WidgetServerSettingsCommunityFirstStep.class, 0, 0, 0, null, null, null, null, false, false, false, 510), new StepsView.b.a(WidgetServerSettingsCommunitySecondStep.class, 0, 0, 0, null, null, null, null, false, false, false, 510), new StepsView.b.a(WidgetServerSettingsCommunityThirdStep.class, 0, 0, R.string.enable_community_button_text, null, null, null, new WidgetServerSettingsEnableCommunitySteps4(this), false, false, false, 374)})), new AnonymousClass1(), new AnonymousClass2());
         AppFragment.setOnBackPressed$default(this, new AnonymousClass3(), 0, 2, null);
     }
 
@@ -252,10 +253,10 @@ public final class WidgetServerSettingsEnableCommunitySteps extends AppFragment 
     public void onViewBoundOrOnResume() {
         super.onViewBoundOrOnResume();
         Observable<WidgetServerSettingsEnableCommunityViewModel.ViewState> observableR = getViewModel().observeViewState().r();
-        m.checkNotNullExpressionValue(observableR, "viewModel\n        .obser…  .distinctUntilChanged()");
+        Intrinsics3.checkNotNullExpressionValue(observableR, "viewModel\n        .obser…  .distinctUntilChanged()");
         ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.bindToComponentLifecycle$default(observableR, this, null, 2, null), WidgetServerSettingsEnableCommunitySteps.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass1(this), 62, (Object) null);
         Observable observableG = ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeViewState(), this, null, 2, null).y(WidgetServerSettingsEnableCommunitySteps$onViewBoundOrOnResume$$inlined$filterIs$1.INSTANCE).G(WidgetServerSettingsEnableCommunitySteps$onViewBoundOrOnResume$$inlined$filterIs$2.INSTANCE);
-        m.checkNotNullExpressionValue(observableG, "filter { it is T }.map { it as T }");
+        Intrinsics3.checkNotNullExpressionValue(observableG, "filter { it is T }.map { it as T }");
         ObservableExtensionsKt.appSubscribe$default(observableG, WidgetServerSettingsEnableCommunitySteps.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass2(), 62, (Object) null);
         ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeEvents(), this, null, 2, null), WidgetServerSettingsEnableCommunitySteps.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass3(), 62, (Object) null);
     }

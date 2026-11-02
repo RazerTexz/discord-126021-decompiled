@@ -5,7 +5,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import b.a.k.b;
+import b.a.k.FormatUtils;
 import com.discord.R;
 import com.discord.api.channel.Channel;
 import com.discord.api.channel.ChannelUtils;
@@ -18,7 +18,7 @@ import com.discord.models.domain.ModelAuditLogEntry;
 import com.discord.models.member.GuildMember;
 import com.discord.models.message.Message;
 import com.discord.models.user.CoreUser;
-import com.discord.stores.SelectedChannelAnalyticsLocation;
+import com.discord.stores.StoreChannelsSelected3;
 import com.discord.stores.StoreMessageState;
 import com.discord.stores.StoreStream;
 import com.discord.stores.StoreUserSettings;
@@ -38,8 +38,8 @@ import com.discord.widgets.chat.list.entries.AutoModSystemMessageEmbedEntry;
 import com.discord.widgets.chat.list.entries.ChatListEntry;
 import com.facebook.drawee.span.DraweeSpanStringBuilder;
 import com.facebook.drawee.view.SimpleDraweeView;
-import d0.z.d.m;
-import d0.z.d.o;
+import d0.z.d.Intrinsics3;
+import d0.z.d.Lambda;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function1;
 import kotlin.jvm.functions.Function3;
@@ -52,7 +52,7 @@ public final class WidgetChatListAdapterItemAutoModSystemMessageEmbed extends Wi
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemAutoModSystemMessageEmbed$getMessageRenderContext$1, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetChatListAdapterItemAutoModSystemMessageEmbed.kt */
-    public final class AnonymousClass1 extends o implements Function3<Context, String, String, Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function3<Context, String, String, Unit> {
         public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
 
         public AnonymousClass1() {
@@ -67,8 +67,8 @@ public final class WidgetChatListAdapterItemAutoModSystemMessageEmbed extends Wi
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(Context context, String str, String str2) {
-            m.checkNotNullParameter(context, "clickContext");
-            m.checkNotNullParameter(str, "url");
+            Intrinsics3.checkNotNullParameter(context, "clickContext");
+            Intrinsics3.checkNotNullParameter(str, "url");
             UriHandler.handleOrUntrusted(context, str, str2);
         }
     }
@@ -90,7 +90,7 @@ public final class WidgetChatListAdapterItemAutoModSystemMessageEmbed extends Wi
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemAutoModSystemMessageEmbed$getMessageRenderContext$2, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetChatListAdapterItemAutoModSystemMessageEmbed.kt */
-    public final class AnonymousClass2 extends o implements Function1<String, Unit> {
+    public final class AnonymousClass2 extends Lambda implements Function1<String, Unit> {
         public AnonymousClass2() {
             super(1);
         }
@@ -103,7 +103,7 @@ public final class WidgetChatListAdapterItemAutoModSystemMessageEmbed extends Wi
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(String str) {
-            m.checkNotNullParameter(str, "url");
+            Intrinsics3.checkNotNullParameter(str, "url");
             WidgetChatListAdapterItemAutoModSystemMessageEmbed.access$getAdapter$p(WidgetChatListAdapterItemAutoModSystemMessageEmbed.this).getEventHandler().onUrlLongClicked(str);
         }
     }
@@ -125,7 +125,7 @@ public final class WidgetChatListAdapterItemAutoModSystemMessageEmbed extends Wi
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemAutoModSystemMessageEmbed$getMessageRenderContext$3, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetChatListAdapterItemAutoModSystemMessageEmbed.kt */
-    public final class AnonymousClass3 extends o implements Function1<SpoilerNode<?>, Unit> {
+    public final class AnonymousClass3 extends Lambda implements Function1<SpoilerNode<?>, Unit> {
         public static final AnonymousClass3 INSTANCE = new AnonymousClass3();
 
         public AnonymousClass3() {
@@ -140,13 +140,13 @@ public final class WidgetChatListAdapterItemAutoModSystemMessageEmbed extends Wi
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(SpoilerNode<?> spoilerNode) {
-            m.checkNotNullParameter(spoilerNode, "it");
+            Intrinsics3.checkNotNullParameter(spoilerNode, "it");
         }
     }
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemAutoModSystemMessageEmbed$onConfigure$3, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetChatListAdapterItemAutoModSystemMessageEmbed.kt */
-    public final class AnonymousClass3 extends o implements Function1<RenderContext, Unit> {
+    public final class AnonymousClass3 extends Lambda implements Function1<RenderContext, Unit> {
         public final /* synthetic */ int $channelNameLength;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -163,20 +163,20 @@ public final class WidgetChatListAdapterItemAutoModSystemMessageEmbed extends Wi
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(RenderContext renderContext) {
-            m.checkNotNullParameter(renderContext, "$receiver");
+            Intrinsics3.checkNotNullParameter(renderContext, "$receiver");
             renderContext.a("channelHook", new AnonymousClass1());
         }
 
         /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemAutoModSystemMessageEmbed$onConfigure$3$1, reason: invalid class name */
         /* JADX INFO: compiled from: WidgetChatListAdapterItemAutoModSystemMessageEmbed.kt */
-        public final class AnonymousClass1 extends o implements Function1<Hook, Unit> {
+        public final class AnonymousClass1 extends Lambda implements Function1<Hook, Unit> {
             public AnonymousClass1() {
                 super(1);
             }
 
             /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
             public final void invoke2(Hook hook) {
-                m.checkNotNullParameter(hook, "$receiver");
+                Intrinsics3.checkNotNullParameter(hook, "$receiver");
                 hook.styles.add(new SimpleRoundedBackgroundSpan(0, AnonymousClass3.this.$channelNameLength, DimenUtils.dpToPixels(4), 0, ColorCompat.getThemedColor(WidgetChatListAdapterItemAutoModSystemMessageEmbed.access$getAdapter$p(WidgetChatListAdapterItemAutoModSystemMessageEmbed.this).getContext(), R.attr.colorBackgroundModifierSelected), DimenUtils.dpToPixels(4), Integer.valueOf(ColorCompat.getThemedColor(WidgetChatListAdapterItemAutoModSystemMessageEmbed.access$getAdapter$p(WidgetChatListAdapterItemAutoModSystemMessageEmbed.this).getContext(), R.attr.colorHeaderPrimary)), false, null, 0, 896, null));
             }
 
@@ -190,7 +190,7 @@ public final class WidgetChatListAdapterItemAutoModSystemMessageEmbed extends Wi
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemAutoModSystemMessageEmbed$getMessageRenderContext$4, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetChatListAdapterItemAutoModSystemMessageEmbed.kt */
-    public final class AnonymousClass4 extends o implements Function1<Long, Unit> {
+    public final class AnonymousClass4 extends Lambda implements Function1<Long, Unit> {
         public AnonymousClass4() {
             super(1);
         }
@@ -218,13 +218,13 @@ public final class WidgetChatListAdapterItemAutoModSystemMessageEmbed extends Wi
 
         @Override // android.view.View.OnClickListener
         public final void onClick(View view) {
-            ChannelSelector.selectChannel$default(WidgetChatListAdapterItemAutoModSystemMessageEmbed.access$getChannelSelector$p(WidgetChatListAdapterItemAutoModSystemMessageEmbed.this), this.$channel, null, SelectedChannelAnalyticsLocation.THREAD_BROWSER, 2, null);
+            ChannelSelector.selectChannel$default(WidgetChatListAdapterItemAutoModSystemMessageEmbed.access$getChannelSelector$p(WidgetChatListAdapterItemAutoModSystemMessageEmbed.this), this.$channel, null, StoreChannelsSelected3.THREAD_BROWSER, 2, null);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemAutoModSystemMessageEmbed$getMessageRenderContext$5, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetChatListAdapterItemAutoModSystemMessageEmbed.kt */
-    public final class AnonymousClass5 extends o implements Function1<Long, Unit> {
+    public final class AnonymousClass5 extends Lambda implements Function1<Long, Unit> {
         public final /* synthetic */ Context $context;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -280,7 +280,7 @@ public final class WidgetChatListAdapterItemAutoModSystemMessageEmbed extends Wi
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public WidgetChatListAdapterItemAutoModSystemMessageEmbed(WidgetChatListAdapter widgetChatListAdapter) {
         super(R.layout.widget_chat_list_adapter_item_auto_mod_system_message_embed, widgetChatListAdapter);
-        m.checkNotNullParameter(widgetChatListAdapter, "adapter");
+        Intrinsics3.checkNotNullParameter(widgetChatListAdapter, "adapter");
         View view = this.itemView;
         int i = R.id.actions_button;
         TextView textView = (TextView) view.findViewById(R.id.actions_button);
@@ -310,7 +310,7 @@ public final class WidgetChatListAdapterItemAutoModSystemMessageEmbed extends Wi
                                         TextView textView5 = (TextView) view.findViewById(R.id.username);
                                         if (textView5 != null) {
                                             WidgetChatListAdapterItemAutoModSystemMessageEmbedBinding widgetChatListAdapterItemAutoModSystemMessageEmbedBinding = new WidgetChatListAdapterItemAutoModSystemMessageEmbedBinding((ConstraintLayout) view, textView, imageView, imageView2, simpleDraweeView, textView2, textView3, simpleDraweeSpanTextView, textView4, textView5);
-                                            m.checkNotNullExpressionValue(widgetChatListAdapterItemAutoModSystemMessageEmbedBinding, "WidgetChatListAdapterIte…bedBinding.bind(itemView)");
+                                            Intrinsics3.checkNotNullExpressionValue(widgetChatListAdapterItemAutoModSystemMessageEmbedBinding, "WidgetChatListAdapterIte…bedBinding.bind(itemView)");
                                             this.binding = widgetChatListAdapterItemAutoModSystemMessageEmbedBinding;
                                             this.channelSelector = ChannelSelector.INSTANCE.getInstance();
                                             return;
@@ -355,7 +355,7 @@ public final class WidgetChatListAdapterItemAutoModSystemMessageEmbed extends Wi
         boolean z2 = (editedTimestamp != null ? editedTimestamp.getDateTimeMillis() : 0L) > 0;
         String description = embed.getDescription();
         MessagePreprocessor messagePreprocessor = getMessagePreprocessor(((WidgetChatListAdapter) this.adapter).getData().getUserId(), message, messageEntry.getMessageState());
-        m.checkNotNullExpressionValue(context, "context");
+        Intrinsics3.checkNotNullExpressionValue(context, "context");
         DraweeSpanStringBuilder channelMessage = DiscordParser.parseChannelMessage(context, description, getMessageRenderContext(context, messageEntry), messagePreprocessor, DiscordParser.ParserOptions.DEFAULT, z2);
         textView.setVisibility(channelMessage.length() > 0 ? 0 : 8);
         textView.setDraweeSpanStringBuilder(channelMessage);
@@ -364,38 +364,38 @@ public final class WidgetChatListAdapterItemAutoModSystemMessageEmbed extends Wi
     /* JADX WARN: Can't rename method to resolve collision */
     @Override // com.discord.widgets.chat.list.adapter.WidgetChatListItem
     public void onConfigure(int position, ChatListEntry data) {
-        m.checkNotNullParameter(data, "data");
+        Intrinsics3.checkNotNullParameter(data, "data");
         super.onConfigure(position, data);
         AutoModSystemMessageEmbedEntry autoModSystemMessageEmbedEntry = (AutoModSystemMessageEmbedEntry) data;
         int themedColor = ColorCompat.getThemedColor(((WidgetChatListAdapter) this.adapter).getContext(), R.attr.colorHeaderPrimary);
         GuildMember.Companion companion = GuildMember.INSTANCE;
         int color = companion.getColor(autoModSystemMessageEmbedEntry.getAuthor(), themedColor);
         SimpleDraweeSpanTextView simpleDraweeSpanTextView = this.binding.e;
-        m.checkNotNullExpressionValue(simpleDraweeSpanTextView, "binding.messageContent");
+        Intrinsics3.checkNotNullExpressionValue(simpleDraweeSpanTextView, "binding.messageContent");
         processMessageText(simpleDraweeSpanTextView, autoModSystemMessageEmbedEntry, autoModSystemMessageEmbedEntry.getEmbed());
         if (autoModSystemMessageEmbedEntry.getMessage().getAuthor() != null) {
             CoreUser coreUser = new CoreUser(autoModSystemMessageEmbedEntry.getMessage().getAuthor());
             SimpleDraweeView simpleDraweeView = this.binding.c;
-            m.checkNotNullExpressionValue(simpleDraweeView, "binding.chatListAdapterItemTextAvatar");
+            Intrinsics3.checkNotNullExpressionValue(simpleDraweeView, "binding.chatListAdapterItemTextAvatar");
             IconUtils.setIcon$default(simpleDraweeView, new CoreUser(autoModSystemMessageEmbedEntry.getMessage().getAuthor()), R.dimen.avatar_size_chat, null, null, autoModSystemMessageEmbedEntry.getAuthor(), 24, null);
             TextView textView = this.binding.g;
-            m.checkNotNullExpressionValue(textView, "binding.username");
-            b.o(textView, companion.getNickOrUsername(autoModSystemMessageEmbedEntry.getAuthor(), coreUser), new Object[0], null, 4);
+            Intrinsics3.checkNotNullExpressionValue(textView, "binding.username");
+            FormatUtils.o(textView, companion.getNickOrUsername(autoModSystemMessageEmbedEntry.getAuthor(), coreUser), new Object[0], null, 4);
             String nickOrUsername = companion.getNickOrUsername(autoModSystemMessageEmbedEntry.getAuthor(), coreUser);
             TextView textView2 = this.binding.g;
-            m.checkNotNullExpressionValue(textView2, "binding.username");
-            b.o(textView2, nickOrUsername, new Object[0], null, 4);
+            Intrinsics3.checkNotNullExpressionValue(textView2, "binding.username");
+            FormatUtils.o(textView2, nickOrUsername, new Object[0], null, 4);
             this.binding.g.setTextColor(color);
         }
         this.binding.g.setOnClickListener(new AnonymousClass1(autoModSystemMessageEmbedEntry));
         this.binding.c.setOnClickListener(new AnonymousClass2(autoModSystemMessageEmbedEntry));
         AutoModUtils autoModUtils = AutoModUtils.INSTANCE;
-        Channel channel = StoreStream.INSTANCE.getChannels().getChannel(Long.parseLong(autoModUtils.getEmbedFieldValue(autoModSystemMessageEmbedEntry.getEmbed(), WidgetChatListAdapterItemAutoModSystemMessageEmbedKt.getAUTOMOD_EMBED_FIELD_CHANNEL_ID())));
+        Channel channel = StoreStream.INSTANCE.getChannels().getChannel(Long.parseLong(autoModUtils.getEmbedFieldValue(autoModSystemMessageEmbedEntry.getEmbed(), WidgetChatListAdapterItemAutoModSystemMessageEmbed2.getAUTOMOD_EMBED_FIELD_CHANNEL_ID())));
         String strE = channel != null ? ChannelUtils.e(channel, ((WidgetChatListAdapter) this.adapter).getContext(), false, 2) : null;
         int length = strE != null ? strE.length() : 0;
         TextView textView3 = this.binding.d;
-        m.checkNotNullExpressionValue(textView3, "binding.footerText");
-        b.m(textView3, R.string.guild_automod_channel_rule_subtext, new Object[]{strE, autoModUtils.getEmbedFieldValue(autoModSystemMessageEmbedEntry.getEmbed(), WidgetChatListAdapterItemAutoModSystemMessageEmbedKt.getAUTOMOD_EMBED_FIELD_RULE_NAME())}, new AnonymousClass3(length));
+        Intrinsics3.checkNotNullExpressionValue(textView3, "binding.footerText");
+        FormatUtils.m(textView3, R.string.guild_automod_channel_rule_subtext, new Object[]{strE, autoModUtils.getEmbedFieldValue(autoModSystemMessageEmbedEntry.getEmbed(), WidgetChatListAdapterItemAutoModSystemMessageEmbed2.getAUTOMOD_EMBED_FIELD_RULE_NAME())}, new AnonymousClass3(length));
         this.binding.d.setOnClickListener(new AnonymousClass4(channel));
         this.binding.f.setOnClickListener(new AnonymousClass5(autoModSystemMessageEmbedEntry));
         this.binding.f2311b.setOnClickListener(new AnonymousClass6(autoModSystemMessageEmbedEntry));

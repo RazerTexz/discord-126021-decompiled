@@ -1,9 +1,9 @@
 package com.discord.widgets.chat.input.autocomplete;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.models.commands.Application;
-import d0.t.n;
-import d0.z.d.m;
+import d0.t.Collections2;
+import d0.z.d.Intrinsics3;
 import java.util.List;
 
 /* JADX INFO: compiled from: Autocompletable.kt */
@@ -14,7 +14,7 @@ public final /* data */ class ApplicationPlaceholder extends Autocompletable {
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public ApplicationPlaceholder(Application application) {
         super(null);
-        m.checkNotNullParameter(application, "application");
+        Intrinsics3.checkNotNullParameter(application, "application");
         this.application = application;
     }
 
@@ -26,13 +26,13 @@ public final /* data */ class ApplicationPlaceholder extends Autocompletable {
     }
 
     public final ApplicationPlaceholder copy(Application application) {
-        m.checkNotNullParameter(application, "application");
+        Intrinsics3.checkNotNullParameter(application, "application");
         return new ApplicationPlaceholder(application);
     }
 
     public boolean equals(Object other) {
         if (this != other) {
-            return (other instanceof ApplicationPlaceholder) && m.areEqual(this.application, ((ApplicationPlaceholder) other).application);
+            return (other instanceof ApplicationPlaceholder) && Intrinsics3.areEqual(this.application, ((ApplicationPlaceholder) other).application);
         }
         return true;
     }
@@ -53,7 +53,7 @@ public final /* data */ class ApplicationPlaceholder extends Autocompletable {
 
     @Override // com.discord.widgets.chat.input.autocomplete.Autocompletable
     public List<String> getInputTextMatchers() {
-        return n.emptyList();
+        return Collections2.emptyList();
     }
 
     public int hashCode() {
@@ -65,7 +65,7 @@ public final /* data */ class ApplicationPlaceholder extends Autocompletable {
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("ApplicationPlaceholder(application=");
+        StringBuilder sbU = outline.U("ApplicationPlaceholder(application=");
         sbU.append(this.application);
         sbU.append(")");
         return sbU.toString();

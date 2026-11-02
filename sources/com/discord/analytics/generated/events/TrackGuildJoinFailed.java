@@ -1,30 +1,30 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.analytics.generated.traits.TrackGuild;
-import com.discord.analytics.generated.traits.TrackGuildReceiver;
+import com.discord.analytics.generated.traits.TrackGuild2;
 import com.discord.api.science.AnalyticsSchema;
 import com.discord.models.domain.ModelAuditLogEntry;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackGuildJoinFailed.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackGuildJoinFailed implements AnalyticsSchema, TrackBaseReceiver, TrackGuildReceiver {
+public final /* data */ class TrackGuildJoinFailed implements AnalyticsSchema, TrackBase2, TrackGuild2 {
     private final CharSequence reason = null;
     private TrackBase trackBase;
     private TrackGuild trackGuild;
     private final transient String analyticsSchemaTypeName = "guild_join_failed";
 
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    @Override // com.discord.analytics.generated.traits.TrackGuild2
     public void c(TrackGuild trackGuild) {
         this.trackGuild = trackGuild;
     }
 
     public boolean equals(Object other) {
         if (this != other) {
-            return (other instanceof TrackGuildJoinFailed) && m.areEqual(this.reason, ((TrackGuildJoinFailed) other).reason);
+            return (other instanceof TrackGuildJoinFailed) && Intrinsics3.areEqual(this.reason, ((TrackGuildJoinFailed) other).reason);
         }
         return true;
     }
@@ -35,7 +35,7 @@ public final /* data */ class TrackGuildJoinFailed implements AnalyticsSchema, T
         return this.analyticsSchemaTypeName;
     }
 
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    @Override // com.discord.analytics.generated.traits.TrackGuild2
     /* JADX INFO: renamed from: a, reason: from getter */
     public TrackGuild getTrackGuild() {
         return this.trackGuild;
@@ -50,6 +50,6 @@ public final /* data */ class TrackGuildJoinFailed implements AnalyticsSchema, T
     }
 
     public String toString() {
-        return a.E(a.U("TrackGuildJoinFailed(reason="), this.reason, ")");
+        return outline.E(outline.U("TrackGuildJoinFailed(reason="), this.reason, ")");
     }
 }

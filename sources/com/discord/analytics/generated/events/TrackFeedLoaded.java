@@ -1,17 +1,17 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.analytics.generated.traits.TrackGuild;
-import com.discord.analytics.generated.traits.TrackGuildReceiver;
+import com.discord.analytics.generated.traits.TrackGuild2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 import java.util.List;
 
 /* JADX INFO: compiled from: TrackFeedLoaded.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackFeedLoaded implements AnalyticsSchema, TrackBaseReceiver, TrackGuildReceiver {
+public final /* data */ class TrackFeedLoaded implements AnalyticsSchema, TrackBase2, TrackGuild2 {
     private final List<CharSequence> feedItemIds = null;
     private final CharSequence homeSessionId = null;
     private final CharSequence loadId = null;
@@ -23,7 +23,7 @@ public final /* data */ class TrackFeedLoaded implements AnalyticsSchema, TrackB
     private final List<CharSequence> unreadFeedItemIds = null;
     private final transient String analyticsSchemaTypeName = "feed_loaded";
 
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    @Override // com.discord.analytics.generated.traits.TrackGuild2
     public void c(TrackGuild trackGuild) {
         this.trackGuild = trackGuild;
     }
@@ -36,7 +36,7 @@ public final /* data */ class TrackFeedLoaded implements AnalyticsSchema, TrackB
             return false;
         }
         TrackFeedLoaded trackFeedLoaded = (TrackFeedLoaded) other;
-        return m.areEqual(this.loadId, trackFeedLoaded.loadId) && m.areEqual(this.feedItemIds, trackFeedLoaded.feedItemIds) && m.areEqual(this.unreadFeedItemIds, trackFeedLoaded.unreadFeedItemIds) && m.areEqual(this.readFeedItemIds, trackFeedLoaded.readFeedItemIds) && m.areEqual(this.loadTimeMillis, trackFeedLoaded.loadTimeMillis) && m.areEqual(this.homeSessionId, trackFeedLoaded.homeSessionId) && m.areEqual(this.startHomeSessionId, trackFeedLoaded.startHomeSessionId);
+        return Intrinsics3.areEqual(this.loadId, trackFeedLoaded.loadId) && Intrinsics3.areEqual(this.feedItemIds, trackFeedLoaded.feedItemIds) && Intrinsics3.areEqual(this.unreadFeedItemIds, trackFeedLoaded.unreadFeedItemIds) && Intrinsics3.areEqual(this.readFeedItemIds, trackFeedLoaded.readFeedItemIds) && Intrinsics3.areEqual(this.loadTimeMillis, trackFeedLoaded.loadTimeMillis) && Intrinsics3.areEqual(this.homeSessionId, trackFeedLoaded.homeSessionId) && Intrinsics3.areEqual(this.startHomeSessionId, trackFeedLoaded.startHomeSessionId);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -45,7 +45,7 @@ public final /* data */ class TrackFeedLoaded implements AnalyticsSchema, TrackB
         return this.analyticsSchemaTypeName;
     }
 
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    @Override // com.discord.analytics.generated.traits.TrackGuild2
     /* JADX INFO: renamed from: a, reason: from getter */
     public TrackGuild getTrackGuild() {
         return this.trackGuild;
@@ -69,7 +69,7 @@ public final /* data */ class TrackFeedLoaded implements AnalyticsSchema, TrackB
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackFeedLoaded(loadId=");
+        StringBuilder sbU = outline.U("TrackFeedLoaded(loadId=");
         sbU.append(this.loadId);
         sbU.append(", feedItemIds=");
         sbU.append(this.feedItemIds);
@@ -82,6 +82,6 @@ public final /* data */ class TrackFeedLoaded implements AnalyticsSchema, TrackB
         sbU.append(", homeSessionId=");
         sbU.append(this.homeSessionId);
         sbU.append(", startHomeSessionId=");
-        return a.E(sbU, this.startHomeSessionId, ")");
+        return outline.E(sbU, this.startHomeSessionId, ")");
     }
 }

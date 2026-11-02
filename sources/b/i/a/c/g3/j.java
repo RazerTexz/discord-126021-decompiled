@@ -1,24 +1,24 @@
 package b.i.a.c.g3;
 
-import b.i.a.c.f3.e0;
+import b.i.a.c.f3.Util2;
 
 /* JADX INFO: compiled from: lambda */
 /* JADX INFO: loaded from: classes3.dex */
 public final /* synthetic */ class j implements Runnable {
-    public final /* synthetic */ x.a j;
-    public final /* synthetic */ y k;
+    public final /* synthetic */ VideoRendererEventListener2.a j;
+    public final /* synthetic */ VideoSize k;
 
-    public /* synthetic */ j(x.a aVar, y yVar) {
+    public /* synthetic */ j(VideoRendererEventListener2.a aVar, VideoSize videoSize) {
         this.j = aVar;
-        this.k = yVar;
+        this.k = videoSize;
     }
 
     @Override // java.lang.Runnable
     public final void run() {
-        x.a aVar = this.j;
-        y yVar = this.k;
-        x xVar = aVar.f995b;
-        int i = e0.a;
-        xVar.f(yVar);
+        VideoRendererEventListener2.a aVar = this.j;
+        VideoSize videoSize = this.k;
+        VideoRendererEventListener2 videoRendererEventListener2 = aVar.f995b;
+        int i = Util2.a;
+        videoRendererEventListener2.f(videoSize);
     }
 }

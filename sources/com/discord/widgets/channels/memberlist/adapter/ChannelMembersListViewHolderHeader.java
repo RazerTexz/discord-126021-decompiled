@@ -4,7 +4,7 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 import com.discord.R;
 import com.discord.databinding.WidgetChannelMembersListItemHeaderBinding;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 import kotlin.NoWhenBranchMatchedException;
 
 /* JADX INFO: compiled from: ChannelMembersListViewHolderHeader.kt */
@@ -28,13 +28,13 @@ public final class ChannelMembersListViewHolderHeader extends RecyclerView.ViewH
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public ChannelMembersListViewHolderHeader(WidgetChannelMembersListItemHeaderBinding widgetChannelMembersListItemHeaderBinding) {
         super(widgetChannelMembersListItemHeaderBinding.a);
-        m.checkNotNullParameter(widgetChannelMembersListItemHeaderBinding, "binding");
+        Intrinsics3.checkNotNullParameter(widgetChannelMembersListItemHeaderBinding, "binding");
         this.binding = widgetChannelMembersListItemHeaderBinding;
     }
 
     public final void bind(ChannelMembersListAdapter.Item.Header data) {
         int i;
-        m.checkNotNullParameter(data, "data");
+        Intrinsics3.checkNotNullParameter(data, "data");
         int iOrdinal = data.getHeaderType().ordinal();
         if (iOrdinal == 0) {
             i = R.string.status_online;
@@ -47,11 +47,11 @@ public final class ChannelMembersListViewHolderHeader extends RecyclerView.ViewH
             i = R.string.members;
         }
         TextView textView = this.binding.c;
-        m.checkNotNullExpressionValue(textView, "binding.channelMembersListItemHeaderText");
+        Intrinsics3.checkNotNullExpressionValue(textView, "binding.channelMembersListItemHeaderText");
         CharSequence text = textView.getContext().getText(i);
-        m.checkNotNullExpressionValue(text, "binding.channelMembersLi….getText(statusTextResId)");
+        Intrinsics3.checkNotNullExpressionValue(text, "binding.channelMembersLi….getText(statusTextResId)");
         TextView textView2 = this.binding.c;
-        m.checkNotNullExpressionValue(textView2, "binding.channelMembersListItemHeaderText");
+        Intrinsics3.checkNotNullExpressionValue(textView2, "binding.channelMembersListItemHeaderText");
         textView2.setText(text + " — " + data.getMemberCount());
     }
 }

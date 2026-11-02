@@ -1,27 +1,29 @@
 package b.i.a.c.s2;
 
-import b.i.a.c.j1;
+import b.i.a.c.Format2;
+import b.i.a.c.f3.ListenerSet;
+import b.i.a.c.v2.DecoderReuseEvaluation;
 
 /* JADX INFO: compiled from: lambda */
 /* JADX INFO: loaded from: classes3.dex */
-public final /* synthetic */ class y0 implements b.i.a.c.f3.p.a {
-    public final /* synthetic */ h1.a a;
+public final /* synthetic */ class y0 implements ListenerSet.a {
+    public final /* synthetic */ AnalyticsListener.a a;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    public final /* synthetic */ j1 f1111b;
-    public final /* synthetic */ b.i.a.c.v2.g c;
+    public final /* synthetic */ Format2 f1111b;
+    public final /* synthetic */ DecoderReuseEvaluation c;
 
-    public /* synthetic */ y0(h1.a aVar, j1 j1Var, b.i.a.c.v2.g gVar) {
+    public /* synthetic */ y0(AnalyticsListener.a aVar, Format2 format2, DecoderReuseEvaluation decoderReuseEvaluation) {
         this.a = aVar;
-        this.f1111b = j1Var;
-        this.c = gVar;
+        this.f1111b = format2;
+        this.c = decoderReuseEvaluation;
     }
 
-    @Override // b.i.a.c.f3.p.a
+    @Override // b.i.a.c.f3.ListenerSet.a
     public final void invoke(Object obj) {
-        h1 h1Var = (h1) obj;
-        h1Var.h0();
-        h1Var.B();
-        h1Var.x();
+        AnalyticsListener analyticsListener = (AnalyticsListener) obj;
+        analyticsListener.h0();
+        analyticsListener.B();
+        analyticsListener.x();
     }
 }

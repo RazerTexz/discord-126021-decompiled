@@ -1,18 +1,18 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.analytics.generated.traits.TrackChannel;
-import com.discord.analytics.generated.traits.TrackChannelReceiver;
+import com.discord.analytics.generated.traits.TrackChannel2;
 import com.discord.analytics.generated.traits.TrackGuild;
-import com.discord.analytics.generated.traits.TrackGuildReceiver;
+import com.discord.analytics.generated.traits.TrackGuild2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackChannelAutocompleteOpen.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackChannelAutocompleteOpen implements AnalyticsSchema, TrackBaseReceiver, TrackGuildReceiver, TrackChannelReceiver {
+public final /* data */ class TrackChannelAutocompleteOpen implements AnalyticsSchema, TrackBase2, TrackGuild2, TrackChannel2 {
     private final CharSequence autocompleteType = null;
     private final Boolean hasEmoji = null;
     private final Boolean hasSticker = null;
@@ -23,7 +23,7 @@ public final /* data */ class TrackChannelAutocompleteOpen implements AnalyticsS
     private TrackGuild trackGuild;
     private final transient String analyticsSchemaTypeName = "channel_autocomplete_open";
 
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    @Override // com.discord.analytics.generated.traits.TrackGuild2
     public void c(TrackGuild trackGuild) {
         this.trackGuild = trackGuild;
     }
@@ -36,7 +36,7 @@ public final /* data */ class TrackChannelAutocompleteOpen implements AnalyticsS
             return false;
         }
         TrackChannelAutocompleteOpen trackChannelAutocompleteOpen = (TrackChannelAutocompleteOpen) other;
-        return m.areEqual(this.autocompleteType, trackChannelAutocompleteOpen.autocompleteType) && m.areEqual(this.hasSticker, trackChannelAutocompleteOpen.hasSticker) && m.areEqual(this.hasEmoji, trackChannelAutocompleteOpen.hasEmoji) && m.areEqual(this.numStickerResults, trackChannelAutocompleteOpen.numStickerResults) && m.areEqual(this.numEmojiResults, trackChannelAutocompleteOpen.numEmojiResults);
+        return Intrinsics3.areEqual(this.autocompleteType, trackChannelAutocompleteOpen.autocompleteType) && Intrinsics3.areEqual(this.hasSticker, trackChannelAutocompleteOpen.hasSticker) && Intrinsics3.areEqual(this.hasEmoji, trackChannelAutocompleteOpen.hasEmoji) && Intrinsics3.areEqual(this.numStickerResults, trackChannelAutocompleteOpen.numStickerResults) && Intrinsics3.areEqual(this.numEmojiResults, trackChannelAutocompleteOpen.numEmojiResults);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -45,7 +45,7 @@ public final /* data */ class TrackChannelAutocompleteOpen implements AnalyticsS
         return this.analyticsSchemaTypeName;
     }
 
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    @Override // com.discord.analytics.generated.traits.TrackGuild2
     /* JADX INFO: renamed from: a, reason: from getter */
     public TrackGuild getTrackGuild() {
         return this.trackGuild;
@@ -65,7 +65,7 @@ public final /* data */ class TrackChannelAutocompleteOpen implements AnalyticsS
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackChannelAutocompleteOpen(autocompleteType=");
+        StringBuilder sbU = outline.U("TrackChannelAutocompleteOpen(autocompleteType=");
         sbU.append(this.autocompleteType);
         sbU.append(", hasSticker=");
         sbU.append(this.hasSticker);
@@ -74,6 +74,6 @@ public final /* data */ class TrackChannelAutocompleteOpen implements AnalyticsS
         sbU.append(", numStickerResults=");
         sbU.append(this.numStickerResults);
         sbU.append(", numEmojiResults=");
-        return a.G(sbU, this.numEmojiResults, ")");
+        return outline.G(sbU, this.numEmojiResults, ")");
     }
 }

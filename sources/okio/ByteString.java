@@ -1,13 +1,14 @@
 package okio;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import b.i.a.f.e.o.f;
-import d0.g0.c;
-import d0.g0.t;
-import d0.t.j;
-import d0.z.d.m;
-import g0.e;
-import g0.z.b;
+import d0.g0.Charsets2;
+import d0.g0.StringsJVM;
+import d0.t._ArraysJvm;
+import d0.z.d.Intrinsics3;
+import g0.Buffer3;
+import g0.a;
+import g0.z.ByteString4;
 import java.io.EOFException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -43,32 +44,32 @@ public class ByteString implements Serializable, Comparable<ByteString> {
         }
 
         public final ByteString a(String str) {
-            m.checkParameterIsNotNull(str, "$this$decodeHex");
+            Intrinsics3.checkParameterIsNotNull(str, "$this$decodeHex");
             if (!(str.length() % 2 == 0)) {
-                throw new IllegalArgumentException(a.w("Unexpected hex string: ", str).toString());
+                throw new IllegalArgumentException(outline.w("Unexpected hex string: ", str).toString());
             }
             int length = str.length() / 2;
             byte[] bArr = new byte[length];
             for (int i = 0; i < length; i++) {
                 int i2 = i * 2;
-                bArr[i] = (byte) (b.a(str.charAt(i2 + 1)) + (b.a(str.charAt(i2)) << 4));
+                bArr[i] = (byte) (ByteString4.a(str.charAt(i2 + 1)) + (ByteString4.a(str.charAt(i2)) << 4));
             }
             return new ByteString(bArr);
         }
 
         public final ByteString b(String str, Charset charset) {
-            m.checkParameterIsNotNull(str, "$this$encode");
-            m.checkParameterIsNotNull(charset, "charset");
+            Intrinsics3.checkParameterIsNotNull(str, "$this$encode");
+            Intrinsics3.checkParameterIsNotNull(charset, "charset");
             byte[] bytes = str.getBytes(charset);
-            m.checkExpressionValueIsNotNull(bytes, "(this as java.lang.String).getBytes(charset)");
+            Intrinsics3.checkExpressionValueIsNotNull(bytes, "(this as java.lang.String).getBytes(charset)");
             return new ByteString(bytes);
         }
 
         public final ByteString c(String str) {
-            m.checkParameterIsNotNull(str, "$this$encodeUtf8");
-            m.checkParameterIsNotNull(str, "$this$asUtf8ToByteArray");
-            byte[] bytes = str.getBytes(c.a);
-            m.checkExpressionValueIsNotNull(bytes, "(this as java.lang.String).getBytes(charset)");
+            Intrinsics3.checkParameterIsNotNull(str, "$this$encodeUtf8");
+            Intrinsics3.checkParameterIsNotNull(str, "$this$asUtf8ToByteArray");
+            byte[] bytes = str.getBytes(Charsets2.a);
+            Intrinsics3.checkExpressionValueIsNotNull(bytes, "(this as java.lang.String).getBytes(charset)");
             ByteString byteString = new ByteString(bytes);
             byteString.utf8 = str;
             return byteString;
@@ -81,14 +82,14 @@ public class ByteString implements Serializable, Comparable<ByteString> {
             if ((i3 & 2) != 0) {
                 i2 = bArr.length;
             }
-            m.checkParameterIsNotNull(bArr, "$this$toByteString");
+            Intrinsics3.checkParameterIsNotNull(bArr, "$this$toByteString");
             f.B(bArr.length, i, i2);
-            return new ByteString(j.copyOfRange(bArr, i, i2 + i));
+            return new ByteString(_ArraysJvm.copyOfRange(bArr, i, i2 + i));
         }
     }
 
     public ByteString(byte[] bArr) {
-        m.checkParameterIsNotNull(bArr, "data");
+        Intrinsics3.checkParameterIsNotNull(bArr, "data");
         this.data = bArr;
     }
 
@@ -97,7 +98,7 @@ public class ByteString implements Serializable, Comparable<ByteString> {
     @Override // java.lang.Comparable
     public int compareTo(ByteString byteString) {
         ByteString byteString2 = byteString;
-        m.checkParameterIsNotNull(byteString2, "other");
+        Intrinsics3.checkParameterIsNotNull(byteString2, "other");
         int iJ = j();
         int iJ2 = byteString2.j();
         int iMin = Math.min(iJ, iJ2);
@@ -137,10 +138,10 @@ public class ByteString implements Serializable, Comparable<ByteString> {
 
     public String f() {
         byte[] bArr = this.data;
-        byte[] bArr2 = g0.a.a;
-        byte[] bArr3 = g0.a.a;
-        m.checkParameterIsNotNull(bArr, "$this$encodeBase64");
-        m.checkParameterIsNotNull(bArr3, "map");
+        byte[] bArr2 = a.a;
+        byte[] bArr3 = a.a;
+        Intrinsics3.checkParameterIsNotNull(bArr, "$this$encodeBase64");
+        Intrinsics3.checkParameterIsNotNull(bArr3, "map");
         byte[] bArr4 = new byte[((bArr.length + 2) / 3) * 4];
         int length = bArr.length - (bArr.length % 3);
         int i = 0;
@@ -183,14 +184,14 @@ public class ByteString implements Serializable, Comparable<ByteString> {
             bArr4[i13] = bArr3[(b8 & 15) << 2];
             bArr4[i13 + 1] = (byte) 61;
         }
-        m.checkParameterIsNotNull(bArr4, "$this$toUtf8String");
-        return new String(bArr4, c.a);
+        Intrinsics3.checkParameterIsNotNull(bArr4, "$this$toUtf8String");
+        return new String(bArr4, Charsets2.a);
     }
 
     public ByteString g(String algorithm) {
-        m.checkParameterIsNotNull(algorithm, "algorithm");
+        Intrinsics3.checkParameterIsNotNull(algorithm, "algorithm");
         byte[] bArrDigest = MessageDigest.getInstance(algorithm).digest(this.data);
-        m.checkExpressionValueIsNotNull(bArrDigest, "MessageDigest.getInstance(algorithm).digest(data)");
+        Intrinsics3.checkExpressionValueIsNotNull(bArrDigest, "MessageDigest.getInstance(algorithm).digest(data)");
         return new ByteString(bArrDigest);
     }
 
@@ -200,10 +201,10 @@ public class ByteString implements Serializable, Comparable<ByteString> {
     }
 
     public static final ByteString h(String str) {
-        m.checkParameterIsNotNull(str, "$this$encodeUtf8");
-        m.checkParameterIsNotNull(str, "$this$asUtf8ToByteArray");
-        byte[] bytes = str.getBytes(c.a);
-        m.checkExpressionValueIsNotNull(bytes, "(this as java.lang.String).getBytes(charset)");
+        Intrinsics3.checkParameterIsNotNull(str, "$this$encodeUtf8");
+        Intrinsics3.checkParameterIsNotNull(str, "$this$asUtf8ToByteArray");
+        byte[] bytes = str.getBytes(Charsets2.a);
+        Intrinsics3.checkExpressionValueIsNotNull(bytes, "(this as java.lang.String).getBytes(charset)");
         ByteString byteString = new ByteString(bytes);
         byteString.utf8 = str;
         return byteString;
@@ -229,7 +230,7 @@ public class ByteString implements Serializable, Comparable<ByteString> {
         int i = 0;
         for (byte b2 : bArr) {
             int i2 = i + 1;
-            char[] cArr2 = b.a;
+            char[] cArr2 = ByteString4.a;
             cArr[i] = cArr2[(b2 >> 4) & 15];
             i = i2 + 1;
             cArr[i2] = cArr2[b2 & 15];
@@ -246,12 +247,12 @@ public class ByteString implements Serializable, Comparable<ByteString> {
     }
 
     public boolean n(int offset, ByteString other, int otherOffset, int byteCount) {
-        m.checkParameterIsNotNull(other, "other");
+        Intrinsics3.checkParameterIsNotNull(other, "other");
         return other.o(otherOffset, this.data, offset, byteCount);
     }
 
     public boolean o(int offset, byte[] other, int otherOffset, int byteCount) {
-        m.checkParameterIsNotNull(other, "other");
+        Intrinsics3.checkParameterIsNotNull(other, "other");
         if (offset >= 0) {
             byte[] bArr = this.data;
             if (offset <= bArr.length - byteCount && otherOffset >= 0 && otherOffset <= other.length - byteCount && f.h(bArr, offset, other, otherOffset, byteCount)) {
@@ -273,7 +274,7 @@ public class ByteString implements Serializable, Comparable<ByteString> {
             byte b4 = (byte) 65;
             if (b3 >= b4 && b3 <= (b2 = (byte) 90)) {
                 byte[] bArrCopyOf = Arrays.copyOf(bArr, bArr.length);
-                m.checkExpressionValueIsNotNull(bArrCopyOf, "java.util.Arrays.copyOf(this, size)");
+                Intrinsics3.checkExpressionValueIsNotNull(bArrCopyOf, "java.util.Arrays.copyOf(this, size)");
                 bArrCopyOf[i] = (byte) (b3 + 32);
                 for (int i2 = i + 1; i2 < bArrCopyOf.length; i2++) {
                     byte b5 = bArrCopyOf[i2];
@@ -293,23 +294,23 @@ public class ByteString implements Serializable, Comparable<ByteString> {
             return str;
         }
         byte[] bArrL = l();
-        m.checkParameterIsNotNull(bArrL, "$this$toUtf8String");
-        String str2 = new String(bArrL, c.a);
+        Intrinsics3.checkParameterIsNotNull(bArrL, "$this$toUtf8String");
+        String str2 = new String(bArrL, Charsets2.a);
         this.utf8 = str2;
         return str2;
     }
 
     public void r(OutputStream out) throws IOException {
-        m.checkParameterIsNotNull(out, "out");
+        Intrinsics3.checkParameterIsNotNull(out, "out");
         out.write(this.data);
     }
 
     private final void readObject(ObjectInputStream in) throws IllegalAccessException, NoSuchFieldException, IOException {
         int i = in.readInt();
-        m.checkParameterIsNotNull(in, "$this$readByteString");
+        Intrinsics3.checkParameterIsNotNull(in, "$this$readByteString");
         int i2 = 0;
         if (!(i >= 0)) {
-            throw new IllegalArgumentException(a.q("byteCount < 0: ", i).toString());
+            throw new IllegalArgumentException(outline.q("byteCount < 0: ", i).toString());
         }
         byte[] bArr = new byte[i];
         while (i2 < i) {
@@ -321,15 +322,15 @@ public class ByteString implements Serializable, Comparable<ByteString> {
         }
         ByteString byteString = new ByteString(bArr);
         Field declaredField = ByteString.class.getDeclaredField("data");
-        m.checkExpressionValueIsNotNull(declaredField, "field");
+        Intrinsics3.checkExpressionValueIsNotNull(declaredField, "field");
         declaredField.setAccessible(true);
         declaredField.set(this, byteString.data);
     }
 
-    public void s(e buffer, int offset, int byteCount) {
-        m.checkParameterIsNotNull(buffer, "buffer");
-        m.checkParameterIsNotNull(this, "$this$commonWrite");
-        m.checkParameterIsNotNull(buffer, "buffer");
+    public void s(Buffer3 buffer, int offset, int byteCount) {
+        Intrinsics3.checkParameterIsNotNull(buffer, "buffer");
+        Intrinsics3.checkParameterIsNotNull(this, "$this$commonWrite");
+        Intrinsics3.checkParameterIsNotNull(buffer, "buffer");
         buffer.S(this.data, offset, byteCount);
     }
 
@@ -669,30 +670,30 @@ public class ByteString implements Serializable, Comparable<ByteString> {
         }
         if (i9 == -1) {
             if (this.data.length <= 64) {
-                StringBuilder sbU = a.U("[hex=");
+                StringBuilder sbU = outline.U("[hex=");
                 sbU.append(k());
                 sbU.append(']');
                 return sbU.toString();
             }
-            StringBuilder sbU2 = a.U("[size=");
+            StringBuilder sbU2 = outline.U("[size=");
             sbU2.append(this.data.length);
             sbU2.append(" hex=");
             byte[] bArr2 = this.data;
             if (!(64 <= bArr2.length)) {
-                throw new IllegalArgumentException(a.A(a.U("endIndex > length("), this.data.length, ')').toString());
+                throw new IllegalArgumentException(outline.A(outline.U("endIndex > length("), this.data.length, ')').toString());
             }
-            sbU2.append((64 == bArr2.length ? this : new ByteString(j.copyOfRange(bArr2, 0, 64))).k());
+            sbU2.append((64 == bArr2.length ? this : new ByteString(_ArraysJvm.copyOfRange(bArr2, 0, 64))).k());
             sbU2.append("…]");
             return sbU2.toString();
         }
         String strQ = q();
         String strSubstring = strQ.substring(0, i9);
-        m.checkExpressionValueIsNotNull(strSubstring, "(this as java.lang.Strin…ing(startIndex, endIndex)");
-        String strReplace$default = t.replace$default(t.replace$default(t.replace$default(strSubstring, "\\", "\\\\", false, 4, (Object) null), "\n", "\\n", false, 4, (Object) null), "\r", "\\r", false, 4, (Object) null);
+        Intrinsics3.checkExpressionValueIsNotNull(strSubstring, "(this as java.lang.Strin…ing(startIndex, endIndex)");
+        String strReplace$default = StringsJVM.replace$default(StringsJVM.replace$default(StringsJVM.replace$default(strSubstring, "\\", "\\\\", false, 4, (Object) null), "\n", "\\n", false, 4, (Object) null), "\r", "\\r", false, 4, (Object) null);
         if (i9 >= strQ.length()) {
             return "[text=" + strReplace$default + ']';
         }
-        StringBuilder sbU3 = a.U("[size=");
+        StringBuilder sbU3 = outline.U("[size=");
         sbU3.append(this.data.length);
         sbU3.append(" text=");
         sbU3.append(strReplace$default);

@@ -1,7 +1,8 @@
 package com.discord.nullserializable;
 
 import androidx.exifinterface.media.ExifInterface;
-import d0.z.d.m;
+import b.d.b.a.outline;
+import d0.z.d.Intrinsics3;
 import java.io.Serializable;
 import kotlin.jvm.internal.DefaultConstructorMarker;
 
@@ -32,7 +33,7 @@ public abstract class NullSerializable<T> implements Serializable {
 
         public boolean equals(Object obj) {
             if (this != obj) {
-                return (obj instanceof a) && m.areEqual(this.value, ((a) obj).value);
+                return (obj instanceof a) && Intrinsics3.areEqual(this.value, ((a) obj).value);
             }
             return true;
         }
@@ -46,7 +47,7 @@ public abstract class NullSerializable<T> implements Serializable {
         }
 
         public String toString() {
-            StringBuilder sbU = b.d.b.a.a.U("Null(value=");
+            StringBuilder sbU = outline.U("Null(value=");
             sbU.append(this.value);
             sbU.append(")");
             return sbU.toString();
@@ -69,7 +70,7 @@ public abstract class NullSerializable<T> implements Serializable {
 
         public boolean equals(Object obj) {
             if (this != obj) {
-                return (obj instanceof b) && m.areEqual(this.value, ((b) obj).value);
+                return (obj instanceof b) && Intrinsics3.areEqual(this.value, ((b) obj).value);
             }
             return true;
         }
@@ -83,7 +84,7 @@ public abstract class NullSerializable<T> implements Serializable {
         }
 
         public String toString() {
-            StringBuilder sbU = b.d.b.a.a.U("Value(value=");
+            StringBuilder sbU = outline.U("Value(value=");
             sbU.append(this.value);
             sbU.append(")");
             return sbU.toString();

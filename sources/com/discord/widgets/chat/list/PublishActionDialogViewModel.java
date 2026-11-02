@@ -1,8 +1,8 @@
 package com.discord.widgets.chat.list;
 
 import android.content.Context;
-import b.a.d.d0;
-import b.d.b.a.a;
+import b.a.d.AppViewModel;
+import b.d.b.a.outline;
 import com.discord.R;
 import com.discord.models.domain.ModelChannelFollowerStats;
 import com.discord.stores.StoreChannelFollowerStats;
@@ -10,8 +10,8 @@ import com.discord.stores.StoreStream;
 import com.discord.utilities.error.Error;
 import com.discord.utilities.rest.RestAPI;
 import com.discord.utilities.rx.ObservableExtensionsKt;
-import d0.z.d.m;
-import d0.z.d.o;
+import d0.z.d.Intrinsics3;
+import d0.z.d.Lambda;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
@@ -21,7 +21,7 @@ import rx.subjects.PublishSubject;
 
 /* JADX INFO: compiled from: PublishActionDialogViewModel.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class PublishActionDialogViewModel extends d0<ViewState> {
+public final class PublishActionDialogViewModel extends AppViewModel<ViewState> {
 
     /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
     public static final Companion INSTANCE = new Companion(null);
@@ -32,7 +32,7 @@ public final class PublishActionDialogViewModel extends d0<ViewState> {
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.list.PublishActionDialogViewModel$1, reason: invalid class name */
     /* JADX INFO: compiled from: PublishActionDialogViewModel.kt */
-    public final class AnonymousClass1 extends o implements Function1<StoreState, Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function1<StoreState, Unit> {
         public AnonymousClass1() {
             super(1);
         }
@@ -45,14 +45,14 @@ public final class PublishActionDialogViewModel extends d0<ViewState> {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(StoreState storeState) {
-            m.checkNotNullParameter(storeState, "storeState");
+            Intrinsics3.checkNotNullParameter(storeState, "storeState");
             PublishActionDialogViewModel.access$handleStoreState(PublishActionDialogViewModel.this, storeState);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.list.PublishActionDialogViewModel$publishMessage$1, reason: invalid class name */
     /* JADX INFO: compiled from: PublishActionDialogViewModel.kt */
-    public final class AnonymousClass1 extends o implements Function1<Void, Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function1<Void, Unit> {
         public AnonymousClass1() {
             super(1);
         }
@@ -71,7 +71,7 @@ public final class PublishActionDialogViewModel extends d0<ViewState> {
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.list.PublishActionDialogViewModel$publishMessage$2, reason: invalid class name */
     /* JADX INFO: compiled from: PublishActionDialogViewModel.kt */
-    public final class AnonymousClass2 extends o implements Function1<Error, Unit> {
+    public final class AnonymousClass2 extends Lambda implements Function1<Error, Unit> {
         public AnonymousClass2() {
             super(1);
         }
@@ -84,7 +84,7 @@ public final class PublishActionDialogViewModel extends d0<ViewState> {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(Error error) {
-            m.checkNotNullParameter(error, "it");
+            Intrinsics3.checkNotNullParameter(error, "it");
             PublishActionDialogViewModel.access$emitFailureEvent(PublishActionDialogViewModel.this);
         }
     }
@@ -99,8 +99,8 @@ public final class PublishActionDialogViewModel extends d0<ViewState> {
         }
 
         private final Observable<StoreState> observeChannelFollowerStatsStoreState(long channelId, StoreChannelFollowerStats storeChannelFollowerStats) {
-            Observable<StoreState> observableR = storeChannelFollowerStats.observeChannelFollowerStats(channelId).G(PublishActionDialogViewModel$Companion$observeChannelFollowerStatsStoreState$1.INSTANCE).r();
-            m.checkNotNullExpressionValue(observableR, "storeChannelFollowerStat…  .distinctUntilChanged()");
+            Observable<StoreState> observableR = storeChannelFollowerStats.observeChannelFollowerStats(channelId).G(PublishActionDialogViewModel2.INSTANCE).r();
+            Intrinsics3.checkNotNullExpressionValue(observableR, "storeChannelFollowerStat…  .distinctUntilChanged()");
             return observableR;
         }
 
@@ -153,7 +153,7 @@ public final class PublishActionDialogViewModel extends d0<ViewState> {
             }
 
             public String toString() {
-                return a.B(a.U("Failure(failureMessageStringRes="), this.failureMessageStringRes, ")");
+                return outline.B(outline.U("Failure(failureMessageStringRes="), this.failureMessageStringRes, ")");
             }
         }
 
@@ -198,7 +198,7 @@ public final class PublishActionDialogViewModel extends d0<ViewState> {
             }
 
             public String toString() {
-                return a.B(a.U("Success(successMessageStringRes="), this.successMessageStringRes, ")");
+                return outline.B(outline.U("Success(successMessageStringRes="), this.successMessageStringRes, ")");
             }
         }
 
@@ -233,7 +233,7 @@ public final class PublishActionDialogViewModel extends d0<ViewState> {
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
             public LoadedHasFollowers(ModelChannelFollowerStats modelChannelFollowerStats) {
                 super(null);
-                m.checkNotNullParameter(modelChannelFollowerStats, "followerStats");
+                Intrinsics3.checkNotNullParameter(modelChannelFollowerStats, "followerStats");
                 this.followerStats = modelChannelFollowerStats;
             }
 
@@ -245,13 +245,13 @@ public final class PublishActionDialogViewModel extends d0<ViewState> {
             }
 
             public final LoadedHasFollowers copy(ModelChannelFollowerStats followerStats) {
-                m.checkNotNullParameter(followerStats, "followerStats");
+                Intrinsics3.checkNotNullParameter(followerStats, "followerStats");
                 return new LoadedHasFollowers(followerStats);
             }
 
             public boolean equals(Object other) {
                 if (this != other) {
-                    return (other instanceof LoadedHasFollowers) && m.areEqual(this.followerStats, ((LoadedHasFollowers) other).followerStats);
+                    return (other instanceof LoadedHasFollowers) && Intrinsics3.areEqual(this.followerStats, ((LoadedHasFollowers) other).followerStats);
                 }
                 return true;
             }
@@ -274,7 +274,7 @@ public final class PublishActionDialogViewModel extends d0<ViewState> {
             }
 
             public String toString() {
-                StringBuilder sbU = a.U("LoadedHasFollowers(followerStats=");
+                StringBuilder sbU = outline.U("LoadedHasFollowers(followerStats=");
                 sbU.append(this.followerStats);
                 sbU.append(")");
                 return sbU.toString();
@@ -349,7 +349,7 @@ public final class PublishActionDialogViewModel extends d0<ViewState> {
 
     public final Observable<Event> observeEvents() {
         PublishSubject<Event> publishSubject = this.eventSubject;
-        m.checkNotNullExpressionValue(publishSubject, "eventSubject");
+        Intrinsics3.checkNotNullExpressionValue(publishSubject, "eventSubject");
         return publishSubject;
     }
 
@@ -360,9 +360,9 @@ public final class PublishActionDialogViewModel extends d0<ViewState> {
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public PublishActionDialogViewModel(long j, long j2, RestAPI restAPI, StoreChannelFollowerStats storeChannelFollowerStats, Observable<StoreState> observable) {
         super(ViewState.Loading.INSTANCE);
-        m.checkNotNullParameter(restAPI, "restAPI");
-        m.checkNotNullParameter(storeChannelFollowerStats, "storeChannelFollowerStats");
-        m.checkNotNullParameter(observable, "storeObservable");
+        Intrinsics3.checkNotNullParameter(restAPI, "restAPI");
+        Intrinsics3.checkNotNullParameter(storeChannelFollowerStats, "storeChannelFollowerStats");
+        Intrinsics3.checkNotNullParameter(observable, "storeObservable");
         this.messageId = j;
         this.channelId = j2;
         this.restAPI = restAPI;

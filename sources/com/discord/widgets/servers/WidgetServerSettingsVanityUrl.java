@@ -9,32 +9,33 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import androidx.exifinterface.media.ExifInterface;
 import androidx.fragment.app.Fragment;
-import b.a.d.j;
-import b.d.b.a.a;
+import b.a.d.AppScreen2;
+import b.a.k.FormatUtils;
+import b.d.b.a.outline;
 import com.discord.R;
 import com.discord.api.guild.VanityUrlResponse;
 import com.discord.app.AppActivity;
 import com.discord.app.AppFragment;
-import com.discord.app.LoggingConfig;
+import com.discord.app.AppLogger2;
 import com.discord.databinding.WidgetServerSettingsVanityUrlBinding;
 import com.discord.models.domain.ModelAuditLogEntry;
 import com.discord.restapi.RestAPIParams;
 import com.discord.stores.StoreStream;
 import com.discord.stores.StoreUser;
 import com.discord.utilities.error.Error;
-import com.discord.utilities.resources.StringResourceUtilsKt;
+import com.discord.utilities.resources.StringResourceUtils;
 import com.discord.utilities.rest.RestAPI;
 import com.discord.utilities.rx.ObservableExtensionsKt;
 import com.discord.utilities.stateful.StatefulViews;
 import com.discord.utilities.view.extensions.ViewExtensions;
 import com.discord.utilities.viewbinding.FragmentViewBindingDelegate;
-import com.discord.utilities.viewbinding.FragmentViewBindingDelegateKt;
+import com.discord.utilities.viewbinding.FragmentViewBindingDelegate3;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputLayout;
-import d0.g;
-import d0.z.d.k;
-import d0.z.d.m;
-import d0.z.d.o;
+import d0.LazyJVM;
+import d0.z.d.FunctionReferenceImpl;
+import d0.z.d.Intrinsics3;
+import d0.z.d.Lambda;
 import kotlin.Lazy;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
@@ -46,7 +47,7 @@ import rx.Observable;
 /* JADX INFO: compiled from: WidgetServerSettingsVanityUrl.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetServerSettingsVanityUrl extends AppFragment {
-    public static final /* synthetic */ KProperty[] $$delegatedProperties = {a.d0(WidgetServerSettingsVanityUrl.class, "binding", "getBinding()Lcom/discord/databinding/WidgetServerSettingsVanityUrlBinding;", 0)};
+    public static final /* synthetic */ KProperty[] $$delegatedProperties = {outline.d0(WidgetServerSettingsVanityUrl.class, "binding", "getBinding()Lcom/discord/databinding/WidgetServerSettingsVanityUrlBinding;", 0)};
     private static final long ANIMATION_DURATION = 250;
 
     /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
@@ -58,7 +59,7 @@ public final class WidgetServerSettingsVanityUrl extends AppFragment {
 
     /* JADX INFO: renamed from: guildId$delegate, reason: from kotlin metadata */
     private final Lazy guildId;
-    private final LoggingConfig loggingConfig;
+    private final AppLogger2 loggingConfig;
     private final StatefulViews state;
 
     /* JADX INFO: renamed from: com.discord.widgets.servers.WidgetServerSettingsVanityUrl$configureUI$1, reason: invalid class name */
@@ -75,13 +76,13 @@ public final class WidgetServerSettingsVanityUrl extends AppFragment {
             WidgetServerSettingsVanityUrl widgetServerSettingsVanityUrl = WidgetServerSettingsVanityUrl.this;
             long guildId = this.$model.getGuildId();
             TextInputLayout textInputLayout = WidgetServerSettingsVanityUrl.access$getBinding$p(WidgetServerSettingsVanityUrl.this).f2588b;
-            m.checkNotNullExpressionValue(textInputLayout, "binding.serverSettingsVanityInput");
+            Intrinsics3.checkNotNullExpressionValue(textInputLayout, "binding.serverSettingsVanityInput");
             String textOrEmpty = ViewExtensions.getTextOrEmpty(textInputLayout);
             int length = textOrEmpty.length() - 1;
             int i = 0;
             boolean z2 = false;
             while (i <= length) {
-                boolean z3 = m.compare(textOrEmpty.charAt(!z2 ? i : length), 32) <= 0;
+                boolean z3 = Intrinsics3.compare(textOrEmpty.charAt(!z2 ? i : length), 32) <= 0;
                 if (z2) {
                     if (!z3) {
                         break;
@@ -100,7 +101,7 @@ public final class WidgetServerSettingsVanityUrl extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.servers.WidgetServerSettingsVanityUrl$onResume$1, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetServerSettingsVanityUrl.kt */
-    public final /* synthetic */ class AnonymousClass1 extends k implements Function1<Model, Unit> {
+    public final /* synthetic */ class AnonymousClass1 extends FunctionReferenceImpl implements Function1<Model, Unit> {
         public AnonymousClass1(WidgetServerSettingsVanityUrl widgetServerSettingsVanityUrl) {
             super(1, widgetServerSettingsVanityUrl, WidgetServerSettingsVanityUrl.class, "configureUI", "configureUI(Lcom/discord/widgets/servers/WidgetServerSettingsVanityUrl$Model;)V", 0);
         }
@@ -128,29 +129,29 @@ public final class WidgetServerSettingsVanityUrl extends AppFragment {
             if (!z2) {
                 Companion companion = WidgetServerSettingsVanityUrl.INSTANCE;
                 TextView textView = WidgetServerSettingsVanityUrl.access$getBinding$p(WidgetServerSettingsVanityUrl.this).h;
-                m.checkNotNullExpressionValue(textView, "binding.serverSettingsVanityUrlPrefix");
+                Intrinsics3.checkNotNullExpressionValue(textView, "binding.serverSettingsVanityUrlPrefix");
                 Companion.access$translateToOriginX(companion, textView);
                 TextInputLayout textInputLayout = WidgetServerSettingsVanityUrl.access$getBinding$p(WidgetServerSettingsVanityUrl.this).f2588b;
-                m.checkNotNullExpressionValue(textInputLayout, "binding.serverSettingsVanityInput");
+                Intrinsics3.checkNotNullExpressionValue(textInputLayout, "binding.serverSettingsVanityInput");
                 Companion.access$translateToOriginX(companion, textInputLayout);
                 return;
             }
             TextView textView2 = WidgetServerSettingsVanityUrl.access$getBinding$p(WidgetServerSettingsVanityUrl.this).h;
-            m.checkNotNullExpressionValue(textView2, "binding.serverSettingsVanityUrlPrefix");
+            Intrinsics3.checkNotNullExpressionValue(textView2, "binding.serverSettingsVanityUrlPrefix");
             int width = textView2.getWidth();
             Companion companion2 = WidgetServerSettingsVanityUrl.INSTANCE;
             TextView textView3 = WidgetServerSettingsVanityUrl.access$getBinding$p(WidgetServerSettingsVanityUrl.this).h;
-            m.checkNotNullExpressionValue(textView3, "binding.serverSettingsVanityUrlPrefix");
+            Intrinsics3.checkNotNullExpressionValue(textView3, "binding.serverSettingsVanityUrlPrefix");
             Companion.access$translateLeft(companion2, textView3, width);
             TextInputLayout textInputLayout2 = WidgetServerSettingsVanityUrl.access$getBinding$p(WidgetServerSettingsVanityUrl.this).f2588b;
-            m.checkNotNullExpressionValue(textInputLayout2, "binding.serverSettingsVanityInput");
+            Intrinsics3.checkNotNullExpressionValue(textInputLayout2, "binding.serverSettingsVanityInput");
             Companion.access$translateLeft(companion2, textInputLayout2, width);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.widgets.servers.WidgetServerSettingsVanityUrl$updateVanityUrl$1, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetServerSettingsVanityUrl.kt */
-    public final class AnonymousClass1 extends o implements Function1<VanityUrlResponse, Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function1<VanityUrlResponse, Unit> {
         public AnonymousClass1() {
             super(1);
         }
@@ -163,7 +164,7 @@ public final class WidgetServerSettingsVanityUrl extends AppFragment {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(VanityUrlResponse vanityUrlResponse) {
-            m.checkNotNullParameter(vanityUrlResponse, "<name for destructuring parameter 0>");
+            Intrinsics3.checkNotNullParameter(vanityUrlResponse, "<name for destructuring parameter 0>");
             String code = vanityUrlResponse.getCode();
             int uses = vanityUrlResponse.getUses();
             WidgetServerSettingsVanityUrl.access$showLoadingUI(WidgetServerSettingsVanityUrl.this, false);
@@ -198,14 +199,14 @@ public final class WidgetServerSettingsVanityUrl extends AppFragment {
         public final void onClick(View view) {
             WidgetServerSettingsVanityUrl widgetServerSettingsVanityUrl = WidgetServerSettingsVanityUrl.this;
             TextInputLayout textInputLayout = WidgetServerSettingsVanityUrl.access$getBinding$p(widgetServerSettingsVanityUrl).f2588b;
-            m.checkNotNullExpressionValue(textInputLayout, "binding.serverSettingsVanityInput");
+            Intrinsics3.checkNotNullExpressionValue(textInputLayout, "binding.serverSettingsVanityInput");
             widgetServerSettingsVanityUrl.showKeyboard(textInputLayout);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.widgets.servers.WidgetServerSettingsVanityUrl$updateVanityUrl$2, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetServerSettingsVanityUrl.kt */
-    public final class AnonymousClass2 extends o implements Function1<Error, Unit> {
+    public final class AnonymousClass2 extends Lambda implements Function1<Error, Unit> {
         public AnonymousClass2() {
             super(1);
         }
@@ -218,14 +219,14 @@ public final class WidgetServerSettingsVanityUrl extends AppFragment {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(Error error) {
-            m.checkNotNullParameter(error, "error");
+            Intrinsics3.checkNotNullParameter(error, "error");
             WidgetServerSettingsVanityUrl.access$showLoadingUI(WidgetServerSettingsVanityUrl.this, false);
             Error.Response response = error.getResponse();
-            m.checkNotNullExpressionValue(response, "error.response");
+            Intrinsics3.checkNotNullExpressionValue(response, "error.response");
             if (response.getCode() == 50020) {
                 error.setShowErrorToasts(false);
                 TextView textView = WidgetServerSettingsVanityUrl.access$getBinding$p(WidgetServerSettingsVanityUrl.this).d;
-                m.checkNotNullExpressionValue(textView, "binding.serverSettingsVanityUrlErrorText");
+                Intrinsics3.checkNotNullExpressionValue(textView, "binding.serverSettingsVanityUrlErrorText");
                 textView.setVisibility(0);
             }
         }
@@ -245,11 +246,11 @@ public final class WidgetServerSettingsVanityUrl extends AppFragment {
         }
 
         public final void create(Context context, long guildId) {
-            m.checkNotNullParameter(context, "context");
+            Intrinsics3.checkNotNullParameter(context, "context");
             StoreStream.INSTANCE.getAnalytics().onGuildSettingsPaneViewed("VANITY_URL", guildId);
             Intent intentPutExtra = new Intent().putExtra("INTENT_EXTRA_GUILD_ID", guildId);
-            m.checkNotNullExpressionValue(intentPutExtra, "Intent()\n          .putE…_EXTRA_GUILD_ID, guildId)");
-            j.d(context, WidgetServerSettingsVanityUrl.class, intentPutExtra);
+            Intrinsics3.checkNotNullExpressionValue(intentPutExtra, "Intent()\n          .putE…_EXTRA_GUILD_ID, guildId)");
+            AppScreen2.d(context, WidgetServerSettingsVanityUrl.class, intentPutExtra);
         }
 
         private final void translateLeft(View view, int i) {
@@ -282,8 +283,8 @@ public final class WidgetServerSettingsVanityUrl extends AppFragment {
 
             public final Observable<Model> get(long guildId) {
                 StoreStream.Companion companion = StoreStream.INSTANCE;
-                Observable<Model> observableH = Observable.h(StoreUser.observeMe$default(companion.getUsers(), false, 1, null), companion.getPermissions().observePermissionsForGuild(guildId), companion.getGuilds().observeGuild(guildId), ObservableExtensionsKt.restSubscribeOn$default(RestAPI.INSTANCE.getApi().getVanityUrl(guildId), false, 1, null), new WidgetServerSettingsVanityUrl$Model$Companion$get$1(guildId));
-                m.checkNotNullExpressionValue(observableH, "Observable.combineLatest…ull\n          }\n        }");
+                Observable<Model> observableH = Observable.h(StoreUser.observeMe$default(companion.getUsers(), false, 1, null), companion.getPermissions().observePermissionsForGuild(guildId), companion.getGuilds().observeGuild(guildId), ObservableExtensionsKt.restSubscribeOn$default(RestAPI.INSTANCE.getApi().getVanityUrl(guildId), false, 1, null), new WidgetServerSettingsVanityUrl2(guildId));
+                Intrinsics3.checkNotNullExpressionValue(observableH, "Observable.combineLatest…ull\n          }\n        }");
                 return observableH;
             }
 
@@ -330,7 +331,7 @@ public final class WidgetServerSettingsVanityUrl extends AppFragment {
                 return false;
             }
             Model model = (Model) other;
-            return this.guildId == model.guildId && m.areEqual(this.guildName, model.guildName) && m.areEqual(this.vanityUrl, model.vanityUrl) && this.vanityUrlUses == model.vanityUrlUses;
+            return this.guildId == model.guildId && Intrinsics3.areEqual(this.guildName, model.guildName) && Intrinsics3.areEqual(this.vanityUrl, model.vanityUrl) && this.vanityUrlUses == model.vanityUrlUses;
         }
 
         /* JADX INFO: renamed from: component1, reason: from getter */
@@ -378,23 +379,23 @@ public final class WidgetServerSettingsVanityUrl extends AppFragment {
         }
 
         public String toString() {
-            StringBuilder sbU = a.U("Model(guildId=");
+            StringBuilder sbU = outline.U("Model(guildId=");
             sbU.append(this.guildId);
             sbU.append(", guildName=");
             sbU.append(this.guildName);
             sbU.append(", vanityUrl=");
             sbU.append(this.vanityUrl);
             sbU.append(", vanityUrlUses=");
-            return a.B(sbU, this.vanityUrlUses, ")");
+            return outline.B(sbU, this.vanityUrlUses, ")");
         }
     }
 
     public WidgetServerSettingsVanityUrl() {
         super(R.layout.widget_server_settings_vanity_url);
-        this.binding = FragmentViewBindingDelegateKt.viewBinding$default(this, WidgetServerSettingsVanityUrl$binding$2.INSTANCE, null, 2, null);
+        this.binding = FragmentViewBindingDelegate3.viewBinding$default(this, WidgetServerSettingsVanityUrl3.INSTANCE, null, 2, null);
         this.state = new StatefulViews(R.id.server_settings_vanity_input);
-        this.guildId = g.lazy(new WidgetServerSettingsVanityUrl$guildId$2(this));
-        this.loggingConfig = new LoggingConfig(false, null, WidgetServerSettingsVanityUrl$loggingConfig$1.INSTANCE, 3);
+        this.guildId = LazyJVM.lazy(new WidgetServerSettingsVanityUrl4(this));
+        this.loggingConfig = new AppLogger2(false, null, WidgetServerSettingsVanityUrl5.INSTANCE, 3);
     }
 
     public static final /* synthetic */ void access$configureInviteCode(WidgetServerSettingsVanityUrl widgetServerSettingsVanityUrl, String str, int i) {
@@ -427,22 +428,22 @@ public final class WidgetServerSettingsVanityUrl extends AppFragment {
         boolean z2;
         boolean z3;
         TextInputLayout textInputLayout = getBinding().f2588b;
-        m.checkNotNullExpressionValue(textInputLayout, "binding.serverSettingsVanityInput");
+        Intrinsics3.checkNotNullExpressionValue(textInputLayout, "binding.serverSettingsVanityInput");
         StatefulViews statefulViews = this.state;
         TextInputLayout textInputLayout2 = getBinding().f2588b;
-        m.checkNotNullExpressionValue(textInputLayout2, "binding.serverSettingsVanityInput");
+        Intrinsics3.checkNotNullExpressionValue(textInputLayout2, "binding.serverSettingsVanityInput");
         ViewExtensions.setText(textInputLayout, (CharSequence) statefulViews.get(textInputLayout2.getId(), code));
         getBinding().f2588b.clearFocus();
         if (code != null) {
             if (code.length() > 0) {
-                String strW = a.w("https://discord.gg/", code);
+                String strW = outline.w("https://discord.gg/", code);
                 TextView textView = getBinding().c;
-                m.checkNotNullExpressionValue(textView, "binding.serverSettingsVanityUrlCurrentUrl");
-                b.a.k.b.n(textView, R.string.vanity_url_help_extended, new Object[]{strW}, null, 4);
+                Intrinsics3.checkNotNullExpressionValue(textView, "binding.serverSettingsVanityUrlCurrentUrl");
+                FormatUtils.n(textView, R.string.vanity_url_help_extended, new Object[]{strW}, null, 4);
             }
         }
         TextView textView2 = getBinding().c;
-        m.checkNotNullExpressionValue(textView2, "binding.serverSettingsVanityUrlCurrentUrl");
+        Intrinsics3.checkNotNullExpressionValue(textView2, "binding.serverSettingsVanityUrlCurrentUrl");
         if (code == null) {
             z2 = false;
         } else {
@@ -454,7 +455,7 @@ public final class WidgetServerSettingsVanityUrl extends AppFragment {
         }
         textView2.setVisibility(z2 ? 0 : 8);
         TextView textView3 = getBinding().i;
-        m.checkNotNullExpressionValue(textView3, "binding.serverSettingsVanityUrlRemove");
+        Intrinsics3.checkNotNullExpressionValue(textView3, "binding.serverSettingsVanityUrlRemove");
         if (code == null) {
             z3 = false;
         } else {
@@ -469,10 +470,10 @@ public final class WidgetServerSettingsVanityUrl extends AppFragment {
             getBinding().e.setText(R.string.vanity_url);
             return;
         }
-        CharSequence i18nPluralString = StringResourceUtilsKt.getI18nPluralString(requireContext(), R.plurals.vanity_url_header_uses_uses, uses, Integer.valueOf(uses));
+        CharSequence i18nPluralString = StringResourceUtils.getI18nPluralString(requireContext(), R.plurals.vanity_url_header_uses_uses, uses, Integer.valueOf(uses));
         TextView textView4 = getBinding().e;
-        m.checkNotNullExpressionValue(textView4, "binding.serverSettingsVanityUrlHeader");
-        b.a.k.b.n(textView4, R.string.vanity_url_header_uses, new Object[]{i18nPluralString}, null, 4);
+        Intrinsics3.checkNotNullExpressionValue(textView4, "binding.serverSettingsVanityUrlHeader");
+        FormatUtils.n(textView4, R.string.vanity_url_header_uses, new Object[]{i18nPluralString}, null, 4);
     }
 
     private final void configureUI(Model model) {
@@ -502,7 +503,7 @@ public final class WidgetServerSettingsVanityUrl extends AppFragment {
     }
 
     @Override // com.discord.app.AppFragment, com.discord.app.AppLogger.a
-    public LoggingConfig getLoggingConfig() {
+    public AppLogger2 getLoggingConfig() {
         return this.loggingConfig;
     }
 
@@ -515,30 +516,30 @@ public final class WidgetServerSettingsVanityUrl extends AppFragment {
 
     @Override // com.discord.app.AppFragment
     public void onViewBound(View view) {
-        m.checkNotNullParameter(view, "view");
+        Intrinsics3.checkNotNullParameter(view, "view");
         super.onViewBound(view);
         AppFragment.setActionBarDisplayHomeAsUpEnabled$default(this, false, 1, null);
         TextInputLayout textInputLayout = getBinding().f2588b;
-        m.checkNotNullExpressionValue(textInputLayout, "binding.serverSettingsVanityInput");
+        Intrinsics3.checkNotNullExpressionValue(textInputLayout, "binding.serverSettingsVanityInput");
         ViewExtensions.setOnEditTextFocusChangeListener(textInputLayout, new AnonymousClass1());
         getBinding().f.setOnClickListener(new AnonymousClass2());
         this.state.setupUnsavedChangesConfirmation(this);
         StatefulViews statefulViews = this.state;
         FloatingActionButton floatingActionButton = getBinding().j;
         TextInputLayout textInputLayout2 = getBinding().f2588b;
-        m.checkNotNullExpressionValue(textInputLayout2, "binding.serverSettingsVanityInput");
+        Intrinsics3.checkNotNullExpressionValue(textInputLayout2, "binding.serverSettingsVanityInput");
         statefulViews.setupTextWatcherWithSaveAction(this, floatingActionButton, textInputLayout2);
     }
 
     private final void showLoadingUI(boolean loading) {
         ProgressBar progressBar = getBinding().g;
-        m.checkNotNullExpressionValue(progressBar, "binding.serverSettingsVanityUrlLoadingIndicator");
+        Intrinsics3.checkNotNullExpressionValue(progressBar, "binding.serverSettingsVanityUrlLoadingIndicator");
         progressBar.setVisibility(loading ? 0 : 8);
         TextView textView = getBinding().d;
-        m.checkNotNullExpressionValue(textView, "binding.serverSettingsVanityUrlErrorText");
+        Intrinsics3.checkNotNullExpressionValue(textView, "binding.serverSettingsVanityUrlErrorText");
         textView.setVisibility(8);
         TextView textView2 = getBinding().i;
-        m.checkNotNullExpressionValue(textView2, "binding.serverSettingsVanityUrlRemove");
+        Intrinsics3.checkNotNullExpressionValue(textView2, "binding.serverSettingsVanityUrlRemove");
         textView2.setEnabled(!loading);
     }
 

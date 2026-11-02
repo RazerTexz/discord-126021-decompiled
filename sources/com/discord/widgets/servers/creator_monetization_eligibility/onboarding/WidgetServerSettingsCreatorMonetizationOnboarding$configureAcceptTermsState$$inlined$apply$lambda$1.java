@@ -2,8 +2,8 @@ package com.discord.widgets.servers.creator_monetization_eligibility.onboarding;
 
 import android.widget.CompoundButton;
 import android.widget.ScrollView;
-import com.discord.utilities.view.extensions.ScrollViewExtensionsKt;
-import d0.z.d.m;
+import com.discord.utilities.view.extensions.ScrollViewExtensions;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: WidgetServerSettingsCreatorMonetizationOnboarding.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -21,8 +21,8 @@ public final class WidgetServerSettingsCreatorMonetizationOnboarding$configureAc
         WidgetServerSettingsCreatorMonetizationOnboarding.access$getViewModel$p(this.this$0).setHasAcceptedTerms(z2);
         if (z2) {
             ScrollView scrollView = WidgetServerSettingsCreatorMonetizationOnboarding.access$getAcceptTermsBinding$p(this.this$0).d;
-            m.checkNotNullExpressionValue(scrollView, "acceptTermsBinding.acceptTermsScrollView");
-            ScrollViewExtensionsKt.flashScrollBars(scrollView);
+            Intrinsics3.checkNotNullExpressionValue(scrollView, "acceptTermsBinding.acceptTermsScrollView");
+            ScrollViewExtensions.flashScrollBars(scrollView);
         }
     }
 }

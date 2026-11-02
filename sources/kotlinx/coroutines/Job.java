@@ -5,9 +5,9 @@ import kotlin.Unit;
 import kotlin.coroutines.CoroutineContext;
 import kotlin.jvm.functions.Function1;
 import kotlin.sequences.Sequence;
-import s.a.m0;
-import s.a.p;
-import s.a.r;
+import s.a.Job2;
+import s.a.Job4;
+import s.a.Job6;
 
 /* JADX INFO: compiled from: Job.kt */
 /* JADX INFO: loaded from: classes3.dex */
@@ -26,7 +26,7 @@ public interface Job extends CoroutineContext.Element {
         }
     }
 
-    p D(r child);
+    Job4 D(Job6 child);
 
     boolean a();
 
@@ -34,11 +34,11 @@ public interface Job extends CoroutineContext.Element {
 
     Sequence<Job> e();
 
-    m0 n(boolean onCancelling, boolean invokeImmediately, Function1<? super Throwable, Unit> handler);
+    Job2 n(boolean onCancelling, boolean invokeImmediately, Function1<? super Throwable, Unit> handler);
 
     CancellationException q();
 
     boolean start();
 
-    m0 u(Function1<? super Throwable, Unit> handler);
+    Job2 u(Function1<? super Throwable, Unit> handler);
 }

@@ -4,7 +4,7 @@ import android.graphics.Rect;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.annotation.RestrictTo;
-import b.d.b.a.a;
+import b.d.b.a.outline;
 
 /* JADX INFO: loaded from: classes.dex */
 public final class Insets {
@@ -76,14 +76,14 @@ public final class Insets {
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("Insets{left=");
+        StringBuilder sbU = outline.U("Insets{left=");
         sbU.append(this.left);
         sbU.append(", top=");
         sbU.append(this.top);
         sbU.append(", right=");
         sbU.append(this.right);
         sbU.append(", bottom=");
-        return a.A(sbU, this.bottom, '}');
+        return outline.A(sbU, this.bottom, '}');
     }
 
     @NonNull

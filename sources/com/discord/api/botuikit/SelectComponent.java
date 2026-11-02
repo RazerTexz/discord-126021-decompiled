@@ -1,21 +1,21 @@
 package com.discord.api.botuikit;
 
-import b.d.b.a.a;
-import d0.z.d.m;
+import b.d.b.a.outline;
+import d0.z.d.Intrinsics3;
 import java.util.List;
 
 /* JADX INFO: compiled from: SelectComponent.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class SelectComponent extends ActionComponent {
+public final /* data */ class SelectComponent extends Component5 {
     private final String customId;
     private final boolean disabled;
     private final int maxValues;
     private final int minValues;
-    private final List<SelectItem> options;
+    private final List<SelectComponent2> options;
     private final String placeholder;
-    private final ComponentType type;
+    private final Component6 type;
 
-    public final List<SelectItem> e() {
+    public final List<SelectComponent2> e() {
         return this.options;
     }
 
@@ -27,7 +27,7 @@ public final /* data */ class SelectComponent extends ActionComponent {
             return false;
         }
         SelectComponent selectComponent = (SelectComponent) other;
-        return m.areEqual(this.type, selectComponent.type) && m.areEqual(this.customId, selectComponent.customId) && this.disabled == selectComponent.disabled && m.areEqual(this.placeholder, selectComponent.placeholder) && this.minValues == selectComponent.minValues && this.maxValues == selectComponent.maxValues && m.areEqual(this.options, selectComponent.options);
+        return Intrinsics3.areEqual(this.type, selectComponent.type) && Intrinsics3.areEqual(this.customId, selectComponent.customId) && this.disabled == selectComponent.disabled && Intrinsics3.areEqual(this.placeholder, selectComponent.placeholder) && this.minValues == selectComponent.minValues && this.maxValues == selectComponent.maxValues && Intrinsics3.areEqual(this.options, selectComponent.options);
     }
 
     /* JADX INFO: renamed from: a, reason: from getter */
@@ -56,7 +56,7 @@ public final /* data */ class SelectComponent extends ActionComponent {
     }
 
     @Override // com.discord.api.botuikit.Component
-    public ComponentType getType() {
+    public Component6 getType() {
         return this.type;
     }
 
@@ -66,8 +66,8 @@ public final /* data */ class SelectComponent extends ActionComponent {
     /* JADX WARN: Type inference failed for: r2v14 */
     /* JADX WARN: Type inference failed for: r2v4, types: [int] */
     public int hashCode() {
-        ComponentType componentType = this.type;
-        int iHashCode = (componentType != null ? componentType.hashCode() : 0) * 31;
+        Component6 component6 = this.type;
+        int iHashCode = (component6 != null ? component6.hashCode() : 0) * 31;
         String str = this.customId;
         int iHashCode2 = (iHashCode + (str != null ? str.hashCode() : 0)) * 31;
         boolean z2 = this.disabled;
@@ -78,12 +78,12 @@ public final /* data */ class SelectComponent extends ActionComponent {
         int i = (iHashCode2 + r2) * 31;
         String str2 = this.placeholder;
         int iHashCode3 = (((((i + (str2 != null ? str2.hashCode() : 0)) * 31) + this.minValues) * 31) + this.maxValues) * 31;
-        List<SelectItem> list = this.options;
+        List<SelectComponent2> list = this.options;
         return iHashCode3 + (list != null ? list.hashCode() : 0);
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("SelectComponent(type=");
+        StringBuilder sbU = outline.U("SelectComponent(type=");
         sbU.append(this.type);
         sbU.append(", customId=");
         sbU.append(this.customId);
@@ -96,6 +96,6 @@ public final /* data */ class SelectComponent extends ActionComponent {
         sbU.append(", maxValues=");
         sbU.append(this.maxValues);
         sbU.append(", options=");
-        return a.L(sbU, this.options, ")");
+        return outline.L(sbU, this.options, ")");
     }
 }

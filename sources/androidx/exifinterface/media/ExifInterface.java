@@ -16,8 +16,8 @@ import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
 import androidx.core.view.InputDeviceCompat;
 import androidx.media.AudioAttributesCompat;
-import b.d.b.a.a;
-import com.discord.widgets.chat.input.MentionUtilsKt;
+import b.d.b.a.outline;
+import com.discord.widgets.chat.input.MentionUtils;
 import com.discord.widgets.chat.input.autocomplete.AutocompleteViewModel;
 import com.google.android.material.badge.BadgeDrawable;
 import java.io.BufferedInputStream;
@@ -676,7 +676,7 @@ public class ExifInterface {
             if (byteOrder == BIG_ENDIAN) {
                 return (i << 24) + (i2 << 16) + (i3 << 8) + i4;
             }
-            StringBuilder sbU = a.U("Invalid byte order: ");
+            StringBuilder sbU = outline.U("Invalid byte order: ");
             sbU.append(this.mByteOrder);
             throw new IOException(sbU.toString());
         }
@@ -708,7 +708,7 @@ public class ExifInterface {
             if (byteOrder == BIG_ENDIAN) {
                 return (((long) i) << 56) + (((long) i2) << 48) + (((long) i3) << 40) + (((long) i4) << 32) + (((long) i5) << 24) + (((long) i6) << 16) + (((long) i7) << 8) + ((long) i8);
             }
-            StringBuilder sbU = a.U("Invalid byte order: ");
+            StringBuilder sbU = outline.U("Invalid byte order: ");
             sbU.append(this.mByteOrder);
             throw new IOException(sbU.toString());
         }
@@ -728,7 +728,7 @@ public class ExifInterface {
             if (byteOrder == BIG_ENDIAN) {
                 return (short) ((i << 8) + i2);
             }
-            StringBuilder sbU = a.U("Invalid byte order: ");
+            StringBuilder sbU = outline.U("Invalid byte order: ");
             sbU.append(this.mByteOrder);
             throw new IOException(sbU.toString());
         }
@@ -764,7 +764,7 @@ public class ExifInterface {
             if (byteOrder == BIG_ENDIAN) {
                 return (i << 8) + i2;
             }
-            StringBuilder sbU = a.U("Invalid byte order: ");
+            StringBuilder sbU = outline.U("Invalid byte order: ");
             sbU.append(this.mByteOrder);
             throw new IOException(sbU.toString());
         }
@@ -794,7 +794,7 @@ public class ExifInterface {
                     }
                     iSkip = this.mDataInputStream.read(this.mSkipBuffer, 0, Math.min(8192, i3));
                     if (iSkip == -1) {
-                        throw new EOFException(a.r("Reached EOF while skipping ", i, " bytes."));
+                        throw new EOFException(outline.r("Reached EOF while skipping ", i, " bytes."));
                     }
                 }
                 i2 += iSkip;
@@ -1087,7 +1087,7 @@ public class ExifInterface {
             Rational[] rationalArr = (Rational[]) value;
             while (i < rationalArr.length) {
                 sb.append(rationalArr[i].numerator);
-                sb.append(MentionUtilsKt.SLASH_CHAR);
+                sb.append(MentionUtils.SLASH_CHAR);
                 sb.append(rationalArr[i].denominator);
                 i++;
                 if (i != rationalArr.length) {
@@ -1323,10 +1323,10 @@ public class ExifInterface {
         }
 
         public String toString() {
-            StringBuilder sbU = a.U("(");
+            StringBuilder sbU = outline.U("(");
             sbU.append(ExifInterface.IFD_FORMAT_NAMES[this.format]);
             sbU.append(", data length:");
-            return a.B(sbU, this.bytes.length, ")");
+            return outline.B(sbU, this.bytes.length, ")");
         }
 
         public ExifAttribute(int i, int i2, long j, byte[] bArr) {
@@ -1525,13 +1525,13 @@ public class ExifInterface {
         while (true) {
             byte[] bArr3 = new byte[4];
             if (byteOrderedDataInputStream.read(bArr3) != 4) {
-                StringBuilder sbU = a.U("Encountered invalid length while copying WebP chunks up tochunk type ");
+                StringBuilder sbU = outline.U("Encountered invalid length while copying WebP chunks up tochunk type ");
                 Charset charset = ASCII;
                 sbU.append(new String(bArr, charset));
                 if (bArr2 == null) {
                     string = "";
                 } else {
-                    StringBuilder sbU2 = a.U(" or ");
+                    StringBuilder sbU2 = outline.U(" or ");
                     sbU2.append(new String(bArr2, charset));
                     string = sbU2.toString();
                 }
@@ -1644,7 +1644,7 @@ public class ExifInterface {
             if (str.equals(TAG_GPS_TIMESTAMP)) {
                 int i = exifAttribute.format;
                 if (i != 5 && i != 10) {
-                    StringBuilder sbU = a.U("GPS Timestamp format is not rational. format=");
+                    StringBuilder sbU = outline.U("GPS Timestamp format is not rational. format=");
                     sbU.append(exifAttribute.format);
                     Log.w(TAG, sbU.toString());
                     return null;
@@ -1653,7 +1653,7 @@ public class ExifInterface {
                 if (rationalArr != null && rationalArr.length == 3) {
                     return String.format("%02d:%02d:%02d", Integer.valueOf((int) (rationalArr[0].numerator / rationalArr[0].denominator)), Integer.valueOf((int) (rationalArr[1].numerator / rationalArr[1].denominator)), Integer.valueOf((int) (rationalArr[2].numerator / rationalArr[2].denominator)));
                 }
-                StringBuilder sbU2 = a.U("Invalid GPS Timestamp array. array=");
+                StringBuilder sbU2 = outline.U("Invalid GPS Timestamp array. array=");
                 sbU2.append(Arrays.toString(rationalArr));
                 Log.w(TAG, sbU2.toString());
                 return null;
@@ -1950,7 +1950,7 @@ public class ExifInterface {
             if (exifAttribute4 != null) {
                 int[] iArr = (int[]) exifAttribute4.getValue(this.mExifByteOrder);
                 if (iArr == null || iArr.length != 4) {
-                    StringBuilder sbU = a.U("Invalid aspect frame values. frame=");
+                    StringBuilder sbU = outline.U("Invalid aspect frame values. frame=");
                     sbU.append(Arrays.toString(iArr));
                     Log.w(TAG, sbU.toString());
                 } else {
@@ -2046,7 +2046,7 @@ public class ExifInterface {
         byteOrderedDataInputStream.setByteOrder(ByteOrder.BIG_ENDIAN);
         int i4 = byteOrderedDataInputStream.readInt();
         if (z2) {
-            a.n0("numberOfDirectoryEntry: ", i4, TAG);
+            outline.n0("numberOfDirectoryEntry: ", i4, TAG);
         }
         for (int i5 = 0; i5 < i4; i5++) {
             int unsignedShort = byteOrderedDataInputStream.readUnsignedShort();
@@ -2971,13 +2971,13 @@ public class ExifInterface {
         int unsignedShort = byteOrderedDataInputStream.readUnsignedShort();
         int i = this.mMimeType;
         if (i != 7 && i != 10 && unsignedShort != 42) {
-            StringBuilder sbU = a.U("Invalid start code: ");
+            StringBuilder sbU = outline.U("Invalid start code: ");
             sbU.append(Integer.toHexString(unsignedShort));
             throw new IOException(sbU.toString());
         }
         int i2 = byteOrderedDataInputStream.readInt();
         if (i2 < 8) {
-            throw new IOException(a.q("Invalid first Ifd offset: ", i2));
+            throw new IOException(outline.q("Invalid first Ifd offset: ", i2));
         }
         int i3 = i2 - 8;
         if (i3 > 0) {
@@ -2987,12 +2987,12 @@ public class ExifInterface {
 
     private void printAttributes() {
         for (int i = 0; i < this.mAttributes.length; i++) {
-            StringBuilder sbV = a.V("The size of tag group[", i, "]: ");
+            StringBuilder sbV = outline.V("The size of tag group[", i, "]: ");
             sbV.append(this.mAttributes[i].size());
             Log.d(TAG, sbV.toString());
             for (Map.Entry<String, ExifAttribute> entry : this.mAttributes[i].entrySet()) {
                 ExifAttribute value = entry.getValue();
-                StringBuilder sbU = a.U("tagName: ");
+                StringBuilder sbU = outline.U("tagName: ");
                 sbU.append(entry.getKey());
                 sbU.append(", tagType: ");
                 sbU.append(value.toString());
@@ -3018,7 +3018,7 @@ public class ExifInterface {
             }
             return ByteOrder.BIG_ENDIAN;
         }
-        StringBuilder sbU = a.U("Invalid byte order: ");
+        StringBuilder sbU = outline.U("Invalid byte order: ");
         sbU.append(Integer.toHexString(s2));
         throw new IOException(sbU.toString());
     }
@@ -3077,7 +3077,7 @@ public class ExifInterface {
         this.mAttributesOffsets.add(Integer.valueOf(seekableByteOrderedDataInputStream.mPosition));
         short s4 = seekableByteOrderedDataInputStream.readShort();
         if (DEBUG) {
-            a.n0("numberOfDirectoryEntry: ", s4, TAG);
+            outline.n0("numberOfDirectoryEntry: ", s4, TAG);
         }
         if (s4 <= 0) {
             return;
@@ -3113,14 +3113,14 @@ public class ExifInterface {
                             j = ((long) i4) * ((long) iArr[unsignedShort3]);
                             if (j < 0 || j > 2147483647L) {
                                 if (z3) {
-                                    a.n0("Skip the tag entry since the number of components is invalid: ", i4, TAG);
+                                    outline.n0("Skip the tag entry since the number of components is invalid: ", i4, TAG);
                                 }
                                 z2 = false;
                             } else {
                                 z2 = true;
                             }
                         } else if (z3) {
-                            StringBuilder sbU = a.U("Skip the tag entry since data format (");
+                            StringBuilder sbU = outline.U("Skip the tag entry since data format (");
                             sbU.append(IFD_FORMAT_NAMES[unsignedShort3]);
                             sbU.append(") is unexpected for tag: ");
                             sbU.append(exifTag.name);
@@ -3131,7 +3131,7 @@ public class ExifInterface {
                         if (j > 4) {
                             i3 = seekableByteOrderedDataInputStream.readInt();
                             if (z3) {
-                                a.n0("seek to data offset: ", i3, TAG);
+                                outline.n0("seek to data offset: ", i3, TAG);
                             }
                             if (this.mMimeType != 7) {
                                 i2 = i4;
@@ -3227,7 +3227,7 @@ public class ExifInterface {
                 s2 = s4;
                 s3 = s5;
                 if (z3) {
-                    a.n0("Skip the tag entry since data format is invalid: ", unsignedShort3, TAG);
+                    outline.n0("Skip the tag entry since data format is invalid: ", unsignedShort3, TAG);
                 }
                 j = 0;
                 z2 = false;
@@ -3237,7 +3237,7 @@ public class ExifInterface {
                     if (j > 4) {
                         i3 = seekableByteOrderedDataInputStream.readInt();
                         if (z3) {
-                            a.n0("seek to data offset: ", i3, TAG);
+                            outline.n0("seek to data offset: ", i3, TAG);
                         }
                         if (this.mMimeType != 7) {
                             i2 = i4;
@@ -3321,7 +3321,7 @@ public class ExifInterface {
                 c = 0;
                 s4 = s2;
             } else if (z3) {
-                a.n0("Skip the tag entry since tag number is not defined: ", unsignedShort2, TAG);
+                outline.n0("Skip the tag entry since tag number is not defined: ", unsignedShort2, TAG);
             }
             s2 = s4;
             s3 = s5;
@@ -3333,7 +3333,7 @@ public class ExifInterface {
                 if (j > 4) {
                     i3 = seekableByteOrderedDataInputStream.readInt();
                     if (z3) {
-                        a.n0("seek to data offset: ", i3, TAG);
+                        outline.n0("seek to data offset: ", i3, TAG);
                     }
                     if (this.mMimeType != 7) {
                         i2 = i4;
@@ -3425,12 +3425,12 @@ public class ExifInterface {
         long j2 = i5;
         if (j2 <= 0) {
             if (z4) {
-                a.n0("Stop reading file since a wrong offset may cause an infinite loop: ", i5, TAG);
+                outline.n0("Stop reading file since a wrong offset may cause an infinite loop: ", i5, TAG);
             }
         } else {
             if (this.mAttributesOffsets.contains(Integer.valueOf(i5))) {
                 if (z4) {
-                    a.n0("Stop reading file since re-reading an IFD may cause an infinite loop: ", i5, TAG);
+                    outline.n0("Stop reading file since re-reading an IFD may cause an infinite loop: ", i5, TAG);
                     return;
                 }
                 return;
@@ -4064,14 +4064,14 @@ public class ExifInterface {
                             if (i7 == i3 || i7 == 7 || i7 == i2) {
                                 i = i7;
                             } else if (DEBUG) {
-                                StringBuilder sbY = a.Y("Given tag (", str3, ") value didn't match with one of expected formats: ");
+                                StringBuilder sbY = outline.Y("Given tag (", str3, ") value didn't match with one of expected formats: ");
                                 String[] strArr = IFD_FORMAT_NAMES;
                                 sbY.append(strArr[exifTag.primaryFormat]);
                                 String string2 = "";
                                 if (exifTag.secondaryFormat == -1) {
                                     string = "";
                                 } else {
-                                    StringBuilder sbU = a.U(", ");
+                                    StringBuilder sbU = outline.U(", ");
                                     sbU.append(strArr[exifTag.secondaryFormat]);
                                     string = sbU.toString();
                                 }
@@ -4079,7 +4079,7 @@ public class ExifInterface {
                                 sbY.append(" (guess: ");
                                 sbY.append(strArr[((Integer) pairGuessDataFormat.first).intValue()]);
                                 if (((Integer) pairGuessDataFormat.second).intValue() != -1) {
-                                    StringBuilder sbU2 = a.U(", ");
+                                    StringBuilder sbU2 = outline.U(", ");
                                     sbU2.append(strArr[((Integer) pairGuessDataFormat.second).intValue()]);
                                     string2 = sbU2.toString();
                                 }
@@ -4132,7 +4132,7 @@ public class ExifInterface {
                         case 11:
                         default:
                             if (DEBUG) {
-                                a.n0("Data format isn't one of expected formats: ", i, TAG);
+                                outline.n0("Data format isn't one of expected formats: ", i, TAG);
                             }
                             break;
                         case 9:
@@ -4185,7 +4185,7 @@ public class ExifInterface {
         }
         String string = Long.toString(l.longValue() % 1000);
         for (int length = string.length(); length < 3; length++) {
-            string = a.w("0", string);
+            string = outline.w("0", string);
         }
         setAttribute(TAG_DATETIME, sFormatterPrimary.format(new Date(l.longValue())));
         setAttribute(TAG_SUBSEC_TIME, string);
@@ -4313,7 +4313,7 @@ public class ExifInterface {
         if (exifAttribute.format == 5) {
             Rational[] rationalArr = (Rational[]) exifAttribute.getValue(this.mExifByteOrder);
             if (rationalArr == null || rationalArr.length != 2) {
-                StringBuilder sbU = a.U("Invalid crop size values. cropSize=");
+                StringBuilder sbU = outline.U("Invalid crop size values. cropSize=");
                 sbU.append(Arrays.toString(rationalArr));
                 Log.w(TAG, sbU.toString());
                 return;
@@ -4323,7 +4323,7 @@ public class ExifInterface {
         } else {
             int[] iArr = (int[]) exifAttribute.getValue(this.mExifByteOrder);
             if (iArr == null || iArr.length != 2) {
-                StringBuilder sbU2 = a.U("Invalid crop size values. cropSize=");
+                StringBuilder sbU2 = outline.U("Invalid crop size values. cropSize=");
                 sbU2.append(Arrays.toString(iArr));
                 Log.w(TAG, sbU2.toString());
                 return;
@@ -4552,7 +4552,7 @@ public class ExifInterface {
         try {
             return new double[]{convertRationalLatLonToDouble(attribute, attribute2), convertRationalLatLonToDouble(attribute3, attribute4)};
         } catch (IllegalArgumentException unused) {
-            StringBuilder sbU = a.U("Latitude/longitude values are not parsable. ");
+            StringBuilder sbU = outline.U("Latitude/longitude values are not parsable. ");
             sbU.append(String.format("latValue=%s, latRef=%s, lngValue=%s, lngRef=%s", attribute, attribute2, attribute3, attribute4));
             Log.w(TAG, sbU.toString());
             return null;

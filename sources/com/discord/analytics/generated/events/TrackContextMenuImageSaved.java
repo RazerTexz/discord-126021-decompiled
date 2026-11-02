@@ -1,14 +1,14 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackContextMenuImageSaved.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackContextMenuImageSaved implements AnalyticsSchema, TrackBaseReceiver {
+public final /* data */ class TrackContextMenuImageSaved implements AnalyticsSchema, TrackBase2 {
     private final Long channelId = null;
     private TrackBase trackBase;
     private final CharSequence url = null;
@@ -22,7 +22,7 @@ public final /* data */ class TrackContextMenuImageSaved implements AnalyticsSch
             return false;
         }
         TrackContextMenuImageSaved trackContextMenuImageSaved = (TrackContextMenuImageSaved) other;
-        return m.areEqual(this.channelId, trackContextMenuImageSaved.channelId) && m.areEqual(this.url, trackContextMenuImageSaved.url);
+        return Intrinsics3.areEqual(this.channelId, trackContextMenuImageSaved.channelId) && Intrinsics3.areEqual(this.url, trackContextMenuImageSaved.url);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -39,9 +39,9 @@ public final /* data */ class TrackContextMenuImageSaved implements AnalyticsSch
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackContextMenuImageSaved(channelId=");
+        StringBuilder sbU = outline.U("TrackContextMenuImageSaved(channelId=");
         sbU.append(this.channelId);
         sbU.append(", url=");
-        return a.E(sbU, this.url, ")");
+        return outline.E(sbU, this.url, ")");
     }
 }

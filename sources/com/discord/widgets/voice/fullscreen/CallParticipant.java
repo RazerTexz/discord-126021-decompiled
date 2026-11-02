@@ -1,6 +1,6 @@
 package com.discord.widgets.voice.fullscreen;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.api.application.ApplicationAsset;
 import com.discord.api.voice.state.VoiceState;
 import com.discord.models.commands.Application;
@@ -8,7 +8,7 @@ import com.discord.models.domain.ModelAuditLogEntry;
 import com.discord.models.embeddedactivities.EmbeddedActivity;
 import com.discord.models.guild.UserGuildMember;
 import com.discord.views.calls.VideoCallParticipantView;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 import java.util.List;
 import kotlin.jvm.internal.DefaultConstructorMarker;
 
@@ -27,9 +27,9 @@ public abstract class CallParticipant {
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
         public EmbeddedActivityParticipant(EmbeddedActivity embeddedActivity, List<UserGuildMember> list, Application application, ApplicationAsset applicationAsset) {
             super(null);
-            m.checkNotNullParameter(embeddedActivity, "embeddedActivity");
-            m.checkNotNullParameter(list, "participantsInActivity");
-            m.checkNotNullParameter(application, "application");
+            Intrinsics3.checkNotNullParameter(embeddedActivity, "embeddedActivity");
+            Intrinsics3.checkNotNullParameter(list, "participantsInActivity");
+            Intrinsics3.checkNotNullParameter(application, "application");
             this.embeddedActivity = embeddedActivity;
             this.participantsInActivity = list;
             this.application = application;
@@ -59,9 +59,9 @@ public abstract class CallParticipant {
         }
 
         public final EmbeddedActivityParticipant copy(EmbeddedActivity embeddedActivity, List<UserGuildMember> participantsInActivity, Application application, ApplicationAsset backgroundAsset) {
-            m.checkNotNullParameter(embeddedActivity, "embeddedActivity");
-            m.checkNotNullParameter(participantsInActivity, "participantsInActivity");
-            m.checkNotNullParameter(application, "application");
+            Intrinsics3.checkNotNullParameter(embeddedActivity, "embeddedActivity");
+            Intrinsics3.checkNotNullParameter(participantsInActivity, "participantsInActivity");
+            Intrinsics3.checkNotNullParameter(application, "application");
             return new EmbeddedActivityParticipant(embeddedActivity, participantsInActivity, application, backgroundAsset);
         }
 
@@ -73,7 +73,7 @@ public abstract class CallParticipant {
                 return false;
             }
             EmbeddedActivityParticipant embeddedActivityParticipant = (EmbeddedActivityParticipant) other;
-            return m.areEqual(this.embeddedActivity, embeddedActivityParticipant.embeddedActivity) && m.areEqual(this.participantsInActivity, embeddedActivityParticipant.participantsInActivity) && m.areEqual(this.application, embeddedActivityParticipant.application) && m.areEqual(this.backgroundAsset, embeddedActivityParticipant.backgroundAsset);
+            return Intrinsics3.areEqual(this.embeddedActivity, embeddedActivityParticipant.embeddedActivity) && Intrinsics3.areEqual(this.participantsInActivity, embeddedActivityParticipant.participantsInActivity) && Intrinsics3.areEqual(this.application, embeddedActivityParticipant.application) && Intrinsics3.areEqual(this.backgroundAsset, embeddedActivityParticipant.backgroundAsset);
         }
 
         /* JADX INFO: renamed from: component3, reason: from getter */
@@ -129,7 +129,7 @@ public abstract class CallParticipant {
         }
 
         public String toString() {
-            StringBuilder sbU = a.U("EmbeddedActivityParticipant(embeddedActivity=");
+            StringBuilder sbU = outline.U("EmbeddedActivityParticipant(embeddedActivity=");
             sbU.append(this.embeddedActivity);
             sbU.append(", participantsInActivity=");
             sbU.append(this.participantsInActivity);
@@ -150,7 +150,7 @@ public abstract class CallParticipant {
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
         public UserOrStreamParticipant(VideoCallParticipantView.ParticipantData participantData) {
             super(null);
-            m.checkNotNullParameter(participantData, "participantData");
+            Intrinsics3.checkNotNullParameter(participantData, "participantData");
             this.participantData = participantData;
             this.id = participantData.id;
         }
@@ -163,13 +163,13 @@ public abstract class CallParticipant {
         }
 
         public final UserOrStreamParticipant copy(VideoCallParticipantView.ParticipantData participantData) {
-            m.checkNotNullParameter(participantData, "participantData");
+            Intrinsics3.checkNotNullParameter(participantData, "participantData");
             return new UserOrStreamParticipant(participantData);
         }
 
         public boolean equals(Object other) {
             if (this != other) {
-                return (other instanceof UserOrStreamParticipant) && m.areEqual(this.participantData, ((UserOrStreamParticipant) other).participantData);
+                return (other instanceof UserOrStreamParticipant) && Intrinsics3.areEqual(this.participantData, ((UserOrStreamParticipant) other).participantData);
             }
             return true;
         }
@@ -204,7 +204,7 @@ public abstract class CallParticipant {
         }
 
         public String toString() {
-            StringBuilder sbU = a.U("UserOrStreamParticipant(participantData=");
+            StringBuilder sbU = outline.U("UserOrStreamParticipant(participantData=");
             sbU.append(this.participantData);
             sbU.append(")");
             return sbU.toString();

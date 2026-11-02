@@ -1,16 +1,16 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.analytics.generated.traits.TrackMarketingSite;
-import com.discord.analytics.generated.traits.TrackMarketingSiteReceiver;
+import com.discord.analytics.generated.traits.TrackMarketingSite2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackViewLanding.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackViewLanding implements AnalyticsSchema, TrackBaseReceiver, TrackMarketingSiteReceiver {
+public final /* data */ class TrackViewLanding implements AnalyticsSchema, TrackBase2, TrackMarketingSite2 {
     private final CharSequence game = null;
     private final CharSequence locale = null;
     private TrackBase trackBase;
@@ -25,7 +25,7 @@ public final /* data */ class TrackViewLanding implements AnalyticsSchema, Track
             return false;
         }
         TrackViewLanding trackViewLanding = (TrackViewLanding) other;
-        return m.areEqual(this.game, trackViewLanding.game) && m.areEqual(this.locale, trackViewLanding.locale);
+        return Intrinsics3.areEqual(this.game, trackViewLanding.game) && Intrinsics3.areEqual(this.locale, trackViewLanding.locale);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -42,9 +42,9 @@ public final /* data */ class TrackViewLanding implements AnalyticsSchema, Track
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackViewLanding(game=");
+        StringBuilder sbU = outline.U("TrackViewLanding(game=");
         sbU.append(this.game);
         sbU.append(", locale=");
-        return a.E(sbU, this.locale, ")");
+        return outline.E(sbU, this.locale, ")");
     }
 }

@@ -2,10 +2,10 @@ package com.discord.widgets.directories;
 
 import com.discord.api.directory.DirectoryEntryGuild;
 import com.discord.databinding.DirectoryEntryListItemBinding;
-import com.discord.utilities.guilds.GuildUtilsKt;
+import com.discord.utilities.guilds.GuildUtils;
 import com.discord.utilities.icon.IconUtils;
 import com.discord.views.directories.ServerDiscoveryItem;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: WidgetDirectoryEntryViewHolder.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -14,9 +14,9 @@ public final class DirectoryEntryViewHolder extends DirectoryChannelViewHolder {
 
     /* JADX WARN: Illegal instructions before constructor call */
     public DirectoryEntryViewHolder(DirectoryEntryListItemBinding directoryEntryListItemBinding) {
-        m.checkNotNullParameter(directoryEntryListItemBinding, "viewBinding");
+        Intrinsics3.checkNotNullParameter(directoryEntryListItemBinding, "viewBinding");
         ServerDiscoveryItem serverDiscoveryItem = directoryEntryListItemBinding.a;
-        m.checkNotNullExpressionValue(serverDiscoveryItem, "viewBinding.root");
+        Intrinsics3.checkNotNullExpressionValue(serverDiscoveryItem, "viewBinding.root");
         super(serverDiscoveryItem);
         this.viewBinding = directoryEntryListItemBinding;
     }
@@ -24,8 +24,8 @@ public final class DirectoryEntryViewHolder extends DirectoryChannelViewHolder {
     @Override // com.discord.widgets.directories.DirectoryChannelViewHolder
     public void bind(DirectoryChannelItem item, DirectoryChannelItemClickInterface listener) {
         DirectoryEntryData directoryEntryData;
-        m.checkNotNullParameter(item, "item");
-        m.checkNotNullParameter(listener, "listener");
+        Intrinsics3.checkNotNullParameter(item, "item");
+        Intrinsics3.checkNotNullParameter(listener, "listener");
         if (!(item instanceof DirectoryChannelItem.DirectoryItem)) {
             item = null;
         }
@@ -42,8 +42,8 @@ public final class DirectoryEntryViewHolder extends DirectoryChannelViewHolder {
         Integer approximatePresenceCount = entry.getGuild().getApproximatePresenceCount();
         serverDiscoveryItem.setOnline(approximatePresenceCount != null ? approximatePresenceCount.intValue() : 0);
         String forGuild$default = IconUtils.getForGuild$default(Long.valueOf(entry.getGuild().getId()), entry.getGuild().getIcon(), null, false, null, 28, null);
-        String strComputeShortName = GuildUtilsKt.computeShortName(entry.getGuild().getName());
-        m.checkNotNullParameter(strComputeShortName, "fallbackText");
+        String strComputeShortName = GuildUtils.computeShortName(entry.getGuild().getName());
+        Intrinsics3.checkNotNullParameter(strComputeShortName, "fallbackText");
         serverDiscoveryItem.binding.f.a(forGuild$default, strComputeShortName);
         if (directoryEntryData.getHasJoinedGuild()) {
             serverDiscoveryItem.setJoinButtonOnClickListener(null);

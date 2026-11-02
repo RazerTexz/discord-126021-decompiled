@@ -1,15 +1,24 @@
 package b.a.q;
 
-import co.discord.media_engine.MediaType;
+import b.a.q.n0.RtcControlSocket;
+import b.a.q.o0.RtcStatsCollector4;
+import b.a.q.o0.VideoQuality;
 import co.discord.media_engine.StreamParameters;
-import com.discord.rtcconnection.EncodeQuality;
+import co.discord.media_engine.StreamParameters2;
 import com.discord.rtcconnection.MediaSinkWantsManager;
+import com.discord.rtcconnection.MediaSinkWantsManager9;
 import com.discord.rtcconnection.RtcConnection;
 import com.discord.rtcconnection.VideoMetadata;
 import com.discord.rtcconnection.mediaengine.MediaEngine;
 import com.discord.rtcconnection.mediaengine.MediaEngineConnection;
 import com.discord.rtcconnection.socket.io.Payloads;
 import com.discord.utilities.logging.Logger;
+import d0.t.Collections2;
+import d0.t.CollectionsJVM;
+import d0.t.Iterables2;
+import d0.t.MutableCollections;
+import d0.t._Collections;
+import d0.z.d.Intrinsics3;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
@@ -23,24 +32,24 @@ import org.webrtc.MediaStreamTrack;
 
 /* JADX INFO: compiled from: RtcConnection.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final class h0 implements b.a.q.n0.a.d {
+public final class h0 implements RtcControlSocket.d {
     public final /* synthetic */ RtcConnection a;
 
     public h0(RtcConnection rtcConnection) {
         this.a = rtcConnection;
     }
 
-    @Override // b.a.q.n0.a.d
+    @Override // b.a.q.n0.RtcControlSocket.d
     public void a(String str, String str2) {
-        d0.z.d.m.checkNotNullParameter(str, "audioCodec");
-        d0.z.d.m.checkNotNullParameter(str2, "videoCodec");
+        Intrinsics3.checkNotNullParameter(str, "audioCodec");
+        Intrinsics3.checkNotNullParameter(str2, "videoCodec");
         MediaEngineConnection mediaEngineConnection = this.a.mediaEngineConnection;
         if (mediaEngineConnection != null) {
             mediaEngineConnection.r(str, str2);
         }
     }
 
-    @Override // b.a.q.n0.a.d
+    @Override // b.a.q.n0.RtcControlSocket.d
     public void b(boolean z2, Integer num, String str) {
         long jCurrentTimeMillis;
         RtcConnection rtcConnection = this.a;
@@ -63,9 +72,9 @@ public final class h0 implements b.a.q.n0.a.d {
         boolean z3 = (num == null || num.intValue() != 1000) && !((jCurrentTimeMillis > 30000L ? 1 : (jCurrentTimeMillis == 30000L ? 0 : -1)) > 0);
         if (!(rtcConnection.connectionStateChange.state instanceof RtcConnection.State.d)) {
             rtcConnection.n(z3, str);
-            b.a.q.o0.d dVar = rtcConnection.rtcStatsCollector;
-            if (dVar != null) {
-                dVar.a();
+            RtcStatsCollector4 rtcStatsCollector4 = rtcConnection.rtcStatsCollector;
+            if (rtcStatsCollector4 != null) {
+                rtcStatsCollector4.a();
             }
             rtcConnection.rtcStatsCollector = null;
             rtcConnection.sentVideo = false;
@@ -74,7 +83,7 @@ public final class h0 implements b.a.q.n0.a.d {
         rtcConnection.connectCompletedTime = null;
         MediaSinkWantsManager mediaSinkWantsManager = rtcConnection.localMediaSinkWantsManager;
         if (mediaSinkWantsManager != null) {
-            mediaSinkWantsManager.b(new g(mediaSinkWantsManager));
+            mediaSinkWantsManager.b(new MediaSinkWantsManager2(mediaSinkWantsManager));
         }
         rtcConnection.u(new RtcConnection.State.d(z3));
         if (z3) {
@@ -82,19 +91,19 @@ public final class h0 implements b.a.q.n0.a.d {
         }
     }
 
-    @Override // b.a.q.n0.a.d
+    @Override // b.a.q.n0.RtcControlSocket.d
     public void c(String str, List<Integer> list) {
-        d0.z.d.m.checkNotNullParameter(str, "mode");
-        d0.z.d.m.checkNotNullParameter(list, "secretKey");
+        Intrinsics3.checkNotNullParameter(str, "mode");
+        Intrinsics3.checkNotNullParameter(list, "secretKey");
         MediaEngineConnection mediaEngineConnection = this.a.mediaEngineConnection;
         if (mediaEngineConnection != null) {
-            mediaEngineConnection.t(str, d0.t.u.toIntArray(list));
+            mediaEngineConnection.t(str, _Collections.toIntArray(list));
         }
     }
 
-    @Override // b.a.q.n0.a.d
+    @Override // b.a.q.n0.RtcControlSocket.d
     public void d(String str) {
-        d0.z.d.m.checkNotNullParameter(str, "mediaSessionId");
+        Intrinsics3.checkNotNullParameter(str, "mediaSessionId");
         RtcConnection rtcConnection = this.a;
         rtcConnection.mediaSessionId = str;
         Iterator<T> it = rtcConnection.listeners.iterator();
@@ -112,7 +121,7 @@ public final class h0 implements b.a.q.n0.a.d {
     /* JADX WARN: Type inference failed for: r3v15 */
     /* JADX WARN: Type inference failed for: r3v8, types: [java.util.List] */
     /* JADX WARN: Type inference failed for: r3v9, types: [java.util.List] */
-    @Override // b.a.q.n0.a.d
+    @Override // b.a.q.n0.RtcControlSocket.d
     public void e(long j, int i, int i2, List<Payloads.Stream> list) {
         VideoMetadata videoMetadata;
         Object next;
@@ -120,35 +129,35 @@ public final class h0 implements b.a.q.n0.a.d {
         Integer ssrc;
         ?? EmptyList;
         RtcConnection rtcConnection = this.a;
-        b.a.q.o0.e eVar = rtcConnection.videoQuality;
+        VideoQuality videoQuality = rtcConnection.videoQuality;
         long j2 = i2;
-        synchronized (eVar) {
+        synchronized (videoQuality) {
             if (j2 != 0) {
-                eVar.n.put(Long.valueOf(j2), Long.valueOf(eVar.q.currentTimeMillis()));
-                Logger.i$default(eVar.p, "VideoQuality: handleVideoStreamUpdate(userId: " + j + ", videoSsrc: " + j2 + ')', null, 2, null);
+                videoQuality.n.put(Long.valueOf(j2), Long.valueOf(videoQuality.q.currentTimeMillis()));
+                Logger.i$default(videoQuality.p, "VideoQuality: handleVideoStreamUpdate(userId: " + j + ", videoSsrc: " + j2 + ')', null, 2, null);
             }
         }
         if (j != rtcConnection.userId) {
             if (rtcConnection.localMediaSinkWantsManager != null) {
                 if (list != null) {
-                    EmptyList = new ArrayList(d0.t.o.collectionSizeOrDefault(list, 10));
+                    EmptyList = new ArrayList(Iterables2.collectionSizeOrDefault(list, 10));
                     Iterator it = list.iterator();
                     while (it.hasNext()) {
                         EmptyList.add(Payloads.Stream.copy$default((Payloads.Stream) it.next(), MediaStreamTrack.VIDEO_TRACK_KIND, null, null, null, null, null, null, Boolean.valueOf(i2 > 0), null, 382, null));
                     }
                 } else {
-                    EmptyList = d0.t.n.emptyList();
+                    EmptyList = Collections2.emptyList();
                 }
                 boolean zIsEmpty = EmptyList.isEmpty();
                 ?? ListOf = EmptyList;
                 if (zIsEmpty) {
-                    ListOf = d0.t.m.listOf(new Payloads.Stream(MediaStreamTrack.VIDEO_TRACK_KIND, "100", null, 100, Integer.valueOf(i2), Integer.valueOf(i2 + 1), null, Boolean.valueOf(i2 > 0), null));
+                    ListOf = CollectionsJVM.listOf(new Payloads.Stream(MediaStreamTrack.VIDEO_TRACK_KIND, "100", null, 100, Integer.valueOf(i2), Integer.valueOf(i2 + 1), null, Boolean.valueOf(i2 > 0), null));
                 }
                 rtcConnection.localMediaSinkWantsManager.c(j, Long.valueOf(i));
                 MediaSinkWantsManager mediaSinkWantsManager = rtcConnection.localMediaSinkWantsManager;
                 Objects.requireNonNull(mediaSinkWantsManager);
-                d0.z.d.m.checkNotNullParameter(ListOf, "ssrcs");
-                mediaSinkWantsManager.b(new l(mediaSinkWantsManager, ListOf, j));
+                Intrinsics3.checkNotNullParameter(ListOf, "ssrcs");
+                mediaSinkWantsManager.b(new MediaSinkWantsManager7(mediaSinkWantsManager, ListOf, j));
                 return;
             }
             if (list != null) {
@@ -166,7 +175,7 @@ public final class h0 implements b.a.q.n0.a.d {
                 Payloads.Stream stream2 = (Payloads.Stream) next;
                 if (stream2 != null) {
                     Payloads.Stream.MaxResolution maxResolution = stream2.getMaxResolution();
-                    d0.z.d.m.checkNotNull(maxResolution);
+                    Intrinsics3.checkNotNull(maxResolution);
                     videoMetadata = new VideoMetadata(j, maxResolution.getWidth(), stream2.getMaxResolution().getHeight(), stream2.getMaxFrameRate(), stream2.getMaxResolution().getType());
                 } else {
                     videoMetadata = null;
@@ -178,10 +187,10 @@ public final class h0 implements b.a.q.n0.a.d {
         }
     }
 
-    @Override // b.a.q.n0.a.d
+    @Override // b.a.q.n0.RtcControlSocket.d
     public void f(Map<String, Integer> map) {
         Integer num;
-        d0.z.d.m.checkNotNullParameter(map, "wants");
+        Intrinsics3.checkNotNullParameter(map, "wants");
         RtcConnection rtcConnection = this.a;
         if (rtcConnection.localMediaSinkWantsManager != null) {
             long j = rtcConnection.videoSsrc;
@@ -191,34 +200,34 @@ public final class h0 implements b.a.q.n0.a.d {
             if (iIntValue <= 0) {
                 iIntValue = iIntValue2 > 0 ? iIntValue2 : 100;
             }
-            e.c cVar = null;
+            MediaSinkWantsLadder3.c cVar = null;
             rtcConnection.logger.i(rtcConnection.loggingTag, "remote MediaSinkWants: " + map + ", decided on encode quality " + iIntValue, null);
-            EncodeQuality[] encodeQualityArrValues = EncodeQuality.values();
+            MediaSinkWantsManager9[] mediaSinkWantsManager9ArrValues = MediaSinkWantsManager9.values();
             for (int i = 10; i >= 0; i--) {
-                EncodeQuality encodeQuality = encodeQualityArrValues[i];
-                if (encodeQuality.getValue() <= iIntValue) {
-                    e eVar = rtcConnection.localMediaSinkWantsManager.j;
-                    j0 j0Var = eVar.e;
-                    d0.z.d.m.checkNotNullParameter(encodeQuality, "wantValue");
-                    List<e.c> list = eVar.d;
-                    ListIterator<e.c> listIterator = list.listIterator(list.size());
+                MediaSinkWantsManager9 mediaSinkWantsManager9 = mediaSinkWantsManager9ArrValues[i];
+                if (mediaSinkWantsManager9.getValue() <= iIntValue) {
+                    MediaSinkWantsLadder3 mediaSinkWantsLadder3 = rtcConnection.localMediaSinkWantsManager.j;
+                    MediaSinkWantsLadder5 mediaSinkWantsLadder5 = mediaSinkWantsLadder3.e;
+                    Intrinsics3.checkNotNullParameter(mediaSinkWantsManager9, "wantValue");
+                    List<MediaSinkWantsLadder3.c> list = mediaSinkWantsLadder3.d;
+                    ListIterator<MediaSinkWantsLadder3.c> listIterator = list.listIterator(list.size());
                     while (listIterator.hasPrevious()) {
-                        e.c cVarPrevious = listIterator.previous();
-                        if (encodeQuality.compareTo(cVarPrevious.c) >= 0) {
+                        MediaSinkWantsLadder3.c cVarPrevious = listIterator.previous();
+                        if (mediaSinkWantsManager9.compareTo(cVarPrevious.c) >= 0) {
                             cVar = cVarPrevious;
                             break;
                         }
                     }
-                    e.c cVar2 = cVar;
+                    MediaSinkWantsLadder3.c cVar2 = cVar;
                     if (cVar2 == null) {
-                        cVar2 = (e.c) d0.t.u.first((List) eVar.d);
+                        cVar2 = (MediaSinkWantsLadder3.c) _Collections.first((List) mediaSinkWantsLadder3.d);
                     }
-                    n nVar = cVar2.a;
-                    int iMax = Math.max((int) (((double) j0Var.c.a) * nVar.c), j0Var.d);
-                    int iMax2 = Math.max((int) (((double) j0Var.c.f255b) * nVar.c), j0Var.d);
+                    MediaSinkWantsLadder6 mediaSinkWantsLadder6 = cVar2.a;
+                    int iMax = Math.max((int) (((double) mediaSinkWantsLadder5.c.a) * mediaSinkWantsLadder6.c), mediaSinkWantsLadder5.d);
+                    int iMax2 = Math.max((int) (((double) mediaSinkWantsLadder5.c.f255b) * mediaSinkWantsLadder6.c), mediaSinkWantsLadder5.d);
                     MediaEngineConnection mediaEngineConnection = rtcConnection.mediaEngineConnection;
                     if (mediaEngineConnection != null) {
-                        mediaEngineConnection.m(new MediaEngineConnection.b(iMax, iMax2, nVar.a, nVar.f274b, nVar.d, nVar.e));
+                        mediaEngineConnection.m(new MediaEngineConnection.b(iMax, iMax2, mediaSinkWantsLadder6.a, mediaSinkWantsLadder6.f274b, mediaSinkWantsLadder6.d, mediaSinkWantsLadder6.e));
                         return;
                     }
                     return;
@@ -228,13 +237,13 @@ public final class h0 implements b.a.q.n0.a.d {
         }
     }
 
-    @Override // b.a.q.n0.a.d
+    @Override // b.a.q.n0.RtcControlSocket.d
     public void g(long j) {
         RtcConnection.Quality quality;
         RtcConnection rtcConnection = this.a;
         rtcConnection.pings.add(Long.valueOf(j));
         if (rtcConnection.pings.size() > 5) {
-            d0.t.r.removeFirst(rtcConnection.pings);
+            MutableCollections.removeFirst(rtcConnection.pings);
         }
         if (j > 500) {
             rtcConnection.pingBadCount++;
@@ -254,37 +263,37 @@ public final class h0 implements b.a.q.n0.a.d {
         }
     }
 
-    @Override // b.a.q.n0.a.d
+    @Override // b.a.q.n0.RtcControlSocket.d
     public void h() {
     }
 
-    @Override // b.a.q.n0.a.d
+    @Override // b.a.q.n0.RtcControlSocket.d
     public void i() {
         RtcConnection rtcConnection = this.a;
         rtcConnection.reconnectBackoff.cancel();
         rtcConnection.logger.recordBreadcrumb("Connected to RTC server.", rtcConnection.loggingTag);
-        b.a.q.n0.a aVar = rtcConnection.socket;
-        if (aVar == null) {
+        RtcControlSocket rtcControlSocket = rtcConnection.socket;
+        if (rtcControlSocket == null) {
             RtcConnection.o(rtcConnection, "onSocketConnect() socket was null.", null, null, 6);
             return;
         }
-        List listListOf = d0.t.m.listOf(new Payloads.Stream(MediaStreamTrack.VIDEO_TRACK_KIND, "100", null, 100, null, null, null, null, null));
+        List listListOf = CollectionsJVM.listOf(new Payloads.Stream(MediaStreamTrack.VIDEO_TRACK_KIND, "100", null, 100, null, null, null, null, null));
         String str = rtcConnection.rtcServerId;
         long j = rtcConnection.userId;
         String str2 = rtcConnection.sessionId;
         boolean z2 = rtcConnection.isVideoEnabled;
-        d0.z.d.m.checkNotNullParameter(str, "serverId");
-        d0.z.d.m.checkNotNullParameter(str2, "sessionId");
-        d0.z.d.m.checkNotNullParameter(listListOf, "streams");
-        aVar.H.a();
-        aVar.t = str;
-        aVar.u = str2;
-        aVar.B = b.a.q.n0.a.c.IDENTIFYING;
-        aVar.n(0, new Payloads.Identify(str, j, str2, aVar.E, z2, listListOf));
+        Intrinsics3.checkNotNullParameter(str, "serverId");
+        Intrinsics3.checkNotNullParameter(str2, "sessionId");
+        Intrinsics3.checkNotNullParameter(listListOf, "streams");
+        rtcControlSocket.H.a();
+        rtcControlSocket.t = str;
+        rtcControlSocket.u = str2;
+        rtcControlSocket.B = RtcControlSocket.c.IDENTIFYING;
+        rtcControlSocket.n(0, new Payloads.Identify(str, j, str2, rtcControlSocket.E, z2, listListOf));
         rtcConnection.u(RtcConnection.State.a.a);
     }
 
-    @Override // b.a.q.n0.a.d
+    @Override // b.a.q.n0.RtcControlSocket.d
     public void j(long j) {
         Map<String, Object> mapC;
         RtcConnection rtcConnection = this.a;
@@ -297,25 +306,25 @@ public final class h0 implements b.a.q.n0.a.d {
         }
         MediaSinkWantsManager mediaSinkWantsManager2 = rtcConnection.localMediaSinkWantsManager;
         if (mediaSinkWantsManager2 != null) {
-            List listEmptyList = d0.t.n.emptyList();
-            d0.z.d.m.checkNotNullParameter(listEmptyList, "ssrcs");
-            mediaSinkWantsManager2.b(new l(mediaSinkWantsManager2, listEmptyList, j));
+            List listEmptyList = Collections2.emptyList();
+            Intrinsics3.checkNotNullParameter(listEmptyList, "ssrcs");
+            mediaSinkWantsManager2.b(new MediaSinkWantsManager7(mediaSinkWantsManager2, listEmptyList, j));
         }
     }
 
-    @Override // b.a.q.n0.a.d
+    @Override // b.a.q.n0.RtcControlSocket.d
     public void k(int i, int i2, String str, List<Payloads.Stream> list) {
         MediaEngineConnection.Type type;
-        d0.z.d.m.checkNotNullParameter(str, "ip");
-        d0.z.d.m.checkNotNullParameter(list, "streams");
+        Intrinsics3.checkNotNullParameter(str, "ip");
+        Intrinsics3.checkNotNullParameter(list, "streams");
         RtcConnection rtcConnection = this.a;
         Objects.requireNonNull(rtcConnection);
         rtcConnection.r("Discovered dedicated UDP server on port " + i);
         rtcConnection.u(RtcConnection.State.g.a);
-        ArrayList arrayList = new ArrayList(d0.t.o.collectionSizeOrDefault(list, 10));
+        ArrayList arrayList = new ArrayList(Iterables2.collectionSizeOrDefault(list, 10));
         for (Iterator it = list.iterator(); it.hasNext(); it = it) {
             Payloads.Stream stream = (Payloads.Stream) it.next();
-            MediaType mediaType = MediaStreamTrack.VIDEO_TRACK_KIND.equals(stream.getType()) ? MediaType.Video : MediaType.Audio;
+            StreamParameters2 streamParameters2 = MediaStreamTrack.VIDEO_TRACK_KIND.equals(stream.getType()) ? StreamParameters2.Video : StreamParameters2.Audio;
             String rid = stream.getRid();
             if (rid == null) {
                 rid = "";
@@ -330,18 +339,18 @@ public final class h0 implements b.a.q.n0.a.d {
             Integer maxBitrate = stream.getMaxBitrate();
             int iIntValue3 = maxBitrate != null ? maxBitrate.intValue() : 0;
             Integer quality = stream.getQuality();
-            arrayList.add(new StreamParameters(mediaType, str2, iIntValue, iIntValue2, zBooleanValue, iIntValue3, quality != null ? quality.intValue() : 100, 0));
+            arrayList.add(new StreamParameters(streamParameters2, str2, iIntValue, iIntValue2, zBooleanValue, iIntValue3, quality != null ? quality.intValue() : 100, 0));
         }
         boolean zIsEmpty = arrayList.isEmpty();
         List listListOf = arrayList;
         if (zIsEmpty) {
-            listListOf = d0.t.m.listOf(new StreamParameters(MediaType.Video, "100", i2 + 1, i2 + 2, false, 0, 100, 0));
+            listListOf = CollectionsJVM.listOf(new StreamParameters(StreamParameters2.Video, "100", i2 + 1, i2 + 2, false, 0, 100, 0));
         }
         MediaEngine mediaEngine = rtcConnection.mediaEngine;
         long j = rtcConnection.userId;
         MediaEngine.a aVar = new MediaEngine.a(i2, str, i, listListOf);
         RtcConnection.d dVar = rtcConnection.rtcConnectionType;
-        if (d0.z.d.m.areEqual(dVar, RtcConnection.d.a.a)) {
+        if (Intrinsics3.areEqual(dVar, RtcConnection.d.a.a)) {
             type = MediaEngineConnection.Type.DEFAULT;
         } else {
             if (!(dVar instanceof RtcConnection.d.b)) {
@@ -358,19 +367,19 @@ public final class h0 implements b.a.q.n0.a.d {
         }
     }
 
-    @Override // b.a.q.n0.a.d
+    @Override // b.a.q.n0.RtcControlSocket.d
     public void onConnecting() {
         RtcConnection rtcConnection = this.a;
         rtcConnection.reconnectBackoff.cancel();
         StringBuilder sb = new StringBuilder();
         sb.append("Connecting to RTC server ");
-        b.a.q.n0.a aVar = rtcConnection.socket;
-        sb.append(aVar != null ? aVar.D : null);
+        RtcControlSocket rtcControlSocket = rtcConnection.socket;
+        sb.append(rtcControlSocket != null ? rtcControlSocket.D : null);
         rtcConnection.r(sb.toString());
         rtcConnection.u(RtcConnection.State.c.a);
     }
 
-    @Override // b.a.q.n0.a.d
+    @Override // b.a.q.n0.RtcControlSocket.d
     public void onSpeaking(long j, int i, boolean z2) {
         RtcConnection rtcConnection = this.a;
         if (j != rtcConnection.userId) {

@@ -1,12 +1,12 @@
 package com.discord.widgets.friends;
 
-import d0.z.d.o;
+import d0.z.d.Lambda;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 
 /* JADX INFO: compiled from: WidgetFriendsListAdapter.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class WidgetFriendsListAdapter$ItemSuggestedFriend$onConfigure$2 extends o implements Function0<Unit> {
+public final class WidgetFriendsListAdapter$ItemSuggestedFriend$onConfigure$2 extends Lambda implements Function0<Unit> {
     public final /* synthetic */ FriendsListViewModel.Item $data;
     public final /* synthetic */ WidgetFriendsListAdapter.ItemSuggestedFriend this$0;
 

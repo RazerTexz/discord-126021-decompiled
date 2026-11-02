@@ -6,9 +6,10 @@ import android.view.View;
 import android.widget.TextView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import b.a.d.AppToast;
 import b.a.d.o;
-import b.a.k.b;
-import b.d.b.a.a;
+import b.a.k.FormatUtils;
+import b.d.b.a.outline;
 import com.discord.R;
 import com.discord.app.AppBottomSheet;
 import com.discord.databinding.WidgetServerSettingsInstantInviteActionsBinding;
@@ -19,10 +20,10 @@ import com.discord.utilities.intent.IntentUtils;
 import com.discord.utilities.rest.RestAPI;
 import com.discord.utilities.rx.ObservableExtensionsKt;
 import com.discord.utilities.viewbinding.FragmentViewBindingDelegate;
-import com.discord.utilities.viewbinding.FragmentViewBindingDelegateKt;
-import d0.g0.t;
-import d0.z.d.k;
-import d0.z.d.m;
+import com.discord.utilities.viewbinding.FragmentViewBindingDelegate3;
+import d0.g0.StringsJVM;
+import d0.z.d.FunctionReferenceImpl;
+import d0.z.d.Intrinsics3;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function1;
 import kotlin.jvm.internal.DefaultConstructorMarker;
@@ -31,7 +32,7 @@ import kotlin.reflect.KProperty;
 /* JADX INFO: compiled from: WidgetServerSettingsInstantInvitesActions.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetServerSettingsInstantInvitesActions extends AppBottomSheet {
-    public static final /* synthetic */ KProperty[] $$delegatedProperties = {a.d0(WidgetServerSettingsInstantInvitesActions.class, "binding", "getBinding()Lcom/discord/databinding/WidgetServerSettingsInstantInviteActionsBinding;", 0)};
+    public static final /* synthetic */ KProperty[] $$delegatedProperties = {outline.d0(WidgetServerSettingsInstantInvitesActions.class, "binding", "getBinding()Lcom/discord/databinding/WidgetServerSettingsInstantInviteActionsBinding;", 0)};
     private static final String ARG_INVITE_CODE = "ARG_INVITE_CODE";
 
     /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
@@ -47,8 +48,8 @@ public final class WidgetServerSettingsInstantInvitesActions extends AppBottomSh
 
         /* JADX INFO: renamed from: com.discord.widgets.servers.WidgetServerSettingsInstantInvitesActions$onResume$1$1, reason: invalid class name and collision with other inner class name */
         /* JADX INFO: compiled from: WidgetServerSettingsInstantInvitesActions.kt */
-        public final /* synthetic */ class C04301 extends k implements Function1<ModelInvite, Unit> {
-            public C04301(WidgetServerSettingsInstantInvitesActions widgetServerSettingsInstantInvitesActions) {
+        public final /* synthetic */ class C03101 extends FunctionReferenceImpl implements Function1<ModelInvite, Unit> {
+            public C03101(WidgetServerSettingsInstantInvitesActions widgetServerSettingsInstantInvitesActions) {
                 super(1, widgetServerSettingsInstantInvitesActions, WidgetServerSettingsInstantInvitesActions.class, "handleInviteRevoked", "handleInviteRevoked(Lcom/discord/models/domain/ModelInvite;)V", 0);
             }
 
@@ -60,7 +61,7 @@ public final class WidgetServerSettingsInstantInvitesActions extends AppBottomSh
 
             /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
             public final void invoke2(ModelInvite modelInvite) {
-                m.checkNotNullParameter(modelInvite, "p1");
+                Intrinsics3.checkNotNullParameter(modelInvite, "p1");
                 WidgetServerSettingsInstantInvitesActions.access$handleInviteRevoked((WidgetServerSettingsInstantInvitesActions) this.receiver, modelInvite);
             }
         }
@@ -71,7 +72,7 @@ public final class WidgetServerSettingsInstantInvitesActions extends AppBottomSh
 
         @Override // android.view.View.OnClickListener
         public final void onClick(View view) {
-            ObservableExtensionsKt.ui$default(ObservableExtensionsKt.restSubscribeOn$default(RestAPI.INSTANCE.getApi().revokeInvite(this.$inviteCode), false, 1, null), WidgetServerSettingsInstantInvitesActions.this, null, 2, null).k(o.h(new WidgetServerSettingsInstantInvitesActions$sam$rx_functions_Action1$0(new C04301(WidgetServerSettingsInstantInvitesActions.this)), WidgetServerSettingsInstantInvitesActions.this.getContext(), null));
+            ObservableExtensionsKt.ui$default(ObservableExtensionsKt.restSubscribeOn$default(RestAPI.INSTANCE.getApi().revokeInvite(this.$inviteCode), false, 1, null), WidgetServerSettingsInstantInvitesActions.this, null, 2, null).k(o.h(new WidgetServerSettingsInstantInvitesActions3(new C03101(WidgetServerSettingsInstantInvitesActions.this)), WidgetServerSettingsInstantInvitesActions.this.getContext(), null));
         }
     }
 
@@ -86,7 +87,7 @@ public final class WidgetServerSettingsInstantInvitesActions extends AppBottomSh
 
         @Override // android.view.View.OnClickListener
         public final void onClick(View view) {
-            b.a.d.m.c(a.x(view, "it", "it.context"), this.$inviteUrl, 0, 4);
+            AppToast.c(outline.x(view, "it", "it.context"), this.$inviteUrl, 0, 4);
             WidgetServerSettingsInstantInvitesActions.this.dismiss();
         }
     }
@@ -102,9 +103,9 @@ public final class WidgetServerSettingsInstantInvitesActions extends AppBottomSh
 
         @Override // android.view.View.OnClickListener
         public final void onClick(View view) {
-            Context contextX = a.x(view, "it", "it.context");
+            Context contextX = outline.x(view, "it", "it.context");
             String str = this.$inviteUrl;
-            IntentUtils.performChooserSendIntent(contextX, str, b.k(WidgetServerSettingsInstantInvitesActions.this, R.string.share_invite_mobile, new Object[]{str}, null, 4));
+            IntentUtils.performChooserSendIntent(contextX, str, FormatUtils.k(WidgetServerSettingsInstantInvitesActions.this, R.string.share_invite_mobile, new Object[]{str}, null, 4));
             WidgetServerSettingsInstantInvitesActions.this.dismiss();
         }
     }
@@ -115,8 +116,8 @@ public final class WidgetServerSettingsInstantInvitesActions extends AppBottomSh
         }
 
         public final void create(FragmentManager fragmentManager, String inviteCode) {
-            m.checkNotNullParameter(fragmentManager, "fragmentManager");
-            m.checkNotNullParameter(inviteCode, "inviteCode");
+            Intrinsics3.checkNotNullParameter(fragmentManager, "fragmentManager");
+            Intrinsics3.checkNotNullParameter(inviteCode, "inviteCode");
             WidgetServerSettingsInstantInvitesActions widgetServerSettingsInstantInvitesActions = new WidgetServerSettingsInstantInvitesActions();
             Bundle bundle = new Bundle();
             bundle.putString(WidgetServerSettingsInstantInvitesActions.ARG_INVITE_CODE, inviteCode);
@@ -131,7 +132,7 @@ public final class WidgetServerSettingsInstantInvitesActions extends AppBottomSh
 
     public WidgetServerSettingsInstantInvitesActions() {
         super(false, 1, null);
-        this.binding = FragmentViewBindingDelegateKt.viewBinding$default(this, WidgetServerSettingsInstantInvitesActions$binding$2.INSTANCE, null, 2, null);
+        this.binding = FragmentViewBindingDelegate3.viewBinding$default(this, WidgetServerSettingsInstantInvitesActions2.INSTANCE, null, 2, null);
     }
 
     public static final /* synthetic */ void access$handleInviteRevoked(WidgetServerSettingsInstantInvitesActions widgetServerSettingsInstantInvitesActions, ModelInvite modelInvite) {
@@ -160,18 +161,18 @@ public final class WidgetServerSettingsInstantInvitesActions extends AppBottomSh
     public void onResume() {
         super.onResume();
         String string = getArgumentsOrDefault().getString(ARG_INVITE_CODE);
-        if (string == null || t.isBlank(string)) {
+        if (string == null || StringsJVM.isBlank(string)) {
             dismiss();
             return;
         }
         String strCreateLinkFromCode = InviteUtils.INSTANCE.createLinkFromCode(string, null);
         if (string.length() == 0) {
             TextView textView = getBinding().e;
-            m.checkNotNullExpressionValue(textView, "binding.inviteActionsTitle");
+            Intrinsics3.checkNotNullExpressionValue(textView, "binding.inviteActionsTitle");
             textView.setVisibility(8);
         } else {
             TextView textView2 = getBinding().e;
-            m.checkNotNullExpressionValue(textView2, "binding.inviteActionsTitle");
+            Intrinsics3.checkNotNullExpressionValue(textView2, "binding.inviteActionsTitle");
             textView2.setText(string);
         }
         getBinding().c.setOnClickListener(new AnonymousClass1(string));

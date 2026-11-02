@@ -6,6 +6,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import androidx.annotation.WorkerThread;
 import androidx.collection.ArrayMap;
+import b.c.a.a0.AnimatableValueParser;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.BitSet;
@@ -156,7 +157,7 @@ public final class ba extends i9 {
         Cursor cursorRawQuery;
         ?? r9;
         Cursor cursorQuery2;
-        b.c.a.a0.d.w(str);
+        AnimatableValueParser.w(str);
         Objects.requireNonNull(list, "null reference");
         Objects.requireNonNull(list2, "null reference");
         this.d = str;
@@ -184,7 +185,7 @@ public final class ba extends i9 {
             String str7 = this.d;
             gVarQ3.n();
             gVarQ3.b();
-            b.c.a.a0.d.w(str7);
+            AnimatableValueParser.w(str7);
             ContentValues contentValues2 = new ContentValues();
             str2 = "current_session_count";
             contentValues2.put("current_session_count", (Integer) 0);
@@ -206,7 +207,7 @@ public final class ba extends i9 {
             g gVarQ4 = q();
             String str9 = this.d;
             Objects.requireNonNull(gVarQ4);
-            b.c.a.a0.d.w(str9);
+            AnimatableValueParser.w(str9);
             ArrayMap arrayMap4 = new ArrayMap();
             try {
                 try {
@@ -280,7 +281,7 @@ public final class ba extends i9 {
         String str10 = this.d;
         gVarQ5.n();
         gVarQ5.b();
-        b.c.a.a0.d.w(str10);
+        AnimatableValueParser.w(str10);
         try {
             try {
                 cursorQuery = gVarQ5.t().query("audience_filter_values", new String[]{"audience_id", "current_results"}, "app_id=?", new String[]{str10}, null, null, null);
@@ -481,7 +482,7 @@ public final class ba extends i9 {
                             b.i.a.f.h.l.g1 g1VarA = y0VarA.A();
                             gVarQ.n();
                             gVarQ.b();
-                            b.c.a.a0.d.w(str5);
+                            AnimatableValueParser.w(str5);
                             Objects.requireNonNull(g1VarA, "null reference");
                             byte[] bArrD = g1VarA.d();
                             contentValues = new ContentValues();
@@ -533,13 +534,13 @@ public final class ba extends i9 {
             HashSet hashSet = new HashSet(map2.keySet());
             if (z2) {
                 String str11 = this.d;
-                b.c.a.a0.d.w(str11);
+                AnimatableValueParser.w(str11);
                 ArrayMap arrayMap6 = new ArrayMap();
                 if (!map2.isEmpty()) {
                     g gVarQ6 = q();
                     gVarQ6.n();
                     gVarQ6.b();
-                    b.c.a.a0.d.w(str11);
+                    AnimatableValueParser.w(str11);
                     Map arrayMap7 = new ArrayMap();
                     SQLiteDatabase sQLiteDatabaseT2 = gVarQ6.t();
                     try {
@@ -893,7 +894,7 @@ public final class ba extends i9 {
             b.i.a.f.h.l.g1 g1VarA2 = y0VarA2.A();
             gVarQ.n();
             gVarQ.b();
-            b.c.a.a0.d.w(str5);
+            AnimatableValueParser.w(str5);
             Objects.requireNonNull(g1VarA2, "null reference");
             byte[] bArrD2 = g1VarA2.d();
             contentValues = new ContentValues();

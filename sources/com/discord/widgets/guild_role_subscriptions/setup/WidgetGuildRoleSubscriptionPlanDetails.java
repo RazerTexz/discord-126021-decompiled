@@ -7,12 +7,12 @@ import android.view.View;
 import android.widget.ImageView;
 import androidx.constraintlayout.widget.Group;
 import androidx.core.app.NotificationCompat;
-import androidx.core.os.BundleKt;
+import androidx.core.os.Bundle2;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentViewModelLazyKt;
-import b.a.d.f0;
-import b.d.b.a.a;
+import b.a.d.AppViewModelDelegates2;
+import b.d.b.a.outline;
 import com.discord.R;
 import com.discord.app.AppFragment;
 import com.discord.databinding.WidgetGuildRoleSubscriptionPlanDetailsBinding;
@@ -21,16 +21,17 @@ import com.discord.utilities.icon.IconUtils;
 import com.discord.utilities.images.MGImages;
 import com.discord.utilities.rx.ObservableExtensionsKt;
 import com.discord.utilities.view.extensions.ViewExtensions;
-import com.discord.utilities.view.text.TextWatcherKt;
+import com.discord.utilities.view.text.TextWatcher4;
 import com.discord.utilities.viewbinding.FragmentViewBindingDelegate;
-import com.discord.utilities.viewbinding.FragmentViewBindingDelegateKt;
+import com.discord.utilities.viewbinding.FragmentViewBindingDelegate3;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
-import d0.g0.t;
-import d0.z.d.a0;
-import d0.z.d.m;
-import d0.z.d.o;
+import d0.Tuples;
+import d0.g0.StringsJVM;
+import d0.z.d.Intrinsics3;
+import d0.z.d.Lambda;
+import d0.z.d.Reflection2;
 import java.lang.reflect.InvocationTargetException;
 import kotlin.Lazy;
 import kotlin.Unit;
@@ -43,7 +44,7 @@ import rx.functions.Action1;
 /* JADX INFO: compiled from: WidgetGuildRoleSubscriptionPlanDetails.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetGuildRoleSubscriptionPlanDetails extends AppFragment {
-    public static final /* synthetic */ KProperty[] $$delegatedProperties = {a.d0(WidgetGuildRoleSubscriptionPlanDetails.class, "binding", "getBinding()Lcom/discord/databinding/WidgetGuildRoleSubscriptionPlanDetailsBinding;", 0)};
+    public static final /* synthetic */ KProperty[] $$delegatedProperties = {outline.d0(WidgetGuildRoleSubscriptionPlanDetails.class, "binding", "getBinding()Lcom/discord/databinding/WidgetGuildRoleSubscriptionPlanDetailsBinding;", 0)};
 
     /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
     public static final Companion INSTANCE = new Companion(null);
@@ -58,7 +59,7 @@ public final class WidgetGuildRoleSubscriptionPlanDetails extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.guild_role_subscriptions.setup.WidgetGuildRoleSubscriptionPlanDetails$onViewBound$1, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetGuildRoleSubscriptionPlanDetails.kt */
-    public final class AnonymousClass1 extends o implements Function1<String, Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function1<String, Unit> {
         public AnonymousClass1() {
             super(1);
         }
@@ -71,14 +72,14 @@ public final class WidgetGuildRoleSubscriptionPlanDetails extends AppFragment {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(String str) {
-            m.checkNotNullParameter(str, "it");
+            Intrinsics3.checkNotNullParameter(str, "it");
             WidgetGuildRoleSubscriptionPlanDetails.access$getViewModel$p(WidgetGuildRoleSubscriptionPlanDetails.this).updateDescription(str);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.widgets.guild_role_subscriptions.setup.WidgetGuildRoleSubscriptionPlanDetails$onViewBoundOrOnResume$1, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetGuildRoleSubscriptionPlanDetails.kt */
-    public final class AnonymousClass1 extends o implements Function1<GuildRoleSubscriptionPlanDetailsViewModel.ViewState, Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function1<GuildRoleSubscriptionPlanDetailsViewModel.ViewState, Unit> {
         public AnonymousClass1() {
             super(1);
         }
@@ -91,7 +92,7 @@ public final class WidgetGuildRoleSubscriptionPlanDetails extends AppFragment {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(GuildRoleSubscriptionPlanDetailsViewModel.ViewState viewState) {
-            m.checkNotNullParameter(viewState, "it");
+            Intrinsics3.checkNotNullParameter(viewState, "it");
             WidgetGuildRoleSubscriptionPlanDetails.access$configureUI(WidgetGuildRoleSubscriptionPlanDetails.this, viewState);
         }
     }
@@ -122,7 +123,7 @@ public final class WidgetGuildRoleSubscriptionPlanDetails extends AppFragment {
 
         public final WidgetGuildRoleSubscriptionPlanDetails newInstance(boolean hideHeader) {
             WidgetGuildRoleSubscriptionPlanDetails widgetGuildRoleSubscriptionPlanDetails = new WidgetGuildRoleSubscriptionPlanDetails();
-            widgetGuildRoleSubscriptionPlanDetails.setArguments(BundleKt.bundleOf(d0.o.to(WidgetGuildRoleSubscriptionPlanDetails.INTENT_EXTRA_HIDE_HEADER, Boolean.valueOf(hideHeader))));
+            widgetGuildRoleSubscriptionPlanDetails.setArguments(Bundle2.bundleOf(Tuples.to(WidgetGuildRoleSubscriptionPlanDetails.INTENT_EXTRA_HIDE_HEADER, Boolean.valueOf(hideHeader))));
             return widgetGuildRoleSubscriptionPlanDetails;
         }
 
@@ -133,9 +134,9 @@ public final class WidgetGuildRoleSubscriptionPlanDetails extends AppFragment {
 
     public WidgetGuildRoleSubscriptionPlanDetails() {
         super(R.layout.widget_guild_role_subscription_plan_details);
-        this.binding = FragmentViewBindingDelegateKt.viewBinding$default(this, WidgetGuildRoleSubscriptionPlanDetails$binding$2.INSTANCE, null, 2, null);
-        this.viewModel = FragmentViewModelLazyKt.createViewModelLazy(this, a0.getOrCreateKotlinClass(GuildRoleSubscriptionPlanDetailsViewModel.class), new WidgetGuildRoleSubscriptionPlanDetails$appActivityViewModels$$inlined$activityViewModels$1(this), new f0(WidgetGuildRoleSubscriptionPlanDetails$viewModel$2.INSTANCE));
-        this.coverImageSelectedResult = new WidgetGuildRoleSubscriptionPlanDetails$coverImageSelectedResult$1(this);
+        this.binding = FragmentViewBindingDelegate3.viewBinding$default(this, WidgetGuildRoleSubscriptionPlanDetails2.INSTANCE, null, 2, null);
+        this.viewModel = FragmentViewModelLazyKt.createViewModelLazy(this, Reflection2.getOrCreateKotlinClass(GuildRoleSubscriptionPlanDetailsViewModel.class), new WidgetGuildRoleSubscriptionPlanDetails$appActivityViewModels$$inlined$activityViewModels$1(this), new AppViewModelDelegates2(WidgetGuildRoleSubscriptionPlanDetails4.INSTANCE));
+        this.coverImageSelectedResult = new WidgetGuildRoleSubscriptionPlanDetails3(this);
     }
 
     public static final /* synthetic */ void access$configureUI(WidgetGuildRoleSubscriptionPlanDetails widgetGuildRoleSubscriptionPlanDetails, GuildRoleSubscriptionPlanDetailsViewModel.ViewState viewState) {
@@ -149,27 +150,27 @@ public final class WidgetGuildRoleSubscriptionPlanDetails extends AppFragment {
     private final void configureUI(GuildRoleSubscriptionPlanDetailsViewModel.ViewState viewState) {
         String storeAssetImage;
         TextInputLayout textInputLayout = getBinding().d;
-        m.checkNotNullExpressionValue(textInputLayout, "binding.guildRoleSubscriptionPlanDescriptionLayout");
+        Intrinsics3.checkNotNullExpressionValue(textInputLayout, "binding.guildRoleSubscriptionPlanDescriptionLayout");
         ViewExtensions.setTextIfDifferent(textInputLayout, viewState.getDescription());
         String coverImage = viewState.getCoverImage();
-        if (!(coverImage == null || t.isBlank(coverImage))) {
+        if (!(coverImage == null || StringsJVM.isBlank(coverImage))) {
             storeAssetImage = viewState.getCoverImage();
         } else if (viewState.getCoverImageAssetId() != null) {
             IconUtils iconUtils = IconUtils.INSTANCE;
             Long applicationId = viewState.getApplicationId();
             String strValueOf = String.valueOf(viewState.getCoverImageAssetId().longValue());
             SimpleDraweeView simpleDraweeView = getBinding().f2436b;
-            m.checkNotNullExpressionValue(simpleDraweeView, "binding.guildRoleSubscriptionPlanCoverImage");
+            Intrinsics3.checkNotNullExpressionValue(simpleDraweeView, "binding.guildRoleSubscriptionPlanCoverImage");
             storeAssetImage = iconUtils.getStoreAssetImage(applicationId, strValueOf, IconUtils.getMediaProxySize(simpleDraweeView.getMeasuredWidth()));
         } else {
             storeAssetImage = null;
         }
         SimpleDraweeView simpleDraweeView2 = getBinding().f2436b;
-        m.checkNotNullExpressionValue(simpleDraweeView2, "binding.guildRoleSubscriptionPlanCoverImage");
+        Intrinsics3.checkNotNullExpressionValue(simpleDraweeView2, "binding.guildRoleSubscriptionPlanCoverImage");
         MGImages.setImage$default(simpleDraweeView2, storeAssetImage, 0, 0, false, null, null, 124, null);
         ImageView imageView = getBinding().f;
-        m.checkNotNullExpressionValue(imageView, "binding.guildSubscriptionPlanDetailsEditCoverImage");
-        imageView.setVisibility((storeAssetImage == null || t.isBlank(storeAssetImage)) ^ true ? 0 : 8);
+        Intrinsics3.checkNotNullExpressionValue(imageView, "binding.guildSubscriptionPlanDetailsEditCoverImage");
+        imageView.setVisibility((storeAssetImage == null || StringsJVM.isBlank(storeAssetImage)) ^ true ? 0 : 8);
     }
 
     private final WidgetGuildRoleSubscriptionPlanDetailsBinding getBinding() {
@@ -190,32 +191,32 @@ public final class WidgetGuildRoleSubscriptionPlanDetails extends AppFragment {
 
     @Override // com.discord.app.AppFragment
     public void onImageChosen(Uri uri, String mimeType) {
-        m.checkNotNullParameter(uri, NotificationCompat.MessagingStyle.Message.KEY_DATA_URI);
-        m.checkNotNullParameter(mimeType, "mimeType");
+        Intrinsics3.checkNotNullParameter(uri, NotificationCompat.MessagingStyle.Message.KEY_DATA_URI);
+        Intrinsics3.checkNotNullParameter(mimeType, "mimeType");
         super.onImageChosen(uri, mimeType);
         FragmentManager parentFragmentManager = getParentFragmentManager();
-        m.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
+        Intrinsics3.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
         MGImages.prepareImageUpload(uri, mimeType, parentFragmentManager, this, this.coverImageSelectedResult, ImageUploadDialog.PreviewType.GUILD_SUBSCRIPTION_ROLE_AVATAR);
     }
 
     @Override // com.discord.app.AppFragment
     public void onImageCropped(Uri uri, String mimeType) throws IllegalAccessException, InvocationTargetException {
-        m.checkNotNullParameter(uri, NotificationCompat.MessagingStyle.Message.KEY_DATA_URI);
-        m.checkNotNullParameter(mimeType, "mimeType");
+        Intrinsics3.checkNotNullParameter(uri, NotificationCompat.MessagingStyle.Message.KEY_DATA_URI);
+        Intrinsics3.checkNotNullParameter(mimeType, "mimeType");
         super.onImageCropped(uri, mimeType);
         MGImages.requestDataUrl(getContext(), uri, mimeType, this.coverImageSelectedResult);
     }
 
     @Override // com.discord.app.AppFragment
     public void onViewBound(View view) {
-        m.checkNotNullParameter(view, "view");
+        Intrinsics3.checkNotNullParameter(view, "view");
         super.onViewBound(view);
         TextInputEditText textInputEditText = getBinding().c;
-        m.checkNotNullExpressionValue(textInputEditText, "binding.guildRoleSubscriptionPlanDescription");
-        TextWatcherKt.addLifecycleAwareTextWatcher(textInputEditText, this, new AnonymousClass1());
+        Intrinsics3.checkNotNullExpressionValue(textInputEditText, "binding.guildRoleSubscriptionPlanDescription");
+        TextWatcher4.addLifecycleAwareTextWatcher(textInputEditText, this, new AnonymousClass1());
         getBinding().f2436b.setOnClickListener(new AnonymousClass2());
         Group group = getBinding().e;
-        m.checkNotNullExpressionValue(group, "binding.guildRoleSubscri…ionPlanDetailsHeaderGroup");
+        Intrinsics3.checkNotNullExpressionValue(group, "binding.guildRoleSubscri…ionPlanDetailsHeaderGroup");
         group.setVisibility(getHideHeader() ^ true ? 0 : 8);
     }
 

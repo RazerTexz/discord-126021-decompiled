@@ -1,23 +1,23 @@
 package com.facebook.common.time;
 
 import android.os.SystemClock;
-import b.f.d.d.c;
-import b.f.d.k.b;
+import b.f.d.d.DoNotStrip;
+import b.f.d.k.MonotonicClock;
 
 /* JADX INFO: loaded from: classes.dex */
-@c
-public class RealtimeSinceBootClock implements b {
+@DoNotStrip
+public class RealtimeSinceBootClock implements MonotonicClock {
     public static final RealtimeSinceBootClock a = new RealtimeSinceBootClock();
 
     private RealtimeSinceBootClock() {
     }
 
-    @c
+    @DoNotStrip
     public static RealtimeSinceBootClock get() {
         return a;
     }
 
-    @Override // b.f.d.k.b
+    @Override // b.f.d.k.MonotonicClock
     public long now() {
         return SystemClock.elapsedRealtime();
     }

@@ -1,14 +1,14 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackAccountLinkFailed.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackAccountLinkFailed implements AnalyticsSchema, TrackBaseReceiver {
+public final /* data */ class TrackAccountLinkFailed implements AnalyticsSchema, TrackBase2 {
     private final CharSequence currentStep = null;
     private final CharSequence errorMessage = null;
     private final CharSequence linkMethod = null;
@@ -26,7 +26,7 @@ public final /* data */ class TrackAccountLinkFailed implements AnalyticsSchema,
             return false;
         }
         TrackAccountLinkFailed trackAccountLinkFailed = (TrackAccountLinkFailed) other;
-        return m.areEqual(this.errorMessage, trackAccountLinkFailed.errorMessage) && m.areEqual(this.statusCode, trackAccountLinkFailed.statusCode) && m.areEqual(this.linkMethod, trackAccountLinkFailed.linkMethod) && m.areEqual(this.sessionId, trackAccountLinkFailed.sessionId) && m.areEqual(this.currentStep, trackAccountLinkFailed.currentStep) && m.areEqual(this.platformType, trackAccountLinkFailed.platformType);
+        return Intrinsics3.areEqual(this.errorMessage, trackAccountLinkFailed.errorMessage) && Intrinsics3.areEqual(this.statusCode, trackAccountLinkFailed.statusCode) && Intrinsics3.areEqual(this.linkMethod, trackAccountLinkFailed.linkMethod) && Intrinsics3.areEqual(this.sessionId, trackAccountLinkFailed.sessionId) && Intrinsics3.areEqual(this.currentStep, trackAccountLinkFailed.currentStep) && Intrinsics3.areEqual(this.platformType, trackAccountLinkFailed.platformType);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -51,7 +51,7 @@ public final /* data */ class TrackAccountLinkFailed implements AnalyticsSchema,
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackAccountLinkFailed(errorMessage=");
+        StringBuilder sbU = outline.U("TrackAccountLinkFailed(errorMessage=");
         sbU.append(this.errorMessage);
         sbU.append(", statusCode=");
         sbU.append(this.statusCode);
@@ -62,6 +62,6 @@ public final /* data */ class TrackAccountLinkFailed implements AnalyticsSchema,
         sbU.append(", currentStep=");
         sbU.append(this.currentStep);
         sbU.append(", platformType=");
-        return a.E(sbU, this.platformType, ")");
+        return outline.E(sbU, this.platformType, ")");
     }
 }

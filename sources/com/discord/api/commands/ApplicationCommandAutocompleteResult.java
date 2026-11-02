@@ -1,7 +1,7 @@
 package com.discord.api.commands;
 
-import b.d.b.a.a;
-import d0.z.d.m;
+import b.d.b.a.outline;
+import d0.z.d.Intrinsics3;
 import java.util.List;
 
 /* JADX INFO: compiled from: ApplicationCommandAutocompleteResult.kt */
@@ -22,7 +22,7 @@ public final /* data */ class ApplicationCommandAutocompleteResult {
             return false;
         }
         ApplicationCommandAutocompleteResult applicationCommandAutocompleteResult = (ApplicationCommandAutocompleteResult) other;
-        return m.areEqual(this.nonce, applicationCommandAutocompleteResult.nonce) && m.areEqual(this.choices, applicationCommandAutocompleteResult.choices);
+        return Intrinsics3.areEqual(this.nonce, applicationCommandAutocompleteResult.nonce) && Intrinsics3.areEqual(this.choices, applicationCommandAutocompleteResult.choices);
     }
 
     /* JADX INFO: renamed from: b, reason: from getter */
@@ -38,9 +38,9 @@ public final /* data */ class ApplicationCommandAutocompleteResult {
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("ApplicationCommandAutocompleteResult(nonce=");
+        StringBuilder sbU = outline.U("ApplicationCommandAutocompleteResult(nonce=");
         sbU.append(this.nonce);
         sbU.append(", choices=");
-        return a.L(sbU, this.choices, ")");
+        return outline.L(sbU, this.choices, ")");
     }
 }

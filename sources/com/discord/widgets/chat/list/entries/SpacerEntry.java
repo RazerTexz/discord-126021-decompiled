@@ -1,7 +1,7 @@
 package com.discord.widgets.chat.list.entries;
 
 import a0.a.a.b;
-import b.d.b.a.a;
+import b.d.b.a.outline;
 
 /* JADX INFO: compiled from: SpacerEntry.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -53,6 +53,6 @@ public final /* data */ class SpacerEntry extends ChatListEntry {
     }
 
     public String toString() {
-        return a.C(a.U("SpacerEntry(channelId="), this.channelId, ")");
+        return outline.C(outline.U("SpacerEntry(channelId="), this.channelId, ")");
     }
 }

@@ -1,12 +1,12 @@
 package com.discord.models.commands;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.stores.StoreApplicationInteractions;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: ActionComponentStoreState.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class ActionComponentStoreState extends ComponentState {
+public final /* data */ class ActionComponentStoreState extends ActionComponentStoreState2 {
     private final boolean disabled;
     private final StoreApplicationInteractions.InteractionSendState.Failed failed;
     private final boolean loading;
@@ -43,7 +43,7 @@ public final /* data */ class ActionComponentStoreState extends ComponentState {
             return false;
         }
         ActionComponentStoreState actionComponentStoreState = (ActionComponentStoreState) other;
-        return this.loading == actionComponentStoreState.loading && m.areEqual(this.failed, actionComponentStoreState.failed) && this.disabled == actionComponentStoreState.disabled;
+        return this.loading == actionComponentStoreState.loading && Intrinsics3.areEqual(this.failed, actionComponentStoreState.failed) && this.disabled == actionComponentStoreState.disabled;
     }
 
     /* JADX INFO: renamed from: component3, reason: from getter */
@@ -95,11 +95,11 @@ public final /* data */ class ActionComponentStoreState extends ComponentState {
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("ActionComponentStoreState(loading=");
+        StringBuilder sbU = outline.U("ActionComponentStoreState(loading=");
         sbU.append(this.loading);
         sbU.append(", failed=");
         sbU.append(this.failed);
         sbU.append(", disabled=");
-        return a.O(sbU, this.disabled, ")");
+        return outline.O(sbU, this.disabled, ")");
     }
 }

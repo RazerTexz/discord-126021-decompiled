@@ -3,17 +3,17 @@ package com.discord.gateway.rest;
 import android.content.Context;
 import androidx.core.app.NotificationCompat;
 import com.discord.models.domain.ModelGateway;
-import com.discord.restapi.RequiredHeadersInterceptor;
 import com.discord.restapi.RestAPIBuilder;
+import com.discord.restapi.RestInterceptors2;
 import com.discord.restapi.utils.RetryWithDelay;
 import com.franmontiel.persistentcookiejar.PersistentCookieJar;
 import com.franmontiel.persistentcookiejar.cache.SetCookieCache;
 import com.franmontiel.persistentcookiejar.persistence.SharedPrefsCookiePersistor;
-import d0.t.n;
-import d0.z.d.c0;
-import d0.z.d.m;
-import j0.k.b;
-import j0.p.a;
+import d0.t.Collections2;
+import d0.z.d.Intrinsics3;
+import d0.z.d.SpreadBuilder;
+import j0.k.Func1;
+import j0.p.Schedulers2;
 import java.util.List;
 import java.util.Objects;
 import okhttp3.Interceptor;
@@ -27,17 +27,17 @@ public final class RestClient {
 
     /* JADX INFO: renamed from: com.discord.gateway.rest.RestClient$getGateway$1, reason: invalid class name */
     /* JADX INFO: compiled from: RestClient.kt */
-    public final class AnonymousClass1<T, R> implements b<ModelGateway, String> {
+    public final class AnonymousClass1<T, R> implements Func1<ModelGateway, String> {
         public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
 
-        @Override // j0.k.b
+        @Override // j0.k.Func1
         public /* bridge */ /* synthetic */ String call(ModelGateway modelGateway) {
             return call2(modelGateway);
         }
 
         /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
         public final String call2(ModelGateway modelGateway) {
-            m.checkNotNullExpressionValue(modelGateway, "it");
+            Intrinsics3.checkNotNullExpressionValue(modelGateway, "it");
             return modelGateway.getUrl();
         }
     }
@@ -49,28 +49,28 @@ public final class RestClient {
         RetryWithDelay retryWithDelay = RetryWithDelay.INSTANCE;
         RestApi restApi2 = restApi;
         if (restApi2 == null) {
-            m.throwUninitializedPropertyAccessException("restApi");
+            Intrinsics3.throwUninitializedPropertyAccessException("restApi");
         }
-        Observable<ModelGateway> observableX = restApi2.getGateway().X(a.c());
-        m.checkNotNullExpressionValue(observableX, "restApi\n          .getGa…scribeOn(Schedulers.io())");
+        Observable<ModelGateway> observableX = restApi2.getGateway().X(Schedulers2.c());
+        Intrinsics3.checkNotNullExpressionValue(observableX, "restApi\n          .getGa…scribeOn(Schedulers.io())");
         Observable<String> observableG = RetryWithDelay.restRetry$default(retryWithDelay, observableX, 0L, null, null, 7, null).G(AnonymousClass1.INSTANCE);
-        m.checkNotNullExpressionValue(observableG, "restApi\n          .getGa…          .map { it.url }");
+        Intrinsics3.checkNotNullExpressionValue(observableG, "restApi\n          .getGa…          .map { it.url }");
         return observableG;
     }
 
     public final void init(RestConfig restConfig, Context context) {
-        m.checkNotNullParameter(restConfig, "restConfig");
-        m.checkNotNullParameter(context, "context");
+        Intrinsics3.checkNotNullParameter(restConfig, "restConfig");
+        Intrinsics3.checkNotNullParameter(context, "context");
         String baseUrl = restConfig.getBaseUrl();
-        RequiredHeadersInterceptor.HeadersProvider headersProvider = restConfig.getHeadersProvider();
+        RestInterceptors2.HeadersProvider headersProvider = restConfig.getHeadersProvider();
         List<Interceptor> listComponent3 = restConfig.component3();
-        RequiredHeadersInterceptor requiredHeadersInterceptor = new RequiredHeadersInterceptor(headersProvider);
+        RestInterceptors2 restInterceptors2 = new RestInterceptors2(headersProvider);
         PersistentCookieJar persistentCookieJar = new PersistentCookieJar(new SetCookieCache(), new SharedPrefsCookiePersistor(context));
-        c0 c0Var = new c0(2);
-        c0Var.add(requiredHeadersInterceptor);
+        SpreadBuilder spreadBuilder = new SpreadBuilder(2);
+        spreadBuilder.add(restInterceptors2);
         Object[] array = listComponent3.toArray(new Interceptor[0]);
         Objects.requireNonNull(array, "null cannot be cast to non-null type kotlin.Array<T>");
-        c0Var.addSpread(array);
-        restApi = (RestApi) RestAPIBuilder.build$default(new RestAPIBuilder(baseUrl, persistentCookieJar), RestApi.class, false, 0L, n.listOf(c0Var.toArray(new Interceptor[c0Var.size()])), null, false, null, 118, null);
+        spreadBuilder.addSpread(array);
+        restApi = (RestApi) RestAPIBuilder.build$default(new RestAPIBuilder(baseUrl, persistentCookieJar), RestApi.class, false, 0L, Collections2.listOf(spreadBuilder.toArray(new Interceptor[spreadBuilder.size()])), null, false, null, 118, null);
     }
 }

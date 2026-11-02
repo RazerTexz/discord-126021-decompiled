@@ -2,6 +2,7 @@ package b.i.a.f.e.k;
 
 import android.net.Uri;
 import androidx.annotation.Nullable;
+import b.c.a.a0.AnimatableValueParser;
 import java.util.Arrays;
 import java.util.Objects;
 
@@ -20,9 +21,9 @@ public final class q0 {
     public static final Uri a = new Uri.Builder().scheme("content").authority("com.google.android.gms.chimera").build();
 
     public q0(String str, String str2, int i, boolean z2) {
-        b.c.a.a0.d.w(str);
+        AnimatableValueParser.w(str);
         this.f1391b = str;
-        b.c.a.a0.d.w(str2);
+        AnimatableValueParser.w(str2);
         this.c = str2;
         this.d = i;
         this.e = z2;
@@ -36,7 +37,7 @@ public final class q0 {
             return false;
         }
         q0 q0Var = (q0) obj;
-        return b.c.a.a0.d.h0(this.f1391b, q0Var.f1391b) && b.c.a.a0.d.h0(this.c, q0Var.c) && b.c.a.a0.d.h0(null, null) && this.d == q0Var.d && this.e == q0Var.e;
+        return AnimatableValueParser.h0(this.f1391b, q0Var.f1391b) && AnimatableValueParser.h0(this.c, q0Var.c) && AnimatableValueParser.h0(null, null) && this.d == q0Var.d && this.e == q0Var.e;
     }
 
     public final int hashCode() {

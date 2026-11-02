@@ -1,12 +1,12 @@
 package com.discord.widgets.chat.input;
 
-import d0.z.d.o;
+import d0.z.d.Lambda;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function2;
 
 /* JADX INFO: compiled from: ChatInputViewModel.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class ChatInputViewModel$sendMessage$onMessageTooLong$1 extends o implements Function2<Integer, Integer, Unit> {
+public final class ChatInputViewModel$sendMessage$onMessageTooLong$1 extends Lambda implements Function2<Integer, Integer, Unit> {
     public final /* synthetic */ ChatInputViewModel this$0;
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */

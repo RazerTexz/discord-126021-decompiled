@@ -1,16 +1,16 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.analytics.generated.traits.TrackMarketingSite;
-import com.discord.analytics.generated.traits.TrackMarketingSiteReceiver;
+import com.discord.analytics.generated.traits.TrackMarketingSite2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackChangeMarketingLocale.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackChangeMarketingLocale implements AnalyticsSchema, TrackBaseReceiver, TrackMarketingSiteReceiver {
+public final /* data */ class TrackChangeMarketingLocale implements AnalyticsSchema, TrackBase2, TrackMarketingSite2 {
     private final CharSequence from = null;
     private final CharSequence to = null;
     private TrackBase trackBase;
@@ -25,7 +25,7 @@ public final /* data */ class TrackChangeMarketingLocale implements AnalyticsSch
             return false;
         }
         TrackChangeMarketingLocale trackChangeMarketingLocale = (TrackChangeMarketingLocale) other;
-        return m.areEqual(this.from, trackChangeMarketingLocale.from) && m.areEqual(this.to, trackChangeMarketingLocale.to);
+        return Intrinsics3.areEqual(this.from, trackChangeMarketingLocale.from) && Intrinsics3.areEqual(this.to, trackChangeMarketingLocale.to);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -42,9 +42,9 @@ public final /* data */ class TrackChangeMarketingLocale implements AnalyticsSch
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackChangeMarketingLocale(from=");
+        StringBuilder sbU = outline.U("TrackChangeMarketingLocale(from=");
         sbU.append(this.from);
         sbU.append(", to=");
-        return a.E(sbU, this.to, ")");
+        return outline.E(sbU, this.to, ")");
     }
 }

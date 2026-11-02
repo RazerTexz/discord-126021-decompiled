@@ -1,14 +1,14 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackSoundpackUpdated.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackSoundpackUpdated implements AnalyticsSchema, TrackBaseReceiver {
+public final /* data */ class TrackSoundpackUpdated implements AnalyticsSchema, TrackBase2 {
     private final CharSequence previousSoundpack = null;
     private final CharSequence soundpack = null;
     private TrackBase trackBase;
@@ -22,7 +22,7 @@ public final /* data */ class TrackSoundpackUpdated implements AnalyticsSchema, 
             return false;
         }
         TrackSoundpackUpdated trackSoundpackUpdated = (TrackSoundpackUpdated) other;
-        return m.areEqual(this.soundpack, trackSoundpackUpdated.soundpack) && m.areEqual(this.previousSoundpack, trackSoundpackUpdated.previousSoundpack);
+        return Intrinsics3.areEqual(this.soundpack, trackSoundpackUpdated.soundpack) && Intrinsics3.areEqual(this.previousSoundpack, trackSoundpackUpdated.previousSoundpack);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -39,9 +39,9 @@ public final /* data */ class TrackSoundpackUpdated implements AnalyticsSchema, 
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackSoundpackUpdated(soundpack=");
+        StringBuilder sbU = outline.U("TrackSoundpackUpdated(soundpack=");
         sbU.append(this.soundpack);
         sbU.append(", previousSoundpack=");
-        return a.E(sbU, this.previousSoundpack, ")");
+        return outline.E(sbU, this.previousSoundpack, ")");
     }
 }

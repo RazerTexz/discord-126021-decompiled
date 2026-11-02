@@ -1,15 +1,15 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 import java.util.List;
 
 /* JADX INFO: compiled from: TrackStickerMessageSent.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackStickerMessageSent implements AnalyticsSchema, TrackBaseReceiver {
+public final /* data */ class TrackStickerMessageSent implements AnalyticsSchema, TrackBase2 {
     private final Long channelId = null;
     private final Long channelType = null;
     private final Long guildId = null;
@@ -26,7 +26,7 @@ public final /* data */ class TrackStickerMessageSent implements AnalyticsSchema
             return false;
         }
         TrackStickerMessageSent trackStickerMessageSent = (TrackStickerMessageSent) other;
-        return m.areEqual(this.messageId, trackStickerMessageSent.messageId) && m.areEqual(this.channelId, trackStickerMessageSent.channelId) && m.areEqual(this.channelType, trackStickerMessageSent.channelType) && m.areEqual(this.guildId, trackStickerMessageSent.guildId) && m.areEqual(this.stickerIds, trackStickerMessageSent.stickerIds);
+        return Intrinsics3.areEqual(this.messageId, trackStickerMessageSent.messageId) && Intrinsics3.areEqual(this.channelId, trackStickerMessageSent.channelId) && Intrinsics3.areEqual(this.channelType, trackStickerMessageSent.channelType) && Intrinsics3.areEqual(this.guildId, trackStickerMessageSent.guildId) && Intrinsics3.areEqual(this.stickerIds, trackStickerMessageSent.stickerIds);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -49,7 +49,7 @@ public final /* data */ class TrackStickerMessageSent implements AnalyticsSchema
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackStickerMessageSent(messageId=");
+        StringBuilder sbU = outline.U("TrackStickerMessageSent(messageId=");
         sbU.append(this.messageId);
         sbU.append(", channelId=");
         sbU.append(this.channelId);
@@ -58,6 +58,6 @@ public final /* data */ class TrackStickerMessageSent implements AnalyticsSchema
         sbU.append(", guildId=");
         sbU.append(this.guildId);
         sbU.append(", stickerIds=");
-        return a.L(sbU, this.stickerIds, ")");
+        return outline.L(sbU, this.stickerIds, ")");
     }
 }

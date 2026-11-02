@@ -1,11 +1,11 @@
 package com.discord.widgets.user;
 
-import b.a.d.d0;
+import b.a.d.AppViewModel;
 import kotlin.Unit;
 
 /* JADX INFO: compiled from: WidgetUserMentionsViewModel.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final class WidgetUserMentionsViewModel extends d0<Unit> {
+public final class WidgetUserMentionsViewModel extends AppViewModel<Unit> {
     private WidgetUserMentions.Model model;
 
     public WidgetUserMentionsViewModel() {

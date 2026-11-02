@@ -8,7 +8,8 @@ import android.widget.TextView;
 import androidx.annotation.StringRes;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-import b.d.b.a.a;
+import b.a.d.AppToast;
+import b.d.b.a.outline;
 import com.discord.R;
 import com.discord.app.AppDialog;
 import com.discord.app.AppLog;
@@ -23,11 +24,11 @@ import com.discord.utilities.rest.RestAPI;
 import com.discord.utilities.rx.ObservableExtensionsKt;
 import com.discord.utilities.view.extensions.ViewExtensions;
 import com.discord.utilities.viewbinding.FragmentViewBindingDelegate;
-import com.discord.utilities.viewbinding.FragmentViewBindingDelegateKt;
+import com.discord.utilities.viewbinding.FragmentViewBindingDelegate3;
 import com.google.android.material.textfield.TextInputLayout;
-import d0.z.d.k;
-import d0.z.d.m;
-import d0.z.d.o;
+import d0.z.d.FunctionReferenceImpl;
+import d0.z.d.Intrinsics3;
+import d0.z.d.Lambda;
 import kotlin.NoWhenBranchMatchedException;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
@@ -39,7 +40,7 @@ import rx.Observable;
 /* JADX INFO: compiled from: WidgetDisableDeleteAccountDialog.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetDisableDeleteAccountDialog extends AppDialog {
-    public static final /* synthetic */ KProperty[] $$delegatedProperties = {a.d0(WidgetDisableDeleteAccountDialog.class, "binding", "getBinding()Lcom/discord/databinding/WidgetDisableDeleteAccountDialogBinding;", 0)};
+    public static final /* synthetic */ KProperty[] $$delegatedProperties = {outline.d0(WidgetDisableDeleteAccountDialog.class, "binding", "getBinding()Lcom/discord/databinding/WidgetDisableDeleteAccountDialogBinding;", 0)};
     private static final String EXTRA_MODE = "extra_mode";
 
     /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
@@ -50,7 +51,7 @@ public final class WidgetDisableDeleteAccountDialog extends AppDialog {
 
     /* JADX INFO: renamed from: com.discord.widgets.settings.account.WidgetDisableDeleteAccountDialog$onDisableClicked$1, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetDisableDeleteAccountDialog.kt */
-    public final class AnonymousClass1 extends o implements Function1<Error, Unit> {
+    public final class AnonymousClass1 extends Lambda implements Function1<Error, Unit> {
         public AnonymousClass1() {
             super(1);
         }
@@ -63,37 +64,37 @@ public final class WidgetDisableDeleteAccountDialog extends AppDialog {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(Error error) {
-            m.checkNotNullParameter(error, "it");
+            Intrinsics3.checkNotNullParameter(error, "it");
             WidgetDisableDeleteAccountDialog.access$getBinding$p(WidgetDisableDeleteAccountDialog.this).e.setIsLoading(false);
             Error.Response response = error.getResponse();
-            m.checkNotNullExpressionValue(response, "it.response");
+            Intrinsics3.checkNotNullExpressionValue(response, "it.response");
             int code = response.getCode();
             if (code == 50018) {
                 TextInputLayout textInputLayout = WidgetDisableDeleteAccountDialog.access$getBinding$p(WidgetDisableDeleteAccountDialog.this).g;
-                m.checkNotNullExpressionValue(textInputLayout, "binding.disableDeletePasswordWrap");
+                Intrinsics3.checkNotNullExpressionValue(textInputLayout, "binding.disableDeletePasswordWrap");
                 Error.Response response2 = error.getResponse();
-                m.checkNotNullExpressionValue(response2, "it.response");
+                Intrinsics3.checkNotNullExpressionValue(response2, "it.response");
                 textInputLayout.setError(response2.getMessage());
                 return;
             }
             if (code != 60008) {
                 Context context = WidgetDisableDeleteAccountDialog.this.getContext();
                 Error.Response response3 = error.getResponse();
-                m.checkNotNullExpressionValue(response3, "it.response");
-                b.a.d.m.h(context, response3.getMessage(), 0, null, 12);
+                Intrinsics3.checkNotNullExpressionValue(response3, "it.response");
+                AppToast.h(context, response3.getMessage(), 0, null, 12);
                 return;
             }
             TextInputLayout textInputLayout2 = WidgetDisableDeleteAccountDialog.access$getBinding$p(WidgetDisableDeleteAccountDialog.this).d;
-            m.checkNotNullExpressionValue(textInputLayout2, "binding.disableDeleteCodeWrap");
+            Intrinsics3.checkNotNullExpressionValue(textInputLayout2, "binding.disableDeleteCodeWrap");
             Error.Response response4 = error.getResponse();
-            m.checkNotNullExpressionValue(response4, "it.response");
+            Intrinsics3.checkNotNullExpressionValue(response4, "it.response");
             textInputLayout2.setError(response4.getMessage());
         }
     }
 
     /* JADX INFO: renamed from: com.discord.widgets.settings.account.WidgetDisableDeleteAccountDialog$onResume$1, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetDisableDeleteAccountDialog.kt */
-    public final /* synthetic */ class AnonymousClass1 extends k implements Function1<MeUser, Unit> {
+    public final /* synthetic */ class AnonymousClass1 extends FunctionReferenceImpl implements Function1<MeUser, Unit> {
         public AnonymousClass1(WidgetDisableDeleteAccountDialog widgetDisableDeleteAccountDialog) {
             super(1, widgetDisableDeleteAccountDialog, WidgetDisableDeleteAccountDialog.class, "configureUI", "configureUI(Lcom/discord/models/user/MeUser;)V", 0);
         }
@@ -106,7 +107,7 @@ public final class WidgetDisableDeleteAccountDialog extends AppDialog {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(MeUser meUser) {
-            m.checkNotNullParameter(meUser, "p1");
+            Intrinsics3.checkNotNullParameter(meUser, "p1");
             WidgetDisableDeleteAccountDialog.access$configureUI((WidgetDisableDeleteAccountDialog) this.receiver, meUser);
         }
     }
@@ -125,7 +126,7 @@ public final class WidgetDisableDeleteAccountDialog extends AppDialog {
 
     /* JADX INFO: renamed from: com.discord.widgets.settings.account.WidgetDisableDeleteAccountDialog$onDisableClicked$2, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetDisableDeleteAccountDialog.kt */
-    public final class AnonymousClass2 extends o implements Function1<Void, Unit> {
+    public final class AnonymousClass2 extends Lambda implements Function1<Void, Unit> {
         public static final AnonymousClass2 INSTANCE = new AnonymousClass2();
 
         public AnonymousClass2() {
@@ -146,7 +147,7 @@ public final class WidgetDisableDeleteAccountDialog extends AppDialog {
 
     /* JADX INFO: renamed from: com.discord.widgets.settings.account.WidgetDisableDeleteAccountDialog$onViewBound$2, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetDisableDeleteAccountDialog.kt */
-    public final class AnonymousClass2 extends o implements Function1<Editable, Unit> {
+    public final class AnonymousClass2 extends Lambda implements Function1<Editable, Unit> {
         public AnonymousClass2() {
             super(1);
         }
@@ -159,16 +160,16 @@ public final class WidgetDisableDeleteAccountDialog extends AppDialog {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(Editable editable) {
-            m.checkNotNullParameter(editable, "it");
+            Intrinsics3.checkNotNullParameter(editable, "it");
             TextInputLayout textInputLayout = WidgetDisableDeleteAccountDialog.access$getBinding$p(WidgetDisableDeleteAccountDialog.this).d;
-            m.checkNotNullExpressionValue(textInputLayout, "binding.disableDeleteCodeWrap");
+            Intrinsics3.checkNotNullExpressionValue(textInputLayout, "binding.disableDeleteCodeWrap");
             textInputLayout.setError(null);
         }
     }
 
     /* JADX INFO: renamed from: com.discord.widgets.settings.account.WidgetDisableDeleteAccountDialog$onViewBound$3, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetDisableDeleteAccountDialog.kt */
-    public final class AnonymousClass3 extends o implements Function1<Editable, Unit> {
+    public final class AnonymousClass3 extends Lambda implements Function1<Editable, Unit> {
         public AnonymousClass3() {
             super(1);
         }
@@ -181,9 +182,9 @@ public final class WidgetDisableDeleteAccountDialog extends AppDialog {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2(Editable editable) {
-            m.checkNotNullParameter(editable, "it");
+            Intrinsics3.checkNotNullParameter(editable, "it");
             TextInputLayout textInputLayout = WidgetDisableDeleteAccountDialog.access$getBinding$p(WidgetDisableDeleteAccountDialog.this).g;
-            m.checkNotNullExpressionValue(textInputLayout, "binding.disableDeletePasswordWrap");
+            Intrinsics3.checkNotNullExpressionValue(textInputLayout, "binding.disableDeletePasswordWrap");
             textInputLayout.setError(null);
         }
     }
@@ -209,8 +210,8 @@ public final class WidgetDisableDeleteAccountDialog extends AppDialog {
         }
 
         public final void show(FragmentManager fragmentManager, Mode mode) {
-            m.checkNotNullParameter(fragmentManager, "fragmentManager");
-            m.checkNotNullParameter(mode, "mode");
+            Intrinsics3.checkNotNullParameter(fragmentManager, "fragmentManager");
+            Intrinsics3.checkNotNullParameter(mode, "mode");
             WidgetDisableDeleteAccountDialog widgetDisableDeleteAccountDialog = new WidgetDisableDeleteAccountDialog();
             Bundle bundle = new Bundle();
             bundle.putInt(WidgetDisableDeleteAccountDialog.EXTRA_MODE, mode.ordinal());
@@ -269,7 +270,7 @@ public final class WidgetDisableDeleteAccountDialog extends AppDialog {
 
     public WidgetDisableDeleteAccountDialog() {
         super(R.layout.widget_disable_delete_account_dialog);
-        this.binding = FragmentViewBindingDelegateKt.viewBinding$default(this, WidgetDisableDeleteAccountDialog$binding$2.INSTANCE, null, 2, null);
+        this.binding = FragmentViewBindingDelegate3.viewBinding$default(this, WidgetDisableDeleteAccountDialog2.INSTANCE, null, 2, null);
     }
 
     public static final /* synthetic */ void access$configureUI(WidgetDisableDeleteAccountDialog widgetDisableDeleteAccountDialog, MeUser meUser) {
@@ -286,7 +287,7 @@ public final class WidgetDisableDeleteAccountDialog extends AppDialog {
 
     private final void configureUI(MeUser meUser) {
         TextInputLayout textInputLayout = getBinding().d;
-        m.checkNotNullExpressionValue(textInputLayout, "binding.disableDeleteCodeWrap");
+        Intrinsics3.checkNotNullExpressionValue(textInputLayout, "binding.disableDeleteCodeWrap");
         textInputLayout.setVisibility(meUser.getMfaEnabled() ? 0 : 8);
     }
 
@@ -299,16 +300,16 @@ public final class WidgetDisableDeleteAccountDialog extends AppDialog {
         Observable<Void> observableDisableAccount;
         getBinding().e.setIsLoading(true);
         TextInputLayout textInputLayout = getBinding().d;
-        m.checkNotNullExpressionValue(textInputLayout, "binding.disableDeleteCodeWrap");
+        Intrinsics3.checkNotNullExpressionValue(textInputLayout, "binding.disableDeleteCodeWrap");
         if (textInputLayout.getVisibility() == 0) {
             TextInputLayout textInputLayout2 = getBinding().d;
-            m.checkNotNullExpressionValue(textInputLayout2, "binding.disableDeleteCodeWrap");
+            Intrinsics3.checkNotNullExpressionValue(textInputLayout2, "binding.disableDeleteCodeWrap");
             textOrEmpty = ViewExtensions.getTextOrEmpty(textInputLayout2);
         } else {
             textOrEmpty = null;
         }
         TextInputLayout textInputLayout3 = getBinding().g;
-        m.checkNotNullExpressionValue(textInputLayout3, "binding.disableDeletePasswordWrap");
+        Intrinsics3.checkNotNullExpressionValue(textInputLayout3, "binding.disableDeletePasswordWrap");
         RestAPIParams.DisableAccount disableAccount = new RestAPIParams.DisableAccount(ViewExtensions.getTextOrEmpty(textInputLayout3), textOrEmpty);
         int iOrdinal = mode.ordinal();
         if (iOrdinal == 0) {
@@ -331,7 +332,7 @@ public final class WidgetDisableDeleteAccountDialog extends AppDialog {
     @Override // com.discord.app.AppDialog
     public void onViewBound(View view) {
         Mode mode;
-        m.checkNotNullParameter(view, "view");
+        Intrinsics3.checkNotNullParameter(view, "view");
         super.onViewBound(view);
         setCancelable(false);
         Bundle arguments = getArguments();
@@ -347,18 +348,18 @@ public final class WidgetDisableDeleteAccountDialog extends AppDialog {
         }
         getBinding().e.setIsLoading(false);
         TextView textView = getBinding().f;
-        m.checkNotNullExpressionValue(textView, "binding.disableDeleteHeader");
+        Intrinsics3.checkNotNullExpressionValue(textView, "binding.disableDeleteHeader");
         textView.setText(getString(mode.getHeaderStringId()));
         TextView textView2 = getBinding().f2366b;
-        m.checkNotNullExpressionValue(textView2, "binding.disableDeleteBody");
+        Intrinsics3.checkNotNullExpressionValue(textView2, "binding.disableDeleteBody");
         textView2.setText(getString(mode.getBodyStringId()));
         getBinding().e.setText(getString(mode.getConfirmStringId()));
         getBinding().c.setOnClickListener(new AnonymousClass1());
         TextInputLayout textInputLayout = getBinding().d;
-        m.checkNotNullExpressionValue(textInputLayout, "binding.disableDeleteCodeWrap");
+        Intrinsics3.checkNotNullExpressionValue(textInputLayout, "binding.disableDeleteCodeWrap");
         ViewExtensions.addBindedTextWatcher(textInputLayout, this, new AnonymousClass2());
         TextInputLayout textInputLayout2 = getBinding().g;
-        m.checkNotNullExpressionValue(textInputLayout2, "binding.disableDeletePasswordWrap");
+        Intrinsics3.checkNotNullExpressionValue(textInputLayout2, "binding.disableDeletePasswordWrap");
         ViewExtensions.addBindedTextWatcher(textInputLayout2, this, new AnonymousClass3());
         getBinding().e.setOnClickListener(new AnonymousClass4(mode));
     }

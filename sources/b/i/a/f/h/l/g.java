@@ -12,6 +12,7 @@ import android.os.SystemClock;
 import android.util.Log;
 import android.util.Pair;
 import androidx.annotation.GuardedBy;
+import b.c.a.a0.AnimatableValueParser;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -239,7 +240,7 @@ public class g {
                 if (f1442b != null) {
                     return;
                 }
-                b.c.a.a0.d.w("app_measurement_internal_disable_startup_flags");
+                AnimatableValueParser.w("app_measurement_internal_disable_startup_flags");
                 try {
                     ApplicationInfo applicationInfoA = b.i.a.f.e.p.b.a(context).a(context.getPackageName(), 128);
                     z2 = (applicationInfoA == null || (bundle = applicationInfoA.metaData) == null) ? false : bundle.getBoolean("app_measurement_internal_disable_startup_flags");

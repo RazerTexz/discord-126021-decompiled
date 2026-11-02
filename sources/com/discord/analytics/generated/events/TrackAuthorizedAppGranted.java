@@ -1,21 +1,21 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: TrackAuthorizedAppGranted.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackAuthorizedAppGranted implements AnalyticsSchema, TrackBaseReceiver {
+public final /* data */ class TrackAuthorizedAppGranted implements AnalyticsSchema, TrackBase2 {
     private final Long applicationId = null;
     private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "authorized_app_granted";
 
     public boolean equals(Object other) {
         if (this != other) {
-            return (other instanceof TrackAuthorizedAppGranted) && m.areEqual(this.applicationId, ((TrackAuthorizedAppGranted) other).applicationId);
+            return (other instanceof TrackAuthorizedAppGranted) && Intrinsics3.areEqual(this.applicationId, ((TrackAuthorizedAppGranted) other).applicationId);
         }
         return true;
     }
@@ -35,6 +35,6 @@ public final /* data */ class TrackAuthorizedAppGranted implements AnalyticsSche
     }
 
     public String toString() {
-        return a.G(a.U("TrackAuthorizedAppGranted(applicationId="), this.applicationId, ")");
+        return outline.G(outline.U("TrackAuthorizedAppGranted(applicationId="), this.applicationId, ")");
     }
 }

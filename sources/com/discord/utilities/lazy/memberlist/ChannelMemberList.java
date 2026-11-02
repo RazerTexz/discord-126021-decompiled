@@ -1,16 +1,16 @@
 package com.discord.utilities.lazy.memberlist;
 
 import androidx.annotation.VisibleForTesting;
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.models.domain.ModelGuildMemberListUpdate;
 import com.discord.utilities.collections.SparseMutableList;
 import com.discord.utilities.logging.Logger;
-import d0.d0.f;
-import d0.t.g0;
-import d0.t.h0;
-import d0.t.n;
-import d0.t.o;
-import d0.z.d.m;
+import d0.d0._Ranges;
+import d0.t.Collections2;
+import d0.t.Iterables2;
+import d0.t.Maps6;
+import d0.t.MapsJVM;
+import d0.z.d.Intrinsics3;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -19,7 +19,7 @@ import java.util.SortedMap;
 import java.util.TreeMap;
 import kotlin.jvm.functions.Function1;
 import kotlin.jvm.internal.DefaultConstructorMarker;
-import kotlin.ranges.IntRange;
+import kotlin.ranges.Ranges2;
 
 /* JADX INFO: compiled from: ChannelMemberList.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -32,19 +32,19 @@ public final class ChannelMemberList implements MemberList {
     private SparseMutableList<MemberListRow> rows;
 
     public ChannelMemberList(String str, int i, Logger logger) {
-        m.checkNotNullParameter(str, "listId");
+        Intrinsics3.checkNotNullParameter(str, "listId");
         this.listId = str;
         this.initialSize = i;
         this.logger = logger;
         this.rows = new SparseMutableList<>(getInitialSize(), 100);
-        this.groups = h0.emptyMap();
+        this.groups = Maps6.emptyMap();
         this.groupIndices = new TreeMap();
     }
 
     public final void add(MemberListRow item) {
         Logger logger = this.logger;
         if (logger != null) {
-            StringBuilder sbU = a.U("memberListId: ");
+            StringBuilder sbU = outline.U("memberListId: ");
             sbU.append(getListId());
             sbU.append(" ADD");
             logger.recordBreadcrumb(sbU.toString(), "ChannelMemberList");
@@ -55,7 +55,7 @@ public final class ChannelMemberList implements MemberList {
     public final void delete(int index) {
         Logger logger = this.logger;
         if (logger != null) {
-            StringBuilder sbU = a.U("memberListId: ");
+            StringBuilder sbU = outline.U("memberListId: ");
             sbU.append(getListId());
             sbU.append(" DELETE index: ");
             sbU.append(index);
@@ -92,7 +92,7 @@ public final class ChannelMemberList implements MemberList {
     public final void insert(int index, MemberListRow item) {
         Logger logger = this.logger;
         if (logger != null) {
-            StringBuilder sbU = a.U("memberListId: ");
+            StringBuilder sbU = outline.U("memberListId: ");
             sbU.append(getListId());
             sbU.append(" INSERT: index: ");
             sbU.append(index);
@@ -101,17 +101,17 @@ public final class ChannelMemberList implements MemberList {
         this.rows.add(index, item);
     }
 
-    public final void invalidate(IntRange range) {
-        m.checkNotNullParameter(range, "range");
+    public final void invalidate(Ranges2 range) {
+        Intrinsics3.checkNotNullParameter(range, "range");
         Logger logger = this.logger;
         if (logger != null) {
-            StringBuilder sbU = a.U("memberListId: ");
+            StringBuilder sbU = outline.U("memberListId: ");
             sbU.append(getListId());
             sbU.append(" INVALIDATE range: ");
             sbU.append(range);
             logger.recordBreadcrumb(sbU.toString(), "ChannelMemberList");
         }
-        int iMin = Math.min(range.getLast(), n.getLastIndex(this.rows));
+        int iMin = Math.min(range.getLast(), Collections2.getLastIndex(this.rows));
         int first = range.getFirst();
         if (first > iMin) {
             return;
@@ -127,12 +127,12 @@ public final class ChannelMemberList implements MemberList {
     }
 
     public final void rebuildMembers(Function1<? super Long, ? extends MemberListRow> makeMember) {
-        m.checkNotNullParameter(makeMember, "makeMember");
+        Intrinsics3.checkNotNullParameter(makeMember, "makeMember");
         int i = 0;
         for (MemberListRow memberListRow : this.rows) {
             int i2 = i + 1;
             if (i < 0) {
-                n.throwIndexOverflow();
+                Collections2.throwIndexOverflow();
             }
             MemberListRow memberListRow2 = memberListRow;
             if (memberListRow2 instanceof MemberListRow.Member) {
@@ -144,23 +144,23 @@ public final class ChannelMemberList implements MemberList {
 
     @VisibleForTesting
     public final void setGroupIndices(SortedMap<Integer, String> groupIndices) {
-        m.checkNotNullParameter(groupIndices, "groupIndices");
+        Intrinsics3.checkNotNullParameter(groupIndices, "groupIndices");
         this.groupIndices = groupIndices;
     }
 
     public final void setGroups(List<ModelGuildMemberListUpdate.Group> groups, Function1<? super ModelGuildMemberListUpdate.Group, ? extends MemberListRow> makeGroup) {
-        m.checkNotNullParameter(groups, "groups");
-        m.checkNotNullParameter(makeGroup, "makeGroup");
+        Intrinsics3.checkNotNullParameter(groups, "groups");
+        Intrinsics3.checkNotNullParameter(makeGroup, "makeGroup");
         Logger logger = this.logger;
         if (logger != null) {
-            StringBuilder sbU = a.U("memberListId: ");
+            StringBuilder sbU = outline.U("memberListId: ");
             sbU.append(getListId());
             sbU.append(" SET_GROUPS");
             logger.recordBreadcrumb(sbU.toString(), "ChannelMemberList");
         }
         this.groupIndices.clear();
         int count = 0;
-        LinkedHashMap linkedHashMap = new LinkedHashMap(f.coerceAtLeast(g0.mapCapacity(o.collectionSizeOrDefault(groups, 10)), 16));
+        LinkedHashMap linkedHashMap = new LinkedHashMap(_Ranges.coerceAtLeast(MapsJVM.mapCapacity(Iterables2.collectionSizeOrDefault(groups, 10)), 16));
         for (ModelGuildMemberListUpdate.Group group : groups) {
             String id2 = group.getId();
             this.groupIndices.put(Integer.valueOf(count), group.getId());
@@ -172,10 +172,10 @@ public final class ChannelMemberList implements MemberList {
     }
 
     public final void sync(int startIndex, List<? extends MemberListRow> items) {
-        m.checkNotNullParameter(items, "items");
+        Intrinsics3.checkNotNullParameter(items, "items");
         Logger logger = this.logger;
         if (logger != null) {
-            StringBuilder sbU = a.U("memberListId: ");
+            StringBuilder sbU = outline.U("memberListId: ");
             sbU.append(getListId());
             sbU.append(" SYNC: startIndex: ");
             sbU.append(startIndex);
@@ -187,7 +187,7 @@ public final class ChannelMemberList implements MemberList {
         for (Object obj : items) {
             int i2 = i + 1;
             if (i < 0) {
-                n.throwIndexOverflow();
+                Collections2.throwIndexOverflow();
             }
             update(i + startIndex, (MemberListRow) obj);
             i = i2;
@@ -197,7 +197,7 @@ public final class ChannelMemberList implements MemberList {
     public final void update(int index, MemberListRow item) {
         Logger logger = this.logger;
         if (logger != null) {
-            StringBuilder sbU = a.U("memberListId: ");
+            StringBuilder sbU = outline.U("memberListId: ");
             sbU.append(getListId());
             sbU.append(" UPDATE index: ");
             sbU.append(index);
@@ -213,7 +213,7 @@ public final class ChannelMemberList implements MemberList {
     /* JADX WARN: 'this' call moved to the top of the method (can break code semantics) */
     public ChannelMemberList(ChannelMemberList channelMemberList) {
         this(channelMemberList.getListId(), 0, channelMemberList.logger, 2, null);
-        m.checkNotNullParameter(channelMemberList, "other");
+        Intrinsics3.checkNotNullParameter(channelMemberList, "other");
         this.rows = channelMemberList.rows.deepCopy();
         this.groups = new HashMap(channelMemberList.groups);
         this.groupIndices = new TreeMap((SortedMap) channelMemberList.groupIndices);

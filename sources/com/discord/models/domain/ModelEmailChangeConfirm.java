@@ -1,7 +1,7 @@
 package com.discord.models.domain;
 
-import b.d.b.a.a;
-import d0.z.d.m;
+import b.d.b.a.outline;
+import d0.z.d.Intrinsics3;
 
 /* JADX INFO: compiled from: ModelEmailChangeConfirm.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -9,7 +9,7 @@ public final /* data */ class ModelEmailChangeConfirm {
     private final String token;
 
     public ModelEmailChangeConfirm(String str) {
-        m.checkNotNullParameter(str, "token");
+        Intrinsics3.checkNotNullParameter(str, "token");
         this.token = str;
     }
 
@@ -21,13 +21,13 @@ public final /* data */ class ModelEmailChangeConfirm {
     }
 
     public final ModelEmailChangeConfirm copy(String token) {
-        m.checkNotNullParameter(token, "token");
+        Intrinsics3.checkNotNullParameter(token, "token");
         return new ModelEmailChangeConfirm(token);
     }
 
     public boolean equals(Object other) {
         if (this != other) {
-            return (other instanceof ModelEmailChangeConfirm) && m.areEqual(this.token, ((ModelEmailChangeConfirm) other).token);
+            return (other instanceof ModelEmailChangeConfirm) && Intrinsics3.areEqual(this.token, ((ModelEmailChangeConfirm) other).token);
         }
         return true;
     }
@@ -50,6 +50,6 @@ public final /* data */ class ModelEmailChangeConfirm {
     }
 
     public String toString() {
-        return a.J(a.U("ModelEmailChangeConfirm(token="), this.token, ")");
+        return outline.J(outline.U("ModelEmailChangeConfirm(token="), this.token, ")");
     }
 }

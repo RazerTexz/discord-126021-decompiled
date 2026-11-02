@@ -1,15 +1,15 @@
 package com.discord.analytics.generated.events;
 
-import b.d.b.a.a;
+import b.d.b.a.outline;
 import com.discord.analytics.generated.traits.TrackBase;
-import com.discord.analytics.generated.traits.TrackBaseReceiver;
+import com.discord.analytics.generated.traits.TrackBase2;
 import com.discord.api.science.AnalyticsSchema;
-import d0.z.d.m;
+import d0.z.d.Intrinsics3;
 import java.util.List;
 
 /* JADX INFO: compiled from: TrackStoreListingUpdated.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* data */ class TrackStoreListingUpdated implements AnalyticsSchema, TrackBaseReceiver {
+public final /* data */ class TrackStoreListingUpdated implements AnalyticsSchema, TrackBase2 {
     private final List<CharSequence> carouselItems = null;
     private final List<Long> childSkuIds = null;
     private final CharSequence flavorText = null;
@@ -33,7 +33,7 @@ public final /* data */ class TrackStoreListingUpdated implements AnalyticsSchem
             return false;
         }
         TrackStoreListingUpdated trackStoreListingUpdated = (TrackStoreListingUpdated) other;
-        return m.areEqual(this.storeListingId, trackStoreListingUpdated.storeListingId) && m.areEqual(this.skuId, trackStoreListingUpdated.skuId) && m.areEqual(this.updateFrom, trackStoreListingUpdated.updateFrom) && m.areEqual(this.updateType, trackStoreListingUpdated.updateType) && m.areEqual(this.guildId, trackStoreListingUpdated.guildId) && m.areEqual(this.childSkuIds, trackStoreListingUpdated.childSkuIds) && m.areEqual(this.isPublished, trackStoreListingUpdated.isPublished) && m.areEqual(this.tagline, trackStoreListingUpdated.tagline) && m.areEqual(this.flavorText, trackStoreListingUpdated.flavorText) && m.areEqual(this.thumbnailAssetId, trackStoreListingUpdated.thumbnailAssetId) && m.areEqual(this.previewVideoAssetId, trackStoreListingUpdated.previewVideoAssetId) && m.areEqual(this.carouselItems, trackStoreListingUpdated.carouselItems);
+        return Intrinsics3.areEqual(this.storeListingId, trackStoreListingUpdated.storeListingId) && Intrinsics3.areEqual(this.skuId, trackStoreListingUpdated.skuId) && Intrinsics3.areEqual(this.updateFrom, trackStoreListingUpdated.updateFrom) && Intrinsics3.areEqual(this.updateType, trackStoreListingUpdated.updateType) && Intrinsics3.areEqual(this.guildId, trackStoreListingUpdated.guildId) && Intrinsics3.areEqual(this.childSkuIds, trackStoreListingUpdated.childSkuIds) && Intrinsics3.areEqual(this.isPublished, trackStoreListingUpdated.isPublished) && Intrinsics3.areEqual(this.tagline, trackStoreListingUpdated.tagline) && Intrinsics3.areEqual(this.flavorText, trackStoreListingUpdated.flavorText) && Intrinsics3.areEqual(this.thumbnailAssetId, trackStoreListingUpdated.thumbnailAssetId) && Intrinsics3.areEqual(this.previewVideoAssetId, trackStoreListingUpdated.previewVideoAssetId) && Intrinsics3.areEqual(this.carouselItems, trackStoreListingUpdated.carouselItems);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -70,7 +70,7 @@ public final /* data */ class TrackStoreListingUpdated implements AnalyticsSchem
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("TrackStoreListingUpdated(storeListingId=");
+        StringBuilder sbU = outline.U("TrackStoreListingUpdated(storeListingId=");
         sbU.append(this.storeListingId);
         sbU.append(", skuId=");
         sbU.append(this.skuId);
@@ -93,6 +93,6 @@ public final /* data */ class TrackStoreListingUpdated implements AnalyticsSchem
         sbU.append(", previewVideoAssetId=");
         sbU.append(this.previewVideoAssetId);
         sbU.append(", carouselItems=");
-        return a.L(sbU, this.carouselItems, ")");
+        return outline.L(sbU, this.carouselItems, ")");
     }
 }
