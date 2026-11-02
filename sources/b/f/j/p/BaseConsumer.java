@@ -26,14 +26,18 @@ public abstract class BaseConsumer<T> implements Consumer2<T> {
 
     @Override // b.f.j.p.Consumer2
     public synchronized void b(T t, int i) {
-        if (this.a) {
-            return;
-        }
-        this.a = e(i);
         try {
-            i(t, i);
-        } catch (Exception e) {
-            k(e);
+            if (this.a) {
+                return;
+            }
+            this.a = e(i);
+            try {
+                i(t, i);
+            } catch (Exception e) {
+                k(e);
+            }
+        } catch (Throwable th) {
+            throw th;
         }
     }
 

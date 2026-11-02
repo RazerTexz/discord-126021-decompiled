@@ -31,16 +31,61 @@ public abstract class ParameterHandler3<T> {
             this.c = converter2;
         }
 
+        /*  JADX ERROR: Failed to decode insn: 0x000B: IPUT r1, r6
+            java.util.ConcurrentModificationException
+            	at java.base/java.util.ArrayList$Itr.checkForComodification(ArrayList.java:1013)
+            	at java.base/java.util.ArrayList$Itr.next(ArrayList.java:967)
+            	at jadx.core.dex.nodes.ClassNode.searchField(ClassNode.java:547)
+            	at jadx.core.dex.nodes.RootNode.resolveField(RootNode.java:653)
+            	at jadx.core.dex.instructions.InsnDecoder.tryResolveFieldType(InsnDecoder.java:546)
+            	at jadx.core.dex.instructions.InsnDecoder.decode(InsnDecoder.java:385)
+            	at jadx.core.dex.instructions.InsnDecoder.lambda$process$0(InsnDecoder.java:51)
+            	at jadx.plugins.input.dex.sections.DexCodeReader.visitInstructions(DexCodeReader.java:86)
+            	at jadx.core.dex.instructions.InsnDecoder.process(InsnDecoder.java:46)
+            	at jadx.core.dex.nodes.MethodNode.load(MethodNode.java:175)
+            	at jadx.core.dex.nodes.ClassNode.load(ClassNode.java:458)
+            	at jadx.core.dex.nodes.ClassNode.load(ClassNode.java:464)
+            	at jadx.core.ProcessClass.process(ProcessClass.java:78)
+            	at jadx.core.ProcessClass.generateCode(ProcessClass.java:119)
+            	at jadx.core.dex.nodes.ClassNode.generateClassCode(ClassNode.java:401)
+            	at jadx.core.dex.nodes.ClassNode.decompile(ClassNode.java:389)
+            	at jadx.core.dex.nodes.ClassNode.getCode(ClassNode.java:339)
+            */
         @Override // i0.ParameterHandler3
-        public void a(RequestBuilder requestBuilder, T t) {
-            if (t == null) {
-                throw Utils8.l(this.a, this.f3745b, "Body parameter value must not be null.", new Object[0]);
-            }
-            try {
-                requestBuilder.m = this.c.convert(t);
-            } catch (IOException e) {
-                throw Utils8.m(this.a, e, this.f3745b, "Unable to convert " + t + " to RequestBody", new Object[0]);
-            }
+        public void a(i0.RequestBuilder r6, T r7) {
+            /*
+                r5 = this;
+                r0 = 0
+                if (r7 == 0) goto L30
+                i0.h<T, okhttp3.RequestBody> r1 = r5.c     // Catch: java.io.IOException -> Le
+                java.lang.Object r1 = r1.convert(r7)     // Catch: java.io.IOException -> Le
+                okhttp3.RequestBody r1 = (okhttp3.RequestBody) r1     // Catch: java.io.IOException -> Le
+                r6.m = r1
+                return
+            Le:
+                r6 = move-exception
+                java.lang.reflect.Method r1 = r5.a
+                int r2 = r5.f3745b
+                java.lang.StringBuilder r3 = new java.lang.StringBuilder
+                r3.<init>()
+                java.lang.String r4 = "Unable to convert "
+                r3.append(r4)
+                r3.append(r7)
+                java.lang.String r7 = " to RequestBody"
+                r3.append(r7)
+                java.lang.String r7 = r3.toString()
+                java.lang.Object[] r0 = new java.lang.Object[r0]
+                java.lang.RuntimeException r6 = i0.Utils8.m(r1, r6, r2, r7, r0)
+                throw r6
+            L30:
+                java.lang.reflect.Method r6 = r5.a
+                int r7 = r5.f3745b
+                java.lang.Object[] r0 = new java.lang.Object[r0]
+                java.lang.String r1 = "Body parameter value must not be null."
+                java.lang.RuntimeException r6 = i0.Utils8.l(r6, r7, r1, r0)
+                throw r6
+            */
+            throw new UnsupportedOperationException("Method not decompiled: i0.ParameterHandler3.a.a(i0.v, java.lang.Object):void");
         }
     }
 
