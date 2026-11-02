@@ -1,0 +1,16 @@
+package b.i.a.b.j.t.i;
+
+import b.i.a.b.Encoding2;
+import com.google.android.datatransport.runtime.synchronization.SynchronizationException;
+
+/* JADX INFO: compiled from: SQLiteEventStore.java */
+/* JADX INFO: loaded from: classes3.dex */
+public final /* synthetic */ class r implements t.b {
+    public static final r a = new r();
+
+    @Override // b.i.a.b.j.t.i.t.b
+    public Object apply(Object obj) {
+        Encoding2 encoding2 = t.j;
+        throw new SynchronizationException("Timed out while trying to open db.", (Throwable) obj);
+    }
+}
