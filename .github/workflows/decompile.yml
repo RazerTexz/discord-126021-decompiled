@@ -6,7 +6,7 @@ jobs:
     permissions:
       contents: write
     steps:
-      - name: Download JADX
+      - name: Set up JADX
         run: unzip "$(curl -fsSLOJ -w "%{filename_effective}" https://nightly.link/skylot/jadx/workflows/build-artifacts/master/jadx-r2751.55982e0.zip.zip)"
 
       - name: Decompile
