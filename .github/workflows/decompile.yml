@@ -17,17 +17,17 @@ jobs:
 
       - name: Decompile
         run: |
-          curl -LOJ https://maven.aliucord.com/releases/com/discord/discord/126021/discord-126021.apk
           sh */bin/jadx \
+            -j "$(nproc)" \
+            -d . \
             --fs-case-sensitive \
             --respect-bytecode-access-modifiers \
             --show-bad-code \
             --no-inline-anonymous \
             --no-inline-methods \
             --no-inline-kotlin-lambda \
-            -j "$(nproc)" \
-            -d . \
-            discord-126021.apk || true
+            --use-source-name-as-class-name-alias always \
+            "$(curl -LOJ -w "%{filename_effective}" https://maven.aliucord.com/releases/com/discord/discord/126021/discord-126021.apk)" || true
 
           find . -type f -name "*.java" -exec sed -i "/@Metadata(\|@kotlin.Metadata(\|import kotlin.Metadata/d" {} +
 
