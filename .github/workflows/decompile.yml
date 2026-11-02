@@ -9,9 +9,10 @@ jobs:
       - name: Set up JADX
         uses: dawidd6/action-download-artifact@master
         with:
+          repo: skylot/jadx
+          workflow: build-artifacts.yml
           name: ^jadx-(?!gui)
           name_is_regexp: true
-          workflow: build-artifacts.yml
 
       - name: Decompile
         run: |
