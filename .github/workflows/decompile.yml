@@ -6,6 +6,12 @@ jobs:
     permissions:
       contents: write
     steps:
+      - name: Set up Java
+        uses: actions/setup-java@main
+        with:
+          java-version: 25
+          distribution: temurin
+
       - name: Set up JADX
         uses: dawidd6/action-download-artifact@master
         with:
