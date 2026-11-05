@@ -42,7 +42,7 @@ jobs:
       - name: Upload
         uses: actions/upload-artifact@main
         with:
-          name: ${{ github.job }}
+          name: discord-126021
           path: |
             resources
             sources
