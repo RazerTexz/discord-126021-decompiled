@@ -1295,7 +1295,7 @@ public class AnimatableValueParser {
         encodedImage2.x();
         int i7 = 2;
         if (encodedImage2.l == DefaultImageFormats.a) {
-            if (fMax <= 0.6666667f) {
+            if (!(fMax > 0.6666667f)) {
                 i5 = 2;
                 while (true) {
                     int i8 = i5 * 2;
@@ -1306,7 +1306,7 @@ public class AnimatableValueParser {
                     i5 = i8;
                 }
             }
-        } else if (fMax <= 0.6666667f) {
+        } else if (!(fMax > 0.6666667f)) {
             while (true) {
                 double d3 = i7;
                 if (((1.0d / (Math.pow(d3, 2.0d) - d3)) * 0.3333333432674408d) + (1.0d / d3) <= fMax) {

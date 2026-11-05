@@ -686,7 +686,7 @@ public class SwipeRefreshLayout extends ViewGroup implements NestedScrollingPare
                 startDragging(y3);
                 if (this.mIsBeingDragged) {
                     float f = (y3 - this.mInitialMotionY) * 0.5f;
-                    if (f <= 0.0f) {
+                    if (!(f > 0.0f)) {
                         return false;
                     }
                     getParent().requestDisallowInterceptTouchEvent(true);
@@ -874,7 +874,7 @@ public class SwipeRefreshLayout extends ViewGroup implements NestedScrollingPare
         float f2 = this.mInitialDownY;
         float f3 = f - f2;
         int i = this.mTouchSlop;
-        if (f3 <= i || this.mIsBeingDragged) {
+        if (!(f3 > i) || this.mIsBeingDragged) {
             return;
         }
         this.mInitialMotionY = f2 + i;

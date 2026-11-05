@@ -324,7 +324,7 @@ public class FinderPatternFinder {
                 break;
             }
             FinderPattern2 finderPattern2 = this.f1895b.get(i27);
-            if (Math.abs(fA - finderPattern2.f1826b) > f3 || Math.abs(fA2 - finderPattern2.a) > f3) {
+            if (!(Math.abs(fA - finderPattern2.f1826b) <= f3) || !(Math.abs(fA2 - finderPattern2.a) <= f3)) {
                 z4 = false;
             } else {
                 float fAbs = Math.abs(f3 - finderPattern2.c);

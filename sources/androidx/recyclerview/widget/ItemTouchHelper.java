@@ -647,14 +647,14 @@ public class ItemTouchHelper extends RecyclerView.ItemDecoration implements Recy
             velocityTracker.computeCurrentVelocity(1000, this.mCallback.getSwipeVelocityThreshold(this.mMaxSwipeVelocity));
             float xVelocity = this.mVelocityTracker.getXVelocity(this.mActivePointerId);
             float yVelocity = this.mVelocityTracker.getYVelocity(this.mActivePointerId);
-            int i3 = xVelocity <= 0.0f ? 4 : 8;
+            int i3 = !(xVelocity > 0.0f) ? 4 : 8;
             float fAbs = Math.abs(xVelocity);
             if ((i3 & i) != 0 && i2 == i3 && fAbs >= this.mCallback.getSwipeEscapeVelocity(this.mSwipeEscapeVelocity) && fAbs > Math.abs(yVelocity)) {
                 return i3;
             }
         }
         float swipeThreshold = this.mCallback.getSwipeThreshold(viewHolder) * this.mRecyclerView.getWidth();
-        if ((i & i2) == 0 || Math.abs(this.mDx) <= swipeThreshold) {
+        if ((i & i2) == 0 || !(Math.abs(this.mDx) > swipeThreshold)) {
             return 0;
         }
         return i2;
@@ -673,7 +673,7 @@ public class ItemTouchHelper extends RecyclerView.ItemDecoration implements Recy
         float fAbs = Math.abs(f);
         float fAbs2 = Math.abs(f2);
         int i3 = this.mSlop;
-        if (fAbs >= i3 || fAbs2 >= i3) {
+        if (!(fAbs < i3) || !(fAbs2 < i3)) {
             if (fAbs > fAbs2) {
                 if (f < 0.0f && (absoluteMovementFlags & 4) == 0) {
                     return;
@@ -706,14 +706,14 @@ public class ItemTouchHelper extends RecyclerView.ItemDecoration implements Recy
             velocityTracker.computeCurrentVelocity(1000, this.mCallback.getSwipeVelocityThreshold(this.mMaxSwipeVelocity));
             float xVelocity = this.mVelocityTracker.getXVelocity(this.mActivePointerId);
             float yVelocity = this.mVelocityTracker.getYVelocity(this.mActivePointerId);
-            int i3 = yVelocity <= 0.0f ? 1 : 2;
+            int i3 = !(yVelocity > 0.0f) ? 1 : 2;
             float fAbs = Math.abs(yVelocity);
             if ((i3 & i) != 0 && i3 == i2 && fAbs >= this.mCallback.getSwipeEscapeVelocity(this.mSwipeEscapeVelocity) && fAbs > Math.abs(xVelocity)) {
                 return i3;
             }
         }
         float swipeThreshold = this.mCallback.getSwipeThreshold(viewHolder) * this.mRecyclerView.getHeight();
-        if ((i & i2) == 0 || Math.abs(this.mDy) <= swipeThreshold) {
+        if ((i & i2) == 0 || !(Math.abs(this.mDy) > swipeThreshold)) {
             return 0;
         }
         return i2;
@@ -846,7 +846,7 @@ public class ItemTouchHelper extends RecyclerView.ItemDecoration implements Recy
         if (fAbs > fAbs2 && layoutManager.canScrollHorizontally()) {
             return null;
         }
-        if ((fAbs2 <= fAbs || !layoutManager.canScrollVertically()) && (viewFindChildView = findChildView(motionEvent)) != null) {
+        if ((!(fAbs2 > fAbs) || !layoutManager.canScrollVertically()) && (viewFindChildView = findChildView(motionEvent)) != null) {
             return this.mRecyclerView.getChildViewHolder(viewFindChildView);
         }
         return null;
@@ -1017,7 +1017,7 @@ public class ItemTouchHelper extends RecyclerView.ItemDecoration implements Recy
             int i2 = (int) (this.mSelectedStartX + this.mDx);
             int paddingLeft = (i2 - this.mTmpRect.left) - this.mRecyclerView.getPaddingLeft();
             float f = this.mDx;
-            if ((f >= 0.0f || paddingLeft >= 0) && (f <= 0.0f || (paddingLeft = ((this.mSelected.itemView.getWidth() + i2) + this.mTmpRect.right) - (this.mRecyclerView.getWidth() - this.mRecyclerView.getPaddingRight())) <= 0)) {
+            if ((!(f < 0.0f) || paddingLeft >= 0) && (!(f > 0.0f) || (paddingLeft = ((this.mSelected.itemView.getWidth() + i2) + this.mTmpRect.right) - (this.mRecyclerView.getWidth() - this.mRecyclerView.getPaddingRight())) <= 0)) {
                 iInterpolateOutOfBoundsScroll = 0;
             } else {
                 iInterpolateOutOfBoundsScroll = paddingLeft;
@@ -1029,7 +1029,7 @@ public class ItemTouchHelper extends RecyclerView.ItemDecoration implements Recy
             int i3 = (int) (this.mSelectedStartY + this.mDy);
             int paddingTop = (i3 - this.mTmpRect.top) - this.mRecyclerView.getPaddingTop();
             float f2 = this.mDy;
-            if ((f2 >= 0.0f || paddingTop >= 0) && (f2 <= 0.0f || (paddingTop = ((this.mSelected.itemView.getHeight() + i3) + this.mTmpRect.bottom) - (this.mRecyclerView.getHeight() - this.mRecyclerView.getPaddingBottom())) <= 0)) {
+            if ((!(f2 < 0.0f) || paddingTop >= 0) && (!(f2 > 0.0f) || (paddingTop = ((this.mSelected.itemView.getHeight() + i3) + this.mTmpRect.bottom) - (this.mRecyclerView.getHeight() - this.mRecyclerView.getPaddingBottom())) <= 0)) {
                 iInterpolateOutOfBoundsScroll2 = 0;
             } else {
                 iInterpolateOutOfBoundsScroll2 = paddingTop;

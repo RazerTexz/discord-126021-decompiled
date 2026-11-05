@@ -629,7 +629,7 @@ public class MotionLayout extends ConstraintLayout implements NestedScrollingPar
             if (this.mTransitionInstantly) {
                 f3 = this.mTransitionGoalPosition;
             }
-            if ((fSignum <= 0.0f || f3 < this.mTransitionGoalPosition) && (fSignum > 0.0f || f3 > this.mTransitionGoalPosition)) {
+            if ((!(fSignum > 0.0f) || !(f3 >= this.mTransitionGoalPosition)) && (!(fSignum <= 0.0f) || !(f3 <= this.mTransitionGoalPosition))) {
                 z3 = false;
             } else {
                 f3 = this.mTransitionGoalPosition;
@@ -729,7 +729,7 @@ public class MotionLayout extends ConstraintLayout implements NestedScrollingPar
             }
         }
         float f4 = this.mTransitionLastPosition;
-        if (f4 < 1.0f) {
+        if (!(f4 >= 1.0f)) {
             if (f4 <= 0.0f) {
                 int i5 = this.mCurrentState;
                 int i6 = this.mBeginState;
@@ -763,7 +763,7 @@ public class MotionLayout extends ConstraintLayout implements NestedScrollingPar
         if (this.mTransitionInstantly) {
             interpolation = this.mTransitionGoalPosition;
         }
-        if ((fSignum <= 0.0f || interpolation < this.mTransitionGoalPosition) && (fSignum > 0.0f || interpolation > this.mTransitionGoalPosition)) {
+        if ((!(fSignum > 0.0f) || !(interpolation >= this.mTransitionGoalPosition)) && (!(fSignum <= 0.0f) || !(interpolation <= this.mTransitionGoalPosition))) {
             z2 = false;
         } else {
             interpolation = this.mTransitionGoalPosition;

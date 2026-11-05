@@ -36,7 +36,7 @@ public final class MathUtils {
         if (f > f2 && f > f3 && f > f4) {
             return f;
         }
-        if (f2 <= f3 || f2 <= f4) {
+        if (!(f2 > f3) || !(f2 > f4)) {
             return f3 > f4 ? f3 : f4;
         }
         return f2;

@@ -157,7 +157,7 @@ public abstract class AutoScrollHelper implements View.OnTouchListener {
         if (fConstrainEdgeValue < 0.0f) {
             interpolation = -this.mEdgeInterpolator.getInterpolation(-fConstrainEdgeValue);
         } else {
-            if (fConstrainEdgeValue <= 0.0f) {
+            if (!(fConstrainEdgeValue > 0.0f)) {
                 return 0.0f;
             }
             interpolation = this.mEdgeInterpolator.getInterpolation(fConstrainEdgeValue);

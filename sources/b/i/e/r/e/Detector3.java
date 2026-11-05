@@ -119,7 +119,7 @@ public final class Detector3 {
             }
             i++;
         }
-        if (i6 != length - 1 || d(iArr2, iArr, 0.8f) >= 0.42f) {
+        if (i6 != length - 1 || !(d(iArr2, iArr, 0.8f) < 0.42f)) {
             return null;
         }
         return new int[]{i7, i - 1};

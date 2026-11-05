@@ -209,8 +209,10 @@ public class BufferedDiskCache2 {
                     encodedImage2A.close();
                 }
             }
-        } finally {
             FrescoSystrace.b();
+        } catch (Throwable th) {
+            FrescoSystrace.b();
+            throw th;
         }
     }
 }

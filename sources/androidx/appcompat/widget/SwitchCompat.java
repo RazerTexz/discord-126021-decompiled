@@ -851,9 +851,9 @@ public class SwitchCompat extends CompoundButton {
         if (z2) {
             this.mVelocityTracker.computeCurrentVelocity(1000);
             float xVelocity = this.mVelocityTracker.getXVelocity();
-            if (Math.abs(xVelocity) <= this.mMinFlingVelocity) {
+            if (!(Math.abs(xVelocity) > this.mMinFlingVelocity)) {
                 targetCheckedState = getTargetCheckedState();
-            } else if (!ViewUtils.isLayoutRtl(this) ? xVelocity <= 0.0f : xVelocity >= 0.0f) {
+            } else if (!ViewUtils.isLayoutRtl(this) ? !(xVelocity > 0.0f) : !(xVelocity < 0.0f)) {
                 targetCheckedState = false;
             }
         } else {

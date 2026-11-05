@@ -355,7 +355,7 @@ public final class StoreAudioManagerV2 extends StoreV2 {
             DiscordAudioManager discordAudioManagerD = DiscordAudioManager.d();
             float f = this.$ratio;
             discordAudioManagerD.c();
-            if (f < 0.0f || f > 1.0f) {
+            if (!(f >= 0.0f) || !(f <= 1.0f)) {
                 AnimatableValueParser.f1("DiscordAudioManager", "Unexpected media volume ratio: " + f);
                 return;
             }

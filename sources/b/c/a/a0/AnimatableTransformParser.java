@@ -172,11 +172,11 @@ public class AnimatableTransformParser {
         if (animatableValue2 == null || (!(animatableValue2 instanceof AnimatableSplitDimensionPathValue) && animatableValue2.isStatic() && animatableValue2.b().get(0).f347b.equals(0.0f, 0.0f))) {
             animatableValue2 = null;
         }
-        AnimatableFloatValue animatableFloatValue7 = animatableFloatValue5 == null || (animatableFloatValue5.isStatic() && (((Float) ((Keyframe) animatableFloatValue5.a.get(0)).f347b).floatValue() > 0.0f ? 1 : (((Float) ((Keyframe) animatableFloatValue5.a.get(0)).f347b).floatValue() == 0.0f ? 0 : -1)) == 0) ? null : animatableFloatValue5;
+        AnimatableFloatValue animatableFloatValue7 = animatableFloatValue5 == null || (animatableFloatValue5.isStatic() && ((Float) ((Keyframe) animatableFloatValue5.a.get(0)).f347b).floatValue() == 0.0f) ? null : animatableFloatValue5;
         if (animatableScaleValue3 != 0) {
             if (animatableScaleValue3.isStatic()) {
                 ScaleXY scaleXY = (ScaleXY) ((Keyframe) animatableScaleValue3.a.get(0)).f347b;
-                z2 = (scaleXY.a > 1.0f ? 1 : (scaleXY.a == 1.0f ? 0 : -1)) == 0 && (scaleXY.f350b > 1.0f ? 1 : (scaleXY.f350b == 1.0f ? 0 : -1)) == 0;
+                z2 = scaleXY.a == 1.0f && scaleXY.f350b == 1.0f;
             }
         }
         AnimatableScaleValue animatableScaleValue4 = z2 ? null : animatableScaleValue3;

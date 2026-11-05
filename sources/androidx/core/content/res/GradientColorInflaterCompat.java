@@ -75,7 +75,7 @@ public final class GradientColorInflaterCompat {
         if (namedInt != 1) {
             return namedInt != 2 ? new LinearGradient(namedFloat, namedFloat2, namedFloat3, namedFloat4, colorStopsCheckColors.mColors, colorStopsCheckColors.mOffsets, parseTileMode(namedInt2)) : new SweepGradient(namedFloat5, namedFloat6, colorStopsCheckColors.mColors, colorStopsCheckColors.mOffsets);
         }
-        if (namedFloat7 > 0.0f) {
+        if (!(namedFloat7 <= 0.0f)) {
             return new RadialGradient(namedFloat5, namedFloat6, namedFloat7, colorStopsCheckColors.mColors, colorStopsCheckColors.mOffsets, parseTileMode(namedInt2));
         }
         throw new XmlPullParserException("<gradient> tag requires 'gradientRadius' attribute with radial type");

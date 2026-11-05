@@ -276,7 +276,7 @@ public final class VideoFrameReleaseHelper {
             } else {
                 z2 = false;
             }
-            if (Math.abs(f - this.g) < (z2 ? 0.02f : 1.0f)) {
+            if (!(Math.abs(f - this.g) >= (z2 ? 0.02f : 1.0f))) {
                 z3 = false;
             }
         } else if (f == -1.0f && this.a.e < 30) {

@@ -301,7 +301,7 @@ public class BottomSheetBehavior<V extends View> extends CoordinatorLayout.Behav
             } else {
                 BottomSheetBehavior bottomSheetBehavior2 = BottomSheetBehavior.this;
                 if (bottomSheetBehavior2.hideable && bottomSheetBehavior2.shouldHide(view, f2)) {
-                    if (Math.abs(f) >= Math.abs(f2) || f2 <= 500.0f) {
+                    if (!(Math.abs(f) < Math.abs(f2)) || !(f2 > 500.0f)) {
                         int top2 = view.getTop();
                         BottomSheetBehavior bottomSheetBehavior3 = BottomSheetBehavior.this;
                         if (!(top2 > (bottomSheetBehavior3.getExpandedOffset() + bottomSheetBehavior3.parentHeight) / 2)) {
@@ -676,7 +676,7 @@ public class BottomSheetBehavior<V extends View> extends CoordinatorLayout.Behav
         }
         WeakReference<View> weakReference2 = this.nestedScrollingChildRef;
         View view2 = weakReference2 != null ? weakReference2.get() : null;
-        return (actionMasked != 2 || view2 == null || this.ignoreEvents || this.state == 1 || coordinatorLayout.isPointInChildBounds(view2, (int) motionEvent.getX(), (int) motionEvent.getY()) || this.viewDragHelper == null || Math.abs(((float) this.initialY) - motionEvent.getY()) <= ((float) this.viewDragHelper.getTouchSlop())) ? false : true;
+        return (actionMasked != 2 || view2 == null || this.ignoreEvents || this.state == 1 || coordinatorLayout.isPointInChildBounds(view2, (int) motionEvent.getX(), (int) motionEvent.getY()) || this.viewDragHelper == null || !(Math.abs(((float) this.initialY) - motionEvent.getY()) > ((float) this.viewDragHelper.getTouchSlop()))) ? false : true;
     }
 
     @Override // androidx.coordinatorlayout.widget.CoordinatorLayout.Behavior

@@ -439,7 +439,7 @@ public class DefaultTrackSelector extends MappingTrackSelector {
                 z4 = false;
             } else {
                 float f2 = format2.D;
-                if ((f2 != -1.0f && f2 < dVar.q) || ((i5 = format2.f1017s) != -1 && i5 < dVar.r)) {
+                if ((f2 != -1.0f && !(f2 >= dVar.q)) || ((i5 = format2.f1017s) != -1 && i5 < dVar.r)) {
                     z4 = false;
                 }
             }

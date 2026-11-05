@@ -321,7 +321,7 @@ public class TouchResponse {
             boolean z2 = progress != 1.0f;
             int i = this.mOnTouchUp;
             if ((i != 3) && z2) {
-                this.mMotionLayout.touchAnimateTo(i, ((double) progress) >= 0.5d ? 1.0f : 0.0f, f7);
+                this.mMotionLayout.touchAnimateTo(i, !(((double) progress) < 0.5d) ? 1.0f : 0.0f, f7);
             }
         }
     }

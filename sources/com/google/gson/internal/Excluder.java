@@ -122,8 +122,8 @@ public final class Excluder implements TypeAdapterFactory2, Cloneable {
     }
 
     public final boolean i(Since2 since2, Until until) {
-        if (since2 == null || since2.value() <= this.k) {
-            return until == null || (until.value() > this.k ? 1 : (until.value() == this.k ? 0 : -1)) > 0;
+        if (since2 == null || !(since2.value() > this.k)) {
+            return until == null || !(until.value() <= this.k);
         }
         return false;
     }

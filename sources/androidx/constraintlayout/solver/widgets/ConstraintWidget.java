@@ -2660,7 +2660,7 @@ public class ConstraintWidget {
                 } else {
                     float f = Float.parseFloat(strSubstring3);
                     float f2 = Float.parseFloat(strSubstring4);
-                    if (f <= 0.0f || f2 <= 0.0f) {
+                    if (!(f > 0.0f) || !(f2 > 0.0f)) {
                         fAbs = 0.0f;
                     } else {
                         fAbs = i2 == 1 ? Math.abs(f2 / f) : Math.abs(f / f2);
@@ -2832,7 +2832,7 @@ public class ConstraintWidget {
         }
         this.mMatchConstraintMaxWidth = i3;
         this.mMatchConstraintPercentWidth = f;
-        if (f <= 0.0f || f >= 1.0f || i != 0) {
+        if (!(f > 0.0f) || !(f < 1.0f) || i != 0) {
             return;
         }
         this.mMatchConstraintDefaultWidth = 2;
@@ -2952,7 +2952,7 @@ public class ConstraintWidget {
         }
         this.mMatchConstraintMaxHeight = i3;
         this.mMatchConstraintPercentHeight = f;
-        if (f <= 0.0f || f >= 1.0f || i != 0) {
+        if (!(f > 0.0f) || !(f < 1.0f) || i != 0) {
             return;
         }
         this.mMatchConstraintDefaultHeight = 2;

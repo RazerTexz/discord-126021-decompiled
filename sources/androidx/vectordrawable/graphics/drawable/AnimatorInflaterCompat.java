@@ -317,7 +317,7 @@ public class AnimatorInflaterCompat {
                             keyframe3.setFraction(1.0f);
                         } else {
                             int i4 = i2;
-                            for (int i5 = i2 + 1; i5 < i3 && keyframeArr[i5].getFraction() < 0.0f; i5++) {
+                            for (int i5 = i2 + 1; i5 < i3 && !(keyframeArr[i5].getFraction() >= 0.0f); i5++) {
                                 i4 = i5;
                             }
                             distributeKeyframes(keyframeArr, keyframeArr[i4 + 1].getFraction() - keyframeArr[i2 - 1].getFraction(), i2, i4);

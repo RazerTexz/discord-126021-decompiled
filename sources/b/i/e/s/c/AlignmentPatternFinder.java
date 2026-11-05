@@ -92,7 +92,7 @@ public final class AlignmentPatternFinder {
         }
         float f = ((iArr[0] + iArr[1]) + iArr[2]) / 3.0f;
         for (AlignmentPattern alignmentPattern : this.f1893b) {
-            if (Math.abs(fA2 - alignmentPattern.f1826b) > f || Math.abs(fA - alignmentPattern.a) > f) {
+            if (!(Math.abs(fA2 - alignmentPattern.f1826b) <= f) || !(Math.abs(fA - alignmentPattern.a) <= f)) {
                 z2 = false;
             } else {
                 float fAbs = Math.abs(f - alignmentPattern.c);

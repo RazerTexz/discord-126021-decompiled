@@ -79,9 +79,9 @@ public class PathInterpolatorCompat implements Interpolator {
             this.mX[i2] = fArr[0];
             this.mY[i2] = fArr[1];
         }
-        if (Math.abs(this.mX[0]) <= 1.0E-5d && Math.abs(this.mY[0]) <= 1.0E-5d) {
+        if (!(Math.abs(this.mX[0]) > 1.0E-5d) && !(Math.abs(this.mY[0]) > 1.0E-5d)) {
             int i3 = iMin - 1;
-            if (Math.abs(this.mX[i3] - 1.0f) <= 1.0E-5d && Math.abs(this.mY[i3] - 1.0f) <= 1.0E-5d) {
+            if (!(Math.abs(this.mX[i3] - 1.0f) > 1.0E-5d) && !(Math.abs(this.mY[i3] - 1.0f) > 1.0E-5d)) {
                 float f = 0.0f;
                 int i4 = 0;
                 while (i < iMin) {

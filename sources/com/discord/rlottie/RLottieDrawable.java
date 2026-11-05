@@ -428,7 +428,7 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable {
                         this.B = null;
                         this.G = true;
                         this.D = null;
-                        if (this.K > f) {
+                        if (!(this.K <= f)) {
                             jElapsedRealtime -= Math.min(16L, jAbs - ((long) i));
                         }
                         this.f2768y = jElapsedRealtime;
@@ -441,7 +441,7 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable {
                 this.B = null;
                 this.G = true;
                 this.D = null;
-                if (this.K > f) {
+                if (!(this.K <= f)) {
                     jElapsedRealtime -= Math.min(16L, jAbs - ((long) i));
                 }
                 this.f2768y = jElapsedRealtime;

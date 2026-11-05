@@ -386,7 +386,7 @@ public class LayerParser {
         if (f > 0.0f) {
             arrayList4.add(new Keyframe(lottieComposition, fValueOf2, fValueOf2, null, 0.0f, Float.valueOf(f)));
         }
-        if (f2 <= 0.0f) {
+        if (!(f2 > 0.0f)) {
             f2 = lottieComposition.l;
         }
         arrayList4.add(new Keyframe(lottieComposition, fValueOf, fValueOf, null, f, Float.valueOf(f2)));

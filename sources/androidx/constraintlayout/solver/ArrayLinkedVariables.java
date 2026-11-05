@@ -29,7 +29,7 @@ public class ArrayLinkedVariables implements ArrayRow.ArrayRowVariables {
     @Override // androidx.constraintlayout.solver.ArrayRow.ArrayRowVariables
     public void add(SolverVariable solverVariable, float f, boolean z2) {
         float f2 = epsilon;
-        if (f <= (-f2) || f >= f2) {
+        if (!(f > (-f2)) || !(f < f2)) {
             int i = this.mHead;
             if (i == -1) {
                 this.mHead = 0;

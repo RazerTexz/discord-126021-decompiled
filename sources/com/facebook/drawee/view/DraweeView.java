@@ -147,7 +147,7 @@ public class DraweeView<DH extends DraweeHierarchy> extends ImageView {
         ViewGroup.LayoutParams layoutParams = getLayoutParams();
         int paddingRight = getPaddingRight() + getPaddingLeft();
         int paddingBottom = getPaddingBottom() + getPaddingTop();
-        if (f > 0.0f && layoutParams != null) {
+        if (!(f <= 0.0f) && layoutParams != null) {
             int i3 = layoutParams.height;
             boolean z2 = true;
             if (i3 == 0 || i3 == -2) {

@@ -671,7 +671,7 @@ public class LinearSystem {
                         while (i8 < currentSize) {
                             SolverVariable variable = arrayRow.variables.getVariable(i8);
                             float f2 = arrayRow.variables.get(variable);
-                            if (f2 > 0.0f) {
+                            if (!(f2 <= 0.0f)) {
                                 int i9 = 0;
                                 while (i9 < i7) {
                                     float f3 = variable.strengthVector[i9] / f2;
@@ -692,7 +692,7 @@ public class LinearSystem {
                         for (int i10 = 1; i10 < this.mNumColumns; i10++) {
                             SolverVariable solverVariable = this.mCache.mIndexedVariables[i10];
                             float f4 = arrayRow.variables.get(solverVariable);
-                            if (f4 > 0.0f) {
+                            if (!(f4 <= 0.0f)) {
                                 for (int i11 = 0; i11 < 9; i11++) {
                                     float f5 = solverVariable.strengthVector[i11] / f4;
                                     if ((f5 < f && i11 == i5) || i11 > i5) {

@@ -86,7 +86,7 @@ public class ColorPaletteAdapter extends BaseAdapter {
         bVar.c.setImageResource(ColorPaletteAdapter.this.l == i ? R.b.cpv_preset_checked : 0);
         if (iAlpha == 255) {
             ColorPaletteAdapter colorPaletteAdapter = ColorPaletteAdapter.this;
-            if (i != colorPaletteAdapter.l || ColorUtils.calculateLuminance(colorPaletteAdapter.k[i]) < 0.65d) {
+            if (i != colorPaletteAdapter.l || !(ColorUtils.calculateLuminance(colorPaletteAdapter.k[i]) >= 0.65d)) {
                 bVar.c.setColorFilter((ColorFilter) null);
             } else {
                 bVar.c.setColorFilter(ViewCompat.MEASURED_STATE_MASK, PorterDuff.Mode.SRC_IN);

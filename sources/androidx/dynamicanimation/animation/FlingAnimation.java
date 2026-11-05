@@ -68,7 +68,7 @@ public final class FlingAnimation extends DynamicAnimation<FlingAnimation> {
             return true;
         }
         float f4 = this.mMaxValue;
-        if (f <= f4) {
+        if (!(f > f4)) {
             return isAtEquilibrium(f, f2);
         }
         this.mValue = f4;

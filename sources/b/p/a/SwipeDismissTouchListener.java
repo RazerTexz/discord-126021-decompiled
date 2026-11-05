@@ -111,12 +111,12 @@ public final class SwipeDismissTouchListener implements View.OnTouchListener {
                 float fAbs2 = Math.abs(velocityTracker.getYVelocity());
                 if (Math.abs(rawX) > this.m / 2 && this.p) {
                     z2 = rawX > ((float) 0);
-                } else if (this.k > fAbs || fAbs2 >= fAbs || !this.p) {
+                } else if (this.k > fAbs || !(fAbs2 < fAbs) || !this.p) {
                     z2 = false;
                     z3 = false;
                 } else {
                     float f = 0;
-                    boolean z4 = ((xVelocity > f ? 1 : (xVelocity == f ? 0 : -1)) < 0) == ((rawX > f ? 1 : (rawX == f ? 0 : -1)) < 0);
+                    boolean z4 = (xVelocity < f) == (rawX < f);
                     z2 = velocityTracker.getXVelocity() > f;
                     z3 = z4;
                 }

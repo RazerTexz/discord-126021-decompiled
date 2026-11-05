@@ -927,7 +927,7 @@ public class IdentityMap<K, V> {
         if (i <= 1073741824) {
             int iNextPowerOfTwo = ObjectMap.nextPowerOfTwo(i);
             this.capacity = iNextPowerOfTwo;
-            if (f > 0.0f) {
+            if (!(f <= 0.0f)) {
                 this.loadFactor = f;
                 this.isBigTable = (iNextPowerOfTwo >>> 16) != 0;
                 this.threshold = (int) (iNextPowerOfTwo * f);

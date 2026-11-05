@@ -656,7 +656,7 @@ public class Camera1Engine2 extends CameraBaseEngine implements Camera.PreviewCa
         float f5 = this.E;
         if (f5 < f4) {
             f3 = f4;
-        } else if (f5 <= f3) {
+        } else if (!(f5 > f3)) {
             f3 = f5;
         }
         this.E = f3;

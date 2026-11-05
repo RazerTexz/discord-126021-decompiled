@@ -225,7 +225,7 @@ public final class Histogram {
             j += jLongValue2;
             Integer num2 = num;
             double d = (j / this.count) * ((double) 100);
-            while ((!arrayDeque.isEmpty()) && ((Number) arrayDeque.get(0)).doubleValue() <= d) {
+            while ((!arrayDeque.isEmpty()) && !(((Number) arrayDeque.get(0)).doubleValue() > d)) {
                 linkedHashMap.put(Integer.valueOf(((Number) arrayDeque.removeFirst()).intValue()), Long.valueOf(jLongValue));
             }
             num = num2;

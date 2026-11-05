@@ -618,7 +618,7 @@ public class BottomAppBar extends Toolbar implements CoordinatorLayout.AttachedB
             return;
         }
         Animator animatorOfFloat = ObjectAnimator.ofFloat(actionMenuView, Key.ALPHA, 1.0f);
-        if (Math.abs(actionMenuView.getTranslationX() - getActionMenuViewTranslationX(actionMenuView, i2, z2)) <= 1.0f) {
+        if (!(Math.abs(actionMenuView.getTranslationX() - getActionMenuViewTranslationX(actionMenuView, i2, z2)) > 1.0f)) {
             if (actionMenuView.getAlpha() < 1.0f) {
                 list.add(animatorOfFloat);
             }

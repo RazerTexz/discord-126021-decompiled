@@ -204,7 +204,7 @@ public class ViewDragHelper {
         if (fAbs <= i3 && fAbs2 <= i3) {
             return false;
         }
-        if (fAbs >= fAbs2 * 0.5f || !this.mCallback.onEdgeLock(i2)) {
+        if (!(fAbs < fAbs2 * 0.5f) || !this.mCallback.onEdgeLock(i2)) {
             return (this.mEdgeDragsInProgress[i] & i2) == 0 && fAbs > ((float) this.mTouchSlop);
         }
         int[] iArr = this.mEdgeDragsLocked;

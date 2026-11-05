@@ -281,7 +281,7 @@ public final class GestureDetectorCompat {
                     return false | this.mDoubleTapListener.onDoubleTapEvent(motionEvent);
                 }
                 if (!this.mAlwaysInTapRegion) {
-                    if (Math.abs(f4) < 1.0f && Math.abs(f5) < 1.0f) {
+                    if (!(Math.abs(f4) >= 1.0f) && !(Math.abs(f5) >= 1.0f)) {
                         return false;
                     }
                     boolean zOnScroll = this.mListener.onScroll(this.mCurrentDownEvent, motionEvent, f4, f5);

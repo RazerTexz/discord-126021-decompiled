@@ -1786,7 +1786,7 @@ public class StaggeredGridLayoutManager extends RecyclerView.LayoutManager imple
         for (int i = 0; i < childCount; i++) {
             View childAt = getChildAt(i);
             float decoratedMeasurement = this.mSecondaryOrientation.getDecoratedMeasurement(childAt);
-            if (decoratedMeasurement >= fMax) {
+            if (!(decoratedMeasurement < fMax)) {
                 if (((LayoutParams) childAt.getLayoutParams()).isFullSpan()) {
                     decoratedMeasurement = (decoratedMeasurement * 1.0f) / this.mSpanCount;
                 }

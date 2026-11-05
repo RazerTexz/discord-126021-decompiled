@@ -145,7 +145,7 @@ public class DebugControllerOverlayDrawable extends Drawable implements ImageLoa
             float f7 = iAbs;
             if (f7 < f2 && iAbs2 < f5) {
                 i = -16711936;
-            } else if (f7 >= f3 || iAbs2 >= f6) {
+            } else if (!(f7 < f3) || iAbs2 >= f6) {
                 i = -65536;
             } else {
                 i = InputDeviceCompat.SOURCE_ANY;

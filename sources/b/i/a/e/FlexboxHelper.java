@@ -806,7 +806,7 @@ public class FlexboxHelper {
                     if (jArr4 != null) {
                         measuredWidth3 = (int) jArr4[i10];
                     }
-                    if (this.f1328b[i10] || flexItem.S() <= f2) {
+                    if (this.f1328b[i10] || !(flexItem.S() > f2)) {
                         i7 = i5;
                     } else {
                         float fS2 = (flexItem.S() * f3) + measuredHeight3;
@@ -1036,7 +1036,7 @@ public class FlexboxHelper {
                     if (jArr2 != null) {
                         measuredHeight = m(jArr2[i8]);
                     }
-                    if (this.f1328b[i8] || flexItem.x() <= 0.0f) {
+                    if (this.f1328b[i8] || !(flexItem.x() > 0.0f)) {
                         i6 = i9;
                     } else {
                         float fX = measuredWidth - (flexItem.x() * f3);
@@ -1088,7 +1088,7 @@ public class FlexboxHelper {
                     if (jArr4 != null) {
                         measuredWidth3 = (int) jArr4[i8];
                     }
-                    if (this.f1328b[i8] || flexItem.x() <= f2) {
+                    if (this.f1328b[i8] || !(flexItem.x() > f2)) {
                         i5 = i5;
                         i6 = i6;
                     } else {

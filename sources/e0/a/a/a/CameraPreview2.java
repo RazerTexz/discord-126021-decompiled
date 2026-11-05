@@ -95,7 +95,7 @@ public class CameraPreview2 extends SurfaceView implements SurfaceHolder.Callbac
             float width = ((View) getParent()).getWidth() / f;
             float f2 = i2;
             float height = ((View) getParent()).getHeight() / f2;
-            if (width <= height) {
+            if (!(width > height)) {
                 width = height;
             }
             i = Math.round(f * width);
@@ -186,7 +186,7 @@ public class CameraPreview2 extends SurfaceView implements SurfaceHolder.Callbac
         double dAbs = Double.MAX_VALUE;
         double dAbs2 = Double.MAX_VALUE;
         for (Camera.Size size2 : supportedPreviewSizes) {
-            if (Math.abs((((double) size2.width) / ((double) size2.height)) - d) <= this.q && Math.abs(size2.height - height) < dAbs2) {
+            if (!(Math.abs((((double) size2.width) / ((double) size2.height)) - d) > this.q) && Math.abs(size2.height - height) < dAbs2) {
                 dAbs2 = Math.abs(size2.height - height);
                 size = size2;
             }

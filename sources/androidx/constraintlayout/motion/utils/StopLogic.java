@@ -43,7 +43,7 @@ public class StopLogic extends MotionInterpolator {
         }
         float f8 = f4 - f5;
         float f9 = this.mStage3Duration;
-        if (f8 >= f9) {
+        if (!(f8 < f9)) {
             return this.mStage3EndPosition;
         }
         float f10 = this.mStage2EndPosition;
@@ -141,13 +141,13 @@ public class StopLogic extends MotionInterpolator {
             }
             f -= f4;
             f4 = this.mStage2Duration;
-            if (f >= f4) {
+            if (!(f < f4)) {
                 if (i == 2) {
                     return this.mStage2EndPosition;
                 }
                 float f5 = f - f4;
                 float f6 = this.mStage3Duration;
-                if (f5 >= f6) {
+                if (!(f5 < f6)) {
                     return this.mStage3EndPosition;
                 }
                 float f7 = this.mStage3Velocity;

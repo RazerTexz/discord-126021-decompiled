@@ -36,7 +36,7 @@ public abstract class GestureFinder {
             fB = f3;
         }
         float f4 = ((f3 - f2) / 50.0f) / 2.0f;
-        return (fB < f - f4 || fB > f4 + f) ? fB : f;
+        return (!(fB >= f - f4) || !(fB <= f4 + f)) ? fB : f;
     }
 
     public abstract float b(float f, float f2, float f3);

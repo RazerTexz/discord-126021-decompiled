@@ -429,7 +429,7 @@ public final class VideoQuality {
         fVar = this.l;
         f2 = fVar.f / 1000.0f;
         f3 = 0;
-        return Maps6.plus(e(this.l), Maps6.mapOf(Tuples.to("target_bitrate_max", Long.valueOf((f2 <= f3 || (fValueOf3 = Float.valueOf(((float) (fVar.o * ((long) 8))) / f2)) == null) ? 0L : MathJVM.roundToLong(fValueOf3.floatValue()))), Tuples.to("target_bitrate_network", Long.valueOf((f2 <= f3 || (fValueOf2 = Float.valueOf(((float) (this.l.n * ((long) 8))) / f2)) == null) ? 0L : MathJVM.roundToLong(fValueOf2.floatValue()))), Tuples.to("target_fps", Long.valueOf((f2 <= f3 || (fValueOf = Float.valueOf(((float) this.l.m) / f2)) == null) ? 0L : MathJVM.roundToLong(fValueOf.floatValue()))), Tuples.to("duration_encoder_nvidia_cuda", 0L), Tuples.to("duration_encoder_nvidia_direct3d", 0L), Tuples.to("duration_encoder_openh264", 0L), Tuples.to("duration_encoder_videotoolbox", 0L), Tuples.to("duration_encoder_amd_direct3d", 0L), Tuples.to("duration_encoder_intel", 0L), Tuples.to("duration_encoder_intel_direct3d", 0L), Tuples.to("duration_encoder_unknown", 0L)));
+        return Maps6.plus(e(this.l), Maps6.mapOf(Tuples.to("target_bitrate_max", Long.valueOf((!(f2 > f3) || (fValueOf3 = Float.valueOf(((float) (fVar.o * ((long) 8))) / f2)) == null) ? 0L : MathJVM.roundToLong(fValueOf3.floatValue()))), Tuples.to("target_bitrate_network", Long.valueOf((!(f2 > f3) || (fValueOf2 = Float.valueOf(((float) (this.l.n * ((long) 8))) / f2)) == null) ? 0L : MathJVM.roundToLong(fValueOf2.floatValue()))), Tuples.to("target_fps", Long.valueOf((!(f2 > f3) || (fValueOf = Float.valueOf(((float) this.l.m) / f2)) == null) ? 0L : MathJVM.roundToLong(fValueOf.floatValue()))), Tuples.to("duration_encoder_nvidia_cuda", 0L), Tuples.to("duration_encoder_nvidia_direct3d", 0L), Tuples.to("duration_encoder_openh264", 0L), Tuples.to("duration_encoder_videotoolbox", 0L), Tuples.to("duration_encoder_amd_direct3d", 0L), Tuples.to("duration_encoder_intel", 0L), Tuples.to("duration_encoder_intel_direct3d", 0L), Tuples.to("duration_encoder_unknown", 0L)));
     }
 
     public final Map<String, Object> e(e eVar) {
@@ -439,7 +439,7 @@ public final class VideoQuality {
         float fLongValue = (l != null ? l.longValue() - this.g : jCurrentTimeMillis - this.g) / 1000.0f;
         float f2 = eVar.f / 1000.0f;
         float f3 = 0;
-        long jRoundToLong = (f2 <= f3 || (fValueOf = Float.valueOf(eVar.i / f2)) == null) ? 0L : MathJVM.roundToLong(fValueOf.floatValue());
+        long jRoundToLong = (!(f2 > f3) || (fValueOf = Float.valueOf(eVar.i / f2)) == null) ? 0L : MathJVM.roundToLong(fValueOf.floatValue());
         Histogram.Report report = eVar.f283b.getReport();
         Histogram.Report report2 = eVar.c.getReport();
         b bVar = d;

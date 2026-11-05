@@ -302,7 +302,7 @@ public class ArrayRow implements LinearSystem.Row {
 
     public boolean hasKeyVariable() {
         SolverVariable solverVariable = this.variable;
-        return solverVariable != null && (solverVariable.mType == SolverVariable.Type.UNRESTRICTED || this.constantValue >= 0.0f);
+        return solverVariable != null && (solverVariable.mType == SolverVariable.Type.UNRESTRICTED || !(this.constantValue < 0.0f));
     }
 
     public boolean hasVariable(SolverVariable solverVariable) {

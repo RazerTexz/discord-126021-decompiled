@@ -184,7 +184,7 @@ public abstract class FabTransformationBehavior extends ExpandableTransformation
         if (f == 0.0f || f2 == 0.0f) {
             timing = fabTransformationSpec.timings.getTiming("translationXLinear");
             timing2 = fabTransformationSpec.timings.getTiming("translationYLinear");
-        } else if ((!z2 || f2 >= 0.0f) && (z2 || f2 <= 0.0f)) {
+        } else if ((!z2 || !(f2 < 0.0f)) && (z2 || !(f2 > 0.0f))) {
             timing = fabTransformationSpec.timings.getTiming("translationXCurveDownwards");
             timing2 = fabTransformationSpec.timings.getTiming("translationYCurveDownwards");
         } else {

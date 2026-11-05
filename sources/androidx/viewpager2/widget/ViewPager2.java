@@ -1021,7 +1021,7 @@ public final class ViewPager2 extends ViewGroup {
             return;
         }
         double d = iMin;
-        if (Math.abs(d - relativeScrollPosition) <= 3.0d) {
+        if (!(Math.abs(d - relativeScrollPosition) > 3.0d)) {
             this.mRecyclerView.smoothScrollToPosition(iMin);
             return;
         }

@@ -99,7 +99,7 @@ public class ShapeableImageView extends AppCompatImageView implements Shapeable 
         }
         this.borderPaint.setStrokeWidth(this.strokeWidth);
         int colorForState = this.strokeColor.getColorForState(getDrawableState(), this.strokeColor.getDefaultColor());
-        if (this.strokeWidth <= 0.0f || colorForState == 0) {
+        if (!(this.strokeWidth > 0.0f) || colorForState == 0) {
             return;
         }
         this.borderPaint.setColor(colorForState);

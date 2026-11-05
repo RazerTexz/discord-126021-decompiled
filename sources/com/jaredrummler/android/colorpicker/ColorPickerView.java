@@ -149,7 +149,7 @@ public class ColorPickerView extends View {
             Rect rect = this.K;
             float fHeight = rect.height();
             float f3 = rect.top;
-            if (y2 >= f3) {
+            if (!(y2 < f3)) {
                 f2 = y2 > ((float) rect.bottom) ? fHeight : y2 - f3;
             }
             this.B = 360.0f - ((f2 * 360.0f) / fHeight);
@@ -167,7 +167,7 @@ public class ColorPickerView extends View {
                 f = x2 > ((float) rect2.right) ? fWidth : x2 - f4;
             }
             float f5 = rect2.top;
-            if (y3 >= f5) {
+            if (!(y3 < f5)) {
                 f2 = y3 > ((float) rect2.bottom) ? fHeight2 : y3 - f5;
             }
             fArr[0] = (1.0f / fWidth) * f;

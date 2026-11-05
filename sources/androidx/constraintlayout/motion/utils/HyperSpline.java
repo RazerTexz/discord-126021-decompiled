@@ -48,7 +48,7 @@ public class HyperSpline {
         double dSqrt = 0.0d;
         while (true) {
             i = 0;
-            if (d2 >= 1.0d) {
+            if (!(d2 < 1.0d)) {
                 break;
             }
             double d3 = 0.0d;
@@ -116,7 +116,7 @@ public class HyperSpline {
         int i = 0;
         while (true) {
             double[] dArr2 = this.mCurveLength;
-            if (i >= dArr2.length - 1 || dArr2[i] >= d2) {
+            if (i >= dArr2.length - 1 || !(dArr2[i] < d2)) {
                 break;
             }
             d2 -= dArr2[i];
@@ -132,7 +132,7 @@ public class HyperSpline {
         int i = 0;
         while (true) {
             double[] dArr2 = this.mCurveLength;
-            if (i >= dArr2.length - 1 || dArr2[i] >= d2) {
+            if (i >= dArr2.length - 1 || !(dArr2[i] < d2)) {
                 break;
             }
             d2 -= dArr2[i];
@@ -190,7 +190,7 @@ public class HyperSpline {
         int i = 0;
         while (true) {
             double[] dArr = this.mCurveLength;
-            if (i >= dArr.length - 1 || dArr[i] >= d2) {
+            if (i >= dArr.length - 1 || !(dArr[i] < d2)) {
                 break;
             }
             d2 -= dArr[i];
@@ -207,7 +207,7 @@ public class HyperSpline {
         int i2 = 0;
         while (true) {
             dArr = this.mCurveLength;
-            if (i2 >= dArr.length - 1 || dArr[i2] >= d2) {
+            if (i2 >= dArr.length - 1 || !(dArr[i2] < d2)) {
                 break;
             }
             d2 -= dArr[i2];

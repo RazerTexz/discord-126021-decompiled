@@ -89,12 +89,12 @@ public final class ColorUtils {
         double d5 = (d2 / 500.0d) + d4;
         double d6 = d4 - (d3 / 200.0d);
         double dPow = Math.pow(d5, 3.0d);
-        if (dPow <= XYZ_EPSILON) {
+        if (!(dPow > XYZ_EPSILON)) {
             dPow = ((d5 * 116.0d) - 16.0d) / XYZ_KAPPA;
         }
         double dPow2 = d > 7.9996247999999985d ? Math.pow(d4, 3.0d) : d / XYZ_KAPPA;
         double dPow3 = Math.pow(d6, 3.0d);
-        if (dPow3 <= XYZ_EPSILON) {
+        if (!(dPow3 > XYZ_EPSILON)) {
             dPow3 = ((d6 * 116.0d) - 16.0d) / XYZ_KAPPA;
         }
         dArr[0] = dPow * XYZ_WHITE_REFERENCE_X;

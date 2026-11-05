@@ -70,11 +70,11 @@ public final class Detector2 {
 
     public final boolean c(ResultPoint resultPoint) {
         float f = resultPoint.a;
-        if (f < 0.0f) {
+        if (!(f >= 0.0f)) {
             return false;
         }
         BitMatrix bitMatrix = this.a;
-        if (f >= bitMatrix.j) {
+        if (!(f < bitMatrix.j)) {
             return false;
         }
         float f2 = resultPoint.f1826b;

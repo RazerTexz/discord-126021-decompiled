@@ -350,8 +350,8 @@ public class OverlappingPanelsLayout extends FrameLayout {
         if (x2 == this.endPanelOpenedCenterPanelX) {
             return PanelState.c.a;
         }
-        if (!z2 || x2 >= previousX) {
-            return (z2 || x2 <= previousX) ? PanelState.b.a : PanelState.d.a;
+        if (!z2 || !(x2 < previousX)) {
+            return (z2 || !(x2 > previousX)) ? PanelState.b.a : PanelState.d.a;
         }
         return PanelState.d.a;
     }
@@ -409,8 +409,8 @@ public class OverlappingPanelsLayout extends FrameLayout {
         if (x2 == this.startPanelOpenedCenterPanelX) {
             return PanelState.c.a;
         }
-        if (!z2 || x2 <= previousX) {
-            return (z2 || x2 >= previousX) ? PanelState.b.a : PanelState.d.a;
+        if (!z2 || !(x2 > previousX)) {
+            return (z2 || !(x2 < previousX)) ? PanelState.b.a : PanelState.d.a;
         }
         return PanelState.d.a;
     }
@@ -441,7 +441,7 @@ public class OverlappingPanelsLayout extends FrameLayout {
             if (view4 == null) {
                 Intrinsics3.throwUninitializedPropertyAccessException("centerPanel");
             }
-            if (view4.getX() <= 0) {
+            if (!(view4.getX() > 0)) {
                 if (!this.isLeftToRight) {
                     view = this.centerPanel;
                     if (view == null) {
@@ -470,7 +470,7 @@ public class OverlappingPanelsLayout extends FrameLayout {
             if (view6 == null) {
                 Intrinsics3.throwUninitializedPropertyAccessException("centerPanel");
             }
-            if (view6.getX() >= 0) {
+            if (!(view6.getX() < 0)) {
                 if (!this.isLeftToRight) {
                     view2 = this.centerPanel;
                     if (view2 == null) {
@@ -791,7 +791,7 @@ public class OverlappingPanelsLayout extends FrameLayout {
             float fCalculateDistanceX = calculateDistanceX(this.xFromInterceptActionDown, event);
             float fCalculateDistanceY = calculateDistanceY(this.yFromInterceptActionDown, event);
             boolean zIsTouchingChildGestureRegion = isTouchingChildGestureRegion(event);
-            if (Math.abs(fCalculateDistanceX) <= this.scrollingSlopPx || Math.abs(fCalculateDistanceX) <= Math.abs(fCalculateDistanceY) || zIsTouchingChildGestureRegion) {
+            if (!(Math.abs(fCalculateDistanceX) > this.scrollingSlopPx) || !(Math.abs(fCalculateDistanceX) > Math.abs(fCalculateDistanceY)) || zIsTouchingChildGestureRegion) {
                 return false;
             }
             this.isScrollingHorizontally = true;
@@ -822,7 +822,7 @@ public class OverlappingPanelsLayout extends FrameLayout {
         int actionMasked = event.getActionMasked();
         if (actionMasked != 0) {
             if (actionMasked == 1) {
-                if (this.wasActionDownOnClosedCenterPanel || Math.abs(event.getX() - this.xFromInterceptActionDown) >= this.scrollingSlopPx || this.isScrollingHorizontally) {
+                if (this.wasActionDownOnClosedCenterPanel || !(Math.abs(event.getX() - this.xFromInterceptActionDown) < this.scrollingSlopPx) || this.isScrollingHorizontally) {
                     z2 = false;
                 } else {
                     z2 = true;
@@ -1001,7 +1001,7 @@ public class OverlappingPanelsLayout extends FrameLayout {
         float fAbs = Math.abs(normalizedX - view.getX());
         Resources resources = getResources();
         Intrinsics3.checkExpressionValueIsNotNull(resources, "resources");
-        return normalizedX == 0.0f || normalizedX == this.startPanelOpenedCenterPanelX || normalizedX == this.endPanelOpenedCenterPanelX || ((fAbs > resources.getDisplayMetrics().density ? 1 : (fAbs == resources.getDisplayMetrics().density ? 0 : -1)) > 0);
+        return normalizedX == 0.0f || normalizedX == this.startPanelOpenedCenterPanelX || normalizedX == this.endPanelOpenedCenterPanelX || (fAbs > resources.getDisplayMetrics().density);
     }
 
     private final void snapOpenOrClose(MotionEvent event) {

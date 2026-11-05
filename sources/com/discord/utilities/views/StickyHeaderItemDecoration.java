@@ -43,7 +43,7 @@ public final class StickyHeaderItemDecoration extends RecyclerView.ItemDecoratio
                     float fAbs = Math.abs(event.getRawX() - fAccess$getActionDownRawX$p.floatValue());
                     float fAbs2 = Math.abs(event.getRawY() - fAccess$getActionDownRawY$p.floatValue());
                     float dimensionPixelSize = recyclerView.getResources().getDimensionPixelSize(R.dimen.default_scroll_slop);
-                    if (fAbs >= dimensionPixelSize || fAbs2 >= dimensionPixelSize) {
+                    if (!(fAbs < dimensionPixelSize) || !(fAbs2 < dimensionPixelSize)) {
                         z2 = false;
                     } else {
                         z2 = true;

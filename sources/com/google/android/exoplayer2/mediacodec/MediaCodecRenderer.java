@@ -841,7 +841,7 @@ public abstract class MediaCodecRenderer extends BaseRenderer {
             Objects.requireNonNull(format2Arr);
             fV = V(f, format2, format2Arr);
         }
-        float f2 = fV > this.f2945y ? fV : -1.0f;
+        float f2 = !(fV <= this.f2945y) ? fV : -1.0f;
         long jElapsedRealtime = SystemClock.elapsedRealtime();
         String strValueOf = String.valueOf(str);
         AnimatableValueParser.f(strValueOf.length() != 0 ? "createCodec:".concat(strValueOf) : new String("createCodec:"));
@@ -1454,7 +1454,7 @@ public abstract class MediaCodecRenderer extends BaseRenderer {
                 N();
                 return false;
             }
-            if (f2 == -1.0f && fV <= this.f2945y) {
+            if (f2 == -1.0f && !(fV > this.f2945y)) {
                 return true;
             }
             Bundle bundle = new Bundle();

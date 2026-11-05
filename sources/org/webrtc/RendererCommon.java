@@ -70,7 +70,7 @@ public class RendererCommon {
                 return new Point(defaultSize, defaultSize2);
             }
             float f = i3 / i4;
-            Point displaySize = RendererCommon.getDisplaySize(((f > 1.0f ? 1 : (f == 1.0f ? 0 : -1)) > 0) == (((float) defaultSize) / ((float) defaultSize2) > 1.0f) ? this.visibleFractionMatchOrientation : this.visibleFractionMismatchOrientation, f, defaultSize, defaultSize2);
+            Point displaySize = RendererCommon.getDisplaySize((f > 1.0f) == (((float) defaultSize) / ((float) defaultSize2) > 1.0f) ? this.visibleFractionMatchOrientation : this.visibleFractionMismatchOrientation, f, defaultSize, defaultSize2);
             if (View.MeasureSpec.getMode(i) == 1073741824) {
                 displaySize.x = defaultSize;
             }

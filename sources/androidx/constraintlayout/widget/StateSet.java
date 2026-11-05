@@ -72,8 +72,8 @@ public class StateSet {
             if (!Float.isNaN(this.mMinHeight) && f2 < this.mMinHeight) {
                 return false;
             }
-            if (Float.isNaN(this.mMaxWidth) || f <= this.mMaxWidth) {
-                return Float.isNaN(this.mMaxHeight) || f2 <= this.mMaxHeight;
+            if (Float.isNaN(this.mMaxWidth) || !(f > this.mMaxWidth)) {
+                return Float.isNaN(this.mMaxHeight) || !(f2 > this.mMaxHeight);
             }
             return false;
         }

@@ -266,10 +266,10 @@ public abstract class BaseStrokeContent implements BaseKeyframeAnimation.b, KeyP
                     float length2 = this.a.getLength();
                     if (fFloatValue3 > length) {
                         float f5 = fFloatValue3 - length;
-                        if (f5 >= f4 + length2 || f4 >= f5) {
+                        if (!(f5 < f4 + length2) || !(f4 < f5)) {
                             f = f4 + length2;
-                            if (f < fFloatValue2 && f4 <= fFloatValue3) {
-                                if (f > fFloatValue3 || fFloatValue2 >= f4) {
+                            if (f < fFloatValue2 && !(f4 > fFloatValue3)) {
+                                if (!(f <= fFloatValue3) || !(fFloatValue2 < f4)) {
                                     Utils.a(this.c, fFloatValue2 < f4 ? 0.0f : (fFloatValue2 - f4) / length2, fFloatValue3 > f ? 1.0f : (fFloatValue3 - f4) / length2, 0.0f);
                                     canvas.drawPath(this.c, this.i);
                                 } else {

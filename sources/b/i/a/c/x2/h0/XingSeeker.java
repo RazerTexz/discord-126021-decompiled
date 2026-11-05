@@ -67,7 +67,7 @@ public final class XingSeeker implements Seeker {
         long jI = Util2.i(j, 0L, this.c);
         double d = (jI * 100.0d) / this.c;
         double d2 = 0.0d;
-        if (d > 0.0d) {
+        if (!(d <= 0.0d)) {
             if (d >= 100.0d) {
                 d2 = 256.0d;
             } else {

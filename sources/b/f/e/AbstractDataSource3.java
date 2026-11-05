@@ -139,7 +139,7 @@ public abstract class AbstractDataSource3<T> implements DataSource<T> {
         boolean z2;
         synchronized (this) {
             z2 = false;
-            if (!this.c && this.f475b == 1 && f >= this.f) {
+            if (!this.c && this.f475b == 1 && !(f < this.f)) {
                 this.f = f;
                 z2 = true;
             }

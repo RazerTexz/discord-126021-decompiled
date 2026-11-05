@@ -29,7 +29,7 @@ public class ResultPoint {
             resultPoint = resultPointArr[0];
             resultPoint2 = resultPointArr[1];
             resultPoint3 = resultPointArr[2];
-        } else if (fA3 < fA2 || fA3 < fA) {
+        } else if (!(fA3 >= fA2) || !(fA3 >= fA)) {
             resultPoint = resultPointArr[2];
             resultPoint2 = resultPointArr[0];
             resultPoint3 = resultPointArr[1];

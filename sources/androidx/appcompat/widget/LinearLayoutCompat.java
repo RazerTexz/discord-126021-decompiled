@@ -624,7 +624,7 @@ public class LinearLayoutCompat extends ViewGroup {
                         childrenSkipCount = getChildrenSkipCount(view, i17) + i17;
                         f = f3;
                     } else {
-                        if (((ViewGroup.MarginLayoutParams) layoutParams).width != 0 || f2 <= 0.0f) {
+                        if (((ViewGroup.MarginLayoutParams) layoutParams).width != 0 || !(f2 > 0.0f)) {
                             i8 = Integer.MIN_VALUE;
                         } else {
                             ((ViewGroup.MarginLayoutParams) layoutParams).width = -2;
@@ -1113,7 +1113,7 @@ public class LinearLayoutCompat extends ViewGroup {
                         i15 = childrenSkipCount;
                     } else {
                         int i40 = i18;
-                        if (((ViewGroup.MarginLayoutParams) layoutParams3).height != 0 || f6 <= 0.0f) {
+                        if (((ViewGroup.MarginLayoutParams) layoutParams3).height != 0 || !(f6 > 0.0f)) {
                             i8 = Integer.MIN_VALUE;
                         } else {
                             ((ViewGroup.MarginLayoutParams) layoutParams3).height = -2;

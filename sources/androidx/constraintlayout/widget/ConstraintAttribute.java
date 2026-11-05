@@ -342,7 +342,7 @@ public class ConstraintAttribute {
                 case BOOLEAN_TYPE:
                     Method method2 = cls.getMethod(string, Boolean.TYPE);
                     Object[] objArr = new Object[1];
-                    if (fArr[0] <= 0.5f) {
+                    if (!(fArr[0] > 0.5f)) {
                         z2 = false;
                     }
                     objArr[0] = Boolean.valueOf(z2);

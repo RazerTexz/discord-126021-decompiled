@@ -251,7 +251,7 @@ public class FragmentTransition {
             z5 = false;
             z6 = false;
         } else if (i2 == 3) {
-            if (z3 ? !fragment.mAdded || fragment.mHidden : fragment.mAdded || (view = fragment.mView) == null || view.getVisibility() != 0 || fragment.mPostponedAlpha < 0.0f) {
+            if (z3 ? !fragment.mAdded || fragment.mHidden : fragment.mAdded || (view = fragment.mView) == null || view.getVisibility() != 0 || !(fragment.mPostponedAlpha >= 0.0f)) {
                 z7 = false;
             } else {
                 z7 = true;

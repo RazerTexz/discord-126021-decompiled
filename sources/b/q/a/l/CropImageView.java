@@ -91,7 +91,7 @@ public class CropImageView extends TransformImageView2 {
         if (f > 1.0f && getCurrentScale() * f <= getMaxScale()) {
             super.f(f, f2, f3);
         } else {
-            if (f >= 1.0f || getCurrentScale() * f < getMinScale()) {
+            if (!(f < 1.0f) || !(getCurrentScale() * f >= getMinScale())) {
                 return;
             }
             super.f(f, f2, f3);
@@ -195,19 +195,19 @@ public class CropImageView extends TransformImageView2 {
             float f8 = rectFY1.right - rectFY2.right;
             float f9 = rectFY1.bottom - rectFY2.bottom;
             float[] fArr4 = new float[4];
-            if (f6 <= 0.0f) {
+            if (!(f6 > 0.0f)) {
                 f6 = 0.0f;
             }
             fArr4[0] = f6;
-            if (f7 <= 0.0f) {
+            if (!(f7 > 0.0f)) {
                 f7 = 0.0f;
             }
             fArr4[1] = f7;
-            if (f8 >= 0.0f) {
+            if (!(f8 < 0.0f)) {
                 f8 = 0.0f;
             }
             fArr4[2] = f8;
-            if (f9 >= 0.0f) {
+            if (!(f9 < 0.0f)) {
                 f9 = 0.0f;
             }
             fArr4[3] = f9;
@@ -318,7 +318,7 @@ public class CropImageView extends TransformImageView2 {
             }
             float fMin = Math.min(this.k, System.currentTimeMillis() - this.l);
             float fT = f.T(fMin, 0.0f, this.n, this.k);
-            if (fMin >= this.k) {
+            if (!(fMin < this.k)) {
                 cropImageView.setImageToWrapCropBounds(true);
             } else {
                 cropImageView.l(this.m + fT, this.o, this.p);

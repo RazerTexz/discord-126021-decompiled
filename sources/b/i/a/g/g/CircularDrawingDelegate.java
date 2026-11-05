@@ -55,14 +55,14 @@ public final class CircularDrawingDelegate extends DrawingDelegate<CircularProgr
         paint.setStrokeWidth(this.d);
         float f3 = this.c;
         float f4 = f * 360.0f * f3;
-        if (f2 < f) {
+        if (!(f2 >= f)) {
             f2 += 1.0f;
         }
         float f5 = (f2 - f) * 360.0f * f3;
         float f6 = this.f;
         float f7 = -f6;
         canvas.drawArc(new RectF(f7, f7, f6, f6), f4, f5, false, paint);
-        if (this.e <= 0.0f || Math.abs(f5) >= 360.0f) {
+        if (!(this.e > 0.0f) || !(Math.abs(f5) < 360.0f)) {
             return;
         }
         paint.setStyle(Paint.Style.FILL);

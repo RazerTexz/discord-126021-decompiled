@@ -831,7 +831,7 @@ public class k9 implements t5 {
                         if (dDoubleValue == 0.0d) {
                             dDoubleValue = zzaqVarA.k.y0("value").longValue() * 1000000.0d;
                         }
-                        if (dDoubleValue > 9.223372036854776E18d || dDoubleValue < -9.223372036854776E18d) {
+                        if (!(dDoubleValue <= 9.223372036854776E18d) || !(dDoubleValue >= -9.223372036854776E18d)) {
                             this.k.g().A().c("Data lost. Currency value is too big. appId", q3.s(str), Double.valueOf(dDoubleValue));
                             jNanoTime = jNanoTime;
                             i = 0;

@@ -1087,7 +1087,7 @@ public class MotionScene {
                         if (transition3 != transition4) {
                             motionLayoutAccess$800.setTransition(transition4);
                         }
-                        if (motionLayoutAccess$800.getCurrentState() != motionLayoutAccess$800.getEndState() && motionLayoutAccess$800.getProgress() <= 0.5f) {
+                        if (motionLayoutAccess$800.getCurrentState() != motionLayoutAccess$800.getEndState() && !(motionLayoutAccess$800.getProgress() > 0.5f)) {
                             z2 = z3;
                             z4 = false;
                         }

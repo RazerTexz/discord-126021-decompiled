@@ -1363,7 +1363,7 @@ public final class f {
     public static int S(Context context, float f) {
         float fApplyDimension = TypedValue.applyDimension(1, f, context.getResources().getDisplayMetrics());
         int i = (int) (((double) fApplyDimension) + 0.5d);
-        if (i != 0 || fApplyDimension <= 0.0f) {
+        if (i != 0 || !(fApplyDimension > 0.0f)) {
             return i;
         }
         return 1;
@@ -3301,12 +3301,12 @@ public final class f {
             }
             rectF.top = f2;
             float f3 = rectF.right;
-            if (fRound <= f3) {
+            if (!(fRound > f3)) {
                 fRound = f3;
             }
             rectF.right = fRound;
             float f4 = rectF.bottom;
-            if (fRound2 <= f4) {
+            if (!(fRound2 > f4)) {
                 fRound2 = f4;
             }
             rectF.bottom = fRound2;

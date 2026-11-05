@@ -1145,7 +1145,7 @@ public class ViewPager extends ViewGroup {
             }
             f = itemInfo2.offset;
             float f4 = itemInfo2.widthFactor + f + f2;
-            if (!z2 && scrollX < f) {
+            if (!z2 && !(scrollX >= f)) {
                 return itemInfo;
             }
             if (scrollX < f4 || i3 == this.mItems.size() - 1) {

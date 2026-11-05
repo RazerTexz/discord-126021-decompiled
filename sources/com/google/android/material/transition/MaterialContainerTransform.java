@@ -541,7 +541,7 @@ public final class MaterialContainerTransform extends Transition {
             float start = progressThresholds.getStart();
             float end = progressThresholds.getEnd();
             RectF rectF7 = TransitionUtils3.a;
-            if (f >= start) {
+            if (!(f < start)) {
                 if (f > end) {
                     shapeAppearanceModelBuild = shapeAppearanceModel;
                 } else {
@@ -727,7 +727,7 @@ public final class MaterialContainerTransform extends Transition {
                     float fHeight2 = rectF2.height();
                     float f3 = (fHeight2 * fWidth) / fWidth2;
                     float f4 = (fWidth2 * fHeight) / fWidth;
-                    if (!zIsEntering ? f4 < fHeight2 : f3 < fHeight) {
+                    if (!zIsEntering ? !(f4 >= fHeight2) : !(f3 >= fHeight)) {
                         z3 = false;
                     }
                     fitModeEvaluator = z3 ? FitModeEvaluators.a : FitModeEvaluators.f1633b;

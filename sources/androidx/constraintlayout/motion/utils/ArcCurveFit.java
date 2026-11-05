@@ -48,7 +48,7 @@ public class ArcCurveFit extends CurveFit {
             }
             double d7 = d5 - d3;
             double d8 = d6 - d4;
-            if (!this.linear && Math.abs(d7) >= EPSILON && Math.abs(d8) >= EPSILON) {
+            if (!this.linear && !(Math.abs(d7) < EPSILON) && !(Math.abs(d8) < EPSILON)) {
                 this.mLut = new double[101];
                 boolean z2 = this.mVertical;
                 this.mEllipseA = d7 * ((double) (z2 ? -1 : 1));

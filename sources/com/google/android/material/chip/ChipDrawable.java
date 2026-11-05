@@ -456,7 +456,7 @@ public class ChipDrawable extends MaterialShapeDrawable implements TintAwareDraw
     }
 
     private void drawChipStroke(@NonNull Canvas canvas, @NonNull Rect rect) {
-        if (this.chipStrokeWidth <= 0.0f || this.isShapeThemingEnabled) {
+        if (!(this.chipStrokeWidth > 0.0f) || this.isShapeThemingEnabled) {
             return;
         }
         this.chipPaint.setColor(this.currentChipStrokeColor);
@@ -695,7 +695,7 @@ public class ChipDrawable extends MaterialShapeDrawable implements TintAwareDraw
     private float getCurrentChipIconWidth() {
         Drawable drawable = this.currentChecked ? this.checkedIcon : this.chipIcon;
         float f = this.chipIconSize;
-        return (f > 0.0f || drawable == null) ? f : drawable.getIntrinsicWidth();
+        return (!(f <= 0.0f) || drawable == null) ? f : drawable.getIntrinsicWidth();
     }
 
     public TextUtils.TruncateAt getEllipsize() {

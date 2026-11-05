@@ -60,7 +60,7 @@ public class PagerTitleStrip extends ViewGroup {
             pagerTitleStrip.updateText(pagerTitleStrip.mPager.getCurrentItem(), PagerTitleStrip.this.mPager.getAdapter());
             PagerTitleStrip pagerTitleStrip2 = PagerTitleStrip.this;
             float f = pagerTitleStrip2.mLastKnownPositionOffset;
-            if (f < 0.0f) {
+            if (!(f >= 0.0f)) {
                 f = 0.0f;
             }
             pagerTitleStrip2.updateTextPositions(pagerTitleStrip2.mPager.getCurrentItem(), f, true);
@@ -86,7 +86,7 @@ public class PagerTitleStrip extends ViewGroup {
                 pagerTitleStrip.updateText(pagerTitleStrip.mPager.getCurrentItem(), PagerTitleStrip.this.mPager.getAdapter());
                 PagerTitleStrip pagerTitleStrip2 = PagerTitleStrip.this;
                 float f = pagerTitleStrip2.mLastKnownPositionOffset;
-                if (f < 0.0f) {
+                if (!(f >= 0.0f)) {
                     f = 0.0f;
                 }
                 pagerTitleStrip2.updateTextPositions(pagerTitleStrip2.mPager.getCurrentItem(), f, true);
@@ -159,7 +159,7 @@ public class PagerTitleStrip extends ViewGroup {
     public void onLayout(boolean z2, int i, int i2, int i3, int i4) {
         if (this.mPager != null) {
             float f = this.mLastKnownPositionOffset;
-            if (f < 0.0f) {
+            if (!(f >= 0.0f)) {
                 f = 0.0f;
             }
             updateTextPositions(this.mLastKnownCurrentPage, f, true);

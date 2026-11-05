@@ -412,7 +412,7 @@ public final class Detector {
             }
         }
         float f5 = i5 / fR;
-        if (f5 <= 0.1f || f5 >= 0.9f) {
+        if (!(f5 > 0.1f) || !(f5 < 0.9f)) {
             return (f5 <= 0.1f) == zF ? 1 : -1;
         }
         return 0;

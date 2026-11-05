@@ -37,7 +37,7 @@ public final class MaxHeightRecyclerView extends RecyclerView {
         int dimensionPixelSize = typedArrayObtainStyledAttributes.getDimensionPixelSize(R.b.MaxHeightRecyclerView_max_height, 0);
         float f = typedArrayObtainStyledAttributes.getFloat(R.b.MaxHeightRecyclerView_max_height_screen_ratio, 0.0f);
         typedArrayObtainStyledAttributes.recycle();
-        if (f <= 0.0f || f >= 1.0f) {
+        if (!(f > 0.0f) || !(f < 1.0f)) {
             return dimensionPixelSize;
         }
         Resources resources = context.getResources();

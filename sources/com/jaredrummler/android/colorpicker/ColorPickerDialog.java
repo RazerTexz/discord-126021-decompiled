@@ -258,7 +258,7 @@ public class ColorPickerDialog extends DialogFragment implements ColorPickerView
                 ColorPanelView colorPanelView = (ColorPanelView) frameLayout.findViewById(R.c.cpv_color_panel_view);
                 ImageView imageView = (ImageView) frameLayout.findViewById(R.c.cpv_color_image_view);
                 imageView.setImageResource(colorPanelView == view ? R.b.cpv_preset_checked : 0);
-                if ((colorPanelView != view || ColorUtils.calculateLuminance(colorPanelView.getColor()) < 0.65d) && Color.alpha(colorPanelView.getColor()) > 165) {
+                if ((colorPanelView != view || !(ColorUtils.calculateLuminance(colorPanelView.getColor()) >= 0.65d)) && Color.alpha(colorPanelView.getColor()) > 165) {
                     imageView.setColorFilter((ColorFilter) null);
                 } else {
                     imageView.setColorFilter(ViewCompat.MEASURED_STATE_MASK, PorterDuff.Mode.SRC_IN);
@@ -569,7 +569,7 @@ public class ColorPickerDialog extends DialogFragment implements ColorPickerView
 
     public final int m(@ColorInt int i2, double d2) {
         long j2 = Long.parseLong(String.format("#%06X", Integer.valueOf(16777215 & i2)).substring(1), 16);
-        double d3 = d2 >= 0.0d ? 255.0d : 0.0d;
+        double d3 = !(d2 < 0.0d) ? 255.0d : 0.0d;
         if (d2 < 0.0d) {
             d2 *= -1.0d;
         }

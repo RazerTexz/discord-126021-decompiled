@@ -105,7 +105,7 @@ public class BasicMeasure {
                     if (dimensionBehaviour2 == dimensionBehaviour3 && constraintWidget.mMatchConstraintDefaultHeight == 0 && dimensionBehaviour != dimensionBehaviour3 && !constraintWidget.isInHorizontalChain()) {
                         z3 = true;
                     }
-                    z2 = (!(dimensionBehaviour == dimensionBehaviour3 || dimensionBehaviour2 == dimensionBehaviour3) || constraintWidget.mDimensionRatio <= 0.0f) ? z3 : true;
+                    z2 = (!(dimensionBehaviour == dimensionBehaviour3 || dimensionBehaviour2 == dimensionBehaviour3) || !(constraintWidget.mDimensionRatio > 0.0f)) ? z3 : true;
                 }
                 if (!z2) {
                     measure(measurer, constraintWidget, Measure.SELF_DIMENSIONS);

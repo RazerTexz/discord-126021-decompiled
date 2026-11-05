@@ -5949,7 +5949,7 @@ public class RecyclerView extends ViewGroup implements ScrollingView, NestedScro
     private void pullGlows(float f, float f2, float f3, float f4) {
         boolean z2;
         boolean z3 = true;
-        if (f2 >= 0.0f) {
+        if (!(f2 < 0.0f)) {
             if (f2 > 0.0f) {
                 ensureRightGlow();
                 EdgeEffectCompat.onPull(this.mRightGlow, f2 / getWidth(), f3 / getHeight());

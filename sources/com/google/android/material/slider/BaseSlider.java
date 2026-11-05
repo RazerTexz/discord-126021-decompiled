@@ -1234,7 +1234,7 @@ public abstract class BaseSlider<S extends BaseSlider<S, L, T>, L extends BaseOn
             if (Float.compare(fAbs2, fAbs) > 1) {
                 break;
             }
-            boolean z2 = !isRtl() ? fValueToX2 - fValueToX >= 0.0f : fValueToX2 - fValueToX <= 0.0f;
+            boolean z2 = !isRtl() ? !(fValueToX2 - fValueToX < 0.0f) : !(fValueToX2 - fValueToX > 0.0f);
             if (Float.compare(fAbs2, fAbs) < 0) {
                 this.activeThumbIdx = i;
             } else {
@@ -1589,7 +1589,7 @@ public abstract class BaseSlider<S extends BaseSlider<S, L, T>, L extends BaseOn
 
     private double snapPosition(float f2) {
         float f3 = this.stepSize;
-        if (f3 <= 0.0f) {
+        if (!(f3 > 0.0f)) {
             return f2;
         }
         int i = (int) ((this.valueTo - this.valueFrom) / f3);

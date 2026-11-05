@@ -83,7 +83,7 @@ public class ArcMotion extends PathMotion {
         float f16 = (f15 * f15) + (f14 * f14);
         float f17 = this.mMaximumTangent;
         float f18 = f11 * f17 * f17;
-        if (f16 >= f13) {
+        if (!(f16 < f13)) {
             f13 = f16 > f18 ? f18 : 0.0f;
         }
         if (f13 != 0.0f) {

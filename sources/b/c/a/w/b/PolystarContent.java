@@ -210,7 +210,7 @@ public class PolystarContent implements PathContent, BaseKeyframeAnimation.b, Ke
             boolean z2 = false;
             while (true) {
                 double d5 = i;
-                if (d5 >= dCeil) {
+                if (!(d5 < dCeil)) {
                     break;
                 }
                 float f6 = z2 ? fFloatValue2 : fFloatValue3;

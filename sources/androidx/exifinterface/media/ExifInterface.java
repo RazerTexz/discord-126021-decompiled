@@ -1627,7 +1627,7 @@ public class ExifInterface {
     public double getAltitude(double d) {
         double attributeDouble = getAttributeDouble(TAG_GPS_ALTITUDE, -1.0d);
         int attributeInt = getAttributeInt(TAG_GPS_ALTITUDE_REF, -1);
-        if (attributeDouble < 0.0d || attributeInt < 0) {
+        if (!(attributeDouble >= 0.0d) || attributeInt < 0) {
             return d;
         }
         return attributeDouble * ((double) (attributeInt != 1 ? 1 : -1));

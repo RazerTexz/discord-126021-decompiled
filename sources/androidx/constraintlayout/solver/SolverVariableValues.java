@@ -31,7 +31,7 @@ public class SolverVariableValues implements ArrayRow.ArrayRowVariables {
     @Override // androidx.constraintlayout.solver.ArrayRow.ArrayRowVariables
     public void add(SolverVariable solverVariable, float f, boolean z2) {
         float f2 = epsilon;
-        if (f <= (-f2) || f >= f2) {
+        if (!(f > (-f2)) || !(f < f2)) {
             int iIndexOf = indexOf(solverVariable);
             if (iIndexOf == -1) {
                 put(solverVariable, f);
@@ -41,7 +41,7 @@ public class SolverVariableValues implements ArrayRow.ArrayRowVariables {
             fArr[iIndexOf] = fArr[iIndexOf] + f;
             float f3 = fArr[iIndexOf];
             float f4 = epsilon;
-            if (f3 <= (-f4) || fArr[iIndexOf] >= f4) {
+            if (!(f3 > (-f4)) || !(fArr[iIndexOf] < f4)) {
                 return;
             }
             fArr[iIndexOf] = 0.0f;

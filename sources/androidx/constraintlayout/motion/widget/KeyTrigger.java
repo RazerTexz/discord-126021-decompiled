@@ -285,14 +285,14 @@ public class KeyTrigger extends Key {
                 if (this.mFireNegativeReset) {
                     f4 = this.mFireThreshold;
                     f5 = f - f4;
-                    if ((this.mFireLastPos - f4) * f5 >= 0.0f && f5 < 0.0f) {
+                    if (!((this.mFireLastPos - f4) * f5 < 0.0f) && f5 < 0.0f) {
                         this.mFireNegativeReset = false;
                         z3 = true;
                     }
                     if (this.mFirePositiveReset) {
                         f2 = this.mFireThreshold;
                         f3 = f - f2;
-                        if ((this.mFireLastPos - f2) * f3 < 0.0f || f3 <= 0.0f) {
+                        if ((this.mFireLastPos - f2) * f3 < 0.0f || !(f3 > 0.0f)) {
                             z7 = false;
                         } else {
                             this.mFirePositiveReset = false;
@@ -334,7 +334,7 @@ public class KeyTrigger extends Key {
             if (this.mFireNegativeReset) {
                 f4 = this.mFireThreshold;
                 f5 = f - f4;
-                if ((this.mFireLastPos - f4) * f5 >= 0.0f) {
+                if (!((this.mFireLastPos - f4) * f5 < 0.0f)) {
                 }
                 if (this.mFirePositiveReset) {
                     f2 = this.mFireThreshold;

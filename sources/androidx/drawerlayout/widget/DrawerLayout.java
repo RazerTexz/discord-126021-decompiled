@@ -997,7 +997,7 @@ public class DrawerLayout extends ViewGroup {
                 float f = x3 - this.mInitialMotionX;
                 float f2 = y3 - this.mInitialMotionY;
                 int touchSlop = this.mLeftDragger.getTouchSlop();
-                if ((f2 * f2) + (f * f) >= touchSlop * touchSlop || (viewFindOpenDrawer = findOpenDrawer()) == null || getDrawerLockMode(viewFindOpenDrawer) == 2) {
+                if (!((f2 * f2) + (f * f) < touchSlop * touchSlop) || (viewFindOpenDrawer = findOpenDrawer()) == null || getDrawerLockMode(viewFindOpenDrawer) == 2) {
                     z2 = true;
                 } else {
                     z2 = false;
