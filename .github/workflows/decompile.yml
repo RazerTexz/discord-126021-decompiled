@@ -19,6 +19,7 @@ jobs:
           workflow: build-artifacts.yml
           name: ^jadx-(?!gui)
           name_is_regexp: true
+          use_unzip: true
 
       - name: Decompile
         run: ./bin/jadx -d . -j "$(nproc)" --fs-case-sensitive --respect-bytecode-access-modifiers --show-bad-code --no-inline-anonymous --no-inline-methods --no-inline-kotlin-lambda --use-source-name-as-class-name-alias always "$(curl -fsSLOJ -w "%{filename_effective}" https://maven.aliucord.com/releases/com/discord/discord/126021/discord-126021.apk)" || true
