@@ -1,0 +1,26 @@
+package com.discord.widgets.channels;
+
+import android.view.View;
+import com.discord.api.role.GuildRole;
+import com.discord.views.CheckedSetting;
+import d0.z.d.Intrinsics3;
+
+/* JADX INFO: compiled from: WidgetCreateChannel.kt */
+/* JADX INFO: loaded from: classes2.dex */
+public final class WidgetCreateChannel$RolesAdapter$RoleListItem$onConfigure$1 implements View.OnClickListener {
+    public final /* synthetic */ GuildRole $role;
+    public final /* synthetic */ WidgetCreateChannel.RolesAdapter.RoleListItem this$0;
+
+    public WidgetCreateChannel$RolesAdapter$RoleListItem$onConfigure$1(WidgetCreateChannel.RolesAdapter.RoleListItem roleListItem, GuildRole guildRole) {
+        this.this$0 = roleListItem;
+        this.$role = guildRole;
+    }
+
+    @Override // android.view.View.OnClickListener
+    public final void onClick(View view) {
+        WidgetCreateChannel.RolesAdapter rolesAdapterAccess$getAdapter$p = WidgetCreateChannel.RolesAdapter.RoleListItem.access$getAdapter$p(this.this$0);
+        CheckedSetting checkedSetting = WidgetCreateChannel.RolesAdapter.RoleListItem.access$getBinding$p(this.this$0).f2180b;
+        Intrinsics3.checkNotNullExpressionValue(checkedSetting, "binding.roleItemCheckedSetting");
+        WidgetCreateChannel.RolesAdapter.access$onRoleClicked(rolesAdapterAccess$getAdapter$p, !checkedSetting.isChecked(), this.this$0.getAdapterPosition(), this.$role.getId());
+    }
+}

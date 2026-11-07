@@ -1,0 +1,24 @@
+package com.discord.widgets.servers.auditlog;
+
+import android.view.View;
+import com.discord.stores.StoreStream;
+import com.discord.utilities.mg_recycler.MGRecyclerDataPayload;
+
+/* JADX INFO: renamed from: com.discord.widgets.servers.auditlog.WidgetServerSettingsAuditLogAdapter$AuditLogEntryViewHolder$onConfigure$3, reason: use source file name */
+/* JADX INFO: compiled from: WidgetServerSettingsAuditLogAdapter.kt */
+/* JADX INFO: loaded from: classes2.dex */
+public final class WidgetServerSettingsAuditLogAdapter4 implements View.OnClickListener {
+    public final /* synthetic */ MGRecyclerDataPayload $data;
+    public final /* synthetic */ WidgetServerSettingsAuditLogAdapter.AuditLogEntryViewHolder this$0;
+
+    public WidgetServerSettingsAuditLogAdapter4(WidgetServerSettingsAuditLogAdapter.AuditLogEntryViewHolder auditLogEntryViewHolder, MGRecyclerDataPayload mGRecyclerDataPayload) {
+        this.this$0 = auditLogEntryViewHolder;
+        this.$data = mGRecyclerDataPayload;
+    }
+
+    @Override // android.view.View.OnClickListener
+    public final void onClick(View view) {
+        WidgetServerSettingsAuditLogAdapter.access$setEnsureExpandedIsVisible$p(WidgetServerSettingsAuditLogAdapter.AuditLogEntryViewHolder.access$getAdapter$p(this.this$0), true);
+        StoreStream.INSTANCE.getAuditLog().toggleSelectedState(((WidgetServerSettingsAuditLogAdapter.AuditLogEntryItem) this.$data).getAuditLogEntry().getId());
+    }
+}
