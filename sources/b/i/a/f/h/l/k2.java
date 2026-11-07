@@ -40,11 +40,9 @@ public final /* synthetic */ class k2 implements z2 {
             try {
                 File file = new File(contextCreateDeviceProtectedStorageContext.getDir("phenotype_hermetic", 0), "overrides.txt");
                 y2Var = file.exists() ? new y2(file) : w2.j;
-                StrictMode.setThreadPolicy(threadPolicyAllowThreadDiskReads);
             } catch (RuntimeException e) {
                 Log.e("HermeticFileOverrides", "no data dir", e);
                 y2Var = w2.j;
-                StrictMode.setThreadPolicy(threadPolicyAllowThreadDiskReads);
             }
             if (!y2Var.b()) {
                 return w2.j;
@@ -91,9 +89,8 @@ public final /* synthetic */ class k2 implements z2 {
             } catch (IOException e2) {
                 throw new RuntimeException(e2);
             }
-        } catch (Throwable th3) {
+        } finally {
             StrictMode.setThreadPolicy(threadPolicyAllowThreadDiskReads);
-            throw th3;
         }
     }
 }
