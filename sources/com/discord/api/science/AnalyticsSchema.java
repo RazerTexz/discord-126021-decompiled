@@ -1,8 +1,0 @@
-package com.discord.api.science;
-
-
-/* JADX INFO: compiled from: AnalyticsSchema.kt */
-/* JADX INFO: loaded from: classes.dex */
-public interface AnalyticsSchema {
-    String d();
-}
