@@ -497,31 +497,27 @@ public final class Persister<T> {
     }
 
     private final synchronized void persist() {
-        try {
-            if (this.valueDirty) {
-                this.valueDirty = false;
+        if (this.valueDirty) {
+            this.valueDirty = false;
+            try {
+                Output output = new Output(getFileOutput());
                 try {
-                    Output output = new Output(getFileOutput());
-                    try {
-                        Kryo kryo = kryos.get();
-                        if (kryo != null) {
-                            kryo.writeClassAndObject(output, this.value);
-                        }
-                        Closeable.closeFinally(output, null);
-                    } catch (Throwable th) {
-                        try {
-                            throw th;
-                        } catch (Throwable th2) {
-                            Closeable.closeFinally(output, th);
-                            throw th2;
-                        }
+                    Kryo kryo = kryos.get();
+                    if (kryo != null) {
+                        kryo.writeClassAndObject(output, this.value);
                     }
-                } catch (Exception e) {
-                    logger.invoke(5, "Unable to serialize preference " + this.key + '.', new Exception(this.key, e));
+                    Closeable.closeFinally(output, null);
+                } catch (Throwable th) {
+                    try {
+                        throw th;
+                    } catch (Throwable th2) {
+                        Closeable.closeFinally(output, th);
+                        throw th2;
+                    }
                 }
+            } catch (Exception e) {
+                logger.invoke(5, "Unable to serialize preference " + this.key + '.', new Exception(this.key, e));
             }
-        } catch (Throwable th3) {
-            throw th3;
         }
     }
 

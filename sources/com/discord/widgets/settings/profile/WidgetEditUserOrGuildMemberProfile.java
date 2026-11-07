@@ -252,10 +252,10 @@ public final class WidgetEditUserOrGuildMemberProfile extends AppFragment {
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
         public final void invoke2() {
-            SelectorBottomSheet.Companion aVar = SelectorBottomSheet.INSTANCE;
+            SelectorBottomSheet.Companion companion = SelectorBottomSheet.INSTANCE;
             FragmentManager childFragmentManager = WidgetEditUserOrGuildMemberProfile.this.getChildFragmentManager();
             Intrinsics3.checkNotNullExpressionValue(childFragmentManager, "childFragmentManager");
-            aVar.a(childFragmentManager, "", this.$avatarSheetOptions, false, new AnonymousClass1());
+            companion.a(childFragmentManager, "", this.$avatarSheetOptions, false, new AnonymousClass1());
         }
     }
 
