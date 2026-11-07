@@ -2,18 +2,18 @@ name: Decompile
 on: [push, workflow_dispatch]
 jobs:
   decompile:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     permissions:
       contents: write
     steps:
       - name: Set up Java
-        uses: actions/setup-java@main
+        uses: actions/setup-java@v6.2.0
         with:
           java-version: 25
           distribution: temurin
 
       - name: Set up JADX
-        uses: dawidd6/action-download-artifact@master
+        uses: dawidd6/action-download-artifact@v28
         with:
           repo: skylot/jadx
           workflow: build-artifacts.yml
@@ -40,7 +40,7 @@ jobs:
           git push "https://x:${{ github.token }}@github.com/${{ github.repository }}" HEAD:main
 
       - name: Upload
-        uses: actions/upload-artifact@main
+        uses: actions/upload-artifact@v7.0.2
         with:
           name: discord-120621-decompiled
           path: |
